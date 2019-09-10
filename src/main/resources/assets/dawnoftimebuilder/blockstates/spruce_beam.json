@@ -1,0 +1,22 @@
+{
+    "multipart": [
+        {   "when": { "main_axis": "y" },
+            "apply": { "model": "dawnoftimebuilder:japanese/spruce_beam_y"}
+        },
+       	{   "when": { "main_axis": "x" },
+            "apply": { "model": "dawnoftimebuilder:japanese/spruce_beam_x"}
+        },
+		{   "when": { "main_axis": "z" },
+            "apply": { "model": "dawnoftimebuilder:japanese/spruce_beam_x", "y": 90}
+        },
+        {   "when": { "subaxis_x": "true" },
+            "apply": { "model": "dawnoftimebuilder:japanese/spruce_beam_x"}
+        },
+        {   "when": { "subaxis_z": "true" },
+            "apply": { "model": "dawnoftimebuilder:japanese/spruce_beam_x", "y": 90}
+        },
+        {   "when": { "bottom": "true" },
+            "apply": { "model": "dawnoftimebuilder:japanese/spruce_beam_bottom"}
+        }
+    ]
+}

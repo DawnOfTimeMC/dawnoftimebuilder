@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " x ",
+    "IiI",
+    " I "
+  ],
+  "key": {
+    "I": {
+      "item": "dawnoftimebuilder:plastered_stone",
+      "data": 0
+    },
+    "i": {
+      "item": "dawnoftimebuilder:gold_powder"
+    },
+    "x": {
+      "item": "minecraft:coal",
+      "data": 0
+    }
+  },
+  "result": {
+    "item": "dawnoftimebuilder:plastered_stone_cresset",
+    "data": 0,
+    "count": 4
+  }
+}

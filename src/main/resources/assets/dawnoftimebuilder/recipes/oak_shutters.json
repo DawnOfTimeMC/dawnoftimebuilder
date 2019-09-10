@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "iII",
+    " II",
+    "iII"
+  ],
+  "key": {
+    "I": {
+      "item": "dawnoftimebuilder:oak_waxed_planks",
+      "data": 0
+    },
+    "i": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "dawnoftimebuilder:oak_shutters",
+    "data": 0,
+    "count": 4
+  }
+}

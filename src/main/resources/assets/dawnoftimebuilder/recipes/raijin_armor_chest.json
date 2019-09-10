@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "xix",
+    "ixi",
+    "i i"
+  ],
+  "key": {
+    "i": {
+      "item": "minecraft:wool",
+      "data": 14
+    }
+    },
+    "x": {
+      "item": "minecraft:gold_ingot"
+    }
+  }
+  "result": {
+    "item": "dawnoftimebuilder:raijin_armor_chest",
+    "data": 0,
+    "count": 1
+  }
+}

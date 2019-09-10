@@ -1,0 +1,12 @@
+{
+    "variants": {
+        "axisx=false,side=false,top=false":  { "model": "dawnoftimebuilder:french/lattice_oak_window_bottom" },
+        "axisx=false,side=true,top=false":  { "model": "dawnoftimebuilder:french/lattice_oak_window_bottom_side" },
+        "axisx=false,side=false,top=true":  { "model": "dawnoftimebuilder:french/lattice_oak_window_top" },
+        "axisx=false,side=true,top=true":  { "model": "dawnoftimebuilder:french/lattice_oak_window_top_side" },
+        "axisx=true,side=false,top=false":  { "model": "dawnoftimebuilder:french/lattice_oak_window_bottom", "y": 90 },
+        "axisx=true,side=true,top=false":  { "model": "dawnoftimebuilder:french/lattice_oak_window_bottom_side", "y": 90 },
+        "axisx=true,side=false,top=true":  { "model": "dawnoftimebuilder:french/lattice_oak_window_top", "y": 90 },
+        "axisx=true,side=true,top=true":  { "model": "dawnoftimebuilder:french/lattice_oak_window_top_side", "y": 90 }
+    }
+}

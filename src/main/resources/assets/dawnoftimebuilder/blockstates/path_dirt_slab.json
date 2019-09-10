@@ -1,0 +1,40 @@
+{
+    "variants": {
+        "full=true,slab=bottom": [
+            { "model": "dawnoftimebuilder:general/path_dirt_slab_bottom" },
+            { "model": "dawnoftimebuilder:general/path_dirt_slab_bottom", "y": 90  },
+            { "model": "dawnoftimebuilder:general/path_dirt_slab_bottom", "y": 180  },
+            { "model": "dawnoftimebuilder:general/path_dirt_slab_bottom", "y": 270  }
+        ],
+        "full=false,slab=bottom": [
+            { "model": "dawnoftimebuilder:general/path_dirt_slab_bottom" },
+            { "model": "dawnoftimebuilder:general/path_dirt_slab_bottom", "y": 90  },
+            { "model": "dawnoftimebuilder:general/path_dirt_slab_bottom", "y": 180  },
+            { "model": "dawnoftimebuilder:general/path_dirt_slab_bottom", "y": 270  }
+        ],
+        "full=true,slab=top": [
+            { "model": "dawnoftimebuilder:general/path_dirt_slab_top" },
+            { "model": "dawnoftimebuilder:general/path_dirt_slab_top", "y": 90  },
+            { "model": "dawnoftimebuilder:general/path_dirt_slab_top", "y": 180  },
+            { "model": "dawnoftimebuilder:general/path_dirt_slab_top", "y": 270  }
+        ],
+        "full=false,slab=top": [
+            { "model": "dawnoftimebuilder:general/path_dirt_slab_top_full" },
+            { "model": "dawnoftimebuilder:general/path_dirt_slab_top_full", "y": 90  },
+            { "model": "dawnoftimebuilder:general/path_dirt_slab_top_full", "y": 180  },
+            { "model": "dawnoftimebuilder:general/path_dirt_slab_top_full", "y": 270  }
+        ],
+        "full=true,slab=double": [
+            { "model": "dawnoftimebuilder:general/path_dirt_slab_double" },
+            { "model": "dawnoftimebuilder:general/path_dirt_slab_double", "y": 90  },
+            { "model": "dawnoftimebuilder:general/path_dirt_slab_double", "y": 180  },
+            { "model": "dawnoftimebuilder:general/path_dirt_slab_double", "y": 270  }
+        ],
+        "full=false,slab=double": [
+            { "model": "dawnoftimebuilder:general/path_dirt_slab_double_full" },
+            { "model": "dawnoftimebuilder:general/path_dirt_slab_double_full", "y": 90  },
+            { "model": "dawnoftimebuilder:general/path_dirt_slab_double_full", "y": 180  },
+            { "model": "dawnoftimebuilder:general/path_dirt_slab_double_full", "y": 270  }
+]
+    }
+}

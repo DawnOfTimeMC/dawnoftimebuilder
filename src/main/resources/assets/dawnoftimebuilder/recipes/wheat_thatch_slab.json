@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "III"
+  ],
+  "key": {
+    "I": {
+      "item": "dawnoftimebuilder:thatch",
+      "data":  0,
+    }
+  },
+  "result": {
+    "item": "dawnoftimebuilder:wheat_thatch_slab",
+    "data": 3,
+    "count": 6
+  }
+}

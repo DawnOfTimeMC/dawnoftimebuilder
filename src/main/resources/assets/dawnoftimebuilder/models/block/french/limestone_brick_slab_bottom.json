@@ -1,0 +1,8 @@
+{
+    "parent": "block/half_slab",
+    "textures": {
+        "bottom": "dawnoftimebuilder:blocks/limestone_brick",
+        "top": "dawnoftimebuilder:blocks/limestone_brick",
+        "side": "dawnoftimebuilder:blocks/limestone_brick"
+    }
+}

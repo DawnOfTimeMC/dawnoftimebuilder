@@ -1,0 +1,49 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "dawnoftimebuilder:tachi_sword.obj"
+  },
+  "variants": {
+    "inventory": [
+      {
+        "transform": {
+          "thirdperson_lefthand": {
+            "rotation": [ { "x": 0 }, { "y": 180 }, { "z": 0 } ],
+            "translation": [ 0, -0.3, 0 ],
+            "scale": 0.06
+          },
+          "thirdperson_righthand": {
+            "rotation": [ { "x": 0 }, { "y": 180 }, { "z": 0 } ],
+            "translation": [ 0, -0.3, 0 ],
+            "scale": 0.06
+          },
+          "gui": {
+            "rotation": [ { "x": -90 }, { "y": 135 }, { "z": 90 } ],
+            "translation": [ -0.45, -0.45, 0 ],
+            "scale": 0.04
+          },
+          "firstperson_righthand": {
+            "rotation": [ { "x": 5 }, { "y": 180 }, { "z": 0 } ],
+            "translation": [ 0.1, 0, 0 ],
+            "scale": 0.035
+          },
+          "firstperson_lefthand": {
+            "rotation": [ { "x": 5 }, { "y": 180 }, { "z": 0 } ],
+            "translation": [ 0.1, 0, 0 ],
+            "scale": 0.035
+          },
+          "ground": {
+            "rotation": [ { "x": 0 }, { "y": 0 }, { "z": 0 } ],
+            "translation": [ 0, -0.2, 0 ],
+            "scale": 0.025
+          },
+          "fixed": {
+            "rotation": [ { "x": -90 }, { "y": 135 }, { "z": 90 } ],
+            "translation": [-0.5, -0.5, 0],
+            "scale": 0.045
+          }
+        }
+      }
+    ]
+  }
+}

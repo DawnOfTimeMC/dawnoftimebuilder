@@ -1,0 +1,16 @@
+[
+    {
+      "modid": "dawnoftimebuilder",
+      "name": "Dawn Of Time : Builder Edition",
+      "description": "",
+      "version": "",
+      "mcversion": "${mcversion}",
+      "url": "https://www.curseforge.com/minecraft/mc-mods/dawn-of-time",
+      "updateUrl": "https://www.curseforge.com/minecraft/mc-mods/dawn-of-time/files",
+      "authorList": ["Poulpinou", "TheGoldenWorld"],
+      "credits": "Grandgibus, Kalista, Knoxxturre, Anxiogène, Dmf444, Gamble, InstantNootles, Mr_ch0c0late and many others",
+      "logoFile": "logo.png",
+      "screenshots": [],
+      "dependencies": []
+    }
+]

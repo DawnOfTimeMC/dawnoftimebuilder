@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "vertical_connection=under": { "model": "dawnoftimebuilder:japanese/paper_lamp_top" },
+        "vertical_connection=both": { "model": "dawnoftimebuilder:japanese/paper_lamp_middle" },
+        "vertical_connection=above": { "model": "dawnoftimebuilder:japanese/paper_lamp_bottom" },
+        "vertical_connection=none": { "model": "dawnoftimebuilder:japanese/paper_lamp_lone" }
+    }
+}

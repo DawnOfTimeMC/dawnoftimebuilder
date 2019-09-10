@@ -1,0 +1,6 @@
+{
+    "parent": "block/fence_post",
+    "textures": {
+        "texture": "dawnoftimebuilder:blocks/oak_waxed_planks"
+    }
+}

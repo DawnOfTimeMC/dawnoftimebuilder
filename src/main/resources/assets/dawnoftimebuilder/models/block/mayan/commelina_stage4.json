@@ -1,0 +1,6 @@
+{
+    "parent": "block/crop",
+    "textures": {
+        "crop": "dawnoftimebuilder:blocks/commelina_stage_4"
+    }
+}

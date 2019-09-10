@@ -1,0 +1,10 @@
+{
+    "variants": {
+        "variant=chiseled_plastered_stone": { "model": "dawnoftimebuilder:mayan/chiseled_plastered_stone" },
+        "variant=ornamented_chiseled_plastered_stone": { "model": "dawnoftimebuilder:mayan/ornamented_chiseled_plastered_stone" },
+        "variant=green_chiseled_plastered_stone": { "model": "dawnoftimebuilder:mayan/green_chiseled_plastered_stone" },
+        "variant=green_ornamented_chiseled_plastered_stone": { "model": "dawnoftimebuilder:mayan/green_ornamented_chiseled_plastered_stone" },
+        "variant=red_chiseled_plastered_stone": { "model": "dawnoftimebuilder:mayan/red_chiseled_plastered_stone" },
+        "variant=red_ornamented_chiseled_plastered_stone": { "model": "dawnoftimebuilder:mayan/red_ornamented_chiseled_plastered_stone" }
+    }
+}

@@ -1,0 +1,49 @@
+{
+	"textures": {
+		"texture": "dawnoftimebuilder:blocks/spruce_roof_support",
+		"particle": "dawnoftimebuilder:blocks/spruce_roof_support"
+	},
+	"elements": [
+		{
+			"from": [12.999, 14, 3],
+			"to": [15.999, 16, 7],
+			"rotation": {"angle": -22.5, "axis": "x", "origin": [2.539, 16, 3]},
+			"faces": {
+				"east": {"uv": [0, 0, 1, 2], "rotation": 270, "texture": "#texture"},
+				"south": {"uv": [0, 0, 1.5, 1], "texture": "#texture"},
+				"up": {"uv": [0, 0, 1.5, 2], "texture": "#texture"},
+				"down": {"uv": [0, 0, 1.5, 2], "texture": "#texture"}
+			}
+		},
+		{
+			"from": [9, 14, 0.001],
+			"to": [13, 16, 3.001],
+			"rotation": {"angle": -22.5, "axis": "z", "origin": [13, 16, 2.999]},
+			"faces": {
+				"north": {"uv": [0, 0, 1, 2], "rotation": 90, "texture": "#texture"},
+				"west": {"uv": [0, 0, 1.5, 1], "texture": "#texture"},
+				"up": {"uv": [0, 0, 1.5, 2], "rotation": 90, "texture": "#texture"},
+				"down": {"uv": [0, 0, 1.5, 2], "rotation": 90, "texture": "#texture"}
+			}
+		},
+		{
+			"from": [-7.70873, 11, 2.43823],
+			"to": [18.29127, 18, 9.43823],
+			"rotation": {"angle": 45, "axis": "y", "origin": [10.29127, 13, 6.49228]},
+			"faces": {
+				"north": {"uv": [0, 0, 10, 3.5], "texture": "#texture"},
+				"east": {"uv": [0.25, 3.75, 3.75, 7.25], "texture": "#texture"},
+				"south": {"uv": [0, 0, 10, 3.5], "texture": "#texture"},
+				"west": {"uv": [0.25, 3.75, 3.75, 7.25], "texture": "#texture"},
+				"up": {"uv": [0, 0, 10, 3.5], "texture": "#texture"},
+				"down": {"uv": [0, 0, 10, 3.5], "texture": "#texture"}
+			}
+		}
+	],
+	"groups": [0, 1,
+		{
+			"name": "spruce_roof_support_outer",
+			"children": [2]
+		}
+	]
+}

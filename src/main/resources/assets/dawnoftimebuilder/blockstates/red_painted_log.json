@@ -1,0 +1,19 @@
+{
+    "multipart": [
+        {   "when": { "main_axis": "y" },
+            "apply": { "model": "dawnoftimebuilder:japanese/red_painted_log_vertical"}
+        },
+       	{   "when": { "main_axis": "x" },
+            "apply": { "model": "dawnoftimebuilder:japanese/red_painted_log_horizontal_x"}
+        },
+		{   "when": { "main_axis": "z" },
+            "apply": { "model": "dawnoftimebuilder:japanese/red_painted_log_horizontal_z"}
+        },
+        {   "when": { "subaxis_x": "true" },
+            "apply": { "model": "dawnoftimebuilder:japanese/red_painted_log_horizontal_x"}
+        },
+        {   "when": { "subaxis_z": "true" },
+            "apply": { "model": "dawnoftimebuilder:japanese/red_painted_log_horizontal_z"}
+        }
+    ]
+}

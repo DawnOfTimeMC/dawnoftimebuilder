@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "I I",
+    "i i"
+  ],
+  "key": {
+    "I": {
+      "item": "minecraft:redstone_block",
+      "data": 0
+    },
+    "i": {
+      "item": "minecraft:coal_block",
+      "data": 0
+    }
+  },
+  "result": {
+    "item": "dawnoftimebuilder:o_yoroi_armor_feet",
+    "data": 0,
+    "count": 1
+  }
+}

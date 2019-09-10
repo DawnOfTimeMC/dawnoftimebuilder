@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "II"
+  ],
+  "key": {
+    "i": {
+      "item": "dawnoftimebuilder:slab_tiles",
+      "data": 2
+    }
+  },
+  "result": {
+    "item": "dawnoftimebuilder:flat_roof_tiles_edge",
+    "data": 0,
+    "count": 6
+  }
+}

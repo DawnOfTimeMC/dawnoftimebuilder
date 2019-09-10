@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=east": { "model": "dawnoftimebuilder:mayan/feathered_serpent_sculpture", "y" : 90},
+        "facing=south": { "model": "dawnoftimebuilder:mayan/feathered_serpent_sculpture", "y": 180 },
+        "facing=west": { "model": "dawnoftimebuilder:mayan/feathered_serpent_sculpture", "y": 270 },
+        "facing=north": { "model": "dawnoftimebuilder:mayan/feathered_serpent_sculpture"}
+    }
+}

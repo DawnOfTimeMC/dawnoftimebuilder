@@ -1,0 +1,18 @@
+{
+	"textures": {
+		"slab": "blocks/log_spruce",
+		"particle": "blocks/log_spruce"
+	},
+	"elements": [
+		{
+			"from": [3, 0, 3],
+			"to": [13, 12, 13],
+			"faces": {
+				"north": {"uv": [3, 4, 13, 16], "texture": "#slab"},
+				"east": {"uv": [3, 4, 13, 16], "texture": "#slab"},
+				"south": {"uv": [3, 4, 13, 16], "texture": "#slab"},
+				"west": {"uv": [3, 4, 13, 16], "texture": "#slab"}
+			}
+		}
+	]
+}

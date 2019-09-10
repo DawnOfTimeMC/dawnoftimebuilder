@@ -1,0 +1,28 @@
+{
+    "multipart": [
+        {   "when": { "pillar": "none" },
+            "apply": { "model": "dawnoftimebuilder:japanese/spruce_railing_post_none" }
+        },
+        {   "when": { "pillar": "pillar_small" },
+            "apply": { "model": "dawnoftimebuilder:japanese/spruce_railing_post_small" }
+        },
+        {   "when": { "pillar": "pillar_big" },
+            "apply": { "model": "dawnoftimebuilder:japanese/spruce_railing_post_big" }
+        },
+        {   "when": { "pillar": "cap_pillar_big" },
+            "apply": { "model": "dawnoftimebuilder:japanese/spruce_railing_post_cap_big" }
+        },
+        {   "when": { "north": "true" },
+            "apply": { "model": "dawnoftimebuilder:japanese/spruce_railing_side"}
+        },
+        {   "when": { "east": "true" },
+            "apply": { "model": "dawnoftimebuilder:japanese/spruce_railing_side", "y": 90}
+        },
+        {   "when": { "south": "true" },
+            "apply": { "model": "dawnoftimebuilder:japanese/spruce_railing_side", "y": 180}
+        },
+        {   "when": { "west": "true" },
+            "apply": { "model": "dawnoftimebuilder:japanese/spruce_railing_side", "y": 270}
+        }
+    ]
+}

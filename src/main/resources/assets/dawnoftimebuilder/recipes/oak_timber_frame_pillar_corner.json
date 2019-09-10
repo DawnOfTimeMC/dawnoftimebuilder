@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "IiI",
+    "iii",
+    "IiI"
+  ],
+  "key": {
+    "I": {
+      "item": "dawnoftimebuilder:oak_waxed_planks",
+      "data": 0
+    },
+    "i": {
+      "item": "minecraft:clay_ball"
+    }
+  },
+  "result": {
+    "item": "dawnoftimebuilder:oak_timber_frame_corner",
+    "data": 0,
+    "count": 6
+  }
+}

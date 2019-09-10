@@ -1,0 +1,40 @@
+{
+    "variants": {
+        "full=true,slab=bottom": [
+            { "model": "dawnoftimebuilder:general/path_stepping_stones_slab_bottom_1" },
+            { "model": "dawnoftimebuilder:general/path_stepping_stones_slab_bottom_2" },
+            { "model": "dawnoftimebuilder:general/path_stepping_stones_slab_bottom_3" },
+            { "model": "dawnoftimebuilder:general/path_stepping_stones_slab_bottom_4" }
+        ],
+        "full=false,slab=bottom": [
+            { "model": "dawnoftimebuilder:general/path_stepping_stones_slab_bottom_1" },
+            { "model": "dawnoftimebuilder:general/path_stepping_stones_slab_bottom_2" },
+            { "model": "dawnoftimebuilder:general/path_stepping_stones_slab_bottom_3" },
+            { "model": "dawnoftimebuilder:general/path_stepping_stones_slab_bottom_4" }
+        ],
+        "full=true,slab=top": [
+            { "model": "dawnoftimebuilder:general/path_stepping_stones_slab_top_1" },
+            { "model": "dawnoftimebuilder:general/path_stepping_stones_slab_top_2" },
+            { "model": "dawnoftimebuilder:general/path_stepping_stones_slab_top_3" },
+            { "model": "dawnoftimebuilder:general/path_stepping_stones_slab_top_4" }
+        ],
+        "full=false,slab=top": [
+            { "model": "dawnoftimebuilder:general/path_stepping_stones_slab_top_full_1" },
+            { "model": "dawnoftimebuilder:general/path_stepping_stones_slab_top_full_2" },
+            { "model": "dawnoftimebuilder:general/path_stepping_stones_slab_top_full_3" },
+            { "model": "dawnoftimebuilder:general/path_stepping_stones_slab_top_full_4" }
+        ],
+        "full=true,slab=double": [
+            { "model": "dawnoftimebuilder:general/path_stepping_stones_slab_double_1" },
+            { "model": "dawnoftimebuilder:general/path_stepping_stones_slab_double_2" },
+            { "model": "dawnoftimebuilder:general/path_stepping_stones_slab_double_3" },
+            { "model": "dawnoftimebuilder:general/path_stepping_stones_slab_double_4" }
+        ],
+        "full=false,slab=double": [
+            { "model": "dawnoftimebuilder:general/path_stepping_stones_slab_double_full_1" },
+            { "model": "dawnoftimebuilder:general/path_stepping_stones_slab_double_full_2" },
+            { "model": "dawnoftimebuilder:general/path_stepping_stones_slab_double_full_3" },
+            { "model": "dawnoftimebuilder:general/path_stepping_stones_slab_double_full_4" }
+]
+    }
+}

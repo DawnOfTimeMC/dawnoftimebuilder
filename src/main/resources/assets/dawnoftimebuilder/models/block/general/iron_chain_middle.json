@@ -1,0 +1,25 @@
+{
+	"credit": "Made with Blockbench",
+	"textures": {
+		"chain": "dawnoftimebuilder:blocks/chain",
+		"particle": "dawnoftimebuilder:blocks/chain"
+	},
+	"elements": [
+		{
+			"from": [7, 0, 8],
+			"to": [9, 16, 8],
+			"faces": {
+				"north": {"uv": [5, 0, 7, 16], "texture": "#chain"},
+				"south": {"uv": [5, 0, 7, 16], "texture": "#chain"}
+			}
+		},
+		{
+			"from": [8, 2, 7],
+			"to": [8, 18, 9],
+			"faces": {
+				"east": {"uv": [5, 0, 7, 16], "texture": "#chain"},
+				"west": {"uv": [5, 0, 7, 16], "texture": "#chain"}
+			}
+		}
+	]
+}

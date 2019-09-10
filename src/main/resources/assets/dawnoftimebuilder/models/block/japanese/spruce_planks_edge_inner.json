@@ -1,0 +1,8 @@
+{
+	"parent": "dawnoftimebuilder:block/general/small_plate_inner",
+	"textures": {
+		"side": "blocks/planks_spruce",
+		"top": "blocks/planks_spruce",
+		"frieze": "blocks/planks_spruce"
+	}
+}

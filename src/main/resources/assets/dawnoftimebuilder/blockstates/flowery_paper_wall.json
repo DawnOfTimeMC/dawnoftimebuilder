@@ -1,0 +1,82 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "model": "pane_post"
+    },
+    "variants": {
+        "east": {
+            "true": {
+                "submodel" : { 
+                    "east1" : { "model": "pane_side", "y" : 90}
+                }
+            },
+            "false": {
+                "submodel" : { 
+                    "east2" : { "model": "pane_noside_alt"}
+                }
+            }
+        },
+        "north": {
+            "true": {
+                "submodel" : { 
+                    "north1" : { "model": "pane_side"}
+                }
+            },
+            "false": {
+                "submodel" : { 
+                    "north2" : { "model": "pane_noside"}
+                }
+            }
+        },
+        "south": {
+            "true": {
+                "submodel" : { 
+                    "south1" : { "model": "pane_side_alt"}
+                }
+            },
+            "false": {
+                "submodel" : { 
+                    "south2" : { "model": "pane_noside_alt", "y": 90 }
+                }
+            }
+        },
+        "tile": {
+            "0": {
+                "textures" : {
+                    "pane" : "dawnoftimebuilder:blocks/flowery_paper_wall_top",
+                    "edge" : "dawnoftimebuilder:blocks/paper_wall"
+                }
+            },
+            "1": {
+                "textures" : {
+                    "pane" : "dawnoftimebuilder:blocks/flowery_paper_wall_middle",
+                    "edge" : "dawnoftimebuilder:blocks/paper_wall"
+                }
+            },
+            "2": {
+                "textures" : {
+                    "pane" : "dawnoftimebuilder:blocks/flowery_paper_wall_bottom",
+                    "edge" : "dawnoftimebuilder:blocks/paper_wall"
+                }
+            },
+            "3": {
+                "textures" : {
+                    "pane" : "dawnoftimebuilder:blocks/flowery_paper_wall",
+                    "edge" : "dawnoftimebuilder:blocks/paper_wall"
+                }
+            }
+        },
+        "west": {
+            "true": {
+                "submodel" : { 
+                    "west1" : { "model": "pane_side_alt", "y": 90 }
+                }
+            },
+            "false": {
+                "submodel" : { 
+                    "west2" : { "model": "pane_noside", "y": 270 }
+                }
+            }
+        }
+    }
+}

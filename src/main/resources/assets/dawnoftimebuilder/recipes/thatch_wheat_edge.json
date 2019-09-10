@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "II"
+  ],
+  "key": {
+    "I": {
+      "item": "dawnoftimebuilder:slab_tiles",
+      "data": 3
+    }
+  },
+  "result": {
+    "item": "dawnoftimebuilder:thatch_wheat_edge",
+    "data": 0,
+    "count": 6
+  }
+}

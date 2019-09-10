@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " I ",
+    "III"
+  ],
+  "key": {
+    "I": {
+      "item": "dawnoftimebuilder:bamboo_thatch",
+      "data": 1
+    }
+  },
+  "result": {
+    "item": "dawnoftimebuilder:bamboo_hat",
+    "count": 1
+  }
+}

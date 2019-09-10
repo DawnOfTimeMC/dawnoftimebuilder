@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "III",
+    "III"
+  ],
+  "key": {
+    "I": {
+      "item": "dawnoftimebuilder:plastered_stone",
+      "data": 0
+    }
+  },
+  "result": {
+    "item": "dawnoftimebuilder:plastered_stone_frieze",
+    "data": 0,
+    "count": 6
+  }
+}

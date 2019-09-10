@@ -1,0 +1,28 @@
+{
+    "variants": {
+        "facing=north,hinge=left,open=closed":  { "model": "dawnoftimebuilder:french/small_oak_shutters_closed" },
+        "facing=north,hinge=right,open=closed":  { "model": "dawnoftimebuilder:french/small_oak_shutters_closed_rh" },
+        "facing=north,hinge=left,open=half":  { "model": "dawnoftimebuilder:french/small_oak_shutters_half" },
+        "facing=north,hinge=right,open=half":  { "model": "dawnoftimebuilder:french/small_oak_shutters_half_rh" },
+        "facing=north,hinge=left,open=full":  { "model": "dawnoftimebuilder:french/small_oak_shutters_full" },
+        "facing=north,hinge=right,open=full":  { "model": "dawnoftimebuilder:french/small_oak_shutters_full_rh" },
+        "facing=east,hinge=left,open=closed":  { "model": "dawnoftimebuilder:french/small_oak_shutters_closed", "y": 90 },
+        "facing=east,hinge=right,open=closed":  { "model": "dawnoftimebuilder:french/small_oak_shutters_closed_rh", "y": 90 },
+        "facing=east,hinge=left,open=half":  { "model": "dawnoftimebuilder:french/small_oak_shutters_half", "y": 90 },
+        "facing=east,hinge=right,open=half":  { "model": "dawnoftimebuilder:french/small_oak_shutters_half_rh", "y": 90 },
+        "facing=east,hinge=left,open=full":  { "model": "dawnoftimebuilder:french/small_oak_shutters_full", "y": 90 },
+        "facing=east,hinge=right,open=full":  { "model": "dawnoftimebuilder:french/small_oak_shutters_full_rh", "y": 90 },
+        "facing=south,hinge=left,open=closed":  { "model": "dawnoftimebuilder:french/small_oak_shutters_closed", "y": 180 },
+        "facing=south,hinge=right,open=closed":  { "model": "dawnoftimebuilder:french/small_oak_shutters_closed_rh", "y": 180 },
+        "facing=south,hinge=left,open=half":  { "model": "dawnoftimebuilder:french/small_oak_shutters_half", "y": 180 },
+        "facing=south,hinge=right,open=half":  { "model": "dawnoftimebuilder:french/small_oak_shutters_half_rh", "y": 180 },
+        "facing=south,hinge=left,open=full":  { "model": "dawnoftimebuilder:french/small_oak_shutters_full", "y": 180 },
+        "facing=south,hinge=right,open=full":  { "model": "dawnoftimebuilder:french/small_oak_shutters_full_rh", "y": 180 },
+        "facing=west,hinge=left,open=closed":  { "model": "dawnoftimebuilder:french/small_oak_shutters_closed", "y": 270 },
+        "facing=west,hinge=right,open=closed":  { "model": "dawnoftimebuilder:french/small_oak_shutters_closed_rh", "y": 270 },
+        "facing=west,hinge=left,open=half":  { "model": "dawnoftimebuilder:french/small_oak_shutters_half", "y": 270 },
+        "facing=west,hinge=right,open=half":  { "model": "dawnoftimebuilder:french/small_oak_shutters_half_rh", "y": 270 },
+        "facing=west,hinge=left,open=full":  { "model": "dawnoftimebuilder:french/small_oak_shutters_full", "y": 270 },
+        "facing=west,hinge=right,open=full":  { "model": "dawnoftimebuilder:french/small_oak_shutters_full_rh", "y": 270 }
+    }
+}

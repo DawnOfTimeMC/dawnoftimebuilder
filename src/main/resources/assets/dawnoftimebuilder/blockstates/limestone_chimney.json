@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "vertical_connection=under": { "model": "dawnoftimebuilder:french/limestone_chimney_top" },
+        "vertical_connection=both": { "model": "dawnoftimebuilder:french/limestone_chimney_middle" },
+        "vertical_connection=above": { "model": "dawnoftimebuilder:french/limestone_chimney_bottom" },
+        "vertical_connection=none": { "model": "dawnoftimebuilder:french/limestone_chimney_top" }
+    }
+}

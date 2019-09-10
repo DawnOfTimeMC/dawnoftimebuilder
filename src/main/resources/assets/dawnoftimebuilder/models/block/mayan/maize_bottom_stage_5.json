@@ -1,0 +1,6 @@
+{
+    "parent": "block/crop",
+    "textures": {
+    	"crop": "dawnoftimebuilder:blocks/maize_bottom_stage_5"
+    }
+}

@@ -1,0 +1,7 @@
+{
+    "parent": "block/cube_column",
+    "textures": {
+        "end": "dawnoftimebuilder:blocks/plastered_stone",
+        "side": "dawnoftimebuilder:blocks/ornamented_chiseled_plastered_stone"
+    }
+}

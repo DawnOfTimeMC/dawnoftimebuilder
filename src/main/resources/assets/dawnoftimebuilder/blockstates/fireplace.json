@@ -1,0 +1,20 @@
+{
+	"variants": {
+		"axis_x=true,burning=false,horizontal_connection=none": { "model": "dawnoftimebuilder:general/fireplace_none_off"},
+		"axis_x=true,burning=true,horizontal_connection=none": { "model": "dawnoftimebuilder:general/fireplace_none_on"},
+		"axis_x=true,burning=false,horizontal_connection=left": { "model": "dawnoftimebuilder:general/fireplace_left_off"},
+		"axis_x=true,burning=true,horizontal_connection=left": { "model": "dawnoftimebuilder:general/fireplace_left_on"},
+		"axis_x=true,burning=false,horizontal_connection=right": { "model": "dawnoftimebuilder:general/fireplace_right_off"},
+		"axis_x=true,burning=true,horizontal_connection=right": { "model": "dawnoftimebuilder:general/fireplace_right_on"},
+		"axis_x=true,burning=false,horizontal_connection=both": { "model": "dawnoftimebuilder:general/fireplace_left_off"},
+		"axis_x=true,burning=true,horizontal_connection=both": { "model": "dawnoftimebuilder:general/fireplace_left_on"},
+		"axis_x=false,burning=false,horizontal_connection=none": { "model": "dawnoftimebuilder:general/fireplace_none_off", "y" : 90},
+		"axis_x=false,burning=true,horizontal_connection=none": { "model": "dawnoftimebuilder:general/fireplace_none_on", "y" : 90},
+		"axis_x=false,burning=false,horizontal_connection=left": { "model": "dawnoftimebuilder:general/fireplace_left_off", "y" : 90},
+		"axis_x=false,burning=true,horizontal_connection=left": { "model": "dawnoftimebuilder:general/fireplace_left_on", "y" : 90},
+		"axis_x=false,burning=false,horizontal_connection=right": { "model": "dawnoftimebuilder:general/fireplace_right_off", "y" : 90},
+		"axis_x=false,burning=true,horizontal_connection=right": { "model": "dawnoftimebuilder:general/fireplace_right_on", "y" : 90},
+		"axis_x=false,burning=false,horizontal_connection=both": { "model": "dawnoftimebuilder:general/fireplace_left_off", "y" : 90},
+		"axis_x=false,burning=true,horizontal_connection=both": { "model": "dawnoftimebuilder:general/fireplace_left_on", "y" : 90}
+	}
+}

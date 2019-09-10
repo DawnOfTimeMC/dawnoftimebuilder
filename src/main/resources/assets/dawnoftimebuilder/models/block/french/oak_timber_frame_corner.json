@@ -1,0 +1,7 @@
+{
+    "parent": "block/cube_column",
+    "textures": {
+        "end": "dawnoftimebuilder:blocks/oak_timber_frame_corner_top",
+        "side": "dawnoftimebuilder:blocks/oak_timber_frame_corner_side"
+    }
+}

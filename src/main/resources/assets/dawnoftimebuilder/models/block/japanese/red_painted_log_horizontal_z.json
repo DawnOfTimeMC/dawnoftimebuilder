@@ -1,0 +1,20 @@
+{
+	"textures": {
+		"texture": "dawnoftimebuilder:blocks/red_painted_log",
+		"particle": "dawnoftimebuilder:blocks/red_painted_log"
+	},
+	"elements": [
+		{
+			"from": [3, 0, 0],
+			"to": [13, 10, 16],
+			"faces": {
+				"north": {"uv": [8, 8, 13, 13], "texture": "#texture", "cullface": "north"},
+				"east": {"uv": [0, 8, 8, 13], "texture": "#texture"},
+				"south": {"uv": [8, 8, 13, 13], "texture": "#texture", "cullface": "south"},
+				"west": {"uv": [0, 8, 8, 13], "texture": "#texture"},
+				"up": {"uv": [0, 8, 8, 13], "texture": "#texture", "rotation": 90},
+				"down": {"uv": [0, 8, 8, 13], "texture": "#texture", "rotation": 90, "cullface": "down"}
+			}
+		}
+	]
+}

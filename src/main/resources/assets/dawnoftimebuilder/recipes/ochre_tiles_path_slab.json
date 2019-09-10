@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "IiI"
+  ],
+  "key": {
+    "I": {
+      "item": "minecraft:clay_ball"
+    },
+    "i": {
+      "item": "minecraft:brick"
+    }
+  },
+  "result": {
+    "item": "dawnoftimebuilder:slab_path",
+    "data": 3,
+    "count": 64
+  }
+}

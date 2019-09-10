@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "i i",
+    "III",
+    "III"
+  ],
+  "key": {
+    "I": {
+      "item": "minecraft:iron_ingot",
+      "data": 0
+    },
+    "i": {
+      "item": "minecraft:iron_block",
+      "data": 0
+    }
+  },
+  "result": {
+    "item": "dawnoftimebuilder:iron_plate_armor_chest",
+    "data": 0,
+    "count": 1
+  }
+}

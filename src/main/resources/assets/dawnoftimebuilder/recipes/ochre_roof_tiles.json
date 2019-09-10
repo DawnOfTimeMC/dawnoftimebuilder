@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "II",
+    "IIi"
+  ],
+  "key": {
+    "I": {
+      "item": "minecraft:stone",
+      "data": 0
+    },
+    "i": {
+      "item": "minecraft:dye",
+      "data": 14
+    }
+  },
+  "result": {
+    "item": "dawnoftimebuilder:ochre_roof_tiles",
+    "data": 0,
+    "count": 4
+  }
+}

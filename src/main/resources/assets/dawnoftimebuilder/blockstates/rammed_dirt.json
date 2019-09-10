@@ -1,0 +1,10 @@
+{
+    "variants": {
+        "normal": [
+            { "model": "dawnoftimebuilder:general/rammed_dirt" },
+			{ "model": "dawnoftimebuilder:general/rammed_dirt", "x": 90, "y": 90, "z": 90 },
+			{ "model": "dawnoftimebuilder:general/rammed_dirt", "x": 180, "y": 180, "z": 180 },
+			{ "model": "dawnoftimebuilder:general/rammed_dirt", "x": 270, "y": 270, "z": 270 }
+        ]
+    }
+}

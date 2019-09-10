@@ -1,0 +1,22 @@
+{
+    "variants": {
+        "variant=decorated": [
+            { "model": "dawnoftimebuilder:japanese/cast_iron_teapot_decorated" },
+			{ "model": "dawnoftimebuilder:japanese/cast_iron_teapot_decorated", "y": 90},
+			{ "model": "dawnoftimebuilder:japanese/cast_iron_teapot_decorated", "y": 180},
+			{ "model": "dawnoftimebuilder:japanese/cast_iron_teapot_decorated", "y": 270}
+        ],
+        "variant=green": [
+          { "model": "dawnoftimebuilder:japanese/cast_iron_teapot_green" },
+          { "model": "dawnoftimebuilder:japanese/cast_iron_teapot_green", "y": 90},
+          { "model": "dawnoftimebuilder:japanese/cast_iron_teapot_green", "y": 180},
+          { "model": "dawnoftimebuilder:japanese/cast_iron_teapot_green", "y": 270}
+        ],
+        "variant=grey": [
+          { "model": "dawnoftimebuilder:japanese/cast_iron_teapot_grey" },
+          { "model": "dawnoftimebuilder:japanese/cast_iron_teapot_grey", "y": 90},
+          { "model": "dawnoftimebuilder:japanese/cast_iron_teapot_grey", "y": 180},
+          { "model": "dawnoftimebuilder:japanese/cast_iron_teapot_grey", "y": 270}
+        ]
+    }
+}

@@ -1,0 +1,12 @@
+{
+    "variants": {
+        "facing=north,part=head": { "model": "dawnoftimebuilder:japanese/tatami_mat_head"},
+        "facing=east,part=head": { "model": "dawnoftimebuilder:japanese/tatami_mat_head", "y" : 90 },
+        "facing=south,part=head": { "model": "dawnoftimebuilder:japanese/tatami_mat_head", "y": 180 },
+        "facing=west,part=head": { "model": "dawnoftimebuilder:japanese/tatami_mat_head", "y": 270 },
+        "facing=north,part=foot": { "model": "dawnoftimebuilder:japanese/tatami_mat_foot", "y": 180 },
+        "facing=east,part=foot": { "model": "dawnoftimebuilder:japanese/tatami_mat_foot", "y" : 270},
+        "facing=south,part=foot": { "model": "dawnoftimebuilder:japanese/tatami_mat_foot" },
+        "facing=west,part=foot": { "model": "dawnoftimebuilder:japanese/tatami_mat_foot", "y": 90 }
+    }
+}

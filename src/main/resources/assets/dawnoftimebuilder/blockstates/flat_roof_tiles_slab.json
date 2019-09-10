@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "slab=bottom": { "model": "dawnoftimebuilder:french/flat_roof_tiles_slab_bottom" },
+        "slab=top": { "model": "dawnoftimebuilder:french/flat_roof_tiles_slab_top" },
+        "slab=double": { "model": "dawnoftimebuilder:french/flat_roof_tiles" }
+    }
+}

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "i"
+  ],
+  "key": {
+    "i": {
+      "item": "dawnoftimebuilder:slab_tiles",
+      "data": 8
+    },
+  "result": {
+    "item": "dawnoftimebuilder:oak_support_slab",
+    "data": 0,
+    "count": 2
+  }
+}
+}

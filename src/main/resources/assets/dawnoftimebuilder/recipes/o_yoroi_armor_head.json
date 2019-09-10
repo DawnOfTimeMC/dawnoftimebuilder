@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "xox",
+    "ixi"
+  ],
+  "key": {
+    "i": {
+      "item": "minecraft:redstone_block",
+      "data": 0
+    },
+    "x": {
+      "item": "minecraft:gold_ingot"
+  },
+    "o": {
+    "item": "minecraft:redstone"
+    }
+  },
+  "result": {
+    "item": "dawnoftimebuilder:o_yoroi_armor_head",
+    "data": 0,
+    "count": 1
+  }
+}

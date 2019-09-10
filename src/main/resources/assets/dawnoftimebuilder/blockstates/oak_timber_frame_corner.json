@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "axis=y":  { "model": "dawnoftimebuilder:french/oak_timber_frame_corner" },
+        "axis=z":   { "model": "dawnoftimebuilder:french/oak_timber_frame_corner", "x": 90 },
+        "axis=x":   { "model": "dawnoftimebuilder:french/oak_timber_frame_corner", "x": 90, "y": 90 },
+        "axis=none": { "model": "dawnoftimebuilder:french/oak_timber_frame_corner" }
+    }
+}

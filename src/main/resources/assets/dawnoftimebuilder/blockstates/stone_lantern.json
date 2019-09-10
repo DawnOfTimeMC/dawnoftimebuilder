@@ -1,0 +1,16 @@
+{
+    "variants": {
+        "chain=true,facing=down":  { "model": "dawnoftimebuilder:japanese/stone_lantern_up_chain" },
+        "chain=false,facing=down":  { "model": "dawnoftimebuilder:japanese/stone_lantern_up" },
+        "chain=true,facing=up":  { "model": "dawnoftimebuilder:japanese/stone_lantern_down" },
+        "chain=false,facing=up":  { "model": "dawnoftimebuilder:japanese/stone_lantern_down" },
+        "chain=true,facing=north":  { "model": "dawnoftimebuilder:japanese/stone_lantern_side", "y": 90 },
+        "chain=false,facing=north":  { "model": "dawnoftimebuilder:japanese/stone_lantern_side", "y": 90 },
+		"chain=true,facing=south":  { "model": "dawnoftimebuilder:japanese/stone_lantern_side", "y": 270 },
+        "chain=false,facing=south":  { "model": "dawnoftimebuilder:japanese/stone_lantern_side", "y": 270 },
+        "chain=true,facing=east":  { "model": "dawnoftimebuilder:japanese/stone_lantern_side", "y" : 180 },
+        "chain=false,facing=east":  { "model": "dawnoftimebuilder:japanese/stone_lantern_side", "y" : 180 },
+        "chain=true,facing=west":  { "model": "dawnoftimebuilder:japanese/stone_lantern_side" },
+        "chain=false,facing=west":  { "model": "dawnoftimebuilder:japanese/stone_lantern_side" }
+    }
+}

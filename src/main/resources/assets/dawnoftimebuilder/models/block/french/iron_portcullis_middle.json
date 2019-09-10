@@ -1,0 +1,18 @@
+{
+	"textures": {
+		"tete": "dawnoftimebuilder:blocks/iron_portcullis_middle",
+		"particle": "dawnoftimebuilder:blocks/iron_portcullis_middle"
+	},
+	"elements": [
+		{
+			"from": [0, 0, 7],
+			"to": [16, 16, 9],
+			"faces": {
+				"north": {"uv": [0, 0, 16, 16], "texture": "#tete", "cullface": "north"},
+				"east": {"uv": [7, 0, 9, 16], "texture": "#tete", "cullface": "east"},
+				"south": {"uv": [0, 0, 16, 16], "texture": "#tete", "cullface": "south"},
+				"west": {"uv": [7, 0, 9, 16], "texture": "#tete", "cullface": "west"}
+			}
+		}
+	]
+}

@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "i i",
+    "I I"
+  ],
+  "key": {
+    "i": {
+      "item": "minecraft:iron_ingot",
+      "data": 0
+    },
+    "I": {
+      "item": "minecraft:iron_block",
+      "data": 0
+    }
+  },
+  "result": {
+    "item": "dawnoftimebuilder:iron_plate_armor_feet",
+    "data": 0,
+    "count": 1
+  }
+}

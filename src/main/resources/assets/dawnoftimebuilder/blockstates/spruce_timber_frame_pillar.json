@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "axis=y":  { "model": "dawnoftimebuilder:japanese/spruce_timber_frame_pillar" },
+        "axis=z":   { "model": "dawnoftimebuilder:japanese/spruce_timber_frame_pillar", "x": 90 },
+        "axis=x":   { "model": "dawnoftimebuilder:japanese/spruce_timber_frame_pillar", "x": 90, "y": 90 },
+        "axis=none": { "model": "dawnoftimebuilder:japanese/spruce_timber_frame_pillar" }
+    }
+}

@@ -1,0 +1,6 @@
+{
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "dawnoftimebuilder:items/o_yoroi_armor_legs"
+    }
+}

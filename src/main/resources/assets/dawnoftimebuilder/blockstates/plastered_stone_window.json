@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "axis=axis_x": { "model": "dawnoftimebuilder:mayan/plastered_stone_window" },
+        "axis=axis_z": { "model": "dawnoftimebuilder:mayan/plastered_stone_window", "y": 90 }
+    }
+}

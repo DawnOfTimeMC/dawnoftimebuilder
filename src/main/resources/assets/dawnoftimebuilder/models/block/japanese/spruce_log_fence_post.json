@@ -1,0 +1,22 @@
+{
+    "parent": "block/block",
+    "textures": {
+        "texture": "blocks/log_spruce",
+		"texturetop": "dawnoftimebuilder:blocks/fence_log_spruce_top",
+		"particle": "blocks/log_spruce"
+    },
+    "elements": [
+        {   "from": [ 6, 0, 6 ],
+            "to": [ 10, 16, 10 ],
+            "faces": {
+                "down":  { "uv": [ 6, 6, 10, 10 ], "texture": "#texturetop", "cullface": "down" },
+                "up":    { "uv": [ 6, 6, 10, 10 ], "texture": "#texturetop", "cullface": "up"   },
+                "north": { "uv": [ 6, 0, 10, 16 ], "texture": "#texture" },
+                "south": { "uv": [ 6, 0, 10, 16 ], "texture": "#texture" },
+                "west":  { "uv": [ 6, 0, 10, 16 ], "texture": "#texture" },
+                "east":  { "uv": [ 6, 0, 10, 16 ], "texture": "#texture" }
+            },
+            "__comment": "Center post"
+        }
+    ]
+}

@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "iii",
+    "III",
+    "III"
+  ],
+  "key": {
+    "I": {
+      "item": "minecraft:wool",
+      "data":0
+    },
+    "i": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "dawnoftimebuilder:little_flag",
+    "data": 0,
+    "count": 6
+  }
+}

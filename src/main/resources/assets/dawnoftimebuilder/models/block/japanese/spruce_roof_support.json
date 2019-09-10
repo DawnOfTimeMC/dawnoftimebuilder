@@ -1,0 +1,68 @@
+{
+	"textures": {
+		"texture": "dawnoftimebuilder:blocks/spruce_roof_support",
+		"particle": "dawnoftimebuilder:blocks/spruce_roof_support"
+	},
+	"elements": [
+		{
+			"from": [0.001, 14.0272, 3.00003],
+			"to": [15.999, 16.0272, 7.00003],
+			"rotation": {"angle": -22.5, "axis": "x", "origin": [4, 16.0272, 3.00003]},
+			"faces": {
+				"north": {"uv": [0, 0, 8, 1], "texture": "#texture"},
+				"east": {"uv": [0, 0, 1, 2], "rotation": 90, "texture": "#texture"},
+				"south": {"uv": [0, 0, 8, 1], "texture": "#texture"},
+				"west": {"uv": [0, 0, 1, 2], "rotation": 90, "texture": "#texture"},
+				"up": {"uv": [0, 0, 8, 2], "texture": "#texture"},
+				"down": {"uv": [0, 0, 8, 2], "texture": "#texture"}
+			}
+		},
+		{
+			"from": [4.5, 10.64243, 3.06569],
+			"to": [11.5, 13.64243, 17.06569],
+			"rotation": {"angle": -22.5, "axis": "x", "origin": [12, 10.64243, 3.06569]},
+			"faces": {
+				"north": {"uv": [0, 0, 3.5, 1.5], "texture": "#texture"},
+				"east": {"uv": [3.5, 0, 10.5, 1.5], "texture": "#texture"},
+				"south": {"uv": [0, 0, 3.5, 1.5], "texture": "#texture"},
+				"west": {"uv": [3.5, 0, 10.5, 1.5], "texture": "#texture"},
+				"up": {"uv": [0, 0, 7, 3.5], "rotation": 90, "texture": "#texture"},
+				"down": {"uv": [0, 0, 7, 3.5], "rotation": 90, "texture": "#texture"}
+			}
+		}
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [75, 45, 0],
+			"translation": [0, 1.5, -3],
+			"scale": [0.375, 0.375, 0.375]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [75, 45, 0],
+			"translation": [0, 1.5, -3],
+			"scale": [0.375, 0.375, 0.375]
+		},
+		"firstperson_righthand": {
+			"rotation": [0, 90, 0],
+			"translation": [0, -0.5, 2],
+			"scale": [0.4, 0.4, 0.4]
+		},
+		"firstperson_lefthand": {
+			"rotation": [0, 90, 0],
+			"translation": [0, -0.5, 2],
+			"scale": [0.4, 0.4, 0.4]
+		},
+		"ground": {
+			"scale": [0.3, 0.3, 0.3]
+		},
+		"gui": {
+			"rotation": [30, 225, 0],
+			"translation": [-0.5, -6, 0],
+			"scale": [0.9, 0.9, 0.9]
+		},
+		"fixed": {
+			"translation": [0, 0, -3],
+			"scale": [0.5, 0.5, 0.5]
+		}
+	}
+}

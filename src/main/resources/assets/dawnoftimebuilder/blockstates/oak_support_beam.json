@@ -1,0 +1,18 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "model": "dawnoftimebuilder:french/oak_support_slab"
+    },
+    "variants": {
+        "axis" : {
+            "axis_x"  : { "submodel": "dawnoftimebuilder:french/oak_beam_x", "uvlock" : false },
+            "axis_z" : { "submodel": "dawnoftimebuilder:french/oak_beam_x", "uvlock" : false, "y": 90 }
+        },
+        "under" : {
+            "nothing" : {  },
+            "4_pixels"  : { "submodel": "dawnoftimebuilder:french/oak_support_4_pixels" },
+            "8_pixels"  : {  },
+            "10_pixels"  : {  }
+        }
+    }
+}

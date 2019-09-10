@@ -1,0 +1,65 @@
+{
+    "parent": "block/cube",
+    "textures": {
+        "texture": "dawnoftimebuilder:blocks/red_painted_log",
+        "particle": "dawnoftimebuilder:blocks/red_painted_log"
+    },
+    "elements": [
+        {
+            "from": [4, -0.001, 4],
+            "to": [12, 16.001, 12],
+            "faces": {
+                "north": {"uv": [0, 0, 4, 8], "texture": "#texture"},
+                "east": {"uv": [0, 0, 4, 8], "texture": "#texture"},
+                "south": {"uv": [0, 0, 4, 8], "texture": "#texture"},
+                "west": {"uv": [0, 0, 4, 8], "texture": "#texture"},
+                "up": {"uv": [4, 0, 8, 4], "texture": "#texture"},
+                "down": {"uv": [4, 0, 8, 4], "texture": "#texture"}
+            }
+        },
+        {
+            "from": [0, 0, 3],
+            "to": [16, 10, 13],
+            "faces": {
+                "north": {"uv": [0, 8, 8, 13], "texture": "#texture"},
+                "east": {"uv": [8, 8, 13, 13], "texture": "#texture"},
+                "south": {"uv": [0, 8, 8, 13], "texture": "#texture"},
+                "west": {"uv": [8, 8, 13, 13], "texture": "#texture"},
+                "up": {"uv": [0, 8, 8, 13], "texture": "#texture"},
+                "down": {"uv": [0, 8, 8, 13], "texture": "#texture"}
+            }
+        }
+    ],
+    "display": {
+        "thirdperson_righthand": {
+            "rotation": [75, 45, 0],
+            "translation": [0, 2.5, 0],
+            "scale": [0.375, 0.375, 0.375]
+        },
+        "thirdperson_lefthand": {
+            "rotation": [75, 45, 0],
+            "translation": [0, 2.5, 0],
+            "scale": [0.375, 0.375, 0.375]
+        },
+        "firstperson_righthand": {
+            "rotation": [0, 90, 0],
+            "scale": [0.4, 0.4, 0.4]
+        },
+        "firstperson_lefthand": {
+            "rotation": [0, 90, 0],
+            "scale": [0.4, 0.4, 0.4]
+        },
+        "gui": {
+            "rotation": [30, 225, 0],
+            "scale": [0.625, 0.625, 0.625]
+        },
+        "ground": {
+            "translation": [0, 3, 0],
+            "scale": [0.3, 0.3, 0.3]
+        },
+        "fixed": {
+            "translation": [0, 0, -3],
+            "scale": [0.5, 0.5, 0.5]
+        }
+    }
+}

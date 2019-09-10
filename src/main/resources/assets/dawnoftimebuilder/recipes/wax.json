@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "iI"
+  ],
+  "key": {
+    "i": {
+      "item": "minecraft:sugar"
+    },
+    "I": {
+      "item": "minecraft:torch"
+    }
+  },
+  "result": {
+    "item": "dawnoftimebuilder:wax",
+    "data": 0,
+    "count": 20
+  }
+}

@@ -1,0 +1,66 @@
+{
+	"textures": {
+		"1": "dawnoftimebuilder:blocks/spruce_beam_top",
+		"2_1": "dawnoftimebuilder:blocks/spruce_log_wall_top",
+		"2_texture": "blocks/log_spruce",
+		"particle": "blocks/log_spruce"
+	},
+	"elements": [
+		{
+			"from": [3, 0, 3],
+			"to": [13, 16, 13],
+			"faces": {
+				"north": {"uv": [0, 0, 10, 16], "texture": "#2_texture"},
+				"east": {"uv": [6, 0, 16, 16], "texture": "#2_texture"},
+				"south": {"uv": [2, 0, 12, 16], "texture": "#2_texture"},
+				"west": {"uv": [4, 0, 14, 16], "texture": "#2_texture"},
+				"up": {"uv": [3, 3, 13, 13], "texture": "#1"},
+				"down": {"uv": [3, 3, 13, 13], "texture": "#1"}
+			}
+		},
+		{
+			"from": [0, 4, 4],
+			"to": [16, 12, 12],
+			"faces": {
+				"north": {"uv": [4, 0, 12, 16], "rotation": 90, "texture": "#2_texture"},
+				"east": {"uv": [4, 4, 12, 12], "texture": "#2_1"},
+				"south": {"uv": [2, 0, 10, 16], "rotation": 90, "texture": "#2_texture"},
+				"west": {"uv": [4, 4, 12, 12], "texture": "#2_1"},
+				"up": {"uv": [0, 0, 8, 16], "rotation": 90, "texture": "#2_texture"},
+				"down": {"uv": [8, 0, 16, 16], "rotation": 90, "texture": "#2_texture"}
+			}
+		}
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [75, 45, 0],
+			"translation": [0, 2.5, 0],
+			"scale": [0.375, 0.375, 0.375]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [75, 45, 0],
+			"translation": [0, 2.5, 0],
+			"scale": [0.375, 0.375, 0.375]
+		},
+		"firstperson_righthand": {
+			"rotation": [0, 90, 0],
+			"scale": [0.4, 0.4, 0.4]
+		},
+		"firstperson_lefthand": {
+			"rotation": [0, 90, 0],
+			"scale": [0.4, 0.4, 0.4]
+		},
+		"ground": {
+			"translation": [0, 3, 0],
+			"scale": [0.3, 0.3, 0.3]
+		},
+		"gui": {
+			"rotation": [30, 225, 0],
+			"scale": [0.625, 0.625, 0.625]
+		},
+		"fixed": {
+			"translation": [0, 0, -3],
+			"scale": [0.5, 0.5, 0.5]
+		}
+	}
+}

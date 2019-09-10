@@ -1,0 +1,5 @@
+newmtl Element
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+d 1.000000
+map_Kd dawnoftimebuilder:items/tachi_sword

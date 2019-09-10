@@ -1,0 +1,7 @@
+{
+    "parent": "block/carpet",
+    "textures": {
+        "particle": "dawnoftimebuilder:blocks/small_tatami_mat",
+        "wool": "dawnoftimebuilder:blocks/small_tatami_mat"
+    }
+}

@@ -1,0 +1,7 @@
+{
+    "parent": "dawnoftimebuilder:block/japanese/cast_iron_teapot_grey",
+    "overrides":[
+        { "predicate": { "style": 1 }, "model": "dawnoftimebuilder:item/cast_iron_teapot_green" },
+        { "predicate": { "style": 2 }, "model": "dawnoftimebuilder:item/cast_iron_teapot_decorated" }
+    ]
+}

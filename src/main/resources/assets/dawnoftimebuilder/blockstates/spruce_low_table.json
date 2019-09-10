@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "axis=axis_x": { "model": "dawnoftimebuilder:japanese/spruce_low_table" },
+        "axis=axis_z": { "model": "dawnoftimebuilder:japanese/spruce_low_table", "y": 90 }
+    }
+}

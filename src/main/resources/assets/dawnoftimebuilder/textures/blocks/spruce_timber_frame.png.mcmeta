@@ -1,0 +1,10 @@
+{
+    "ctm":{
+        "ctm_version": 1,
+        "type":"CTM",
+        "layer":"SOLID",
+        "textures":[
+            "dawnoftimebuilder:blocks/spruce_timber_frame-ctm"
+        ]
+    }
+}

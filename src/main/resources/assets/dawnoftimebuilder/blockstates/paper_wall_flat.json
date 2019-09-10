@@ -1,0 +1,70 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "model": "pane_post"
+    },
+    "variants": {
+        "east": {
+            "true": {
+                "submodel" : { 
+                    "east1" : { "model": "pane_side", "y" : 90}
+                }
+            },
+            "false": {
+                "submodel" : { 
+                    "east2" : { "model": "pane_noside_alt"}
+                }
+            }
+        },
+        "north": {
+            "true": {
+                "submodel" : { 
+                    "north1" : { "model": "pane_side"}
+                }
+            },
+            "false": {
+                "submodel" : { 
+                    "north2" : { "model": "pane_noside"}
+                }
+            }
+        },
+        "south": {
+            "true": {
+                "submodel" : { 
+                    "south1" : { "model": "pane_side_alt"}
+                }
+            },
+            "false": {
+                "submodel" : { 
+                    "south2" : { "model": "pane_noside_alt", "y": 90 }
+                }
+            }
+        },
+        "wallbottom": {
+            "true": {
+                "textures" : {
+                    "pane" : "dawnoftimebuilder:blocks/paper_wall_flat_bottom",
+                    "edge" : "dawnoftimebuilder:blocks/paper_wall"
+                }
+            },
+            "false": {
+                "textures" : {
+                    "pane" : "dawnoftimebuilder:blocks/paper_wall_flat",
+                    "edge" : "dawnoftimebuilder:blocks/paper_wall"
+                }
+            }
+        },
+        "west": {
+            "true": {
+                "submodel" : { 
+                    "west1" : { "model": "pane_side_alt", "y": 90 }
+                }
+            },
+            "false": {
+                "submodel" : { 
+                    "west2" : { "model": "pane_noside", "y": 270 }
+                }
+            }
+        }
+    }
+}

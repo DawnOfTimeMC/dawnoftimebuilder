@@ -1,0 +1,21 @@
+{
+	"textures": {
+		"1": "dawnoftimebuilder:blocks/spruce_log_wall_top",
+		"texture": "blocks/log_spruce",
+		"particle": "blocks/log_spruce"
+	},
+	"elements": [
+		{
+			"from": [0, 4, 4],
+			"to": [16, 12, 12],
+			"faces": {
+				"north": {"uv": [4, 0, 12, 16], "rotation": 90, "texture": "#texture"},
+				"east": {"uv": [4, 4, 12, 12], "texture": "#1"},
+				"south": {"uv": [2, 0, 10, 16], "rotation": 90, "texture": "#texture"},
+				"west": {"uv": [4, 4, 12, 12], "texture": "#1"},
+				"up": {"uv": [0, 0, 8, 16], "rotation": 90, "texture": "#texture"},
+				"down": {"uv": [8, 0, 16, 16], "rotation": 90, "texture": "#texture"}
+			}
+		}
+	]
+}

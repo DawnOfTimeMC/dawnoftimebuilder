@@ -1,0 +1,16 @@
+{
+    "ctm":{
+        "ctm_version": 1,
+        "type":"CTM",
+        "layer":"SOLID",
+        "textures":[
+            "dawnoftimebuilder:blocks/oak_timber_frame_pillar_side-ctm"
+        ],
+        "extra": {
+            "connect_to": [
+				{ "block": "dawnoftimebuilder:oak_timber_frame_corner" },
+                { "block": "dawnoftimebuilder:oak_timber_frame_pillar" }
+            ]
+        }
+    }
+}

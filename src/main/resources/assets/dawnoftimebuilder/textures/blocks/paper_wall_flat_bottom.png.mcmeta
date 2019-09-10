@@ -1,0 +1,15 @@
+{
+    "ctm":{
+        "ctm_version": 1,
+        "type":"CTM",
+        "layer":"SOLID",
+        "textures":[
+            "dawnoftimebuilder:blocks/paper_wall_flat_bottom-ctm"
+        ],
+        "extra": {
+            "connect_to": [
+				{ "block": "dawnoftimebuilder:paper_wall_flat" }
+            ]
+        }
+    }
+}

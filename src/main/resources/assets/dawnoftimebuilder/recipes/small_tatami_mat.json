@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "II"
+  ],
+  "key": {
+    "I": {
+      "item": "dawnoftimebuilder:thatch",
+      "data": 1
+    }
+  },
+  "result": {
+    "item": "dawnoftimebuilder:small_tatami_mat",
+    "data": 0,
+    "count":2
+  }
+}

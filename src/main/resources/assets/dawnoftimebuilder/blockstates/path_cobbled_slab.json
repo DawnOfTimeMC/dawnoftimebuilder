@@ -1,0 +1,10 @@
+{
+    "variants": {
+        "full=true,slab=bottom": { "model": "dawnoftimebuilder:general/path_cobbled_slab_bottom" },
+        "full=false,slab=bottom": { "model": "dawnoftimebuilder:general/path_cobbled_slab_bottom" },
+        "full=true,slab=top": { "model": "dawnoftimebuilder:general/path_cobbled_slab_top" },
+        "full=false,slab=top": { "model": "dawnoftimebuilder:general/path_cobbled_slab_top_full" },
+        "full=true,slab=double": { "model": "dawnoftimebuilder:general/path_cobbled_slab_double" },
+        "full=false,slab=double": { "model": "dawnoftimebuilder:general/path_cobbled_slab_double_full" }
+    }
+}

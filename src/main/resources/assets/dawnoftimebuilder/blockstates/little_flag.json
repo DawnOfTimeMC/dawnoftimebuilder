@@ -1,0 +1,25 @@
+{
+    "forge_marker": 1,
+    "variants": {
+        "axis" : {
+            "axis_x"  : { "submodel": "dawnoftimebuilder:japanese/little_flag"},
+            "axis_z" : { "submodel": "dawnoftimebuilder:japanese/little_flag", "y": 90}
+        },
+        "north" : {
+            "true"  : { "submodel": "dawnoftimebuilder:japanese/little_flag_stick"},
+            "false" : {  }
+        },
+        "east" : {
+            "true"  : { "submodel": "dawnoftimebuilder:japanese/little_flag_stick", "y": 90},
+            "false" : {  }
+        },
+        "south" : {
+            "true"  : { "submodel": "dawnoftimebuilder:japanese/little_flag_stick", "y": 180},
+            "false" : {  }
+        },
+        "west" : {
+            "true"  : { "submodel": "dawnoftimebuilder:japanese/little_flag_stick", "y": 270},
+            "false" : {  }
+        }
+    }
+}

@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "simple=true,vertical_connection=true": { "model": "dawnoftimebuilder:japanese/bamboo_drying_tray_simple"},
+        "simple=true,vertical_connection=false": { "model": "dawnoftimebuilder:japanese/bamboo_drying_tray_simple"},
+        "simple=false,vertical_connection=false": { "model": "dawnoftimebuilder:japanese/bamboo_drying_tray_double"},
+        "simple=false,vertical_connection=true": { "model": "dawnoftimebuilder:japanese/bamboo_drying_tray_connected"}
+    }
+}

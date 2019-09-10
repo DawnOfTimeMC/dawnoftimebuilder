@@ -1,0 +1,18 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "model": "dawnoftimebuilder:japanese/spruce_support_slab"
+    },
+    "variants": {
+        "axis" : {
+            "axis_x"  : { "submodel": "dawnoftimebuilder:japanese/spruce_beam_x", "uvlock" : false },
+            "axis_z" : { "submodel": "dawnoftimebuilder:japanese/spruce_beam_x", "uvlock" : false, "y": 90 }
+        },
+        "under" : {
+            "nothing" : {  },
+            "4_pixels"  : { "submodel": "dawnoftimebuilder:japanese/spruce_support_4_pixels" },
+            "8_pixels"  : { "submodel": "dawnoftimebuilder:japanese/spruce_support_8_pixels" },
+            "10_pixels"  : { "submodel": "dawnoftimebuilder:japanese/spruce_support_10_pixels" }
+        }
+    }
+}
