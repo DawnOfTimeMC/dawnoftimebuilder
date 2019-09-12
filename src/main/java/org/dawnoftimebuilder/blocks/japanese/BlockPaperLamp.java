@@ -7,11 +7,12 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
+import org.dawnoftimebuilder.blocks.IBlockSpecialDisplay;
 import org.dawnoftimebuilder.blocks.global.DoTBBlockColumn;
 
 import java.util.List;
 
-public class BlockPaperLamp extends DoTBBlockColumn {
+public class BlockPaperLamp extends DoTBBlockColumn implements IBlockSpecialDisplay {
 
     private static final AxisAlignedBB BOT_AABB = new AxisAlignedBB(0.25D, 0.0D, 0.25D, 0.75D, 1.0D, 0.75D);
 	private static final AxisAlignedBB TOP_AABB = new AxisAlignedBB(0.25D, 0.0D, 0.25D, 0.75D, 0.8125D, 0.75D);
@@ -58,4 +59,9 @@ public class BlockPaperLamp extends DoTBBlockColumn {
     public boolean isSameColumn(Block block){
         return block instanceof BlockPaperLamp;
     }
+
+	@Override
+	public float getDisplayScale(int meta) {
+		return 0.5f;
+	}
 }

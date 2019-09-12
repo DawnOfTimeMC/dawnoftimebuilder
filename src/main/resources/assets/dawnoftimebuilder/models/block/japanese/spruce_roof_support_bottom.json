@@ -1,12 +1,13 @@
 {
+	"credit": "Made with Blockbench",
 	"textures": {
 		"texture": "dawnoftimebuilder:blocks/spruce_roof_support",
 		"particle": "dawnoftimebuilder:blocks/spruce_roof_support"
 	},
 	"elements": [
 		{
-			"from": [0.001, 14.0272, 3.00003],
-			"to": [15.999, 16.0272, 7.00003],
+			"from": [0.001, 6.0272, 3.00003],
+			"to": [15.999, 8.0272, 7.00003],
 			"rotation": {"angle": -22.5, "axis": "x", "origin": [4, 16.0272, 3.00003]},
 			"faces": {
 				"north": {"uv": [0, 0, 8, 1], "texture": "#texture"},
@@ -18,8 +19,8 @@
 			}
 		},
 		{
-			"from": [2, 10.64243, 3.06569],
-			"to": [6, 13.64243, 17.06569],
+			"from": [2, 2.64243, 3.06569],
+			"to": [6, 5.64243, 17.06569],
 			"rotation": {"angle": -22.5, "axis": "x", "origin": [12, 10.64243, 3.06569]},
 			"faces": {
 				"north": {"uv": [2.5, 0, 4.5, 1.5], "texture": "#texture"},
@@ -31,8 +32,8 @@
 			}
 		},
 		{
-			"from": [10, 10.64243, 3.06569],
-			"to": [14, 13.64243, 17.06569],
+			"from": [10, 2.64243, 3.06569],
+			"to": [14, 5.64243, 17.06569],
 			"rotation": {"angle": -22.5, "axis": "x", "origin": [12, 10.64243, 3.06569]},
 			"faces": {
 				"north": {"uv": [0.5, 0, 2.5, 1.5], "texture": "#texture"},

@@ -19,10 +19,11 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.dawnoftimebuilder.DoTBUtils;
+import org.dawnoftimebuilder.blocks.IBlockSpecialDisplay;
 import org.dawnoftimebuilder.blocks.global.BlockIronChain;
 import org.dawnoftimebuilder.blocks.global.DoTBBlock;
 
-public class BlockStoneLantern extends DoTBBlock {
+public class BlockStoneLantern extends DoTBBlock implements IBlockSpecialDisplay {
 
 	private AxisAlignedBB SIDE_AABB = new AxisAlignedBB(0.125F, 0.0F, 0.125F, 0.875F, 1.0F, 1.0F);
 	private AxisAlignedBB VERTICAL_AABB = new AxisAlignedBB(0.125F, 0.0F, 0.125F, 0.875F, 1.0F, 0.875F);
@@ -138,4 +139,9 @@ public class BlockStoneLantern extends DoTBBlock {
     public IBlockState withMirror(IBlockState state, Mirror mirrorIn) {
         return state.withRotation(mirrorIn.toRotation(state.getValue(FACING)));
     }
+
+	@Override
+	public float getDisplayScale(int meta) {
+		return 0.5f;
+	}
 }

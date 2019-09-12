@@ -30,6 +30,10 @@ public class DoTBItems {
 	@ObjectHolder("grey_tile") public static Item grey_tile;
 	@ObjectHolder("grey_clay_tile") public static Item grey_clay_tile;
 	@ObjectHolder("tachi_sword") public static Item tachi_sword;
+	@ObjectHolder("japanese_light_armor_head") public static Item japanese_light_armor_head;
+	@ObjectHolder("japanese_light_armor_chest") public static Item japanese_light_armor_chest;
+	@ObjectHolder("japanese_light_armor_legs") public static Item japanese_light_armor_legs;
+	@ObjectHolder("japanese_light_armor_feet") public static Item japanese_light_armor_feet;
 	@ObjectHolder("o_yoroi_armor_head") public static Item o_yoroi_armor_head;
 	@ObjectHolder("o_yoroi_armor_chest") public static Item o_yoroi_armor_chest;
 	@ObjectHolder("o_yoroi_armor_legs") public static Item o_yoroi_armor_legs;

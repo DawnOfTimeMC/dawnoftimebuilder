@@ -26,13 +26,13 @@ import org.dawnoftimebuilder.blocks.IBlockMeta;
 import org.dawnoftimebuilder.blocks.IBlockSpecialDisplay;
 import org.dawnoftimebuilder.blocks.global.DoTBBlock;
 import org.dawnoftimebuilder.enums.IEnumMetaVariants;
-import org.dawnoftimebuilder.items.japanese.TeaPotItem;
+import org.dawnoftimebuilder.items.japanese.ItemCastIronTeapot;
 import org.dawnoftimebuilder.blocks.IBlockCustomItem;
 
 public class BlockCastIronTeapot extends DoTBBlock implements IBlockMeta, IBlockSpecialDisplay, IBlockCustomItem {
 
     private static final AxisAlignedBB AABB = new AxisAlignedBB(0.3D, 0.0D, 0.3D, 0.7D, 0.4D, 0.7D);
-    public static final PropertyEnum<BlockCastIronTeapot.EnumType> VARIANT = PropertyEnum.<BlockCastIronTeapot.EnumType>create("variant", BlockCastIronTeapot.EnumType.class);
+    public static final PropertyEnum<BlockCastIronTeapot.EnumType> VARIANT = PropertyEnum.create("variant", BlockCastIronTeapot.EnumType.class);
 
     public BlockCastIronTeapot() {
     	super("cast_iron_teapot", Material.IRON, 0.7F, SoundType.METAL);
@@ -68,18 +68,18 @@ public class BlockCastIronTeapot extends DoTBBlock implements IBlockMeta, IBlock
      */
     @Override
 	public void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> items) {
-        for (BlockCastIronTeapot.EnumType teapotType : BlockCastIronTeapot.EnumType.values()) {
+        for (EnumType type : EnumType.values()) {
             NBTTagCompound compound = new NBTTagCompound();
-            compound.setInteger("style", teapotType.getMetadata());
+            compound.setInteger("style", type.getMetadata());
             compound.setBoolean("completed", false);
-            ItemStack stack = new ItemStack(this, 1, 0);
+            ItemStack stack = new ItemStack(this, 1, type.getMetadata());
             stack.setTagCompound(compound);
             items.add(stack);
         }
     }
 
     @Override
-    public BlockFaceShape getBlockFaceShape(IBlockAccess p_193383_1_, IBlockState p_193383_2_, BlockPos p_193383_3_, EnumFacing p_193383_4_) {
+    public BlockFaceShape getBlockFaceShape(IBlockAccess worldIn, IBlockState state, BlockPos pos, EnumFacing facing) {
         return BlockFaceShape.UNDEFINED;
     }
 
@@ -151,7 +151,7 @@ public class BlockCastIronTeapot extends DoTBBlock implements IBlockMeta, IBlock
 
     @Override
     public Item getCustomItemBlock() {
-        return new TeaPotItem()
+        return new ItemCastIronTeapot()
                 .setRegistryName(this.getRegistryName())
                 .setTranslationKey(this.getTranslationKey());
     }
@@ -194,8 +194,8 @@ public class BlockCastIronTeapot extends DoTBBlock implements IBlockMeta, IBlock
         }
 
         static {
-            for (BlockCastIronTeapot.EnumType blockCastIronTeapot$enumtype : values()) {
-                META_LOOKUP[blockCastIronTeapot$enumtype.getMetadata()] = blockCastIronTeapot$enumtype;
+            for (BlockCastIronTeapot.EnumType type : values()) {
+                META_LOOKUP[type.getMetadata()] = type;
             }
         }
     }

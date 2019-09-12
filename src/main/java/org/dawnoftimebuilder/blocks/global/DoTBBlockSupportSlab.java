@@ -23,7 +23,7 @@ import org.dawnoftimebuilder.enums.EnumsBlock;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public class DoTSupportSlab extends DoTBBlock {
+public class DoTBBlockSupportSlab extends DoTBBlock {
 
     private static final AxisAlignedBB AABB = new AxisAlignedBB(0.0D, 0.75D, 0.0D, 1.0D, 1.0D, 1.0D);
 	private static final AxisAlignedBB AABB_FOUR_PX = new AxisAlignedBB(0.375D, 0.0D, 0.375D, 0.625D, 0.75D, 0.625D);
@@ -32,7 +32,7 @@ public class DoTSupportSlab extends DoTBBlock {
 
 	private static final PropertyEnum<EnumsBlock.EnumUnderConnection> UNDER = PropertyEnum.create("under", EnumsBlock.EnumUnderConnection.class);
 
-	public DoTSupportSlab(String name, Material materialIn, float hardness, SoundType sound) {
+	public DoTBBlockSupportSlab(String name, Material materialIn, float hardness, SoundType sound) {
 		super(name, materialIn, hardness, sound);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(UNDER, EnumsBlock.EnumUnderConnection.NOTHING));
 	}

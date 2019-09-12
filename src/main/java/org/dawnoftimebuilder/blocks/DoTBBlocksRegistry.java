@@ -88,7 +88,7 @@ public class DoTBBlocksRegistry {
 				new BlockOakShutters(),
 				new DoTBBlockBeam("oak_beam", Material.WOOD, 1.5F, SoundType.WOOD).setBurnable(),
 				new DoTBBlockSupportBeam("oak_support_beam", Material.WOOD, 1.5F, SoundType.WOOD).setBurnable(),
-				new DoTSupportSlab("oak_support_slab", Material.WOOD, 1.0F, SoundType.WOOD).setBurnable(),
+				new DoTBBlockSupportSlab("oak_support_slab", Material.WOOD, 1.0F, SoundType.WOOD).setBurnable(),
 				new BlockSmallOakShutters(),
 				new DoTBBlock("oak_timber_frame", Material.WOOD, 2.0F, SoundType.WOOD).setBurnable(),
 				new DoTBBlockRotatedPillar("oak_timber_frame_corner", Material.WOOD,2.0F,SoundType.WOOD).setBurnable(),
@@ -109,7 +109,7 @@ public class DoTBBlocksRegistry {
 				grey_roof_tiles,
 				new DoTBBlockStairs("grey_roof_tiles_stairs", grey_roof_tiles, 2.0F, SoundType.STONE),
 				new DoTBBlockSlab("grey_roof_tiles_slab", Material.ROCK, 2.0F, SoundType.STONE),
-				new DoTBBlock("grey_roof_tiles_edge", Material.ROCK, 1.5F, SoundType.STONE),
+				new DoTBBlockEdge("grey_roof_tiles_edge", Material.ROCK, 1.5F, SoundType.STONE),
 				new DoTBBlockWall("grey_roof_tiles_wall", Material.ROCK, 2.0F, SoundType.STONE),
 				new BlockIkebanaFlowerPot(),
 				new BlockSpruceLeglessChair(),
@@ -128,17 +128,17 @@ public class DoTBBlocksRegistry {
 				new DoTBBlockWall("spruce_log_wall", Material.WOOD, 2.0F, SoundType.WOOD).setBurnable(),
 				new DoTBBlock("spruce_planks_edge", Material.WOOD, 1.5F, SoundType.WOOD),
 				new BlockSpruceRailing(),
-				new BlockSpruceRoofSupport(),
+				new BlockSpruceRoofSupport("spruce_roof_support"),
+				new BlockSpruceRoofSupportMerged(),
 				new DoTBBlockSupportBeam("spruce_support_beam", Material.WOOD, 1.5F, SoundType.WOOD).setBurnable(),
-				new DoTSupportSlab("spruce_support_slab", Material.WOOD, 1.0F, SoundType.WOOD).setBurnable(),
+				new DoTBBlockSupportSlab("spruce_support_slab", Material.WOOD, 1.0F, SoundType.WOOD).setBurnable(),
 				new BlockSpruceLowTable(),
 				new DoTBBlock("spruce_timber_frame", Material.WOOD, 2.0F, SoundType.WOOD).setBurnable(),
 				new DoTBBlockRotatedPillar("spruce_timber_frame_pillar", Material.WOOD, 2.0F, SoundType.WOOD).setBurnable(),
-				new BlockStoneFrieze(),
 				new BlockStoneLantern(),
 				new BlockTatamiMat(),
 				new BlockFuton(),
-				new DoTBBlock("tatami_floor", Material.WOOD).setBurnable(),
+				new BlockTatamiFloor(),
 				new BlockFirepit(),
 				new BlockSakeBottle(),
 				new BlockSakeCup(),
@@ -167,6 +167,7 @@ public class DoTBBlocksRegistry {
 				new BlockRedSculptedPlasteredStoneFrieze(),
 				new DoTBBlock("red_small_plastered_stone_frieze", Material.ROCK, 1.5F, SoundType.STONE),
 				new BlockSerpentSculptedColumn(),
+				new BlockStoneFrieze(),
 
 				//roman
 				new DoTBBlock("ochre_roof_tiles", Material.ROCK, 2.0F, SoundType.STONE),
@@ -196,9 +197,19 @@ public class DoTBBlocksRegistry {
 
 			Item item;
 			if(block instanceof IBlockCustomItem){
-				item = ((IBlockCustomItem)block).getCustomItemBlock().setCreativeTab(DawnOfTimeBuilder.DOTB_TAB);
-				registry.register(item);
-				setResourceLocation(item, 0);
+				item = ((IBlockCustomItem)block).getCustomItemBlock();
+				if(item != null){
+					item = item.setCreativeTab(DawnOfTimeBuilder.DOTB_TAB);
+					registry.register(item);
+					if(block instanceof IBlockMeta) {
+						IBlockMeta blockMeta = (IBlockMeta) block;
+						for (IEnumMetaVariants variant : blockMeta.getVariants()) {
+							setResourceLocation(item, variant.getMetadata(), variant.getName());
+						}
+					}else {
+						setResourceLocation(item);
+					}
+				}
 
 			}else if(block instanceof IBlockMeta){
 				IBlockMeta blockMeta = (IBlockMeta) block;
@@ -211,14 +222,14 @@ public class DoTBBlocksRegistry {
 			}else{
 				item = new ItemBlock(block).setRegistryName(block.getRegistryName()).setTranslationKey(block.getTranslationKey()).setCreativeTab(DawnOfTimeBuilder.DOTB_TAB);
 				registry.register(item);
-				setResourceLocation(item, 0);
+				setResourceLocation(item);
 			}
 		}
 	}
 
 	@SideOnly(Side.CLIENT)
-	private static void setResourceLocation(Item item, int meta){
-		ModelLoader.setCustomModelResourceLocation(item, meta, new ModelResourceLocation(item.getRegistryName().toString(), "inventory"));
+	private static void setResourceLocation(Item item){
+		ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(item.getRegistryName().toString(), "inventory"));
 	}
 
 	@SideOnly(Side.CLIENT)

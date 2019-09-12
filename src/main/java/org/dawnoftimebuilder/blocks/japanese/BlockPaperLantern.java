@@ -11,9 +11,10 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.dawnoftimebuilder.blocks.IBlockSpecialDisplay;
 import org.dawnoftimebuilder.blocks.global.DoTBBlock;
 
-public class BlockPaperLantern extends DoTBBlock {
+public class BlockPaperLantern extends DoTBBlock implements IBlockSpecialDisplay {
 
     private AxisAlignedBB AABB = new AxisAlignedBB(0.25F, 0.0F, 0.25F, 0.75F, 0.9F, 0.75F);
 
@@ -70,4 +71,9 @@ public class BlockPaperLantern extends DoTBBlock {
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos){
 		return AABB;
     }
+
+	@Override
+	public float getDisplayScale(int meta) {
+		return 0.4f;
+	}
 }

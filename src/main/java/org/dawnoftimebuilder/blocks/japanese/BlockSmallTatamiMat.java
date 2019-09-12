@@ -1,15 +1,20 @@
 package org.dawnoftimebuilder.blocks.japanese;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import org.dawnoftimebuilder.blocks.DoTBBlocks;
 import org.dawnoftimebuilder.blocks.global.DoTBBlock;
 
 public class BlockSmallTatamiMat extends DoTBBlock {
@@ -45,6 +50,11 @@ public class BlockSmallTatamiMat extends DoTBBlock {
         return super.canPlaceBlockAt(worldIn, pos) && this.canBlockStay(worldIn, pos);
     }
 
+    @Override
+    public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
+        this.tryMergingWithSprucePlanks(worldIn, pos);
+    }
+
     /**
      * Called when a neighboring blocks was changed and marks that this state should perform any checks during a neighbor
      * change. Cases may include when redstone power is updated, cactus blocks popping off due to a neighboring solid
@@ -53,6 +63,18 @@ public class BlockSmallTatamiMat extends DoTBBlock {
     @Override
     public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos)  {
         this.checkForDrop(worldIn, pos, state);
+        this.tryMergingWithSprucePlanks(worldIn, pos);
+    }
+
+    private void tryMergingWithSprucePlanks(World worldIn, BlockPos pos){
+        IBlockState stateDown = worldIn.getBlockState(pos.down());
+        Block blockDown = stateDown.getBlock();
+        if(blockDown == Blocks.PLANKS){
+            if(stateDown.getValue(BlockPlanks.VARIANT) == BlockPlanks.EnumType.SPRUCE){
+                worldIn.setBlockToAir(pos);
+                worldIn.setBlockState(pos.down(), DoTBBlocks.tatami_floor.getDefaultState());
+            }
+        }
     }
 
     private void checkForDrop(World worldIn, BlockPos pos, IBlockState state) {
