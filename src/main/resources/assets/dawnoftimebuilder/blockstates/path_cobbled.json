@@ -1,0 +1,10 @@
+{
+    "variants": {
+        "full=false": {
+            "model": "dawnoftimebuilder:general/path_cobbled"
+        },
+        "full=true": {
+            "model": "dawnoftimebuilder:general/path_cobbled_full"
+        }
+    }
+}

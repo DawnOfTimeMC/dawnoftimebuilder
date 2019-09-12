@@ -84,6 +84,7 @@ public class DoTBBlocks {
 	@ObjectHolder("paper_wall_window") public static Block paper_wall_window;
 	@ObjectHolder("red_painted_log") public static Block red_painted_log;
 	@ObjectHolder("small_tatami_mat") public static Block small_tatami_mat;
+	@ObjectHolder("small_tatami_floor") public static Block small_tatami_floor;
 	@ObjectHolder("spruce_beam") public static Block spruce_beam;
 	@ObjectHolder("spruce_foundation") public static Block spruce_foundation;
 	@ObjectHolder("spruce_log_fence") public static Block spruce_log_fence;

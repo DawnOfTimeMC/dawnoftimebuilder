@@ -25,6 +25,7 @@ import org.dawnoftimebuilder.items.global.DoTBItemMetaBlock;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 public class DoTBBlocksRegistry {
 
@@ -126,7 +127,7 @@ public class DoTBBlocksRegistry {
 				new DoTBBlock("spruce_foundation", Material.WOOD, 1.0F, SoundType.WOOD).setBurnable(),
 				new DoTBBlockFence("spruce_log_fence", Material.WOOD, 2.0F, SoundType.WOOD).setBurnable(),
 				new DoTBBlockWall("spruce_log_wall", Material.WOOD, 2.0F, SoundType.WOOD).setBurnable(),
-				new DoTBBlock("spruce_planks_edge", Material.WOOD, 1.5F, SoundType.WOOD),
+				new DoTBBlockEdge("spruce_planks_edge", Material.WOOD, 1.5F, SoundType.WOOD),
 				new BlockSpruceRailing(),
 				new BlockSpruceRoofSupport("spruce_roof_support"),
 				new BlockSpruceRoofSupportMerged(),
@@ -136,8 +137,9 @@ public class DoTBBlocksRegistry {
 				new DoTBBlock("spruce_timber_frame", Material.WOOD, 2.0F, SoundType.WOOD).setBurnable(),
 				new DoTBBlockRotatedPillar("spruce_timber_frame_pillar", Material.WOOD, 2.0F, SoundType.WOOD).setBurnable(),
 				new BlockStoneLantern(),
-				new BlockTatamiMat(),
+				new BlockTatamiMat("tatami_mat"),
 				new BlockFuton(),
+				new BlockSmallTatamiFloor(),
 				new BlockTatamiFloor(),
 				new BlockFirepit(),
 				new BlockSakeBottle(),
@@ -188,7 +190,7 @@ public class DoTBBlocksRegistry {
 	public static void registerBlockItems(RegistryEvent.Register<Item> event) {
 		IForgeRegistry<Item> registry = event.getRegistry();
 		for (Block block : blocks_list) {
-			String blockName = block.getRegistryName().getPath();
+			String blockName = Objects.requireNonNull(block.getRegistryName()).getPath();
 
 			if(!DoTBConfigs.enabledMap.get(blockName)){
 				//Disabled in the config file → skip registering the item
@@ -229,11 +231,11 @@ public class DoTBBlocksRegistry {
 
 	@SideOnly(Side.CLIENT)
 	private static void setResourceLocation(Item item){
-		ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(item.getRegistryName().toString(), "inventory"));
+		ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(Objects.requireNonNull(item.getRegistryName()).toString(), "inventory"));
 	}
 
 	@SideOnly(Side.CLIENT)
 	private static void setResourceLocation(Item item, int meta, String variant){
-		ModelLoader.setCustomModelResourceLocation(item, meta, new ModelResourceLocation(item.getRegistryName().toString() + "_" + variant, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(item, meta, new ModelResourceLocation(Objects.requireNonNull(item.getRegistryName()).toString() + "_" + variant, "inventory"));
 	}
 }

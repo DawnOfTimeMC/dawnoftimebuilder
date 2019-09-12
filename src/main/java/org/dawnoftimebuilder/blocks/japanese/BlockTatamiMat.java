@@ -1,8 +1,12 @@
 package org.dawnoftimebuilder.blocks.japanese;
 
+import java.util.Objects;
 import java.util.Random;
 
+import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.properties.PropertyDirection;
+import net.minecraft.init.Blocks;
+import org.dawnoftimebuilder.blocks.DoTBBlocks;
 import org.dawnoftimebuilder.blocks.global.DoTBBlock;
 
 import net.minecraft.block.Block;
@@ -36,28 +40,34 @@ public class BlockTatamiMat extends DoTBBlock implements IBlockCustomItem {
     public static final PropertyEnum<BlockTatamiMat.EnumPartType> PART = PropertyEnum.create("part", BlockTatamiMat.EnumPartType.class);
     public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
 
-    public BlockTatamiMat() {
-        super("tatami_mat", Material.CLOTH);
+    public BlockTatamiMat(String name) {
+        super(name, Material.CLOTH);
         this.setBurnable();
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(PART, BlockTatamiMat.EnumPartType.FOOT));
     }
-    
+
+    @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
     	return CARPET_AABB;
     }
-    
+
 	@Override
     protected BlockStateContainer createBlockState() {
         return new BlockStateContainer(this, FACING, PART);
     }
-	
+
     /**
      * Get the MapColor for this Block and the given BlockState
      */
     public MapColor getMapColor(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
         return MapColor.BROWN;
     }
-	
+
+    @Override
+    public boolean canPlaceBlockAt(World worldIn, BlockPos pos){
+        return super.canPlaceBlockAt(worldIn, pos) && this.canBlockStay(worldIn, pos);
+    }
+
     /**
      * Called when a neighboring blocks was changed and marks that this state should perform any checks during a neighbor
      * change. Cases may include when redstone power is updated, cactus blocks popping off due to a neighboring solid
@@ -66,13 +76,48 @@ public class BlockTatamiMat extends DoTBBlock implements IBlockCustomItem {
     public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos) {
         EnumFacing facing = state.getValue(FACING);
         if (state.getValue(PART) == BlockTatamiMat.EnumPartType.FOOT) {
-            if (worldIn.getBlockState(pos.offset(facing)).getBlock() != this || worldIn.isAirBlock(pos.down())) worldIn.setBlockToAir(pos);
-        } else if (worldIn.getBlockState(pos.offset(facing.getOpposite())).getBlock() != this || worldIn.isAirBlock(pos.down()) ) {
+            if (worldIn.getBlockState(pos.offset(facing)).getBlock() != this){
+                worldIn.setBlockToAir(pos);
+                return;
+            }
+        } else if (worldIn.getBlockState(pos.offset(facing.getOpposite())).getBlock() != this) {
             if (!worldIn.isRemote) this.dropBlockAsItem(worldIn, pos, state, 0);
+            worldIn.setBlockToAir(pos);
+            return;
+        }
+        this.checkForDrop(worldIn, pos, state);
+        this.tryMergingWithSprucePlanks(worldIn, pos, state);
+    }
+
+    private void tryMergingWithSprucePlanks(World worldIn, BlockPos pos, IBlockState state){
+        EnumFacing facing = state.getValue(FACING);
+        IBlockState stateDown = worldIn.getBlockState(pos.down());
+        Block blockDown = stateDown.getBlock();
+        IBlockState stateDownAdjacent = worldIn.getBlockState(pos.offset(facing).down());
+        Block blockDownAdjacent = stateDownAdjacent.getBlock();
+        if(blockDownAdjacent == Blocks.PLANKS && blockDown == Blocks.PLANKS){
+            if(stateDown.getValue(BlockPlanks.VARIANT) == BlockPlanks.EnumType.SPRUCE && stateDownAdjacent.getValue(BlockPlanks.VARIANT) == BlockPlanks.EnumType.SPRUCE){
+                worldIn.setBlockToAir(pos);
+                worldIn.setBlockToAir(pos.offset(facing));
+                worldIn.setBlockState(pos.down(), DoTBBlocks.tatami_floor.getDefaultState().withProperty(FACING, facing).withProperty(PART, state.getValue(PART)));
+                worldIn.setBlockState(pos.offset(facing).down(), DoTBBlocks.tatami_floor.getDefaultState().withProperty(FACING, facing).withProperty(PART, state.getValue(PART)));
+            }
+        }
+    }
+
+    public boolean canBlockStay(World worldIn, BlockPos pos) {
+        IBlockState stateDown = worldIn.getBlockState(pos.down());
+        boolean solidFloor = stateDown.getBlockFaceShape(worldIn, pos.down(), EnumFacing.UP) != BlockFaceShape.UNDEFINED;
+        return solidFloor && stateDown.getBlock() != DoTBBlocks.tatami_floor && stateDown.getBlock() != DoTBBlocks.small_tatami_floor;
+    }
+
+    private void checkForDrop(World worldIn, BlockPos pos, IBlockState state) {
+        if (!this.canBlockStay(worldIn, pos)) {
+            this.dropBlockAsItem(worldIn, pos, state, 0);
             worldIn.setBlockToAir(pos);
         }
     }
-    
+
     /**
      * Get the Item that this Block should drop when harvested.
      */
@@ -87,8 +132,8 @@ public class BlockTatamiMat extends DoTBBlock implements IBlockCustomItem {
     }
     
 	@Override
-	public BlockFaceShape getBlockFaceShape(IBlockAccess p_193383_1_, IBlockState p_193383_2_, BlockPos p_193383_3_, EnumFacing p_193383_4_) {
-        return p_193383_4_ == EnumFacing.DOWN ? BlockFaceShape.SOLID : BlockFaceShape.UNDEFINED;
+	public BlockFaceShape getBlockFaceShape(IBlockAccess worldIn, IBlockState state, BlockPos pos, EnumFacing facing) {
+        return facing == EnumFacing.DOWN ? BlockFaceShape.SOLID : BlockFaceShape.UNDEFINED;
     }
     
     public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state) {
@@ -157,7 +202,7 @@ public class BlockTatamiMat extends DoTBBlock implements IBlockCustomItem {
     @Override
     public Item getCustomItemBlock() {
         return new ItemTatamiMat()
-                .setRegistryName(this.getRegistryName())
+                .setRegistryName(Objects.requireNonNull(this.getRegistryName()))
                 .setTranslationKey(this.getTranslationKey());
     }
 

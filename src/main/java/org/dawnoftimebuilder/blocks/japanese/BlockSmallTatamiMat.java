@@ -46,7 +46,7 @@ public class BlockSmallTatamiMat extends DoTBBlock {
     }
 
     @Override
-    public boolean canPlaceBlockAt(World worldIn, BlockPos pos)  {
+    public boolean canPlaceBlockAt(World worldIn, BlockPos pos){
         return super.canPlaceBlockAt(worldIn, pos) && this.canBlockStay(worldIn, pos);
     }
 
@@ -72,7 +72,7 @@ public class BlockSmallTatamiMat extends DoTBBlock {
         if(blockDown == Blocks.PLANKS){
             if(stateDown.getValue(BlockPlanks.VARIANT) == BlockPlanks.EnumType.SPRUCE){
                 worldIn.setBlockToAir(pos);
-                worldIn.setBlockState(pos.down(), DoTBBlocks.tatami_floor.getDefaultState());
+                worldIn.setBlockState(pos.down(), DoTBBlocks.small_tatami_floor.getDefaultState());
             }
         }
     }
@@ -85,7 +85,8 @@ public class BlockSmallTatamiMat extends DoTBBlock {
     }
 
     private boolean canBlockStay(World worldIn, BlockPos pos) {
-        return worldIn.getBlockState(pos.down()).getBlockFaceShape(worldIn, pos, EnumFacing.UP) != BlockFaceShape.UNDEFINED;
+        IBlockState stateDown = worldIn.getBlockState(pos.down());
+        return stateDown.getBlockFaceShape(worldIn, pos, EnumFacing.UP) != BlockFaceShape.UNDEFINED && stateDown.getBlock() != DoTBBlocks.tatami_floor && stateDown.getBlock() != DoTBBlocks.small_tatami_floor;
     }
 
     @Override
