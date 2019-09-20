@@ -1,6 +1,7 @@
 {
     "variants": {
-        "half=bottom,variant=normal": { "model": "dawnoftimebuilder:roman/slab_half_ochre_roof_tiles" },
-        "half=top,variant=normal": { "model": "dawnoftimebuilder:roman/slab_upper_ochre_roof_tiles" }
+        "slab=bottom": { "model": "dawnoftimebuilder:roman/ochre_roof_tiles_slab_bottom" },
+        "slab=top": { "model": "dawnoftimebuilder:roman/ochre_roof_tiles_slab_top" },
+        "slab=double": { "model": "dawnoftimebuilder:roman/ochre_roof_tiles" }
     }
 }

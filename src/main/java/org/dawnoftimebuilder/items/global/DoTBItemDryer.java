@@ -43,12 +43,10 @@ public class DoTBItemDryer extends ItemBlock {
 						SoundType soundtype = this.block.getSoundType(madeState, worldIn, pos, player);
 						worldIn.playSound(player, pos, soundtype.getPlaceSound(), SoundCategory.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F);
 						itemstack.shrink(1);
-						if (player instanceof EntityPlayerMP){
-							CriteriaTriggers.PLACED_BLOCK.trigger((EntityPlayerMP)player, pos, itemstack);
-						}
-						//TODO the tileEntity seems to be lost o_O
-						worldIn.removeTileEntity(pos);
-						worldIn.setTileEntity(pos, tileEntity);
+						if (player instanceof EntityPlayerMP) CriteriaTriggers.PLACED_BLOCK.trigger((EntityPlayerMP)player, pos, itemstack);
+
+						DoTBTileEntityDryer newTileEntity = (DoTBTileEntityDryer) worldIn.getTileEntity(pos);
+						if (newTileEntity != null) newTileEntity.upgrade(tileEntity);
 					}
 
 					return EnumActionResult.SUCCESS;

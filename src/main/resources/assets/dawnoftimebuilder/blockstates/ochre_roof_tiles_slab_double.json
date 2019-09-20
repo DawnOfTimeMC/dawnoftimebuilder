@@ -1,6 +1,0 @@
-{
-    "variants": {
-        "sandstone=false,variant=normal": { "model": "dawnoftimebuilder:roman/ochre_roof_tiles" },
-        "sandstone=true,variant=normal": { "model": "dawnoftimebuilder:roman/sandstone_ochre_roof_tiles" }
-    }
-}

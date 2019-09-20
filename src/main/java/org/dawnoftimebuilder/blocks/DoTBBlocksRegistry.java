@@ -3,29 +3,30 @@ package org.dawnoftimebuilder.blocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
-import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.registries.IForgeRegistry;
 import org.dawnoftimebuilder.DawnOfTimeBuilder;
 import org.dawnoftimebuilder.DoTBConfigs;
+import org.dawnoftimebuilder.blocks.compatibility.*;
 import org.dawnoftimebuilder.blocks.french.*;
 import org.dawnoftimebuilder.blocks.global.*;
 import org.dawnoftimebuilder.blocks.japanese.*;
 import org.dawnoftimebuilder.blocks.mayan.*;
+import org.dawnoftimebuilder.blocks.roman.BlockOchreRoofTilesMerged;
 import org.dawnoftimebuilder.blocks.roman.BlockSandstoneColumn;
 import org.dawnoftimebuilder.enums.IEnumMetaVariants;
 import org.dawnoftimebuilder.items.global.DoTBItemMetaBlock;
+import org.dawnoftimebuilder.items.roman.ItemOchreRoofTilesSlab;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+
+import static org.dawnoftimebuilder.items.DoTBItemsRegistry.setResourceLocation;
 
 public class DoTBBlocksRegistry {
 
@@ -44,6 +45,16 @@ public class DoTBBlocksRegistry {
 		BlockPlasteredStone plastered_stone = new BlockPlasteredStone();
 
 		addToList(
+				//Compatibility
+				new BlockPath(),
+				new BlockTilesSlabHalf(),
+				new BlockTilesSlabDouble(),
+				new BlockPathSlabHalf(),
+				new BlockPathSlabDouble(),
+				new BlockOchreRoofTilesSlabHalf(),
+				new BlockOchreRoofTilesSlabDouble(),
+				new BlockThatch(),
+
 				//General
 				new BlockIronChain(),
 				new DoTBBlockPath("path_gravel"),
@@ -153,7 +164,7 @@ public class DoTBBlocksRegistry {
 				new DoTBBlockPlate("green_ornamented_plastered_stone_frieze"),
 				new DoTBBlockPlate("green_plastered_stone_frieze"),
 				new BlockGreenSculptedPlasteredStoneFrieze(),
-				new DoTBBlock("green_small_plastered_stone_frieze", Material.ROCK, 1.5F, SoundType.STONE),
+				new DoTBBlockEdge("green_small_plastered_stone_frieze", Material.ROCK, 1.5F, SoundType.STONE),
 				new BlockMaize(),
 				plastered_stone,
 				new BlockPlasteredStoneColumn(),
@@ -167,13 +178,19 @@ public class DoTBBlocksRegistry {
 				new DoTBBlockStairs("red_plastered_stone_stairs", plastered_stone, 1, 2.0F, SoundType.STONE),
 				new DoTBBlockSlab("red_plastered_stone_slab", Material.ROCK, 2.0F, SoundType.STONE),
 				new BlockRedSculptedPlasteredStoneFrieze(),
-				new DoTBBlock("red_small_plastered_stone_frieze", Material.ROCK, 1.5F, SoundType.STONE),
+				new DoTBBlockEdge("red_small_plastered_stone_frieze", Material.ROCK, 1.5F, SoundType.STONE),
 				new BlockSerpentSculptedColumn(),
 				new BlockStoneFrieze(),
 
 				//roman
 				new DoTBBlock("ochre_roof_tiles", Material.ROCK, 2.0F, SoundType.STONE),
-				new DoTBBlockSlab("ochre_roof_tiles_slab", Material.ROCK, 1.5F, SoundType.STONE),
+				new BlockOchreRoofTilesMerged(),
+				new DoTBBlockSlab("ochre_roof_tiles_slab", Material.ROCK, 1.5F, SoundType.STONE){
+					@Override
+					public Item getCustomItemBlock() {
+						return new ItemOchreRoofTilesSlab(this);
+					}
+				},
 				new BlockSandstoneColumn()
 		);
 	}
@@ -227,15 +244,5 @@ public class DoTBBlocksRegistry {
 				setResourceLocation(item);
 			}
 		}
-	}
-
-	@SideOnly(Side.CLIENT)
-	private static void setResourceLocation(Item item){
-		ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(Objects.requireNonNull(item.getRegistryName()).toString(), "inventory"));
-	}
-
-	@SideOnly(Side.CLIENT)
-	private static void setResourceLocation(Item item, int meta, String variant){
-		ModelLoader.setCustomModelResourceLocation(item, meta, new ModelResourceLocation(Objects.requireNonNull(item.getRegistryName()).toString() + "_" + variant, "inventory"));
 	}
 }

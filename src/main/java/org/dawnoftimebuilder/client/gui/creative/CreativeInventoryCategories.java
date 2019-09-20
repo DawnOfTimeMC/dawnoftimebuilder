@@ -2,14 +2,9 @@ package org.dawnoftimebuilder.client.gui.creative;
 
 import net.minecraft.item.Item;
 import org.dawnoftimebuilder.items.DoTBItems;
-import org.dawnoftimebuilder.items.global.DoTBItem;
-
 import java.util.ArrayList;
 import java.util.Arrays;
-
 import static org.dawnoftimebuilder.blocks.DoTBBlocks.*;
-import static org.dawnoftimebuilder.items.DoTBItems.camellia_leaves;
-import static org.dawnoftimebuilder.items.DoTBItems.commelina;
 
 public enum CreativeInventoryCategories {
 
@@ -34,7 +29,8 @@ public enum CreativeInventoryCategories {
 			Item.getItemFromBlock(thatch_bamboo_slab),
 			Item.getItemFromBlock(thatch_bamboo_edge),
 			Item.getItemFromBlock(fireplace),
-			Item.getItemFromBlock(iron_chain)
+			Item.getItemFromBlock(iron_chain),
+			Item.getItemFromBlock(stone_frieze)
 	),
 
 	FRENCH("French",
@@ -167,10 +163,44 @@ public enum CreativeInventoryCategories {
 	),
 
 	MAYAN("Mayan",
-			commelina),
+			Item.getItemFromBlock(path_dirt),
+			Item.getItemFromBlock(path_dirt_slab),
+			Item.getItemFromBlock(path_gravel),
+			Item.getItemFromBlock(path_gravel_slab),
+			Item.getItemFromBlock(thatch_wheat),
+			Item.getItemFromBlock(thatch_wheat_stairs),
+			Item.getItemFromBlock(thatch_wheat_slab),
+			Item.getItemFromBlock(thatch_wheat_edge),
+			Item.getItemFromBlock(rammed_dirt),
+			Item.getItemFromBlock(plastered_stone),
+			Item.getItemFromBlock(plastered_stone_stairs),
+			Item.getItemFromBlock(red_plastered_stone_stairs),
+			Item.getItemFromBlock(plastered_stone_slab),
+			Item.getItemFromBlock(red_plastered_stone_slab),
+			Item.getItemFromBlock(chiseled_plastered_stone),
+			Item.getItemFromBlock(plastered_stone_frieze),
+			Item.getItemFromBlock(green_plastered_stone_frieze),
+			Item.getItemFromBlock(green_ornamented_plastered_stone_frieze),
+			Item.getItemFromBlock(green_sculpted_plastered_stone_frieze),
+			Item.getItemFromBlock(green_small_plastered_stone_frieze),
+			Item.getItemFromBlock(red_plastered_stone_frieze),
+			Item.getItemFromBlock(red_ornamented_plastered_stone_frieze),
+			Item.getItemFromBlock(red_sculpted_plastered_stone_frieze),
+			Item.getItemFromBlock(red_small_plastered_stone_frieze),
+			Item.getItemFromBlock(plastered_stone_column),
+			Item.getItemFromBlock(plastered_stone_window),
+			Item.getItemFromBlock(plastered_stone_cresset),
+			Item.getItemFromBlock(feathered_serpent_sculpture),
+			Item.getItemFromBlock(serpent_sculpted_column),
+			DoTBItems.commelina,
+			DoTBItems.maize
+	),
 
 	ROMAN("Roman",
-			Item.getItemFromBlock(ochre_roof_tiles));
+			Item.getItemFromBlock(ochre_roof_tiles),
+			Item.getItemFromBlock(ochre_roof_tiles_slab),
+			Item.getItemFromBlock(sandstone_column)
+	);
 
 	private String name;
 	private ArrayList<Item> items = new ArrayList<>();

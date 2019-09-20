@@ -14,7 +14,7 @@ public interface IItemCanBeDried {
 	int getItemQuantity();
 
 	/**
-	 * @return number of ticks needed for the item to be dried.
+	 * @return number of seconds needed for the item to be dried.
 	 * The drying time is randomly set for a duration of 80-120 % of this value
 	 */
 	int getDryingTime();

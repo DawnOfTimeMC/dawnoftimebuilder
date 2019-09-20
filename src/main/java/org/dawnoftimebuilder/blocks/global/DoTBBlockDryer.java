@@ -142,12 +142,14 @@ public class DoTBBlockDryer extends DoTBBlockTileEntity implements IBlockCustomI
 					Item item = itemstack.getItem();
 
 					if(item instanceof IItemCanBeDried) {
-						if(tileEntity.putUndriedItem((IItemCanBeDried) item, state.getValue(SIMPLE), worldIn, pos)) {
-							if(!playerIn.isCreative()) itemstack.shrink(1);
-							return true;
-						}else return false;
+						int quantityNeeded = ((IItemCanBeDried) item).getItemQuantity();
+						if(quantityNeeded <= itemstack.getCount()){
+							if(tileEntity.putUndriedItem((IItemCanBeDried) item, state.getValue(SIMPLE), worldIn, pos)) {
+								if(!playerIn.isCreative()) itemstack.shrink(quantityNeeded);
+								return true;
+							}else return false;
+						}
 					}
-
 					return tileEntity.dropOneDriedItem(worldIn, pos) >= 0;
 				}
 			}

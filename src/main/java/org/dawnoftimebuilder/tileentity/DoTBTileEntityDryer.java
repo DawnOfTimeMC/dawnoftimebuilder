@@ -1,23 +1,73 @@
 package org.dawnoftimebuilder.tileentity;
 
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ITickable;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import org.dawnoftimebuilder.items.DoTBItemsRegistry;
 import org.dawnoftimebuilder.items.IItemCanBeDried;
+
+import java.util.Objects;
+import java.util.Random;
 
 import static net.minecraft.block.Block.spawnAsEntity;
 
-public class DoTBTileEntityDryer extends TileEntity {
+public class DoTBTileEntityDryer extends TileEntity implements ITickable {
 
 	private IItemCanBeDried[] undriedItem = new IItemCanBeDried[2];
 	private int[] craftingTimes = new int[2];
 	private int[] currentTimes = new int[2];
+
+	private int tickCount = 0;
+
+	@Override
+	public void update() {
+		if(!this.getWorld().isRemote) {
+			this.tickCount++;
+			if(this.tickCount == 20){
+				this.tickCount = 0;
+				if(this.craftingTimes[0] > this.currentTimes[0]){
+					this.currentTimes[0]++;
+					if(this.craftingTimes[0] == this.currentTimes[0]){
+						IBlockState state = world.getBlockState(pos);
+						world.notifyBlockUpdate(pos, state, state, 2);
+					}
+				}
+				if(this.craftingTimes[1] > this.currentTimes[1]){
+					this.currentTimes[1]++;
+					if(this.craftingTimes[1] == this.currentTimes[1]){
+						IBlockState state = world.getBlockState(pos);
+						world.notifyBlockUpdate(pos, state, state, 2);
+					}
+				}
+			}
+		}
+	}
+
+	public void upgrade(DoTBTileEntityDryer oldTileEntity){
+		this.undriedItem = oldTileEntity.undriedItem;
+		this.craftingTimes = oldTileEntity.craftingTimes;
+		this.currentTimes = oldTileEntity.currentTimes;
+	}
+
+	public boolean containsItemInSlot(int index){
+		return undriedItem[index] != null;
+	}
+
+	public IBakedModel getItemCustomModel(int index){
+		String name;
+		if(currentTimes[index] >= craftingTimes[index]) name = Objects.requireNonNull(undriedItem[index].getDriedItem().getRegistryName()).getPath();
+		else name = Objects.requireNonNull(undriedItem[index].getItem().getRegistryName()).getPath();
+		return DoTBItemsRegistry.getModel(name);
+	}
 
 	public boolean putUndriedItem(IItemCanBeDried item, boolean simple, World worldIn, BlockPos pos){
 		if(this.putItemInFreeSpace(item, simple)) return true;
@@ -86,6 +136,14 @@ public class DoTBTileEntityDryer extends TileEntity {
 		return false;
 	}
 
+	private void putItemIndex(int index, IItemCanBeDried item){
+		this.undriedItem[index] = item;
+		this.currentTimes[index] = 0;
+		this.craftingTimes[index] = (int) (item.getDryingTime() * (0.8d + new Random().nextInt(5) * 0.1d));
+		IBlockState state = world.getBlockState(pos);
+		world.notifyBlockUpdate(pos, state, state, 2);
+	}
+
 	private void dropItemIndex(int index, boolean isDried, World worldIn, BlockPos pos){
 		Item item = isDried ? this.undriedItem[index].getDriedItem() : this.undriedItem[index].getItem();
 		int quantity = isDried ? this.undriedItem[index].getDriedItemQuantity() : this.undriedItem[index].getItemQuantity();
@@ -99,32 +157,29 @@ public class DoTBTileEntityDryer extends TileEntity {
 		this.undriedItem[index] = null;
 		this.craftingTimes[index] = 0;
 		this.currentTimes[index] = 0;
-	}
-
-	private void putItemIndex(int index, IItemCanBeDried item){
-		this.undriedItem[index] = item;
-		this.craftingTimes[index] = item.getDryingTime();
+		IBlockState state = world.getBlockState(pos);
+		world.notifyBlockUpdate(pos, state, state, 2);
 	}
 
 	@Override
 	public NBTTagCompound getUpdateTag(){
-		return writeToNBT(new NBTTagCompound());
+		return this.writeToNBT(new NBTTagCompound());
 	}
 
 	@Override
 	public void handleUpdateTag(NBTTagCompound tag){
-		readFromNBT(tag);
+		this.readFromNBT(tag);
 	}
 
 	@Override
 	public SPacketUpdateTileEntity getUpdatePacket(){
-		return new SPacketUpdateTileEntity(this.pos, 0, getUpdateTag());
+		return new SPacketUpdateTileEntity(this.pos, 0, this.getUpdateTag());
 	}
 
 	@Override
 	public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity packet) {
 		super.onDataPacket(net, packet);
-		handleUpdateTag(packet.getNbtCompound());
+		this.handleUpdateTag(packet.getNbtCompound());
 	}
 
 	@Override

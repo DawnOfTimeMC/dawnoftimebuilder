@@ -57,6 +57,24 @@ public class DoTBItemSlab extends ItemBlock {
 		}else return EnumActionResult.FAIL;
 	}
 
+	public boolean tryPlace(EntityPlayer player, ItemStack stack, World worldIn, BlockPos pos) {
+		IBlockState state = worldIn.getBlockState(pos);
+
+		if(state.getBlock() == this.block) {
+			DoTBBlockSlab slab = (DoTBBlockSlab) this.block;
+			if (slab.getSlabState(state) != DoTBBlockSlab.EnumSlab.DOUBLE) {
+				IBlockState madeState = slab.getDoubleSlabDefaultState();
+				if (worldIn.checkNoEntityCollision(FULL_BLOCK_AABB.offset(pos)) && worldIn.setBlockState(pos, madeState, 11)) {
+					SoundType soundtype = this.block.getSoundType(madeState, worldIn, pos, player);
+					worldIn.playSound(player, pos, soundtype.getPlaceSound(), SoundCategory.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F);
+					stack.shrink(1);
+				}
+				return true;
+			}
+		}
+		return false;
+	}
+
 	@SideOnly(Side.CLIENT)
 	public boolean canPlaceBlockOnSide(World worldIn, BlockPos pos, EnumFacing side, EntityPlayer player, ItemStack stack) {
 
@@ -76,23 +94,5 @@ public class DoTBItemSlab extends ItemBlock {
 		}
 
 		return super.canPlaceBlockOnSide(worldIn, blockpos, side, player, stack);
-	}
-
-	private boolean tryPlace(EntityPlayer player, ItemStack stack, World worldIn, BlockPos pos) {
-		IBlockState state = worldIn.getBlockState(pos);
-
-		if(state.getBlock() == this.block) {
-			DoTBBlockSlab slab = (DoTBBlockSlab) this.block;
-			if (slab.getSlabState(state) != DoTBBlockSlab.EnumSlab.DOUBLE) {
-				IBlockState madeState = slab.getDoubleSlabDefaultState();
-				if (worldIn.checkNoEntityCollision(FULL_BLOCK_AABB.offset(pos)) && worldIn.setBlockState(pos, madeState, 11)) {
-					SoundType soundtype = this.block.getSoundType(madeState, worldIn, pos, player);
-					worldIn.playSound(player, pos, soundtype.getPlaceSound(), SoundCategory.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F);
-					stack.shrink(1);
-				}
-				return true;
-			}
-		}
-		return false;
 	}
 }

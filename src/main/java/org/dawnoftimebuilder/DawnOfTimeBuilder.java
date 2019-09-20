@@ -54,6 +54,7 @@ public class DawnOfTimeBuilder {
 		OreDictionaryHandler.init();
 		NETWORK.registerGuiHandler(instance, new DoTGuiHandler());
 		proxy.init();
+		DoTBItemsRegistry.initCustomModels();
 	}
 
 	@SidedProxy(clientSide = "org.dawnoftimebuilder.proxy.ClientProxy", serverSide = "org.dawnoftimebuilder.proxy.ServerProxy")

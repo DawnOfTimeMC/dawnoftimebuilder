@@ -1,0 +1,15 @@
+{
+	"textures": {
+		"2_0": "dawnoftimebuilder:blocks/drying_tray"
+	},
+	"elements": [
+		{
+			"from": [1, 1.75, 1],
+			"to": [15, 1.75, 15],
+			"faces": {
+				"up": {"uv": [9, 2, 16, 9], "texture": "#2_0"},
+				"down": {"uv": [9, 2, 16, 9], "texture": "#2_0"}
+			}
+		}
+	]
+}

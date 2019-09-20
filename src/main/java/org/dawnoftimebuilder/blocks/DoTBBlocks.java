@@ -31,6 +31,7 @@ public class DoTBBlocks {
 	@ObjectHolder("thatch_bamboo_edge") public static Block thatch_bamboo_edge;
 	@ObjectHolder("fireplace") public static Block fireplace;
 	@ObjectHolder("iron_chain") public static Block iron_chain;
+	@ObjectHolder("stone_frieze") public static Block stone_frieze;
 
 	//french
 	@ObjectHolder("cobbled_limestone") public static Block cobbled_limestone;
@@ -112,7 +113,29 @@ public class DoTBBlocks {
 
 	//mayan
 	@ObjectHolder("plastered_stone") public static Block plastered_stone;
+	@ObjectHolder("plastered_stone_slab") public static Block plastered_stone_slab;
+	@ObjectHolder("red_plastered_stone_slab") public static Block red_plastered_stone_slab;
+	@ObjectHolder("feathered_serpent_sculpture") public static Block feathered_serpent_sculpture;
+	@ObjectHolder("green_ornamented_plastered_stone_frieze") public static Block green_ornamented_plastered_stone_frieze;
+	@ObjectHolder("chiseled_plastered_stone") public static Block chiseled_plastered_stone;
+	@ObjectHolder("green_plastered_stone_frieze") public static Block green_plastered_stone_frieze;
+	@ObjectHolder("green_sculpted_plastered_stone_frieze") public static Block green_sculpted_plastered_stone_frieze;
+	@ObjectHolder("green_small_plastered_stone_frieze") public static Block green_small_plastered_stone_frieze;
+	@ObjectHolder("plastered_stone_column") public static Block plastered_stone_column;
+	@ObjectHolder("plastered_stone_cresset") public static Block plastered_stone_cresset;
+	@ObjectHolder("plastered_stone_frieze") public static Block plastered_stone_frieze;
+	@ObjectHolder("plastered_stone_stairs") public static Block plastered_stone_stairs;
+	@ObjectHolder("plastered_stone_window") public static Block plastered_stone_window;
+	@ObjectHolder("red_plastered_stone_frieze") public static Block red_plastered_stone_frieze;
+	@ObjectHolder("red_ornamented_plastered_stone_frieze") public static Block red_ornamented_plastered_stone_frieze;
+	@ObjectHolder("red_plastered_stone_stairs") public static Block red_plastered_stone_stairs;
+	@ObjectHolder("red_sculpted_plastered_stone_frieze") public static Block red_sculpted_plastered_stone_frieze;
+	@ObjectHolder("red_small_plastered_stone_frieze") public static Block red_small_plastered_stone_frieze;
+	@ObjectHolder("serpent_sculpted_column") public static Block serpent_sculpted_column;
 
 	//roman
 	@ObjectHolder("ochre_roof_tiles") public static Block ochre_roof_tiles;
+	@ObjectHolder("ochre_roof_tiles_merged") public static Block ochre_roof_tiles_merged;
+	@ObjectHolder("ochre_roof_tiles_slab") public static Block ochre_roof_tiles_slab;
+	@ObjectHolder("sandstone_column") public static Block sandstone_column;
 }
