@@ -1,0 +1,68 @@
+{
+    "variants": {
+        "full=false,seamless=false,variant=gravel": { "model": "dawnoftimebuilder:general/path_gravel_slab_double" },
+        "full=false,seamless=true,variant=gravel": { "model": "dawnoftimebuilder:general/path_gravel_slab_double" },
+		"full=true,seamless=false,variant=gravel": { "model": "dawnoftimebuilder:general/path_gravel_slab_double_full" },
+        "full=true,seamless=true,variant=gravel": { "model": "dawnoftimebuilder:general/path_gravel_slab_double_full" },
+        "full=false,seamless=false,variant=stepping_stones": [
+            { "model": "dawnoftimebuilder:general/path_stepping_stones_slab_double_1" },
+			{ "model": "dawnoftimebuilder:general/path_stepping_stones_slab_double_2" },
+			{ "model": "dawnoftimebuilder:general/path_stepping_stones_slab_double_3" },
+			{ "model": "dawnoftimebuilder:general/path_stepping_stones_slab_double_4" }
+        ],
+        "full=false,seamless=true,variant=stepping_stones": [
+            { "model": "dawnoftimebuilder:general/path_stepping_stones_slab_double_1" },
+			{ "model": "dawnoftimebuilder:general/path_stepping_stones_slab_double_2" },
+			{ "model": "dawnoftimebuilder:general/path_stepping_stones_slab_double_3" },
+			{ "model": "dawnoftimebuilder:general/path_stepping_stones_slab_double_4" }
+        ],
+        "full=true,seamless=false,variant=stepping_stones": [
+            { "model": "dawnoftimebuilder:general/path_stepping_stones_slab_double_full_1" },
+			{ "model": "dawnoftimebuilder:general/path_stepping_stones_slab_double_full_2" },
+			{ "model": "dawnoftimebuilder:general/path_stepping_stones_slab_double_full_3" },
+			{ "model": "dawnoftimebuilder:general/path_stepping_stones_slab_double_full_4" }
+        ],
+        "full=true,seamless=true,variant=stepping_stones": [
+            { "model": "dawnoftimebuilder:general/path_stepping_stones_slab_double_full_1" },
+			{ "model": "dawnoftimebuilder:general/path_stepping_stones_slab_double_full_2" },
+			{ "model": "dawnoftimebuilder:general/path_stepping_stones_slab_double_full_3" },
+			{ "model": "dawnoftimebuilder:general/path_stepping_stones_slab_double_full_4" }
+        ],
+        "full=false,seamless=false,variant=cobbled": { "model": "dawnoftimebuilder:general/path_cobbled_slab_double" },
+        "full=false,seamless=true,variant=cobbled": { "model": "dawnoftimebuilder:general/path_cobbled_slab_double" },
+        "full=true,seamless=false,variant=cobbled": { "model": "dawnoftimebuilder:general/path_cobbled_slab_double_full" },
+        "full=true,seamless=true,variant=cobbled": { "model": "dawnoftimebuilder:general/path_cobbled_slab_double_full" },
+        "full=false,seamless=false,variant=sandstone": { "model": "block" },
+        "full=false,seamless=true,variant=sandstone": { "model": "block" },
+        "full=true,seamless=false,variant=sandstone": { "model": "block" },
+        "full=true,seamless=true,variant=sandstone": { "model": "block" },
+        "full=false,seamless=false,variant=ochre_tiles": { "model": "dawnoftimebuilder:general/path_ochre_tiles_slab_double" },
+        "full=false,seamless=true,variant=ochre_tiles": { "model": "dawnoftimebuilder:general/path_ochre_tiles_slab_double" },
+        "full=true,seamless=false,variant=ochre_tiles": { "model": "dawnoftimebuilder:general/path_ochre_tiles_slab_double_full" },
+        "full=true,seamless=true,variant=ochre_tiles": { "model": "dawnoftimebuilder:general/path_ochre_tiles_slab_double_full" },
+		"full=false,seamless=false,variant=dirt": [
+          { "model": "dawnoftimebuilder:general/path_dirt_slab_double" },
+          { "model": "dawnoftimebuilder:general/path_dirt_slab_double", "y": 90 },
+          { "model": "dawnoftimebuilder:general/path_dirt_slab_double", "y": 180 },
+          { "model": "dawnoftimebuilder:general/path_dirt_slab_double", "y": 270 }
+        ],
+        "full=false,seamless=true,variant=dirt": [
+          { "model": "dawnoftimebuilder:general/path_dirt_slab_double" },
+          { "model": "dawnoftimebuilder:general/path_dirt_slab_double", "y": 90 },
+          { "model": "dawnoftimebuilder:general/path_dirt_slab_double", "y": 180 },
+          { "model": "dawnoftimebuilder:general/path_dirt_slab_double", "y": 270 }
+        ],
+        "full=true,seamless=false,variant=dirt": [
+          { "model": "dawnoftimebuilder:general/path_dirt_slab_double_full" },
+          { "model": "dawnoftimebuilder:general/path_dirt_slab_double_full", "y": 90 },
+          { "model": "dawnoftimebuilder:general/path_dirt_slab_double_full", "y": 180 },
+          { "model": "dawnoftimebuilder:general/path_dirt_slab_double_full", "y": 270 }
+        ],
+        "full=true,seamless=true,variant=dirt": [
+          { "model": "dawnoftimebuilder:general/path_dirt_slab_double_full" },
+          { "model": "dawnoftimebuilder:general/path_dirt_slab_double_full", "y": 90 },
+          { "model": "dawnoftimebuilder:general/path_dirt_slab_double_full", "y": 180 },
+          { "model": "dawnoftimebuilder:general/path_dirt_slab_double_full", "y": 270 }
+        ]
+    }
+}

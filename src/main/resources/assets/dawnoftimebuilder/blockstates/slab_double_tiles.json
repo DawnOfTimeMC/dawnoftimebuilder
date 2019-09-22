@@ -1,0 +1,20 @@
+{
+    "variants": {
+        "seamless=false,variant=spruce_foundation": { "model": "dawnoftimebuilder:japanese/spruce_foundation" },
+        "seamless=true,variant=spruce_foundation": { "model": "dawnoftimebuilder:japanese/spruce_foundation" },
+        "seamless=false,variant=grey_roof_tiles": { "model": "dawnoftimebuilder:japanese/grey_roof_tiles" },
+        "seamless=true,variant=grey_roof_tiles": { "model": "dawnoftimebuilder:japanese/grey_roof_tiles" },
+        "seamless=false,variant=flat_roof_tiles": { "model": "dawnoftimebuilder:french/flat_roof_tiles" },
+        "seamless=true,variant=flat_roof_tiles": { "model": "dawnoftimebuilder:french/flat_roof_tiles" },
+        "seamless=false,variant=thatch_wheat": { "model": "dawnoftimebuilder:general/thatch_wheat" },
+        "seamless=true,variant=thatch_wheat": { "model": "dawnoftimebuilder:general/thatch_wheat" },
+        "seamless=false,variant=plastered_stone": { "model": "dawnoftimebuilder:mayan/plastered_stone_slab_double" },
+        "seamless=true,variant=plastered_stone": { "model": "dawnoftimebuilder:mayan/plastered_stone_slab_double" },
+        "seamless=false,variant=limestone_brick": { "model": "dawnoftimebuilder:french/limestone_brick" },
+        "seamless=true,variant=limestone_brick": { "model": "dawnoftimebuilder:french/limestone_brick" },
+        "seamless=false,variant=red_plastered_stone": {"model": "dawnoftimebuilder:mayan/red_plastered_stone_slab_double"},
+        "seamless=true,variant=red_plastered_stone": {"model":  "dawnoftimebuilder:mayan/red_plastered_stone_slab_double"},
+        "seamless=false,variant=thatch_bamboo": { "model": "dawnoftimebuilder:general/thatch_bamboo" },
+        "seamless=true,variant=thatch_bamboo": { "model": "dawnoftimebuilder:general/thatch_bamboo" }
+    }
+}

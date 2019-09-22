@@ -114,7 +114,9 @@ public class DoTBBlocks {
 	//mayan
 	@ObjectHolder("plastered_stone") public static Block plastered_stone;
 	@ObjectHolder("plastered_stone_slab") public static Block plastered_stone_slab;
+	@ObjectHolder("plastered_stone_edge") public static Block plastered_stone_edge;
 	@ObjectHolder("red_plastered_stone_slab") public static Block red_plastered_stone_slab;
+	@ObjectHolder("red_plastered_stone_edge") public static Block red_plastered_stone_edge;
 	@ObjectHolder("feathered_serpent_sculpture") public static Block feathered_serpent_sculpture;
 	@ObjectHolder("green_ornamented_plastered_stone_frieze") public static Block green_ornamented_plastered_stone_frieze;
 	@ObjectHolder("chiseled_plastered_stone") public static Block chiseled_plastered_stone;

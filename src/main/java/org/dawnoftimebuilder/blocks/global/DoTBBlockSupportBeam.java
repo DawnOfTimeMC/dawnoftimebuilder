@@ -34,7 +34,7 @@ public class DoTBBlockSupportBeam extends DoTBBlock {
 	private static final AxisAlignedBB AABB_TEN_PX = new AxisAlignedBB(0.1875D, 0.0D, 0.1875D, 0.8125D, 0.75D, 0.8125D);
 
 	private static final PropertyEnum<EnumsBlock.EnumUnderConnection> UNDER = PropertyEnum.create("under", EnumsBlock.EnumUnderConnection.class);
-	public static final PropertyEnum<EnumsBlock.EnumHorizontalAxis> AXIS = PropertyEnum.create("axis", EnumsBlock.EnumHorizontalAxis.class);
+	static final PropertyEnum<EnumsBlock.EnumHorizontalAxis> AXIS = PropertyEnum.create("axis", EnumsBlock.EnumHorizontalAxis.class);
 
 	public DoTBBlockSupportBeam(String name, Material materialIn, float hardness, SoundType sound) {
 		super(name, materialIn, hardness, sound);
@@ -78,7 +78,7 @@ public class DoTBBlockSupportBeam extends DoTBBlock {
 
 	@Override
 	public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
-		return this.getDefaultState().withProperty(AXIS, (facing.getAxis() == EnumFacing.Axis.X) ? EnumsBlock.EnumHorizontalAxis.AXIS_X : EnumsBlock.EnumHorizontalAxis.AXIS_Z);
+		return this.getDefaultState().withProperty(AXIS, (placer.getHorizontalFacing().getAxis() == EnumFacing.Axis.X) ? EnumsBlock.EnumHorizontalAxis.AXIS_X : EnumsBlock.EnumHorizontalAxis.AXIS_Z);
 	}
 
 	/**

@@ -7,6 +7,7 @@ import net.minecraft.block.BlockFence;
 import net.minecraft.block.BlockWall;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.properties.PropertyEnum;
+import org.dawnoftimebuilder.blocks.global.DoTBBlockBeam;
 import org.dawnoftimebuilder.blocks.global.DoTBBlockTileEntity;
 import org.dawnoftimebuilder.blocks.global.DoTBBlockWall;
 import org.dawnoftimebuilder.enums.EnumsBlock;
@@ -77,7 +78,7 @@ public class BlockLittleFlag extends DoTBBlockTileEntity implements IBlockCustom
     }
 
     private boolean canConnect(Block block){
-        return block instanceof BlockFence || block instanceof BlockWall || block instanceof DoTBBlockWall;
+        return block instanceof BlockFence || block instanceof BlockWall || block instanceof DoTBBlockWall || block instanceof DoTBBlockBeam;
     }
 
     @Override
