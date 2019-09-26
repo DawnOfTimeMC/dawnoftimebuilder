@@ -5,7 +5,7 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import org.dawnoftimebuilder.DoTBUtils;
-import org.dawnoftimebuilder.blocks.global.DoTBBlock;
+import org.dawnoftimebuilder.blocks.general.DoTBBlock;
 import com.google.common.collect.Lists;
 
 import net.minecraft.block.SoundType;

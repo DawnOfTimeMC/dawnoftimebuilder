@@ -10,10 +10,11 @@ import static org.dawnoftimebuilder.DawnOfTimeBuilder.MOD_ID;
 public class DoTBTileEntitiesRegistry {
 
 	public static void init(){
+		registerTileEntity(DoTBTileEntityBed.class, "bed");
 		registerTileEntity(DoTBTileEntityDryer.class, "dryer");
 		registerTileEntity(DoTBTileEntityDisplayer.class, "displayer");
+		registerTileEntity(DoTBTileEntityStove.class, "stove");
 		registerTileEntity(TileEntityLittleFlag.class, "little_flag");
-		registerTileEntity(DoTBTileEntityBed.class, "bed");
 	}
 
 	private static void registerTileEntity(Class<? extends TileEntity> tileEntityClass, String id){

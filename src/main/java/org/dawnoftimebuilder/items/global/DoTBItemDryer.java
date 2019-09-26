@@ -16,7 +16,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.dawnoftimebuilder.blocks.global.DoTBBlockDryer;
+import org.dawnoftimebuilder.blocks.general.DoTBBlockDryer;
 import org.dawnoftimebuilder.tileentity.DoTBTileEntityDryer;
 
 public class DoTBItemDryer extends ItemBlock {

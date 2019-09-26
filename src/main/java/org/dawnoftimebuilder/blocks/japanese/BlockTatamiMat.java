@@ -7,7 +7,7 @@ import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.init.Blocks;
 import org.dawnoftimebuilder.blocks.DoTBBlocks;
-import org.dawnoftimebuilder.blocks.global.DoTBBlock;
+import org.dawnoftimebuilder.blocks.general.DoTBBlock;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.EnumPushReaction;

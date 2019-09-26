@@ -8,16 +8,12 @@ import net.minecraft.entity.Entity;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import org.dawnoftimebuilder.blocks.DoTBBlocks;
 import org.dawnoftimebuilder.blocks.IBlockCustomItem;
-import org.dawnoftimebuilder.blocks.french.BlockLimestoneFireplace;
-import org.dawnoftimebuilder.blocks.global.DoTBBlock;
-import org.dawnoftimebuilder.enums.EnumsBlock;
+import org.dawnoftimebuilder.blocks.general.DoTBBlock;
 
 import javax.annotation.Nullable;
 import java.util.List;

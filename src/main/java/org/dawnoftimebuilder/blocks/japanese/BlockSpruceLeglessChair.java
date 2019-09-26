@@ -20,7 +20,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.dawnoftimebuilder.DoTBUtils;
-import org.dawnoftimebuilder.blocks.global.DoTBBlock;
+import org.dawnoftimebuilder.blocks.general.DoTBBlock;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -42,6 +42,7 @@ public class BlockSpruceLeglessChair extends DoTBBlock {
 		return new BlockStateContainer(this, FACING);
 	}
 
+	@Override
 	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn, boolean p_185477_7_) {
 		if (!p_185477_7_) state = this.getActualState(state, worldIn, pos);
 		for (AxisAlignedBB axisalignedbb : getCollisionBoxList(state)) {
@@ -49,6 +50,7 @@ public class BlockSpruceLeglessChair extends DoTBBlock {
 		}
 	}
 
+	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
 		return DoTBUtils.getMainAABB(getCollisionBoxList(this.getActualState(state, source, pos)));
 	}

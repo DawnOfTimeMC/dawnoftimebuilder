@@ -11,7 +11,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.dawnoftimebuilder.blocks.IBlockSpecialDisplay;
-import org.dawnoftimebuilder.blocks.global.DoTBBlock;
+import org.dawnoftimebuilder.blocks.general.DoTBBlock;
 
 public class BlockSakeCup extends DoTBBlock implements IBlockSpecialDisplay {
 

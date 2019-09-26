@@ -18,7 +18,7 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.IPlantable;
-import org.dawnoftimebuilder.blocks.global.DoTBBlockSoilCrops;
+import org.dawnoftimebuilder.blocks.general.DoTBBlockSoilCrops;
 
 public class DoTBItemSoilSeeds extends ItemBlock implements IPlantable {
     private final DoTBBlockSoilCrops crops;

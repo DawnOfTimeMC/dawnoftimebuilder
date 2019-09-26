@@ -8,7 +8,6 @@ import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
@@ -18,7 +17,7 @@ import net.minecraft.world.World;
 import org.dawnoftimebuilder.blocks.DoTBBlocks;
 import org.dawnoftimebuilder.blocks.IBlockCustomItem;
 import org.dawnoftimebuilder.blocks.IBlockMeta;
-import org.dawnoftimebuilder.blocks.global.DoTBBlock;
+import org.dawnoftimebuilder.blocks.general.DoTBBlock;
 import org.dawnoftimebuilder.enums.IEnumMetaVariants;
 
 import java.util.Random;

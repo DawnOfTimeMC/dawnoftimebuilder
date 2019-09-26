@@ -12,7 +12,7 @@ import org.dawnoftimebuilder.DawnOfTimeBuilder;
 import org.dawnoftimebuilder.DoTBConfigs;
 import org.dawnoftimebuilder.blocks.compatibility.*;
 import org.dawnoftimebuilder.blocks.french.*;
-import org.dawnoftimebuilder.blocks.global.*;
+import org.dawnoftimebuilder.blocks.general.*;
 import org.dawnoftimebuilder.blocks.japanese.*;
 import org.dawnoftimebuilder.blocks.mayan.*;
 import org.dawnoftimebuilder.blocks.roman.BlockOchreRoofTilesMerged;
@@ -152,7 +152,7 @@ public class DoTBBlocksRegistry {
 				new BlockFuton(),
 				new BlockSmallTatamiFloor(),
 				new BlockTatamiFloor(),
-				new BlockFirepit(),
+				new BlockIrori(),
 				new BlockSakeBottle(),
 				new BlockSakeCup(),
 				new DoTBBlockSlab("spruce_foundation_slab", Material.WOOD, 1.0F, SoundType.WOOD),

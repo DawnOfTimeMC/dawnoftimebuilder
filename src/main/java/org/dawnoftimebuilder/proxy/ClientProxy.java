@@ -17,10 +17,12 @@ import org.dawnoftimebuilder.client.renderer.tileentity.RendererTEBed;
 import org.dawnoftimebuilder.client.color.block.BlockLittleFlagColor;
 import org.dawnoftimebuilder.client.color.item.ItemLittleFlagColor;
 import org.dawnoftimebuilder.client.renderer.tileentity.RendererTEDryer;
+import org.dawnoftimebuilder.client.renderer.tileentity.RendererTEStove;
 import org.dawnoftimebuilder.items.DoTBItems;
 import org.dawnoftimebuilder.tileentity.DoTBTileEntityBed;
 import org.dawnoftimebuilder.tileentity.DoTBTileEntityDisplayer;
 import org.dawnoftimebuilder.tileentity.DoTBTileEntityDryer;
+import org.dawnoftimebuilder.tileentity.DoTBTileEntityStove;
 
 import java.io.File;
 import static org.dawnoftimebuilder.DawnOfTimeBuilder.MOD_ID;
@@ -36,9 +38,10 @@ public class ClientProxy extends CommonProxy {
 	@Override
 	public void init(){
 		super.init();
+		bindTESR(DoTBTileEntityBed.class, new RendererTEBed());
 		bindTESR(DoTBTileEntityDisplayer.class, new RendererTEDisplayer());
 		bindTESR(DoTBTileEntityDryer.class, new RendererTEDryer());
-		bindTESR(DoTBTileEntityBed.class, new RendererTEBed());
+		bindTESR(DoTBTileEntityStove.class, new RendererTEStove());
 
 		registerItemColors();
 		registerBlockColors();

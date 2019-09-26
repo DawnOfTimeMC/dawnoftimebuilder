@@ -114,7 +114,7 @@ public enum CreativeInventoryCategories {
 			Item.getItemFromBlock(flowery_paper_wall),
 			DoTBItems.paper_door,
 			Item.getItemFromBlock(fireplace),
-			//Item.getItemFromBlock(firepit),
+			Item.getItemFromBlock(irori),
 			Item.getItemFromBlock(iron_chain),
 			Item.getItemFromBlock(grey_roof_tiles),
 			Item.getItemFromBlock(grey_roof_tiles_stairs),

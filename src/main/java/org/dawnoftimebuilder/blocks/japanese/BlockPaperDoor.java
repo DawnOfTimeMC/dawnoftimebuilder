@@ -3,7 +3,7 @@ package org.dawnoftimebuilder.blocks.japanese;
 import java.util.Random;
 
 import org.dawnoftimebuilder.DoTBUtils;
-import org.dawnoftimebuilder.blocks.global.DoTBBlock;
+import org.dawnoftimebuilder.blocks.general.DoTBBlock;
 import org.dawnoftimebuilder.blocks.IBlockCustomItem;
 
 import net.minecraft.block.Block;

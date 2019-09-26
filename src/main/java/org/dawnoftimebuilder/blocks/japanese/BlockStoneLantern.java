@@ -20,8 +20,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.dawnoftimebuilder.DoTBUtils;
 import org.dawnoftimebuilder.blocks.IBlockSpecialDisplay;
-import org.dawnoftimebuilder.blocks.global.BlockIronChain;
-import org.dawnoftimebuilder.blocks.global.DoTBBlock;
+import org.dawnoftimebuilder.blocks.general.BlockIronChain;
+import org.dawnoftimebuilder.blocks.general.DoTBBlock;
 
 public class BlockStoneLantern extends DoTBBlock implements IBlockSpecialDisplay {
 

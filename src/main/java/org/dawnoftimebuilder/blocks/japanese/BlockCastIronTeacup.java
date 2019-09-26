@@ -19,7 +19,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.dawnoftimebuilder.blocks.IBlockMeta;
 import org.dawnoftimebuilder.blocks.IBlockSpecialDisplay;
-import org.dawnoftimebuilder.blocks.global.DoTBBlock;
+import org.dawnoftimebuilder.blocks.general.DoTBBlock;
 import org.dawnoftimebuilder.enums.IEnumMetaVariants;
 
 public class BlockCastIronTeacup extends DoTBBlock implements IBlockMeta, IBlockSpecialDisplay {

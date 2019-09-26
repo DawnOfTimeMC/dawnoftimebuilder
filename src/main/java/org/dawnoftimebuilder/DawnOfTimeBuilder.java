@@ -21,11 +21,11 @@ import org.dawnoftimebuilder.tileentity.DoTBTileEntitiesRegistry;
 
 import java.io.File;
 
-@Mod(modid = DawnOfTimeBuilder.MOD_ID, name = DawnOfTimeBuilder.NAME, version = DawnOfTimeBuilder.VERSION)
+@Mod(modid = DawnOfTimeBuilder.MOD_ID, name = DawnOfTimeBuilder.NAME, version = DawnOfTimeBuilder.VERSION, updateJSON = "https://raw.githubusercontent.com/Poulpynou/dawnoftimebuilder/master/update.json")
 public class DawnOfTimeBuilder {
 	public static final String MOD_ID = "dawnoftimebuilder";
 	public static final String NAME = "Dawn Of Time : Builder Edition";
-	public static final String VERSION = "1.0";
+	public static final String VERSION = "1.1.0";
 	public static Logger logger;
 	public static final NetworkRegistry NETWORK = NetworkRegistry.INSTANCE;
 

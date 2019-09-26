@@ -2,7 +2,7 @@ package org.dawnoftimebuilder.blocks.mayan;
 
 import net.minecraft.block.BlockHorizontal;
 import org.dawnoftimebuilder.DoTBUtils;
-import org.dawnoftimebuilder.blocks.global.DoTBBlock;
+import org.dawnoftimebuilder.blocks.general.DoTBBlock;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;

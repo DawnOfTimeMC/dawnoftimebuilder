@@ -1,4 +1,4 @@
-package org.dawnoftimebuilder.blocks.global;
+package org.dawnoftimebuilder.blocks.general;
 
 import com.google.common.collect.Lists;
 import net.minecraft.block.SoundType;

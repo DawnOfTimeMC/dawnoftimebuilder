@@ -15,7 +15,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.dawnoftimebuilder.blocks.global.DoTBBlockSlab;
+import org.dawnoftimebuilder.blocks.general.DoTBBlockSlab;
 
 import static net.minecraft.block.Block.FULL_BLOCK_AABB;
 

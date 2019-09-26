@@ -1,6 +1,6 @@
 package org.dawnoftimebuilder.blocks.japanese;
 
-import org.dawnoftimebuilder.blocks.global.DoTBBlockPlate;
+import org.dawnoftimebuilder.blocks.general.DoTBBlockPlate;
 
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;

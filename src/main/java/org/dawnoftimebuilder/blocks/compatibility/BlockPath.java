@@ -27,7 +27,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import org.dawnoftimebuilder.blocks.DoTBBlocks;
 import org.dawnoftimebuilder.blocks.IBlockCustomItem;
 import org.dawnoftimebuilder.blocks.IBlockMeta;
-import org.dawnoftimebuilder.blocks.global.DoTBBlock;
+import org.dawnoftimebuilder.blocks.general.DoTBBlock;
 import org.dawnoftimebuilder.enums.IEnumMetaVariants;
 
 import java.util.Random;

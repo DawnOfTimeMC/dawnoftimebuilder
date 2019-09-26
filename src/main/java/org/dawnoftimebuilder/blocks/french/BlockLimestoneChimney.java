@@ -15,7 +15,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.dawnoftimebuilder.blocks.global.DoTBBlockColumn;
+import org.dawnoftimebuilder.blocks.general.DoTBBlockColumn;
 import org.dawnoftimebuilder.enums.EnumsBlock;
 
 import java.util.List;

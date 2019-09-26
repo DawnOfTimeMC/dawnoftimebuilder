@@ -2,7 +2,7 @@ package org.dawnoftimebuilder.blocks.roman;
 
 import java.util.List;
 
-import org.dawnoftimebuilder.blocks.global.DoTBBlockColumn;
+import org.dawnoftimebuilder.blocks.general.DoTBBlockColumn;
 
 import com.google.common.collect.Lists;
 

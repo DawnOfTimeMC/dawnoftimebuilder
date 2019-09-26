@@ -6,7 +6,7 @@ import javax.annotation.Nullable;
 
 import net.minecraft.block.BlockHorizontal;
 import org.dawnoftimebuilder.DoTBUtils;
-import org.dawnoftimebuilder.blocks.global.DoTBBlock;
+import org.dawnoftimebuilder.blocks.general.DoTBBlock;
 
 import com.google.common.collect.Lists;
 

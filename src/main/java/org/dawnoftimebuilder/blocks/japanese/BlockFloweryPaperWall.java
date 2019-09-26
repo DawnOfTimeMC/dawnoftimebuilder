@@ -7,7 +7,7 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
-import org.dawnoftimebuilder.blocks.global.DoTBBlockPane;
+import org.dawnoftimebuilder.blocks.general.DoTBBlockPane;
 
 public class BlockFloweryPaperWall extends DoTBBlockPane {
 

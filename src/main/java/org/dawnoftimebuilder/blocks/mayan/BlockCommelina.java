@@ -2,7 +2,7 @@ package org.dawnoftimebuilder.blocks.mayan;
 
 import java.util.Random;
 
-import org.dawnoftimebuilder.blocks.global.DoTBBlockSoilCrops;
+import org.dawnoftimebuilder.blocks.general.DoTBBlockSoilCrops;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;

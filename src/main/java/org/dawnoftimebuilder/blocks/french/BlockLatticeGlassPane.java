@@ -4,7 +4,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.dawnoftimebuilder.blocks.global.DoTBBlockPane;
+import org.dawnoftimebuilder.blocks.general.DoTBBlockPane;
 
 public class BlockLatticeGlassPane extends DoTBBlockPane {
 

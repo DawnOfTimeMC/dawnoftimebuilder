@@ -1,6 +1,4 @@
 {
-	"credit": "Made with Blockbench",
-	"parent": "block/block",
 	"textures": {
 		"0": "dawnoftimebuilder:blocks/irori_fireplace",
 		"particle": "dawnoftimebuilder:blocks/irori_fireplace"

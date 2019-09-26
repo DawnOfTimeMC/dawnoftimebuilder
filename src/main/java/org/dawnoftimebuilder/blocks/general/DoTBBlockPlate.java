@@ -1,4 +1,4 @@
-package org.dawnoftimebuilder.blocks.global;
+package org.dawnoftimebuilder.blocks.general;
 
 import java.util.List;
 
@@ -18,7 +18,6 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.AxisAlignedBB;

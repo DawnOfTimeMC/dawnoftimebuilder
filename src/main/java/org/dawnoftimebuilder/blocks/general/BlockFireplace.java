@@ -1,4 +1,4 @@
-package org.dawnoftimebuilder.blocks.global;
+package org.dawnoftimebuilder.blocks.general;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -107,23 +107,29 @@ public class BlockFireplace extends DoTBBlock {
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 		ItemStack itemstack = playerIn.getHeldItem(hand);
+
 		if (state.getValue(BURNING)) {
+
 			facing = state.getValue(AXIS_X) ? EnumFacing.EAST : EnumFacing.SOUTH;
 			worldIn.setBlockState(pos, state.withProperty(BURNING, false), 10);
 			worldIn.playSound(null, pos, SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.BLOCKS, 1.0F, 1.0F);
 			worldIn.getBlockState(pos.offset(facing)).neighborChanged(worldIn, pos.offset(facing), this, pos);
 			worldIn.getBlockState(pos.offset(facing.getOpposite())).neighborChanged(worldIn, pos.offset(facing.getOpposite()), this, pos);
 			return true;
+
 		} else if (!itemstack.isEmpty() && (itemstack.getItem() == Items.FLINT_AND_STEEL || itemstack.getItem() == Item.getItemFromBlock(Blocks.TORCH))) {
+
 			facing = state.getValue(AXIS_X) ? EnumFacing.EAST : EnumFacing.SOUTH;
 			worldIn.setBlockState(pos, state.withProperty(BURNING, true), 10);
 			worldIn.playSound(null, pos, SoundEvents.BLOCK_FIRE_AMBIENT, SoundCategory.BLOCKS, 1.0F, 1.0F);
 			worldIn.getBlockState(pos.offset(facing)).neighborChanged(worldIn, pos.offset(facing), this, pos);
 			worldIn.getBlockState(pos.offset(facing.getOpposite())).neighborChanged(worldIn, pos.offset(facing.getOpposite()), this, pos);
+
 			if (itemstack.getItem() == Items.FLINT_AND_STEEL) itemstack.damageItem(1, playerIn);
 			else if (!playerIn.capabilities.isCreativeMode) itemstack.shrink(1);
 			return true;
 		}
+
 		return false;
 	}
 
@@ -164,6 +170,7 @@ public class BlockFireplace extends DoTBBlock {
 	}
 
 	@SideOnly(Side.CLIENT)
+	@Override
 	public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand){
 		if(stateIn.getValue(BURNING)) {
 			if (rand.nextInt(24) == 0) {

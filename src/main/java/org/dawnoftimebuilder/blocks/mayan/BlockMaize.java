@@ -1,6 +1,6 @@
 package org.dawnoftimebuilder.blocks.mayan;
 
-import org.dawnoftimebuilder.blocks.global.DoTBBlockDoubleCrops;
+import org.dawnoftimebuilder.blocks.general.DoTBBlockDoubleCrops;
 
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;

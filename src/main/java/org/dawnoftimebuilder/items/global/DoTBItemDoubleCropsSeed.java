@@ -2,7 +2,7 @@ package org.dawnoftimebuilder.items.global;
 
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import org.dawnoftimebuilder.blocks.global.DoTBBlockDoubleCrops;
+import org.dawnoftimebuilder.blocks.general.DoTBBlockDoubleCrops;
 import org.dawnoftimebuilder.enums.EnumsBlock;
 
 public class DoTBItemDoubleCropsSeed extends DoTBItemSoilSeeds {

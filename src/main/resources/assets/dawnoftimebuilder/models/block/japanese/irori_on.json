@@ -1,5 +1,5 @@
 {
-	"credit": "Made with Blockbench",
+	"parent": "block/block",
 	"textures": {
 		"0": "dawnoftimebuilder:blocks/irori_fireplace",
 		"1": "minecraft:blocks/fire_layer_0",

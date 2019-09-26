@@ -1,4 +1,4 @@
-package org.dawnoftimebuilder.blocks.global;
+package org.dawnoftimebuilder.blocks.general;
 
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -12,7 +12,6 @@ import net.minecraft.tileentity.TileEntityDispenser;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import org.dawnoftimebuilder.DawnOfTimeBuilder;
 import org.dawnoftimebuilder.blocks.IBlockDisplayer;
@@ -29,6 +28,11 @@ public abstract class DoTBBlockDisplayer extends DoTBBlockTileEntity implements 
 
 	public DoTBBlockDisplayer(String name, Material materialIn) {
 		super(name, materialIn);
+	}
+
+	@Override
+	public TileEntity createNewTileEntity(World world, int meta) {
+		return new DoTBTileEntityDisplayer();
 	}
 
 	@Override
@@ -56,7 +60,7 @@ public abstract class DoTBBlockDisplayer extends DoTBBlockTileEntity implements 
 
 	@Override
 	public void breakBlock(World worldIn, BlockPos pos, IBlockState state){
-		DoTBTileEntityDisplayer tileEntity = (DoTBTileEntityDisplayer)worldIn.getTileEntity(pos);
+		DoTBTileEntityDisplayer tileEntity = (DoTBTileEntityDisplayer) worldIn.getTileEntity(pos);
 		InventoryHelper.dropInventoryItems(worldIn, pos, tileEntity);
 		super.breakBlock(worldIn, pos, state);
 	}

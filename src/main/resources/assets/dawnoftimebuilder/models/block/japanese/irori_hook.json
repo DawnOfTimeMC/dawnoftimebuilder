@@ -1,0 +1,17 @@
+{
+	"textures": {
+		"6": "dawnoftimebuilder:blocks/irori_fireplace",
+		"particle": "dawnoftimebuilder:blocks/irori_fireplace"
+	},
+	"elements": [
+		{
+			"from": [8, 14, 7],
+			"to": [8, 17, 9],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 24, 8]},
+			"faces": {
+				"east": {"uv": [13, 0, 15, 3], "texture": "#6"},
+				"west": {"uv": [15, 0, 13, 3], "texture": "#6"}
+			}
+		}
+	]
+}

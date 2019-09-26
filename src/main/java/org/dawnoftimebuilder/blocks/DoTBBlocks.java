@@ -2,7 +2,7 @@ package org.dawnoftimebuilder.blocks;
 
 import net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
 import net.minecraft.block.Block;
-import org.dawnoftimebuilder.blocks.global.DoTBBlockSoilCrops;
+import org.dawnoftimebuilder.blocks.general.DoTBBlockSoilCrops;
 
 import static org.dawnoftimebuilder.DawnOfTimeBuilder.MOD_ID;
 
@@ -101,7 +101,7 @@ public class DoTBBlocks {
 	@ObjectHolder("spruce_timber_frame_pillar") public static Block spruce_timber_frame_pillar;
 	@ObjectHolder("stone_lantern") public static Block stone_lantern;
 	@ObjectHolder("tatami_floor") public static Block tatami_floor;
-	@ObjectHolder("firepit") public static Block firepit;
+	@ObjectHolder("irori") public static Block irori;
 	@ObjectHolder("sake_bottle") public static Block sake_bottle;
 	@ObjectHolder("sake_cup") public static Block sake_cup;
 	@ObjectHolder("spruce_foundation_slab") public static Block spruce_foundation_slab;

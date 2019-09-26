@@ -1,0 +1,23 @@
+{
+	"forge_marker": 1,
+	"defaults": {},
+	"variants": {
+		"inventory": {
+			"model": "dawnoftimebuilder:japanese/irori_on"
+		},
+		"burning": {
+			"true": {
+				"model": "dawnoftimebuilder:japanese/irori_on"
+			},
+			"false": {
+				"model": "dawnoftimebuilder:japanese/irori_off"
+			}
+		},
+		"hook": {
+			"true": {
+				"submodel": "dawnoftimebuilder:japanese/irori_hook"
+			},
+			"false": {}
+		}
+	}
+}

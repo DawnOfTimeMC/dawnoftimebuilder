@@ -1,4 +1,4 @@
-package org.dawnoftimebuilder.blocks.global;
+package org.dawnoftimebuilder.blocks.general;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;

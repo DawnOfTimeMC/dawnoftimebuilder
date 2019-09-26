@@ -1,19 +1,14 @@
 package org.dawnoftimebuilder.tileentity;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.*;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntityLockableLoot;
 import net.minecraft.util.NonNullList;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockAccess;
 import org.dawnoftimebuilder.inventory.ContainerDisplayer;
 
 import static org.dawnoftimebuilder.DawnOfTimeBuilder.MOD_ID;
@@ -35,7 +30,7 @@ public class DoTBTileEntityDisplayer extends TileEntityLockableLoot {
 	@Override
 	public boolean isEmpty() {
 		for(ItemStack stack : this.displayerContents) {
-			if(stack.isEmpty()) return false;
+			if(!stack.isEmpty()) return false;
 		}
 		return true;
 	}

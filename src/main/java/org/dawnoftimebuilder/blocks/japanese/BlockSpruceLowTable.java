@@ -6,16 +6,14 @@ import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import org.dawnoftimebuilder.blocks.global.DoTBBlockDisplayer;
+import org.dawnoftimebuilder.blocks.general.DoTBBlockDisplayer;
 import org.dawnoftimebuilder.enums.EnumsBlock;
-import org.dawnoftimebuilder.tileentity.DoTBTileEntityDisplayer;
 
 public class BlockSpruceLowTable extends DoTBBlockDisplayer {
 
@@ -27,11 +25,6 @@ public class BlockSpruceLowTable extends DoTBBlockDisplayer {
 		super("spruce_low_table" ,Material.WOOD);
 		this.setBurnable();
 		this.setDefaultState(this.blockState.getBaseState().withProperty(AXIS, EnumsBlock.EnumHorizontalAxis.AXIS_X));
-	}
-
-	@Override
-	public TileEntity createNewTileEntity(World world, int meta) {
-		return new DoTBTileEntityDisplayer();
 	}
 
 	@Override

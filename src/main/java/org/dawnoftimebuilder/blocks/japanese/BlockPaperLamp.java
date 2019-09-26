@@ -8,7 +8,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import org.dawnoftimebuilder.blocks.IBlockSpecialDisplay;
-import org.dawnoftimebuilder.blocks.global.DoTBBlockColumn;
+import org.dawnoftimebuilder.blocks.general.DoTBBlockColumn;
 
 import java.util.List;
 
