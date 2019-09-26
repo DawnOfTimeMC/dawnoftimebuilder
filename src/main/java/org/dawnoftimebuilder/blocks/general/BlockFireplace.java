@@ -34,7 +34,7 @@ public class BlockFireplace extends DoTBBlock {
 	private static final PropertyBool BURNING = PropertyBool.create("burning");
 
 	private static final AxisAlignedBB ON_X_AABB = new AxisAlignedBB(0.0F, 0.0F, 0.125F, 1.0F, 0.875F, 0.875F);
-	private static final AxisAlignedBB OFF_X_AABB = new AxisAlignedBB(0.0F, 0.0F, 0.25F, 1.0F, 0.3125F, 0.875F);
+	private static final AxisAlignedBB OFF_X_AABB = new AxisAlignedBB(0.0F, 0.0F, 0.125F, 1.0F, 0.3125F, 0.875F);
 	private static final AxisAlignedBB ON_Z_AABB = new AxisAlignedBB(0.125F, 0.0F, 0.0F, 0.875F, 0.875F, 1.0F);
 	private static final AxisAlignedBB OFF_Z_AABB = new AxisAlignedBB(0.125F, 0.0F, 0.0F, 0.875F, 0.3125F, 1.0F);
 

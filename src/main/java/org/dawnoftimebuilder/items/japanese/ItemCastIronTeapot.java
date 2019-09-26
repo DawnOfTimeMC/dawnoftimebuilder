@@ -67,12 +67,6 @@ public class ItemCastIronTeapot extends DoTBItemMetaBlock {
 		return super.onItemRightClick( world, player, hand);
 	}
 
-	@Override
-	public boolean isDamageable()
-	{
-		return true;
-	}
-
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
@@ -92,11 +86,13 @@ public class ItemCastIronTeapot extends DoTBItemMetaBlock {
 
 	@Override
 	public String getTranslationKey(ItemStack stack) {
+		/*
 		if(stack.hasTagCompound() && stack.getTagCompound().hasKey("style")){
 			Integer styleType = stack.getTagCompound().getInteger("style");
 			String typeName = BlockCastIronTeapot.EnumType.byMetadata(styleType).getName();
 			return this.block.getTranslationKey() + "_" + typeName.toLowerCase();
 		}
-		return this.block.getTranslationKey() + ".error";
+		*/
+		return super.getTranslationKey(stack);
 	}
 }

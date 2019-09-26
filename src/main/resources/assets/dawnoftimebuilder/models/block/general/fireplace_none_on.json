@@ -1,7 +1,8 @@
 {
 	"textures": {
 		"1": "blocks/fire_layer_0",
-		"2": "dawnoftimebuilder:blocks/fireplace"
+		"2": "dawnoftimebuilder:blocks/fireplace",
+		"particle": "dawnoftimebuilder:blocks/fireplace"
 	},
 	"elements": [
 		{
