@@ -99,6 +99,7 @@ public class DoTBBlocks {
 	@ObjectHolder("spruce_low_table") public static Block spruce_low_table;
 	@ObjectHolder("spruce_timber_frame") public static Block spruce_timber_frame;
 	@ObjectHolder("spruce_timber_frame_pillar") public static Block spruce_timber_frame_pillar;
+	@ObjectHolder("stick_bundle") public static Block stick_bundle;
 	@ObjectHolder("stone_lantern") public static Block stone_lantern;
 	@ObjectHolder("tatami_floor") public static Block tatami_floor;
 	@ObjectHolder("irori") public static Block irori;

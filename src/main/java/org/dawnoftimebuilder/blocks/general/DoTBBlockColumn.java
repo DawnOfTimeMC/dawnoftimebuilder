@@ -83,8 +83,7 @@ public abstract class DoTBBlockColumn extends DoTBBlock {
     }
 
     @Override
-    public boolean isFullCube(IBlockState state)
-    {
+    public boolean isFullCube(IBlockState state) {
         return false;
     }
 

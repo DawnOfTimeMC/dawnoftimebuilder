@@ -55,6 +55,7 @@ public class DoTBItemsRegistry {
 				new DoTBItemHat("bamboo_hat"),
 				new DoTBItem("grey_tile"),
 				new DoTBItem("grey_clay_tile"),
+				new DoTBItem("silk_worm"),
 				new DoTBItemCanBeDried("camellia_leaves", 1,40, tea_leaves, 1),
 				tea_leaves,
 				new DoTBItemCanBeDried("silk_cocoons", 1,60, silk, 1),

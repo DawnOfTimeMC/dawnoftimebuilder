@@ -1,13 +1,11 @@
 package org.dawnoftimebuilder.blocks.japanese;
 
-import com.google.common.collect.Lists;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -24,13 +22,10 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.dawnoftimebuilder.DoTBUtils;
 import org.dawnoftimebuilder.blocks.general.BlockIronChain;
 import org.dawnoftimebuilder.blocks.general.DoTBBlockTileEntity;
 import org.dawnoftimebuilder.tileentity.DoTBTileEntityStove;
 
-import javax.annotation.Nullable;
-import java.util.List;
 import java.util.Random;
 
 //TODO When needed, a parent class DoTBBlockStove will need to be created and the NBT functionality will have to be added to the container (currently the cast_iron_teapot)
@@ -43,7 +38,6 @@ public class BlockIrori extends DoTBBlockTileEntity {
 	public BlockIrori() {
 		super("irori", Material.SAND);
 		this.setDefaultState(this.getDefaultState().withProperty(BURNING, false).withProperty(HOOK, false));
-		this.setTickRandomly(true);
 	}
 
 	@SideOnly(Side.CLIENT)

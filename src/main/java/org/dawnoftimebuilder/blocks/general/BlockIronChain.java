@@ -12,6 +12,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.dawnoftimebuilder.blocks.japanese.BlockStickBundle;
 import org.dawnoftimebuilder.blocks.japanese.BlockStoneLantern;
 import org.dawnoftimebuilder.enums.EnumsBlock;
 
@@ -46,6 +47,7 @@ public class BlockIronChain extends DoTBBlockColumn {
 		if(block instanceof BlockStoneLantern)
 			if(state.getValue(BlockStoneLantern.FACING) == EnumFacing.DOWN)
 				return true;
+		if(block instanceof BlockStickBundle) return true;
 		return isSameColumn(block);
 	}
 

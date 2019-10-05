@@ -156,6 +156,7 @@ public class DoTBBlocksRegistry {
 				new BlockSakeBottle(),
 				new BlockSakeCup(),
 				new DoTBBlockSlab("spruce_foundation_slab", Material.WOOD, 1.0F, SoundType.WOOD),
+				new BlockStickBundle(),
 
 				//mayan
 				new BlockChiseledPlasteredStone(),

@@ -39,7 +39,6 @@ public class BlockLimestoneFireplace extends DoTBBlock {
 	public BlockLimestoneFireplace() {
 		super("limestone_fireplace", Material.ROCK);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(BURNING,false).withProperty(VERTICAL_CONNECTION, EnumsBlock.EnumVerticalConnection.NONE).withProperty(HORIZONTAL_CONNECTION, EnumsBlock.EnumHorizontalConnection.NONE));
-		this.setTickRandomly(true);
 	}
 
 	@Override

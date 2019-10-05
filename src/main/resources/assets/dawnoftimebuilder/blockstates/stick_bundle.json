@@ -1,0 +1,26 @@
+{
+	"forge_marker": 1,
+	"defaults": {},
+	"variants": {
+		"half": {
+			"top": {
+				"model": "dawnoftimebuilder:japanese/stick_bundle_top", "x": 180
+			},
+			"bottom": {
+				"model": "dawnoftimebuilder:japanese/stick_bundle_bottom"
+			}
+		},
+		"growth": {
+			"0": {},
+			"1": {
+				"submodel": "dawnoftimebuilder:japanese/stick_bundle_worms_0"
+			},
+			"2": {
+				"submodel": "dawnoftimebuilder:japanese/stick_bundle_worms_1"
+			},
+			"3": {
+				"submodel": "dawnoftimebuilder:japanese/stick_bundle_worms_2"
+			}
+		}
+	}
+}

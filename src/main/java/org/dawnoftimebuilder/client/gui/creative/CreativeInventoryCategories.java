@@ -143,6 +143,8 @@ public enum CreativeInventoryCategories {
 			DoTBItems.camellia_seed,
 			DoTBItems.camellia_leaves,
 			DoTBItems.tea_leaves,
+			DoTBItems.stick_bundle,
+			DoTBItems.silk_worm,
 			DoTBItems.silk_cocoons,
 			DoTBItems.silk,
 			DoTBItems.rice,

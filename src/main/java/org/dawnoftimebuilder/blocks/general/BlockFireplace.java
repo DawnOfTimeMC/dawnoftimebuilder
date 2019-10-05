@@ -41,7 +41,6 @@ public class BlockFireplace extends DoTBBlock {
 	public BlockFireplace() {
 		super("fireplace", Material.WOOD);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(AXIS_X, true).withProperty(BURNING, false).withProperty(HORIZONTAL_CONNECTION, EnumsBlock.EnumHorizontalConnection.NONE));
-		this.setTickRandomly(true);
 	}
 
 	@Override
