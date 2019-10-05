@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "   ",
+    "I I",
+    " i "
+  ],
+  "key": {
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "i": {
+      "item": "minecraft:gold_ingot"
+    }
+  },
+  "result": {
+    "item": "dawnoftime:teacup_decorated",
+    "data": 0,
+    "count": 1
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "   ",
+    "I I",
+    " i "
+  ],
+  "key": {
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "i": {
+      "item": "minecraft:dye",
+      "data": 8
+    }
+  },
+  "result": {
+    "item": "dawnoftime:teacup_grey ",
+    "data": 0,
+    "count": 1
+  }
+}

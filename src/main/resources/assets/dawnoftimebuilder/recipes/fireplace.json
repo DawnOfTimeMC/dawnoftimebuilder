@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " i ",
+    "I I",
+    "III"
+  ],
+  "key": {
+    "I": {
+      "item": "dawnoftime:limestone_brick",
+      "data": 0
+    },
+    "i": {
+      "item": "dawnoftime:flat_roof_tiles",
+      "data": 0
+    }
+  },
+  "result": {
+    "item": "dawnoftime:fireplace",
+    "data": 0,
+    "count": 1
+  }
+}
