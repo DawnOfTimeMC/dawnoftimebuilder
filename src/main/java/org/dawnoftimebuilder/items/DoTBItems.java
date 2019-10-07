@@ -25,6 +25,8 @@ public class DoTBItems {
 	@ObjectHolder("silk") public static Item silk;
 	@ObjectHolder("silk_worm") public static Item silk_worm;
 	@ObjectHolder("silk_cocoons") public static Item silk_cocoons;
+	@ObjectHolder("stick_bundle") public static Item stick_bundle;
+	@ObjectHolder("mulberry_leaves") public static Item mulberry_leaves;
 	@ObjectHolder("tatami_mat") public static Item tatami_mat;
 	@ObjectHolder("bamboo_hat") public static Item bamboo_hat;
 	@ObjectHolder("tea_leaves") public static Item tea_leaves;
@@ -43,7 +45,6 @@ public class DoTBItems {
 	@ObjectHolder("raijin_armor_chest") public static Item raijin_armor_chest;
 	@ObjectHolder("raijin_armor_legs") public static Item raijin_armor_legs;
 	@ObjectHolder("raijin_armor_feet") public static Item raijin_armor_feet;
-	@ObjectHolder("stick_bundle") public static Item stick_bundle;
 
 	//mayan
 	@ObjectHolder("commelina") public static Item commelina;
