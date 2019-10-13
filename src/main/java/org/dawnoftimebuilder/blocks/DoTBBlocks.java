@@ -79,7 +79,7 @@ public class DoTBBlocks {
 	@ObjectHolder("grey_roof_tiles_wall") public static Block grey_roof_tiles_wall;
 	@ObjectHolder("ikebana_flower_pot") public static Block ikebana_flower_pot;
 	@ObjectHolder("spruce_legless_chair") public static Block spruce_legless_chair;
-	@ObjectHolder("paper_block") public static Block paper_block;
+	@ObjectHolder("paper_folding_screen") public static Block paper_folding_screen;
 	@ObjectHolder("paper_lantern") public static Block paper_lantern;
 	@ObjectHolder("paper_wall") public static Block paper_wall;
 	@ObjectHolder("paper_wall_flat") public static Block paper_wall_flat;

@@ -131,6 +131,7 @@ public class DoTBBlocksRegistry {
 				new BlockPaperWall("paper_wall"),
 				new BlockPaperWall("paper_wall_flat"),
 				new DoTBBlockPane("paper_wall_window", Material.CLOTH).setBurnable(),
+				new BlockPaperFoldingScreen(),
 				new BlockRedPaintedLog(),
 				new BlockRice(),
 				new BlockSmallTatamiMat(),
@@ -157,7 +158,6 @@ public class DoTBBlocksRegistry {
 				new BlockSakeCup(),
 				new DoTBBlockSlab("spruce_foundation_slab", Material.WOOD, 1.0F, SoundType.WOOD),
 				new BlockStickBundle(),
-				new DoTBBlock("paper_block", Material.CLOTH).setBurnable(),
 
 				//mayan
 				new BlockChiseledPlasteredStone(),

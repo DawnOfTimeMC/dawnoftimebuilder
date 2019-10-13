@@ -35,25 +35,25 @@ public class BlockIronChain extends DoTBBlockColumn {
 
     @Override
 	public EnumsBlock.EnumVerticalConnection getShape(IBlockAccess worldIn, BlockPos pos){
-		if(isSameColumn(worldIn.getBlockState(pos.up()).getBlock())){
-			return (canConnectToBottom(worldIn.getBlockState(pos.down()))) ? EnumsBlock.EnumVerticalConnection.BOTH : EnumsBlock.EnumVerticalConnection.ABOVE;
+		if(isSameColumn(worldIn, pos.up())){
+			return (canConnectToBottom(worldIn, pos.down())) ? EnumsBlock.EnumVerticalConnection.BOTH : EnumsBlock.EnumVerticalConnection.ABOVE;
 		}else{
-			return (canConnectToBottom(worldIn.getBlockState(pos.down()))) ? EnumsBlock.EnumVerticalConnection.UNDER : EnumsBlock.EnumVerticalConnection.NONE;
+			return (canConnectToBottom(worldIn, pos.down())) ? EnumsBlock.EnumVerticalConnection.UNDER : EnumsBlock.EnumVerticalConnection.NONE;
 		}
 	}
 
-	private boolean canConnectToBottom(IBlockState state){
-		Block block = state.getBlock();
+	private boolean canConnectToBottom(IBlockAccess worldIn, BlockPos pos){
+		Block block = worldIn.getBlockState(pos).getBlock();
 		if(block instanceof BlockStoneLantern)
-			if(state.getValue(BlockStoneLantern.FACING) == EnumFacing.DOWN)
+			if(worldIn.getBlockState(pos).getValue(BlockStoneLantern.FACING) == EnumFacing.DOWN)
 				return true;
 		if(block instanceof BlockStickBundle) return true;
-		return isSameColumn(block);
+		return isSameColumn(worldIn, pos);
 	}
 
     @Override
-    public boolean isSameColumn(Block block){
-        return block instanceof BlockIronChain;
+    public boolean isSameColumn(IBlockAccess worldIn, BlockPos pos){
+        return worldIn.getBlockState(pos).getBlock() instanceof BlockIronChain;
     }
 
 	@SideOnly(Side.CLIENT)

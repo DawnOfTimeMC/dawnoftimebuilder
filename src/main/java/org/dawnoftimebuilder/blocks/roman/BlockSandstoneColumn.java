@@ -2,6 +2,8 @@ package org.dawnoftimebuilder.blocks.roman;
 
 import java.util.List;
 
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import org.dawnoftimebuilder.blocks.general.DoTBBlockColumn;
 
 import com.google.common.collect.Lists;
@@ -48,7 +50,7 @@ public class BlockSandstoneColumn extends DoTBBlockColumn {
     }
 
     @Override
-    public boolean isSameColumn(Block block){
-        return block instanceof BlockSandstoneColumn;
+    public boolean isSameColumn(IBlockAccess worldIn, BlockPos pos){
+		return worldIn.getBlockState(pos) instanceof BlockSandstoneColumn;
     }
 }

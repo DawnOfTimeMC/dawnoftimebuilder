@@ -56,15 +56,15 @@ public abstract class DoTBBlockColumn extends DoTBBlock {
     }
 
     public EnumsBlock.EnumVerticalConnection getShape(IBlockAccess worldIn, BlockPos pos){
-        if(isSameColumn(worldIn.getBlockState(pos.up()).getBlock())){
-            return (isSameColumn(worldIn.getBlockState(pos.down()).getBlock())) ? EnumsBlock.EnumVerticalConnection.BOTH : EnumsBlock.EnumVerticalConnection.ABOVE;
+        if(isSameColumn(worldIn, pos.up())){
+            return (isSameColumn(worldIn, pos.down())) ? EnumsBlock.EnumVerticalConnection.BOTH : EnumsBlock.EnumVerticalConnection.ABOVE;
         }else{
-            return (isSameColumn(worldIn.getBlockState(pos.down()).getBlock())) ? EnumsBlock.EnumVerticalConnection.UNDER : EnumsBlock.EnumVerticalConnection.NONE;
+            return (isSameColumn(worldIn, pos.down())) ? EnumsBlock.EnumVerticalConnection.UNDER : EnumsBlock.EnumVerticalConnection.NONE;
         }
     }
 
-    public boolean isSameColumn(Block block){
-        return block instanceof DoTBBlockColumn;
+    public boolean isSameColumn(IBlockAccess worldIn, BlockPos pos){
+        return worldIn.getBlockState(pos) instanceof DoTBBlockColumn;
     }
 
     @Override

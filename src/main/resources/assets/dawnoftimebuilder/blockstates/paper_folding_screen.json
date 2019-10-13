@@ -1,0 +1,28 @@
+{
+	"forge_marker": 1,
+	"defaults": {
+		"model": "dawnoftimebuilder:japanese/paper_folding_screen"
+	},
+	"variants": {
+		"rotated": {
+			"true": {
+				"y": 90
+			},
+			"false": {}
+		},
+		"vertical_connection": {
+			"none": {
+				"textures": { "texture": "dawnoftimebuilder:blocks/paper_folding_screen_none" }
+			},
+			"above": {
+				"textures": { "texture": "dawnoftimebuilder:blocks/paper_folding_screen_above" }
+			},
+			"both": {
+				"textures": { "texture": "dawnoftimebuilder:blocks/paper_folding_screen_both" }
+			},
+			"under": {
+				"textures": { "texture": "dawnoftimebuilder:blocks/paper_folding_screen_under" }
+			}
+		}
+	}
+}

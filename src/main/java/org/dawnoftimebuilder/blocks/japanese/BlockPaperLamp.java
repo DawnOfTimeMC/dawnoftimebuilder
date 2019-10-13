@@ -56,8 +56,8 @@ public class BlockPaperLamp extends DoTBBlockColumn implements IBlockSpecialDisp
 	}
 
     @Override
-    public boolean isSameColumn(Block block){
-        return block instanceof BlockPaperLamp;
+    public boolean isSameColumn(IBlockAccess worldIn, BlockPos pos){
+		return worldIn.getBlockState(pos) instanceof BlockPaperLamp;
     }
 
 	@Override
