@@ -19,8 +19,10 @@ public enum EArmorMaterial {
     /* Looking up the values for the vanilla armours will be beneficial here
     *
      */
-    OYOROI("Oyoroi Armor", 500, new int[]{3,5,4,2}, 15, ItemArmor.ArmorMaterial.DIAMOND.getSoundEvent(), 2.0F),
-    RAIJIN("Raijin Armor", 500, new int[]{3,5,4,2}, 15, ItemArmor.ArmorMaterial.DIAMOND.getSoundEvent(), 2.0F);
+    IRONPLATE("IronPlate Armor", 239, new int[]{2,6,5,2}, 22, ItemArmorMaterial.IRON.getSoundEvent(), 0.0F),
+    DOMARU("DoMaru Armor", 239, new int[]{2,6,5,2}, 14, ItemArmor.ArmorMaterial.LEATHER.getSoundEvent(), 0.0F),
+    OYOROI("Oyoroi Armor", 339, new int[]{3,8,6,3}, 10, ItemArmor.ArmorMaterial.IRON.getSoundEvent(), 2.0F),
+    RAIJIN("Raijin Armor", 526, new int[]{6,16,12,6}, 22, ItemArmor.ArmorMaterial.DIAMOND.getSoundEvent(), 2.0F);
 
     private String name;
     private int durability;
