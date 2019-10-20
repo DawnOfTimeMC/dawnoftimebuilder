@@ -6,9 +6,11 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import org.dawnoftimebuilder.client.renderer.model.ModelIronPlateArmor;
 import org.dawnoftimebuilder.items.global.DoTBItemCustomArmor;
 
+import static org.dawnoftimebuilder.enums.EArmorMaterial.IRONPLATE;
+
 public class ItemIronPlateArmor extends DoTBItemCustomArmor {
 	public ItemIronPlateArmor(EntityEquipmentSlot equipmentSlotIn) {
-		super("iron_plate_armor", ArmorMaterial.DIAMOND, equipmentSlotIn);
+		super("iron_plate_armor", IRONPLATE.getArmorMaterial(), equipmentSlotIn);
 	}
 
 	@Override

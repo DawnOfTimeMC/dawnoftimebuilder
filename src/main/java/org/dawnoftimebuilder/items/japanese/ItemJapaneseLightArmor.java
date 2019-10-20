@@ -6,10 +6,12 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import org.dawnoftimebuilder.client.renderer.model.ModelJapaneseLightArmor;
 import org.dawnoftimebuilder.items.global.DoTBItemCustomArmor;
 
+import static org.dawnoftimebuilder.enums.EArmorMaterial.DOMARU;
+
 public class ItemJapaneseLightArmor extends DoTBItemCustomArmor {
 
 	public ItemJapaneseLightArmor(EntityEquipmentSlot equipmentSlotIn) {
-		super("japanese_light_armor", ArmorMaterial.LEATHER, equipmentSlotIn);
+		super("japanese_light_armor", DOMARU.getArmorMaterial(), equipmentSlotIn);
 	}
 
 	@Override

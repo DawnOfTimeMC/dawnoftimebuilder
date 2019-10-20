@@ -7,10 +7,12 @@ import net.minecraft.inventory.EntityEquipmentSlot;
 import org.dawnoftimebuilder.client.renderer.model.ModelOYoroiArmor;
 import org.dawnoftimebuilder.items.global.DoTBItemCustomArmor;
 
+import static org.dawnoftimebuilder.enums.EArmorMaterial.OYOROI;
+
 public class ItemOYoroiArmor extends DoTBItemCustomArmor {
 
 	public ItemOYoroiArmor(EntityEquipmentSlot equipmentSlotIn) {
-		super("o_yoroi_armor", ArmorMaterial.GOLD, equipmentSlotIn);
+		super("o_yoroi_armor", OYOROI.getArmorMaterial(), equipmentSlotIn);
 	}
 
 	@Override

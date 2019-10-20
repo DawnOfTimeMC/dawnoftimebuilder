@@ -7,10 +7,12 @@ import net.minecraft.inventory.EntityEquipmentSlot;
 import org.dawnoftimebuilder.client.renderer.model.ModelRaijinArmor;
 import org.dawnoftimebuilder.items.global.DoTBItemCustomArmor;
 
+import static org.dawnoftimebuilder.enums.EArmorMaterial.RAIJIN;
+
 public class ItemRaijinArmor extends DoTBItemCustomArmor {
 
 	public ItemRaijinArmor(EntityEquipmentSlot equipmentSlotIn) {
-		super("raijin_armor", ArmorMaterial.GOLD, equipmentSlotIn);
+		super("raijin_armor", RAIJIN.getArmorMaterial(), equipmentSlotIn);
 	}
 
 	@Override

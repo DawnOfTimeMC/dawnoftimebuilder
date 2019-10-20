@@ -55,6 +55,6 @@ public class BlockPlasteredStoneColumn extends DoTBBlockColumn {
 
     @Override
     public boolean isSameColumn(IBlockAccess worldIn, BlockPos pos){
-		return worldIn.getBlockState(pos) instanceof BlockPlasteredStoneColumn;
+		return worldIn.getBlockState(pos).getBlock() instanceof BlockPlasteredStoneColumn;
     }
 }

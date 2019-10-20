@@ -73,7 +73,7 @@ public class BlockLimestoneChimney extends DoTBBlockColumn {
 
     @Override
     public boolean isSameColumn(IBlockAccess worldIn, BlockPos pos){
-        return worldIn.getBlockState(pos) instanceof BlockLimestoneChimney;
+        return worldIn.getBlockState(pos).getBlock() instanceof BlockLimestoneChimney;
     }
 
     @SideOnly(Side.CLIENT)

@@ -8,7 +8,6 @@ import org.dawnoftimebuilder.blocks.general.DoTBBlockColumn;
 
 import com.google.common.collect.Lists;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -51,6 +50,6 @@ public class BlockSandstoneColumn extends DoTBBlockColumn {
 
     @Override
     public boolean isSameColumn(IBlockAccess worldIn, BlockPos pos){
-		return worldIn.getBlockState(pos) instanceof BlockSandstoneColumn;
+		return worldIn.getBlockState(pos).getBlock() instanceof BlockSandstoneColumn;
     }
 }
