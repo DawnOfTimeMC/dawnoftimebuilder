@@ -8,7 +8,6 @@
   "key": {
     "I": {
       "item": "minecraft:iron_ingot",
-      "data": 0
     },
     "i": {
       "item": "minecraft:iron_block",
@@ -19,7 +18,7 @@
       "data": 1
     },
     "O": {
-      "item": "minecraft;feather"
+      "item": "minecraft:feather"
     }
   },
   "result": {
