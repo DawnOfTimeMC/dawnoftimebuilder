@@ -7,12 +7,12 @@
   ],
   "key": {
     "I": {
-      "item": "dawnoftimebuilder:bamboo_thatch",
+      "item": "dawnoftimebuilder:thatch_bamboo",
       "data": 0
     }
   },
   "result": {
-    "item": "dawnoftimebuilder:bamboo_thatch_stairs",
+    "item": "dawnoftimebuilder:thatch_bamboo_stairs",
     "data": 0,
     "count": 6
   }
