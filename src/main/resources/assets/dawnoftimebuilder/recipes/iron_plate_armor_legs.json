@@ -8,7 +8,6 @@
   "key": {
     "i": {
       "item": "minecraft:iron_ingot",
-      "data": 0
     },
     "I": {
       "item": "minecraft:iron_block",
@@ -19,7 +18,7 @@
       "data": 14
     },
     "O": {
-      "item": "minecraft;wool",
+      "item": "minecraft:wool",
       "data": 0
     }
   },
