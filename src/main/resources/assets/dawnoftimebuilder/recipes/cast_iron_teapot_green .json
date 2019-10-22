@@ -15,8 +15,8 @@
     }
   },
   "result": {
-    "item": "dawnoftime:cast_iron_teapot_green",
-    "data": 0,
+    "item": "dawnoftime:cast_iron_teapot",
+    "data": 1,
     "count": 1
   }
 }
