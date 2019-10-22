@@ -10,12 +10,12 @@
       "data": 0
     },
     "I": {
-      "item": "dawnoftime:thatch",
-      "data": 1
+      "item": "dawnoftimebuilder:thatch_bamboo",
+      "data": 0
     }
   },
   "result": {
-    "item": "dawnoftime:futon",
+    "item": "dawnoftimebuilder:futon",
     "data": 0,
     "count": 1
   }
