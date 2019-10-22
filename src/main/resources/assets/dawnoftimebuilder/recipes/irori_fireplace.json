@@ -1,7 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "   ",
     "oio",
     "III"
   ],
@@ -19,7 +18,7 @@
     }
   },
   "result": {
-    "item": "dawnoftime:irori_fireplace",
+    "item": "dawnoftimebuilder:irori",
     "data": 0,
     "count": 1
   }
