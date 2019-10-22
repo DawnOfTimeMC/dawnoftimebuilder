@@ -5,12 +5,12 @@
   ],
   "key": {
     "I": {
-      "item": "dawnoftimebuilder:slab_tiles",
-      "data": 8
+      "item": "dawnoftimebuilder:waxed_planks_slab",
+      "data": 0
     }
   },
   "result": {
-    "item": "dawnoftimebuilder:oak_planks_edge",
+    "item": "dawnoftimebuilder:oak_waxed_planks_edge",
     "data": 0,
     "count": 6
   }
