@@ -5,13 +5,13 @@
   ],
   "key": {
     "I": {
-      "item": "dawnoftimebuilder:bamboo_thatch",
+      "item": "dawnoftimebuilder:thatch_bamboo",
       "data": 0
     }
   },
   "result": {
-    "item": "dawnoftimebuilder:slab_tiles",
-    "data": 7,
+    "item": "dawnoftimebuilder:thatch_bamboo_slab",
+    "data": 0,
     "count": 6
   }
 }
