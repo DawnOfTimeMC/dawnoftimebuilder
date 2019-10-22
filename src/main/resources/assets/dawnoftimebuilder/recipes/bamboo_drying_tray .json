@@ -6,11 +6,11 @@
   ],
   "key": {
     "i": {
-      "item": "dawnoftime:thatch",
+      "item": "dawnoftime:thatch_bamboo",
       "data": 1
     },
   "result": {
-    "item": "dawnoftime:dryer_tray",
+    "item": "dawnoftime:bamboo_drying_tray",
     "data": 0,
     "count": 1
   }
