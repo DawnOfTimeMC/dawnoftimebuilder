@@ -1,17 +1,17 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "III"
-  ],
-  "key": {
-    "I": {
-      "item": "dawnoftimebuilder:thatch_bamboo",
-      "data": 0
-    }
-  },
-  "result": {
-    "item": "dawnoftimebuilder:tatami_mat",
-    "data": 0,
-    "count":2
-  }
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"III"
+	],
+	"key": {
+		"I": {
+			"item": "dawnoftimebuilder:thatch_bamboo",
+			"data": 0
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:tatami_mat",
+		"data": 0,
+		"count": 2
+	}
 }

@@ -1,22 +1,22 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "iii",
-    "III"
-  ],
-  "key": {
-    "I": {
-      "item": "minecraft:log",
-      "data": 0
-    },
-    "i": {
-      "item": "dawnoftimebuilder:slab_tiles",
-      "data": 8
-    }
-  },
-  "result": {
-    "item": "dawnoftimebuilder:oak_support_beam",
-    "data": 0,
-    "count": 8
-  }
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"iii",
+		"III"
+	],
+	"key": {
+		"I": {
+			"item": "minecraft:log",
+			"data": 0
+		},
+		"i": {
+			"item": "dawnoftimebuilder:oak_waxed_planks_slab",
+			"data": 0
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:oak_support_beam",
+		"data": 0,
+		"count": 8
+	}
 }

@@ -1,0 +1,18 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"i i",
+		"iii"
+	],
+	"key": {
+		"i": {
+			"item": "minecraft:planks",
+			"data": 1
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:spruce_roof_support",
+		"data": 0,
+		"count": 6
+	}
+}

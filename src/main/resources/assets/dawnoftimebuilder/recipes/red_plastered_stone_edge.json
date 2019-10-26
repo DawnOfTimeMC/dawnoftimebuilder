@@ -1,0 +1,17 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"II"
+	],
+	"key": {
+		"I": {
+			"item": "dawnoftimebuilder:red_plastered_stone_slab",
+			"data": 0
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:red_plastered_stone_edge",
+		"data": 0,
+		"count": 6
+	}
+}

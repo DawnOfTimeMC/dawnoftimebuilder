@@ -1,21 +1,21 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "IiI",
-    "IiI"
-  ],
-  "key": {
-    "I": {
-      "item": "minecraft:log",
-      "data": 1
-    },
-    "i": {
-      "item": "minecraft:stick"
-    }
-  },
-  "result": {
-    "item": "dawnoftimebuilder:spruce_log_fence",
-    "data": 0,
-    "count": 6
-  }
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"IiI",
+		"IiI"
+	],
+	"key": {
+		"I": {
+			"item": "minecraft:log",
+			"data": 1
+		},
+		"i": {
+			"item": "minecraft:stick"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:spruce_log_fence",
+		"data": 0,
+		"count": 6
+	}
 }

@@ -1,18 +1,18 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "I  ",
-    "II ",
-    "III"
-  ],
-  "key": {
-    "I": {
-      "item": "minecraft:clay_ball"
-    }
-  },
-  "result": {
-    "item": "dawnoftimebuilder:grey_clay_tile",
-    "data": 0,
-    "count": 8
-  }
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"I  ",
+		"II ",
+		"III"
+	],
+	"key": {
+		"I": {
+			"item": "minecraft:clay_ball"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:grey_clay_tile",
+		"data": 0,
+		"count": 8
+	}
 }

@@ -1,0 +1,21 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"IiI",
+		"III"
+	],
+	"key": {
+		"I": {
+			"item": "minecraft:log",
+			"data": 1
+		},
+		"i": {
+			"item": "minecraft:stick"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:spruce_railing",
+		"data": 0,
+		"count": 6
+	}
+}

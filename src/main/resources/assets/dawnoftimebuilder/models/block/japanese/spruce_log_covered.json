@@ -1,0 +1,19 @@
+{
+	"textures": {
+		"side": "blocks/planks_spruce",
+		"particle": "blocks/log_spruce"
+	},
+	"elements": [
+		{
+			"from": [-0.001, 15, -0.001],
+			"to": [16.001, 16.001, 16.001],
+			"faces": {
+				"north": {"uv": [0, 0, 16, 1.001], "rotation": 180, "texture": "#side"},
+				"east": {"uv": [15, 0, 16, 16], "rotation": 90, "texture": "#side"},
+				"south": {"uv": [0, 15, 16, 16], "texture": "#side"},
+				"west": {"uv": [0, 0, 1, 16], "rotation": 270, "texture": "#side"},
+				"up": {"uv": [0, 0, 16, 16], "texture": "#side"}
+			}
+		}
+	]
+}

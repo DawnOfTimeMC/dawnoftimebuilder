@@ -1,19 +1,19 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "III",
-    " I ",
-    "III"
-  ],
-  "key": {
-    "I": {
-      "item": "minecraft:sandstone",
-      "data": 0
-    }
-  },
-  "result": {
-    "item": "dawnoftimebuilder:sandstone_column",
-    "data": 0,
-    "count": 8
-  }
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"III",
+		" I ",
+		"III"
+	],
+	"key": {
+		"I": {
+			"item": "minecraft:sandstone",
+			"data": 0
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:sandstone_column",
+		"data": 0,
+		"count": 8
+	}
 }

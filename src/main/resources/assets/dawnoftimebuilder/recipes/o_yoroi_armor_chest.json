@@ -1,29 +1,29 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "o o",
-    "IxI",
-    "iii"
-  ],
-  "key": {
-    "o": {
-      "item": "minecraft:redstone_block",
-      "data": 0
-    },
-    "I": {
-      "item": "minecraft:charcoal_block",
-      "data": 0
-    },
-    "i": {
-      "item": "minecraft:redstone"
-    },
-    "x": {
-      "item": "minecraft:gold_ingot"
-    }
-  },
-  "result": {
-    "item": "dawnoftimebuilder:o_yoroi_armor_chest",
-    "data": 0,
-    "count": 1
-  }
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"o o",
+		"IxI",
+		"iii"
+	],
+	"key": {
+		"o": {
+			"item": "minecraft:redstone_block",
+			"data": 0
+		},
+		"I": {
+			"item": "minecraft:coal_block",
+			"data": 0
+		},
+		"i": {
+			"item": "minecraft:redstone"
+		},
+		"x": {
+			"item": "minecraft:gold_ingot"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:o_yoroi_armor_chest",
+		"data": 0,
+		"count": 1
+	}
 }

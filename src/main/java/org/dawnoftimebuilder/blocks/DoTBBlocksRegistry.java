@@ -135,6 +135,7 @@ public class DoTBBlocksRegistry {
 				new BlockRedPaintedLog(),
 				new BlockRice(),
 				new BlockSmallTatamiMat(),
+				new DoTBBlockRotatedPillar("spruce_log_covered", Material.WOOD,2.0F,SoundType.WOOD).setBurnable(),
 				new DoTBBlockBeam("spruce_beam", Material.WOOD, 1.5F, SoundType.WOOD).setBurnable(),
 				new DoTBBlock("spruce_foundation", Material.WOOD, 1.0F, SoundType.WOOD).setBurnable(),
 				new DoTBBlockFence("spruce_log_fence", Material.WOOD, 2.0F, SoundType.WOOD).setBurnable(),

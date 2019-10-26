@@ -1,0 +1,20 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"i i",
+		"I I"
+	],
+	"key": {
+		"i": {
+			"item": "minecraft:iron_ingot"
+		},
+		"I": {
+			"item": "minecraft:leather"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:japanese_light_armor_feet",
+		"data": 0,
+		"count": 1
+	}
+}

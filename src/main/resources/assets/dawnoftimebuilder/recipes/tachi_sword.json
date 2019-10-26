@@ -1,25 +1,25 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "  I",
-    "iI ",
-    "oi "
-  ],
-  "key": {
-    "i": {
-      "item": "minecraft:gold_ingot"
-    },
-    "I": {
-      "item": "minecraft:iron_ingot"
-    },
-    "o": {
-      "item": "minecraft:planks",
-      "data": 1
-    }
-  },
-  "result": {
-    "item": "dawnoftimebuilder:tachi_sword",
-    "data": 0,
-    "count": 1
-  }
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"  I",
+		"iI ",
+		"oi "
+	],
+	"key": {
+		"i": {
+			"item": "minecraft:gold_ingot"
+		},
+		"I": {
+			"item": "minecraft:iron_ingot"
+		},
+		"o": {
+			"item": "minecraft:planks",
+			"data": 1
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:tachi_sword",
+		"data": 0,
+		"count": 1
+	}
 }

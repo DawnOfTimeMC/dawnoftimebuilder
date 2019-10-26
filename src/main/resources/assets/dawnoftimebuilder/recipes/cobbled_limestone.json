@@ -1,18 +1,18 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "ii",
-    "ii"
-  ],
-  "key": {
-    "i": {
-      "item": "minecraft:cobblestone",
-      "data": 0
-    }
-  },
-  "result": {
-    "item": "dawnoftimebuilder:cobbled_limestone",
-    "data": 0,
-    "count": 4
-  }
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"ii",
+		"ii"
+	],
+	"key": {
+		"i": {
+			"item": "minecraft:cobblestone",
+			"data": 0
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:cobbled_limestone",
+		"data": 0,
+		"count": 4
+	}
 }

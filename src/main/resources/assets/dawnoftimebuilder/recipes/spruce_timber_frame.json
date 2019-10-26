@@ -1,22 +1,22 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "III",
-    "IiI",
-    "III"
-  ],
-  "key": {
-    "I": {
-      "item": "minecraft:planks",
-      "data": 1
-    },
-    "i": {
-      "item": "minecraft:paper"
-    }
-  },
-  "result": {
-    "item": "dawnoftimebuilder:spruce_timber_frame",
-    "data": 0,
-    "count": 6
-  }
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"III",
+		"IiI",
+		"III"
+	],
+	"key": {
+		"I": {
+			"item": "minecraft:planks",
+			"data": 1
+		},
+		"i": {
+			"item": "minecraft:paper"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:spruce_timber_frame",
+		"data": 0,
+		"count": 6
+	}
 }

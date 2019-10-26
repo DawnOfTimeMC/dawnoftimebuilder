@@ -1,21 +1,21 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "IiI"
-  ],
-  "key": {
-    "I": {
-      "item": "minecraft:gravel",
-      "data": 0
-    },
-    "i": {
-      "item": "minecraft:cobblestone",
-      "data": 0
-    }
-  },
-  "result": {
-    "item": "dawnoftimebuilder:slab_path",
-    "data": 2,
-    "count": 64
-  }
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"IiI"
+	],
+	"key": {
+		"I": {
+			"item": "minecraft:gravel",
+			"data": 0
+		},
+		"i": {
+			"item": "minecraft:cobblestone",
+			"data": 0
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:path_cobbled_slab",
+		"data": 0,
+		"count": 64
+	}
 }

@@ -1,0 +1,21 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"iii",
+		"I I"
+	],
+	"key": {
+		"i": {
+			"item": "minecraft:wool",
+			"data": 0
+		},
+		"I": {
+			"item": "minecraft:leather"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:japanese_light_armor_legs",
+		"data": 0,
+		"count": 1
+	}
+}

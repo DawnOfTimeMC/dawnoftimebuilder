@@ -1,0 +1,25 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"i i",
+		"ooo",
+		"III"
+	],
+	"key": {
+		"o": {
+			"item": "minecraft:wool",
+			"data": 0
+		},
+		"I": {
+			"item": "minecraft:leather"
+		},
+		"i": {
+			"item": "minecraft:iron_ingot"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:japanese_light_armor_chest",
+		"data": 0,
+		"count": 1
+	}
+}

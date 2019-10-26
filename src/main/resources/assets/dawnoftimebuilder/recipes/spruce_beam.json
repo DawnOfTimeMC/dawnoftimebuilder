@@ -1,0 +1,22 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"I",
+		"i"
+	],
+	"key": {
+		"I": {
+			"item": "minecraft:log",
+			"data": 1
+		},
+		"i": {
+			"item": "minecraft:cobblestone",
+			"data": 0
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:spruce_beam",
+		"data": 0,
+		"count": 4
+	}
+}

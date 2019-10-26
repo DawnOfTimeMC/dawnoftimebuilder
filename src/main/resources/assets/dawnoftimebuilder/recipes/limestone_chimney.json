@@ -1,0 +1,22 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"II",
+		"ii"
+	],
+	"key": {
+		"i": {
+			"item": "dawnoftimebuilder:limestone_brick",
+			"data": 0
+		},
+		"I": {
+			"item": "dawnoftimebuilder:flat_roof_tiles_slab",
+			"data": 0
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:limestone_chimney",
+		"data": 0,
+		"count": 1
+	}
+}

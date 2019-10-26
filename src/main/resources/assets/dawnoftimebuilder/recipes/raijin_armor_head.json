@@ -1,21 +1,21 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "x x",
-    "i i"
-  ],
-  "key": {
-    "i": {
-      "item": "minecraft:gold_block",
-      "data": 0
-    },
-    "x": {
-      "item": "minecraft:gold_ingot"
-    }
-  },
-    "result": {
-      "item": "dawnoftimebuilder:raijin_armor_head",
-      "data": 0,
-      "count": 1
-    }
-  }
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"x x",
+		"i i"
+	],
+	"key": {
+		"i": {
+			"item": "minecraft:gold_block",
+			"data": 0
+		},
+		"x": {
+			"item": "minecraft:gold_ingot"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:raijin_armor_head",
+		"data": 0,
+		"count": 1
+	}
+}

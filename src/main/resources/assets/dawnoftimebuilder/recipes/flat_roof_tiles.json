@@ -1,0 +1,21 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"iI",
+		"Ii"
+	],
+	"key": {
+		"I": {
+			"item": "minecraft:brick"
+		},
+		"i": {
+			"item": "minecraft:dye",
+			"data": 14
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:flat_roof_tiles",
+		"data": 0,
+		"count": 6
+	}
+}

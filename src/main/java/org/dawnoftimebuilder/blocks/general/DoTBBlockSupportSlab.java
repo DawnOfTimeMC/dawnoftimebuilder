@@ -111,6 +111,11 @@ public class DoTBBlockSupportSlab extends DoTBBlock {
 	}
 
 	@Override
+	public boolean isTopSolid(IBlockState state) {
+		return true;
+	}
+
+	@Override
 	public int getMetaFromState(IBlockState state){
 		return 0;
 	}

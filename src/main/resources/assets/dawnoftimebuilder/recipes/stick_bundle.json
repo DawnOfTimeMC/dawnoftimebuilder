@@ -1,0 +1,18 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		" i ",
+		"i i",
+		" i "
+	],
+	"key": {
+		"i": {
+			"item": "minecraft:stick"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:stick_bundle",
+		"data": 0,
+		"count": 1
+	}
+}

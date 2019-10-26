@@ -1,21 +1,21 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "iI"
-  ],
-  "key": {
-    "i": {
-      "item": "minecraft:dye",
-      "data": 0
-    },
-    "I": {
-      "item": "minecraft:log",
-      "data": 1
-    }
-  },
-  "result": {
-    "item": "dawnoftimebuilder:red_painted_log",
-    "data": 0,
-    "count": 4
-  }
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"iI"
+	],
+	"key": {
+		"i": {
+			"item": "minecraft:dye",
+			"data": 0
+		},
+		"I": {
+			"item": "minecraft:log",
+			"data": 1
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:red_painted_log",
+		"data": 0,
+		"count": 4
+	}
 }

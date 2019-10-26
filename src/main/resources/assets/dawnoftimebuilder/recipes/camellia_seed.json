@@ -1,0 +1,20 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"iI"
+	],
+	"key": {
+		"I": {
+			"item": "minecraft:wheat_seeds"
+		},
+		"i": {
+			"item": "minecraft:dye",
+			"data": 15
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:camellia_seed",
+		"data": 0,
+		"count": 1
+	}
+}

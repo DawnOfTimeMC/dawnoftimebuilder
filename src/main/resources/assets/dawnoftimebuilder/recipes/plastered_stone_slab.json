@@ -1,17 +1,17 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "III"
-  ],
-  "key": {
-    "I": {
-      "item": "dawnoftimebuilder:plastered_stone",
-      "data": 0
-    }
-  },
-  "result": {
-    "item": "dawnoftimebuilder:slab_tiles",
-    "data": 4,
-    "count": 6
-  }
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"III"
+	],
+	"key": {
+		"I": {
+			"item": "dawnoftimebuilder:plastered_stone",
+			"data": 0
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:plastered_stone_slab",
+		"data": 0,
+		"count": 6
+	}
 }

@@ -91,6 +91,7 @@ public class DoTBBlocks {
 	@ObjectHolder("spruce_foundation") public static Block spruce_foundation;
 	@ObjectHolder("spruce_log_fence") public static Block spruce_log_fence;
 	@ObjectHolder("spruce_log_wall") public static Block spruce_log_wall;
+	@ObjectHolder("spruce_log_covered") public static Block spruce_log_covered;
 	@ObjectHolder("spruce_planks_edge") public static Block spruce_planks_edge;
 	@ObjectHolder("spruce_railing") public static Block spruce_railing;
 	@ObjectHolder("spruce_roof_support") public static Block spruce_roof_support;

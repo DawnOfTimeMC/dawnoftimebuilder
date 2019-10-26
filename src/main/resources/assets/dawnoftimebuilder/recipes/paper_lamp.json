@@ -1,25 +1,25 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "III",
-    "IOI",
-    "o o"
-  ],
-  "key": {
-    "o": {
-      "item": "minecraft:stick"
-    },
-    "O": {
-      "item": "minecraft:torch",
-      "data": 0
-    },
-    "I": {
-      "item": "minecraft:paper"
-    }
-  },
-  "result": {
-    "item": "dawnoftime:paper_lamp",
-    "data": 0,
-    "count": 6
-  }
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"oIo",
+		"oOo",
+		"o o"
+	],
+	"key": {
+		"o": {
+			"item": "minecraft:stick"
+		},
+		"O": {
+			"item": "minecraft:torch",
+			"data": 0
+		},
+		"I": {
+			"item": "minecraft:paper"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:paper_lamp",
+		"data": 0,
+		"count": 6
+	}
 }

@@ -1,17 +1,17 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "II"
-  ],
-  "key": {
-    "I": {
-      "item": "dawnoftimebuilder:slab_tiles",
-      "data": 7
-    }
-  },
-  "result": {
-    "item": "dawnoftimebuilder:bamboo_thatch_edge",
-    "data": 0,
-    "count": 6
-  }
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"II"
+	],
+	"key": {
+		"I": {
+			"item": "dawnoftimebuilder:thatch_bamboo_slab",
+			"data": 0
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:thatch_bamboo_edge",
+		"data": 0,
+		"count": 6
+	}
 }

@@ -1,18 +1,19 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "I  ",
-    "II ",
-    "III"
-  ],
-  "key": {
-    "I": {
-      "item": "minecraft:coal"
-    }
-  },
-  "result": {
-    "item": "dawnoftimebuilder:grey_tile",
-    "data": 0,
-    "count": 8
-  }
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"I  ",
+		"II ",
+		"III"
+	],
+	"key": {
+		"I": {
+			"item": "minecraft:coal",
+			"data": 0
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:grey_tile",
+		"data": 0,
+		"count": 8
+	}
 }

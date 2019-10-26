@@ -1,0 +1,17 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"II"
+	],
+	"key": {
+		"I": {
+			"item": "minecraft:wooden_slab",
+			"data": 1
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:spruce_planks_edge",
+		"data": 0,
+		"count": 6
+	}
+}

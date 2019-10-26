@@ -1,0 +1,25 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"IiI",
+		"IoI",
+		"IoI"
+	],
+	"key": {
+		"i": {
+			"item": "minecraft:paper"
+		},
+		"I": {
+			"item": "minecraft:stick"
+		},
+		"o": {
+			"item": "minecraft:dye",
+			"data": 0
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:paper_folding_screen",
+		"data": 0,
+		"count": 4
+	}
+}

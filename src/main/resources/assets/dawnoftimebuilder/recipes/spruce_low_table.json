@@ -1,0 +1,21 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"III",
+		"i i"
+	],
+	"key": {
+		"I": {
+			"item": "minecraft:wooden_slab",
+			"data": 1
+		},
+		"i": {
+			"item": "minecraft:stick"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:spruce_low_table",
+		"data": 0,
+		"count": 1
+	}
+}

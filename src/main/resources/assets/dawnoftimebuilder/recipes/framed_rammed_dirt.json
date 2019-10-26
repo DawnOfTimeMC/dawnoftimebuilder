@@ -1,23 +1,23 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "IiI",
-    "iii",
-    "IiI"
-  ],
-  "key": {
-    "I": {
-      "item": "dawnoftimebuilder:oak_waxed_planks",
-      "data": 0
-    },
-    "i": {
-      "item": "dawnoftimebuilder:rammed_dirt",
-      "data": 0
-    }
-  },
-  "result": {
-    "item": "dawnoftimebuilder:framed_rammed_dirt",
-    "data": 0,
-    "count": 8
-  }
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"IiI",
+		"iii",
+		"IiI"
+	],
+	"key": {
+		"I": {
+			"item": "dawnoftimebuilder:oak_waxed_planks",
+			"data": 0
+		},
+		"i": {
+			"item": "dawnoftimebuilder:rammed_dirt",
+			"data": 0
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:framed_rammed_dirt",
+		"data": 0,
+		"count": 8
+	}
 }

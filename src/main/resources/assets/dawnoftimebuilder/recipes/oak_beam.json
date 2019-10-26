@@ -1,0 +1,22 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"I",
+		"i"
+	],
+	"key": {
+		"I": {
+			"item": "minecraft:log",
+			"data": 0
+		},
+		"i": {
+			"item": "limestone_brick",
+			"data": 0
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:oak_beam",
+		"data": 0,
+		"count": 4
+	}
+}

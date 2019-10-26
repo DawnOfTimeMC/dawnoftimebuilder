@@ -1,21 +1,21 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "iI"
-  ],
-  "key": {
-    "I": {
-      "item": "minecraft:stone",
-      "data": 0
-    },
-    "i": {
-      "item": "minecraft:dye",
-      "data": 15
-    }
-  },
-  "result": {
-    "item": "dawnoftimebuilder:plastered_stone",
-    "data": 0,
-    "count": 6
-  }
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"iI"
+	],
+	"key": {
+		"I": {
+			"item": "minecraft:stone",
+			"data": 0
+		},
+		"i": {
+			"item": "minecraft:dye",
+			"data": 15
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:plastered_stone",
+		"data": 0,
+		"count": 6
+	}
 }

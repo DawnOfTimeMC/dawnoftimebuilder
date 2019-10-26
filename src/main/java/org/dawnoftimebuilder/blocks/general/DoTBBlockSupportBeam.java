@@ -110,6 +110,11 @@ public class DoTBBlockSupportBeam extends DoTBBlock {
 	}
 
 	@Override
+	public boolean isTopSolid(IBlockState state) {
+		return true;
+	}
+
+	@Override
 	public int getMetaFromState(IBlockState state){
 		return (state.getValue(AXIS) == EnumsBlock.EnumHorizontalAxis.AXIS_X) ? 0 : 8;
 	}

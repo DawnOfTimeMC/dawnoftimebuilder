@@ -100,6 +100,7 @@ public enum CreativeInventoryCategories {
 			Item.getItemFromBlock(spruce_foundation_slab),
 			Item.getItemFromBlock(spruce_timber_frame),
 			Item.getItemFromBlock(spruce_timber_frame_pillar),
+			Item.getItemFromBlock(spruce_log_covered),
 			Item.getItemFromBlock(spruce_beam),
 			Item.getItemFromBlock(spruce_log_wall),
 			Item.getItemFromBlock(spruce_railing),

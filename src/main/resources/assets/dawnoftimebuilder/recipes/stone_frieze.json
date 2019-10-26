@@ -1,0 +1,18 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"I I",
+		"III"
+	],
+	"key": {
+		"I": {
+			"item": "minecraft:stone",
+			"data": 0
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:stone_frieze",
+		"data": 0,
+		"count": 6
+	}
+}

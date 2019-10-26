@@ -1,26 +1,26 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "I  ",
-    "Ii ",
-    "Ioo"
-  ],
-  "key": {
-    "I": {
-      "item": "minecraft:stone",
-      "data": 0
-    },
-    "i": {
-      "item": "minecraft:dye",
-      "data": 2
-    },
-    "o": {
-      "item": "minecraft:gold_nugget"
-    }
-  },
-  "result": {
-    "item": "dawnoftimebuilder:serpent_sculpted_column",
-    "data": 0,
-    "count": 1
-  }
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"I  ",
+		"Ii ",
+		"Ioo"
+	],
+	"key": {
+		"I": {
+			"item": "minecraft:stone",
+			"data": 0
+		},
+		"i": {
+			"item": "minecraft:dye",
+			"data": 2
+		},
+		"o": {
+			"item": "minecraft:gold_nugget"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:serpent_sculpted_column",
+		"data": 0,
+		"count": 1
+	}
 }

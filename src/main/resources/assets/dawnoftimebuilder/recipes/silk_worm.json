@@ -1,0 +1,16 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"III"
+	],
+	"key": {
+		"I": {
+			"item": "minecraft:web"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:silk_worm",
+		"data": 0,
+		"count": 1
+	}
+}
