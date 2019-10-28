@@ -16,12 +16,12 @@ public class DoTBItemDoubleCropsSeed extends DoTBItemSoilSeeds {
 
 	@Override
     protected boolean isEnoughAir(World world, BlockPos soilPos){
-		return world.isAirBlock(soilPos.up()) && (crops.getNewBlockCropHeight() > 0 || world.isAirBlock(soilPos.up(2)));
+		return world.isAirBlock(soilPos.up()) && (crops.getAgeReachingTopBlock() > 0 || world.isAirBlock(soilPos.up(2)));
 	}
 	
 	@Override
 	protected void spawnCrops(World world, BlockPos cropPos){
-		boolean flag = this.crops.getNewBlockCropHeight() == 0;
+		boolean flag = this.crops.getAgeReachingTopBlock() == 0;
 		
 		if(flag){
 			world.setBlockState(cropPos, this.crops.getDefaultState().withProperty(DoTBBlockDoubleCrops.HALF, EnumsBlock.EnumHalf.BOTTOM));

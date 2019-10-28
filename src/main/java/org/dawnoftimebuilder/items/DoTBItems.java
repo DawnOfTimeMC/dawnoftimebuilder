@@ -14,6 +14,7 @@ public class DoTBItems {
 	@ObjectHolder("iron_plate_armor_chest") public static Item iron_plate_armor_chest;
 	@ObjectHolder("iron_plate_armor_legs") public static Item iron_plate_armor_legs;
 	@ObjectHolder("iron_plate_armor_feet") public static Item iron_plate_armor_feet;
+	@ObjectHolder("wax") public static Item wax;
 
 	//japanese
 	@ObjectHolder("camellia_leaves") public static Item camellia_leaves;
@@ -23,9 +24,11 @@ public class DoTBItems {
 	@ObjectHolder("paper_door") public static Item paper_door;
 	@ObjectHolder("rice") public static Item rice;
 	@ObjectHolder("silk") public static Item silk;
-	@ObjectHolder("silk_worm") public static Item silk_worm;
+	@ObjectHolder("silk_worms") public static Item silk_worms;
+	@ObjectHolder("silk_worm_eggs") public static Item silk_worm_eggs;
 	@ObjectHolder("silk_cocoons") public static Item silk_cocoons;
 	@ObjectHolder("stick_bundle") public static Item stick_bundle;
+	@ObjectHolder("mulberry") public static Item mulberry;
 	@ObjectHolder("mulberry_leaves") public static Item mulberry_leaves;
 	@ObjectHolder("tatami_mat") public static Item tatami_mat;
 	@ObjectHolder("bamboo_hat") public static Item bamboo_hat;

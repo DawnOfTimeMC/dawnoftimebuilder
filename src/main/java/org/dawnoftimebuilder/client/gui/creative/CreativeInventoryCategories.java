@@ -81,7 +81,8 @@ public enum CreativeInventoryCategories {
 			DoTBItems.iron_plate_armor_head,
 			DoTBItems.iron_plate_armor_chest,
 			DoTBItems.iron_plate_armor_legs,
-			DoTBItems.iron_plate_armor_feet
+			DoTBItems.iron_plate_armor_feet,
+			DoTBItems.wax
 	),
 
 	JAPANESE("Japanese",
@@ -145,11 +146,13 @@ public enum CreativeInventoryCategories {
 			DoTBItems.camellia_seed,
 			DoTBItems.camellia_leaves,
 			DoTBItems.tea_leaves,
+			DoTBItems.mulberry,
 			DoTBItems.mulberry_leaves,
-			DoTBItems.stick_bundle,
-			DoTBItems.silk_worm,
+			DoTBItems.silk_worm_eggs,
+			DoTBItems.silk_worms,
 			DoTBItems.silk_cocoons,
 			DoTBItems.silk,
+			DoTBItems.stick_bundle,
 			DoTBItems.rice,
 			DoTBItems.tachi_sword,
 			DoTBItems.bamboo_hat,

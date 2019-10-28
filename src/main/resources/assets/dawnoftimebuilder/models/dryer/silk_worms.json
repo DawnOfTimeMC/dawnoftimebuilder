@@ -1,5 +1,4 @@
 {
-	"credit": "Made with Blockbench",
 	"textures": {
 		"3": "dawnoftimebuilder:items/silk_worm"
 	},
@@ -68,43 +67,5 @@
 				"up": {"uv": [0, 0, 16, 16], "rotation": 90, "texture": "#3"}
 			}
 		}
-	],
-	"display": {
-		"thirdperson_righthand": {
-			"rotation": [45, 45, 0],
-			"translation": [0, 3, 0.5],
-			"scale": [0.5, 0.5, 0.5]
-		},
-		"thirdperson_lefthand": {
-			"rotation": [45, 45, 0],
-			"translation": [0, 3, 0.5],
-			"scale": [0.5, 0.5, 0.5]
-		},
-		"firstperson_righthand": {
-			"rotation": [0, 90, 0],
-			"translation": [1, 5, 1],
-			"scale": [0.6, 0.6, 0.6]
-		},
-		"firstperson_lefthand": {
-			"rotation": [0, 90, 0],
-			"translation": [1, 5, 1],
-			"scale": [0.6, 0.6, 0.6]
-		},
-		"ground": {
-			"translation": [0, 3, 0],
-			"scale": [0.4, 0.4, 0.4]
-		},
-		"gui": {
-			"rotation": [30, 45, 0],
-			"translation": [0, 6, 0],
-			"scale": [1.05, 1.05, 1.05]
-		},
-		"head": {
-			"translation": [0, 14.5, 0]
-		},
-		"fixed": {
-			"rotation": [-90, 0, 0],
-			"translation": [0, 0, -8]
-		}
-	}
+	]
 }

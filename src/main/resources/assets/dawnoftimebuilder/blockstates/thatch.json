@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "variant=wheat": { "model": "dawnoftimebuilder:general/thatch_wheat" },
+        "variant=bamboo": { "model": "dawnoftimebuilder:general/thatch_bamboo" }
+    }
+}

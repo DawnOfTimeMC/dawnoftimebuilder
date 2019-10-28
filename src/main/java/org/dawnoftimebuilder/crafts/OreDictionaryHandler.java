@@ -1,14 +1,20 @@
 package org.dawnoftimebuilder.crafts;
 
 import net.minecraftforge.oredict.OreDictionary;
-
-import static org.dawnoftimebuilder.blocks.DoTBBlocks.cobbled_limestone;
-import static org.dawnoftimebuilder.blocks.DoTBBlocks.limestone_brick;
+import org.dawnoftimebuilder.items.DoTBItems;
+import org.dawnoftimebuilder.blocks.DoTBBlocks;
 
 public class OreDictionaryHandler {
 
-    public static void init(){
-        OreDictionary.registerOre("stoneLimestone", limestone_brick);
-        OreDictionary.registerOre("stoneLimestone", cobbled_limestone);
-    }
+	public static void init(){
+		OreDictionary.registerOre("materialWax", DoTBItems.wax);
+		OreDictionary.registerOre("materialBeeswax", DoTBItems.wax);
+		OreDictionary.registerOre("materialPressedWax", DoTBItems.wax);
+		OreDictionary.registerOre("itemBeeswax", DoTBItems.wax);
+		OreDictionary.registerOre("stoneLimestone", DoTBBlocks.cobbled_limestone);
+		OreDictionary.registerOre("stoneLimestone", DoTBBlocks.limestone_brick);
+		OreDictionary.registerOre("cropRice", DoTBItems.rice);
+		OreDictionary.registerOre("seedRice", DoTBItems.rice);
+		OreDictionary.registerOre("foodRice", DoTBItems.rice);
+	}
 }

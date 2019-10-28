@@ -114,6 +114,7 @@ public class DoTBBlocksRegistry {
 				//Japanese
 				new DoTBBlockDryer("bamboo_drying_tray", Material.WOOD, 1.0F, SoundType.WOOD),
 				new BlockCamellia(),
+				new BlockMulberry(),
 				new BlockCastIronTeapot(),
 				new BlockCastIronTeacup(),
 				new BlockFloweryPaperWall(),

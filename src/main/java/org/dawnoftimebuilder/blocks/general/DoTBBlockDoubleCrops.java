@@ -10,6 +10,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Explosion;
@@ -50,7 +51,7 @@ public abstract class DoTBBlockDoubleCrops extends DoTBBlockSoilCrops {
 			
 			boolean hasTopCrop = worldIn.getBlockState(pos.up()).getBlock() == this;
 			
-			if(!hasTopCrop && this.getAge(state) >= this.getNewBlockCropHeight()){
+			if(!hasTopCrop && this.getAge(state) >= this.getAgeReachingTopBlock()){
 				return false;
 			}
 			
@@ -67,7 +68,8 @@ public abstract class DoTBBlockDoubleCrops extends DoTBBlockSoilCrops {
 	
 	@Override
 	public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand){
-        if (worldIn.getLightFromNeighbors(pos.up()) >= 9){
+		if (!worldIn.isAreaLoaded(pos, 1)) return; // Forge: prevent loading unloaded chunks when checking neighbor's light
+		if (worldIn.getLightFromNeighbors(pos.up()) >= 9){
             int i = this.getAge(state);
 
             if (i < this.getMaxAge()){
@@ -100,7 +102,7 @@ public abstract class DoTBBlockDoubleCrops extends DoTBBlockSoilCrops {
 		
 		if(this.isBottomCrop(worldIn, pos)){
 			boolean canGrow = true;
-	        if(i >= this.getNewBlockCropHeight()){
+	    	if(i >= this.getAgeReachingTopBlock()){
 	        	canGrow = false;
 	        	BlockPos topPos = pos.up();
 	        	IBlockState topCrop = worldIn.getBlockState(topPos);
@@ -142,17 +144,17 @@ public abstract class DoTBBlockDoubleCrops extends DoTBBlockSoilCrops {
     }
     
     @Override
-    public void getDrops(net.minecraft.util.NonNullList<ItemStack> drops, net.minecraft.world.IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
+    public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
     	if(this.isBottomCrop(world, pos) && state.getValue(HALF) == EnumsBlock.EnumHalf.BOTTOM){
     		this.getDoubleCropsDrops(drops, world, pos, state, fortune);
     	}
     }
     
-    private void getDoubleCropsDrops(net.minecraft.util.NonNullList<ItemStack> drops, net.minecraft.world.IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
+    public void getDoubleCropsDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
     	super.getDrops(drops, world, pos, state, fortune);
     }
     
-	private IBlockState setAge(IBlockState state, int age){
+	public IBlockState setAge(IBlockState state, int age){
 		return state.withProperty(AGE, age);
 	}
     
@@ -202,5 +204,5 @@ public abstract class DoTBBlockDoubleCrops extends DoTBBlockSoilCrops {
 				.setTranslationKey(MOD_ID + "." + this.getSeedName());
 	}
 
-	public abstract int getNewBlockCropHeight();
+	public abstract int getAgeReachingTopBlock();
 }

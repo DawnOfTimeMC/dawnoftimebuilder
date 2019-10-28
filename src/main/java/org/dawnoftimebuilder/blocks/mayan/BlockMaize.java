@@ -24,7 +24,7 @@ public class BlockMaize extends DoTBBlockDoubleCrops {
     }
 	
 	@Override
-	public int getNewBlockCropHeight() {
+	public int getAgeReachingTopBlock() {
 		return 0;
 	}
 }

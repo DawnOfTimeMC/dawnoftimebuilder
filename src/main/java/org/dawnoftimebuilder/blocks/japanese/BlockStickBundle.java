@@ -68,7 +68,7 @@ public class BlockStickBundle extends DoTBBlock implements IBlockCustomItem {
 			case 3:
 			case 2:
 			case 1:
-				drops.add(new ItemStack(silk_worm, 1));
+				drops.add(new ItemStack(silk_worms, 1));
 				break;
 			default:
 		}
@@ -93,7 +93,7 @@ public class BlockStickBundle extends DoTBBlock implements IBlockCustomItem {
 		if(!worldIn.isRemote && !worldIn.restoringBlockSnapshots){
 			if(state.getValue(GROWTH) == 0){
 				ItemStack itemstack = playerIn.getHeldItem(hand);
-				if(itemstack.getItem() == silk_worm && !itemstack.isEmpty()){
+				if(itemstack.getItem() == silk_worms && !itemstack.isEmpty()){
 					itemstack.shrink(1);
 					worldIn.setBlockState(pos, state.withProperty(GROWTH, 1));
 					if(state.getValue(HALF) == EnumsBlock.EnumHalf.TOP){

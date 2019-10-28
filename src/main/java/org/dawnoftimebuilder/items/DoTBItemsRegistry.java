@@ -44,7 +44,7 @@ public class DoTBItemsRegistry {
 	}
 
 	public static void init(){
-		DoTBItem silk_worm = new DoTBItem("silk_worm");
+		DoTBItem silk_worms = new DoTBItem("silk_worms");
 		DoTBItem tea_leaves = new DoTBItem("tea_leaves");
 
 		addToList(
@@ -52,13 +52,15 @@ public class DoTBItemsRegistry {
 				new ItemIronPlateArmor(EntityEquipmentSlot.CHEST),
 				new ItemIronPlateArmor(EntityEquipmentSlot.HEAD),
 				new ItemIronPlateArmor(EntityEquipmentSlot.LEGS),
+				new DoTBItem("wax"),
 				new DoTBItemHat("bamboo_hat"),
 				new DoTBItem("grey_tile"),
 				new DoTBItem("grey_clay_tile"),
-				new DoTBItemCanBeDried("mulberry_leaves", 1,60, silk_worm, 1),
-				silk_worm,
+				new DoTBItemCanBeDried("mulberry_leaves", 1,60, silk_worms, 1),
+				silk_worms,
 				new DoTBItemCanBeDried("camellia_leaves", 1,40, tea_leaves, 1),
 				tea_leaves,
+				new DoTBItem("silk_worm_eggs"),
 				new DoTBItem("silk_cocoons"),
 				new DoTBItem("silk"),
 				new ItemJapaneseLightArmor(EntityEquipmentSlot.FEET),
