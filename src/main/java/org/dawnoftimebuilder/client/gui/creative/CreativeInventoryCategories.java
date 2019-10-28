@@ -149,6 +149,7 @@ public enum CreativeInventoryCategories {
 			DoTBItems.mulberry,
 			DoTBItems.mulberry_leaves,
 			DoTBItems.silk_worm_eggs,
+			DoTBItems.silk_worm_hatchery,
 			DoTBItems.silk_worms,
 			DoTBItems.silk_cocoons,
 			DoTBItems.silk,

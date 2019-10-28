@@ -25,6 +25,7 @@ public class DoTBItems {
 	@ObjectHolder("rice") public static Item rice;
 	@ObjectHolder("silk") public static Item silk;
 	@ObjectHolder("silk_worms") public static Item silk_worms;
+	@ObjectHolder("silk_worm_hatchery") public static Item silk_worm_hatchery;
 	@ObjectHolder("silk_worm_eggs") public static Item silk_worm_eggs;
 	@ObjectHolder("silk_cocoons") public static Item silk_cocoons;
 	@ObjectHolder("stick_bundle") public static Item stick_bundle;

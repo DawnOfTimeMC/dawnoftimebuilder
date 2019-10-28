@@ -53,20 +53,17 @@ public abstract class BlockTilesSlab extends BlockSlab implements IBlockMeta, IB
 
     @Override
     public void randomTick(World worldIn, BlockPos pos, IBlockState state, Random random) {
-        this.replaceBlock(worldIn, pos, this.getMetaFromState(state));
+        worldIn.setBlockState(pos, getNewState(this.getMetaFromState(state)));
     }
 
     @Override
     public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos) {
-        this.replaceBlock(worldIn, pos, this.getMetaFromState(state));
-    }
-
-    private void replaceBlock(World worldIn, BlockPos pos, int currentMeta){
-        worldIn.setBlockState(pos, getNewState(currentMeta));
+        worldIn.setBlockState(pos, getNewState(this.getMetaFromState(state)));
     }
 
     private IBlockState getNewState(int currentMeta){
         int newMeta = this.isDouble() ? 2 : (currentMeta >= 8) ? 1 : 0;
+        if(currentMeta >= 8) currentMeta -= 8;
         switch(currentMeta){
             case 0 :
                 return DoTBBlocks.spruce_foundation_slab.getStateFromMeta(newMeta);
