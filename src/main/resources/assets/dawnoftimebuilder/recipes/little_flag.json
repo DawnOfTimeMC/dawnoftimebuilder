@@ -1,9 +1,8 @@
 {
 	"type": "minecraft:crafting_shaped",
 	"pattern": [
-		"iii",
-		"III",
-		"III"
+		"ii",
+		"II",
 	],
 	"key": {
 		"I": {
@@ -17,6 +16,6 @@
 	"result": {
 		"item": "dawnoftimebuilder:little_flag",
 		"data": 0,
-		"count": 6
+		"count": 4
 	}
 }
