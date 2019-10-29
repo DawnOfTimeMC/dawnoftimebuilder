@@ -1,0 +1,17 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"II"
+	],
+	"key": {
+		"I": {
+			"item": "dawnoftimebuilder:limestone_brick_slab",
+			"data": 0
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:limestone_brick_edge",
+		"data": 0,
+		"count": 6
+	}
+}
