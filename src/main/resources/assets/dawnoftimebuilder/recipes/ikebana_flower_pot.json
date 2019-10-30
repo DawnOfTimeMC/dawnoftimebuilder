@@ -9,8 +9,7 @@
 			"item": "minecraft:vine"
 		},
 		"i": {
-			"item": "minecraft:flower_pot",
-			"data": 0
+			"item": "minecraft:flower_pot"
 		},
 		"o": {
 			"item": "minecraft:red_flower",

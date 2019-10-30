@@ -1,10 +1,10 @@
 {
 	"type": "minecraft:crafting_shaped",
 	"pattern": [
-		"i"
+		"III"
 	],
 	"key": {
-		"i": {
+		"I": {
 			"item": "dawnoftimebuilder:oak_waxed_planks_slab",
 			"data": 0
 		}
@@ -12,6 +12,6 @@
 	"result": {
 		"item": "dawnoftimebuilder:oak_support_slab",
 		"data": 0,
-		"count": 2
+		"count": 6
 	}
 }

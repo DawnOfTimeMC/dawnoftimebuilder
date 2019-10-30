@@ -1,8 +1,8 @@
 {
 	"type": "minecraft:crafting_shaped",
 	"pattern": [
-		"II ",
-		"IIi"
+		"iI ",
+		"Ii"
 	],
 	"key": {
 		"I": {
@@ -17,6 +17,6 @@
 	"result": {
 		"item": "dawnoftimebuilder:ochre_roof_tiles",
 		"data": 0,
-		"count": 4
+		"count": 6
 	}
 }

@@ -1,18 +1,17 @@
 {
 	"type": "minecraft:crafting_shaped",
 	"pattern": [
-		" I ",
 		"III"
 	],
 	"key": {
 		"I": {
-			"item": "dawnoftimebuilder:thatch_bamboo",
-			"data": 0
+			"item": "minecraft:dirt",
+			"data": 1
 		}
 	},
 	"result": {
-		"item": "dawnoftimebuilder:bamboo_hat",
+		"item": "dawnoftimebuilder:path_dirt_slab",
 		"data": 0,
-		"count": 1
+		"count": 64
 	}
 }

@@ -1,18 +1,17 @@
 {
 	"type": "minecraft:crafting_shaped",
 	"pattern": [
-		" I ",
 		"III"
 	],
 	"key": {
 		"I": {
-			"item": "dawnoftimebuilder:thatch_bamboo",
+			"item": "dawnoftimebuilder:grey_roof_tiles",
 			"data": 0
 		}
 	},
 	"result": {
-		"item": "dawnoftimebuilder:bamboo_hat",
+		"item": "dawnoftimebuilder:grey_roof_tiles_slab",
 		"data": 0,
-		"count": 1
+		"count": 6
 	}
 }

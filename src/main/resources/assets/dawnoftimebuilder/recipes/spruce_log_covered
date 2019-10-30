@@ -1,0 +1,22 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"I",
+		"i"
+	],
+	"key": {
+		"i": {
+			"item": "minecraft:log",
+			"data": 1
+		}
+    "I" : {
+      "item": "minecraft:planks",
+      "data": 1
+	  }
+  },
+	"result": {
+		"item": "dawnoftimebuilder:spruce_log_covered",
+		"data": 0,
+		"count": 4
+	}
+}
