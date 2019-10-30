@@ -1,4 +1,4 @@
-package org.dawnoftimebuilder.items.global;
+package org.dawnoftimebuilder.items.general;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.inventory.EntityEquipmentSlot;

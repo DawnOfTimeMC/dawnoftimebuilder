@@ -17,9 +17,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.registries.IForgeRegistry;
 import org.dawnoftimebuilder.DoTBConfigs;
 import org.dawnoftimebuilder.items.french.ItemIronPlateArmor;
-import org.dawnoftimebuilder.items.global.DoTBItem;
-import org.dawnoftimebuilder.items.global.DoTBItemCanBeDried;
-import org.dawnoftimebuilder.items.global.DoTBItemHat;
+import org.dawnoftimebuilder.items.general.DoTBItem;
+import org.dawnoftimebuilder.items.general.DoTBItemCanBeDried;
+import org.dawnoftimebuilder.items.general.DoTBItemHat;
 import org.dawnoftimebuilder.items.japanese.ItemJapaneseLightArmor;
 import org.dawnoftimebuilder.items.japanese.ItemOYoroiArmor;
 import org.dawnoftimebuilder.items.japanese.ItemRaijinArmor;
@@ -28,8 +28,6 @@ import org.dawnoftimebuilder.items.japanese.ItemTachiSword;
 import java.util.*;
 
 import static org.dawnoftimebuilder.DawnOfTimeBuilder.MOD_ID;
-import static org.dawnoftimebuilder.items.DoTBItems.silk;
-import static org.dawnoftimebuilder.items.DoTBItems.tea_leaves;
 
 public class DoTBItemsRegistry {
 

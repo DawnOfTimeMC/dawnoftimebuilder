@@ -17,7 +17,7 @@ import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import org.dawnoftimebuilder.enums.EnumsBlock;
-import org.dawnoftimebuilder.items.global.DoTBItemDoubleCropsSeed;
+import org.dawnoftimebuilder.items.general.DoTBItemDoubleCropsSeed;
 
 import static org.dawnoftimebuilder.DawnOfTimeBuilder.MOD_ID;
 
@@ -158,7 +158,7 @@ public abstract class DoTBBlockDoubleCrops extends DoTBBlockSoilCrops {
 		return state.withProperty(AGE, age);
 	}
     
-	private boolean isBottomCrop(IBlockAccess world, BlockPos pos){
+	public boolean isBottomCrop(IBlockAccess world, BlockPos pos){
 		return pos.equals(getBottomCrop(world, pos));
 	}
 	

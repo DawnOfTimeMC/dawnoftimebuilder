@@ -15,6 +15,7 @@ import org.dawnoftimebuilder.blocks.DoTBBlocks;
 import org.dawnoftimebuilder.blocks.DoTBBlocksRegistry;
 import org.dawnoftimebuilder.client.gui.DoTGuiHandler;
 import org.dawnoftimebuilder.crafts.OreDictionaryHandler;
+import org.dawnoftimebuilder.entities.DoTBEntitiesRegistry;
 import org.dawnoftimebuilder.items.DoTBItemsRegistry;
 import org.dawnoftimebuilder.proxy.CommonProxy;
 import org.dawnoftimebuilder.tileentity.DoTBTileEntitiesRegistry;
@@ -43,6 +44,7 @@ public class DawnOfTimeBuilder {
 		DoTBBlocksRegistry.init();
 		DoTBItemsRegistry.init();
 		DoTBTileEntitiesRegistry.init();
+		DoTBEntitiesRegistry.init();
 
 		DoTBConfigs.init(new File(event.getModConfigurationDirectory(), MOD_ID + "_disabled_objects.cfg"));
 

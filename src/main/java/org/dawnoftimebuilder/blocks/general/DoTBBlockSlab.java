@@ -15,7 +15,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import org.dawnoftimebuilder.items.global.DoTBItemSlab;
+import org.dawnoftimebuilder.items.general.DoTBItemSlab;
 import org.dawnoftimebuilder.blocks.IBlockCustomItem;
 
 public class DoTBBlockSlab extends DoTBBlock implements IBlockCustomItem {

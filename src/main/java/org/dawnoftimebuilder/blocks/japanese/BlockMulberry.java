@@ -19,6 +19,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import org.dawnoftimebuilder.blocks.general.DoTBBlockDoubleCrops;
+import org.dawnoftimebuilder.entities.EntitySilkmoth;
 import org.dawnoftimebuilder.enums.EnumsBlock;
 
 import javax.annotation.Nullable;
@@ -40,6 +41,30 @@ public class BlockMulberry extends DoTBBlockDoubleCrops {
 	public BlockMulberry() {
 		super("mulberry", Blocks.GRASS);
 		this.setDefaultState(this.getDefaultState().withProperty(AGE_LOWER, 0).withProperty(CUT, false).withProperty(HALF, EnumsBlock.EnumHalf.BOTTOM));
+	}
+
+	@Override
+	public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
+		super.updateTick(worldIn, pos, state, rand);
+		if(!worldIn.isRemote){
+			int dayTime = (int) (worldIn.getWorldTime() % 23999);
+			int bound = 1000;
+			if(dayTime >= 12000){
+				if(dayTime <= 20000) bound /= 5;
+				if(dayTime <= 16000) bound /= 2;
+				if(dayTime <= 13800) bound /= 5;
+			}
+			if(rand.nextInt(bound) == 0){
+				if(!this.isBottomCrop(worldIn, pos)){
+					BlockPos spawnPos = new BlockPos(pos.getX() - 3 + rand.nextInt(7), pos.getY() - 1 + rand.nextInt(3), pos.getZ() - 3 + rand.nextInt(7));
+					if(worldIn.getBlockState(spawnPos).getCollisionBoundingBox(worldIn, spawnPos) == NULL_AABB){
+						EntitySilkmoth entity = new EntitySilkmoth(worldIn);
+						entity.setPosition(spawnPos.getX() + 0.5D, spawnPos.getY() + 0.5D, spawnPos.getZ() + 0.5D);
+						worldIn.spawnEntity(entity);
+					}
+				}
+			}
+		}
 	}
 
 	@Override

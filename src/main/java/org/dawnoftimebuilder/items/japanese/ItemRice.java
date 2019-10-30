@@ -3,7 +3,7 @@ package org.dawnoftimebuilder.items.japanese;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import org.dawnoftimebuilder.items.global.DoTBItemSoilSeeds;
+import org.dawnoftimebuilder.items.general.DoTBItemSoilSeeds;
 
 import static org.dawnoftimebuilder.blocks.DoTBBlocks.rice;
 

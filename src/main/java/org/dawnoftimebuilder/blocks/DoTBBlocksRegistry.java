@@ -18,7 +18,7 @@ import org.dawnoftimebuilder.blocks.mayan.*;
 import org.dawnoftimebuilder.blocks.roman.BlockOchreRoofTilesMerged;
 import org.dawnoftimebuilder.blocks.roman.BlockSandstoneColumn;
 import org.dawnoftimebuilder.enums.IEnumMetaVariants;
-import org.dawnoftimebuilder.items.global.DoTBItemMetaBlock;
+import org.dawnoftimebuilder.items.general.DoTBItemMetaBlock;
 import org.dawnoftimebuilder.items.roman.ItemOchreRoofTilesSlab;
 
 import java.util.ArrayList;

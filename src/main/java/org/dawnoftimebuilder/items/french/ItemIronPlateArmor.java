@@ -4,7 +4,7 @@ import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.dawnoftimebuilder.client.renderer.model.ModelIronPlateArmor;
-import org.dawnoftimebuilder.items.global.DoTBItemCustomArmor;
+import org.dawnoftimebuilder.items.general.DoTBItemCustomArmor;
 
 import static org.dawnoftimebuilder.enums.EArmorMaterial.IRONPLATE;
 

@@ -10,14 +10,17 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.client.model.obj.OBJLoader;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
+import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import org.dawnoftimebuilder.blocks.DoTBBlocks;
 import org.dawnoftimebuilder.client.gui.creative.CreativeInventoryDrawEvent;
+import org.dawnoftimebuilder.client.renderer.entity.RendererSilkmoth;
 import org.dawnoftimebuilder.client.renderer.tileentity.RendererTEDisplayer;
 import org.dawnoftimebuilder.client.renderer.tileentity.RendererTEBed;
 import org.dawnoftimebuilder.client.color.block.BlockLittleFlagColor;
 import org.dawnoftimebuilder.client.color.item.ItemLittleFlagColor;
 import org.dawnoftimebuilder.client.renderer.tileentity.RendererTEDryer;
 import org.dawnoftimebuilder.client.renderer.tileentity.RendererTEStove;
+import org.dawnoftimebuilder.entities.EntitySilkmoth;
 import org.dawnoftimebuilder.items.DoTBItems;
 import org.dawnoftimebuilder.tileentity.DoTBTileEntityBed;
 import org.dawnoftimebuilder.tileentity.DoTBTileEntityDisplayer;
@@ -33,6 +36,8 @@ public class ClientProxy extends CommonProxy {
 	public void preInit(File configFile){
 		super.preInit(configFile);
 		OBJLoader.INSTANCE.addDomain(MOD_ID);
+
+		RenderingRegistry.registerEntityRenderingHandler(EntitySilkmoth.class, RendererSilkmoth.FACTORY);
 	}
 
 	@Override

@@ -24,7 +24,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.dawnoftimebuilder.blocks.IBlockCustomItem;
 import org.dawnoftimebuilder.items.IItemCanBeDried;
-import org.dawnoftimebuilder.items.global.DoTBItemDryer;
+import org.dawnoftimebuilder.items.general.DoTBItemDryer;
 import org.dawnoftimebuilder.tileentity.DoTBTileEntityDryer;
 
 public class DoTBBlockDryer extends DoTBBlockTileEntity implements IBlockCustomItem {

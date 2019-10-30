@@ -8,7 +8,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import org.dawnoftimebuilder.items.global.DoTBItemSoilSeeds;
+import org.dawnoftimebuilder.items.general.DoTBItemSoilSeeds;
 import org.dawnoftimebuilder.blocks.IBlockCustomItem;
 
 import static org.dawnoftimebuilder.DawnOfTimeBuilder.DOTB_TAB;

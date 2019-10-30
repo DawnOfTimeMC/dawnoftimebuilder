@@ -5,7 +5,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import net.minecraft.inventory.EntityEquipmentSlot;
 import org.dawnoftimebuilder.client.renderer.model.ModelOYoroiArmor;
-import org.dawnoftimebuilder.items.global.DoTBItemCustomArmor;
+import org.dawnoftimebuilder.items.general.DoTBItemCustomArmor;
 
 import static org.dawnoftimebuilder.enums.EArmorMaterial.OYOROI;
 
