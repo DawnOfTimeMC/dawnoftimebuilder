@@ -1,0 +1,13 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+		{
+			"item": "dawnoftimebuilder:silk_cocoons"
+		}
+	],
+	"result": {
+		"item": "dawnoftimebuilder:silk_worm_eggs",
+		"data": 0,
+		"count": 3
+	}
+}

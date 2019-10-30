@@ -1,0 +1,16 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"III"
+	],
+	"key": {
+		"I": {
+			"item": "dawnoftimebuilder:mulberry_leaves"
+		}
+	},
+	"result": {
+		"item": "minecraft:paper",
+		"data": 0,
+		"count": 3
+	}
+}

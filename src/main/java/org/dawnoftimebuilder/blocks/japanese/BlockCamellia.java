@@ -1,5 +1,6 @@
 package org.dawnoftimebuilder.blocks.japanese;
 
+import net.minecraft.block.BlockGrass;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
@@ -18,15 +19,18 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import org.dawnoftimebuilder.blocks.IBlockFlowerGen;
 import org.dawnoftimebuilder.blocks.general.DoTBBlockSoilCrops;
 
 import javax.annotation.Nullable;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 import static org.dawnoftimebuilder.items.DoTBItems.camellia_leaves;
 import static org.dawnoftimebuilder.items.DoTBItems.camellia_seed;
 
-public class BlockCamellia extends DoTBBlockSoilCrops {
+public class BlockCamellia extends DoTBBlockSoilCrops implements IBlockFlowerGen {
 
 	private static final AxisAlignedBB[] AABB_BY_INDEX = new AxisAlignedBB[] {
 			new AxisAlignedBB(0.3125D, 0.0D, 0.3125D, 0.6875D, 0.34375D, 0.6875D),
@@ -140,5 +144,41 @@ public class BlockCamellia extends DoTBBlockSoilCrops {
 				}
 			}
 		}
+	}
+
+	@Override
+	public List<String> getAcceptedBiomes() {
+		return Arrays.asList(
+				"mutated_forest",
+				"jungle",
+				"jungle_hills"
+		);
+	}
+
+	@Override
+	public void spawnInWorld(World world, BlockPos pos, Random rand) {
+		if(world.getBlockState(pos.down()).getBlock() == Blocks.GRASS){
+			world.setBlockState(pos, this.withAge(rand.nextInt(5)), 2);
+		}
+	}
+
+	@Override
+	public int getPatchSize() {
+		return 5;
+	}
+
+	@Override
+	public int getPatchChance() {
+		return 6;
+	}
+
+	@Override
+	public int getPatchQuantity() {
+		return 2;
+	}
+
+	@Override
+	public int getPatchDensity() {
+		return 8;
 	}
 }

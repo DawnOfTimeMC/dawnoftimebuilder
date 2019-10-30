@@ -3,6 +3,9 @@ package org.dawnoftimebuilder.blocks;
 import net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
 import net.minecraft.block.Block;
 import org.dawnoftimebuilder.blocks.general.DoTBBlockSoilCrops;
+import org.dawnoftimebuilder.blocks.japanese.BlockCamellia;
+import org.dawnoftimebuilder.blocks.japanese.BlockMulberry;
+import org.dawnoftimebuilder.blocks.japanese.BlockRice;
 
 import static org.dawnoftimebuilder.DawnOfTimeBuilder.MOD_ID;
 
@@ -68,6 +71,8 @@ public class DoTBBlocks {
 
 	//japanese
 	@ObjectHolder("bamboo_drying_tray") public static Block bamboo_drying_tray;
+	@ObjectHolder("camellia") public static BlockCamellia camellia;
+	@ObjectHolder("mulberry") public static BlockMulberry mulberry;
 	@ObjectHolder("cast_iron_teapot") public static Block cast_iron_teapot;
 	@ObjectHolder("cast_iron_teacup") public static Block cast_iron_teacup;
 	@ObjectHolder("flowery_paper_wall") public static Block flowery_paper_wall;
@@ -111,7 +116,7 @@ public class DoTBBlocks {
 	@ObjectHolder("futon") public static Block futon;
 	@ObjectHolder("little_flag") public static Block little_flag;
 	@ObjectHolder("paper_door") public static Block paper_door;
-	@ObjectHolder("rice") public static DoTBBlockSoilCrops rice;
+	@ObjectHolder("rice") public static BlockRice rice;
 	@ObjectHolder("tatami_mat") public static Block tatami_mat;
 
 	//mayan

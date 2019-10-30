@@ -1,17 +1,21 @@
 {
 	"type": "minecraft:crafting_shaped",
 	"pattern": [
-		"xix",
+		"oio",
 		"ixi",
 		"i i"
 	],
 	"key": {
 		"i": {
-			"item": "minecraft:wool",
-			"data": 14
+			"item": "dawnoftimebuilder:silk"
 		},
 		"x": {
-			"item": "minecraft:gold_ingot"
+			"item": "minecraft:gold_block",
+			"data": 0
+		},
+		"o": {
+			"item": "minecraft:dye",
+			"data": 1
 		}
 	},
 	"result": {

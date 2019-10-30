@@ -35,6 +35,7 @@ public class DawnOfTimeBuilder {
 
 	public DawnOfTimeBuilder(){
 		MinecraftForge.EVENT_BUS.register(new DoTBEvents());
+		MinecraftForge.TERRAIN_GEN_BUS.register(new DoTBWorldGen());
 	}
 
 	@EventHandler

@@ -1,25 +1,21 @@
 {
 	"type": "minecraft:crafting_shaped",
 	"pattern": [
-		"ooO",
-		"I I",
-		"i i"
+		"xOx",
+		"III",
+		"I I"
 	],
 	"key": {
-		"i": {
-			"item": "minecraft:coal",
-			"data": 0
+		"x": {
+			"item": "minecraft:dye",
+			"data": 1
 		},
 		"I": {
-			"item": "minecraft:redstone_block",
-			"data": 0
-		},
-		"o": {
-			"item": "minecraft:coal_block",
-			"data": 0
+			"item": "dawnoftimebuilder:silk"
 		},
 		"O": {
-			"item": "minecraft:gold_ingot"
+			"item": "minecraft:gold_block",
+			"data": 0
 		}
 	},
 	"result": {

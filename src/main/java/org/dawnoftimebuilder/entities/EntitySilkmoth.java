@@ -50,7 +50,9 @@ public class EntitySilkmoth extends EntityAmbientCreature {
 		super.onUpdate();
 
 		if(!world.isRemote){
-			if(this.ticksExisted >= 24000) this.setDead();
+			if(this.ticksExisted >= 24000){
+				if(!this.hasCustomName()) this.setDead();
+			}
 
 			if(this.rand.nextInt(1000) == 0) this.changeRotationPos();
 

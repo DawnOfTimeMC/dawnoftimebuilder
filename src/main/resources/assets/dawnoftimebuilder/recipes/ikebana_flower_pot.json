@@ -1,25 +1,21 @@
 {
-	"type": "minecraft:crafting_shaped",
-	"pattern": [
-		"Iox",
-		" i "
-	],
-	"key": {
-		"I": {
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+		{
 			"item": "minecraft:vine"
 		},
-		"i": {
+		{
 			"item": "minecraft:flower_pot"
 		},
-		"o": {
+		{
 			"item": "minecraft:red_flower",
 			"data": 2
 		},
-		"x": {
+		{
 			"item": "minecraft:red_flower",
 			"data": 3
 		}
-	},
+	],
 	"result": {
 		"item": "dawnoftimebuilder:ikebana_flower_pot",
 		"data": 0,

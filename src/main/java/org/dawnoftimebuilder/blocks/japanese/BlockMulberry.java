@@ -18,16 +18,21 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.BiomeTaiga;
+import org.dawnoftimebuilder.blocks.IBlockFlowerGen;
 import org.dawnoftimebuilder.blocks.general.DoTBBlockDoubleCrops;
 import org.dawnoftimebuilder.entities.EntitySilkmoth;
 import org.dawnoftimebuilder.enums.EnumsBlock;
 
 import javax.annotation.Nullable;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 import static org.dawnoftimebuilder.items.DoTBItems.*;
 
-public class BlockMulberry extends DoTBBlockDoubleCrops {
+public class BlockMulberry extends DoTBBlockDoubleCrops implements IBlockFlowerGen {
 
 	private static final AxisAlignedBB AABB_LEVEL_0 = new AxisAlignedBB(0.375D, 0.0D, 0.375D, 0.625D, 0.5D, 0.625D);
 	private static final AxisAlignedBB AABB_LEVEL_1 = new AxisAlignedBB(0.375D, 0.0D, 0.375D, 0.625D, 1.0D, 0.625D);
@@ -198,5 +203,48 @@ public class BlockMulberry extends DoTBBlockDoubleCrops {
 		if(state.getValue(CUT)) meta = 5;
 		if(state.getValue(HALF) == EnumsBlock.EnumHalf.TOP) meta += 8;
 		return meta;
+	}
+
+	@Override
+	public List<String> getAcceptedBiomes() {
+		return Arrays.asList(
+				"taiga_hills",
+				"taiga",
+				"redwood_taiga",
+				"redwood_taiga_hills",
+				"mutated_forest"
+		);
+	}
+
+	@Override
+	public void spawnInWorld(World world, BlockPos pos, Random rand) {
+		if(world.getBlockState(pos.down()).getBlock() == Blocks.GRASS){
+			boolean canGrow = world.getBlockState(pos.up()).getBlock() == Blocks.AIR;
+			if(canGrow){
+				int age = rand.nextInt(5);
+				world.setBlockState(pos, this.withAge(age).withProperty(HALF, EnumsBlock.EnumHalf.BOTTOM), 2);
+				if(age >= this.getAgeReachingTopBlock()) world.setBlockState(pos.up(), this.withAge(age).withProperty(HALF, EnumsBlock.EnumHalf.TOP), 2);
+			}else world.setBlockState(pos, this.withAge(rand.nextInt(2)));
+		}
+	}
+
+	@Override
+	public int getPatchSize() {
+		return 6;
+	}
+
+	@Override
+	public int getPatchChance() {
+		return 30;
+	}
+
+	@Override
+	public int getPatchQuantity() {
+		return 2;
+	}
+
+	@Override
+	public int getPatchDensity() {
+		return 4;
 	}
 }
