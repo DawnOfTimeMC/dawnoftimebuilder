@@ -31,8 +31,8 @@ public class ItemCastIronTeapot extends DoTBItemMetaBlock {
 		}
 	};
 
-	public ItemCastIronTeapot( ) {
-		super((IBlockMeta) cast_iron_teapot);
+	public ItemCastIronTeapot(IBlockMeta block) {
+		super(block);
 		this.setMaxStackSize(1);
 
 		//Change model, based on style

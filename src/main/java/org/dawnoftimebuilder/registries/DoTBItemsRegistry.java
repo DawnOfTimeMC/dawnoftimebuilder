@@ -1,11 +1,13 @@
 package org.dawnoftimebuilder.registries;
 
+import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.IModel;
 import net.minecraftforge.client.model.ModelLoader;
@@ -16,6 +18,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.registries.IForgeRegistry;
 import org.dawnoftimebuilder.DoTBConfigs;
+import org.dawnoftimebuilder.blocks.IBlockMeta;
+import org.dawnoftimebuilder.enums.IEnumMetaVariants;
 import org.dawnoftimebuilder.items.IItemCanBeDried;
 import org.dawnoftimebuilder.items.french.ItemIronPlateArmor;
 import org.dawnoftimebuilder.items.general.DoTBItem;
@@ -82,14 +86,31 @@ public class DoTBItemsRegistry {
 	@SubscribeEvent
 	public static void registerItems(RegistryEvent.Register<Item> event) {
 		IForgeRegistry<Item> registry = event.getRegistry();
+		boolean enabled;
 		for(Item item : items_list){
 
-			if(!DoTBConfigs.enabledMap.get(Objects.requireNonNull(item.getRegistryName()).getPath())){
+			if(DoTBConfigs.enabledMap.containsKey(Objects.requireNonNull(item.getRegistryName()).getPath())){
+				if(!DoTBConfigs.enabledMap.get(Objects.requireNonNull(item.getRegistryName()).getPath())) continue;
 				//Disabled in the config file → skip registering the item
-				continue;
 			}
 
 			registry.register(item);
+		}
+	}
+
+	@SideOnly(Side.CLIENT)
+	public static void registerItemsModels(){
+		for(Item item : items_list){
+			if(item instanceof ItemBlock){
+				Block block = ((ItemBlock) item).getBlock();
+				if(block instanceof IBlockMeta){
+					IBlockMeta blockMeta = (IBlockMeta) block;
+					for(IEnumMetaVariants variant : blockMeta.getVariants()){
+						setResourceLocation(item, variant.getMetadata(), variant.getName());
+					}
+					continue;
+				}
+			}
 			setResourceLocation(item);
 		}
 	}
@@ -104,6 +125,7 @@ public class DoTBItemsRegistry {
 		setResourceLocation(item, meta, new ModelResourceLocation(Objects.requireNonNull(item.getRegistryName()).toString() + "_" + variant, "inventory"));
 	}
 
+	@SideOnly(Side.CLIENT)
 	private static void setResourceLocation(Item item, int meta, ModelResourceLocation location){
 		ModelLoader.setCustomModelResourceLocation(item, meta, location);
 		if(item instanceof IItemCanBeDried) {
@@ -112,10 +134,12 @@ public class DoTBItemsRegistry {
 		}
 	}
 
+	@SideOnly(Side.CLIENT)
 	private static void preInitCustomModels(String path, String name){
 		CUSTOM_MODELS.put(path + "/" + name, null);
 	}
 
+	@SideOnly(Side.CLIENT)
 	public static void initCustomModels(){
 		HashMap<String, IBakedModel> models = new HashMap<>();
 

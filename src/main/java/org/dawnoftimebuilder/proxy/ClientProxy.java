@@ -22,6 +22,7 @@ import org.dawnoftimebuilder.client.renderer.tileentity.RendererTEDryer;
 import org.dawnoftimebuilder.client.renderer.tileentity.RendererTEStove;
 import org.dawnoftimebuilder.entities.EntitySilkmoth;
 import org.dawnoftimebuilder.items.DoTBItems;
+import org.dawnoftimebuilder.registries.DoTBItemsRegistry;
 import org.dawnoftimebuilder.tileentity.DoTBTileEntityBed;
 import org.dawnoftimebuilder.tileentity.DoTBTileEntityDisplayer;
 import org.dawnoftimebuilder.tileentity.DoTBTileEntityDryer;
@@ -50,6 +51,9 @@ public class ClientProxy extends CommonProxy {
 
 		registerItemColors();
 		registerBlockColors();
+
+		DoTBItemsRegistry.initCustomModels();
+
 		MinecraftForge.EVENT_BUS.register(new CreativeInventoryDrawEvent());
 	}
 

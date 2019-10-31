@@ -7,6 +7,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.registries.IForgeRegistry;
 import org.dawnoftimebuilder.DawnOfTimeBuilder;
 import org.dawnoftimebuilder.DoTBConfigs;
@@ -28,6 +30,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
+import static org.dawnoftimebuilder.DawnOfTimeBuilder.DOTB_TAB;
 import static org.dawnoftimebuilder.registries.DoTBItemsRegistry.setResourceLocation;
 
 public class DoTBBlocksRegistry {
@@ -211,46 +214,20 @@ public class DoTBBlocksRegistry {
 		}
 	}
 
-	@SubscribeEvent
-	public static void registerBlockItems(RegistryEvent.Register<Item> event) {
-		IForgeRegistry<Item> registry = event.getRegistry();
+	public static void initItemBlocks() {
 		for (Block block : blocks_list) {
-			String blockName = Objects.requireNonNull(block.getRegistryName()).getPath();
-
-			if(!DoTBConfigs.enabledMap.get(blockName)){
-				//Disabled in the config file → skip registering the item
-				continue;
-			}
 
 			Item item;
 			if(block instanceof IBlockCustomItem){
 				item = ((IBlockCustomItem)block).getCustomItemBlock();
-				if(item != null){
-					item = item.setCreativeTab(DawnOfTimeBuilder.DOTB_TAB);
-					registry.register(item);
-					if(block instanceof IBlockMeta) {
-						IBlockMeta blockMeta = (IBlockMeta) block;
-						for (IEnumMetaVariants variant : blockMeta.getVariants()) {
-							setResourceLocation(item, variant.getMetadata(), variant.getName());
-						}
-					}else {
-						setResourceLocation(item);
-					}
-				}
-
 			}else if(block instanceof IBlockMeta){
 				IBlockMeta blockMeta = (IBlockMeta) block;
-				item = new DoTBItemMetaBlock(blockMeta).setRegistryName(block.getRegistryName()).setTranslationKey(block.getTranslationKey()).setCreativeTab(DawnOfTimeBuilder.DOTB_TAB);
-				registry.register(item);
-				for(IEnumMetaVariants variant : blockMeta.getVariants()){
-					setResourceLocation(item, variant.getMetadata(), variant.getName());
-				}
-
+				item = new DoTBItemMetaBlock(blockMeta).setRegistryName(block.getRegistryName()).setTranslationKey(block.getTranslationKey());
 			}else{
-				item = new ItemBlock(block).setRegistryName(block.getRegistryName()).setTranslationKey(block.getTranslationKey()).setCreativeTab(DawnOfTimeBuilder.DOTB_TAB);
-				registry.register(item);
-				setResourceLocation(item);
+				item = new ItemBlock(block).setRegistryName(block.getRegistryName()).setTranslationKey(block.getTranslationKey());
 			}
+
+			if(item != null) DoTBItemsRegistry.items_list.add(item.setCreativeTab(DOTB_TAB));
 		}
 	}
 }

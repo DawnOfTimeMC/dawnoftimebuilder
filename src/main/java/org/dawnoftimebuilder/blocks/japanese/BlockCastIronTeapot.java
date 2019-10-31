@@ -132,7 +132,7 @@ public class BlockCastIronTeapot extends DoTBBlock implements IBlockMeta, IBlock
 
 	@Override
 	public Item getCustomItemBlock() {
-		return new ItemCastIronTeapot()
+		return new ItemCastIronTeapot(this)
 				.setRegistryName(this.getRegistryName())
 				.setTranslationKey(this.getTranslationKey());
 	}
