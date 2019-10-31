@@ -8,9 +8,9 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
-import org.dawnoftimebuilder.blocks.DoTBBlocksRegistry;
+import org.dawnoftimebuilder.registries.DoTBBlocksRegistry;
 import org.dawnoftimebuilder.crafts.DoTBRecipesRegistry;
-import org.dawnoftimebuilder.items.DoTBItemsRegistry;
+import org.dawnoftimebuilder.registries.DoTBItemsRegistry;
 
 import java.util.Objects;
 

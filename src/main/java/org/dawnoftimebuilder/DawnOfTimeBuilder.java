@@ -12,13 +12,10 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import org.apache.logging.log4j.Logger;
 import org.dawnoftimebuilder.blocks.DoTBBlocks;
-import org.dawnoftimebuilder.blocks.DoTBBlocksRegistry;
+import org.dawnoftimebuilder.registries.*;
 import org.dawnoftimebuilder.client.gui.DoTGuiHandler;
 import org.dawnoftimebuilder.crafts.OreDictionaryHandler;
-import org.dawnoftimebuilder.entities.DoTBEntitiesRegistry;
-import org.dawnoftimebuilder.items.DoTBItemsRegistry;
 import org.dawnoftimebuilder.proxy.CommonProxy;
-import org.dawnoftimebuilder.tileentity.DoTBTileEntitiesRegistry;
 
 import java.io.File;
 
@@ -57,6 +54,8 @@ public class DawnOfTimeBuilder {
 		OreDictionaryHandler.init();
 		NETWORK.registerGuiHandler(instance, new DoTGuiHandler());
 		proxy.init();
+
+		DoTBRecipesRegistry.init();
 		DoTBItemsRegistry.initCustomModels();
 	}
 

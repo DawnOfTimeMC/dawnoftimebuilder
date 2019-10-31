@@ -12,6 +12,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import org.dawnoftimebuilder.blocks.japanese.BlockMulberry;
+import org.dawnoftimebuilder.registries.DoTBEntitiesRegistry;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;

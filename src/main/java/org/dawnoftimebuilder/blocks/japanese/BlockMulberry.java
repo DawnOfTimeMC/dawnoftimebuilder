@@ -53,9 +53,9 @@ public class BlockMulberry extends DoTBBlockDoubleCrops implements IBlockFlowerG
 		super.updateTick(worldIn, pos, state, rand);
 		if(!worldIn.isRemote){
 			int dayTime = (int) (worldIn.getWorldTime() % 23999);
-			int bound = 1000;
+			int bound = 900;
 			if(dayTime >= 12000){
-				if(dayTime <= 20000) bound /= 5;
+				if(dayTime <= 20000) bound /= 6;
 				if(dayTime <= 16000) bound /= 2;
 				if(dayTime <= 13800) bound /= 5;
 			}

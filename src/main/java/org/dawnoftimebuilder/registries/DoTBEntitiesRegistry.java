@@ -1,4 +1,4 @@
-package org.dawnoftimebuilder.entities;
+package org.dawnoftimebuilder.registries;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.tileentity.TileEntity;
@@ -6,6 +6,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.storage.loot.LootTableList;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import org.dawnoftimebuilder.entities.EntitySilkmoth;
 import org.dawnoftimebuilder.tileentity.*;
 
 import java.awt.*;

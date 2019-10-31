@@ -169,7 +169,7 @@ public class BlockCamellia extends DoTBBlockSoilCrops implements IBlockFlowerGen
 
 	@Override
 	public int getPatchChance() {
-		return 6;
+		return 10;
 	}
 
 	@Override

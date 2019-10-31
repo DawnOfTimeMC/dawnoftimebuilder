@@ -7,9 +7,9 @@
 	"key": {
 		"I": {
 			"item": "dawnoftimebuilder:wax"
-		}
+		},
     "i": {
-      "item": "minecraft:planks"
+      "item": "minecraft:planks",
       "data": 0
       }
 	},

@@ -1,9 +1,10 @@
-package org.dawnoftimebuilder.tileentity;
+package org.dawnoftimebuilder.registries;
 
 import net.minecraft.util.ResourceLocation;
 
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import org.dawnoftimebuilder.tileentity.*;
 
 import static org.dawnoftimebuilder.DawnOfTimeBuilder.MOD_ID;
 

@@ -1,4 +1,4 @@
-package org.dawnoftimebuilder.items;
+package org.dawnoftimebuilder.registries;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.IBakedModel;
@@ -16,6 +16,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.registries.IForgeRegistry;
 import org.dawnoftimebuilder.DoTBConfigs;
+import org.dawnoftimebuilder.items.IItemCanBeDried;
 import org.dawnoftimebuilder.items.french.ItemIronPlateArmor;
 import org.dawnoftimebuilder.items.general.DoTBItem;
 import org.dawnoftimebuilder.items.general.DoTBItemCanBeDried;

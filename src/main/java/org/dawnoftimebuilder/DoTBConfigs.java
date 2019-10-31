@@ -3,8 +3,8 @@ package org.dawnoftimebuilder;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.config.Configuration;
-import org.dawnoftimebuilder.blocks.DoTBBlocksRegistry;
-import org.dawnoftimebuilder.items.DoTBItemsRegistry;
+import org.dawnoftimebuilder.registries.DoTBBlocksRegistry;
+import org.dawnoftimebuilder.registries.DoTBItemsRegistry;
 
 import java.io.File;
 import java.util.HashMap;

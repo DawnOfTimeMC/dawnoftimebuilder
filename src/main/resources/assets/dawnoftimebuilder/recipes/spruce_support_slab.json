@@ -1,19 +1,17 @@
 {
 	"type": "minecraft:crafting_shaped",
 	"pattern": [
-		"I  ",
-		"II ",
 		"III"
 	],
 	"key": {
 		"I": {
-			"item": "minecraft:coal",
-			"data": 0
+			"item": "minecraft:wooden_slab",
+			"data": 1
 		}
 	},
 	"result": {
-		"item": "dawnoftimebuilder:grey_tile",
+		"item": "dawnoftimebuilder:spruce_support_slab",
 		"data": 0,
-		"count": 8
+		"count": 6
 	}
 }

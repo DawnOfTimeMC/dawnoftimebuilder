@@ -12,7 +12,7 @@ import net.minecraft.util.ITickable;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import org.dawnoftimebuilder.items.DoTBItemsRegistry;
+import org.dawnoftimebuilder.registries.DoTBItemsRegistry;
 import org.dawnoftimebuilder.items.IItemCanBeDried;
 
 import java.util.Objects;

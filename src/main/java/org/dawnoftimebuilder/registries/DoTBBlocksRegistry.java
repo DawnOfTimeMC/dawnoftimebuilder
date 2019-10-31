@@ -1,4 +1,4 @@
-package org.dawnoftimebuilder.blocks;
+package org.dawnoftimebuilder.registries;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -10,6 +10,8 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.registries.IForgeRegistry;
 import org.dawnoftimebuilder.DawnOfTimeBuilder;
 import org.dawnoftimebuilder.DoTBConfigs;
+import org.dawnoftimebuilder.blocks.IBlockCustomItem;
+import org.dawnoftimebuilder.blocks.IBlockMeta;
 import org.dawnoftimebuilder.blocks.compatibility.*;
 import org.dawnoftimebuilder.blocks.french.*;
 import org.dawnoftimebuilder.blocks.general.*;
@@ -26,7 +28,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-import static org.dawnoftimebuilder.items.DoTBItemsRegistry.setResourceLocation;
+import static org.dawnoftimebuilder.registries.DoTBItemsRegistry.setResourceLocation;
 
 public class DoTBBlocksRegistry {
 
