@@ -2,7 +2,7 @@
 	"type": "minecraft:crafting_shaped",
 	"pattern": [
 		"III",
-		"I I",
+		"IoI",
 		"IiI"
 	],
 	"key": {
@@ -12,6 +12,10 @@
 		},
 		"i": {
 			"item": "minecraft:log",
+			"data": 0
+		},
+		"o": {
+			"item": "minecraft:coal",
 			"data": 0
 		}
 	},
