@@ -1,19 +1,16 @@
 {
-	"type": "minecraft:crafting_shaped",
-	"pattern": [
-		"iI"
-	],
-	"key": {
-		"i": {
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+		{
 			"item": "minecraft:sugar"
 		},
-		"I": {
+		{
 			"item": "minecraft:torch"
 		}
-	},
+	],
 	"result": {
 		"item": "dawnoftimebuilder:wax",
 		"data": 0,
-		"count": 20
+		"count": 10
 	}
 }
