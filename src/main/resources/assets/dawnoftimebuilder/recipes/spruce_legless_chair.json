@@ -11,8 +11,7 @@
 			"data": 1
 		},
 		"I": {
-			"item": "minecraft:wool",
-			"data": 0
+			"item": "dawnoftimebuilder:silk"
 		}
 	},
 	"result": {
