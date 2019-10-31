@@ -7,8 +7,7 @@
 	],
 	"key": {
 		"o": {
-			"item": "minecraft:wool",
-			"data": 0
+			"item": "dawnoftimebuilder:silk"
 		},
 		"I": {
 			"item": "minecraft:leather"
