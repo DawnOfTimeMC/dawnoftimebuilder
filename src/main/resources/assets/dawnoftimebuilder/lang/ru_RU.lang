@@ -1,4 +1,4 @@
-﻿itemGroup.dawnoftimebuilder=Dawn of Time : Builder Edition
+﻿itemGroup.dawnoftimebuilder=Dawn of Time : Для строителя
 
 tile.dawnoftimebuilder.path_cobbled.name=Дорожная плитка
 tile.dawnoftimebuilder.path_dirt.name=Дорожка из грязи
@@ -79,6 +79,8 @@ item.dawnoftimebuilder.camellia_leaves.name=Листья камелии
 item.dawnoftimebuilder.tea_leaves.name=Чайные листья
 item.dawnoftimebuilder.mulberry_leaves.name=Шелковица
 item.dawnoftimebuilder.silk_worm.name=Шёлковый червь
+item.dawnoftimebuilder.silk_worm_eggs.name=Яйца шёлкового червя
+item.dawnoftimebuilder.silk_worm_hatchery.name=Инкубатор для шёлковых червей
 item.dawnoftimebuilder.silk_cocoons.name=Шёлковые коконы
 item.dawnoftimebuilder.silk.name=Шёлк
 item.dawnoftimebuilder.grey_tile.name=Кафельная плитка
@@ -95,7 +97,7 @@ tile.dawnoftimebuilder.grey_roof_tiles.name=Японская черепица
 tile.dawnoftimebuilder.grey_roof_tiles_stairs.name=Лестница из японской черепицы
 tile.dawnoftimebuilder.grey_roof_tiles_slab.name=Поублок японской черепицы
 tile.dawnoftimebuilder.grey_roof_tiles_edge.name=Край японской черепицы
-tile.dawnoftimebuilder.grey_roof_tiles_wall.name=Yane no Kabe
+tile.dawnoftimebuilder.grey_roof_tiles_wall.name=Забор из японской черепицы
 tile.dawnoftimebuilder.red_painted_log.name=Покрашенное красное бревно
 tile.dawnoftimebuilder.spruce_foundation.name=Основа из ели
 tile.dawnoftimebuilder.spruce_foundation_slab.name=Плита из еловой основы
