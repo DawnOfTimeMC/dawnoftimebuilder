@@ -12,7 +12,6 @@ import static org.dawnoftimebuilder.DawnOfTimeBuilder.MOD_ID;
 
 public class RendererSilkmoth extends RenderLiving<EntitySilkmoth> implements IRenderFactory {
 
-	private static final ResourceLocation TEXTURE = new ResourceLocation(MOD_ID, "textures/entity/silkmoth.png");
 	public static final IRenderFactory<EntitySilkmoth> FACTORY = RendererSilkmoth::new;
 
 	private RendererSilkmoth(RenderManager renderManagerIn) {
@@ -21,7 +20,7 @@ public class RendererSilkmoth extends RenderLiving<EntitySilkmoth> implements IR
 
 	@Override
 	protected ResourceLocation getEntityTexture(EntitySilkmoth entity) {
-		return TEXTURE;
+		return new ResourceLocation(MOD_ID, "textures/entity/silkmoth.png");
 	}
 
 	@Override

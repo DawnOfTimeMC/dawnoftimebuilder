@@ -62,7 +62,6 @@ tile.dawnoftimebuilder.oak_beam.name=Oak Beam
 tile.dawnoftimebuilder.oak_planks_edge.name=Oak Planks Edge
 item.dawnoftimebuilder.wax.name=Wax
 
-
 item.dawnoftimebuilder.tachi_sword.name=Tachi
 item.dawnoftimebuilder.o_yoroi_armor_head.name=O-Yoroi Helmet
 item.dawnoftimebuilder.o_yoroi_armor_chest.name=O-Yoroi Chestplate
@@ -172,3 +171,6 @@ tile.dawnoftimebuilder.serpent_sculpted_column.name=Serpent Sculpted Column
 tile.dawnoftimebuilder.ochre_roof_tiles.name=Ochre Roof Tiles
 tile.dawnoftimebuilder.ochre_roof_tiles_slab.name=Ochre Roof Tiles Slab
 tile.dawnoftimebuilder.sandstone_column.name=Sandstone Column
+
+entity.dawnoftimebuilder.silkmoth.name=Silkmoth
+entity.dawnoftimebuilder.japanese_dragon.name=Japanese Dragon
