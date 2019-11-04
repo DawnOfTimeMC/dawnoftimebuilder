@@ -136,7 +136,7 @@ tile.dawnoftimebuilder.camellia.name=Камелия
 tile.dawnoftimebuilder.paper_folding_screen.name=Бумажная собирающаяся стенка
 tile.dawnoftimebuilder.stick_bundle.name=Свёрток шёлка
 
-tile.dawnoftimebuilder.commelina_flower.name=Коммелина
+tile.dawnoftimebuilder.commelina.name=Коммелина
 tile.dawnoftimebuilder.maize.name=Кукуруза
 tile.dawnoftimebuilder.chiseled_plastered_stone_chiseled_plastered_stone.name=Точеный оштукатуренный камень
 tile.dawnoftimebuilder.chiseled_plastered_stone_green_chiseled_plastered_stone.name=Зеленый точеный оштукатуренный камень
@@ -171,3 +171,6 @@ tile.dawnoftimebuilder.serpent_sculpted_column.name=Змеиная скульп�
 tile.dawnoftimebuilder.ochre_roof_tiles.name=Охра черепица
 tile.dawnoftimebuilder.ochre_roof_tiles_slab.name=Плитка Охра черепицы
 tile.dawnoftimebuilder.sandstone_column.name=Колонна из песчаника
+
+entity.dawnoftimebuilder.silkmoth.name=Silkmoth
+entity.dawnoftimebuilder.japanese_dragon.name=Japanese Dragon
