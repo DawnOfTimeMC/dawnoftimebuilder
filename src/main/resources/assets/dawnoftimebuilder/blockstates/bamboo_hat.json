@@ -39,7 +39,7 @@
 					},
 					"head": {
 						"rotation": [ { "x": 10 }, { "y": 0 }, { "z": 0 } ],
-						"translation": [0.41, 0.45, 0.41],
+						"translation": [0.41, 0.50, 0.41],
 						"scale": 0.8
 					},
 					"fixed": {

@@ -422,6 +422,9 @@ public class ModelJapaneseDragon extends ModelBase {
 		this.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale, entityIn);
 
 		float customScale = ((EntityJapaneseDragon) entityIn).getDragonSize();
+		float offset = -0.75F + 1.5F /customScale;
+		this.HeadCenter.offsetY += offset;
+		this.BodyA.offsetY += offset;
 
 		GlStateManager.pushMatrix();
 		GlStateManager.scale(customScale, customScale, customScale);
@@ -441,8 +444,8 @@ public class ModelJapaneseDragon extends ModelBase {
 		float PI = (float)Math.PI;
 		float moveProgress = ageInTicks / moveDuration % 2.0F;
 
-		this.HeadCenter.offsetX = 0.0F; //0.25F * sinPI(1 + moveProgress);
-		this.HeadCenter.offsetY = 0.0F; //0.15F * sinPI(2.0F * moveProgress);
+		this.HeadCenter.offsetX = 0.25F * sinPI(1 + moveProgress);
+		this.HeadCenter.offsetY = 0.15F * sinPI(2.0F * moveProgress);
 		this.BodyA.offsetX = 0.25F * sinPI(1 + moveProgress);
 		this.BodyA.offsetY = 0.15F * sinPI(2.0F * moveProgress);
 

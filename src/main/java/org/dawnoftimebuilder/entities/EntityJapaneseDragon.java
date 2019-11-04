@@ -2,6 +2,7 @@ package org.dawnoftimebuilder.entities;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityCreature;
+import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.player.EntityPlayer;
@@ -16,6 +17,7 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 import org.dawnoftimebuilder.registries.DoTBEntitiesRegistry;
 
@@ -26,27 +28,59 @@ import static net.minecraft.block.Block.NULL_AABB;
 
 public class EntityJapaneseDragon extends EntityCreature {
 
-	private static final DataParameter<Float> SYNC_SIZE = EntityDataManager.createKey(EntityJapaneseDragon.class, DataSerializers.FLOAT);
-	private double speed;
+	private static final DataParameter<Float> SIZE = EntityDataManager.createKey(EntityJapaneseDragon.class, DataSerializers.FLOAT);
 
 	public EntityJapaneseDragon(World worldIn) {
 		super(worldIn);
-
-		float dragonSize = (float) this.rand.nextGaussian();
-		if(dragonSize < 0) dragonSize = -1 / (dragonSize - 1);
-		else dragonSize = (float) (1.0D + Math.min(dragonSize * 0.5D, 15.0D));
-
-		dataManager.set(SYNC_SIZE, dragonSize);
-		this.speed = 0.4D + 0.2D * this.getDragonSize();
-		this.setSize(1.5F * dragonSize, 1.5F * dragonSize);
-		this.experienceValue = (int) Math.ceil(100 * dragonSize);
 		this.moveHelper = new JapaneseDragonMoveHelper(this);
 	}
 
+	@Nullable
 	@Override
-	protected void entityInit(){
+	public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData livingdata) {
+
+		float size = (float) this.rand.nextGaussian();
+		if(size < 0) size = -1 / (size - 1);
+		else size = (float) (1.0D + Math.min(size * 0.5D, 15.0D));
+
+		this.setDragonSize(size);
+		this.experienceValue = (int) Math.ceil(100 * size);
+
+		return super.onInitialSpawn(difficulty, livingdata);
+	}
+
+	@Override
+	protected void entityInit() {
 		super.entityInit();
-		dataManager.register(SYNC_SIZE, 1.0F);
+		this.dataManager.register(SIZE, 1.0F);
+	}
+
+	public final float getDragonSize(){
+		return this.dataManager.get(SIZE);
+	}
+
+	private float getSpeed(){
+		return 0.4F + /*0.2F * */this.getDragonSize();
+	}
+
+	private void setDragonSize(float size){
+		this.dataManager.set(SIZE, size);
+	}
+
+	@Override
+	public void readEntityFromNBT(NBTTagCompound compound) {
+		super.readEntityFromNBT(compound);
+		float size = compound.getFloat("JapaneseDragonSize");
+		if(size > 0.0F){
+			this.setDragonSize(size);
+			this.experienceValue = (int) Math.ceil(100 * size);
+		}
+	}
+
+	@Override
+	public void writeEntityToNBT(NBTTagCompound compound) {
+		compound.setFloat("JapaneseDragonSize", this.getDragonSize());
+		super.writeEntityToNBT(compound);
 	}
 
 	@Override
@@ -58,27 +92,14 @@ public class EntityJapaneseDragon extends EntityCreature {
 		this.tasks.addTask(6, new EntityAILookIdle(this));
 	}
 
-	public float getDragonSize(){
-		return dataManager.get(SYNC_SIZE);
-	}
-
-	@Override
-	public void readEntityFromNBT(NBTTagCompound compound) {
-		super.readEntityFromNBT(compound);
-		float size = compound.getFloat("JapaneseDragonSize");
-		dataManager.set(SYNC_SIZE, (size > 0) ? size : 1.0F);
-		this.speed = 0.8D + 0.2D * size;
-	}
-
-	@Override
-	public void writeEntityToNBT(NBTTagCompound compound) {
-		super.writeEntityToNBT(compound);
-		compound.setFloat("JapaneseDragonSize", this.getDragonSize());
-	}
-
 	@Override
 	public void onUpdate() {
 		super.onUpdate();
+		//I know it's overkill, but I have no idea what method to call to set the size on client side AFTER readEntityFromNBT was called...
+		if(this.ticksExisted < 5){
+			float size = this.getDragonSize();
+			this.setSize(size* 1.1F, size * 1.1F);
+		}
 
 		if(!world.isRemote){
 			/*
@@ -178,7 +199,7 @@ public class EntityJapaneseDragon extends EntityCreature {
 
 	@Override
 	protected SoundEvent getDeathSound() {
-		return SoundEvents.ENTITY_ENDERDRAGON_DEATH;
+		return SoundEvents.ENTITY_ENDERDRAGON_GROWL;
 	}
 
 	static class AIWanderFly extends EntityAIBase{
@@ -234,11 +255,11 @@ public class EntityJapaneseDragon extends EntityCreature {
 			for(double newY = this.parentEntity.posY - 16.0D; newY <= this.parentEntity.posY + 16.0D; newY++){
 				pos = new BlockPos(newX, newY, newZ);
 				if(world.getBlockState(pos).getCollisionBoundingBox(world, pos) == NULL_AABB && !world.getBlockState(pos).getMaterial().isLiquid()){
-					this.parentEntity.getMoveHelper().setMoveTo(newX, newY + 1.0 + this.parentEntity.getDragonSize(), newZ, this.parentEntity.speed);
+					this.parentEntity.getMoveHelper().setMoveTo(newX, newY + 1.0 + this.parentEntity.getDragonSize(), newZ, this.parentEntity.getSpeed());
 					return;
 				}
 			}
-			this.parentEntity.getMoveHelper().setMoveTo(newX, this.parentEntity.posY, newZ, this.parentEntity.speed);
+			this.parentEntity.getMoveHelper().setMoveTo(newX, this.parentEntity.posY, newZ, this.parentEntity.getSpeed());
 		}
 	}
 

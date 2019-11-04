@@ -5,9 +5,6 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.passive.EntityAmbientCreature;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
-import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
@@ -23,40 +20,30 @@ import java.util.List;
 
 public class EntitySilkmoth extends EntityAmbientCreature {
 
-	private static final DataParameter<BlockPos> SYNC_ROTATION_POS = EntityDataManager.createKey(EntitySilkmoth.class, DataSerializers.BLOCK_POS);
-	private static final DataParameter<Float> SYNC_ROTATION_DIST = EntityDataManager.createKey(EntitySilkmoth.class, DataSerializers.FLOAT);
-	private static final DataParameter<Boolean> SYNC_CLOCKWISE = EntityDataManager.createKey(EntitySilkmoth.class, DataSerializers.BOOLEAN);
+	private BlockPos rotationPos = new BlockPos(0,0,0);
+	private boolean clockwise;
+	private float distance;
 
 	public EntitySilkmoth(World worldIn) {
 		super(worldIn);
-
 		this.setSize(0.3F, 0.3F);
 		this.moveForward = 0.5F;
-		dataManager.set(SYNC_CLOCKWISE, this.rand.nextBoolean());
-		dataManager.set(SYNC_ROTATION_DIST, 0.5F + 2.0F * this.rand.nextFloat());
-	}
-
-	@Override
-	protected void entityInit(){
-		super.entityInit();
-		dataManager.register(SYNC_ROTATION_POS, new BlockPos(0,0,0));
-		dataManager.register(SYNC_ROTATION_DIST, 1.0F);
-		dataManager.register(SYNC_CLOCKWISE, true);
+		this.clockwise = this.rand.nextBoolean();
+		this.distance = 0.5F + 2.0F * this.rand.nextFloat();
 	}
 
 	@Override
 	public void readEntityFromNBT(NBTTagCompound compound) {
 		super.readEntityFromNBT(compound);
-		dataManager.set(SYNC_ROTATION_POS, new BlockPos(compound.getInteger("SilkmothRotationX"), compound.getInteger("SilkmothRotationY"), compound.getInteger("SilkmothRotationZ")));
+		this.rotationPos = new BlockPos(compound.getInteger("SilkmothRotationX"), compound.getInteger("SilkmothRotationY"), compound.getInteger("SilkmothRotationZ"));
 	}
 
 	@Override
 	public void writeEntityToNBT(NBTTagCompound compound) {
+		compound.setInteger("SilkmothRotationX", this.rotationPos.getX());
+		compound.setInteger("SilkmothRotationY", this.rotationPos.getY());
+		compound.setInteger("SilkmothRotationZ", this.rotationPos.getZ());
 		super.writeEntityToNBT(compound);
-		BlockPos pos = dataManager.get(SYNC_ROTATION_POS);
-		compound.setInteger("SilkmothRotationX", pos.getX());
-		compound.setInteger("SilkmothRotationY", pos.getY());
-		compound.setInteger("SilkmothRotationZ", pos.getZ());
 	}
 
 	@Override
@@ -64,23 +51,18 @@ public class EntitySilkmoth extends EntityAmbientCreature {
 		super.onUpdate();
 
 		if(!world.isRemote){
-
-			BlockPos pos = dataManager.get(SYNC_ROTATION_POS);
-
-			if(this.ticksExisted < 10){
-				if(pos.getX() == 0  && pos.getY() == 0 && pos.getZ() == 0){
-					dataManager.set(SYNC_ROTATION_POS, new BlockPos(this.posX, this.posY, this.posZ));
-				}
-			}
-
 			if(this.ticksExisted >= 24000){
 				if(!this.hasCustomName()) this.setDead();
 			}
 
-			if(this.rand.nextInt(1000) == 0) this.changeRotationPos();
+			if(this.ticksExisted < 5){
+				if(this.rotationPos.getX() == 0 && this.rotationPos.getY() == 0 && this.rotationPos.getZ() == 0){
+					this.rotationPos = new BlockPos(Math.floor(this.posX), Math.floor(this.posY), Math.floor(this.posZ));
+				}
+			}else if(this.rand.nextInt(1000) == 0) this.changeRotationPos();
 
-			double x = this.posX - (pos.getX() + 0.5D);
-			double z = this.posZ - (pos.getZ() + 0.5D);
+			double x = this.posX - (this.rotationPos.getX() + 0.5D);
+			double z = this.posZ - (this.rotationPos.getZ() + 0.5D);
 			double alpha;
 
 			if(z == 0) alpha = (x > 0) ? 0 : Math.PI;
@@ -89,11 +71,10 @@ public class EntitySilkmoth extends EntityAmbientCreature {
 				if(x > 0) alpha += Math.PI;
 			}
 
-			float rotationDist = dataManager.get(SYNC_ROTATION_DIST);
 			double d = Math.sqrt(x * x + z * z);
-			d = - rotationDist * 2 / (d + rotationDist) + 1;
+			d = - this.distance * 2 / (d + this.distance) + 1;
 
-			alpha += (dataManager.get(SYNC_CLOCKWISE) ? d - 1 : 1 - d) * Math.PI / 2;
+			alpha += (this.clockwise ? d - 1 : 1 - d) * Math.PI / 2;
 
 			this.motionX = this.motionX * 0.5D + Math.cos(alpha) * 0.15D;
 			this.motionY = Math.sin(this.ticksExisted / 20.0D) * 0.05D;
@@ -131,12 +112,12 @@ public class EntitySilkmoth extends EntityAmbientCreature {
 		}
 
 		if(!listLight.isEmpty()){
-			dataManager.set(SYNC_ROTATION_POS, listLight.get(rand.nextInt(listLight.size())));
+			this.rotationPos = listLight.get(rand.nextInt(listLight.size()));
 		}else if(!listMulberry.isEmpty()){
-			dataManager.set(SYNC_ROTATION_POS, listMulberry.get(rand.nextInt(listMulberry.size())));
-		}else dataManager.set(SYNC_ROTATION_POS, new BlockPos(x + this.rand.nextInt(11), y + this.rand.nextInt(3), z + this.rand.nextInt(11)));
+			this.rotationPos = listMulberry.get(rand.nextInt(listMulberry.size()));
+		}else this.rotationPos = new BlockPos(x + this.rand.nextInt(11), y + this.rand.nextInt(3), z + this.rand.nextInt(11));
 
-		dataManager.set(SYNC_ROTATION_DIST, 0.5F + 2.0F * this.rand.nextFloat());
+		this.distance = 0.5F + 2 * this.rand.nextFloat();
 	}
 
 	@Override
@@ -155,7 +136,6 @@ public class EntitySilkmoth extends EntityAmbientCreature {
 		return true;
 	}
 
-	@Override
 	public float getEyeHeight(){
 		return this.height / 2.0F;
 	}
@@ -168,7 +148,7 @@ public class EntitySilkmoth extends EntityAmbientCreature {
 
 	@Override
 	public boolean isAIDisabled() {
-		return true;
+		return false;
 	}
 
 	@Override
