@@ -442,18 +442,17 @@ public class ModelJapaneseDragon extends ModelBase {
 	public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn) {
 		super.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor, entityIn);
 
-		float moveDuration = (50.0F + 10.0F * ((EntityJapaneseDragon) entityIn).getDragonSize());
+		float PI = (float)Math.PI;
+		EntityJapaneseDragon dragon = (EntityJapaneseDragon) entityIn;
+		float moveProgress = dragon.getAnimationLoop(ageInTicks);
+
 		this.HeadCenter.rotateAngleX = headPitch * 0.010F;
 		this.HeadCenter.rotateAngleY = netHeadYaw * 0.006F;
-
-		float PI = (float)Math.PI;
-		float moveProgress = ageInTicks / moveDuration % 2.0F;
 
 		this.HeadCenter.offsetX = 0.25F * sinPI(1 + moveProgress);
 		this.HeadCenter.offsetY = 0.15F * sinPI(2.0F * moveProgress);
 		this.BodyA.offsetX = 0.25F * sinPI(1 + moveProgress);
 		this.BodyA.offsetY = 0.15F * sinPI(2.0F * moveProgress);
-
 		this.BodyA.rotateAngleX = sinPI((moveProgress + 0.25F) * 2) * 0.135F * PI;
 		this.BodyA.rotateAngleY = (sinPI(moveProgress + 0.25F) * 0.21F + 0.2F) * PI;
 		this.BodyB.rotateAngleX = sinPI((moveProgress - 0.17F) * 2) * 0.35F * PI;
@@ -500,15 +499,6 @@ public class ModelJapaneseDragon extends ModelBase {
 
 	private float sinPI(float f) {
 		return MathHelper.sin(f * (float)Math.PI);
-	}
-
-	private float wrapRadiant(float f){
-		f = f % (2 * (float)Math.PI);
-		return f < Math.PI ? f : f - (float)Math.PI;
-	}
-
-	private float clampRightAngle(float f){
-		return (float)MathHelper.clamp(f, -Math.PI / 2, Math.PI / 2);
 	}
 
 	private void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z) {
