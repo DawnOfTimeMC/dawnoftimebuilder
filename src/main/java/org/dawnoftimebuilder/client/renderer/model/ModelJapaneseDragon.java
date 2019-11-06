@@ -418,13 +418,18 @@ public class ModelJapaneseDragon extends ModelBase {
 
 	@Override
 	public void render(Entity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
-
 		this.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale, entityIn);
 
-		float customScale = ((EntityJapaneseDragon) entityIn).getDragonSize();
-		float offset = -0.75F + 1.5F /customScale;
+		EntityJapaneseDragon dragon = (EntityJapaneseDragon) entityIn;
+
+		float customScale = dragon.getDragonSize();
+		float offset = -0.75F + 1.5F / customScale;
 		this.HeadCenter.offsetY += offset;
 		this.BodyA.offsetY += offset;
+
+		float rotation = dragon.getHeadTargetAngle();
+		this.HeadCenter.rotateAngleX -=rotation;
+		this.BodyA.rotateAngleX -= rotation;
 
 		GlStateManager.pushMatrix();
 		GlStateManager.scale(customScale, customScale, customScale);
@@ -495,6 +500,15 @@ public class ModelJapaneseDragon extends ModelBase {
 
 	private float sinPI(float f) {
 		return MathHelper.sin(f * (float)Math.PI);
+	}
+
+	private float wrapRadiant(float f){
+		f = f % (2 * (float)Math.PI);
+		return f < Math.PI ? f : f - (float)Math.PI;
+	}
+
+	private float clampRightAngle(float f){
+		return (float)MathHelper.clamp(f, -Math.PI / 2, Math.PI / 2);
 	}
 
 	private void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z) {

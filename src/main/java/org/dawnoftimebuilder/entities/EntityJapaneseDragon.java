@@ -29,6 +29,7 @@ import static net.minecraft.block.Block.NULL_AABB;
 public class EntityJapaneseDragon extends EntityCreature {
 
 	private static final DataParameter<Float> SIZE = EntityDataManager.createKey(EntityJapaneseDragon.class, DataSerializers.FLOAT);
+	private static final DataParameter<Float> ANGLE = EntityDataManager.createKey(EntityJapaneseDragon.class, DataSerializers.FLOAT);
 
 	public EntityJapaneseDragon(World worldIn) {
 		super(worldIn);
@@ -53,18 +54,27 @@ public class EntityJapaneseDragon extends EntityCreature {
 	protected void entityInit() {
 		super.entityInit();
 		this.dataManager.register(SIZE, 1.0F);
-	}
-
-	public final float getDragonSize(){
-		return this.dataManager.get(SIZE);
-	}
-
-	private float getSpeed(){
-		return 0.4F + /*0.2F * */this.getDragonSize();
+		this.dataManager.register(ANGLE, 0.0F);
 	}
 
 	private void setDragonSize(float size){
 		this.dataManager.set(SIZE, size);
+	}
+
+	public float getDragonSize(){
+		return this.dataManager.get(SIZE);
+	}
+
+	private float getSpeed(){
+		return 0.4F + this.getDragonSize();
+	}
+
+	private void setHeadTargetAngle(float angle){
+		this.dataManager.set(ANGLE, angle / 2 + this.getHeadTargetAngle() / 2);
+	}
+
+	public float getHeadTargetAngle(){
+		return this.dataManager.get(ANGLE);
 	}
 
 	@Override
@@ -85,9 +95,11 @@ public class EntityJapaneseDragon extends EntityCreature {
 
 	@Override
 	protected void initEntityAI(){
-		this.tasks.addTask(1, new EntityAISwimming(this));
 		//this.tasks.addTask(3, new EntityAILeapAtTarget(this, 0.4F));
-		this.tasks.addTask(5, new EntityJapaneseDragon.AIWanderFly(this));
+		this.tasks.addTask(3, new AIVerticalFlyUp(this));
+		//this.tasks.addTask(3, new AIVerticalFlyDown(this));
+		//this.tasks.addTask(4, new AILongFly(this));
+		this.tasks.addTask(5, new AIWanderFly(this));
 		this.tasks.addTask(6, new EntityAIWatchClosest(this, EntityPlayer.class, 20.0F));
 		this.tasks.addTask(6, new EntityAILookIdle(this));
 	}
@@ -100,56 +112,6 @@ public class EntityJapaneseDragon extends EntityCreature {
 			float size = this.getDragonSize();
 			this.setSize(size* 1.1F, size * 1.1F);
 		}
-
-		if(!world.isRemote){
-			/*
-			if(z == 0) alpha = (x > 0) ? 0 : Math.PI;
-			else{
-				alpha = Math.atan(z / x);
-				if(x > 0) alpha += Math.PI;
-			}
-
-			this.motionX = this.motionX * 0.5D + Math.cos(alpha) * 0.15D;
-			this.motionY = Math.sin(this.ticksExisted / 20.0D) * 0.05D;
-			this.motionZ = this.motionZ * 0.5D + Math.sin(alpha) * 0.15D;
-			*/
-		}
-	}
-
-	private void changeRotationPos(){
-		/*
-		int x = (int) world.getWorldTime() % 23999;
-		boolean isNight = x > 12000 && x < 23000;
-
-		x = (int) this.posX - 5;
-		int y = (int) this.posY - 1;
-		int z = (int) this.posZ - 5;
-		List<BlockPos> listMulberry = new ArrayList<>();
-		List<BlockPos> listLight = new ArrayList<>();
-		IBlockState state;
-
-		for(int i = 0; i < 11; i++){
-			for(int j = 0; j < 11; j++){
-				for(int k = 0; k < 3; k++){
-					BlockPos pos = new BlockPos(x + i, y + k, z + j);
-					state = this.world.getBlockState(pos);
-					if(state.getBlock() instanceof BlockMulberry){
-						if(!((BlockMulberry) state.getBlock()).isBottomCrop(world, pos)) listMulberry.add(pos);
-					}else if(isNight){
-						if (state.getLightValue(this.world, pos) >= 14) listLight.add(pos);
-					}
-				}
-			}
-		}
-
-		if(!listLight.isEmpty()){
-			this.rotationPos = listLight.get(rand.nextInt(listLight.size()));
-		}else if(!listMulberry.isEmpty()){
-			this.rotationPos = listMulberry.get(rand.nextInt(listMulberry.size()));
-		}else this.rotationPos = new BlockPos(x + this.rand.nextInt(11), y + this.rand.nextInt(3), z + this.rand.nextInt(11));
-
-		this.distance = 0.5D + 2 * this.rand.nextDouble();
-		*/
 	}
 
 	@Override
@@ -162,6 +124,11 @@ public class EntityJapaneseDragon extends EntityCreature {
 	public boolean hasNoGravity() {
 		return true;
 	}
+
+	@Override
+	protected boolean canDespawn() {
+		return false;
+	}//TODO check how this work...
 
 	@Nullable
 	@Override
@@ -202,6 +169,35 @@ public class EntityJapaneseDragon extends EntityCreature {
 		return SoundEvents.ENTITY_ENDERDRAGON_GROWL;
 	}
 
+	static class AIVerticalFlyUp extends EntityAIBase{
+		private final EntityJapaneseDragon parentEntity;
+
+		AIVerticalFlyUp(EntityJapaneseDragon dragon){
+			this.parentEntity = dragon;
+			this.setMutexBits(1);
+		}
+
+		@Override
+		public boolean shouldExecute(){
+			if(this.parentEntity.getIdleTime() >= 100) return false;
+			if(this.parentEntity.getRNG().nextInt(300) != 0) return false;
+			if(this.parentEntity.posY >= 100.0D) return false;
+
+			BlockPos pos = new BlockPos(this.parentEntity.posX, this.parentEntity.posY, this.parentEntity.posZ);
+			return this.parentEntity.world.canSeeSky(pos);
+		}
+
+		@Override
+		public boolean shouldContinueExecuting(){
+			return false;
+		}
+
+		@Override
+		public void startExecuting(){
+			this.parentEntity.getMoveHelper().setMoveTo(this.parentEntity.posX, 100.0D + 30.0D * this.parentEntity.getRNG().nextDouble(), this.parentEntity.posZ, this.parentEntity.getSpeed());
+		}
+	}
+
 	static class AIWanderFly extends EntityAIBase{
 		private final EntityJapaneseDragon parentEntity;
 
@@ -210,20 +206,12 @@ public class EntityJapaneseDragon extends EntityCreature {
 			this.setMutexBits(1);
 		}
 
-		/**
-		 * Returns whether the EntityAIBase should begin execution.
-		 */
+		@Override
 		public boolean shouldExecute(){
-			if (this.parentEntity.getIdleTime() >= 100){
-				return false;
-			}
-
-			if (this.parentEntity.getRNG().nextInt(60) != 0){
-				return false;
-			}
+			if (this.parentEntity.getIdleTime() >= 100) return false;
+			if (this.parentEntity.getRNG().nextInt(60) != 0) return false;
 
 			EntityMoveHelper entitymovehelper = this.parentEntity.getMoveHelper();
-
 			if (!entitymovehelper.isUpdating()) return true;
 			else{
 				double distanceX = entitymovehelper.getX() - this.parentEntity.posX;
@@ -234,17 +222,13 @@ public class EntityJapaneseDragon extends EntityCreature {
 			}
 		}
 
-		/**
-		 * Returns whether an in-progress EntityAIBase should continue executing
-		 */
+		@Override
 		public boolean shouldContinueExecuting()
 		{
 			return false;
 		}
 
-		/**
-		 * Execute a one shot task or start executing a continuous task
-		 */
+		@Override
 		public void startExecuting(){
 			Random random = this.parentEntity.getRNG();
 			double newX = this.parentEntity.posX + (double)((random.nextFloat() * 2.0F - 1.0F) * 16.0F);
@@ -255,7 +239,7 @@ public class EntityJapaneseDragon extends EntityCreature {
 			for(double newY = this.parentEntity.posY - 16.0D; newY <= this.parentEntity.posY + 16.0D; newY++){
 				pos = new BlockPos(newX, newY, newZ);
 				if(world.getBlockState(pos).getCollisionBoundingBox(world, pos) == NULL_AABB && !world.getBlockState(pos).getMaterial().isLiquid()){
-					this.parentEntity.getMoveHelper().setMoveTo(newX, newY + 1.0 + this.parentEntity.getDragonSize(), newZ, this.parentEntity.getSpeed());
+					this.parentEntity.getMoveHelper().setMoveTo(newX, newY + 0.5D + this.parentEntity.getDragonSize(), newZ, this.parentEntity.getSpeed());
 					return;
 				}
 			}
@@ -271,34 +255,44 @@ public class EntityJapaneseDragon extends EntityCreature {
 			this.parentEntity = dragon;
 		}
 
+		@Override
 		public void onUpdateMoveHelper(){
 			if(this.action == EntityMoveHelper.Action.MOVE_TO){
 
 				double distanceX = this.posX - this.parentEntity.posX;
 				double distanceY = this.posY - this.parentEntity.posY;
+				int kY = (distanceY > 0) ? 1 : -1;
 				double distanceZ = this.posZ - this.parentEntity.posZ;
 				double distance = distanceX * distanceX + distanceY * distanceY + distanceZ * distanceZ;
 
 				if (distance < 1.0D) {
-					this.action = EntityMoveHelper.Action.WAIT;
-					this.entity.setMoveForward(0.0F);
+					this.stopMovement();
 					return;
 				}
 
+				distance = MathHelper.sqrt(distance);
+				double distanceHorizontal = MathHelper.sqrt(distanceX * distanceX + distanceZ * distanceZ);
+
 				float rotation = (float)(MathHelper.atan2(distanceZ, distanceX) * (180D / Math.PI)) - 90.0F;
 				this.entity.rotationYaw = this.limitAngle(this.entity.rotationYaw, rotation, 90.0F);
-				this.entity.setAIMoveSpeed((float)(this.speed * this.entity.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).getAttributeValue()));
-				this.parentEntity.motionY = (distanceY / distance) * this.speed * this.entity.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).getAttributeValue();
+				this.entity.setAIMoveSpeed((float)(Math.min(Math.abs(distanceHorizontal / distance), 1.0F) * this.speed * this.entity.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).getAttributeValue()));
+				this.parentEntity.motionY = 0.4F * kY * Math.min(Math.abs(distanceY / distance), 1.0F) * this.speed * this.entity.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).getAttributeValue();
 
-				if (!this.isNotColliding(this.posX, this.posY, this.posZ, (double) MathHelper.sqrt(distance))) {
-					this.action = EntityMoveHelper.Action.WAIT;
+				double d = Math.asin(MathHelper.clamp(distanceY/ distance, -1.0D, 1.0D));
+				d = d * (1.0F - 1.0F / ((distance + 1.0F) / 2));
+				this.parentEntity.setHeadTargetAngle((float) d);
+				if (!this.isNotColliding(this.posX, this.posY, this.posZ, distance)) {
+					this.stopMovement();
 				}
 			}
 		}
 
-		/**
-		 * Checks if entity bounding box is not colliding with terrain
-		 */
+		private void stopMovement(){
+			this.action = EntityMoveHelper.Action.WAIT;
+			this.entity.setMoveForward(0.0F);
+			this.entity.setMoveVertical(0.0F);
+		}
+
 		private boolean isNotColliding(double x, double y, double z, double distance){
 			double d0 = (x - this.parentEntity.posX) / distance;
 			double d1 = (y - this.parentEntity.posY) / distance;
