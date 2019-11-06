@@ -47,7 +47,7 @@ public class EntityJapaneseDragon extends EntityCreature {
 
 	@Nullable
 	@Override
-	public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData livingdata) {
+	public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData data) {
 
 		float size = (float) this.rand.nextGaussian();
 		if(size < 0) size = -1 / (size - 1);
@@ -57,7 +57,7 @@ public class EntityJapaneseDragon extends EntityCreature {
 		this.experienceValue = (int) Math.ceil(100 * size);
 		this.setAnimDuration(10.0F);
 
-		return super.onInitialSpawn(difficulty, livingdata);
+		return super.onInitialSpawn(difficulty, data);
 	}
 
 	@Override
@@ -127,7 +127,7 @@ public class EntityJapaneseDragon extends EntityCreature {
 	protected void initEntityAI(){
 		//this.tasks.addTask(3, new EntityAILeapAtTarget(this, 0.4F));
 		this.tasks.addTask(3, new AIVerticalFlyUp(this));
-		//this.tasks.addTask(3, new AIVerticalFlyDown(this));
+		this.tasks.addTask(3, new AIVerticalFlyDown(this));
 		this.tasks.addTask(4, new AILongFly(this));
 		this.tasks.addTask(5, new AIWanderFly(this));
 		this.tasks.addTask(6, new EntityAIWatchClosest(this, EntityPlayer.class, 20.0F));
@@ -158,7 +158,7 @@ public class EntityJapaneseDragon extends EntityCreature {
 	@Override
 	protected boolean canDespawn() {
 		return false;
-	}//TODO check how this work...
+	}
 
 	@Nullable
 	@Override
@@ -210,11 +210,11 @@ public class EntityJapaneseDragon extends EntityCreature {
 		@Override
 		public boolean shouldExecute(){
 			if(this.parentEntity.getIdleTime() >= 100) return false;
-			if(this.parentEntity.getRNG().nextInt(300) != 0) return false;
-			if(this.parentEntity.posY >= 100.0D) return false;
-
 			BlockPos pos = new BlockPos(this.parentEntity.posX, this.parentEntity.posY, this.parentEntity.posZ);
-			return this.parentEntity.world.canSeeSky(pos);
+			if(!this.parentEntity.world.canSeeSky(pos)) return false;
+			if(this.parentEntity.getRNG().nextInt(300) != 0) return false;
+			if(this.parentEntity.getMoveHelper().action == EntityMoveHelper.Action.WAIT && this.parentEntity.getRNG().nextInt(1000) == 0) return true;
+			return this.parentEntity.posY < 100.0D;
 		}
 
 		@Override
@@ -225,6 +225,47 @@ public class EntityJapaneseDragon extends EntityCreature {
 		@Override
 		public void startExecuting(){
 			this.parentEntity.getMoveHelper().setMoveTo(this.parentEntity.posX, 100.0D + 30.0D * this.parentEntity.getRNG().nextDouble(), this.parentEntity.posZ, this.parentEntity.getSpeed() * 1.2D);
+			this.parentEntity.setAnimDuration(8.0F);
+		}
+	}
+
+	static class AIVerticalFlyDown extends EntityAIBase{
+		private final EntityJapaneseDragon parentEntity;
+		private int goalY = 100;
+
+		AIVerticalFlyDown(EntityJapaneseDragon dragon){
+			this.parentEntity = dragon;
+			this.setMutexBits(1);
+		}
+
+		@Override
+		public boolean shouldExecute(){
+			if(this.parentEntity.posY < 100.0D) return false;
+			if(this.parentEntity.getRNG().nextInt(100) != 0) return false;
+
+			BlockPos pos = new BlockPos(this.parentEntity.posX, 90.0D, this.parentEntity.posZ);
+			World world = this.parentEntity.world;
+			if(world.getBlockState(pos).getCollisionBoundingBox(world, pos) == NULL_AABB && !world.getBlockState(pos).getMaterial().isLiquid()) return false;
+			int newY = world.getChunk(new BlockPos(this.parentEntity.posX, this.parentEntity.posY, this.parentEntity.posZ)).getTopFilledSegment();
+			for(int y = newY + 16; y >= newY; y--){
+				pos = new BlockPos(this.parentEntity.posX, y, this.parentEntity.posZ);
+				if(world.getBlockState(pos).getCollisionBoundingBox(world, pos) != NULL_AABB || world.getBlockState(pos).getMaterial().isLiquid()){
+					break;
+				}
+			}
+			if(newY + 11 >= this.parentEntity.posY) return false;
+			this.goalY = newY + 1;
+			return true;
+		}
+
+		@Override
+		public boolean shouldContinueExecuting(){
+			return false;
+		}
+
+		@Override
+		public void startExecuting(){
+			this.parentEntity.getMoveHelper().setMoveTo(this.parentEntity.posX, this.goalY + this.parentEntity.getDragonSize(), this.parentEntity.posZ, this.parentEntity.getSpeed() * 1.2D);
 			this.parentEntity.setAnimDuration(8.0F);
 		}
 	}
@@ -337,8 +378,6 @@ public class EntityJapaneseDragon extends EntityCreature {
 
 				float rotation = (float)(MathHelper.atan2(distanceZ, distanceX) * (180D / Math.PI)) - 90.0F;
 				this.parentEntity.rotationYaw = this.limitAngle(this.parentEntity.rotationYaw, rotation, 90.0F);
-				//double distanceHorizontal = MathHelper.sqrt(distanceX * distanceX + distanceZ * distanceZ);
-				//this.parentEntity.setAIMoveSpeed((float)(Math.min(Math.abs(distanceHorizontal / distance), 1.0F) * this.speed * this.parentEntity.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).getAttributeValue()));
 
 				this.parentEntity.motionX = 0.2F * MathHelper.clamp(distanceX / distance, -1.0F, 1.0F) * this.speed * this.parentEntity.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).getAttributeValue();
 				this.parentEntity.motionY = 0.2F * MathHelper.clamp(distanceY / distance, -1.0F, 1.0F) * this.speed * this.parentEntity.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).getAttributeValue();

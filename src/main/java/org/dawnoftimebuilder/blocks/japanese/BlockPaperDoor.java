@@ -275,8 +275,7 @@ public class BlockPaperDoor extends DoTBBlock implements IBlockCustomItem {
     /**
      * Convert the given metadata into a BlockState for this Block
      */
-    public IBlockState getStateFromMeta(int meta)
-    {
+    public IBlockState getStateFromMeta(int meta){
         return (meta & 8) > 0
 				? this.getDefaultState()
                         .withProperty(HALF, BlockPaperDoor.EnumDoorHalf.UPPER)

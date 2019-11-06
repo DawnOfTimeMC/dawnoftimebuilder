@@ -143,8 +143,7 @@ public class DoTBBlockEdge extends DoTBBlock {
     public int getMetaFromState(IBlockState state) {
         int i = 0;
 
-        if (state.getValue(HALF) == EnumsBlock.EnumHalf.TOP)
-        {
+        if (state.getValue(HALF) == EnumsBlock.EnumHalf.TOP){
             i |= 4;
         }
 

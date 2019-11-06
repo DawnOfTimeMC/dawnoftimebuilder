@@ -158,7 +158,8 @@ public class BlockGreenSculptedPlasteredStoneFrieze extends DoTBBlock {
 
 	@Override
 	public IBlockState getStateFromMeta(int meta){
-		return this.getDefaultState().withProperty(FACING, EnumFacing.byIndex(meta));
+		EnumFacing facing = EnumFacing.byIndex(meta);
+		return this.getDefaultState().withProperty(FACING, facing.getAxis().isVertical() ? EnumFacing.NORTH : facing);
 	}
     
 	@Override
