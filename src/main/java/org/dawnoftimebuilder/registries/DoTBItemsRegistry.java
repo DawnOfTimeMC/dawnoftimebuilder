@@ -21,6 +21,7 @@ import org.dawnoftimebuilder.DoTBConfigs;
 import org.dawnoftimebuilder.blocks.IBlockMeta;
 import org.dawnoftimebuilder.enums.IEnumMetaVariants;
 import org.dawnoftimebuilder.items.IItemCanBeDried;
+import org.dawnoftimebuilder.items.egyptian.ItemPharaohArmor;
 import org.dawnoftimebuilder.items.french.ItemIronPlateArmor;
 import org.dawnoftimebuilder.items.general.DoTBItem;
 import org.dawnoftimebuilder.items.general.DoTBItemCanBeDried;
@@ -75,6 +76,10 @@ public class DoTBItemsRegistry {
 				new ItemOYoroiArmor(EntityEquipmentSlot.CHEST),
 				new ItemOYoroiArmor(EntityEquipmentSlot.HEAD),
 				new ItemOYoroiArmor(EntityEquipmentSlot.LEGS),
+				new ItemPharaohArmor(EntityEquipmentSlot.FEET),
+				new ItemPharaohArmor(EntityEquipmentSlot.CHEST),
+				new ItemPharaohArmor(EntityEquipmentSlot.HEAD),
+				new ItemPharaohArmor(EntityEquipmentSlot.LEGS),
 				new ItemRaijinArmor(EntityEquipmentSlot.FEET),
 				new ItemRaijinArmor(EntityEquipmentSlot.CHEST),
 				new ItemRaijinArmor(EntityEquipmentSlot.HEAD),

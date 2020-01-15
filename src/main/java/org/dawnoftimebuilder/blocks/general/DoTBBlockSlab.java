@@ -20,7 +20,7 @@ import org.dawnoftimebuilder.blocks.IBlockCustomItem;
 
 public class DoTBBlockSlab extends DoTBBlock implements IBlockCustomItem {
 
-	static final PropertyEnum<EnumSlab> SLAB = PropertyEnum.create("slab", EnumSlab.class);
+	protected static final PropertyEnum<EnumSlab> SLAB = PropertyEnum.create("slab", EnumSlab.class);
 
 	static final AxisAlignedBB AABB_BOTTOM = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.5D, 1.0D);
 	static final AxisAlignedBB AABB_TOP = new AxisAlignedBB(0.0D, 0.5D, 0.0D, 1.0D, 1.0D, 1.0D);

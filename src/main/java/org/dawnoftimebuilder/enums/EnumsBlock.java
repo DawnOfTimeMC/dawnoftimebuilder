@@ -49,8 +49,7 @@ public class EnumsBlock {
         private final String name;
         private final int meta;
 
-        EnumHorizontalConnection(String name, int meta)
-        {
+        EnumHorizontalConnection(String name, int meta){
             this.name = name;
             this.meta = meta;
         }
@@ -80,8 +79,7 @@ public class EnumsBlock {
         private final String name;
         private final int meta;
 
-        EnumVerticalConnection(String name, int meta)
-        {
+        EnumVerticalConnection(String name, int meta){
             this.name = name;
             this.meta = meta;
         }
@@ -111,8 +109,7 @@ public class EnumsBlock {
         private final String name;
         private final int meta;
 
-        EnumUnderConnection(String name, int meta)
-        {
+        EnumUnderConnection(String name, int meta){
             this.name = name;
             this.meta = meta;
         }

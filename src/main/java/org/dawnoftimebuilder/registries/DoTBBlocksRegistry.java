@@ -20,6 +20,7 @@ import org.dawnoftimebuilder.blocks.general.*;
 import org.dawnoftimebuilder.blocks.japanese.*;
 import org.dawnoftimebuilder.blocks.mayan.*;
 import org.dawnoftimebuilder.blocks.roman.BlockOchreRoofTilesMerged;
+import org.dawnoftimebuilder.blocks.roman.BlockOchreRoofTilesSlab;
 import org.dawnoftimebuilder.blocks.roman.BlockSandstoneColumn;
 import org.dawnoftimebuilder.enums.IEnumMetaVariants;
 import org.dawnoftimebuilder.items.general.DoTBItemMetaBlock;
@@ -179,12 +180,14 @@ public class DoTBBlocksRegistry {
 				new BlockPlasteredStoneColumn(),
 				new BlockPlasteredStoneCresset(),
 				new DoTBBlockPlate("plastered_stone_frieze"),
+				new DoTBBlockPlate("plastered_stone_plate"),
 				new DoTBBlockStairs("plastered_stone_stairs", plastered_stone, 2.0F, SoundType.STONE),
 				new DoTBBlockSlab("plastered_stone_slab", Material.ROCK, 2.0F, SoundType.STONE),
 				new DoTBBlockEdge("plastered_stone_edge", Material.ROCK, 1.5F, SoundType.STONE),
 				new BlockPlasteredStoneWindow(),
 				new DoTBBlockPlate("red_ornamented_plastered_stone_frieze"),
 				new DoTBBlockPlate("red_plastered_stone_frieze"),
+				new DoTBBlockPlate("red_plastered_stone_plate"),
 				new DoTBBlockStairs("red_plastered_stone_stairs", plastered_stone, 1, 2.0F, SoundType.STONE),
 				new DoTBBlockSlab("red_plastered_stone_slab", Material.ROCK, 2.0F, SoundType.STONE),
 				new DoTBBlockEdge("red_plastered_stone_edge", Material.ROCK, 1.5F, SoundType.STONE),
@@ -196,12 +199,7 @@ public class DoTBBlocksRegistry {
 				//roman
 				new DoTBBlock("ochre_roof_tiles", Material.ROCK, 2.0F, SoundType.STONE),
 				new BlockOchreRoofTilesMerged(),
-				new DoTBBlockSlab("ochre_roof_tiles_slab", Material.ROCK, 1.5F, SoundType.STONE){
-					@Override
-					public Item getCustomItemBlock() {
-						return new ItemOchreRoofTilesSlab(this);
-					}
-				},
+				new BlockOchreRoofTilesSlab(),
 				new BlockSandstoneColumn()
 		);
 	}

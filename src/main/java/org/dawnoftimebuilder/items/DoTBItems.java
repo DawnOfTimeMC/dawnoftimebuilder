@@ -8,6 +8,12 @@ import static org.dawnoftimebuilder.DawnOfTimeBuilder.MOD_ID;
 @ObjectHolder(MOD_ID)
 public class DoTBItems {
 
+	//egyptian
+	@ObjectHolder("pharaoh_armor_head") public static Item pharaoh_armor_head;
+	@ObjectHolder("pharaoh_armor_chest") public static Item pharaoh_armor_chest;
+	@ObjectHolder("pharaoh_armor_legs") public static Item pharaoh_armor_legs;
+	@ObjectHolder("pharaoh_armor_feet") public static Item pharaoh_armor_feet;
+
 	//french
 	@ObjectHolder("oak_shutters") public static Item oak_shutters;
 	@ObjectHolder("iron_plate_armor_head") public static Item iron_plate_armor_head;

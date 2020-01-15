@@ -4,6 +4,7 @@ import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityArmorStand;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.relauncher.Side;
@@ -170,27 +171,48 @@ public class ModelJapaneseLightArmor extends ModelBiped {
     public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn) {
         super.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor, entityIn);
 
-        switch (this.slot) {
-            case HEAD:
-                float f = 1.0F;
-                if (entityIn instanceof EntityLivingBase){
-                    if(((EntityLivingBase)entityIn).getTicksElytraFlying() > 4) {
-                        f = (float)(entityIn.motionX * entityIn.motionX + entityIn.motionY * entityIn.motionY + entityIn.motionZ * entityIn.motionZ);
-                        f = f / 0.2F;
-                        f = f * f * f;
-                        if (f < 1.0F) f = 1.0F;
-                    }
+        if (this.slot == EntityEquipmentSlot.HEAD) {
+            float f = 1.0F;
+            if (entityIn instanceof EntityLivingBase) {
+                if (((EntityLivingBase) entityIn).getTicksElytraFlying() > 4) {
+                    f = (float) (entityIn.motionX * entityIn.motionX + entityIn.motionY * entityIn.motionY + entityIn.motionZ * entityIn.motionZ);
+                    f = f / 0.2F;
+                    f = f * f * f;
+                    if (f < 1.0F) f = 1.0F;
                 }
+            }
 
-                f = 0.3F * sinPI(ageInTicks / 60.0F + 1.0F) + MathHelper.cos(limbSwing * 0.3331F + (float)Math.PI) * limbSwingAmount / f;
-                this.ribbonA.rotateAngleX = 0.35F + f * 0.15F;
-                this.ribbonA.rotateAngleZ = -0.1F + f * 0.2F;
-                this.ribbonB.rotateAngleX = 0.175F + f * 0.1F;
-                this.ribbonB.rotateAngleZ = - f * 0.2F;
-                break;
+            f = 0.3F * sinPI(ageInTicks / 60.0F + 1.0F) + MathHelper.cos(limbSwing * 0.3331F + (float) Math.PI) * limbSwingAmount / f;
+            this.ribbonA.rotateAngleX = Math.max(0.35F + f * 0.15F - headPitch * 0.017453292F, 0.2F);
+            this.ribbonA.rotateAngleZ = -0.1F + f * 0.2F;
+            this.ribbonB.rotateAngleX = Math.max(0.175F + f * 0.1F - headPitch * 0.017453292F, 0.075F);
+            this.ribbonB.rotateAngleZ = -f * 0.2F;
+        }
 
-            default:
-                break;
+        //Fix the "breathing" and wrong head rotation on ArmorStands
+        if (entityIn instanceof EntityArmorStand) {
+            EntityArmorStand entityarmorstand = (EntityArmorStand)entityIn;
+            this.bipedHead.rotateAngleX = 0.017453292F * entityarmorstand.getHeadRotation().getX();
+            this.bipedHead.rotateAngleY = 0.017453292F * entityarmorstand.getHeadRotation().getY();
+            this.bipedHead.rotateAngleZ = 0.017453292F * entityarmorstand.getHeadRotation().getZ();
+            this.bipedHead.setRotationPoint(0.0F, 1.0F, 0.0F);
+            this.bipedBody.rotateAngleX = 0.017453292F * entityarmorstand.getBodyRotation().getX();
+            this.bipedBody.rotateAngleY = 0.017453292F * entityarmorstand.getBodyRotation().getY();
+            this.bipedBody.rotateAngleZ = 0.017453292F * entityarmorstand.getBodyRotation().getZ();
+            this.bipedLeftArm.rotateAngleX = 0.017453292F * entityarmorstand.getLeftArmRotation().getX();
+            this.bipedLeftArm.rotateAngleY = 0.017453292F * entityarmorstand.getLeftArmRotation().getY();
+            this.bipedLeftArm.rotateAngleZ = 0.017453292F * entityarmorstand.getLeftArmRotation().getZ();
+            this.bipedRightArm.rotateAngleX = 0.017453292F * entityarmorstand.getRightArmRotation().getX();
+            this.bipedRightArm.rotateAngleY = 0.017453292F * entityarmorstand.getRightArmRotation().getY();
+            this.bipedRightArm.rotateAngleZ = 0.017453292F * entityarmorstand.getRightArmRotation().getZ();
+            this.bipedRightArm.setRotationPoint(-5.0F, 2.0F, 0.0F);
+            this.bipedLeftLeg.rotateAngleX = 0.017453292F * entityarmorstand.getLeftLegRotation().getX();
+            this.bipedLeftLeg.rotateAngleY = 0.017453292F * entityarmorstand.getLeftLegRotation().getY();
+            this.bipedLeftLeg.rotateAngleZ = 0.017453292F * entityarmorstand.getLeftLegRotation().getZ();
+            this.bipedRightLeg.rotateAngleX = 0.017453292F * entityarmorstand.getRightLegRotation().getX();
+            this.bipedRightLeg.rotateAngleY = 0.017453292F * entityarmorstand.getRightLegRotation().getY();
+            this.bipedRightLeg.rotateAngleZ = 0.017453292F * entityarmorstand.getRightLegRotation().getZ();
+            copyModelAngles(this.bipedHead, this.bipedHeadwear);
         }
     }
 

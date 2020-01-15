@@ -3,6 +3,6 @@
 	"textures": {
 		"side": "dawnoftimebuilder:blocks/plastered_stone",
 		"top": "dawnoftimebuilder:blocks/plastered_stone_corner",
-		"frieze": "dawnoftimebuilder:blocks/chiseled_plastered_stone"
+		"frieze": "dawnoftimebuilder:blocks/plastered_stone"
 	}
 }

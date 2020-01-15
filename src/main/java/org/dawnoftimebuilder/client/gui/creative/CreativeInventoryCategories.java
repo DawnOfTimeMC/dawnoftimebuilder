@@ -183,9 +183,11 @@ public enum CreativeInventoryCategories {
 			Item.getItemFromBlock(rammed_dirt),
 			Item.getItemFromBlock(plastered_stone),
 			Item.getItemFromBlock(plastered_stone_stairs),
+			Item.getItemFromBlock(plastered_stone_plate),
 			Item.getItemFromBlock(plastered_stone_slab),
 			Item.getItemFromBlock(plastered_stone_edge),
 			Item.getItemFromBlock(red_plastered_stone_stairs),
+			Item.getItemFromBlock(red_plastered_stone_plate),
 			Item.getItemFromBlock(red_plastered_stone_slab),
 			Item.getItemFromBlock(red_plastered_stone_edge),
 			Item.getItemFromBlock(chiseled_plastered_stone),
@@ -211,7 +213,14 @@ public enum CreativeInventoryCategories {
 			Item.getItemFromBlock(ochre_roof_tiles),
 			Item.getItemFromBlock(ochre_roof_tiles_slab),
 			Item.getItemFromBlock(sandstone_column)
-	);
+	),
+
+	EGYPTIAN("Egyptian",
+			 DoTBItems.pharaoh_armor_head,
+			 DoTBItems.pharaoh_armor_chest,
+			 DoTBItems.pharaoh_armor_legs,
+			 DoTBItems.pharaoh_armor_feet
+			 );
 
 	private String name;
 	private ArrayList<Item> items = new ArrayList<>();

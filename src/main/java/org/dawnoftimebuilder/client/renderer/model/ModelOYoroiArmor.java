@@ -4,6 +4,7 @@ import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityArmorStand;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.relauncher.Side;
@@ -276,48 +277,69 @@ public class ModelOYoroiArmor extends ModelBiped {
     @Override
     public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn) {
     	super.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor, entityIn);
-        
-        switch (this.slot) {
-        	case LEGS:
-            	float f = 1.0F;
-                if (entityIn instanceof EntityLivingBase){
-                    if(((EntityLivingBase)entityIn).getTicksElytraFlying() > 4) {
-	                    f = (float)(entityIn.motionX * entityIn.motionX + entityIn.motionY * entityIn.motionY + entityIn.motionZ * entityIn.motionZ);
-	                    f = f / 0.2F;
-	                    f = f * f * f;
-	                    if (f < 1.0F) f = 1.0F;
-                	}
-                }
-                
-            	f = MathHelper.abs(MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount / f);
-            	this.thighBack.rotateAngleX = f;
-            	this.thighBackSub.rotateAngleX = f;
-            	this.thighFront.rotateAngleX = -f;
-            	this.thighFrontSub.rotateAngleX = -f;
-            	
-                if (this.isRiding) {
-                	this.thighBack.rotateAngleX += 1.0F;
-                	this.thighBackSub.rotateAngleX += 1.0F;
-                	this.thighFront.rotateAngleX += -1.0F;
-                	this.thighFrontSub.rotateAngleX += -1.0F;
-                }
-            	
-                if (this.isSneak) {
-                	this.thighBack.rotateAngleX += -0.5F;
-                	this.thighBackSub.rotateAngleX += -0.5F;
-                	this.thighFront.rotateAngleX += -0.5F;
-                	this.thighFrontSub.rotateAngleX += -0.5F;
-					this.thighFront.rotationPointY = 8.0F;
-					this.thighFrontSub.rotationPointY = 8.0F;
-                }else{
-					this.thighFront.rotationPointY = 11.0F;
-					this.thighFrontSub.rotationPointY = 11.0F;
+
+		if (this.slot == EntityEquipmentSlot.LEGS) {
+			float f = 1.0F;
+			if (entityIn instanceof EntityLivingBase) {
+				if (((EntityLivingBase) entityIn).getTicksElytraFlying() > 4) {
+					f = (float) (entityIn.motionX * entityIn.motionX + entityIn.motionY * entityIn.motionY + entityIn.motionZ * entityIn.motionZ);
+					f = f / 0.2F;
+					f = f * f * f;
+					if (f < 1.0F) f = 1.0F;
 				}
-        		break;
-        		
-        	default:
-        		break;
-        }
+			}
+
+			f = MathHelper.abs(MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount / f);
+			this.thighBack.rotateAngleX = f;
+			this.thighBackSub.rotateAngleX = f;
+			this.thighFront.rotateAngleX = -f;
+			this.thighFrontSub.rotateAngleX = -f;
+
+			if (this.isRiding) {
+				this.thighBack.rotateAngleX += 1.0F;
+				this.thighBackSub.rotateAngleX += 1.0F;
+				this.thighFront.rotateAngleX += -1.0F;
+				this.thighFrontSub.rotateAngleX += -1.0F;
+			}
+
+			if (this.isSneak) {
+				this.thighBack.rotateAngleX += -0.5F;
+				this.thighBackSub.rotateAngleX += -0.5F;
+				this.thighFront.rotateAngleX += -0.5F;
+				this.thighFrontSub.rotateAngleX += -0.5F;
+				this.thighFront.rotationPointY = 8.0F;
+				this.thighFrontSub.rotationPointY = 8.0F;
+			} else {
+				this.thighFront.rotationPointY = 11.0F;
+				this.thighFrontSub.rotationPointY = 11.0F;
+			}
+		}
+
+		//Fix the "breathing" and wrong head rotation on ArmorStands
+		if (entityIn instanceof EntityArmorStand) {
+			EntityArmorStand entityarmorstand = (EntityArmorStand)entityIn;
+			this.bipedHead.rotateAngleX = 0.017453292F * entityarmorstand.getHeadRotation().getX();
+			this.bipedHead.rotateAngleY = 0.017453292F * entityarmorstand.getHeadRotation().getY();
+			this.bipedHead.rotateAngleZ = 0.017453292F * entityarmorstand.getHeadRotation().getZ();
+			this.bipedHead.setRotationPoint(0.0F, 1.0F, 0.0F);
+			this.bipedBody.rotateAngleX = 0.017453292F * entityarmorstand.getBodyRotation().getX();
+			this.bipedBody.rotateAngleY = 0.017453292F * entityarmorstand.getBodyRotation().getY();
+			this.bipedBody.rotateAngleZ = 0.017453292F * entityarmorstand.getBodyRotation().getZ();
+			this.bipedLeftArm.rotateAngleX = 0.017453292F * entityarmorstand.getLeftArmRotation().getX();
+			this.bipedLeftArm.rotateAngleY = 0.017453292F * entityarmorstand.getLeftArmRotation().getY();
+			this.bipedLeftArm.rotateAngleZ = 0.017453292F * entityarmorstand.getLeftArmRotation().getZ();
+			this.bipedRightArm.rotateAngleX = 0.017453292F * entityarmorstand.getRightArmRotation().getX();
+			this.bipedRightArm.rotateAngleY = 0.017453292F * entityarmorstand.getRightArmRotation().getY();
+			this.bipedRightArm.rotateAngleZ = 0.017453292F * entityarmorstand.getRightArmRotation().getZ();
+			this.bipedRightArm.setRotationPoint(-5.0F, 2.0F, 0.0F);
+			this.bipedLeftLeg.rotateAngleX = 0.017453292F * entityarmorstand.getLeftLegRotation().getX();
+			this.bipedLeftLeg.rotateAngleY = 0.017453292F * entityarmorstand.getLeftLegRotation().getY();
+			this.bipedLeftLeg.rotateAngleZ = 0.017453292F * entityarmorstand.getLeftLegRotation().getZ();
+			this.bipedRightLeg.rotateAngleX = 0.017453292F * entityarmorstand.getRightLegRotation().getX();
+			this.bipedRightLeg.rotateAngleY = 0.017453292F * entityarmorstand.getRightLegRotation().getY();
+			this.bipedRightLeg.rotateAngleZ = 0.017453292F * entityarmorstand.getRightLegRotation().getZ();
+			copyModelAngles(this.bipedHead, this.bipedHeadwear);
+		}
     }
     
     private void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z) {

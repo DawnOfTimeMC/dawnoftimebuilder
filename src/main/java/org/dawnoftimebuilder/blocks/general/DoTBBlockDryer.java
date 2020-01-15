@@ -9,6 +9,7 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -86,9 +87,16 @@ public class DoTBBlockDryer extends DoTBBlockTileEntity implements IBlockCustomI
 	@Override
 	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos) {
 		if(!canBlockStay(worldIn, pos)){
-			spawnAsEntity(worldIn, pos, new ItemStack(Item.getItemFromBlock(this), 1));
-			if(!state.getValue(SIMPLE)) spawnAsEntity(worldIn, pos, new ItemStack(Item.getItemFromBlock(this), 1));
-			worldIn.setBlockToAir(pos);
+			IBlockState iblockstate = worldIn.getBlockState(pos);
+
+			if (!iblockstate.getBlock().isAir(iblockstate, worldIn, pos)){
+				worldIn.playEvent(2001, pos, Block.getStateId(iblockstate));
+
+				spawnAsEntity(worldIn, pos, new ItemStack(Item.getItemFromBlock(this), 1));
+				if(!state.getValue(SIMPLE)) spawnAsEntity(worldIn, pos, new ItemStack(Item.getItemFromBlock(this), 1));
+
+				worldIn.setBlockToAir(pos);
+			}
 		}
 	}
 

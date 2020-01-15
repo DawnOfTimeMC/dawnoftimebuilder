@@ -1,8 +1,7 @@
 package org.dawnoftimebuilder.blocks;
 
-import net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
 import net.minecraft.block.Block;
-import org.dawnoftimebuilder.blocks.general.DoTBBlockSoilCrops;
+import net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
 import org.dawnoftimebuilder.blocks.japanese.BlockCamellia;
 import org.dawnoftimebuilder.blocks.japanese.BlockMulberry;
 import org.dawnoftimebuilder.blocks.japanese.BlockRice;
@@ -123,6 +122,7 @@ public class DoTBBlocks {
 	@ObjectHolder("plastered_stone") public static Block plastered_stone;
 	@ObjectHolder("plastered_stone_slab") public static Block plastered_stone_slab;
 	@ObjectHolder("plastered_stone_edge") public static Block plastered_stone_edge;
+	@ObjectHolder("plastered_stone_plate") public static Block plastered_stone_plate;
 	@ObjectHolder("red_plastered_stone_slab") public static Block red_plastered_stone_slab;
 	@ObjectHolder("red_plastered_stone_edge") public static Block red_plastered_stone_edge;
 	@ObjectHolder("feathered_serpent_sculpture") public static Block feathered_serpent_sculpture;
@@ -136,6 +136,7 @@ public class DoTBBlocks {
 	@ObjectHolder("plastered_stone_frieze") public static Block plastered_stone_frieze;
 	@ObjectHolder("plastered_stone_stairs") public static Block plastered_stone_stairs;
 	@ObjectHolder("plastered_stone_window") public static Block plastered_stone_window;
+	@ObjectHolder("red_plastered_stone_plate") public static Block red_plastered_stone_plate;
 	@ObjectHolder("red_plastered_stone_frieze") public static Block red_plastered_stone_frieze;
 	@ObjectHolder("red_ornamented_plastered_stone_frieze") public static Block red_ornamented_plastered_stone_frieze;
 	@ObjectHolder("red_plastered_stone_stairs") public static Block red_plastered_stone_stairs;
