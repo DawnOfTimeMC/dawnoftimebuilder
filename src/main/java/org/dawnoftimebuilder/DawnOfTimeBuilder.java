@@ -1,15 +1,9 @@
 package org.dawnoftimebuilder;
 
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.Mod.EventHandler;
-import net.minecraftforge.fml.common.SidedProxy;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.network.NetworkRegistry;
 import org.apache.logging.log4j.Logger;
 import org.dawnoftimebuilder.blocks.DoTBBlocks;
 import org.dawnoftimebuilder.registries.*;
@@ -19,7 +13,7 @@ import org.dawnoftimebuilder.proxy.CommonProxy;
 
 import java.io.File;
 
-@Mod(modid = DawnOfTimeBuilder.MOD_ID, name = DawnOfTimeBuilder.NAME, version = DawnOfTimeBuilder.VERSION, updateJSON = "https://raw.githubusercontent.com/Poulpynou/dawnoftimebuilder/master/update.json")
+@Mod(modid = DawnOfTimeBuilder.MOD_ID, name = DawnOfTimeBuilder.NAME, version = DawnOfTimeBuilder.VERSION)
 public class DawnOfTimeBuilder {
 	public static final String MOD_ID = "dawnoftimebuilder";
 	public static final String NAME = "Dawn Of Time : Builder Edition";

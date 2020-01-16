@@ -2,9 +2,8 @@
   "homepage": "https://www.curseforge.com/minecraft/mc-mods/dawn-of-time/files",
   "promos": {
     "1.12.2-latest": "1.0.0",
-    "1.12.2-recommended": "1.0.0"
-  },
-  "1.12.2":{
-	"1.0.0":"Many japanese blocks and items are added, and the inventory is now organised. Main bugs fixed. Sorry for the long delay!"
+    "1.12.2-recommended": "1.0.0",
+	"1.14.4-latest": "1.0.2",
+	"1.14.4-recommended": "1.0.2",
   }
 }
