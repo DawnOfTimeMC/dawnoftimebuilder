@@ -36,21 +36,6 @@ public abstract class DoTBBlockDisplayer extends DoTBBlockTileEntity implements 
 	}
 
 	@Override
-	public double getDisplayerX(int meta){
-		return 0.0D;
-	}
-
-	@Override
-	public double getDisplayerY(int meta){
-		return 0.0D;
-	}
-
-	@Override
-	public double getDisplayerZ(int meta){
-		return 0.0D;
-	}
-
-	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ){
 		if(!worldIn.isRemote){
 			playerIn.openGui(DawnOfTimeBuilder.instance, DoTGuiHandler.DISPLAYER_GUI, worldIn, pos.getX(), pos.getY(), pos.getZ());

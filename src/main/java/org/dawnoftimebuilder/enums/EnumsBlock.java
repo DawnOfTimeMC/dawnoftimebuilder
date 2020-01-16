@@ -155,6 +155,30 @@ public class EnumsBlock {
         }
     }
 
+    public enum EnumCornerShape implements IStringSerializable {
+        NONE("none"),
+        LEFT("left"),
+        RIGHT("right"),
+        BOTH("both"),
+        FULL("full");
+
+        private final String name;
+
+        EnumCornerShape(String name)
+        {
+            this.name = name;
+        }
+
+        public String toString(){
+            return this.name;
+        }
+
+        public String getName()
+        {
+            return this.name;
+        }
+    }
+
     public enum EnumHalf implements IStringSerializable {
         TOP("top"),
         BOTTOM("bottom");
