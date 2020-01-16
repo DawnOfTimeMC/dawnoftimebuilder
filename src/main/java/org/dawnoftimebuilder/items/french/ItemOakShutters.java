@@ -29,11 +29,9 @@ public class ItemOakShutters extends ItemBlock {
      * Called when a Block is right-clicked with this Item
      */
     public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-    	
-        IBlockState iblockstate = worldIn.getBlockState(pos);
-        Block block = iblockstate.getBlock();
 
-        if (!block.isReplaceable(worldIn, pos)) pos = pos.offset(facing);
+        if(!worldIn.getBlockState(pos).getBlock().isReplaceable(worldIn, pos)) pos = pos.offset(facing);
+		if(!worldIn.getBlockState(pos.up()).getBlock().isReplaceable(worldIn, pos.up())) return EnumActionResult.FAIL;
 
         ItemStack itemstack = player.getHeldItem(hand);
 

@@ -125,13 +125,12 @@ public class BlockFeatheredSerpentSculpture extends DoTBBlock {
 
 	@Override
 	public int getMetaFromState(IBlockState state){
-		return state.getValue(FACING).getIndex();
+		return state.getValue(FACING).getHorizontalIndex();
 	}
 
 	@Override
 	public IBlockState getStateFromMeta(int meta){
-		EnumFacing facing = EnumFacing.byIndex(meta);
-		return this.getDefaultState().withProperty(FACING, facing.getAxis().isVertical() ? EnumFacing.NORTH : facing);
+		return this.getDefaultState().withProperty(FACING, EnumFacing.byHorizontalIndex(meta));
 	}
 
 	@Override

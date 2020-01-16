@@ -144,18 +144,21 @@ public class DoTBBlockEdge extends DoTBBlock {
         int i = 0;
 
         if (state.getValue(HALF) == EnumsBlock.EnumHalf.TOP){
-            i |= 4;
+            i = 4;
         }
 
-        i = i | 5 - (state.getValue(FACING)).getIndex();
+        i += state.getValue(FACING).getHorizontalIndex();
         return i;
     }
 
 	@Override
     public IBlockState getStateFromMeta(int meta) {
-        IBlockState iblockstate = this.getDefaultState().withProperty(HALF, (meta & 4) > 0 ? EnumsBlock.EnumHalf.TOP : EnumsBlock.EnumHalf.BOTTOM);
-        iblockstate = iblockstate.withProperty(FACING, EnumFacing.byIndex(5 - (meta & 3)));
-        return iblockstate;
+        IBlockState iblockstate = this.getDefaultState();
+        if(meta > 4){
+            iblockstate = iblockstate.withProperty(HALF, EnumsBlock.EnumHalf.TOP);
+            meta -= 4;
+        }
+        return iblockstate.withProperty(FACING, EnumFacing.byHorizontalIndex(meta));
     }
 
 	@Override
