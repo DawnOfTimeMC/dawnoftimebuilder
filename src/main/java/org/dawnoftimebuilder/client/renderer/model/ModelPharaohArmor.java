@@ -129,7 +129,7 @@ public class ModelPharaohArmor extends ModelBiped {
 				this.armLeft.addBox(-1.5F, -2.5F, -2.5F, 5, 10, 5, -0.2F);
 				this.armRight = new ModelRenderer(this, 0, 18);
 				this.armRight.setRotationPoint(-5.5F, 2.0F, -0.5F);
-				this.armRight.addBox(-3.0F, -2.5F, -2.5F, 5, 10, 5, -0.2F);
+				this.armRight.addBox(-3.5F, -2.5F, -2.5F, 5, 10, 5, -0.2F);
 
 				this.bipedBody = body;
 				this.bipedBody.addChild(bodyCollar);

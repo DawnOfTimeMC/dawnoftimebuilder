@@ -43,10 +43,10 @@ public class ModelJapaneseLightArmor extends ModelBiped {
 
         switch (slot) {
             case HEAD:
-                this.headBase = new ModelRenderer(this, 0, -8);
+                this.headBase = new ModelRenderer(this, 26, 16);
                 this.headBase.setRotationPoint(0.0F, 0.0F, 0.0F);
                 this.headBase.addBox(-4.0F, -6.5F, -4.0F, 8, 2, 8, 0.4F);
-                this.knotBase = new ModelRenderer(this, 34, 0);
+                this.knotBase = new ModelRenderer(this, 56, 9);
                 this.knotBase.setRotationPoint(0.0F, 0.0F, 0.0F);
                 this.knotBase.addBox(2.9F, -4.9F, 3.7F, 2, 2, 1, 0.4F);
                 this.setRotateAngle(knotBase, 0.0F, 0.0F, -0.785F);
@@ -66,20 +66,20 @@ public class ModelJapaneseLightArmor extends ModelBiped {
                 break;
 
             case CHEST:
-                this.baseBody = new ModelRenderer(this, 0, 2);
+                this.baseBody = new ModelRenderer(this, 0, 0);
                 this.baseBody.setRotationPoint(0.0F, 0.0F, 0.0F);
                 this.baseBody.addBox(-4.0F, 0.0F, -2.0F, 8, 12, 4, 0.45F);
-                this.armLeft = new ModelRenderer(this, 24, 3);
+                this.armLeft = new ModelRenderer(this, 24, 0);
                 this.armLeft.mirror = true;
                 this.armLeft.setRotationPoint(5.0F, 2.0F, 0.0F);
                 this.armLeft.addBox(-1.0F, -2.0F, -2.0F, 4, 12, 4, 0.3F);
-                this.armLeftArmor = new ModelRenderer(this, 12, 18);
+                this.armLeftArmor = new ModelRenderer(this, 12, 16);
                 this.armLeftArmor.setRotationPoint(0.0F, 0.0F, 0.0F);
                 this.armLeftArmor.addBox(1.5F, 3.0F, -2.5F, 2, 5, 5, 0.2F);
-                this.armRight = new ModelRenderer(this, 24, 3);
+                this.armRight = new ModelRenderer(this, 24, 0);
                 this.armRight.setRotationPoint(-5.0F, 2.0F, 0.0F);
                 this.armRight.addBox(-3.0F, -2.0F, -2.0F, 4, 12, 4, 0.3F);
-                this.armRightArmor = new ModelRenderer(this, 12, 18);
+                this.armRightArmor = new ModelRenderer(this, 12, 16);
                 this.armRightArmor.mirror = true;
                 this.armRightArmor.setRotationPoint(0.0F, 0.0F, 0.0F);
                 this.armRightArmor.addBox(-3.5F, 3.0F, -2.5F, 2, 5, 5, 0.2F);
@@ -94,34 +94,34 @@ public class ModelJapaneseLightArmor extends ModelBiped {
                 break;
 
             case LEGS:
-                this.legLeftArmor = new ModelRenderer(this, 0, 18);
+                this.legLeftArmor = new ModelRenderer(this, 0, 16);
                 this.legLeftArmor.mirror = true;
                 this.legLeftArmor.setRotationPoint(0.0F, 0.0F, 0.0F);
                 this.legLeftArmor.addBox(0.4F, -0.2F, -2.0F, 2, 5, 4, 0.6F);
                 this.setRotateAngle(legLeftArmor, 0.0F, 0.0F, -0.2F);
-                this.legRightArmor = new ModelRenderer(this, 0, 18);
+                this.legRightArmor = new ModelRenderer(this, 0, 16);
                 this.legRightArmor.setRotationPoint(-0.0F, 0.0F, 0.0F);
                 this.legRightArmor.addBox(-2.4F, -0.2F, -2.0F, 2, 5, 4, 0.6F);
                 this.setRotateAngle(legRightArmor, 0.0F, 0.0F, 0.2F);
-
-                this.legRight = new ModelRenderer(this, 0, 0);
-                this.legRight.setRotationPoint(-1.9F, 12.0F, 0.0F);
-                this.bipedRightLeg = legRight;
-                legRight.addChild(legRightArmor);
 
                 this.legLeft = new ModelRenderer(this, 0, 0);
                 this.legLeft.setRotationPoint(1.9F, 12.0F, 0.0F);
                 this.bipedLeftLeg = legLeft;
                 legLeft.addChild(legLeftArmor);
 
+                this.legRight = new ModelRenderer(this, 0, 0);
+                this.legRight.setRotationPoint(-1.9F, 12.0F, 0.0F);
+                this.bipedRightLeg = legRight;
+                legRight.addChild(legRightArmor);
+
                 break;
 
             case FEET:
-                this.legLeft = new ModelRenderer(this, 40, 7);
+                this.legLeft = new ModelRenderer(this, 40, 0);
                 this.legLeft.mirror = true;
                 this.legLeft.setRotationPoint(1.9F, 12.0F, 0.0F);
                 this.legLeft.addBox(-2.0F, 0.0F, -2.0F, 4, 12, 4, 0.3F);
-                this.legRight = new ModelRenderer(this, 40, 7);
+                this.legRight = new ModelRenderer(this, 40, 0);
                 this.legRight.setRotationPoint(-1.9F, 12.0F, 0.0F);
                 this.legRight.addBox(-2.0F, 0.0F, -2.0F, 4, 12, 4, 0.3F);
 

@@ -158,11 +158,13 @@ tile.dawnoftimebuilder.plastered_stone_plastered_stone.name=Otynkowany Kamienny 
 tile.dawnoftimebuilder.plastered_stone_red_ornamented_plastered_stone.name=Czerwony Zdobiony Otynkowany Kamień
 tile.dawnoftimebuilder.plastered_stone_red_plastered_stone.name=Czerwony Otynkowany Kamień
 tile.dawnoftimebuilder.plastered_stone_stairs.name=Kamienne Otynkowane Schody
+tile.dawnoftimebuilder.plastered_stone_plate.name=Plastered Stone Plate
 tile.dawnoftimebuilder.plastered_stone_window.name=Okno z Otynkowanego Kamienia
 tile.dawnoftimebuilder.plastered_stone_edge.name=Otynkowana Kamienna Krawędź
 tile.dawnoftimebuilder.red_ornamented_plastered_stone_frieze.name=Zdobiony Czerwony Fryz z Otynkowanego Kamienia
 tile.dawnoftimebuilder.red_plastered_stone_frieze.name=Otynkowany Czerwony Fryz
 tile.dawnoftimebuilder.red_plastered_stone_stairs.name=Czerwone Kamienne Otynkowane Schody
+tile.dawnoftimebuilder.red_plastered_stone_plate.name=Red Plastered Stone Plate
 tile.dawnoftimebuilder.red_plastered_stone_edge.name=Czerwona Krawędź z Otynkowanego Kamienia
 tile.dawnoftimebuilder.red_sculpted_plastered_stone_frieze.name=Czerwony Gzyms z Otynkowanego Kamienia
 tile.dawnoftimebuilder.red_small_plastered_stone_frieze.name=Mały Czerwony Fryz z Otynkowanego Kamienia
@@ -171,6 +173,11 @@ tile.dawnoftimebuilder.serpent_sculpted_column.name=Ozdobna Wężowa Kolumna
 tile.dawnoftimebuilder.ochre_roof_tiles.name=Ceramiczna Dachówka
 tile.dawnoftimebuilder.ochre_roof_tiles_slab.name=Ceramiczne Płytki Dachowe
 tile.dawnoftimebuilder.sandstone_column.name=Kolumna z Piaskowca
+
+item.dawnoftimebuilder.pharaoh_armor_head.name=Nemes Headdress
+item.dawnoftimebuilder.pharaoh_armor_chest.name=Pharaohs Clothes
+item.dawnoftimebuilder.pharaoh_armor_legs.name=Pharaohs Shendyts
+item.dawnoftimebuilder.pharaoh_armor_feet.name=Pharaohs Sandals
 
 entity.dawnoftimebuilder.silkmoth.name=Jedwabnik
 entity.dawnoftimebuilder.japanese_dragon.name=Japoński Smok

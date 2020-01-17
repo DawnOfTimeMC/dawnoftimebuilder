@@ -158,11 +158,13 @@ tile.dawnoftimebuilder.plastered_stone_plastered_stone.name=Geschliffener Stein
 tile.dawnoftimebuilder.plastered_stone_red_ornamented_plastered_stone.name=Rot Verzierter Geschliffener Ornamentstein
 tile.dawnoftimebuilder.plastered_stone_red_plastered_stone.name=Rot Verzierter Geschliffener Stein
 tile.dawnoftimebuilder.plastered_stone_stairs.name=Geschliffene Steintreppe
+tile.dawnoftimebuilder.plastered_stone_plate.name=Plastered Stone Plate
 tile.dawnoftimebuilder.plastered_stone_window.name=Geschliffene Steinfenster
 tile.dawnoftimebuilder.plastered_stone_edge.name=Plastered Stone Edge
 tile.dawnoftimebuilder.red_ornamented_plastered_stone_frieze.name=Rot Verziertes Ornamentsteinfries
 tile.dawnoftimebuilder.red_plastered_stone_frieze.name=Rot Verziertes Steinfries
 tile.dawnoftimebuilder.red_plastered_stone_stairs.name=Rot Verzierte Geschliffene Steintreppe
+tile.dawnoftimebuilder.red_plastered_stone_plate.name=Red Plastered Stone Plate
 tile.dawnoftimebuilder.red_plastered_stone_edge.name=Red Plastered Stone Edge
 tile.dawnoftimebuilder.red_sculpted_plastered_stone_frieze.name=Rot Verziertes Gemeißeltes Steinfries
 tile.dawnoftimebuilder.red_small_plastered_stone_frieze.name=Kleines Rot Verziertes Steinfries
@@ -171,6 +173,11 @@ tile.dawnoftimebuilder.serpent_sculpted_column.name=Schlangenskulptursäule
 tile.dawnoftimebuilder.ochre_roof_tiles.name=Ockerfarbener Dachziegel
 tile.dawnoftimebuilder.ochre_roof_tiles_slab.name=Ochre Roof Tiles Slab
 tile.dawnoftimebuilder.sandstone_column.name=Sandsteinsäule
+
+item.dawnoftimebuilder.pharaoh_armor_head.name=Nemes Headdress
+item.dawnoftimebuilder.pharaoh_armor_chest.name=Pharaohs Clothes
+item.dawnoftimebuilder.pharaoh_armor_legs.name=Pharaohs Shendyts
+item.dawnoftimebuilder.pharaoh_armor_feet.name=Pharaohs Sandals
 
 entity.dawnoftimebuilder.silkmoth.name=Silkmoth
 entity.dawnoftimebuilder.japanese_dragon.name=Japanese Dragon

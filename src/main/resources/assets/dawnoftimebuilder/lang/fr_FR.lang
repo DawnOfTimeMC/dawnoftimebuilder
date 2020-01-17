@@ -60,7 +60,7 @@ tile.dawnoftimebuilder.oak_waxed_planks_slab.name=Dalle en chêne cirée
 tile.dawnoftimebuilder.oak_waxed_planks_edge.name=Bordure en chêne cirée
 tile.dawnoftimebuilder.oak_beam.name=Poutre en chêne
 tile.dawnoftimebuilder.oak_planks_edge.name=Bordure en planches de chêne
-item.dawnoftimebuilder.wax.name=Wax
+item.dawnoftimebuilder.wax.name=Cire
 
 item.dawnoftimebuilder.tachi_sword.name=Epée Tachi
 item.dawnoftimebuilder.o_yoroi_armor_head.name=Casque O-Yoroi
@@ -158,11 +158,13 @@ tile.dawnoftimebuilder.plastered_stone_plastered_stone.name=Pierre crépie
 tile.dawnoftimebuilder.plastered_stone_red_ornamented_plastered_stone.name=Pierre rouge crépie et décorée
 tile.dawnoftimebuilder.plastered_stone_red_plastered_stone.name=Pierre rouge crépie
 tile.dawnoftimebuilder.plastered_stone_stairs.name=Escalier de pierre crépie
+tile.dawnoftimebuilder.plastered_stone_plate.name=Plaque de pierre crépie
 tile.dawnoftimebuilder.plastered_stone_window.name=Fenêtre de pierre crépie
 tile.dawnoftimebuilder.plastered_stone_edge.name=Bordure de pierre crépie
 tile.dawnoftimebuilder.red_ornamented_plastered_stone_frieze.name=Frise de pierre rouge crépie et décorée
 tile.dawnoftimebuilder.red_plastered_stone_frieze.name=Frise de pierre rouge crépie
 tile.dawnoftimebuilder.red_plastered_stone_stairs.name=Escalier de pierre rouge crépie
+tile.dawnoftimebuilder.red_plastered_stone_plate.name=Plaque de pierre rouge crépie
 tile.dawnoftimebuilder.red_plastered_stone_edge.name=Bordure de pierre rouge crépie
 tile.dawnoftimebuilder.red_sculpted_plastered_stone_frieze.name=Frise de pierre rouge crépie et sculptée
 tile.dawnoftimebuilder.red_small_plastered_stone_frieze.name=Petite frise rouge de pierre crépie
@@ -171,6 +173,11 @@ tile.dawnoftimebuilder.serpent_sculpted_column.name=Colonne de sculpture de serp
 tile.dawnoftimebuilder.ochre_roof_tiles.name=Toiture de tuiles ocres
 tile.dawnoftimebuilder.ochre_roof_tiles_slab.name=Dalle de tuiles ocres
 tile.dawnoftimebuilder.sandstone_column.name=Colonne en grès
+
+item.dawnoftimebuilder.pharaoh_armor_head.name=Coiffe Némès
+item.dawnoftimebuilder.pharaoh_armor_chest.name=Tenue de Pharaon
+item.dawnoftimebuilder.pharaoh_armor_legs.name=Chendjit de Pharaon
+item.dawnoftimebuilder.pharaoh_armor_feet.name=Sandales de Pharaon
 
 entity.dawnoftimebuilder.silkmoth.name=Bombyx du mûrier
 entity.dawnoftimebuilder.japanese_dragon.name=Dragon Japonais

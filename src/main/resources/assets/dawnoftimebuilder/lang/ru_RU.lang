@@ -158,11 +158,13 @@ tile.dawnoftimebuilder.plastered_stone_plastered_stone.name=Оштукатуре
 tile.dawnoftimebuilder.plastered_stone_red_ornamented_plastered_stone.name=Красный украшенный штукатурный Камень
 tile.dawnoftimebuilder.plastered_stone_red_plastered_stone.name=Красный оштукатуренный камень
 tile.dawnoftimebuilder.plastered_stone_stairs.name=Лестница из оштукатуренного камня
+tile.dawnoftimebuilder.plastered_stone_plate.name=Plastered Stone Plate
 tile.dawnoftimebuilder.plastered_stone_window.name=Оштукатуренное каменное окно
 tile.dawnoftimebuilder.plastered_stone_edge.name=Оштукатуренный каменный край
 tile.dawnoftimebuilder.red_ornamented_plastered_stone_frieze.name=Красный украшенный отштукатуренный каменный фриз
 tile.dawnoftimebuilder.red_plastered_stone_frieze.name=Красный оштукатуренный каменный фриз
 tile.dawnoftimebuilder.red_plastered_stone_stairs.name=Красная оштукатуренная каменная лестница
+tile.dawnoftimebuilder.red_plastered_stone_plate.name=Red Plastered Stone Plate
 tile.dawnoftimebuilder.red_plastered_stone_edge.name=Красный оштукатуренный каменный край
 tile.dawnoftimebuilder.red_sculpted_plastered_stone_frieze.name=Красный скульптурный каменный фриз
 tile.dawnoftimebuilder.red_small_plastered_stone_frieze.name=Красный мелкий оштукатуренный каменный фриз
@@ -171,6 +173,11 @@ tile.dawnoftimebuilder.serpent_sculpted_column.name=Змеиная скульп�
 tile.dawnoftimebuilder.ochre_roof_tiles.name=Охра черепица
 tile.dawnoftimebuilder.ochre_roof_tiles_slab.name=Плитка Охра черепицы
 tile.dawnoftimebuilder.sandstone_column.name=Колонна из песчаника
+
+item.dawnoftimebuilder.pharaoh_armor_head.name=Nemes Headdress
+item.dawnoftimebuilder.pharaoh_armor_chest.name=Pharaohs Clothes
+item.dawnoftimebuilder.pharaoh_armor_legs.name=Pharaohs Shendyts
+item.dawnoftimebuilder.pharaoh_armor_feet.name=Pharaohs Sandals
 
 entity.dawnoftimebuilder.silkmoth.name=Шёлкопряд
 entity.dawnoftimebuilder.japanese_dragon.name=Японский дракон
