@@ -139,7 +139,7 @@ public class BlockCamellia extends DoTBBlockSoilCrops implements IBlockFlowerGen
 			if (i < this.getMaxAge()) {
 				float f = getGrowthChance(this, worldIn, pos);
 				if(net.minecraftforge.common.ForgeHooks.onCropsGrowPre(worldIn, pos, state, rand.nextInt((int)(25.0F / f) + 1) == 0)) {
-					worldIn.setBlockState(pos, worldIn.getBlockState(pos).withProperty(AGE,i + 1), 2);
+					worldIn.setBlockState(pos, state.withProperty(AGE,i + 1), 2);
 					net.minecraftforge.common.ForgeHooks.onCropsGrowPost(worldIn, pos, state, worldIn.getBlockState(pos));
 				}
 			}

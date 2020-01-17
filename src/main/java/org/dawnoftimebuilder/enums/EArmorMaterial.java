@@ -19,11 +19,11 @@ public enum EArmorMaterial {
 	/* Looking up the values for the vanilla armours will be beneficial here
 	 *
 	 */
-	IRONPLATE("Iron Plate Armor", 239, new int[]{2,6,5,2}, 20, ItemArmor.ArmorMaterial.IRON.getSoundEvent(), 0.0F),
-	JAPANESE_LIGHT_ARMOR("Japanese Light Armor", 239, new int[]{2,6,5,2}, 14, ItemArmor.ArmorMaterial.LEATHER.getSoundEvent(), 0.0F),
-	OYOROI("O-yoroi Armor", 339, new int[]{3,8,6,3}, 10, ItemArmor.ArmorMaterial.IRON.getSoundEvent(), 2.0F),
-	PHARAOH("Pharaoh Armor", 526, new int[]{4,10,8,4}, 37, ItemArmor.ArmorMaterial.GOLD.getSoundEvent(), 1.0F),
-	RAIJIN("Raijin Armor", 526, new int[]{5,14,10,5}, 26, ItemArmor.ArmorMaterial.DIAMOND.getSoundEvent(), 2.0F);
+	IRONPLATE("Iron Plate Armor", 239, new int[]{2,5,6,2}, 20, ItemArmor.ArmorMaterial.IRON.getSoundEvent(), 0.0F),
+	JAPANESE_LIGHT_ARMOR("Japanese Light Armor", 239, new int[]{2,5,6,2}, 14, ItemArmor.ArmorMaterial.LEATHER.getSoundEvent(), 0.0F),
+	OYOROI("O-yoroi Armor", 339, new int[]{3,6,8,3}, 10, ItemArmor.ArmorMaterial.IRON.getSoundEvent(), 2.0F),
+	PHARAOH("Pharaoh Armor", 226, new int[]{3,6,8,3}, 37, ItemArmor.ArmorMaterial.GOLD.getSoundEvent(), 0.0F),
+	RAIJIN("Raijin Armor", 526, new int[]{4,8,10,4}, 26, ItemArmor.ArmorMaterial.DIAMOND.getSoundEvent(), 2.0F);
 
 	private String name;
 	private int durability;

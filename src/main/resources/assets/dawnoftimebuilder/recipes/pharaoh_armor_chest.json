@@ -1,0 +1,25 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"x x",
+		"iXi",
+		"iii"
+	],
+	"key": {
+		"X": {
+			"item": "minecraft:gold_block",
+			"data": 0
+		},
+		"x": {
+			"item": "minecraft:gold_ingot"
+		},
+		"i": {
+			"item": "minecraft:string"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:pharaoh_armor_chest",
+		"data": 0,
+		"count": 1
+	}
+}

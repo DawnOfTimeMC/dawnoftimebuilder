@@ -7,12 +7,12 @@
 	],
 	"key": {
 		"I": {
-			"item": "dawnoftimebuilder:chiseled_plastered_stone",
-			"data": 0
+			"item": "dawnoftimebuilder:plastered_stone",
+			"data": 1
 		}
 	},
 	"result": {
-		"item": "dawnoftimebuilder:plastered_stone_frieze",
+		"item": "dawnoftimebuilder:red_plastered_stone_plate",
 		"data": 0,
 		"count": 6
 	}
