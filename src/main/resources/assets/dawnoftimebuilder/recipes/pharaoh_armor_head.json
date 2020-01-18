@@ -1,0 +1,25 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"xox",
+		"i i"
+	],
+	"key": {
+		"x": {
+			"item": "minecraft:lapis_block",
+			"data": 0
+		},
+		"i": {
+			"item": "minecraft:gold_ingot"
+		},
+		"o": {
+			"item": "minecraft:gold_block",
+			"data": 0
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:pharaoh_armor_head",
+		"data": 0,
+		"count": 1
+	}
+}

@@ -1,40 +1,47 @@
 package org.dawnoftimebuilder;
 
+import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.NonNullList;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.DistExecutor;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.dawnoftimebuilder.blocks.DoTBBlocks;
-import org.dawnoftimebuilder.registries.*;
-import org.dawnoftimebuilder.client.gui.DoTGuiHandler;
-import org.dawnoftimebuilder.crafts.OreDictionaryHandler;
+import org.dawnoftimebuilder.proxy.ClientProxy;
 import org.dawnoftimebuilder.proxy.CommonProxy;
+import org.dawnoftimebuilder.registries.DoTBItemsRegistry;
 
-import java.io.File;
-
-@Mod(modid = DawnOfTimeBuilder.MOD_ID, name = DawnOfTimeBuilder.NAME, version = DawnOfTimeBuilder.VERSION)
+@Mod(DawnOfTimeBuilder.MOD_ID)
 public class DawnOfTimeBuilder {
 	public static final String MOD_ID = "dawnoftimebuilder";
-	public static final String NAME = "Dawn Of Time : Builder Edition";
-	public static final String VERSION = "1.0.2";
-	public static Logger logger;
-	public static final NetworkRegistry NETWORK = NetworkRegistry.INSTANCE;
-
-	@Mod.Instance(MOD_ID)
-	public static DawnOfTimeBuilder instance;
+	public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
+	//public static final ItemGroup GROUP = new DoTBGroup(MOD_ID);
+	public static final CommonProxy PROXY = DistExecutor.runForDist(() -> ClientProxy::new, () -> CommonProxy::new);
 
 	public DawnOfTimeBuilder(){
-		MinecraftForge.EVENT_BUS.register(new DoTBEvents());
-		MinecraftForge.TERRAIN_GEN_BUS.register(new DoTBWorldGen());
+		//ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, FurnitureConfig.clientSpec);
+		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::onCommonSetup);
+		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::onClientSetup);
+
+		MinecraftForge.EVENT_BUS.register(DoTBEvents.INSTANCE);
+		//MinecraftForge.TERRAIN_GEN_BUS.register(new DoTBWorldGen());
 	}
 
+	private void onCommonSetup(FMLCommonSetupEvent event){
+	}
+
+	private void onClientSetup(FMLClientSetupEvent event){
+	}
+/*
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event){
-		logger = event.getModLog();
 
 		DoTBBlocksRegistry.init();
-		DoTBItemsRegistry.init();
 		DoTBTileEntitiesRegistry.init();
 		DoTBEntitiesRegistry.init();
 
@@ -66,4 +73,15 @@ public class DawnOfTimeBuilder {
 			super.displayAllRelevantItems(p_78018_1_);
 		}
 	};
+
+	public class DoTBGroup extends ItemGroup{
+		public DoTBGroup(String label){
+			super(label);
+		}
+
+		@Override
+		public ItemStack createIcon(){
+			return new ItemStack(DoTBBlocks.cast_iron_teapot);
+		}
+	}*/
 }

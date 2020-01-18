@@ -6,33 +6,31 @@ import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.registry.ForgeRegistries;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-import org.dawnoftimebuilder.registries.DoTBBlocksRegistry;
-import org.dawnoftimebuilder.crafts.DoTBRecipesRegistry;
 import org.dawnoftimebuilder.registries.DoTBItemsRegistry;
 
 import java.util.Objects;
 
 import static org.dawnoftimebuilder.DawnOfTimeBuilder.MOD_ID;
 
-@Mod.EventBusSubscriber(modid = MOD_ID)
+@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD, modid = MOD_ID)
 public class DoTBEvents {
-	
+
+	public static final DoTBEvents INSTANCE = new DoTBEvents();
+
+	/*
 	@SubscribeEvent
 	public void registerBlocks(RegistryEvent.Register<Block> event){
 		DoTBBlocksRegistry.registerBlocks(event);
 	}
-	
+	*/
 	@SubscribeEvent
 	public void registerItems(RegistryEvent.Register<Item> event){
-		DoTBBlocksRegistry.initItemBlocks();
+		//DoTBBlocksRegistry.initItemBlocks();
 		DoTBItemsRegistry.registerItems(event);
 	}
-
+/*
 	@SideOnly(Side.CLIENT)
 	@SubscribeEvent
 	public void registerModels(ModelRegistryEvent event){
@@ -72,5 +70,5 @@ public class DoTBEvents {
 				}
 			}
 		}
-	}
+	}*/
 }

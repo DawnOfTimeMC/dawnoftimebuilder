@@ -1,0 +1,20 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"I I",
+		"i i"
+	],
+	"key": {
+		"I": {
+			"item": "minecraft:gold_ingot"
+		},
+		"i": {
+			"item": "minecraft:leather"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:pharaoh_armor_feet",
+		"data": 0,
+		"count": 1
+	}
+}

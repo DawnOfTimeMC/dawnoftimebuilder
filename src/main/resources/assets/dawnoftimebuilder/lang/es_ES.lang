@@ -158,11 +158,13 @@ tile.dawnoftimebuilder.plastered_stone_plastered_stone.name=Piedra Enyesada
 tile.dawnoftimebuilder.plastered_stone_red_ornamented_plastered_stone.name=Piedra Ornamentada Enyesada Roja
 tile.dawnoftimebuilder.plastered_stone_red_plastered_stone.name=Piedra Enyesada Roja
 tile.dawnoftimebuilder.plastered_stone_stairs.name=Escaleras de Piedra Enyesada
+tile.dawnoftimebuilder.plastered_stone_plate.name=Plastered Stone Plate
 tile.dawnoftimebuilder.plastered_stone_window.name=Ventana de Piedra Enyesada
 tile.dawnoftimebuilder.plastered_stone_edge.name=Plastered Stone Edge
 tile.dawnoftimebuilder.red_ornamented_plastered_stone_frieze.name=Friso de Piedra Ornamentada Enyesada Roja
 tile.dawnoftimebuilder.red_plastered_stone_frieze.name=Frizo de Piedra Enyesada Roja
 tile.dawnoftimebuilder.red_plastered_stone_stairs.name=Escaleras de Piedra Enyesada Roja
+tile.dawnoftimebuilder.red_plastered_stone_plate.name=Red Plastered Stone Plate
 tile.dawnoftimebuilder.red_plastered_stone_edge.name=Red Plastered Stone Edge
 tile.dawnoftimebuilder.red_sculpted_plastered_stone_frieze.name=Frizo de Piedra Enyesada Esculpida Roja
 tile.dawnoftimebuilder.red_small_plastered_stone_frieze.name=Frizo de Piedra Enyesada Roja Pequeño
@@ -171,6 +173,11 @@ tile.dawnoftimebuilder.serpent_sculpted_column.name=Columna de Escultura de Serp
 tile.dawnoftimebuilder.ochre_roof_tiles.name=Tejas Ocres
 tile.dawnoftimebuilder.ochre_roof_tiles_slab.name=Ochre Roof Tiles Slab
 tile.dawnoftimebuilder.sandstone_column.name=Columna de Arenisca
+
+item.dawnoftimebuilder.pharaoh_armor_head.name=Pharaohs Headdress
+item.dawnoftimebuilder.pharaoh_armor_chest.name=Pharaohs Clothes
+item.dawnoftimebuilder.pharaoh_armor_legs.name=Pharaohs Shendyts
+item.dawnoftimebuilder.pharaoh_armor_feet.name=Pharaohs Sandals
 
 entity.dawnoftimebuilder.silkmoth.name=Silkmoth
 entity.dawnoftimebuilder.japanese_dragon.name=Japanese Dragon
