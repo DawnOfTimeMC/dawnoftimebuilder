@@ -1,5 +1,6 @@
 package org.dawnoftimebuilder.items.general;
 
+import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -16,11 +17,13 @@ public abstract class DoTBItemCustomArmor extends ItemArmor {
 
 	public final String set;
 	public ModelBiped model = null;
+	public ModelBiped slimModel = null;
 
 	@SideOnly(Side.CLIENT)
-	public void createModel(){
-		this.model = new ModelBiped();
-	}
+	public abstract ModelBiped createModel();
+
+	@SideOnly(Side.CLIENT)
+	public abstract ModelBiped createSlimModel();
 
 	public DoTBItemCustomArmor(String set, ArmorMaterial materialIn, EntityEquipmentSlot equipmentSlotIn) {
 		super(materialIn, 0, equipmentSlotIn);
@@ -36,10 +39,19 @@ public abstract class DoTBItemCustomArmor extends ItemArmor {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, EntityEquipmentSlot armorSlot, ModelBiped _default) {
-		if(this.model == null) createModel();
+		if(this.model == null) this.model = createModel();
+		if(this.slimModel == null) this.slimModel = createSlimModel();
 		if(!itemStack.isEmpty()) {
 			if(itemStack.getItem() instanceof ItemArmor) {
-				ModelBiped armorModel = this.model;
+				ModelBiped armorModel;
+				if(entityLiving instanceof AbstractClientPlayer){
+					if("slim".equals(((AbstractClientPlayer) entityLiving).getSkinType())){
+						armorModel = this.slimModel;
+						armorModel.setModelAttributes(_default);
+						return armorModel;
+					}
+				}
+				armorModel = this.model;
 				armorModel.setModelAttributes(_default);
 				return armorModel;
 			}
@@ -50,6 +62,12 @@ public abstract class DoTBItemCustomArmor extends ItemArmor {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public String getArmorTexture(ItemStack stack, Entity entity, EntityEquipmentSlot slot, String type) {
+		if(entity instanceof AbstractClientPlayer){
+			AbstractClientPlayer clientPlayer = (AbstractClientPlayer) entity;
+			if ("slim".equals(clientPlayer.getSkinType())) {
+				return MOD_ID + ":textures/models/armor/" + this.set + "_slim.png";
+			}
+		}
 		return MOD_ID + ":textures/models/armor/" + this.set + ".png";
 	}
 }

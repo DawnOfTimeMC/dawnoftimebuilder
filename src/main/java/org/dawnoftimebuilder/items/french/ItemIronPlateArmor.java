@@ -1,5 +1,6 @@
 package org.dawnoftimebuilder.items.french;
 
+import net.minecraft.client.model.ModelBiped;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -15,7 +16,13 @@ public class ItemIronPlateArmor extends DoTBItemCustomArmor {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void createModel(){
-		this.model = new ModelIronPlateArmor(0.0F, this.armorType);
+	public ModelBiped createModel(){
+		return new ModelIronPlateArmor(0.0F, this.armorType);
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public ModelBiped createSlimModel() {
+		return new ModelIronPlateArmor(0.0F, this.armorType);
 	}
 }

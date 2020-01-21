@@ -1,5 +1,6 @@
 package org.dawnoftimebuilder.items.japanese;
 
+import net.minecraft.client.model.ModelBiped;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -16,7 +17,13 @@ public class ItemJapaneseLightArmor extends DoTBItemCustomArmor {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void createModel(){
-		this.model = new ModelJapaneseLightArmor(0.0F, this.armorType);
+	public ModelBiped createModel(){
+		return new ModelJapaneseLightArmor(0.0F, this.armorType);
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public ModelBiped createSlimModel() {
+		return new ModelJapaneseLightArmor(0.0F, this.armorType);
 	}
 }
