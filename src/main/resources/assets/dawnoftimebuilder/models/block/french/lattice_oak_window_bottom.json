@@ -1,7 +1,7 @@
 {
 	"textures": {
-		"tete": "dawnoftimebuilder:blocks/lattice_glass",
-		"particle": "dawnoftimebuilder:blocks/lattice_glass"
+		"tete": "dawnoftimebuilder:block/lattice_glass",
+		"particle": "dawnoftimebuilder:block/lattice_glass"
 	},
 	"elements": [
 		{

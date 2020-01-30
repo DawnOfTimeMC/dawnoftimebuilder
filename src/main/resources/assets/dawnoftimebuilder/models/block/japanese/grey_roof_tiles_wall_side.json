@@ -1,6 +1,6 @@
 {
     "parent": "block/wall_side",
     "textures": {
-        "wall": "dawnoftimebuilder:blocks/grey_roof_tiles"
+        "wall": "dawnoftimebuilder:block/grey_roof_tiles"
     }
 }

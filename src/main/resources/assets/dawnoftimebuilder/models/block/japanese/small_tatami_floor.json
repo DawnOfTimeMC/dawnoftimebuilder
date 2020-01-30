@@ -1,8 +1,8 @@
 {
 	"textures": {
-		"1": "blocks/planks_spruce",
-		"texture": "dawnoftimebuilder:blocks/small_tatami_mat",
-		"particle": "dawnoftimebuilder:blocks/small_tatami_mat"
+		"1": "block/planks_spruce",
+		"texture": "dawnoftimebuilder:block/small_tatami_mat",
+		"particle": "dawnoftimebuilder:block/small_tatami_mat"
 	},
 	"elements": [
 		{

@@ -1,8 +1,8 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"1_texture": "dawnoftimebuilder:blocks/spruce_roof_support",
-		"particle": "dawnoftimebuilder:blocks/spruce_roof_support"
+		"1_texture": "dawnoftimebuilder:block/spruce_roof_support",
+		"particle": "dawnoftimebuilder:block/spruce_roof_support"
 	},
 	"elements": [
 		{

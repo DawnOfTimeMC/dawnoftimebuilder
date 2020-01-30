@@ -1,9 +1,9 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"texture": "dawnoftimebuilder:blocks/stone_lantern",
-		"particle": "dawnoftimebuilder:blocks/stone_lantern",
-		"chain": "dawnoftimebuilder:blocks/chain"
+		"texture": "dawnoftimebuilder:block/stone_lantern",
+		"particle": "dawnoftimebuilder:block/stone_lantern",
+		"chain": "dawnoftimebuilder:block/chain"
 	},
 	"elements": [
 		{

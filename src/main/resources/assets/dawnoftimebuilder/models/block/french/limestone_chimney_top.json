@@ -1,9 +1,9 @@
 {
 	"textures": {
-		"1": "dawnoftimebuilder:blocks/limestone_brick_wall_side",
-		"2": "dawnoftimebuilder:blocks/limestone_brick_slab",
-		"3": "dawnoftimebuilder:blocks/flat_roof_tiles",
-		"particle": "dawnoftimebuilder:blocks/limestone_brick_slab"
+		"1": "dawnoftimebuilder:block/limestone_brick_wall_side",
+		"2": "dawnoftimebuilder:block/limestone_brick_slab",
+		"3": "dawnoftimebuilder:block/flat_roof_tiles",
+		"particle": "dawnoftimebuilder:block/limestone_brick_slab"
 	},
 	"elements": [
 		{

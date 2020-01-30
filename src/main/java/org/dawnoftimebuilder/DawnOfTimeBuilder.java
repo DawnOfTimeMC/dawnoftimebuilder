@@ -12,6 +12,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.dawnoftimebuilder.blocks.DoTBBlocks;
 import org.dawnoftimebuilder.proxy.ClientProxy;
 import org.dawnoftimebuilder.proxy.CommonProxy;
 import org.dawnoftimebuilder.registries.DoTBItemsRegistry;
@@ -20,8 +21,13 @@ import org.dawnoftimebuilder.registries.DoTBItemsRegistry;
 public class DawnOfTimeBuilder {
 	public static final String MOD_ID = "dawnoftimebuilder";
 	public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
-	//public static final ItemGroup GROUP = new DoTBGroup(MOD_ID);
 	public static final CommonProxy PROXY = DistExecutor.runForDist(() -> ClientProxy::new, () -> CommonProxy::new);
+	public static final ItemGroup DOTB_TAB = new ItemGroup(ItemGroup.getGroupCountSafe(), MOD_ID) {
+		@Override
+		public ItemStack createIcon() {
+			return new ItemStack(DoTBBlocks.cast_iron_teapot);
+		}
+	};
 
 	public DawnOfTimeBuilder(){
 		//ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, FurnitureConfig.clientSpec);
@@ -33,9 +39,11 @@ public class DawnOfTimeBuilder {
 	}
 
 	private void onCommonSetup(FMLCommonSetupEvent event){
+		PROXY.onSetupCommon();
 	}
 
 	private void onClientSetup(FMLClientSetupEvent event){
+		PROXY.onSetupClient();
 	}
 /*
 	@EventHandler
@@ -61,27 +69,6 @@ public class DawnOfTimeBuilder {
 
 	@SidedProxy(clientSide = "org.dawnoftimebuilder.proxy.ClientProxy", serverSide = "org.dawnoftimebuilder.proxy.ServerProxy")
 	public static CommonProxy proxy;
+*/
 
-	public final static CreativeTabs DOTB_TAB = new CreativeTabs(MOD_ID) {
-		@Override
-		public ItemStack createIcon() {
-			return new ItemStack(DoTBBlocks.cast_iron_teapot);
-		}
-
-		@Override
-		public void displayAllRelevantItems(NonNullList<ItemStack> p_78018_1_) {
-			super.displayAllRelevantItems(p_78018_1_);
-		}
-	};
-
-	public class DoTBGroup extends ItemGroup{
-		public DoTBGroup(String label){
-			super(label);
-		}
-
-		@Override
-		public ItemStack createIcon(){
-			return new ItemStack(DoTBBlocks.cast_iron_teapot);
-		}
-	}*/
 }

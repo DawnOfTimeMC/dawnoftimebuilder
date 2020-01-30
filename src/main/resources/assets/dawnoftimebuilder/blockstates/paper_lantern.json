@@ -1,5 +1,5 @@
 {
     "variants": {
-        "normal": { "model": "dawnoftimebuilder:japanese/paper_lantern" }
+        "normal": { "model": "dawnoftimebuilder:block/japanese/paper_lantern" }
     }
 }

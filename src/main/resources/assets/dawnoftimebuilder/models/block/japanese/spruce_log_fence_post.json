@@ -1,9 +1,9 @@
 {
     "parent": "block/block",
     "textures": {
-        "texture": "blocks/log_spruce",
-		"texturetop": "dawnoftimebuilder:blocks/fence_log_spruce_top",
-		"particle": "blocks/log_spruce"
+        "texture": "block/log_spruce",
+		"texturetop": "dawnoftimebuilder:block/fence_log_spruce_top",
+		"particle": "block/log_spruce"
     },
     "elements": [
         {   "from": [ 6, 0, 6 ],

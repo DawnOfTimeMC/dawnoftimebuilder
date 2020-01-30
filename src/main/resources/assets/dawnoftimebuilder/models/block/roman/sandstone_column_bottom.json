@@ -1,7 +1,7 @@
 {
 	"textures": {
-		"texture": "dawnoftimebuilder:blocks/sandstone_column",
-		"particle": "dawnoftimebuilder:blocks/sandstone_column_top"
+		"texture": "dawnoftimebuilder:block/sandstone_column",
+		"particle": "dawnoftimebuilder:block/sandstone_column_top"
 	},
 	"elements": [
 		{	"from": [ 2, 0, 2 ],

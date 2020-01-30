@@ -1,7 +1,7 @@
 {
 	"textures": {
-		"texture": "dawnoftimebuilder:blocks/serpent_scultped_column",
-		"particle": "dawnoftimebuilder:blocks/serpent_scultped_column"
+		"texture": "dawnoftimebuilder:block/serpent_scultped_column",
+		"particle": "dawnoftimebuilder:block/serpent_scultped_column"
 	},
 	"elements": [
 		{

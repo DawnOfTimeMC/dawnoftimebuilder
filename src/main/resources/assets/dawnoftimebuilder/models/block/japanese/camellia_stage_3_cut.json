@@ -1,9 +1,9 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "dawnoftimebuilder:blocks/camellia_3",
-		"1": "dawnoftimebuilder:blocks/camellia_1",
-		"particle": "dawnoftimebuilder:blocks/camellia_3"
+		"0": "dawnoftimebuilder:block/camellia_3",
+		"1": "dawnoftimebuilder:block/camellia_1",
+		"particle": "dawnoftimebuilder:block/camellia_3"
 	},
 	"elements": [
 		{

@@ -4,7 +4,7 @@
         "type":"CTM",
         "layer":"SOLID",
         "textures":[
-            "dawnoftimebuilder:blocks/oak_timber_frame_corner_side-ctm"
+            "dawnoftimebuilder:block/oak_timber_frame_pillar_side-ctm"
         ],
         "extra": {
             "connect_to": [

@@ -1,10 +1,10 @@
 {
     "variants": {
         "full=false": {
-            "model": "dawnoftimebuilder:general/path_gravel"
+            "model": "dawnoftimebuilder:block/general/path_gravel"
         },
         "full=true": {
-            "model": "dawnoftimebuilder:general/path_gravel_full"
+            "model": "dawnoftimebuilder:block/general/path_gravel_full"
         }
     }
 }

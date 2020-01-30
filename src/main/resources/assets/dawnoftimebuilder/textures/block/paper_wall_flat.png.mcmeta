@@ -4,7 +4,7 @@
         "type":"CTM",
         "layer":"SOLID",
         "textures":[
-            "dawnoftimebuilder:blocks/paper_wall_flat-ctm"
+            "dawnoftimebuilder:block/paper_wall_flat-ctm"
         ],
         "extra": {
             "connect_to": [

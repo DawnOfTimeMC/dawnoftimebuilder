@@ -13,9 +13,9 @@
     },
     "ambientocclusion": false,
     "textures": {
-        "wall": "blocks/log_spruce",
-        "walltop": "dawnoftimebuilder:blocks/spruce_log_wall_top",
-        "particle": "blocks/log_spruce"
+        "wall": "block/log_spruce",
+        "walltop": "dawnoftimebuilder:block/spruce_log_wall_top",
+        "particle": "block/log_spruce"
     },
     "elements": [
         {   "from": [ 4, 0, 4 ],

@@ -1,7 +1,7 @@
 {
 	"forge_marker": 1,
 	"defaults": {
-		"model": "dawnoftimebuilder:japanese/paper_folding_screen"
+		"model": "dawnoftimebuilder:block/japanese/paper_folding_screen"
 	},
 	"variants": {
 		"rotated": {
@@ -12,16 +12,16 @@
 		},
 		"vertical_connection": {
 			"none": {
-				"textures": { "texture": "dawnoftimebuilder:blocks/paper_folding_screen_none" }
+				"textures": { "texture": "dawnoftimebuilder:block/paper_folding_screen_none" }
 			},
 			"above": {
-				"textures": { "texture": "dawnoftimebuilder:blocks/paper_folding_screen_above" }
+				"textures": { "texture": "dawnoftimebuilder:block/paper_folding_screen_above" }
 			},
 			"both": {
-				"textures": { "texture": "dawnoftimebuilder:blocks/paper_folding_screen_both" }
+				"textures": { "texture": "dawnoftimebuilder:block/paper_folding_screen_both" }
 			},
 			"under": {
-				"textures": { "texture": "dawnoftimebuilder:blocks/paper_folding_screen_under" }
+				"textures": { "texture": "dawnoftimebuilder:block/paper_folding_screen_under" }
 			}
 		}
 	}

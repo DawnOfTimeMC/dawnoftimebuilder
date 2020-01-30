@@ -1,8 +1,8 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "dawnoftimebuilder:blocks/sake_bottle",
-		"particle": "dawnoftimebuilder:blocks/sake_bottle"
+		"0": "dawnoftimebuilder:block/sake_bottle",
+		"particle": "dawnoftimebuilder:block/sake_bottle"
 	},
 	"elements": [
 		{

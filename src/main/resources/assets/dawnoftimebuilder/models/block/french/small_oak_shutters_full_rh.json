@@ -1,9 +1,9 @@
 {
 	"ambientocclusion": false,
 	"textures": {
-		"texture": "dawnoftimebuilder:blocks/small_oak_shutters",
-		"particle": "dawnoftimebuilder:blocks/small_oak_shutters",
-		"side": "dawnoftimebuilder:blocks/oak_shutters_side"
+		"texture": "dawnoftimebuilder:block/small_oak_shutters",
+		"particle": "dawnoftimebuilder:block/small_oak_shutters",
+		"side": "dawnoftimebuilder:block/oak_shutters_side"
 	},
 	"elements": [
 		{

@@ -1,7 +1,7 @@
 {
 	"textures": {
-		"frieze": "dawnoftimebuilder:blocks/red_sculpted_plastered_stone_freize",
-		"particle": "dawnoftimebuilder:blocks/red_sculpted_plastered_stone_freize"
+		"frieze": "dawnoftimebuilder:block/red_sculpted_plastered_stone_freize",
+		"particle": "dawnoftimebuilder:block/red_sculpted_plastered_stone_freize"
 	},
 	"elements": [
 		{

@@ -1,8 +1,8 @@
 {
 	"textures": {
-		"end": "dawnoftimebuilder:blocks/plastered_stone_column_end",
-		"mid": "dawnoftimebuilder:blocks/plastered_stone_column_mid",
-		"particle": "dawnoftimebuilder:blocks/plastered_stone_column_mid"
+		"end": "dawnoftimebuilder:block/plastered_stone_column_end",
+		"mid": "dawnoftimebuilder:block/plastered_stone_column_mid",
+		"particle": "dawnoftimebuilder:block/plastered_stone_column_mid"
 	},
 	"elements": [ 	 
 		{	"from": [ 2, 14, 2 ],

@@ -1,7 +1,7 @@
 {
 	"textures": {
-		"texture": "dawnoftimebuilder:blocks/tatami_mat",
-		"particle": "dawnoftimebuilder:blocks/tatami_mat"
+		"texture": "dawnoftimebuilder:block/tatami_mat",
+		"particle": "dawnoftimebuilder:block/tatami_mat"
 	},
 	"elements": [
 		{

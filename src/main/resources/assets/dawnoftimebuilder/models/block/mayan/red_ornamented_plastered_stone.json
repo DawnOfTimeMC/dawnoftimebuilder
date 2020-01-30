@@ -1,6 +1,6 @@
 {
     "parent": "block/cube_all",
     "textures": {
-        "all": "dawnoftimebuilder:blocks/red_ornamented_plastered_stone"
+        "all": "dawnoftimebuilder:block/red_ornamented_plastered_stone"
     }
 }

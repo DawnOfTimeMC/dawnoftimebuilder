@@ -1,7 +1,7 @@
 {
   "forge_marker": 1,
   "defaults": {
-    "model": "dawnoftimebuilder:tachi_sword.obj"
+    "model": "dawnoftimebuilder:block/tachi_sword.obj"
   },
   "variants": {
     "inventory": [

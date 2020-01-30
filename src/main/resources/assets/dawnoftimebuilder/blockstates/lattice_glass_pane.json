@@ -3,8 +3,8 @@
     "defaults": {
         "model": "pane_post",
         "textures" : {
-            "pane" : "dawnoftimebuilder:blocks/lattice_glass",
-            "edge" : "dawnoftimebuilder:blocks/lattice_glass"
+            "pane" : "dawnoftimebuilder:block/lattice_glass",
+            "edge" : "dawnoftimebuilder:block/lattice_glass"
         }
     },
     "variants": {

@@ -1,9 +1,9 @@
 {
 	"textures": {
-		"sandstone": "blocks/sandstone_normal",
-		"texture": "dawnoftimebuilder:blocks/ochre_roof_tiles",
-		"bottom": "blocks/sandstone_bottom",
-		"particle": "dawnoftimebuilder:blocks/ochre_roof_tiles"
+		"sandstone": "block/sandstone_normal",
+		"texture": "dawnoftimebuilder:block/ochre_roof_tiles",
+		"bottom": "block/sandstone_bottom",
+		"particle": "dawnoftimebuilder:block/ochre_roof_tiles"
 	},
 	"elements": [ 	 
 		{	"from": [ 0, 0, 0 ],

@@ -1,7 +1,7 @@
 {
 	"textures": {
-		"texture": "dawnoftimebuilder:blocks/stone_lantern",
-		"particle": "dawnoftimebuilder:blocks/stone_lantern"
+		"texture": "dawnoftimebuilder:block/stone_lantern",
+		"particle": "dawnoftimebuilder:block/stone_lantern"
 	},
 	"elements": [ 	 
 		{	"from": [ 5, 3, 5 ],

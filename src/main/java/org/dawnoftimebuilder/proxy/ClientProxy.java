@@ -10,12 +10,18 @@ import net.minecraftforge.client.model.obj.OBJLoader;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
-import org.dawnoftimebuilder.items.DoTBItems;
+
+import org.dawnoftimebuilder.client.gui.creative.CreativeInventoryEvents;
 import org.dawnoftimebuilder.registries.DoTBItemsRegistry;
 import java.io.File;
 import static org.dawnoftimebuilder.DawnOfTimeBuilder.MOD_ID;
 
 public class ClientProxy extends CommonProxy {
+
+	@Override
+	public void onSetupClient(){
+		MinecraftForge.EVENT_BUS.register(new CreativeInventoryEvents());
+	}
 
 	public ClientProxy(){}
 /*
@@ -27,9 +33,7 @@ public class ClientProxy extends CommonProxy {
 		RenderingRegistry.registerEntityRenderingHandler(EntityJapaneseDragon.class, RendererJapaneseDragon.FACTORY);
 	}
 */
-	@Override
 	public void init(){
-		super.init();
 		/*
 		bindTESR(DoTBTileEntityBed.class, new RendererTEBed());
 		bindTESR(DoTBTileEntityDisplayer.class, new RendererTEDisplayer());

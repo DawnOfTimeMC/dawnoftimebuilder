@@ -1,7 +1,7 @@
 {
 	"textures": {
-		"0": "dawnoftimebuilder:blocks/spruce_legless_chair",
-		"particle": "dawnoftimebuilder:blocks/spruce_legless_chair"
+		"0": "dawnoftimebuilder:block/spruce_legless_chair",
+		"particle": "dawnoftimebuilder:block/spruce_legless_chair"
 	},
 	"elements": [
 		{

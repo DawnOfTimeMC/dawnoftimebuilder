@@ -1,36 +1,36 @@
 {
     "variants": {
-        "full=false,variant=gravel": { "model": "dawnoftimebuilder:general/path_gravel" },
-        "full=true,variant=gravel": { "model": "dawnoftimebuilder:general/path_gravel_full" },
+        "full=false,variant=gravel": { "model": "dawnoftimebuilder:block/general/path_gravel" },
+        "full=true,variant=gravel": { "model": "dawnoftimebuilder:block/general/path_gravel_full" },
         "full=false,variant=stepping_stones": [
-            { "model": "dawnoftimebuilder:general/path_stepping_stones_1" },
-			{ "model": "dawnoftimebuilder:general/path_stepping_stones_2" },
-			{ "model": "dawnoftimebuilder:general/path_stepping_stones_3" },
-			{ "model": "dawnoftimebuilder:general/path_stepping_stones_4" }
+            { "model": "dawnoftimebuilder:block/general/path_stepping_stones_1" },
+			{ "model": "dawnoftimebuilder:block/general/path_stepping_stones_2" },
+			{ "model": "dawnoftimebuilder:block/general/path_stepping_stones_3" },
+			{ "model": "dawnoftimebuilder:block/general/path_stepping_stones_4" }
         ],
         "full=true,variant=stepping_stones": [
-            { "model": "dawnoftimebuilder:general/path_stepping_stones_full_1" },
-			{ "model": "dawnoftimebuilder:general/path_stepping_stones_full_2" },
-			{ "model": "dawnoftimebuilder:general/path_stepping_stones_full_3" },
-			{ "model": "dawnoftimebuilder:general/path_stepping_stones_full_4" }
+            { "model": "dawnoftimebuilder:block/general/path_stepping_stones_full_1" },
+			{ "model": "dawnoftimebuilder:block/general/path_stepping_stones_full_2" },
+			{ "model": "dawnoftimebuilder:block/general/path_stepping_stones_full_3" },
+			{ "model": "dawnoftimebuilder:block/general/path_stepping_stones_full_4" }
         ],
-        "full=false,variant=cobbled": { "model": "dawnoftimebuilder:general/path_cobbled" },
-        "full=true,variant=cobbled": { "model": "dawnoftimebuilder:general/path_cobbled_full" },
+        "full=false,variant=cobbled": { "model": "dawnoftimebuilder:block/general/path_cobbled" },
+        "full=true,variant=cobbled": { "model": "dawnoftimebuilder:block/general/path_cobbled_full" },
         "full=false,variant=sandstone": { "model": "block" },
         "full=true,variant=sandstone": { "model": "block" },
-        "full=false,variant=ochre_tiles": { "model": "dawnoftimebuilder:general/path_ochre_tiles" },
-        "full=true,variant=ochre_tiles": { "model": "dawnoftimebuilder:general/path_ochre_tiles_full" },
+        "full=false,variant=ochre_tiles": { "model": "dawnoftimebuilder:block/general/path_ochre_tiles" },
+        "full=true,variant=ochre_tiles": { "model": "dawnoftimebuilder:block/general/path_ochre_tiles_full" },
         "full=false,variant=dirt": [
-          { "model": "dawnoftimebuilder:general/path_dirt" },
-          { "model": "dawnoftimebuilder:general/path_dirt", "y": 90 },
-          { "model": "dawnoftimebuilder:general/path_dirt", "y": 180 },
-          { "model": "dawnoftimebuilder:general/path_dirt", "y": 270 }
+          { "model": "dawnoftimebuilder:block/general/path_dirt" },
+          { "model": "dawnoftimebuilder:block/general/path_dirt", "y": 90 },
+          { "model": "dawnoftimebuilder:block/general/path_dirt", "y": 180 },
+          { "model": "dawnoftimebuilder:block/general/path_dirt", "y": 270 }
         ],
         "full=true,variant=dirt": [
-          { "model": "dawnoftimebuilder:general/path_dirt_full" },
-          { "model": "dawnoftimebuilder:general/path_dirt_full", "y": 90 },
-          { "model": "dawnoftimebuilder:general/path_dirt_full", "y": 180 },
-          { "model": "dawnoftimebuilder:general/path_dirt_full", "y": 270 }
+          { "model": "dawnoftimebuilder:block/general/path_dirt_full" },
+          { "model": "dawnoftimebuilder:block/general/path_dirt_full", "y": 90 },
+          { "model": "dawnoftimebuilder:block/general/path_dirt_full", "y": 180 },
+          { "model": "dawnoftimebuilder:block/general/path_dirt_full", "y": 270 }
         ]
     }
 }

@@ -1,7 +1,7 @@
 {
 	"textures": {
-		"1": "blocks/log_spruce",
-		"side": "blocks/planks_spruce"
+		"1": "block/log_spruce",
+		"side": "block/planks_spruce"
 	},
 	"elements": [
 		{

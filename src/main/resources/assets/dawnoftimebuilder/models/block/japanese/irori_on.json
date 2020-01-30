@@ -1,9 +1,9 @@
 {
 	"parent": "block/block",
 	"textures": {
-		"0": "dawnoftimebuilder:blocks/irori_fireplace",
-		"1": "minecraft:blocks/fire_layer_0",
-		"particle": "dawnoftimebuilder:blocks/irori_fireplace"
+		"0": "dawnoftimebuilder:block/irori_fireplace",
+		"1": "minecraft:block/fire_layer_0",
+		"particle": "dawnoftimebuilder:block/irori_fireplace"
 	},
 	"elements": [
 		{

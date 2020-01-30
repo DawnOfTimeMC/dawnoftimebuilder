@@ -4,10 +4,10 @@
 	"variants": {
 		"half": {
 			"top": {
-				"model": "dawnoftimebuilder:japanese/stick_bundle_top", "x": 180
+				"model": "dawnoftimebuilder:block/japanese/stick_bundle_top", "x": 180
 			},
 			"bottom": {
-				"model": "dawnoftimebuilder:japanese/stick_bundle_bottom"
+				"model": "dawnoftimebuilder:block/japanese/stick_bundle_bottom"
 			}
 		},
 		"growth": {

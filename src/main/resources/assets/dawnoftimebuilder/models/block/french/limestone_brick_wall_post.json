@@ -1,8 +1,8 @@
 {
     "parent": "block/block",
     "textures": {
-        "wall": "dawnoftimebuilder:blocks/limestone_brick_wall_post",
-        "particle": "dawnoftimebuilder:blocks/limestone_brick_wall_post"
+        "wall": "dawnoftimebuilder:block/limestone_brick_wall_post",
+        "particle": "dawnoftimebuilder:block/limestone_brick_wall_post"
     },
     "elements": [
         {   "from": [ 4, -0.01, 4 ],

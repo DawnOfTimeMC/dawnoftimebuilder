@@ -1,5 +1,5 @@
 {
     "variants": {
-        "normal": { "model": "dawnoftimebuilder:french/lattice_glass" }
+        "": { "model": "dawnoftimebuilder:block/french/lattice_glass" }
     }
 }

@@ -1,7 +1,7 @@
 {
 	"parent": "dawnoftimebuilder:block/general/small_plate",
 	"textures": {
-		"side": "dawnoftimebuilder:blocks/thatch_wheat",
-		"frieze": "dawnoftimebuilder:blocks/thatch_wheat"
+		"side": "dawnoftimebuilder:block/thatch_wheat",
+		"frieze": "dawnoftimebuilder:block/thatch_wheat"
 	}
 }

@@ -1,9 +1,9 @@
 {
 	"ambientocclusion": false,
 	"textures": {
-		"side": "dawnoftimebuilder:blocks/spruce_timber_frame_pillar_top",
-		"texture": "dawnoftimebuilder:blocks/paper_door_lower",
-		"particle": "dawnoftimebuilder:blocks/paper_door_lower"
+		"side": "dawnoftimebuilder:block/spruce_timber_frame_pillar_top",
+		"texture": "dawnoftimebuilder:block/paper_door_lower",
+		"particle": "dawnoftimebuilder:block/paper_door_lower"
 	},
 	"elements": [
 		{

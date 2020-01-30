@@ -1,6 +1,6 @@
 {
     "parent": "block/cube_all",
     "textures": {
-        "all": "dawnoftimebuilder:blocks/rammed_dirt"
+        "all": "dawnoftimebuilder:block/rammed_dirt"
     }
 }

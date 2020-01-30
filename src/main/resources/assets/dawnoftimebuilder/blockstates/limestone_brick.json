@@ -1,7 +1,7 @@
 {
     "variants": {
-        "normal": [
-            { "model": "dawnoftimebuilder:french/limestone_brick" }
+        "": [
+            { "model": "dawnoftimebuilder:block/french/limestone_brick" }
         ]
     }
 }

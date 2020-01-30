@@ -1,7 +1,7 @@
 {
 	"textures": {
-		"tete": "dawnoftimebuilder:blocks/iron_portcullis_middle",
-		"particle": "dawnoftimebuilder:blocks/iron_portcullis_middle"
+		"tete": "dawnoftimebuilder:block/iron_portcullis_middle",
+		"particle": "dawnoftimebuilder:block/iron_portcullis_middle"
 	},
 	"elements": [
 		{

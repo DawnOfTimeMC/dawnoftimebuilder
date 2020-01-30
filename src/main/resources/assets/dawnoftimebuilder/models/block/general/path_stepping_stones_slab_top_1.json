@@ -1,9 +1,9 @@
 {
     "textures": {
-        "particle": "dawnoftimebuilder:blocks/path_gravel_side",
-		"bottom": "dawnoftimebuilder:blocks/path_bottom",
-        "top": "dawnoftimebuilder:blocks/path_stepping_stones_top_1",
-        "side": "dawnoftimebuilder:blocks/slab_path_gravel_side"
+        "particle": "dawnoftimebuilder:block/path_gravel_side",
+		"bottom": "dawnoftimebuilder:block/path_bottom",
+        "top": "dawnoftimebuilder:block/path_stepping_stones_top_1",
+        "side": "dawnoftimebuilder:block/slab_path_gravel_side"
     },
     "elements": [
         {   "from": [ 0, 8, 0 ],

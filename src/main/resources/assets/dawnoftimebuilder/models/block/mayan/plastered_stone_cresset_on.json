@@ -1,8 +1,8 @@
 {
 	"textures": {
-		"texture": "dawnoftimebuilder:blocks/plastered_stone_cresset",
-		"particle": "dawnoftimebuilder:blocks/plastered_stone_cresset",
-		"fire": "blocks/fire_layer_0"
+		"texture": "dawnoftimebuilder:block/plastered_stone_cresset",
+		"particle": "dawnoftimebuilder:block/plastered_stone_cresset",
+		"fire": "block/fire_layer_0"
 	},
 	"elements": [
 		{

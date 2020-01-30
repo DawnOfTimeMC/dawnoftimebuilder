@@ -1,7 +1,7 @@
 {
 	"textures": {
-		"texture": "dawnoftimebuilder:blocks/red_painted_log",
-		"particle": "dawnoftimebuilder:blocks/red_painted_log"
+		"texture": "dawnoftimebuilder:block/red_painted_log",
+		"particle": "dawnoftimebuilder:block/red_painted_log"
 	},
 	"elements": [
 		{

@@ -1,7 +1,7 @@
 {
 	"textures": {
-		"particle": "dawnoftimebuilder:blocks/plastered_stone_window",
-		"texture": "dawnoftimebuilder:blocks/plastered_stone_window"
+		"particle": "dawnoftimebuilder:block/plastered_stone_window",
+		"texture": "dawnoftimebuilder:block/plastered_stone_window"
 	},
 	"elements": [ 	 
 		{	"from": [ 0, 3, 6 ],

@@ -1,7 +1,7 @@
 {
 	"textures": {
-		"0": "dawnoftimebuilder:blocks/mulberry_stage_3_cut",
-		"particle": "dawnoftimebuilder:blocks/mulberry_stage_3_cut"
+		"0": "dawnoftimebuilder:block/mulberry_stage_3_cut",
+		"particle": "dawnoftimebuilder:block/mulberry_stage_3_cut"
 	},
 	"elements": [
 		{

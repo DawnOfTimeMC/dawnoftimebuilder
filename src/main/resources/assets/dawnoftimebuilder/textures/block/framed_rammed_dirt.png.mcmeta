@@ -4,7 +4,7 @@
         "type":"CTM",
         "layer":"SOLID",
         "textures":[
-            "dawnoftimebuilder:blocks/limestone_brick-ctm"
+            "dawnoftimebuilder:block/framed_rammed_dirt-ctm"
         ]
     }
 }

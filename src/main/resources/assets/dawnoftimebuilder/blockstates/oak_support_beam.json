@@ -1,7 +1,7 @@
 {
     "forge_marker": 1,
     "defaults": {
-        "model": "dawnoftimebuilder:french/oak_support_slab"
+        "model": "dawnoftimebuilder:block/french/oak_support_slab"
     },
     "variants": {
         "axis" : {

@@ -1,7 +1,7 @@
 {
 	"textures": {
-		"0": "dawnoftimebuilder:blocks/ikebana_flower_pot",
-		"particle": "dawnoftimebuilder:blocks/ikebana_flower_pot"
+		"0": "dawnoftimebuilder:block/ikebana_flower_pot",
+		"particle": "dawnoftimebuilder:block/ikebana_flower_pot"
 	},
 	"elements": [
 		{

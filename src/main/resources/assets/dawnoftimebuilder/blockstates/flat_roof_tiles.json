@@ -1,5 +1,5 @@
 {
     "variants": {
-        "normal": { "model": "dawnoftimebuilder:french/flat_roof_tiles" }
+        "": { "model": "dawnoftimebuilder:block/french/flat_roof_tiles" }
     }
 }

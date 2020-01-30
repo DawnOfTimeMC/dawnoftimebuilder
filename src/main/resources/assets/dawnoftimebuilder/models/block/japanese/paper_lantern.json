@@ -1,8 +1,8 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"texture": "dawnoftimebuilder:blocks/paper_lantern",
-		"particle": "dawnoftimebuilder:blocks/paper_lantern"
+		"texture": "dawnoftimebuilder:block/paper_lantern",
+		"particle": "dawnoftimebuilder:block/paper_lantern"
 	},
 	"elements": [
 		{

@@ -1,7 +1,7 @@
 {
 	"textures": {
-		"1": "dawnoftimebuilder:blocks/limestone_brick_wall_side",
-		"particle": "dawnoftimebuilder:blocks/limestone_brick_slab"
+		"1": "dawnoftimebuilder:block/limestone_brick_wall_side",
+		"particle": "dawnoftimebuilder:block/limestone_brick_slab"
 	},
 	"elements": [
 		{

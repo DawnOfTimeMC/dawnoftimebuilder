@@ -1,7 +1,7 @@
 {
 	"textures": {
-		"tete": "dawnoftimebuilder:blocks/feathered_serpent_sculpture",
-		"particle": "dawnoftimebuilder:blocks/feathered_serpent_sculpture"
+		"tete": "dawnoftimebuilder:block/feathered_serpent_sculpture",
+		"particle": "dawnoftimebuilder:block/feathered_serpent_sculpture"
 	},
 	"elements": [
 		{

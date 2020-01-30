@@ -1,8 +1,8 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"texture": "dawnoftimebuilder:blocks/oak_beam",
-		"particle": "dawnoftimebuilder:blocks/oak_beam"
+		"texture": "dawnoftimebuilder:block/oak_beam",
+		"particle": "dawnoftimebuilder:block/oak_beam"
 	},
 	"elements": [
 		{

@@ -1,7 +1,7 @@
 {
 	"textures": {
-		"slab": "blocks/log_spruce",
-		"particle": "blocks/log_spruce"
+		"slab": "block/log_spruce",
+		"particle": "block/log_spruce"
 	},
 	"elements": [
 		{

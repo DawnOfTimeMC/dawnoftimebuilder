@@ -1,7 +1,7 @@
 {
 	"textures": {
-		"0": "dawnoftimebuilder:blocks/camellia_1",
-		"particle": "dawnoftimebuilder:blocks/camellia_1"
+		"0": "dawnoftimebuilder:block/camellia_1",
+		"particle": "dawnoftimebuilder:block/camellia_1"
 	},
 	"elements": [
 		{

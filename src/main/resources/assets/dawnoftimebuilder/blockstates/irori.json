@@ -3,14 +3,14 @@
 	"defaults": {},
 	"variants": {
 		"inventory": {
-			"model": "dawnoftimebuilder:japanese/irori_on"
+			"model": "dawnoftimebuilder:block/japanese/irori_on"
 		},
 		"burning": {
 			"true": {
-				"model": "dawnoftimebuilder:japanese/irori_on"
+				"model": "dawnoftimebuilder:block/japanese/irori_on"
 			},
 			"false": {
-				"model": "dawnoftimebuilder:japanese/irori_off"
+				"model": "dawnoftimebuilder:block/japanese/irori_off"
 			}
 		},
 		"hook": {

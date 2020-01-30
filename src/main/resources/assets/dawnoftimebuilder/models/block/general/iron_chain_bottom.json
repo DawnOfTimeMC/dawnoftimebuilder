@@ -1,7 +1,7 @@
 {
 	"textures": {
-		"chain": "dawnoftimebuilder:blocks/chain",
-		"particle": "dawnoftimebuilder:blocks/chain"
+		"chain": "dawnoftimebuilder:block/chain",
+		"particle": "dawnoftimebuilder:block/chain"
 	},
 	"elements": [
 		{

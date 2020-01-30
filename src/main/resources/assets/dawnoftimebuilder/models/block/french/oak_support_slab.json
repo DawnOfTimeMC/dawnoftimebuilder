@@ -1,7 +1,7 @@
 {
 	"textures": {
-        "slab": "dawnoftimebuilder:blocks/oak_waxed_planks",
-		"particle": "dawnoftimebuilder:blocks/oak_waxed_planks"
+        "slab": "dawnoftimebuilder:block/oak_waxed_planks",
+		"particle": "dawnoftimebuilder:block/oak_waxed_planks"
 	},
 	"elements": [
 		{

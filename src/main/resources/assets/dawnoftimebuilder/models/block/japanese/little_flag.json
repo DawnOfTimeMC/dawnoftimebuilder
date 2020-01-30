@@ -1,8 +1,8 @@
 {
 	"textures": {
-		"particle": "dawnoftimebuilder:blocks/little-flag",
-		"log": "blocks/log_spruce",
-		"mesh_atlas": "dawnoftimebuilder:blocks/little-flag"
+		"particle": "dawnoftimebuilder:block/little-flag",
+		"log": "block/log_spruce",
+		"mesh_atlas": "dawnoftimebuilder:block/little-flag"
 	},
 	"elements": [ 	 
 		{

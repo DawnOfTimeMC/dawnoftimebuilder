@@ -1,7 +1,7 @@
 {
 	"textures": {
-		"0": "dawnoftimebuilder:blocks/drying_tray",
-		"particle": "dawnoftimebuilder:blocks/thatch_bamboo"
+		"0": "dawnoftimebuilder:block/drying_tray",
+		"particle": "dawnoftimebuilder:block/thatch_bamboo"
 	},
 	"elements": [
 		{

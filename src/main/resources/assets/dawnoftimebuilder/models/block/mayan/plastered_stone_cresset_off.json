@@ -1,7 +1,7 @@
 {
 	"textures": {
-		"texture": "dawnoftimebuilder:blocks/plastered_stone_cresset",
-		"particle": "dawnoftimebuilder:blocks/plastered_stone_cresset"
+		"texture": "dawnoftimebuilder:block/plastered_stone_cresset",
+		"particle": "dawnoftimebuilder:block/plastered_stone_cresset"
 	},
 	"elements": [
 		{

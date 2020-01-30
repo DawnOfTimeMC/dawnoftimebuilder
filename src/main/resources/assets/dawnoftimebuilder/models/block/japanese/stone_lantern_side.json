@@ -1,8 +1,8 @@
 {
 	"textures": {
-		"texture": "dawnoftimebuilder:blocks/stone_lantern",
-		"2_chain": "dawnoftimebuilder:blocks/chain",
-		"particle": "dawnoftimebuilder:blocks/stone_lantern"
+		"texture": "dawnoftimebuilder:block/stone_lantern",
+		"2_chain": "dawnoftimebuilder:block/chain",
+		"particle": "dawnoftimebuilder:block/stone_lantern"
 	},
 	"elements": [
 		{

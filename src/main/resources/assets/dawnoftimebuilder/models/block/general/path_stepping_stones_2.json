@@ -1,9 +1,9 @@
 ﻿{   "parent": "block/block",
     "textures": {
-        "particle": "dawnoftimebuilder:blocks/path_gravel_side",
-        "top": "dawnoftimebuilder:blocks/path_stepping_stones_top_2",
-        "side": "dawnoftimebuilder:blocks/path_gravel_side",
-        "bottom": "dawnoftimebuilder:blocks/path_bottom"
+        "particle": "dawnoftimebuilder:block/path_gravel_side",
+        "top": "dawnoftimebuilder:block/path_stepping_stones_top_2",
+        "side": "dawnoftimebuilder:block/path_gravel_side",
+        "bottom": "dawnoftimebuilder:block/path_bottom"
     },
     "elements": [
         {   "from": [ 0, 0, 0 ],

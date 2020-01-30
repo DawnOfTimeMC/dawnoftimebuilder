@@ -1,7 +1,7 @@
 {
 	"parent": "dawnoftimebuilder:block/general/small_plate",
 	"textures": {
-		"side": "dawnoftimebuilder:blocks/limestone_brick",
-		"frieze": "dawnoftimebuilder:blocks/limestone_brick"
+		"side": "dawnoftimebuilder:block/limestone_brick",
+		"frieze": "dawnoftimebuilder:block/limestone_brick"
 	}
 }

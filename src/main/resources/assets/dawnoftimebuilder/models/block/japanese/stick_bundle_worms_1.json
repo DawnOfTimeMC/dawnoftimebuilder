@@ -1,9 +1,9 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"1": "dawnoftimebuilder:blocks/stick_bundle",
+		"1": "dawnoftimebuilder:block/stick_bundle",
 		"2": "dawnoftimebuilder:items/silk_worm",
-		"particle": "dawnoftimebuilder:blocks/stick_bundle"
+		"particle": "dawnoftimebuilder:block/stick_bundle"
 	},
 	"elements": [
 		{

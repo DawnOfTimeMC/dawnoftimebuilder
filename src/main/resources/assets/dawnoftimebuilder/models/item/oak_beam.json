@@ -1,7 +1,7 @@
 {
 	"textures": {
-		"0": "dawnoftimebuilder:blocks/oak_beam",
-		"particle": "dawnoftimebuilder:blocks/oak_beam"
+		"0": "dawnoftimebuilder:block/oak_beam",
+		"particle": "dawnoftimebuilder:block/oak_beam"
 	},
 	"elements": [
 		{

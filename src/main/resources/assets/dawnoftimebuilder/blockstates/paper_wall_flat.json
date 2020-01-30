@@ -43,14 +43,14 @@
         "wallbottom": {
             "true": {
                 "textures" : {
-                    "pane" : "dawnoftimebuilder:blocks/paper_wall_flat_bottom",
-                    "edge" : "dawnoftimebuilder:blocks/paper_wall"
+                    "pane" : "dawnoftimebuilder:block/paper_wall_flat_bottom",
+                    "edge" : "dawnoftimebuilder:block/paper_wall"
                 }
             },
             "false": {
                 "textures" : {
-                    "pane" : "dawnoftimebuilder:blocks/paper_wall_flat",
-                    "edge" : "dawnoftimebuilder:blocks/paper_wall"
+                    "pane" : "dawnoftimebuilder:block/paper_wall_flat",
+                    "edge" : "dawnoftimebuilder:block/paper_wall"
                 }
             }
         },

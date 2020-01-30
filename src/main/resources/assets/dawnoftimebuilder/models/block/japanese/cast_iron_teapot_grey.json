@@ -1,7 +1,7 @@
 {
 	"textures": {
-		"0": "dawnoftimebuilder:blocks/cast_iron_teapot_grey",
-		"particle": "dawnoftimebuilder:blocks/cast_iron_teapot_grey"
+		"0": "dawnoftimebuilder:block/cast_iron_teapot_grey",
+		"particle": "dawnoftimebuilder:block/cast_iron_teapot_grey"
 	},
 	"elements": [
 		{

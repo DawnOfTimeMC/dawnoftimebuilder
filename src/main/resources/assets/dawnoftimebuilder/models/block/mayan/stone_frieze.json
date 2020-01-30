@@ -1,7 +1,7 @@
 {
 	"textures": {
-		"particle": "dawnoftimebuilder:blocks/stone_freize",
-		"texture": "dawnoftimebuilder:blocks/stone_freize"
+		"particle": "dawnoftimebuilder:block/stone_freize",
+		"texture": "dawnoftimebuilder:block/stone_freize"
 	},
 	"elements": [ 	 
 		{	"from": [ 0, 0, 8 ],

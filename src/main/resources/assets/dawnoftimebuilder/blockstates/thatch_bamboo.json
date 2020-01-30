@@ -1,5 +1,5 @@
 {
     "variants": {
-        "normal": { "model": "dawnoftimebuilder:general/thatch_bamboo"}
+        "normal": { "model": "dawnoftimebuilder:block/general/thatch_bamboo"}
     }
 }

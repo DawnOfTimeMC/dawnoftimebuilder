@@ -1,7 +1,7 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"4_texture": "dawnoftimebuilder:blocks/limestone_fireplace_x_x_1"
+		"4_texture": "dawnoftimebuilder:block/limestone_fireplace_x_x_1"
 	},
 	"elements": [
 		{

@@ -1,7 +1,7 @@
 {
 	"parent": "dawnoftimebuilder:block/general/small_plate",
 	"textures": {
-		"side": "dawnoftimebuilder:blocks/thatch_bamboo",
-		"frieze": "dawnoftimebuilder:blocks/thatch_bamboo"
+		"side": "dawnoftimebuilder:block/thatch_bamboo",
+		"frieze": "dawnoftimebuilder:block/thatch_bamboo"
 	}
 }

@@ -1,7 +1,7 @@
 {
 	"textures": {
-		"6": "dawnoftimebuilder:blocks/irori_fireplace",
-		"particle": "dawnoftimebuilder:blocks/irori_fireplace"
+		"6": "dawnoftimebuilder:block/irori_fireplace",
+		"particle": "dawnoftimebuilder:block/irori_fireplace"
 	},
 	"elements": [
 		{

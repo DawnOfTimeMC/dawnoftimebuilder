@@ -1,5 +1,5 @@
 {
     "variants": {
-        "normal": { "model": "dawnoftimebuilder:french/oak_timber_frame" }
+        "normal": { "model": "dawnoftimebuilder:block/french/oak_timber_frame" }
     }
 }

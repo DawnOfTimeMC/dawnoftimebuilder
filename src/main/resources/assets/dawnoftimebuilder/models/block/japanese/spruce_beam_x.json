@@ -1,8 +1,8 @@
 {
 	"textures": {
-		"1": "dawnoftimebuilder:blocks/spruce_log_wall_top",
-		"texture": "blocks/log_spruce",
-		"particle": "blocks/log_spruce"
+		"1": "dawnoftimebuilder:block/spruce_log_wall_top",
+		"texture": "block/log_spruce",
+		"particle": "block/log_spruce"
 	},
 	"elements": [
 		{
