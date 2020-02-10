@@ -1,13 +1,16 @@
 {
 	"type": "minecraft:crafting_shaped",
 	"pattern": [
-		" i ",
+		"IiI",
 		"i i",
 		" i "
 	],
 	"key": {
 		"i": {
 			"item": "minecraft:stick"
+		}
+		"I": {
+			"item": "minecraft:string"
 		}
 	},
 	"result": {
