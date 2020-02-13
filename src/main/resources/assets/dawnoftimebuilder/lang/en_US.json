@@ -1,6 +1,5 @@
 {
     "itemGroup.dawnoftimebuilder": "Dawn of Time : Builder Edition",
-
     "block.dawnoftimebuilder.path_cobbled": "Slabbed Path",
     "block.dawnoftimebuilder.path_dirt": "Dirt Path",
     "block.dawnoftimebuilder.path_gravel": "Gravel Path",
@@ -26,7 +25,6 @@
     "block.dawnoftimebuilder.iron_chain": "Iron Chain",
     "block.dawnoftimebuilder.stone_frieze": "Stone Frieze",
     "block.dawnoftimebuilder.fireplace": "Open Fireplace",
-
     "item.dawnoftimebuilder.iron_plate_armor_head": "Iron Plate Helmet",
     "item.dawnoftimebuilder.iron_plate_armor_chest": "Iron Plate Chestplate",
     "item.dawnoftimebuilder.iron_plate_armor_legs": "Iron Plate Leggings",
@@ -62,7 +60,6 @@
     "block.dawnoftimebuilder.oak_beam": "Oak Beam",
     "block.dawnoftimebuilder.oak_planks_edge": "Oak Planks Edge",
     "item.dawnoftimebuilder.wax": "Wax",
-
     "item.dawnoftimebuilder.tachi_sword": "Tachi",
     "item.dawnoftimebuilder.o_yoroi_armor_head": "O-Yoroi Helmet",
     "item.dawnoftimebuilder.o_yoroi_armor_chest": "O-Yoroi Chestplate",
@@ -136,7 +133,6 @@
     "block.dawnoftimebuilder.camellia": "Camellia",
     "block.dawnoftimebuilder.paper_folding_screen": "Paper Folding Screen (Byōbu)",
     "block.dawnoftimebuilder.stick_bundle": "Mulberry Stick Bundle",
-
     "block.dawnoftimebuilder.commelina": "Commelina",
     "block.dawnoftimebuilder.maize": "Maize",
     "block.dawnoftimebuilder.chiseled_plastered_stone_chiseled_plastered_stone": "Chiseled Plastered Stone",
@@ -170,16 +166,13 @@
     "block.dawnoftimebuilder.red_sculpted_plastered_stone_frieze": "Red Sculpted Plastered Stone Frieze",
     "block.dawnoftimebuilder.red_small_plastered_stone_frieze": "Red Small Plastered Stone Frieze",
     "block.dawnoftimebuilder.serpent_sculpted_column": "Serpent Sculpted Column",
-
     "block.dawnoftimebuilder.ochre_roof_tiles": "Ochre Roof Tiles",
     "block.dawnoftimebuilder.ochre_roof_tiles_slab": "Ochre Roof Tiles Slab",
     "block.dawnoftimebuilder.sandstone_column": "Sandstone Column",
-
     "item.dawnoftimebuilder.pharaoh_armor_head": "Pharaoh Headdress",
     "item.dawnoftimebuilder.pharaoh_armor_chest": "Pharaohs Clothes",
     "item.dawnoftimebuilder.pharaoh_armor_legs": "Pharaohs Shendyts",
     "item.dawnoftimebuilder.pharaoh_armor_feet": "Pharaohs Sandals",
-
     "entity.dawnoftimebuilder.silkmoth": "Silkmoth",
     "entity.dawnoftimebuilder.japanese_dragon": "Japanese Dragon"
 }
