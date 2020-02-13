@@ -118,7 +118,6 @@ public class DoTBBlockSupportBeam extends DoTBBlock {
 		}
 		Block blockUnder = worldIn.getBlockState(currentPos.down()).getBlock();
 		if(blockUnder instanceof FenceBlock) return stateIn.with(PILLAR_CONNECTION, DoTBBlockStateProperties.PillarConnection.FOUR_PX);
-		//TODO add this " || blockUnder instanceof DoTBBlockWall" in the if, line 131
 		if(blockUnder instanceof WallBlock) stateIn.with(PILLAR_CONNECTION, DoTBBlockStateProperties.PillarConnection.EIGHT_PX);
 		if(blockUnder instanceof DoTBBlockBeam) if(worldIn.getBlockState(currentPos.down()).get(DoTBBlockBeam.MAIN_AXIS).isVertical()) stateIn.with(PILLAR_CONNECTION, DoTBBlockStateProperties.PillarConnection.TEN_PX);
 
