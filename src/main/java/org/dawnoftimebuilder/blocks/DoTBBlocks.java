@@ -115,10 +115,10 @@ public class DoTBBlocks {
 	//@ObjectHolder("rice") public static BlockRice rice;
 	@ObjectHolder("tatami_mat") public static Block tatami_mat;
 
-	//mayan
+	//pre_colombian
 	@ObjectHolder("plastered_stone") public static Block plastered_stone;
-	@ObjectHolder("red_plastered_stone") public static Block red_plastered_stone;//TODO add this in inventory
-	@ObjectHolder("red_ornamented_plastered_stone") public static Block red_ornamented_plastered_stone;//TODO add this in inventory
+	@ObjectHolder("red_plastered_stone") public static Block red_plastered_stone;
+	@ObjectHolder("red_ornamented_plastered_stone") public static Block red_ornamented_plastered_stone;
 	@ObjectHolder("plastered_stone_slab") public static Block plastered_stone_slab;
 	@ObjectHolder("plastered_stone_edge") public static Block plastered_stone_edge;
 	@ObjectHolder("plastered_stone_plate") public static Block plastered_stone_plate;

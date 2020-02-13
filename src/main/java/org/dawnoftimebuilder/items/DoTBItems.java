@@ -56,7 +56,7 @@ public class DoTBItems {
 	@ObjectHolder("raijin_armor_legs") public static Item raijin_armor_legs;
 	@ObjectHolder("raijin_armor_feet") public static Item raijin_armor_feet;
 
-	//mayan
+	//pre_colombian
 	@ObjectHolder("commelina") public static Item commelina;
 	@ObjectHolder("maize") public static Item maize;
 }

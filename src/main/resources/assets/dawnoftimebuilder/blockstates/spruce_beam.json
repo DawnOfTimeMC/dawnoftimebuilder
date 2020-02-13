@@ -1,21 +1,33 @@
 {
     "multipart": [
-        {   "when": { "main_axis": "y" },
+        {
+            "when": { "axis": "y" },
             "apply": { "model": "dawnoftimebuilder:block/japanese/spruce_beam_y"}
         },
-       	{   "when": { "main_axis": "x" },
+        {
+            "when": {"OR": [
+                {"axis": "x", "subaxis_z": "false" },
+                {"axis": "y", "subaxis_x": "true", "subaxis_z": "false" }
+            ]},
             "apply": { "model": "dawnoftimebuilder:block/japanese/spruce_beam_x"}
         },
-		{   "when": { "main_axis": "z" },
+        {
+            "when": {"OR": [
+                {"axis": "z", "subaxis_x": "false" },
+                {"axis": "y", "subaxis_z": "true", "subaxis_x": "false" }
+            ]},
             "apply": { "model": "dawnoftimebuilder:block/japanese/spruce_beam_x", "y": 90}
         },
-        {   "when": { "subaxis_x": "true" },
-            "apply": { "model": "dawnoftimebuilder:block/japanese/spruce_beam_x"}
+        {
+            "when": {"OR": [
+                {"axis": "x", "subaxis_z": "true" },
+                {"axis": "z", "subaxis_x": "true" },
+                {"subaxis_z": "true", "subaxis_x": "true" }
+            ]},
+            "apply": { "model": "dawnoftimebuilder:block/japanese/spruce_beam_x_z"}
         },
-        {   "when": { "subaxis_z": "true" },
-            "apply": { "model": "dawnoftimebuilder:block/japanese/spruce_beam_x", "y": 90}
-        },
-        {   "when": { "bottom": "true" },
+        {
+            "when": { "bottom": "true" },
             "apply": { "model": "dawnoftimebuilder:block/japanese/spruce_beam_bottom"}
         }
     ]

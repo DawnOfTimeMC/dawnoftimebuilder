@@ -36,19 +36,19 @@ import org.dawnoftimebuilder.enums.DoTBBlockStateProperties;
 import org.dawnoftimebuilder.enums.DoTBBlockStateProperties.HorizontalConnection;
 import java.util.Random;
 
-public class BlockFireplace extends DoTBBlock implements IWaterLoggable {
+public class FireplaceBlock extends DoTBBlock implements IWaterLoggable {
 
-	public static final EnumProperty<Direction.Axis> HORIZONTAL_AXIS = BlockStateProperties.HORIZONTAL_AXIS;//true = axis_x
+	public static final EnumProperty<Direction.Axis> HORIZONTAL_AXIS = BlockStateProperties.HORIZONTAL_AXIS;
 	public static final BooleanProperty BURNING = DoTBBlockStateProperties.BURNING;
 	public static final EnumProperty<DoTBBlockStateProperties.HorizontalConnection> HORIZONTAL_CONNECTION = DoTBBlockStateProperties.HORIZONTAL_CONNECTION;
 	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
-	private static final VoxelShape ON_X_AABB = Block.makeCuboidShape(0.0D, 0.0D, 2.0D, 1.0D, 14.0D, 14.0D);
-	private static final VoxelShape OFF_X_AABB = Block.makeCuboidShape(0.0D, 0.0D, 2.0D, 1.0D, 5.0D, 14.0D);
-	private static final VoxelShape ON_Z_AABB = Block.makeCuboidShape(2.0D, 0.0D, 0.0D, 14.0D, 14.0D, 16.0D);
-	private static final VoxelShape OFF_Z_AABB = Block.makeCuboidShape(2.0D, 0.0D, 0.0D, 14.0D, 5.0D, 16.0D);
+	private static final VoxelShape ON_X_SHAPE = Block.makeCuboidShape(0.0D, 0.0D, 2.0D, 16.0D, 14.0D, 14.0D);
+	private static final VoxelShape OFF_X_SHAPE = Block.makeCuboidShape(0.0D, 0.0D, 2.0D, 16.0D, 5.0D, 14.0D);
+	private static final VoxelShape ON_Z_SHAPE = Block.makeCuboidShape(2.0D, 0.0D, 0.0D, 14.0D, 14.0D, 16.0D);
+	private static final VoxelShape OFF_Z_SHAPE = Block.makeCuboidShape(2.0D, 0.0D, 0.0D, 14.0D, 5.0D, 16.0D);
 
-	public BlockFireplace() {
+	public FireplaceBlock() {
 		super("fireplace", Material.ROCK,1.5F, 6.0F);
 		this.setDefaultState(this.stateContainer.getBaseState().with(BURNING, false).with(HORIZONTAL_AXIS, Direction.Axis.X).with(HORIZONTAL_CONNECTION, HorizontalConnection.NONE).with(WATERLOGGED,false));
 	}
@@ -59,23 +59,17 @@ public class BlockFireplace extends DoTBBlock implements IWaterLoggable {
 	}
 
 	@Override
-	public VoxelShape getRenderShape(BlockState state, IBlockReader worldIn, BlockPos pos) {
-		state = worldIn.getBlockState(pos);
-		if(state.get(HORIZONTAL_AXIS) == Direction.Axis.X){
-			return (state.get(BURNING)) ? ON_X_AABB : OFF_X_AABB;
-		}else{
-			return (state.get(BURNING)) ? ON_Z_AABB : OFF_Z_AABB;
-		}
-	}
-
-	@Override
 	public VoxelShape getCollisionShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-		return (state.get(HORIZONTAL_AXIS) == Direction.Axis.X) ? OFF_X_AABB : OFF_Z_AABB;
+		return (state.get(HORIZONTAL_AXIS) == Direction.Axis.X) ? OFF_X_SHAPE : OFF_Z_SHAPE;
 	}
 
 	@Override
-	public int getLightValue(BlockState state) {
-		return (state.get(BURNING)) ? 15 : 0;
+	public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context){
+		if(state.get(HORIZONTAL_AXIS) == Direction.Axis.X){
+			return (state.get(BURNING)) ? ON_X_SHAPE : OFF_X_SHAPE;
+		}else{
+			return (state.get(BURNING)) ? ON_Z_SHAPE : OFF_Z_SHAPE;
+		}
 	}
 
 	@Override
@@ -108,21 +102,22 @@ public class BlockFireplace extends DoTBBlock implements IWaterLoggable {
 			worldIn.getBlockState(pos.offset(direction.getOpposite())).neighborChanged(worldIn, pos.offset(direction.getOpposite()), this, pos, false);
 			return true;
 
-		} else if (!itemstack.isEmpty() && (itemstack.getItem() == Items.FLINT_AND_STEEL || itemstack.getItem() == Item.getItemFromBlock(Blocks.TORCH))) {
+		} else {
+			if(state.get(WATERLOGGED)) return false;
 
-			direction = (state.get(HORIZONTAL_AXIS) == Direction.Axis.X) ? Direction.EAST : Direction.SOUTH;
-			worldIn.setBlockState(pos, state.with(BURNING, true), 10);
-			worldIn.playSound(null, pos, SoundEvents.BLOCK_FIRE_AMBIENT, SoundCategory.BLOCKS, 1.0F, 1.0F);
-			worldIn.getBlockState(pos.offset(direction)).neighborChanged(worldIn, pos.offset(direction), this, pos, false);
-			worldIn.getBlockState(pos.offset(direction.getOpposite())).neighborChanged(worldIn, pos.offset(direction.getOpposite()), this, pos, false);
+			if (!itemstack.isEmpty() && (itemstack.getItem() == Items.FLINT_AND_STEEL || itemstack.getItem() == Item.getItemFromBlock(Blocks.TORCH))) {
+				direction = (state.get(HORIZONTAL_AXIS) == Direction.Axis.X) ? Direction.EAST : Direction.SOUTH;
+				worldIn.setBlockState(pos, state.with(BURNING, true), 10);
+				worldIn.playSound(null, pos, SoundEvents.BLOCK_FIRE_AMBIENT, SoundCategory.BLOCKS, 1.0F, 1.0F);
+				worldIn.getBlockState(pos.offset(direction)).neighborChanged(worldIn, pos.offset(direction), this, pos, false);
+				worldIn.getBlockState(pos.offset(direction.getOpposite())).neighborChanged(worldIn, pos.offset(direction.getOpposite()), this, pos, false);
 
-			if (itemstack.getItem() == Items.FLINT_AND_STEEL) itemstack.damageItem(1, player, (p_220287_1_) -> {
-				p_220287_1_.sendBreakAnimation(handIn);
-			});
-			else if (!player.abilities.isCreativeMode) itemstack.shrink(1);
-			return true;
+				if (itemstack.getItem() == Items.FLINT_AND_STEEL) itemstack.damageItem(1, player, (p_220287_1_) -> p_220287_1_.sendBreakAnimation(handIn));
+				else if (!player.abilities.isCreativeMode) itemstack.shrink(1);
+				return true;
+
+			}
 		}
-
 		return false;
 	}
 
@@ -170,9 +165,10 @@ public class BlockFireplace extends DoTBBlock implements IWaterLoggable {
 			state = state.with(HORIZONTAL_CONNECTION, getHorizontalShape(worldIn, pos, axis));
 
 			BlockState newState = worldIn.getBlockState(fromPos);
-			if(newState.getBlock() instanceof BlockFireplace){
+			if(newState.getBlock() instanceof FireplaceBlock){
 				if(newState.get(HORIZONTAL_AXIS) == axis){
 					if(newState.get(BURNING) != state.get(BURNING)){
+						if(newState.get(BURNING) && state.get(WATERLOGGED)) return;
 						worldIn.setBlockState(pos, state.with(BURNING, newState.get(BURNING)), 10);
 						BlockPos newPos = (axis == Direction.Axis.X) ? pos.offset(Direction.EAST, pos.getX() - fromPos.getX()) : pos.offset(Direction.SOUTH, pos.getZ() - fromPos.getZ());
 						worldIn.getBlockState(newPos).neighborChanged(worldIn, newPos, this, pos, false);
@@ -189,10 +185,10 @@ public class BlockFireplace extends DoTBBlock implements IWaterLoggable {
 		BlockState left = worldIn.getBlockState(pos.offset((axis == Direction.Axis.X) ? Direction.EAST : Direction.SOUTH, 1));
 		BlockState right = worldIn.getBlockState(pos.offset((axis == Direction.Axis.X) ? Direction.EAST : Direction.SOUTH, -1));
 
-		boolean blockLeft = left.getBlock() instanceof BlockFireplace;
+		boolean blockLeft = left.getBlock() instanceof FireplaceBlock;
 		if(blockLeft) blockLeft = left.get(HORIZONTAL_AXIS) == axis;
 
-		boolean blockRight = right.getBlock() instanceof BlockFireplace;
+		boolean blockRight = right.getBlock() instanceof FireplaceBlock;
 		if(blockRight) blockRight = right.get(HORIZONTAL_AXIS) == axis;
 
 		if(blockLeft){
@@ -229,8 +225,7 @@ public class BlockFireplace extends DoTBBlock implements IWaterLoggable {
 					worldIn.addParticle(ParticleTypes.LAVA, (float)pos.getX() + 0.5F, (float)pos.getY() + 0.5F, (float)pos.getZ() + 0.5F, rand.nextFloat() / 4.0F, 2.5E-5D, rand.nextFloat() / 4.0F);
 				}
 			}
-			worldIn.func_217404_b(ParticleTypes.CAMPFIRE_COSY_SMOKE, true, (double)pos.getX() + 0.5D + rand.nextDouble() / 3.0D * (double)(rand.nextBoolean() ? 1 : -1), (double)pos.getY() + rand.nextDouble() + rand.nextDouble(), (double)pos.getZ() + 0.5D + rand.nextDouble() / 3.0D * (double)(rand.nextBoolean() ? 1 : -1), 0.0D, 0.07D, 0.0D);
-			worldIn.addParticle(ParticleTypes.SMOKE, (double)pos.getX() + 0.25D + rand.nextDouble() / 2.0D * (double)(rand.nextBoolean() ? 1 : -1), (double)pos.getY() + 0.4D, (double)pos.getZ() + 0.25D + rand.nextDouble() / 2.0D * (double)(rand.nextBoolean() ? 1 : -1), 0.0D, 0.005D, 0.0D);
+			worldIn.func_217404_b(ParticleTypes.CAMPFIRE_COSY_SMOKE, true, (double)pos.getX() + 0.5D + rand.nextDouble() / 3.0D * (double)(rand.nextBoolean() ? 1 : -1), (double)pos.getY() + 0.4D, (double)pos.getZ() + 0.5D + rand.nextDouble() / 3.0D * (double)(rand.nextBoolean() ? 1 : -1), 0.0D, 0.07D, 0.0D);
 		}
 	}
 

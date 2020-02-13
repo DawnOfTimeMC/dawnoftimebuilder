@@ -1,18 +1,18 @@
 {
-    "forge_marker": 1,
-    "defaults": {
-        "model": "dawnoftimebuilder:block/french/oak_support_slab"
-    },
-    "variants": {
-        "axis" : {
-            "axis_x"  : { "submodel": "dawnoftimebuilder:french/oak_beam_x", "uvlock" : false },
-            "axis_z" : { "submodel": "dawnoftimebuilder:french/oak_beam_x", "uvlock" : false, "y": 90 }
+    "multipart": [
+        {   "apply": { "model": "dawnoftimebuilder:block/french/oak_support_slab" }
         },
-        "under" : {
-            "nothing" : {  },
-            "4_pixels"  : { "submodel": "dawnoftimebuilder:french/oak_support_4_pixels" },
-            "8_pixels"  : {  },
-            "10_pixels"  : {  }
+        {   "when": { "axis": "x", "subaxis": "false"},
+            "apply": { "model": "dawnoftimebuilder:block/french/oak_beam_x" }
+        },
+        {   "when": { "axis": "z", "subaxis": "false"},
+            "apply": { "model": "dawnoftimebuilder:block/french/oak_beam_x", "y": 90 }
+        },
+        {   "when": { "subaxis": "true" },
+            "apply": { "model": "dawnoftimebuilder:block/french/oak_beam_x_z" }
+        },
+        {   "when": { "pillar_connection": "4_pixels" },
+            "apply": { "model": "dawnoftimebuilder:block/french/oak_support_4_pixels" }
         }
-    }
+    ]
 }

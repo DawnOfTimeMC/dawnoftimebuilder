@@ -1,8 +1,8 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"slab": "block/log_spruce",
-		"particle": "block/log_spruce"
+		"slab": "block/spruce_log",
+		"particle": "block/spruce_log"
 	},
 	"elements": [
 		{

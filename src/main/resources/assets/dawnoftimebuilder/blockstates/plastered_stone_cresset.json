@@ -1,20 +1,20 @@
 {
     "variants": {
-        "lit=0":  { "model": "dawnoftimebuilder:block/mayan/plastered_stone_cresset_off" },
-        "lit=1":  { "model": "dawnoftimebuilder:block/mayan/plastered_stone_cresset_off" },
-        "lit=2":  { "model": "dawnoftimebuilder:block/mayan/plastered_stone_cresset_off" },
-        "lit=3":  { "model": "dawnoftimebuilder:block/mayan/plastered_stone_cresset_on" },
-        "lit=4":  { "model": "dawnoftimebuilder:block/mayan/plastered_stone_cresset_on" },
-        "lit=5":  { "model": "dawnoftimebuilder:block/mayan/plastered_stone_cresset_on" },
-        "lit=6":  { "model": "dawnoftimebuilder:block/mayan/plastered_stone_cresset_on" },
-        "lit=7":  { "model": "dawnoftimebuilder:block/mayan/plastered_stone_cresset_on" },
-        "lit=8":  { "model": "dawnoftimebuilder:block/mayan/plastered_stone_cresset_on" },
-        "lit=9":  { "model": "dawnoftimebuilder:block/mayan/plastered_stone_cresset_on" },
-        "lit=10":  { "model": "dawnoftimebuilder:block/mayan/plastered_stone_cresset_on" },
-        "lit=11":  { "model": "dawnoftimebuilder:block/mayan/plastered_stone_cresset_on" },
-        "lit=12":  { "model": "dawnoftimebuilder:block/mayan/plastered_stone_cresset_on" },
-        "lit=13":  { "model": "dawnoftimebuilder:block/mayan/plastered_stone_cresset_on" },
-        "lit=14":  { "model": "dawnoftimebuilder:block/mayan/plastered_stone_cresset_on" },
-        "lit=15":  { "model": "dawnoftimebuilder:block/mayan/plastered_stone_cresset_on" }
+        "lit=0":  { "model": "dawnoftimebuilder:block/pre_colombian/plastered_stone_cresset_off" },
+        "lit=1":  { "model": "dawnoftimebuilder:block/pre_colombian/plastered_stone_cresset_off" },
+        "lit=2":  { "model": "dawnoftimebuilder:block/pre_colombian/plastered_stone_cresset_off" },
+        "lit=3":  { "model": "dawnoftimebuilder:block/pre_colombian/plastered_stone_cresset_on" },
+        "lit=4":  { "model": "dawnoftimebuilder:block/pre_colombian/plastered_stone_cresset_on" },
+        "lit=5":  { "model": "dawnoftimebuilder:block/pre_colombian/plastered_stone_cresset_on" },
+        "lit=6":  { "model": "dawnoftimebuilder:block/pre_colombian/plastered_stone_cresset_on" },
+        "lit=7":  { "model": "dawnoftimebuilder:block/pre_colombian/plastered_stone_cresset_on" },
+        "lit=8":  { "model": "dawnoftimebuilder:block/pre_colombian/plastered_stone_cresset_on" },
+        "lit=9":  { "model": "dawnoftimebuilder:block/pre_colombian/plastered_stone_cresset_on" },
+        "lit=10":  { "model": "dawnoftimebuilder:block/pre_colombian/plastered_stone_cresset_on" },
+        "lit=11":  { "model": "dawnoftimebuilder:block/pre_colombian/plastered_stone_cresset_on" },
+        "lit=12":  { "model": "dawnoftimebuilder:block/pre_colombian/plastered_stone_cresset_on" },
+        "lit=13":  { "model": "dawnoftimebuilder:block/pre_colombian/plastered_stone_cresset_on" },
+        "lit=14":  { "model": "dawnoftimebuilder:block/pre_colombian/plastered_stone_cresset_on" },
+        "lit=15":  { "model": "dawnoftimebuilder:block/pre_colombian/plastered_stone_cresset_on" }
     }
 }

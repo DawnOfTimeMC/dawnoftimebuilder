@@ -1,20 +1,20 @@
 {
     "variants": {
-        "facing=east,pillar=0": { "model": "dawnoftimebuilder:block/mayan/serpent_sculpted_column_top", "y" : 90},
-        "facing=east,pillar=1": { "model": "dawnoftimebuilder:block/mayan/serpent_sculpted_column_middle", "y" : 90},
-        "facing=east,pillar=2": { "model": "dawnoftimebuilder:block/mayan/serpent_sculpted_column_bottom", "y" : 90},
-        "facing=east,pillar=3": { "model": "dawnoftimebuilder:block/mayan/serpent_sculpted_column_lone", "y" : 90},
-        "facing=south,pillar=0": { "model": "dawnoftimebuilder:block/mayan/serpent_sculpted_column_top", "y" : 180},
-        "facing=south,pillar=1": { "model": "dawnoftimebuilder:block/mayan/serpent_sculpted_column_middle", "y" : 180},
-        "facing=south,pillar=2": { "model": "dawnoftimebuilder:block/mayan/serpent_sculpted_column_bottom", "y" : 180},
-        "facing=south,pillar=3": { "model": "dawnoftimebuilder:block/mayan/serpent_sculpted_column_lone", "y" : 180},
-        "facing=west,pillar=0": { "model": "dawnoftimebuilder:block/mayan/serpent_sculpted_column_top", "y" : 270},
-        "facing=west,pillar=1": { "model": "dawnoftimebuilder:block/mayan/serpent_sculpted_column_middle", "y" : 270},
-        "facing=west,pillar=2": { "model": "dawnoftimebuilder:block/mayan/serpent_sculpted_column_bottom", "y" : 270},
-        "facing=west,pillar=3": { "model": "dawnoftimebuilder:block/mayan/serpent_sculpted_column_lone", "y" : 270},
-        "facing=north,pillar=0": { "model": "dawnoftimebuilder:block/mayan/serpent_sculpted_column_top"},
-        "facing=north,pillar=1": { "model": "dawnoftimebuilder:block/mayan/serpent_sculpted_column_middle"},
-        "facing=north,pillar=2": { "model": "dawnoftimebuilder:block/mayan/serpent_sculpted_column_bottom"},
-        "facing=north,pillar=3": { "model": "dawnoftimebuilder:block/mayan/serpent_sculpted_column_lone"}
+        "facing=east,pillar=0": { "model": "dawnoftimebuilder:block/pre_colombian/serpent_sculpted_column_top", "y" : 90},
+        "facing=east,pillar=1": { "model": "dawnoftimebuilder:block/pre_colombian/serpent_sculpted_column_middle", "y" : 90},
+        "facing=east,pillar=2": { "model": "dawnoftimebuilder:block/pre_colombian/serpent_sculpted_column_bottom", "y" : 90},
+        "facing=east,pillar=3": { "model": "dawnoftimebuilder:block/pre_colombian/serpent_sculpted_column_lone", "y" : 90},
+        "facing=south,pillar=0": { "model": "dawnoftimebuilder:block/pre_colombian/serpent_sculpted_column_top", "y" : 180},
+        "facing=south,pillar=1": { "model": "dawnoftimebuilder:block/pre_colombian/serpent_sculpted_column_middle", "y" : 180},
+        "facing=south,pillar=2": { "model": "dawnoftimebuilder:block/pre_colombian/serpent_sculpted_column_bottom", "y" : 180},
+        "facing=south,pillar=3": { "model": "dawnoftimebuilder:block/pre_colombian/serpent_sculpted_column_lone", "y" : 180},
+        "facing=west,pillar=0": { "model": "dawnoftimebuilder:block/pre_colombian/serpent_sculpted_column_top", "y" : 270},
+        "facing=west,pillar=1": { "model": "dawnoftimebuilder:block/pre_colombian/serpent_sculpted_column_middle", "y" : 270},
+        "facing=west,pillar=2": { "model": "dawnoftimebuilder:block/pre_colombian/serpent_sculpted_column_bottom", "y" : 270},
+        "facing=west,pillar=3": { "model": "dawnoftimebuilder:block/pre_colombian/serpent_sculpted_column_lone", "y" : 270},
+        "facing=north,pillar=0": { "model": "dawnoftimebuilder:block/pre_colombian/serpent_sculpted_column_top"},
+        "facing=north,pillar=1": { "model": "dawnoftimebuilder:block/pre_colombian/serpent_sculpted_column_middle"},
+        "facing=north,pillar=2": { "model": "dawnoftimebuilder:block/pre_colombian/serpent_sculpted_column_bottom"},
+        "facing=north,pillar=3": { "model": "dawnoftimebuilder:block/pre_colombian/serpent_sculpted_column_lone"}
     }
 }

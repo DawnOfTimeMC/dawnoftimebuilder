@@ -6,9 +6,13 @@ import net.minecraft.util.IStringSerializable;
 
 public class DoTBBlockStateProperties {
 
-    public static final BooleanProperty AXIS_X = BooleanProperty.create("axis_x");
     public static final BooleanProperty BURNING = BooleanProperty.create("burning");
+    public static final BooleanProperty SUBAXIS_X = BooleanProperty.create("subaxis_x");
+    public static final BooleanProperty SUBAXIS_Z = BooleanProperty.create("subaxis_z");
+    public static final BooleanProperty SUBAXIS = BooleanProperty.create("subaxis");
     public static final EnumProperty<HorizontalConnection> HORIZONTAL_CONNECTION = EnumProperty.create("horizontal_connection", HorizontalConnection.class);
+    public static final EnumProperty<PillarConnection> PILLAR_CONNECTION = EnumProperty.create("pillar_connection", PillarConnection.class);
+    public static final EnumProperty<VerticalConnection> VERTICAL_CONNECTION = EnumProperty.create("vertical_connection", VerticalConnection.class);
 
     public enum HorizontalConnection implements IStringSerializable {
         LEFT("left"),
@@ -34,15 +38,17 @@ public class DoTBBlockStateProperties {
     }
 
     public enum VerticalConnection implements IStringSerializable {
-        ABOVE("above"),
-        UNDER("under"),
-        BOTH("both"),
-        NONE("none");
+        NONE("none", 0),
+        UNDER("under", 1),
+        ABOVE("above", 2),
+        BOTH("both", 3);
 
         private final String name;
+        private final int index;
 
-        VerticalConnection(String name){
+        VerticalConnection(String name, int index){
             this.name = name;
+            this.index = index;
         }
 
         public String toString()
@@ -54,9 +60,13 @@ public class DoTBBlockStateProperties {
         {
             return this.name;
         }
+
+        public int getIndex(){
+            return this.index;
+        }
     }
 
-    public enum ConnectionWithPillar implements IStringSerializable {
+    public enum PillarConnection implements IStringSerializable {
         NOTHING("nothing"),
         FOUR_PX("4_pixels"),
         EIGHT_PX("8_pixels"),
@@ -64,7 +74,7 @@ public class DoTBBlockStateProperties {
 
         private final String name;
 
-        ConnectionWithPillar(String name){
+        PillarConnection(String name){
             this.name = name;
         }
 

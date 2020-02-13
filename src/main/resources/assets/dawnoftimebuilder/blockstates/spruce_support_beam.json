@@ -1,18 +1,24 @@
 {
-    "forge_marker": 1,
-    "defaults": {
-        "model": "dawnoftimebuilder:block/japanese/spruce_support_slab"
-    },
-    "variants": {
-        "axis" : {
-            "axis_x"  : { "submodel": "dawnoftimebuilder:japanese/spruce_beam_x", "uvlock" : false },
-            "axis_z" : { "submodel": "dawnoftimebuilder:japanese/spruce_beam_x", "uvlock" : false, "y": 90 }
+    "multipart": [
+        {   "apply": { "model": "dawnoftimebuilder:block/japanese/spruce_support_slab" }
         },
-        "under" : {
-            "nothing" : {  },
-            "4_pixels"  : { "submodel": "dawnoftimebuilder:japanese/spruce_support_4_pixels" },
-            "8_pixels"  : { "submodel": "dawnoftimebuilder:japanese/spruce_support_8_pixels" },
-            "10_pixels"  : { "submodel": "dawnoftimebuilder:japanese/spruce_support_10_pixels" }
+        {   "when": { "axis": "x", "subaxis": "false"},
+            "apply": { "model": "dawnoftimebuilder:block/japanese/spruce_beam_x" }
+        },
+        {   "when": { "axis": "z", "subaxis": "false"},
+            "apply": { "model": "dawnoftimebuilder:block/japanese/spruce_beam_x", "y": 90 }
+        },
+        {   "when": { "subaxis": "true" },
+            "apply": { "model": "dawnoftimebuilder:block/japanese/spruce_beam_x_z" }
+        },
+        {   "when": { "pillar_connection": "4_pixels" },
+            "apply": { "model": "dawnoftimebuilder:block/japanese/spruce_support_4_pixels" }
+        },
+        {   "when": { "pillar_connection": "8_pixels" },
+            "apply": { "model": "dawnoftimebuilder:block/japanese/spruce_support_8_pixels" }
+        },
+        {   "when": { "pillar_connection": "10_pixels" },
+            "apply": { "model": "dawnoftimebuilder:block/japanese/spruce_support_10_pixels" }
         }
-    }
+    ]
 }

@@ -182,6 +182,8 @@ public enum CreativeInventoryCategories {
 			Item.getItemFromBlock(thatch_wheat_edge),
 			Item.getItemFromBlock(rammed_dirt),
 			Item.getItemFromBlock(plastered_stone),
+			Item.getItemFromBlock(red_plastered_stone),
+			Item.getItemFromBlock(red_ornamented_plastered_stone),
 			Item.getItemFromBlock(plastered_stone_stairs),
 			Item.getItemFromBlock(plastered_stone_plate),
 			Item.getItemFromBlock(plastered_stone_slab),

@@ -1,6 +1,6 @@
 {
 	"textures": {
-		"log": "block/log_spruce"
+		"log": "block/spruce_log"
 	},
 	"elements": [
 		{

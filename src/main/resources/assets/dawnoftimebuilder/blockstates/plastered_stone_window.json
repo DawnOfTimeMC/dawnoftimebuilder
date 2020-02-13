@@ -1,6 +1,6 @@
 {
     "variants": {
-        "axis=axis_x": { "model": "dawnoftimebuilder:block/mayan/plastered_stone_window" },
-        "axis=axis_z": { "model": "dawnoftimebuilder:block/mayan/plastered_stone_window", "y": 90 }
+        "axis=axis_x": { "model": "dawnoftimebuilder:block/pre_colombian/plastered_stone_window" },
+        "axis=axis_z": { "model": "dawnoftimebuilder:block/pre_colombian/plastered_stone_window", "y": 90 }
     }
 }

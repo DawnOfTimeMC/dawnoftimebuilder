@@ -1,6 +1,6 @@
 {
     "parent": "block/wall_side",
     "textures": {
-        "wall": "block/log_spruce"
+        "wall": "block/spruce_log"
     }
 }

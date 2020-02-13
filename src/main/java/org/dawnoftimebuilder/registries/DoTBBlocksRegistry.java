@@ -1,7 +1,6 @@
 package org.dawnoftimebuilder.registries;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
@@ -36,8 +35,8 @@ public class DoTBBlocksRegistry {
 
 		addToList(
 				//General
-	/*			new BlockIronChain(),
-				new DoTBBlockPath("path_gravel"),
+				new IronChainBlock(),
+	/*			new DoTBBlockPath("path_gravel"),
 				new DoTBBlockPath("path_stepping_stones"),
 				new DoTBBlockPath("path_cobbled"),
 				new DoTBBlockPath("path_ochre_tiles"),
@@ -47,19 +46,19 @@ public class DoTBBlocksRegistry {
 				new DoTBBlockSlabPath("path_cobbled_slab"),
 				new DoTBBlockSlabPath("path_ochre_tiles_slab"),
 				new DoTBBlockSlabPath("path_dirt_slab"),
-				new DoTBBlock("rammed_dirt", Material.GROUND, 0.5F, SoundType.GROUND),
+	*/			new DoTBBlock("rammed_dirt", Material.EARTH, 0.7F, 0.7F),
 				thatch_wheat.setBurnable(),
-				new DoTBBlockStairs("thatch_wheat_stairs", thatch_wheat, 0.3F, SoundType.CLOTH).setBurnable(),
+	/*			new DoTBBlockStairs("thatch_wheat_stairs", thatch_wheat, 0.3F, SoundType.CLOTH).setBurnable(),
 				new DoTBBlockSlab("thatch_wheat_slab", Material.CLOTH, 0.3F, SoundType.CLOTH).setBurnable(),
 				new DoTBBlockEdge("thatch_wheat_edge", Material.CLOTH, 0.3F, SoundType.CLOTH).setBurnable(),
-				thatch_bamboo.setBurnable(),
-				new DoTBBlockStairs("thatch_bamboo_stairs", thatch_bamboo, 0.3F, SoundType.CLOTH).setBurnable(),
+	*/			thatch_bamboo.setBurnable(),
+	/*			new DoTBBlockStairs("thatch_bamboo_stairs", thatch_bamboo, 0.3F, SoundType.CLOTH).setBurnable(),
 				new DoTBBlockSlab("thatch_bamboo_slab", Material.CLOTH, 0.3F, SoundType.CLOTH).setBurnable(),
 				new DoTBBlockEdge("thatch_bamboo_edge", Material.CLOTH, 0.3F, SoundType.CLOTH).setBurnable(),*/
-				new BlockFireplace(),
+				new FireplaceBlock(),
 
 				//French
-	//			new DoTBBlock("cobbled_limestone", Material.ROCK, 1.0F, SoundType.STONE),
+				new DoTBBlock("cobbled_limestone", Material.ROCK, 2.0F, 6.0F),
 				flat_roof_tiles,
 	/*			new DoTBBlockStairs("flat_roof_tiles_stairs", flat_roof_tiles, 2.0F, SoundType.STONE),
 				new DoTBBlockSlab("flat_roof_tiles_slab", Material.ROCK, 2.0F, SoundType.STONE),
@@ -78,15 +77,15 @@ public class DoTBBlocksRegistry {
 				new BlockLimestoneFireplace(),
 				new DoTBBlockEdge("oak_planks_edge", Material.WOOD, 1.5F, SoundType.WOOD),
 				new BlockOakShutters(),
-				new DoTBBlockBeam("oak_beam", Material.WOOD, 1.5F, SoundType.WOOD).setBurnable(),
-				new DoTBBlockSupportBeam("oak_support_beam", Material.WOOD, 1.5F, SoundType.WOOD).setBurnable(),
-				new DoTBBlockSupportSlab("oak_support_slab", Material.WOOD, 1.0F, SoundType.WOOD).setBurnable(),
+		*/		new DoTBBlockBeam("oak_beam", Material.WOOD, 2.0F, 3.0F).setBurnable(),
+				new DoTBBlockSupportBeam("oak_support_beam", Material.WOOD, 2.0F, 3.0F).setBurnable(),
+		/*		new DoTBBlockSupportSlab("oak_support_slab", Material.WOOD, 1.0F, SoundType.WOOD).setBurnable(),
 				new BlockSmallOakShutters(),
-				new DoTBBlock("oak_timber_frame", Material.WOOD, 2.0F, SoundType.WOOD).setBurnable(),
-				new DoTBBlockRotatedPillar("oak_timber_frame_corner", Material.WOOD,2.0F,SoundType.WOOD).setBurnable(),
+		*/		new DoTBBlock("oak_timber_frame", Material.WOOD, 3.0F, 5.0F).setBurnable(),
+		/*		new DoTBBlockRotatedPillar("oak_timber_frame_corner", Material.WOOD,2.0F,SoundType.WOOD).setBurnable(),
 				new DoTBBlockRotatedPillar("oak_timber_frame_pillar", Material.WOOD,2.0F,SoundType.WOOD).setBurnable(),
-				new DoTBBlockFence("oak_waxed_fence", Material.WOOD).setBurnable(),*/
-				oak_waxed_planks.setBurnable(),
+				new DoTBBlockFence("oak_waxed_fence", Material.WOOD).setBurnable(),
+		*/		oak_waxed_planks.setBurnable(),
 		/*		new DoTBBlockStairs("oak_waxed_planks_stairs", oak_waxed_planks, 1.5F, SoundType.WOOD),
 				new DoTBBlockSlab("oak_waxed_planks_slab", Material.WOOD, 1.5F, SoundType.WOOD),
 				new DoTBBlockEdge("oak_waxed_planks_edge", Material.WOOD, 1.5F, SoundType.WOOD),
@@ -117,19 +116,19 @@ public class DoTBBlocksRegistry {
 				new BlockRice(),
 				new BlockSmallTatamiMat(),
 				new DoTBBlockRotatedPillar("spruce_log_covered", Material.WOOD,2.0F,SoundType.WOOD).setBurnable(),
-				new DoTBBlockBeam("spruce_beam", Material.WOOD, 1.5F, SoundType.WOOD).setBurnable(),
-				new DoTBBlock("spruce_foundation", Material.WOOD, 1.0F, SoundType.WOOD).setBurnable(),
-				new DoTBBlockFence("spruce_log_fence", Material.WOOD, 2.0F, SoundType.WOOD).setBurnable(),
+			*/	new DoTBBlockBeam("spruce_beam", Material.WOOD, 2.0F, 3.0F).setBurnable(),
+				new DoTBBlock("spruce_foundation", Material.WOOD, 2.5F, 5.0F).setBurnable(),
+			/*	new DoTBBlockFence("spruce_log_fence", Material.WOOD, 2.0F, SoundType.WOOD).setBurnable(),
 				new DoTBBlockWall("spruce_log_wall", Material.WOOD, 2.0F, SoundType.WOOD).setBurnable(),
 				new DoTBBlockEdge("spruce_planks_edge", Material.WOOD, 1.5F, SoundType.WOOD),
 				new BlockSpruceRailing(),
 				new BlockSpruceRoofSupport("spruce_roof_support"),
 				new BlockSpruceRoofSupportMerged(),
-				new DoTBBlockSupportBeam("spruce_support_beam", Material.WOOD, 1.5F, SoundType.WOOD).setBurnable(),
-				new DoTBBlockSupportSlab("spruce_support_slab", Material.WOOD, 1.0F, SoundType.WOOD).setBurnable(),
+			*/	new DoTBBlockSupportBeam("spruce_support_beam", Material.WOOD, 2.0F, 3.0F).setBurnable(),
+			/*	new DoTBBlockSupportSlab("spruce_support_slab", Material.WOOD, 1.0F, SoundType.WOOD).setBurnable(),
 				new BlockSpruceLowTable(),
-				new DoTBBlock("spruce_timber_frame", Material.WOOD, 2.0F, SoundType.WOOD).setBurnable(),
-				new DoTBBlockRotatedPillar("spruce_timber_frame_pillar", Material.WOOD, 2.0F, SoundType.WOOD).setBurnable(),
+			*/	new DoTBBlock("spruce_timber_frame", Material.WOOD, 2.0F, 3.0F).setBurnable(),
+			/*	new DoTBBlockRotatedPillar("spruce_timber_frame_pillar", Material.WOOD, 2.0F, SoundType.WOOD).setBurnable(),
 				new BlockStoneLantern(),
 				new BlockTatamiMat("tatami_mat"),
 				new BlockFuton(),
@@ -141,7 +140,7 @@ public class DoTBBlocksRegistry {
 				new DoTBBlockSlab("spruce_foundation_slab", Material.WOOD, 1.0F, SoundType.WOOD),
 				new BlockStickBundle(),
 
-				//mayan
+				//pre_colombian
 				new BlockChiseledPlasteredStone(),
 				new BlockCommelina(),
 				new BlockFeatheredSerpentSculpture(),
@@ -149,11 +148,11 @@ public class DoTBBlocksRegistry {
 				new DoTBBlockPlate("green_plastered_stone_frieze"),
 				new BlockGreenSculptedPlasteredStoneFrieze(),
 				new DoTBBlockEdge("green_small_plastered_stone_frieze", Material.ROCK, 1.5F, SoundType.STONE),
-				new BlockMaize(),*/
-				plastered_stone,
+				new BlockMaize(),
+			*/	plastered_stone,
 				red_plastered_stone,
-				new DoTBBlock("red_ornamented_plastered_stone", Material.ROCK,1.5F, 6.0F)/*,
-				new BlockPlasteredStoneColumn(),
+				new DoTBBlock("red_ornamented_plastered_stone", Material.ROCK,1.5F, 6.0F),
+			/*	new BlockPlasteredStoneColumn(),
 				new BlockPlasteredStoneCresset(),
 				new DoTBBlockPlate("plastered_stone_frieze"),
 				new DoTBBlockPlate("plastered_stone_plate"),
@@ -173,7 +172,7 @@ public class DoTBBlocksRegistry {
 				new BlockStoneFrieze(),
 
 				//roman
-				new DoTBBlock("ochre_roof_tiles", Material.ROCK, 2.0F, SoundType.STONE),
+			*/	new DoTBBlock("ochre_roof_tiles", Material.ROCK, 1.5F, 5.0F)/*,
 				new BlockOchreRoofTilesMerged(),
 				new BlockOchreRoofTilesSlab(),
 				new BlockSandstoneColumn()*/

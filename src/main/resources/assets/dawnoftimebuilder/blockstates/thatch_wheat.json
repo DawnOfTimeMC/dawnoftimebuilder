@@ -1,5 +1,7 @@
 {
     "variants": {
-        "normal": { "model": "dawnoftimebuilder:block/general/thatch_wheat"}
+        "": [
+            { "model": "dawnoftimebuilder:block/general/thatch_wheat"}
+        ]
     }
 }

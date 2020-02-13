@@ -1,5 +1,7 @@
 {
     "variants": {
-        "normal": { "model": "dawnoftimebuilder:block/french/oak_waxed_planks" }
+        "": [
+            { "model": "dawnoftimebuilder:block/french/oak_waxed_planks" }
+        ]
     }
 }

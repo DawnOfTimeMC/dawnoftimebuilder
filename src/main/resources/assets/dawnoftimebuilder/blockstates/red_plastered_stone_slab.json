@@ -1,7 +1,7 @@
 {
     "variants": {
-        "slab=bottom": { "model": "dawnoftimebuilder:block/mayan/red_plastered_stone_slab_bottom" },
-        "slab=top": { "model": "dawnoftimebuilder:block/mayan/red_plastered_stone_slab_top" },
-        "slab=double": { "model": "dawnoftimebuilder:block/mayan/red_plastered_stone_slab_double" }
+        "slab=bottom": { "model": "dawnoftimebuilder:block/pre_colombian/red_plastered_stone_slab_bottom" },
+        "slab=top": { "model": "dawnoftimebuilder:block/pre_colombian/red_plastered_stone_slab_top" },
+        "slab=double": { "model": "dawnoftimebuilder:block/pre_colombian/red_plastered_stone_slab_double" }
     }
 }
