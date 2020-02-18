@@ -16,9 +16,12 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
-import org.dawnoftimebuilder.enums.DoTBBlockStateProperties;
+import org.dawnoftimebuilder.blocks.IBlockPillar;
+import org.dawnoftimebuilder.utils.DoTBBlockStateProperties;
 
-public class DoTBBlockBeam extends DoTBBlock implements IWaterLoggable {
+import javax.annotation.Nonnull;
+
+public class DoTBBlockBeam extends DoTBBlock implements IWaterLoggable, IBlockPillar {
 
 	private static final BooleanProperty BOTTOM = BlockStateProperties.BOTTOM;
 	public static final EnumProperty<Direction.Axis> MAIN_AXIS = BlockStateProperties.AXIS;
@@ -137,5 +140,11 @@ public class DoTBBlockBeam extends DoTBBlock implements IWaterLoggable {
 		if (state.getBlock() instanceof DoTBBlockSupportBeam)
 			return state.get(DoTBBlockSupportBeam.HORIZONTAL_AXIS) == direction.getAxis();
 		else return false;
+	}
+
+	@Nonnull
+	@Override
+	public DoTBBlockStateProperties.PillarConnection getBlockPillarConnection(BlockState state) {
+		return DoTBBlockStateProperties.PillarConnection.TEN_PX;
 	}
 }

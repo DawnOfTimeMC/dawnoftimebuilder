@@ -17,9 +17,10 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
-import org.dawnoftimebuilder.enums.DoTBBlockStateProperties;
+import org.dawnoftimebuilder.blocks.IBlockPillar;
+import org.dawnoftimebuilder.utils.DoTBBlockStateProperties;
 
-public class DoTBBlockSupportBeam extends DoTBBlock {
+public class DoTBBlockSupportBeam extends DoTBBlock implements IWaterLoggable{
 
 	private static final EnumProperty<DoTBBlockStateProperties.PillarConnection> PILLAR_CONNECTION = DoTBBlockStateProperties.PILLAR_CONNECTION;
 	public static final EnumProperty<Direction.Axis> HORIZONTAL_AXIS = BlockStateProperties.HORIZONTAL_AXIS;
@@ -104,24 +105,23 @@ public class DoTBBlockSupportBeam extends DoTBBlock {
 	@Override
 	public BlockState getStateForPlacement(BlockItemUseContext context) {
 		BlockPos pos = context.getPos();
-		IFluidState ifluidstate = context.getWorld().getFluidState(pos);
-		return this.getDefaultState().with(HORIZONTAL_AXIS, context.getPlacementHorizontalFacing().getAxis()).with(WATERLOGGED, ifluidstate.getFluid() == Fluids.WATER);
+		IWorld world = context.getWorld();
+		return this.getCurrentState(this.getDefaultState().with(HORIZONTAL_AXIS, context.getPlacementHorizontalFacing().getAxis()).with(WATERLOGGED, world.getFluidState(pos).getFluid() == Fluids.WATER), world, pos);
 	}
 
 	@Override
 	public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
 		if (stateIn.get(WATERLOGGED)) worldIn.getPendingFluidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickRate(worldIn));
+		return this.getCurrentState(stateIn, worldIn, currentPos);
+	}
+
+	private BlockState getCurrentState(BlockState stateIn, IWorld worldIn, BlockPos currentPos) {
 		if (stateIn.get(HORIZONTAL_AXIS) == Direction.Axis.X){
 			if (canConnect(worldIn, currentPos, Direction.NORTH) || canConnect(worldIn, currentPos, Direction.SOUTH)) stateIn = stateIn.with(SUBAXIS, true);
 		}else{
 			if (canConnect(worldIn, currentPos, Direction.EAST) || canConnect(worldIn, currentPos, Direction.WEST)) stateIn = stateIn.with(SUBAXIS, true);
 		}
-		Block blockUnder = worldIn.getBlockState(currentPos.down()).getBlock();
-		if(blockUnder instanceof FenceBlock) return stateIn.with(PILLAR_CONNECTION, DoTBBlockStateProperties.PillarConnection.FOUR_PX);
-		if(blockUnder instanceof WallBlock) stateIn.with(PILLAR_CONNECTION, DoTBBlockStateProperties.PillarConnection.EIGHT_PX);
-		if(blockUnder instanceof DoTBBlockBeam) if(worldIn.getBlockState(currentPos.down()).get(DoTBBlockBeam.MAIN_AXIS).isVertical()) stateIn.with(PILLAR_CONNECTION, DoTBBlockStateProperties.PillarConnection.TEN_PX);
-
-		return stateIn;
+		return stateIn.with(PILLAR_CONNECTION, IBlockPillar.getPillarConnection(worldIn, currentPos.down()));
 	}
 
 	private boolean canConnect(IWorld world, BlockPos pos, Direction direction) {

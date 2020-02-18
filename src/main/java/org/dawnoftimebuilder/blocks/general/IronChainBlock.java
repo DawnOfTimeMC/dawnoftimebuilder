@@ -5,13 +5,12 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.material.Material;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
-import org.dawnoftimebuilder.enums.DoTBBlockStateProperties;
+import org.dawnoftimebuilder.blocks.IBlockPillar;
+import org.dawnoftimebuilder.utils.DoTBBlockStateProperties;
 
-public class IronChainBlock extends DoTBBlockColumn {
+public class IronChainBlock extends DoTBBlockColumn implements IBlockPillar {
 
 	private static final VoxelShape VS = Block.makeCuboidShape(6.0D, 0.0D, 6.0D, 10.0D, 16.0D, 10.0D);
 
@@ -55,4 +54,8 @@ public class IronChainBlock extends DoTBBlockColumn {
 		return BlockRenderLayer.CUTOUT_MIPPED;
 	}
 
+	@Override
+	public DoTBBlockStateProperties.PillarConnection getBlockPillarConnection(BlockState state) {
+		return DoTBBlockStateProperties.PillarConnection.FOUR_PX;
+	}
 }

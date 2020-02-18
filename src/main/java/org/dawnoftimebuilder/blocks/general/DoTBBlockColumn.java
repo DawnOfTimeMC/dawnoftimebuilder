@@ -18,7 +18,7 @@ import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
-import org.dawnoftimebuilder.enums.DoTBBlockStateProperties;
+import org.dawnoftimebuilder.utils.DoTBBlockStateProperties;
 
 public abstract class DoTBBlockColumn extends DoTBBlock implements IWaterLoggable {
 
