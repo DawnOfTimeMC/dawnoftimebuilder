@@ -13,7 +13,7 @@ public class ItemRice extends DoTBItemSoilSeeds {
 		super(rice);
 	}
 
-    protected boolean isEnoughAir(World world, BlockPos soilPos){
+    protected boolean hasEnoughAir(World world, BlockPos soilPos){
     	return world.isAirBlock(soilPos.up()) && world.getBlockState(soilPos.down()).getBlock() != Blocks.WATER;
     }
 }

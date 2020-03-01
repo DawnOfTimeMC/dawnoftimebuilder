@@ -135,18 +135,15 @@ public class DoTBBlockEdge extends DoTBBlock {
     
     @Override
     public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
-        IBlockState iblockstate = getDefaultState().withProperty(FACING, placer.getHorizontalFacing()).withProperty(SHAPE, EnumsBlock.EnumStairsShape.STRAIGHT);
+        IBlockState iblockstate = super.getStateForPlacement(worldIn, pos, facing, hitX, hitY, hitZ, meta, placer);
+        iblockstate = iblockstate.withProperty(FACING, placer.getHorizontalFacing()).withProperty(SHAPE, EnumsBlock.EnumStairsShape.STRAIGHT);
         return facing != EnumFacing.DOWN && (facing == EnumFacing.UP || (double)hitY <= 0.5D) ? iblockstate.withProperty(HALF, EnumsBlock.EnumHalf.BOTTOM) : iblockstate.withProperty(HALF, EnumsBlock.EnumHalf.TOP);
     }
-    
-	@Override    
+
+	@Override
     public int getMetaFromState(IBlockState state) {
         int i = 0;
-
-        if (state.getValue(HALF) == EnumsBlock.EnumHalf.TOP){
-            i = 4;
-        }
-
+        if (state.getValue(HALF) == EnumsBlock.EnumHalf.TOP) i = 4;
         i += state.getValue(FACING).getHorizontalIndex();
         return i;
     }
@@ -154,7 +151,7 @@ public class DoTBBlockEdge extends DoTBBlock {
 	@Override
     public IBlockState getStateFromMeta(int meta) {
         IBlockState iblockstate = this.getDefaultState();
-        if(meta > 4){
+        if(meta >= 4){
             iblockstate = iblockstate.withProperty(HALF, EnumsBlock.EnumHalf.TOP);
             meta -= 4;
         }

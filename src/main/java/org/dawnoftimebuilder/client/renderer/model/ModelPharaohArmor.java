@@ -124,7 +124,7 @@ public class ModelPharaohArmor extends ModelBiped {
 				this.body.addBox(-4.5F, -0.5F, -2.5F, 9, 13, 5, -0.1F);
 				this.bodyCollar = new ModelRenderer(this, 28, 0);
 				this.bodyCollar.setRotationPoint(0.0F, 0.0F, 0.0F);
-				this.bodyCollar.addBox(-5.5F, -0.3F, -2.5F, 11, 5, 5, 0.2F);
+				this.bodyCollar.addBox(-5.5F, -0.25F, -2.5F, 11, 5, 5, 0.2F);
 				if(isSteve){
 					this.armLeft = new ModelRenderer(this, 0, 18);
 					this.armLeft.mirror = true;
@@ -142,13 +142,13 @@ public class ModelPharaohArmor extends ModelBiped {
 					this.armRight.setRotationPoint(-5.0F, 2.5F, 0.0F);
 					this.armRight.addBox(-2.5F, -2.5F, -2.5F, 4, 10, 5, -0.2F);
 					this.bodyBreast = new ModelRenderer(this, 38, 49);
-					this.bodyBreast.setRotationPoint(0.0F, 0.3F, -2.3F);
-					this.bodyBreast.addBox(-3.5F, 0.0F, -4.65F, 7, 3, 4, -0.1F);
+					this.bodyBreast.setRotationPoint(0.0F, 0.9F, -2.1F);
+					this.bodyBreast.addBox(-3.5F, 0.0F, -3.65F, 7, 2, 3, -0.1F);
 					this.setRotateAngle(bodyBreast, 0.9948376736367678F, 0.0F, 0.0F);
-					this.bodyBreastCollar = new ModelRenderer(this, 38, 56);
-					this.bodyBreastCollar.setRotationPoint(0.0F, 0.3F, -2.3F);
-					this.bodyBreastCollar.addBox(-3.5F, 0.0F, -4.65F, 7, 3, 4, 0.2F);
-					this.setRotateAngle(bodyBreastCollar, 0.9948376736367678F, 0.0F, 0.0F);
+					this.bodyBreastCollar = new ModelRenderer(this, 38, 54);
+					this.bodyBreastCollar.setRotationPoint(0.0F, -0.25F, -2.5F);
+					this.bodyBreastCollar.addBox(-5.5F, 0.0F, 0.0F, 11, 5, 0, 0.2F);
+					this.setRotateAngle(bodyBreastCollar, -0.3403392041388943F, 0.0F, 0.0F);
 				}
 
 				this.bipedBody = body;

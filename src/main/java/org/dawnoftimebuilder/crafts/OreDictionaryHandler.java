@@ -8,7 +8,7 @@ public class OreDictionaryHandler {
 
 	public static void init(){
 		OreDictionary.registerOre("materialWax", DoTBItems.wax);
-		OreDictionary.registerOre("materialBeeswax", DoTBItems.wax);
+		OreDictionary.registerOre("materialBeesWax", DoTBItems.wax);
 		OreDictionary.registerOre("materialPressedWax", DoTBItems.wax);
 		OreDictionary.registerOre("itemBeeswax", DoTBItems.wax);
 		OreDictionary.registerOre("stoneLimestone", DoTBBlocks.cobbled_limestone);

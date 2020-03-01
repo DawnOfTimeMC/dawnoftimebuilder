@@ -11,7 +11,6 @@ import org.dawnoftimebuilder.items.general.DoTBItemCustomArmor;
 import static org.dawnoftimebuilder.enums.EArmorMaterial.RAIJIN;
 
 public class ItemRaijinArmor extends DoTBItemCustomArmor {
-
 	public ItemRaijinArmor(EntityEquipmentSlot equipmentSlotIn) {
 		super("raijin_armor", RAIJIN.getArmorMaterial(), equipmentSlotIn);
 	}
@@ -19,12 +18,12 @@ public class ItemRaijinArmor extends DoTBItemCustomArmor {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public ModelBiped createModel(){
-		return new ModelRaijinArmor(0.0F, this.armorType);
+		return new ModelRaijinArmor(0.0F, this.armorType, true);
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public ModelBiped createSlimModel() {
-		return new ModelRaijinArmor(0.0F, this.armorType);
+		return new ModelRaijinArmor(0.0F, this.armorType, false);
 	}
 }

@@ -209,6 +209,7 @@ public class EntityJapaneseDragon extends EntityCreature {
 
 		@Override
 		public boolean shouldExecute(){
+			if(this.parentEntity.getLeashed()) return false;
 			if(this.parentEntity.getIdleTime() >= 100) return false;
 			BlockPos pos = new BlockPos(this.parentEntity.posX, this.parentEntity.posY, this.parentEntity.posZ);
 			if(!this.parentEntity.world.canSeeSky(pos)) return false;
@@ -240,6 +241,7 @@ public class EntityJapaneseDragon extends EntityCreature {
 
 		@Override
 		public boolean shouldExecute(){
+			if(this.parentEntity.getLeashed()) return false;
 			if(this.parentEntity.posY < 100.0D) return false;
 			if(this.parentEntity.getRNG().nextInt(100) != 0) return false;
 
@@ -280,6 +282,7 @@ public class EntityJapaneseDragon extends EntityCreature {
 
 		@Override
 		public boolean shouldExecute(){
+			if(this.parentEntity.getLeashed()) return false;
 			if (this.parentEntity.getIdleTime() >= 100) return false;
 			if (this.parentEntity.getRNG().nextInt(60) != 0) return false;
 
@@ -331,6 +334,7 @@ public class EntityJapaneseDragon extends EntityCreature {
 
 		@Override
 		public boolean shouldExecute(){
+			if(this.parentEntity.getLeashed()) return false;
 			if(this.parentEntity.posY < 100.0D) return false;
 			if(this.parentEntity.getMoveHelper().action != EntityMoveHelper.Action.WAIT) return false;
 
