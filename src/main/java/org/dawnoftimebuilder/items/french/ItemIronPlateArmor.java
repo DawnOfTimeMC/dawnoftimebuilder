@@ -17,12 +17,12 @@ public class ItemIronPlateArmor extends DoTBItemCustomArmor {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public ModelBiped createModel(){
-		return new ModelIronPlateArmor(0.0F, this.armorType);
+		return new ModelIronPlateArmor(0.0F, this.armorType, true);
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public ModelBiped createSlimModel() {
-		return new ModelIronPlateArmor(0.0F, this.armorType);
+		return new ModelIronPlateArmor(0.0F, this.armorType, false);
 	}
 }

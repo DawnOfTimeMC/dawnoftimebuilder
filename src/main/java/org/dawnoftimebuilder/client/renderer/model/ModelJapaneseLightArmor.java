@@ -27,6 +27,7 @@ public class ModelJapaneseLightArmor extends ModelBiped {
     private ModelRenderer armLeftArmor;
     private ModelRenderer armRight;
     private ModelRenderer armRightArmor;
+    private ModelRenderer bodyBreast;
 
     //Leggings
     private ModelRenderer legLeftArmor;
@@ -36,7 +37,7 @@ public class ModelJapaneseLightArmor extends ModelBiped {
     private ModelRenderer legLeft;
     private ModelRenderer legRight;
 
-    public ModelJapaneseLightArmor(float scale, EntityEquipmentSlot slot) {
+    public ModelJapaneseLightArmor(float scale, EntityEquipmentSlot slot, boolean isSteve) {
         super(scale, 0, 64, 32);
 
         this.slot = slot;
@@ -69,22 +70,44 @@ public class ModelJapaneseLightArmor extends ModelBiped {
                 this.baseBody = new ModelRenderer(this, 0, 0);
                 this.baseBody.setRotationPoint(0.0F, 0.0F, 0.0F);
                 this.baseBody.addBox(-4.0F, 0.0F, -2.0F, 8, 12, 4, 0.45F);
-                this.armLeft = new ModelRenderer(this, 24, 0);
-                this.armLeft.mirror = true;
-                this.armLeft.setRotationPoint(5.0F, 2.0F, 0.0F);
-                this.armLeft.addBox(-1.0F, -2.0F, -2.0F, 4, 12, 4, 0.3F);
-                this.armLeftArmor = new ModelRenderer(this, 12, 16);
-                this.armLeftArmor.setRotationPoint(0.0F, 0.0F, 0.0F);
-                this.armLeftArmor.addBox(1.5F, 3.0F, -2.5F, 2, 5, 5, 0.2F);
-                this.armRight = new ModelRenderer(this, 24, 0);
-                this.armRight.setRotationPoint(-5.0F, 2.0F, 0.0F);
-                this.armRight.addBox(-3.0F, -2.0F, -2.0F, 4, 12, 4, 0.3F);
-                this.armRightArmor = new ModelRenderer(this, 12, 16);
-                this.armRightArmor.mirror = true;
-                this.armRightArmor.setRotationPoint(0.0F, 0.0F, 0.0F);
-                this.armRightArmor.addBox(-3.5F, 3.0F, -2.5F, 2, 5, 5, 0.2F);
+                if(isSteve){
+                    this.armRight = new ModelRenderer(this, 24, 0);
+                    this.armRight.setRotationPoint(-5.0F, 2.0F, 0.0F);
+                    this.armRight.addBox(-3.0F, -2.0F, -2.0F, 4, 12, 4, 0.3F);
+                    this.armRightArmor = new ModelRenderer(this, 12, 16);
+                    this.armRightArmor.mirror = true;
+                    this.armRightArmor.setRotationPoint(0.0F, 0.0F, 0.0F);
+                    this.armRightArmor.addBox(-3.5F, 3.0F, -2.5F, 2, 5, 5, 0.2F);
+                    this.armLeft = new ModelRenderer(this, 24, 0);
+                    this.armLeft.mirror = true;
+                    this.armLeft.setRotationPoint(5.0F, 2.0F, 0.0F);
+                    this.armLeft.addBox(-1.0F, -2.0F, -2.0F, 4, 12, 4, 0.3F);
+                    this.armLeftArmor = new ModelRenderer(this, 12, 16);
+                    this.armLeftArmor.setRotationPoint(0.0F, 0.0F, 0.0F);
+                    this.armLeftArmor.addBox(1.5F, 3.0F, -2.5F, 2, 5, 5, 0.2F);
+                }else{
+                    this.armRight = new ModelRenderer(this, 24, 0);
+                    this.armRight.setRotationPoint(-5.0F, 2.5F, 0.0F);
+                    this.armRight.addBox(-2.0F, -2.0F, -2.0F, 3, 12, 4, 0.3F);
+                    this.armRightArmor = new ModelRenderer(this, 12, 16);
+                    this.armRightArmor.mirror = true;
+                    this.armRightArmor.setRotationPoint(0.0F, 0.0F, 0.0F);
+                    this.armRightArmor.addBox(-2.5F, 3.0F, -2.5F, 2, 5, 5, 0.1F);
+                    this.armLeft = new ModelRenderer(this, 24, 0);
+                    this.armLeft.mirror = true;
+                    this.armLeft.setRotationPoint(5.0F, 2.5F, 0.0F);
+                    this.armLeft.addBox(-1.0F, -2.0F, -2.0F, 3, 12, 4, 0.3F);
+                    this.armLeftArmor = new ModelRenderer(this, 12, 16);
+                    this.armLeftArmor.setRotationPoint(0.0F, 0.0F, 0.0F);
+                    this.armLeftArmor.addBox(0.5F, 3.0F, -2.5F, 2, 5, 5, 0.1F);
+                    this.bodyBreast = new ModelRenderer(this, 0, 26);
+                    this.bodyBreast.setRotationPoint(0.0F, 1.3F, -2.0F);
+                    this.bodyBreast.addBox(-3.0F, 0.0F, -3.65F, 6, 2, 3, 0.1F);
+                    this.setRotateAngle(bodyBreast, 0.9948376736367678F, 0.0F, 0.0F);
+                }
 
                 this.bipedBody = baseBody;
+                if(!isSteve) this.bipedBody.addChild(bodyBreast);
 
                 this.bipedLeftArm = armLeft;
                 this.armLeft.addChild(armLeftArmor);

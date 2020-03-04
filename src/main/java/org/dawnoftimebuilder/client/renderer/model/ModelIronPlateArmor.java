@@ -58,7 +58,7 @@ public class ModelIronPlateArmor extends ModelBiped {
 	public ModelRenderer leftLeg;
 	public ModelRenderer rightLeg;
 
-    public ModelIronPlateArmor(float scale, EntityEquipmentSlot slot) {
+    public ModelIronPlateArmor(float scale, EntityEquipmentSlot slot, boolean isSteve) {
     	super(scale, 0, 128, 64);
     	
     	this.slot = slot;
@@ -143,20 +143,15 @@ public class ModelIronPlateArmor extends ModelBiped {
 				this.bodyBase = new ModelRenderer(this, 0, 4);
 				this.bodyBase.setRotationPoint(0.0F, 0.0F, 0.0F);
 				this.bodyBase.addBox(-4.5F, -0.1F, -2.5F, 9, 13, 5, 0.0F);
-				this.leftHand = new ModelRenderer(this, 112, 48);
-				this.leftHand.setRotationPoint(5.0F, 2.0F, 0.0F);
-				this.leftHand.addBox(-1.0F, -2.0F, -2.0F, 4, 12, 4, 0.3F);
-				this.leftShoulderA = new ModelRenderer(this, 0, 54);
-				this.leftShoulderA.setRotationPoint(0.0F, 0.0F, 0.0F);
-				this.leftShoulderA.addBox(-1.4F, -3.2F, -2.5F, 6, 5, 5, 0.0F);
-				this.leftShoulderB = new ModelRenderer(this, 0, 46);
-				this.leftShoulderB.setRotationPoint(0.0F, 0.0F, 0.0F);
-				this.leftShoulderB.addBox(-0.4F, -1.3F, -2.5F, 6, 3, 5, 0.2F);
-				this.setRotateAngle(leftShoulderB, 0.0F, 0.0F, 0.39269908169872414F);
 				this.leftShoulderC = new ModelRenderer(this, 0, 22);
 				this.leftShoulderC.setRotationPoint(0.0F, 0.0F, 0.0F);
 				this.leftShoulderC.addBox(-0.5F, -1.3F, -3.0F, 2, 2, 6, 0.0F);
 				this.setRotateAngle(leftShoulderC, 0.0F, 0.0F, -0.13962634015954636F);
+				this.rightShoulderC = new ModelRenderer(this, 0, 22);
+				this.rightShoulderC.mirror = true;
+				this.rightShoulderC.setRotationPoint(0.0F, 0.0F, 0.0F);
+				this.rightShoulderC.addBox(-1.5F, -1.3F, -3.0F, 2, 2, 6, 0.0F);
+				this.setRotateAngle(rightShoulderC, 0.0F, 0.0F, 0.13962634015954636F);
 				this.leftTopBody = new ModelRenderer(this, 33, 18);
 				this.leftTopBody.setRotationPoint(0.0F, 0.0F, 0.0F);
 				this.leftTopBody.addBox(-2.9F, 0.1F, -5.3F, 4, 8, 1, 0.0F);
@@ -169,29 +164,61 @@ public class ModelIronPlateArmor extends ModelBiped {
 				this.miscA.setRotationPoint(0.0F, 8.6F, 3.3F);
 				this.miscA.addBox(-3.5F, 0.2F, 0.0F, 7, 12, 0, 0.0F);
 				this.setRotateAngle(miscA, 0.045553093477052F, 0.0F, 0.0F);
-				this.rightHand = new ModelRenderer(this, 112, 48);
-				this.rightHand.mirror = true;
-				this.rightHand.setRotationPoint(-5.0F, 2.0F, 0.0F);
-				this.rightHand.addBox(-3.0F, -2.0F, -2.0F, 4, 12, 4, 0.3F);
-				this.rightShoulderA = new ModelRenderer(this, 0, 54);
-				this.rightShoulderA.mirror = true;
-				this.rightShoulderA.setRotationPoint(0.0F, 0.0F, 0.0F);
-				this.rightShoulderA.addBox(-5.0F, -3.2F, -2.5F, 6, 5, 5, 0.0F);
-				this.rightShoulderB = new ModelRenderer(this, 0, 46);
-				this.rightShoulderB.mirror = true;
-				this.rightShoulderB.setRotationPoint(0.0F, 0.0F, 0.0F);
-				this.rightShoulderB.addBox(-5.8F, -1.4F, -2.5F, 6, 3, 5, 0.2F);
-				this.setRotateAngle(rightShoulderB, 0.0F, 0.0F, -0.39269908169872414F);
-				this.rightShoulderC = new ModelRenderer(this, 0, 22);
-				this.rightShoulderC.mirror = true;
-				this.rightShoulderC.setRotationPoint(0.0F, 0.0F, 0.0F);
-				this.rightShoulderC.addBox(-1.5F, -1.3F, -3.0F, 2, 2, 6, 0.0F);
-				this.setRotateAngle(rightShoulderC, 0.0F, 0.0F, 0.13962634015954636F);
 				this.rightTopBody = new ModelRenderer(this, 33, 18);
 				this.rightTopBody.mirror = true;
 				this.rightTopBody.setRotationPoint(0.0F, 0.0F, 0.0F);
 				this.rightTopBody.addBox(-1.1F, 0.1F, -5.3F, 4, 8, 1, 0.0F);
 				this.setRotateAngle(rightTopBody, 0.36425021489121656F, 0.4553564018453205F, 0.36425021489121656F);
+
+				if(isSteve){
+					this.leftHand = new ModelRenderer(this, 112, 48);
+					this.leftHand.setRotationPoint(5.0F, 2.0F, 0.0F);
+					this.leftHand.addBox(-1.0F, -2.0F, -2.0F, 4, 12, 4, 0.3F);
+					this.leftShoulderA = new ModelRenderer(this, 0, 54);
+					this.leftShoulderA.setRotationPoint(0.0F, 0.0F, 0.0F);
+					this.leftShoulderA.addBox(-1.4F, -3.2F, -2.5F, 6, 5, 5, 0.0F);
+					this.leftShoulderB = new ModelRenderer(this, 0, 46);
+					this.leftShoulderB.setRotationPoint(0.0F, 0.0F, 0.0F);
+					this.leftShoulderB.addBox(-0.4F, -1.3F, -2.5F, 6, 3, 5, 0.2F);
+					this.setRotateAngle(leftShoulderB, 0.0F, 0.0F, 0.39269908169872414F);
+					this.rightHand = new ModelRenderer(this, 112, 48);
+					this.rightHand.mirror = true;
+					this.rightHand.setRotationPoint(-5.0F, 2.0F, 0.0F);
+					this.rightHand.addBox(-3.0F, -2.0F, -2.0F, 4, 12, 4, 0.3F);
+					this.rightShoulderA = new ModelRenderer(this, 0, 54);
+					this.rightShoulderA.mirror = true;
+					this.rightShoulderA.setRotationPoint(0.0F, 0.0F, 0.0F);
+					this.rightShoulderA.addBox(-5.0F, -3.2F, -2.5F, 6, 5, 5, 0.0F);
+					this.rightShoulderB = new ModelRenderer(this, 0, 46);
+					this.rightShoulderB.mirror = true;
+					this.rightShoulderB.setRotationPoint(0.0F, 0.0F, 0.0F);
+					this.rightShoulderB.addBox(-5.8F, -1.4F, -2.5F, 6, 3, 5, 0.2F);
+					this.setRotateAngle(rightShoulderB, 0.0F, 0.0F, -0.39269908169872414F);
+				}else{
+					this.leftHand = new ModelRenderer(this, 112, 48);
+					this.leftHand.setRotationPoint(5.0F, 2.5F, 0.0F);
+					this.leftHand.addBox(-1.0F, -2.0F, -2.0F, 3, 12, 4, 0.3F);
+					this.leftShoulderA = new ModelRenderer(this, 0, 54);
+					this.leftShoulderA.setRotationPoint(0.0F, 0.0F, 0.0F);
+					this.leftShoulderA.addBox(-1.4F, -3.2F, -2.5F, 5, 5, 5, 0.0F);
+					this.leftShoulderB = new ModelRenderer(this, 0, 46);
+					this.leftShoulderB.setRotationPoint(0.0F, 0.0F, 0.0F);
+					this.leftShoulderB.addBox(-0.4F, -1.3F, -2.5F, 5, 3, 5, 0.2F);
+					this.setRotateAngle(leftShoulderB, 0.0F, 0.0F, 0.39269908169872414F);
+					this.rightHand = new ModelRenderer(this, 112, 48);
+					this.rightHand.mirror = true;
+					this.rightHand.setRotationPoint(-5.0F, 2.5F, 0.0F);
+					this.rightHand.addBox(-2.0F, -2.0F, -2.0F, 3, 12, 4, 0.3F);
+					this.rightShoulderA = new ModelRenderer(this, 0, 54);
+					this.rightShoulderA.mirror = true;
+					this.rightShoulderA.setRotationPoint(0.0F, 0.0F, 0.0F);
+					this.rightShoulderA.addBox(-4.0F, -3.2F, -2.5F, 5, 5, 5, 0.0F);
+					this.rightShoulderB = new ModelRenderer(this, 0, 46);
+					this.rightShoulderB.mirror = true;
+					this.rightShoulderB.setRotationPoint(0.0F, 0.0F, 0.0F);
+					this.rightShoulderB.addBox(-4.8F, -1.4F, -2.5F, 5, 3, 5, 0.2F);
+					this.setRotateAngle(rightShoulderB, 0.0F, 0.0F, -0.39269908169872414F);
+				}
 
 				this.bipedBody = bodyBase;
 				this.bipedBody.addChild(this.backLeftBody);
