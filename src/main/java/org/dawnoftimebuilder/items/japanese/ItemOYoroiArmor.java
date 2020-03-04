@@ -19,12 +19,12 @@ public class ItemOYoroiArmor extends DoTBItemCustomArmor {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public ModelBiped createModel(){
-		return new ModelOYoroiArmor(0.0F, this.armorType);
+		return new ModelOYoroiArmor(0.0F, this.armorType, true);
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public ModelBiped createSlimModel() {
-		return new ModelOYoroiArmor(0.0F, this.armorType);
+		return new ModelOYoroiArmor(0.0F, this.armorType, false);
 	}
 }
