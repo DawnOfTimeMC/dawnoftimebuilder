@@ -139,7 +139,6 @@ public class CreativeInventoryEvents {
 
 	private void updateCategoryButtons(){
 		this.selectedButtonID = 0;
-		final Button.IPressable pressable = button -> {};
 		this.buttons.clear();
 		for(int i = page * 4; i < (page + 1) * 4 && i < CreativeInventoryCategories.values().length; i++) {
 			CategoryButton categoryButton = new CategoryButton(this.guiCenterX - 27, this.guiCenterY + 30 * (i % 4), CreativeInventoryCategories.values()[i], button -> {});

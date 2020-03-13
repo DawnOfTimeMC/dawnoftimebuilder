@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "dawnoftimebuilder:items/pharaoh_armor_legs"
+        "layer0": "dawnoftimebuilder:item/pharaoh_armor_legs"
     }
 }

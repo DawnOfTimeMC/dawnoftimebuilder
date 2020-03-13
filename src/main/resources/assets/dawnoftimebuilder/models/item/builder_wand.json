@@ -1,7 +1,7 @@
 {
 	"textures": {
-		"texture": "dawnoftimebuilder:items/builder_wand",
-		"particle": "dawnoftimebuilder:items/builder_wand"
+		"texture": "dawnoftimebuilder:item/builder_wand",
+		"particle": "dawnoftimebuilder:item/builder_wand"
 	},
 	"elements": [ 	 
 		{	"from": [ 7.5, -6.5, 7.5 ],

@@ -1,6 +1,0 @@
-{
-    "parent": "dawnoftimebuilder:block/general/aquatic_plant",
-    "textures": {
-        "texture": "dawnoftimebuilder:block/rice_stage_1"
-    }
-}

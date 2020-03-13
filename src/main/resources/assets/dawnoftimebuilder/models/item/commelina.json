@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "dawnoftimebuilder:items/commelina_flower"
+        "layer0": "dawnoftimebuilder:item/commelina_flower"
     }
 }

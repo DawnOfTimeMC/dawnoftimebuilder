@@ -1,6 +1,6 @@
 {
 	"parent": "item/generated",
 	"textures": {
-		"layer0": "dawnoftimebuilder:items/silk_worms"
+		"layer0": "dawnoftimebuilder:item/silk_worms"
 	}
 }

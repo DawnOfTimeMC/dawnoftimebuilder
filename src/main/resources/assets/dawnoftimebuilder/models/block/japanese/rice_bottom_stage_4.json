@@ -1,0 +1,6 @@
+{
+    "parent": "block/cross",
+    "textures": {
+    	"cross": "dawnoftimebuilder:block/rice_bottom_stage_4"
+    }
+}

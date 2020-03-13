@@ -9,6 +9,7 @@ import net.minecraft.fluid.Fluids;
 import net.minecraft.fluid.IFluidState;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.pathfinding.PathType;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer;
@@ -24,11 +25,11 @@ import org.dawnoftimebuilder.utils.DoTBBlockStateProperties;
 
 public class DoTBBlockSlab extends DoTBBlock implements IWaterLoggable {
 
-	private static final EnumProperty<DoTBBlockStateProperties.Slab> SLAB = DoTBBlockStateProperties.SLAB;
-	private static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
+	public static final EnumProperty<DoTBBlockStateProperties.Slab> SLAB = DoTBBlockStateProperties.SLAB;
+	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
-	static final VoxelShape VS_BOTTOM = Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 8.0D, 16.0D);
-	static final VoxelShape VS_TOP = Block.makeCuboidShape(0.0D, 8.0D, 0.0D, 16.0D, 16.0D, 16.0D);
+	private static final VoxelShape VS_BOTTOM = Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 8.0D, 16.0D);
+	private static final VoxelShape VS_TOP = Block.makeCuboidShape(0.0D, 8.0D, 0.0D, 16.0D, 16.0D, 16.0D);
 
 	public DoTBBlockSlab(String name, Block.Properties properties) {
 		super(name, properties);

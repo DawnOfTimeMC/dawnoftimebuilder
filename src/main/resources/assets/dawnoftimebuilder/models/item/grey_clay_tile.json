@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "dawnoftimebuilder:items/grey_clay_tile"
+        "layer0": "dawnoftimebuilder:item/grey_clay_tile"
     }
 }

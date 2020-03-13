@@ -1,7 +1,7 @@
 {
 	"textures": {
 		"0": "dawnoftimebuilder:block/drying_tray",
-		"1": "dawnoftimebuilder:items/silk_worm"
+		"1": "dawnoftimebuilder:item/silk_worm"
 	},
 	"elements": [
 		{

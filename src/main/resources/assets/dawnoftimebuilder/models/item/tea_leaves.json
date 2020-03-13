@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "dawnoftimebuilder:items/tea_leaves"
+        "layer0": "dawnoftimebuilder:item/tea_leaves"
     }
 }
