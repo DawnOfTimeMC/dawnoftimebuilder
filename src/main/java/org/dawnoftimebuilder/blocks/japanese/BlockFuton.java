@@ -33,6 +33,7 @@ public class BlockFuton extends BlockBed implements IBlockCustomItem {
 
 	public BlockFuton() {
 		super();
+		this.setHardness(0.2F);
 		this.setRegistryName(MOD_ID, "futon");
 		this.setTranslationKey(MOD_ID + "." + "futon");
 		this.setCreativeTab(DOTB_TAB);

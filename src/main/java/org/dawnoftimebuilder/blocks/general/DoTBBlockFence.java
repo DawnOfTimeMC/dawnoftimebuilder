@@ -12,18 +12,19 @@ import static org.dawnoftimebuilder.DawnOfTimeBuilder.MOD_ID;
 public class DoTBBlockFence extends BlockFence {
 
     public DoTBBlockFence(String name, Material materialIn, float hardness, SoundType sound) {
-        this(name, materialIn);
-
-        this.setHardness(hardness);
+        this(name, materialIn, hardness);
         this.setSoundType(sound);
     }
 
     public DoTBBlockFence(String name, Material materialIn) {
-        super(materialIn, materialIn.getMaterialMapColor());
+        this(name, materialIn, 2.0F);
+    }
 
+    public DoTBBlockFence(String name, Material materialIn, float hardness) {
+        super(materialIn, materialIn.getMaterialMapColor());
+        this.setHardness(hardness);
         this.setRegistryName(MOD_ID, name);
         this.setTranslationKey(MOD_ID + "." + name);
-
         this.setCreativeTab(DOTB_TAB);
     }
 

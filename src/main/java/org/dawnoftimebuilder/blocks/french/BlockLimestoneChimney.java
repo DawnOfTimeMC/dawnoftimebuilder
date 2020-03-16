@@ -32,7 +32,7 @@ public class BlockLimestoneChimney extends DoTBBlockColumn {
     private static final AxisAlignedBB TOP_COLUMN_AABB = new AxisAlignedBB(0.125D, 0.0D, 0.125D, 0.875D, 0.5D, 0.875D);
 
 	public BlockLimestoneChimney() {
-		super("limestone_chimney", Material.ROCK, 0.8F, SoundType.STONE);
+		super("limestone_chimney", Material.ROCK);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(AXIS, EnumsBlock.EnumHorizontalAxis.AXIS_X).withProperty(VERTICAL_CONNECTION, EnumsBlock.EnumVerticalConnection.NONE));
 		this.setTickRandomly(true);
 	}

@@ -11,17 +11,18 @@ import static org.dawnoftimebuilder.DawnOfTimeBuilder.MOD_ID;
 
 public class DoTBBlockPane extends BlockPane {
 
-
 	public DoTBBlockPane(String name, Material materialIn, float hardness, SoundType sound) {
-		this(name, materialIn);
-
-        this.setHardness(hardness);
+		this(name, materialIn, hardness);
 		this.setSoundType(sound);
 	}
 
-    public DoTBBlockPane(String name, Material materialIn) {
-        super(materialIn, true);
+	public DoTBBlockPane(String name, Material materialIn){
+		this(name, materialIn, 2.0F);
+	}
 
+    public DoTBBlockPane(String name, Material materialIn, float hardness) {
+        super(materialIn, true);
+		this.setHardness(hardness);
 		this.setRegistryName(MOD_ID, name);
 		this.setTranslationKey(MOD_ID + "." + name);
 		this.setCreativeTab(DOTB_TAB);
