@@ -44,7 +44,7 @@ public class DawnOfTimeBuilder {
 		DoTBTileEntitiesRegistry.init();
 		DoTBEntitiesRegistry.init();
 
-		DoTBConfigs.init(new File(event.getModConfigurationDirectory(), MOD_ID + "_disabled_objects.cfg"));
+		DoTBConfigs.init(new File(event.getModConfigurationDirectory(), MOD_ID + ".cfg"));
 
 		proxy.preInit(event.getSuggestedConfigurationFile());
 	}

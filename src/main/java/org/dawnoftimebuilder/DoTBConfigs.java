@@ -2,7 +2,9 @@ package org.dawnoftimebuilder;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
+import net.minecraft.util.SoundEvent;
 import net.minecraftforge.common.config.Configuration;
+import org.dawnoftimebuilder.enums.EArmorMaterial;
 import org.dawnoftimebuilder.registries.DoTBBlocksRegistry;
 import org.dawnoftimebuilder.registries.DoTBItemsRegistry;
 
@@ -38,6 +40,24 @@ public class DoTBConfigs {
             if(enabledMap.containsKey(name)) continue; //Avoid adding a block and a customItemBlock with the same name
             Boolean enabled = config.get(configName, name, true).getBoolean();
             enabledMap.put(name, enabled);
+        }
+
+        int durability;
+        int[] reductionPoints;
+        int enchantability;
+        float toughness;
+        for (EArmorMaterial armorMaterial : EArmorMaterial.values()) {
+            configName = armorMaterial.getName();
+            config.setCategoryComment(configName, "Set properties of the " + configName + " armor in this group.");
+            durability = config.get(configName, "durability", armorMaterial.getDurability()).getInt();
+            reductionPoints = armorMaterial.getReductionPoints();
+            reductionPoints[0] = config.get(configName, "helmet_reduction_points", reductionPoints[0]).getInt();
+            reductionPoints[2] = config.get(configName, "chest_reduction_points", reductionPoints[2]).getInt();
+            reductionPoints[1] = config.get(configName, "leggings_reduction_points", reductionPoints[1]).getInt();
+            reductionPoints[3] = config.get(configName, "feet_reduction_points", reductionPoints[3]).getInt();
+            enchantability = config.get(configName, "enchantability", armorMaterial.getEnchantability()).getInt();
+            toughness = (float) config.get(configName, "toughness", armorMaterial.getToughness()).getDouble();
+            armorMaterial.loadConfig(durability, reductionPoints, enchantability, toughness);
         }
 
         if(config.hasChanged()){

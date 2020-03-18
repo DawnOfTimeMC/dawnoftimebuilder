@@ -10,28 +10,24 @@ public enum EArmorMaterial {
 	 *
 	 * name - Name of Armor (All Caps)
 	 * durability  - How much damage the armor can take before breaking.
-	 * reductionAmounts - An array of 4 numbers, each representing how many half shields an armour piece provides. [Helmet, chest, legs, boots]
+	 * reductionAmounts - An array of 4 numbers, each representing how many half shields an armour piece provides. [Helmet, legs, chest, boots]
 	 * enchantability - Higher number means better enchantments. Wood 15, stone 5, iron 14, diamond 10, gold 22
 	 * soundOnEquip - Sound played on equip.
 	 * toughness - affects the amount of damage that is required to penetrate each armor point.  A percentage of damage let through. Diamond is .8F.
 	 * */
 
-	/* Looking up the values for the vanilla armours will be beneficial here
-	 *
-	 */
 	IRONPLATE("Iron Plate Armor", 239, new int[]{2,5,6,2}, 20, ItemArmor.ArmorMaterial.IRON.getSoundEvent(), 0.0F),
 	JAPANESE_LIGHT_ARMOR("Japanese Light Armor", 239, new int[]{2,5,6,2}, 14, ItemArmor.ArmorMaterial.LEATHER.getSoundEvent(), 0.0F),
 	OYOROI("O-yoroi Armor", 339, new int[]{3,6,8,3}, 10, ItemArmor.ArmorMaterial.IRON.getSoundEvent(), 2.0F),
 	PHARAOH("Pharaoh Armor", 226, new int[]{3,6,8,3}, 37, ItemArmor.ArmorMaterial.GOLD.getSoundEvent(), 0.0F),
 	RAIJIN("Raijin Armor", 526, new int[]{4,8,10,4}, 26, ItemArmor.ArmorMaterial.DIAMOND.getSoundEvent(), 2.0F);
 
-	private String name;
+	private final String name;
 	private int durability;
 	private int[] reductionPoints;
 	private int enchantability;
 	private SoundEvent soundOnEquip;
 	private float toughness;
-
 
 	EArmorMaterial(String name, int durability, int[] reductionPoints, int enchantability, SoundEvent soundOnEquip, float toughness){
 		this.name = name;
@@ -44,5 +40,32 @@ public enum EArmorMaterial {
 
 	public ItemArmor.ArmorMaterial getArmorMaterial() {
 		return EnumHelper.addArmorMaterial(name(), name, durability, reductionPoints, enchantability, soundOnEquip, toughness);
+	}
+
+	public String getName(){
+		return this.name;
+	}
+
+	public int getDurability(){
+		return this.durability;
+	}
+
+	public int[] getReductionPoints(){
+		return this.reductionPoints;
+	}
+
+	public int getEnchantability(){
+		return this.enchantability;
+	}
+
+	public float getToughness(){
+		return this.toughness;
+	}
+
+	public void loadConfig(int durability, int[] reductionPoints, int enchantability, float toughness){
+		this.durability = durability;
+		this.reductionPoints = reductionPoints;
+		this.enchantability = enchantability;
+		this.toughness = toughness;
 	}
 }
