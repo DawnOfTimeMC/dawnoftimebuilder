@@ -171,8 +171,8 @@
     "block.dawnoftimebuilder.sandstone_column": "Sandstone Column",
     "item.dawnoftimebuilder.pharaoh_armor_head": "Copricapo da faraone",
     "item.dawnoftimebuilder.pharaoh_armor_chest": "Pharaohs Clothes",
-    "item.dawnoftimebuilder.pharaoh_armor_legs": "Pharaohs Shendyts",
-    "item.dawnoftimebuilder.pharaoh_armor_feet": "Pharaohs Sandals",
-    "entity.dawnoftimebuilder.silkmoth": "Silkmoth",
-    "entity.dawnoftimebuilder.japanese_dragon": "Japanese Dragon"
+    "item.dawnoftimebuilder.pharaoh_armor_legs": "Shendyt da faraone",
+    "item.dawnoftimebuilder.pharaoh_armor_feet": "Sandali da faraone",
+    "entity.dawnoftimebuilder.silkmoth": "Falena della seta",
+    "entity.dawnoftimebuilder.japanese_dragon": "Dragone giapponese"
 }
