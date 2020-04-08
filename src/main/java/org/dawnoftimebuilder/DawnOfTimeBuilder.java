@@ -4,18 +4,16 @@ import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.DistExecutor;
-import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.dawnoftimebuilder.blocks.DoTBBlocks;
 import org.dawnoftimebuilder.proxy.ClientProxy;
 import org.dawnoftimebuilder.proxy.CommonProxy;
-import org.dawnoftimebuilder.registries.DoTBItemsRegistry;
+
+import static org.dawnoftimebuilder.registries.DoTBBlocksRegistry.COMMELINA;
 
 @Mod(DawnOfTimeBuilder.MOD_ID)
 public class DawnOfTimeBuilder {
@@ -25,7 +23,7 @@ public class DawnOfTimeBuilder {
 	public static final ItemGroup DOTB_TAB = new ItemGroup(ItemGroup.getGroupCountSafe(), MOD_ID) {
 		@Override
 		public ItemStack createIcon() {
-			return new ItemStack(DoTBBlocks.cast_iron_teapot);
+			return new ItemStack(COMMELINA);
 		}
 	};
 

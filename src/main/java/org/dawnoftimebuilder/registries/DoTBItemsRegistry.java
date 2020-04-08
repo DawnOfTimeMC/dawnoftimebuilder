@@ -2,82 +2,79 @@ package org.dawnoftimebuilder.registries;
 
 import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.registries.IForgeRegistry;
 import org.dawnoftimebuilder.items.general.DoTBItem;
 import org.dawnoftimebuilder.items.japanese.TachiSwordItem;
 
 import java.util.*;
 
 public class DoTBItemsRegistry {
+	/*
+		private static final HashMap<String, IBakedModel> CUSTOM_MODELS = new HashMap<>();
+		public static IBakedModel getModel(String name){
+			return CUSTOM_MODELS.get(name);
+		}
+	*/
+	public static final List<Item> ITEMS = new ArrayList<>();
 
-	public static List<Item> items_list = new ArrayList<>();
-	private static void addToList(Item... items){
-		Collections.addAll(items_list, items);
+	//General
+	public static final Item SILK_WORMS = reg(new DoTBItem("silk_worms"));
+	//public static final Item SILK_WORMS_HATCHERY = reg(new DoTBItemCanBeDried("silk_worm_hatchery", 1,60, SILK_WORMS, 1));
+	public static final Item SILK_WORM_EGGS = reg(new DoTBItem("silk_worm_eggs"));
+	public static final Item SILK_COCOONS = reg(new DoTBItem("silk_cocoons"));
+	public static final Item SILK = reg(new DoTBItem("silk"));
+	public static final Item TEA_LEAVES = reg(new DoTBItem("tea_leaves"));
+	//public static final Item CAMELLIA_LEAVES = reg(new DoTBItemCanBeDried("camellia_leaves", 1,40, TEA_LEAVES, 1));
+	public static final Item WAX = reg(new DoTBItem("wax"));
+	public static final Item BAMBOO_HAT = reg(new DoTBItem("bamboo_hat"));
+	public static final Item GREY_TILE = reg(new DoTBItem("grey_tile"));
+	public static final Item GREY_CLAY_TILE = reg(new DoTBItem("grey_clay_tile"));
+	public static final Item MULBERRY_LEAVES = reg(new DoTBItem("mulberry_leaves"));
+	public static final Item TACHI_SWORD = reg(new TachiSwordItem());
+	/*
+	public static final Item IRON_PLATE_ARMOR_HEAD = reg(new ItemIronPlateArmor(EntityEquipmentSlot.HEAD));
+	public static final Item IRON_PLATE_ARMOR_CHEST = reg(new ItemIronPlateArmor(EntityEquipmentSlot.CHEST));
+	public static final Item IRON_PLATE_ARMOR_LEGS = reg(new ItemIronPlateArmor(EntityEquipmentSlot.HEAD));
+	public static final Item IRON_PLATE_ARMOR_FEET = reg(new ItemIronPlateArmor(EntityEquipmentSlot.LEGS));
+	public static final Item PHARAOH_ARMOR_HEAD = reg(new ItemPharaohArmor(EntityEquipmentSlot.HEAD));
+	public static final Item PHARAOH_ARMOR_CHEST = reg(new ItemPharaohArmor(EntityEquipmentSlot.CHEST));
+	public static final Item PHARAOH_ARMOR_LEGS = reg(new ItemPharaohArmor(EntityEquipmentSlot.LEGS));
+	public static final Item PHARAOH_ARMOR_FEET = reg(new ItemPharaohArmor(EntityEquipmentSlot.FEET));
+	public static final Item JAPANESE_LIGHT_ARMOR_HEAD = reg(new ItemJapaneseLightArmor(EntityEquipmentSlot.HEAD));
+	public static final Item JAPANESE_LIGHT_ARMOR_CHEST = reg(new ItemJapaneseLightArmor(EntityEquipmentSlot.CHEST));
+	public static final Item JAPANESE_LIGHT_ARMOR_LEGS = reg(new ItemJapaneseLightArmor(EntityEquipmentSlot.LEGS));
+	public static final Item JAPANESE_LIGHT_ARMOR_FEET = reg(new ItemJapaneseLightArmor(EntityEquipmentSlot.FEET));
+	public static final Item O_YOROI_ARMOR_HEAD = reg(new ItemOYoroiArmor(EntityEquipmentSlot.HEAD));
+	public static final Item O_YOROI_ARMOR_CHEST = reg(new ItemOYoroiArmor(EntityEquipmentSlot.CHEST));
+	public static final Item O_YOROI_ARMOR_LEGS = reg(new ItemOYoroiArmor(EntityEquipmentSlot.LEGS));
+	public static final Item O_YOROI_ARMOR_FEET = reg(new ItemOYoroiArmor(EntityEquipmentSlot.FEET));
+	public static final Item RAIJIN_ARMOR_HEAD = reg(new ItemRaijinArmor(EntityEquipmentSlot.HEAD));
+	public static final Item RAIJIN_ARMOR_CHEST = reg(new ItemRaijinArmor(EntityEquipmentSlot.CHEST));
+	public static final Item RAIJIN_ARMOR_LEGS = reg(new ItemRaijinArmor(EntityEquipmentSlot.LEGS));
+	public static final Item RAIJIN_ARMOR_FEET = reg(new ItemRaijinArmor(EntityEquipmentSlot.FEET));
+	*/
+	private static Item reg(Item item){
+		ITEMS.add(item);
+		return item;
 	}
+
 /*
-	private static final HashMap<String, IBakedModel> CUSTOM_MODELS = new HashMap<>();
-	public static IBakedModel getModel(String name){
-		return CUSTOM_MODELS.get(name);
-	}
-*/
-	public static void init(){
-		DoTBItem silk_worms = new DoTBItem("silk_worms");
-		DoTBItem tea_leaves = new DoTBItem("tea_leaves");
-
-		addToList(
-				/*new ItemIronPlateArmor(EntityEquipmentSlot.FEET),
-				new ItemIronPlateArmor(EntityEquipmentSlot.CHEST),
-				new ItemIronPlateArmor(EntityEquipmentSlot.HEAD),
-				new ItemIronPlateArmor(EntityEquipmentSlot.LEGS),*/
-				new DoTBItem("wax"),
-				/*new DoTBItemHat("bamboo_hat"),
-				new DoTBItem("grey_tile"),
-				new DoTBItem("grey_clay_tile"),
-				new DoTBItem("mulberry_leaves"),
-				new DoTBItemCanBeDried("silk_worm_hatchery", 1,60, silk_worms, 1),
-				silk_worms,
-				new DoTBItemCanBeDried("camellia_leaves", 1,40, tea_leaves, 1),
-				tea_leaves,
-				new DoTBItem("silk_worm_eggs"),
-				new DoTBItem("silk_cocoons"),
-				new DoTBItem("silk"),
-				new ItemJapaneseLightArmor(EntityEquipmentSlot.FEET),
-				new ItemJapaneseLightArmor(EntityEquipmentSlot.CHEST),
-				new ItemJapaneseLightArmor(EntityEquipmentSlot.HEAD),
-				new ItemJapaneseLightArmor(EntityEquipmentSlot.LEGS),
-				new ItemOYoroiArmor(EntityEquipmentSlot.FEET),
-				new ItemOYoroiArmor(EntityEquipmentSlot.CHEST),
-				new ItemOYoroiArmor(EntityEquipmentSlot.HEAD),
-				new ItemOYoroiArmor(EntityEquipmentSlot.LEGS),
-				new ItemPharaohArmor(EntityEquipmentSlot.FEET),
-				new ItemPharaohArmor(EntityEquipmentSlot.CHEST),
-				new ItemPharaohArmor(EntityEquipmentSlot.HEAD),
-				new ItemPharaohArmor(EntityEquipmentSlot.LEGS),
-				new ItemRaijinArmor(EntityEquipmentSlot.FEET),
-				new ItemRaijinArmor(EntityEquipmentSlot.CHEST),
-				new ItemRaijinArmor(EntityEquipmentSlot.HEAD),
-				new ItemRaijinArmor(EntityEquipmentSlot.LEGS),*/
-				new TachiSwordItem()
-		);
-	}
-
 	public static void registerItems(RegistryEvent.Register<Item> event) {
 
 		init();
 
 		IForgeRegistry<Item> registry = event.getRegistry();
 		boolean enabled;
-		for(Item item : items_list){
-/*
+		for(Item item : ITEMS){
+
 			if(DoTBConfigs.enabledMap.containsKey(Objects.requireNonNull(item.getRegistryName()).getPath())){
 				if(!DoTBConfigs.enabledMap.get(Objects.requireNonNull(item.getRegistryName()).getPath())) continue;
 				//Disabled in the config file → skip registering the item
 			}
-*/
+
 			registry.register(item);
 		}
 	}
-/*
+
 	@SideOnly(Side.CLIENT)
 	public static void registerItemsModels(){
 		for(Item item : items_list){

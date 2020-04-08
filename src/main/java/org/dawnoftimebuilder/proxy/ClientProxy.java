@@ -1,26 +1,28 @@
 package org.dawnoftimebuilder.proxy;
 
-import net.minecraft.block.Block;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.color.IBlockColor;
-import net.minecraft.client.renderer.color.IItemColor;
-import net.minecraft.item.Item;
-import net.minecraft.tileentity.TileEntity;
+import net.minecraft.client.gui.ScreenManager;
 import net.minecraftforge.client.model.obj.OBJLoader;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
-import net.minecraftforge.fml.client.registry.RenderingRegistry;
 
 import org.dawnoftimebuilder.client.gui.creative.CreativeInventoryEvents;
-import org.dawnoftimebuilder.registries.DoTBItemsRegistry;
-import java.io.File;
+import org.dawnoftimebuilder.client.gui.screen.DisplayerScreen;
+import org.dawnoftimebuilder.client.renderer.tileentity.DisplayerTERenderer;
+import org.dawnoftimebuilder.tileentity.DisplayerTileEntity;
+
 import static org.dawnoftimebuilder.DawnOfTimeBuilder.MOD_ID;
+import static org.dawnoftimebuilder.registries.DoTBContainersRegistry.DISPLAYER_CONTAINER;
 
 public class ClientProxy extends CommonProxy {
 
 	@Override
 	public void onSetupClient(){
 		MinecraftForge.EVENT_BUS.register(new CreativeInventoryEvents());
+		OBJLoader.INSTANCE.addDomain(MOD_ID);//TODO It doesn't work currently...
+
+		ClientRegistry.bindTileEntitySpecialRenderer(DisplayerTileEntity.class, new DisplayerTERenderer());
+
+		ScreenManager.registerFactory(DISPLAYER_CONTAINER, DisplayerScreen::new);
 	}
 
 	public ClientProxy(){}
@@ -36,7 +38,6 @@ public class ClientProxy extends CommonProxy {
 	public void init(){
 		/*
 		bindTESR(DoTBTileEntityBed.class, new RendererTEBed());
-		bindTESR(DoTBTileEntityDisplayer.class, new RendererTEDisplayer());
 		bindTESR(DoTBTileEntityDryer.class, new RendererTEDryer());
 		bindTESR(DoTBTileEntityStove.class, new RendererTEStove());
 

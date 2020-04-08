@@ -7,6 +7,7 @@ import net.minecraft.util.IStringSerializable;
 public class DoTBBlockStateProperties {
 
     public static final BooleanProperty BURNING = BooleanProperty.create("burning");
+    public static final BooleanProperty CUT = BooleanProperty.create("cut");
     public static final BooleanProperty FULL = BooleanProperty.create("full");
     public static final BooleanProperty SUBAXIS_X = BooleanProperty.create("subaxis_x");
     public static final BooleanProperty SUBAXIS_Z = BooleanProperty.create("subaxis_z");
