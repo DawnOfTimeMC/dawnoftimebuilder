@@ -1,7 +1,7 @@
 {
 	"textures": {
-		"1": "block/fire_layer_0",
-		"2": "block/fire_layer_1",
+		"1": "block/fire_0",
+		"2": "block/fire_1",
 		"texture": "dawnoftimebuilder:block/limestone_fireplace_none_x"
 	},
 	"elements": [

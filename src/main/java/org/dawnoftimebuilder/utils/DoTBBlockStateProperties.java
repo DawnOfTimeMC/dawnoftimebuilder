@@ -12,21 +12,24 @@ public class DoTBBlockStateProperties {
     public static final BooleanProperty SUBAXIS_X = BooleanProperty.create("subaxis_x");
     public static final BooleanProperty SUBAXIS_Z = BooleanProperty.create("subaxis_z");
     public static final BooleanProperty SUBAXIS = BooleanProperty.create("subaxis");
+    public static final EnumProperty<FencePillar> FENCE_PILLAR = EnumProperty.create("fence_pillar", FencePillar.class);
     public static final EnumProperty<HorizontalConnection> HORIZONTAL_CONNECTION = EnumProperty.create("horizontal_connection", HorizontalConnection.class);
     public static final EnumProperty<PillarConnection> PILLAR_CONNECTION = EnumProperty.create("pillar_connection", PillarConnection.class);
     public static final EnumProperty<Slab> SLAB = EnumProperty.create("slab", Slab.class);
     public static final EnumProperty<VerticalConnection> VERTICAL_CONNECTION = EnumProperty.create("vertical_connection", VerticalConnection.class);
 
     public enum HorizontalConnection implements IStringSerializable {
-        LEFT("left"),
-        RIGHT("right"),
-        BOTH("both"),
-        NONE("none");
+        NONE("none", 0),
+        LEFT("left", 1),
+        RIGHT("right", 2),
+        BOTH("both", 3);
 
         private final String name;
+        private final int index;
 
-        HorizontalConnection(String name){
+        HorizontalConnection(String name, int index){
             this.name = name;
+            this.index = index;
         }
 
         public String toString()
@@ -37,6 +40,10 @@ public class DoTBBlockStateProperties {
         public String getName()
         {
             return this.name;
+        }
+
+        public int getIndex(){
+            return this.index;
         }
     }
 
@@ -78,6 +85,30 @@ public class DoTBBlockStateProperties {
         private final String name;
 
         PillarConnection(String name){
+            this.name = name;
+        }
+
+        public String toString()
+        {
+            return this.name;
+        }
+
+        public String getName()
+        {
+            return this.name;
+        }
+    }
+
+    public enum FencePillar implements IStringSerializable {
+        NONE("none"),
+        PILLAR_BIG("pillar_big"),
+        PILLAR_SMALL("pillar_small"),
+        CAP_PILLAR_BIG("cap_pillar_big");
+
+        private final String name;
+
+        FencePillar(String name)
+        {
             this.name = name;
         }
 

@@ -2,7 +2,10 @@ package org.dawnoftimebuilder.block;
 
 public interface IBlockSpecialDisplay {
 
-	float getDisplayScale();
+	default float getDisplayScale(){
+		return 1.0F;
+	};
+
 	//TODO add particules effects
 	//void spawnParticules(int meta);
 }

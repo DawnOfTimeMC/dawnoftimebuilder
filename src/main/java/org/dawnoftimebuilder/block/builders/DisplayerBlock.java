@@ -43,6 +43,7 @@ public abstract class DisplayerBlock extends BlockDoTB {
 
 	@Override
 	public boolean onBlockActivated(BlockState blockState, World world, BlockPos pos, PlayerEntity playerEntity, Hand hand, BlockRayTraceResult rayTraceResult) {
+		/*
 		if(!world.isRemote()){
 			TileEntity tileEntity = world.getTileEntity(pos);
 			if(tileEntity instanceof DisplayerTileEntity){
@@ -50,6 +51,7 @@ public abstract class DisplayerBlock extends BlockDoTB {
 				return true;
 			}
 		}
+		*/
 		return false;
 	}
 

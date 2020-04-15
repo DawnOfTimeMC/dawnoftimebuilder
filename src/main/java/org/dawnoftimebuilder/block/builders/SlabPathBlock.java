@@ -26,12 +26,13 @@ public class SlabPathBlock extends SlabBlock {
 
 	public SlabPathBlock(String name) {
 		super(name, Material.EARTH, 0.65F, 0.65F);
-		this.setDefaultState(this.stateContainer.getBaseState().with(SLAB, DoTBBlockStateProperties.Slab.BOTTOM).with(FULL, false).with(WATERLOGGED, false));
+		this.setDefaultState(this.getStateContainer().getBaseState().with(SLAB, DoTBBlockStateProperties.Slab.BOTTOM).with(FULL, false));
 	}
 
 	@Override
 	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
-		builder.add(FULL, SLAB, WATERLOGGED);
+		super.fillStateContainer(builder);
+		builder.add(FULL);
 	}
 
 	@Override
@@ -64,18 +65,17 @@ public class SlabPathBlock extends SlabBlock {
 	@Override
 	public BlockState getStateForPlacement(BlockItemUseContext context) {
 		BlockState state = super.getStateForPlacement(context);
-		if(state == null) return this.getDefaultState();
 		return isFull(state, context.getWorld(), context.getPos()) ? state.with(FULL, true).with(WATERLOGGED, false) : state.with(FULL, false);
 	}
 
 	@Override
 	public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
-		if (stateIn.get(WATERLOGGED)) worldIn.getPendingFluidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickRate(worldIn));
+		stateIn = super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
 		if(facing == Direction.UP){
 			if(isFull(stateIn, worldIn, currentPos)) return stateIn.with(FULL, true).with(WATERLOGGED, false);
 			else stateIn = stateIn.with(FULL, false);
 		}
-		return super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+		return stateIn;
 	}
 
 	private static boolean isFull(BlockState state, IWorld worldIn, BlockPos pos) {

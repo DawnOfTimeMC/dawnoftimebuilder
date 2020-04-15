@@ -1,7 +1,7 @@
 {
 	"textures": {
-		"1": "dawnoftimebuilder:block/spruce_log_wall_top",
-		"2": "dawnoftimebuilder:block/spruce_railing_cap",
+		"1": "dawnoftimebuilder:block/burnt_spruce_wall_top",
+		"2": "dawnoftimebuilder:block/burnt_spruce_railing_cap",
 		"3_slab": "block/spruce_log",
 		"particle": "block/spruce_log"
 	},

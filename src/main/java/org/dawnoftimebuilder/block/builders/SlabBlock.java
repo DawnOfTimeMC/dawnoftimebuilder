@@ -1,5 +1,6 @@
 package org.dawnoftimebuilder.block.builders;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.IWaterLoggable;
 import net.minecraft.block.material.Material;
@@ -21,30 +22,30 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import org.dawnoftimebuilder.utils.DoTBBlockStateProperties;
 
-public class SlabBlock extends BlockDoTB implements IWaterLoggable {
+public class SlabBlock extends WaterloggedBlock {
 
 	public static final EnumProperty<DoTBBlockStateProperties.Slab> SLAB = DoTBBlockStateProperties.SLAB;
-	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
-	private static final VoxelShape VS_BOTTOM = net.minecraft.block.Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 8.0D, 16.0D);
-	private static final VoxelShape VS_TOP = net.minecraft.block.Block.makeCuboidShape(0.0D, 8.0D, 0.0D, 16.0D, 16.0D, 16.0D);
+	private static final VoxelShape VS_BOTTOM = makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 8.0D, 16.0D);
+	private static final VoxelShape VS_TOP = makeCuboidShape(0.0D, 8.0D, 0.0D, 16.0D, 16.0D, 16.0D);
 
-	public SlabBlock(String name, net.minecraft.block.Block.Properties properties) {
+	public SlabBlock(String name, Properties properties) {
 		super(name, properties);
-		this.setDefaultState(this.stateContainer.getBaseState().with(SLAB, DoTBBlockStateProperties.Slab.BOTTOM).with(WATERLOGGED, false));
+		this.setDefaultState(this.getStateContainer().getBaseState().with(SLAB, DoTBBlockStateProperties.Slab.BOTTOM));
 	}
 
 	public SlabBlock(String name, Material materialIn, float hardness, float resistance) {
-		this(name, net.minecraft.block.Block.Properties.create(materialIn).hardnessAndResistance(hardness, resistance));
+		this(name, Properties.create(materialIn).hardnessAndResistance(hardness, resistance));
 	}
 
-	public SlabBlock(String name, net.minecraft.block.Block block) {
-		this(name, net.minecraft.block.Block.Properties.from(block));
+	public SlabBlock(String name, Block block) {
+		this(name, Properties.from(block));
 	}
 
 	@Override
-	protected void fillStateContainer(StateContainer.Builder<net.minecraft.block.Block, BlockState> builder) {
-		builder.add(SLAB, WATERLOGGED);
+	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
+		super.fillStateContainer(builder);
+		builder.add(SLAB);
 	}
 
 	@Override
@@ -61,20 +62,15 @@ public class SlabBlock extends BlockDoTB implements IWaterLoggable {
 	}
 
 	@Override
-	public IFluidState getFluidState(BlockState state) {
-		return state.get(WATERLOGGED) ? Fluids.WATER.getStillFluidState(false) : super.getFluidState(state);
-	}
-
-	@Override
 	public boolean receiveFluid(IWorld worldIn, BlockPos pos, BlockState state, IFluidState fluidStateIn) {
 		if(state.get(SLAB) == DoTBBlockStateProperties.Slab.DOUBLE) return false;
-		return IWaterLoggable.super.receiveFluid(worldIn, pos, state, fluidStateIn);
+		return super.receiveFluid(worldIn, pos, state, fluidStateIn);
 	}
 
 	@Override
 	public boolean canContainFluid(IBlockReader worldIn, BlockPos pos, BlockState state, Fluid fluidIn) {
 		if(state.get(SLAB) == DoTBBlockStateProperties.Slab.DOUBLE) return false;
-		return IWaterLoggable.super.canContainFluid(worldIn, pos, state, fluidIn);
+		return super.canContainFluid(worldIn, pos, state, fluidIn);
 	}
 
 	@Override
@@ -106,11 +102,5 @@ public class SlabBlock extends BlockDoTB implements IWaterLoggable {
 			}
 		}
 		return false;
-	}
-
-	@Override
-	public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
-		if (stateIn.get(WATERLOGGED)) worldIn.getPendingFluidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickRate(worldIn));
-		return super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
 	}
 }

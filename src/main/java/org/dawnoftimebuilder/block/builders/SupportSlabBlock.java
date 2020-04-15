@@ -20,24 +20,24 @@ import net.minecraft.world.IWorld;
 import org.dawnoftimebuilder.block.IBlockPillar;
 import org.dawnoftimebuilder.utils.DoTBBlockStateProperties;
 
-public class SupportSlabBlock extends BlockDoTB implements IWaterLoggable {
+public class SupportSlabBlock extends WaterloggedBlock {
 
-    private static final VoxelShape VS = net.minecraft.block.Block.makeCuboidShape(0.0D, 12.0D, 0.0D, 16.0D, 16.0D, 16.0D);
-	private static final VoxelShape VS_FOUR_PX = VoxelShapes.or(VS, net.minecraft.block.Block.makeCuboidShape(6.0D, 0.0D, 6.0D, 10.0D, 16.0D, 10.0D));
-	private static final VoxelShape VS_EIGHT_PX = VoxelShapes.or(VS, net.minecraft.block.Block.makeCuboidShape(4.0D, 0.0D, 4.0D, 12.0D, 16.0D, 12.0D));
-	private static final VoxelShape VS_TEN_PX = VoxelShapes.or(VS, net.minecraft.block.Block.makeCuboidShape(3.0D, 0.0D, 3.0D, 13.0D, 16.0D, 13.0D));
+    private static final VoxelShape VS = makeCuboidShape(0.0D, 12.0D, 0.0D, 16.0D, 16.0D, 16.0D);
+	private static final VoxelShape VS_FOUR_PX = VoxelShapes.or(VS, makeCuboidShape(6.0D, 0.0D, 6.0D, 10.0D, 16.0D, 10.0D));
+	private static final VoxelShape VS_EIGHT_PX = VoxelShapes.or(VS, makeCuboidShape(4.0D, 0.0D, 4.0D, 12.0D, 16.0D, 12.0D));
+	private static final VoxelShape VS_TEN_PX = VoxelShapes.or(VS, makeCuboidShape(3.0D, 0.0D, 3.0D, 13.0D, 16.0D, 13.0D));
 
 	private static final EnumProperty<DoTBBlockStateProperties.PillarConnection> PILLAR_CONNECTION = DoTBBlockStateProperties.PILLAR_CONNECTION;
-	private static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
 	public SupportSlabBlock(String name, Material materialIn, float hardness, float resistance) {
 		super(name, materialIn, hardness, resistance);
-		this.setDefaultState(this.stateContainer.getBaseState().with(PILLAR_CONNECTION, DoTBBlockStateProperties.PillarConnection.NOTHING).with(WATERLOGGED, false));
+		this.setDefaultState(this.getStateContainer().getBaseState().with(PILLAR_CONNECTION, DoTBBlockStateProperties.PillarConnection.NOTHING));
 	}
 
 	@Override
 	protected void fillStateContainer(StateContainer.Builder<net.minecraft.block.Block, BlockState> builder) {
-		builder.add(PILLAR_CONNECTION, WATERLOGGED);
+		super.fillStateContainer(builder);
+		builder.add(PILLAR_CONNECTION);
 	}
 
 	@Override
@@ -55,20 +55,13 @@ public class SupportSlabBlock extends BlockDoTB implements IWaterLoggable {
 	}
 
 	@Override
-	public IFluidState getFluidState(BlockState state) {
-		return state.get(WATERLOGGED) ? Fluids.WATER.getStillFluidState(false) : super.getFluidState(state);
-	}
-
-	@Override
 	public BlockState getStateForPlacement(BlockItemUseContext context) {
-		BlockPos pos = context.getPos();
-		IFluidState ifluidstate = context.getWorld().getFluidState(pos);
-		return this.getDefaultState().with(PILLAR_CONNECTION, IBlockPillar.getPillarConnection(context.getWorld(), pos.down())).with(WATERLOGGED, ifluidstate.getFluid() == Fluids.WATER);
+		return super.getStateForPlacement(context).with(PILLAR_CONNECTION, IBlockPillar.getPillarConnection(context.getWorld(), context.getPos().down()));
 	}
 
 	@Override
 	public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
-		if (stateIn.get(WATERLOGGED)) worldIn.getPendingFluidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickRate(worldIn));
+		stateIn = super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
 		return stateIn.with(PILLAR_CONNECTION, IBlockPillar.getPillarConnection(worldIn, currentPos.down()));
 	}
 }

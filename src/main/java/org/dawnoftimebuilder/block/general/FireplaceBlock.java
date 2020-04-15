@@ -1,8 +1,8 @@
 package org.dawnoftimebuilder.block.general;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.block.IWaterLoggable;
 import net.minecraft.block.material.Material;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
@@ -31,17 +31,16 @@ import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import org.dawnoftimebuilder.block.builders.BlockDoTB;
+import org.dawnoftimebuilder.block.builders.WaterloggedBlock;
 import org.dawnoftimebuilder.utils.DoTBBlockStateProperties;
 import org.dawnoftimebuilder.utils.DoTBBlockStateProperties.HorizontalConnection;
 import java.util.Random;
 
-public class FireplaceBlock extends BlockDoTB implements IWaterLoggable {
+public class FireplaceBlock extends WaterloggedBlock {
 
 	public static final EnumProperty<Direction.Axis> HORIZONTAL_AXIS = BlockStateProperties.HORIZONTAL_AXIS;
 	public static final BooleanProperty BURNING = DoTBBlockStateProperties.BURNING;
 	public static final EnumProperty<DoTBBlockStateProperties.HorizontalConnection> HORIZONTAL_CONNECTION = DoTBBlockStateProperties.HORIZONTAL_CONNECTION;
-	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
 	private static final VoxelShape ON_X_SHAPE = net.minecraft.block.Block.makeCuboidShape(0.0D, 0.0D, 2.0D, 16.0D, 14.0D, 14.0D);
 	private static final VoxelShape OFF_X_SHAPE = net.minecraft.block.Block.makeCuboidShape(0.0D, 0.0D, 2.0D, 16.0D, 5.0D, 14.0D);
@@ -50,12 +49,13 @@ public class FireplaceBlock extends BlockDoTB implements IWaterLoggable {
 
 	public FireplaceBlock() {
 		super("fireplace", Material.ROCK,1.5F, 6.0F);
-		this.setDefaultState(this.stateContainer.getBaseState().with(BURNING, false).with(HORIZONTAL_AXIS, Direction.Axis.X).with(HORIZONTAL_CONNECTION, HorizontalConnection.NONE).with(WATERLOGGED,false));
+		this.setDefaultState(this.getStateContainer().getBaseState().with(BURNING, false).with(HORIZONTAL_AXIS, Direction.Axis.X).with(HORIZONTAL_CONNECTION, HorizontalConnection.NONE));
 	}
 
 	@Override
-	protected void fillStateContainer(StateContainer.Builder<net.minecraft.block.Block, BlockState> builder) {
-		builder.add(HORIZONTAL_AXIS, BURNING, HORIZONTAL_CONNECTION, WATERLOGGED);
+	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
+		super.fillStateContainer(builder);
+		builder.add(HORIZONTAL_AXIS, BURNING, HORIZONTAL_CONNECTION);
 	}
 
 	@Override
@@ -74,13 +74,8 @@ public class FireplaceBlock extends BlockDoTB implements IWaterLoggable {
 
 	@Override
 	public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
-		if (stateIn.get(WATERLOGGED)) worldIn.getPendingFluidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickRate(worldIn));
+		stateIn = super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
 		return !stateIn.isValidPosition(worldIn, currentPos) ? Blocks.AIR.getDefaultState() : super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
-	}
-
-	@Override
-	public IFluidState getFluidState(BlockState state) {
-		return state.get(WATERLOGGED) ? Fluids.WATER.getStillFluidState(false) : super.getFluidState(state);
 	}
 
 	@Override
@@ -146,14 +141,14 @@ public class FireplaceBlock extends BlockDoTB implements IWaterLoggable {
 
 	@Override
 	public BlockState getStateForPlacement(BlockItemUseContext context) {
-		BlockPos pos = context.getPos();
-		IFluidState ifluidstate = context.getWorld().getFluidState(pos);
+		BlockState state = super.getStateForPlacement(context);
 		Direction.Axis axis = (context.getPlacementHorizontalFacing().getAxis() == Direction.Axis.X)? Direction.Axis.Z : Direction.Axis.X;
-		return this.getDefaultState().with(HORIZONTAL_AXIS, axis).with(HORIZONTAL_CONNECTION, getHorizontalShape(context.getWorld(), pos, axis)).with(WATERLOGGED, ifluidstate.getFluid() == Fluids.WATER);
+		return state.with(HORIZONTAL_AXIS, axis).with(HORIZONTAL_CONNECTION, getHorizontalShape(context.getWorld(), context.getPos(), axis));
 	}
 
 	@Override
 	public void neighborChanged(BlockState state, World worldIn, BlockPos pos, net.minecraft.block.Block blockIn, BlockPos fromPos, boolean isMoving) {
+		super.neighborChanged(state, worldIn, pos, blockIn, fromPos, isMoving);
 		if(pos.getY() == fromPos.getY()){
 			Direction.Axis axis = state.get(HORIZONTAL_AXIS);
 			if(axis == Direction.Axis.X){

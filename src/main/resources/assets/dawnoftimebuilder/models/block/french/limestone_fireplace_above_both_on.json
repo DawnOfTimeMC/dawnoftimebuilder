@@ -1,9 +1,9 @@
 {
 	"textures": {
 		"1": "dawnoftimebuilder:block/limestone_fireplace_x_x_2",
-		"2": "block/fire_layer_1",
+		"2": "block/fire_1",
 		"4_texture": "dawnoftimebuilder:block/limestone_fireplace_x_x_1",
-		"1_1": "block/fire_layer_0",
+		"1_1": "block/fire_0",
 		"particle": "dawnoftimebuilder:block/limestone_brick"
 	},
 	"elements": [

@@ -14,16 +14,16 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import org.dawnoftimebuilder.block.builders.DisplayerBlock;
 
-public class BlockSpruceLowTable extends DisplayerBlock {
+public class SpruceLowTableBlock extends DisplayerBlock {
 
 	private static final VoxelShape X_AXIS_VS = makeCuboidShape(0.0D, 0.0D, 2.0D, 16.0D, 8.0D, 14.0D);
 	private static final VoxelShape Z_AXIS_VS = makeCuboidShape(2.0D, 0.0D, 0.0D, 14.0D, 8.0D, 16.0D);
 	public static final EnumProperty<Direction.Axis> HORIZONTAL_AXIS = BlockStateProperties.HORIZONTAL_AXIS;
 
-	public BlockSpruceLowTable() {
+	public SpruceLowTableBlock() {
 		super("spruce_low_table" ,Material.WOOD, 2.0F, 2.0F);
 		this.setBurnable();
-		this.setDefaultState(this.stateContainer.getBaseState().with(HORIZONTAL_AXIS, Direction.Axis.X));
+		this.setDefaultState(this.getStateContainer().getBaseState().with(HORIZONTAL_AXIS, Direction.Axis.X));
 	}
 	@Override
 	protected void fillStateContainer(StateContainer.Builder<net.minecraft.block.Block, BlockState> builder) {

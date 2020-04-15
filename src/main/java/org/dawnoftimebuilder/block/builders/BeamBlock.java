@@ -21,23 +21,23 @@ import org.dawnoftimebuilder.utils.DoTBBlockStateProperties;
 
 import javax.annotation.Nonnull;
 
-public class BeamBlock extends BlockDoTB implements IWaterLoggable, IBlockPillar {
+public class BeamBlock extends WaterloggedBlock implements IBlockPillar {
 
 	private static final BooleanProperty BOTTOM = BlockStateProperties.BOTTOM;
 	public static final EnumProperty<Direction.Axis> MAIN_AXIS = BlockStateProperties.AXIS;
 	private static final BooleanProperty SUBAXIS_X = DoTBBlockStateProperties.SUBAXIS_X;
 	private static final BooleanProperty SUBAXIS_Z = DoTBBlockStateProperties.SUBAXIS_Z;
-	private static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 	private static final VoxelShape[] SHAPES = makeShapes();
 
 	public BeamBlock(String name, Material materialIn, float hardness, float resistance) {
 		super(name, materialIn, hardness, resistance);
-		this.setDefaultState(this.stateContainer.getBaseState().with(BOTTOM, false).with(MAIN_AXIS, Direction.Axis.Y).with(SUBAXIS_X, false).with(SUBAXIS_Z, false).with(WATERLOGGED, false));
+		this.setDefaultState(this.getStateContainer().getBaseState().with(BOTTOM, false).with(MAIN_AXIS, Direction.Axis.Y).with(SUBAXIS_X, false).with(SUBAXIS_Z, false));
 	}
 
 	@Override
-	protected void fillStateContainer(StateContainer.Builder<net.minecraft.block.Block, BlockState> builder) {
-		builder.add(BOTTOM, MAIN_AXIS, SUBAXIS_X, SUBAXIS_Z, WATERLOGGED);
+	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
+		super.fillStateContainer(builder);
+		builder.add(BOTTOM, MAIN_AXIS, SUBAXIS_X, SUBAXIS_Z);
 	}
 
 	@Override
@@ -93,21 +93,14 @@ public class BeamBlock extends BlockDoTB implements IWaterLoggable, IBlockPillar
 	}
 
 	@Override
-	public IFluidState getFluidState(BlockState state) {
-		return state.get(WATERLOGGED) ? Fluids.WATER.getStillFluidState(false) : super.getFluidState(state);
-	}
-
-	@Override
 	public BlockState getStateForPlacement(BlockItemUseContext context) {
-		BlockPos pos = context.getPos();
-		IFluidState ifluidstate = context.getWorld().getFluidState(pos);
-		return this.getCurrentState(this.getDefaultState().with(MAIN_AXIS, context.getFace().getAxis()), context.getWorld(), pos).with(WATERLOGGED, ifluidstate.getFluid() == Fluids.WATER);
+		BlockState state = super.getStateForPlacement(context);
+		return this.getCurrentState(state.with(MAIN_AXIS, context.getFace().getAxis()), context.getWorld(), context.getPos());
 	}
 
 	@Override
 	public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
-		if (stateIn.get(WATERLOGGED)) worldIn.getPendingFluidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickRate(worldIn));
-		return this.getCurrentState(stateIn, worldIn, currentPos);
+		return this.getCurrentState(super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos), worldIn, currentPos);
 	}
 
 	private BlockState getCurrentState(BlockState stateIn, IWorld worldIn, BlockPos pos){

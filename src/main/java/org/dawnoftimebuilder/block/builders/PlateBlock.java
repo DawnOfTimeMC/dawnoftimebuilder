@@ -2,11 +2,8 @@ package org.dawnoftimebuilder.block.builders;
 
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
-import net.minecraft.fluid.Fluids;
-import net.minecraft.fluid.IFluidState;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.pathfinding.PathType;
-import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer;
@@ -19,29 +16,29 @@ import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.*;
 import net.minecraft.util.math.BlockPos;
 
-public class PlateBlock extends BlockDoTB implements IWaterLoggable {
+public class PlateBlock extends WaterloggedBlock {
 
 	private static final DirectionProperty FACING = HorizontalBlock.HORIZONTAL_FACING;
 	private static final EnumProperty<StairsShape> SHAPE = BlockStateProperties.STAIRS_SHAPE;
-	private static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 	private static final VoxelShape[] SHAPES = makeShapes();
 
-	public PlateBlock(String name, net.minecraft.block.Block.Properties properties) {
+	public PlateBlock(String name, Properties properties) {
 		super(name, properties);
-		this.setDefaultState(this.stateContainer.getBaseState().with(FACING, Direction.NORTH).with(SHAPE, StairsShape.STRAIGHT).with(WATERLOGGED, false));
+		this.setDefaultState(this.getStateContainer().getBaseState().with(FACING, Direction.NORTH).with(SHAPE, StairsShape.STRAIGHT));
 	}
 
 	public PlateBlock(String name, Material materialIn, float hardness, float resistance) {
-		this(name, net.minecraft.block.Block.Properties.create(materialIn).hardnessAndResistance(hardness, resistance));
+		this(name, Properties.create(materialIn).hardnessAndResistance(hardness, resistance));
 	}
 
 	public PlateBlock(String name, net.minecraft.block.Block block) {
-		this(name, net.minecraft.block.Block.Properties.from(block));
+		this(name, Properties.from(block));
 	}
 
 	@Override
-	protected void fillStateContainer(StateContainer.Builder<net.minecraft.block.Block, BlockState> builder) {
-		builder.add(FACING, SHAPE, WATERLOGGED);
+	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
+		super.fillStateContainer(builder);
+		builder.add(FACING, SHAPE);
 	}
 
 	@Override
@@ -111,16 +108,14 @@ public class PlateBlock extends BlockDoTB implements IWaterLoggable {
 
 	@Override
 	public BlockState getStateForPlacement(BlockItemUseContext context) {
-		BlockPos pos = context.getPos();
-		IFluidState ifluidstate = context.getWorld().getFluidState(pos);
-		BlockState blockstate = this.getDefaultState().with(FACING, context.getPlacementHorizontalFacing()).with(WATERLOGGED, ifluidstate.getFluid() == Fluids.WATER);
-		return blockstate.with(SHAPE, getShapeProperty(blockstate, context.getWorld(), pos));
+		BlockState state = super.getStateForPlacement(context);
+		return state.with(SHAPE, getShapeProperty(state, context.getWorld(), context.getPos()));
 	}
 
 	@Override
 	public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
-		if (stateIn.get(WATERLOGGED)) worldIn.getPendingFluidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickRate(worldIn));
-		return facing.getAxis().isHorizontal() ? stateIn.with(SHAPE, getShapeProperty(stateIn, worldIn, currentPos)) : super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+		stateIn = super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+		return facing.getAxis().isHorizontal() ? stateIn.with(SHAPE, getShapeProperty(stateIn, worldIn, currentPos)) : stateIn;
 	}
 
 	/**
@@ -201,11 +196,6 @@ public class PlateBlock extends BlockDoTB implements IWaterLoggable {
 		}
 
 		return super.mirror(state, mirrorIn);
-	}
-
-	@Override
-	public IFluidState getFluidState(BlockState state) {
-		return state.get(WATERLOGGED) ? Fluids.WATER.getStillFluidState(false) : super.getFluidState(state);
 	}
 
 	@Override

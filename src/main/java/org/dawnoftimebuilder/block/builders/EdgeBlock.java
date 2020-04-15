@@ -21,31 +21,31 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.*;
 
-public class EdgeBlock extends BlockDoTB implements IWaterLoggable {
+public class EdgeBlock extends WaterloggedBlock {
 
 	public static final DirectionProperty FACING = HorizontalBlock.HORIZONTAL_FACING;
 	public static final EnumProperty<Half> HALF = BlockStateProperties.HALF;
 	public static final EnumProperty<StairsShape> SHAPE = BlockStateProperties.STAIRS_SHAPE;
-	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 	private static final VoxelShape[] SHAPES_TOP = makeShapes(false);
 	private static final VoxelShape[] SHAPES_BOTTOM = makeShapes(true);
 
-	public EdgeBlock(String name, net.minecraft.block.Block.Properties properties) {
+	public EdgeBlock(String name, Block.Properties properties) {
 		super(name, properties);
-		this.setDefaultState(this.stateContainer.getBaseState().with(FACING, Direction.NORTH).with(HALF, Half.BOTTOM).with(SHAPE, StairsShape.STRAIGHT).with(WATERLOGGED, false));
+		this.setDefaultState(this.getStateContainer().getBaseState().with(FACING, Direction.NORTH).with(HALF, Half.BOTTOM).with(SHAPE, StairsShape.STRAIGHT));
 	}
 
 	public EdgeBlock(String name, Material materialIn, float hardness, float resistance) {
-		this(name, net.minecraft.block.Block.Properties.create(materialIn).hardnessAndResistance(hardness, resistance));
+		this(name, Block.Properties.create(materialIn).hardnessAndResistance(hardness, resistance));
 	}
 
-	public EdgeBlock(String name, net.minecraft.block.Block block) {
-		this(name, net.minecraft.block.Block.Properties.from(block));
+	public EdgeBlock(String name, Block block) {
+		this(name, Block.Properties.from(block));
 	}
 
 	@Override
-	protected void fillStateContainer(StateContainer.Builder<net.minecraft.block.Block, BlockState> builder) {
-		builder.add(FACING, HALF, SHAPE, WATERLOGGED);
+	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
+		super.fillStateContainer(builder);
+		builder.add(FACING, HALF, SHAPE);
 	}
 
 	@Override
@@ -120,16 +120,16 @@ public class EdgeBlock extends BlockDoTB implements IWaterLoggable {
 
 	@Override
 	public BlockState getStateForPlacement(BlockItemUseContext context) {
+		BlockState state = super.getStateForPlacement(context);
 		Direction direction = context.getFace();
 		BlockPos pos = context.getPos();
-		IFluidState ifluidstate = context.getWorld().getFluidState(pos);
-		BlockState blockstate = this.getDefaultState().with(FACING, context.getPlacementHorizontalFacing()).with(HALF, direction != Direction.DOWN && (direction == Direction.UP || !(context.getHitVec().y - (double)pos.getY() > 0.5D)) ? Half.BOTTOM : Half.TOP).with(WATERLOGGED, ifluidstate.getFluid() == Fluids.WATER);
-		return blockstate.with(SHAPE, getShapeProperty(blockstate, context.getWorld(), pos));
+		state = state.with(FACING, context.getPlacementHorizontalFacing()).with(HALF, direction != Direction.DOWN && (direction == Direction.UP || !(context.getHitVec().y - (double)pos.getY() > 0.5D)) ? Half.BOTTOM : Half.TOP);
+		return state.with(SHAPE, getShapeProperty(state, context.getWorld(), pos));
 	}
 
 	@Override
 	public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
-		if (stateIn.get(WATERLOGGED)) worldIn.getPendingFluidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickRate(worldIn));
+		stateIn = super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
 		return facing.getAxis().isHorizontal() ? stateIn.with(SHAPE, getShapeProperty(stateIn, worldIn, currentPos)) : super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
 	}
 
@@ -211,11 +211,6 @@ public class EdgeBlock extends BlockDoTB implements IWaterLoggable {
 		}
 
 		return super.mirror(state, mirrorIn);
-	}
-
-	@Override
-	public IFluidState getFluidState(BlockState state) {
-		return state.get(WATERLOGGED) ? Fluids.WATER.getStillFluidState(false) : super.getFluidState(state);
 	}
 
 	@Override
