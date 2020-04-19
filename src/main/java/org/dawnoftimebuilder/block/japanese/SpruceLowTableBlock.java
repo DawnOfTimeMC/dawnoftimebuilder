@@ -12,7 +12,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
-import org.dawnoftimebuilder.block.builders.DisplayerBlock;
+import org.dawnoftimebuilder.block.templates.DisplayerBlock;
 
 public class SpruceLowTableBlock extends DisplayerBlock {
 

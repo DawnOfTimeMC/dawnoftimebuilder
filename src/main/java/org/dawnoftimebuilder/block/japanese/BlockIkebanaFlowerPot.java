@@ -14,7 +14,7 @@ import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import org.dawnoftimebuilder.block.IBlockSpecialDisplay;
-import org.dawnoftimebuilder.block.builders.BlockDoTB;
+import org.dawnoftimebuilder.block.templates.BlockDoTB;
 
 public class BlockIkebanaFlowerPot extends BlockDoTB implements IBlockSpecialDisplay {
 

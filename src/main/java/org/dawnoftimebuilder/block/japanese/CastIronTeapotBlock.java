@@ -2,15 +2,13 @@ package org.dawnoftimebuilder.block.japanese;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.material.Material;
-import net.minecraft.item.Item;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
-import org.dawnoftimebuilder.block.IBlockCustomItem;
 import org.dawnoftimebuilder.block.IBlockSpecialDisplay;
-import org.dawnoftimebuilder.block.builders.WaterloggedBlock;
+import org.dawnoftimebuilder.block.templates.WaterloggedBlock;
 
 public class CastIronTeapotBlock extends WaterloggedBlock implements IBlockSpecialDisplay {
 

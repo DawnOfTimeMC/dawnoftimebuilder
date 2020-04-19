@@ -1,5 +1,5 @@
 {
     "variants": {
-        "normal": { "model": "dawnoftimebuilder:block/japanese/small_tatami_floor" }
+        "": { "model": "dawnoftimebuilder:block/japanese/small_tatami_floor" }
     }
 }

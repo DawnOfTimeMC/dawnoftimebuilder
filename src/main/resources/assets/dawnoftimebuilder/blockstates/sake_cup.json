@@ -1,5 +1,5 @@
 {
     "variants": {
-        "normal": { "model": "dawnoftimebuilder:block/japanese/sake_cup" }
+        "": { "model": "dawnoftimebuilder:block/japanese/sake_cup" }
     }
 }

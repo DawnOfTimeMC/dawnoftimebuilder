@@ -2,13 +2,14 @@ package org.dawnoftimebuilder.block;
 
 import net.minecraft.item.Item;
 
+import javax.annotation.Nullable;
+
 public interface IBlockCustomItem {
 
     /**
-     * Implement this on any Block that has a dryer ItemBlock.
-     * This should take care of registry naming, if possible.
-     * @return the item, for this blocks item.
+     * @return The custom ItemBlock that will be registered for this block, null if this block has no ItemBlock.
      */
+    @Nullable
     Item getCustomItemBlock();
 
 }

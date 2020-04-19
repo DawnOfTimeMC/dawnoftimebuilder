@@ -2,6 +2,7 @@ package org.dawnoftimebuilder.utils;
 
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.EnumProperty;
+import net.minecraft.state.IntegerProperty;
 import net.minecraft.util.IStringSerializable;
 
 public class DoTBBlockStateProperties {
@@ -9,13 +10,16 @@ public class DoTBBlockStateProperties {
     public static final BooleanProperty BURNING = BooleanProperty.create("burning");
     public static final BooleanProperty CUT = BooleanProperty.create("cut");
     public static final BooleanProperty FULL = BooleanProperty.create("full");
+    public static final BooleanProperty ROLLED = BooleanProperty.create("rolled");
     public static final BooleanProperty SUBAXIS_X = BooleanProperty.create("subaxis_x");
     public static final BooleanProperty SUBAXIS_Z = BooleanProperty.create("subaxis_z");
     public static final BooleanProperty SUBAXIS = BooleanProperty.create("subaxis");
     public static final EnumProperty<FencePillar> FENCE_PILLAR = EnumProperty.create("fence_pillar", FencePillar.class);
     public static final EnumProperty<HorizontalConnection> HORIZONTAL_CONNECTION = EnumProperty.create("horizontal_connection", HorizontalConnection.class);
+    public static final EnumProperty<OpenPosition> OPEN_POSITION = EnumProperty.create("open_position", OpenPosition.class);
     public static final EnumProperty<PillarConnection> PILLAR_CONNECTION = EnumProperty.create("pillar_connection", PillarConnection.class);
     public static final EnumProperty<Slab> SLAB = EnumProperty.create("slab", Slab.class);
+    public static final IntegerProperty STACK = IntegerProperty.create("stack", 1, 3);
     public static final EnumProperty<VerticalConnection> VERTICAL_CONNECTION = EnumProperty.create("vertical_connection", VerticalConnection.class);
 
     public enum HorizontalConnection implements IStringSerializable {
@@ -166,4 +170,29 @@ public class DoTBBlockStateProperties {
             return this.name;
         }
     }
+
+    public enum OpenPosition implements IStringSerializable {
+        CLOSED("closed"),
+        HALF("half"),
+        FULL("full");
+
+        private final String name;
+
+        OpenPosition(String name){
+            this.name = name;
+        }
+
+        public String toString(){
+            return this.name;
+        }
+
+        public String getName()
+        {
+            return this.name;
+        }
+
+        public boolean isOpen() {
+            return this != CLOSED;
+        }
+	}
 }

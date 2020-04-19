@@ -31,7 +31,7 @@ import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import org.dawnoftimebuilder.block.builders.WaterloggedBlock;
+import org.dawnoftimebuilder.block.templates.WaterloggedBlock;
 import org.dawnoftimebuilder.utils.DoTBBlockStateProperties;
 import org.dawnoftimebuilder.utils.DoTBBlockStateProperties.HorizontalConnection;
 import java.util.Random;

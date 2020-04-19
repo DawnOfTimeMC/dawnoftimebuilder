@@ -11,7 +11,7 @@ import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import org.dawnoftimebuilder.block.IBlockSpecialDisplay;
-import org.dawnoftimebuilder.block.builders.DisplayerBlock;
+import org.dawnoftimebuilder.block.templates.DisplayerBlock;
 import org.dawnoftimebuilder.tileentity.DisplayerTileEntity;
 
 public class DisplayerTERenderer extends TileEntityRenderer<DisplayerTileEntity> {

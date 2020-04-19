@@ -9,7 +9,7 @@ import net.minecraft.state.StateContainer;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
-import org.dawnoftimebuilder.block.builders.FenceBlockDoTB;
+import org.dawnoftimebuilder.block.templates.FenceBlockDoTB;
 import org.dawnoftimebuilder.utils.DoTBBlockStateProperties;
 import org.dawnoftimebuilder.utils.DoTBBlockStateProperties.FencePillar;
 

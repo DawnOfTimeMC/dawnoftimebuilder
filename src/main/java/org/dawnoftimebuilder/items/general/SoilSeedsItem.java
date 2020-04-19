@@ -13,7 +13,7 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.common.PlantType;
-import org.dawnoftimebuilder.block.builders.SoilCropsBlock;
+import org.dawnoftimebuilder.block.templates.SoilCropsBlock;
 
 import static org.dawnoftimebuilder.DawnOfTimeBuilder.DOTB_TAB;
 import static org.dawnoftimebuilder.DawnOfTimeBuilder.MOD_ID;

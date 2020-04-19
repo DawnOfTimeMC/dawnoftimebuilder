@@ -9,11 +9,12 @@ import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
+import org.dawnoftimebuilder.block.IBlockChain;
 import org.dawnoftimebuilder.block.IBlockPillar;
-import org.dawnoftimebuilder.block.builders.ColumnConnectibleBlock;
+import org.dawnoftimebuilder.block.templates.ColumnConnectibleBlock;
 import org.dawnoftimebuilder.utils.DoTBBlockStateProperties;
 
-public class IronChainBlock extends ColumnConnectibleBlock implements IBlockPillar {
+public class IronChainBlock extends ColumnConnectibleBlock implements IBlockPillar, IBlockChain {
 
 	private static final VoxelShape VS = Block.makeCuboidShape(6.0D, 0.0D, 6.0D, 10.0D, 16.0D, 10.0D);
 
@@ -28,28 +29,23 @@ public class IronChainBlock extends ColumnConnectibleBlock implements IBlockPill
 
 	@Override
 	public DoTBBlockStateProperties.VerticalConnection getColumnState(IWorld worldIn, BlockPos pos, BlockState stateIn){
-		if(isConnectible(worldIn, pos.up(), stateIn)){
-			return (canConnectToBottom(worldIn, pos.down(), stateIn)) ? DoTBBlockStateProperties.VerticalConnection.BOTH : DoTBBlockStateProperties.VerticalConnection.ABOVE;
-		}else{
-			return (canConnectToBottom(worldIn, pos.down(), stateIn)) ? DoTBBlockStateProperties.VerticalConnection.UNDER : DoTBBlockStateProperties.VerticalConnection.NONE;
-		}
+		if(isConnectible(worldIn, pos.up(), stateIn, false))
+			return (isConnectible(worldIn, pos.down(), stateIn, true)) ? DoTBBlockStateProperties.VerticalConnection.BOTH : DoTBBlockStateProperties.VerticalConnection.ABOVE;
+		else
+			return (isConnectible(worldIn, pos.down(), stateIn, true)) ? DoTBBlockStateProperties.VerticalConnection.UNDER : DoTBBlockStateProperties.VerticalConnection.NONE;
 	}
 
-	private boolean canConnectToBottom(IWorld worldIn, BlockPos pos, BlockState stateIn){
-		Block block = worldIn.getBlockState(pos).getBlock();
-		//TODO active this
-		/*
-		if(block instanceof BlockStoneLantern)
-			if(worldIn.getBlockState(pos).get(BlockStoneLantern.FACING) == Direction.DOWN)
-				return true;
-		if(block instanceof BlockStickBundle) return true;
-		*/
-		return isConnectible(worldIn, pos, stateIn);
+	private boolean isConnectible(IWorld worldIn, BlockPos pos, BlockState stateIn, boolean bottomOfChain){
+		if(isConnectible(worldIn, pos, stateIn)){
+			BlockState state = worldIn.getBlockState(pos);
+			return ((IBlockChain)state.getBlock()).canConnectToChain(state, bottomOfChain);
+		}
+		return false;
 	}
 
     @Override
     public boolean isConnectible(IWorld worldIn, BlockPos pos, BlockState state){
-        return worldIn.getBlockState(pos).getBlock() instanceof IronChainBlock;
+        return worldIn.getBlockState(pos).getBlock() instanceof IBlockChain;
     }
 
     @Override
@@ -60,5 +56,10 @@ public class IronChainBlock extends ColumnConnectibleBlock implements IBlockPill
 	@Override
 	public DoTBBlockStateProperties.PillarConnection getBlockPillarConnection(BlockState state) {
 		return DoTBBlockStateProperties.PillarConnection.FOUR_PX;
+	}
+
+	@Override
+	public boolean canConnectToChain(BlockState state, boolean bottomOfChain) {
+		return true;
 	}
 }
