@@ -42,7 +42,8 @@ public class DoTBBlockUtils {
 
 	public enum DoTBTags {
 
-		;
+		CHAINS("chains"),
+		COVERED_BLOCKS("covered_blocks");
 
 		private final ResourceLocation resource;
 
