@@ -118,6 +118,7 @@ public class DoTBBlocksRegistry {
 	public static final Block BURNT_SPRUCE_RAILING = reg(new BurntSpruceRailingBlock());
 	//public static final Block X = reg(new BlockSpruceRoofSupport("spruce_roof_support"));
 	//public static final Block X = reg(new BlockSpruceRoofSupportMerged());
+	public static final Block BURNT_SPRUCE_PLANKS = reg(new BlockDoTB("burnt_spruce_planks", Material.WOOD, 2.5F, 5.0F));
 	public static final Block BURNT_SPRUCE_SUPPORT_BEAM = reg(new SupportBeamBlock("burnt_spruce_support_beam", Material.WOOD, 2.5F, 5.0F).setBurnable());
 	public static final Block SPRUCE_PLANKS_SUPPORT_SLAB = reg(new SupportSlabBlock("spruce_planks_support_slab", Material.WOOD, 1.5F, 3.0F).setBurnable());
 	public static final Block SPRUCE_LOW_TABLE = reg(new SpruceLowTableBlock());

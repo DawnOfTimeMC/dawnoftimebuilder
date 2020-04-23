@@ -98,6 +98,7 @@ public enum CreativeInventoryCategories {
 			Item.getItemFromBlock(THATCH_BAMBOO_SLAB),
 			Item.getItemFromBlock(THATCH_BAMBOO_EDGE),
 			Item.getItemFromBlock(RAMMED_DIRT),
+			Item.getItemFromBlock(BURNT_SPRUCE_PLANKS),
 			Item.getItemFromBlock(BURNT_SPRUCE_FOUNDATION_SLAB),
 			Item.getItemFromBlock(BURNT_SPRUCE_FOUNDATION),
 			Item.getItemFromBlock(BURNT_SPRUCE_TIMBER_FRAME),
