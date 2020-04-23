@@ -1,4 +1,4 @@
-package org.dawnoftimebuilder.block.general;
+package org.dawnoftimebuilder.block.templates;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -14,12 +14,16 @@ import org.dawnoftimebuilder.block.IBlockPillar;
 import org.dawnoftimebuilder.block.templates.ColumnConnectibleBlock;
 import org.dawnoftimebuilder.utils.DoTBBlockStateProperties;
 
-public class IronChainBlock extends ColumnConnectibleBlock implements IBlockPillar, IBlockChain {
+public class ChainBlock extends ColumnConnectibleBlock implements IBlockPillar, IBlockChain {
 
 	private static final VoxelShape VS = Block.makeCuboidShape(6.0D, 0.0D, 6.0D, 10.0D, 16.0D, 10.0D);
 
-	public IronChainBlock() {
-		super("iron_chain", Material.IRON, 5.0F, 6.0F);
+	public ChainBlock(String name, Material materialIn, float hardness, float resistance) {
+		this(name, Block.Properties.create(materialIn).hardnessAndResistance(hardness, resistance));
+	}
+
+	public ChainBlock(String name, Properties properties) {
+		super(name, properties);
 	}
 
 	@Override

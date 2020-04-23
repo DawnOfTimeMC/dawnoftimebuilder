@@ -1,5 +1,6 @@
 {
     "variants": {
-        "": { "model": "dawnoftimebuilder:block/japanese/small_tatami_floor" }
+        "axis=x": { "model": "dawnoftimebuilder:block/japanese/small_tatami_floor", "y": 90 },
+        "axis=z": { "model": "dawnoftimebuilder:block/japanese/small_tatami_floor" }
     }
 }

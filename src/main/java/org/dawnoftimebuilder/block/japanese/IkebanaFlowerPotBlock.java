@@ -16,13 +16,13 @@ import net.minecraft.world.IBlockReader;
 import org.dawnoftimebuilder.block.IBlockSpecialDisplay;
 import org.dawnoftimebuilder.block.templates.BlockDoTB;
 
-public class BlockIkebanaFlowerPot extends BlockDoTB implements IBlockSpecialDisplay {
+public class IkebanaFlowerPotBlock extends BlockDoTB implements IBlockSpecialDisplay {
 
     public static final DirectionProperty FACING = HorizontalBlock.HORIZONTAL_FACING;
 
     private static final VoxelShape VS = makeCuboidShape(6.0D, 0.0D, 6.0D, 10.0D, 4.0D, 10.0D);
 
-	public BlockIkebanaFlowerPot() {
+	public IkebanaFlowerPotBlock() {
 		super("ikebana_flower_pot", Material.CLAY, 2.0F, 2.0F);
         this.setDefaultState(this.getStateContainer().getBaseState().with(FACING, Direction.NORTH));
     }

@@ -14,10 +14,7 @@ import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.util.BlockRenderLayer;
-import net.minecraft.util.Direction;
-import net.minecraft.util.Hand;
-import net.minecraft.util.SoundCategory;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
@@ -27,14 +24,16 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import org.dawnoftimebuilder.block.IBlockChain;
-import org.dawnoftimebuilder.block.general.IronChainBlock;
+import org.dawnoftimebuilder.block.templates.ChainBlock;
 import org.dawnoftimebuilder.block.templates.WaterloggedBlock;
 import org.dawnoftimebuilder.utils.DoTBBlockStateProperties;
 
 import static net.minecraft.block.Blocks.SPRUCE_PLANKS;
 import static org.dawnoftimebuilder.registries.DoTBBlocksRegistry.SMALL_TATAMI_FLOOR;
+import static org.dawnoftimebuilder.utils.DoTBBlockUtils.DoTBTags.CHAINS;
+import static org.dawnoftimebuilder.utils.DoTBBlockUtils.DoTBTags.COVERED_BLOCKS;
 
-public class BlockSmallTatamiMat extends WaterloggedBlock implements IBlockChain {
+public class SmallTatamiMatBlock extends WaterloggedBlock implements IBlockChain {
 
     private static final VoxelShape VS = makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 1.0D, 16.0D);
     private static final VoxelShape X_ROLLED_VS = makeCuboidShape(5.5D, 0.0D, 0.0D, 10.5D, 5.0D, 16.0D);
@@ -49,7 +48,7 @@ public class BlockSmallTatamiMat extends WaterloggedBlock implements IBlockChain
     public static final BooleanProperty ROLLED = DoTBBlockStateProperties.ROLLED;
     public static final IntegerProperty STACK = DoTBBlockStateProperties.STACK;
 
-    public BlockSmallTatamiMat() {
+    public SmallTatamiMatBlock() {
         super("small_tatami_mat", Material.CARPET, 0.6F, 0.6F);
         this.setBurnable();
         this.setDefaultState(this.stateContainer.getBaseState().with(ROLLED, false).with(ATTACHED, false).with(STACK, 1));
@@ -96,16 +95,20 @@ public class BlockSmallTatamiMat extends WaterloggedBlock implements IBlockChain
             }
         }
         return super.getStateForPlacement(context)
-                .with(ROLLED, world.getBlockState(pos.down()).getBlock() == SMALL_TATAMI_FLOOR)
+                .with(ROLLED, COVERED_BLOCKS.contains(world.getBlockState(pos.down()).getBlock()))
                 .with(HORIZONTAL_AXIS, context.getPlacementHorizontalFacing().getAxis());
-    }//TODO when block in pos.down() is a fake floor, ROLLED = true. I should add a new Tag check for fake floors here
+    }
 
     @Override
     public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
         if(state.get(ATTACHED)){
-            Block blockUp = worldIn.getBlockState(pos.up()).getBlock();
+            BlockState stateUp = worldIn.getBlockState(pos.up());
+            Block blockUp = stateUp.getBlock();
             if(blockUp.isIn(BlockTags.FENCES) || worldIn.getBlockState(pos.down()).getBlock().isIn(BlockTags.FENCES)) return true;
-            if(blockUp instanceof IronChainBlock) return true;//TODO Replace with .isIn(BlockTags.CHAIN)
+            if(CHAINS.contains(blockUp)) return true;
+            if(blockUp instanceof IBlockChain){
+                if(((IBlockChain) blockUp).canConnectToChain(stateUp, false)) return true;
+            }
         }
         return !worldIn.isAirBlock(pos.down());
     }
@@ -119,7 +122,8 @@ public class BlockSmallTatamiMat extends WaterloggedBlock implements IBlockChain
                 Block blockUp = worldIn.getBlockState(currentPos.up()).getBlock();
                 if(blockUp.isIn(BlockTags.FENCES)
                         || worldIn.getBlockState(currentPos.down()).getBlock().isIn(BlockTags.FENCES)
-                        || blockUp instanceof IronChainBlock)//TODO Replace with .isIn(BlockTags.CHAIN)
+                        || CHAINS.contains(blockUp)
+                        || blockUp instanceof IBlockChain && ((IBlockChain) blockUp).canConnectToChain(worldIn.getBlockState(currentPos.up()), false))
                     stateIn = stateIn.with(ATTACHED, true);
             }
             return !stateIn.isValidPosition(worldIn, currentPos) ? Blocks.AIR.getDefaultState() : this.tryMergingWithSprucePlanks(stateIn, worldIn.getWorld(), currentPos);
@@ -149,7 +153,7 @@ public class BlockSmallTatamiMat extends WaterloggedBlock implements IBlockChain
             int stack = state.get(STACK);
             boolean isRolled = state.get(ROLLED);
             if(isRolled && stack == 1)
-                if(worldIn.getBlockState(pos.down()).getBlock() == SMALL_TATAMI_FLOOR)
+                if(COVERED_BLOCKS.contains(worldIn.getBlockState(pos.down()).getBlock()))
                     return false;
             if(state.get(STACK) > 1){
                 state = state.with(STACK, stack - 1);
@@ -177,5 +181,10 @@ public class BlockSmallTatamiMat extends WaterloggedBlock implements IBlockChain
     @Override
     public boolean canConnectToChain(BlockState state, boolean bottomOfChain) {
         return state.get(ATTACHED);
+    }
+
+    @Override
+    public BlockState rotate(BlockState state, Rotation rot) {
+        return state.with(HORIZONTAL_AXIS, state.get(HORIZONTAL_AXIS) == Direction.Axis.X ? Direction.Axis.Z : Direction.Axis.X);
     }
 }
