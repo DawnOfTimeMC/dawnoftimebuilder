@@ -120,7 +120,7 @@ public class SmallShuttersBlock extends WaterloggedBlock {
         return canSupportShutters(worldIn, pos, direction, hingeDirection);
     }
 
-    private static boolean canSupportShutters(IWorldReader worldIn, BlockPos shutterPos, Direction direction, Direction hingeDirection) {
+    protected static boolean canSupportShutters(IWorldReader worldIn, BlockPos shutterPos, Direction direction, Direction hingeDirection) {
         BlockPos pos = shutterPos.offset(direction).offset(hingeDirection);
         return hasSolidSide(worldIn.getBlockState(pos), worldIn, pos, direction.getOpposite()) || hasSolidSide(worldIn.getBlockState(pos), worldIn, pos, hingeDirection.getOpposite());
     }
@@ -133,7 +133,7 @@ public class SmallShuttersBlock extends WaterloggedBlock {
             return Blocks.AIR.getDefaultState();
         if(facing == hingeDirection) {
             stateIn = super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
-            return stateIn.get(OPEN_POSITION) == DoTBBlockStateProperties.OpenPosition.CLOSED ? stateIn : stateIn.with(OPEN_POSITION, getOpenState(worldIn.getWorld(), facingPos));
+            return stateIn.get(OPEN_POSITION) == DoTBBlockStateProperties.OpenPosition.CLOSED ? stateIn : stateIn.with(OPEN_POSITION, getOpenState(stateIn, worldIn.getWorld(), facingPos));
         }
         return super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
     }
@@ -144,7 +144,7 @@ public class SmallShuttersBlock extends WaterloggedBlock {
             state = state.with(OPEN_POSITION, DoTBBlockStateProperties.OpenPosition.CLOSED);
         else{
             Direction hingeDirection = (state.get(HINGE) == DoorHingeSide.LEFT) ? state.get(FACING).rotateYCCW() : state.get(FACING).rotateY();
-            state = state.with(OPEN_POSITION, getOpenState(worldIn, pos.offset(hingeDirection)));
+            state = state.with(OPEN_POSITION, getOpenState(state, worldIn, pos.offset(hingeDirection)));
         }
         worldIn.setBlockState(pos, state, 10);
         worldIn.playEvent(player, state.get(OPEN_POSITION).isOpen() ? this.getOpenSound() : this.getCloseSound(), pos, 0);
@@ -161,14 +161,14 @@ public class SmallShuttersBlock extends WaterloggedBlock {
             }
             if(isPowered){
                 Direction hingeDirection = (state.get(HINGE) == DoorHingeSide.LEFT) ? state.get(FACING).rotateYCCW() : state.get(FACING).rotateY();
-                state = state.with(OPEN_POSITION, getOpenState(worldIn, pos.offset(hingeDirection)));
+                state = state.with(OPEN_POSITION, getOpenState(state, worldIn, pos.offset(hingeDirection)));
             }else
                 state = state.with(OPEN_POSITION, DoTBBlockStateProperties.OpenPosition.CLOSED);
             worldIn.setBlockState(pos, state.with(POWERED, isPowered), 2);
         }
     }
 
-    private DoTBBlockStateProperties.OpenPosition getOpenState(World worldIn, BlockPos pos){
+    protected DoTBBlockStateProperties.OpenPosition getOpenState(BlockState stateIn, World worldIn, BlockPos pos){
         return worldIn.getBlockState(pos).isSolid() ? DoTBBlockStateProperties.OpenPosition.HALF : DoTBBlockStateProperties.OpenPosition.FULL;
     }
 

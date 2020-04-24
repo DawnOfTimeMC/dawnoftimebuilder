@@ -60,7 +60,7 @@ public enum CreativeInventoryCategories {
 			Item.getItemFromBlock(OAK_SUPPORT_BEAM),
 			Item.getItemFromBlock(OAK_SUPPORT_SLAB),
 			Item.getItemFromBlock(SMALL_OAK_SHUTTERS),
-			//DoTBItemsRegistry.OAK_SHUTTERS,
+			Item.getItemFromBlock(OAK_SHUTTERS),
 			Item.getItemFromBlock(LATTICE_GLASS),
 			Item.getItemFromBlock(LATTICE_GLASS_PANE),
 			Item.getItemFromBlock(LATTICE_OAK_WINDOW),

@@ -106,6 +106,15 @@ public class TatamiMatBlock extends WaterloggedBlock {
     }
 
     @Override
+    public void onBlockPlacedBy(World worldIn, BlockPos pos, BlockState state, LivingEntity placer, ItemStack stack) {
+        BlockState newState = this.tryMergingWithSprucePlanks(state, worldIn, pos);
+        if(newState.getBlock() == Blocks.AIR)
+            worldIn.setBlockState(pos, newState);
+        else if(!newState.get(ROLLED))
+            worldIn.setBlockState(pos.offset(newState.get(FACING)), newState.with(HALF, Half.BOTTOM), 3);
+    }
+
+    @Override
     public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
         stateIn = super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
         if(facing.getAxis().isVertical()){
@@ -129,15 +138,6 @@ public class TatamiMatBlock extends WaterloggedBlock {
             }
         }
         return stateIn;
-    }
-
-    @Override
-    public void onBlockPlacedBy(World worldIn, BlockPos pos, BlockState state, LivingEntity placer, ItemStack stack) {
-        BlockState newState = this.tryMergingWithSprucePlanks(state, worldIn, pos);
-        if(newState.getBlock() == Blocks.AIR)
-            worldIn.setBlockState(pos, newState);
-        else if(!newState.get(ROLLED))
-            worldIn.setBlockState(pos.offset(newState.get(FACING)), newState.with(HALF, Half.BOTTOM), 3);
     }
 
     private BlockState tryMergingWithSprucePlanks(BlockState state, World worldIn, BlockPos pos){

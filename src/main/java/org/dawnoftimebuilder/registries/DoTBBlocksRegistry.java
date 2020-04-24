@@ -66,7 +66,7 @@ public class DoTBBlocksRegistry {
 	public static final Block LIMESTONE_CHIMNEY = reg(new LimestoneChimneyBlock());
 	public static final Block LIMESTONE_FIREPLACE = reg(new LimestoneFireplaceBlock());
 	public static final Block OAK_PLANKS_EDGE = reg(new EdgeBlock("oak_planks_edge", Material.WOOD, 2.0F, 3.0F));
-	//public static final Block OAK_SHUTTERS = reg(new BlockOakShutters());
+	public static final Block OAK_SHUTTERS = reg(new ShuttersBlock("oak_shutters", Material.WOOD, 2.0F, 2.0F).setBurnable());
 	public static final Block OAK_BEAM = reg(new BeamBlock("oak_beam", Material.WOOD, 2.0F, 3.0F).setBurnable());
 	public static final Block OAK_SUPPORT_BEAM = reg(new SupportBeamBlock("oak_support_beam", Material.WOOD, 2.0F, 3.0F).setBurnable());
 	public static final Block OAK_SUPPORT_SLAB = reg(new SupportSlabBlock("oak_support_slab", Material.WOOD, 1.5F, 3.0F).setBurnable());
