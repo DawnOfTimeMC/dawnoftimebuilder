@@ -12,7 +12,7 @@
 				"south": {"uv": [0, 0, 16, 1], "texture": "#texture", "cullface": "south"},
 				"west": {"uv": [0, 0, 16, 1], "texture": "#texture", "cullface": "west"},
 				"up": {"uv": [16, 0, 0, 16], "rotation": 180, "texture": "#texture"},
-				"down": {"uv": [16, 16, 0, 0], "rotation": 180, "texture": "#texture", "cullface": "bottom"}
+				"down": {"uv": [16, 16, 0, 0], "rotation": 180, "texture": "#texture", "cullface": "down"}
 			}
 		}
 	]

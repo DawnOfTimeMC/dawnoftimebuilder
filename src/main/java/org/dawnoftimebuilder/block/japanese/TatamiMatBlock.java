@@ -188,7 +188,6 @@ public class TatamiMatBlock extends WaterloggedBlock {
                 }
                 state = this.updatePostPlacement(state, Direction.DOWN, worldIn.getBlockState(pos.down()), worldIn, pos, pos.down());
                 worldIn.setBlockState(pos, state, 8);
-                //worldIn.playSound(player, pos, this.soundType.getBreakSound(), SoundCategory.BLOCKS, (this.soundType.getVolume() + 1.0F) / 2.0F, this.soundType.getPitch() * 0.8F);
                 return true;
             }
         }

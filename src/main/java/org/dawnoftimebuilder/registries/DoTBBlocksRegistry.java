@@ -75,6 +75,7 @@ public class DoTBBlocksRegistry {
 	public static final Block OAK_TIMBER_FRAME_CORNER = reg(new RotatedPillarBlockDoTB("oak_timber_frame_corner", Material.WOOD, 3.0F, 5.0F).setBurnable());
 	public static final Block OAK_TIMBER_FRAME_PILLAR = reg(new RotatedPillarBlockDoTB("oak_timber_frame_pillar", Material.WOOD, 3.0F, 5.0F).setBurnable());
 	public static final Block OAK_WAXED_FENCE = reg(new FenceBlockDoTB("oak_waxed_fence", Material.WOOD, 2.0F, 3.0F).setBurnable());
+	public static final Block OAK_WAXED_PERGOLA = reg(new PergolaBlock("oak_waxed_pergola", Material.WOOD, 2.0F, 3.0F));
 	public static final Block OAK_WAXED_PLANKS = reg(new BlockDoTB("oak_waxed_planks", Material.WOOD, 2.0F, 3.0F).setBurnable());
 	public static final Block OAK_WAXED_PLANKS_STAIRS = reg(new StairsBlockDoTB("oak_waxed_planks_stairs", OAK_WAXED_PLANKS).setBurnable());
 	public static final Block OAK_WAXED_PLANKS_SLAB = reg(new SlabBlock("oak_waxed_planks_slab", OAK_WAXED_PLANKS).setBurnable());

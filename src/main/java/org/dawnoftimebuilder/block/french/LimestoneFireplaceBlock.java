@@ -104,6 +104,8 @@ public class LimestoneFireplaceBlock extends SidedPlaneConnectibleBlock {
 	public void onProjectileCollision(World worldIn, BlockState state, BlockRayTraceResult hit, Entity projectile) {
 		if (!worldIn.isRemote && projectile instanceof AbstractArrowEntity) {
 			AbstractArrowEntity abstractarrowentity = (AbstractArrowEntity)projectile;
+			if(state.get(VERTICAL_CONNECTION) == DoTBBlockStateProperties.VerticalConnection.BOTH || state.get(VERTICAL_CONNECTION) == DoTBBlockStateProperties.VerticalConnection.UNDER)
+				return;
 			if (abstractarrowentity.isBurning() && !state.get(BURNING) && !state.get(WATERLOGGED)) {
 				BlockPos pos = hit.getPos();
 				worldIn.setBlockState(pos, state.with(BlockStateProperties.LIT, true), 10);

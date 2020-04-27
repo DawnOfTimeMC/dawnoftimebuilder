@@ -2,49 +2,64 @@ package org.dawnoftimebuilder.block.templates;
 
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
+import net.minecraft.item.ItemStack;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.EnumProperty;
+import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
+import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.Direction;
+import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
+import net.minecraft.world.World;
+import org.dawnoftimebuilder.block.IBlockClimbingPlant;
 import org.dawnoftimebuilder.block.IBlockPillar;
 import org.dawnoftimebuilder.utils.DoTBBlockStateProperties;
 
 import javax.annotation.Nonnull;
+import java.util.Random;
 
-public class BeamBlock extends WaterloggedBlock implements IBlockPillar {
+public class BeamBlock extends WaterloggedBlock implements IBlockPillar, IBlockClimbingPlant {
 
-	private static final BooleanProperty BOTTOM = BlockStateProperties.BOTTOM;
+	public static final BooleanProperty BOTTOM = BlockStateProperties.BOTTOM;
 	public static final EnumProperty<Direction.Axis> MAIN_AXIS = BlockStateProperties.AXIS;
 	private static final BooleanProperty SUBAXIS_X = DoTBBlockStateProperties.SUBAXIS_X;
 	private static final BooleanProperty SUBAXIS_Z = DoTBBlockStateProperties.SUBAXIS_Z;
+	public static final EnumProperty<DoTBBlockStateProperties.ClimbingPlant> CLIMBING_PLANT = DoTBBlockStateProperties.CLIMBING_PLANT;
+	private static final IntegerProperty AGE = DoTBBlockStateProperties.AGE_0_6;
 	private static final VoxelShape[] SHAPES = makeShapes();
 
 	public BeamBlock(String name, Material materialIn, float hardness, float resistance) {
 		super(name, materialIn, hardness, resistance);
-		this.setDefaultState(this.getStateContainer().getBaseState().with(BOTTOM, false).with(MAIN_AXIS, Direction.Axis.Y).with(SUBAXIS_X, false).with(SUBAXIS_Z, false));
+		this.setDefaultState(this.getStateContainer().getBaseState().with(BOTTOM, false).with(MAIN_AXIS, Direction.Axis.Y).with(SUBAXIS_X, false).with(SUBAXIS_Z, false).with(CLIMBING_PLANT, DoTBBlockStateProperties.ClimbingPlant.NONE).with(AGE, 0));
 	}
 
 	@Override
 	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
 		super.fillStateContainer(builder);
-		builder.add(BOTTOM, MAIN_AXIS, SUBAXIS_X, SUBAXIS_Z);
+		builder.add(BOTTOM, MAIN_AXIS, SUBAXIS_X, SUBAXIS_Z, CLIMBING_PLANT, AGE);
 	}
 
 	@Override
 	public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
+		return SHAPES[getShapeIndex(state)];
+	}
+
+	protected int getShapeIndex(BlockState state){
 		switch (state.get(MAIN_AXIS)) {
 			case Z:
-				return SHAPES[state.get(SUBAXIS_X) ? 2 : 1];
+				return state.get(SUBAXIS_X) ? 2 : 1;
 			case X:
-				return SHAPES[state.get(SUBAXIS_Z) ? 2 : 0];
+				return state.get(SUBAXIS_Z) ? 2 : 0;
 			default:
 				break;
 		}
@@ -52,7 +67,7 @@ public class BeamBlock extends WaterloggedBlock implements IBlockPillar {
 		if (state.get(BOTTOM)) index += 1;
 		if (state.get(SUBAXIS_X)) index += 2;
 		if (state.get(SUBAXIS_Z)) index += 4;
-		return SHAPES[index];
+		return index;
 	}
 
 	/**
@@ -98,10 +113,15 @@ public class BeamBlock extends WaterloggedBlock implements IBlockPillar {
 
 	@Override
 	public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
-		return this.getCurrentState(super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos), worldIn, currentPos);
+		stateIn = super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+		stateIn = this.getCurrentState(stateIn, worldIn, currentPos);
+		if(!this.canHavePlant(stateIn) && !stateIn.get(CLIMBING_PLANT).hasNoPlant()){
+			return this.removePlant(stateIn, worldIn.getWorld(), currentPos, ItemStack.EMPTY);
+		}
+		return stateIn;
 	}
 
-	private BlockState getCurrentState(BlockState stateIn, IWorld worldIn, BlockPos pos){
+	public BlockState getCurrentState(BlockState stateIn, IWorld worldIn, BlockPos pos){
 		boolean subAxisX = false;
 		boolean subAxisZ = false;
 		if (canConnect(worldIn, pos, Direction.EAST) || canConnect(worldIn, pos, Direction.WEST)) subAxisX = true;
@@ -118,12 +138,12 @@ public class BeamBlock extends WaterloggedBlock implements IBlockPillar {
 
 	private boolean canConnect(IWorld world, BlockPos pos, Direction direction) {
 		BlockState state = world.getBlockState(pos.offset(direction));
-		return isConnectibleBeam(state, direction) || isConnectibleSupportBeam(state, direction) || isConnectibleBeam(state, direction) || isConnectibleSupportBeam(state, direction);
+		return isConnectibleBeam(state, direction) || isConnectibleSupportBeam(state, direction);
 	}
 
 	private boolean isConnectibleBeam(BlockState state, Direction direction) {
 		if (state.getBlock() instanceof BeamBlock)
-			return state.get(MAIN_AXIS) == direction.getAxis() || state.get(MAIN_AXIS) == Direction.Axis.Y;
+			return state.get(MAIN_AXIS) == direction.getAxis();
 		else return false;
 	}
 
@@ -131,6 +151,31 @@ public class BeamBlock extends WaterloggedBlock implements IBlockPillar {
 		if (state.getBlock() instanceof SupportBeamBlock)
 			return state.get(SupportBeamBlock.HORIZONTAL_AXIS) == direction.getAxis();
 		else return false;
+	}
+
+	@Override
+	public boolean ticksRandomly(BlockState state) {
+		return !state.get(CLIMBING_PLANT).hasNoPlant();
+	}
+
+	@Override
+	public void tick(BlockState state, World worldIn, BlockPos pos, Random random) {
+		this.tickPlant(state, worldIn, pos, random);
+	}
+
+	@Override
+	public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit){
+		return this.harvestPlant(state, worldIn, pos, player, handIn);
+	}
+
+	@Override
+	public boolean canHavePlant(BlockState state) {
+		return !state.get(WATERLOGGED) && !state.get(BOTTOM);
+	}
+
+	@Override
+	public BlockRenderLayer getRenderLayer() {
+		return BlockRenderLayer.CUTOUT;
 	}
 
 	@Nonnull
