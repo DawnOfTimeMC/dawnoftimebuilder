@@ -59,8 +59,9 @@ public enum CreativeInventoryCategories {
 			Item.getItemFromBlock(OAK_BEAM),
 			Item.getItemFromBlock(OAK_SUPPORT_BEAM),
 			Item.getItemFromBlock(OAK_SUPPORT_SLAB),
+			Item.getItemFromBlock(OAK_WAXED_PERGOLA),
 			Item.getItemFromBlock(SMALL_OAK_SHUTTERS),
-			//DoTBItemsRegistry.OAK_SHUTTERS,
+			Item.getItemFromBlock(OAK_SHUTTERS),
 			Item.getItemFromBlock(LATTICE_GLASS),
 			Item.getItemFromBlock(LATTICE_GLASS_PANE),
 			Item.getItemFromBlock(LATTICE_OAK_WINDOW),
@@ -83,7 +84,9 @@ public enum CreativeInventoryCategories {
 			//DoTBItemsRegistry.IRON_PLATE_ARMOR_CHEST,
 			//DoTBItemsRegistry.IRON_PLATE_ARMOR_LEGS,
 			//DoTBItemsRegistry.IRON_PLATE_ARMOR_FEET,
-			DoTBItemsRegistry.WAX
+			DoTBItemsRegistry.WAX,
+			DoTBItemsRegistry.GRAPE,
+			DoTBItemsRegistry.GRAPE_SEEDS
 	),
 
 	JAPANESE("Japanese",
@@ -220,9 +223,11 @@ public enum CreativeInventoryCategories {
 	),
 
 	ROMAN("Roman",
-			Item.getItemFromBlock(OCHRE_ROOF_TILES)
+			Item.getItemFromBlock(OCHRE_ROOF_TILES),
 			//Item.getItemFromBlock(OCHRE_ROOF_TILES_SLAB),
-			//Item.getItemFromBlock(SANDSTONE_COLUMN)
+			//Item.getItemFromBlock(SANDSTONE_COLUMN),
+			DoTBItemsRegistry.GRAPE,
+			DoTBItemsRegistry.GRAPE_SEEDS
 	),
 
 	EGYPTIAN("Egyptian",

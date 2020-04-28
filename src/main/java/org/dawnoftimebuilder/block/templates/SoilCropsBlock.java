@@ -7,7 +7,7 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
 import net.minecraftforge.common.PlantType;
-import org.dawnoftimebuilder.items.general.SoilSeedsItem;
+import org.dawnoftimebuilder.items.templates.SoilSeedsItem;
 import org.dawnoftimebuilder.block.IBlockCustomItem;
 import static org.dawnoftimebuilder.DawnOfTimeBuilder.MOD_ID;
 

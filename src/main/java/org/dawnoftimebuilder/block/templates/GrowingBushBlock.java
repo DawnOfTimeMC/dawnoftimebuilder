@@ -17,16 +17,11 @@ import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
-import net.minecraft.world.storage.loot.LootContext;
-import net.minecraft.world.storage.loot.LootParameterSets;
-import net.minecraft.world.storage.loot.LootParameters;
-import net.minecraft.world.storage.loot.LootTable;
 import net.minecraftforge.common.PlantType;
 import org.dawnoftimebuilder.utils.DoTBBlockStateProperties;
+import org.dawnoftimebuilder.utils.DoTBBlockUtils;
 
 import java.util.List;
-
-import static org.dawnoftimebuilder.DawnOfTimeBuilder.MOD_ID;
 
 public class GrowingBushBlock extends SoilCropsBlock {
 
@@ -96,22 +91,9 @@ public class GrowingBushBlock extends SoilCropsBlock {
 				boolean holdShears = itemStackHand.getItem() == Items.SHEARS;
 				if(holdShears) itemStackHand.damageItem(1, playerIn, (p_220287_1_) -> p_220287_1_.sendBreakAnimation(hand));
 
-				ServerWorld serverWorld = (ServerWorld)worldIn;
-				LootTable table = serverWorld.getServer().getLootTableManager().getLootTableFromLocation(new ResourceLocation(MOD_ID + ":blocks/" + this.name));
-				LootContext.Builder builder = (new LootContext.Builder(serverWorld))
-						.withRandom(serverWorld.rand)
-						.withParameter(LootParameters.BLOCK_STATE, state)
-						.withParameter(LootParameters.POSITION, pos)
-						.withParameter(LootParameters.TOOL, itemStackHand);
-				LootContext lootcontext = builder.build(LootParameterSets.BLOCK);
-				List<ItemStack> drops = table.generate(lootcontext);
-				for(ItemStack drop : drops){
-					int quantity = drop.getCount();
-					if(holdShears) quantity = (int) Math.floor(quantity * 1.5D);
-					for (int i = 0; i < quantity; i++){
-						spawnAsEntity(worldIn, pos, new ItemStack(drop.getItem(), 1));
-					}
-				}
+				List<ItemStack> drops = DoTBBlockUtils.getLootList((ServerWorld)worldIn, state, pos, itemStackHand, this.name);
+				DoTBBlockUtils.dropLootFromList(worldIn, pos, drops, holdShears ? 1.5F : 1.0F);
+
 				worldIn.playSound(null, pos, SoundEvents.BLOCK_GRASS_BREAK, SoundCategory.BLOCKS, 1.0F, 1.0F);
 				worldIn.setBlockState(pos, state.with(AGE, 3).with(CUT, true));
 				return true;

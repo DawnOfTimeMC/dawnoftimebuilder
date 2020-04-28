@@ -1,9 +1,10 @@
 package org.dawnoftimebuilder.registries;
 
 import net.minecraft.item.Item;
-import net.minecraftforge.event.RegistryEvent;
-import org.dawnoftimebuilder.items.general.DoTBItem;
+import org.dawnoftimebuilder.items.templates.ClimbingPlantSeeds;
+import org.dawnoftimebuilder.items.templates.DoTBItem;
 import org.dawnoftimebuilder.items.japanese.TachiSwordItem;
+import org.dawnoftimebuilder.utils.DoTBBlockStateProperties;
 
 import java.util.*;
 
@@ -29,6 +30,8 @@ public class DoTBItemsRegistry {
 	public static final Item GREY_TILE = reg(new DoTBItem("grey_tile"));
 	public static final Item GREY_CLAY_TILE = reg(new DoTBItem("grey_clay_tile"));
 	public static final Item MULBERRY_LEAVES = reg(new DoTBItem("mulberry_leaves"));
+	public static final Item GRAPE = reg(new DoTBItem("grape"));
+	public static final Item GRAPE_SEEDS = reg(new ClimbingPlantSeeds("grape_seeds", DoTBBlockStateProperties.ClimbingPlant.GRAPE));
 	public static final Item TACHI_SWORD = reg(new TachiSwordItem());
 	/*
 	public static final Item IRON_PLATE_ARMOR_HEAD = reg(new ItemIronPlateArmor(EntityEquipmentSlot.HEAD));

@@ -1,4 +1,4 @@
-package org.dawnoftimebuilder.items.general;
+package org.dawnoftimebuilder.items.templates;
 
 import net.minecraft.item.Item;
 
