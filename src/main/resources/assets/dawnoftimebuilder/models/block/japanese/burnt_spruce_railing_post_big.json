@@ -1,6 +1,6 @@
 {
 	"textures": {
-		"1": "dawnoftimebuilder:block/burnt_spruce_wall_top",
+		"1": "dawnoftimebuilder:block/charred_spruce_wall_top",
 		"slab": "block/spruce_log",
 		"particle": "block/spruce_log"
 	},

@@ -1,8 +1,0 @@
-{
-    "variants": {
-        "axis=y":  { "model": "dawnoftimebuilder:block/japanese/burnt_stripped_spruce_log" },
-        "axis=z":   { "model": "dawnoftimebuilder:block/japanese/burnt_stripped_spruce_log", "x": 90 },
-        "axis=x":   { "model": "dawnoftimebuilder:block/japanese/burnt_stripped_spruce_log", "x": 90, "y": 90 },
-        "axis=none": { "model": "dawnoftimebuilder:block/japanese/burnt_stripped_spruce_log" }
-    }
-}

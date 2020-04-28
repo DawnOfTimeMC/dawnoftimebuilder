@@ -1,0 +1,61 @@
+{
+	"credit": "Made with Blockbench",
+	"textures": {
+		"1": "dawnoftimebuilder:block/oak_beam",
+		"2": "dawnoftimebuilder:block/grape_y_stage_5",
+		"particle": "dawnoftimebuilder:block/oak_beam"
+	},
+	"elements": [
+		{
+			"from": [0.9, 0, 0],
+			"to": [0.9, 16, 16],
+			"faces": {
+				"east": {"uv": [16, 0, 8, 8], "texture": "#2"},
+				"west": {"uv": [8, 0, 16, 8], "texture": "#2"}
+			}
+		},
+		{
+			"from": [0, 0, 0.9],
+			"to": [16, 16, 0.9],
+			"faces": {
+				"north": {"uv": [0, 0, 8, 8], "texture": "#2"},
+				"south": {"uv": [8, 0, 0, 8], "texture": "#2"}
+			}
+		},
+		{
+			"from": [15.1, 0, 0],
+			"to": [15.1, 16, 16],
+			"faces": {
+				"east": {"uv": [0, 0, 8, 8], "texture": "#2"},
+				"west": {"uv": [8, 0, 0, 8], "texture": "#2"}
+			}
+		},
+		{
+			"from": [0, 0, 15.1],
+			"to": [16, 16, 15.1],
+			"faces": {
+				"north": {"uv": [8, 8, 0, 16], "texture": "#2"},
+				"south": {"uv": [0, 8, 8, 16], "texture": "#2"}
+			}
+		},
+		{
+			"from": [0, 4, 4],
+			"to": [16, 12, 12],
+			"faces": {
+				"north": {"uv": [0, 4, 8, 8], "texture": "#1"},
+				"east": {"uv": [0, 0, 4, 4], "texture": "#1", "cullface": "east"},
+				"south": {"uv": [0, 4, 8, 8], "texture": "#1"},
+				"west": {"uv": [0, 0, 4, 4], "texture": "#1", "cullface": "west"},
+				"up": {"uv": [0, 4, 8, 8], "texture": "#1"},
+				"down": {"uv": [0, 4, 8, 8], "texture": "#1"}
+			}
+		}
+	],
+	"groups": [0, 1, 2, 3,
+		{
+			"name": "oak_beam_x",
+			"origin": [8, 8, 8],
+			"children": [4]
+		}
+	]
+}

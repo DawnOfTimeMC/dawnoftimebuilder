@@ -1,7 +1,0 @@
-{
-    "variants": {
-        "slab=bottom": { "model": "dawnoftimebuilder:block/french/oak_waxed_planks_slab_bottom" },
-        "slab=top": { "model": "dawnoftimebuilder:block/french/oak_waxed_planks_slab_top" },
-        "slab=double": { "model": "dawnoftimebuilder:block/french/oak_waxed_planks" }
-    }
-}
