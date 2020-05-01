@@ -84,6 +84,7 @@ public class SlabBlock extends WaterloggedBlock {
 		}
 	}
 
+	@Override
 	public boolean isReplaceable(BlockState state, BlockItemUseContext useContext) {
 		ItemStack itemstack = useContext.getItem();
 		DoTBBlockStateProperties.Slab slab = state.get(SLAB);

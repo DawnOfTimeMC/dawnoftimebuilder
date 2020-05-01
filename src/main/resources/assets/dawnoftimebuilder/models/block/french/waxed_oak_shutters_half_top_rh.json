@@ -1,0 +1,33 @@
+{
+	"ambientocclusion": false,
+	"textures": {
+		"texture": "dawnoftimebuilder:block/waxed_oak_shutters_upper",
+		"particle": "dawnoftimebuilder:block/waxed_oak_shutters_upper",
+		"side": "dawnoftimebuilder:block/waxed_oak_shutters_side"
+	},
+	"elements": [
+		{
+			"from": [0, 0, 0],
+			"to": [3, 16, 16],
+			"faces": {
+				"north": {"uv": [9, 0, 6, 16], "texture": "#side", "cullface": "north"},
+				"east": {"uv": [0, 0, 16, 16], "texture": "#texture"},
+				"south": {"uv": [3, 16, 0, 0], "texture": "#side", "cullface": "south"},
+				"west": {"uv": [16, 0, 0, 16], "texture": "#texture", "cullface": "west"},
+				"up": {"uv": [12, 0, 9, 16], "rotation": 180, "texture": "#side", "cullface": "up"}
+			}
+		},
+		{
+			"from": [-2.1213, 9, 13.87867],
+			"to": [2.1213, 12, 18.12127],
+			"rotation": {"angle": 45, "axis": "y", "origin": [0, -2.5, 16]},
+			"faces": {
+				"north": {"uv": [16, 0, 12, 3], "texture": "#side"},
+				"south": {"uv": [16, 0, 12, 3], "texture": "#side"},
+				"west": {"uv": [16, 0, 12, 3], "texture": "#side"},
+				"up": {"uv": [16, 3, 12, 7], "texture": "#side"},
+				"down": {"uv": [16, 7, 12, 11], "texture": "#side"}
+			}
+		}
+	]
+}

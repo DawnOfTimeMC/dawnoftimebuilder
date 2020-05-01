@@ -1,8 +1,8 @@
 {
   "replace": false,
   "values": [
-    "dawnoftimebuilder:oak_waxed_fence",
-    "dawnoftimebuilder:burnt_spruce_fence",
-    "dawnoftimebuilder:burnt_spruce_railing"
+    "dawnoftimebuilder:waxed_oak_fence",
+    "dawnoftimebuilder:charred_spruce_fence",
+    "dawnoftimebuilder:charred_spruce_railing"
   ]
 }

@@ -1,8 +1,0 @@
-{
-    "parent": "block/upper_slab",
-    "textures": {
-        "bottom": "dawnoftimebuilder:block/waxed_oak_planks",
-        "top": "dawnoftimebuilder:block/waxed_oak_planks",
-        "side": "dawnoftimebuilder:block/waxed_oak_planks"
-    }
-}

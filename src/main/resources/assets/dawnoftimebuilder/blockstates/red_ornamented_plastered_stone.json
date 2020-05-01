@@ -1,7 +1,5 @@
 {
     "variants": {
-        "": [
-            { "model": "dawnoftimebuilder:block/pre_colombian/red_ornamented_plastered_stone" }
-        ]
+        "": { "model": "dawnoftimebuilder:block/precolumbian/red_ornamented_plastered_stone" }
     }
 }

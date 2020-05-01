@@ -1,5 +1,5 @@
 {
-    "parent": "block/upper_slab",
+    "parent": "block/slab_top",
     "textures": {
         "bottom": "dawnoftimebuilder:block/path_bottom",
         "top": "dawnoftimebuilder:block/path_stepping_stones_top_1",

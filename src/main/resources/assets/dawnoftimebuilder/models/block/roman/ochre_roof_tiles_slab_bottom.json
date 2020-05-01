@@ -1,5 +1,5 @@
 {
-    "parent": "block/half_slab",
+    "parent": "block/slab",
     "textures": {
         "bottom": "dawnoftimebuilder:block/ochre_roof_tiles",
         "top": "dawnoftimebuilder:block/ochre_roof_tiles",

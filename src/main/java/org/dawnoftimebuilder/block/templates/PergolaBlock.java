@@ -70,7 +70,7 @@ public class PergolaBlock extends BeamBlock {
 	public BlockState getCurrentState(BlockState stateIn, IWorld worldIn, BlockPos pos) {
 		stateIn = super.getCurrentState(stateIn, worldIn, pos);
 		boolean isBottom = stateIn.get(BOTTOM);
-		return stateIn.with(BOTTOM, isBottom && !worldIn.getBlockState(pos.down()).isIn(BlockTags.DIRT_LIKE));
+		return stateIn.with(BOTTOM, isBottom && !worldIn.getBlockState(pos.down()).isIn(BlockTags.DIRT_LIKE) && !stateIn.get(CLIMBING_PLANT).hasNoPlant());
 	}
 
 	@Override

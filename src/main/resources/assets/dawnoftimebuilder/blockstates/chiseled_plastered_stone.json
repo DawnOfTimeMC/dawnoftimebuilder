@@ -1,10 +1,10 @@
 {
     "variants": {
-        "variant=chiseled_plastered_stone": { "model": "dawnoftimebuilder:block/pre_colombian/chiseled_plastered_stone" },
-        "variant=ornamented_chiseled_plastered_stone": { "model": "dawnoftimebuilder:block/pre_colombian/ornamented_chiseled_plastered_stone" },
-        "variant=green_chiseled_plastered_stone": { "model": "dawnoftimebuilder:block/pre_colombian/green_chiseled_plastered_stone" },
-        "variant=green_ornamented_chiseled_plastered_stone": { "model": "dawnoftimebuilder:block/pre_colombian/green_ornamented_chiseled_plastered_stone" },
-        "variant=red_chiseled_plastered_stone": { "model": "dawnoftimebuilder:block/pre_colombian/red_chiseled_plastered_stone" },
-        "variant=red_ornamented_chiseled_plastered_stone": { "model": "dawnoftimebuilder:block/pre_colombian/red_ornamented_chiseled_plastered_stone" }
+        "variant=chiseled_plastered_stone": { "model": "dawnoftimebuilder:block/precolumbian/chiseled_plastered_stone" },
+        "variant=ornamented_chiseled_plastered_stone": { "model": "dawnoftimebuilder:block/precolumbian/ornamented_chiseled_plastered_stone" },
+        "variant=green_chiseled_plastered_stone": { "model": "dawnoftimebuilder:block/precolumbian/green_chiseled_plastered_stone" },
+        "variant=green_ornamented_chiseled_plastered_stone": { "model": "dawnoftimebuilder:block/precolumbian/green_ornamented_chiseled_plastered_stone" },
+        "variant=red_chiseled_plastered_stone": { "model": "dawnoftimebuilder:block/precolumbian/red_chiseled_plastered_stone" },
+        "variant=red_ornamented_chiseled_plastered_stone": { "model": "dawnoftimebuilder:block/precolumbian/red_ornamented_chiseled_plastered_stone" }
     }
 }

@@ -11,7 +11,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.ForgeHooks;
-import org.dawnoftimebuilder.items.templates.ClimbingPlantSeeds;
 import org.dawnoftimebuilder.utils.DoTBBlockStateProperties;
 import org.dawnoftimebuilder.utils.DoTBBlockUtils;
 
@@ -35,7 +34,6 @@ public interface IBlockClimbingPlant {
 	default void tickPlant(BlockState stateIn, World worldIn, BlockPos pos, Random random){
 		//TODO Add the 3 probabilities to Config file and the required light level.
 		if (!worldIn.isRemote) {
-
 			if (stateIn.get(CLIMBING_PLANT).hasNoPlant()) return;
 			if (!worldIn.isAreaLoaded(pos, 2)) return; // Forge: prevent loading unloaded chunks when checking neighbor's light
 
@@ -87,8 +85,9 @@ public interface IBlockClimbingPlant {
 		if(player.isSneaking()) return false;
 		ItemStack heldItemStack = player.getHeldItem(handIn);
 		if(this.canHavePlant(stateIn) && stateIn.get(CLIMBING_PLANT).hasNoPlant()){
-			if(heldItemStack.getItem() instanceof ClimbingPlantSeeds){
-				stateIn = stateIn.with(CLIMBING_PLANT, ((ClimbingPlantSeeds) heldItemStack.getItem()).getClimbingPlant());
+			DoTBBlockStateProperties.ClimbingPlant plant = DoTBBlockStateProperties.ClimbingPlant.getFromItem(heldItemStack.getItem());
+			if(!plant.hasNoPlant()){
+				stateIn = stateIn.with(CLIMBING_PLANT, plant);
 				if (!player.abilities.isCreativeMode) {
 					heldItemStack.shrink(1);
 				}

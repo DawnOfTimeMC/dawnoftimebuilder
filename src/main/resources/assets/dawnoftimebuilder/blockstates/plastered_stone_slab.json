@@ -1,7 +1,7 @@
 {
     "variants": {
-        "slab=bottom": { "model": "dawnoftimebuilder:block/pre_colombian/plastered_stone_slab_bottom" },
-        "slab=top": { "model": "dawnoftimebuilder:block/pre_colombian/plastered_stone_slab_top" },
-        "slab=double": { "model": "dawnoftimebuilder:block/pre_colombian/plastered_stone_slab_double" }
+        "slab=bottom": { "model": "dawnoftimebuilder:block/precolumbian/plastered_stone_slab_bottom" },
+        "slab=top": { "model": "dawnoftimebuilder:block/precolumbian/plastered_stone_slab_top" },
+        "slab=double": { "model": "dawnoftimebuilder:block/precolumbian/plastered_stone_slab_double" }
     }
 }

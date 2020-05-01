@@ -31,7 +31,7 @@ public class PlateBlock extends WaterloggedBlock {
 		this(name, Properties.create(materialIn).hardnessAndResistance(hardness, resistance));
 	}
 
-	public PlateBlock(String name, net.minecraft.block.Block block) {
+	public PlateBlock(String name, Block block) {
 		this(name, Properties.from(block));
 	}
 
@@ -82,14 +82,14 @@ public class PlateBlock extends WaterloggedBlock {
 	 * 11 : SW Inner <p/>
 	 */
 	private static VoxelShape[] makeShapes() {
-		VoxelShape vs_north_flat = net.minecraft.block.Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 8.0D);
-		VoxelShape vs_east_flat = net.minecraft.block.Block.makeCuboidShape(8.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D);
-		VoxelShape vs_south_flat = net.minecraft.block.Block.makeCuboidShape(0.0D, 0.0D, 8.0D, 16.0D, 16.0D, 16.0D);
-		VoxelShape vs_west_flat = net.minecraft.block.Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 8.0D, 16.0D, 16.0D);
-		VoxelShape vs_nw_corner = net.minecraft.block.Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 8.0D, 16.0D, 8.0D);
-		VoxelShape vs_ne_corner = net.minecraft.block.Block.makeCuboidShape(8.0D, 0.0D, 0.0D, 16.0D, 16.0D, 8.0D);
-		VoxelShape vs_se_corner = net.minecraft.block.Block.makeCuboidShape(8.0D, 0.0D, 8.0D, 16.0D, 16.0D, 16.0D);
-		VoxelShape vs_sw_corner = net.minecraft.block.Block.makeCuboidShape(0.0D, 0.0D, 8.0D, 8.0D, 16.0D, 16.0D);
+		VoxelShape vs_north_flat = makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 8.0D);
+		VoxelShape vs_east_flat = makeCuboidShape(8.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D);
+		VoxelShape vs_south_flat = makeCuboidShape(0.0D, 0.0D, 8.0D, 16.0D, 16.0D, 16.0D);
+		VoxelShape vs_west_flat = makeCuboidShape(0.0D, 0.0D, 0.0D, 8.0D, 16.0D, 16.0D);
+		VoxelShape vs_nw_corner = makeCuboidShape(0.0D, 0.0D, 0.0D, 8.0D, 16.0D, 8.0D);
+		VoxelShape vs_ne_corner = makeCuboidShape(8.0D, 0.0D, 0.0D, 16.0D, 16.0D, 8.0D);
+		VoxelShape vs_se_corner = makeCuboidShape(8.0D, 0.0D, 8.0D, 16.0D, 16.0D, 16.0D);
+		VoxelShape vs_sw_corner = makeCuboidShape(0.0D, 0.0D, 8.0D, 8.0D, 16.0D, 16.0D);
 		return new VoxelShape[]{
 				vs_nw_corner,
 				vs_north_flat,
@@ -108,7 +108,7 @@ public class PlateBlock extends WaterloggedBlock {
 
 	@Override
 	public BlockState getStateForPlacement(BlockItemUseContext context) {
-		BlockState state = super.getStateForPlacement(context);
+		BlockState state = super.getStateForPlacement(context).with(FACING, context.getPlacementHorizontalFacing());
 		return state.with(SHAPE, getShapeProperty(state, context.getWorld(), context.getPos()));
 	}
 

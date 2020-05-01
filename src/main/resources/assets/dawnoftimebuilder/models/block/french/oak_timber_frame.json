@@ -1,6 +1,0 @@
-{
-    "parent": "block/cube_all",
-    "textures": {
-        "all": "dawnoftimebuilder:block/oak_timber_frame"
-    }
-}

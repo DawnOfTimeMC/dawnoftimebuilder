@@ -1,5 +1,5 @@
 {
-    "parent": "block/half_slab",
+    "parent": "block/slab",
     "textures": {
         "bottom": "dawnoftimebuilder:block/thatch_wheat",
         "top": "dawnoftimebuilder:block/thatch_wheat",

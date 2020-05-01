@@ -1,15 +1,18 @@
 package org.dawnoftimebuilder.client.gui.creative;
 
 import net.minecraft.item.Item;
+import net.minecraft.util.text.TranslationTextComponent;
 import org.dawnoftimebuilder.registries.DoTBItemsRegistry;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+
+import static org.dawnoftimebuilder.DawnOfTimeBuilder.MOD_ID;
 import static org.dawnoftimebuilder.registries.DoTBBlocksRegistry.*;
 
 public enum CreativeInventoryCategories {
 
-	GENERAL("General",
+	GENERAL("general",
 			Item.getItemFromBlock(PATH_DIRT),
 			Item.getItemFromBlock(PATH_DIRT_SLAB),
 			Item.getItemFromBlock(PATH_GRAVEL),
@@ -29,12 +32,14 @@ public enum CreativeInventoryCategories {
 			Item.getItemFromBlock(THATCH_BAMBOO_STAIRS),
 			Item.getItemFromBlock(THATCH_BAMBOO_SLAB),
 			Item.getItemFromBlock(THATCH_BAMBOO_EDGE),
+			Item.getItemFromBlock(OAK_PLANKS_PLATE),
+			Item.getItemFromBlock(OAK_PLANKS_EDGE),
 			Item.getItemFromBlock(FIREPLACE),
 			Item.getItemFromBlock(IRON_CHAIN)
 			//Item.getItemFromBlock(STONE_FRIEZE)
 	),
 
-	FRENCH("French",
+	FRENCH("french",
 			Item.getItemFromBlock(PATH_DIRT),
 			Item.getItemFromBlock(PATH_DIRT_SLAB),
 			Item.getItemFromBlock(PATH_GRAVEL),
@@ -47,24 +52,25 @@ public enum CreativeInventoryCategories {
 			Item.getItemFromBlock(THATCH_WHEAT_EDGE),
 			Item.getItemFromBlock(RAMMED_DIRT),
 			Item.getItemFromBlock(FRAMED_RAMMED_DIRT),
-			Item.getItemFromBlock(OAK_TIMBER_FRAME),
-			Item.getItemFromBlock(OAK_TIMBER_FRAME_CORNER),
-			Item.getItemFromBlock(OAK_TIMBER_FRAME_PILLAR),
-			Item.getItemFromBlock(OAK_WAXED_PLANKS),
-			Item.getItemFromBlock(OAK_WAXED_PLANKS_STAIRS),
-			Item.getItemFromBlock(OAK_WAXED_PLANKS_SLAB),
-			Item.getItemFromBlock(OAK_WAXED_PLANKS_EDGE),
-			Item.getItemFromBlock(OAK_WAXED_FENCE),
-			Item.getItemFromBlock(OAK_PLANKS_EDGE),
-			Item.getItemFromBlock(OAK_BEAM),
-			Item.getItemFromBlock(OAK_SUPPORT_BEAM),
-			Item.getItemFromBlock(OAK_SUPPORT_SLAB),
-			Item.getItemFromBlock(OAK_WAXED_PERGOLA),
-			Item.getItemFromBlock(SMALL_OAK_SHUTTERS),
-			Item.getItemFromBlock(OAK_SHUTTERS),
+			Item.getItemFromBlock(WAXED_OAK_TIMBER_FRAME),
+			Item.getItemFromBlock(WAXED_OAK_TIMBER_FRAME_CORNER),
+			Item.getItemFromBlock(WAXED_OAK_TIMBER_FRAME_PILLAR),
+			Item.getItemFromBlock(WAXED_OAK_PLANKS),
+			Item.getItemFromBlock(WAXED_OAK_PLANKS_STAIRS),
+			Item.getItemFromBlock(WAXED_OAK_PLANKS_SLAB),
+			Item.getItemFromBlock(WAXED_OAK_PLANKS_PLATE),
+			Item.getItemFromBlock(WAXED_OAK_PLANKS_EDGE),
+			Item.getItemFromBlock(WAXED_OAK_FENCE),
+			Item.getItemFromBlock(WAXED_OAK_BEAM),
+			Item.getItemFromBlock(WAXED_OAK_SUPPORT_BEAM),
+			Item.getItemFromBlock(WAXED_OAK_SUPPORT_SLAB),
+			Item.getItemFromBlock(WAXED_OAK_PERGOLA),
+			Item.getItemFromBlock(WAXED_OAK_LATTICE),
+			Item.getItemFromBlock(WAXED_OAK_SMALL_SHUTTERS),
+			Item.getItemFromBlock(WAXED_OAK_SHUTTERS),
 			Item.getItemFromBlock(LATTICE_GLASS),
 			Item.getItemFromBlock(LATTICE_GLASS_PANE),
-			Item.getItemFromBlock(LATTICE_OAK_WINDOW),
+			Item.getItemFromBlock(LATTICE_WAXED_OAK_WINDOW),
 			Item.getItemFromBlock(COBBLED_LIMESTONE),
 			Item.getItemFromBlock(LIMESTONE_BRICK),
 			Item.getItemFromBlock(LIMESTONE_BRICK_STAIRS),
@@ -89,7 +95,7 @@ public enum CreativeInventoryCategories {
 			DoTBItemsRegistry.GRAPE_SEEDS
 	),
 
-	JAPANESE("Japanese",
+	JAPANESE("japanese",
 			Item.getItemFromBlock(PATH_DIRT),
 			Item.getItemFromBlock(PATH_DIRT_SLAB),
 			Item.getItemFromBlock(PATH_GRAVEL),
@@ -101,7 +107,7 @@ public enum CreativeInventoryCategories {
 			Item.getItemFromBlock(THATCH_BAMBOO_SLAB),
 			Item.getItemFromBlock(THATCH_BAMBOO_EDGE),
 			Item.getItemFromBlock(RAMMED_DIRT),
-			Item.getItemFromBlock(CHARRED_SRUCE_FOUNDATION),
+			Item.getItemFromBlock(CHARRED_SPRUCE_FOUNDATION),
 			Item.getItemFromBlock(BURNT_SPRUCE_PLANKS),
 			Item.getItemFromBlock(BURNT_STRIPPED_SPRUCE_LOG),
 			Item.getItemFromBlock(BURNT_SPRUCE_FOUNDATION_SLAB),
@@ -182,7 +188,7 @@ public enum CreativeInventoryCategories {
 			//DoTBItemsRegistry.RAIJIN_ARMOR_FEET
 	),
 
-	PRE_COLOMBIAN("Pre-Columbian",
+	PRE_COLOMBIAN("pre-columbian",
 			Item.getItemFromBlock(PATH_DIRT),
 			Item.getItemFromBlock(PATH_DIRT_SLAB),
 			Item.getItemFromBlock(PATH_GRAVEL),
@@ -222,7 +228,7 @@ public enum CreativeInventoryCategories {
 			Item.getItemFromBlock(MAIZE)
 	),
 
-	ROMAN("Roman",
+	ROMAN("roman",
 			Item.getItemFromBlock(OCHRE_ROOF_TILES),
 			//Item.getItemFromBlock(OCHRE_ROOF_TILES_SLAB),
 			//Item.getItemFromBlock(SANDSTONE_COLUMN),
@@ -230,7 +236,7 @@ public enum CreativeInventoryCategories {
 			DoTBItemsRegistry.GRAPE_SEEDS
 	),
 
-	EGYPTIAN("Egyptian",
+	EGYPTIAN("egyptian",
 			Item.getItemFromBlock(OCHRE_ROOF_TILES)//To be deleted
 			//DoTBItemsRegistry.PHARAOH_ARMOR_HEAD,
 			//DoTBItemsRegistry.PHARAOH_ARMOR_CHEST,
@@ -242,7 +248,7 @@ public enum CreativeInventoryCategories {
 	private ArrayList<Item> items = new ArrayList<>();
 
 	CreativeInventoryCategories(String name, Item... items) {
-		this.name = name;
+		this.name = new TranslationTextComponent("gui." + MOD_ID + "." + name).getString();
 		this.items.addAll(Arrays.asList(items));
 	}
 

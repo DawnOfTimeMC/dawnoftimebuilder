@@ -8,12 +8,12 @@
         "seamless=true,variant=flat_roof_tiles": { "model": "dawnoftimebuilder:block/french/flat_roof_tiles" },
         "seamless=false,variant=thatch_wheat": { "model": "dawnoftimebuilder:block/general/thatch_wheat" },
         "seamless=true,variant=thatch_wheat": { "model": "dawnoftimebuilder:block/general/thatch_wheat" },
-        "seamless=false,variant=plastered_stone": { "model": "dawnoftimebuilder:block/pre_colombian/plastered_stone_slab_double" },
-        "seamless=true,variant=plastered_stone": { "model": "dawnoftimebuilder:block/pre_colombian/plastered_stone_slab_double" },
+        "seamless=false,variant=plastered_stone": { "model": "dawnoftimebuilder:block/precolumbian/plastered_stone_slab_double" },
+        "seamless=true,variant=plastered_stone": { "model": "dawnoftimebuilder:block/precolumbian/plastered_stone_slab_double" },
         "seamless=false,variant=limestone_brick": { "model": "dawnoftimebuilder:block/french/limestone_brick" },
         "seamless=true,variant=limestone_brick": { "model": "dawnoftimebuilder:block/french/limestone_brick" },
-        "seamless=false,variant=red_plastered_stone": {"model": "dawnoftimebuilder:block/pre_colombian/red_plastered_stone_slab_double"},
-        "seamless=true,variant=red_plastered_stone": {"model":  "dawnoftimebuilder:pre_colombian/red_plastered_stone_slab_double"},
+        "seamless=false,variant=red_plastered_stone": {"model": "dawnoftimebuilder:block/precolumbian/red_plastered_stone_slab_double"},
+        "seamless=true,variant=red_plastered_stone": {"model":  "dawnoftimebuilder:precolumbian/red_plastered_stone_slab_double"},
         "seamless=false,variant=thatch_bamboo": { "model": "dawnoftimebuilder:block/general/thatch_bamboo" },
         "seamless=true,variant=thatch_bamboo": { "model": "dawnoftimebuilder:block/general/thatch_bamboo" }
     }

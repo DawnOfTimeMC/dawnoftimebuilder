@@ -1,10 +1,15 @@
 package org.dawnoftimebuilder.utils;
 
+import net.minecraft.block.Blocks;
+import net.minecraft.item.Item;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.EnumProperty;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.world.World;
+
+import static org.dawnoftimebuilder.registries.DoTBItemsRegistry.CLEMATIS_SEEDS;
+import static org.dawnoftimebuilder.registries.DoTBItemsRegistry.GRAPE_SEEDS;
 
 public class DoTBBlockStateProperties {
 
@@ -254,6 +259,13 @@ public class DoTBBlockStateProperties {
 
         public boolean hasNoPlant(){
             return this == NONE;
+        }
+
+        public static ClimbingPlant getFromItem(Item item){
+            if(item == GRAPE_SEEDS) return GRAPE;
+            if(item == CLEMATIS_SEEDS) return CLEMATIS;
+            if(item == Blocks.VINE.asItem()) return VINE;
+            return NONE;
         }
     }
 }

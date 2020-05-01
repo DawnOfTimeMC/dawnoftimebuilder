@@ -1,7 +1,0 @@
-{
-	"parent": "dawnoftimebuilder:block/general/small_plate",
-	"textures": {
-		"side": "block/planks_oak",
-		"frieze": "block/planks_oak"
-	}
-}
