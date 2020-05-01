@@ -116,6 +116,7 @@ public class DoTBBlocksRegistry {
 	public static final Block SMALL_TATAMI_MAT = reg(new SmallTatamiMatBlock());
 	public static final Block SMALL_TATAMI_FLOOR = reg(new SmallTatamiFloorBlock());
 	public static final Block CHARRED_SPRUCE_FOUNDATION = reg(new BlockDoTB("charred_spruce_foundation",Material.WOOD,2.5F, 5.0F));
+	public static final Block CHARRED_SPRUCE_BOARDS =reg(new BlockDoTB("charred_spruce_boards", Material.WOOD, 2.5F, 5.0F));
 	public static final Block BURNT_SPRUCE_LOG_COVERED = reg(new RotatedPillarBlockDoTB("burnt_spruce_log_covered", Material.WOOD, 3.0F, 5.0F).setBurnable());
 	public static final Block BURNT_SPRUCE_BEAM = reg(new BeamBlock("burnt_spruce_beam", Material.WOOD, 2.5F, 5.0F).setBurnable());
 	public static final Block BURNT_SPRUCE_FOUNDATION = reg(new BlockDoTB("burnt_spruce_foundation", Material.WOOD, 2.5F, 5.0F).setBurnable());
