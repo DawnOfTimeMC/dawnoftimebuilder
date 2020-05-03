@@ -8,7 +8,7 @@ import net.minecraft.util.BlockRenderLayer;
 import org.dawnoftimebuilder.block.IBlockCustomItem;
 import org.dawnoftimebuilder.block.precolumbian.BlockPlasteredStoneWindow;
 import org.dawnoftimebuilder.block.templates.*;
-import org.dawnoftimebuilder.block.french.*;
+import org.dawnoftimebuilder.block.german.*;
 import org.dawnoftimebuilder.block.general.*;
 import org.dawnoftimebuilder.block.japanese.*;
 import org.dawnoftimebuilder.block.precolumbian.BlockSerpentSculptedColumn;
@@ -49,7 +49,7 @@ public class DoTBBlocksRegistry {
 	public static final Block THATCH_BAMBOO_EDGE = reg(new EdgeBlock("thatch_bamboo_edge", THATCH_BAMBOO).setBurnable());
 	public static final Block FIREPLACE = reg(new FireplaceBlock());
 
-	//French
+	//German
 	public static final Block COBBLED_LIMESTONE = reg(new BlockDoTB("cobbled_limestone", Material.ROCK, 2.0F, 6.0F));
 	public static final Block FLAT_ROOF_TILES = reg(new BlockDoTB("flat_roof_tiles", Material.ROCK,1.5F, 5.0F));
 	public static final Block FLAT_ROOF_TILES_STAIRS = reg(new StairsBlockDoTB("flat_roof_tiles_stairs", FLAT_ROOF_TILES));

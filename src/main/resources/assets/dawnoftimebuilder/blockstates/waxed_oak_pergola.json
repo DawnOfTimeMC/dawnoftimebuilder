@@ -2,21 +2,21 @@
 	"multipart": [
 		{
 			"when": { "axis": "y" },
-			"apply": { "model": "dawnoftimebuilder:block/french/waxed_oak_pergola_y"}
+			"apply": { "model": "dawnoftimebuilder:block/german/waxed_oak_pergola_y"}
 		},
 		{
 			"when": {"OR": [
 				{"axis": "x", "subaxis_z": "false" },
 				{"axis": "y", "subaxis_x": "true", "subaxis_z": "false" }
 			]},
-			"apply": { "model": "dawnoftimebuilder:block/french/waxed_oak_pergola_x"}
+			"apply": { "model": "dawnoftimebuilder:block/german/waxed_oak_pergola_x"}
 		},
 		{
 			"when": {"OR": [
 				{"axis": "z", "subaxis_x": "false" },
 				{"axis": "y", "subaxis_z": "true", "subaxis_x": "false" }
 			]},
-			"apply": { "model": "dawnoftimebuilder:block/french/waxed_oak_pergola_x", "y": 90}
+			"apply": { "model": "dawnoftimebuilder:block/german/waxed_oak_pergola_x", "y": 90}
 		},
 		{
 			"when": {"OR": [
@@ -24,11 +24,11 @@
 				{"axis": "z", "subaxis_x": "true" },
 				{"subaxis_z": "true", "subaxis_x": "true" }
 			]},
-			"apply": { "model": "dawnoftimebuilder:block/french/waxed_oak_pergola_x_z"}
+			"apply": { "model": "dawnoftimebuilder:block/german/waxed_oak_pergola_x_z"}
 		},
 		{
 			"when": { "bottom": "true" },
-			"apply": { "model": "dawnoftimebuilder:block/french/waxed_oak_pergola_bottom"}
+			"apply": { "model": "dawnoftimebuilder:block/german/waxed_oak_pergola_bottom"}
 		},
 		{
 			"when": { "climbing_plant": "grape", "age": "0", "axis": "y"},
@@ -168,6 +168,57 @@
 			]},
 			"apply": [
 				{ "model": "dawnoftimebuilder:block/general/grape/grape_x_z_stage_6"}
+			]
+		},
+		{
+			"when": { "climbing_plant": "vine", "age": "0", "axis": "y"},
+			"apply": [
+				{ "model": "dawnoftimebuilder:block/general/vine/vine_y_stage_0"}
+			]
+		},
+		{
+			"when": { "climbing_plant": "vine", "age": "1", "axis": "y"},
+			"apply": [
+				{ "model": "dawnoftimebuilder:block/general/vine/vine_y_stage_1"}
+			]
+		},
+		{
+			"when": { "climbing_plant": "vine", "age": "2", "axis": "y"},
+			"apply": [
+				{ "model": "dawnoftimebuilder:block/general/vine/vine_y_stage_2"}
+			]
+		},
+		{
+			"when": {"OR": [
+				{ "climbing_plant": "vine", "age": "0", "axis": "x" },
+				{ "climbing_plant": "vine", "age": "0", "axis": "z" },
+				{ "climbing_plant": "vine", "age": "0", "subaxis_x": "true" },
+				{ "climbing_plant": "vine", "age": "0", "subaxis_z": "true" }
+			]},
+			"apply": [
+				{ "model": "dawnoftimebuilder:block/general/vine/vine_x_z_stage_0"}
+			]
+		},
+		{
+			"when": {"OR": [
+				{ "climbing_plant": "vine", "age": "1", "axis": "x" },
+				{ "climbing_plant": "vine", "age": "1", "axis": "z" },
+				{ "climbing_plant": "vine", "age": "1", "subaxis_x": "true" },
+				{ "climbing_plant": "vine", "age": "1", "subaxis_z": "true" }
+			]},
+			"apply": [
+				{ "model": "dawnoftimebuilder:block/general/vine/vine_x_z_stage_1"}
+			]
+		},
+		{
+			"when": {"OR": [
+				{ "climbing_plant": "vine", "age": "2", "axis": "x" },
+				{ "climbing_plant": "vine", "age": "2", "axis": "z" },
+				{ "climbing_plant": "vine", "age": "2", "subaxis_x": "true" },
+				{ "climbing_plant": "vine", "age": "2", "subaxis_z": "true" }
+			]},
+			"apply": [
+				{ "model": "dawnoftimebuilder:block/general/vine/vine_x_z_stage_2"}
 			]
 		}
 	]

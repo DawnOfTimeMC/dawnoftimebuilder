@@ -51,6 +51,22 @@ public enum CreativeInventoryCategories {
 			Item.getItemFromBlock(THATCH_WHEAT_SLAB),
 			Item.getItemFromBlock(THATCH_WHEAT_EDGE),
 			Item.getItemFromBlock(RAMMED_DIRT),
+			DoTBItemsRegistry.GRAPE,
+			DoTBItemsRegistry.GRAPE_SEEDS
+	),
+
+	GERMAN("german",
+			Item.getItemFromBlock(PATH_DIRT),
+			Item.getItemFromBlock(PATH_DIRT_SLAB),
+			Item.getItemFromBlock(PATH_GRAVEL),
+			Item.getItemFromBlock(PATH_GRAVEL_SLAB),
+			Item.getItemFromBlock(PATH_COBBLED),
+			Item.getItemFromBlock(PATH_COBBLED_SLAB),
+			Item.getItemFromBlock(THATCH_WHEAT),
+			Item.getItemFromBlock(THATCH_WHEAT_STAIRS),
+			Item.getItemFromBlock(THATCH_WHEAT_SLAB),
+			Item.getItemFromBlock(THATCH_WHEAT_EDGE),
+			Item.getItemFromBlock(RAMMED_DIRT),
 			Item.getItemFromBlock(FRAMED_RAMMED_DIRT),
 			Item.getItemFromBlock(WAXED_OAK_TIMBER_FRAME),
 			Item.getItemFromBlock(WAXED_OAK_TIMBER_FRAME_CORNER),
@@ -90,9 +106,7 @@ public enum CreativeInventoryCategories {
 			//DoTBItemsRegistry.IRON_PLATE_ARMOR_CHEST,
 			//DoTBItemsRegistry.IRON_PLATE_ARMOR_LEGS,
 			//DoTBItemsRegistry.IRON_PLATE_ARMOR_FEET,
-			DoTBItemsRegistry.WAX,
-			DoTBItemsRegistry.GRAPE,
-			DoTBItemsRegistry.GRAPE_SEEDS
+			DoTBItemsRegistry.WAX
 	),
 
 	JAPANESE("japanese",
@@ -238,7 +252,7 @@ public enum CreativeInventoryCategories {
 	),
 
 	EGYPTIAN("egyptian",
-			Item.getItemFromBlock(OCHRE_ROOF_TILES)//To be deleted
+			Item.getItemFromBlock(OCHRE_ROOF_TILES)//TODO should be removed when CustomArmors are done
 			//DoTBItemsRegistry.PHARAOH_ARMOR_HEAD,
 			//DoTBItemsRegistry.PHARAOH_ARMOR_CHEST,
 			//DoTBItemsRegistry.PHARAOH_ARMOR_LEGS,

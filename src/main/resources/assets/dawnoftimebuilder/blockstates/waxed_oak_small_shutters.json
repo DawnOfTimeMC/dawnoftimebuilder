@@ -1,0 +1,28 @@
+{
+    "variants": {
+        "facing=south,hinge=left,open_position=closed":  { "model": "dawnoftimebuilder:block/german/waxed_oak_small_shutters_closed" },
+        "facing=south,hinge=right,open_position=closed":  { "model": "dawnoftimebuilder:block/german/waxed_oak_small_shutters_closed_rh" },
+        "facing=south,hinge=left,open_position=half":  { "model": "dawnoftimebuilder:block/german/waxed_oak_small_shutters_half" },
+        "facing=south,hinge=right,open_position=half":  { "model": "dawnoftimebuilder:block/german/waxed_oak_small_shutters_half_rh" },
+        "facing=south,hinge=left,open_position=full":  { "model": "dawnoftimebuilder:block/german/waxed_oak_small_shutters_full" },
+        "facing=south,hinge=right,open_position=full":  { "model": "dawnoftimebuilder:block/german/waxed_oak_small_shutters_full_rh" },
+        "facing=west,hinge=left,open_position=closed":  { "model": "dawnoftimebuilder:block/german/waxed_oak_small_shutters_closed", "y": 90 },
+        "facing=west,hinge=right,open_position=closed":  { "model": "dawnoftimebuilder:block/german/waxed_oak_small_shutters_closed_rh", "y": 90 },
+        "facing=west,hinge=left,open_position=half":  { "model": "dawnoftimebuilder:block/german/waxed_oak_small_shutters_half", "y": 90 },
+        "facing=west,hinge=right,open_position=half":  { "model": "dawnoftimebuilder:block/german/waxed_oak_small_shutters_half_rh", "y": 90 },
+        "facing=west,hinge=left,open_position=full":  { "model": "dawnoftimebuilder:block/german/waxed_oak_small_shutters_full", "y": 90 },
+        "facing=west,hinge=right,open_position=full":  { "model": "dawnoftimebuilder:block/german/waxed_oak_small_shutters_full_rh", "y": 90 },
+        "facing=north,hinge=left,open_position=closed":  { "model": "dawnoftimebuilder:block/german/waxed_oak_small_shutters_closed", "y": 180 },
+        "facing=north,hinge=right,open_position=closed":  { "model": "dawnoftimebuilder:block/german/waxed_oak_small_shutters_closed_rh", "y": 180 },
+        "facing=north,hinge=left,open_position=half":  { "model": "dawnoftimebuilder:block/german/waxed_oak_small_shutters_half", "y": 180 },
+        "facing=north,hinge=right,open_position=half":  { "model": "dawnoftimebuilder:block/german/waxed_oak_small_shutters_half_rh", "y": 180 },
+        "facing=north,hinge=left,open_position=full":  { "model": "dawnoftimebuilder:block/german/waxed_oak_small_shutters_full", "y": 180 },
+        "facing=north,hinge=right,open_position=full":  { "model": "dawnoftimebuilder:block/german/waxed_oak_small_shutters_full_rh", "y": 180 },
+        "facing=east,hinge=left,open_position=closed":  { "model": "dawnoftimebuilder:block/german/waxed_oak_small_shutters_closed", "y": 270 },
+        "facing=east,hinge=right,open_position=closed":  { "model": "dawnoftimebuilder:block/german/waxed_oak_small_shutters_closed_rh", "y": 270 },
+        "facing=east,hinge=left,open_position=half":  { "model": "dawnoftimebuilder:block/german/waxed_oak_small_shutters_half", "y": 270 },
+        "facing=east,hinge=right,open_position=half":  { "model": "dawnoftimebuilder:block/german/waxed_oak_small_shutters_half_rh", "y": 270 },
+        "facing=east,hinge=left,open_position=full":  { "model": "dawnoftimebuilder:block/german/waxed_oak_small_shutters_full", "y": 270 },
+        "facing=east,hinge=right,open_position=full":  { "model": "dawnoftimebuilder:block/german/waxed_oak_small_shutters_full_rh", "y": 270 }
+    }
+}

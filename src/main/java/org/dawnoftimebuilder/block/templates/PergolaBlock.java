@@ -3,6 +3,7 @@ package org.dawnoftimebuilder.block.templates;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.material.Material;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Hand;
@@ -13,6 +14,7 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
+import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import org.dawnoftimebuilder.utils.DoTBBlockStateProperties;
 
@@ -90,5 +92,10 @@ public class PergolaBlock extends BeamBlock {
 	@Override
 	public DoTBBlockStateProperties.PillarConnection getBlockPillarConnection(BlockState state) {
 		return DoTBBlockStateProperties.PillarConnection.SIX_PX;
+	}
+
+	@Override
+	public boolean isLadder(BlockState state, IWorldReader world, BlockPos pos, LivingEntity entity) {
+		return !state.get(CLIMBING_PLANT).hasNoPlant();
 	}
 }

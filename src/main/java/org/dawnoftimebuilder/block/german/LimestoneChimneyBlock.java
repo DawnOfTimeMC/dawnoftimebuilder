@@ -1,4 +1,4 @@
-package org.dawnoftimebuilder.block.french;
+package org.dawnoftimebuilder.block.german;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;

@@ -1,0 +1,18 @@
+{
+	"textures": {
+		"slab": "dawnoftimebuilder:block/waxed_oak_support",
+		"particle": "dawnoftimebuilder:block/waxed_oak_support"
+	},
+	"elements": [
+		{
+			"from": [5, 0, 5],
+			"to": [11, 12, 11],
+			"faces": {
+				"north": {"uv": [4, 4, 12, 16], "texture": "#slab"},
+				"east": {"uv": [4, 4, 12, 16], "texture": "#slab"},
+				"south": {"uv": [4, 4, 12, 16], "texture": "#slab"},
+				"west": {"uv": [4, 4, 12, 16], "texture": "#slab"}
+			}
+		}
+	]
+}

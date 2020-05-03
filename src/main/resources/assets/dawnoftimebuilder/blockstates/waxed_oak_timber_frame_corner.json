@@ -1,7 +1,7 @@
 {
     "variants": {
-        "axis=y":  { "model": "dawnoftimebuilder:block/french/waxed_oak_timber_frame_corner" },
-        "axis=z":   { "model": "dawnoftimebuilder:block/french/waxed_oak_timber_frame_corner", "x": 90 },
-        "axis=x":   { "model": "dawnoftimebuilder:block/french/waxed_oak_timber_frame_corner", "x": 90, "y": 90 }
+        "axis=y":  { "model": "dawnoftimebuilder:block/german/waxed_oak_timber_frame_corner" },
+        "axis=z":   { "model": "dawnoftimebuilder:block/german/waxed_oak_timber_frame_corner", "x": 90 },
+        "axis=x":   { "model": "dawnoftimebuilder:block/german/waxed_oak_timber_frame_corner", "x": 90, "y": 90 }
     }
 }
