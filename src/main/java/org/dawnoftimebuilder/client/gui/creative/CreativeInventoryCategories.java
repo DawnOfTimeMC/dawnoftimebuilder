@@ -84,6 +84,8 @@ public enum CreativeInventoryCategories {
 			Item.getItemFromBlock(WAXED_OAK_LATTICE),
 			Item.getItemFromBlock(WAXED_OAK_SMALL_SHUTTERS),
 			Item.getItemFromBlock(WAXED_OAK_SHUTTERS),
+			Item.getItemFromBlock(WAXED_OAK_DOOR),
+			Item.getItemFromBlock(WAXED_OAK_TRAPDOOR),
 			Item.getItemFromBlock(LATTICE_GLASS),
 			Item.getItemFromBlock(LATTICE_GLASS_PANE),
 			Item.getItemFromBlock(LATTICE_WAXED_OAK_WINDOW),
@@ -102,10 +104,10 @@ public enum CreativeInventoryCategories {
 			Item.getItemFromBlock(FLAT_ROOF_TILES_EDGE),
 			Item.getItemFromBlock(IRON_PORTCULLIS),
 			Item.getItemFromBlock(IRON_CHAIN),
-			//DoTBItemsRegistry.IRON_PLATE_ARMOR_HEAD,
-			//DoTBItemsRegistry.IRON_PLATE_ARMOR_CHEST,
-			//DoTBItemsRegistry.IRON_PLATE_ARMOR_LEGS,
-			//DoTBItemsRegistry.IRON_PLATE_ARMOR_FEET,
+			DoTBItemsRegistry.IRON_PLATE_ARMOR_HEAD,
+			DoTBItemsRegistry.IRON_PLATE_ARMOR_CHEST,
+			DoTBItemsRegistry.IRON_PLATE_ARMOR_LEGS,
+			DoTBItemsRegistry.IRON_PLATE_ARMOR_FEET,
 			DoTBItemsRegistry.WAX
 	),
 
@@ -175,7 +177,7 @@ public enum CreativeInventoryCategories {
 			Item.getItemFromBlock(CAST_IRON_TEAPOT_DECORATED),
 			Item.getItemFromBlock(CAST_IRON_TEACUP_DECORATED),
 			//Item.getItemFromBlock(BAMBOO_DRYING_TRAY),
-			//DoTBItemsRegistry.CAMELLIA_SEED,
+			Item.getItemFromBlock(CAMELLIA),
 			//DoTBItemsRegistry.CAMELLIA_LEAVES,
 			DoTBItemsRegistry.TEA_LEAVES,
 			//DoTBItemsRegistry.MULBERRY,
@@ -188,19 +190,19 @@ public enum CreativeInventoryCategories {
 			//DoTBItemsRegistry.STICK_BUNDLE,
 			Item.getItemFromBlock(RICE),
 			DoTBItemsRegistry.TACHI_SWORD,
-			DoTBItemsRegistry.BAMBOO_HAT
-			//DoTBItemsRegistry.JAPANESE_LIGHT_ARMOR_HEAD,
-			//DoTBItemsRegistry.JAPANESE_LIGHT_ARMOR_CHEST,
-			//DoTBItemsRegistry.JAPANESE_LIGHT_ARMOR_LEGS,
-			//DoTBItemsRegistry.JAPANESE_LIGHT_ARMOR_FEET,
-			//DoTBItemsRegistry.O_YOROI_ARMOR_HEAD,
-			//DoTBItemsRegistry.O_YOROI_ARMOR_CHEST,
-			//DoTBItemsRegistry.O_YOROI_ARMOR_LEGS,
-			//DoTBItemsRegistry.O_YOROI_ARMOR_FEET,
-			//DoTBItemsRegistry.RAIJIN_ARMOR_HEAD,
-			//DoTBItemsRegistry.RAIJIN_ARMOR_CHEST,
-			//DoTBItemsRegistry.RAIJIN_ARMOR_LEGS,
-			//DoTBItemsRegistry.RAIJIN_ARMOR_FEET
+			DoTBItemsRegistry.BAMBOO_HAT,
+			DoTBItemsRegistry.JAPANESE_LIGHT_ARMOR_HEAD,
+			DoTBItemsRegistry.JAPANESE_LIGHT_ARMOR_CHEST,
+			DoTBItemsRegistry.JAPANESE_LIGHT_ARMOR_LEGS,
+			DoTBItemsRegistry.JAPANESE_LIGHT_ARMOR_FEET,
+			DoTBItemsRegistry.O_YOROI_ARMOR_HEAD,
+			DoTBItemsRegistry.O_YOROI_ARMOR_CHEST,
+			DoTBItemsRegistry.O_YOROI_ARMOR_LEGS,
+			DoTBItemsRegistry.O_YOROI_ARMOR_FEET,
+			DoTBItemsRegistry.RAIJIN_ARMOR_HEAD,
+			DoTBItemsRegistry.RAIJIN_ARMOR_CHEST,
+			DoTBItemsRegistry.RAIJIN_ARMOR_LEGS,
+			DoTBItemsRegistry.RAIJIN_ARMOR_FEET
 	),
 
 	PRE_COLOMBIAN("pre-columbian",
@@ -252,23 +254,28 @@ public enum CreativeInventoryCategories {
 	),
 
 	EGYPTIAN("egyptian",
-			Item.getItemFromBlock(OCHRE_ROOF_TILES)//TODO should be removed when CustomArmors are done
-			//DoTBItemsRegistry.PHARAOH_ARMOR_HEAD,
-			//DoTBItemsRegistry.PHARAOH_ARMOR_CHEST,
-			//DoTBItemsRegistry.PHARAOH_ARMOR_LEGS,
-			//DoTBItemsRegistry.PHARAOH_ARMOR_FEET
-			);
+			DoTBItemsRegistry.PHARAOH_ARMOR_HEAD,
+			DoTBItemsRegistry.PHARAOH_ARMOR_CHEST,
+			DoTBItemsRegistry.PHARAOH_ARMOR_LEGS,
+			DoTBItemsRegistry.PHARAOH_ARMOR_FEET
+	);
 
-	private String name;
-	private ArrayList<Item> items = new ArrayList<>();
+	private final String name;
+	private final String translation;
+	private final ArrayList<Item> items = new ArrayList<>();
 
 	CreativeInventoryCategories(String name, Item... items) {
-		this.name = new TranslationTextComponent("gui." + MOD_ID + "." + name).getString();
+		this.name = name;
+		this.translation = new TranslationTextComponent("gui." + MOD_ID + "." + name).getString();
 		this.items.addAll(Arrays.asList(items));
 	}
 
 	public String getName() {
 		return this.name;
+	}
+
+	public String getTranslation() {
+		return this.translation;
 	}
 
 	public ArrayList<Item> getItems(){

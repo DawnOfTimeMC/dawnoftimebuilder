@@ -2,6 +2,7 @@ package org.dawnoftimebuilder.block.templates;
 
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
@@ -20,6 +21,7 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
+import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import org.dawnoftimebuilder.block.IBlockClimbingPlant;
 import org.dawnoftimebuilder.block.IBlockPillar;
@@ -182,5 +184,10 @@ public class BeamBlock extends WaterloggedBlock implements IBlockPillar, IBlockC
 	@Override
 	public DoTBBlockStateProperties.PillarConnection getBlockPillarConnection(BlockState state) {
 		return DoTBBlockStateProperties.PillarConnection.TEN_PX;
+	}
+
+	@Override
+	public boolean isLadder(BlockState state, IWorldReader world, BlockPos pos, LivingEntity entity) {
+		return !state.get(CLIMBING_PLANT).hasNoPlant();
 	}
 }

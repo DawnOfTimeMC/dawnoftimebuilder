@@ -18,8 +18,7 @@ public class CategoryButton extends Button {
         super(x, y, 32, 28, "", pressable);
         this.category = category;
         this.selected = false;
-        //Warning! .toLowerCase() replace "-" with "_", don't forget to name the logo.png file properly
-        this.buttonIconLoc = new ResourceLocation(MOD_ID, "textures/gui/logo_" + category.name().toLowerCase() + ".png");
+        this.buttonIconLoc = new ResourceLocation(MOD_ID, "textures/gui/logo_" + category.getName() + ".png");
     }
 
     public CreativeInventoryCategories getCategory() {

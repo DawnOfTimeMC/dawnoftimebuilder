@@ -1,6 +1,7 @@
 package org.dawnoftimebuilder.registries;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.TrapDoorBlock;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
@@ -67,6 +68,8 @@ public class DoTBBlocksRegistry {
 	public static final Block LIMESTONE_BRICK_WALL = reg(new WallBlockDoTB("limestone_brick_wall", Material.ROCK, 1.5F, 6.0F));
 	public static final Block LIMESTONE_CHIMNEY = reg(new LimestoneChimneyBlock());
 	public static final Block LIMESTONE_FIREPLACE = reg(new LimestoneFireplaceBlock());
+	public static final Block WAXED_OAK_DOOR = reg(new DoorBlockDoTB("waxed_oak_door", Material.WOOD, 2.0F, 3.0F).setBurnable());
+	public static final Block WAXED_OAK_TRAPDOOR = reg(new TrapDoorBlockDoTB("waxed_oak_trapdoor", Material.WOOD, 2.0F, 3.0F).setBurnable());
 	public static final Block WAXED_OAK_SHUTTERS = reg(new ShuttersBlock("waxed_oak_shutters", Material.WOOD, 2.0F, 2.0F).setBurnable());
 	public static final Block WAXED_OAK_BEAM = reg(new BeamBlock("waxed_oak_beam", Material.WOOD, 2.0F, 3.0F).setBurnable());
 	public static final Block WAXED_OAK_SUPPORT_BEAM = reg(new SupportBeamBlock("waxed_oak_support_beam", Material.WOOD, 2.0F, 3.0F).setBurnable());

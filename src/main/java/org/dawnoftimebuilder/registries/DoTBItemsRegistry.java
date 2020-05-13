@@ -1,11 +1,17 @@
 package org.dawnoftimebuilder.registries;
 
 import net.minecraft.item.Item;
-import org.dawnoftimebuilder.items.templates.DoTBItem;
+import org.dawnoftimebuilder.items.egyptian.PharaohArmorItem;
+import org.dawnoftimebuilder.items.german.IronPlateArmorItem;
+import org.dawnoftimebuilder.items.japanese.JapaneseLightArmorItem;
+import org.dawnoftimebuilder.items.japanese.OYoroiArmorItem;
+import org.dawnoftimebuilder.items.japanese.RaijinArmorItem;
+import org.dawnoftimebuilder.items.templates.ItemDoTB;
 import org.dawnoftimebuilder.items.japanese.TachiSwordItem;
-import org.dawnoftimebuilder.utils.DoTBBlockStateProperties;
 
 import java.util.*;
+
+import static net.minecraft.inventory.EquipmentSlotType.*;
 
 public class DoTBItemsRegistry {
 	/*
@@ -17,44 +23,45 @@ public class DoTBItemsRegistry {
 	public static final List<Item> ITEMS = new ArrayList<>();
 
 	//General
-	public static final Item SILK_WORMS = reg(new DoTBItem("silk_worms"));
+	public static final Item SILK_WORMS = reg(new ItemDoTB("silk_worms"));
 	//public static final Item SILK_WORMS_HATCHERY = reg(new DoTBItemCanBeDried("silk_worm_hatchery", 1,60, SILK_WORMS, 1));
-	public static final Item SILK_WORM_EGGS = reg(new DoTBItem("silk_worm_eggs"));
-	public static final Item SILK_COCOONS = reg(new DoTBItem("silk_cocoons"));
-	public static final Item SILK = reg(new DoTBItem("silk"));
-	public static final Item TEA_LEAVES = reg(new DoTBItem("tea_leaves"));
+	public static final Item SILK_WORM_EGGS = reg(new ItemDoTB("silk_worm_eggs"));
+	public static final Item SILK_COCOONS = reg(new ItemDoTB("silk_cocoons"));
+	public static final Item SILK = reg(new ItemDoTB("silk"));
+	public static final Item TEA_LEAVES = reg(new ItemDoTB("tea_leaves"));
 	//public static final Item CAMELLIA_LEAVES = reg(new DoTBItemCanBeDried("camellia_leaves", 1,40, TEA_LEAVES, 1));
-	public static final Item WAX = reg(new DoTBItem("wax"));
-	public static final Item BAMBOO_HAT = reg(new DoTBItem("bamboo_hat"));
-	public static final Item GREY_TILE = reg(new DoTBItem("grey_tile"));
-	public static final Item GREY_CLAY_TILE = reg(new DoTBItem("grey_clay_tile"));
-	public static final Item MULBERRY_LEAVES = reg(new DoTBItem("mulberry_leaves"));
-	public static final Item GRAPE = reg(new DoTBItem("grape"));
-	public static final Item GRAPE_SEEDS = reg(new DoTBItem("grape_seeds"));
-	public static final Item CLEMATIS_SEEDS = reg(new DoTBItem("clematis_seeds"));
-	public static final Item TACHI_SWORD = reg(new TachiSwordItem());
-	/*
-	public static final Item IRON_PLATE_ARMOR_HEAD = reg(new ItemIronPlateArmor(EntityEquipmentSlot.HEAD));
-	public static final Item IRON_PLATE_ARMOR_CHEST = reg(new ItemIronPlateArmor(EntityEquipmentSlot.CHEST));
-	public static final Item IRON_PLATE_ARMOR_LEGS = reg(new ItemIronPlateArmor(EntityEquipmentSlot.HEAD));
-	public static final Item IRON_PLATE_ARMOR_FEET = reg(new ItemIronPlateArmor(EntityEquipmentSlot.LEGS));
-	public static final Item PHARAOH_ARMOR_HEAD = reg(new ItemPharaohArmor(EntityEquipmentSlot.HEAD));
-	public static final Item PHARAOH_ARMOR_CHEST = reg(new ItemPharaohArmor(EntityEquipmentSlot.CHEST));
-	public static final Item PHARAOH_ARMOR_LEGS = reg(new ItemPharaohArmor(EntityEquipmentSlot.LEGS));
-	public static final Item PHARAOH_ARMOR_FEET = reg(new ItemPharaohArmor(EntityEquipmentSlot.FEET));
-	public static final Item JAPANESE_LIGHT_ARMOR_HEAD = reg(new ItemJapaneseLightArmor(EntityEquipmentSlot.HEAD));
-	public static final Item JAPANESE_LIGHT_ARMOR_CHEST = reg(new ItemJapaneseLightArmor(EntityEquipmentSlot.CHEST));
-	public static final Item JAPANESE_LIGHT_ARMOR_LEGS = reg(new ItemJapaneseLightArmor(EntityEquipmentSlot.LEGS));
-	public static final Item JAPANESE_LIGHT_ARMOR_FEET = reg(new ItemJapaneseLightArmor(EntityEquipmentSlot.FEET));
-	public static final Item O_YOROI_ARMOR_HEAD = reg(new ItemOYoroiArmor(EntityEquipmentSlot.HEAD));
-	public static final Item O_YOROI_ARMOR_CHEST = reg(new ItemOYoroiArmor(EntityEquipmentSlot.CHEST));
-	public static final Item O_YOROI_ARMOR_LEGS = reg(new ItemOYoroiArmor(EntityEquipmentSlot.LEGS));
-	public static final Item O_YOROI_ARMOR_FEET = reg(new ItemOYoroiArmor(EntityEquipmentSlot.FEET));
-	public static final Item RAIJIN_ARMOR_HEAD = reg(new ItemRaijinArmor(EntityEquipmentSlot.HEAD));
-	public static final Item RAIJIN_ARMOR_CHEST = reg(new ItemRaijinArmor(EntityEquipmentSlot.CHEST));
-	public static final Item RAIJIN_ARMOR_LEGS = reg(new ItemRaijinArmor(EntityEquipmentSlot.LEGS));
-	public static final Item RAIJIN_ARMOR_FEET = reg(new ItemRaijinArmor(EntityEquipmentSlot.FEET));
-	*/
+	public static final Item WAX = reg(new ItemDoTB("wax"));
+	public static final Item BAMBOO_HAT = reg(new ItemDoTB("bamboo_hat"));//TODO import the model!!
+	public static final Item GREY_TILE = reg(new ItemDoTB("grey_tile"));
+	public static final Item GREY_CLAY_TILE = reg(new ItemDoTB("grey_clay_tile"));
+	public static final Item MULBERRY_LEAVES = reg(new ItemDoTB("mulberry_leaves"));
+	public static final Item GRAPE = reg(new ItemDoTB("grape"));
+	public static final Item GRAPE_SEEDS = reg(new ItemDoTB("grape_seeds"));
+	public static final Item CLEMATIS_SEEDS = reg(new ItemDoTB("clematis_seeds"));
+	public static final Item TACHI_SWORD = reg(new TachiSwordItem());//TODO import the model!!
+
+	//Armors
+	public static final Item IRON_PLATE_ARMOR_HEAD = reg(new IronPlateArmorItem(HEAD));
+	public static final Item IRON_PLATE_ARMOR_CHEST = reg(new IronPlateArmorItem(CHEST));
+	public static final Item IRON_PLATE_ARMOR_LEGS = reg(new IronPlateArmorItem(LEGS));
+	public static final Item IRON_PLATE_ARMOR_FEET = reg(new IronPlateArmorItem(FEET));
+	public static final Item PHARAOH_ARMOR_HEAD = reg(new PharaohArmorItem(HEAD));
+	public static final Item PHARAOH_ARMOR_CHEST = reg(new PharaohArmorItem(CHEST));
+	public static final Item PHARAOH_ARMOR_LEGS = reg(new PharaohArmorItem(LEGS));
+	public static final Item PHARAOH_ARMOR_FEET = reg(new PharaohArmorItem(FEET));
+	public static final Item JAPANESE_LIGHT_ARMOR_HEAD = reg(new JapaneseLightArmorItem(HEAD));
+	public static final Item JAPANESE_LIGHT_ARMOR_CHEST = reg(new JapaneseLightArmorItem(CHEST));
+	public static final Item JAPANESE_LIGHT_ARMOR_LEGS = reg(new JapaneseLightArmorItem(LEGS));
+	public static final Item JAPANESE_LIGHT_ARMOR_FEET = reg(new JapaneseLightArmorItem(FEET));
+	public static final Item O_YOROI_ARMOR_HEAD = reg(new OYoroiArmorItem(HEAD));
+	public static final Item O_YOROI_ARMOR_CHEST = reg(new OYoroiArmorItem(CHEST));
+	public static final Item O_YOROI_ARMOR_LEGS = reg(new OYoroiArmorItem(LEGS));
+	public static final Item O_YOROI_ARMOR_FEET = reg(new OYoroiArmorItem(FEET));
+	public static final Item RAIJIN_ARMOR_HEAD = reg(new RaijinArmorItem(HEAD));
+	public static final Item RAIJIN_ARMOR_CHEST = reg(new RaijinArmorItem(CHEST));
+	public static final Item RAIJIN_ARMOR_LEGS = reg(new RaijinArmorItem(LEGS));
+	public static final Item RAIJIN_ARMOR_FEET = reg(new RaijinArmorItem(FEET));
+
 	private static Item reg(Item item){
 		ITEMS.add(item);
 		return item;

@@ -1,20 +1,18 @@
 package org.dawnoftimebuilder.block.templates;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.FireBlock;
+import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 
 import static org.dawnoftimebuilder.DawnOfTimeBuilder.MOD_ID;
 
-public class BlockDoTB extends Block {
+public class TrapDoorBlockDoTB extends TrapDoorBlock {
 
-	public BlockDoTB(String name, Properties properties) {
+	public TrapDoorBlockDoTB(String name, Properties properties) {
 		super(properties);
 		this.setRegistryName(MOD_ID, name);
 	}
 
-	public BlockDoTB(String name, Material materialIn, float hardness, float resistance) {
+	public TrapDoorBlockDoTB(String name, Material materialIn, float hardness, float resistance) {
 		this(name, Block.Properties.create(materialIn).hardnessAndResistance(hardness, resistance));
 	}
 
