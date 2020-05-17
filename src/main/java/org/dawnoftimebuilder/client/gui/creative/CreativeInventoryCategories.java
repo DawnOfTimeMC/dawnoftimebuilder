@@ -2,6 +2,7 @@ package org.dawnoftimebuilder.client.gui.creative;
 
 import net.minecraft.item.Item;
 import net.minecraft.util.text.TranslationTextComponent;
+import org.dawnoftimebuilder.registries.DoTBBlocksRegistry;
 import org.dawnoftimebuilder.registries.DoTBItemsRegistry;
 
 import java.util.ArrayList;
@@ -13,6 +14,17 @@ import static org.dawnoftimebuilder.registries.DoTBBlocksRegistry.*;
 public enum CreativeInventoryCategories {
 
 	GENERAL("general",
+			Item.getItemFromBlock(ACACIA_PLANKS_EDGE),
+			Item.getItemFromBlock(ACACIA_PLANKS_PLATE),
+			Item.getItemFromBlock(BIRCH_PLANKS_EDGE),
+			Item.getItemFromBlock(BIRCH_PLANKS_PLATE),
+			Item.getItemFromBlock(DARK_OAK_PLANKS_EDGE),
+			Item.getItemFromBlock(DARK_OAK_PLANKS_PLATE),
+			Item.getItemFromBlock(FIREPLACE),
+			Item.getItemFromBlock(JUNGLE_PLANKS_EDGE),
+			Item.getItemFromBlock(JUNGLE_PLANKS_PLATE),
+			Item.getItemFromBlock(OAK_PLANKS_PLATE),
+			Item.getItemFromBlock(OAK_PLANKS_EDGE),
 			Item.getItemFromBlock(PATH_DIRT),
 			Item.getItemFromBlock(PATH_DIRT_SLAB),
 			Item.getItemFromBlock(PATH_GRAVEL),
@@ -32,9 +44,9 @@ public enum CreativeInventoryCategories {
 			Item.getItemFromBlock(THATCH_BAMBOO_STAIRS),
 			Item.getItemFromBlock(THATCH_BAMBOO_SLAB),
 			Item.getItemFromBlock(THATCH_BAMBOO_EDGE),
-			Item.getItemFromBlock(OAK_PLANKS_PLATE),
-			Item.getItemFromBlock(OAK_PLANKS_EDGE),
-			Item.getItemFromBlock(FIREPLACE),
+			Item.getItemFromBlock(SPRUCE_PLANKS_SUPPORT_SLAB),
+			Item.getItemFromBlock(SPRUCE_PLANKS_EDGE),
+			Item.getItemFromBlock(SPRUCE_PLANKS_PLATE),
 			Item.getItemFromBlock(IRON_CHAIN)
 			//Item.getItemFromBlock(STONE_FRIEZE)
 	),
@@ -137,8 +149,6 @@ public enum CreativeInventoryCategories {
 			Item.getItemFromBlock(BURNT_SPRUCE_RAILING),
 			Item.getItemFromBlock(BURNT_SPRUCE_FENCE),
 			Item.getItemFromBlock(BURNT_SPRUCE_SUPPORT_BEAM),
-			Item.getItemFromBlock(SPRUCE_PLANKS_SUPPORT_SLAB),
-			Item.getItemFromBlock(SPRUCE_PLANKS_EDGE),
 			Item.getItemFromBlock(RICE),
 			//Item.getItemFromBlock(PAPER_WALL),
 			//Item.getItemFromBlock(PAPER_WALL_FLAT),
