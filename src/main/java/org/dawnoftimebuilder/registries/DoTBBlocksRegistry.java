@@ -26,9 +26,17 @@ public class DoTBBlocksRegistry {
 	public static final List<Block> BLOCKS = new ArrayList<>();
 
 	//General
+    public static final Block ACACIA_PLANKS_EDGE = reg(new EdgeBlock("acacia_planks_edge", Material.WOOD, 2.0F, 3.0F));
+	public static final Block ACACIA_PLANKS_PLATE = reg(new PlateBlock("acacia_planks_plate", Material.WOOD, 2.0F, 3.0F));
+	public static final Block BIRCH_PLANKS_EDGE = reg(new EdgeBlock("birch_planks_edge", Material.WOOD, 2.0F, 3.0F));
+	public static final Block BIRCH_PLANKS_PLATE = reg(new PlateBlock("birch_planks_plate", Material.WOOD, 2.0F, 3.0F));
+	public static final Block DARK_OAK_PLANKS_EDGE = reg(new EdgeBlock("dark_oak_planks_edge", Material.WOOD, 2.0F, 3.0F));
+	public static final Block DARK_OAK_PLANKS_PLATE = reg(new PlateBlock("dark_oak_planks_plate", Material.WOOD, 2.0F, 3.0F));
 	public static final Block IRON_CHAIN = reg(new ChainBlock("iron_chain", Material.IRON, 5.0F, 6.0F));
+	public static final Block JUNGLE_PLANKS_EDGE = reg(new EdgeBlock("jungle_planks_edge", Material.WOOD, 2.0F, 3.0F));
+	public static final Block JUNGLE_PLANKS_PLATE = reg(new PlateBlock("jungle_planks_plate", Material.WOOD, 2.0F, 3.0F));
 	public static final Block OAK_PLANKS_PLATE = reg(new PlateBlock("oak_planks_plate", Material.WOOD, 2.0F, 3.0F));
-	public static final Block OAK_PLANKS_EDGE = reg(new EdgeBlock("oak_planks_edge", Material.WOOD, 2.0F, 3.0F));
+    public static final Block OAK_PLANKS_EDGE = reg(new EdgeBlock("oak_planks_edge", Material.WOOD, 2.0F, 3.0F));
 	public static final Block PATH_GRAVEL = reg(new PathBlock("path_gravel"));
 	public static final Block PATH_STEPPING_STONES = reg(new PathBlock("path_stepping_stones"));
 	public static final Block PATH_COBBLED = reg(new PathBlock("path_cobbled"));
@@ -40,6 +48,9 @@ public class DoTBBlocksRegistry {
 	public static final Block PATH_OCHRE_TILES_SLAB = reg(new SlabPathBlock("path_ochre_tiles_slab"));
 	public static final Block PATH_DIRT_SLAB = reg(new SlabPathBlock("path_dirt_slab"));
 	public static final Block RAMMED_DIRT = reg(new BlockDoTB("rammed_dirt", Material.EARTH, 0.7F, 0.7F));
+    public static final Block SPRUCE_PLANKS_EDGE = reg(new EdgeBlock("spruce_planks_edge", Material.WOOD, 2.0F, 3.0F).setBurnable());
+	public static final Block SPRUCE_PLANKS_SUPPORT_SLAB = reg(new SupportSlabBlock("spruce_planks_support_slab", Material.WOOD, 1.5F, 3.0F).setBurnable());
+	public static final Block SPRUCE_PLANKS_PLATE = reg(new PlateBlock("spruce_planks_plate", Material.WOOD, 2.0F, 3.0F));
 	public static final Block THATCH_WHEAT = reg(new BlockDoTB("thatch_wheat", Material.WOOL, 1.0F, 1.0F).setBurnable());
 	public static final Block THATCH_WHEAT_STAIRS = reg(new StairsBlockDoTB("thatch_wheat_stairs", THATCH_WHEAT).setBurnable());
 	public static final Block THATCH_WHEAT_SLAB = reg(new SlabBlock("thatch_wheat_slab", THATCH_WHEAT).setBurnable());
@@ -125,13 +136,11 @@ public class DoTBBlocksRegistry {
 	public static final Block BURNT_SPRUCE_FOUNDATION = reg(new BlockDoTB("burnt_spruce_foundation", Material.WOOD, 2.5F, 5.0F).setBurnable());
 	public static final Block BURNT_SPRUCE_FENCE = reg(new FenceBlockDoTB("burnt_spruce_fence", Material.WOOD, 2.5F, 5.0F).setBurnable());
 	public static final Block BURNT_SPRUCE_WALL = reg(new WallBlockDoTB("burnt_spruce_wall", Material.WOOD, 2.5F, 5.0F).setBurnable());
-	public static final Block SPRUCE_PLANKS_EDGE = reg(new EdgeBlock("spruce_planks_edge", Material.WOOD, 2.0F, 3.0F).setBurnable());
 	public static final Block BURNT_SPRUCE_RAILING = reg(new BurntSpruceRailingBlock());
 	//public static final Block X = reg(new BlockSpruceRoofSupport("spruce_roof_support"));
 	//public static final Block X = reg(new BlockSpruceRoofSupportMerged());
 	public static final Block BURNT_SPRUCE_PLANKS = reg(new BlockDoTB("burnt_spruce_planks", Material.WOOD, 2.5F, 5.0F));
 	public static final Block BURNT_SPRUCE_SUPPORT_BEAM = reg(new SupportBeamBlock("burnt_spruce_support_beam", Material.WOOD, 2.5F, 5.0F).setBurnable());
-	public static final Block SPRUCE_PLANKS_SUPPORT_SLAB = reg(new SupportSlabBlock("spruce_planks_support_slab", Material.WOOD, 1.5F, 3.0F).setBurnable());
 	public static final Block SPRUCE_LOW_TABLE = reg(new SpruceLowTableBlock());
 	public static final Block BURNT_SPRUCE_TIMBER_FRAME = reg(new BlockDoTB("burnt_spruce_timber_frame", Material.WOOD, 3.0F, 6.0F).setBurnable());
 	public static final Block BURNT_SPRUCE_TIMBER_FRAME_PILLAR = reg(new RotatedPillarBlockDoTB("burnt_spruce_timber_frame_pillar", Material.WOOD, 3.0F, 6.0F).setBurnable());
