@@ -7,7 +7,7 @@ import static org.dawnoftimebuilder.DawnOfTimeBuilder.MOD_ID;
 
 public class PaneBlockDoTB extends PaneBlock {
 
-	private BlockRenderLayer renderLayer;
+	private final BlockRenderLayer renderLayer;
 
 	public PaneBlockDoTB(String name, Material materialIn, float hardness, float resistance, BlockRenderLayer renderLayer) {
 		this(name, BlockDoTB.Properties.create(materialIn).hardnessAndResistance(hardness, resistance), renderLayer);
