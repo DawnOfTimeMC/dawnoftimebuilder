@@ -15,7 +15,7 @@ public class BlockDoTB extends Block {
 	}
 
 	public BlockDoTB(String name, Material materialIn, float hardness, float resistance) {
-		this(name, Block.Properties.create(materialIn).hardnessAndResistance(hardness, resistance));
+		this(name, Properties.create(materialIn).hardnessAndResistance(hardness, resistance));
 	}
 
 	public Block setBurnable() {
