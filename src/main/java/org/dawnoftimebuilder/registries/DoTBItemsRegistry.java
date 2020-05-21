@@ -7,11 +7,12 @@ import org.dawnoftimebuilder.items.japanese.JapaneseLightArmorItem;
 import org.dawnoftimebuilder.items.japanese.OYoroiArmorItem;
 import org.dawnoftimebuilder.items.japanese.RaijinArmorItem;
 import org.dawnoftimebuilder.items.templates.ItemDoTB;
-import org.dawnoftimebuilder.items.japanese.TachiSwordItem;
+import org.dawnoftimebuilder.items.templates.SwordItemDoTB;
 
 import java.util.*;
 
 import static net.minecraft.inventory.EquipmentSlotType.*;
+import static net.minecraft.item.ItemTier.DIAMOND;
 
 public class DoTBItemsRegistry {
 	/*
@@ -38,7 +39,7 @@ public class DoTBItemsRegistry {
 	public static final Item GRAPE = reg(new ItemDoTB("grape"));
 	public static final Item GRAPE_SEEDS = reg(new ItemDoTB("grape_seeds"));
 	public static final Item CLEMATIS_SEEDS = reg(new ItemDoTB("clematis_seeds"));
-	public static final Item TACHI_SWORD = reg(new TachiSwordItem());//TODO import the model!!
+	public static final Item TACHI_SWORD = reg(new SwordItemDoTB("tachi_sword", DIAMOND, 3, -2.4F));//TODO import the model!!
 
 	//Armors
 	public static final Item IRON_PLATE_ARMOR_HEAD = reg(new IronPlateArmorItem(HEAD));

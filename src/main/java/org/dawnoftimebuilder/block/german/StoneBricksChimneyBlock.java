@@ -22,11 +22,11 @@ import org.dawnoftimebuilder.utils.DoTBBlockStateProperties;
 
 import java.util.Random;
 
-public class LimestoneChimneyBlock extends ColumnConnectibleBlock {
+public class StoneBricksChimneyBlock extends ColumnConnectibleBlock {
 	public static final EnumProperty<Direction.Axis> HORIZONTAL_AXIS = BlockStateProperties.HORIZONTAL_AXIS;
 	private static final VoxelShape[] SHAPES = makeShapes();
 
-	public LimestoneChimneyBlock() {
+	public StoneBricksChimneyBlock() {
 		super("limestone_chimney", Material.ROCK, 1.5F, 6.0F);
 		this.setDefaultState(this.getStateContainer().getBaseState().with(HORIZONTAL_AXIS, Direction.Axis.X));
 	}

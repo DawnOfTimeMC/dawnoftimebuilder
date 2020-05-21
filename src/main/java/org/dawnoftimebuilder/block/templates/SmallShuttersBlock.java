@@ -169,7 +169,7 @@ public class SmallShuttersBlock extends WaterloggedBlock {
     }
 
     protected DoTBBlockStateProperties.OpenPosition getOpenState(BlockState stateIn, World worldIn, BlockPos pos){
-        return worldIn.getBlockState(pos).isSolid() ? DoTBBlockStateProperties.OpenPosition.HALF : DoTBBlockStateProperties.OpenPosition.FULL;
+        return worldIn.getBlockState(pos).getCollisionShape(worldIn, pos).isEmpty() ? DoTBBlockStateProperties.OpenPosition.FULL : DoTBBlockStateProperties.OpenPosition.HALF;
     }
 
     private void playSound(World worldIn, BlockPos pos, boolean isOpening) {

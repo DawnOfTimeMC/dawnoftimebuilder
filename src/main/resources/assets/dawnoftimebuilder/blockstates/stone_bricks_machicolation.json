@@ -1,0 +1,20 @@
+{
+	"variants": {
+		"facing=north,horizontal_connection=none": { "model": "dawnoftimebuilder:block/german/stone_bricks_machicolation_none"},
+		"facing=north,horizontal_connection=left": { "model": "dawnoftimebuilder:block/german/stone_bricks_machicolation_left"},
+		"facing=north,horizontal_connection=right": { "model": "dawnoftimebuilder:block/german/stone_bricks_machicolation_right"},
+		"facing=north,horizontal_connection=both": { "model": "dawnoftimebuilder:block/german/stone_bricks_machicolation_both"},
+		"facing=east,horizontal_connection=none": { "model": "dawnoftimebuilder:block/german/stone_bricks_machicolation_none", "y" : 90},
+		"facing=east,horizontal_connection=left": { "model": "dawnoftimebuilder:block/german/stone_bricks_machicolation_left", "y" : 90},
+		"facing=east,horizontal_connection=right": { "model": "dawnoftimebuilder:block/german/stone_bricks_machicolation_right", "y" : 90},
+		"facing=east,horizontal_connection=both": { "model": "dawnoftimebuilder:block/german/stone_bricks_machicolation_both", "y" : 90},
+		"facing=south,horizontal_connection=none": { "model": "dawnoftimebuilder:block/german/stone_bricks_machicolation_none", "y" : 180},
+		"facing=south,horizontal_connection=left": { "model": "dawnoftimebuilder:block/german/stone_bricks_machicolation_left", "y" : 180},
+		"facing=south,horizontal_connection=right": { "model": "dawnoftimebuilder:block/german/stone_bricks_machicolation_right", "y" : 180},
+		"facing=south,horizontal_connection=both": { "model": "dawnoftimebuilder:block/german/stone_bricks_machicolation_both", "y" : 180},
+		"facing=west,horizontal_connection=none": { "model": "dawnoftimebuilder:block/german/stone_bricks_machicolation_none", "y" : 270},
+		"facing=west,horizontal_connection=left": { "model": "dawnoftimebuilder:block/german/stone_bricks_machicolation_left", "y" : 270},
+		"facing=west,horizontal_connection=right": { "model": "dawnoftimebuilder:block/german/stone_bricks_machicolation_right", "y" : 270},
+		"facing=west,horizontal_connection=both": { "model": "dawnoftimebuilder:block/german/stone_bricks_machicolation_both", "y" : 270}
+	}
+}

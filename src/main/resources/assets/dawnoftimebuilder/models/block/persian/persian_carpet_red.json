@@ -1,0 +1,7 @@
+{
+	"parent": "block/carpet",
+	"textures": {
+		"particle": "dawnoftimebuilder:block/persian_carpet_red",
+		"wool": "dawnoftimebuilder:block/persian_carpet_red"
+	}
+}

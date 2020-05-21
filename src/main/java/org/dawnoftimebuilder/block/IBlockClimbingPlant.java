@@ -73,7 +73,7 @@ public interface IBlockClimbingPlant {
 	}
 
 	/**
-	 * When a Player right clicks the Block with a ClimbingPlantSeeds, it tries to set the corresponding Climbing Plant on the Block.
+	 * When a Player right clicks the Block with a Climbing Plant seed, it tries to set the corresponding Climbing Plant on the Block.
 	 * @param stateIn Current State of the Block.
 	 * @param worldIn World of the Block.
 	 * @param pos Position of the Block.

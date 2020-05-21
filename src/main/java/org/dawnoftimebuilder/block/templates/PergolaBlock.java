@@ -75,8 +75,9 @@ public class PergolaBlock extends BeamBlock {
 
 	@Override
 	public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-		if (state.get(BOTTOM)){
-			if (this.tryPlacingPlant(state, worldIn, pos, player, handIn)) return true;
+		if (!(worldIn.getBlockState(pos.down()).getBlock() instanceof PergolaBlock)){
+			if (this.tryPlacingPlant(state.with(BOTTOM, !worldIn.getBlockState(pos.down()).isIn(BlockTags.DIRT_LIKE)), worldIn, pos, player, handIn))
+				return true;
 		}
 		return super.onBlockActivated(state, worldIn, pos, player, handIn, hit);
 	}

@@ -32,12 +32,12 @@ import org.dawnoftimebuilder.utils.DoTBBlockStateProperties;
 
 import java.util.Random;
 
-public class LimestoneFireplaceBlock extends SidedPlaneConnectibleBlock {
+public class StoneBricksFireplaceBlock extends SidedPlaneConnectibleBlock {
 
 	public static final BooleanProperty BURNING = DoTBBlockStateProperties.BURNING;
 	private static final VoxelShape[] SHAPES = DoTBBlockUtils.GenerateHorizontalShapes(makeShapes());
 
-	public LimestoneFireplaceBlock() {
+	public StoneBricksFireplaceBlock() {
 		super("limestone_fireplace", Material.ROCK, 2.0F, 6.0F);
 		this.setDefaultState(this.getStateContainer().getBaseState().with(BURNING, false));
 	}
@@ -121,7 +121,7 @@ public class LimestoneFireplaceBlock extends SidedPlaneConnectibleBlock {
 	public void neighborChanged(BlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos, boolean isMoving) {
 		if(state.get(VERTICAL_CONNECTION) != DoTBBlockStateProperties.VerticalConnection.BOTH && state.get(VERTICAL_CONNECTION) != DoTBBlockStateProperties.VerticalConnection.UNDER){
 			BlockState newState = worldIn.getBlockState(fromPos);
-			if(newState.getBlock() instanceof LimestoneFireplaceBlock){
+			if(newState.getBlock() instanceof StoneBricksFireplaceBlock){
 				Direction facing = state.get(FACING);
 				if(newState.get(FACING) == facing){
 					boolean burning = newState.get(BURNING);
