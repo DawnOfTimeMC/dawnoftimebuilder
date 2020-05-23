@@ -5,6 +5,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
@@ -90,6 +91,6 @@ public class PergolaBlock extends BeamBlock {
 	@Nonnull
 	@Override
 	public DoTBBlockStateProperties.PillarConnection getBlockPillarConnection(BlockState state) {
-		return DoTBBlockStateProperties.PillarConnection.SIX_PX;
+		return (state.get(MAIN_AXIS) == Direction.Axis.Y) ? DoTBBlockStateProperties.PillarConnection.SIX_PX : DoTBBlockStateProperties.PillarConnection.NOTHING;
 	}
 }

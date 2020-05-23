@@ -9,6 +9,8 @@ import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.util.Direction;
+import net.minecraft.util.Mirror;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
@@ -126,5 +128,13 @@ public class StoneBricksMachicolationBlock extends WaterloggedBlock {
 		return false;
 	}
 
+	@Override
+	public BlockState rotate(BlockState state, Rotation rot){
+		return state.with(FACING, rot.rotate(state.get(FACING)));
+	}
 
+	@Override
+	public BlockState mirror(BlockState state, Mirror mirrorIn) {
+		return this.rotate(state, Rotation.CLOCKWISE_180);
+	}
 }
