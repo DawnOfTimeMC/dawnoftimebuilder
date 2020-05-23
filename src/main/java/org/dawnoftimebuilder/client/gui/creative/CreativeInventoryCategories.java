@@ -26,17 +26,29 @@ public enum CreativeInventoryCategories {
 			Item.getItemFromBlock(RAMMED_DIRT),
 			Item.getItemFromBlock(THATCH_WHEAT),
 			Item.getItemFromBlock(THATCH_WHEAT_STAIRS),
+			Item.getItemFromBlock(THATCH_WHEAT_PLATE),
 			Item.getItemFromBlock(THATCH_WHEAT_SLAB),
 			Item.getItemFromBlock(THATCH_WHEAT_EDGE),
 			Item.getItemFromBlock(THATCH_BAMBOO),
 			Item.getItemFromBlock(THATCH_BAMBOO_STAIRS),
+			Item.getItemFromBlock(THATCH_BAMBOO_PLATE),
 			Item.getItemFromBlock(THATCH_BAMBOO_SLAB),
 			Item.getItemFromBlock(THATCH_BAMBOO_EDGE),
+			Item.getItemFromBlock(ACACIA_PLANKS_PLATE),
+			Item.getItemFromBlock(ACACIA_PLANKS_EDGE),
+			Item.getItemFromBlock(BIRCH_PLANKS_PLATE),
+			Item.getItemFromBlock(BIRCH_PLANKS_EDGE),
+			Item.getItemFromBlock(DARK_OAK_PLANKS_PLATE),
+			Item.getItemFromBlock(DARK_OAK_PLANKS_EDGE),
+			Item.getItemFromBlock(JUNGLE_PLANKS_PLATE),
+			Item.getItemFromBlock(JUNGLE_PLANKS_EDGE),
 			Item.getItemFromBlock(OAK_PLANKS_PLATE),
 			Item.getItemFromBlock(OAK_PLANKS_EDGE),
+			Item.getItemFromBlock(SPRUCE_PLANKS_PLATE),
+			Item.getItemFromBlock(SPRUCE_PLANKS_EDGE),
+			Item.getItemFromBlock(SPRUCE_PLANKS_SUPPORT_SLAB),
 			Item.getItemFromBlock(FIREPLACE),
 			Item.getItemFromBlock(IRON_CHAIN)
-			//Item.getItemFromBlock(STONE_FRIEZE)
 	),
 
 	FRENCH("french",
@@ -48,9 +60,17 @@ public enum CreativeInventoryCategories {
 			Item.getItemFromBlock(PATH_COBBLED_SLAB),
 			Item.getItemFromBlock(THATCH_WHEAT),
 			Item.getItemFromBlock(THATCH_WHEAT_STAIRS),
+			Item.getItemFromBlock(THATCH_WHEAT_PLATE),
 			Item.getItemFromBlock(THATCH_WHEAT_SLAB),
 			Item.getItemFromBlock(THATCH_WHEAT_EDGE),
 			Item.getItemFromBlock(RAMMED_DIRT),
+			Item.getItemFromBlock(COBBLED_LIMESTONE),
+			Item.getItemFromBlock(LIMESTONE_BRICK),
+			Item.getItemFromBlock(LIMESTONE_BRICK_STAIRS),
+			Item.getItemFromBlock(LIMESTONE_BRICK_PLATE),
+			Item.getItemFromBlock(LIMESTONE_BRICK_SLAB),
+			Item.getItemFromBlock(LIMESTONE_BRICK_EDGE),
+			Item.getItemFromBlock(LIMESTONE_BRICK_WALL),
 			DoTBItemsRegistry.GRAPE,
 			DoTBItemsRegistry.GRAPE_SEEDS
 	),
@@ -64,6 +84,7 @@ public enum CreativeInventoryCategories {
 			Item.getItemFromBlock(PATH_COBBLED_SLAB),
 			Item.getItemFromBlock(THATCH_WHEAT),
 			Item.getItemFromBlock(THATCH_WHEAT_STAIRS),
+			Item.getItemFromBlock(THATCH_WHEAT_PLATE),
 			Item.getItemFromBlock(THATCH_WHEAT_SLAB),
 			Item.getItemFromBlock(THATCH_WHEAT_EDGE),
 			Item.getItemFromBlock(RAMMED_DIRT),
@@ -73,8 +94,8 @@ public enum CreativeInventoryCategories {
 			Item.getItemFromBlock(WAXED_OAK_TIMBER_FRAME_PILLAR),
 			Item.getItemFromBlock(WAXED_OAK_PLANKS),
 			Item.getItemFromBlock(WAXED_OAK_PLANKS_STAIRS),
-			Item.getItemFromBlock(WAXED_OAK_PLANKS_SLAB),
 			Item.getItemFromBlock(WAXED_OAK_PLANKS_PLATE),
+			Item.getItemFromBlock(WAXED_OAK_PLANKS_SLAB),
 			Item.getItemFromBlock(WAXED_OAK_PLANKS_EDGE),
 			Item.getItemFromBlock(WAXED_OAK_FENCE),
 			Item.getItemFromBlock(WAXED_OAK_BEAM),
@@ -84,28 +105,30 @@ public enum CreativeInventoryCategories {
 			Item.getItemFromBlock(WAXED_OAK_LATTICE),
 			Item.getItemFromBlock(WAXED_OAK_SMALL_SHUTTERS),
 			Item.getItemFromBlock(WAXED_OAK_SHUTTERS),
+			Item.getItemFromBlock(WAXED_OAK_DOOR),
+			Item.getItemFromBlock(WAXED_OAK_TRAPDOOR),
+			Item.getItemFromBlock(STONE_BRICKS_PLATE),//TODO Should we add STONE_BRICKS vanilla in our inventory ???
+			Item.getItemFromBlock(STONE_BRICKS_EDGE),
+			Item.getItemFromBlock(STONE_BRICKS_ARROWSLIT),
+			Item.getItemFromBlock(STONE_BRICKS_MACHICOLATION),
+			//Item.getItemFromBlock(STONE_FRIEZE)
 			Item.getItemFromBlock(LATTICE_GLASS),
 			Item.getItemFromBlock(LATTICE_GLASS_PANE),
 			Item.getItemFromBlock(LATTICE_WAXED_OAK_WINDOW),
-			Item.getItemFromBlock(COBBLED_LIMESTONE),
-			Item.getItemFromBlock(LIMESTONE_BRICK),
-			Item.getItemFromBlock(LIMESTONE_BRICK_STAIRS),
-			Item.getItemFromBlock(LIMESTONE_BRICK_SLAB),
-			Item.getItemFromBlock(LIMESTONE_BRICK_EDGE),
-			Item.getItemFromBlock(LIMESTONE_BRICK_WALL),
+			Item.getItemFromBlock(LATTICE_STONE_BRICKS_WINDOW),
 			Item.getItemFromBlock(FIREPLACE),
-			Item.getItemFromBlock(LIMESTONE_FIREPLACE),
-			Item.getItemFromBlock(LIMESTONE_CHIMNEY),
+			Item.getItemFromBlock(STONE_BRICKS_FIREPLACE),
+			Item.getItemFromBlock(STONE_BRICKS_CHIMNEY),
 			Item.getItemFromBlock(FLAT_ROOF_TILES),
 			Item.getItemFromBlock(FLAT_ROOF_TILES_STAIRS),
 			Item.getItemFromBlock(FLAT_ROOF_TILES_SLAB),
 			Item.getItemFromBlock(FLAT_ROOF_TILES_EDGE),
 			Item.getItemFromBlock(IRON_PORTCULLIS),
 			Item.getItemFromBlock(IRON_CHAIN),
-			//DoTBItemsRegistry.IRON_PLATE_ARMOR_HEAD,
-			//DoTBItemsRegistry.IRON_PLATE_ARMOR_CHEST,
-			//DoTBItemsRegistry.IRON_PLATE_ARMOR_LEGS,
-			//DoTBItemsRegistry.IRON_PLATE_ARMOR_FEET,
+			DoTBItemsRegistry.IRON_PLATE_ARMOR_HEAD,
+			DoTBItemsRegistry.IRON_PLATE_ARMOR_CHEST,
+			DoTBItemsRegistry.IRON_PLATE_ARMOR_LEGS,
+			DoTBItemsRegistry.IRON_PLATE_ARMOR_FEET,
 			DoTBItemsRegistry.WAX
 	),
 
@@ -118,6 +141,7 @@ public enum CreativeInventoryCategories {
 			Item.getItemFromBlock(PATH_STEPPING_STONES_SLAB),
 			Item.getItemFromBlock(THATCH_BAMBOO),
 			Item.getItemFromBlock(THATCH_BAMBOO_STAIRS),
+			Item.getItemFromBlock(THATCH_BAMBOO_PLATE),
 			Item.getItemFromBlock(THATCH_BAMBOO_SLAB),
 			Item.getItemFromBlock(THATCH_BAMBOO_EDGE),
 			Item.getItemFromBlock(RAMMED_DIRT),
@@ -135,8 +159,6 @@ public enum CreativeInventoryCategories {
 			Item.getItemFromBlock(BURNT_SPRUCE_RAILING),
 			Item.getItemFromBlock(BURNT_SPRUCE_FENCE),
 			Item.getItemFromBlock(BURNT_SPRUCE_SUPPORT_BEAM),
-			Item.getItemFromBlock(SPRUCE_PLANKS_SUPPORT_SLAB),
-			Item.getItemFromBlock(SPRUCE_PLANKS_EDGE),
 			Item.getItemFromBlock(RICE),
 			//Item.getItemFromBlock(PAPER_WALL),
 			//Item.getItemFromBlock(PAPER_WALL_FLAT),
@@ -175,7 +197,7 @@ public enum CreativeInventoryCategories {
 			Item.getItemFromBlock(CAST_IRON_TEAPOT_DECORATED),
 			Item.getItemFromBlock(CAST_IRON_TEACUP_DECORATED),
 			//Item.getItemFromBlock(BAMBOO_DRYING_TRAY),
-			//DoTBItemsRegistry.CAMELLIA_SEED,
+			Item.getItemFromBlock(CAMELLIA),
 			//DoTBItemsRegistry.CAMELLIA_LEAVES,
 			DoTBItemsRegistry.TEA_LEAVES,
 			//DoTBItemsRegistry.MULBERRY,
@@ -188,19 +210,23 @@ public enum CreativeInventoryCategories {
 			//DoTBItemsRegistry.STICK_BUNDLE,
 			Item.getItemFromBlock(RICE),
 			DoTBItemsRegistry.TACHI_SWORD,
-			DoTBItemsRegistry.BAMBOO_HAT
-			//DoTBItemsRegistry.JAPANESE_LIGHT_ARMOR_HEAD,
-			//DoTBItemsRegistry.JAPANESE_LIGHT_ARMOR_CHEST,
-			//DoTBItemsRegistry.JAPANESE_LIGHT_ARMOR_LEGS,
-			//DoTBItemsRegistry.JAPANESE_LIGHT_ARMOR_FEET,
-			//DoTBItemsRegistry.O_YOROI_ARMOR_HEAD,
-			//DoTBItemsRegistry.O_YOROI_ARMOR_CHEST,
-			//DoTBItemsRegistry.O_YOROI_ARMOR_LEGS,
-			//DoTBItemsRegistry.O_YOROI_ARMOR_FEET,
-			//DoTBItemsRegistry.RAIJIN_ARMOR_HEAD,
-			//DoTBItemsRegistry.RAIJIN_ARMOR_CHEST,
-			//DoTBItemsRegistry.RAIJIN_ARMOR_LEGS,
-			//DoTBItemsRegistry.RAIJIN_ARMOR_FEET
+			DoTBItemsRegistry.BAMBOO_HAT,
+			DoTBItemsRegistry.JAPANESE_LIGHT_ARMOR_HEAD,
+			DoTBItemsRegistry.JAPANESE_LIGHT_ARMOR_CHEST,
+			DoTBItemsRegistry.JAPANESE_LIGHT_ARMOR_LEGS,
+			DoTBItemsRegistry.JAPANESE_LIGHT_ARMOR_FEET,
+			DoTBItemsRegistry.O_YOROI_ARMOR_HEAD,
+			DoTBItemsRegistry.O_YOROI_ARMOR_CHEST,
+			DoTBItemsRegistry.O_YOROI_ARMOR_LEGS,
+			DoTBItemsRegistry.O_YOROI_ARMOR_FEET,
+			DoTBItemsRegistry.RAIJIN_ARMOR_HEAD,
+			DoTBItemsRegistry.RAIJIN_ARMOR_CHEST,
+			DoTBItemsRegistry.RAIJIN_ARMOR_LEGS,
+			DoTBItemsRegistry.RAIJIN_ARMOR_FEET
+	),
+
+	PERSIAN("persian",
+			Item.getItemFromBlock(PERSIAN_CARPET_RED)
 	),
 
 	PRE_COLOMBIAN("pre-columbian",
@@ -210,6 +236,7 @@ public enum CreativeInventoryCategories {
 			Item.getItemFromBlock(PATH_GRAVEL_SLAB),
 			Item.getItemFromBlock(THATCH_WHEAT),
 			Item.getItemFromBlock(THATCH_WHEAT_STAIRS),
+			Item.getItemFromBlock(THATCH_WHEAT_PLATE),
 			Item.getItemFromBlock(THATCH_WHEAT_SLAB),
 			Item.getItemFromBlock(THATCH_WHEAT_EDGE),
 			Item.getItemFromBlock(RAMMED_DIRT),
@@ -217,8 +244,8 @@ public enum CreativeInventoryCategories {
 			Item.getItemFromBlock(RED_PLASTERED_STONE),
 			Item.getItemFromBlock(RED_ORNAMENTED_PLASTERED_STONE),
 			Item.getItemFromBlock(PLASTERED_STONE_STAIRS),
-			Item.getItemFromBlock(PLASTERED_STONE_SLAB),
 			Item.getItemFromBlock(PLASTERED_STONE_PLATE),
+			Item.getItemFromBlock(PLASTERED_STONE_SLAB),
 			Item.getItemFromBlock(PLASTERED_STONE_EDGE),
 			Item.getItemFromBlock(RED_PLASTERED_STONE_STAIRS),
 			Item.getItemFromBlock(RED_PLASTERED_STONE_PLATE),
@@ -252,23 +279,28 @@ public enum CreativeInventoryCategories {
 	),
 
 	EGYPTIAN("egyptian",
-			Item.getItemFromBlock(OCHRE_ROOF_TILES)//TODO should be removed when CustomArmors are done
-			//DoTBItemsRegistry.PHARAOH_ARMOR_HEAD,
-			//DoTBItemsRegistry.PHARAOH_ARMOR_CHEST,
-			//DoTBItemsRegistry.PHARAOH_ARMOR_LEGS,
-			//DoTBItemsRegistry.PHARAOH_ARMOR_FEET
-			);
+			DoTBItemsRegistry.PHARAOH_ARMOR_HEAD,
+			DoTBItemsRegistry.PHARAOH_ARMOR_CHEST,
+			DoTBItemsRegistry.PHARAOH_ARMOR_LEGS,
+			DoTBItemsRegistry.PHARAOH_ARMOR_FEET
+	);
 
-	private String name;
-	private ArrayList<Item> items = new ArrayList<>();
+	private final String name;
+	private final String translation;
+	private final ArrayList<Item> items = new ArrayList<>();
 
 	CreativeInventoryCategories(String name, Item... items) {
-		this.name = new TranslationTextComponent("gui." + MOD_ID + "." + name).getString();
+		this.name = name;
+		this.translation = new TranslationTextComponent("gui." + MOD_ID + "." + name).getString();
 		this.items.addAll(Arrays.asList(items));
 	}
 
 	public String getName() {
 		return this.name;
+	}
+
+	public String getTranslation() {
+		return this.translation;
 	}
 
 	public ArrayList<Item> getItems(){

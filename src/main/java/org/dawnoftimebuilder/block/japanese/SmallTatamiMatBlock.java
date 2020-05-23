@@ -51,7 +51,7 @@ public class SmallTatamiMatBlock extends WaterloggedBlock implements IBlockChain
     public SmallTatamiMatBlock() {
         super("small_tatami_mat", Material.CARPET, 0.6F, 0.6F);
         this.setBurnable();
-        this.setDefaultState(this.stateContainer.getBaseState().with(ROLLED, false).with(ATTACHED, false).with(STACK, 1));
+        this.setDefaultState(this.stateContainer.getBaseState().with(ROLLED, false).with(ATTACHED, false).with(STACK, 1).with(WATERLOGGED, false));
     }
 
     @Override

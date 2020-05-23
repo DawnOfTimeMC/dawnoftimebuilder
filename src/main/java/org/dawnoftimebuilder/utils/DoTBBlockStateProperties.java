@@ -5,10 +5,10 @@ import net.minecraft.item.Item;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.EnumProperty;
 import net.minecraft.state.IntegerProperty;
+import net.minecraft.util.Direction;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.world.World;
 
-import static org.dawnoftimebuilder.registries.DoTBItemsRegistry.CLEMATIS_SEEDS;
 import static org.dawnoftimebuilder.registries.DoTBItemsRegistry.GRAPE_SEEDS;
 
 public class DoTBBlockStateProperties {
@@ -27,6 +27,7 @@ public class DoTBBlockStateProperties {
     public static final EnumProperty<HorizontalConnection> HORIZONTAL_CONNECTION = EnumProperty.create("horizontal_connection", HorizontalConnection.class);
     public static final EnumProperty<OpenPosition> OPEN_POSITION = EnumProperty.create("open_position", OpenPosition.class);
     public static final EnumProperty<PillarConnection> PILLAR_CONNECTION = EnumProperty.create("pillar_connection", PillarConnection.class);
+    public static final EnumProperty<SidedWindow> SIDED_WINDOW = EnumProperty.create("sided_window", SidedWindow.class);
     public static final EnumProperty<Slab> SLAB = EnumProperty.create("slab", Slab.class);
     public static final IntegerProperty STACK = IntegerProperty.create("stack", 1, 3);
     public static final EnumProperty<VerticalConnection> VERTICAL_CONNECTION = EnumProperty.create("vertical_connection", VerticalConnection.class);
@@ -157,30 +158,6 @@ public class DoTBBlockStateProperties {
         }
     }
 
-    public enum CornerShape implements IStringSerializable {
-        NONE("none"),
-        LEFT("left"),
-        RIGHT("right"),
-        BOTH("both"),
-        FULL("full");
-
-        private final String name;
-
-        CornerShape(String name)
-        {
-            this.name = name;
-        }
-
-        public String toString(){
-            return this.name;
-        }
-
-        public String getName()
-        {
-            return this.name;
-        }
-    }
-
     public enum OpenPosition implements IStringSerializable {
         CLOSED("closed"),
         HALF("half"),
@@ -205,6 +182,80 @@ public class DoTBBlockStateProperties {
             return this != CLOSED;
         }
 	}
+
+    public enum SidedWindow implements IStringSerializable {
+        NORTH("north", Direction.NORTH),
+        EAST("east", Direction.EAST),
+        SOUTH("south", Direction.SOUTH),
+        WEST("west", Direction.WEST),
+        AXIS_X("axis_x", Direction.EAST),
+        AXIS_Z("axis_z", Direction.NORTH);
+
+        private final String name;
+        private final Direction direction;
+
+        SidedWindow(String name, Direction offset){
+            this.name = name;
+            this.direction = offset;
+        }
+
+        public String toString(){
+            return this.name;
+        }
+
+        public String getName()
+        {
+            return this.name;
+        }
+
+        public Direction getDirection(){
+            return this.direction;
+        }
+
+        public Direction getOffset() {
+            return this.direction.rotateYCCW();
+        }
+
+        public static SidedWindow getSide(Direction facing, boolean isSneaking) {
+            if(isSneaking) return (facing.getAxis() == Direction.Axis.X) ? AXIS_X : AXIS_Z;
+            switch (facing){
+                default:
+                case NORTH:
+                    return NORTH;
+                case EAST:
+                    return EAST;
+                case SOUTH:
+                    return SOUTH;
+                case WEST:
+                    return WEST;
+            }
+        }
+    }
+
+
+    public enum CornerShape implements IStringSerializable {
+        NONE("none"),
+        LEFT("left"),
+        RIGHT("right"),
+        BOTH("both"),
+        FULL("full");
+
+        private final String name;
+
+        CornerShape(String name)
+        {
+            this.name = name;
+        }
+
+        public String toString(){
+            return this.name;
+        }
+
+        public String getName()
+        {
+            return this.name;
+        }
+    }
 
     public enum ClimbingPlant implements IStringSerializable {
         NONE("none"),

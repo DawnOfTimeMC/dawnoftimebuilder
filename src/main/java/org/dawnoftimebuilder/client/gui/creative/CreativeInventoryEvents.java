@@ -126,7 +126,7 @@ public class CreativeInventoryEvents {
 				// Render tooltips after so it renders above buttons
 				this.buttons.forEach(button -> {
 					if(button.isMouseOver(event.getMouseX(), event.getMouseY())){
-						screen.renderTooltip(button.getCategory().getName(), event.getMouseX(), event.getMouseY());
+						screen.renderTooltip(button.getCategory().getTranslation(), event.getMouseX(), event.getMouseY());
 					}
 				});
 			}else{

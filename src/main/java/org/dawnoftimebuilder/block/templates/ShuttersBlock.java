@@ -97,9 +97,10 @@ public class ShuttersBlock extends SmallShuttersBlock {
 
     @Override
     protected DoTBBlockStateProperties.OpenPosition getOpenState(BlockState stateIn, World worldIn, BlockPos pos) {
-        if(worldIn.getBlockState(pos.offset(stateIn.get(HALF) == Half.TOP ? Direction.DOWN : Direction.UP)).isSolid() || worldIn.getBlockState(pos).isSolid())
+        BlockPos secondPos = pos.offset(stateIn.get(HALF) == Half.TOP ? Direction.DOWN : Direction.UP);
+        if(!worldIn.getBlockState(secondPos).getCollisionShape(worldIn, pos).isEmpty() || !worldIn.getBlockState(pos).getCollisionShape(worldIn, pos).isEmpty())
             return DoTBBlockStateProperties.OpenPosition.HALF;
-         return DoTBBlockStateProperties.OpenPosition.FULL;
+        return DoTBBlockStateProperties.OpenPosition.FULL;
     }
 
     @Override

@@ -16,6 +16,7 @@ import org.dawnoftimebuilder.block.precolumbian.BlockSerpentSculptedColumn;
 import java.util.ArrayList;
 import java.util.List;
 
+import static net.minecraft.block.Blocks.*;
 import static net.minecraftforge.common.PlantType.Crop;
 import static net.minecraftforge.common.PlantType.Plains;
 import static org.dawnoftimebuilder.DawnOfTimeBuilder.DOTB_TAB;
@@ -25,9 +26,17 @@ public class DoTBBlocksRegistry {
 	public static final List<Block> BLOCKS = new ArrayList<>();
 
 	//General
+    public static final Block ACACIA_PLANKS_EDGE = reg(new EdgeBlock("acacia_planks_edge", ACACIA_PLANKS).setBurnable());
+	public static final Block ACACIA_PLANKS_PLATE = reg(new PlateBlock("acacia_planks_plate", ACACIA_PLANKS).setBurnable());
+	public static final Block BIRCH_PLANKS_EDGE = reg(new EdgeBlock("birch_planks_edge", BIRCH_PLANKS).setBurnable());
+	public static final Block BIRCH_PLANKS_PLATE = reg(new PlateBlock("birch_planks_plate", BIRCH_PLANKS).setBurnable());
+	public static final Block DARK_OAK_PLANKS_EDGE = reg(new EdgeBlock("dark_oak_planks_edge", DARK_OAK_PLANKS).setBurnable());
+	public static final Block DARK_OAK_PLANKS_PLATE = reg(new PlateBlock("dark_oak_planks_plate", DARK_OAK_PLANKS).setBurnable());
 	public static final Block IRON_CHAIN = reg(new ChainBlock("iron_chain", Material.IRON, 5.0F, 6.0F));
-	public static final Block OAK_PLANKS_PLATE = reg(new PlateBlock("oak_planks_plate", Material.WOOD, 2.0F, 3.0F));
-	public static final Block OAK_PLANKS_EDGE = reg(new EdgeBlock("oak_planks_edge", Material.WOOD, 2.0F, 3.0F));
+	public static final Block JUNGLE_PLANKS_EDGE = reg(new EdgeBlock("jungle_planks_edge", JUNGLE_PLANKS).setBurnable());
+	public static final Block JUNGLE_PLANKS_PLATE = reg(new PlateBlock("jungle_planks_plate", JUNGLE_PLANKS).setBurnable());
+    public static final Block OAK_PLANKS_EDGE = reg(new EdgeBlock("oak_planks_edge", OAK_PLANKS).setBurnable());
+	public static final Block OAK_PLANKS_PLATE = reg(new PlateBlock("oak_planks_plate", OAK_PLANKS).setBurnable());
 	public static final Block PATH_GRAVEL = reg(new PathBlock("path_gravel"));
 	public static final Block PATH_STEPPING_STONES = reg(new PathBlock("path_stepping_stones"));
 	public static final Block PATH_COBBLED = reg(new PathBlock("path_cobbled"));
@@ -39,34 +48,49 @@ public class DoTBBlocksRegistry {
 	public static final Block PATH_OCHRE_TILES_SLAB = reg(new SlabPathBlock("path_ochre_tiles_slab"));
 	public static final Block PATH_DIRT_SLAB = reg(new SlabPathBlock("path_dirt_slab"));
 	public static final Block RAMMED_DIRT = reg(new BlockDoTB("rammed_dirt", Material.EARTH, 0.7F, 0.7F));
+	public static final Block SPRUCE_PLANKS_EDGE = reg(new EdgeBlock("spruce_planks_edge", SPRUCE_PLANKS).setBurnable());
+	public static final Block SPRUCE_PLANKS_PLATE = reg(new PlateBlock("spruce_planks_plate", SPRUCE_PLANKS).setBurnable());
+	public static final Block SPRUCE_PLANKS_SUPPORT_SLAB = reg(new SupportSlabBlock("spruce_planks_support_slab", Material.WOOD, 1.5F, 3.0F).setBurnable());
 	public static final Block THATCH_WHEAT = reg(new BlockDoTB("thatch_wheat", Material.WOOL, 1.0F, 1.0F).setBurnable());
-	public static final Block THATCH_WHEAT_STAIRS = reg(new StairsBlockDoTB("thatch_wheat_stairs", THATCH_WHEAT).setBurnable());
-	public static final Block THATCH_WHEAT_SLAB = reg(new SlabBlock("thatch_wheat_slab", THATCH_WHEAT).setBurnable());
 	public static final Block THATCH_WHEAT_EDGE = reg(new EdgeBlock("thatch_wheat_edge", THATCH_WHEAT).setBurnable());
+	public static final Block THATCH_WHEAT_PLATE = reg(new PlateBlock("thatch_wheat_plate", THATCH_WHEAT).setBurnable());
+	public static final Block THATCH_WHEAT_SLAB = reg(new SlabBlock("thatch_wheat_slab", THATCH_WHEAT).setBurnable());
+	public static final Block THATCH_WHEAT_STAIRS = reg(new StairsBlockDoTB("thatch_wheat_stairs", THATCH_WHEAT).setBurnable());
 	public static final Block THATCH_BAMBOO = reg(new BlockDoTB("thatch_bamboo", Material.WOOL, 1.0F, 1.0F).setBurnable());
-	public static final Block THATCH_BAMBOO_STAIRS = reg(new StairsBlockDoTB("thatch_bamboo_stairs", THATCH_BAMBOO).setBurnable());
-	public static final Block THATCH_BAMBOO_SLAB = reg(new SlabBlock("thatch_bamboo_slab", THATCH_BAMBOO).setBurnable());
 	public static final Block THATCH_BAMBOO_EDGE = reg(new EdgeBlock("thatch_bamboo_edge", THATCH_BAMBOO).setBurnable());
+	public static final Block THATCH_BAMBOO_PLATE = reg(new PlateBlock("thatch_bamboo_plate", THATCH_BAMBOO).setBurnable());
+	public static final Block THATCH_BAMBOO_SLAB = reg(new SlabBlock("thatch_bamboo_slab", THATCH_BAMBOO).setBurnable());
+	public static final Block THATCH_BAMBOO_STAIRS = reg(new StairsBlockDoTB("thatch_bamboo_stairs", THATCH_BAMBOO).setBurnable());
 	public static final Block FIREPLACE = reg(new FireplaceBlock());
+	public static final Block IRON_PORTCULLIS = reg(new PortcullisBlock("iron_portcullis"));
+
+	//French
+	public static final Block COBBLED_LIMESTONE = reg(new BlockDoTB("cobbled_limestone", Material.ROCK, 2.0F, 6.0F));
+	public static final Block LIMESTONE_BRICK = reg(new BlockDoTB("limestone_brick", Material.ROCK,1.5F, 6.0F));
+	public static final Block LIMESTONE_BRICK_EDGE = reg(new EdgeBlock("limestone_brick_edge", LIMESTONE_BRICK));
+	public static final Block LIMESTONE_BRICK_PLATE = reg(new PlateBlock("limestone_brick_plate", LIMESTONE_BRICK));
+	public static final Block LIMESTONE_BRICK_SLAB = reg(new SlabBlock("limestone_brick_slab", LIMESTONE_BRICK));
+	public static final Block LIMESTONE_BRICK_STAIRS = reg(new StairsBlockDoTB("limestone_brick_stairs", LIMESTONE_BRICK));
+	public static final Block LIMESTONE_BRICK_WALL = reg(new WallBlockDoTB("limestone_brick_wall", Material.ROCK, 1.5F, 6.0F));
 
 	//German
-	public static final Block COBBLED_LIMESTONE = reg(new BlockDoTB("cobbled_limestone", Material.ROCK, 2.0F, 6.0F));
 	public static final Block FLAT_ROOF_TILES = reg(new BlockDoTB("flat_roof_tiles", Material.ROCK,1.5F, 5.0F));
 	public static final Block FLAT_ROOF_TILES_STAIRS = reg(new StairsBlockDoTB("flat_roof_tiles_stairs", FLAT_ROOF_TILES));
 	public static final Block FLAT_ROOF_TILES_SLAB = reg(new SlabBlock("flat_roof_tiles_slab", FLAT_ROOF_TILES));
 	public static final Block FLAT_ROOF_TILES_EDGE = reg(new EdgeBlock("flat_roof_tiles_edge", FLAT_ROOF_TILES));
 	public static final Block FRAMED_RAMMED_DIRT = reg(new BlockDoTB("framed_rammed_dirt", Material.WOOD, 2.0F, 3.0F).setBurnable());
-	public static final Block IRON_PORTCULLIS = reg(new PortcullisBlock("iron_portcullis"));
 	public static final Block LATTICE_GLASS = reg(new GlassBlockDoTB("lattice_glass", 1.0F, 1.0F));
 	public static final Block LATTICE_GLASS_PANE = reg(new PaneBlockDoTB("lattice_glass_pane", Material.GLASS, 1.0F, 1.0F, BlockRenderLayer.TRANSLUCENT));
-	public static final Block LATTICE_WAXED_OAK_WINDOW = reg(new LatticeWaxedOakWindowBlock());
-	public static final Block LIMESTONE_BRICK = reg(new BlockDoTB("limestone_brick", Material.ROCK,1.5F, 6.0F));
-	public static final Block LIMESTONE_BRICK_STAIRS = reg(new StairsBlockDoTB("limestone_brick_stairs", LIMESTONE_BRICK));
-	public static final Block LIMESTONE_BRICK_SLAB = reg(new SlabBlock("limestone_brick_slab", LIMESTONE_BRICK));
-	public static final Block LIMESTONE_BRICK_EDGE = reg(new EdgeBlock("limestone_brick_edge", LIMESTONE_BRICK));
-	public static final Block LIMESTONE_BRICK_WALL = reg(new WallBlockDoTB("limestone_brick_wall", Material.ROCK, 1.5F, 6.0F));
-	public static final Block LIMESTONE_CHIMNEY = reg(new LimestoneChimneyBlock());
-	public static final Block LIMESTONE_FIREPLACE = reg(new LimestoneFireplaceBlock());
+	public static final Block LATTICE_WAXED_OAK_WINDOW = reg(new SidedWindowBlock("lattice_waxed_oak_window", Material.GLASS, 2.0F, 3.0F));
+	public static final Block LATTICE_STONE_BRICKS_WINDOW = reg(new LatticeStoneBricksWindowBlock());
+	public static final Block STONE_BRICKS_ARROWSLIT = reg(new StoneBricksArrowslitBlock());
+	public static final Block STONE_BRICKS_CHIMNEY = reg(new StoneBricksChimneyBlock());
+	public static final Block STONE_BRICKS_EDGE = reg(new EdgeBlock("stone_bricks_edge", STONE_BRICKS));
+	public static final Block STONE_BRICKS_FIREPLACE = reg(new StoneBricksFireplaceBlock());
+	public static final Block STONE_BRICKS_MACHICOLATION = reg(new StoneBricksMachicolationBlock());
+	public static final Block STONE_BRICKS_PLATE = reg(new PlateBlock("stone_bricks_plate", STONE_BRICKS));
+	public static final Block WAXED_OAK_DOOR = reg(new DoorBlockDoTB("waxed_oak_door", Material.WOOD, 1.5F, 6.0F));
+	public static final Block WAXED_OAK_TRAPDOOR = reg(new TrapDoorBlockDoTB("waxed_oak_trapdoor", Material.WOOD, 2.0F, 3.0F).setBurnable());
 	public static final Block WAXED_OAK_SHUTTERS = reg(new ShuttersBlock("waxed_oak_shutters", Material.WOOD, 2.0F, 2.0F).setBurnable());
 	public static final Block WAXED_OAK_BEAM = reg(new BeamBlock("waxed_oak_beam", Material.WOOD, 2.0F, 3.0F).setBurnable());
 	public static final Block WAXED_OAK_SUPPORT_BEAM = reg(new SupportBeamBlock("waxed_oak_support_beam", Material.WOOD, 2.0F, 3.0F).setBurnable());
@@ -79,10 +103,10 @@ public class DoTBBlocksRegistry {
 	public static final Block WAXED_OAK_PERGOLA = reg(new PergolaBlock("waxed_oak_pergola", Material.WOOD, 2.0F, 3.0F));
 	public static final Block WAXED_OAK_LATTICE = reg(new LatticeBlock("waxed_oak_lattice", Material.WOOD, 2.0F, 3.0F));
 	public static final Block WAXED_OAK_PLANKS = reg(new BlockDoTB("waxed_oak_planks", Material.WOOD, 2.0F, 3.0F).setBurnable());
-	public static final Block WAXED_OAK_PLANKS_STAIRS = reg(new StairsBlockDoTB("waxed_oak_planks_stairs", WAXED_OAK_PLANKS).setBurnable());
-	public static final Block WAXED_OAK_PLANKS_SLAB = reg(new SlabBlock("waxed_oak_planks_slab", WAXED_OAK_PLANKS).setBurnable());
-	public static final Block WAXED_OAK_PLANKS_PLATE = reg(new PlateBlock("waxed_oak_planks_plate", WAXED_OAK_PLANKS).setBurnable());
 	public static final Block WAXED_OAK_PLANKS_EDGE = reg(new EdgeBlock("waxed_oak_planks_edge", WAXED_OAK_PLANKS).setBurnable());
+	public static final Block WAXED_OAK_PLANKS_PLATE = reg(new PlateBlock("waxed_oak_planks_plate", WAXED_OAK_PLANKS).setBurnable());
+	public static final Block WAXED_OAK_PLANKS_SLAB = reg(new SlabBlock("waxed_oak_planks_slab", WAXED_OAK_PLANKS).setBurnable());
+	public static final Block WAXED_OAK_PLANKS_STAIRS = reg(new StairsBlockDoTB("waxed_oak_planks_stairs", WAXED_OAK_PLANKS).setBurnable());
 
 	//Japanese
 	//public static final Block X = reg(new DoTBBlockDryer("bamboo_drying_tray", Material.WOOD, 1.0F, SoundType.WOOD));
@@ -122,13 +146,11 @@ public class DoTBBlocksRegistry {
 	public static final Block BURNT_SPRUCE_FOUNDATION = reg(new BlockDoTB("burnt_spruce_foundation", Material.WOOD, 2.5F, 5.0F).setBurnable());
 	public static final Block BURNT_SPRUCE_FENCE = reg(new FenceBlockDoTB("burnt_spruce_fence", Material.WOOD, 2.5F, 5.0F).setBurnable());
 	public static final Block BURNT_SPRUCE_WALL = reg(new WallBlockDoTB("burnt_spruce_wall", Material.WOOD, 2.5F, 5.0F).setBurnable());
-	public static final Block SPRUCE_PLANKS_EDGE = reg(new EdgeBlock("spruce_planks_edge", Material.WOOD, 2.0F, 3.0F).setBurnable());
 	public static final Block BURNT_SPRUCE_RAILING = reg(new BurntSpruceRailingBlock());
 	//public static final Block X = reg(new BlockSpruceRoofSupport("spruce_roof_support"));
 	//public static final Block X = reg(new BlockSpruceRoofSupportMerged());
 	public static final Block BURNT_SPRUCE_PLANKS = reg(new BlockDoTB("burnt_spruce_planks", Material.WOOD, 2.5F, 5.0F));
 	public static final Block BURNT_SPRUCE_SUPPORT_BEAM = reg(new SupportBeamBlock("burnt_spruce_support_beam", Material.WOOD, 2.5F, 5.0F).setBurnable());
-	public static final Block SPRUCE_PLANKS_SUPPORT_SLAB = reg(new SupportSlabBlock("spruce_planks_support_slab", Material.WOOD, 1.5F, 3.0F).setBurnable());
 	public static final Block SPRUCE_LOW_TABLE = reg(new SpruceLowTableBlock());
 	public static final Block BURNT_SPRUCE_TIMBER_FRAME = reg(new BlockDoTB("burnt_spruce_timber_frame", Material.WOOD, 3.0F, 6.0F).setBurnable());
 	public static final Block BURNT_SPRUCE_TIMBER_FRAME_PILLAR = reg(new RotatedPillarBlockDoTB("burnt_spruce_timber_frame_pillar", Material.WOOD, 3.0F, 6.0F).setBurnable());
@@ -141,6 +163,9 @@ public class DoTBBlocksRegistry {
 	public static final Block SAKE_CUP = reg(new SakeCupBlock());
 	public static final Block BURNT_SPRUCE_FOUNDATION_SLAB = reg(new SlabBlock("burnt_spruce_foundation_slab", Material.WOOD, 2.5F, 5.0F));
 	//public static final Block X = reg(new BlockStickBundle());
+
+	//Persian
+	public static final Block PERSIAN_CARPET_RED = reg(new CarpetBlockDoTB("persian_carpet_red", Material.CARPET, 0.1F, 0.1F));
 
 	//Pre_columbian
 	//public static final Block X = reg(new BlockChiseledPlasteredStone());
@@ -156,18 +181,18 @@ public class DoTBBlocksRegistry {
 	public static final Block RED_ORNAMENTED_PLASTERED_STONE = reg(new BlockDoTB("red_ornamented_plastered_stone", Material.ROCK,1.5F, 6.0F));
 	//public static final Block X = reg(new BlockPlasteredStoneColumn());
 	//public static final Block X = reg(new BlockPlasteredStoneCresset());
+	public static final Block PLASTERED_STONE_EDGE = reg(new EdgeBlock("plastered_stone_edge", PLASTERED_STONE));
 	public static final Block PLASTERED_STONE_FRIEZE = reg(new PlateBlock("plastered_stone_frieze", PLASTERED_STONE));
 	public static final Block PLASTERED_STONE_PLATE = reg(new PlateBlock("plastered_stone_plate", PLASTERED_STONE));
-	public static final Block PLASTERED_STONE_STAIRS = reg(new StairsBlockDoTB("plastered_stone_stairs", PLASTERED_STONE));
 	public static final Block PLASTERED_STONE_SLAB = reg(new SlabBlock("plastered_stone_slab", PLASTERED_STONE));
-	public static final Block PLASTERED_STONE_EDGE = reg(new EdgeBlock("plastered_stone_edge", PLASTERED_STONE));
+	public static final Block PLASTERED_STONE_STAIRS = reg(new StairsBlockDoTB("plastered_stone_stairs", PLASTERED_STONE));
 	public static final Block PLASTERED_STONE_WINDOW = reg(new BlockPlasteredStoneWindow());
 	public static final Block RED_ORNAMENTED_PLASTERED_STONE_FRIEZE = reg(new PlateBlock("red_ornamented_plastered_stone_frieze", RED_PLASTERED_STONE));
+	public static final Block RED_PLASTERED_STONE_EDGE = reg(new EdgeBlock("red_plastered_stone_edge", RED_PLASTERED_STONE));
 	public static final Block RED_PLASTERED_STONE_FRIEZE = reg(new PlateBlock("red_plastered_stone_frieze", RED_PLASTERED_STONE));
 	public static final Block RED_PLASTERED_STONE_PLATE = reg(new PlateBlock("red_plastered_stone_plate", RED_PLASTERED_STONE));
-	public static final Block RED_PLASTERED_STONE_STAIRS = reg(new StairsBlockDoTB("red_plastered_stone_stairs", RED_PLASTERED_STONE));
 	public static final Block RED_PLASTERED_STONE_SLAB = reg(new SlabBlock("red_plastered_stone_slab", RED_PLASTERED_STONE));
-	public static final Block RED_PLASTERED_STONE_EDGE = reg(new EdgeBlock("red_plastered_stone_edge", RED_PLASTERED_STONE));
+	public static final Block RED_PLASTERED_STONE_STAIRS = reg(new StairsBlockDoTB("red_plastered_stone_stairs", RED_PLASTERED_STONE));
 	//public static final Block X = reg(new BlockRedSculptedPlasteredStoneFrieze());
 	public static final Block RED_SMALL_PLASTERED_STONE_FRIEZE = reg(new EdgeBlock("red_small_plastered_stone_frieze", RED_PLASTERED_STONE));
 	public static final Block SERPENT_SCULPTED_COLUMN = reg(new BlockSerpentSculptedColumn());

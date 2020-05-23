@@ -5,7 +5,6 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.PushReaction;
-import net.minecraft.client.particle.ParticleManager;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
@@ -120,21 +119,28 @@ public class TatamiMatBlock extends WaterloggedBlock {
         if(facing.getAxis().isVertical()){
             return !stateIn.isValidPosition(worldIn, currentPos) ? Blocks.AIR.getDefaultState() : this.tryMergingWithSprucePlanks(stateIn, worldIn.getWorld(), currentPos);
         }else{
+            boolean mustDisappear = false;
+            if(stateIn.get(ROLLED))
+                return stateIn;
             Direction direction = stateIn.get(FACING);
             if(stateIn.get(HALF) == Half.TOP){
-                if(!stateIn.get(ROLLED) && direction == facing){
-                    if(facingState.getBlock() == this){
-                        if(facingState.get(FACING) != facing || facingState.get(HALF) != Half.BOTTOM)
-                            return Blocks.AIR.getDefaultState();
+                if(direction == facing){ //If block is TOP, then BOTTOM half is toward "direction"
+                    if(facingState.getBlock() == this){ //Update comes from the other half
+                        if(facingState.get(FACING) != facing || facingState.get(HALF) != Half.BOTTOM || facingState.get(ROLLED))
+                            mustDisappear = true;
                     }else
-                        return Blocks.AIR.getDefaultState();
+                        mustDisappear = true;
                 }
-            }else if(direction == facing.getOpposite()){
-                if(facingState.getBlock() == this){
-                    if(facingState.get(FACING) != direction || facingState.get(HALF) != Half.TOP)
-                        return Blocks.AIR.getDefaultState();
+            }else if(direction == facing.getOpposite()){ //If block is BOTTOM, then Top half is toward the opposite of "direction"
+                if(facingState.getBlock() == this){ //Update comes from the other half
+                    if(facingState.get(FACING) != direction || facingState.get(HALF) != Half.TOP || facingState.get(ROLLED))
+                        mustDisappear = true;
                 }else
-                    return Blocks.AIR.getDefaultState();
+                    mustDisappear = true;
+            }
+            if(mustDisappear){
+                stateIn = Blocks.AIR.getDefaultState();
+                worldIn.setBlockState(currentPos, stateIn, 2); //Avoid the breaking particles
             }
         }
         return stateIn;
@@ -155,41 +161,32 @@ public class TatamiMatBlock extends WaterloggedBlock {
 
     @Override
     public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-        if(!worldIn.isRemote){
-            if(player.isSneaking()){
-                int stack = state.get(STACK);
-                boolean isRolled = state.get(ROLLED);
-                if(isRolled && stack == 1) {
-                    if (COVERED_BLOCKS.contains(worldIn.getBlockState(pos.down()).getBlock()))
-                        return false;
-                }
-                if(state.get(STACK) > 1){
-                    state = state.with(STACK, stack - 1);
-                    spawnAsEntity(worldIn.getWorld(), pos, new ItemStack(this.asItem(), 1));
-                }else{
-                    state = state.with(ROLLED, !isRolled);
-                    Direction facing = state.get(FACING);
-                    if(isRolled){
-                        if(!worldIn.isAirBlock(pos.offset(facing)) //Check if the position for the Bottom half is free
-                                || worldIn.isAirBlock(pos.offset(facing).down()) //Check if this position can't support tatami
-                                || COVERED_BLOCKS.contains(worldIn.getBlockState(pos.down().offset(facing)).getBlock())) //Check if this position is not supported by a covered block
-                            return false;
-                        worldIn.setBlockState(pos.offset(facing), state.with(HALF, Half.BOTTOM), 8);
-                    }else{
-                        boolean isTop = state.get(HALF) == Half.TOP;
-                        if(isTop){
-                            worldIn.setBlockState(pos.offset(facing), Blocks.AIR.getDefaultState(), 8);
-                        }else{
-                            worldIn.setBlockState(pos, Blocks.AIR.getDefaultState(), 8);
-                            pos = pos.offset(facing.getOpposite());
-                            state = state.with(HALF, Half.TOP);
-                        }
-                    }
-                }
-                state = this.updatePostPlacement(state, Direction.DOWN, worldIn.getBlockState(pos.down()), worldIn, pos, pos.down());
-                worldIn.setBlockState(pos, state, 8);
-                return true;
+        if(player.isSneaking()){
+            int stack = state.get(STACK);
+            boolean isRolled = state.get(ROLLED);
+            if(isRolled && stack == 1) {
+                if (COVERED_BLOCKS.contains(worldIn.getBlockState(pos.down()).getBlock()))
+                    return false;
             }
+            if(state.get(STACK) > 1){
+                state = state.with(STACK, stack - 1);
+                spawnAsEntity(worldIn.getWorld(), pos, new ItemStack(this.asItem(), 1));
+            }else{
+                state = state.with(ROLLED, !isRolled);
+                Direction facing = state.get(FACING);
+                if(isRolled){
+                    if(!worldIn.isAirBlock(pos.offset(facing)) //Check if the position for the Bottom half is free
+                            || worldIn.isAirBlock(pos.offset(facing).down()) //Check if this position can't support tatami
+                            || COVERED_BLOCKS.contains(worldIn.getBlockState(pos.down().offset(facing)).getBlock())) //Check if this position is not supported by a covered block
+                        return false;
+                    worldIn.setBlockState(pos.offset(facing), state.with(HALF, Half.BOTTOM), 2);
+                }else if(state.get(HALF) == Half.BOTTOM){
+                    state = state.with(HALF, Half.TOP).with(FACING, facing.getOpposite());
+                }
+            }
+            worldIn.setBlockState(pos, state, 2);
+            worldIn.playSound(player, pos, this.soundType.getPlaceSound(), SoundCategory.BLOCKS, (this.soundType.getVolume() + 1.0F) / 2.0F, this.soundType.getPitch() * 0.8F);
+            return true;
         }
         return false;
     }
