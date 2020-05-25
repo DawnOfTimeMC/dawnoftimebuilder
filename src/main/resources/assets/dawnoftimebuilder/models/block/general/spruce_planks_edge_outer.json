@@ -1,7 +1,7 @@
 {
 	"parent": "dawnoftimebuilder:block/general/small_plate_outer",
 	"textures": {
-		"top": "block/planks_spruce",
-		"frieze": "block/planks_spruce"
+		"top": "block/spruce_planks",
+		"frieze": "block/spruce_planks"
 	}
 }

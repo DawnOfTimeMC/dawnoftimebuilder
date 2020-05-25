@@ -1,0 +1,225 @@
+{
+	"multipart": [
+		{
+			"when": { "axis": "y" },
+			"apply": { "model": "dawnoftimebuilder:block/general/dark_oak_pergola_y"}
+		},
+		{
+			"when": {"OR": [
+				{"axis": "x", "subaxis_z": "false" },
+				{"axis": "y", "subaxis_x": "true", "subaxis_z": "false" }
+			]},
+			"apply": { "model": "dawnoftimebuilder:block/general/dark_oak_pergola_x"}
+		},
+		{
+			"when": {"OR": [
+				{"axis": "z", "subaxis_x": "false" },
+				{"axis": "y", "subaxis_z": "true", "subaxis_x": "false" }
+			]},
+			"apply": { "model": "dawnoftimebuilder:block/general/dark_oak_pergola_x", "y": 90}
+		},
+		{
+			"when": {"OR": [
+				{"axis": "x", "subaxis_z": "true" },
+				{"axis": "z", "subaxis_x": "true" },
+				{"subaxis_z": "true", "subaxis_x": "true" }
+			]},
+			"apply": { "model": "dawnoftimebuilder:block/general/dark_oak_pergola_x_z"}
+		},
+		{
+			"when": { "bottom": "true" },
+			"apply": { "model": "dawnoftimebuilder:block/general/dark_oak_pergola_bottom"}
+		},
+		{
+			"when": { "climbing_plant": "grape", "age": "0", "axis": "y"},
+			"apply": [
+				{ "model": "dawnoftimebuilder:block/general/grape/grape_y_stage_0"},
+				{ "model": "dawnoftimebuilder:block/general/grape/grape_y_stage_0", "y": 90 },
+				{ "model": "dawnoftimebuilder:block/general/grape/grape_y_stage_0", "y": 180 },
+				{ "model": "dawnoftimebuilder:block/general/grape/grape_y_stage_0", "y": 270 }
+			]
+		},
+		{
+			"when": { "climbing_plant": "grape", "age": "1", "axis": "y"},
+			"apply": [
+				{ "model": "dawnoftimebuilder:block/general/grape/grape_y_stage_1"},
+				{ "model": "dawnoftimebuilder:block/general/grape/grape_y_stage_1", "y": 90 },
+				{ "model": "dawnoftimebuilder:block/general/grape/grape_y_stage_1", "y": 180 },
+				{ "model": "dawnoftimebuilder:block/general/grape/grape_y_stage_1", "y": 270 }
+			]
+		},
+		{
+			"when": { "climbing_plant": "grape", "age": "2", "axis": "y"},
+			"apply": [
+				{ "model": "dawnoftimebuilder:block/general/grape/grape_y_stage_2"},
+				{ "model": "dawnoftimebuilder:block/general/grape/grape_y_stage_2", "y": 90 },
+				{ "model": "dawnoftimebuilder:block/general/grape/grape_y_stage_2", "y": 180 },
+				{ "model": "dawnoftimebuilder:block/general/grape/grape_y_stage_2", "y": 270 }
+			]
+		},
+		{
+			"when": { "climbing_plant": "grape", "age": "3", "axis": "y"},
+			"apply": [
+				{ "model": "dawnoftimebuilder:block/general/grape/grape_y_stage_3"},
+				{ "model": "dawnoftimebuilder:block/general/grape/grape_y_stage_3", "y": 90 },
+				{ "model": "dawnoftimebuilder:block/general/grape/grape_y_stage_3", "y": 180 },
+				{ "model": "dawnoftimebuilder:block/general/grape/grape_y_stage_3", "y": 270 }
+			]
+		},
+		{
+			"when": { "climbing_plant": "grape", "age": "4", "axis": "y"},
+			"apply": [
+				{ "model": "dawnoftimebuilder:block/general/grape/grape_y_stage_4"},
+				{ "model": "dawnoftimebuilder:block/general/grape/grape_y_stage_4", "y": 90 },
+				{ "model": "dawnoftimebuilder:block/general/grape/grape_y_stage_4", "y": 180 },
+				{ "model": "dawnoftimebuilder:block/general/grape/grape_y_stage_4", "y": 270 }
+			]
+		},
+		{
+			"when": { "climbing_plant": "grape", "age": "5", "axis": "y"},
+			"apply": [
+				{ "model": "dawnoftimebuilder:block/general/grape/grape_y_stage_5"},
+				{ "model": "dawnoftimebuilder:block/general/grape/grape_y_stage_5", "y": 90 },
+				{ "model": "dawnoftimebuilder:block/general/grape/grape_y_stage_5", "y": 180 },
+				{ "model": "dawnoftimebuilder:block/general/grape/grape_y_stage_5", "y": 270 }
+			]
+		},
+		{
+			"when": { "climbing_plant": "grape", "age": "6", "axis": "y"},
+			"apply": [
+				{ "model": "dawnoftimebuilder:block/general/grape/grape_y_stage_6"},
+				{ "model": "dawnoftimebuilder:block/general/grape/grape_y_stage_6", "y": 90 },
+				{ "model": "dawnoftimebuilder:block/general/grape/grape_y_stage_6", "y": 180 },
+				{ "model": "dawnoftimebuilder:block/general/grape/grape_y_stage_6", "y": 270 }
+			]
+		},
+		{
+			"when": {"OR": [
+				{ "climbing_plant": "grape", "age": "0", "axis": "x" },
+				{ "climbing_plant": "grape", "age": "0", "axis": "z" },
+				{ "climbing_plant": "grape", "age": "0", "subaxis_x": "true" },
+				{ "climbing_plant": "grape", "age": "0", "subaxis_z": "true" }
+			]},
+			"apply": [
+				{ "model": "dawnoftimebuilder:block/general/grape/grape_x_z_stage_0"}
+			]
+		},
+		{
+			"when": {"OR": [
+				{ "climbing_plant": "grape", "age": "1", "axis": "x" },
+				{ "climbing_plant": "grape", "age": "1", "axis": "z" },
+				{ "climbing_plant": "grape", "age": "1", "subaxis_x": "true" },
+				{ "climbing_plant": "grape", "age": "1", "subaxis_z": "true" }
+			]},
+			"apply": [
+				{ "model": "dawnoftimebuilder:block/general/grape/grape_x_z_stage_1"}
+			]
+		},
+		{
+			"when": {"OR": [
+				{ "climbing_plant": "grape", "age": "2", "axis": "x" },
+				{ "climbing_plant": "grape", "age": "2", "axis": "z" },
+				{ "climbing_plant": "grape", "age": "2", "subaxis_x": "true" },
+				{ "climbing_plant": "grape", "age": "2", "subaxis_z": "true" }
+			]},
+			"apply": [
+				{ "model": "dawnoftimebuilder:block/general/grape/grape_x_z_stage_2"}
+			]
+		},
+		{
+			"when": {"OR": [
+				{ "climbing_plant": "grape", "age": "3", "axis": "x" },
+				{ "climbing_plant": "grape", "age": "3", "axis": "z" },
+				{ "climbing_plant": "grape", "age": "3", "subaxis_x": "true" },
+				{ "climbing_plant": "grape", "age": "3", "subaxis_z": "true" }
+			]},
+			"apply": [
+				{ "model": "dawnoftimebuilder:block/general/grape/grape_x_z_stage_3"}
+			]
+		},
+		{
+			"when": {"OR": [
+				{ "climbing_plant": "grape", "age": "4", "axis": "x" },
+				{ "climbing_plant": "grape", "age": "4", "axis": "z" },
+				{ "climbing_plant": "grape", "age": "4", "subaxis_x": "true" },
+				{ "climbing_plant": "grape", "age": "4", "subaxis_z": "true" }
+			]},
+			"apply": [
+				{ "model": "dawnoftimebuilder:block/general/grape/grape_x_z_stage_4"}
+			]
+		},
+		{
+			"when": {"OR": [
+				{ "climbing_plant": "grape", "age": "5", "axis": "x" },
+				{ "climbing_plant": "grape", "age": "5", "axis": "z" },
+				{ "climbing_plant": "grape", "age": "5", "subaxis_x": "true" },
+				{ "climbing_plant": "grape", "age": "5", "subaxis_z": "true" }
+			]},
+			"apply": [
+				{ "model": "dawnoftimebuilder:block/general/grape/grape_x_z_stage_5"}
+			]
+		},
+		{
+			"when": {"OR": [
+				{ "climbing_plant": "grape", "age": "6", "axis": "x" },
+				{ "climbing_plant": "grape", "age": "6", "axis": "z" },
+				{ "climbing_plant": "grape", "age": "6", "subaxis_x": "true" },
+				{ "climbing_plant": "grape", "age": "6", "subaxis_z": "true" }
+			]},
+			"apply": [
+				{ "model": "dawnoftimebuilder:block/general/grape/grape_x_z_stage_6"}
+			]
+		},
+		{
+			"when": { "climbing_plant": "vine", "age": "0", "axis": "y"},
+			"apply": [
+				{ "model": "dawnoftimebuilder:block/general/vine/vine_y_stage_0"}
+			]
+		},
+		{
+			"when": { "climbing_plant": "vine", "age": "1", "axis": "y"},
+			"apply": [
+				{ "model": "dawnoftimebuilder:block/general/vine/vine_y_stage_1"}
+			]
+		},
+		{
+			"when": { "climbing_plant": "vine", "age": "2", "axis": "y"},
+			"apply": [
+				{ "model": "dawnoftimebuilder:block/general/vine/vine_y_stage_2"}
+			]
+		},
+		{
+			"when": {"OR": [
+				{ "climbing_plant": "vine", "age": "0", "axis": "x" },
+				{ "climbing_plant": "vine", "age": "0", "axis": "z" },
+				{ "climbing_plant": "vine", "age": "0", "subaxis_x": "true" },
+				{ "climbing_plant": "vine", "age": "0", "subaxis_z": "true" }
+			]},
+			"apply": [
+				{ "model": "dawnoftimebuilder:block/general/vine/vine_x_z_stage_0"}
+			]
+		},
+		{
+			"when": {"OR": [
+				{ "climbing_plant": "vine", "age": "1", "axis": "x" },
+				{ "climbing_plant": "vine", "age": "1", "axis": "z" },
+				{ "climbing_plant": "vine", "age": "1", "subaxis_x": "true" },
+				{ "climbing_plant": "vine", "age": "1", "subaxis_z": "true" }
+			]},
+			"apply": [
+				{ "model": "dawnoftimebuilder:block/general/vine/vine_x_z_stage_1"}
+			]
+		},
+		{
+			"when": {"OR": [
+				{ "climbing_plant": "vine", "age": "2", "axis": "x" },
+				{ "climbing_plant": "vine", "age": "2", "axis": "z" },
+				{ "climbing_plant": "vine", "age": "2", "subaxis_x": "true" },
+				{ "climbing_plant": "vine", "age": "2", "subaxis_z": "true" }
+			]},
+			"apply": [
+				{ "model": "dawnoftimebuilder:block/general/vine/vine_x_z_stage_2"}
+			]
+		}
+	]
+}

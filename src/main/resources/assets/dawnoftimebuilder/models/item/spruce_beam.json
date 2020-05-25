@@ -1,7 +1,7 @@
 {
 	"textures": {
-		"0": "dawnoftimebuilder:block/spruce_log_beam",
-		"particle": "dawnoftimebuilder:block/spruce_log_beam"
+		"0": "dawnoftimebuilder:block/spruce_beam",
+		"particle": "dawnoftimebuilder:block/spruce_beam"
 	},
 	"elements": [
 		{

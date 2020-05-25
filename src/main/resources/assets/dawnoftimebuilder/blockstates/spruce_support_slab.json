@@ -1,14 +1,18 @@
 {
-    "forge_marker": 1,
-    "defaults": {
-        "model": "dawnoftimebuilder:block/japanese/spruce_support_slab"
-    },
-    "variants": {
-        "under" : {
-            "nothing" : {  },
-            "4_pixels"  : { "submodel": "dawnoftimebuilder:japanese/spruce_support_4_pixels" },
-            "8_pixels"  : { "submodel": "dawnoftimebuilder:japanese/spruce_support_8_pixels" },
-            "10_pixels"  : { "submodel": "dawnoftimebuilder:japanese/spruce_support_10_pixels" }
+    "multipart": [
+        {   "apply": { "model": "dawnoftimebuilder:block/general/spruce_support_slab" }
+        },
+        {   "when": { "pillar_connection": "4_pixels" },
+            "apply": { "model": "dawnoftimebuilder:block/general/spruce_support_4_pixels" }
+        },
+        {   "when": { "pillar_connection": "6_pixels" },
+            "apply": { "model": "dawnoftimebuilder:block/general/spruce_support_6_pixels" }
+        },
+        {   "when": { "pillar_connection": "8_pixels" },
+            "apply": { "model": "dawnoftimebuilder:block/general/spruce_support_8_pixels" }
+        },
+        {   "when": { "pillar_connection": "10_pixels" },
+            "apply": { "model": "dawnoftimebuilder:block/general/spruce_support_10_pixels" }
         }
-    }
+    ]
 }

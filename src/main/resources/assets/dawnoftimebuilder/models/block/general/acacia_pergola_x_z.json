@@ -1,7 +1,7 @@
 {
 	"textures": {
-		"0": "dawnoftimebuilder:block/waxed_oak_pergola",
-		"particle": "dawnoftimebuilder:block/waxed_oak_pergola"
+		"0": "dawnoftimebuilder:block/acacia_pergola",
+		"particle": "dawnoftimebuilder:block/acacia_pergola"
 	},
 	"elements": [
 		{

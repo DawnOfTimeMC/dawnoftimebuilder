@@ -1,0 +1,14 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "model": "dawnoftimebuilder:block/genral/oak_support_slab"
+    },
+    "variants": {
+        "under" : {
+            "nothing" : {  },
+            "4_pixels"  : { "submodel": "dawnoftimebuilder:genral/oak_support_4_pixels" },
+            "8_pixels"  : { "submodel": "dawnoftimebuilder:genral/oak_support_8_pixels" },
+            "10_pixels"  : { "submodel": "dawnoftimebuilder:genral/oak_support_10_pixels" }
+        }
+    }
+}
