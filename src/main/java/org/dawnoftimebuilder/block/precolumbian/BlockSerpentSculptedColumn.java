@@ -41,10 +41,4 @@ public class BlockSerpentSculptedColumn extends SidedColumnConnectibleBlock {
 				vs_tail
 		};
 	}
-
-	//TODO Useful??
-/*	@Override
-	public BlockRenderLayer getRenderLayer(){
-	    return BlockRenderLayer.CUTOUT;
-	}*/
 }

@@ -9,12 +9,11 @@
 			"item": "dawnoftimebuilder:silk"
 		},
 		"i": {
-			"item": "minecraft:stick"
+			"tag": "forge:rods/wooden"
 		}
 	},
 	"result": {
 		"item": "dawnoftimebuilder:little_flag",
-		"data": 0,
 		"count": 4
 	}
 }

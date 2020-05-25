@@ -5,6 +5,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
@@ -75,8 +76,9 @@ public class PergolaBlock extends BeamBlock {
 
 	@Override
 	public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-		if (state.get(BOTTOM)){
-			if (this.tryPlacingPlant(state, worldIn, pos, player, handIn)) return true;
+		if (!(worldIn.getBlockState(pos.down()).getBlock() instanceof PergolaBlock)){
+			if (this.tryPlacingPlant(state.with(BOTTOM, !worldIn.getBlockState(pos.down()).isIn(BlockTags.DIRT_LIKE)), worldIn, pos, player, handIn))
+				return true;
 		}
 		return super.onBlockActivated(state, worldIn, pos, player, handIn, hit);
 	}
@@ -89,6 +91,6 @@ public class PergolaBlock extends BeamBlock {
 	@Nonnull
 	@Override
 	public DoTBBlockStateProperties.PillarConnection getBlockPillarConnection(BlockState state) {
-		return DoTBBlockStateProperties.PillarConnection.SIX_PX;
+		return (state.get(MAIN_AXIS) == Direction.Axis.Y) ? DoTBBlockStateProperties.PillarConnection.SIX_PX : DoTBBlockStateProperties.PillarConnection.NOTHING;
 	}
 }

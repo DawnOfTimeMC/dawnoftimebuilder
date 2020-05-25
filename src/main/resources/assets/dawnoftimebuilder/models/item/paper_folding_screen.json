@@ -20,12 +20,12 @@
 	"display": {
 		"thirdperson_righthand": {
 			"translation": [0, 2.5, 0],
-			"scale": [0.3, 0.3, 0.3]
+			"scale": [0.25, 0.25, 0.25]
 		},
 		"thirdperson_lefthand": {
 			"rotation": [0, -90, 0],
 			"translation": [0, 2.5, 0],
-			"scale": [0.3, 0.3, 0.3]
+			"scale": [0.25, 0.25, 0.25]
 		},
 		"firstperson_righthand": {
 			"translation": [0, 2, 1],
@@ -37,7 +37,7 @@
 			"scale": [0.4, 0.4, 0.4]
 		},
 		"ground": {
-			"scale": [0.3, 0.3, 0.3]
+			"scale": [0.25, 0.25, 0.25]
 		},
 		"gui": {
 			"rotation": [30, 75, 0],
