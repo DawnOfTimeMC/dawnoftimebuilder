@@ -26,12 +26,6 @@ public class DoTBBlocksRegistry {
 	public static final List<Block> BLOCKS = new ArrayList<>();
 
 	//General
-    public static final Block ACACIA_PLANKS_EDGE = reg(new EdgeBlock("acacia_planks_edge", ACACIA_PLANKS).setBurnable());
-	public static final Block ACACIA_PLANKS_PLATE = reg(new PlateBlock("acacia_planks_plate", ACACIA_PLANKS).setBurnable());
-	public static final Block BIRCH_PLANKS_EDGE = reg(new EdgeBlock("birch_planks_edge", BIRCH_PLANKS).setBurnable());
-	public static final Block BIRCH_PLANKS_PLATE = reg(new PlateBlock("birch_planks_plate", BIRCH_PLANKS).setBurnable());
-	public static final Block DARK_OAK_PLANKS_EDGE = reg(new EdgeBlock("dark_oak_planks_edge", DARK_OAK_PLANKS).setBurnable());
-	public static final Block DARK_OAK_PLANKS_PLATE = reg(new PlateBlock("dark_oak_planks_plate", DARK_OAK_PLANKS).setBurnable());
     public static final Block ACACIA_PLANKS_EDGE = reg(new EdgeBlock("acacia_planks_edge", Material.WOOD, 2.0F, 3.0F).setBurnable());
 	public static final Block ACACIA_PLANKS_PLATE = reg(new PlateBlock("acacia_planks_plate", Material.WOOD, 2.0F, 3.0F).setBurnable());
 	public static final Block ACACIA_PERGOLA = reg(new PergolaBlock("acacia_pergola", Material.WOOD, 2.0F, 3.0F).setBurnable());
@@ -54,10 +48,6 @@ public class DoTBBlocksRegistry {
 	public static final Block DARK_OAK_SUPPORT_BEAM = reg(new SupportBeamBlock("dark_oak_support_beam", Material.WOOD, 2.0F, 3.0F).setBurnable());
 	public static final Block DARK_OAK_SUPPORT_SLAB = reg(new SupportSlabBlock("dark_oak_support_slab", Material.WOOD, 1.5F, 3.0F).setBurnable());
 	public static final Block IRON_CHAIN = reg(new ChainBlock("iron_chain", Material.IRON, 5.0F, 6.0F));
-	public static final Block JUNGLE_PLANKS_EDGE = reg(new EdgeBlock("jungle_planks_edge", JUNGLE_PLANKS).setBurnable());
-	public static final Block JUNGLE_PLANKS_PLATE = reg(new PlateBlock("jungle_planks_plate", JUNGLE_PLANKS).setBurnable());
-    public static final Block OAK_PLANKS_EDGE = reg(new EdgeBlock("oak_planks_edge", OAK_PLANKS).setBurnable());
-	public static final Block OAK_PLANKS_PLATE = reg(new PlateBlock("oak_planks_plate", OAK_PLANKS).setBurnable());
 	public static final Block JUNGLE_PLANKS_EDGE = reg(new EdgeBlock("jungle_planks_edge", Material.WOOD, 2.0F, 3.0F).setBurnable());
 	public static final Block JUNGLE_PLANKS_PLATE = reg(new PlateBlock("jungle_planks_plate", Material.WOOD, 2.0F, 3.0F).setBurnable());
 	public static final Block JUNGLE_PERGOLA = reg(new PergolaBlock("jungle_pergola", Material.WOOD, 2.0F, 3.0F).setBurnable());
@@ -83,9 +73,6 @@ public class DoTBBlocksRegistry {
 	public static final Block PATH_OCHRE_TILES_SLAB = reg(new SlabPathBlock("path_ochre_tiles_slab"));
 	public static final Block PATH_DIRT_SLAB = reg(new SlabPathBlock("path_dirt_slab"));
 	public static final Block RAMMED_DIRT = reg(new BlockDoTB("rammed_dirt", Material.EARTH, 0.7F, 0.7F));
-	public static final Block SPRUCE_PLANKS_EDGE = reg(new EdgeBlock("spruce_planks_edge", SPRUCE_PLANKS).setBurnable());
-	public static final Block SPRUCE_PLANKS_PLATE = reg(new PlateBlock("spruce_planks_plate", SPRUCE_PLANKS).setBurnable());
-	public static final Block SPRUCE_PLANKS_SUPPORT_SLAB = reg(new SupportSlabBlock("spruce_planks_support_slab", Material.WOOD, 1.5F, 3.0F).setBurnable());
 	public static final Block SPRUCE_PLANKS_EDGE = reg(new EdgeBlock("spruce_planks_edge", Material.WOOD, 2.0F, 3.0F).setBurnable());
 	public static final Block SPRUCE_PLANKS_PLATE = reg(new PlateBlock("spruce_planks_plate", Material.WOOD, 2.0F, 3.0F).setBurnable());
 	public static final Block SPRUCE_PERGOLA = reg(new PergolaBlock("spruce_pergola", Material.WOOD, 2.0F, 3.0F).setBurnable());
