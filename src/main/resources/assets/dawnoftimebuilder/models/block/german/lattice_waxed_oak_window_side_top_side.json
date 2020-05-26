@@ -1,8 +1,7 @@
 {
-	"credit": "Made with Blockbench",
 	"textures": {
-		"texture": "dawnoftimebuilder:block/lattice_glass_side",
-		"particle": "dawnoftimebuilder:block/lattice_glass",
+		"texture": "dawnoftimebuilder:block/lattice_waxed_oak_window",
+		"particle": "dawnoftimebuilder:block/lattice_waxed_oak_window",
 		"tete": "dawnoftimebuilder:block/lattice_glass"
 	},
 	"elements": [

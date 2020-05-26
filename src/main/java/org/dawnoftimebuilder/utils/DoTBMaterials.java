@@ -93,6 +93,7 @@ public class DoTBMaterials {
 	}
 
 	public enum ItemMaterial implements IItemTier {
+		//TODO remove useless
 		WOOD(0, 59, 2.0F, 0.0F, 15, () -> {
 			return Ingredient.fromTag(ItemTags.PLANKS);
 		}),

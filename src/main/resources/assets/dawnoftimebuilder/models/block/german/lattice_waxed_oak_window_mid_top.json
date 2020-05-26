@@ -1,8 +1,8 @@
 {
 	"textures": {
-		"texture": "dawnoftimebuilder:block/lattice_glass_side",
+		"texture": "dawnoftimebuilder:block/lattice_waxed_oak_window",
 		"tete": "dawnoftimebuilder:block/lattice_glass",
-		"particle": "dawnoftimebuilder:block/lattice_glass"
+		"particle": "dawnoftimebuilder:block/lattice_waxed_oak_window"
 	},
 	"elements": [
 		{
