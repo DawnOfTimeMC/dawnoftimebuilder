@@ -1,0 +1,30 @@
+{
+	"textures": {
+		"1": "dawnoftimebuilder:block/stone_bricks_chimney",
+		"particle": "dawnoftimebuilder:block/stone_bricks_chimney"
+	},
+	"elements": [
+		{
+			"from": [0, 0, 0],
+			"to": [16, 8, 16],
+			"faces": {
+				"north": {"uv": [0, 0, 8, 4], "texture": "#1", "cullface": "north"},
+				"east": {"uv": [0, 0, 8, 4], "texture": "#1", "cullface": "east"},
+				"south": {"uv": [0, 0, 8, 4], "texture": "#1", "cullface": "south"},
+				"west": {"uv": [0, 0, 8, 4], "texture": "#1", "cullface": "west"},
+				"up": {"uv": [0, 8, 8, 0], "texture": "#1" },
+				"down": {"uv": [0, 8, 8, 0], "texture": "#1", "cullface": "down"}
+			}
+		},
+		{
+			"from": [2, 8, 2],
+			"to": [14, 16, 14],
+			"faces": {
+				"north": {"uv": [8, 4, 14, 8], "texture": "#1"},
+				"east": {"uv": [8, 0, 14, 4], "texture": "#1"},
+				"south": {"uv": [8, 4, 14, 8], "texture": "#1"},
+				"west": {"uv": [8, 0, 14, 4], "texture": "#1"}
+			}
+		}
+	]
+}

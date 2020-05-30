@@ -6,6 +6,7 @@ import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.util.BlockRenderLayer;
 import org.dawnoftimebuilder.block.IBlockCustomItem;
+import org.dawnoftimebuilder.block.french.LimestoneChimneyBlock;
 import org.dawnoftimebuilder.block.precolumbian.BlockPlasteredStoneWindow;
 import org.dawnoftimebuilder.block.templates.*;
 import org.dawnoftimebuilder.block.german.*;
@@ -101,13 +102,14 @@ public class DoTBBlocksRegistry {
 	public static final Block LIMESTONE_BRICK_SLAB = reg(new SlabBlock("limestone_brick_slab", LIMESTONE_BRICK));
 	public static final Block LIMESTONE_BRICK_STAIRS = reg(new StairsBlockDoTB("limestone_brick_stairs", LIMESTONE_BRICK));
 	public static final Block LIMESTONE_BRICK_WALL = reg(new WallBlockDoTB("limestone_brick_wall", Material.ROCK, 1.5F, 6.0F));
+	public static final Block LIMESTONE_CHIMNEY = reg(new LimestoneChimneyBlock());
+	public static final Block LIMESTONE_FIREPLACE = reg(new MultiblockFireplaceBlock("limestone_fireplace", Material.ROCK, 2.0F, 6.0F));
 
 	//German
 	public static final Block FLAT_ROOF_TILES = reg(new BlockDoTB("flat_roof_tiles", Material.ROCK,1.5F, 5.0F));
 	public static final Block FLAT_ROOF_TILES_STAIRS = reg(new StairsBlockDoTB("flat_roof_tiles_stairs", FLAT_ROOF_TILES));
 	public static final Block FLAT_ROOF_TILES_SLAB = reg(new SlabBlock("flat_roof_tiles_slab", FLAT_ROOF_TILES));
 	public static final Block FLAT_ROOF_TILES_EDGE = reg(new EdgeBlock("flat_roof_tiles_edge", FLAT_ROOF_TILES));
-	public static final Block FRAMED_RAMMED_DIRT = reg(new BlockDoTB("framed_rammed_dirt", Material.WOOD, 2.0F, 3.0F).setBurnable());
 	public static final Block LATTICE_GLASS = reg(new GlassBlockDoTB("lattice_glass", 1.0F, 1.0F));
 	public static final Block LATTICE_GLASS_PANE = reg(new PaneBlockDoTB("lattice_glass_pane", Material.GLASS, 1.0F, 1.0F, BlockRenderLayer.TRANSLUCENT));
 	public static final Block LATTICE_WAXED_OAK_WINDOW = reg(new SidedWindowBlock("lattice_waxed_oak_window", Material.GLASS, 2.0F, 3.0F));
@@ -115,9 +117,10 @@ public class DoTBBlocksRegistry {
 	public static final Block STONE_BRICKS_ARROWSLIT = reg(new StoneBricksArrowslitBlock());
 	public static final Block STONE_BRICKS_CHIMNEY = reg(new StoneBricksChimneyBlock());
 	public static final Block STONE_BRICKS_EDGE = reg(new EdgeBlock("stone_bricks_edge", STONE_BRICKS));
-	public static final Block STONE_BRICKS_FIREPLACE = reg(new StoneBricksFireplaceBlock());
+	public static final Block STONE_BRICKS_FIREPLACE = reg(new MultiblockFireplaceBlock("stone_bricks_fireplace", Material.ROCK, 2.0F, 6.0F));
 	public static final Block STONE_BRICKS_MACHICOLATION = reg(new StoneBricksMachicolationBlock());
 	public static final Block STONE_BRICKS_PLATE = reg(new PlateBlock("stone_bricks_plate", STONE_BRICKS));
+	public static final Block WAXED_OAK_FRAMED_RAMMED_DIRT = reg(new BlockDoTB("waxed_oak_framed_rammed_dirt", Material.WOOD, 2.0F, 3.0F).setBurnable());
 	public static final Block WAXED_OAK_DOOR = reg(new DoorBlockDoTB("waxed_oak_door", Material.WOOD, 1.5F, 6.0F));
 	public static final Block WAXED_OAK_TRAPDOOR = reg(new TrapDoorBlockDoTB("waxed_oak_trapdoor", Material.WOOD, 2.0F, 3.0F).setBurnable());
 	public static final Block WAXED_OAK_SHUTTERS = reg(new ShuttersBlock("waxed_oak_shutters", Material.WOOD, 2.0F, 2.0F).setBurnable());
@@ -126,8 +129,10 @@ public class DoTBBlocksRegistry {
 	public static final Block WAXED_OAK_SUPPORT_SLAB = reg(new SupportSlabBlock("waxed_oak_support_slab", Material.WOOD, 1.5F, 3.0F).setBurnable());
 	public static final Block WAXED_OAK_SMALL_SHUTTERS = reg(new SmallShuttersBlock("waxed_oak_small_shutters", Material.WOOD, 2.0F, 2.0F).setBurnable());
 	public static final Block WAXED_OAK_TIMBER_FRAME = reg(new BlockDoTB("waxed_oak_timber_frame", Material.WOOD, 3.0F, 5.0F).setBurnable());
-	public static final Block WAXED_OAK_TIMBER_FRAME_CORNER = reg(new RotatedPillarBlockDoTB("waxed_oak_timber_frame_corner", Material.WOOD, 3.0F, 5.0F).setBurnable());
-	public static final Block WAXED_OAK_TIMBER_FRAME_PILLAR = reg(new RotatedPillarBlockDoTB("waxed_oak_timber_frame_pillar", Material.WOOD, 3.0F, 5.0F).setBurnable());
+	public static final Block WAXED_OAK_TIMBER_FRAME_CORNER = reg(new BlockDoTB("waxed_oak_timber_frame_corner", Material.WOOD, 3.0F, 5.0F).setBurnable());
+	public static final Block WAXED_OAK_TIMBER_FRAME_CROSSED = reg(new BlockDoTB("waxed_oak_timber_frame_crossed", Material.WOOD, 3.0F, 5.0F).setBurnable());
+	public static final Block WAXED_OAK_TIMBER_FRAME_PILLAR = reg(new BlockDoTB("waxed_oak_timber_frame_pillar", Material.WOOD, 3.0F, 5.0F).setBurnable());
+	public static final Block WAXED_OAK_TIMBER_FRAME_SQUARED = reg(new BlockDoTB("waxed_oak_timber_frame_squared", Material.WOOD, 3.0F, 5.0F).setBurnable());
 	public static final Block WAXED_OAK_FENCE = reg(new FenceBlockDoTB("waxed_oak_fence", Material.WOOD, 2.0F, 3.0F).setBurnable());
 	public static final Block WAXED_OAK_PERGOLA = reg(new PergolaBlock("waxed_oak_pergola", Material.WOOD, 2.0F, 3.0F));
 	public static final Block WAXED_OAK_LATTICE = reg(new LatticeBlock("waxed_oak_lattice", Material.WOOD, 2.0F, 3.0F));
