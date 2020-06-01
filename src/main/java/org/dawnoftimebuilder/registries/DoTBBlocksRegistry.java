@@ -172,20 +172,25 @@ public class DoTBBlocksRegistry {
 	//public static final Block X = reg(new BlockPaperFoldingScreen());
 	//public static final Block X = reg(new BlockRedPaintedLog());
 	public static final Block RICE = reg(new WaterDoubleCropsBlock("rice", 2));
-	public static final Block BURNT_STRIPPED_SPRUCE_LOG = reg(new RotatedPillarBlockDoTB("burnt_stripped_spruce_log", Material.WOOD, 2.5F, 5.0F));
+	public static final Block CHARRED_SPRUCE_LOG_STRIPPED = reg(new RotatedPillarBlockDoTB("charred_spruce_log_stripped", Material.WOOD, 2.5F, 5.0F).setBurnable());
 	public static final Block SMALL_TATAMI_MAT = reg(new SmallTatamiMatBlock());
 	public static final Block SMALL_TATAMI_FLOOR = reg(new SmallTatamiFloorBlock());
 	public static final Block CHARRED_SPRUCE_BOARDS =reg(new BlockDoTB("charred_spruce_boards", Material.WOOD, 2.5F, 5.0F));
 	public static final Block CHARRED_SPRUCE_LOG_COVERED = reg(new RotatedPillarBlockDoTB("charred_spruce_log_covered", Material.WOOD, 3.0F, 5.0F).setBurnable());
-	public static final Block CHARRED_SPRUCE_BEAM = reg(new BeamBlock("charred_spruce_beam", Material.WOOD, 2.5F, 5.0F).setBurnable());
 	public static final Block CHARRED_SPRUCE_FOUNDATION = reg(new BlockDoTB("charred_spruce_foundation", Material.WOOD, 2.5F, 5.0F).setBurnable());
 	public static final Block CHARRED_SPRUCE_FENCE = reg(new FenceBlockDoTB("charred_spruce_fence", Material.WOOD, 2.5F, 5.0F).setBurnable());
 	public static final Block CHARRED_SPRUCE_WALL = reg(new WallBlockDoTB("charred_spruce_wall", Material.WOOD, 2.5F, 5.0F).setBurnable());
 	public static final Block CHARRED_SPRUCE_RAILING = reg(new BurntSpruceRailingBlock());
+	public static final Block CHARRED_SPRUCE_PLANKS_EDGE = reg(new EdgeBlock("charred_spruce_planks_edge", Material.WOOD, 2.0F, 3.0F).setBurnable());
+	public static final Block CHARRED_SPRUCE_PLANKS_PLATE = reg(new PlateBlock("charred_spruce_planks_plate", Material.WOOD, 2.0F, 3.0F).setBurnable());
+	public static final Block CHARRED_SPRUCE_PERGOLA = reg(new PergolaBlock("charred_spruce_pergola", Material.WOOD, 2.0F, 3.0F).setBurnable());
+	public static final Block CHARRED_SPRUCE_LATTICE = reg(new LatticeBlock("charred_spruce_lattice", Material.WOOD, 2.0F, 3.0F).setBurnable());
+	public static final Block CHARRED_SPRUCE_SUPPORT_SLAB = reg(new SupportSlabBlock("charred_spruce_support_slab", Material.WOOD, 1.5F, 3.0F).setBurnable());
+	public static final Block CHARRED_SPRUCE_BEAM = reg(new BeamBlock("charred_spruce_beam", Material.WOOD, 2.0F, 3.0F).setBurnable());
+	public static final Block CHARRED_SPRUCE_SUPPORT_BEAM = reg(new SupportBeamBlock("charred_spruce_support_beam", Material.WOOD, 2.0F, 3.0F).setBurnable());
 	//public static final Block X = reg(new BlockSpruceRoofSupport("spruce_roof_support"));
 	//public static final Block X = reg(new BlockSpruceRoofSupportMerged());
-	public static final Block CHARRED_SPRUCE_PLANKS = reg(new BlockDoTB("charred_spruce_planks", Material.WOOD, 2.5F, 5.0F));
-	public static final Block CHARRED_SPRUCE_SUPPORT_BEAM = reg(new SupportBeamBlock("charred_spruce_support_beam", Material.WOOD, 2.5F, 5.0F).setBurnable());
+	public static final Block CHARRED_SPRUCE_PLANKS = reg(new BlockDoTB("charred_spruce_planks", Material.WOOD, 2.5F, 5.0F).setBurnable());
 	public static final Block SPRUCE_LOW_TABLE = reg(new SpruceLowTableBlock());
 	public static final Block CHARRED_SPRUCE_TIMBER_FRAME = reg(new BlockDoTB("charred_spruce_timber_frame", Material.WOOD, 3.0F, 6.0F).setBurnable());
 	public static final Block CHARRED_SPRUCE_TIMBER_FRAME_PILLAR = reg(new RotatedPillarBlockDoTB("charred_spruce_timber_frame_pillar", Material.WOOD, 3.0F, 6.0F).setBurnable());
@@ -196,7 +201,7 @@ public class DoTBBlocksRegistry {
 	//public static final Block X = reg(new BlockIrori());
 	public static final Block SAKE_BOTTLE = reg(new SakeBottleBlock());
 	public static final Block SAKE_CUP = reg(new SakeCupBlock());
-	public static final Block CHARRED_SPRUCE_FOUNDATION_SLAB = reg(new SlabBlockDoTB("charred_spruce_foundation_slab", Material.WOOD, 2.5F, 5.0F));
+	public static final Block CHARRED_SPRUCE_FOUNDATION_SLAB = reg(new SlabBlockDoTB("charred_spruce_foundation_slab", Material.WOOD, 2.5F, 5.0F).setBurnable());
 	//public static final Block X = reg(new BlockStickBundle());
 
 	//Persian

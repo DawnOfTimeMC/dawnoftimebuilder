@@ -1,8 +1,0 @@
-{
-    "parent": "block/slab_top",
-    "textures": {
-        "bottom": "dawnoftimebuilder:block/spruce_foundation_top",
-        "top": "dawnoftimebuilder:block/spruce_foundation_top",
-        "side": "dawnoftimebuilder:block/spruce_foundation_side"
-    }
-}
