@@ -1,7 +1,6 @@
 {
-    "parent": "block/cube_column",
+    "parent": "block/cube_all",
     "textures": {
-        "end": "dawnoftimebuilder:block/waxed_oak_timber_frame_corner_top",
-        "side": "dawnoftimebuilder:block/waxed_oak_timber_frame_corner_side"
+        "all": "dawnoftimebuilder:block/waxed_oak_timber_frame_corner"
     }
 }

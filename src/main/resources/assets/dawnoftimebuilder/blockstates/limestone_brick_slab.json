@@ -1,7 +1,7 @@
 {
     "variants": {
-        "slab=bottom": { "model": "dawnoftimebuilder:block/german/limestone_brick_slab_bottom" },
-        "slab=top": { "model": "dawnoftimebuilder:block/german/limestone_brick_slab_top" },
-        "slab=double": { "model": "dawnoftimebuilder:block/german/limestone_brick" }
+        "slab=bottom": { "model": "dawnoftimebuilder:block/french/limestone_brick_slab_bottom" },
+        "slab=top": { "model": "dawnoftimebuilder:block/french/limestone_brick_slab_top" },
+        "slab=double": { "model": "dawnoftimebuilder:block/french/limestone_brick" }
     }
 }

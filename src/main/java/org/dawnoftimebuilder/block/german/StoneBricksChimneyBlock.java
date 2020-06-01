@@ -23,48 +23,35 @@ import org.dawnoftimebuilder.utils.DoTBBlockStateProperties;
 import java.util.Random;
 
 public class StoneBricksChimneyBlock extends ColumnConnectibleBlock {
-	public static final EnumProperty<Direction.Axis> HORIZONTAL_AXIS = BlockStateProperties.HORIZONTAL_AXIS;
 	private static final VoxelShape[] SHAPES = makeShapes();
 
 	public StoneBricksChimneyBlock() {
-		super("limestone_chimney", Material.ROCK, 1.5F, 6.0F);
-		this.setDefaultState(this.getStateContainer().getBaseState().with(HORIZONTAL_AXIS, Direction.Axis.X));
-	}
-
-	@Override
-	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
-		super.fillStateContainer(builder);
-		builder.add(HORIZONTAL_AXIS);
+		super("stone_bricks_chimney", Material.ROCK, 1.5F, 6.0F);
 	}
 
 	@Override
 	public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-		return SHAPES[state.get(VERTICAL_CONNECTION).getIndex() % 3];
-	}
-
-	@Override
-	public BlockState getStateForPlacement(BlockItemUseContext context) {
-		BlockState state = super.getStateForPlacement(context);
-		return state.with(HORIZONTAL_AXIS, (context.getPlacementHorizontalFacing().getAxis() == Direction.Axis.X)? Direction.Axis.Z : Direction.Axis.X);
+		if(state.get(VERTICAL_CONNECTION) == DoTBBlockStateProperties.VerticalConnection.NONE) return SHAPES[0];
+		return SHAPES[state.get(VERTICAL_CONNECTION).getIndex() - 1];
 	}
 
 	/**
 	 * @return Stores VoxelShape with index : <p/>
-	 * 0 : None or Both <p/>
-	 * 1 : Under <p/>
-	 * 2 : Above
+	 * 0 : None or Under <p/>
+	 * 1 : Above
+	 * 2 : Both
 	 */
 	private static VoxelShape[] makeShapes() {
 		return new VoxelShape[]{
-				makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 16.0D, 14.0D),
 				VoxelShapes.or(
-						makeCuboidShape(4.0D, 8.0D, 4.0D, 12.0D, 16.0D, 12.0D),
-						makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 8.0D, 14.0D)
+						makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 8.0D, 14.0D),
+						makeCuboidShape(1.0D, 8.0D, 1.0D, 15.0D, 11.0D, 15.0D)
 				),
 				VoxelShapes.or(
 						makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 8.0D, 16.0D),
 						makeCuboidShape(2.0D, 8.0D, 2.0D, 14.0D, 16.0D, 14.0D)
-				)
+				),
+				makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 16.0D, 14.0D)
 		};
 	}
 
