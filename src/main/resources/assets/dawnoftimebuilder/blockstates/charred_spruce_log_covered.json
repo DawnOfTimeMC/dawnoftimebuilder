@@ -1,7 +1,7 @@
 {
 	"forge_marker": 1,
 	"defaults": {
-		"model": "dawnoftimebuilder:block/japanese/spruce_log_covered"
+		"model": "dawnoftimebuilder:block/japanese/charred_spruce_log_covered"
 	},
 	"variants": {
 		"axis": {

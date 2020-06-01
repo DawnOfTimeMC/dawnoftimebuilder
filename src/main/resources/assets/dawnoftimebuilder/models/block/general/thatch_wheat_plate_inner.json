@@ -1,0 +1,8 @@
+{
+	"parent": "dawnoftimebuilder:block/general/plate_inner",
+	"textures": {
+		"side": "block/thatch_wheat",
+		"top": "block/thatch_wheat",
+		"frieze": "block/thatch_wheat"
+	}
+}
