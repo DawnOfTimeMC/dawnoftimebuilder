@@ -107,7 +107,7 @@ public class MultiblockFireplaceBlock extends SidedPlaneConnectibleBlock {
 				return;
 			if (abstractarrowentity.isBurning() && !state.get(BURNING) && !state.get(WATERLOGGED)) {
 				BlockPos pos = hit.getPos();
-				worldIn.setBlockState(pos, state.with(BlockStateProperties.LIT, true), 10);
+				worldIn.setBlockState(pos, state.with(BURNING, true), 10);
 				worldIn.playSound(null, pos, SoundEvents.BLOCK_FIRE_AMBIENT, SoundCategory.BLOCKS, 1.0F, 1.0F);
 				Direction direction = state.get(FACING);
 				worldIn.getBlockState(pos.offset(direction.rotateY())).neighborChanged(worldIn, pos.offset(direction.rotateY()), this, pos, false);

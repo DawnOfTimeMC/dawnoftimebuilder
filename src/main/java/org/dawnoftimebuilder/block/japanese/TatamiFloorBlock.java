@@ -6,9 +6,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.PushReaction;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.pathfinding.PathType;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer;
@@ -23,17 +21,16 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
-import org.dawnoftimebuilder.block.IBlockCustomItem;
-import org.dawnoftimebuilder.block.templates.BlockDoTB;
+import org.dawnoftimebuilder.block.templates.NoItemBlock;
 
 import javax.annotation.Nullable;
 
 import static net.minecraft.block.Blocks.SPRUCE_PLANKS;
 import static org.dawnoftimebuilder.registries.DoTBBlocksRegistry.*;
 
-public class TatamiFloorBlock extends BlockDoTB implements IBlockCustomItem {
+public class TatamiFloorBlock extends NoItemBlock {
 
-	private VoxelShape VS = makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 17.0D, 16.0D);
+	private static final VoxelShape VS = makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 17.0D, 16.0D);
 	public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 	public static final EnumProperty<Half> HALF = BlockStateProperties.HALF;
 
@@ -115,12 +112,6 @@ public class TatamiFloorBlock extends BlockDoTB implements IBlockCustomItem {
 			}
 		}
 		super.onBlockHarvested(worldIn, pos, state, player);
-	}
-
-	@Nullable
-	@Override
-	public Item getCustomItemBlock() {
-		return null;
 	}
 
 	@Override

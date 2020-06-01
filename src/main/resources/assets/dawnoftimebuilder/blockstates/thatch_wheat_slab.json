@@ -1,7 +1,7 @@
 {
     "variants": {
-        "slab=bottom": { "model": "dawnoftimebuilder:block/general/thatch_wheat_slab_bottom" },
-        "slab=top": { "model": "dawnoftimebuilder:block/general/thatch_wheat_slab_top" },
-        "slab=double": { "model": "dawnoftimebuilder:block/general/thatch_wheat" }
+        "type=bottom": { "model": "dawnoftimebuilder:block/general/thatch_wheat_slab_bottom" },
+        "type=top": { "model": "dawnoftimebuilder:block/general/thatch_wheat_slab_top" },
+        "type=double": { "model": "dawnoftimebuilder:block/general/thatch_wheat" }
     }
 }

@@ -73,6 +73,11 @@ public class FireplaceBlock extends WaterloggedBlock {
 	}
 
 	@Override
+	public int getLightValue(BlockState state) {
+		return (state.get(BURNING)) ? 15 : 0;
+	}
+
+	@Override
 	public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
 		stateIn = super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
 		return !stateIn.isValidPosition(worldIn, currentPos) ? Blocks.AIR.getDefaultState() : super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
@@ -122,7 +127,7 @@ public class FireplaceBlock extends WaterloggedBlock {
 			AbstractArrowEntity abstractarrowentity = (AbstractArrowEntity)projectile;
 			if (abstractarrowentity.isBurning() && !state.get(BURNING) && !state.get(WATERLOGGED)) {
 				BlockPos pos = hit.getPos();
-				worldIn.setBlockState(pos, state.with(BlockStateProperties.LIT, true), 10);
+				worldIn.setBlockState(pos, state.with(BURNING, true), 10);
 				worldIn.playSound(null, pos, SoundEvents.BLOCK_FIRE_AMBIENT, SoundCategory.BLOCKS, 1.0F, 1.0F);
 				Direction direction = (state.get(HORIZONTAL_AXIS) == Direction.Axis.X) ? Direction.EAST : Direction.SOUTH;
 				worldIn.getBlockState(pos.offset(direction)).neighborChanged(worldIn, pos.offset(direction), this, pos, false);
@@ -220,7 +225,7 @@ public class FireplaceBlock extends WaterloggedBlock {
 					worldIn.addParticle(ParticleTypes.LAVA, (float)pos.getX() + 0.5F, (float)pos.getY() + 0.5F, (float)pos.getZ() + 0.5F, rand.nextFloat() / 4.0F, 2.5E-5D, rand.nextFloat() / 4.0F);
 				}
 			}
-			worldIn.addOptionalParticle(ParticleTypes.CAMPFIRE_COSY_SMOKE, true, (double)pos.getX() + 0.5D + rand.nextDouble() / 3.0D * (double)(rand.nextBoolean() ? 1 : -1), (double)pos.getY() + 0.4D, (double)pos.getZ() + 0.5D + rand.nextDouble() / 3.0D * (double)(rand.nextBoolean() ? 1 : -1), 0.0D, 0.07D, 0.0D);
+			worldIn.addOptionalParticle(ParticleTypes.CAMPFIRE_COSY_SMOKE, (double)pos.getX() + 0.5D + rand.nextDouble() / 3.0D * (double)(rand.nextBoolean() ? 1 : -1), (double)pos.getY() + 0.4D, (double)pos.getZ() + 0.5D + rand.nextDouble() / 3.0D * (double)(rand.nextBoolean() ? 1 : -1), 0.0D, 0.07D, 0.0D);
 		}
 	}
 

@@ -7,6 +7,7 @@ import net.minecraft.fluid.IFluidState;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
+import net.minecraft.state.properties.SlabType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
@@ -15,7 +16,7 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import org.dawnoftimebuilder.utils.DoTBBlockStateProperties;
 
-public class SlabPathBlock extends SlabBlock {
+public class SlabPathBlock extends SlabBlockDoTB {
 
 	private static final BooleanProperty FULL = DoTBBlockStateProperties.FULL;
 
@@ -25,7 +26,7 @@ public class SlabPathBlock extends SlabBlock {
 
 	public SlabPathBlock(String name) {
 		super(name, Material.EARTH, 0.65F, 0.65F);
-		this.setDefaultState(this.getStateContainer().getBaseState().with(SLAB, DoTBBlockStateProperties.Slab.BOTTOM).with(FULL, false));
+		this.setDefaultState(this.getStateContainer().getBaseState().with(TYPE, SlabType.BOTTOM).with(FULL, false));
 	}
 
 	@Override
@@ -37,7 +38,7 @@ public class SlabPathBlock extends SlabBlock {
 	@Override
 	public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
 		if(!state.get(FULL)){
-			switch (state.get(SLAB)) {
+			switch (state.get(TYPE)) {
 				default:
 				case BOTTOM:
 					return VS_PATH_BOTTOM;
@@ -64,6 +65,7 @@ public class SlabPathBlock extends SlabBlock {
 	@Override
 	public BlockState getStateForPlacement(BlockItemUseContext context) {
 		BlockState state = super.getStateForPlacement(context);
+		if(state == null) state = this.getDefaultState();
 		return isFull(state, context.getWorld(), context.getPos()) ? state.with(FULL, true).with(WATERLOGGED, false) : state.with(FULL, false);
 	}
 
@@ -78,7 +80,7 @@ public class SlabPathBlock extends SlabBlock {
 	}
 
 	private static boolean isFull(BlockState state, IWorld worldIn, BlockPos pos) {
-		if(state.get(SLAB) == DoTBBlockStateProperties.Slab.BOTTOM) return false;
+		if(state.get(TYPE) == SlabType.BOTTOM) return false;
 		Block block = worldIn.getBlockState(pos.up()).getBlock();
 		return !(block instanceof AirBlock || block instanceof LeavesBlock);
 	}

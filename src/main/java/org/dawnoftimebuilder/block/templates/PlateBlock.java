@@ -18,8 +18,8 @@ import net.minecraft.util.math.BlockPos;
 
 public class PlateBlock extends WaterloggedBlock {
 
-	private static final DirectionProperty FACING = HorizontalBlock.HORIZONTAL_FACING;
-	private static final EnumProperty<StairsShape> SHAPE = BlockStateProperties.STAIRS_SHAPE;
+	public static final DirectionProperty FACING = HorizontalBlock.HORIZONTAL_FACING;
+	public static final EnumProperty<StairsShape> SHAPE = BlockStateProperties.STAIRS_SHAPE;
 	private static final VoxelShape[] SHAPES = makeShapes();
 
 	public PlateBlock(String name, Properties properties) {
@@ -69,16 +69,16 @@ public class PlateBlock extends WaterloggedBlock {
 	/**
 	 * @return Stores VoxelShape with index : <p/>
 	 * 0 : NW Outer <p/>
-	 * 1 : NW Default <p/>
+	 * 1 : N Default <p/>
 	 * 2 : NW Inner <p/>
 	 * 3 : NE Outer <p/>
-	 * 4 : NE Default <p/>
+	 * 4 : N Default <p/>
 	 * 5 : NE Inner <p/>
 	 * 6 : SE Outer <p/>
-	 * 7 : SE Default <p/>
+	 * 7 : S Default <p/>
 	 * 8 : SE Inner <p/>
 	 * 9 : SW Outer <p/>
-	 * 10 : SW Default <p/>
+	 * 10 : S Default <p/>
 	 * 11 : SW Inner <p/>
 	 */
 	private static VoxelShape[] makeShapes() {

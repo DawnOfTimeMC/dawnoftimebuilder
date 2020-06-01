@@ -22,13 +22,13 @@ public class DoTBBlockStateProperties {
     public static final BooleanProperty SUBAXIS = BooleanProperty.create("subaxis");
 
     public static final IntegerProperty AGE_0_6 = IntegerProperty.create("age", 0, 6);
+    public static final IntegerProperty HEAT_0_3 = IntegerProperty.create("heat", 0, 3);
     public static final EnumProperty<ClimbingPlant> CLIMBING_PLANT = EnumProperty.create("climbing_plant", ClimbingPlant.class);
     public static final EnumProperty<FencePillar> FENCE_PILLAR = EnumProperty.create("fence_pillar", FencePillar.class);
     public static final EnumProperty<HorizontalConnection> HORIZONTAL_CONNECTION = EnumProperty.create("horizontal_connection", HorizontalConnection.class);
     public static final EnumProperty<OpenPosition> OPEN_POSITION = EnumProperty.create("open_position", OpenPosition.class);
     public static final EnumProperty<PillarConnection> PILLAR_CONNECTION = EnumProperty.create("pillar_connection", PillarConnection.class);
     public static final EnumProperty<SidedWindow> SIDED_WINDOW = EnumProperty.create("sided_window", SidedWindow.class);
-    public static final EnumProperty<Slab> SLAB = EnumProperty.create("slab", Slab.class);
     public static final IntegerProperty STACK = IntegerProperty.create("stack", 1, 3);
     public static final EnumProperty<VerticalConnection> VERTICAL_CONNECTION = EnumProperty.create("vertical_connection", VerticalConnection.class);
 
@@ -140,26 +140,6 @@ public class DoTBBlockStateProperties {
 
         public String getName()
         {
-            return this.name;
-        }
-    }
-
-    public enum Slab implements IStringSerializable {
-        BOTTOM("bottom"),
-        TOP("top"),
-        DOUBLE("double");
-
-        private final String name;
-
-        Slab(String name){
-            this.name = name;
-        }
-
-        public String toString(){
-            return this.name;
-        }
-
-        public String getName(){
             return this.name;
         }
     }
