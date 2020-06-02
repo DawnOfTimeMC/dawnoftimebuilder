@@ -4,15 +4,18 @@ import com.mojang.blaze3d.platform.GlStateManager;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.widget.button.Button;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 import static org.dawnoftimebuilder.DawnOfTimeBuilder.MOD_ID;
 import static org.dawnoftimebuilder.client.gui.creative.CreativeInventoryEvents.CREATIVE_ICONS;
 
+@OnlyIn(Dist.CLIENT)
 public class CategoryButton extends Button {
 
-    private CreativeInventoryCategories category;
+    private final CreativeInventoryCategories category;
     private boolean selected;
-    private ResourceLocation buttonIconLoc;
+    private final ResourceLocation buttonIconLoc;
 
     public CategoryButton(int x, int y, CreativeInventoryCategories category, IPressable pressable){
         super(x, y, 32, 28, "", pressable);

@@ -2,6 +2,8 @@ package org.dawnoftimebuilder.client.gui.creative;
 
 import net.minecraft.item.Item;
 import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import org.dawnoftimebuilder.registries.DoTBItemsRegistry;
 
 import java.util.ArrayList;
@@ -11,6 +13,7 @@ import static net.minecraft.block.Blocks.*;
 import static org.dawnoftimebuilder.DawnOfTimeBuilder.MOD_ID;
 import static org.dawnoftimebuilder.registries.DoTBBlocksRegistry.*;
 
+@OnlyIn(Dist.CLIENT)
 public enum CreativeInventoryCategories {
 
 	GENERAL("general",
@@ -97,6 +100,13 @@ public enum CreativeInventoryCategories {
 			Item.getItemFromBlock(SPRUCE_LATTICE),
 			Item.getItemFromBlock(FIREPLACE),
 			Item.getItemFromBlock(IRON_CHAIN)
+	),
+
+	EGYPTIAN("egyptian",
+			DoTBItemsRegistry.PHARAOH_ARMOR_HEAD,
+			DoTBItemsRegistry.PHARAOH_ARMOR_CHEST,
+			DoTBItemsRegistry.PHARAOH_ARMOR_LEGS,
+			DoTBItemsRegistry.PHARAOH_ARMOR_FEET
 	),
 
 	FRENCH("french",
@@ -186,6 +196,10 @@ public enum CreativeInventoryCategories {
 			DoTBItemsRegistry.IRON_PLATE_ARMOR_LEGS,
 			DoTBItemsRegistry.IRON_PLATE_ARMOR_FEET,
 			DoTBItemsRegistry.WAX
+	),
+
+	ISLAMIC("islamic",
+			Item.getItemFromBlock(PERSIAN_CARPET_RED)
 	),
 
 	JAPANESE("japanese",
@@ -285,10 +299,6 @@ public enum CreativeInventoryCategories {
 			DoTBItemsRegistry.RAIJIN_ARMOR_FEET
 	),
 
-	PERSIAN("persian",
-			Item.getItemFromBlock(PERSIAN_CARPET_RED)
-	),
-
 	PRE_COLOMBIAN("pre-columbian",
 			Item.getItemFromBlock(PATH_DIRT),
 			Item.getItemFromBlock(PATH_DIRT_SLAB),
@@ -341,13 +351,6 @@ public enum CreativeInventoryCategories {
 			Item.getItemFromBlock(SANDSTONE_COLUMN),
 			DoTBItemsRegistry.GRAPE,
 			DoTBItemsRegistry.GRAPE_SEEDS
-	),
-
-	EGYPTIAN("egyptian",
-			DoTBItemsRegistry.PHARAOH_ARMOR_HEAD,
-			DoTBItemsRegistry.PHARAOH_ARMOR_CHEST,
-			DoTBItemsRegistry.PHARAOH_ARMOR_LEGS,
-			DoTBItemsRegistry.PHARAOH_ARMOR_FEET
 	);
 
 	private final String name;

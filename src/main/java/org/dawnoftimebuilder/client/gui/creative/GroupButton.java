@@ -9,9 +9,9 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class GroupButton extends Button{
-	private ResourceLocation iconResource;
-	private int iconU;
-	private int iconV;
+	private final ResourceLocation iconResource;
+	private final int iconU;
+	private final int iconV;
 
 	public GroupButton(int x, int y, String message, IPressable pressable, ResourceLocation iconResource, int iconU, int iconV){
 		super(x, y, 20, 20, message, pressable);
