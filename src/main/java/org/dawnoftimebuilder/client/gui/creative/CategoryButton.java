@@ -13,19 +13,14 @@ import static org.dawnoftimebuilder.client.gui.creative.CreativeInventoryEvents.
 @OnlyIn(Dist.CLIENT)
 public class CategoryButton extends Button {
 
-    private final CreativeInventoryCategories category;
     private boolean selected;
-    private final ResourceLocation buttonIconLoc;
+    private static final ResourceLocation[] BUTTON_ICONS = fillButtonIcons();
+    private final int index;
 
-    public CategoryButton(int x, int y, CreativeInventoryCategories category, IPressable pressable){
+    public CategoryButton(int x, int y, int index, IPressable pressable){
         super(x, y, 32, 28, "", pressable);
-        this.category = category;
         this.selected = false;
-        this.buttonIconLoc = new ResourceLocation(MOD_ID, "textures/gui/logo_" + category.getName() + ".png");
-    }
-
-    public CreativeInventoryCategories getCategory() {
-        return this.category;
+        this.index = index;
     }
 
     public void setSelected(boolean selected){
@@ -36,16 +31,35 @@ public class CategoryButton extends Button {
         return this.selected;
     }
 
+    public int getIndex(){
+        return this.index;
+    }
+
+    public int getCategoryID(){
+        return CreativeInventoryEvents.page * 4 + this.index;
+    }
+
     @Override
     public void renderButton(int mouseX, int mouseY, float partialTicks) {
-        Minecraft mc = Minecraft.getInstance();
-        mc.getTextureManager().bindTexture(CREATIVE_ICONS);
-        GlStateManager.disableLighting();
-        GlStateManager.color4f(1.0F, 1.0F, 1.0F, this.alpha);
-        GlStateManager.enableBlend();
-        this.blit(this.x - 1, this.y, 0, (this.selected) ? 0 : 28, 31, 28);
+        if(this.active){
+            Minecraft mc = Minecraft.getInstance();
+            mc.getTextureManager().bindTexture(CREATIVE_ICONS);
+            GlStateManager.disableLighting();
+            GlStateManager.color4f(1.0F, 1.0F, 1.0F, this.alpha);
+            GlStateManager.enableBlend();
+            this.blit(this.x - 1, this.y, 0, (this.selected) ? 0 : 28, 31, 28);
 
-        mc.getTextureManager().bindTexture(this.buttonIconLoc);
-        blit(this.x + ((this.selected) ? 6 : 9), this.y + 6, 0, 0, 0, 16, 16, 16, 16);
+            mc.getTextureManager().bindTexture(BUTTON_ICONS[this.getCategoryID()]);
+            blit(this.x + ((this.selected) ? 6 : 9), this.y + 6, 0, 0, 0, 16, 16, 16, 16);
+        }
+    }
+
+    private static ResourceLocation[] fillButtonIcons(){
+        int number = CreativeInventoryCategories.values().length;
+        ResourceLocation[] table = new ResourceLocation[number];
+        for(int i = 0; i < number; i++){
+            table[i] = new ResourceLocation(MOD_ID, "textures/gui/logo_" + CreativeInventoryCategories.values()[i].getName() + ".png");
+        }
+        return table;
     }
 }
