@@ -97,12 +97,12 @@ public class DoTBBlocksRegistry {
 
 	//French
 	public static final Block COBBLED_LIMESTONE = reg(new BlockDoTB("cobbled_limestone", Material.ROCK, 2.0F, 6.0F));
-	public static final Block LIMESTONE_BRICK = reg(new BlockDoTB("limestone_brick", Material.ROCK,1.5F, 6.0F));
-	public static final Block LIMESTONE_BRICK_EDGE = reg(new EdgeBlock("limestone_brick_edge", LIMESTONE_BRICK));
-	public static final Block LIMESTONE_BRICK_PLATE = reg(new PlateBlock("limestone_brick_plate", LIMESTONE_BRICK));
-	public static final Block LIMESTONE_BRICK_SLAB = reg(new SlabBlockDoTB("limestone_brick_slab", LIMESTONE_BRICK));
-	public static final Block LIMESTONE_BRICK_STAIRS = reg(new StairsBlockDoTB("limestone_brick_stairs", LIMESTONE_BRICK));
-	public static final Block LIMESTONE_BRICK_WALL = reg(new WallBlockDoTB("limestone_brick_wall", Material.ROCK, 1.5F, 6.0F));
+	public static final Block LIMESTONE_BRICKS = reg(new BlockDoTB("limestone_bricks", Material.ROCK,1.5F, 6.0F));
+	public static final Block LIMESTONE_BRICKS_EDGE = reg(new EdgeBlock("limestone_bricks_edge", LIMESTONE_BRICKS));
+	public static final Block LIMESTONE_BRICKS_PLATE = reg(new PlateBlock("limestone_bricks_plate", LIMESTONE_BRICKS));
+	public static final Block LIMESTONE_BRICKS_SLAB = reg(new SlabBlockDoTB("limestone_bricks_slab", LIMESTONE_BRICKS));
+	public static final Block LIMESTONE_BRICKS_STAIRS = reg(new StairsBlockDoTB("limestone_bricks_stairs", LIMESTONE_BRICKS));
+	public static final Block LIMESTONE_BRICKS_WALL = reg(new WallBlockDoTB("limestone_bricks_wall", Material.ROCK, 1.5F, 6.0F));
 	public static final Block LIMESTONE_CHIMNEY = reg(new LimestoneChimneyBlock());
 	public static final Block LIMESTONE_FIREPLACE = reg(new MultiblockFireplaceBlock("limestone_fireplace", Material.ROCK, 2.0F, 6.0F));
 

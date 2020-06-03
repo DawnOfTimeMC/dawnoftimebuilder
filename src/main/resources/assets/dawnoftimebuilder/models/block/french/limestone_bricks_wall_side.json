@@ -1,0 +1,6 @@
+{
+    "parent": "block/wall_side",
+    "textures": {
+        "wall": "dawnoftimebuilder:block/limestone_bricks_wall_side"
+    }
+}

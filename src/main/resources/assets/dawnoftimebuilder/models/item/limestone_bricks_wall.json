@@ -13,9 +13,9 @@
     },
     "ambientocclusion": false,
     "textures": {
-        "wall": "dawnoftimebuilder:block/limestone_brick_wall_side",
-        "wallpost": "dawnoftimebuilder:block/limestone_brick_wall_post",
-        "particle": "dawnoftimebuilder:block/limestone_brick_wall_post"
+        "wall": "dawnoftimebuilder:block/limestone_bricks_wall_side",
+        "wallpost": "dawnoftimebuilder:block/limestone_bricks_wall_post",
+        "particle": "dawnoftimebuilder:block/limestone_bricks_wall_post"
     },
     "elements": [
         {   "from": [ 4, 0, 4 ],

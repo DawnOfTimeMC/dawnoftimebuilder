@@ -3,7 +3,7 @@
 		"1": "block/fire_0",
 		"2": "block/fire_1",
 		"texture": "dawnoftimebuilder:block/limestone_fireplace_none_x",
-		"particle": "dawnoftimebuilder:block/limestone_brick"
+		"particle": "dawnoftimebuilder:block/limestone_bricks"
 	},
 	"elements": [
 		{
