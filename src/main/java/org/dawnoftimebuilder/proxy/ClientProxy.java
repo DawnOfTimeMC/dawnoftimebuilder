@@ -1,6 +1,8 @@
 package org.dawnoftimebuilder.proxy;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScreenManager;
+import net.minecraft.world.World;
 import net.minecraftforge.client.model.obj.OBJLoader;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
@@ -23,6 +25,11 @@ public class ClientProxy extends CommonProxy {
 		ClientRegistry.bindTileEntitySpecialRenderer(DisplayerTileEntity.class, new DisplayerTERenderer());
 
 		ScreenManager.registerFactory(DISPLAYER_CONTAINER, DisplayerScreen::new);
+	}
+
+	@Override
+	public World getClientWorld() {
+		return Minecraft.getInstance().world;
 	}
 
 	public ClientProxy(){}

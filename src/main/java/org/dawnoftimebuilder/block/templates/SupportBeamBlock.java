@@ -123,7 +123,7 @@ public class SupportBeamBlock extends WaterloggedBlock {
 
 	private boolean isConnectibleBeam(BlockState state, Direction direction) {
 		if (state.getBlock() instanceof BeamBlock)
-			return state.get(BeamBlock.MAIN_AXIS) == direction.getAxis() || state.get(BeamBlock.MAIN_AXIS) == Direction.Axis.Y;
+			return (direction.getAxis() == Direction.Axis.X) ? state.get(BeamBlock.AXIS_X) : state.get(BeamBlock.AXIS_Z);
 		else return false;
 	}
 

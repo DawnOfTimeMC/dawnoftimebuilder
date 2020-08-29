@@ -33,22 +33,22 @@ import java.util.Random;
 public class BeamBlock extends WaterloggedBlock implements IBlockPillar, IBlockClimbingPlant {
 
 	public static final BooleanProperty BOTTOM = BlockStateProperties.BOTTOM;
-	public static final EnumProperty<Direction.Axis> MAIN_AXIS = BlockStateProperties.AXIS;
-	private static final BooleanProperty SUBAXIS_X = DoTBBlockStateProperties.SUBAXIS_X;
-	private static final BooleanProperty SUBAXIS_Z = DoTBBlockStateProperties.SUBAXIS_Z;
+	public static final BooleanProperty AXIS_X = DoTBBlockStateProperties.AXIS_X;
+	public static final BooleanProperty AXIS_Y = DoTBBlockStateProperties.AXIS_Y;
+	public static final BooleanProperty AXIS_Z = DoTBBlockStateProperties.AXIS_Z;
 	public static final EnumProperty<DoTBBlockStateProperties.ClimbingPlant> CLIMBING_PLANT = DoTBBlockStateProperties.CLIMBING_PLANT;
 	private static final IntegerProperty AGE = DoTBBlockStateProperties.AGE_0_6;
 	private static final VoxelShape[] SHAPES = makeShapes();
 
 	public BeamBlock(String name, Material materialIn, float hardness, float resistance) {
 		super(name, materialIn, hardness, resistance);
-		this.setDefaultState(this.getStateContainer().getBaseState().with(BOTTOM, false).with(MAIN_AXIS, Direction.Axis.Y).with(SUBAXIS_X, false).with(SUBAXIS_Z, false).with(CLIMBING_PLANT, DoTBBlockStateProperties.ClimbingPlant.NONE).with(AGE, 0).with(WATERLOGGED, false));
+		this.setDefaultState(this.getStateContainer().getBaseState().with(BOTTOM, false).with(AXIS_Y, false).with(AXIS_X, false).with(AXIS_Z, false).with(CLIMBING_PLANT, DoTBBlockStateProperties.ClimbingPlant.NONE).with(AGE, 0).with(WATERLOGGED, false));
 	}
 
 	@Override
 	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
 		super.fillStateContainer(builder);
-		builder.add(BOTTOM, MAIN_AXIS, SUBAXIS_X, SUBAXIS_Z, CLIMBING_PLANT, AGE);
+		builder.add(BOTTOM, AXIS_Y, AXIS_X, AXIS_Z, CLIMBING_PLANT, AGE);
 	}
 
 	@Override
@@ -57,19 +57,16 @@ public class BeamBlock extends WaterloggedBlock implements IBlockPillar, IBlockC
 	}
 
 	protected int getShapeIndex(BlockState state){
-		switch (state.get(MAIN_AXIS)) {
-			case Z:
-				return state.get(SUBAXIS_X) ? 2 : 1;
-			case X:
-				return state.get(SUBAXIS_Z) ? 2 : 0;
-			default:
-				break;
+		if (state.get(AXIS_Y)){
+			int index = 3;
+			if (state.get(BOTTOM)) index += 1;
+			if (state.get(AXIS_X)) index += 2;
+			if (state.get(AXIS_Z)) index += 4;
+			return index;
+		}else{
+			int index = state.get(AXIS_Z) ? 1 : 0;
+			return state.get(AXIS_X) ? index * 2 : index;
 		}
-		int index = 3;
-		if (state.get(BOTTOM)) index += 1;
-		if (state.get(SUBAXIS_X)) index += 2;
-		if (state.get(SUBAXIS_Z)) index += 4;
-		return index;
 	}
 
 	/**
@@ -109,8 +106,44 @@ public class BeamBlock extends WaterloggedBlock implements IBlockPillar, IBlockC
 
 	@Override
 	public BlockState getStateForPlacement(BlockItemUseContext context) {
-		BlockState state = super.getStateForPlacement(context);
-		return this.getCurrentState(state.with(MAIN_AXIS, context.getFace().getAxis()), context.getWorld(), context.getPos());
+		BlockState state = context.getWorld().getBlockState(context.getPos());
+		if (state.getBlock() != this)
+			state = super.getStateForPlacement(context);
+		switch (context.getFace().getAxis()) {
+			case X:
+				state = state.with(AXIS_X, true);
+				break;
+			case Y:
+				state = state.with(AXIS_Y, true);
+				break;
+			case Z:
+				state = state.with(AXIS_Z, true);
+				break;
+		}
+		return this.getCurrentState(state, context.getWorld(), context.getPos());
+	}
+
+	public BlockState getCurrentState(BlockState stateIn, IWorld worldIn, BlockPos pos){
+		return stateIn.get(AXIS_Y) ? stateIn.with(BOTTOM, !canConnectUnder(worldIn.getBlockState(pos.down()))) : stateIn;
+	}
+
+	@Override
+	public boolean isReplaceable(BlockState state, BlockItemUseContext useContext) {
+		ItemStack itemstack = useContext.getItem();
+		if(useContext.isPlacerSneaking()) return false;
+		if (itemstack.getItem() == this.asItem()) {
+			if (useContext.replacingClickedOnBlock()) {
+				switch (useContext.getFace().getAxis()) {
+					case X:
+						return !state.get(AXIS_X);
+					case Y:
+						return !state.get(AXIS_Y);
+					case Z:
+						return !state.get(AXIS_Z);
+				}
+			}
+		}
+		return false;
 	}
 
 	@Override
@@ -123,35 +156,9 @@ public class BeamBlock extends WaterloggedBlock implements IBlockPillar, IBlockC
 		return stateIn;
 	}
 
-	public BlockState getCurrentState(BlockState stateIn, IWorld worldIn, BlockPos pos){
-		boolean subAxisX = false;
-		boolean subAxisZ = false;
-		if (canConnect(worldIn, pos, Direction.EAST) || canConnect(worldIn, pos, Direction.WEST)) subAxisX = true;
-		if (canConnect(worldIn, pos, Direction.NORTH) || canConnect(worldIn, pos, Direction.SOUTH)) subAxisZ = true;
-		if (stateIn.get(MAIN_AXIS).isHorizontal()){
-			if(stateIn.get(MAIN_AXIS) == Direction.Axis.X) return stateIn.with(SUBAXIS_X, false).with(SUBAXIS_Z, subAxisZ);
-			else return stateIn.with(SUBAXIS_X, subAxisX).with(SUBAXIS_Z, false);
-		} else {
-			boolean bottom = false;
-			if (!isConnectibleBeam(worldIn.getBlockState(pos.down()), Direction.DOWN)) bottom = true;
-			return stateIn.with(BOTTOM, bottom).with(SUBAXIS_X, subAxisX).with(SUBAXIS_Z, subAxisZ);
-		}
-	}
-
-	private boolean canConnect(IWorld world, BlockPos pos, Direction direction) {
-		BlockState state = world.getBlockState(pos.offset(direction));
-		return isConnectibleBeam(state, direction) || isConnectibleSupportBeam(state, direction);
-	}
-
-	private boolean isConnectibleBeam(BlockState state, Direction direction) {
+	private boolean canConnectUnder(BlockState state) {
 		if (state.getBlock() instanceof BeamBlock)
-			return state.get(MAIN_AXIS) == direction.getAxis();
-		else return false;
-	}
-
-	private boolean isConnectibleSupportBeam(BlockState state, Direction direction) {
-		if (state.getBlock() instanceof SupportBeamBlock)
-			return state.get(SupportBeamBlock.HORIZONTAL_AXIS) == direction.getAxis();
+			return state.get(AXIS_Y);
 		else return false;
 	}
 
@@ -183,7 +190,7 @@ public class BeamBlock extends WaterloggedBlock implements IBlockPillar, IBlockC
 	@Nonnull
 	@Override
 	public DoTBBlockStateProperties.PillarConnection getBlockPillarConnection(BlockState state) {
-		return (state.get(MAIN_AXIS) == Direction.Axis.Y) ? DoTBBlockStateProperties.PillarConnection.TEN_PX : DoTBBlockStateProperties.PillarConnection.NOTHING;
+		return state.get(AXIS_Y) ? DoTBBlockStateProperties.PillarConnection.TEN_PX : DoTBBlockStateProperties.PillarConnection.NOTHING;
 	}
 
 	@Override

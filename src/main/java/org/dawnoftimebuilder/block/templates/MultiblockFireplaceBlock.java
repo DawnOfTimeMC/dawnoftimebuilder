@@ -38,7 +38,7 @@ public class MultiblockFireplaceBlock extends SidedPlaneConnectibleBlock {
 
 	public MultiblockFireplaceBlock(String name, Material materialIn, float hardness, float resistance) {
 		super(name, materialIn, hardness, resistance);
-		this.setDefaultState(this.getStateContainer().getBaseState().with(BURNING, false));
+		this.setDefaultState(this.getStateContainer().getBaseState().with(BURNING, false).with(WATERLOGGED, false));
 	}
 
 	@Override
@@ -120,7 +120,7 @@ public class MultiblockFireplaceBlock extends SidedPlaneConnectibleBlock {
 	public void neighborChanged(BlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos, boolean isMoving) {
 		if(state.get(VERTICAL_CONNECTION) != DoTBBlockStateProperties.VerticalConnection.BOTH && state.get(VERTICAL_CONNECTION) != DoTBBlockStateProperties.VerticalConnection.UNDER){
 			BlockState newState = worldIn.getBlockState(fromPos);
-			if(newState.getBlock() instanceof MultiblockFireplaceBlock){
+			if(newState.getBlock() == this){
 				Direction facing = state.get(FACING);
 				if(newState.get(FACING) == facing){
 					boolean burning = newState.get(BURNING);

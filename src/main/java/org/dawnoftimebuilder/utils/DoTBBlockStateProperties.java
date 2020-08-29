@@ -17,8 +17,9 @@ public class DoTBBlockStateProperties {
     public static final BooleanProperty CUT = BooleanProperty.create("cut");
     public static final BooleanProperty FULL = BooleanProperty.create("full");
     public static final BooleanProperty ROLLED = BooleanProperty.create("rolled");
-    public static final BooleanProperty SUBAXIS_X = BooleanProperty.create("subaxis_x");
-    public static final BooleanProperty SUBAXIS_Z = BooleanProperty.create("subaxis_z");
+    public static final BooleanProperty AXIS_X = BooleanProperty.create("axis_x");
+    public static final BooleanProperty AXIS_Y = BooleanProperty.create("axis_y");
+    public static final BooleanProperty AXIS_Z = BooleanProperty.create("axis_z");
     public static final BooleanProperty SUBAXIS = BooleanProperty.create("subaxis");
 
     public static final IntegerProperty AGE_0_6 = IntegerProperty.create("age", 0, 6);

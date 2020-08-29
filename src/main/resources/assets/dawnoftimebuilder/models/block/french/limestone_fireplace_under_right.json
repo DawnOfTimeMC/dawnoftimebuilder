@@ -70,8 +70,8 @@
 			"faces": {
 				"north": {"uv": [16, 12.75, 15.5, 13.5], "texture": "#4_texture", "cullface": "north"},
 				"east": {"uv": [16, 12.75, 15.5, 13.5], "texture": "#4_texture", "cullface": "east"},
-				"south": {"uv": [16, 12.75, 15.5, 13.5], "texture": "#4_texture", "cullface": "north"},
-				"west": {"uv": [16, 12.75, 15.5, 13.5], "texture": "#4_texture", "cullface": "north"}
+				"south": {"uv": [16, 12.75, 15.5, 13.5], "texture": "#4_texture"},
+				"west": {"uv": [16, 12.75, 15.5, 13.5], "texture": "#4_texture"}
 			}
 		},
 		{
