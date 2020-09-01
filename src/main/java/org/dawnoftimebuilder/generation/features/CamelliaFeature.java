@@ -10,6 +10,7 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.feature.IFeatureConfig;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
+import org.dawnoftimebuilder.block.templates.GrowingBushBlock;
 import org.dawnoftimebuilder.generation.features.templates.FeatureDoTB;
 import org.dawnoftimebuilder.registries.DoTBBlocksRegistry;
 
@@ -26,8 +27,8 @@ public class CamelliaFeature extends FeatureDoTB {
     public boolean place(IWorld worldIn, ChunkGenerator generator, Random rand, BlockPos pos, IFeatureConfig config) {
         for (int i = 0; i < 64; ++i) {
             BlockPos nextPos = pos.add(rand.nextInt(8) - rand.nextInt(8), rand.nextInt(4) - rand.nextInt(4), rand.nextInt(8) - rand.nextInt(8));
-            Block camellia = DoTBBlocksRegistry.CAMELLIA;
-            BlockState bushState = camellia.getDefaultState().with(BlockStateProperties.AGE_0_5, Integer.valueOf(5));
+            GrowingBushBlock camellia = (GrowingBushBlock) DoTBBlocksRegistry.CAMELLIA;
+            BlockState bushState = camellia.getDefaultState().with(camellia.getAgeProperty(), camellia.getMaxAge());
             if (isValidPosition(worldIn, nextPos)) {
                 worldIn.setBlockState(nextPos, bushState, 2);
             }
