@@ -76,20 +76,7 @@ public class DoTBEvents {
 	 */
 	@SubscribeEvent
 	public static void FMLLoadCompleteEvent(FMLLoadCompleteEvent event) {
-
-		Biome[] ricePlantBiomes = { Biomes.SWAMP, Biomes.RIVER };
-
-		for (Biome biome : ricePlantBiomes) {
-			biome.addFeature(
-				GenerationStage.Decoration.VEGETAL_DECORATION,
-				Biome.createDecoratedFeature(
-					DoTBFeaturesRegistry.RICE_PLANT,
-					new NoFeatureConfig(),
-					Placement.CHANCE_RANGE,
-					new ChanceRangeConfig(1.0f, 60, 0, 65)
-				)
-			);
-		}
+		DoTBFeaturesRegistry.addFeaturesToBiomes();
 	}
 /*
 	@SideOnly(Side.CLIENT)

@@ -3,6 +3,7 @@ package org.dawnoftimebuilder.generation.features.templates;
 import com.mojang.datafixers.Dynamic;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.IFeatureConfig;
+import net.minecraft.world.gen.feature.NoFeatureConfig;
 
 import java.util.function.Function;
 
