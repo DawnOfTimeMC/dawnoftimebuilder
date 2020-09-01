@@ -4,7 +4,6 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biomes;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.FlowersFeature;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraft.world.gen.placement.ChanceRangeConfig;
 import net.minecraft.world.gen.placement.Placement;
@@ -25,7 +24,7 @@ public class DoTBFeaturesRegistry {
     public static final Feature<NoFeatureConfig> CAMELLIA_BUSH = (Feature<NoFeatureConfig>) reg(new CamelliaFeature(NoFeatureConfig::deserialize, "dotb_flower_forest"));
 
 
-    private static Feature<?> reg(Feature<?> feature){
+    private static Feature<?> reg(Feature<?> feature) {
         FEATURES.add(feature);
         return feature;
     }
@@ -36,28 +35,31 @@ public class DoTBFeaturesRegistry {
     }
 
     private static void addCamellia() {
-        Biomes.FLOWER_FOREST.addFeature(
-            GenerationStage.Decoration.VEGETAL_DECORATION,
-            Biome.createDecoratedFeature(
-                CAMELLIA_BUSH,
-                new NoFeatureConfig(),
-                Placement.CHANCE_RANGE,
-                new ChanceRangeConfig(1.0f, 60, 0, 255)
-            )
-        );
+        Biome[] camelliaBiomes = {Biomes.FLOWER_FOREST, Biomes.JUNGLE, Biomes.JUNGLE_HILLS, Biomes.JUNGLE_EDGE};
+        for (Biome biome : camelliaBiomes) {
+            biome.addFeature(
+                    GenerationStage.Decoration.VEGETAL_DECORATION,
+                    Biome.createDecoratedFeature(
+                            CAMELLIA_BUSH,
+                            new NoFeatureConfig(),
+                            Placement.CHANCE_RANGE,
+                            new ChanceRangeConfig(1.0f, 60, 0, 255)
+                    )
+            );
+        }
     }
 
     private static void addRice() {
-        Biome[] ricePlantBiomes = { Biomes.SWAMP, Biomes.RIVER };
+        Biome[] ricePlantBiomes = {Biomes.SWAMP, Biomes.RIVER};
         for (Biome biome : ricePlantBiomes) {
             biome.addFeature(
-                GenerationStage.Decoration.VEGETAL_DECORATION,
-                Biome.createDecoratedFeature(
-                    RICE_PLANT,
-                    new NoFeatureConfig(),
-                    Placement.CHANCE_RANGE,
-                    new ChanceRangeConfig(1.0f, 60, 0, 65)
-                )
+                    GenerationStage.Decoration.VEGETAL_DECORATION,
+                    Biome.createDecoratedFeature(
+                            RICE_PLANT,
+                            new NoFeatureConfig(),
+                            Placement.CHANCE_RANGE,
+                            new ChanceRangeConfig(1.0f, 60, 0, 65)
+                    )
             );
         }
     }

@@ -25,7 +25,7 @@ public class RicePlantFeature extends FeatureDoTB<NoFeatureConfig> {
      */
     @Override
     public boolean place(IWorld worldIn, ChunkGenerator generator, Random rand, BlockPos pos, IFeatureConfig config) {
-        for(int i = 0; i < 64; ++i) {
+        for (int i = 0; i < 64; ++i) {
             BlockPos nextPos = pos.add(rand.nextInt(8) - rand.nextInt(8), rand.nextInt(4) - rand.nextInt(4), rand.nextInt(8) - rand.nextInt(8));
             BlockState baseState = Blocks.PINK_CONCRETE.getDefaultState(); // place holder
             BlockState topState = null;
@@ -44,7 +44,7 @@ public class RicePlantFeature extends FeatureDoTB<NoFeatureConfig> {
         Block blockOn = worldIn.getBlockState(pos.down()).getBlock();
         Block blockUnder = worldIn.getBlockState(pos.up()).getBlock();
         return worldIn.getBlockState(pos).getMaterial().isReplaceable() &&
-                ( blockOn == Blocks.DIRT) &&
+                (blockOn == Blocks.DIRT) &&
                 blockUnder == Blocks.AIR &&
                 blockIn == Blocks.WATER;
     }
