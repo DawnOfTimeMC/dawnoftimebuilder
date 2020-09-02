@@ -33,6 +33,7 @@ public class DoTBBlocksRegistry {
 	public static final Block ACACIA_PERGOLA = reg(new PergolaBlock("acacia_pergola", Material.WOOD, 2.0F, 3.0F).setBurnable());
 	public static final Block ACACIA_LATTICE = reg(new LatticeBlock("acacia_lattice", Material.WOOD, 2.0F, 3.0F).setBurnable());
 	public static final Block ACACIA_BEAM = reg(new BeamBlock("acacia_beam", Material.WOOD, 2.0F, 3.0F).setBurnable());
+	public static final Block ACACIA_WALL = reg(new WallBlockDoTB("acacia_wall", Material.ROCK, 1.5F, 6.0F).setBurnable());
 	public static final Block ACACIA_SUPPORT_BEAM = reg(new SupportBeamBlock("acacia_support_beam", Material.WOOD, 2.0F, 3.0F).setBurnable());
 	public static final Block ACACIA_SUPPORT_SLAB = reg(new SupportSlabBlock("acacia_support_slab", Material.WOOD, 1.5F, 3.0F).setBurnable());
 	public static final Block BIRCH_PLANKS_EDGE = reg(new EdgeBlock("birch_planks_edge", Material.WOOD, 2.0F, 3.0F).setBurnable());
@@ -40,6 +41,7 @@ public class DoTBBlocksRegistry {
 	public static final Block BIRCH_PERGOLA = reg(new PergolaBlock("birch_pergola", Material.WOOD, 2.0F, 3.0F).setBurnable());
 	public static final Block BIRCH_LATTICE = reg(new LatticeBlock("birch_lattice", Material.WOOD, 2.0F, 3.0F).setBurnable());
 	public static final Block BIRCH_BEAM = reg(new BeamBlock("birch_beam", Material.WOOD, 2.0F, 3.0F).setBurnable());
+	public static final Block BIRCH_WALL = reg(new WallBlockDoTB("birch_wall", Material.ROCK, 1.5F, 6.0F).setBurnable());
 	public static final Block BIRCH_SUPPORT_BEAM = reg(new SupportBeamBlock("birch_support_beam", Material.WOOD, 2.0F, 3.0F).setBurnable());
 	public static final Block BIRCH_SUPPORT_SLAB = reg(new SupportSlabBlock("birch_support_slab", Material.WOOD, 1.5F, 3.0F).setBurnable());
 	public static final Block DARK_OAK_PLANKS_EDGE = reg(new EdgeBlock("dark_oak_planks_edge", Material.WOOD, 2.0F, 3.0F).setBurnable());
@@ -47,6 +49,7 @@ public class DoTBBlocksRegistry {
 	public static final Block DARK_OAK_PERGOLA = reg(new PergolaBlock("dark_oak_pergola", Material.WOOD, 2.0F, 3.0F).setBurnable());
 	public static final Block DARK_OAK_LATTICE = reg(new LatticeBlock("dark_oak_lattice", Material.WOOD, 2.0F, 3.0F).setBurnable());
 	public static final Block DARK_OAK_BEAM = reg(new BeamBlock("dark_oak_beam", Material.WOOD, 2.0F, 3.0F).setBurnable());
+	public static final Block DARK_OAK_WALL = reg(new WallBlockDoTB("dark_oak_wall", Material.ROCK, 1.5F, 6.0F).setBurnable());
 	public static final Block DARK_OAK_SUPPORT_BEAM = reg(new SupportBeamBlock("dark_oak_support_beam", Material.WOOD, 2.0F, 3.0F).setBurnable());
 	public static final Block DARK_OAK_SUPPORT_SLAB = reg(new SupportSlabBlock("dark_oak_support_slab", Material.WOOD, 1.5F, 3.0F).setBurnable());
 	public static final Block IRON_CHAIN = reg(new ChainBlock("iron_chain", Material.IRON, 5.0F, 6.0F));
@@ -55,6 +58,7 @@ public class DoTBBlocksRegistry {
 	public static final Block JUNGLE_PERGOLA = reg(new PergolaBlock("jungle_pergola", Material.WOOD, 2.0F, 3.0F).setBurnable());
 	public static final Block JUNGLE_LATTICE = reg(new LatticeBlock("jungle_lattice", Material.WOOD, 2.0F, 3.0F).setBurnable());
 	public static final Block JUNGLE_BEAM = reg(new BeamBlock("jungle_beam", Material.WOOD, 2.0F, 3.0F).setBurnable());
+	public static final Block JUNGLE_WALL = reg(new WallBlockDoTB("jungle_wall", Material.ROCK, 1.5F, 6.0F).setBurnable());
 	public static final Block JUNGLE_SUPPORT_BEAM = reg(new SupportBeamBlock("jungle_support_beam", Material.WOOD, 2.0F, 3.0F).setBurnable());
 	public static final Block JUNGLE_SUPPORT_SLAB = reg(new SupportSlabBlock("jungle_support_slab", Material.WOOD, 1.5F, 3.0F).setBurnable());
 	public static final Block OAK_PLANKS_PLATE = reg(new PlateBlock("oak_planks_plate", Material.WOOD, 2.0F, 3.0F).setBurnable());
@@ -62,6 +66,7 @@ public class DoTBBlocksRegistry {
 	public static final Block OAK_PERGOLA = reg(new PergolaBlock("oak_pergola", Material.WOOD, 2.0F, 3.0F).setBurnable());
 	public static final Block OAK_LATTICE = reg(new LatticeBlock("oak_lattice", Material.WOOD, 2.0F, 3.0F).setBurnable());
 	public static final Block OAK_BEAM = reg(new BeamBlock("oak_beam", Material.WOOD, 2.0F, 3.0F).setBurnable());
+	public static final Block OAK_WALL = reg(new WallBlockDoTB("oak_wall", Material.ROCK, 1.5F, 6.0F).setBurnable());
 	public static final Block OAK_SUPPORT_BEAM = reg(new SupportBeamBlock("oak_support_beam", Material.WOOD, 2.0F, 3.0F).setBurnable());
 	public static final Block OAK_SUPPORT_SLAB = reg(new SupportSlabBlock("oak_support_slab", Material.WOOD, 1.5F, 3.0F).setBurnable());
 	public static final Block PATH_GRAVEL = reg(new PathBlock("path_gravel"));
@@ -80,6 +85,7 @@ public class DoTBBlocksRegistry {
 	public static final Block SPRUCE_PERGOLA = reg(new PergolaBlock("spruce_pergola", Material.WOOD, 2.0F, 3.0F).setBurnable());
 	public static final Block SPRUCE_LATTICE = reg(new LatticeBlock("spruce_lattice", Material.WOOD, 2.0F, 3.0F).setBurnable());
 	public static final Block SPRUCE_BEAM = reg(new BeamBlock("spruce_beam", Material.WOOD, 2.0F, 3.0F).setBurnable());
+	public static final Block SPRUCE_WALL = reg(new WallBlockDoTB("spruce_wall", Material.ROCK, 1.5F, 6.0F).setBurnable());
 	public static final Block SPRUCE_SUPPORT_BEAM = reg(new SupportBeamBlock("spruce_support_beam", Material.WOOD, 2.0F, 3.0F).setBurnable());
 	public static final Block SPRUCE_SUPPORT_SLAB = reg(new SupportSlabBlock("spruce_support_slab", Material.WOOD, 1.5F, 3.0F).setBurnable());
 	public static final Block THATCH_WHEAT = reg(new BlockDoTB("thatch_wheat", Material.WOOL, 1.0F, 1.0F).setBurnable());

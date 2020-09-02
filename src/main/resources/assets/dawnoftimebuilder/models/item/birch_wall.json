@@ -13,9 +13,9 @@
     },
     "ambientocclusion": false,
     "textures": {
-        "wall": "dawnoftimebuilder:block/charred_spruce_planks",
-        "wallpost": "dawnoftimebuilder:block/charred_spruce_planks",
-        "particle": "dawnoftimebuilder:block/charred_spruce_planks"
+        "wall": "block/birch_planks",
+        "wallpost": "block/birch_planks",
+        "particle": "block/birch_planks"
     },
     "elements": [
         {   "from": [ 4, 0, 4 ],
