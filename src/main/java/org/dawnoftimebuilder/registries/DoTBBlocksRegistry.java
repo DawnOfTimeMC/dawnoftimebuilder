@@ -147,7 +147,7 @@ public class DoTBBlocksRegistry {
 	//Japanese
 	//public static final Block X = reg(new DoTBBlockDryer("bamboo_drying_tray", Material.WOOD, 1.0F, SoundType.WOOD));
 	public static final Block CAMELLIA = reg(new GrowingBushBlock("camellia", "camellia_seeds", Plains));
-	//public static final Block X = reg(new BlockMulberry());
+	public static final Block MULBERRY = reg(new MulberryBlock());
 	public static final Block CAST_IRON_TEAPOT_GREY = reg(new CastIronTeapotBlock("cast_iron_teapot_grey", 0.15F));
 	public static final Block CAST_IRON_TEAPOT_GREEN = reg(new CastIronTeapotBlock("cast_iron_teapot_green", 0.05F));
 	public static final Block CAST_IRON_TEAPOT_DECORATED = reg(new CastIronTeapotBlock("cast_iron_teapot_decorated", 0.07F));

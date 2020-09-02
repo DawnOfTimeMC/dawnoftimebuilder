@@ -274,7 +274,7 @@ public enum CreativeInventoryCategories {
 			Item.getItemFromBlock(CAMELLIA),
 			//DoTBItemsRegistry.CAMELLIA_LEAVES,
 			DoTBItemsRegistry.TEA_LEAVES,
-			//DoTBItemsRegistry.MULBERRY,
+			Item.getItemFromBlock(MULBERRY),
 			DoTBItemsRegistry.MULBERRY_LEAVES,
 			DoTBItemsRegistry.SILK_WORM_EGGS,
 			//DoTBItemsRegistry.SILK_WORM_HATCHERY,

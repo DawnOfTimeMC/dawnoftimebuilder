@@ -9,6 +9,7 @@ import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
+import net.minecraft.state.properties.Half;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.VoxelShape;
@@ -21,7 +22,7 @@ public class WaterDoubleCropsBlock extends DoubleCropsBlock implements IWaterLog
 
 	public WaterDoubleCropsBlock(String name, String seedName, int growingAge) {
 		super(name, seedName, PlantType.Water, growingAge);
-		this.setDefaultState(this.getDefaultState().with(WATERLOGGED, false));
+		this.setDefaultState(this.getDefaultState().with(WATERLOGGED, true).with(HALF, Half.BOTTOM).with(this.getAgeProperty(), 0));
 	}
 
 	public WaterDoubleCropsBlock(String name, int growingAge) {
@@ -30,15 +31,15 @@ public class WaterDoubleCropsBlock extends DoubleCropsBlock implements IWaterLog
 
 	/**
 	 * @return Stores VoxelShape with index : <p/>
-	 * 0 : 8px <p/>
-	 * 1 : 12px <p/>
-	 * 2 : 16px <p/>
-	 * 3 : 1px <p/>
-	 * 4 : 5px <p/>
-	 * 5 : 8px <p/>
-	 * 6 : 11px <p/>
-	 * 7 : 14px <p/>
-	 * 8 : 16px <p/>
+	 * 0 : AGE 0 (bot) : 8px <p/>
+	 * 1 : AGE 1 (bot) : 12px <p/>
+	 * 2 : AGE 2 (bot) : 16px <p/>
+	 * 3 : AGE 2 (top) : 1px <p/>
+	 * 4 : AGE 3 (top) : 5px <p/>
+	 * 5 : AGE 4 (top) : 8px <p/>
+	 * 6 : AGE 5 (top) : 11px <p/>
+	 * 7 : AGE 6 (top) : 14px <p/>
+	 * 8 : AGE 7 (top) : 16px <p/>
 	 */
 	@Override
 	public VoxelShape[] makeShapes() {
@@ -76,5 +77,10 @@ public class WaterDoubleCropsBlock extends DoubleCropsBlock implements IWaterLog
 	public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
 		if (stateIn.get(WATERLOGGED)) worldIn.getPendingFluidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickRate(worldIn));
 		return super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+	}
+
+	@Override
+	public BlockState getTopState(BlockState bottomState) {
+		return super.getTopState(bottomState).with(WATERLOGGED, false);
 	}
 }
