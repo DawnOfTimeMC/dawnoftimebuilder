@@ -1,5 +1,5 @@
 {
     "variants": {
-        "normal": { "model": "dawnoftimebuilder:block/japanese/charred_spruce_timber_frame" }
+        "": { "model": "dawnoftimebuilder:block/japanese/charred_spruce_timber_frame" }
     }
 }

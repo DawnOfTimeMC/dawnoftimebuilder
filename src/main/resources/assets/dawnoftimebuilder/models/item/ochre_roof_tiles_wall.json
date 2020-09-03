@@ -13,9 +13,9 @@
     },
     "ambientocclusion": false,
     "textures": {
-        "wall": "dawnoftimebuilder:block/grey_roof_tiles",
-        "wallpost": "dawnoftimebuilder:block/grey_roof_tiles",
-        "particle": "dawnoftimebuilder:block/grey_roof_tiles"
+        "wall": "dawnoftimebuilder:block/ochre_roof_tiles",
+        "wallpost": "dawnoftimebuilder:block/ochre_roof_tiles",
+        "particle": "dawnoftimebuilder:block/ochre_roof_tiles"
     },
     "elements": [
         {   "from": [ 4, 0, 4 ],

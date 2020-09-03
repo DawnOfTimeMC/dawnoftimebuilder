@@ -186,7 +186,7 @@ public class DoTBBlocksRegistry {
 	public static final Block CHARRED_SPRUCE_FOUNDATION = reg(new BlockDoTB("charred_spruce_foundation", Material.WOOD, 2.5F, 5.0F).setBurnable());
 	public static final Block CHARRED_SPRUCE_FENCE = reg(new FenceBlockDoTB("charred_spruce_fence", Material.WOOD, 2.5F, 5.0F).setBurnable());
 	public static final Block CHARRED_SPRUCE_WALL = reg(new WallBlockDoTB("charred_spruce_wall", Material.WOOD, 2.5F, 5.0F).setBurnable());
-	public static final Block CHARRED_SPRUCE_RAILING = reg(new BurntSpruceRailingBlock());
+	//public static final Block CHARRED_SPRUCE_RAILING = reg(new BurntSpruceRailingBlock();
 	public static final Block CHARRED_SPRUCE_PLANKS_EDGE = reg(new EdgeBlock("charred_spruce_planks_edge", Material.WOOD, 2.0F, 3.0F).setBurnable());
 	public static final Block CHARRED_SPRUCE_PLANKS_PLATE = reg(new PlateBlock("charred_spruce_planks_plate", Material.WOOD, 2.0F, 3.0F).setBurnable());
 	public static final Block CHARRED_SPRUCE_PERGOLA = reg(new PergolaBlock("charred_spruce_pergola", Material.WOOD, 2.0F, 3.0F).setBurnable());
@@ -253,6 +253,11 @@ public class DoTBBlocksRegistry {
 	public static final Block SANDSTONE_BOT_OCHRE_ROOF_TILES_TOP = reg(new NoItemBlock("sandstone_bot_ochre_roof_tiles_top", Material.ROCK, 0.8F, 0.8F));
 	public static final Block OCHRE_ROOF_TILES_SLAB = reg(new MixedSlabBlock("ochre_roof_tiles_slab", OCHRE_ROOF_TILES).addMixedBlockRecipe((SlabBlock) SANDSTONE_SLAB, SANDSTONE_BOT_OCHRE_ROOF_TILES_TOP, false));
 	public static final Block SANDSTONE_COLUMN = reg(new BlockSandstoneColumn());
+	public static final Block OCHRE_ROOF_TILES_EDGE = reg(new EdgeBlock("ochre_roof_tiles_edge", Material.ROCK, 2.0F, 3.0F));
+	public static final Block OCHRE_ROOF_TILES_PLATE = reg(new PlateBlock("ochre_roof_tiles_plate", Material.ROCK, 2.0F, 3.0F));
+	public static final Block OCHRE_ROOF_TILES_STAIRS = reg(new StairsBlockDoTB("ochre_roof_tiles_stairs", OCHRE_ROOF_TILES));
+	public static final Block OCHRE_ROOF_TILES_WALL = reg(new WallBlockDoTB("ochre_roof_tiles_wall", Material.ROCK, 1.5F, 6.0F));
+
 
 	private static Block reg(Block block){
 		BLOCKS.add(block);

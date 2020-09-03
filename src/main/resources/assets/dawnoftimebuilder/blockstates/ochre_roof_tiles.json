@@ -1,5 +1,5 @@
 {
     "variants": {
-        "normal": { "model": "dawnoftimebuilder:block/roman/ochre_roof_tiles" }
+        "": { "model": "dawnoftimebuilder:block/roman/ochre_roof_tiles" }
     }
 }

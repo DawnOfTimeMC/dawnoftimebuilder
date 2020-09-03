@@ -1,7 +1,7 @@
 {
 	"textures": {
-		"side": "block/planks_spruce",
-		"particle": "block/spruce_log"
+		"side": "dawnoftimebuilder:block/charred_spruce_log_stripped",
+		"particle": "dawnoftimebuilder:block/charred_spruce_log_stripped_top"
 	},
 	"elements": [
 		{

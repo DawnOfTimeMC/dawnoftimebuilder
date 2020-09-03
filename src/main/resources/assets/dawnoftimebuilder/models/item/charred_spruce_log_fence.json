@@ -15,7 +15,7 @@
     "ambientocclusion": false,
     "textures": {
         "texture": "block/spruce_log",
-        "texturetop": "dawnoftimebuilder:block/fence_spruce_log_top",
+        "texturetop": "dawnoftimebuilder:block/charred_spruce_fence_top",
         "particle": "block/spruce_log"
     },
     "elements": [
