@@ -7,21 +7,16 @@
 	],
 	"key": {
 		"I": {
-			"item": "dawnoftimebuilder:limestone_brick",
-			"data": 0
+			"item": "dawnoftimebuilder:limestone_brick"
 		},
 		"i": {
-			"item": "minecraft:log",
-			"data": 0
+			"item": "minecraft:oak_log"
 		},
 		"o": {
-			"item": "minecraft:coal",
-			"data": 0
+			"item": "minecraft:coal"
 		}
 	},
 	"result": {
-		"item": "dawnoftimebuilder:limestone_fireplace",
-		"data": 0,
-		"count": 1
+		"item": "dawnoftimebuilder:limestone_fireplace"
 	}
 }

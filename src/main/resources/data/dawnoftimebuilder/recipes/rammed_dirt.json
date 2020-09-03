@@ -6,13 +6,11 @@
 	],
 	"key": {
 		"i": {
-			"item": "minecraft:dirt",
-			"data": 0
+			"item": "minecraft:dirt"
 		}
 	},
 	"result": {
 		"item": "dawnoftimebuilder:rammed_dirt",
-		"data": 0,
 		"count": 6
 	}
 }

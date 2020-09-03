@@ -7,8 +7,7 @@
 	],
 	"key": {
 		"I": {
-			"item": "dawnoftimebuilder:oak_waxed_planks",
-			"data": 0
+			"item": "dawnoftimebuilder:oak_waxed_planks"
 		},
 		"i": {
 			"item": "minecraft:clay_ball"
@@ -16,7 +15,6 @@
 	},
 	"result": {
 		"item": "dawnoftimebuilder:oak_timber_frame_corner",
-		"data": 0,
 		"count": 6
 	}
 }

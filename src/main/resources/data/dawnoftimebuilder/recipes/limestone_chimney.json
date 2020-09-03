@@ -6,17 +6,13 @@
 	],
 	"key": {
 		"i": {
-			"item": "dawnoftimebuilder:limestone_brick",
-			"data": 0
+			"item": "dawnoftimebuilder:limestone_brick"
 		},
 		"I": {
-			"item": "dawnoftimebuilder:flat_roof_tiles_slab",
-			"data": 0
+			"item": "dawnoftimebuilder:flat_roof_tiles_slab"
 		}
 	},
 	"result": {
-		"item": "dawnoftimebuilder:limestone_chimney",
-		"data": 0,
-		"count": 1
+		"item": "dawnoftimebuilder:limestone_chimney"
 	}
 }

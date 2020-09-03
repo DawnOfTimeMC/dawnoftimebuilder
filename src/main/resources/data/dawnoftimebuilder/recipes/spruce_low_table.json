@@ -6,16 +6,13 @@
 	],
 	"key": {
 		"I": {
-			"item": "minecraft:wooden_slab",
-			"data": 1
+			"item": "minecraft:spruce_slab"
 		},
 		"i": {
-			"item": "minecraft:stick"
+			"tag": "forge:rods/wooden"
 		}
 	},
 	"result": {
-		"item": "dawnoftimebuilder:spruce_low_table",
-		"data": 0,
-		"count": 1
+		"item": "dawnoftimebuilder:spruce_low_table"
 	}
 }

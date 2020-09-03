@@ -10,13 +10,10 @@
 			"item": "minecraft:clay_ball"
 		},
 		"i": {
-			"item": "minecraft:wool",
-			"data": 14
+			"item": "minecraft:red_wool"
 		}
 	},
 	"result": {
-		"item": "dawnoftimebuilder:sake_bottle",
-		"data": 0,
-		"count": 1
+		"item": "dawnoftimebuilder:sake_bottle"
 	}
 }

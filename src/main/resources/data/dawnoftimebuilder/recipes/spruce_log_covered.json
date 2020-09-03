@@ -6,17 +6,14 @@
 	],
 	"key": {
 		"i": {
-			"item": "minecraft:log",
-			"data": 1
+			"item": "minecraft:spruce_log"
 		},
 		"I": {
-			"item": "minecraft:planks",
-			"data": 1
+			"item": "minecraft:spruce_planks"
 		}
 	},
 	"result": {
 		"item": "dawnoftimebuilder:spruce_log_covered",
-		"data": 0,
 		"count": 4
 	}
 }

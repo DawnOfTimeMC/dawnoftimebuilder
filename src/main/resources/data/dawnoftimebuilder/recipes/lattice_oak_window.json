@@ -6,17 +6,14 @@
 	],
 	"key": {
 		"I": {
-			"item": "dawnoftimebuilder:lattice_glass_pane",
-			"data": 0
+			"item": "dawnoftimebuilder:lattice_glass_pane"
 		},
 		"i": {
-			"item": "dawnoftimebuilder:oak_waxed_planks",
-			"data": 0
+			"item": "dawnoftimebuilder:oak_waxed_planks"
 		}
 	},
 	"result": {
 		"item": "dawnoftimebuilder:lattice_oak_window",
-		"data": 0,
 		"count": 16
 	}
 }

@@ -6,13 +6,11 @@
 	],
 	"key": {
 		"i": {
-			"item": "minecraft:planks",
-			"data": 1
+			"item": "minecraft:spruce_planks"
 		}
 	},
 	"result": {
 		"item": "dawnoftimebuilder:spruce_roof_support",
-		"data": 0,
 		"count": 6
 	}
 }

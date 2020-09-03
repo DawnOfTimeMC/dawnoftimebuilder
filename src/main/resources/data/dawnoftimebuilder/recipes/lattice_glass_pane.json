@@ -6,13 +6,11 @@
 	],
 	"key": {
 		"I": {
-			"item": "dawnoftimebuilder:lattice_glass",
-			"data": 0
+			"item": "dawnoftimebuilder:lattice_glass"
 		}
 	},
 	"result": {
 		"item": "dawnoftimebuilder:lattice_glass_pane",
-		"data": 0,
 		"count": 16
 	}
 }

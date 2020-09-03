@@ -6,16 +6,14 @@
 	],
 	"key": {
 		"I": {
-			"item": "minecraft:brick"
+			"item": "minecraft:bricks"
 		},
 		"i": {
-			"item": "minecraft:dye",
-			"data": 14
+			"item": "minecraft:orange_dye"
 		}
 	},
 	"result": {
 		"item": "dawnoftimebuilder:flat_roof_tiles",
-		"data": 0,
 		"count": 6
 	}
 }

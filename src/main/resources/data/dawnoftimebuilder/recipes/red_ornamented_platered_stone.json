@@ -7,16 +7,14 @@
 	],
 	"key": {
 		"I": {
-			"item": "dawnoftimebuilder:plastered_stone",
-			"data": 1
+			"item": "dawnoftimebuilder:red_plastered_stone"
 		},
 		"i": {
 			"item": "minecraft:gold_nugget"
 		}
 	},
 	"result": {
-		"item": "dawnoftimebuilder:plastered_stone",
-		"data": 2,
+		"item": "dawnoftimebuilder:red_ornamented_plastered_stone",
 		"count": 6
 	}
 }

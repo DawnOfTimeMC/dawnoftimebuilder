@@ -7,19 +7,16 @@
 	],
 	"key": {
 		"X": {
-			"item": "minecraft:gold_block",
-			"data": 0
+			"item": "minecraft:gold_block"
 		},
 		"x": {
-			"item": "minecraft:gold_ingot"
+			"tag": "forge:ingots/gold"
 		},
 		"i": {
 			"item": "minecraft:string"
 		}
 	},
 	"result": {
-		"item": "dawnoftimebuilder:pharaoh_armor_chest",
-		"data": 0,
-		"count": 1
+		"item": "dawnoftimebuilder:pharaoh_armor_chest"
 	}
 }

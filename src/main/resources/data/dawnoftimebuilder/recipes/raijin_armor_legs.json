@@ -7,20 +7,16 @@
 	],
 	"key": {
 		"x": {
-			"item": "minecraft:dye",
-			"data": 1
+			"item": "minecraft:red_dye"
 		},
 		"I": {
 			"item": "dawnoftimebuilder:silk"
 		},
 		"O": {
-			"item": "minecraft:gold_block",
-			"data": 0
+			"item": "minecraft:gold_block"
 		}
 	},
 	"result": {
-		"item": "dawnoftimebuilder:raijin_armor_legs",
-		"data": 0,
-		"count": 1
+		"item": "dawnoftimebuilder:raijin_armor_legs"
 	}
 }

@@ -7,13 +7,11 @@
 	],
 	"key": {
 		"I": {
-			"item": "dawnoftimebuilder:thatch_wheat",
-			"data": 0
+			"item": "dawnoftimebuilder:thatch_wheat"
 		}
 	},
 	"result": {
 		"item": "dawnoftimebuilder:thatch_wheat_stairs",
-		"data": 0,
 		"count": 6
 	}
 }

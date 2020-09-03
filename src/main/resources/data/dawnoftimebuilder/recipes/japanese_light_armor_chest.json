@@ -13,12 +13,10 @@
 			"item": "minecraft:leather"
 		},
 		"i": {
-			"item": "minecraft:iron_ingot"
+			"tag": "forge:ingots/iron"
 		}
 	},
 	"result": {
-		"item": "dawnoftimebuilder:japanese_light_armor_chest",
-		"data": 0,
-		"count": 1
+		"item": "dawnoftimebuilder:japanese_light_armor_chest"
 	}
 }

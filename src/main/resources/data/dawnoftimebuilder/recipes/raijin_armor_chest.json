@@ -10,17 +10,13 @@
 			"item": "dawnoftimebuilder:silk"
 		},
 		"x": {
-			"item": "minecraft:gold_block",
-			"data": 0
+			"item": "minecraft:gold_block"
 		},
 		"o": {
-			"item": "minecraft:dye",
-			"data": 1
+			"item": "minecraft:red_dye"
 		}
 	},
 	"result": {
-		"item": "dawnoftimebuilder:raijin_armor_chest",
-		"data": 0,
-		"count": 1
+		"item": "dawnoftimebuilder:raijin_armor_chest"
 	}
 }

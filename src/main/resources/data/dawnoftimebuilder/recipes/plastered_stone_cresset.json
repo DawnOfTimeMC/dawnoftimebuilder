@@ -7,20 +7,17 @@
 	],
 	"key": {
 		"I": {
-			"item": "dawnoftimebuilder:plastered_stone",
-			"data": 0
+			"item": "dawnoftimebuilder:plastered_stone"
 		},
 		"i": {
 			"item": "minecraft:gold_nugget"
 		},
 		"x": {
-			"item": "minecraft:coal",
-			"data": 0
+			"item": "minecraft:coal"
 		}
 	},
 	"result": {
 		"item": "dawnoftimebuilder:plastered_stone_cresset",
-		"data": 0,
 		"count": 4
 	}
 }

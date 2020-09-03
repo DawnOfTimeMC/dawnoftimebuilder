@@ -6,20 +6,16 @@
 	],
 	"key": {
 		"I": {
-			"item": "minecraft:stone",
-			"data": 0
+			"item": "minecraft:stone"
 		},
 		"i": {
-			"item": "minecraft:dye",
-			"data": 2
+			"item": "minecraft:green_dye"
 		},
 		"o": {
-			"item": "minecraft:gold_nugget"
+			"tag": "forge:nuggets/gold"
 		}
 	},
 	"result": {
-		"item": "dawnoftimebuilder:feathered_serpent_sculpture",
-		"data": 0,
-		"count": 1
+		"item": "dawnoftimebuilder:feathered_serpent_sculpture"
 	}
 }

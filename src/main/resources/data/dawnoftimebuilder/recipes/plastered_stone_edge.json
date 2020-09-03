@@ -5,13 +5,11 @@
 	],
 	"key": {
 		"I": {
-			"item": "dawnoftimebuilder:plastered_stone_slab",
-			"data": 0
+			"item": "dawnoftimebuilder:plastered_stone_slab"
 		}
 	},
 	"result": {
 		"item": "dawnoftimebuilder:plastered_stone_edge",
-		"data": 0,
 		"count": 6
 	}
 }

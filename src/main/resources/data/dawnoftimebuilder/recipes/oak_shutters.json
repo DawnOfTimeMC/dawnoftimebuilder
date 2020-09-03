@@ -7,16 +7,14 @@
 	],
 	"key": {
 		"I": {
-			"item": "dawnoftimebuilder:oak_waxed_planks",
-			"data": 0
+			"item": "dawnoftimebuilder:oak_waxed_planks"
 		},
 		"i": {
-			"item": "minecraft:stick"
+			"tag": "forge:rods/wooden"
 		}
 	},
 	"result": {
 		"item": "dawnoftimebuilder:oak_shutters",
-		"data": 0,
 		"count": 4
 	}
 }

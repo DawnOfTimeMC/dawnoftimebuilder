@@ -6,17 +6,13 @@
 	],
 	"key": {
 		"I": {
-			"item": "minecraft:log",
-			"data": 0
+			"item": "minecraft:oak_log"
 		},
 		"i": {
-			"item": "minecraft:coal",
-			"data": 0
+			"item": "minecraft:coal"
 		}
 	},
 	"result": {
-		"item": "dawnoftimebuilder:fireplace",
-		"data": 0,
-		"count": 1
+		"item": "dawnoftimebuilder:fireplace"
 	}
 }

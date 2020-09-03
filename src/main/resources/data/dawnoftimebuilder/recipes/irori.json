@@ -6,20 +6,16 @@
 	],
 	"key": {
 		"I": {
-			"item": "minecraft:planks",
-			"data": 1
+			"item": "minecraft:spruce_planks"
 		},
 		"i": {
-			"item": "minecraft:log",
-			"data": 1
+			"item": "minecraft:spruce_log"
 		},
 		"o": {
-			"item": "minecraft:iron_ingot"
+			"tag": "forge:ingots/iron"
 		}
 	},
 	"result": {
-		"item": "dawnoftimebuilder:irori",
-		"data": 0,
-		"count": 1
+		"item": "dawnoftimebuilder:irori"
 	}
 }

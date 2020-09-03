@@ -6,17 +6,13 @@
 	],
 	"key": {
 		"i": {
-			"item": "minecraft:iron_ingot",
-			"data": 0
+			"tag": "forge:ingots/iron"
 		},
 		"I": {
-			"item": "minecraft:iron_block",
-			"data": 0
+			"item": "minecraft:iron_block"
 		}
 	},
 	"result": {
-		"item": "dawnoftimebuilder:iron_plate_armor_feet",
-		"data": 0,
-		"count": 1
+		"item": "dawnoftimebuilder:iron_plate_armor_feet"
 	}
 }

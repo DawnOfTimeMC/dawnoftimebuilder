@@ -7,16 +7,14 @@
 	],
 	"key": {
 		"I": {
-			"item": "minecraft:planks",
-			"data": 1
+			"item": "minecraft:spruce_planks"
 		},
 		"i": {
-			"item": "minecraft:stick"
+			"tag": "forge:rods/wooden"
 		}
 	},
 	"result": {
 		"item": "dawnoftimebuilder:spruce_foundation",
-		"data": 0,
 		"count": 4
 	}
 }

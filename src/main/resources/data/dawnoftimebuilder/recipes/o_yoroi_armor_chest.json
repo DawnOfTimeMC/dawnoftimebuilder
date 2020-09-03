@@ -7,23 +7,19 @@
 	],
 	"key": {
 		"o": {
-			"item": "minecraft:redstone_block",
-			"data": 0
+			"item": "minecraft:redstone_block"
 		},
 		"I": {
-			"item": "minecraft:coal_block",
-			"data": 0
+			"item": "minecraft:coal_block"
 		},
 		"i": {
 			"item": "minecraft:redstone"
 		},
 		"x": {
-			"item": "minecraft:gold_ingot"
+			"tag": "forge:ingots/gold"
 		}
 	},
 	"result": {
-		"item": "dawnoftimebuilder:o_yoroi_armor_chest",
-		"data": 0,
-		"count": 1
+		"item": "dawnoftimebuilder:o_yoroi_armor_chest"
 	}
 }

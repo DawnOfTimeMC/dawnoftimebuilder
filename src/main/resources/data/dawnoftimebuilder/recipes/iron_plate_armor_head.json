@@ -7,23 +7,19 @@
 	],
 	"key": {
 		"I": {
-			"item": "minecraft:iron_ingot"
+			"tag": "forge:ingots/iron"
 		},
 		"i": {
-			"item": "minecraft:iron_block",
-			"data": 0
+			"item": "minecraft:iron_block"
 		},
 		"o": {
-			"item": "minecraft:dye",
-			"data": 1
+			"item": "minecraft:red_dye"
 		},
 		"O": {
 			"item": "minecraft:feather"
 		}
 	},
 	"result": {
-		"item": "dawnoftimebuilder:iron_plate_armor_head",
-		"data": 0,
-		"count": 1
+		"item": "dawnoftimebuilder:iron_plate_armor_head"
 	}
 }

@@ -7,23 +7,20 @@
 	],
 	"key": {
 		"i": {
-			"item": "minecraft:stick"
+			"tag": "forge:rods/wooden"
 		},
 		"O": {
-			"item": "minecraft:torch",
-			"data": 0
+			"item": "minecraft:torch"
 		},
 		"I": {
 			"item": "dawnoftimebuilder:silk"
 		},
 		"o": {
-			"item": "minecraft:dye",
-			"data": 0
+			"item": "minecraft:ink_sac"
 		}
 	},
 	"result": {
 		"item": "dawnoftimebuilder:paper_lantern",
-		"data": 0,
 		"count": 6
 	}
 }

@@ -5,13 +5,11 @@
 	],
 	"key": {
 		"I": {
-			"item": "dawnoftimebuilder:thatch_wheat_slab",
-			"data": 0
+			"item": "dawnoftimebuilder:thatch_wheat_slab"
 		}
 	},
 	"result": {
 		"item": "dawnoftimebuilder:thatch_wheat_edge",
-		"data": 0,
 		"count": 6
 	}
 }

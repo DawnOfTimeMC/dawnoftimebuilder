@@ -6,17 +6,14 @@
 	],
 	"key": {
 		"I": {
-			"item": "minecraft:log",
-			"data": 0
+			"item": "minecraft:oak_log"
 		},
 		"i": {
-			"item": "limestone_brick",
-			"data": 0
+			"item": "dawnoftimebuilder:limestone_brick"
 		}
 	},
 	"result": {
 		"item": "dawnoftimebuilder:oak_beam",
-		"data": 0,
 		"count": 4
 	}
 }

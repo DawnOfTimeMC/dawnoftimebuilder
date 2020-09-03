@@ -7,15 +7,13 @@
 	],
 	"key": {
 		"I": {
-			"item": "minecraft:iron_ingot"
+			"tag": "forge:ingots/iron"
 		},
 		"i": {
-			"item": "minecraft:gold_ingot"
+			"tag": "forge:ingots/gold"
 		}
 	},
 	"result": {
-		"item": "dawnoftimebuilder:cast_iron_teapot",
-		"data": 2,
-		"count": 1
+		"item": "dawnoftimebuilder:cast_iron_teapot_decorated"
 	}
 }

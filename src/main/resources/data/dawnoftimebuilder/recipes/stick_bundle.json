@@ -7,15 +7,13 @@
 	],
 	"key": {
 		"i": {
-			"item": "minecraft:stick"
+			"tag": "forge:rods/wooden"
 		},
 		"I": {
 			"item": "minecraft:string"
 		}
 	},
 	"result": {
-		"item": "dawnoftimebuilder:stick_bundle",
-		"data": 0,
-		"count": 1
+		"item": "dawnoftimebuilder:stick_bundle"
 	}
 }

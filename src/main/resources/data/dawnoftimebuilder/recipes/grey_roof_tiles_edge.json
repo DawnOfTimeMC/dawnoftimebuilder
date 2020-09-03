@@ -5,13 +5,11 @@
 	],
 	"key": {
 		"I": {
-			"item": "dawnoftimebuilder:grey_roof_tiles_slab",
-			"data": 0
+			"item": "dawnoftimebuilder:grey_roof_tiles_slab"
 		}
 	},
 	"result": {
 		"item": "dawnoftimebuilder:grey_roof_tiles_edge",
-		"data": 0,
 		"count": 6
 	}
 }

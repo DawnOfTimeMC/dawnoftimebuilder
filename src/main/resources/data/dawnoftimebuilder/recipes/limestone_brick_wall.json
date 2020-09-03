@@ -6,13 +6,11 @@
 	],
 	"key": {
 		"I": {
-			"item": "dawnoftimebuilder:limestone_brick",
-			"data": 0
+			"item": "dawnoftimebuilder:limestone_brick"
 		}
 	},
 	"result": {
 		"item": "dawnoftimebuilder:limestone_brick_wall",
-		"data": 0,
 		"count": 9
 	}
 }

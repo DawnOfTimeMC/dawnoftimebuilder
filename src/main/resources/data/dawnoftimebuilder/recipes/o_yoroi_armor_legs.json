@@ -7,20 +7,16 @@
 	],
 	"key": {
 		"i": {
-			"item": "minecraft:redstone_block",
-			"data": 0
+			"item": "minecraft:redstone_block"
 		},
 		"I": {
-			"item": "minecraft:coal_block",
-			"data": 0
+			"item": "minecraft:coal_block"
 		},
 		"o": {
 			"item": "minecraft:redstone"
 		}
 	},
 	"result": {
-		"item": "dawnoftimebuilder:o_yoroi_armor_legs",
-		"data": 0,
-		"count": 1
+		"item": "dawnoftimebuilder:o_yoroi_armor_legs"
 	}
 }

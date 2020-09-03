@@ -6,16 +6,13 @@
 	],
 	"key": {
 		"I": {
-			"item": "minecraft:iron_ingot"
+			"tag": "forge:ingots/iron"
 		},
 		"i": {
-			"item": "minecraft:dye",
-			"data": 2
+			"item": "minecraft:green_dye"
 		}
 	},
 	"result": {
-		"item": "dawnoftimebuilder:cast_iron_teacup",
-		"data": 1,
-		"count": 1
+		"item": "dawnoftimebuilder:teacup_green"
 	}
 }

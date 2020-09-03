@@ -7,13 +7,11 @@
 	],
 	"key": {
 		"I": {
-			"item": "dawnoftimebuilder:flat_roof_tiles",
-			"data": 0
+			"item": "dawnoftimebuilder:flat_roof_tiles"
 		}
 	},
 	"result": {
 		"item": "dawnoftimebuilder:flat_roof_tiles_stairs",
-		"data": 0,
 		"count": 6
 	}
 }

@@ -7,24 +7,19 @@
 	],
 	"key": {
 		"i": {
-			"item": "minecraft:iron_ingot"
+			"tag": "forge:ingots/iron"
 		},
 		"I": {
-			"item": "minecraft:iron_block",
-			"data": 0
+			"item": "minecraft:iron_block"
 		},
 		"o": {
-			"item": "minecraft:wool",
-			"data": 14
+			"item": "minecraft:red_wool"
 		},
 		"O": {
-			"item": "minecraft:wool",
-			"data": 0
+			"item": "minecraft:white_wool"
 		}
 	},
 	"result": {
-		"item": "dawnoftimebuilder:iron_plate_armor_legs",
-		"data": 0,
-		"count": 1
+		"item": "dawnoftimebuilder:iron_plate_armor_legs"
 	}
 }

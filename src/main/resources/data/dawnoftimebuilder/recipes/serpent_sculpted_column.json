@@ -7,20 +7,16 @@
 	],
 	"key": {
 		"I": {
-			"item": "minecraft:stone",
-			"data": 0
+			"item": "minecraft:stone"
 		},
 		"i": {
-			"item": "minecraft:dye",
-			"data": 2
+			"item": "minecraft:green_dye"
 		},
 		"o": {
 			"item": "minecraft:gold_nugget"
 		}
 	},
 	"result": {
-		"item": "dawnoftimebuilder:serpent_sculpted_column",
-		"data": 0,
-		"count": 1
+		"item": "dawnoftimebuilder:serpent_sculpted_column"
 	}
 }

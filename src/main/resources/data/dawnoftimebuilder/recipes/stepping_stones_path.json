@@ -6,17 +6,14 @@
 	],
 	"key": {
 		"I": {
-			"item": "minecraft:stone",
-			"data": 0
+			"item": "minecraft:stone"
 		},
 		"i": {
-			"item": "minecraft:dirt",
-			"data": 0
+			"item": "minecraft:dirt"
 		}
 	},
 	"result": {
 		"item": "dawnoftimebuilder:path_stepping_stones",
-		"data": 0,
 		"count": 64
 	}
 }

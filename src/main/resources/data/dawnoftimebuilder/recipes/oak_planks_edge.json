@@ -5,13 +5,11 @@
 	],
 	"key": {
 		"I": {
-			"item": "minecraft:planks",
-			"data": 0
+			"item": "minecraft:oak_planks"
 		}
 	},
 	"result": {
 		"item": "dawnoftimebuilder:oak_planks_edge",
-		"data": 0,
 		"count": 6
 	}
 }

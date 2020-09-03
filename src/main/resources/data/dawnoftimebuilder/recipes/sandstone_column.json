@@ -7,13 +7,11 @@
 	],
 	"key": {
 		"I": {
-			"item": "minecraft:sandstone",
-			"data": 0
+			"item": "minecraft:sandstone"
 		}
 	},
 	"result": {
 		"item": "dawnoftimebuilder:sandstone_column",
-		"data": 0,
 		"count": 8
 	}
 }

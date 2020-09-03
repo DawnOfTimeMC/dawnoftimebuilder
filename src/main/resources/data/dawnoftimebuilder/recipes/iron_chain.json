@@ -6,12 +6,10 @@
 	],
 	"key": {
 		"I": {
-			"item": "minecraft:iron_ingot"
+			"tag": "forge:ingots/iron"
 		}
 	},
 	"result": {
-		"item": "dawnoftimebuilder:iron_chain",
-		"data": 0,
-		"count": 1
+		"item": "dawnoftimebuilder:iron_chain"
 	}
 }

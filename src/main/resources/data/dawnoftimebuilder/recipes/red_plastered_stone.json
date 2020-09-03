@@ -6,17 +6,14 @@
 	],
 	"key": {
 		"I": {
-			"item": "minecraft:stone",
-			"data": 0
+			"item": "minecraft:stone"
 		},
 		"i": {
-			"item": "minecraft:dye",
-			"data": 1
+			"item": "minecraft:red_dye"
 		}
 	},
 	"result": {
-		"item": "dawnoftimebuilder:plastered_stone",
-		"data": 1,
+		"item": "dawnoftimebuilder:red_plastered_stone",
 		"count": 6
 	}
 }

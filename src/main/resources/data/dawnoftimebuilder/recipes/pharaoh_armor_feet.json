@@ -6,15 +6,13 @@
 	],
 	"key": {
 		"I": {
-			"item": "minecraft:gold_ingot"
+			"tag": "forge:ingots/gold"
 		},
 		"i": {
 			"item": "minecraft:leather"
 		}
 	},
 	"result": {
-		"item": "dawnoftimebuilder:pharaoh_armor_feet",
-		"data": 0,
-		"count": 1
+		"item": "dawnoftimebuilder:pharaoh_armor_feet"
 	}
 }

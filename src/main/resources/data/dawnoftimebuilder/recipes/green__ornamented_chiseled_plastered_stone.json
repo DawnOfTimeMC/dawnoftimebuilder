@@ -7,20 +7,17 @@
 	],
 	"key": {
 		"I": {
-			"item": "dawnoftimebuilder:plastered_stone",
-			"data": 0
+			"item": "dawnoftimebuilder:plastered_stone"
 		},
 		"i": {
-			"item": "minecraft:dye",
-			"data": 2
+			"item": "minecraft:green_dye"
 		},
 		"o": {
 			"item": "minecraft:gold_nugget"
 		}
 	},
 	"result": {
-		"item": "dawnoftimebuilder:chiseled_plastered_stone",
-		"data": 3,
+		"item": "dawnoftimebuilder:green_ornamented_chiseled_plastered_stone",
 		"count": 6
 	}
 }

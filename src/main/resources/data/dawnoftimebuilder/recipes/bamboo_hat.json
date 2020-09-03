@@ -6,13 +6,10 @@
 	],
 	"key": {
 		"I": {
-			"item": "dawnoftimebuilder:thatch_bamboo",
-			"data": 0
+			"item": "dawnoftimebuilder:thatch_bamboo"
 		}
 	},
 	"result": {
-		"item": "dawnoftimebuilder:bamboo_hat",
-		"data": 0,
-		"count": 1
+		"item": "dawnoftimebuilder:bamboo_hat"
 	}
 }

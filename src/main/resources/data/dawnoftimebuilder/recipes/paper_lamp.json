@@ -7,11 +7,10 @@
 	],
 	"key": {
 		"o": {
-			"item": "minecraft:stick"
+			"tag": "forge:rods/wooden"
 		},
 		"O": {
-			"item": "minecraft:torch",
-			"data": 0
+			"item": "minecraft:torch"
 		},
 		"I": {
 			"item": "minecraft:paper"
@@ -19,7 +18,6 @@
 	},
 	"result": {
 		"item": "dawnoftimebuilder:paper_lamp",
-		"data": 0,
 		"count": 6
 	}
 }

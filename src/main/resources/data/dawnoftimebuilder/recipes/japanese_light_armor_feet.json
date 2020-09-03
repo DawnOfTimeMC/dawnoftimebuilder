@@ -6,15 +6,13 @@
 	],
 	"key": {
 		"i": {
-			"item": "minecraft:iron_ingot"
+			"tag": "forge:ingots/iron"
 		},
 		"I": {
 			"item": "minecraft:leather"
 		}
 	},
 	"result": {
-		"item": "dawnoftimebuilder:japanese_light_armor_feet",
-		"data": 0,
-		"count": 1
+		"item": "dawnoftimebuilder:japanese_light_armor_feet"
 	}
 }

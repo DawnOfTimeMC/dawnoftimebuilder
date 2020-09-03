@@ -5,13 +5,11 @@
 	],
 	"key": {
 		"I": {
-			"item": "minecraft:wooden_slab",
-			"data": 1
+			"item": "minecraft:spruce_slab"
 		}
 	},
 	"result": {
 		"item": "dawnoftimebuilder:spruce_support_slab",
-		"data": 0,
 		"count": 6
 	}
 }

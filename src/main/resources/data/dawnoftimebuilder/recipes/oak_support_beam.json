@@ -6,17 +6,14 @@
 	],
 	"key": {
 		"I": {
-			"item": "minecraft:log",
-			"data": 0
+			"item": "minecraft:oak_log"
 		},
 		"i": {
-			"item": "dawnoftimebuilder:oak_waxed_planks_slab",
-			"data": 0
+			"item": "dawnoftimebuilder:oak_waxed_planks_slab"
 		}
 	},
 	"result": {
 		"item": "dawnoftimebuilder:oak_support_beam",
-		"data": 0,
 		"count": 8
 	}
 }

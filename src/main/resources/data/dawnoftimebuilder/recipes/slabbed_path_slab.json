@@ -5,17 +5,14 @@
 	],
 	"key": {
 		"I": {
-			"item": "minecraft:gravel",
-			"data": 0
+			"item": "minecraft:gravel"
 		},
 		"i": {
-			"item": "minecraft:cobblestone",
-			"data": 0
+			"item": "minecraft:cobblestone"
 		}
 	},
 	"result": {
 		"item": "dawnoftimebuilder:path_cobbled_slab",
-		"data": 0,
 		"count": 64
 	}
 }

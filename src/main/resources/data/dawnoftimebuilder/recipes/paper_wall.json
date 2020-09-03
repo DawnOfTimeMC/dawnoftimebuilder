@@ -10,12 +10,11 @@
 			"item": "minecraft:paper"
 		},
 		"i": {
-			"item": "minecraft:stick"
+			"tag": "forge:rods/wooden"
 		}
 	},
 	"result": {
 		"item": "dawnoftimebuilder:paper_wall",
-		"data": 0,
 		"count": 4
 	}
 }

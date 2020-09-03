@@ -7,24 +7,20 @@
 	],
 	"key": {
 		"I": {
-			"item": "dawnoftimebuilder:grey_roof_tiles",
-			"data": 0
+			"item": "dawnoftimebuilder:grey_roof_tiles"
 		},
 		"i": {
 			"item": "minecraft:paper"
 		},
 		"O": {
-			"item": "minecraft:torch",
-			"data": 0
+			"item": "minecraft:torch"
 		},
 		"o": {
-			"item": "minecraft:cobblestone",
-			"data": 0
+			"item": "minecraft:cobblestone"
 		}
 	},
 	"result": {
 		"item": "dawnoftimebuilder:stone_lantern",
-		"data": 0,
 		"count": 6
 	}
 }

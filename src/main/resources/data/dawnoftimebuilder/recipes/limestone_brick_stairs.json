@@ -7,13 +7,11 @@
 	],
 	"key": {
 		"I": {
-			"item": "dawnoftimebuilder:limestone_brick",
-			"data": 0
+			"item": "dawnoftimebuilder:limestone_brick"
 		}
 	},
 	"result": {
 		"item": "dawnoftimebuilder:limestone_brick_stairs",
-		"data": 0,
 		"count": 6
 	}
 }

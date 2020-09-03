@@ -6,19 +6,16 @@
 	],
 	"key": {
 		"i": {
-			"item": "minecraft:redstone_block",
-			"data": 0
+			"item": "minecraft:redstone_block"
 		},
 		"x": {
-			"item": "minecraft:gold_ingot"
+			"tag": "forge:ingots/gold"
 		},
 		"o": {
 			"item": "minecraft:redstone"
 		}
 	},
 	"result": {
-		"item": "dawnoftimebuilder:o_yoroi_armor_head",
-		"data": 0,
-		"count": 1
+		"item": "dawnoftimebuilder:o_yoroi_armor_head"
 	}
 }

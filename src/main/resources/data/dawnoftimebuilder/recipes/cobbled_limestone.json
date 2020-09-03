@@ -6,13 +6,11 @@
 	],
 	"key": {
 		"i": {
-			"item": "minecraft:cobblestone",
-			"data": 0
+			"tag": "forge:cobblestone"
 		}
 	},
 	"result": {
 		"item": "dawnoftimebuilder:cobbled_limestone",
-		"data": 0,
 		"count": 4
 	}
 }

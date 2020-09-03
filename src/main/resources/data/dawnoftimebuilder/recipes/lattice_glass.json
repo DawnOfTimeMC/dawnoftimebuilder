@@ -6,13 +6,11 @@
 	],
 	"key": {
 		"I": {
-			"item": "minecraft:glass",
-			"data": 0
+			"item": "minecraft:glass"
 		}
 	},
 	"result": {
 		"item": "dawnoftimebuilder:lattice_glass",
-		"data": 0,
 		"count": 6
 	}
 }

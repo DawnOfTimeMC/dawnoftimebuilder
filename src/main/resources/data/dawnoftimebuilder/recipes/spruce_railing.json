@@ -6,16 +6,14 @@
 	],
 	"key": {
 		"I": {
-			"item": "minecraft:log",
-			"data": 1
+			"item": "minecraft:spruce_log"
 		},
 		"i": {
-			"item": "minecraft:stick"
+			"tag": "forge:rods/wooden"
 		}
 	},
 	"result": {
 		"item": "dawnoftimebuilder:spruce_railing",
-		"data": 0,
 		"count": 6
 	}
 }

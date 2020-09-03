@@ -8,17 +8,13 @@
 			"item": "minecraft:flower_pot"
 		},
 		{
-			"item": "minecraft:red_flower",
-			"data": 2
+			"item": "minecraft:azure_bluet"
 		},
 		{
-			"item": "minecraft:red_flower",
-			"data": 3
+			"item": "minecraft:allium"
 		}
 	],
 	"result": {
-		"item": "dawnoftimebuilder:ikebana_flower_pot",
-		"data": 0,
-		"count": 1
+		"item": "dawnoftimebuilder:ikebana_flower_pot"
 	}
 }
