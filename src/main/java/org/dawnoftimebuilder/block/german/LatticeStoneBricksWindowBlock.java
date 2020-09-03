@@ -18,7 +18,7 @@ public class LatticeStoneBricksWindowBlock extends SidedWindowBlock {
 	private static final VoxelShape Z_VS = makeCuboidShape(0.0D, 0.0D, 5.0D, 16.0D, 16.0D, 11.0D);
 
 	public LatticeStoneBricksWindowBlock() {
-		super("stone_bricks_window", Material.ROCK, 2.0F, 3.0F);
+		super("lattice_stone_bricks_window", Material.ROCK, 1.5F, 6.0F);
 	}
 
 	@Override

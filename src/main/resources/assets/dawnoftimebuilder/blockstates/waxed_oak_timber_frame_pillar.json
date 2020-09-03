@@ -1,7 +1,5 @@
 {
     "variants": {
-        "axis=y":  { "model": "dawnoftimebuilder:block/german/waxed_oak_timber_frame_pillar" },
-        "axis=z":   { "model": "dawnoftimebuilder:block/german/waxed_oak_timber_frame_pillar", "x": 90 },
-        "axis=x":   { "model": "dawnoftimebuilder:block/german/waxed_oak_timber_frame_pillar", "x": 90, "y": 90 }
+        "": { "model": "dawnoftimebuilder:block/german/waxed_oak_timber_frame_pillar" }
     }
 }

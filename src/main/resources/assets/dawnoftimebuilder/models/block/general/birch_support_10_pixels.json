@@ -1,0 +1,19 @@
+{
+	"credit": "Made with Blockbench",
+	"textures": {
+		"particle": "dawnoftimebuilder:block/birch_beam",
+		"slab": "dawnoftimebuilder:block/birch_beam"
+	},
+	"elements": [
+		{
+			"from": [3, 0, 3],
+			"to": [13, 12, 13],
+			"faces": {
+				"north": {"uv": [8, 5, 14, 10], "rotation": 90, "texture": "#slab"},
+				"east": {"uv": [8, 5, 14, 10], "rotation": 90, "texture": "#slab"},
+				"south": {"uv": [8, 5, 14, 10], "rotation": 90, "texture": "#slab"},
+				"west": {"uv": [8, 5, 14, 10], "rotation": 90, "texture": "#slab"}
+			}
+		}
+	]
+}

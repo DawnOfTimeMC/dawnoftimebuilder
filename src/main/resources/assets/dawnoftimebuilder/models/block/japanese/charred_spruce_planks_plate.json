@@ -1,0 +1,8 @@
+{
+	"parent": "dawnoftimebuilder:block/general/plate",
+	"textures": {
+		"side": "dawnoftimebuilder:block/charred_spruce_planks",
+		"top": "dawnoftimebuilder:block/charred_spruce_planks",
+		"frieze": "dawnoftimebuilder:block/charred_spruce_planks"
+	}
+}

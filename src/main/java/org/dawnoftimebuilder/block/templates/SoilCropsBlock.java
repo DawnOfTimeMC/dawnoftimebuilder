@@ -2,6 +2,7 @@ package org.dawnoftimebuilder.block.templates;
 
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
+import net.minecraft.fluid.Fluids;
 import net.minecraft.item.Item;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
@@ -13,8 +14,8 @@ import static org.dawnoftimebuilder.DawnOfTimeBuilder.MOD_ID;
 
 public class SoilCropsBlock extends CropsBlock implements IBlockCustomItem {
 
-	private SoilSeedsItem seed;
-	private PlantType plantType;
+	private final SoilSeedsItem seed;
+	private final PlantType plantType;
 
 	public SoilCropsBlock(String name, String seedName, PlantType plantType){
 		super(BlockDoTB.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0.0F).sound(SoundType.CROP));
@@ -38,8 +39,7 @@ public class SoilCropsBlock extends CropsBlock implements IBlockCustomItem {
 			case Cave:   return BlockDoTB.hasSolidSide(stateGround, worldIn, pos, Direction.UP);
 			case Plains: return blockUnder == Blocks.GRASS_BLOCK || BlockDoTB.isDirt(blockUnder) || blockUnder == Blocks.FARMLAND;
 			case Water:
-				stateGround = worldIn.getBlockState(pos.up());
-				return stateGround.getMaterial() == Material.WATER && (blockUnder == Blocks.GRASS_BLOCK || BlockDoTB.isDirt(blockUnder) || blockUnder == Blocks.FARMLAND || blockUnder == Blocks.GRAVEL);
+				return worldIn.getFluidState(pos.up()).getFluid() == Fluids.WATER && (blockUnder == Blocks.GRASS_BLOCK || BlockDoTB.isDirt(blockUnder) || blockUnder == Blocks.FARMLAND || blockUnder == Blocks.GRAVEL);
 			case Beach:
 				boolean isBeach = blockUnder == Blocks.GRASS_BLOCK || BlockDoTB.isDirt(blockUnder) || blockUnder == Blocks.SAND;
 				boolean hasWater = (worldIn.getBlockState(pos.east()).getMaterial() == Material.WATER ||

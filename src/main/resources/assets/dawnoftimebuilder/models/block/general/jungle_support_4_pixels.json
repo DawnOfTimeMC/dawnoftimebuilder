@@ -1,0 +1,18 @@
+{
+	"textures": {
+		"particle": "dawnoftimebuilder:block/jungle_pergola",
+		"slab": "dawnoftimebuilder:block/jungle_pergola"
+	},
+	"elements": [
+		{
+			"from": [6, 0, 6],
+			"to": [10, 12, 10],
+			"faces": {
+				"north": {"uv": [8, 0, 14, 2], "rotation": 90, "texture": "#slab"},
+				"east": {"uv": [8, 0, 14, 2], "rotation": 90, "texture": "#slab"},
+				"south": {"uv": [8, 0, 14, 2], "rotation": 90, "texture": "#slab"},
+				"west": {"uv": [8, 0, 14, 2], "rotation": 90, "texture": "#slab"}
+			}
+		}
+	]
+}

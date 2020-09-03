@@ -1,7 +1,7 @@
 {
     "variants": {
-        "slab=bottom": { "model": "dawnoftimebuilder:block/german/waxed_oak_planks_slab_bottom" },
-        "slab=top": { "model": "dawnoftimebuilder:block/german/waxed_oak_planks_slab_top" },
-        "slab=double": { "model": "dawnoftimebuilder:block/german/waxed_oak_planks" }
+        "type=bottom": { "model": "dawnoftimebuilder:block/german/waxed_oak_planks_slab_bottom" },
+        "type=top": { "model": "dawnoftimebuilder:block/german/waxed_oak_planks_slab_top" },
+        "type=double": { "model": "dawnoftimebuilder:block/german/waxed_oak_planks" }
     }
 }

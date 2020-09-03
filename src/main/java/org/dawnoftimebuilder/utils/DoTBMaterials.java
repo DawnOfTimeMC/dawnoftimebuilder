@@ -1,6 +1,8 @@
 package org.dawnoftimebuilder.utils;
 
 import net.minecraft.block.Blocks;
+import net.minecraft.block.material.Material;
+import net.minecraft.block.material.MaterialColor;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.IArmorMaterial;
 import net.minecraft.item.IItemTier;
@@ -93,6 +95,7 @@ public class DoTBMaterials {
 	}
 
 	public enum ItemMaterial implements IItemTier {
+		//TODO remove useless
 		WOOD(0, 59, 2.0F, 0.0F, 15, () -> {
 			return Ingredient.fromTag(ItemTags.PLANKS);
 		}),

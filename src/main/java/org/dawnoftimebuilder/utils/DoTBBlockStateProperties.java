@@ -17,18 +17,19 @@ public class DoTBBlockStateProperties {
     public static final BooleanProperty CUT = BooleanProperty.create("cut");
     public static final BooleanProperty FULL = BooleanProperty.create("full");
     public static final BooleanProperty ROLLED = BooleanProperty.create("rolled");
-    public static final BooleanProperty SUBAXIS_X = BooleanProperty.create("subaxis_x");
-    public static final BooleanProperty SUBAXIS_Z = BooleanProperty.create("subaxis_z");
+    public static final BooleanProperty AXIS_X = BooleanProperty.create("axis_x");
+    public static final BooleanProperty AXIS_Y = BooleanProperty.create("axis_y");
+    public static final BooleanProperty AXIS_Z = BooleanProperty.create("axis_z");
     public static final BooleanProperty SUBAXIS = BooleanProperty.create("subaxis");
 
     public static final IntegerProperty AGE_0_6 = IntegerProperty.create("age", 0, 6);
+    public static final IntegerProperty HEAT_0_3 = IntegerProperty.create("heat", 0, 3);
     public static final EnumProperty<ClimbingPlant> CLIMBING_PLANT = EnumProperty.create("climbing_plant", ClimbingPlant.class);
     public static final EnumProperty<FencePillar> FENCE_PILLAR = EnumProperty.create("fence_pillar", FencePillar.class);
     public static final EnumProperty<HorizontalConnection> HORIZONTAL_CONNECTION = EnumProperty.create("horizontal_connection", HorizontalConnection.class);
     public static final EnumProperty<OpenPosition> OPEN_POSITION = EnumProperty.create("open_position", OpenPosition.class);
     public static final EnumProperty<PillarConnection> PILLAR_CONNECTION = EnumProperty.create("pillar_connection", PillarConnection.class);
     public static final EnumProperty<SidedWindow> SIDED_WINDOW = EnumProperty.create("sided_window", SidedWindow.class);
-    public static final EnumProperty<Slab> SLAB = EnumProperty.create("slab", Slab.class);
     public static final IntegerProperty STACK = IntegerProperty.create("stack", 1, 3);
     public static final EnumProperty<VerticalConnection> VERTICAL_CONNECTION = EnumProperty.create("vertical_connection", VerticalConnection.class);
 
@@ -85,6 +86,12 @@ public class DoTBBlockStateProperties {
             return this.name;
         }
 
+        /**
+         * @return 0 : NONE,
+         * 1 : UNDER,
+         * 2 : ABOVE,
+         * 3 : BOTH
+         */
         public int getIndex(){
             return this.index;
         }
@@ -134,26 +141,6 @@ public class DoTBBlockStateProperties {
 
         public String getName()
         {
-            return this.name;
-        }
-    }
-
-    public enum Slab implements IStringSerializable {
-        BOTTOM("bottom"),
-        TOP("top"),
-        DOUBLE("double");
-
-        private final String name;
-
-        Slab(String name){
-            this.name = name;
-        }
-
-        public String toString(){
-            return this.name;
-        }
-
-        public String getName(){
             return this.name;
         }
     }

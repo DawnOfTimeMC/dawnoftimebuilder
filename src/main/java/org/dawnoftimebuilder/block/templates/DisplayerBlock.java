@@ -4,6 +4,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.InventoryHelper;
+import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Hand;
@@ -42,7 +43,6 @@ public abstract class DisplayerBlock extends BlockDoTB {
 
 	@Override
 	public boolean onBlockActivated(BlockState blockState, World world, BlockPos pos, PlayerEntity playerEntity, Hand hand, BlockRayTraceResult rayTraceResult) {
-		/*
 		if(!world.isRemote()){
 			TileEntity tileEntity = world.getTileEntity(pos);
 			if(tileEntity instanceof DisplayerTileEntity){
@@ -50,7 +50,6 @@ public abstract class DisplayerBlock extends BlockDoTB {
 				return true;
 			}
 		}
-		*/
 		return false;
 	}
 

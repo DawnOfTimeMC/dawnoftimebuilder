@@ -2,6 +2,7 @@ package org.dawnoftimebuilder.container;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.inventory.container.Slot;
@@ -16,14 +17,14 @@ public class DisplayerContainer extends Container {
 
 	private DisplayerTileEntity tileEntity;
 
-	public DisplayerContainer(int windowId, PlayerInventory playerInventory, DisplayerTileEntity tileEntity) {
+	public DisplayerContainer(int windowId, PlayerInventory playerInventory, IInventory inventory) {
 		super(DISPLAYER_CONTAINER, windowId);
-		this.tileEntity = tileEntity;
-		tileEntity.openInventory(playerInventory.player);
+		this.tileEntity = (inventory instanceof DisplayerTileEntity) ? (DisplayerTileEntity) inventory : null;
+		inventory.openInventory(playerInventory.player);
 
 		for(int i = 0; i < 3; i++){
 			for(int j = 0; j < 3; j++){
-				this.addSlot(new Slot(tileEntity, j + i * 3, 19 + j * 18, 168 + i * 18));
+				this.addSlot(new Slot(inventory, j + i * 3, 19 + j * 18, 168 + i * 18));
 			}
 		}
 

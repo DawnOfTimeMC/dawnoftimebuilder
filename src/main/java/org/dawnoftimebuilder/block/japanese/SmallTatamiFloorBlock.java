@@ -4,7 +4,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer;
@@ -20,15 +19,14 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
-import org.dawnoftimebuilder.block.IBlockCustomItem;
-import org.dawnoftimebuilder.block.templates.BlockDoTB;
+import org.dawnoftimebuilder.block.templates.NoItemBlock;
 
 import static net.minecraft.block.Blocks.SPRUCE_PLANKS;
 import static org.dawnoftimebuilder.registries.DoTBBlocksRegistry.SMALL_TATAMI_MAT;
 
-public class SmallTatamiFloorBlock extends BlockDoTB implements IBlockCustomItem {
+public class SmallTatamiFloorBlock extends NoItemBlock {
 
-	private VoxelShape VS = makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 17.0D, 16.0D);
+	private static final VoxelShape VS = makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 17.0D, 16.0D);
 	public static final EnumProperty<Direction.Axis> HORIZONTAL_AXIS = BlockStateProperties.HORIZONTAL_AXIS;
 
 	public SmallTatamiFloorBlock() {
@@ -69,11 +67,6 @@ public class SmallTatamiFloorBlock extends BlockDoTB implements IBlockCustomItem
 			}
 		}
 		return false;
-	}
-
-	@Override
-	public Item getCustomItemBlock(){
-		return null;
 	}
 
 	@Override

@@ -95,4 +95,8 @@ public class DisplayerTileEntity extends LockableLootTileEntity {
 	public CompoundNBT getUpdateTag() {
 		return this.write(new CompoundNBT());
 	}
+
+	public void receiveMessageFromServer(NonNullList<ItemStack> stacks) {
+		this.displayerContents = stacks;
+	}
 }

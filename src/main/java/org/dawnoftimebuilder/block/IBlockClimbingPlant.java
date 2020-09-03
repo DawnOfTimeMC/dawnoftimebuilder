@@ -164,7 +164,9 @@ public interface IBlockClimbingPlant {
 	 */
 	default void dropPlant(BlockState stateIn, World worldIn, BlockPos pos, ItemStack heldItemStack){
 		if(worldIn.isRemote) return;
-		List<ItemStack> drops = DoTBBlockUtils.getLootList((ServerWorld)worldIn, stateIn, pos, heldItemStack, stateIn.get(CLIMBING_PLANT).getName() + "_" + stateIn.get(AGE_0_6));
+		DoTBBlockStateProperties.ClimbingPlant plant = stateIn.get(CLIMBING_PLANT);
+		if(plant.hasNoPlant()) return;
+		List<ItemStack> drops = DoTBBlockUtils.getLootList((ServerWorld)worldIn, stateIn, pos, heldItemStack, plant.getName() + "_" + stateIn.get(AGE_0_6));
 		DoTBBlockUtils.dropLootFromList(worldIn, pos, drops, 1.0F);
 	}
 

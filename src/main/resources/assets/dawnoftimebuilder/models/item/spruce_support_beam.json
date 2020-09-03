@@ -1,7 +1,7 @@
 {
 	"textures": {
 		"slab": "block/spruce_planks",
-		"texture": "dawnoftimebuilder:block/spruce_log_beam"
+		"texture": "dawnoftimebuilder:block/spruce_beam"
 	},
 	"elements": [
 		{

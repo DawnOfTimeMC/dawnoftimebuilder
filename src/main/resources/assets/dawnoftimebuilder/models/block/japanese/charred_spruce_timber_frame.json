@@ -1,0 +1,6 @@
+{
+    "parent": "block/cube_all",
+    "textures": {
+        "all": "dawnoftimebuilder:block/charred_spruce_timber_frame"
+    }
+}

@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "type=bottom": { "model": "dawnoftimebuilder:block/japanese/charred_spruce_foundation_slab_bottom" },
+        "type=top": { "model": "dawnoftimebuilder:block/japanese/charred_spruce_foundation_slab_top" },
+        "type=double": { "model": "dawnoftimebuilder:block/japanese/charred_spruce_foundation" }
+    }
+}

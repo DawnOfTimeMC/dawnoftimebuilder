@@ -1,7 +1,0 @@
-{
-    "variants": {
-        "slab=bottom": { "model": "dawnoftimebuilder:block/japanese/spruce_foundation_slab_bottom" },
-        "slab=top": { "model": "dawnoftimebuilder:block/japanese/spruce_foundation_slab_top" },
-        "slab=double": { "model": "dawnoftimebuilder:block/japanese/spruce_foundation" }
-    }
-}

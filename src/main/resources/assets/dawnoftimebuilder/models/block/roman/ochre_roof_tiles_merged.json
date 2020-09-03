@@ -1,8 +1,0 @@
-{
-    "parent": "block/cube_bottom_top",
-    "textures": {
-        "bottom": "block/sandstone_bottom",
-        "top": "dawnoftimebuilder:block/ochre_roof_tiles",
-        "side": "dawnoftimebuilder:block/ochre_roof_tiles_merged"
-    }
-}

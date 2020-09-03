@@ -1,8 +1,0 @@
-{
-    "parent": "block/inner_stairs",
-    "textures": {
-        "bottom": "dawnoftimebuilder:block/limestone_brick",
-        "top": "dawnoftimebuilder:block/limestone_brick",
-        "side": "dawnoftimebuilder:block/limestone_brick"
-    }
-}

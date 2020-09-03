@@ -19,9 +19,11 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.PlantType;
 
 import javax.annotation.Nullable;
+import java.util.Random;
 
 public class DoubleCropsBlock extends SoilCropsBlock {
 
@@ -33,7 +35,7 @@ public class DoubleCropsBlock extends SoilCropsBlock {
 		super(name, seedName, plantType);
 		this.growingAge = growingAge;
 		this.SHAPES = this.makeShapes();
-		this.setDefaultState(this.getDefaultState().with(HALF, Half.BOTTOM));
+		this.setDefaultState(this.getDefaultState().with(HALF, Half.BOTTOM).with(this.getAgeProperty(), 0));
 	}
 
 	public DoubleCropsBlock(String name, PlantType plantType, int growingAge){
@@ -54,10 +56,10 @@ public class DoubleCropsBlock extends SoilCropsBlock {
 	 * 2 : stage 2 bottom 12px <p/>
 	 * 3 : stage 3 bottom 16px <p/>
 	 * 4 : stage 4-5-6-7 bottom 16px <p/>
-	 * 4 : stage 4 top 4px <p/>
-	 * 4 : stage 5 top 8px <p/>
-	 * 4 : stage 6 top 12px <p/>
-	 * 4 : stage 7 top 16px <p/>
+	 * 5 : stage 4 top 4px <p/>
+	 * 6 : stage 5 top 8px <p/>
+	 * 7 : stage 6 top 12px <p/>
+	 * 8 : stage 7 top 16px <p/>
 	 */
 	public VoxelShape[] makeShapes() {
 		return new VoxelShape[]{
@@ -113,58 +115,62 @@ public class DoubleCropsBlock extends SoilCropsBlock {
 
 		super.onBlockHarvested(worldIn, pos, state, player);
 	}
-	
+
+	// Only called with Bonemeal
 	@Override
     public void grow(World worldIn, BlockPos pos, BlockState state) {
-		if(this.isBottomCrop(worldIn, pos)){
-	        int i = this.getAge(state) + this.getBonemealAgeIncrease(worldIn);
-	        int j = this.getMaxAge();
-	        if (i > j) i = j;
-	        this.tryGrow(worldIn, pos, state, i);
-		}else{
-			BlockPos bottomCrop = this.getBottomCrop(worldIn, pos);
-			this.grow(worldIn, bottomCrop, worldIn.getBlockState(bottomCrop));
+		if(this.isBottomCrop(state)){
+	        int newAge = this.getAge(state) + this.getBonemealAgeIncrease(worldIn);
+	        if (newAge > this.getMaxAge()) newAge = this.getMaxAge();
+			if(newAge >= this.getAgeReachingTopBlock()){
+				BlockPos topPos = pos.up();
+				if(worldIn.getBlockState(topPos).getBlock() == this || worldIn.isAirBlock(topPos)){
+					state = this.withAge(newAge);
+					worldIn.setBlockState(pos, state, 2);
+					worldIn.setBlockState(topPos, this.getTopState(state), 2);
+				}
+			}
 		}
     }
 
-	private void tryGrow(World worldIn, BlockPos pos, BlockState state, int i){
-		if(this.isBottomCrop(worldIn, pos)){
-			boolean canGrow = true;
-	    	if(i >= this.getAgeReachingTopBlock()){
-	        	canGrow = false;
-	        	BlockPos topPos = pos.up();
-	        	BlockState topCrop = worldIn.getBlockState(topPos);
-	        	
-	        	if(topCrop.getBlock() == this){
-	        		worldIn.setBlockState(topPos, this.setAge(topCrop.with(HALF, Half.TOP), i), 2);
-	        		canGrow = true;
-	        	}else if(worldIn.isAirBlock(topPos)){
-	        		worldIn.setBlockState(topPos, this.setAge(this.getDefaultState().with(HALF, Half.TOP), i), 2);
-	        		canGrow = true;
-	        	}
-	        }
-	        
-	        if(canGrow){
-	        	worldIn.setBlockState(pos, this.setAge(state.with(HALF, Half.BOTTOM), i), 2);
-	        }
+	@Override
+	public void tick(BlockState state, World worldIn, BlockPos pos, Random random) {
+		if(this.isBottomCrop(state)) {
+			if (!worldIn.isAreaLoaded(pos, 1))
+				return; // Forge: prevent loading unloaded chunks when checking neighbor's light
+			if (worldIn.getLightSubtracted(pos, 0) >= 9) {
+				int i = this.getAge(state);
+				if (i < this.getMaxAge()) {
+					float f = getGrowthChance(this, worldIn, pos);
+					BlockPos topPos = pos.up();
+					if (worldIn.getBlockState(topPos).getBlock() == this || worldIn.isAirBlock(topPos)) {
+						if (ForgeHooks.onCropsGrowPre(worldIn, pos, state, random.nextInt((int) (25.0F / f) + 1) == 0)) {
+							state = this.withAge(i + 1);
+							worldIn.setBlockState(pos, state, 2);
+							if (i + 1 >= this.growingAge)
+								worldIn.setBlockState(topPos, this.getTopState(state), 2);
+							ForgeHooks.onCropsGrowPost(worldIn, pos, state);
+						}
+					}
+
+				}
+			}
 		}
 	}
-    
-	public BlockState setAge(BlockState state, int age){
-		return state.with(AGE, age);
-	}
-    
-	public boolean isBottomCrop(IWorld world, BlockPos pos){
-		return pos.equals(getBottomCrop(world, pos));
-	}
-	
-	private BlockPos getBottomCrop(IWorld world, BlockPos pos){
-		BlockPos bottom = pos;
-		while(world.getBlockState(bottom.offset(Direction.DOWN)).getBlock() == this){
-			bottom = bottom.offset(Direction.DOWN);
+
+	public boolean isBottomCrop(BlockState state){
+		if(state.getBlock() instanceof DoubleCropsBlock){
+			return state.get(HALF) == Half.BOTTOM;
 		}
-		return bottom;
-		
+		return false;
+	}
+
+	/**
+	 * @param bottomState State of the bottom part of the double crop.
+	 * @return State of the Top part of the crop in input.
+	 */
+	public BlockState getTopState(BlockState bottomState){
+		return bottomState.with(HALF, Half.TOP);
 	}
 
 	@Override

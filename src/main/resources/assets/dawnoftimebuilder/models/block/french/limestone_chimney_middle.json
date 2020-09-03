@@ -1,0 +1,18 @@
+{
+	"textures": {
+		"1": "dawnoftimebuilder:block/limestone_bricks_wall_side",
+		"particle": "dawnoftimebuilder:block/limestone_bricks_slab"
+	},
+	"elements": [
+		{
+			"from": [2, 0, 2],
+			"to": [14, 16, 14],
+			"faces": {
+				"north": {"uv": [0, 0, 12, 16], "texture": "#1"},
+				"east": {"uv": [0, 0, 12, 16], "texture": "#1"},
+				"south": {"uv": [0, 0, 12, 16], "texture": "#1"},
+				"west": {"uv": [0, 0, 12, 16], "texture": "#1"}
+			}
+		}
+	]
+}
