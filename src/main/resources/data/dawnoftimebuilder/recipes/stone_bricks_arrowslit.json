@@ -1,0 +1,17 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"I I",
+		"I I",
+		"I I"
+	],
+	"key": {
+		"I": {
+			"item": "minecraft:stone_brick_stairs"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:stone_bricks_arrowslit",
+		"count": 16
+	}
+}

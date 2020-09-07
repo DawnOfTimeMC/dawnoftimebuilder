@@ -2,7 +2,7 @@
 	"type": "minecraft:crafting_shaped",
 	"pattern": [
 		"IiI",
-		"iii",
+		"iIi",
 		"IiI"
 	],
 	"key": {
@@ -14,7 +14,7 @@
 		}
 	},
 	"result": {
-		"item": "dawnoftimebuilder:waxed_oak_timber_frame_corner",
+		"item": "dawnoftimebuilder:waxed_oak_timber_frame_crossed",
 		"count": 6
 	}
 }

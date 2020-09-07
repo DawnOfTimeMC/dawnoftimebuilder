@@ -7,11 +7,11 @@
 	],
 	"key": {
 		"I": {
-			"item": "dawnoftimebuilder:limestone_bricks"
+			"item": "dawnoftimebuilder:ochre_roof_tiles"
 		}
 	},
 	"result": {
-		"item": "dawnoftimebuilder:limestone_bricks_stairs",
+		"item": "dawnoftimebuilder:ochre_roof_tiles_stairs",
 		"count": 6
 	}
 }

@@ -1,17 +1,19 @@
 {
 	"type": "minecraft:crafting_shaped",
 	"pattern": [
-		"I  ",
-		"II ",
-		"III"
+		"I",
+		"i"
 	],
 	"key": {
 		"I": {
+			"item": "minecraft:stripped_dark_oak_log"
+		},
+		"i": {
 			"item": "dawnoftimebuilder:limestone_bricks"
 		}
 	},
 	"result": {
-		"item": "dawnoftimebuilder:limestone_bricks_stairs",
-		"count": 6
+		"item": "dawnoftimebuilder:dark_oak_beam",
+		"count": 4
 	}
 }

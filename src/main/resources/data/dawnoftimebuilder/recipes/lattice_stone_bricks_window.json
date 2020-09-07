@@ -9,11 +9,11 @@
 			"item": "dawnoftimebuilder:lattice_glass_pane"
 		},
 		"i": {
-			"item": "dawnoftimebuilder:oak_waxed_planks"
+			"item": "minecraft:stone_bricks"
 		}
 	},
 	"result": {
-		"item": "dawnoftimebuilder:lattice_oak_window",
+		"item": "dawnoftimebuilder:lattice_stone_bricks_window",
 		"count": 16
 	}
 }
