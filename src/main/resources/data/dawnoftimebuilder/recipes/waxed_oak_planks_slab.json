@@ -5,11 +5,11 @@
 	],
 	"key": {
 		"I": {
-			"item": "dawnoftimebuilder:limestone_bricks"
+			"item": "dawnoftimebuilder:waxed_oak_planks"
 		}
 	},
 	"result": {
-		"item": "dawnoftimebuilder:limestone_bricks_slab",
+		"item": "dawnoftimebuilder:waxed_oak_planks_slab",
 		"count": 6
 	}
 }

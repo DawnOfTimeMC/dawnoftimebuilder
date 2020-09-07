@@ -1,15 +1,15 @@
 {
 	"type": "minecraft:crafting_shaped",
 	"pattern": [
-		"III"
+		"II"
 	],
 	"key": {
 		"I": {
-			"item": "dawnoftimebuilder:limestone_bricks"
+			"item": "minecraft:acacia_planks_slab"
 		}
 	},
 	"result": {
-		"item": "dawnoftimebuilder:limestone_bricks_slab",
+		"item": "dawnoftimebuilder:acacia_planks_edge",
 		"count": 6
 	}
 }

@@ -5,11 +5,11 @@
 	],
 	"key": {
 		"I": {
-			"item": "dawnoftimebuilder:limestone_bricks"
+			"item": "minecraft:jungle_slab"
 		}
 	},
 	"result": {
-		"item": "dawnoftimebuilder:limestone_bricks_slab",
+		"item": "dawnoftimebuilder:jungle_support_slab",
 		"count": 6
 	}
 }

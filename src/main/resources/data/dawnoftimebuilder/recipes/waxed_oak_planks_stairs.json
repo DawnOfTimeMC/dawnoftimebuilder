@@ -1,15 +1,17 @@
 {
 	"type": "minecraft:crafting_shaped",
 	"pattern": [
+		"I  ",
+		"II ",
 		"III"
 	],
 	"key": {
 		"I": {
-			"item": "dawnoftimebuilder:limestone_bricks"
+			"item": "dawnoftimebuilder:waxed_oak_planks"
 		}
 	},
 	"result": {
-		"item": "dawnoftimebuilder:limestone_bricks_slab",
+		"item": "dawnoftimebuilder:waxed_oak_planks_stairs",
 		"count": 6
 	}
 }

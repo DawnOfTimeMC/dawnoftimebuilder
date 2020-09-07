@@ -1,0 +1,17 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		" i ",
+		"iii",
+		" i "
+	],
+	"key": {
+		"i": {
+			"item": "dawnoftimebuilder:waxed_oak_planks"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:waxed_oak_pergola",
+		"count": 6
+	}
+}

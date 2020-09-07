@@ -5,15 +5,15 @@
 		"III"
 	],
 	"key": {
+		"i": {
+			"item": "dawnoftimebuilder:waxed_oak_support_slab"
+		},
 		"I": {
 			"item": "minecraft:stripped_oak_log"
-		},
-		"i": {
-			"item": "dawnoftimebuilder:oak_support_slab"
 		}
 	},
 	"result": {
-		"item": "dawnoftimebuilder:oak_support_beam",
+		"item": "dawnoftimebuilder:waxed_oak_support_beam",
 		"count": 8
 	}
 }

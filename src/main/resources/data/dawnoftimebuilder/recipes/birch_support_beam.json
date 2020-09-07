@@ -6,14 +6,14 @@
 	],
 	"key": {
 		"I": {
-			"item": "minecraft:stripped_spruce_log"
+			"item": "minecraft:stripped_birch_log"
 		},
 		"i": {
-			"item": "dawnoftimebuilder:spruce_support_slab"
+			"item": "dawnoftimebuilder:birch_support_slab"
 		}
 	},
 	"result": {
-		"item": "dawnoftimebuilder:spruce_support_beam",
+		"item": "dawnoftimebuilder:birch_support_beam",
 		"count": 8
 	}
 }
