@@ -8,6 +8,7 @@ import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraft.world.gen.placement.ChanceRangeConfig;
 import net.minecraft.world.gen.placement.Placement;
 import org.dawnoftimebuilder.generation.features.CamelliaFeature;
+import org.dawnoftimebuilder.generation.features.MulberryFeature;
 import org.dawnoftimebuilder.generation.features.RicePlantFeature;
 
 import java.util.ArrayList;
@@ -17,11 +18,9 @@ public class DoTBFeaturesRegistry {
 
     public static final List<Feature<?>> FEATURES = new ArrayList<>();
 
-    // plants
     public static final Feature<NoFeatureConfig> RICE_PLANT = (Feature<NoFeatureConfig>) reg(new RicePlantFeature(NoFeatureConfig::deserialize, "rice_plant"));
-
-    // flowers
-    public static final Feature<NoFeatureConfig> CAMELLIA_BUSH = (Feature<NoFeatureConfig>) reg(new CamelliaFeature(NoFeatureConfig::deserialize, "dotb_flower_forest"));
+    public static final Feature<NoFeatureConfig> CAMELLIA_BUSH = (Feature<NoFeatureConfig>) reg(new CamelliaFeature(NoFeatureConfig::deserialize, "camellia_bush"));
+    public static final Feature<NoFeatureConfig> MULBERRY_TREE = (Feature<NoFeatureConfig>) reg(new MulberryFeature(NoFeatureConfig::deserialize, "mulberry_tree"));
 
 
     private static Feature<?> reg(Feature<?> feature) {
@@ -32,6 +31,7 @@ public class DoTBFeaturesRegistry {
     public static void addFeaturesToBiomes() {
         addRice();
         addCamellia();
+        addMullberry();
     }
 
     private static void addCamellia() {
@@ -59,6 +59,22 @@ public class DoTBFeaturesRegistry {
                             new NoFeatureConfig(),
                             Placement.CHANCE_RANGE,
                             new ChanceRangeConfig(1.0f, 60, 0, 65)
+                    )
+            );
+        }
+    }
+
+    private static void addMullberry() {
+        Biome[] mulBerryBiomes = {Biomes.TAIGA, Biomes.TAIGA_HILLS, Biomes.GIANT_SPRUCE_TAIGA, Biomes.GIANT_SPRUCE_TAIGA_HILLS, Biomes.GIANT_TREE_TAIGA, Biomes.GIANT_TREE_TAIGA_HILLS, Biomes.FLOWER_FOREST};
+
+        for (Biome biome : mulBerryBiomes) {
+            biome.addFeature(
+                    GenerationStage.Decoration.VEGETAL_DECORATION,
+                    Biome.createDecoratedFeature(
+                            MULBERRY_TREE,
+                            new NoFeatureConfig(),
+                            Placement.CHANCE_RANGE,
+                            new ChanceRangeConfig(1.0f, 62, 0, 255)
                     )
             );
         }
