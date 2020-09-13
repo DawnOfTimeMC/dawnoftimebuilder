@@ -13,12 +13,12 @@ import org.dawnoftimebuilder.block.templates.FenceBlockDoTB;
 import org.dawnoftimebuilder.utils.DoTBBlockStateProperties;
 import org.dawnoftimebuilder.utils.DoTBBlockStateProperties.FencePillar;
 
-public class BurntSpruceRailingBlock extends FenceBlockDoTB {
+public class CharredSpruceRailingBlock extends FenceBlockDoTB {
 
 	private static final EnumProperty<DoTBBlockStateProperties.FencePillar> FENCE_PILLAR = DoTBBlockStateProperties.FENCE_PILLAR;
 
-	public BurntSpruceRailingBlock() {
-		super("burnt_spruce_railing", Material.WOOD, 2.0F, 2.0F);
+	public CharredSpruceRailingBlock() {
+		super("charred_spruce_railing", Material.WOOD, 2.0F, 2.0F);
 		this.setBurnable();
 		this.setDefaultState(this.getStateContainer().getBaseState().with(EAST, false).with(NORTH, false).with(FENCE_PILLAR, FencePillar.NONE).with(SOUTH, false).with(WEST, false));
 	}
@@ -33,7 +33,7 @@ public class BurntSpruceRailingBlock extends FenceBlockDoTB {
 	public BlockState getStateForPlacement(BlockItemUseContext context) {
 		BlockState state = super.getStateForPlacement(context);
 		if(state == null) return this.getDefaultState();
-		return state.with(FENCE_PILLAR, (context.getNearestLookingDirection().getAxis().isVertical()) ? FencePillar.PILLAR_BIG : FencePillar.NONE);
+		return state.with(FENCE_PILLAR, (context.getFace().getAxis().isVertical()) ? FencePillar.PILLAR_BIG : FencePillar.NONE);
 	}
 
 	@Override

@@ -108,11 +108,6 @@ public class SidedWindowBlock extends BlockDoTB {
     }
 
 	@Override
-	public boolean isSolid(BlockState state) {
-		return true;
-	}
-
-	@Override
 	public BlockState rotate(BlockState state, Rotation rot){
 		SidedWindow side = state.get(SIDED_WINDOW);
 		if(side == SidedWindow.AXIS_X || side == SidedWindow.AXIS_Z){

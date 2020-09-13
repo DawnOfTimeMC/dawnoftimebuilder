@@ -2,12 +2,12 @@ package org.dawnoftimebuilder.block.german;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.HorizontalBlock;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer;
+import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.Rotation;
@@ -28,7 +28,7 @@ import static org.dawnoftimebuilder.utils.DoTBBlockStateProperties.HorizontalCon
 
 public class StoneBricksMachicolationBlock extends WaterloggedBlock {
 
-	public static final DirectionProperty FACING = HorizontalBlock.HORIZONTAL_FACING;
+	public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 	public static final EnumProperty<DoTBBlockStateProperties.HorizontalConnection> HORIZONTAL_CONNECTION = DoTBBlockStateProperties.HORIZONTAL_CONNECTION;
 	private static final VoxelShape[] SHAPES = DoTBBlockUtils.GenerateHorizontalShapes(makeShapes());
 

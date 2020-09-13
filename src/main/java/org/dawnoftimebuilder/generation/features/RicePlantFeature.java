@@ -34,7 +34,7 @@ public class RicePlantFeature extends FeatureDoTB<NoFeatureConfig> {
             BlockPos nextPos = pos.add(rand.nextInt(8) - rand.nextInt(8), rand.nextInt(4) - rand.nextInt(4), rand.nextInt(8) - rand.nextInt(8));
             WaterDoubleCropsBlock rice = (WaterDoubleCropsBlock) DoTBBlocksRegistry.RICE;
             BlockState baseState = rice.getDefaultState().with(rice.getAgeProperty(), rice.getMaxAge()).with(WaterloggedBlock.WATERLOGGED, true); // place holder
-            BlockState topState = rice.getDefaultState().with(rice.getAgeProperty(), rice.getMaxAge()).with(DoubleCropsBlock.HALF, Half.TOP);
+            BlockState topState = rice.getTopState(baseState);
             if (isValidPosition(worldIn, nextPos)) {
                 worldIn.setBlockState(nextPos, baseState, 2);
                 worldIn.setBlockState(nextPos.up(), topState, 2);

@@ -9,7 +9,7 @@ import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import org.dawnoftimebuilder.block.templates.ColumnConnectibleBlock;
 
-public class BlockSandstoneColumn extends ColumnConnectibleBlock {
+public class SandstoneColumnBlock extends ColumnConnectibleBlock {
 
     private static final VoxelShape VS_BOT = VoxelShapes.or(
     		makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 8.0D, 14.0D),
@@ -21,7 +21,7 @@ public class BlockSandstoneColumn extends ColumnConnectibleBlock {
 			makeCuboidShape(4.0D, 0.0D, 4.0D, 12.0D, 8.0D, 12.0D)
 	);
 
-	public BlockSandstoneColumn() {
+	public SandstoneColumnBlock() {
 		super("sandstone_column", Material.ROCK, 0.8F, 0.8F);
 	}
 
