@@ -7,14 +7,14 @@
 	],
 	"key": {
 		"I": {
-			"item": "dawnoftimebuilder:oak_waxed_planks"
+			"item": "dawnoftimebuilder:waxed_oak_planks"
 		},
 		"i": {
 			"item": "dawnoftimebuilder:rammed_dirt"
 		}
 	},
 	"result": {
-		"item": "dawnoftimebuilder:framed_rammed_dirt",
+		"item": "dawnoftimebuilder:waxed_oak_framed_rammed_dirt",
 		"count": 8
 	}
 }

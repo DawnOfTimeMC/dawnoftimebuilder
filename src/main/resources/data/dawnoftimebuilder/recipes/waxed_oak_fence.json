@@ -6,14 +6,14 @@
 	],
 	"key": {
 		"I": {
-			"item": "dawnoftimebuilder:oak_waxed_planks"
+			"item": "dawnoftimebuilder:waxed_oak_planks"
 		},
 		"i": {
 			"tag": "forge:rods/wooden"
 		}
 	},
 	"result": {
-		"item": "dawnoftimebuilder:oak_waxed_fence",
+		"item": "dawnoftimebuilder:waxed_oak_fence",
 		"count": 6
 	}
 }

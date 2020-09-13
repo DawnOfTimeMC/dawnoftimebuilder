@@ -6,10 +6,10 @@
 	],
 	"key": {
 		"I": {
-			"item": "minecraft:oak_log"
+			"item": "minecraft:stripped_oak_log"
 		},
 		"i": {
-			"item": "dawnoftimebuilder:oak_waxed_planks_slab"
+			"item": "dawnoftimebuilder:oak_support_slab"
 		}
 	},
 	"result": {

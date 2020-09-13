@@ -5,11 +5,11 @@
 	],
 	"key": {
 		"I": {
-			"item": "dawnoftimebuilder:limestone_brick"
+			"item": "dawnoftimebuilder:limestone_bricks"
 		}
 	},
 	"result": {
-		"item": "dawnoftimebuilder:limestone_brick_slab",
+		"item": "dawnoftimebuilder:limestone_bricks_slab",
 		"count": 6
 	}
 }

@@ -6,10 +6,10 @@
 	],
 	"key": {
 		"I": {
-			"item": "minecraft:spruce_log"
+			"item": "minecraft:stripped_spruce_log"
 		},
 		"i": {
-			"item": "minecraft:spruce_slab"
+			"item": "dawnoftimebuilder:spruce_support_slab"
 		}
 	},
 	"result": {
