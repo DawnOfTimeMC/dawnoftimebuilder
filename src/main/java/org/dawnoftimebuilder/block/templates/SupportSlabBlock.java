@@ -24,8 +24,8 @@ public class SupportSlabBlock extends WaterloggedBlock {
 
 	private static final EnumProperty<DoTBBlockStateProperties.PillarConnection> PILLAR_CONNECTION = DoTBBlockStateProperties.PILLAR_CONNECTION;
 
-	public SupportSlabBlock(String name, Material materialIn, float hardness, float resistance) {
-		super(name, materialIn, hardness, resistance);
+	public SupportSlabBlock(Material materialIn, float hardness, float resistance) {
+		super(materialIn, hardness, resistance);
 		this.setDefaultState(this.getStateContainer().getBaseState().with(PILLAR_CONNECTION, DoTBBlockStateProperties.PillarConnection.NOTHING));
 	}
 

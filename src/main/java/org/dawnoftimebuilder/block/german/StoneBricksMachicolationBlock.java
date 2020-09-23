@@ -33,7 +33,7 @@ public class StoneBricksMachicolationBlock extends WaterloggedBlock {
 	private static final VoxelShape[] SHAPES = DoTBBlockUtils.GenerateHorizontalShapes(makeShapes());
 
 	public StoneBricksMachicolationBlock() {
-		super("stone_bricks_machicolation", Material.ROCK, 1.5F, 6.0F);
+		super(Material.ROCK, 1.5F, 6.0F);
 		this.setDefaultState(this.getDefaultState().with(FACING, NORTH).with(HORIZONTAL_CONNECTION, NONE).with(WATERLOGGED, false));
 	}
 

@@ -29,8 +29,8 @@ public class PortcullisBlock extends WaterloggedBlock {
 	private static final VoxelShape VS_AXIS_X = net.minecraft.block.Block.makeCuboidShape(0.0D, 0.0D, 6.0D, 16.0D, 16.0D, 10.0D);
 	private static final VoxelShape VS_AXIS_Z = net.minecraft.block.Block.makeCuboidShape(6.0D, 0.0D, 0.0D, 10.0D, 16.0D, 16.0D);
 
-	public PortcullisBlock(String name) {
-		super(name, net.minecraft.block.Block.Properties.from(Blocks.IRON_BARS));
+	public PortcullisBlock() {
+		super(Properties.from(Blocks.IRON_BARS));
 		this.setDefaultState(this.getStateContainer().getBaseState().with(OPEN, false).with(POWERED, false).with(HORIZONTAL_AXIS, Direction.Axis.X).with(VERTICAL_CONNECTION, DoTBBlockStateProperties.VerticalConnection.NONE));
 	}
 

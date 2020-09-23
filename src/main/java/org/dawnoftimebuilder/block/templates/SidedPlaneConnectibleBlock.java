@@ -15,12 +15,12 @@ public abstract class SidedPlaneConnectibleBlock extends SidedColumnConnectibleB
 
 	public static final EnumProperty<DoTBBlockStateProperties.HorizontalConnection> HORIZONTAL_CONNECTION = DoTBBlockStateProperties.HORIZONTAL_CONNECTION;
 
-	public SidedPlaneConnectibleBlock(String name, Material materialIn, float hardness, float resistance) {
-		this(name, Properties.create(materialIn).hardnessAndResistance(hardness, resistance));
+	public SidedPlaneConnectibleBlock(Material materialIn, float hardness, float resistance) {
+		this(Properties.create(materialIn).hardnessAndResistance(hardness, resistance));
 	}
 
-	public SidedPlaneConnectibleBlock(String name, Properties properties) {
-		super(name, properties);
+	public SidedPlaneConnectibleBlock(Properties properties) {
+		super(properties);
 		this.setDefaultState(this.getStateContainer().getBaseState().with(HORIZONTAL_CONNECTION, DoTBBlockStateProperties.HorizontalConnection.NONE));
 	}
 

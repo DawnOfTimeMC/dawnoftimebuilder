@@ -10,22 +10,16 @@ import net.minecraft.world.IBlockReader;
 import net.minecraftforge.common.PlantType;
 import org.dawnoftimebuilder.items.templates.SoilSeedsItem;
 import org.dawnoftimebuilder.block.IBlockCustomItem;
-import static org.dawnoftimebuilder.DawnOfTimeBuilder.MOD_ID;
 
 public class SoilCropsBlock extends CropsBlock implements IBlockCustomItem {
 
 	private final SoilSeedsItem seed;
 	private final PlantType plantType;
 
-	public SoilCropsBlock(String name, String seedName, PlantType plantType){
+	public SoilCropsBlock(String seedName, PlantType plantType){
 		super(BlockDoTB.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0.0F).sound(SoundType.CROP));
 		this.plantType = plantType;
-		this.setRegistryName(MOD_ID, name);
 		this.seed = new SoilSeedsItem(this, seedName);
-	}
-
-	public SoilCropsBlock(String name, PlantType plantType){
-		this(name, name, plantType);
 	}
 
 	@Override

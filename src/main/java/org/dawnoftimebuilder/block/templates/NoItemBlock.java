@@ -8,12 +8,12 @@ import javax.annotation.Nullable;
 
 public class NoItemBlock extends BlockDoTB implements IBlockCustomItem {
 
-	public NoItemBlock(String name, Properties properties) {
-		super(name, properties);
+	public NoItemBlock(Properties properties) {
+		super(properties);
 	}
 
-	public NoItemBlock(String name, Material materialIn, float hardness, float resistance) {
-		this(name, Properties.create(materialIn).hardnessAndResistance(hardness, resistance));
+	public NoItemBlock(Material materialIn, float hardness, float resistance) {
+		this(Properties.create(materialIn).hardnessAndResistance(hardness, resistance));
 	}
 
 	@Nullable

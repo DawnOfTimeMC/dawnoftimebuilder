@@ -15,12 +15,12 @@ public class CarpetBlockDoTB extends WaterloggedBlock {
 
 	private static final VoxelShape VS = makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 1.0D, 16.0D);
 
-	public CarpetBlockDoTB(String name, Properties properties) {
-		super(name, properties);
+	public CarpetBlockDoTB(Properties properties) {
+		super(properties);
 	}
 
-	public CarpetBlockDoTB(String name, Material materialIn, float hardness, float resistance) {
-		this(name, Properties.create(materialIn).hardnessAndResistance(hardness, resistance));
+	public CarpetBlockDoTB(Material materialIn, float hardness, float resistance) {
+		this(Properties.create(materialIn).hardnessAndResistance(hardness, resistance));
 	}
 
 	@Override

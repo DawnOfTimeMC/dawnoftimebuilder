@@ -18,7 +18,7 @@ public class CharredSpruceRailingBlock extends FenceBlockDoTB {
 	private static final EnumProperty<DoTBBlockStateProperties.FencePillar> FENCE_PILLAR = DoTBBlockStateProperties.FENCE_PILLAR;
 
 	public CharredSpruceRailingBlock() {
-		super("charred_spruce_railing", Material.WOOD, 2.0F, 2.0F);
+		super(Material.WOOD, 2.0F, 2.0F);
 		this.setBurnable();
 		this.setDefaultState(this.getStateContainer().getBaseState().with(EAST, false).with(NORTH, false).with(FENCE_PILLAR, FencePillar.NONE).with(SOUTH, false).with(WEST, false));
 	}

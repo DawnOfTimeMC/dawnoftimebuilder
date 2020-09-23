@@ -15,7 +15,7 @@ public class BlockSerpentSculptedColumn extends SidedColumnConnectibleBlock {
 	private static final VoxelShape[] SHAPES = DoTBBlockUtils.GenerateHorizontalShapes(makeShapes());
 
 	public BlockSerpentSculptedColumn() {
-		super("serpent_sculpted_column", Material.ROCK, 1.5F, 6.0F);
+		super(Material.ROCK, 1.5F, 6.0F);
 	}
 
 	@Override

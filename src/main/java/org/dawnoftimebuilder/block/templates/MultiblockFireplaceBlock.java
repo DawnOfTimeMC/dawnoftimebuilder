@@ -36,8 +36,8 @@ public class MultiblockFireplaceBlock extends SidedPlaneConnectibleBlock {
 	public static final BooleanProperty BURNING = DoTBBlockStateProperties.BURNING;
 	private static final VoxelShape[] SHAPES = DoTBBlockUtils.GenerateHorizontalShapes(makeShapes());
 
-	public MultiblockFireplaceBlock(String name, Material materialIn, float hardness, float resistance) {
-		super(name, materialIn, hardness, resistance);
+	public MultiblockFireplaceBlock(Material materialIn, float hardness, float resistance) {
+		super(materialIn, hardness, resistance);
 		this.setDefaultState(this.getStateContainer().getBaseState().with(BURNING, false).with(WATERLOGGED, false));
 	}
 

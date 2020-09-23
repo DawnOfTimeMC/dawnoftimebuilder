@@ -15,7 +15,7 @@ public class SakeCupBlock extends WaterloggedBlock implements IBlockSpecialDispl
     private static final VoxelShape VS = makeCuboidShape(6.0D, 0.0D, 6.0D, 10.0D, 3.0D, 10.0D);
 
     public SakeCupBlock() {
-        super("sake_cup", Material.CLAY, 0.6F, 0.6F);
+        super(Material.CLAY, 0.6F, 0.6F);
     }
 
     @Override

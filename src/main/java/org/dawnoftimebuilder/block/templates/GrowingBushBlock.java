@@ -28,13 +28,11 @@ public class GrowingBushBlock extends SoilCropsBlock {
 	public VoxelShape[] SHAPES;
 	private static final IntegerProperty AGE = BlockStateProperties.AGE_0_5;
 	private static final BooleanProperty CUT = DoTBBlockStateProperties.CUT;
-	private String name;
 
-	public GrowingBushBlock(String name, String seedName, PlantType plantType){
-		super(name, seedName, plantType);
+	public GrowingBushBlock(String seedName, PlantType plantType){
+		super(seedName, plantType);
 		this.setDefaultState(this.getDefaultState().with(AGE, 0).with(CUT, false));
 		this.SHAPES = this.makeShapes();
-		this.name = name;
 	}
 
 	@Override
@@ -91,12 +89,16 @@ public class GrowingBushBlock extends SoilCropsBlock {
 				boolean holdShears = itemStackHand.getItem() == Items.SHEARS;
 				if(holdShears) itemStackHand.damageItem(1, playerIn, (p_220287_1_) -> p_220287_1_.sendBreakAnimation(hand));
 
-				List<ItemStack> drops = DoTBBlockUtils.getLootList((ServerWorld)worldIn, state, pos, itemStackHand, this.name);
-				DoTBBlockUtils.dropLootFromList(worldIn, pos, drops, holdShears ? 1.5F : 1.0F);
+				ResourceLocation resourceLocation = this.getRegistryName();
+				if(resourceLocation != null) {
+					List<ItemStack> drops = DoTBBlockUtils.getLootList((ServerWorld)worldIn, state, pos, itemStackHand, resourceLocation.getPath());
+					DoTBBlockUtils.dropLootFromList(worldIn, pos, drops, holdShears ? 1.5F : 1.0F);
 
-				worldIn.playSound(null, pos, SoundEvents.BLOCK_GRASS_BREAK, SoundCategory.BLOCKS, 1.0F, 1.0F);
-				worldIn.setBlockState(pos, state.with(AGE, 3).with(CUT, true));
-				return true;
+					worldIn.playSound(null, pos, SoundEvents.BLOCK_GRASS_BREAK, SoundCategory.BLOCKS, 1.0F, 1.0F);
+					worldIn.setBlockState(pos, state.with(AGE, 3).with(CUT, true));
+					return true;
+				}
+				return false;
 			}
 		}
 		return false;

@@ -2,17 +2,15 @@ package org.dawnoftimebuilder.block.templates;
 
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
-import static org.dawnoftimebuilder.DawnOfTimeBuilder.MOD_ID;
 
 public class RotatedPillarBlockDoTB extends RotatedPillarBlock {
 
-	public RotatedPillarBlockDoTB(String name, Properties properties) {
+	public RotatedPillarBlockDoTB(Properties properties) {
 		super(properties);
-		this.setRegistryName(MOD_ID, name);
 	}
 
-	public RotatedPillarBlockDoTB(String name, Material materialIn, float hardness, float resistance) {
-		this(name, BlockDoTB.Properties.create(materialIn).hardnessAndResistance(hardness, resistance));
+	public RotatedPillarBlockDoTB(Material materialIn, float hardness, float resistance) {
+		this(Properties.create(materialIn).hardnessAndResistance(hardness, resistance));
 	}
 
 	public Block setBurnable() {

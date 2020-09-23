@@ -19,12 +19,12 @@ public abstract class ColumnConnectibleBlock extends WaterloggedBlock {
 
 	public static final EnumProperty<DoTBBlockStateProperties.VerticalConnection> VERTICAL_CONNECTION = DoTBBlockStateProperties.VERTICAL_CONNECTION;
 
-	public ColumnConnectibleBlock(String name, Material materialIn, float hardness, float resistance) {
-		this(name, Block.Properties.create(materialIn).hardnessAndResistance(hardness, resistance));
+	public ColumnConnectibleBlock(Material materialIn, float hardness, float resistance) {
+		this(Block.Properties.create(materialIn).hardnessAndResistance(hardness, resistance));
 	}
 
-	public ColumnConnectibleBlock(String name, Properties properties) {
-		super(name, properties);
+	public ColumnConnectibleBlock(Properties properties) {
+		super(properties);
 		this.setDefaultState(this.getStateContainer().getBaseState().with(VERTICAL_CONNECTION, DoTBBlockStateProperties.VerticalConnection.NONE));
 	}
 

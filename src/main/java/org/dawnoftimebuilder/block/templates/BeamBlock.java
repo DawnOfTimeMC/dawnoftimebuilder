@@ -40,8 +40,8 @@ public class BeamBlock extends WaterloggedBlock implements IBlockPillar, IBlockC
 	private static final IntegerProperty AGE = DoTBBlockStateProperties.AGE_0_6;
 	private static final VoxelShape[] SHAPES = makeShapes();
 
-	public BeamBlock(String name, Material materialIn, float hardness, float resistance) {
-		super(name, materialIn, hardness, resistance);
+	public BeamBlock(Material materialIn, float hardness, float resistance) {
+		super(materialIn, hardness, resistance);
 		this.setDefaultState(this.getStateContainer().getBaseState().with(BOTTOM, false).with(AXIS_Y, false).with(AXIS_X, false).with(AXIS_Z, false).with(CLIMBING_PLANT, DoTBBlockStateProperties.ClimbingPlant.NONE).with(AGE, 0).with(WATERLOGGED, false));
 	}
 

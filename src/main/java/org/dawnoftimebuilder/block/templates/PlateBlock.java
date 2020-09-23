@@ -22,17 +22,17 @@ public class PlateBlock extends WaterloggedBlock {
 	public static final EnumProperty<StairsShape> SHAPE = BlockStateProperties.STAIRS_SHAPE;
 	private static final VoxelShape[] SHAPES = makeShapes();
 
-	public PlateBlock(String name, Properties properties) {
-		super(name, properties);
+	public PlateBlock(Properties properties) {
+		super(properties);
 		this.setDefaultState(this.getStateContainer().getBaseState().with(FACING, Direction.NORTH).with(SHAPE, StairsShape.STRAIGHT));
 	}
 
-	public PlateBlock(String name, Material materialIn, float hardness, float resistance) {
-		this(name, Properties.create(materialIn).hardnessAndResistance(hardness, resistance));
+	public PlateBlock(Material materialIn, float hardness, float resistance) {
+		this(Properties.create(materialIn).hardnessAndResistance(hardness, resistance));
 	}
 
-	public PlateBlock(String name, Block block) {
-		this(name, Properties.from(block));
+	public PlateBlock(Block block) {
+		this(Properties.from(block));
 	}
 
 	@Override

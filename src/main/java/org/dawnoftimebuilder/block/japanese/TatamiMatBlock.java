@@ -42,7 +42,7 @@ public class TatamiMatBlock extends WaterloggedBlock {
     public static final IntegerProperty STACK = DoTBBlockStateProperties.STACK;
 
     public TatamiMatBlock() {
-        super("tatami_mat", Material.CARPET, 0.6F, 0.6F);
+        super(Material.CARPET, 0.6F, 0.6F);
         this.setBurnable();
         this.setDefaultState(this.stateContainer.getBaseState().with(WATERLOGGED, false).with(ROLLED, false).with(HALF, Half.TOP).with(STACK, 1));
     }

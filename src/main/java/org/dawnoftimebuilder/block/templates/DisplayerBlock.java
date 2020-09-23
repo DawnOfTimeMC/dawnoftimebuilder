@@ -21,8 +21,8 @@ import static org.dawnoftimebuilder.registries.DoTBTileEntitiesRegistry.DISPLAYE
 
 public abstract class DisplayerBlock extends BlockDoTB {
 
-	public DisplayerBlock(String name, Material materialIn, float hardness, float resistance) {
-		super(name, materialIn, hardness, resistance);
+	public DisplayerBlock(Material materialIn, float hardness, float resistance) {
+		super(materialIn, hardness, resistance);
 	}
 
 	@Override

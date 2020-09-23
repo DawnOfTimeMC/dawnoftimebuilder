@@ -41,7 +41,7 @@ public class PlasteredStoneCressetBlock extends WaterloggedBlock {
     private static final VoxelShape VS = Block.makeCuboidShape(3.0D, 0.0D, 3.0D, 13.0D, 14.0D, 13.0D);
 
     public PlasteredStoneCressetBlock() {
-        super("plastered_stone_cresset", Material.ROCK, 1.5F, 6.0F);
+        super(Material.ROCK, 1.5F, 6.0F);
         this.setDefaultState(this.getStateContainer().getBaseState().with(BURNING, false).with(HEAT, 0).with(WATERLOGGED, false));
     }
 

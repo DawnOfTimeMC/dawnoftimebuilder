@@ -20,13 +20,13 @@ public class WaterloggedBlock extends BlockDoTB implements IWaterLoggable {
 
 	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
-	public WaterloggedBlock(String name, Properties properties) {
-		super(name, properties);
+	public WaterloggedBlock(Properties properties) {
+		super(properties);
 		this.setDefaultState(this.getStateContainer().getBaseState().with(WATERLOGGED,false));
 	}
 
-	public WaterloggedBlock(String name, Material materialIn, float hardness, float resistance) {
-		this(name, Properties.create(materialIn).hardnessAndResistance(hardness, resistance));
+	public WaterloggedBlock(Material materialIn, float hardness, float resistance) {
+		this(Properties.create(materialIn).hardnessAndResistance(hardness, resistance));
 	}
 
 	@Override

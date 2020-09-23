@@ -31,14 +31,14 @@ public class SidedWindowBlock extends BlockDoTB {
     private static final VoxelShape X_VS = makeCuboidShape(6.0D, 0.0D, 0.0D, 10.0D, 16.0D, 16.0D);
     private static final VoxelShape Z_VS = makeCuboidShape(0.0D, 0.0D, 6.0D, 16.0D, 16.0D, 10.0D);
 
-	public SidedWindowBlock(String name, Properties properties) {
-		super(name, properties);
+	public SidedWindowBlock(Properties properties) {
+		super(properties);
 		this.setBurnable();
 		this.setDefaultState(this.getStateContainer().getBaseState().with(SIDED_WINDOW, SidedWindow.AXIS_X).with(UP, false).with(ATTACHED, false));
 	}
 
-	public SidedWindowBlock(String name, Material materialIn, float hardness, float resistance) {
-		this(name, Properties.create(materialIn).hardnessAndResistance(hardness, resistance));
+	public SidedWindowBlock(Material materialIn, float hardness, float resistance) {
+		this(Properties.create(materialIn).hardnessAndResistance(hardness, resistance));
 	}
 
 	@Override

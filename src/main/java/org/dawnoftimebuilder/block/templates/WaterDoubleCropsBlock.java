@@ -20,13 +20,9 @@ public class WaterDoubleCropsBlock extends DoubleCropsBlock implements IWaterLog
 
 	private static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
-	public WaterDoubleCropsBlock(String name, String seedName, int growingAge) {
-		super(name, seedName, PlantType.Water, growingAge);
+	public WaterDoubleCropsBlock(String seedName, int growingAge) {
+		super(seedName, PlantType.Water, growingAge);
 		this.setDefaultState(this.getDefaultState().with(WATERLOGGED, true).with(HALF, Half.BOTTOM).with(this.getAgeProperty(), 0));
-	}
-
-	public WaterDoubleCropsBlock(String name, int growingAge) {
-		this(name, name, growingAge);
 	}
 
 	/**

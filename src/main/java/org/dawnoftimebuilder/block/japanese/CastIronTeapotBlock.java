@@ -15,8 +15,8 @@ public class CastIronTeapotBlock extends WaterloggedBlock implements IBlockSpeci
 	private static final VoxelShape VS = makeCuboidShape(4.8D, 0.0D, 4.8D, 11.2D, 6.4D, 11.2D);
 	private final float renderYOffset;
 
-	public CastIronTeapotBlock(String name, float renderYOffset) {
-		super(name, Material.IRON, 0.8F, 0.8F);
+	public CastIronTeapotBlock(float renderYOffset) {
+		super(Material.IRON, 0.8F, 0.8F);
 		this.renderYOffset = renderYOffset;
 	}
 

@@ -39,8 +39,8 @@ public class LatticeBlock extends WaterloggedBlock implements IBlockClimbingPlan
 	private static final IntegerProperty AGE = DoTBBlockStateProperties.AGE_0_6;
 	private static final VoxelShape[] SHAPES = makeShapes();
 
-	public LatticeBlock(String name, Material materialIn, float hardness, float resistance) {
-		super(name, materialIn, hardness, resistance);
+	public LatticeBlock(Material materialIn, float hardness, float resistance) {
+		super(materialIn, hardness, resistance);
 		this.setDefaultState(this.getStateContainer().getBaseState().with(CLIMBING_PLANT, DoTBBlockStateProperties.ClimbingPlant.NONE).with(AGE, 0).with(WATERLOGGED, false).with(NORTH, false).with(EAST, false).with(SOUTH, false).with(WEST, false));
 	}
 

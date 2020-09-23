@@ -23,7 +23,7 @@ public class PlasteredStoneColumnBlock extends ColumnConnectibleBlock {
 	);
 	
 	public PlasteredStoneColumnBlock() {
-		super("plastered_stone_column", Material.ROCK, 1.5F, 6.0F);
+		super(Material.ROCK, 1.5F, 6.0F);
 	}
 
 	@Override

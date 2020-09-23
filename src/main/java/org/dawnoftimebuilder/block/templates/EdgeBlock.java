@@ -26,17 +26,17 @@ public class EdgeBlock extends WaterloggedBlock {
 	private static final VoxelShape[] SHAPES_TOP = makeShapes(false);
 	private static final VoxelShape[] SHAPES_BOTTOM = makeShapes(true);
 
-	public EdgeBlock(String name, Block.Properties properties) {
-		super(name, properties);
+	public EdgeBlock(Properties properties) {
+		super(properties);
 		this.setDefaultState(this.getStateContainer().getBaseState().with(FACING, Direction.NORTH).with(HALF, Half.BOTTOM).with(SHAPE, StairsShape.STRAIGHT));
 	}
 
-	public EdgeBlock(String name, Material materialIn, float hardness, float resistance) {
-		this(name, Block.Properties.create(materialIn).hardnessAndResistance(hardness, resistance));
+	public EdgeBlock(Material materialIn, float hardness, float resistance) {
+		this(Properties.create(materialIn).hardnessAndResistance(hardness, resistance));
 	}
 
-	public EdgeBlock(String name, Block block) {
-		this(name, Block.Properties.from(block));
+	public EdgeBlock(Block block) {
+		this(Block.Properties.from(block));
 	}
 
 	@Override

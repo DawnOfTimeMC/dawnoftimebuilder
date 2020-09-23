@@ -24,8 +24,8 @@ public class SlabPathBlock extends SlabBlockDoTB {
 	static final VoxelShape VS_PATH_TOP = BlockDoTB.makeCuboidShape(0.0D, 8.0D, 0.0D, 16.0D, 15.0D, 16.0D);
 	static final VoxelShape VS_PATH_DOUBLE = BlockDoTB.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 15.0D, 16.0D);
 
-	public SlabPathBlock(String name) {
-		super(name, Material.EARTH, 0.65F, 0.65F);
+	public SlabPathBlock() {
+		super(Material.EARTH, 0.65F, 0.65F);
 		this.setDefaultState(this.getStateContainer().getBaseState().with(TYPE, SlabType.BOTTOM).with(FULL, false));
 	}
 

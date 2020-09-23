@@ -38,7 +38,7 @@ public class StoneBricksArrowslitBlock extends WaterloggedBlock {
 	});
 
 	public StoneBricksArrowslitBlock() {
-		super("stone_bricks_arrowslit", Material.ROCK, 1.5F, 6.0F);
+		super(Material.ROCK, 1.5F, 6.0F);
 		this.setDefaultState(this.getDefaultState().with(FACING, NORTH).with(WATERLOGGED, false));
 	}
 

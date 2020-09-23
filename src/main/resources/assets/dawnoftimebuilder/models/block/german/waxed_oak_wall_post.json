@@ -1,7 +1,7 @@
 {
     "textures": {
-        "particle": "dawnoftimebuilder:block/jungle_beam",
-        "wall": "dawnoftimebuilder:block/jungle_beam"
+        "particle": "dawnoftimebuilder:block/waxed_oak_beam",
+        "wall": "dawnoftimebuilder:block/waxed_oak_beam"
     },
     "elements": [
         {

@@ -15,7 +15,7 @@ public class WaxedOakTimberFrameCornerBlock extends BlockDoTB {
 	public static final BooleanProperty INVERTED = BlockStateProperties.INVERTED;
 
 	public WaxedOakTimberFrameCornerBlock() {
-		super("waxed_oak_timber_frame_corner", Material.WOOD, 3.0F, 5.0F);
+		super(Material.WOOD, 3.0F, 5.0F);
 		this.setDefaultState(this.getDefaultState().with(INVERTED, false));
 	}
 

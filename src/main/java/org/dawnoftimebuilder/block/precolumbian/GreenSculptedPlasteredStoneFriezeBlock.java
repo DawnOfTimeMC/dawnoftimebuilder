@@ -15,7 +15,7 @@ public class GreenSculptedPlasteredStoneFriezeBlock extends PlateBlock {
 	private static final VoxelShape[] SHAPES = DoTBBlockUtils.GenerateHorizontalShapes(makeShapes());
 
     public GreenSculptedPlasteredStoneFriezeBlock() {
-    	super("green_sculpted_plastered_stone_frieze", Material.ROCK,1.5F, 6.0F);
+    	super(Material.ROCK,1.5F, 6.0F);
     }
 
 	/**

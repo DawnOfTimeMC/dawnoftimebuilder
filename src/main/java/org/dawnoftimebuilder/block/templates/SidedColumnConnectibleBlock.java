@@ -17,12 +17,12 @@ public abstract class SidedColumnConnectibleBlock extends ColumnConnectibleBlock
 
 	public static final DirectionProperty FACING = HorizontalBlock.HORIZONTAL_FACING;
 
-	public SidedColumnConnectibleBlock(String name, Material materialIn, float hardness, float resistance) {
-		this(name, Properties.create(materialIn).hardnessAndResistance(hardness, resistance));
+	public SidedColumnConnectibleBlock(Material materialIn, float hardness, float resistance) {
+		this(Properties.create(materialIn).hardnessAndResistance(hardness, resistance));
 	}
 
-	public SidedColumnConnectibleBlock(String name, Properties properties) {
-		super(name, properties);
+	public SidedColumnConnectibleBlock(Properties properties) {
+		super(properties);
 		this.setDefaultState(this.getStateContainer().getBaseState().with(FACING, Direction.NORTH));
 	}
 

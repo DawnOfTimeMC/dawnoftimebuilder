@@ -21,7 +21,7 @@ public class SpruceLowTableBlock extends DisplayerBlock {
 	public static final EnumProperty<Direction.Axis> HORIZONTAL_AXIS = BlockStateProperties.HORIZONTAL_AXIS;
 
 	public SpruceLowTableBlock() {
-		super("spruce_low_table" ,Material.WOOD, 2.0F, 2.0F);
+		super(Material.WOOD, 2.0F, 2.0F);
 		this.setBurnable();
 		this.setDefaultState(this.getStateContainer().getBaseState().with(HORIZONTAL_AXIS, Direction.Axis.X));
 	}

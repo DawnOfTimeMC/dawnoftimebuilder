@@ -37,13 +37,13 @@ public class SmallShuttersBlock extends WaterloggedBlock {
     public static final EnumProperty<DoorHingeSide> HINGE = BlockStateProperties.DOOR_HINGE;
     private static final VoxelShape[] SHAPES = DoTBBlockUtils.GenerateHorizontalShapes(makeShapes());
 
-    public SmallShuttersBlock(String name, Properties properties) {
-        super(name, properties);
+    public SmallShuttersBlock(Properties properties) {
+        super(properties);
         this.setDefaultState(this.getStateContainer().getBaseState().with(OPEN_POSITION, DoTBBlockStateProperties.OpenPosition.CLOSED).with(HINGE, DoorHingeSide.LEFT).with(POWERED, false));
     }
 
-    public SmallShuttersBlock(String name, Material materialIn, float hardness, float resistance) {
-        this(name, Properties.create(materialIn).hardnessAndResistance(hardness, resistance));
+    public SmallShuttersBlock(Material materialIn, float hardness, float resistance) {
+        this(Properties.create(materialIn).hardnessAndResistance(hardness, resistance));
     }
 
     @Override

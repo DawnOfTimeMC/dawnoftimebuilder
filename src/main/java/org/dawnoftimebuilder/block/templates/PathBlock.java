@@ -22,8 +22,8 @@ public class PathBlock extends WaterloggedBlock {
 	private static final BooleanProperty FULL = DoTBBlockStateProperties.FULL;
 	private static final VoxelShape PATH_VS = net.minecraft.block.Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 15.0D, 16.0D);
 
-	public PathBlock(String name) {
-		super(name, Material.EARTH, 0.65F, 0.65F);
+	public PathBlock() {
+		super(Material.EARTH, 0.65F, 0.65F);
 		this.setDefaultState(this.getStateContainer().getBaseState().with(FULL, false));
 	}
 

@@ -18,12 +18,12 @@ public class ChainBlock extends ColumnConnectibleBlock implements IBlockPillar, 
 
 	private static final VoxelShape VS = Block.makeCuboidShape(6.0D, 0.0D, 6.0D, 10.0D, 16.0D, 10.0D);
 
-	public ChainBlock(String name, Material materialIn, float hardness, float resistance) {
-		this(name, Block.Properties.create(materialIn).hardnessAndResistance(hardness, resistance));
+	public ChainBlock(Material materialIn, float hardness, float resistance) {
+		this(Block.Properties.create(materialIn).hardnessAndResistance(hardness, resistance));
 	}
 
-	public ChainBlock(String name, Properties properties) {
-		super(name, properties);
+	public ChainBlock(Properties properties) {
+		super(properties);
 	}
 
 	@Override

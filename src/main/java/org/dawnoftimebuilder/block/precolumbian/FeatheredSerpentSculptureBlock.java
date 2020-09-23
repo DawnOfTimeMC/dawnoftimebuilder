@@ -27,7 +27,7 @@ public class FeatheredSerpentSculptureBlock extends WaterloggedBlock {
 	});
 
 	public FeatheredSerpentSculptureBlock() {
-		super("feathered_serpent_sculpture", Material.ROCK, 1.5F, 6.0F);
+		super(Material.ROCK, 1.5F, 6.0F);
 	    this.setDefaultState(this.stateContainer.getBaseState().with(FACING, Direction.NORTH).with(WATERLOGGED, false));
 	}
 

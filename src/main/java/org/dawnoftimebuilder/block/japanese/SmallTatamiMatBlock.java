@@ -49,7 +49,7 @@ public class SmallTatamiMatBlock extends WaterloggedBlock implements IBlockChain
     public static final IntegerProperty STACK = DoTBBlockStateProperties.STACK;
 
     public SmallTatamiMatBlock() {
-        super("small_tatami_mat", Material.CARPET, 0.6F, 0.6F);
+        super(Material.CARPET, 0.6F, 0.6F);
         this.setBurnable();
         this.setDefaultState(this.stateContainer.getBaseState().with(ROLLED, false).with(ATTACHED, false).with(STACK, 1).with(WATERLOGGED, false));
     }

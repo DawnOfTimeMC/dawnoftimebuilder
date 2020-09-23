@@ -15,7 +15,7 @@ public class SakeBottleBlock extends WaterloggedBlock implements IBlockSpecialDi
     private static final VoxelShape VS = makeCuboidShape(6.0D, 0.0D, 6.0D, 10.0D, 6.0D, 10.0D);
 
     public SakeBottleBlock() {
-        super("sake_bottle", Material.CLAY, 0.8F, 0.8F);
+        super(Material.CLAY, 0.8F, 0.8F);
     }
 
     @Override

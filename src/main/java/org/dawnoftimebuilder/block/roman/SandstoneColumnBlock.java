@@ -22,7 +22,7 @@ public class SandstoneColumnBlock extends ColumnConnectibleBlock {
 	);
 
 	public SandstoneColumnBlock() {
-		super("sandstone_column", Material.ROCK, 0.8F, 0.8F);
+		super(Material.ROCK, 0.8F, 0.8F);
 	}
 
 	@Override

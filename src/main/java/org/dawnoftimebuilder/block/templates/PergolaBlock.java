@@ -22,8 +22,8 @@ public class PergolaBlock extends BeamBlock {
 
 	private static final VoxelShape[] SHAPES = makeShapes();
 
-	public PergolaBlock(String name, Material materialIn, float hardness, float resistance) {
-		super(name, materialIn, hardness, resistance);
+	public PergolaBlock(Material materialIn, float hardness, float resistance) {
+		super(materialIn, hardness, resistance);
 	}
 
 	/**

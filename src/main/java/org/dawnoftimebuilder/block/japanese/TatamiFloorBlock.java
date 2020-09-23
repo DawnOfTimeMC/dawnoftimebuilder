@@ -35,7 +35,7 @@ public class TatamiFloorBlock extends NoItemBlock {
 	public static final EnumProperty<Half> HALF = BlockStateProperties.HALF;
 
 	public TatamiFloorBlock() {
-		super("tatami_floor", Material.WOOD, 2.0F, 2.0F);
+		super(Material.WOOD, 2.0F, 2.0F);
 		this.setBurnable();
 	}
 

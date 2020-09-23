@@ -27,7 +27,7 @@ public class LimestoneChimneyBlock extends ColumnConnectibleBlock {
 	private static final VoxelShape[] SHAPES = makeShapes();
 
 	public LimestoneChimneyBlock() {
-		super("limestone_chimney", Material.ROCK, 1.5F, 6.0F);
+		super(Material.ROCK, 1.5F, 6.0F);
 		this.setDefaultState(this.getStateContainer().getBaseState().with(HORIZONTAL_AXIS, Direction.Axis.X));
 	}
 

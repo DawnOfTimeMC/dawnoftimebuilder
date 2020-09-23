@@ -13,10 +13,7 @@ import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.properties.SlabType;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Direction;
-import net.minecraft.util.Hand;
-import net.minecraft.util.SoundCategory;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.World;
@@ -31,19 +28,17 @@ import static org.dawnoftimebuilder.DawnOfTimeBuilder.MOD_ID;
 public class MixedSlabBlock extends SlabBlockDoTB implements IBlockCustomItem {
 
 	private final ArrayList<MixedBlockRecipe> listRecipes = new ArrayList<>();
-	private final String name;
 
-	public MixedSlabBlock(String name, Properties properties) {
-		super(name, properties);
-		this.name = name;
+	public MixedSlabBlock(Properties properties) {
+		super(properties);
 	}
 
-	public MixedSlabBlock(String name, Material materialIn, float hardness, float resistance) {
-		this(name, Properties.create(materialIn).hardnessAndResistance(hardness, resistance));
+	public MixedSlabBlock(Material materialIn, float hardness, float resistance) {
+		this(Properties.create(materialIn).hardnessAndResistance(hardness, resistance));
 	}
 
-	public MixedSlabBlock(String name, Block block) {
-		this(name, Properties.from(block));
+	public MixedSlabBlock(Block block) {
+		this(Properties.from(block));
 	}
 
 	public Block addMixedBlockRecipe(SlabBlock secondSlab, Block mixedBlock, boolean thisSlabIsBottom){
@@ -81,6 +76,8 @@ public class MixedSlabBlock extends SlabBlockDoTB implements IBlockCustomItem {
 	@Nullable
 	@Override
 	public Item getCustomItemBlock() {
+		ResourceLocation resourceLocation = this.getRegistryName();
+		if(resourceLocation == null) return null;
 		return new BlockItem(this, new Item.Properties().group(DOTB_TAB)){
 			@Override
 			public ActionResultType tryPlace(BlockItemUseContext context) {
@@ -124,7 +121,7 @@ public class MixedSlabBlock extends SlabBlockDoTB implements IBlockCustomItem {
 				}
 				return super.tryPlace(context);
 			}
-		}.setRegistryName(MOD_ID, name);
+		}.setRegistryName(MOD_ID, resourceLocation.getPath());
 	}
 
 	public static class MixedBlockRecipe {

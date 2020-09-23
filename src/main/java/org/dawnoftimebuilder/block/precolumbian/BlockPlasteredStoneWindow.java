@@ -21,7 +21,7 @@ public class BlockPlasteredStoneWindow extends WaterloggedBlock {
     private static final VoxelShape Z_AXIS_VS = makeCuboidShape(6.0D, 0.0D, 0.0D, 10.0D, 16.0D, 16.0D);
 	
 	public BlockPlasteredStoneWindow() {
-		super("plastered_stone_window", Material.ROCK, 1.5F, 6.0F);
+		super(Material.ROCK, 1.5F, 6.0F);
 	    this.setDefaultState(this.stateContainer.getBaseState().with(HORIZONTAL_AXIS, Direction.Axis.X));
 	}
 

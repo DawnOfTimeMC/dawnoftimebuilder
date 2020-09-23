@@ -1,9 +1,9 @@
 {
     "parent": "block/block",
     "textures": {
-        "particle": "dawnoftimebuilder:block/jungle_beam",
-        "wall": "dawnoftimebuilder:block/jungle_beam",
-        "side": "block/jungle_planks"
+        "particle": "dawnoftimebuilder:block/waxed_oak_beam",
+        "wall": "dawnoftimebuilder:block/waxed_oak_beam",
+        "side": "dawnoftimebuilder:block/waxed_oak_planks"
     },
     "elements": [
         {

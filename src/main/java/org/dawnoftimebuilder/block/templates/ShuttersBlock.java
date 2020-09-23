@@ -27,12 +27,12 @@ public class ShuttersBlock extends SmallShuttersBlock {
 
     public static final EnumProperty<Half> HALF = BlockStateProperties.HALF;
 
-    public ShuttersBlock(String name, Properties properties) {
-        super(name, properties);
+    public ShuttersBlock(Properties properties) {
+        super(properties);
     }
 
-    public ShuttersBlock(String name, Material materialIn, float hardness, float resistance) {
-        this(name, Properties.create(materialIn).hardnessAndResistance(hardness, resistance));
+    public ShuttersBlock(Material materialIn, float hardness, float resistance) {
+        this(Properties.create(materialIn).hardnessAndResistance(hardness, resistance));
     }
 
     @Override

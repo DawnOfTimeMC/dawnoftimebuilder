@@ -48,7 +48,7 @@ public class FireplaceBlock extends WaterloggedBlock {
 	private static final VoxelShape OFF_Z_SHAPE = net.minecraft.block.Block.makeCuboidShape(2.0D, 0.0D, 0.0D, 14.0D, 5.0D, 16.0D);
 
 	public FireplaceBlock() {
-		super("fireplace", Material.ROCK,1.5F, 6.0F);
+		super(Material.ROCK,1.5F, 6.0F);
 		this.setDefaultState(this.getStateContainer().getBaseState().with(BURNING, false).with(HORIZONTAL_AXIS, Direction.Axis.X).with(HORIZONTAL_CONNECTION, HorizontalConnection.NONE));
 	}
 

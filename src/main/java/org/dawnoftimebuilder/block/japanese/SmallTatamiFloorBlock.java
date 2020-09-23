@@ -30,7 +30,7 @@ public class SmallTatamiFloorBlock extends NoItemBlock {
 	public static final EnumProperty<Direction.Axis> HORIZONTAL_AXIS = BlockStateProperties.HORIZONTAL_AXIS;
 
 	public SmallTatamiFloorBlock() {
-		super("small_tatami_floor", Material.WOOD, 2.0F, 2.0F);
+		super(Material.WOOD, 2.0F, 2.0F);
 		this.setBurnable();
 	}
 
