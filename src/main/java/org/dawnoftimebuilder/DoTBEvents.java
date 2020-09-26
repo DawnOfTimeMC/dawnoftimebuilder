@@ -1,16 +1,22 @@
 package org.dawnoftimebuilder;
 
 import net.minecraft.block.Block;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.ai.attributes.IAttributeInstance;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.event.entity.living.LivingEquipmentChangeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.dawnoftimebuilder.items.general.DoTBItemCustomArmor;
 import org.dawnoftimebuilder.registries.DoTBBlocksRegistry;
 import org.dawnoftimebuilder.crafts.DoTBRecipesRegistry;
 import org.dawnoftimebuilder.registries.DoTBItemsRegistry;
@@ -73,4 +79,30 @@ public class DoTBEvents {
 			}
 		}
 	}
+/*
+	@SubscribeEvent
+	public void onEquipmentChange(LivingEquipmentChangeEvent event){
+		if(event.getSlot() == EntityEquipmentSlot.MAINHAND || event.getSlot() == EntityEquipmentSlot.OFFHAND) return;
+		EntityLivingBase entity = event.getEntityLiving();
+		Item itemFrom = event.getFrom().getItem();
+		Item itemTo = event.getTo().getItem();
+		DoTBItemCustomArmor itemArmor;
+
+		if(itemFrom instanceof DoTBItemCustomArmor){
+			itemArmor = (DoTBItemCustomArmor) itemFrom;
+			if(itemArmor.entityWearsFullSet(entity)){
+				//Entity had full set : let's remove the its effects
+				itemArmor.removeFullSetEffects(entity);
+			}
+		}
+
+		if(itemTo instanceof DoTBItemCustomArmor){
+			itemArmor = (DoTBItemCustomArmor) itemTo;
+			if(itemArmor.entityWearsFullSet(entity)){
+				//Entity has now full set : let's add the its effects
+				itemArmor.applyFullSetEffects(entity);
+			}
+		}
+	}
+*/
 }
