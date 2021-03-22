@@ -20,11 +20,7 @@ import static org.dawnoftimebuilder.DawnOfTimeBuilder.MOD_ID;
 public abstract class CustomArmorItem extends ArmorItem {
 
 	public final String set;
-
-	@OnlyIn(Dist.CLIENT)
 	public BipedModel<?> model = null;
-
-	@OnlyIn(Dist.CLIENT)
 	public BipedModel<?> slimModel = null;
 
 	public CustomArmorItem(String set, IArmorMaterial materialIn, EquipmentSlotType slot) {

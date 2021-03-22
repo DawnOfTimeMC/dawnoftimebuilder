@@ -1,3 +1,4 @@
+/*
 package org.dawnoftimebuilder.client.renderer.tileentity;
 
 import com.mojang.blaze3d.platform.GlStateManager;
@@ -65,3 +66,4 @@ public class DisplayerTERenderer extends TileEntityRenderer<DisplayerTileEntity>
 		}
 	}
 }
+*/

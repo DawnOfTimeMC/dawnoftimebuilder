@@ -10,11 +10,11 @@ import net.minecraft.world.IBlockReader;
 import org.dawnoftimebuilder.block.templates.SidedColumnConnectibleBlock;
 import org.dawnoftimebuilder.utils.DoTBBlockUtils;
 
-public class BlockSerpentSculptedColumn extends SidedColumnConnectibleBlock {
+public class SerpentSculptedColumnBlock extends SidedColumnConnectibleBlock {
 
 	private static final VoxelShape[] SHAPES = DoTBBlockUtils.GenerateHorizontalShapes(makeShapes());
 
-	public BlockSerpentSculptedColumn() {
+	public SerpentSculptedColumnBlock() {
 		super(Material.ROCK, 1.5F, 6.0F);
 	}
 

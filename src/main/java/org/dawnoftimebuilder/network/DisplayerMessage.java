@@ -1,3 +1,4 @@
+/*
 package org.dawnoftimebuilder.network;
 
 import net.minecraft.item.ItemStack;
@@ -67,3 +68,4 @@ public class DisplayerMessage implements IMessage<DisplayerMessage> {
 		supplier.get().setPacketHandled(true);
 	}
 }
+*/

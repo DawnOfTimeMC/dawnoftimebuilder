@@ -1,11 +1,9 @@
+/*
 package org.dawnoftimebuilder.registries;
 
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.ContainerType;
-import net.minecraftforge.fml.network.IContainerFactory;
-import org.dawnoftimebuilder.container.DisplayerContainer;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,3 +22,4 @@ public class DoTBContainersRegistry {
 		return type;
 	}
 }
+*/

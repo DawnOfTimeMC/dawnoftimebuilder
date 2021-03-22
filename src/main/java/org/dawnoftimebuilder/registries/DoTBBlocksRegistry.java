@@ -223,7 +223,7 @@ public class DoTBBlocksRegistry {
 	public static final Block PLASTERED_STONE_PLATE = reg("plastered_stone_plate", new PlateBlock(PLASTERED_STONE));
 	public static final Block PLASTERED_STONE_SLAB = reg("plastered_stone_slab", new SlabBlockDoTB(PLASTERED_STONE));
 	public static final Block PLASTERED_STONE_STAIRS = reg("plastered_stone_stairs", new StairsBlockDoTB(PLASTERED_STONE));
-	public static final Block PLASTERED_STONE_WINDOW = reg("plastered_stone_window", new BlockPlasteredStoneWindow());
+	public static final Block PLASTERED_STONE_WINDOW = reg("plastered_stone_window", new PlasteredStoneWindowBlock());
 	public static final Block CHISELED_PLASTERED_STONE = reg("chiseled_plastered_stone", new BlockDoTB(Material.ROCK,1.5F, 6.0F));
 	public static final Block ORNAMENTED_CHISELED_PLASTERED_STONE = reg("ornamented_chiseled_plastered_stone", new BlockDoTB(Material.ROCK,1.5F, 6.0F));
 	public static final Block RED_PLASTERED_STONE = reg("red_plastered_stone", new BlockDoTB(Material.ROCK,1.5F, 6.0F));
@@ -248,7 +248,7 @@ public class DoTBBlocksRegistry {
 	public static final Block PLASTERED_STONE_COLUMN = reg("plastered_stone_column", new PlasteredStoneColumnBlock());
 	public static final Block PLASTERED_STONE_CRESSET = reg("plastered_stone_cresset", new PlasteredStoneCressetBlock());
 	public static final Block FEATHERED_SERPENT_SCULPTURE = reg("feathered_serpent_sculpture", new FeatheredSerpentSculptureBlock());
-	public static final Block SERPENT_SCULPTED_COLUMN = reg("serpent_sculpted_column", new BlockSerpentSculptedColumn());
+	public static final Block SERPENT_SCULPTED_COLUMN = reg("serpent_sculpted_column", new SerpentSculptedColumnBlock());
 
 	//Roman
 	public static final Block OCHRE_ROOF_TILES = reg("ochre_roof_tiles", new BlockDoTB(Material.ROCK, 1.5F, 5.0F));

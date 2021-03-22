@@ -1,3 +1,4 @@
+/*
 package org.dawnoftimebuilder.block.templates;
 
 import net.minecraft.block.BlockState;
@@ -80,3 +81,4 @@ public abstract class DisplayerBlock extends BlockDoTB {
 
 	public abstract double getDisplayerZ(BlockState state);
 }
+*/

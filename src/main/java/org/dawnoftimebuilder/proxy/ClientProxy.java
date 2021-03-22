@@ -1,19 +1,13 @@
 package org.dawnoftimebuilder.proxy;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.world.World;
 import net.minecraftforge.client.model.obj.OBJLoader;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.client.registry.ClientRegistry;
 
 import org.dawnoftimebuilder.client.gui.creative.CreativeInventoryEvents;
-import org.dawnoftimebuilder.client.gui.screen.DisplayerScreen;
-import org.dawnoftimebuilder.client.renderer.tileentity.DisplayerTERenderer;
-import org.dawnoftimebuilder.tileentity.DisplayerTileEntity;
 
 import static org.dawnoftimebuilder.DawnOfTimeBuilder.MOD_ID;
-import static org.dawnoftimebuilder.registries.DoTBContainersRegistry.DISPLAYER_CONTAINER;
 
 public class ClientProxy extends CommonProxy {
 
@@ -21,10 +15,6 @@ public class ClientProxy extends CommonProxy {
 	public void onSetupClient(){
 		MinecraftForge.EVENT_BUS.register(new CreativeInventoryEvents());
 		OBJLoader.INSTANCE.addDomain(MOD_ID);//TODO It doesn't work currently...
-
-		ClientRegistry.bindTileEntitySpecialRenderer(DisplayerTileEntity.class, new DisplayerTERenderer());
-
-		ScreenManager.registerFactory(DISPLAYER_CONTAINER, DisplayerScreen::new);
 	}
 
 	@Override
@@ -41,9 +31,8 @@ public class ClientProxy extends CommonProxy {
 		RenderingRegistry.registerEntityRenderingHandler(EntitySilkmoth.class, RendererSilkmoth.FACTORY);
 		RenderingRegistry.registerEntityRenderingHandler(EntityJapaneseDragon.class, RendererJapaneseDragon.FACTORY);
 	}
-*/
+
 	public void init(){
-		/*
 		bindTESR(DoTBTileEntityBed.class, new RendererTEBed());
 		bindTESR(DoTBTileEntityDryer.class, new RendererTEDryer());
 		bindTESR(DoTBTileEntityStove.class, new RendererTEStove());
@@ -53,9 +42,9 @@ public class ClientProxy extends CommonProxy {
 
 		DoTBItemsRegistry.initCustomModels();
 
-		MinecraftForge.EVENT_BUS.register(new CreativeInventoryDrawEvent());*/
+		MinecraftForge.EVENT_BUS.register(new CreativeInventoryDrawEvent());
 	}
-/*
+
 	private static <T extends TileEntity> void bindTESR(Class<T> tileEntityClass, TileEntitySpecialRenderer<? super T> specialRenderer){
 		ClientRegistry.bindTileEntitySpecialRenderer(tileEntityClass, specialRenderer);
 	}

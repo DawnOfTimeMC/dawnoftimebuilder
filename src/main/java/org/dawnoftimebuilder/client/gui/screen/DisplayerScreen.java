@@ -1,4 +1,4 @@
-package org.dawnoftimebuilder.client.gui.screen;
+/* package org.dawnoftimebuilder.client.gui.screen;
 
 import com.mojang.blaze3d.platform.GlStateManager;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
@@ -31,3 +31,4 @@ public class DisplayerScreen extends ContainerScreen<DisplayerContainer> {
         }
     }
 }
+*/

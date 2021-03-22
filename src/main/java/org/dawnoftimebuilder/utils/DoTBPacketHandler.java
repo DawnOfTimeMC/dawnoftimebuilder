@@ -1,3 +1,4 @@
+/*
 package org.dawnoftimebuilder.utils;
 
 import net.minecraft.util.ResourceLocation;
@@ -18,3 +19,4 @@ public class DoTBPacketHandler {
 			PROTOCOL_VERSION::equals
 	);
 }
+*/

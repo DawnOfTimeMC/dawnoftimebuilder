@@ -1,3 +1,4 @@
+/*
 package org.dawnoftimebuilder.tileentity;
 
 import net.minecraft.entity.player.PlayerInventory;
@@ -100,3 +101,4 @@ public class DisplayerTileEntity extends LockableLootTileEntity {
 		this.displayerContents = stacks;
 	}
 }
+*/

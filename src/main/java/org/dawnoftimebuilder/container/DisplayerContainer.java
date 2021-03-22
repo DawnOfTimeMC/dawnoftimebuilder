@@ -1,4 +1,4 @@
-package org.dawnoftimebuilder.container;
+/* package org.dawnoftimebuilder.container;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -71,3 +71,4 @@ public class DisplayerContainer extends Container {
 		return itemStack;
 	}
 }
+*/

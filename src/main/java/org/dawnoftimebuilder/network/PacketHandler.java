@@ -1,3 +1,4 @@
+/*
 package org.dawnoftimebuilder.network;
 
 import net.minecraft.util.ResourceLocation;
@@ -18,7 +19,7 @@ public class PacketHandler {
 	private static int nextId = 0;
 
 	public static void init() {
-		reg(DisplayerMessage.class, new DisplayerMessage());
+		//reg(DisplayerMessage.class, new DisplayerMessage());
 	}
 
 	private static <T> void reg(Class<T> messageClass, IMessage<T> message) {
@@ -29,3 +30,4 @@ public class PacketHandler {
 		HANDLER.send(target, message);
 	}
 }
+*/
