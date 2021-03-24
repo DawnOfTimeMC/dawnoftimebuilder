@@ -3,6 +3,6 @@
     "textures": {
         "bottom": "dawnoftimebuilder:block/charred_spruce_foundation_top",
         "top": "dawnoftimebuilder:block/charred_spruce_foundation_top",
-        "side": "dawnoftimebuilder:block/charred_spruce_foundation_side"
+        "side": "dawnoftimebuilder:block/charred_spruce_foundation"
     }
 }

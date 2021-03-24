@@ -1,8 +1,0 @@
-{
-    "parent": "block/slab_top",
-    "textures": {
-        "bottom": "dawnoftimebuilder:block/path_bottom",
-        "top": "dawnoftimebuilder:block/path_ochre_tiles_top",
-        "side": "dawnoftimebuilder:block/slab_path_ochre_tiles_side_full"
-    }
-}

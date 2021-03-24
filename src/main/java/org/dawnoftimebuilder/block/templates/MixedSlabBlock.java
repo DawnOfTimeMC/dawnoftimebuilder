@@ -41,6 +41,13 @@ public class MixedSlabBlock extends SlabBlockDoTB implements IBlockCustomItem {
 		this(Properties.from(block));
 	}
 
+	/**
+	 * Add a new mixed full Block recipe for this slab
+	 * @param secondSlab full block's second slab
+	 * @param mixedBlock block that results of the combination of both slabs
+	 * @param thisSlabIsBottom True if this slab is bottom, and the secondSlab is top. False otherwise.
+	 * @return this slab
+	 */
 	public Block addMixedBlockRecipe(SlabBlock secondSlab, Block mixedBlock, boolean thisSlabIsBottom){
 		this.listRecipes.add(new MixedBlockRecipe(secondSlab, mixedBlock, thisSlabIsBottom));
 		return this;

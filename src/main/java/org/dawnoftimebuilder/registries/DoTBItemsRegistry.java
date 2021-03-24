@@ -13,6 +13,7 @@ import java.util.*;
 
 import static net.minecraft.inventory.EquipmentSlotType.*;
 import static net.minecraft.item.ItemTier.DIAMOND;
+import static org.dawnoftimebuilder.utils.DoTBFoods.GRAPPE;
 
 public class DoTBItemsRegistry {
 	/*
@@ -36,7 +37,7 @@ public class DoTBItemsRegistry {
 	public static final Item GREY_TILE = reg(new ItemDoTB("grey_tile"));
 	public static final Item GREY_CLAY_TILE = reg(new ItemDoTB("grey_clay_tile"));
 	public static final Item MULBERRY_LEAVES = reg(new ItemDoTB("mulberry_leaves"));
-	public static final Item GRAPE = reg(new ItemDoTB("grape"));
+	public static final Item GRAPE = reg(new ItemDoTB("grape", new Item.Properties().food(GRAPPE)));
 	public static final Item GRAPE_SEEDS = reg(new ItemDoTB("grape_seeds"));
 	public static final Item CLEMATIS_SEEDS = reg(new ItemDoTB("clematis_seeds"));
 	public static final Item TACHI_SWORD = reg(new SwordItemDoTB("tachi_sword", DIAMOND, 3, -2.4F));//TODO import the model!!

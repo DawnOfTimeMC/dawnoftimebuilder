@@ -1,0 +1,22 @@
+{
+    "variants": {
+        "type=bottom": [
+            { "model": "dawnoftimebuilder:block/japanese/stepping_stones_slab_bottom_1" },
+            { "model": "dawnoftimebuilder:block/japanese/stepping_stones_slab_bottom_2" },
+            { "model": "dawnoftimebuilder:block/japanese/stepping_stones_slab_bottom_3" },
+            { "model": "dawnoftimebuilder:block/japanese/stepping_stones_slab_bottom_4" }
+        ],
+        "type=top": [
+            { "model": "dawnoftimebuilder:block/japanese/stepping_stones_slab_top_1" },
+            { "model": "dawnoftimebuilder:block/japanese/stepping_stones_slab_top_2" },
+            { "model": "dawnoftimebuilder:block/japanese/stepping_stones_slab_top_3" },
+            { "model": "dawnoftimebuilder:block/japanese/stepping_stones_slab_top_4" }
+        ],
+        "type=double": [
+            { "model": "dawnoftimebuilder:block/japanese/stepping_stones_1" },
+            { "model": "dawnoftimebuilder:block/japanese/stepping_stones_2" },
+            { "model": "dawnoftimebuilder:block/japanese/stepping_stones_3" },
+            { "model": "dawnoftimebuilder:block/japanese/stepping_stones_4" }
+        ]
+    }
+}

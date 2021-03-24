@@ -4,7 +4,7 @@
         "type":"CTM",
         "layer":"SOLID",
         "textures":[
-            "dawnoftimebuilder:block/spruce_timber_frame-ctm"
+            "dawnoftimebuilder:block/charred_spruce_timber_frame-ctm"
         ]
     }
 }

@@ -1,7 +1,8 @@
 {
+	"credit": "Made with Blockbench",
 	"textures": {
-		"texture": "dawnoftimebuilder:block/lattice_stone_bricks_window",
 		"particle": "dawnoftimebuilder:block/lattice_stone_bricks_window",
+		"texture": "dawnoftimebuilder:block/lattice_stone_bricks_window",
 		"tete": "dawnoftimebuilder:block/lattice_glass"
 	},
 	"elements": [
@@ -18,9 +19,9 @@
 			}
 		},
 		{
-			"from": [-3, -0.01, 2.01],
-			"to": [3, 16.01, 6.02],
-			"rotation": {"angle": 0, "axis": "y", "origin": [8, 8, 4]},
+			"from": [-3, -0.01, 3.01],
+			"to": [3, 16.01, 7.02],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 8, 5]},
 			"faces": {
 				"north": {"uv": [0, 9, 16, 13], "rotation": 90, "texture": "#texture"},
 				"east": {"uv": [0, 14, 16, 10], "rotation": 270, "texture": "#texture"},
@@ -31,9 +32,9 @@
 			}
 		},
 		{
-			"from": [-2.17157, 0, 0],
-			"to": [2.07143, 16, 4.243],
-			"rotation": {"angle": 45, "axis": "y", "origin": [-0.17157, -0.01, 2]},
+			"from": [-2.17157, 0, 1],
+			"to": [2.07143, 16, 5.243],
+			"rotation": {"angle": 45, "axis": "y", "origin": [-0.17157, -0.01, 3]},
 			"faces": {
 				"north": {"uv": [0, 10, 16, 14], "rotation": 90, "texture": "#texture"},
 				"east": {"uv": [0, 8, 16, 12], "rotation": 90, "texture": "#texture"},

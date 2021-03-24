@@ -14,7 +14,6 @@ public class ClientProxy extends CommonProxy {
 	@Override
 	public void onSetupClient(){
 		MinecraftForge.EVENT_BUS.register(new CreativeInventoryEvents());
-		OBJLoader.INSTANCE.addDomain(MOD_ID);//TODO It doesn't work currently...
 	}
 
 	@Override
