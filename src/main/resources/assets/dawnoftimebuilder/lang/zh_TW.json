@@ -81,8 +81,8 @@
     "item.dawnoftimebuilder.silk_worms": "Silk Worms",
     "item.dawnoftimebuilder.silk_worm_eggs": "Silk Worm Eggs",
     "item.dawnoftimebuilder.silk_worm_hatchery": "Silk Worm Hatchery",
-    "item.dawnoftimebuilder.silk_cocoons": "Silk Cocoons",
-    "item.dawnoftimebuilder.silk": "Silk",
+    "item.dawnoftimebuilder.silk_cocoons": "蠶繭",
+    "item.dawnoftimebuilder.silk": "絲綢",
     "item.dawnoftimebuilder.grey_tile": "Grey Tile",
     "item.dawnoftimebuilder.grey_clay_tile": "Grey Clay Tile",
     "block.dawnoftimebuilder.cast_iron_teapot_grey": "Grey Cast Iron Teapot",
@@ -99,6 +99,7 @@
     "block.dawnoftimebuilder.grey_roof_tiles_edge": "Grey Roof Tiles Edge",
     "block.dawnoftimebuilder.grey_roof_tiles_wall": "Grey Roof Tiles Wall",
     "block.dawnoftimebuilder.red_painted_log": "Red Painted Log",
+    "block.dawnoftimebuilder.burnt_spruce_planks": "Burnt Spruce Planks",
     "block.dawnoftimebuilder.spruce_foundation": "Spruce Foundation",
     "block.dawnoftimebuilder.spruce_foundation_slab": "Spruce Foundation Slab",
     "block.dawnoftimebuilder.spruce_log_covered": "Spruce Log Covered",
@@ -173,6 +174,6 @@
     "item.dawnoftimebuilder.pharaoh_armor_chest": "Pharaohs Clothes",
     "item.dawnoftimebuilder.pharaoh_armor_legs": "Pharaohs Shendyts",
     "item.dawnoftimebuilder.pharaoh_armor_feet": "Pharaohs Sandals",
-    "entity.dawnoftimebuilder.silkmoth": "Silkmoth",
+    "entity.dawnoftimebuilder.silkmoth": "絲蟲",
     "entity.dawnoftimebuilder.japanese_dragon": "Japanese Dragon"
 }
