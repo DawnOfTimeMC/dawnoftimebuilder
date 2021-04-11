@@ -1,7 +1,8 @@
 {
+	"credit": "Made with Blockbench",
 	"textures": {
-		"texture": "dawnoftimebuilder:block/spruce_roof_support",
-		"particle": "dawnoftimebuilder:block/spruce_roof_support"
+		"particle": "dawnoftimebuilder:block/charred_spruce_roof_support_corner",
+		"texture": "dawnoftimebuilder:block/charred_spruce_roof_support_corner"
 	},
 	"elements": [
 		{
@@ -22,9 +23,9 @@
 			"rotation": {"angle": 45, "axis": "y", "origin": [10.29127, 13, 6.49228]},
 			"faces": {
 				"north": {"uv": [0, 0, 10, 3.5], "texture": "#texture"},
-				"east": {"uv": [0.25, 3.75, 3.75, 7.25], "texture": "#texture"},
+				"east": {"uv": [3.5, 3.5, 7, 7], "texture": "#texture"},
 				"south": {"uv": [0, 0, 10, 3.5], "texture": "#texture"},
-				"west": {"uv": [0.25, 3.75, 3.75, 7.25], "texture": "#texture"},
+				"west": {"uv": [3.5, 3.5, 7, 7], "texture": "#texture"},
 				"up": {"uv": [0, 0, 10, 3.5], "texture": "#texture"},
 				"down": {"uv": [0, 0, 10, 3.5], "texture": "#texture"}
 			}

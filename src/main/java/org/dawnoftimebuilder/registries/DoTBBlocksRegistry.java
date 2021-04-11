@@ -169,11 +169,16 @@ public class DoTBBlocksRegistry {
 	public static final Block CHARRED_SPRUCE_TIMBER_FRAME = reg("charred_spruce_timber_frame", new BlockDoTB(Material.WOOD, 3.0F, 6.0F).setBurnable());
 	public static final Block CHARRED_SPRUCE_TIMBER_FRAME_PILLAR = reg("charred_spruce_timber_frame_pillar", new RotatedPillarBlockDoTB(Material.WOOD, 3.0F, 6.0F).setBurnable());
 	public static final Block SPRUCE_LOW_TABLE = reg("spruce_low_table" ,new SpruceLowTableBlock());
-	//public static final Block X = reg(new BlockSpruceRoofSupport("spruce_roof_support"));
-	//public static final Block X = reg(new BlockSpruceRoofSupportMerged());
-
+	public static final Block GREY_ROOF_TILES = reg("grey_roof_tiles", new BlockDoTB(Material.ROCK,1.5F, 5.0F));
+	public static final Block GREY_ROOF_TILES_STAIRS = reg("grey_roof_tiles_stairs", new StairsBlockDoTB(GREY_ROOF_TILES));
+	public static final Block GREY_ROOF_TILES_PLATE = reg("grey_roof_tiles_plate", new PlateBlock(GREY_ROOF_TILES));
+	public static final Block GREY_ROOF_TILES_SLAB = reg("grey_roof_tiles_slab", new SlabBlockDoTB(GREY_ROOF_TILES));
+	public static final Block GREY_ROOF_TILES_EDGE = reg("grey_roof_tiles_edge", new EdgeBlock(GREY_ROOF_TILES));
+	public static final Block GREY_ROOF_TILES_WALL = reg("grey_roof_tiles_wall", new WallBlockDoTB(Material.ROCK,1.5F, 5.0F));
+	public static final Block CHARRED_SPRUCE_ROOF_SUPPORT = reg("charred_spruce_roof_support", new MixedRoofSupportBlock((SlabBlock) GREY_ROOF_TILES_SLAB, CHARRED_SPRUCE_PLANKS));
 	public static final Block STEPPING_STONES = reg("stepping_stones", new BlockDoTB(Block.Properties.create(Material.SAND, MaterialColor.STONE).hardnessAndResistance(1.2F).sound(SoundType.GROUND)));
 	public static final Block STEPPING_STONES_SLAB = reg("stepping_stones_slab", new SlabBlockDoTB(STEPPING_STONES));
+
 	//public static final Block X = reg(new DoTBBlockDryer("bamboo_drying_tray", Material.WOOD, 1.0F, SoundType.WOOD));
 	public static final Block CAMELLIA = reg("camellia", new GrowingBushBlock("camellia_seeds", Plains));
 	public static final Block MULBERRY = reg("mulberry", new MulberryBlock());
@@ -183,21 +188,16 @@ public class DoTBBlocksRegistry {
 	public static final Block CAST_IRON_TEACUP_GREY = reg("cast_iron_teacup_grey", new CastIronTeacupBlock());
 	public static final Block CAST_IRON_TEACUP_GREEN = reg("cast_iron_teacup_green", new CastIronTeacupBlock());
 	public static final Block CAST_IRON_TEACUP_DECORATED = reg("cast_iron_teacup_decorated", new CastIronTeacupBlock());
-	//public static final Block X = reg(new BlockFloweryPaperWall());
 	//public static final Block X = reg(new BlockPaperLamp());
-	public static final Block GREY_ROOF_TILES = reg("grey_roof_tiles", new BlockDoTB(Material.ROCK,1.5F, 5.0F));
-	public static final Block GREY_ROOF_TILES_STAIRS = reg("grey_roof_tiles_stairs", new StairsBlockDoTB(GREY_ROOF_TILES));
-	public static final Block GREY_ROOF_TILES_SLAB = reg("grey_roof_tiles_slab", new SlabBlockDoTB(GREY_ROOF_TILES));
-	public static final Block GREY_ROOF_TILES_EDGE = reg("grey_roof_tiles_edge", new EdgeBlock(GREY_ROOF_TILES));
-	public static final Block GREY_ROOF_TILES_WALL = reg("grey_roof_tiles_wall", new WallBlockDoTB(Material.ROCK,1.5F, 5.0F));
 	public static final Block IKEBANA_FLOWER_POT = reg("ikebana_flower_pot", new IkebanaFlowerPotBlock());
 	//public static final Block X = reg(new BlockSpruceLeglessChair());
 	//public static final Block X = reg(new BlockLittleFlag());
 	//public static final Block X = reg(new BlockPaperDoor());
 	//public static final Block X = reg(new BlockPaperLantern());
-	//public static final Block X = reg("paper_wall", new BlockPaperWall());
-	//public static final Block X = reg("paper_wall_flat", new BlockPaperWall());
+	public static final Block PAPER_WALL = reg("paper_wall", new PaneBlockDoTB(Material.WOOL, 1.0F, 1.0F).setBurnable());
+	public static final Block PAPER_WALL_FLAT = reg("paper_wall_flat", new PaneBlockDoTB(Material.WOOL, 1.0F, 1.0F).setBurnable());
 	public static final Block PAPER_WALL_WINDOWS = reg("paper_wall_window", new PaneBlockDoTB(Material.WOOL, 1.0F, 1.0F).setBurnable());
+	public static final Block PAPER_WALL_FLOWERY = reg("paper_wall_flowery", new PaneBlockDoTB(Material.WOOL, 1.0F, 1.0F).setBurnable());
 	//public static final Block X = reg(new BlockPaperFoldingScreen());
 	//public static final Block X = reg(new BlockRedPaintedLog());
 	public static final Block RICE = reg("rice", new WaterDoubleCropsBlock("rice", 2));
