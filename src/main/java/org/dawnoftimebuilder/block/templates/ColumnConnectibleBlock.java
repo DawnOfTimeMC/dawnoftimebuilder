@@ -52,8 +52,6 @@ public abstract class ColumnConnectibleBlock extends WaterloggedBlock {
 	}
 
 	public boolean isConnectible(IWorld worldIn, BlockPos pos, BlockState stateIn){
-		ResourceLocation rs = worldIn.getBlockState(pos).getBlock().getRegistryName();
-		if(rs == null) return false;
-		return rs.equals(stateIn.getBlock().getRegistryName());
+		return worldIn.getBlockState(pos).getBlock() == this;
 	}
 }

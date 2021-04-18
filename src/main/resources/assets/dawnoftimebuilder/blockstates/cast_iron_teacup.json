@@ -2,6 +2,6 @@
     "variants": {
         "variant=decorated": { "model": "dawnoftimebuilder:block/japanese/cast_iron_teacup_decorated" },
         "variant=green": { "model": "dawnoftimebuilder:block/japanese/cast_iron_teacup_green" },
-        "variant=grey": { "model": "dawnoftimebuilder:block/japanese/cast_iron_teacup_grey" }
+        "variant=grey": { "model": "dawnoftimebuilder:block/japanese/cast_iron_teacup_gray" }
     }
 }

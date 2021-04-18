@@ -34,8 +34,8 @@ public class DoTBItemsRegistry {
 	//public static final Item CAMELLIA_LEAVES = reg(new DoTBItemCanBeDried("camellia_leaves", 1,40, TEA_LEAVES, 1));
 	public static final Item WAX = reg(new ItemDoTB("wax"));
 	public static final Item BAMBOO_HAT = reg(new ItemDoTB("bamboo_hat"));//TODO import the model!!
-	public static final Item GREY_TILE = reg(new ItemDoTB("grey_tile"));
-	public static final Item GREY_CLAY_TILE = reg(new ItemDoTB("grey_clay_tile"));
+	public static final Item GRAY_TILE = reg(new ItemDoTB("gray_tile"));
+	public static final Item GRAY_CLAY_TILE = reg(new ItemDoTB("gray_clay_tile"));
 	public static final Item MULBERRY_LEAVES = reg(new ItemDoTB("mulberry_leaves"));
 	public static final Item GRAPE = reg(new ItemDoTB("grape", new Item.Properties().food(GRAPPE)));
 	public static final Item GRAPE_SEEDS = reg(new ItemDoTB("grape_seeds"));

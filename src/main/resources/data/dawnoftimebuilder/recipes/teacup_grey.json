@@ -9,10 +9,10 @@
 			"tag": "forge:ingots/iron"
 		},
 		"i": {
-			"item": "minecraft:grey_dye"
+			"item": "minecraft:gray_dye"
 		}
 	},
 	"result": {
-		"item": "dawnoftimebuilder:teacup_grey"
+		"item": "dawnoftimebuilder:teacup_gray"
 	}
 }

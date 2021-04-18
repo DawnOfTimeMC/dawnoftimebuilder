@@ -1,28 +1,12 @@
 {
-	"forge_marker": 1,
-	"defaults": {
-		"model": "dawnoftimebuilder:block/japanese/paper_folding_screen"
-	},
 	"variants": {
-		"rotated": {
-			"true": {
-				"y": 90
-			},
-			"false": {}
-		},
-		"vertical_connection": {
-			"none": {
-				"textures": { "texture": "dawnoftimebuilder:block/paper_folding_screen_none" }
-			},
-			"above": {
-				"textures": { "texture": "dawnoftimebuilder:block/paper_folding_screen_above" }
-			},
-			"both": {
-				"textures": { "texture": "dawnoftimebuilder:block/paper_folding_screen_both" }
-			},
-			"under": {
-				"textures": { "texture": "dawnoftimebuilder:block/paper_folding_screen_under" }
-			}
-		}
+		"vertical_connection=under,inverted=false": { "model": "dawnoftimebuilder:block/japanese/paper_folding_screen_top" },
+		"vertical_connection=both,inverted=false": { "model": "dawnoftimebuilder:block/japanese/paper_folding_screen_middle" },
+		"vertical_connection=above,inverted=false": { "model": "dawnoftimebuilder:block/japanese/paper_folding_screen_bottom" },
+		"vertical_connection=none,inverted=false": { "model": "dawnoftimebuilder:block/japanese/paper_folding_screen_lone" },
+		"vertical_connection=under,inverted=true": { "model": "dawnoftimebuilder:block/japanese/paper_folding_screen_top", "y": 90},
+		"vertical_connection=both,inverted=true": { "model": "dawnoftimebuilder:block/japanese/paper_folding_screen_middle", "y": 90 },
+		"vertical_connection=above,inverted=true": { "model": "dawnoftimebuilder:block/japanese/paper_folding_screen_bottom", "y": 90 },
+		"vertical_connection=none,inverted=true": { "model": "dawnoftimebuilder:block/japanese/paper_folding_screen_lone", "y": 90 }
 	}
 }
