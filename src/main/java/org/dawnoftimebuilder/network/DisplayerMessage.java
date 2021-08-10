@@ -1,4 +1,3 @@
-/*
 package org.dawnoftimebuilder.network;
 
 import net.minecraft.item.ItemStack;
@@ -55,17 +54,13 @@ public class DisplayerMessage implements IMessage<DisplayerMessage> {
 	}
 
 	@Override
-	public void handle(DisplayerMessage message, Supplier<NetworkEvent.Context> supplier) {
-		supplier.get().enqueueWork(() -> {
+	public void handle(DisplayerMessage message, Supplier<NetworkEvent.Context> context) {
+		context.get().enqueueWork(() -> {
 			World world = DawnOfTimeBuilder.PROXY.getClientWorld();
 			if(world != null){
 				TileEntity te = world.getTileEntity(message.pos);
-				if(te instanceof DisplayerTileEntity){
-					((DisplayerTileEntity) te).receiveMessageFromServer(message.stacks);
-				}
 			}
 		});
-		supplier.get().setPacketHandled(true);
+		context.get().setPacketHandled(true);
 	}
 }
-*/

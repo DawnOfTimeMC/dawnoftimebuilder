@@ -15,7 +15,6 @@ public class DoTBBlockStateProperties {
 
     public static final BooleanProperty BURNING = BooleanProperty.create("burning");
     public static final BooleanProperty CUT = BooleanProperty.create("cut");
-    public static final BooleanProperty FULL = BooleanProperty.create("full");
     public static final BooleanProperty ROLLED = BooleanProperty.create("rolled");
     public static final BooleanProperty AXIS_X = BooleanProperty.create("axis_x");
     public static final BooleanProperty AXIS_Y = BooleanProperty.create("axis_y");

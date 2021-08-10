@@ -1,9 +1,9 @@
-/*
 package org.dawnoftimebuilder.block.templates;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.ItemStack;
@@ -14,13 +14,14 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.network.NetworkHooks;
 import org.dawnoftimebuilder.tileentity.DisplayerTileEntity;
 
 import javax.annotation.Nullable;
 
 import static org.dawnoftimebuilder.registries.DoTBTileEntitiesRegistry.DISPLAYER_TE;
 
-public abstract class DisplayerBlock extends BlockDoTB {
+public abstract class DisplayerBlock extends WaterloggedBlock {
 
 	public DisplayerBlock(Material materialIn, float hardness, float resistance) {
 		super(materialIn, hardness, resistance);
@@ -46,34 +47,28 @@ public abstract class DisplayerBlock extends BlockDoTB {
 	public boolean onBlockActivated(BlockState blockState, World world, BlockPos pos, PlayerEntity playerEntity, Hand hand, BlockRayTraceResult rayTraceResult) {
 		if(!world.isRemote()){
 			TileEntity tileEntity = world.getTileEntity(pos);
-			if(tileEntity instanceof DisplayerTileEntity){
-				playerEntity.openContainer((INamedContainerProvider) tileEntity);
-				return true;
+			if(tileEntity instanceof INamedContainerProvider){
+				NetworkHooks.openGui((ServerPlayerEntity) playerEntity, (INamedContainerProvider) tileEntity, tileEntity.getPos());
 			}
 		}
-		return false;
+		return true;
 	}
 
-	@Override
-	public boolean eventReceived(BlockState state, World worldIn, BlockPos pos, int id, int param) {
-		TileEntity tileentity = worldIn.getTileEntity(pos);
-		if(tileentity == null) return super.eventReceived(state, worldIn, pos, id, param);
-		return tileentity.receiveClientEvent(id, param);
-	}
-
+	//TODO Check if the inventory is properly dropped
+	/*
 	@Override
 	public void onReplaced(BlockState oldState, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
 		if (oldState.getBlock() != newState.getBlock()) {
 			TileEntity tileEntity = worldIn.getTileEntity(pos);
 			if (tileEntity instanceof DisplayerTileEntity) {
-				final NonNullList<ItemStack> inventory = ((DisplayerTileEntity) tileEntity).getItems();
+				final NonNullList<ItemStack> inventory = ((DisplayerTileEntity) tileEntity).;
 				for(ItemStack item : inventory){
 					InventoryHelper.spawnItemStack(worldIn, pos.getX(), pos.getY(), pos.getZ(), item);
 				}
 			}
 		}
 		super.onReplaced(oldState, worldIn, pos, newState, isMoving);
-	}
+	}*/
 
 	public abstract double getDisplayerX(BlockState state);
 
@@ -81,4 +76,3 @@ public abstract class DisplayerBlock extends BlockDoTB {
 
 	public abstract double getDisplayerZ(BlockState state);
 }
-*/

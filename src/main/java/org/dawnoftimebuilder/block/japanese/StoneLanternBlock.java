@@ -18,6 +18,7 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import org.dawnoftimebuilder.block.templates.WaterloggedBlock;
+import org.dawnoftimebuilder.utils.DoTBBlockUtils;
 
 import javax.annotation.Nonnull;
 
@@ -25,8 +26,8 @@ import static org.dawnoftimebuilder.utils.DoTBBlockUtils.DoTBTags.CHAINS;
 
 public class StoneLanternBlock extends WaterloggedBlock {
 
-    private static final VoxelShape VS_VERTICAL = makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 16.0D, 14.0D);
-    private static final VoxelShape VS_SIDED = makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 16.0D, 14.0D);
+    private static final VoxelShape VS_CENTER = makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 16.0D, 14.0D);
+    private static final VoxelShape[] VS_SIDE = DoTBBlockUtils.GenerateHorizontalShapes(new VoxelShape[]{makeCuboidShape(2.0D, 0.0D, 0.0D, 14.0D, 16.0D, 14.0D)});
     public static final DirectionProperty FACING = BlockStateProperties.FACING;
     public static final BooleanProperty HANGING = BlockStateProperties.HANGING;
 
@@ -65,8 +66,8 @@ public class StoneLanternBlock extends WaterloggedBlock {
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
         Direction facing = state.get(FACING);
         if(facing.getAxis() == Direction.Axis.Y){
-            return VS_VERTICAL;
-        }else return VS_SIDED;
+            return VS_CENTER;
+        }else return VS_SIDE[facing.getHorizontalIndex()];
     }
 
     @Override

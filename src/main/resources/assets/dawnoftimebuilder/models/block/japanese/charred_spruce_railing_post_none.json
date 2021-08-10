@@ -1,7 +1,7 @@
 {
 	"textures": {
-		"slab": "block/spruce_log",
-		"particle": "block/spruce_log"
+		"slab": "dawnoftimebuilder:block/charred_spruce_log_stripped",
+		"particle": "dawnoftimebuilder:block/charred_spruce_log_stripped"
 	},
 	"elements": [
 		{

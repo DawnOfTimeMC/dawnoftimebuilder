@@ -1,19 +1,29 @@
 package org.dawnoftimebuilder.proxy;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.world.World;
 import net.minecraftforge.client.model.obj.OBJLoader;
 import net.minecraftforge.common.MinecraftForge;
 
+import net.minecraftforge.fml.client.registry.ClientRegistry;
 import org.dawnoftimebuilder.client.gui.creative.CreativeInventoryEvents;
+import org.dawnoftimebuilder.client.gui.screen.DisplayerScreen;
+import org.dawnoftimebuilder.client.renderer.tileentity.DisplayerTERenderer;
+import org.dawnoftimebuilder.registries.DoTBTileEntitiesRegistry;
+import org.dawnoftimebuilder.tileentity.DisplayerTileEntity;
 
 import static org.dawnoftimebuilder.DawnOfTimeBuilder.MOD_ID;
+import static org.dawnoftimebuilder.registries.DoTBContainersRegistry.DISPLAYER_CONTAINER;
 
 public class ClientProxy extends CommonProxy {
 
 	@Override
 	public void onSetupClient(){
 		MinecraftForge.EVENT_BUS.register(new CreativeInventoryEvents());
+		ScreenManager.registerFactory(DISPLAYER_CONTAINER, DisplayerScreen::new);
+		System.out.print("Screens Registered");
+		ClientRegistry.bindTileEntitySpecialRenderer(DisplayerTileEntity.class, new DisplayerTERenderer());
 	}
 
 	@Override

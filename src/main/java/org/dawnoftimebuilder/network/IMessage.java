@@ -1,4 +1,3 @@
-/*
 package org.dawnoftimebuilder.network;
 
 import net.minecraft.network.PacketBuffer;
@@ -14,4 +13,3 @@ public interface IMessage<T>
 
 	void handle(T message, Supplier<NetworkEvent.Context> supplier);
 }
-*/

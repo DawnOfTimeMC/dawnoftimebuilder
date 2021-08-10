@@ -33,19 +33,23 @@ public class CharredSpruceRailingBlock extends FenceBlockDoTB {
 	public BlockState getStateForPlacement(BlockItemUseContext context) {
 		BlockState state = super.getStateForPlacement(context);
 		if(state == null) return this.getDefaultState();
-		return state.with(FENCE_PILLAR, (context.getFace().getAxis().isVertical()) ? FencePillar.PILLAR_BIG : FencePillar.NONE);
+		if(context.isPlacerSneaking()){
+			return state.with(FENCE_PILLAR, FencePillar.NONE);
+		}else return this.getPillarShape(state, context.getWorld(), context.getPos());
 	}
 
 	@Override
 	public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
 		stateIn = super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
 		if(this.hasNoPillar(stateIn)) return stateIn;
-		else{
-			if((stateIn.get(EAST) || stateIn.get(WEST)) && (stateIn.get(NORTH) || stateIn.get(SOUTH))){
-				if(!worldIn.isAirBlock(currentPos.up())) return stateIn.with(FENCE_PILLAR, FencePillar.PILLAR_BIG);
-				else return stateIn.with(FENCE_PILLAR, FencePillar.CAP_PILLAR_BIG);
-			}else return stateIn.with(FENCE_PILLAR, FencePillar.PILLAR_SMALL);
-		}
+		else return this.getPillarShape(stateIn, worldIn, currentPos);
+	}
+
+	private BlockState getPillarShape(BlockState stateIn, IWorld worldIn, BlockPos currentPos){
+		if((stateIn.get(EAST) || stateIn.get(WEST)) && (stateIn.get(NORTH) || stateIn.get(SOUTH))){
+			if(worldIn.getBlockState(currentPos.up()).isSolid()) return stateIn.with(FENCE_PILLAR, FencePillar.PILLAR_BIG);
+			else return stateIn.with(FENCE_PILLAR, FencePillar.CAP_PILLAR_BIG);
+		}else return stateIn.with(FENCE_PILLAR, FencePillar.PILLAR_SMALL);
 	}
 
     private boolean hasNoPillar(BlockState state){

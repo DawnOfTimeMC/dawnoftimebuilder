@@ -1,4 +1,4 @@
-/* package org.dawnoftimebuilder.client.gui.screen;
+package org.dawnoftimebuilder.client.gui.screen;
 
 import com.mojang.blaze3d.platform.GlStateManager;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
@@ -14,7 +14,7 @@ import static org.dawnoftimebuilder.DawnOfTimeBuilder.MOD_ID;
 @OnlyIn(Dist.CLIENT)
 public class DisplayerScreen extends ContainerScreen<DisplayerContainer> {
 
-    private static ResourceLocation GUI_CONTAINER = new ResourceLocation(MOD_ID + ":textures/gui/displayer_gui.png");
+    private static final ResourceLocation GUI_CONTAINER = new ResourceLocation(MOD_ID + ":textures/gui/displayer_gui.png");
 
     public DisplayerScreen(DisplayerContainer container, PlayerInventory playerInventory, ITextComponent title){
         super(container, playerInventory, title);
@@ -31,4 +31,3 @@ public class DisplayerScreen extends ContainerScreen<DisplayerContainer> {
         }
     }
 }
-*/

@@ -10,6 +10,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.dawnoftimebuilder.network.PacketHandler;
 import org.dawnoftimebuilder.proxy.ClientProxy;
 import org.dawnoftimebuilder.proxy.CommonProxy;
 
@@ -33,7 +34,7 @@ public class DawnOfTimeBuilder {
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::onClientSetup);
 
 		MinecraftForge.EVENT_BUS.register(DoTBEvents.INSTANCE);
-		//MinecraftForge.TERRAIN_GEN_BUS.register(new DoTBWorldGen());
+		//PacketHandler.init();
 	}
 
 	private void onCommonSetup(FMLCommonSetupEvent event){

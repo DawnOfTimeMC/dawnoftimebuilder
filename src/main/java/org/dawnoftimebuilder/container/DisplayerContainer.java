@@ -1,55 +1,52 @@
-/* package org.dawnoftimebuilder.container;
+package org.dawnoftimebuilder.container;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.container.Container;
-import net.minecraft.inventory.container.ContainerType;
+import net.minecraft.inventory.container.IContainerListener;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.IWorldPosCallable;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.items.SlotItemHandler;
 import org.dawnoftimebuilder.tileentity.DisplayerTileEntity;
-
-import javax.annotation.Nullable;
-
 import static org.dawnoftimebuilder.registries.DoTBContainersRegistry.DISPLAYER_CONTAINER;
 
 public class DisplayerContainer extends Container {
 
-	private DisplayerTileEntity tileEntity;
+	private final DisplayerTileEntity tileEntity;
 
-	public DisplayerContainer(int windowId, PlayerInventory playerInventory, IInventory inventory) {
+	public DisplayerContainer(int windowId, PlayerInventory playerInventory, World world, BlockPos pos) {
 		super(DISPLAYER_CONTAINER, windowId);
-		this.tileEntity = (inventory instanceof DisplayerTileEntity) ? (DisplayerTileEntity) inventory : null;
-		inventory.openInventory(playerInventory.player);
+		this.tileEntity = (world.getTileEntity(pos) instanceof DisplayerTileEntity) ? (DisplayerTileEntity) world.getTileEntity(pos) : null;
+		if(this.tileEntity != null){
+			this.tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(h -> {
+				for(int i = 0; i < 3; i++){
+					for(int j = 0; j < 3; j++){
+						this.addSlot(new SlotItemHandler(h, j + i * 3, 19 + j * 18, 168 + i * 18));
+					}
+				}
+			});
 
-		for(int i = 0; i < 3; i++){
-			for(int j = 0; j < 3; j++){
-				this.addSlot(new Slot(inventory, j + i * 3, 19 + j * 18, 168 + i * 18));
+			for(int y = 0; y < 3; y++){
+				for (int x = 0; x < 9; x++){
+					this.addSlot(new Slot(playerInventory, 9 + x + y * 9, 88 + x * 18, 157 + y * 18));
+				}
 			}
-		}
 
-		for(int y = 0; y < 3; y++){
-			for (int x = 0; x < 9; x++){
-				this.addSlot(new Slot(playerInventory, 9 + x + y * 9, 88 + x * 18, 157 + y * 18));
+			for(int x = 0; x < 9; x++){
+				this.addSlot(new Slot(playerInventory, x, 88 + x * 18, 215));
 			}
-		}
-
-		for(int x = 0; x < 9; x++){
-			this.addSlot(new Slot(playerInventory, x, 88 + x * 18, 215));
 		}
 	}
-
-
 
 	@Override
 	public boolean canInteractWith(PlayerEntity playerIn) {
-		return this.tileEntity.isUsableByPlayer(playerIn);
-	}
-
-	@Override
-	public void onContainerClosed(PlayerEntity playerIn){
-		super.onContainerClosed(playerIn);
-		tileEntity.closeInventory(playerIn);
+		if(this.tileEntity.getWorld() == null) return false;
+		return isWithinUsableDistance(IWorldPosCallable.of(this.tileEntity.getWorld(), this.tileEntity.getPos()), playerIn, this.tileEntity.getBlockState().getBlock());
 	}
 
 	@Override
@@ -67,8 +64,6 @@ public class DisplayerContainer extends Container {
 			if(stackFromSlot.isEmpty()) slot.putStack(ItemStack.EMPTY);
 			else slot.onSlotChanged();
 		}
-		//tileEntity.world.notifyBlockUpdate(tileEntity.pos, tileEntity.getBlockState(), tileEntity.getBlockState(), 2);
 		return itemStack;
 	}
 }
-*/
