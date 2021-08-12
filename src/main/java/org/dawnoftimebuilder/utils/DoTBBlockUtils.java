@@ -2,11 +2,15 @@ package org.dawnoftimebuilder.utils;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.util.Hand;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
@@ -20,6 +24,7 @@ import net.minecraft.world.storage.loot.LootTable;
 import java.util.List;
 
 import static org.dawnoftimebuilder.DawnOfTimeBuilder.MOD_ID;
+import static org.dawnoftimebuilder.utils.DoTBBlockUtils.DoTBTags.FLINT_AND_STEEL;
 
 public class DoTBBlockUtils {
 
@@ -86,10 +91,30 @@ public class DoTBBlockUtils {
 		}
 	}
 
+	/**
+	 * Checks if the player can light the block. If yes, damages the item used and display the sound.
+	 * @param worldIn World of the Block.
+	 * @param pos Position of the Block.
+	 * @param player Player that clicks on the Block.
+	 * @param handIn Player's hand.
+	 * @return True if the block is now in fire. False otherwise.
+	 */
+	public static boolean lightFireBlock(World worldIn, BlockPos pos, PlayerEntity player, Hand handIn){
+		ItemStack itemInHand = player.getHeldItem(handIn);
+		if (!itemInHand.isEmpty() && FLINT_AND_STEEL.contains(itemInHand.getItem())) {
+			worldIn.playSound(null, pos, SoundEvents.BLOCK_FIRE_AMBIENT, SoundCategory.BLOCKS, 1.0F, 1.0F);
+			itemInHand.damageItem(1, player, (p) -> p.sendBreakAnimation(handIn));
+			return true;
+		}
+		return false;
+	}
+
 	public enum DoTBTags {
 
 		CHAINS("chains"),
-		COVERED_BLOCKS("covered_blocks");
+		COVERED_BLOCKS("covered_blocks"),
+		SHEARS("shears"),
+		FLINT_AND_STEEL("flint_and_steel");
 
 		private final ResourceLocation resource;
 

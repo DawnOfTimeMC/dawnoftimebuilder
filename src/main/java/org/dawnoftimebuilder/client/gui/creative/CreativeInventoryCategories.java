@@ -119,7 +119,7 @@ public enum CreativeInventoryCategories {
 			Item.getItemFromBlock(SPRUCE_DOOR),
 			Item.getItemFromBlock(SPRUCE_TRAPDOOR),
 			Item.getItemFromBlock(FIREPLACE),
-			Item.getItemFromBlock(IRON_CHAIN)
+			Item.getItemFromBlock(CHAIN)
 	),
 
 	EGYPTIAN("egyptian",
@@ -146,6 +146,7 @@ public enum CreativeInventoryCategories {
 			Item.getItemFromBlock(FIREPLACE),
 			Item.getItemFromBlock(LIMESTONE_FIREPLACE),
 			Item.getItemFromBlock(LIMESTONE_CHIMNEY),
+			Item.getItemFromBlock(CANDLESTICK),
 			DoTBItemsRegistry.GRAPE,
 			DoTBItemsRegistry.GRAPE_SEEDS
 	),
@@ -195,12 +196,13 @@ public enum CreativeInventoryCategories {
 			Item.getItemFromBlock(FIREPLACE),
 			Item.getItemFromBlock(STONE_BRICKS_FIREPLACE),
 			Item.getItemFromBlock(STONE_BRICKS_CHIMNEY),
+			Item.getItemFromBlock(CANDLESTICK),
 			Item.getItemFromBlock(FLAT_ROOF_TILES),
 			Item.getItemFromBlock(FLAT_ROOF_TILES_STAIRS),
 			Item.getItemFromBlock(FLAT_ROOF_TILES_SLAB),
 			Item.getItemFromBlock(FLAT_ROOF_TILES_EDGE),
 			Item.getItemFromBlock(IRON_PORTCULLIS),
-			Item.getItemFromBlock(IRON_CHAIN),
+			Item.getItemFromBlock(CHAIN),
 			DoTBItemsRegistry.IRON_PLATE_ARMOR_HEAD,
 			DoTBItemsRegistry.IRON_PLATE_ARMOR_CHEST,
 			DoTBItemsRegistry.IRON_PLATE_ARMOR_LEGS,
@@ -258,7 +260,7 @@ public enum CreativeInventoryCategories {
 			//DoTBItemsRegistry.PAPER_DOOR,
 			Item.getItemFromBlock(FIREPLACE),
 			//Item.getItemFromBlock(IRORI),
-			Item.getItemFromBlock(IRON_CHAIN),
+			Item.getItemFromBlock(CHAIN),
 			DoTBItemsRegistry.GRAY_TILE,
 			DoTBItemsRegistry.GRAY_CLAY_TILE,
 			//Item.getItemFromBlock(RED_PAINTED_LOG),
@@ -359,6 +361,7 @@ public enum CreativeInventoryCategories {
 			Item.getItemFromBlock(OCHRE_ROOF_TILES_PLATE),
 			Item.getItemFromBlock(OCHRE_ROOF_TILES_WALL),
 			Item.getItemFromBlock(SANDSTONE_COLUMN),
+			Item.getItemFromBlock(CYPRESS_LEAVES),
 			DoTBItemsRegistry.GRAPE,
 			DoTBItemsRegistry.GRAPE_SEEDS
 	);

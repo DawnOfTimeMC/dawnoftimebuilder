@@ -16,12 +16,7 @@ import static net.minecraft.item.ItemTier.DIAMOND;
 import static org.dawnoftimebuilder.utils.DoTBFoods.GRAPPE;
 
 public class DoTBItemsRegistry {
-	/*
-		private static final HashMap<String, IBakedModel> CUSTOM_MODELS = new HashMap<>();
-		public static IBakedModel getModel(String name){
-			return CUSTOM_MODELS.get(name);
-		}
-	*/
+
 	public static final List<Item> ITEMS = new ArrayList<>();
 
 	//General
@@ -39,7 +34,7 @@ public class DoTBItemsRegistry {
 	public static final Item MULBERRY_LEAVES = reg(new ItemDoTB("mulberry_leaves"));
 	public static final Item GRAPE = reg(new ItemDoTB("grape", new Item.Properties().food(GRAPPE)));
 	public static final Item GRAPE_SEEDS = reg(new ItemDoTB("grape_seeds"));
-	public static final Item CLEMATIS_SEEDS = reg(new ItemDoTB("clematis_seeds"));
+	//public static final Item CLEMATIS_SEEDS = reg(new ItemDoTB("clematis_seeds"));
 	public static final Item TACHI_SWORD = reg(new SwordItemDoTB("tachi_sword", DIAMOND, 3, -2.4F));//TODO import the model!!
 
 	//Armors

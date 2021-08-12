@@ -1,6 +1,7 @@
 package org.dawnoftimebuilder.registries;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.LeavesBlock;
 import net.minecraft.block.SlabBlock;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -11,6 +12,7 @@ import net.minecraft.util.BlockRenderLayer;
 import org.dawnoftimebuilder.block.IBlockCustomItem;
 import org.dawnoftimebuilder.block.french.LimestoneChimneyBlock;
 import org.dawnoftimebuilder.block.precolumbian.*;
+import org.dawnoftimebuilder.block.roman.CypressLeavesBlock;
 import org.dawnoftimebuilder.block.roman.SandstoneColumnBlock;
 import org.dawnoftimebuilder.block.templates.*;
 import org.dawnoftimebuilder.block.german.*;
@@ -47,6 +49,8 @@ public class DoTBBlocksRegistry {
 	public static final Block BIRCH_WALL = reg("birch_wall", new WallBlockDoTB(Material.ROCK, 1.5F, 6.0F).setBurnable());
 	public static final Block BIRCH_SUPPORT_BEAM = reg("birch_support_beam", new SupportBeamBlock(Material.WOOD, 2.0F, 3.0F).setBurnable());
 	public static final Block BIRCH_SUPPORT_SLAB = reg("birch_support_slab", new SupportSlabBlock(Material.WOOD, 1.5F, 3.0F).setBurnable());
+	public static final Block CHAIN = reg("chain", new ChainBlock(Material.IRON, 5.0F, 6.0F));
+	public static final Block CANDLESTICK = reg("candlestick", new CandlestickBlock(Material.IRON, 2.0F, 6.0F));
 	public static final Block DARK_OAK_PLANKS_EDGE = reg("dark_oak_planks_edge", new EdgeBlock(Material.WOOD, 2.0F, 3.0F).setBurnable());
 	public static final Block DARK_OAK_PLANKS_PLATE = reg("dark_oak_planks_plate", new PlateBlock(Material.WOOD, 2.0F, 3.0F).setBurnable());
 	public static final Block DARK_OAK_PERGOLA = reg("dark_oak_pergola", new PergolaBlock(Material.WOOD, 2.0F, 3.0F).setBurnable());
@@ -55,7 +59,6 @@ public class DoTBBlocksRegistry {
 	public static final Block DARK_OAK_WALL = reg("dark_oak_wall", new WallBlockDoTB(Material.ROCK, 1.5F, 6.0F).setBurnable());
 	public static final Block DARK_OAK_SUPPORT_BEAM = reg("dark_oak_support_beam", new SupportBeamBlock(Material.WOOD, 2.0F, 3.0F).setBurnable());
 	public static final Block DARK_OAK_SUPPORT_SLAB = reg("dark_oak_support_slab", new SupportSlabBlock(Material.WOOD, 1.5F, 3.0F).setBurnable());
-	public static final Block IRON_CHAIN = reg("iron_chain", new ChainBlock(Material.IRON, 5.0F, 6.0F));
 	public static final Block JUNGLE_PLANKS_EDGE = reg("jungle_planks_edge", new EdgeBlock(Material.WOOD, 2.0F, 3.0F).setBurnable());
 	public static final Block JUNGLE_PLANKS_PLATE = reg("jungle_planks_plate", new PlateBlock(Material.WOOD, 2.0F, 3.0F).setBurnable());
 	public static final Block JUNGLE_PERGOLA = reg("jungle_pergola", new PergolaBlock(Material.WOOD, 2.0F, 3.0F).setBurnable());
@@ -145,7 +148,6 @@ public class DoTBBlocksRegistry {
 	public static final Block WAXED_OAK_PLANKS_SLAB = reg("waxed_oak_planks_slab", new SlabBlockDoTB(WAXED_OAK_PLANKS).setBurnable());
 	public static final Block WAXED_OAK_PLANKS_STAIRS = reg("waxed_oak_planks_stairs", new StairsBlockDoTB(WAXED_OAK_PLANKS).setBurnable());
 
-
 	//Japanese
 	public static final Block CHARRED_SPRUCE_LOG_STRIPPED = reg("charred_spruce_log_stripped", new RotatedPillarBlockDoTB(Material.WOOD, 2.5F, 5.0F).setBurnable(2, 3));
 	public static final Block CHARRED_SPRUCE_PLANKS = reg("charred_spruce_planks", new BlockDoTB(Material.WOOD, 2.5F, 6.0F).setBurnable(2, 3));
@@ -178,16 +180,15 @@ public class DoTBBlocksRegistry {
 	public static final Block CHARRED_SPRUCE_ROOF_SUPPORT = reg("charred_spruce_roof_support", new MixedRoofSupportBlock((SlabBlock) GRAY_ROOF_TILES_SLAB, CHARRED_SPRUCE_PLANKS));
 	public static final Block STEPPING_STONES = reg("stepping_stones", new BlockDoTB(Block.Properties.create(Material.SAND, MaterialColor.STONE).hardnessAndResistance(1.2F).sound(SoundType.GROUND)));
 	public static final Block STEPPING_STONES_SLAB = reg("stepping_stones_slab", new SlabBlockDoTB(STEPPING_STONES));
-
-	//public static final Block X = reg(new DoTBBlockDryer("bamboo_drying_tray", Material.WOOD, 1.0F, SoundType.WOOD));
-	public static final Block CAMELLIA = reg("camellia", new GrowingBushBlock("camellia_seeds", Plains));
-	public static final Block MULBERRY = reg("mulberry", new MulberryBlock());
 	public static final Block CAST_IRON_TEAPOT_GRAY = reg("cast_iron_teapot_gray", new CastIronTeapotBlock(0.15F));
 	public static final Block CAST_IRON_TEAPOT_GREEN = reg("cast_iron_teapot_green", new CastIronTeapotBlock(0.05F));
 	public static final Block CAST_IRON_TEAPOT_DECORATED = reg("cast_iron_teapot_decorated", new CastIronTeapotBlock(0.07F));
 	public static final Block CAST_IRON_TEACUP_GRAY = reg("cast_iron_teacup_gray", new CastIronTeacupBlock());
 	public static final Block CAST_IRON_TEACUP_GREEN = reg("cast_iron_teacup_green", new CastIronTeacupBlock());
 	public static final Block CAST_IRON_TEACUP_DECORATED = reg("cast_iron_teacup_decorated", new CastIronTeacupBlock());
+	//public static final Block X = reg(new DoTBBlockDryer("bamboo_drying_tray", Material.WOOD, 1.0F, SoundType.WOOD));
+	public static final Block CAMELLIA = reg("camellia", new GrowingBushBlock("camellia_seeds", Plains, 3));
+	public static final Block MULBERRY = reg("mulberry", new DoubleGrowingBushBlock("mulberry", Plains, 3, 2));
 	public static final Block IKEBANA_FLOWER_POT = reg("ikebana_flower_pot", new IkebanaFlowerPotBlock());
 	//public static final Block X = reg(new BlockSpruceLeglessChair());
 	//public static final Block X = reg(new BlockLittleFlag());
@@ -252,13 +253,15 @@ public class DoTBBlocksRegistry {
 
 	//Roman
 	public static final Block OCHRE_ROOF_TILES = reg("ochre_roof_tiles", new BlockDoTB(Material.ROCK, 1.5F, 5.0F));
-	public static final Block SANDSTONE_BOT_OCHRE_ROOF_TILES_TOP = reg("sandstone_bot_ochre_roof_tiles_top", new NoItemBlock(Material.ROCK, 0.8F, 0.8F));
-	public static final Block OCHRE_ROOF_TILES_SLAB = reg("ochre_roof_tiles_slab", new MixedSlabBlock(OCHRE_ROOF_TILES).addMixedBlockRecipe((SlabBlock) SANDSTONE_SLAB, SANDSTONE_BOT_OCHRE_ROOF_TILES_TOP, false));
-	public static final Block SANDSTONE_COLUMN = reg("sandstone_column", new SandstoneColumnBlock());
 	public static final Block OCHRE_ROOF_TILES_EDGE = reg("ochre_roof_tiles_edge", new EdgeBlock(Material.ROCK, 2.0F, 3.0F));
 	public static final Block OCHRE_ROOF_TILES_PLATE = reg("ochre_roof_tiles_plate", new PlateBlock(Material.ROCK, 2.0F, 3.0F));
 	public static final Block OCHRE_ROOF_TILES_STAIRS = reg("ochre_roof_tiles_stairs", new StairsBlockDoTB(OCHRE_ROOF_TILES));
 	public static final Block OCHRE_ROOF_TILES_WALL = reg("ochre_roof_tiles_wall", new WallBlockDoTB(Material.ROCK, 1.5F, 6.0F));
+	public static final Block SANDSTONE_BOT_OCHRE_ROOF_TILES_TOP = reg("sandstone_bot_ochre_roof_tiles_top", new NoItemBlock(Material.ROCK, 0.8F, 0.8F));
+	public static final Block OCHRE_ROOF_TILES_SLAB = reg("ochre_roof_tiles_slab", new MixedSlabBlock(OCHRE_ROOF_TILES).addMixedBlockRecipe((SlabBlock) SANDSTONE_SLAB, SANDSTONE_BOT_OCHRE_ROOF_TILES_TOP, false));
+	public static final Block SANDSTONE_COLUMN = reg("sandstone_column", new SandstoneColumnBlock());
+	public static final Block CYPRESS_LEAVES = reg("cypress_leaves", new CypressLeavesBlock().setBurnable());
+	//TODO Add cypress log or sticks
 
 	private static Block reg(String name, Block block){
 		block = block.setRegistryName(MOD_ID, name);

@@ -1,8 +1,8 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "dawnoftimebuilder:block/cast_iron_teacup_grey",
-		"particle": "dawnoftimebuilder:block/cast_iron_teacup_grey"
+		"0": "dawnoftimebuilder:block/cast_iron_teacup_gray",
+		"particle": "dawnoftimebuilder:block/cast_iron_teacup_gray"
 	},
 	"elements": [
 		{

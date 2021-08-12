@@ -3,7 +3,6 @@ package org.dawnoftimebuilder.block.templates;
 import net.minecraft.block.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
@@ -23,14 +22,18 @@ import org.dawnoftimebuilder.utils.DoTBBlockUtils;
 
 import java.util.List;
 
+import static org.dawnoftimebuilder.utils.DoTBBlockUtils.DoTBTags.SHEARS;
+
 public class GrowingBushBlock extends SoilCropsBlock {
 
 	public VoxelShape[] SHAPES;
+	public int cutAge;
 	private static final IntegerProperty AGE = BlockStateProperties.AGE_0_5;
 	private static final BooleanProperty CUT = DoTBBlockStateProperties.CUT;
 
-	public GrowingBushBlock(String seedName, PlantType plantType){
+	public GrowingBushBlock(String seedName, PlantType plantType, int cutAge){
 		super(seedName, plantType);
+		this.cutAge = cutAge;
 		this.setDefaultState(this.getDefaultState().with(AGE, 0).with(CUT, false));
 		this.SHAPES = this.makeShapes();
 	}
@@ -76,6 +79,10 @@ public class GrowingBushBlock extends SoilCropsBlock {
 		return AGE;
 	}
 
+	public BooleanProperty getCutProperty(){
+		return CUT;
+	}
+
 	@Override
 	public int getMaxAge() {
 		return 5;
@@ -84,23 +91,26 @@ public class GrowingBushBlock extends SoilCropsBlock {
 	@Override
 	public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity playerIn, Hand hand, BlockRayTraceResult ray) {
 		if(this.isMaxAge(state)){
-			if (!worldIn.isRemote) {
+			if (!worldIn.isRemote()) {
 				ItemStack itemStackHand = playerIn.getHeldItem(hand);
-				boolean holdShears = itemStackHand.getItem() == Items.SHEARS;
+				boolean holdShears = SHEARS.contains(itemStackHand.getItem());
 				if(holdShears) itemStackHand.damageItem(1, playerIn, (p_220287_1_) -> p_220287_1_.sendBreakAnimation(hand));
 
 				ResourceLocation resourceLocation = this.getRegistryName();
 				if(resourceLocation != null) {
-					List<ItemStack> drops = DoTBBlockUtils.getLootList((ServerWorld)worldIn, state, pos, itemStackHand, resourceLocation.getPath());
-					DoTBBlockUtils.dropLootFromList(worldIn, pos, drops, holdShears ? 1.5F : 1.0F);
-
-					worldIn.playSound(null, pos, SoundEvents.BLOCK_GRASS_BREAK, SoundCategory.BLOCKS, 1.0F, 1.0F);
-					worldIn.setBlockState(pos, state.with(AGE, 3).with(CUT, true));
+					this.harvestWithoutBreaking(state, worldIn, pos, itemStackHand, resourceLocation.getPath(), holdShears ? 1.5F : 1.0F);
 					return true;
-				}
-				return false;
+				}else return false;
 			}
 		}
 		return false;
+	}
+
+	public void harvestWithoutBreaking(BlockState state, World worldIn, BlockPos pos, ItemStack itemStackHand, String blockName, float dropMultiplier ){
+		List<ItemStack> drops = DoTBBlockUtils.getLootList((ServerWorld)worldIn, state, pos, itemStackHand, blockName);
+		DoTBBlockUtils.dropLootFromList(worldIn, pos, drops, dropMultiplier);
+
+		worldIn.playSound(null, pos, SoundEvents.BLOCK_GRASS_BREAK, SoundCategory.BLOCKS, 1.0F, 1.0F);
+		worldIn.setBlockState(pos, state.with(AGE, this.cutAge).with(CUT, true));
 	}
 }

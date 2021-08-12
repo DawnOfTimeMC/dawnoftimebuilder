@@ -17,49 +17,33 @@ import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
+import org.dawnoftimebuilder.block.IBlockChain;
 import org.dawnoftimebuilder.block.templates.WaterloggedBlock;
 import org.dawnoftimebuilder.utils.DoTBBlockUtils;
 
 import javax.annotation.Nonnull;
 
-import static org.dawnoftimebuilder.utils.DoTBBlockUtils.DoTBTags.CHAINS;
-
-public class StoneLanternBlock extends WaterloggedBlock {
+public class StoneLanternBlock extends WaterloggedBlock implements IBlockChain {
 
     private static final VoxelShape VS_CENTER = makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 16.0D, 14.0D);
     private static final VoxelShape[] VS_SIDE = DoTBBlockUtils.GenerateHorizontalShapes(new VoxelShape[]{makeCuboidShape(2.0D, 0.0D, 0.0D, 14.0D, 16.0D, 14.0D)});
     public static final DirectionProperty FACING = BlockStateProperties.FACING;
-    public static final BooleanProperty HANGING = BlockStateProperties.HANGING;
 
     public StoneLanternBlock() {
         super(Properties.create(Material.ROCK).hardnessAndResistance(4.0F, 9.0F).lightValue(15));
-        this.setDefaultState(this.getStateContainer().getBaseState().with(WATERLOGGED,false).with(FACING, Direction.DOWN).with(HANGING, false));
+        this.setDefaultState(this.getStateContainer().getBaseState().with(WATERLOGGED,false).with(FACING, Direction.DOWN));
     }
 
     @Nonnull
     @Override
     public BlockState getStateForPlacement(BlockItemUseContext context) {
-        Direction facing = context.getFace();
-        if(facing == Direction.DOWN){
-            IWorld worldIn = context.getWorld();
-            BlockPos pos = context.getPos();
-            return super.getStateForPlacement(context).with(FACING, facing).with(HANGING, CHAINS.contains(worldIn.getBlockState(pos.up()).getBlock()));
-        }else return super.getStateForPlacement(context).with(FACING, facing);
+        return super.getStateForPlacement(context).with(FACING, context.getFace());
     }
 
     @Override
     protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
         super.fillStateContainer(builder);
-        builder.add(FACING, HANGING);
-    }
-
-    @Override
-    public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
-        BlockState newState = super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
-        if(facing == Direction.UP && stateIn.get(FACING) == Direction.DOWN) {
-            return newState.with(HANGING, CHAINS.contains(worldIn.getBlockState(facingPos).getBlock()));
-        }
-        else return newState;
+        builder.add(FACING);
     }
 
     @Override
@@ -83,5 +67,10 @@ public class StoneLanternBlock extends WaterloggedBlock {
     @Override
     public BlockState mirror(BlockState state, Mirror mirrorIn) {
         return rotate(state, Rotation.CLOCKWISE_180);
+    }
+
+    @Override
+    public boolean canConnectToChainUnder(BlockState state) {
+        return false;
     }
 }

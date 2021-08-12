@@ -6,6 +6,9 @@ public interface IBlockSpecialDisplay {
 		return 1.0F;
 	};
 
-	//TODO add particules effects
-	//void spawnParticules(int meta);
+	default int getDisplayedLightLevel(){
+		return 0;
+	}
+
+	default void getDisplayedParticles(){}
 }

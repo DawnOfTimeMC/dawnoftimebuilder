@@ -1,8 +1,9 @@
 {
 	"credit": "Made with Blockbench",
+	"parent": "block/block",
 	"textures": {
 		"texture": "dawnoftimebuilder:block/stone_lantern",
-		"particle": "dawnoftimebuilder:block/stone_lantern",
+		"particle": "dawnoftimebuilder:block/chain",
 		"chain": "dawnoftimebuilder:block/chain"
 	},
 	"elements": [
@@ -91,32 +92,31 @@
 			}
 		},
 		{
-			"from": [7, 15, 7],
-			"to": [9, 16, 9],
+			"from": [6.5, 12, 8],
+			"to": [9.5, 16, 8],
+			"shade": false,
+			"rotation": {"angle": 45, "axis": "y", "origin": [8, 8, 8]},
 			"faces": {
-				"north": {"uv": [9, 4, 10, 4.5], "texture": "#texture"},
-				"east": {"uv": [10, 4.5, 11, 5], "texture": "#texture"},
-				"south": {"uv": [10, 4, 11, 4.5], "texture": "#texture"},
-				"west": {"uv": [9, 4.5, 10, 5], "texture": "#texture"},
-				"up": {"uv": [8, 2, 9, 3], "texture": "#texture"},
-				"down": {"uv": [8, 3, 9, 4], "texture": "#texture"}
+				"north": {"uv": [3, 0, 0, 4], "texture": "#chain"},
+				"south": {"uv": [0, 0, 3, 4], "texture": "#chain"}
 			}
 		},
 		{
-			"from": [8, 13, 6],
-			"to": [8, 15, 10],
+			"from": [8, 12, 6.5],
+			"to": [8, 16, 9.5],
+			"shade": false,
+			"rotation": {"angle": 45, "axis": "y", "origin": [8, 8, 8]},
 			"faces": {
-				"east": {"uv": [4, 14, 8, 16], "texture": "#chain"},
-				"west": {"uv": [4, 14, 8, 16], "texture": "#chain"}
+				"east": {"uv": [3, 0, 6, 4], "texture": "#chain"},
+				"west": {"uv": [6, 0, 3, 4], "texture": "#chain"}
 			}
-		},
+		}
+	],
+	"groups": [0, 1, 2, 3, 4, 5, 6,
 		{
-			"from": [6, 11, 8],
-			"to": [10, 15, 8.001],
-			"faces": {
-				"north": {"uv": [0, 12, 4, 16], "texture": "#chain"},
-				"south": {"uv": [0, 12, 4, 16], "texture": "#chain"}
-			}
+			"name": "chain",
+			"origin": [8, 8, 8],
+			"children": [7, 8]
 		}
 	]
 }

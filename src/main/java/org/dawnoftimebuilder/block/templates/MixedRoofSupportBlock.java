@@ -17,7 +17,6 @@ import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.state.properties.Half;
 import net.minecraft.state.properties.SlabType;
 import net.minecraft.state.properties.StairsShape;
 import net.minecraft.util.*;
@@ -149,7 +148,7 @@ public class MixedRoofSupportBlock extends SlabBlockDoTB implements IBlockCustom
     @Override
     public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
         stateIn = super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
-        return facing.getAxis().isHorizontal() ? stateIn.with(SHAPE, getShapeProperty(stateIn, worldIn, currentPos)) : super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+        return facing.getAxis().isHorizontal() ? stateIn.with(SHAPE, getShapeProperty(stateIn, worldIn, currentPos)) : stateIn;
     }
 
     /**
@@ -161,7 +160,7 @@ public class MixedRoofSupportBlock extends SlabBlockDoTB implements IBlockCustom
         if (isSameBlock(adjacentState)) {
             if((state.get(TYPE) == SlabType.TOP) == (adjacentState.get(TYPE) == SlabType.TOP)){
                 Direction adjacentDirection = adjacentState.get(FACING);
-                if (adjacentDirection.getAxis() != state.get(FACING).getAxis() && isRoofSupport(state, worldIn, pos, adjacentDirection.getOpposite())) {
+                if (adjacentDirection.getAxis() != state.get(FACING).getAxis() && isConnectableRoofSupport(state, worldIn, pos, adjacentDirection.getOpposite())) {
                     return (adjacentDirection == direction.rotateYCCW()) ? StairsShape.OUTER_LEFT : StairsShape.OUTER_RIGHT;
                 }
             }
@@ -170,7 +169,7 @@ public class MixedRoofSupportBlock extends SlabBlockDoTB implements IBlockCustom
         if (isSameBlock(adjacentState)) {
             if((state.get(TYPE) == SlabType.TOP) == (adjacentState.get(TYPE) == SlabType.TOP)) {
                 Direction adjacentDirection = adjacentState.get(FACING);
-                if (adjacentDirection.getAxis() != state.get(FACING).getAxis() && isRoofSupport(state, worldIn, pos, adjacentDirection)) {
+                if (adjacentDirection.getAxis() != state.get(FACING).getAxis() && isConnectableRoofSupport(state, worldIn, pos, adjacentDirection)) {
                     return (adjacentDirection == direction.rotateYCCW()) ? StairsShape.INNER_LEFT : StairsShape.INNER_RIGHT;
                 }
             }
@@ -178,9 +177,9 @@ public class MixedRoofSupportBlock extends SlabBlockDoTB implements IBlockCustom
         return StairsShape.STRAIGHT;
     }
 
-    private boolean isRoofSupport(BlockState state, IBlockReader worldIn, BlockPos pos, Direction face) {
+    private boolean isConnectableRoofSupport(BlockState state, IBlockReader worldIn, BlockPos pos, Direction face) {
         BlockState adjacentState = worldIn.getBlockState(pos.offset(face));
-        return !isSameBlock(adjacentState) || adjacentState.get(FACING) != state.get(FACING) || ((adjacentState.get(TYPE) == SlabType.TOP) != (adjacentState.get(TYPE) == SlabType.TOP));
+        return !isSameBlock(adjacentState) || adjacentState.get(FACING) != state.get(FACING) || ((adjacentState.get(TYPE) == SlabType.TOP) != (state.get(TYPE) == SlabType.TOP));
     }
 
     public boolean isSameBlock(BlockState state) {

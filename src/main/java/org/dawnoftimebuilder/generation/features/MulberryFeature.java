@@ -40,7 +40,7 @@ public class MulberryFeature extends FeatureDoTB {
                 BlockState treeBaseState = mulberry.getDefaultState().with(mulberry.getAgeProperty(), mulberry.getMaxAge());
                 BlockState treeTopState = mulberry.getDefaultState().with(mulberry.getAgeProperty(), mulberry.getMaxAge()).with(DoubleCropsBlock.HALF, Half.TOP);
 
-                // set the block staties
+                // set the block states
                 worldIn.setBlockState(nextPos, treeBaseState, 2);
                 worldIn.setBlockState(nextPos.up(), treeTopState, 2);
             }

@@ -1,0 +1,43 @@
+{
+	"textures": {
+		"particle": "dawnoftimebuilder:block/chain",
+		"all": "dawnoftimebuilder:block/chain"
+	},
+	"elements": [
+		{
+			"from": [6.5, 0, 8],
+			"to": [9.5, 16, 8],
+			"shade": false,
+			"rotation": {"angle": 45, "axis": "y", "origin": [8, 8, 8]},
+			"faces": {
+				"north": {"uv": [3, 0, 0, 16], "texture": "#all"},
+				"south": {"uv": [0, 0, 3, 16], "texture": "#all"}
+			}
+		},
+		{
+			"from": [8, 0, 6.5],
+			"to": [8, 16, 9.5],
+			"shade": false,
+			"rotation": {"angle": 45, "axis": "y", "origin": [8, 8, 8]},
+			"faces": {
+				"east": {"uv": [3, 0, 6, 16], "texture": "#all"},
+				"west": {"uv": [6, 0, 3, 16], "texture": "#all"}
+			}
+		}
+	],
+	"display": {
+		"ground": {
+			"scale": [0.3, 0.3, 0.]
+		},
+		"gui": {
+			"rotation": [0, 20, 0]
+		},
+		"head": {
+			"translation": [0, 14, 0]
+		},
+		"fixed": {
+			"translation": [0, 0, -1],
+			"scale": [1.2, 1.2, 1.2]
+		}
+	}
+}

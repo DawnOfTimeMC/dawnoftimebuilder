@@ -1,8 +1,0 @@
-{
-    "variants": {
-        "vertical_connection=under": { "model": "dawnoftimebuilder:block/general/iron_chain_top" },
-        "vertical_connection=both": { "model": "dawnoftimebuilder:block/general/iron_chain_middle" },
-        "vertical_connection=above": { "model": "dawnoftimebuilder:block/general/iron_chain_bottom" },
-        "vertical_connection=none": { "model": "dawnoftimebuilder:block/general/iron_chain_lone" }
-    }
-}

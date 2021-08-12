@@ -57,6 +57,6 @@ public class SupportSlabBlock extends WaterloggedBlock {
 	@Override
 	public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
 		stateIn = super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
-		return stateIn.with(PILLAR_CONNECTION, IBlockPillar.getPillarConnection(worldIn, currentPos.down()));
+		return facing == Direction.DOWN ? stateIn.with(PILLAR_CONNECTION, IBlockPillar.getPillarConnection(worldIn, currentPos.down())) : stateIn;
 	}
 }

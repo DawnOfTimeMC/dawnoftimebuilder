@@ -6,15 +6,15 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.inventory.container.INamedContainerProvider;
-import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Hand;
-import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.IBlockReader;
+import net.minecraft.world.IEnviromentBlockReader;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
+import net.minecraftforge.items.CapabilityItemHandler;
 import org.dawnoftimebuilder.tileentity.DisplayerTileEntity;
 
 import javax.annotation.Nullable;
@@ -22,6 +22,10 @@ import javax.annotation.Nullable;
 import static org.dawnoftimebuilder.registries.DoTBTileEntitiesRegistry.DISPLAYER_TE;
 
 public abstract class DisplayerBlock extends WaterloggedBlock {
+
+	//TODO Add lightLevel from blocks inside the table.
+	//TODO Handle particles from blocks inside the table.
+	private int lightCurrentValue = 0;
 
 	public DisplayerBlock(Material materialIn, float hardness, float resistance) {
 		super(materialIn, hardness, resistance);
@@ -54,21 +58,30 @@ public abstract class DisplayerBlock extends WaterloggedBlock {
 		return true;
 	}
 
-	//TODO Check if the inventory is properly dropped
-	/*
 	@Override
 	public void onReplaced(BlockState oldState, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
 		if (oldState.getBlock() != newState.getBlock()) {
 			TileEntity tileEntity = worldIn.getTileEntity(pos);
 			if (tileEntity instanceof DisplayerTileEntity) {
-				final NonNullList<ItemStack> inventory = ((DisplayerTileEntity) tileEntity).;
-				for(ItemStack item : inventory){
-					InventoryHelper.spawnItemStack(worldIn, pos.getX(), pos.getY(), pos.getZ(), item);
-				}
+				tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(h -> {
+					for(int index = 0; index < 9 ; index++){
+						InventoryHelper.spawnItemStack(worldIn, pos.getX(), pos.getY(), pos.getZ(), h.getStackInSlot(index));
+					}
+				});
 			}
 		}
 		super.onReplaced(oldState, worldIn, pos, newState, isMoving);
-	}*/
+	}
+
+	public void setLightCurrentValue(int newLightValue){
+		this.lightCurrentValue = newLightValue;
+		//TODO Find a way to notify an update of the block
+	}
+
+	@Override
+	public int getLightValue(BlockState state) {
+		return this.lightCurrentValue;
+	}
 
 	public abstract double getDisplayerX(BlockState state);
 

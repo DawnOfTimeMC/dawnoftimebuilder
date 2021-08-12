@@ -12,9 +12,6 @@ import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.fluid.IFluidState;
 import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.EnumProperty;
@@ -34,6 +31,8 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import org.dawnoftimebuilder.block.templates.WaterloggedBlock;
 import org.dawnoftimebuilder.utils.DoTBBlockStateProperties;
 import org.dawnoftimebuilder.utils.DoTBBlockStateProperties.HorizontalConnection;
+import org.dawnoftimebuilder.utils.DoTBBlockUtils;
+
 import java.util.Random;
 
 public class FireplaceBlock extends WaterloggedBlock {
@@ -90,11 +89,8 @@ public class FireplaceBlock extends WaterloggedBlock {
 
 	@Override
 	public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit){
-		ItemStack itemstack = player.getHeldItem(handIn);
 		Direction direction;
-
 		if (state.get(BURNING)) {
-
 			direction = (state.get(HORIZONTAL_AXIS) == Direction.Axis.X) ? Direction.EAST : Direction.SOUTH;
 			worldIn.setBlockState(pos, state.with(BURNING, false), 10);
 			worldIn.playSound(null, pos, SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.BLOCKS, 1.0F, 1.0F);
@@ -105,17 +101,12 @@ public class FireplaceBlock extends WaterloggedBlock {
 		} else {
 			if(state.get(WATERLOGGED)) return false;
 
-			if (!itemstack.isEmpty() && (itemstack.getItem() == Items.FLINT_AND_STEEL || itemstack.getItem() == Item.getItemFromBlock(Blocks.TORCH))) {
+			if(DoTBBlockUtils.lightFireBlock(worldIn, pos, player, handIn)){
 				direction = (state.get(HORIZONTAL_AXIS) == Direction.Axis.X) ? Direction.EAST : Direction.SOUTH;
 				worldIn.setBlockState(pos, state.with(BURNING, true), 10);
-				worldIn.playSound(null, pos, SoundEvents.BLOCK_FIRE_AMBIENT, SoundCategory.BLOCKS, 1.0F, 1.0F);
 				worldIn.getBlockState(pos.offset(direction)).neighborChanged(worldIn, pos.offset(direction), this, pos, false);
 				worldIn.getBlockState(pos.offset(direction.getOpposite())).neighborChanged(worldIn, pos.offset(direction.getOpposite()), this, pos, false);
-
-				if (itemstack.getItem() == Items.FLINT_AND_STEEL) itemstack.damageItem(1, player, (p_220287_1_) -> p_220287_1_.sendBreakAnimation(handIn));
-				else if (!player.abilities.isCreativeMode) itemstack.shrink(1);
 				return true;
-
 			}
 		}
 		return false;

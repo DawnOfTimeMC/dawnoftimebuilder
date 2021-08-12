@@ -24,13 +24,11 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import org.dawnoftimebuilder.block.IBlockChain;
-import org.dawnoftimebuilder.block.templates.ChainBlock;
 import org.dawnoftimebuilder.block.templates.WaterloggedBlock;
 import org.dawnoftimebuilder.utils.DoTBBlockStateProperties;
 
 import static net.minecraft.block.Blocks.SPRUCE_PLANKS;
 import static org.dawnoftimebuilder.registries.DoTBBlocksRegistry.SMALL_TATAMI_FLOOR;
-import static org.dawnoftimebuilder.utils.DoTBBlockUtils.DoTBTags.CHAINS;
 import static org.dawnoftimebuilder.utils.DoTBBlockUtils.DoTBTags.COVERED_BLOCKS;
 
 public class SmallTatamiMatBlock extends WaterloggedBlock implements IBlockChain {
@@ -105,10 +103,7 @@ public class SmallTatamiMatBlock extends WaterloggedBlock implements IBlockChain
             BlockState stateUp = worldIn.getBlockState(pos.up());
             Block blockUp = stateUp.getBlock();
             if(blockUp.isIn(BlockTags.FENCES) || worldIn.getBlockState(pos.down()).getBlock().isIn(BlockTags.FENCES)) return true;
-            if(CHAINS.contains(blockUp)) return true;
-            if(blockUp instanceof IBlockChain){
-                if(((IBlockChain) blockUp).canConnectToChain(stateUp, false)) return true;
-            }
+            if(IBlockChain.canBeChained(stateUp, true)) return true;
         }
         return !worldIn.isAirBlock(pos.down());
     }
@@ -119,11 +114,10 @@ public class SmallTatamiMatBlock extends WaterloggedBlock implements IBlockChain
         if(facing.getAxis().isVertical()){
             stateIn = stateIn.with(ATTACHED, false);
             if(stateIn.get(ROLLED) && stateIn.get(STACK) == 1){
-                Block blockUp = worldIn.getBlockState(currentPos.up()).getBlock();
-                if(blockUp.isIn(BlockTags.FENCES)
+                BlockState stateUp = worldIn.getBlockState(currentPos.up());
+                if(stateUp.getBlock().isIn(BlockTags.FENCES)
                         || worldIn.getBlockState(currentPos.down()).getBlock().isIn(BlockTags.FENCES)
-                        || CHAINS.contains(blockUp)
-                        || blockUp instanceof IBlockChain && ((IBlockChain) blockUp).canConnectToChain(worldIn.getBlockState(currentPos.up()), false))
+                        || IBlockChain.canBeChained(stateUp, true))
                     stateIn = stateIn.with(ATTACHED, true);
             }
             return !stateIn.isValidPosition(worldIn, currentPos) ? Blocks.AIR.getDefaultState() : this.tryMergingWithSprucePlanks(stateIn, worldIn.getWorld(), currentPos);
@@ -179,7 +173,12 @@ public class SmallTatamiMatBlock extends WaterloggedBlock implements IBlockChain
     }
 
     @Override
-    public boolean canConnectToChain(BlockState state, boolean bottomOfChain) {
+    public boolean canConnectToChainAbove(BlockState state) {
+        return state.get(ATTACHED);
+    }
+
+    @Override
+    public boolean canConnectToChainUnder(BlockState state) {
         return state.get(ATTACHED);
     }
 

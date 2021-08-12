@@ -1,9 +1,9 @@
 {
 	"credit": "Made with Blockbench",
+	"parent": "block/block",
 	"textures": {
 		"0": "dawnoftimebuilder:block/small_tatami_mat_attached",
-		"particle": "dawnoftimebuilder:block/chain",
-		"chain": "dawnoftimebuilder:block/chain"
+		"particle": "dawnoftimebuilder:block/small_tatami_mat_attached"
 	},
 	"elements": [
 		{
@@ -16,14 +16,6 @@
 				"west": {"uv": [0, 0, 5, 16], "texture": "#0"},
 				"up": {"uv": [5, 0, 10, 5], "texture": "#0"},
 				"down": {"uv": [5, 0, 10, 5], "texture": "#0"}
-			}
-		},
-		{
-			"from": [8, 16, 7],
-			"to": [8, 18, 9],
-			"faces": {
-				"east": {"uv": [5, 0, 7, 2], "texture": "#chain"},
-				"west": {"uv": [5, 0, 7, 2], "texture": "#chain"}
 			}
 		}
 	]
