@@ -2,6 +2,7 @@ package org.dawnoftimebuilder.block.roman;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.particles.ParticleTypes;
@@ -34,7 +35,7 @@ public class CypressLeavesBlock extends BlockDoTB {
     private static final VoxelShape VS_2 = makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 16.0D, 14.0D);
 
     public CypressLeavesBlock() {
-        super(Material.LEAVES, 0.2F, 0.2F);
+        super(Properties.create(Material.LEAVES).hardnessAndResistance(0.2F).sound(SoundType.PLANT));
         this.setDefaultState(this.getStateContainer().getBaseState().with(SIZE, 0));
     }
 

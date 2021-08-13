@@ -1,7 +1,6 @@
 package org.dawnoftimebuilder.registries;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.LeavesBlock;
 import net.minecraft.block.SlabBlock;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -147,6 +146,8 @@ public class DoTBBlocksRegistry {
 	public static final Block WAXED_OAK_PLANKS_PLATE = reg("waxed_oak_planks_plate", new PlateBlock(WAXED_OAK_PLANKS).setBurnable());
 	public static final Block WAXED_OAK_PLANKS_SLAB = reg("waxed_oak_planks_slab", new SlabBlockDoTB(WAXED_OAK_PLANKS).setBurnable());
 	public static final Block WAXED_OAK_PLANKS_STAIRS = reg("waxed_oak_planks_stairs", new StairsBlockDoTB(WAXED_OAK_PLANKS).setBurnable());
+	public static final Block WAXED_OAK_CHANDELIER = reg("waxed_oak_chandelier", new WaxedOakChandelier());
+
 
 	//Japanese
 	public static final Block CHARRED_SPRUCE_LOG_STRIPPED = reg("charred_spruce_log_stripped", new RotatedPillarBlockDoTB(Material.WOOD, 2.5F, 5.0F).setBurnable(2, 3));
@@ -158,6 +159,7 @@ public class DoTBBlocksRegistry {
 	public static final Block CHARRED_SPRUCE_BOARDS =reg("charred_spruce_boards", new BlockDoTB(Material.WOOD, 2.5F, 5.0F));
 	public static final Block CHARRED_SPRUCE_DOOR = reg("charred_spruce_door", new DoorBlockDoTB(Material.WOOD, 1.5F, 6.0F));
 	public static final Block CHARRED_SPRUCE_TRAPDOOR = reg("charred_spruce_trapdoor", new TrapDoorBlockDoTB(Material.WOOD, 2.0F, 3.0F));
+	public static final Block CHARRED_SPRUCE_SHUTTERS = reg("charred_spruce_shutters", new CharredSpruceShuttersBlock());
 	public static final Block CHARRED_SPRUCE_FOUNDATION = reg("charred_spruce_foundation", new BlockDoTB(Material.WOOD, 2.5F, 5.0F).setBurnable(2, 3));
 	public static final Block CHARRED_SPRUCE_FOUNDATION_SLAB = reg("charred_spruce_foundation_slab", new SlabBlockDoTB(Material.WOOD, 2.5F, 5.0F).setBurnable(2, 3));
 	public static final Block CHARRED_SPRUCE_WALL = reg("charred_spruce_wall", new WallBlockDoTB(Material.WOOD, 2.5F, 5.0F).setBurnable(2, 10));

@@ -12,7 +12,7 @@ import org.dawnoftimebuilder.block.IBlockChain;
 import org.dawnoftimebuilder.block.IBlockPillar;
 import org.dawnoftimebuilder.utils.DoTBBlockStateProperties;
 
-public class ChainBlock extends BlockDoTB implements IBlockPillar,IBlockChain {
+public class ChainBlock extends BlockDoTB implements IBlockChain {
 
 	private static final VoxelShape VS = Block.makeCuboidShape(6.0D, 0.0D, 6.0D, 10.0D, 16.0D, 10.0D);
 
@@ -32,10 +32,5 @@ public class ChainBlock extends BlockDoTB implements IBlockPillar,IBlockChain {
     @Override
 	public BlockRenderLayer getRenderLayer() {
 		return BlockRenderLayer.CUTOUT_MIPPED;
-	}
-
-	@Override
-	public DoTBBlockStateProperties.PillarConnection getBlockPillarConnection(BlockState state) {
-		return DoTBBlockStateProperties.PillarConnection.FOUR_PX;
 	}
 }

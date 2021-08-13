@@ -1,0 +1,99 @@
+package org.dawnoftimebuilder.block.templates;
+
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.material.Material;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.projectile.AbstractArrowEntity;
+import net.minecraft.fluid.Fluids;
+import net.minecraft.fluid.IFluidState;
+import net.minecraft.particles.ParticleTypes;
+import net.minecraft.state.BooleanProperty;
+import net.minecraft.state.StateContainer;
+import net.minecraft.state.properties.BlockStateProperties;
+import net.minecraft.util.*;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.BlockRayTraceResult;
+import net.minecraft.world.IWorld;
+import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+import org.dawnoftimebuilder.block.IBlockSpecialDisplay;
+import org.dawnoftimebuilder.utils.DoTBBlockUtils;
+
+public abstract class CandleLampBlock extends WaterloggedBlock implements IBlockSpecialDisplay {
+
+    private static final BooleanProperty LIT = BlockStateProperties.LIT;
+
+    public CandleLampBlock(Material materialIn, float hardness, float resistance) {
+        super(materialIn, hardness, resistance);
+        this.setDefaultState(this.getStateContainer().getBaseState().with(WATERLOGGED,false).with(LIT, false));
+    }
+
+    @Override
+    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
+        super.fillStateContainer(builder);
+        builder.add(LIT);
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    public void animateLitCandle(BlockState stateIn, World worldIn, BlockPos pos, double x, double y, double z){
+        if (stateIn.get(LIT)) {
+            double d0 = (double)pos.getX() + x;
+            double d1 = (double)pos.getY() + y;
+            double d2 = (double)pos.getZ() + z;
+            worldIn.addParticle(ParticleTypes.SMOKE, d0, d1, d2, 0.0D, 0.0D, 0.0D);
+            worldIn.addParticle(ParticleTypes.FLAME, d0, d1, d2, 0.0D, 0.01D, 0.0D);
+        }
+    }
+
+    @Override
+    public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit){
+        if (state.get(LIT)) {
+            worldIn.setBlockState(pos, state.with(LIT, false), 10);
+            worldIn.playSound(null, pos, SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.BLOCKS, 1.0F, 1.0F);
+            return true;
+        } else {
+            if(state.get(WATERLOGGED)) return false;
+            if (DoTBBlockUtils.lightFireBlock(worldIn, pos, player, handIn)) {
+                worldIn.setBlockState(pos, state.with(LIT, true), 10);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public void onProjectileCollision(World worldIn, BlockState state, BlockRayTraceResult hit, Entity projectile) {
+        if (!worldIn.isRemote && projectile instanceof AbstractArrowEntity) {
+            AbstractArrowEntity abstractarrowentity = (AbstractArrowEntity)projectile;
+            if (abstractarrowentity.isBurning() && !state.get(LIT) && !state.get(WATERLOGGED)) {
+                BlockPos pos = hit.getPos();
+                worldIn.setBlockState(pos, state.with(LIT, true), 10);
+                worldIn.playSound(null, pos, SoundEvents.BLOCK_FIRE_AMBIENT, SoundCategory.BLOCKS, 1.0F, 1.0F);
+            }
+        }
+    }
+
+    @Override
+    public boolean receiveFluid(IWorld worldIn, BlockPos pos, BlockState state, IFluidState fluidStateIn) {
+        if (!state.get(WATERLOGGED) && fluidStateIn.getFluid() == Fluids.WATER) {
+            if (state.get(LIT)) {
+                worldIn.playSound(null, pos, SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.BLOCKS, 1.0F, 1.0F);
+            }
+            worldIn.setBlockState(pos, state.with(WATERLOGGED, true).with(LIT, false), 10);
+            worldIn.getPendingFluidTicks().scheduleTick(pos, fluidStateIn.getFluid(), fluidStateIn.getFluid().getTickRate(worldIn));
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public int getLightValue(BlockState state) {
+        return state.get(LIT) ? this.getLitLightValue() : 0;
+    }
+
+    public abstract int getLitLightValue();
+}

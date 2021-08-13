@@ -89,7 +89,7 @@ public class PergolaBlock extends BeamBlock {
 
 	@Nonnull
 	@Override
-	public DoTBBlockStateProperties.PillarConnection getBlockPillarConnection(BlockState state) {
+	public DoTBBlockStateProperties.PillarConnection getBlockPillarConnectionAbove(BlockState state) {
 		return state.get(AXIS_Y) ? DoTBBlockStateProperties.PillarConnection.SIX_PX : DoTBBlockStateProperties.PillarConnection.NOTHING;
 	}
 }

@@ -2,10 +2,11 @@ package org.dawnoftimebuilder.block;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import org.dawnoftimebuilder.utils.DoTBBlockStateProperties;
 
 import static org.dawnoftimebuilder.utils.DoTBBlockUtils.DoTBTags.CHAINS;
 
-public interface IBlockChain {
+public interface IBlockChain extends IBlockPillar{
 
 	/**
 	 * @param state State of the block
@@ -21,7 +22,7 @@ public interface IBlockChain {
 
 	/**
 	 * @param state Current state of this block.
-	 * @return True if this block can connect to a chain above it.
+	 * @return True if this block can connect to a chain above it.  Default : true.
 	 */
 	default boolean canConnectToChainAbove(BlockState state){
 		return true;
@@ -29,9 +30,19 @@ public interface IBlockChain {
 
 	/**
 	 * @param state Current state of this block.
-	 * @return True if this block can connect to a chain under it.
+	 * @return True if this block can connect to a chain under it. Default : true.
 	 */
 	default boolean canConnectToChainUnder(BlockState state){
 		return true;
+	}
+
+	@Override
+	default DoTBBlockStateProperties.PillarConnection getBlockPillarConnectionAbove(BlockState state) {
+		return this.canConnectToChainAbove(state) ? DoTBBlockStateProperties.PillarConnection.FOUR_PX : DoTBBlockStateProperties.PillarConnection.NOTHING;
+	}
+
+	@Override
+	default DoTBBlockStateProperties.PillarConnection getBlockPillarConnectionUnder(BlockState state) {
+		return this.canConnectToChainUnder(state) ? DoTBBlockStateProperties.PillarConnection.FOUR_PX : DoTBBlockStateProperties.PillarConnection.NOTHING;
 	}
 }

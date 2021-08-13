@@ -189,7 +189,7 @@ public class BeamBlock extends WaterloggedBlock implements IBlockPillar, IBlockC
 
 	@Nonnull
 	@Override
-	public DoTBBlockStateProperties.PillarConnection getBlockPillarConnection(BlockState state) {
+	public DoTBBlockStateProperties.PillarConnection getBlockPillarConnectionAbove(BlockState state) {
 		return state.get(AXIS_Y) ? DoTBBlockStateProperties.PillarConnection.TEN_PX : DoTBBlockStateProperties.PillarConnection.NOTHING;
 	}
 

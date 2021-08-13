@@ -51,12 +51,12 @@ public class SupportSlabBlock extends WaterloggedBlock {
 
 	@Override
 	public BlockState getStateForPlacement(BlockItemUseContext context) {
-		return super.getStateForPlacement(context).with(PILLAR_CONNECTION, IBlockPillar.getPillarConnection(context.getWorld(), context.getPos().down()));
+		return super.getStateForPlacement(context).with(PILLAR_CONNECTION, IBlockPillar.getPillarConnectionAbove(context.getWorld(), context.getPos().down()));
 	}
 
 	@Override
 	public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
 		stateIn = super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
-		return facing == Direction.DOWN ? stateIn.with(PILLAR_CONNECTION, IBlockPillar.getPillarConnection(worldIn, currentPos.down())) : stateIn;
+		return facing == Direction.DOWN ? stateIn.with(PILLAR_CONNECTION, IBlockPillar.getPillarConnectionAbove(worldIn, currentPos.down())) : stateIn;
 	}
 }

@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:flint_and_steel",
+    "dawnoftimebuilder:mulberry",
+    "minecraft:coal",
+    "minecraft:charcoal"
+  ]
+}

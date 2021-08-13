@@ -113,7 +113,7 @@ public class SupportBeamBlock extends WaterloggedBlock {
 		}else{
 			if (canConnect(worldIn, currentPos, Direction.EAST) || canConnect(worldIn, currentPos, Direction.WEST)) stateIn = stateIn.with(SUBAXIS, true);
 		}
-		return stateIn.with(PILLAR_CONNECTION, IBlockPillar.getPillarConnection(worldIn, currentPos.down()));
+		return stateIn.with(PILLAR_CONNECTION, IBlockPillar.getPillarConnectionAbove(worldIn, currentPos.down()));
 	}
 
 	private boolean canConnect(IWorld world, BlockPos pos, Direction direction) {

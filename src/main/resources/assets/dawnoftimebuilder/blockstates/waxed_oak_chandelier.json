@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "lit=false":  { "model": "dawnoftimebuilder:block/german/waxed_oak_chandelier_off" },
+        "lit=true":  { "model": "dawnoftimebuilder:block/german/waxed_oak_chandelier_on" }
+    }
+}
