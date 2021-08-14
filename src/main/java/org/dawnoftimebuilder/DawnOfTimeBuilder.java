@@ -65,9 +65,6 @@ public class DawnOfTimeBuilder {
 
 		DoTBRecipesRegistry.init();
 	}
-
-	@SidedProxy(clientSide = "org.dawnoftimebuilder.proxy.ClientProxy", serverSide = "org.dawnoftimebuilder.proxy.ServerProxy")
-	public static CommonProxy proxy;
 */
 
 }

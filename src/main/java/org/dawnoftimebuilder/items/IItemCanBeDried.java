@@ -1,8 +1,21 @@
 package org.dawnoftimebuilder.items;
 
 import net.minecraft.item.Item;
+import net.minecraft.util.ResourceLocation;
+
+import static org.dawnoftimebuilder.DawnOfTimeBuilder.MOD_ID;
 
 public interface IItemCanBeDried {
+
+	/**
+	 * Get the resource location to load the .json model used in dryers
+	 * @param itemName Name of the Item from Item.getRegistryName().getPath()
+	 * @return ResourceLocation of the model (folder "dryer")
+	 */
+	static ResourceLocation getResourceLocation(String itemName){
+		return new ResourceLocation(MOD_ID, "dryer/" + itemName);
+	}
+
 	/**
 	 * @return Item before being dried
 	 */

@@ -1,5 +1,6 @@
 package org.dawnoftimebuilder.proxy;
 
+import net.minecraft.item.Item;
 import net.minecraft.world.World;
 
 public class CommonProxy{
@@ -10,4 +11,6 @@ public class CommonProxy{
 	public World getClientWorld() {
 		return null;
 	}
+
+	public void registerSpecialModel(Item item){}
 }

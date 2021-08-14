@@ -2,7 +2,10 @@ package org.dawnoftimebuilder.proxy;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScreenManager;
+import net.minecraft.item.Item;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.client.model.obj.OBJLoader;
 import net.minecraftforge.common.MinecraftForge;
 
@@ -10,19 +13,24 @@ import net.minecraftforge.fml.client.registry.ClientRegistry;
 import org.dawnoftimebuilder.client.gui.creative.CreativeInventoryEvents;
 import org.dawnoftimebuilder.client.gui.screen.DisplayerScreen;
 import org.dawnoftimebuilder.client.renderer.tileentity.DisplayerTERenderer;
+import org.dawnoftimebuilder.items.IItemCanBeDried;
 import org.dawnoftimebuilder.registries.DoTBTileEntitiesRegistry;
 import org.dawnoftimebuilder.tileentity.DisplayerTileEntity;
 
+import static net.minecraftforge.client.model.ModelLoader.addSpecialModel;
 import static org.dawnoftimebuilder.DawnOfTimeBuilder.MOD_ID;
 import static org.dawnoftimebuilder.registries.DoTBContainersRegistry.DISPLAYER_CONTAINER;
 
 public class ClientProxy extends CommonProxy {
 
+	public ClientProxy(){}
+
 	@Override
 	public void onSetupClient(){
 		MinecraftForge.EVENT_BUS.register(new CreativeInventoryEvents());
+
 		ScreenManager.registerFactory(DISPLAYER_CONTAINER, DisplayerScreen::new);
-		System.out.print("Screens Registered");
+
 		ClientRegistry.bindTileEntitySpecialRenderer(DisplayerTileEntity.class, new DisplayerTERenderer());
 	}
 
@@ -31,8 +39,14 @@ public class ClientProxy extends CommonProxy {
 		return Minecraft.getInstance().world;
 	}
 
-	public ClientProxy(){}
-/*
+	@Override
+	public void registerSpecialModel(Item item) {
+		if(item instanceof IItemCanBeDried){
+			if(item.getRegistryName() != null) addSpecialModel(IItemCanBeDried.getResourceLocation(item.getRegistryName().getPath()));
+		}
+	}
+
+	/*
 	public void preInit(File configFile){
 		super.preInit(configFile);
 		OBJLoader.INSTANCE.addDomain(MOD_ID);

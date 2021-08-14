@@ -34,10 +34,10 @@ public class WaxedOakChandelier extends CandleLampBlock implements IBlockChain {
     @OnlyIn(Dist.CLIENT)
     @Override
     public void animateTick(BlockState stateIn, World worldIn, BlockPos pos, Random rand) {
-        this.animateLitCandle(stateIn, worldIn, pos, 0.1D, 0.5D, 0.5D);
-        this.animateLitCandle(stateIn, worldIn, pos, 0.5D, 0.5D, 0.1D);
-        this.animateLitCandle(stateIn, worldIn, pos, 0.5D, 0.5D, 0.9D);
-        this.animateLitCandle(stateIn, worldIn, pos, 0.9D, 0.5D, 0.5D);
+        this.animateLitCandle(stateIn, worldIn, pos, 0.12D, 0.5D, 0.5D);
+        this.animateLitCandle(stateIn, worldIn, pos, 0.5D, 0.5D, 0.12D);
+        this.animateLitCandle(stateIn, worldIn, pos, 0.5D, 0.5D, 0.88D);
+        this.animateLitCandle(stateIn, worldIn, pos, 0.88D, 0.5D, 0.5D);
     }
 
     @Override

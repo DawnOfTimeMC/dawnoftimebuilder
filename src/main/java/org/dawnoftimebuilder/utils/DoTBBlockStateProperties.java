@@ -23,6 +23,7 @@ public class DoTBBlockStateProperties {
 
     public static final IntegerProperty AGE_0_6 = IntegerProperty.create("age", 0, 6);
     public static final IntegerProperty HEAT_0_3 = IntegerProperty.create("heat", 0, 3);
+    public static final IntegerProperty SIZE_0_2 = IntegerProperty.create("size", 0, 2);
     public static final IntegerProperty SIZE_0_4 = IntegerProperty.create("size", 0, 4);
     public static final EnumProperty<ClimbingPlant> CLIMBING_PLANT = EnumProperty.create("climbing_plant", ClimbingPlant.class);
     public static final EnumProperty<FencePillar> FENCE_PILLAR = EnumProperty.create("fence_pillar", FencePillar.class);

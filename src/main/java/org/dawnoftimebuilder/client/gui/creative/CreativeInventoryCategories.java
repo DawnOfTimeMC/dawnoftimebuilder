@@ -284,7 +284,7 @@ public enum CreativeInventoryCategories {
 			Item.getItemFromBlock(CAST_IRON_TEACUP_GREEN),
 			Item.getItemFromBlock(CAST_IRON_TEAPOT_DECORATED),
 			Item.getItemFromBlock(CAST_IRON_TEACUP_DECORATED),
-			//Item.getItemFromBlock(BAMBOO_DRYING_TRAY),
+			Item.getItemFromBlock(BAMBOO_DRYING_TRAY),
 			Item.getItemFromBlock(CAMELLIA),
 			//DoTBItemsRegistry.CAMELLIA_LEAVES,
 			DoTBItemsRegistry.TEA_LEAVES,
