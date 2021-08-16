@@ -1,8 +1,8 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "dawnoftimebuilder:block/futon",
-		"particle": "dawnoftimebuilder:block/futon"
+		"0": "dawnoftimebuilder:block/light_gray_futon",
+		"particle": "dawnoftimebuilder:block/light_gray_futon"
 	},
 	"elements": [
 		{

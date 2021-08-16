@@ -33,7 +33,7 @@ public class DawnOfTimeBuilder {
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::onCommonSetup);
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::onClientSetup);
 
-		MinecraftForge.EVENT_BUS.register(DoTBEvents.INSTANCE);
+		MinecraftForge.EVENT_BUS.register(DoTBEvents.class);
 		//PacketHandler.init();
 	}
 

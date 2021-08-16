@@ -1,8 +1,8 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"1": "dawnoftimebuilder:block/iron_candlestick",
-		"particle": "dawnoftimebuilder:block/iron_candlestick",
+		"1": "dawnoftimebuilder:block/candlestick",
+		"particle": "dawnoftimebuilder:block/candlestick",
 		"all": "dawnoftimebuilder:block/candle"
 	},
 	"elements": [
@@ -27,7 +27,7 @@
 				"south": {"uv": [9, 6, 15, 7], "texture": "#1"},
 				"west": {"uv": [15, 0, 16, 6], "rotation": 90, "texture": "#1"},
 				"up": {"uv": [9, 0, 15, 6], "texture": "#1"},
-				"down": {"uv": [9, 7, 15, 13], "texture": "#1"}
+				"down": {"uv": [9, 0, 15, 6], "texture": "#1"}
 			}
 		},
 		{

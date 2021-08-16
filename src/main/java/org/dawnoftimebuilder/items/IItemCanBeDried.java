@@ -7,6 +7,8 @@ import static org.dawnoftimebuilder.DawnOfTimeBuilder.MOD_ID;
 
 public interface IItemCanBeDried {
 
+	String ITEM_CAN_BE_DRIED_FOLDER = "dryer";
+
 	/**
 	 * Get the resource location to load the .json model used in dryers
 	 * @param itemName Name of the Item from Item.getRegistryName().getPath()

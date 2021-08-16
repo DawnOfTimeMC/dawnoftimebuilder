@@ -13,9 +13,11 @@ import net.minecraftforge.fml.client.registry.ClientRegistry;
 import org.dawnoftimebuilder.client.gui.creative.CreativeInventoryEvents;
 import org.dawnoftimebuilder.client.gui.screen.DisplayerScreen;
 import org.dawnoftimebuilder.client.renderer.tileentity.DisplayerTERenderer;
+import org.dawnoftimebuilder.client.renderer.tileentity.DryerTERenderer;
 import org.dawnoftimebuilder.items.IItemCanBeDried;
 import org.dawnoftimebuilder.registries.DoTBTileEntitiesRegistry;
 import org.dawnoftimebuilder.tileentity.DisplayerTileEntity;
+import org.dawnoftimebuilder.tileentity.DryerTileEntity;
 
 import static net.minecraftforge.client.model.ModelLoader.addSpecialModel;
 import static org.dawnoftimebuilder.DawnOfTimeBuilder.MOD_ID;
@@ -32,18 +34,12 @@ public class ClientProxy extends CommonProxy {
 		ScreenManager.registerFactory(DISPLAYER_CONTAINER, DisplayerScreen::new);
 
 		ClientRegistry.bindTileEntitySpecialRenderer(DisplayerTileEntity.class, new DisplayerTERenderer());
+		ClientRegistry.bindTileEntitySpecialRenderer(DryerTileEntity.class, new DryerTERenderer());
 	}
 
 	@Override
 	public World getClientWorld() {
 		return Minecraft.getInstance().world;
-	}
-
-	@Override
-	public void registerSpecialModel(Item item) {
-		if(item instanceof IItemCanBeDried){
-			if(item.getRegistryName() != null) addSpecialModel(IItemCanBeDried.getResourceLocation(item.getRegistryName().getPath()));
-		}
 	}
 
 	/*

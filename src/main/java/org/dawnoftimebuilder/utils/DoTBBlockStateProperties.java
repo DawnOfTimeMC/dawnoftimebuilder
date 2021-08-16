@@ -33,6 +33,7 @@ public class DoTBBlockStateProperties {
     public static final EnumProperty<SidedWindow> SIDED_WINDOW = EnumProperty.create("sided_window", SidedWindow.class);
     public static final IntegerProperty STACK = IntegerProperty.create("stack", 1, 3);
     public static final EnumProperty<VerticalConnection> VERTICAL_CONNECTION = EnumProperty.create("vertical_connection", VerticalConnection.class);
+    public static final EnumProperty<SquareCorners> CORNER = EnumProperty.create("corner", SquareCorners.class);
 
     public enum HorizontalConnection implements IStringSerializable {
         NONE("none", 0),
@@ -146,6 +147,67 @@ public class DoTBBlockStateProperties {
         }
     }
 
+    public enum SquareCorners implements IStringSerializable {
+        TOP_LEFT("top_left", -1, 1),
+        TOP_RIGHT("top_right", 1, 1),
+        BOTTOM_RIGHT("bottom_right", 1, -1),
+        BOTTOM_LEFT("bottom_left", -1, -1);
+
+        private final String name;
+        private final int horizontal_offset;
+        private final int vertical_offset;
+
+        SquareCorners(String name, int horizontal_offset, int vertical_offset){
+            this.name = name;
+            this.horizontal_offset = horizontal_offset;
+            this.vertical_offset = vertical_offset;
+        }
+
+        public String toString()
+        {
+            return this.name;
+        }
+
+        public String getName()
+        {
+            return this.name;
+        }
+
+        /**
+         * @param referenceCorner Corner used as reference
+         * @return the offset to apply to the BlockPos horizontally to get the pos of the studied corner.
+         */
+        public int getHorizontalOffset(SquareCorners referenceCorner) {
+            return referenceCorner.horizontal_offset == this.horizontal_offset ? 0 : this.horizontal_offset;
+        }
+
+        /**
+         * @param referenceCorner Corner used as reference
+         * @return the offset to apply to the BlockPos vertically to get the pos of the studied corner.
+         */
+        public int getVerticalOffset(SquareCorners referenceCorner) {
+            return referenceCorner.vertical_offset == this.vertical_offset ? 0 : this.vertical_offset;
+        }
+
+        public boolean isTopCorner() {
+            return this.vertical_offset == 1;
+        }
+
+        public SquareCorners getAdjacentCorner(boolean vertically){
+            switch (this) {
+                default:
+                case TOP_LEFT:
+                    return vertically ? BOTTOM_LEFT : TOP_RIGHT;
+                case TOP_RIGHT:
+                    return vertically ? BOTTOM_RIGHT : TOP_LEFT;
+                case BOTTOM_RIGHT:
+                    return vertically ? TOP_RIGHT : BOTTOM_LEFT;
+                case BOTTOM_LEFT:
+                    return vertically ? TOP_LEFT : BOTTOM_RIGHT;
+            }
+        }
+    }
+
     public enum OpenPosition implements IStringSerializable {
         CLOSED("closed"),
         HALF("half"),
@@ -217,31 +279,6 @@ public class DoTBBlockStateProperties {
                 case WEST:
                     return WEST;
             }
-        }
-    }
-
-
-    public enum CornerShape implements IStringSerializable {
-        NONE("none"),
-        LEFT("left"),
-        RIGHT("right"),
-        BOTH("both"),
-        FULL("full");
-
-        private final String name;
-
-        CornerShape(String name)
-        {
-            this.name = name;
-        }
-
-        public String toString(){
-            return this.name;
-        }
-
-        public String getName()
-        {
-            return this.name;
         }
     }
 

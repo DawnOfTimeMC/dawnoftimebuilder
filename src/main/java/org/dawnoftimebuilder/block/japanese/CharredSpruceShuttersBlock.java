@@ -80,7 +80,7 @@ public class CharredSpruceShuttersBlock extends WaterloggedBlock {
         return canSupportShutters(worldIn, pos, state.get(FACING));
     }
 
-    private boolean canSupportShutters(IWorldReader worldIn, BlockPos shutterPos, Direction direction) {
+    public boolean canSupportShutters(IWorldReader worldIn, BlockPos shutterPos, Direction direction) {
         BlockPos pos = shutterPos.offset(direction).up();
         return hasSolidSide(worldIn.getBlockState(pos), worldIn, pos, direction.getOpposite()) || hasSolidSide(worldIn.getBlockState(pos), worldIn, pos, Direction.DOWN);
     }

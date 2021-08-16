@@ -1,0 +1,32 @@
+{
+	"credit": "Made with Blockbench",
+	"textures": {
+		"2": "dawnoftimebuilder:block/charred_spruce_tall_shutters_bottom",
+		"particle": "dawnoftimebuilder:block/charred_spruce_tall_shutters_side"
+	},
+	"elements": [
+		{
+			"from": [0, 0, 14],
+			"to": [16, 16, 16],
+			"rotation": {"angle": 22.5, "axis": "x", "origin": [-8, 32, 14]},
+			"faces": {
+				"north": {"uv": [16, 0, 0, 16], "texture": "#2"},
+				"south": {"uv": [0, 0, 16, 16], "texture": "#2"},
+				"west": {"uv": [2, 0, 0, 16], "texture": "#particle"},
+				"down": {"uv": [2, 0, 0, 16], "rotation": 270, "texture": "#particle"}
+			}
+		},
+		{
+			"from": [1, 2.38684, 5.82785],
+			"to": [2, 3.38684, 18.82785],
+			"rotation": {"angle": 22.5, "axis": "x", "origin": [0, 7.12399, 5.42785]},
+			"faces": {
+				"east": {"uv": [4, 16, 5, 3], "rotation": 90, "texture": "#particle"},
+				"south": {"uv": [5, 15, 4, 16], "texture": "#particle"},
+				"west": {"uv": [4, 16, 5, 3], "rotation": 270, "texture": "#particle"},
+				"up": {"uv": [4, 16, 5, 3], "texture": "#particle"},
+				"down": {"uv": [4, 16, 5, 3], "rotation": 180, "texture": "#particle"}
+			}
+		}
+	]
+}

@@ -128,7 +128,7 @@ public class DoTBBlockUtils {
 			//Tag<Item> col = ItemTags.getCollection().getOrCreate(this.resource);
 			//return ItemTags.getCollection().getOrCreate(this.resource).contains(item);
 			return true;
-		}
+		}//TODO add my blocks and items to Minecraft / Forge tags such as Seeds or Leaves
 
 		public boolean contains(Block block) {
 			return BlockTags.getCollection().getOrCreate(this.resource).contains(block);

@@ -11,6 +11,4 @@ public class CommonProxy{
 	public World getClientWorld() {
 		return null;
 	}
-
-	public void registerSpecialModel(Item item){}
 }

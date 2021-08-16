@@ -6,6 +6,7 @@ import org.dawnoftimebuilder.items.german.IronPlateArmorItem;
 import org.dawnoftimebuilder.items.japanese.JapaneseLightArmorItem;
 import org.dawnoftimebuilder.items.japanese.OYoroiArmorItem;
 import org.dawnoftimebuilder.items.japanese.RaijinArmorItem;
+import org.dawnoftimebuilder.items.templates.CanBeDriedItem;
 import org.dawnoftimebuilder.items.templates.ItemDoTB;
 import org.dawnoftimebuilder.items.templates.SwordItemDoTB;
 
@@ -21,14 +22,14 @@ public class DoTBItemsRegistry {
 
 	//General
 	public static final Item SILK_WORMS = reg(new ItemDoTB("silk_worms"));
-	//public static final Item SILK_WORMS_HATCHERY = reg(new DoTBItemCanBeDried("silk_worm_hatchery", 1,60, SILK_WORMS, 1));
+	public static final Item SILK_WORMS_HATCHERY = reg(new CanBeDriedItem("silk_worm_hatchery", 1,60, SILK_WORMS, 1));
 	public static final Item SILK_WORM_EGGS = reg(new ItemDoTB("silk_worm_eggs"));
 	public static final Item SILK_COCOONS = reg(new ItemDoTB("silk_cocoons"));
 	public static final Item SILK = reg(new ItemDoTB("silk"));
 	public static final Item TEA_LEAVES = reg(new ItemDoTB("tea_leaves"));
-	//public static final Item CAMELLIA_LEAVES = reg(new DoTBItemCanBeDried("camellia_leaves", 1,40, TEA_LEAVES, 1));
+	public static final Item CAMELLIA_LEAVES = reg(new CanBeDriedItem("camellia_leaves", 1,40, TEA_LEAVES, 1));
 	public static final Item WAX = reg(new ItemDoTB("wax"));
-	public static final Item BAMBOO_HAT = reg(new ItemDoTB("bamboo_hat"));//TODO import the model!!
+	public static final Item BAMBOO_HAT = reg(new ItemDoTB("bamboo_hat"));//TODO Make the model in .json !
 	public static final Item GRAY_TILE = reg(new ItemDoTB("gray_tile"));
 	public static final Item GRAY_CLAY_TILE = reg(new ItemDoTB("gray_clay_tile"));
 	public static final Item MULBERRY_LEAVES = reg(new ItemDoTB("mulberry_leaves"));

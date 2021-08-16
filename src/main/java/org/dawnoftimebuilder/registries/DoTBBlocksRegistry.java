@@ -6,6 +6,7 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.item.BlockItem;
+import net.minecraft.item.DyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.util.BlockRenderLayer;
 import org.dawnoftimebuilder.block.IBlockCustomItem;
@@ -160,6 +161,7 @@ public class DoTBBlocksRegistry {
 	public static final Block CHARRED_SPRUCE_DOOR = reg("charred_spruce_door", new DoorBlockDoTB(Material.WOOD, 1.5F, 6.0F));
 	public static final Block CHARRED_SPRUCE_TRAPDOOR = reg("charred_spruce_trapdoor", new TrapDoorBlockDoTB(Material.WOOD, 2.0F, 3.0F));
 	public static final Block CHARRED_SPRUCE_SHUTTERS = reg("charred_spruce_shutters", new CharredSpruceShuttersBlock());
+	public static final Block CHARRED_SPRUCE_TALL_SHUTTERS = reg("charred_spruce_tall_shutters", new CharredSpruceTallShuttersBlock());
 	public static final Block CHARRED_SPRUCE_FOUNDATION = reg("charred_spruce_foundation", new BlockDoTB(Material.WOOD, 2.5F, 5.0F).setBurnable(2, 3));
 	public static final Block CHARRED_SPRUCE_FOUNDATION_SLAB = reg("charred_spruce_foundation_slab", new SlabBlockDoTB(Material.WOOD, 2.5F, 5.0F).setBurnable(2, 3));
 	public static final Block CHARRED_SPRUCE_WALL = reg("charred_spruce_wall", new WallBlockDoTB(Material.WOOD, 2.5F, 5.0F).setBurnable(2, 10));
@@ -209,7 +211,7 @@ public class DoTBBlocksRegistry {
 	public static final Block SMALL_TATAMI_FLOOR = reg("small_tatami_floor", new SmallTatamiFloorBlock());
 	public static final Block TATAMI_MAT = reg("tatami_mat", new TatamiMatBlock());
 	public static final Block TATAMI_FLOOR = reg("tatami_floor", new TatamiFloorBlock());
-	//public static final Block X = reg(new BlockFuton());
+	public static final Block LIGHT_GRAY_FUTON = reg("light_gray_futon", new FutonBlock(DyeColor.GRAY));
 	//public static final Block X = reg(new BlockIrori());
 	public static final Block SAKE_BOTTLE = reg("sake_bottle", new SakeBottleBlock());
 	public static final Block SAKE_CUP = reg("sake_cup", new SakeCupBlock());

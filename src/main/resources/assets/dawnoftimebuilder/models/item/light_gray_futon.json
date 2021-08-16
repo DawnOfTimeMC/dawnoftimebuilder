@@ -1,7 +1,8 @@
 {
+	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "dawnoftimebuilder:block/futon",
-		"particle": "dawnoftimebuilder:block/futon"
+		"0": "dawnoftimebuilder:block/light_gray_futon",
+		"particle": "dawnoftimebuilder:block/light_gray_futon"
 	},
 	"elements": [
 		{
@@ -50,34 +51,41 @@
 	],
 	"display": {
 		"thirdperson_righthand": {
-			"rotation": [75, 45, 0],
-			"translation": [0, 2.5, 0],
-			"scale": [0.375, 0.375, 0.375]
+			"rotation": [30, 160, 0],
+			"translation": [0, 5, 0],
+			"scale": [0.46, 0.46, 0.46]
 		},
 		"thirdperson_lefthand": {
-			"rotation": [75, 45, 0],
-			"translation": [0, 2.5, 0],
-			"scale": [0.375, 0.375, 0.375]
+			"rotation": [30, 160, 0],
+			"translation": [0, 5, 0],
+			"scale": [0.46, 0.46, 0.46]
 		},
 		"firstperson_righthand": {
-			"rotation": [0, 90, 0],
-			"scale": [0.4, 0.4, 0.4]
+			"rotation": [30, 160, 0],
+			"translation": [2, 3.75, 3],
+			"scale": [0.75, 0.75, 0.75]
 		},
 		"firstperson_lefthand": {
-			"rotation": [0, 90, 0],
-			"scale": [0.4, 0.4, 0.4]
+			"rotation": [30, 160, 0],
+			"translation": [2, 3.75, 3],
+			"scale": [0.75, 0.75, 0.75]
 		},
 		"ground": {
-			"translation": [0, 3, 0],
-			"scale": [0.25, 0.25, 0.25]
+			"translation": [0, 1, 0],
+			"scale": [0.5, 0.5, 0.5]
 		},
 		"gui": {
-			"rotation": [30, 225, 0],
-			"scale": [0.625, 0.625, 0.625]
+			"rotation": [30, 160, 0],
+			"translation": [0.5, 5, 0],
+			"scale": [1.065, 1.065, 1.065]
+		},
+		"head": {
+			"translation": [0, 20, -8],
+			"scale": [2, 2, 2]
 		},
 		"fixed": {
-			"translation": [0, 0, -3],
-			"scale": [0.5, 0.5, 0.5]
+			"rotation": [270, 0, 0],
+			"translation": [0, 0, -8]
 		}
 	}
 }
