@@ -2,6 +2,7 @@ package org.dawnoftimebuilder;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.model.ModelResourceLocation;
+import net.minecraft.entity.EntityType;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntityType;
@@ -24,6 +25,7 @@ import static net.minecraftforge.client.model.ModelLoader.addSpecialModel;
 import static org.dawnoftimebuilder.DawnOfTimeBuilder.MOD_ID;
 import static org.dawnoftimebuilder.registries.DoTBBlocksRegistry.BLOCKS;
 import static org.dawnoftimebuilder.registries.DoTBContainersRegistry.CONTAINER_TYPES;
+import static org.dawnoftimebuilder.registries.DoTBEntitiesRegistry.ENTITY_TYPES;
 import static org.dawnoftimebuilder.registries.DoTBFeaturesRegistry.FEATURES;
 import static org.dawnoftimebuilder.registries.DoTBItemsRegistry.ITEMS;
 import static org.dawnoftimebuilder.registries.DoTBSpecialModelRegistry.SPECIAL_MODELS;
@@ -42,6 +44,12 @@ public class DoTBEvents {
 	public static void registerItems(RegistryEvent.Register<Item> event){
 		ITEMS.forEach(item -> event.getRegistry().register(item));
 		ITEMS.clear();
+	}
+
+	@SubscribeEvent
+	public static void registerEntityTypes(RegistryEvent.Register<EntityType<?>> event){
+		ENTITY_TYPES.forEach(type -> event.getRegistry().register(type));
+		ENTITY_TYPES.clear();
 	}
 
 	@SubscribeEvent

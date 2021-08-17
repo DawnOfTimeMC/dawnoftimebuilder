@@ -33,6 +33,7 @@ import static org.dawnoftimebuilder.registries.DoTBTileEntitiesRegistry.DRYER_TE
 public class DryerBlock extends WaterloggedBlock {
 
 	//TODO It doesn't work, especially the renderer :(
+	//TODO Add redstone compatibility : ie emit redstone when dried
 	public static final IntegerProperty SIZE = DoTBBlockStateProperties.SIZE_0_2;
 	public static final VoxelShape VS_SIMPLE = makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 4.0D, 16.0D);
 	public static final VoxelShape VS_DOUBLE = makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 12.0D, 16.0D);

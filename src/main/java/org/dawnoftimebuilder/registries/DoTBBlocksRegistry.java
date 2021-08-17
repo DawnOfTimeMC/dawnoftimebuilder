@@ -174,7 +174,6 @@ public class DoTBBlocksRegistry {
 	public static final Block CHARRED_SPRUCE_BEAM = reg("charred_spruce_beam", new BeamBlock(Material.WOOD, 2.0F, 3.0F).setBurnable(2, 3));
 	public static final Block CHARRED_SPRUCE_TIMBER_FRAME = reg("charred_spruce_timber_frame", new BlockDoTB(Material.WOOD, 3.0F, 6.0F).setBurnable());
 	public static final Block CHARRED_SPRUCE_TIMBER_FRAME_PILLAR = reg("charred_spruce_timber_frame_pillar", new RotatedPillarBlockDoTB(Material.WOOD, 3.0F, 6.0F).setBurnable());
-	public static final Block SPRUCE_LOW_TABLE = reg("spruce_low_table" ,new SpruceLowTableBlock());
 	public static final Block GRAY_ROOF_TILES = reg("gray_roof_tiles", new BlockDoTB(Material.ROCK,1.5F, 5.0F));
 	public static final Block GRAY_ROOF_TILES_STAIRS = reg("gray_roof_tiles_stairs", new StairsBlockDoTB(GRAY_ROOF_TILES));
 	public static final Block GRAY_ROOF_TILES_PLATE = reg("gray_roof_tiles_plate", new PlateBlock(GRAY_ROOF_TILES));
@@ -194,7 +193,8 @@ public class DoTBBlocksRegistry {
 	public static final Block CAMELLIA = reg("camellia", new GrowingBushBlock("camellia_seeds", Plains, 3));
 	public static final Block MULBERRY = reg("mulberry", new DoubleGrowingBushBlock("mulberry", Plains, 3, 2));
 	public static final Block IKEBANA_FLOWER_POT = reg("ikebana_flower_pot", new IkebanaFlowerPotBlock());
-	//public static final Block X = reg(new BlockSpruceLeglessChair());
+	public static final Block SPRUCE_LOW_TABLE = reg("spruce_low_table" ,new SpruceLowTableBlock());
+	public static final Block SPRUCE_LEGLESS_CHAIR = reg("spruce_legless_chair", new SpruceLeglessChairBlock());
 	//public static final Block X = reg(new BlockLittleFlag());
 	//public static final Block X = reg(new BlockPaperDoor());
 	public static final Block PAPER_WALL = reg("paper_wall", new PaneBlockDoTB(Material.WOOL, 1.0F, 1.0F).setBurnable());
@@ -215,7 +215,7 @@ public class DoTBBlocksRegistry {
 	//public static final Block X = reg(new BlockIrori());
 	public static final Block SAKE_BOTTLE = reg("sake_bottle", new SakeBottleBlock());
 	public static final Block SAKE_CUP = reg("sake_cup", new SakeCupBlock());
-	//public static final Block X = reg(new BlockStickBundle());
+	public static final Block STICK_BUNDLE = reg("stick_bundle", new StickBundleBlock().setBurnable());
 
 	//Persian
 	public static final Block PERSIAN_CARPET_RED = reg("persian_carpet_red", new CarpetBlockDoTB(Material.CARPET, 0.1F, 0.1F));
