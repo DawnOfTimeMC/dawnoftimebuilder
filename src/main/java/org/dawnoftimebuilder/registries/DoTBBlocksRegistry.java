@@ -195,8 +195,8 @@ public class DoTBBlocksRegistry {
 	public static final Block IKEBANA_FLOWER_POT = reg("ikebana_flower_pot", new IkebanaFlowerPotBlock());
 	public static final Block SPRUCE_LOW_TABLE = reg("spruce_low_table" ,new SpruceLowTableBlock());
 	public static final Block SPRUCE_LEGLESS_CHAIR = reg("spruce_legless_chair", new SpruceLeglessChairBlock());
-	//public static final Block X = reg(new BlockLittleFlag());
-	//public static final Block X = reg(new BlockPaperDoor());
+	public static final Block WHITE_LITTLE_FLAG = reg("white_little_flag", new LittleFlagBlock());
+	public static final Block PAPER_DOOR = reg("paper_door", new PaperDoorBlock().setBurnable());
 	public static final Block PAPER_WALL = reg("paper_wall", new PaneBlockDoTB(Material.WOOL, 1.0F, 1.0F).setBurnable());
 	public static final Block PAPER_WALL_FLAT = reg("paper_wall_flat", new PaneBlockDoTB(Material.WOOL, 1.0F, 1.0F).setBurnable());
 	public static final Block PAPER_WALL_WINDOWS = reg("paper_wall_window", new PaneBlockDoTB(Material.WOOL, 1.0F, 1.0F).setBurnable());
