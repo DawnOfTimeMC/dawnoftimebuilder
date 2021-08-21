@@ -5,7 +5,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import org.dawnoftimebuilder.client.renderer.armor.RaijinArmorModel;
+import org.dawnoftimebuilder.client.model.armor.RaijinArmorModel;
 import org.dawnoftimebuilder.items.templates.CustomArmorItem;
 
 import static org.dawnoftimebuilder.utils.DoTBMaterials.ArmorMaterial.RAIJIN;

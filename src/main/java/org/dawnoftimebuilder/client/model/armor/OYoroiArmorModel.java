@@ -1,8 +1,7 @@
-package org.dawnoftimebuilder.client.renderer.armor;
+package org.dawnoftimebuilder.client.model.armor;
 
 import net.minecraft.client.renderer.entity.model.RendererModel;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.item.ArmorStandEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;

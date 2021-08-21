@@ -8,10 +8,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
-import net.minecraft.util.Direction;
-import net.minecraft.util.Hand;
-import net.minecraft.util.Mirror;
-import net.minecraft.util.Rotation;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.World;
@@ -22,14 +19,16 @@ import javax.annotation.Nonnull;
 public class ChairBlock extends WaterloggedBlock{
 
     public static final DirectionProperty FACING = HorizontalBlock.HORIZONTAL_FACING;
+    private final double pixelsYOffset;
 
-    public ChairBlock(Properties properties) {
+    public ChairBlock(Properties properties, double pixelsYOffset) {
         super(properties);
+        this.pixelsYOffset = pixelsYOffset;
         this.setDefaultState(this.getStateContainer().getBaseState().with(FACING, Direction.NORTH).with(WATERLOGGED,false));
     }
 
-    public ChairBlock(Material materialIn, float hardness, float resistance) {
-        this(Properties.create(materialIn).hardnessAndResistance(hardness, resistance));
+    public ChairBlock(Material materialIn, float hardness, float resistance, double pixelsYOffset) {
+        this(Properties.create(materialIn).hardnessAndResistance(hardness, resistance), pixelsYOffset);
     }
 
     @Override
@@ -46,7 +45,7 @@ public class ChairBlock extends WaterloggedBlock{
 
     @Override
     public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-        return ChairEntity.createEntity(worldIn, pos, player);
+        return ChairEntity.createEntity(worldIn, pos, player, this.pixelsYOffset);
     }
 
     @Override
@@ -57,5 +56,10 @@ public class ChairBlock extends WaterloggedBlock{
     @Override
     public BlockState mirror(BlockState state, Mirror mirrorIn) {
         return this.rotate(state, Rotation.CLOCKWISE_180);
+    }
+
+    @Override
+    public BlockRenderLayer getRenderLayer() {
+        return BlockRenderLayer.CUTOUT_MIPPED;
     }
 }

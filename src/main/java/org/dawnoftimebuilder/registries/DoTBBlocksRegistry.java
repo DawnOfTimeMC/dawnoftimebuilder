@@ -107,7 +107,7 @@ public class DoTBBlocksRegistry {
 	public static final Block LIMESTONE_BRICKS_WALL = reg("limestone_bricks_wall", new WallBlockDoTB(Material.ROCK, 1.5F, 6.0F));
 	public static final Block LIMESTONE_CHIMNEY = reg("limestone_chimney", new LimestoneChimneyBlock());
 	public static final Block LIMESTONE_FIREPLACE = reg("limestone_fireplace", new MultiblockFireplaceBlock(Material.ROCK, 2.0F, 6.0F));
-	//public static final Block X = reg(new BlockStoneFrieze());
+	//public static final Block X = reg(new BlockStoneFrieze());//TODO decide the name and the texture.
 
 	//German
 	public static final Block FLAT_ROOF_TILES = reg("flat_roof_tiles", new BlockDoTB(Material.ROCK,1.5F, 5.0F));
@@ -148,7 +148,7 @@ public class DoTBBlocksRegistry {
 	public static final Block WAXED_OAK_PLANKS_SLAB = reg("waxed_oak_planks_slab", new SlabBlockDoTB(WAXED_OAK_PLANKS).setBurnable());
 	public static final Block WAXED_OAK_PLANKS_STAIRS = reg("waxed_oak_planks_stairs", new StairsBlockDoTB(WAXED_OAK_PLANKS).setBurnable());
 	public static final Block WAXED_OAK_CHANDELIER = reg("waxed_oak_chandelier", new WaxedOakChandelier());
-
+	public static final Block WAXED_OAK_CHAIR = reg("waxed_oak_chair", new WaxedOakChairBlock());
 
 	//Japanese
 	public static final Block CHARRED_SPRUCE_LOG_STRIPPED = reg("charred_spruce_log_stripped", new RotatedPillarBlockDoTB(Material.WOOD, 2.5F, 5.0F).setBurnable(2, 3));
@@ -174,6 +174,7 @@ public class DoTBBlocksRegistry {
 	public static final Block CHARRED_SPRUCE_BEAM = reg("charred_spruce_beam", new BeamBlock(Material.WOOD, 2.0F, 3.0F).setBurnable(2, 3));
 	public static final Block CHARRED_SPRUCE_TIMBER_FRAME = reg("charred_spruce_timber_frame", new BlockDoTB(Material.WOOD, 3.0F, 6.0F).setBurnable());
 	public static final Block CHARRED_SPRUCE_TIMBER_FRAME_PILLAR = reg("charred_spruce_timber_frame_pillar", new RotatedPillarBlockDoTB(Material.WOOD, 3.0F, 6.0F).setBurnable());
+	public static final Block RED_PAINTED_BEAM = reg("red_painted_beam", new BeamBlock(Material.WOOD, 2.0F, 3.0F).setBurnable(2, 3));
 	public static final Block GRAY_ROOF_TILES = reg("gray_roof_tiles", new BlockDoTB(Material.ROCK,1.5F, 5.0F));
 	public static final Block GRAY_ROOF_TILES_STAIRS = reg("gray_roof_tiles_stairs", new StairsBlockDoTB(GRAY_ROOF_TILES));
 	public static final Block GRAY_ROOF_TILES_PLATE = reg("gray_roof_tiles_plate", new PlateBlock(GRAY_ROOF_TILES));
@@ -191,7 +192,7 @@ public class DoTBBlocksRegistry {
 	public static final Block CAST_IRON_TEACUP_DECORATED = reg("cast_iron_teacup_decorated", new CastIronTeacupBlock());
 	public static final Block BAMBOO_DRYING_TRAY = reg("bamboo_drying_tray", new DryerBlock(Material.WOOD, 1.0F, 1.0F));
 	public static final Block CAMELLIA = reg("camellia", new GrowingBushBlock("camellia_seeds", Plains, 3));
-	public static final Block MULBERRY = reg("mulberry", new DoubleGrowingBushBlock("mulberry", Plains, 3, 2));
+	public static final Block MULBERRY = reg("mulberry", new MulberryBlock());
 	public static final Block IKEBANA_FLOWER_POT = reg("ikebana_flower_pot", new IkebanaFlowerPotBlock());
 	public static final Block SPRUCE_LOW_TABLE = reg("spruce_low_table" ,new SpruceLowTableBlock());
 	public static final Block SPRUCE_LEGLESS_CHAIR = reg("spruce_legless_chair", new SpruceLeglessChairBlock());
@@ -205,7 +206,6 @@ public class DoTBBlocksRegistry {
 	public static final Block RED_PAPER_LANTERN = reg("red_paper_lantern", new PaperLanternBlock());
 	public static final Block PAPER_LAMP = reg("paper_lamp", new PaperLampBlock());
 	public static final Block STONE_LANTERN = reg("stone_lantern", new StoneLanternBlock());
-	//public static final Block X = reg(new BlockRedPaintedLog());
 	public static final Block RICE = reg("rice", new WaterDoubleCropsBlock("rice", 2));
 	public static final Block SMALL_TATAMI_MAT = reg("small_tatami_mat", new SmallTatamiMatBlock());
 	public static final Block SMALL_TATAMI_FLOOR = reg("small_tatami_floor", new SmallTatamiFloorBlock());

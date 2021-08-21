@@ -9,8 +9,8 @@ public class CanBeDriedItem extends ItemDoTB implements IItemCanBeDried {
     private final Item driedItem;
     private final int driedItemQuantity;
 
-    public CanBeDriedItem(String name, int undriedItemQuantity, int dryingTime, Item driedItem, int driedItemQuantity) {
-        super(name);
+    public CanBeDriedItem(int undriedItemQuantity, int dryingTime, Item driedItem, int driedItemQuantity) {
+        super();
         this.undriedItemQuantity = undriedItemQuantity;
         this.dryingTime = dryingTime;
         this.driedItem = driedItem;

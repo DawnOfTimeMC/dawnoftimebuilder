@@ -1,19 +1,26 @@
 package org.dawnoftimebuilder.registries;
 
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemGroup;
+import net.minecraft.item.SpawnEggItem;
+import net.minecraft.item.SwordItem;
 import org.dawnoftimebuilder.items.egyptian.PharaohArmorItem;
 import org.dawnoftimebuilder.items.german.IronPlateArmorItem;
 import org.dawnoftimebuilder.items.japanese.JapaneseLightArmorItem;
 import org.dawnoftimebuilder.items.japanese.OYoroiArmorItem;
 import org.dawnoftimebuilder.items.japanese.RaijinArmorItem;
 import org.dawnoftimebuilder.items.templates.CanBeDriedItem;
+import org.dawnoftimebuilder.items.templates.CustomArmorItem;
 import org.dawnoftimebuilder.items.templates.ItemDoTB;
-import org.dawnoftimebuilder.items.templates.SwordItemDoTB;
 
 import java.util.*;
 
 import static net.minecraft.inventory.EquipmentSlotType.*;
 import static net.minecraft.item.ItemTier.DIAMOND;
+import static org.dawnoftimebuilder.DawnOfTimeBuilder.DOTB_TAB;
+import static org.dawnoftimebuilder.DawnOfTimeBuilder.MOD_ID;
+import static org.dawnoftimebuilder.registries.DoTBEntitiesRegistry.JAPANESE_DRAGON_ENTITY;
+import static org.dawnoftimebuilder.registries.DoTBEntitiesRegistry.SILKMOTH_ENTITY;
 import static org.dawnoftimebuilder.utils.DoTBFoods.GRAPPE;
 
 public class DoTBItemsRegistry {
@@ -21,22 +28,25 @@ public class DoTBItemsRegistry {
 	public static final List<Item> ITEMS = new ArrayList<>();
 
 	//General
-	public static final Item SILK_WORMS = reg(new ItemDoTB("silk_worms"));
-	public static final Item SILK_WORMS_HATCHERY = reg(new CanBeDriedItem("silk_worm_hatchery", 1,60, SILK_WORMS, 1));
-	public static final Item SILK_WORM_EGGS = reg(new ItemDoTB("silk_worm_eggs"));
-	public static final Item SILK_COCOONS = reg(new ItemDoTB("silk_cocoons"));
-	public static final Item SILK = reg(new ItemDoTB("silk"));
-	public static final Item TEA_LEAVES = reg(new ItemDoTB("tea_leaves"));
-	public static final Item CAMELLIA_LEAVES = reg(new CanBeDriedItem("camellia_leaves", 1,40, TEA_LEAVES, 1));
-	public static final Item WAX = reg(new ItemDoTB("wax"));
-	public static final Item BAMBOO_HAT = reg(new ItemDoTB("bamboo_hat"));//TODO Make the model in .json !
-	public static final Item GRAY_TILE = reg(new ItemDoTB("gray_tile"));
-	public static final Item GRAY_CLAY_TILE = reg(new ItemDoTB("gray_clay_tile"));
-	public static final Item MULBERRY_LEAVES = reg(new ItemDoTB("mulberry_leaves"));
-	public static final Item GRAPE = reg(new ItemDoTB("grape", new Item.Properties().food(GRAPPE)));
-	public static final Item GRAPE_SEEDS = reg(new ItemDoTB("grape_seeds"));
-	//public static final Item CLEMATIS_SEEDS = reg(new ItemDoTB("clematis_seeds"));
-	public static final Item TACHI_SWORD = reg(new SwordItemDoTB("tachi_sword", DIAMOND, 3, -2.4F));//TODO import the model!!
+	//TODO Change eggs colors
+	public static final Item SILKMOTH_SPAWN_EGG = reg("silkmoth_spawn_egg", new SpawnEggItem(SILKMOTH_ENTITY, 4996656, 986895, (new Item.Properties()).group(ItemGroup.MISC)));
+	public static final Item JAPANESE_DRAGON_SPAWN_EGG = reg("japanese_dragon_spawn_egg", new SpawnEggItem(JAPANESE_DRAGON_ENTITY, 4996656, 986895, (new Item.Properties()).group(ItemGroup.MISC)));
+	public static final Item SILK_WORMS = reg("silk_worms", new ItemDoTB());
+	public static final Item SILK_WORMS_HATCHERY = reg("silk_worm_hatchery", new CanBeDriedItem(1,60, SILK_WORMS, 1));
+	public static final Item SILK_WORM_EGGS = reg("silk_worm_eggs", new ItemDoTB());
+	public static final Item SILK_COCOONS = reg("silk_cocoons", new ItemDoTB());
+	public static final Item SILK = reg("silk", new ItemDoTB());
+	public static final Item TEA_LEAVES = reg("tea_leaves", new ItemDoTB());
+	public static final Item CAMELLIA_LEAVES = reg("camellia_leaves", new CanBeDriedItem(1,40, TEA_LEAVES, 1));
+	public static final Item WAX = reg("wax", new ItemDoTB());
+	public static final Item BAMBOO_HAT = reg("bamboo_hat", new ItemDoTB());//TODO Make the model in .json !
+	public static final Item GRAY_TILE = reg("gray_tile", new ItemDoTB());
+	public static final Item GRAY_CLAY_TILE = reg("gray_clay_tile", new ItemDoTB());
+	public static final Item MULBERRY_LEAVES = reg("mulberry_leaves", new ItemDoTB());
+	public static final Item GRAPE = reg("grape", new ItemDoTB(new Item.Properties().food(GRAPPE)));
+	public static final Item GRAPE_SEEDS = reg("grape_seeds", new ItemDoTB());
+	//public static final Item CLEMATIS_SEEDS = reg("clematis_seeds", new ItemDoTB());
+	public static final Item TACHI_SWORD = reg("tachi_sword", new SwordItem(DIAMOND, 3, -2.4F, new Item.Properties().group(DOTB_TAB)));//TODO import the model!!
 
 	//Armors
 	public static final Item IRON_PLATE_ARMOR_HEAD = reg(new IronPlateArmorItem(HEAD));
@@ -60,7 +70,13 @@ public class DoTBItemsRegistry {
 	public static final Item RAIJIN_ARMOR_LEGS = reg(new RaijinArmorItem(LEGS));
 	public static final Item RAIJIN_ARMOR_FEET = reg(new RaijinArmorItem(FEET));
 
-	private static Item reg(Item item){
+	private static Item reg(CustomArmorItem item){
+		ITEMS.add(item);
+		return item;
+	}
+
+	private static Item reg(String name, Item item) {
+		item = item.setRegistryName(MOD_ID, name);
 		ITEMS.add(item);
 		return item;
 	}

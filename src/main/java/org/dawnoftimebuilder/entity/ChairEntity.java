@@ -22,17 +22,18 @@ public class ChairEntity extends Entity {
         this.noClip = true;
     }
 
-    private ChairEntity(World world, BlockPos pos) {
+    private ChairEntity(World world, BlockPos pos, double pixelsYOffset) {
         this(world);
         this.pos = pos;
-        this.setPosition(pos.getX() + 0.5D, pos.getY(), pos.getZ() + 0.5D);
+        //Strangely, the default position (with 0 vertical offset) is 3 pixels above the floor.
+        this.setPosition(pos.getX() + 0.5D, pos.getY() + ((pixelsYOffset - 3.0D) / 16.0D), pos.getZ() + 0.5D);
     }
 
-    public static boolean createEntity(World world, BlockPos pos, PlayerEntity player) {
+    public static boolean createEntity(World world, BlockPos pos, PlayerEntity player, double pixelsYOffset) {
         if(!world.isRemote()) {
             List<ChairEntity> seats = world.getEntitiesWithinAABB(ChairEntity.class, new AxisAlignedBB(pos.getX(), pos.getY(), pos.getZ(), pos.getX() + 1.0D, pos.getY() + 1.0D, pos.getZ() + 1.0D));
             if(seats.isEmpty()) {
-                ChairEntity seat = new ChairEntity(world, pos);
+                ChairEntity seat = new ChairEntity(world, pos, pixelsYOffset);
                 world.addEntity(seat);
                 player.startRiding(seat, false);
                 return true;
@@ -44,8 +45,8 @@ public class ChairEntity extends Entity {
     @Override
     public void tick(){
         super.tick();
-        if(pos == null){
-            pos = this.getPosition();
+        if(this.pos == null){
+            this.pos = this.getPosition();
         }
         if(!this.world.isRemote()) {
             if(this.getPassengers().isEmpty() || this.world.isAirBlock(this.pos)) {

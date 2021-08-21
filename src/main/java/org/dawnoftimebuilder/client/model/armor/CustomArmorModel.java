@@ -1,4 +1,4 @@
-package org.dawnoftimebuilder.client.renderer.armor;
+package org.dawnoftimebuilder.client.model.armor;
 
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.client.renderer.entity.model.RendererModel;

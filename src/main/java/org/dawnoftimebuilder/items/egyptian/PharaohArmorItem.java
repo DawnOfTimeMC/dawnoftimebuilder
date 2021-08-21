@@ -5,7 +5,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import org.dawnoftimebuilder.client.renderer.armor.PharaohArmorModel;
+import org.dawnoftimebuilder.client.model.armor.PharaohArmorModel;
 import org.dawnoftimebuilder.items.templates.CustomArmorItem;
 
 import static org.dawnoftimebuilder.utils.DoTBMaterials.ArmorMaterial.PHARAOH;
