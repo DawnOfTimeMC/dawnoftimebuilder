@@ -4,8 +4,12 @@ import com.mojang.blaze3d.platform.GlStateManager;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.client.renderer.entity.model.RendererModel;
 import net.minecraft.util.math.MathHelper;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import org.dawnoftimebuilder.entity.JapaneseDragonEntity;
 
+@OnlyIn(Dist.CLIENT)
+@SuppressWarnings("FieldCanBeLocal")
 public class JapaneseDragonModel extends EntityModel<JapaneseDragonEntity> {
 
 	private final RendererModel HeadCenter;
@@ -83,6 +87,7 @@ public class JapaneseDragonModel extends EntityModel<JapaneseDragonEntity> {
 	public JapaneseDragonModel() {
 		this.textureWidth = 128;
 		this.textureHeight = 64;
+
 		this.FingerRAEnd = new RendererModel(this, 32, 2);
 		this.FingerRAEnd.setRotationPoint(4.0F, 0.0F, 0.0F);
 		this.FingerRAEnd.addBox(0.0F, -0.5F, -0.5F, 4, 1, 1, 0.0F);

@@ -56,10 +56,6 @@ public class ChairEntity extends Entity {
         }
     }
 
-    public BlockPos getPos(){
-        return this.pos;
-    }
-
     @Override
     protected void registerData() {
 

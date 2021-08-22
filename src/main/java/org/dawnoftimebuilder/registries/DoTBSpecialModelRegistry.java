@@ -1,16 +1,9 @@
 package org.dawnoftimebuilder.registries;
 
 import net.minecraft.client.renderer.model.ModelResourceLocation;
-import net.minecraft.inventory.container.Container;
-import net.minecraft.inventory.container.ContainerType;
-import net.minecraftforge.fml.network.IContainerFactory;
-import org.dawnoftimebuilder.DawnOfTimeBuilder;
-import org.dawnoftimebuilder.container.DisplayerContainer;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.dawnoftimebuilder.DawnOfTimeBuilder.MOD_ID;
 
 public class DoTBSpecialModelRegistry {
 

@@ -58,6 +58,12 @@ public class JapaneseDragonEntity extends CreatureEntity {
 	}
 
 	@Override
+	public void tick() {
+		super.tick();
+		this.idleTime++;
+	}
+
+	@Override
 	protected float getStandingEyeHeight(Pose poseIn, EntitySize sizeIn) {
 		return sizeIn.height * 0.6F;
 	}
@@ -91,6 +97,11 @@ public class JapaneseDragonEntity extends CreatureEntity {
 	@Override
 	protected float getSoundPitch() {
 		return super.getSoundPitch() * this.getDragonSize();
+	}
+
+	@Override
+	public boolean hasNoGravity() {
+		return true;
 	}
 
 	@Nullable
@@ -194,7 +205,7 @@ public class JapaneseDragonEntity extends CreatureEntity {
 		public boolean shouldExecute() {
 			if(this.dragon.getIdleTime() < 100) return false;
 			if(this.dragon.posY > 100.0D) return false;
-			if(this.dragon.getRNG().nextInt(2000) != 0) return false;
+			if(this.dragon.getRNG().nextInt(200) != 0) return false;
 			BlockPos pos = new BlockPos(this.dragon.posX, this.dragon.posY, this.dragon.posZ);
 			return this.dragon.world.canBlockSeeSky(pos);
 		}
@@ -206,6 +217,7 @@ public class JapaneseDragonEntity extends CreatureEntity {
 
 		@Override
 		public void startExecuting(){
+			this.dragon.setIdleTime(0);
 			this.dragon.getMoveHelper().setMoveTo(this.dragon.posX, 100.0D + 30.0D * this.dragon.getRNG().nextDouble(), this.dragon.posZ, this.dragon.getSpeed() * 1.2D);
 			this.dragon.setAnimDuration(8.0F);
 		}
@@ -246,6 +258,7 @@ public class JapaneseDragonEntity extends CreatureEntity {
 
 		@Override
 		public void startExecuting(){
+			this.dragon.setIdleTime(0);
 			this.dragon.getMoveHelper().setMoveTo(this.dragon.posX, this.goalY + this.dragon.getDragonSize(), this.dragon.posZ, this.dragon.getSpeed() * 1.2D);
 			this.dragon.setAnimDuration(8.0F);
 		}
@@ -260,8 +273,8 @@ public class JapaneseDragonEntity extends CreatureEntity {
 
 		@Override
 		public boolean shouldExecute(){
-			if (this.dragon.getIdleTime() >= 100) return false;
-			if (this.dragon.getRNG().nextInt(60) != 0) return false;
+			if(this.dragon.posY > 100.0D) return false;
+			if(this.dragon.getRNG().nextInt(50) != 0) return false;
 
 			MovementController controller = this.dragon.getMoveHelper();
 			if (!controller.isUpdating()) return true;
@@ -287,6 +300,7 @@ public class JapaneseDragonEntity extends CreatureEntity {
 
 			World world = this.dragon.world;
 			BlockPos pos;
+			this.dragon.setAnimDuration(10.0F);
 			for(double newY = this.dragon.posY - 16.0D; newY <= this.dragon.posY + 16.0D; newY++){
 				pos = new BlockPos(newX, newY, newZ);
 				if(world.getBlockState(pos).getCollisionShape(world, pos) == VoxelShapes.empty() && !world.getBlockState(pos).getMaterial().isLiquid()){
@@ -295,7 +309,6 @@ public class JapaneseDragonEntity extends CreatureEntity {
 				}
 			}
 			this.dragon.getMoveHelper().setMoveTo(newX, this.dragon.posY, newZ, this.dragon.getSpeed());
-			this.dragon.setAnimDuration(10.0F);
 		}
 	}
 
@@ -320,6 +333,7 @@ public class JapaneseDragonEntity extends CreatureEntity {
 
 		@Override
 		public void startExecuting(){
+			this.dragon.setIdleTime(0);
 			Random random = this.dragon.getRNG();
 			double newX = this.dragon.posX + (double)((random.nextFloat() * 2.0F - 1.0F) * 500.0F);
 			double newZ = this.dragon.posZ + (double)((random.nextFloat() * 2.0F - 1.0F) * 500.0F);

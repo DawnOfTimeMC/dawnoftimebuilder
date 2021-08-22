@@ -1,12 +1,5 @@
 package org.dawnoftimebuilder.network;
 
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.network.NetworkRegistry;
-import net.minecraftforge.fml.network.PacketDistributor;
-import net.minecraftforge.fml.network.simple.SimpleChannel;
-
-import static org.dawnoftimebuilder.DawnOfTimeBuilder.MOD_ID;
-
 public class PacketHandler {
 /*
 	public static SimpleChannel HANDLER;

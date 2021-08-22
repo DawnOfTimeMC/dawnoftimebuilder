@@ -8,6 +8,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
+@SuppressWarnings("FieldCanBeLocal")
 public class PharaohArmorModel<T extends LivingEntity> extends CustomArmorModel<T> {
 	
 	//Helmet
@@ -259,11 +260,11 @@ public class PharaohArmorModel<T extends LivingEntity> extends CustomArmorModel<
 				this.bodyGoldenStrip.rotateAngleX = -f;
 
 				if (this.isSitting) {
-					this.bodyGoldenStrip.rotateAngleX += -1.0F;
+					this.bodyGoldenStrip.rotateAngleX -= 1.0F;
 				}
 
 				if (this.isSneak) {
-					this.bodyGoldenStrip.rotateAngleX += -0.75F;
+					this.bodyGoldenStrip.rotateAngleX -= 0.75F;
 					this.bodyGoldenStrip.rotationPointY = 8.0F;
 					this.bodyJewel.rotationPointY = 8.0F;
 				} else {

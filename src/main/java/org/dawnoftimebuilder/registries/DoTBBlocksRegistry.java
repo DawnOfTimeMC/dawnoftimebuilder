@@ -271,12 +271,15 @@ public class DoTBBlocksRegistry {
 		block = block.setRegistryName(MOD_ID, name);
 		BLOCKS.add(block);
 
-		Item item = null;
-		if(block instanceof IBlockCustomItem) item = ((IBlockCustomItem)block).getCustomItemBlock();
-		else if(block.getRegistryName() != null) item = new BlockItem(block, new Item.Properties().group(DOTB_TAB)).setRegistryName(block.getRegistryName());
-
-		if(item != null) DoTBItemsRegistry.ITEMS.add(item);
-
+		Item item;
+		String itemName = null;
+		if(block instanceof IBlockCustomItem){
+			item = ((IBlockCustomItem)block).getCustomItemBlock();
+			itemName = ((IBlockCustomItem)block).getCustomItemName();
+		}else{
+			item = new BlockItem(block, new Item.Properties().group(DOTB_TAB));
+		}
+		if(item != null) DoTBItemsRegistry.reg(itemName == null ? name : itemName, item);
 		return block;
 	}
 }

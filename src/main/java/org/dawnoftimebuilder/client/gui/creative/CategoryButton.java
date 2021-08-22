@@ -31,10 +31,6 @@ public class CategoryButton extends Button {
         return this.selected;
     }
 
-    public int getIndex(){
-        return this.index;
-    }
-
     public int getCategoryID(){
         return CreativeInventoryEvents.page * 4 + this.index;
     }

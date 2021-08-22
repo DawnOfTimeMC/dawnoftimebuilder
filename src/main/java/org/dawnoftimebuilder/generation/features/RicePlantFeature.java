@@ -4,32 +4,30 @@ import com.mojang.datafixers.Dynamic;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.state.properties.Half;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.gen.ChunkGenerator;
-import net.minecraft.world.gen.feature.IFeatureConfig;
+import net.minecraft.world.gen.GenerationSettings;
+import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
-import org.dawnoftimebuilder.block.templates.DoubleCropsBlock;
 import org.dawnoftimebuilder.block.templates.WaterDoubleCropsBlock;
 import org.dawnoftimebuilder.block.templates.WaterloggedBlock;
-import org.dawnoftimebuilder.generation.features.templates.FeatureDoTB;
 import org.dawnoftimebuilder.registries.DoTBBlocksRegistry;
 
 import java.util.Random;
 import java.util.function.Function;
 
-public class RicePlantFeature extends FeatureDoTB<NoFeatureConfig> {
+public class RicePlantFeature extends Feature<NoFeatureConfig> {
 
-    public RicePlantFeature(Function<Dynamic<?>, ? extends NoFeatureConfig> configIn, String name) {
-        super(configIn, name);
+    public RicePlantFeature(Function<Dynamic<?>, ? extends NoFeatureConfig> configIn) {
+        super(configIn);
     }
 
     /**
      * Places a rice plant in the world in a similar fashion to melons.
      */
     @Override
-    public boolean place(IWorld worldIn, ChunkGenerator generator, Random rand, BlockPos pos, IFeatureConfig config) {
+    public boolean place(IWorld worldIn, ChunkGenerator<? extends GenerationSettings> generator, Random rand, BlockPos pos, NoFeatureConfig config) {
         for (int i = 0; i < 64; ++i) {
             BlockPos nextPos = pos.add(rand.nextInt(8) - rand.nextInt(8), rand.nextInt(4) - rand.nextInt(4), rand.nextInt(8) - rand.nextInt(8));
             WaterDoubleCropsBlock rice = (WaterDoubleCropsBlock) DoTBBlocksRegistry.RICE;
@@ -44,7 +42,7 @@ public class RicePlantFeature extends FeatureDoTB<NoFeatureConfig> {
     }
 
     /**
-     * Determins if the given position is valid for a rice plant.
+     * Determines if the given position is valid for a rice plant.
      */
     private boolean isValidPosition(IWorld worldIn, BlockPos pos) {
         Block blockIn = worldIn.getBlockState(pos).getBlock();

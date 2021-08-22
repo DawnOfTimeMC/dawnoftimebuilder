@@ -7,6 +7,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import org.dawnoftimebuilder.entity.SilkmothEntity;
 
 @OnlyIn(Dist.CLIENT)
+@SuppressWarnings("FieldCanBeLocal")
 public class SilkmothModel extends EntityModel<SilkmothEntity> {
 	private final RendererModel body;
 	private final RendererModel head;
@@ -70,7 +71,7 @@ public class SilkmothModel extends EntityModel<SilkmothEntity> {
 		float d = Math.abs((ageInTicks % flap) / flap - 0.5F) ;
 		this.wingLeft.rotateAngleZ = (float) (Math.PI * (0.2F - d));
 		this.wingRight.rotateAngleZ = (float) (Math.PI * (-0.2F + d));
-		this.head.rotateAngleX = 0.35F + headPitch * 0.017453292F;
+		this.head.rotateAngleX = headPitch * 0.018F;
 	}
 
 	private void setRotateAngle(RendererModel RendererModel, float x, float y, float z) {

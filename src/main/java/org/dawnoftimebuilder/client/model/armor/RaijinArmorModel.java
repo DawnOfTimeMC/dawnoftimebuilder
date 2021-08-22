@@ -473,8 +473,8 @@ public class RaijinArmorModel<T extends LivingEntity> extends CustomArmorModel<T
 				}
 
 				if (this.isSneak) {
-					this.chestBeltHangA.rotateAngleX += -0.5F;
-					this.chestBeltHangB.rotateAngleX += -0.5F;
+                    this.chestBeltHangA.rotateAngleX -= 0.5F;
+                    this.chestBeltHangB.rotateAngleX -= 0.5F;
 					this.chestBeltHangA.rotationPointY = 8.2F;
 					this.chestBeltHangB.rotationPointY = 8.0F;
 				}else{

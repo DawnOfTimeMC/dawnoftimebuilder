@@ -10,28 +10,33 @@ import net.minecraft.world.gen.placement.Placement;
 import org.dawnoftimebuilder.generation.features.CamelliaFeature;
 import org.dawnoftimebuilder.generation.features.MulberryFeature;
 import org.dawnoftimebuilder.generation.features.RicePlantFeature;
+import org.dawnoftimebuilder.utils.DoTBConfig;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.dawnoftimebuilder.DawnOfTimeBuilder.MOD_ID;
+
 public class DoTBFeaturesRegistry {
 
-    public static final List<Feature<?>> FEATURES = new ArrayList<>();
+    public static final List<Feature<NoFeatureConfig>> FEATURES = new ArrayList<>();
 
-    public static final Feature<NoFeatureConfig> RICE_PLANT = (Feature<NoFeatureConfig>) reg(new RicePlantFeature(NoFeatureConfig::deserialize, "rice_plant"));
-    public static final Feature<NoFeatureConfig> CAMELLIA_BUSH = (Feature<NoFeatureConfig>) reg(new CamelliaFeature(NoFeatureConfig::deserialize, "camellia_bush"));
-    public static final Feature<NoFeatureConfig> MULBERRY_TREE = (Feature<NoFeatureConfig>) reg(new MulberryFeature(NoFeatureConfig::deserialize, "mulberry_tree"));
+    public static final Feature<NoFeatureConfig> RICE_PLANT = reg("rice_plant", new RicePlantFeature(NoFeatureConfig::deserialize));
+    public static final Feature<NoFeatureConfig> CAMELLIA_BUSH = reg("camellia_bush", new CamelliaFeature(NoFeatureConfig::deserialize));
+    public static final Feature<NoFeatureConfig> MULBERRY_TREE = reg("mulberry_tree", new MulberryFeature(NoFeatureConfig::deserialize));
 
-
-    private static Feature<?> reg(Feature<?> feature) {
+    private static Feature<NoFeatureConfig> reg(String name, Feature<NoFeatureConfig> feature) {
+        feature.setRegistryName(MOD_ID, name);
         FEATURES.add(feature);
         return feature;
     }
 
     public static void addFeaturesToBiomes() {
-        addRice();
-        addCamellia();
-        addMullberry();
+        if(DoTBConfig.ACTIVATE_WORLD_GENERATION.get()){
+            addRice();
+            addCamellia();
+            addMulberry();
+        }
     }
 
     private static void addCamellia() {
@@ -64,7 +69,7 @@ public class DoTBFeaturesRegistry {
         }
     }
 
-    private static void addMullberry() {
+    private static void addMulberry() {
         Biome[] mulBerryBiomes = {Biomes.TAIGA, Biomes.TAIGA_HILLS, Biomes.GIANT_SPRUCE_TAIGA, Biomes.GIANT_SPRUCE_TAIGA_HILLS, Biomes.GIANT_TREE_TAIGA, Biomes.GIANT_TREE_TAIGA_HILLS, Biomes.FLOWER_FOREST};
 
         for (Biome biome : mulBerryBiomes) {

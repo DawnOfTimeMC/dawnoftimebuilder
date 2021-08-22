@@ -1,8 +1,6 @@
 package org.dawnoftimebuilder.utils;
 
 import net.minecraft.block.Blocks;
-import net.minecraft.block.material.Material;
-import net.minecraft.block.material.MaterialColor;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.IArmorMaterial;
 import net.minecraft.item.IItemTier;
@@ -20,21 +18,66 @@ import java.util.function.Supplier;
 public class DoTBMaterials {
 
 	public enum ArmorMaterial implements IArmorMaterial{
-		IRON_PLATE("iron_plate", 15, new int[]{2, 5, 6, 2}, 20, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F, () -> {
-			return Ingredient.fromItems(Items.IRON_INGOT);
-		}),
-		JAPANESE_LIGHT("japanese_light", 15, new int[]{1, 5, 6, 2}, 14, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0F, () -> {
-			return Ingredient.fromItems(Items.LEATHER);
-		}),
-		O_YOROI("o_yoroi", 33, new int[]{3, 6, 8, 3}, 10, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 2.0F, () -> {
-			return Ingredient.fromItems(Blocks.REDSTONE_BLOCK.asItem());
-		}),
-		PHARAOH("pharaoh", 12, new int[]{3, 6, 8, 3}, 37, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 0.0F, () -> {
-			return Ingredient.fromItems(Items.GOLD_INGOT);
-		}),
-		RAIJIN("raijin", 45, new int[]{4, 8, 10, 4}, 26, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 2.0F, () -> {
-			return Ingredient.fromItems(Blocks.GOLD_BLOCK.asItem());
-		});
+		IRON_PLATE(
+				"iron_plate",
+				DoTBConfig.IRON_PLATE_DURABILITY.get(),
+				new int[]{
+						DoTBConfig.IRON_PLATE_DEF_FEET.get(),
+						DoTBConfig.IRON_PLATE_DEF_LEGS.get(),
+						DoTBConfig.IRON_PLATE_DEF_CHEST.get(),
+						DoTBConfig.IRON_PLATE_DEF_HELMET.get()},
+				DoTBConfig.IRON_PLATE_ENCHANT.get(),
+				SoundEvents.ITEM_ARMOR_EQUIP_IRON,
+				DoTBConfig.IRON_PLATE_TOUGHNESS.get().floatValue(),
+				() -> Ingredient.fromItems(Items.IRON_INGOT)),
+		JAPANESE_LIGHT(
+				"japanese_light",
+				DoTBConfig.JAPANESE_LIGHT_DURABILITY.get(),
+				new int[]{
+						DoTBConfig.JAPANESE_LIGHT_DEF_FEET.get(),
+						DoTBConfig.JAPANESE_LIGHT_DEF_LEGS.get(),
+						DoTBConfig.JAPANESE_LIGHT_DEF_CHEST.get(),
+						DoTBConfig.JAPANESE_LIGHT_DEF_HELMET.get()},
+				DoTBConfig.JAPANESE_LIGHT_ENCHANT.get(),
+				SoundEvents.ITEM_ARMOR_EQUIP_LEATHER,
+				DoTBConfig.JAPANESE_LIGHT_TOUGHNESS.get().floatValue(),
+				() -> Ingredient.fromItems(Items.LEATHER)),
+		O_YOROI(
+				"o_yoroi",
+				DoTBConfig.O_YOROI_DURABILITY.get(),
+				new int[]{
+						DoTBConfig.O_YOROI_DEF_FEET.get(),
+						DoTBConfig.O_YOROI_DEF_LEGS.get(),
+						DoTBConfig.O_YOROI_DEF_CHEST.get(),
+						DoTBConfig.O_YOROI_DEF_HELMET.get()},
+				DoTBConfig.O_YOROI_ENCHANT.get(),
+				SoundEvents.ITEM_ARMOR_EQUIP_IRON,
+				DoTBConfig.O_YOROI_TOUGHNESS.get().floatValue(),
+				() -> Ingredient.fromItems(Items.REDSTONE_BLOCK.asItem())),
+		PHARAOH(
+				"pharaoh",
+				DoTBConfig.PHARAOH_DURABILITY.get(),
+				new int[]{
+					DoTBConfig.PHARAOH_DEF_FEET.get(),
+					DoTBConfig.PHARAOH_DEF_LEGS.get(),
+					DoTBConfig.PHARAOH_DEF_CHEST.get(),
+					DoTBConfig.PHARAOH_DEF_HELMET.get()},
+				DoTBConfig.PHARAOH_ENCHANT.get(),
+				SoundEvents.ITEM_ARMOR_EQUIP_GOLD,
+				DoTBConfig.PHARAOH_TOUGHNESS.get().floatValue(),
+				() -> Ingredient.fromItems(Items.GOLD_INGOT)),
+		RAIJIN(
+				"raijin",
+				DoTBConfig.RAIJIN_DURABILITY.get(),
+				new int[]{
+					DoTBConfig.RAIJIN_DEF_FEET.get(),
+					DoTBConfig.RAIJIN_DEF_LEGS.get(),
+					DoTBConfig.RAIJIN_DEF_CHEST.get(),
+					DoTBConfig.RAIJIN_DEF_HELMET.get()},
+				DoTBConfig.RAIJIN_ENCHANT.get(),
+				SoundEvents.ITEM_ARMOR_EQUIP_LEATHER,
+				DoTBConfig.RAIJIN_TOUGHNESS.get().floatValue(),
+				() -> Ingredient.fromItems(Blocks.GOLD_BLOCK.asItem()));
 
 		private static final int[] MAX_DAMAGE_ARRAY = new int[]{13, 15, 16, 11};
 		private final String name;
@@ -48,10 +91,10 @@ public class DoTBMaterials {
 		/**
 		 * @param nameIn Material name.
 		 * @param maxDamageFactorIn Durability factor.
-		 * @param damageReductionAmountsIn Durability of each armor part in following order : Feet, Legs, Chest, Helmet.
-		 * @param enchantabilityIn Impact the change of getting powerful enchants.
+		 * @param damageReductionAmountsIn Defense of each armor part in the following order : Feet, Legs, Chest, Helmet.
+		 * @param enchantabilityIn Impact the chance of getting powerful enchants.
 		 * @param equipSoundIn Sound when equipped.
-		 * @param toughness Toughness value (same for every parts).
+		 * @param toughness Toughness value (same for every part).
 		 * @param repairMaterialSupplier Ingredient used to repair the armor.
 		 */
 		ArmorMaterial(String nameIn, int maxDamageFactorIn, int[] damageReductionAmountsIn, int enchantabilityIn, SoundEvent equipSoundIn, float toughness, Supplier<Ingredient> repairMaterialSupplier) {
@@ -94,8 +137,8 @@ public class DoTBMaterials {
 		}
 	}
 
+	/*//TODO I keep this here in case we want to add some tools
 	public enum ItemMaterial implements IItemTier {
-		//TODO remove useless
 		WOOD(0, 59, 2.0F, 0.0F, 15, () -> {
 			return Ingredient.fromTag(ItemTags.PLANKS);
 		}),
@@ -152,4 +195,6 @@ public class DoTBMaterials {
 			return this.repairMaterial.getValue();
 		}
 	}
+
+	 */
 }

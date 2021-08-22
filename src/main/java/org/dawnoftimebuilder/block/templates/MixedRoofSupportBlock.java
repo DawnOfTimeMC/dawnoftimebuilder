@@ -2,7 +2,6 @@ package org.dawnoftimebuilder.block.templates;
 
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.*;
-;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.fluid.Fluid;
@@ -30,7 +29,6 @@ import org.dawnoftimebuilder.block.IBlockCustomItem;
 import javax.annotation.Nullable;
 
 import static org.dawnoftimebuilder.DawnOfTimeBuilder.DOTB_TAB;
-import static org.dawnoftimebuilder.DawnOfTimeBuilder.MOD_ID;
 
 public class MixedRoofSupportBlock extends SlabBlockDoTB implements IBlockCustomItem {
 
@@ -98,8 +96,6 @@ public class MixedRoofSupportBlock extends SlabBlockDoTB implements IBlockCustom
     @Nullable
     @Override
     public Item getCustomItemBlock() {
-        ResourceLocation resourceLocation = this.getRegistryName();
-        if(resourceLocation == null) return null;
         return new BlockItem(this, new Item.Properties().group(DOTB_TAB)){
             @Override
             public ActionResultType tryPlace(BlockItemUseContext context) {
@@ -142,7 +138,7 @@ public class MixedRoofSupportBlock extends SlabBlockDoTB implements IBlockCustom
                 }
                 return super.tryPlace(context);
             }
-        }.setRegistryName(MOD_ID, resourceLocation.getPath());
+        };
     }
 
     @Override

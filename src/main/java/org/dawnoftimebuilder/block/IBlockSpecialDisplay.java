@@ -4,9 +4,9 @@ public interface IBlockSpecialDisplay {
 
 	default float getDisplayScale(){
 		return 1.0F;
-	};
+	}
 
-	default int getDisplayedLightLevel(){
+    default int getDisplayedLightLevel(){
 		return 0;
 	}
 

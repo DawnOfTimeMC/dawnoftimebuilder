@@ -2,8 +2,6 @@ package org.dawnoftimebuilder.block.templates;
 
 import net.minecraft.block.*;
 
-import static org.dawnoftimebuilder.DawnOfTimeBuilder.MOD_ID;
-
 public class StairsBlockDoTB extends StairsBlock {
 
     public StairsBlockDoTB(Block block){

@@ -26,8 +26,8 @@ import static org.dawnoftimebuilder.utils.DoTBBlockUtils.DoTBTags.SHEARS;
 
 public class GrowingBushBlock extends SoilCropsBlock {
 
-	public VoxelShape[] SHAPES;
-	public int cutAge;
+	public final VoxelShape[] SHAPES;
+	public final int cutAge;
 	private static final IntegerProperty AGE = BlockStateProperties.AGE_0_5;
 	private static final BooleanProperty CUT = DoTBBlockStateProperties.CUT;
 

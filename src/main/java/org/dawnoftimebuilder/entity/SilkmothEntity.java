@@ -73,7 +73,7 @@ public class SilkmothEntity extends AmbientEntity {
 			if(!this.hasCustomName()) this.attackEntityFrom(DamageSource.STARVE, 20.0F);
 		}
 
-		if(this.rand.nextInt(1000) == 0){
+		if(this.rand.nextInt(400) == 0){
 			//Randomly changes the rotation pos.
 			this.changeRotationPos();
 		}
@@ -97,8 +97,6 @@ public class SilkmothEntity extends AmbientEntity {
 		this.setMotion(motionVector.x * 0.5D + Math.cos(alpha) * 0.15D, Math.sin(this.ticksExisted / 20.0D) * 0.05D, motionVector.z * 0.5D + Math.sin(alpha) * 0.15D);
 
 		this.rotationYaw = (float) MathHelper.wrapDegrees(180.0D * alpha / Math.PI - 90.0D);
-		this.rotationYawHead = 0.0F;
-		this.rotationPitch = (float) - motionVector.y * 5 * 90;
 	}
 
 	private void changeRotationPos(){
@@ -107,9 +105,9 @@ public class SilkmothEntity extends AmbientEntity {
 
 		int x = (int) this.world.getDayTime() % 23999;
 		boolean isNight = x > 12000 && x < 23000;
-		x = (int) this.posX - horizontalRange;
-		int y = (int) this.posY - verticalRange;
-		int z = (int) this.posZ - horizontalRange;
+		x = (int) Math.floor(this.posX) - horizontalRange;
+		int y = (int) Math.floor(this.posY) - verticalRange;
+		int z = (int) Math.floor(this.posZ) - horizontalRange;
 
 		List<BlockPos> listMulberry = new ArrayList<>();
 		List<BlockPos> listLight = new ArrayList<>();
@@ -224,7 +222,7 @@ public class SilkmothEntity extends AmbientEntity {
 		compound.putInt("RotationX", this.dataManager.get(ROTATION_POS).getX());
 		compound.putInt("RotationY", this.dataManager.get(ROTATION_POS).getY());
 		compound.putInt("RotationZ", this.dataManager.get(ROTATION_POS).getZ());
-		compound.putBoolean("Rota tionClockwise", this.dataManager.get(CLOCKWISE));
+		compound.putBoolean("RotationClockwise", this.dataManager.get(CLOCKWISE));
 		compound.putFloat("RotationDistance", this.dataManager.get(DISTANCE));
 	}
 }

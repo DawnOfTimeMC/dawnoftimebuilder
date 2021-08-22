@@ -339,15 +339,15 @@ public class OYoroiArmorModel<T extends LivingEntity> extends CustomArmorModel<T
 			if (this.isSitting) {
 				this.thighBack.rotateAngleX += 1.0F;
 				this.thighBackSub.rotateAngleX += 1.0F;
-				this.thighFront.rotateAngleX += -1.0F;
-				this.thighFrontSub.rotateAngleX += -1.0F;
+                this.thighFront.rotateAngleX -= 1.0F;
+                this.thighFrontSub.rotateAngleX -= 1.0F;
 			}
 
 			if (this.isSneak) {
-				this.thighBack.rotateAngleX += -0.5F;
-				this.thighBackSub.rotateAngleX += -0.5F;
-				this.thighFront.rotateAngleX += -0.5F;
-				this.thighFrontSub.rotateAngleX += -0.5F;
+                this.thighBack.rotateAngleX -= 0.5F;
+                this.thighBackSub.rotateAngleX -= 0.5F;
+                this.thighFront.rotateAngleX -= 0.5F;
+                this.thighFrontSub.rotateAngleX -= 0.5F;
 				this.thighFront.rotationPointY = 8.0F;
 				this.thighFrontSub.rotationPointY = 8.0F;
 			} else {

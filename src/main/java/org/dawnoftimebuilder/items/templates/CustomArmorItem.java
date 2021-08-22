@@ -25,8 +25,11 @@ public abstract class CustomArmorItem extends ArmorItem {
 
 	public CustomArmorItem(String set, IArmorMaterial materialIn, EquipmentSlotType slot) {
 		super(materialIn, slot, new Item.Properties().maxStackSize(1).group(DOTB_TAB));
-		this.setRegistryName(MOD_ID, set + "_" + slot.getName());
 		this.set = set;
+	}
+
+	public String getItemPartName(){
+		return this.set + "_" + slot.getName();
 	}
 
 	@SuppressWarnings("unchecked")

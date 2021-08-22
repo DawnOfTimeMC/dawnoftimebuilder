@@ -18,7 +18,7 @@ public class DoTBEntitiesRegistry {
 
 	public static final EntityType<ChairEntity> CHAIR_ENTITY = buildType("chair", EntityType.Builder.<ChairEntity>create((type, world) -> new ChairEntity(world), EntityClassification.MISC).size(0.0F, 0.0F).setCustomClientFactory((spawnEntity, world) -> new ChairEntity(world)));
 	public static final EntityType<SilkmothEntity> SILKMOTH_ENTITY = buildType("silkmoth", EntityType.Builder.<SilkmothEntity>create((type, world) -> new SilkmothEntity(world), EntityClassification.AMBIENT).size(0.3F, 0.3F).setCustomClientFactory((spawnEntity, world) -> new SilkmothEntity(world)));
-	public static final EntityType<JapaneseDragonEntity> JAPANESE_DRAGON_ENTITY = buildType("japanese_dragon", EntityType.Builder.<JapaneseDragonEntity>create((type, world) -> new JapaneseDragonEntity(world), EntityClassification.CREATURE).size(0.0F, 0.0F).setCustomClientFactory((spawnEntity, world) -> new JapaneseDragonEntity(world)));
+	public static final EntityType<JapaneseDragonEntity> JAPANESE_DRAGON_ENTITY = buildType("japanese_dragon", EntityType.Builder.<JapaneseDragonEntity>create((type, world) -> new JapaneseDragonEntity(world), EntityClassification.CREATURE).size(1.0F, 1.0F).setCustomClientFactory((spawnEntity, world) -> new JapaneseDragonEntity(world)));
 	//TODO Fix the dragon and find a way to set different size for a unique mob.
 
 	private static <T extends Entity> EntityType<T> buildType(String id, EntityType.Builder<T> builder) {

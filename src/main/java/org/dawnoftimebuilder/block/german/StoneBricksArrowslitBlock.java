@@ -16,7 +16,6 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import org.dawnoftimebuilder.block.templates.WaterloggedBlock;
-import org.dawnoftimebuilder.utils.DoTBBlockStateProperties;
 import org.dawnoftimebuilder.utils.DoTBBlockUtils;
 
 import javax.annotation.Nonnull;

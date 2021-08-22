@@ -8,27 +8,26 @@ import net.minecraft.state.properties.Half;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.gen.ChunkGenerator;
-import net.minecraft.world.gen.feature.IFeatureConfig;
+import net.minecraft.world.gen.GenerationSettings;
+import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import org.dawnoftimebuilder.block.templates.DoubleCropsBlock;
-import org.dawnoftimebuilder.block.templates.GrowingBushBlock;
-import org.dawnoftimebuilder.generation.features.templates.FeatureDoTB;
 import org.dawnoftimebuilder.registries.DoTBBlocksRegistry;
 
 import java.util.Random;
 import java.util.function.Function;
 
-public class MulberryFeature extends FeatureDoTB {
+public class MulberryFeature extends Feature<NoFeatureConfig> {
 
-    public MulberryFeature(Function<Dynamic<?>, ? extends NoFeatureConfig> configIn, String registryName) {
-        super(configIn, registryName);
+    public MulberryFeature(Function<Dynamic<?>, ? extends NoFeatureConfig> configIn) {
+        super(configIn);
     }
 
     /**
      * Places fully grown mulberry trees in a random pattern around a point.
      */
     @Override
-    public boolean place(IWorld worldIn, ChunkGenerator generator, Random rand, BlockPos pos, IFeatureConfig config) {
+    public boolean place(IWorld worldIn, ChunkGenerator<? extends GenerationSettings> generator, Random rand, BlockPos pos, NoFeatureConfig config) {
         for (int i = 0; i < 64; ++i) {
             // get next random position.
             BlockPos nextPos = pos.add(rand.nextInt(8) - rand.nextInt(8), rand.nextInt(4) - rand.nextInt(4), rand.nextInt(8) - rand.nextInt(8));

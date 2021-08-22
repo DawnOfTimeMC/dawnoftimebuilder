@@ -11,15 +11,19 @@ import net.minecraftforge.common.PlantType;
 import org.dawnoftimebuilder.items.templates.SoilSeedsItem;
 import org.dawnoftimebuilder.block.IBlockCustomItem;
 
+import javax.annotation.Nonnull;
+
 public class SoilCropsBlock extends CropsBlock implements IBlockCustomItem {
 
 	private final SoilSeedsItem seed;
+	private final String seedName;
 	private final PlantType plantType;
 
 	public SoilCropsBlock(String seedName, PlantType plantType){
 		super(BlockDoTB.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0.0F).sound(SoundType.CROP));
 		this.plantType = plantType;
-		this.seed = new SoilSeedsItem(this, seedName);
+		this.seedName = seedName;
+		this.seed = new SoilSeedsItem(this);
 	}
 
 	@Override
@@ -52,5 +56,11 @@ public class SoilCropsBlock extends CropsBlock implements IBlockCustomItem {
 	@Override
 	public Item getCustomItemBlock() {
 		return this.seed;
+	}
+
+	@Nonnull
+	@Override
+	public String getCustomItemName() {
+		return this.seedName;
 	}
 }

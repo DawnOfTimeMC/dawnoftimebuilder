@@ -28,8 +28,8 @@ import java.util.Random;
 
 public class DoubleGrowingBushBlock extends GrowingBushBlock {
 
-	public int growingAge;
-	public VoxelShape[] TOP_SHAPES;
+	public final int growingAge;
+	public final VoxelShape[] TOP_SHAPES;
 	public static final EnumProperty<Half> HALF = BlockStateProperties.HALF;
 
 	public DoubleGrowingBushBlock(String seedName, PlantType plantType, int cutAge, int growingAge) {

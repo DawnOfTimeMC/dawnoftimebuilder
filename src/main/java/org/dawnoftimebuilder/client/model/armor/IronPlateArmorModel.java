@@ -185,7 +185,6 @@ public class IronPlateArmorModel<T extends LivingEntity> extends CustomArmorMode
 					this.rightShoulderB.mirror = true;
 					this.rightShoulderB.setRotationPoint(0.0F, 0.0F, 0.0F);
 					this.rightShoulderB.addBox(-5.8F, -1.4F, -2.5F, 6, 3, 5, 0.2F);
-					setRotateAngle(rightShoulderB, 0.0F, 0.0F, -0.39269908169872414F);
 				}else{
 					this.leftHand = new RendererModel(this, 112, 48);
 					this.leftHand.setRotationPoint(5.0F, 2.5F, 0.0F);
@@ -209,8 +208,8 @@ public class IronPlateArmorModel<T extends LivingEntity> extends CustomArmorMode
 					this.rightShoulderB.mirror = true;
 					this.rightShoulderB.setRotationPoint(0.0F, 0.0F, 0.0F);
 					this.rightShoulderB.addBox(-4.8F, -1.4F, -2.5F, 5, 3, 5, 0.2F);
-					setRotateAngle(rightShoulderB, 0.0F, 0.0F, -0.39269908169872414F);
 				}
+				setRotateAngle(rightShoulderB, 0.0F, 0.0F, -0.39269908169872414F);
 
 				this.bipedBody = bodyBase;
 				this.bipedBody.addChild(this.backLeftBody);
@@ -337,7 +336,7 @@ public class IronPlateArmorModel<T extends LivingEntity> extends CustomArmorMode
 
 				if (this.isSitting) this.miscA.rotateAngleX += 1.0F;
 
-				if (this.isSneak) this.miscA.rotateAngleX += -0.18F;
+				if (this.isSneak) this.miscA.rotateAngleX -= 0.18F;
 				else this.miscA.rotateAngleX += f;
 
 				break;
@@ -345,13 +344,13 @@ public class IronPlateArmorModel<T extends LivingEntity> extends CustomArmorMode
 			case LEGS:
 				this.miscB.rotateAngleX = -(f + 0.05F * sinPI(ageInTicks / 60.0F + 1.0F));
 
-				if (this.isSitting) this.miscB.rotateAngleX += -1.0F;
+				if (this.isSitting) this.miscB.rotateAngleX -= 1.0F;
 
 				if (this.isSneak) {
 					this.beltA.rotationPointY = -3.0F;
 					this.beltB.rotationPointY = -3.0F;
 					this.miscB.rotationPointY = 8.5F;
-					this.miscB.rotateAngleX += -0.6F;
+					this.miscB.rotateAngleX -= 0.6F;
 				}else{
 					this.beltA.rotationPointY = 0.0F;
 					this.beltB.rotationPointY = 0.0F;

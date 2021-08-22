@@ -14,8 +14,6 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
 
-import static org.dawnoftimebuilder.DawnOfTimeBuilder.MOD_ID;
-
 public class DoorBlockDoTB extends DoorBlock implements IWaterLoggable {
 
 	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;

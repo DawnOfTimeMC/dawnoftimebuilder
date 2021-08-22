@@ -12,6 +12,7 @@ import org.dawnoftimebuilder.items.japanese.RaijinArmorItem;
 import org.dawnoftimebuilder.items.templates.CanBeDriedItem;
 import org.dawnoftimebuilder.items.templates.CustomArmorItem;
 import org.dawnoftimebuilder.items.templates.ItemDoTB;
+import org.dawnoftimebuilder.utils.DoTBFoods;
 
 import java.util.*;
 
@@ -21,7 +22,6 @@ import static org.dawnoftimebuilder.DawnOfTimeBuilder.DOTB_TAB;
 import static org.dawnoftimebuilder.DawnOfTimeBuilder.MOD_ID;
 import static org.dawnoftimebuilder.registries.DoTBEntitiesRegistry.JAPANESE_DRAGON_ENTITY;
 import static org.dawnoftimebuilder.registries.DoTBEntitiesRegistry.SILKMOTH_ENTITY;
-import static org.dawnoftimebuilder.utils.DoTBFoods.GRAPPE;
 
 public class DoTBItemsRegistry {
 
@@ -43,7 +43,7 @@ public class DoTBItemsRegistry {
 	public static final Item GRAY_TILE = reg("gray_tile", new ItemDoTB());
 	public static final Item GRAY_CLAY_TILE = reg("gray_clay_tile", new ItemDoTB());
 	public static final Item MULBERRY_LEAVES = reg("mulberry_leaves", new ItemDoTB());
-	public static final Item GRAPE = reg("grape", new ItemDoTB(new Item.Properties().food(GRAPPE)));
+	public static final Item GRAPE = reg("grape", new ItemDoTB(new Item.Properties().food(DoTBFoods.GRAPE)));
 	public static final Item GRAPE_SEEDS = reg("grape_seeds", new ItemDoTB());
 	//public static final Item CLEMATIS_SEEDS = reg("clematis_seeds", new ItemDoTB());
 	public static final Item TACHI_SWORD = reg("tachi_sword", new SwordItem(DIAMOND, 3, -2.4F, new Item.Properties().group(DOTB_TAB)));//TODO import the model!!
@@ -71,11 +71,10 @@ public class DoTBItemsRegistry {
 	public static final Item RAIJIN_ARMOR_FEET = reg(new RaijinArmorItem(FEET));
 
 	private static Item reg(CustomArmorItem item){
-		ITEMS.add(item);
-		return item;
+		return reg(item.getItemPartName(), item);
 	}
 
-	private static Item reg(String name, Item item) {
+	public static Item reg(String name, Item item) {
 		item = item.setRegistryName(MOD_ID, name);
 		ITEMS.add(item);
 		return item;

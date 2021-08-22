@@ -1,27 +1,19 @@
 package org.dawnoftimebuilder.tileentity;
 
-import net.minecraft.block.Block;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.INamedContainerProvider;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
-import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
-import org.dawnoftimebuilder.block.IBlockSpecialDisplay;
-import org.dawnoftimebuilder.block.templates.DisplayerBlock;
 import org.dawnoftimebuilder.container.DisplayerContainer;
-import org.dawnoftimebuilder.network.PacketHandler;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;

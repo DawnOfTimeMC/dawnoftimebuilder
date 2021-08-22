@@ -12,10 +12,4 @@ public class TrapDoorBlockDoTB extends TrapDoorBlock {
 	public TrapDoorBlockDoTB(Material materialIn, float hardness, float resistance) {
 		this(Block.Properties.create(materialIn).hardnessAndResistance(hardness, resistance));
 	}
-
-	public Block setBurnable() {
-		FireBlock fireblock = (FireBlock) Blocks.FIRE;
-		fireblock.setFireInfo(this, 5, 20);
-		return this;
-	}
 }

@@ -7,6 +7,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
+@SuppressWarnings("FieldCanBeLocal")
 public class JapaneseLightArmorModel<T extends LivingEntity> extends CustomArmorModel<T> {
 	
 	//Helmet

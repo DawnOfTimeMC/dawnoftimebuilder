@@ -21,9 +21,8 @@ import static org.dawnoftimebuilder.DawnOfTimeBuilder.MOD_ID;
 public class SoilSeedsItem extends BlockItem implements IPlantable {
     private final SoilCropsBlock crops;
 
-    public SoilSeedsItem(SoilCropsBlock crops, String seedName) {
+    public SoilSeedsItem(SoilCropsBlock crops) {
         super(crops, new Item.Properties().group(DOTB_TAB));
-        this.setRegistryName(MOD_ID, seedName);
         this.crops = crops;
     }
 

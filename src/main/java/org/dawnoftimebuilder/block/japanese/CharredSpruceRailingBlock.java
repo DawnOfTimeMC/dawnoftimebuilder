@@ -55,8 +55,4 @@ public class CharredSpruceRailingBlock extends FenceBlockDoTB {
     private boolean hasNoPillar(BlockState state){
 		return state.get(FENCE_PILLAR) == FencePillar.NONE;
 	}
-
-	public FencePillar getShape(BlockState state){
-		return state.get(FENCE_PILLAR);
-	}
 }
