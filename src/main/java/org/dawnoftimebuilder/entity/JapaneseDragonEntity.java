@@ -19,6 +19,7 @@ import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
+import org.dawnoftimebuilder.utils.DoTBConfig;
 
 import javax.annotation.Nullable;
 
@@ -53,8 +54,8 @@ public class JapaneseDragonEntity extends CreatureEntity {
 	@Override
 	protected void registerAttributes() {
 		super.registerAttributes();
-		this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(60.0D * this.getDragonSize());
-		this.getAttributes().registerAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(4.0D + 2.0D * this.getDragonSize());
+		this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(DoTBConfig.JAPANESE_DRAGON_HEALTH.get() * this.getDragonSize());
+		this.getAttributes().registerAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(DoTBConfig.JAPANESE_DRAGON_ATTACK.get() + 2.0D * this.getDragonSize());
 	}
 
 	@Override

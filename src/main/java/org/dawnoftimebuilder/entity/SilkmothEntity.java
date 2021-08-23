@@ -17,6 +17,7 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import org.dawnoftimebuilder.block.templates.DoubleGrowingBushBlock;
+import org.dawnoftimebuilder.utils.DoTBConfig;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -50,19 +51,19 @@ public class SilkmothEntity extends AmbientEntity {
 	}
 
 	private float getNewRotationDistance(){
-		return 0.5F + 2.0F * this.rand.nextFloat();
+		return 0.5F + DoTBConfig.SILKMOTH_ROTATION_MAX_RANGE.get() * this.rand.nextFloat();
 	}
 
 	@Override
 	protected void registerAttributes() {
 		super.registerAttributes();
-		this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(3.0D);
+		this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(DoTBConfig.SILKMOTH_HEALTH.get());
 	}
 
 	@Override
 	public void tick() {
 		super.tick();
-		this.setMotion(this.getMotion());//TODO Useful ???
+		this.setMotion(this.getMotion());
 	}
 
 	protected void updateAITasks() {
@@ -70,10 +71,10 @@ public class SilkmothEntity extends AmbientEntity {
 
 		if(this.ticksExisted >= 24000){
 			//The silkmoth dies from oldness.
-			if(!this.hasCustomName()) this.attackEntityFrom(DamageSource.STARVE, 20.0F);
+			if(!this.hasCustomName() && DoTBConfig.SILKMOTH_MUST_DIE.get()) this.attackEntityFrom(DamageSource.STARVE, 20.0F);
 		}
 
-		if(this.rand.nextInt(400) == 0){
+		if(this.rand.nextInt(DoTBConfig.SILKMOTH_ROTATION_CHANGE.get()) == 0){
 			//Randomly changes the rotation pos.
 			this.changeRotationPos();
 		}

@@ -52,8 +52,37 @@ public class DoTBConfig {
     public static ForgeConfigSpec.IntValue RAIJIN_ENCHANT;
     public static ForgeConfigSpec.DoubleValue RAIJIN_TOUGHNESS;
 
+    public static final String WEAPON_CATEGORY = "weapon_properties";
+    public static ForgeConfigSpec.IntValue TACHI_ATT_DMG;
+    public static ForgeConfigSpec.DoubleValue TACHI_ATT_SPD;
+
+    public static final String BLOCK_CATEGORY = "block_properties";
+    public static ForgeConfigSpec.IntValue DRYING_TIME_VARIATION;
+
     public static final String WORLD_GENERATION_CATEGORY = "world_generation";
-    public static ForgeConfigSpec.BooleanValue ACTIVATE_WORLD_GENERATION;
+    public static ForgeConfigSpec.BooleanValue CAMELLIA_GENERATION;
+    public static ForgeConfigSpec.IntValue CAMELLIA_BOTTOM_OFFSET;
+    public static ForgeConfigSpec.IntValue CAMELLIA_TOP;
+    public static ForgeConfigSpec.IntValue CAMELLIA_SPAWN_WIDTH;
+    public static ForgeConfigSpec.IntValue CAMELLIA_SPAWN_HIGH;
+    public static ForgeConfigSpec.BooleanValue RICE_GENERATION;
+    public static ForgeConfigSpec.IntValue RICE_BOTTOM_OFFSET;
+    public static ForgeConfigSpec.IntValue RICE_TOP;
+    public static ForgeConfigSpec.IntValue RICE_SPAWN_WIDTH;
+    public static ForgeConfigSpec.IntValue RICE_SPAWN_HIGH;
+    public static ForgeConfigSpec.BooleanValue MULBERRY_GENERATION;
+    public static ForgeConfigSpec.IntValue MULBERRY_BOTTOM_OFFSET;
+    public static ForgeConfigSpec.IntValue MULBERRY_TOP;
+    public static ForgeConfigSpec.IntValue MULBERRY_SPAWN_WIDTH;
+    public static ForgeConfigSpec.IntValue MULBERRY_SPAWN_HIGH;
+
+    public static final String ENTITY_CATEGORY = "entity_properties";
+    public static ForgeConfigSpec.IntValue SILKMOTH_HEALTH;
+    public static ForgeConfigSpec.IntValue SILKMOTH_ROTATION_MAX_RANGE;
+    public static ForgeConfigSpec.BooleanValue SILKMOTH_MUST_DIE;
+    public static ForgeConfigSpec.IntValue SILKMOTH_ROTATION_CHANGE;
+    public static ForgeConfigSpec.IntValue JAPANESE_DRAGON_HEALTH;
+    public static ForgeConfigSpec.IntValue JAPANESE_DRAGON_ATTACK;
 
     static{
         COMMON_BUILDER.comment("----------------------------------------|| Food settings ||----------------------------------------").push(FOOD_CATEGORY);
@@ -111,8 +140,54 @@ public class DoTBConfig {
             COMMON_BUILDER.pop();
         COMMON_BUILDER.pop();
 
+        COMMON_BUILDER.comment("---------------------------------------|| Weapon settings ||---------------------------------------").push(WEAPON_CATEGORY);
+            COMMON_BUILDER.push("tachi_sword");
+                TACHI_ATT_DMG = COMMON_BUILDER.comment("Tachi sword attack damage :").defineInRange("tachiAttackDamage", 3,1,100);
+                TACHI_ATT_SPD = COMMON_BUILDER.comment("Tachi sword attack speed :").defineInRange("tachiAttackSpeed", -2.4,-100.0,0.0);
+            COMMON_BUILDER.pop();
+        COMMON_BUILDER.pop();
+
+        COMMON_BUILDER.comment("---------------------------------------|| Entity settings ||---------------------------------------").push(ENTITY_CATEGORY);
+            COMMON_BUILDER.push("silkmoth");
+                SILKMOTH_HEALTH = COMMON_BUILDER.defineInRange("silkmoth_max_health", 3, 1, 10000);
+                SILKMOTH_ROTATION_MAX_RANGE = COMMON_BUILDER.defineInRange("silkmoth_rotation_max_range", 2, 0, 10);
+                SILKMOTH_MUST_DIE = COMMON_BUILDER.define("silkmoth_dies_after_one_day", true);
+                SILKMOTH_ROTATION_CHANGE = COMMON_BUILDER.comment("The probability to change the rotation point each tick is equal to 1/x, with x the following value :").defineInRange("silkmoth_rotation_change", 400, 10, 10000);
+            COMMON_BUILDER.pop();
+            COMMON_BUILDER.push("japanese_dragon");
+                JAPANESE_DRAGON_HEALTH = COMMON_BUILDER.defineInRange("japanese_dragon_default_max_health", 60, 1, 10000);
+                JAPANESE_DRAGON_ATTACK = COMMON_BUILDER.defineInRange("japanese_dragon_default_attack", 4, 1, 100);
+            COMMON_BUILDER.pop();
+        COMMON_BUILDER.pop();
+
+        COMMON_BUILDER.comment("---------------------------------------|| Block settings ||----------------------------------------").push(BLOCK_CATEGORY);
+            COMMON_BUILDER.push("dryer");
+                DRYING_TIME_VARIATION = COMMON_BUILDER.comment("The drying time of an item is randomly set in an interval around the default time from the recipe. The following value defines the high bound of the interval in percents. IE, if you choose '20', the interval will be [ 83.3% , 120%]. If you chose '200', the interval will be [33.3% , 300%] :").defineInRange("dryingTimeVariationRange", 30, 0, 100000);
+            COMMON_BUILDER.pop();
+        COMMON_BUILDER.pop();
+
         COMMON_BUILDER.comment("----------------------------------|| World generation settings ||----------------------------------").push(WORLD_GENERATION_CATEGORY);
-            ACTIVATE_WORLD_GENERATION = COMMON_BUILDER.comment("Must spawn DoTB's plants during world generation :").define("worldGeneration", true);
+            COMMON_BUILDER.push("camellia");
+                CAMELLIA_GENERATION = COMMON_BUILDER.comment("Must spawn this plant during world generation :").define("camelliaGeneration", true);
+                CAMELLIA_BOTTOM_OFFSET = COMMON_BUILDER.defineInRange("camelliaLowestY", 60,1,255);
+                CAMELLIA_TOP = COMMON_BUILDER.defineInRange("camelliaHighestY", 255,1,255);
+                CAMELLIA_SPAWN_WIDTH = COMMON_BUILDER.comment("Width of the square where a group of this plant can spawn :").defineInRange("camelliaSpawnWidth", 8,1,20);
+                CAMELLIA_SPAWN_HIGH = COMMON_BUILDER.comment("Vertical size of the zone where this plant can spawn :").defineInRange("camelliaSpawnHigh", 4,1,20);
+            COMMON_BUILDER.pop();
+            COMMON_BUILDER.push("rice");
+                RICE_GENERATION = COMMON_BUILDER.comment("Must spawn this plant during world generation :").define("riceGeneration", true);
+                RICE_BOTTOM_OFFSET = COMMON_BUILDER.defineInRange("riceLowestY", 60,1,255);
+                RICE_TOP = COMMON_BUILDER.defineInRange("riceHighestY", 65,1,255);
+                RICE_SPAWN_WIDTH = COMMON_BUILDER.comment("Width of the square where a group of this plant can spawn :").defineInRange("riceSpawnWidth", 8,1,20);
+                RICE_SPAWN_HIGH = COMMON_BUILDER.comment("Vertical size of the zone where this plant can spawn :").defineInRange("riceSpawnHigh", 4,1,20);
+            COMMON_BUILDER.pop();
+            COMMON_BUILDER.push("mulberry");
+                MULBERRY_GENERATION = COMMON_BUILDER.comment("Must spawn this plant during world generation :").define("mulberryGeneration", true);
+                MULBERRY_BOTTOM_OFFSET = COMMON_BUILDER.defineInRange("mulberryLowestY", 62,1,255);
+                MULBERRY_TOP = COMMON_BUILDER.defineInRange("mulberryHighestY", 255,1,255);
+                MULBERRY_SPAWN_WIDTH = COMMON_BUILDER.comment("Width of the square where a group of this plant can spawn :").defineInRange("mulberrySpawnWidth", 8,1,20);
+                MULBERRY_SPAWN_HIGH = COMMON_BUILDER.comment("Vertical size of the zone where this plant can spawn :").defineInRange("mulberrySpawnHigh", 4,1,20);
+            COMMON_BUILDER.pop();
         COMMON_BUILDER.pop();
 
         COMMON_CONFIG = COMMON_BUILDER.build();

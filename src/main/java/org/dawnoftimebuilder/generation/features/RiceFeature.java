@@ -1,0 +1,68 @@
+package org.dawnoftimebuilder.generation.features;
+
+import com.mojang.datafixers.Dynamic;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IWorld;
+import net.minecraft.world.gen.ChunkGenerator;
+import net.minecraft.world.gen.GenerationSettings;
+import net.minecraft.world.gen.feature.Feature;
+import net.minecraft.world.gen.feature.NoFeatureConfig;
+import org.dawnoftimebuilder.block.templates.BlockDoTB;
+import org.dawnoftimebuilder.block.templates.WaterDoubleCropsBlock;
+import org.dawnoftimebuilder.block.templates.WaterloggedBlock;
+import org.dawnoftimebuilder.registries.DoTBBlocksRegistry;
+import org.dawnoftimebuilder.utils.DoTBConfig;
+
+import java.util.Random;
+import java.util.function.Function;
+
+public class RiceFeature extends Feature<NoFeatureConfig> {
+
+    public RiceFeature(Function<Dynamic<?>, ? extends NoFeatureConfig> configIn) {
+        super(configIn);
+    }
+
+    /**
+     * Places a rice plant in the world in a similar fashion to melons.
+     */
+    @Override
+    public boolean place(IWorld worldIn, ChunkGenerator<? extends GenerationSettings> generator, Random rand, BlockPos pos, NoFeatureConfig config) {
+        boolean success = false;
+        for (int i = 0; i < 64; ++i) {
+            BlockPos nextPos = getRandomPos(pos, rand, DoTBConfig.RICE_SPAWN_WIDTH.get(), DoTBConfig.RICE_SPAWN_HIGH.get());
+            if (isValidPosition(worldIn, nextPos)) {
+                success = true;
+                WaterDoubleCropsBlock rice = (WaterDoubleCropsBlock) DoTBBlocksRegistry.RICE;
+                BlockState baseState = rice.getDefaultState()
+                        .with(rice.getAgeProperty(), rand.nextInt(rice.getMaxAge() - rice.getAgeReachingTopBlock() + 1) + rice.getAgeReachingTopBlock())
+                        .with(WaterloggedBlock.WATERLOGGED, true);
+                worldIn.setBlockState(nextPos, baseState, 2);
+                worldIn.setBlockState(nextPos.up(), rice.getTopState(baseState), 2);
+            }
+        }
+        return success;
+    }
+
+    private BlockPos getRandomPos(BlockPos pos, Random rand, int width, int high){
+        return pos.add(
+                rand.nextInt(width) - rand.nextInt(width),
+                rand.nextInt(high) - rand.nextInt(high),
+                rand.nextInt(width) - rand.nextInt(width));
+    }
+
+    /**
+     * Determines if the given position is valid for a rice plant.
+     */
+    private boolean isValidPosition(IWorld worldIn, BlockPos pos) {
+        Block block = worldIn.getBlockState(pos).getBlock();
+        Block blockUnder = worldIn.getBlockState(pos.down()).getBlock();
+        Block blockAbove = worldIn.getBlockState(pos.up()).getBlock();
+        if(worldIn.getBlockState(pos).getMaterial().isReplaceable() && block == Blocks.WATER && blockAbove == Blocks.AIR){
+            return BlockDoTB.isDirt(blockUnder) || blockUnder == Blocks.GRAVEL;//TODO replace with tags
+        }
+        return false;
+    }
+}

@@ -27,7 +27,7 @@ import java.util.Random;
 
 public class DoubleCropsBlock extends SoilCropsBlock {
 
-	public final int growingAge;
+	private final int growingAge;
 	public final VoxelShape[] SHAPES;
 	public static final EnumProperty<Half> HALF = BlockStateProperties.HALF;
 	

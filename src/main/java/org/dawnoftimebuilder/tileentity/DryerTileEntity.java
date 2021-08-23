@@ -18,6 +18,7 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import org.dawnoftimebuilder.items.IItemCanBeDried;
+import org.dawnoftimebuilder.utils.DoTBConfig;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -161,7 +162,9 @@ public class DryerTileEntity extends TileEntity implements ITickableTileEntity {
 		if(this.getWorld() != null){
 			this.itemHandler.setStackInSlot(index, new ItemStack(item.getItem(), item.getItemQuantity()));
 			this.currentTimes[index] = 0;
-			this.craftingTimes[index] = (int) (item.getDryingTime() * (0.8d + new Random().nextInt(5) * 0.1d));
+			float timeVariation = new Random().nextFloat() * 2.0F - 1.0F;
+			int range = (timeVariation >= 0) ? DoTBConfig.DRYING_TIME_VARIATION.get() : 10000 / (100 + DoTBConfig.DRYING_TIME_VARIATION.get());
+			this.craftingTimes[index] = (int) (item.getDryingTime() * (100 + timeVariation * range) / 100);
 			BlockState state = this.getWorld().getBlockState(this.pos);
 			this.getWorld().notifyBlockUpdate(this.pos, state, state, 2);
 		}
@@ -181,7 +184,6 @@ public class DryerTileEntity extends TileEntity implements ITickableTileEntity {
 		}
 	}
 
-	//TODO Check good practice with sided class like this one.
 	@OnlyIn(Dist.CLIENT)
 	public IBakedModel getItemCustomModel(int index){
 		ModelResourceLocation test = new ModelResourceLocation(IItemCanBeDried.getResourceLocation(Objects.requireNonNull(this.itemHandler.getStackInSlot(index).getItem().getRegistryName()).getPath()).toString());

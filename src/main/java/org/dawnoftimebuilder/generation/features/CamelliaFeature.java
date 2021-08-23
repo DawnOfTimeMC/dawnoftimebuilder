@@ -12,6 +12,7 @@ import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import org.dawnoftimebuilder.block.templates.GrowingBushBlock;
 import org.dawnoftimebuilder.registries.DoTBBlocksRegistry;
+import org.dawnoftimebuilder.utils.DoTBConfig;
 
 import java.util.Random;
 import java.util.function.Function;
@@ -24,20 +25,29 @@ public class CamelliaFeature extends Feature<NoFeatureConfig> {
 
     @Override
     public boolean place(IWorld worldIn, ChunkGenerator<? extends GenerationSettings> generator, Random rand, BlockPos pos, NoFeatureConfig config) {
+        boolean success = false;
         for (int i = 0; i < 64; ++i) {
-            BlockPos nextPos = pos.add(rand.nextInt(8) - rand.nextInt(8), rand.nextInt(4) - rand.nextInt(4), rand.nextInt(8) - rand.nextInt(8));
+            BlockPos nextPos = getRandomPos(pos, rand, DoTBConfig.CAMELLIA_SPAWN_WIDTH.get(), DoTBConfig.CAMELLIA_SPAWN_HIGH.get());
             GrowingBushBlock camellia = (GrowingBushBlock) DoTBBlocksRegistry.CAMELLIA;
-            BlockState bushState = camellia.getDefaultState().with(camellia.getAgeProperty(), camellia.getMaxAge());
+            BlockState bushState = camellia.getDefaultState().with(camellia.getAgeProperty(), rand.nextInt(camellia.getMaxAge() + 1));
             if (isValidPosition(worldIn, nextPos)) {
+                success = true;
                 worldIn.setBlockState(nextPos, bushState, 2);
             }
         }
-        return true;
+        return success;
+    }
+
+    private BlockPos getRandomPos(BlockPos pos, Random rand, int width, int high){
+        return pos.add(
+                rand.nextInt(width) - rand.nextInt(width),
+                rand.nextInt(high) - rand.nextInt(high),
+                rand.nextInt(width) - rand.nextInt(width));
     }
 
     private boolean isValidPosition(IWorld worldIn, BlockPos pos) {
         Block blockOn = worldIn.getBlockState(pos.down()).getBlock();
         return worldIn.getBlockState(pos).getMaterial().isReplaceable() &&
-                (blockOn == Blocks.GRASS_BLOCK || blockOn == Blocks.DIRT);
+                (blockOn == Blocks.GRASS_BLOCK || blockOn == Blocks.DIRT);//TODO replace with Tags
     }
 }
