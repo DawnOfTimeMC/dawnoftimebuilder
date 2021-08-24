@@ -27,6 +27,7 @@ import net.minecraft.world.server.ServerWorld;
 import org.dawnoftimebuilder.block.IBlockChain;
 import org.dawnoftimebuilder.block.templates.BlockDoTB;
 import org.dawnoftimebuilder.utils.DoTBBlockUtils;
+import org.dawnoftimebuilder.utils.DoTBConfig;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -136,16 +137,20 @@ public class StickBundleBlock extends BlockDoTB implements IBlockChain {
 	}
 
 	@Override
+	public boolean ticksRandomly(BlockState state) {
+		return state.get(AGE) > 0 && state.get(AGE) < 3 && state.get(HALF) == Half.TOP;
+	}
+
+	@Override
 	public void tick(BlockState state, World worldIn, BlockPos pos, Random random) {
-		if(state.get(HALF) == Half.TOP){
-			int growth = state.get(AGE);
-			if (growth > 0 && growth < 3) {
-				if(random.nextInt(5) == 0) {
-					worldIn.setBlockState(pos, worldIn.getBlockState(pos).with(AGE,growth + 1));
-					worldIn.setBlockState(pos.down(), worldIn.getBlockState(pos.down()).with(AGE,growth + 1));
-				}
+		int growth = state.get(AGE);
+		if (growth > 0 && growth < 3) {
+			if(random.nextInt(DoTBConfig.STICK_BUNDLE_GROWTH_CHANCE.get()) == 0) {
+				worldIn.setBlockState(pos, worldIn.getBlockState(pos).with(AGE,growth + 1));
+				worldIn.setBlockState(pos.down(), worldIn.getBlockState(pos.down()).with(AGE,growth + 1));
 			}
 		}
+
 	}
 
 	@Override

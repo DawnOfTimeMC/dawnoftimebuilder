@@ -13,6 +13,7 @@ import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.ForgeHooks;
 import org.dawnoftimebuilder.utils.DoTBBlockStateProperties;
 import org.dawnoftimebuilder.utils.DoTBBlockUtils;
+import org.dawnoftimebuilder.utils.DoTBConfig;
 
 import java.util.List;
 import java.util.Random;
@@ -39,7 +40,7 @@ public interface IBlockClimbingPlant {
 
 			if (worldIn.getLightSubtracted(pos, 0) >= 8) {
 				int age = stateIn.get(AGE_0_6);
-				if (ForgeHooks.onCropsGrowPre(worldIn, pos, stateIn, random.nextInt(25) == 0)) {//Probability "can grow"
+				if (ForgeHooks.onCropsGrowPre(worldIn, pos, stateIn, random.nextInt(DoTBConfig.CLIMBING_PLANT_GROWTH_CHANCE.get()) == 0)) {//Probability "can grow"
 					if(age < 2){
 						worldIn.setBlockState(pos, stateIn.with(AGE_0_6, age + 1), 2);
 						ForgeHooks.onCropsGrowPost(worldIn, pos, stateIn);
@@ -52,7 +53,7 @@ public interface IBlockClimbingPlant {
 						}
 					}
 				}
-				if(age < 2 || random.nextInt(10) != 0) return;//Probability "can spread"
+				if(age < 2 || random.nextInt(DoTBConfig.CLIMBING_PLANT_SPREAD_CHANCE.get()) != 0) return;//Probability "can spread"
 				BlockPos[] positions = new BlockPos[]{
 						pos.north(),
 						pos.east(),

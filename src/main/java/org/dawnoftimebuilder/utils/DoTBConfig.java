@@ -58,6 +58,9 @@ public class DoTBConfig {
 
     public static final String BLOCK_CATEGORY = "block_properties";
     public static ForgeConfigSpec.IntValue DRYING_TIME_VARIATION;
+    public static ForgeConfigSpec.IntValue CLIMBING_PLANT_GROWTH_CHANCE;
+    public static ForgeConfigSpec.IntValue CLIMBING_PLANT_SPREAD_CHANCE;
+    public static ForgeConfigSpec.IntValue STICK_BUNDLE_GROWTH_CHANCE;
 
     public static final String WORLD_GENERATION_CATEGORY = "world_generation";
     public static ForgeConfigSpec.BooleanValue CAMELLIA_GENERATION;
@@ -77,6 +80,7 @@ public class DoTBConfig {
     public static ForgeConfigSpec.IntValue MULBERRY_SPAWN_HIGH;
 
     public static final String ENTITY_CATEGORY = "entity_properties";
+    public static ForgeConfigSpec.IntValue SILKMOTH_SPAWN_CHANCE;
     public static ForgeConfigSpec.IntValue SILKMOTH_HEALTH;
     public static ForgeConfigSpec.IntValue SILKMOTH_ROTATION_MAX_RANGE;
     public static ForgeConfigSpec.BooleanValue SILKMOTH_MUST_DIE;
@@ -149,6 +153,7 @@ public class DoTBConfig {
 
         COMMON_BUILDER.comment("---------------------------------------|| Entity settings ||---------------------------------------").push(ENTITY_CATEGORY);
             COMMON_BUILDER.push("silkmoth");
+                SILKMOTH_SPAWN_CHANCE = COMMON_BUILDER.comment("The probability to spawn a Silkmoth on a Mulberry each random tick is equal to 1/x, with x the following value :").defineInRange("climbingPlantGrowthChance", 400, 10, 10000);
                 SILKMOTH_HEALTH = COMMON_BUILDER.defineInRange("silkmoth_max_health", 3, 1, 10000);
                 SILKMOTH_ROTATION_MAX_RANGE = COMMON_BUILDER.defineInRange("silkmoth_rotation_max_range", 2, 0, 10);
                 SILKMOTH_MUST_DIE = COMMON_BUILDER.define("silkmoth_dies_after_one_day", true);
@@ -164,6 +169,13 @@ public class DoTBConfig {
             COMMON_BUILDER.push("dryer");
                 DRYING_TIME_VARIATION = COMMON_BUILDER.comment("The drying time of an item is randomly set in an interval around the default time from the recipe. The following value defines the high bound of the interval in percents. IE, if you choose '20', the interval will be [ 83.3% , 120%]. If you chose '200', the interval will be [33.3% , 300%] :").defineInRange("dryingTimeVariationRange", 30, 0, 100000);
             COMMON_BUILDER.pop();
+            COMMON_BUILDER.push("climbing_plant");
+                CLIMBING_PLANT_GROWTH_CHANCE = COMMON_BUILDER.comment("The probability to grow is equal to 1/x, with x the following value :").defineInRange("climbingPlantGrowthChance", 25, 1, 1000);
+                CLIMBING_PLANT_SPREAD_CHANCE = COMMON_BUILDER.comment("If the plant could have grown (see climbingPlantGrowthChance), it has a probability to spread to an adjacent block equal to 1/x, with x the following value :").defineInRange("climbingPlantSpreadChance", 5, 1, 1000);
+            COMMON_BUILDER.pop();
+            COMMON_BUILDER.push("stick_bundle");
+                STICK_BUNDLE_GROWTH_CHANCE = COMMON_BUILDER.comment("Worms have a probability to grow on random tick equal to 1/x, with x the following value :").defineInRange("stickBundleGrowthChance", 25, 1, 1000);
+            COMMON_BUILDER.pop();
         COMMON_BUILDER.pop();
 
         COMMON_BUILDER.comment("----------------------------------|| World generation settings ||----------------------------------").push(WORLD_GENERATION_CATEGORY);
@@ -171,22 +183,22 @@ public class DoTBConfig {
                 CAMELLIA_GENERATION = COMMON_BUILDER.comment("Must spawn this plant during world generation :").define("camelliaGeneration", true);
                 CAMELLIA_BOTTOM_OFFSET = COMMON_BUILDER.defineInRange("camelliaLowestY", 60,1,255);
                 CAMELLIA_TOP = COMMON_BUILDER.defineInRange("camelliaHighestY", 255,1,255);
-                CAMELLIA_SPAWN_WIDTH = COMMON_BUILDER.comment("Width of the square where a group of this plant can spawn :").defineInRange("camelliaSpawnWidth", 8,1,20);
-                CAMELLIA_SPAWN_HIGH = COMMON_BUILDER.comment("Vertical size of the zone where this plant can spawn :").defineInRange("camelliaSpawnHigh", 4,1,20);
+                CAMELLIA_SPAWN_WIDTH = COMMON_BUILDER.comment("Maximal horizontal distance from the center of the spawn zone :").defineInRange("camelliaSpawnWidth", 8,1,20);
+                CAMELLIA_SPAWN_HIGH = COMMON_BUILDER.comment("Maximal vertical distance from the center of the spawn zone :").defineInRange("camelliaSpawnHigh", 4,1,20);
             COMMON_BUILDER.pop();
             COMMON_BUILDER.push("rice");
                 RICE_GENERATION = COMMON_BUILDER.comment("Must spawn this plant during world generation :").define("riceGeneration", true);
                 RICE_BOTTOM_OFFSET = COMMON_BUILDER.defineInRange("riceLowestY", 60,1,255);
                 RICE_TOP = COMMON_BUILDER.defineInRange("riceHighestY", 65,1,255);
-                RICE_SPAWN_WIDTH = COMMON_BUILDER.comment("Width of the square where a group of this plant can spawn :").defineInRange("riceSpawnWidth", 8,1,20);
-                RICE_SPAWN_HIGH = COMMON_BUILDER.comment("Vertical size of the zone where this plant can spawn :").defineInRange("riceSpawnHigh", 4,1,20);
+                RICE_SPAWN_WIDTH = COMMON_BUILDER.comment("Maximal horizontal distance from the center of the spawn zone :").defineInRange("riceSpawnWidth", 4,1,20);
+                RICE_SPAWN_HIGH = COMMON_BUILDER.comment("Maximal vertical distance from the center of the spawn zone :").defineInRange("riceSpawnHigh", 4,1,20);
             COMMON_BUILDER.pop();
             COMMON_BUILDER.push("mulberry");
                 MULBERRY_GENERATION = COMMON_BUILDER.comment("Must spawn this plant during world generation :").define("mulberryGeneration", true);
                 MULBERRY_BOTTOM_OFFSET = COMMON_BUILDER.defineInRange("mulberryLowestY", 62,1,255);
                 MULBERRY_TOP = COMMON_BUILDER.defineInRange("mulberryHighestY", 255,1,255);
-                MULBERRY_SPAWN_WIDTH = COMMON_BUILDER.comment("Width of the square where a group of this plant can spawn :").defineInRange("mulberrySpawnWidth", 8,1,20);
-                MULBERRY_SPAWN_HIGH = COMMON_BUILDER.comment("Vertical size of the zone where this plant can spawn :").defineInRange("mulberrySpawnHigh", 4,1,20);
+                MULBERRY_SPAWN_WIDTH = COMMON_BUILDER.comment("Maximal horizontal distance from the center of the spawn zone :").defineInRange("mulberrySpawnWidth", 8,1,20);
+                MULBERRY_SPAWN_HIGH = COMMON_BUILDER.comment("Maximal vertical distance from the center of the spawn zone :").defineInRange("mulberrySpawnHigh", 4,1,20);
             COMMON_BUILDER.pop();
         COMMON_BUILDER.pop();
 
