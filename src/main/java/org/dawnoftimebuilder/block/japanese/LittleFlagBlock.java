@@ -17,7 +17,7 @@ import net.minecraft.world.IWorld;
 import org.dawnoftimebuilder.block.templates.PaneBlockDoTB;
 import org.dawnoftimebuilder.utils.DoTBBlockStateProperties;
 
-public class LittleFlagBlock extends PaneBlockDoTB {
+public class LittleFlagBlock extends PaneBlockDoTB {//TODO Check connections when alone
 
     public static final BooleanProperty AXIS_Y = DoTBBlockStateProperties.AXIS_Y;
     private final VoxelShape[] VS_PILLAR = this.makePillarShapes(this.shapes);

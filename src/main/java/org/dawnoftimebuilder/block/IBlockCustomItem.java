@@ -2,7 +2,6 @@ package org.dawnoftimebuilder.block;
 
 import net.minecraft.item.Item;
 
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public interface IBlockCustomItem {

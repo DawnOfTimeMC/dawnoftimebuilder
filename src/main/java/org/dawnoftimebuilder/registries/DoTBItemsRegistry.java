@@ -11,6 +11,7 @@ import org.dawnoftimebuilder.items.japanese.OYoroiArmorItem;
 import org.dawnoftimebuilder.items.japanese.RaijinArmorItem;
 import org.dawnoftimebuilder.items.templates.CanBeDriedItem;
 import org.dawnoftimebuilder.items.templates.CustomArmorItem;
+import org.dawnoftimebuilder.items.templates.HatItem;
 import org.dawnoftimebuilder.items.templates.ItemDoTB;
 import org.dawnoftimebuilder.utils.DoTBConfig;
 import org.dawnoftimebuilder.utils.DoTBFoods;
@@ -29,9 +30,8 @@ public class DoTBItemsRegistry {
 	public static final List<Item> ITEMS = new ArrayList<>();
 
 	//General
-	//TODO Change eggs colors
-	public static final Item SILKMOTH_SPAWN_EGG = reg("silkmoth_spawn_egg", new SpawnEggItem(SILKMOTH_ENTITY, 4996656, 986895, (new Item.Properties()).group(ItemGroup.MISC)));
-	public static final Item JAPANESE_DRAGON_SPAWN_EGG = reg("japanese_dragon_spawn_egg", new SpawnEggItem(JAPANESE_DRAGON_ENTITY, 4996656, 986895, (new Item.Properties()).group(ItemGroup.MISC)));
+	public static final Item SILKMOTH_SPAWN_EGG = reg("silkmoth_spawn_egg", new SpawnEggItem(SILKMOTH_ENTITY, 0xDBD8BD, 0xFEFEFC, (new Item.Properties()).group(ItemGroup.MISC)));
+	public static final Item JAPANESE_DRAGON_SPAWN_EGG = reg("japanese_dragon_spawn_egg", new SpawnEggItem(JAPANESE_DRAGON_ENTITY, 0xFFFFFF, 0xFFFFFF, (new Item.Properties()).group(ItemGroup.MISC)));
 	public static final Item SILK_WORMS = reg("silk_worms", new ItemDoTB());
 	public static final Item SILK_WORMS_HATCHERY = reg("silk_worm_hatchery", new CanBeDriedItem(1,60, SILK_WORMS, 1));
 	public static final Item SILK_WORM_EGGS = reg("silk_worm_eggs", new ItemDoTB());
@@ -40,7 +40,7 @@ public class DoTBItemsRegistry {
 	public static final Item TEA_LEAVES = reg("tea_leaves", new ItemDoTB());
 	public static final Item CAMELLIA_LEAVES = reg("camellia_leaves", new CanBeDriedItem(1,40, TEA_LEAVES, 1));
 	public static final Item WAX = reg("wax", new ItemDoTB());
-	public static final Item BAMBOO_HAT = reg("bamboo_hat", new ItemDoTB());//TODO Make the model in .json !
+	public static final Item BAMBOO_HAT = reg("bamboo_hat", new HatItem());
 	public static final Item GRAY_TILE = reg("gray_tile", new ItemDoTB());
 	public static final Item GRAY_CLAY_TILE = reg("gray_clay_tile", new ItemDoTB());
 	public static final Item MULBERRY_LEAVES = reg("mulberry_leaves", new ItemDoTB());

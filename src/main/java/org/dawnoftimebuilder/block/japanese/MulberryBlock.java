@@ -3,14 +3,11 @@ package org.dawnoftimebuilder.block.japanese;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.state.properties.Half;
-import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.dawnoftimebuilder.block.templates.DoubleGrowingBushBlock;
-import org.dawnoftimebuilder.entity.SilkmothEntity;
 import org.dawnoftimebuilder.utils.DoTBConfig;
 
-import java.util.Objects;
 import java.util.Random;
 
 import static net.minecraftforge.common.PlantType.Plains;

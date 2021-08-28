@@ -3,10 +3,8 @@ package org.dawnoftimebuilder.utils;
 import net.minecraft.block.Blocks;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.IArmorMaterial;
-import net.minecraft.item.IItemTier;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.tags.ItemTags;
 import net.minecraft.util.LazyLoadBase;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
@@ -137,7 +135,7 @@ public class DoTBMaterials {
 		}
 	}
 
-	/*//TODO I keep this here in case we want to add some tools
+	/* I keep this here in case we want to add some tools
 	public enum ItemMaterial implements IItemTier {
 		WOOD(0, 59, 2.0F, 0.0F, 15, () -> {
 			return Ingredient.fromTag(ItemTags.PLANKS);

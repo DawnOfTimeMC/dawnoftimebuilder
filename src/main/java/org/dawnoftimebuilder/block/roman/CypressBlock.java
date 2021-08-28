@@ -27,14 +27,15 @@ import java.util.Random;
 
 import static net.minecraft.block.Blocks.OAK_LEAVES;
 
-public class CypressLeavesBlock extends BlockDoTB {
+public class CypressBlock extends BlockDoTB {
 
-    private static final IntegerProperty SIZE = DoTBBlockStateProperties.SIZE_0_4;
-    private static final VoxelShape VS_0 = makeCuboidShape(6.0D, 0.0D, 6.0D, 10.0D, 8.0D, 10.0D);
-    private static final VoxelShape VS_1 = makeCuboidShape(4.0D, 0.0D, 4.0D, 12.0D, 16.0D, 12.0D);
-    private static final VoxelShape VS_2 = makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 16.0D, 14.0D);
+    private static final IntegerProperty SIZE = DoTBBlockStateProperties.SIZE_0_5;
+    private static final VoxelShape VS_0 = makeCuboidShape(6.0D, 0.0D, 6.0D, 10.0D, 16.0D, 10.0D);
+    private static final VoxelShape VS_1 = makeCuboidShape(6.0D, 0.0D, 6.0D, 10.0D, 8.0D, 10.0D);
+    private static final VoxelShape VS_2 = makeCuboidShape(4.0D, 0.0D, 4.0D, 12.0D, 16.0D, 12.0D);
+    private static final VoxelShape VS_3_4 = makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 16.0D, 14.0D);
 
-    public CypressLeavesBlock() {
+    public CypressBlock() {
         super(Properties.create(Material.LEAVES).hardnessAndResistance(0.2F).sound(SoundType.PLANT));
         this.setDefaultState(this.getStateContainer().getBaseState().with(SIZE, 0));
     }
@@ -44,18 +45,24 @@ public class CypressLeavesBlock extends BlockDoTB {
         builder.add(SIZE);
     }
 
+    public static BlockState setSize(BlockState state, int size){
+        return state.with(SIZE, size);
+    }
+
     @Override
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
         switch (state.get(SIZE)) {
-            default:
             case 0:
                 return VS_0;
+            default:
             case 1:
                 return VS_1;
             case 2:
-            case 3:
                 return VS_2;
+            case 3:
             case 4:
+                return VS_3_4;
+            case 5:
                 return VoxelShapes.fullCube();
         }
     }
@@ -63,15 +70,25 @@ public class CypressLeavesBlock extends BlockDoTB {
     @Nullable
     @Override
     public BlockState getStateForPlacement(BlockItemUseContext context) {
-        BlockState stateUp = context.getWorld().getBlockState(context.getPos().up());
-        return this.getDefaultState().with(SIZE, (stateUp.getBlock() == this) ? Math.min(stateUp.get(SIZE) + 1, 4) : 0);
+        BlockState adjacentState = context.getWorld().getBlockState(context.getPos().up());
+        int size = (adjacentState.getBlock() == this) ? Math.min(adjacentState.get(SIZE) + 1, 5) : 1;
+        if(size < 3) return this.getDefaultState().with(SIZE, size);
+        else {
+            adjacentState = context.getWorld().getBlockState(context.getPos().down());
+            return this.getDefaultState().with(SIZE, (adjacentState.getBlock() == this) ? size : 0);
+        }
     }
 
     @Override
     public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
-        if(facing == Direction.UP){
-            if(facingState.getBlock() == this) return stateIn.with(SIZE, Math.min(facingState.get(SIZE) + 1, 4));
-            else return stateIn.with(SIZE, 0);
+        if(facing.getAxis().isVertical()){
+            BlockState adjacentState = worldIn.getBlockState(currentPos.up());
+            int size = (adjacentState.getBlock() == this) ? Math.min(adjacentState.get(SIZE) + 1, 5) : 1;
+            if(size < 3) return this.getDefaultState().with(SIZE, size);
+            else {
+                adjacentState = worldIn.getBlockState(currentPos.down());
+                return this.getDefaultState().with(SIZE, (adjacentState.getBlock() == this) ? size : 0);
+            }
         }else return stateIn;
     }
 

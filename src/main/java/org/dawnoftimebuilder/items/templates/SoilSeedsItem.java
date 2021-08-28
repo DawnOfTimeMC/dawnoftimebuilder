@@ -16,7 +16,6 @@ import net.minecraftforge.common.PlantType;
 import org.dawnoftimebuilder.block.templates.SoilCropsBlock;
 
 import static org.dawnoftimebuilder.DawnOfTimeBuilder.DOTB_TAB;
-import static org.dawnoftimebuilder.DawnOfTimeBuilder.MOD_ID;
 
 public class SoilSeedsItem extends BlockItem implements IPlantable {
     private final SoilCropsBlock crops;

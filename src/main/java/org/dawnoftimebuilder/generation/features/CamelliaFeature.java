@@ -11,6 +11,7 @@ import net.minecraft.world.gen.GenerationSettings;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import org.dawnoftimebuilder.block.templates.GrowingBushBlock;
+import org.dawnoftimebuilder.block.templates.SoilCropsBlock;
 import org.dawnoftimebuilder.registries.DoTBBlocksRegistry;
 import org.dawnoftimebuilder.utils.DoTBConfig;
 
@@ -26,7 +27,7 @@ public class CamelliaFeature extends Feature<NoFeatureConfig> {
     @Override
     public boolean place(IWorld worldIn, ChunkGenerator<? extends GenerationSettings> generator, Random rand, BlockPos pos, NoFeatureConfig config) {
         boolean success = false;
-        for (int i = 0; i < 64; ++i) {
+        for (int i = 0; i < DoTBConfig.CAMELLIA_ROLLS.get(); ++i) {
             BlockPos nextPos = getRandomPos(pos, rand, DoTBConfig.CAMELLIA_SPAWN_WIDTH.get(), DoTBConfig.CAMELLIA_SPAWN_HIGH.get());
             GrowingBushBlock camellia = (GrowingBushBlock) DoTBBlocksRegistry.CAMELLIA;
             BlockState bushState = camellia.getDefaultState().with(camellia.getAgeProperty(), rand.nextInt(camellia.getMaxAge() + 1));
@@ -46,8 +47,6 @@ public class CamelliaFeature extends Feature<NoFeatureConfig> {
     }
 
     private boolean isValidPosition(IWorld worldIn, BlockPos pos) {
-        Block blockOn = worldIn.getBlockState(pos.down()).getBlock();
-        return worldIn.getBlockState(pos).getMaterial().isReplaceable() &&
-                (blockOn == Blocks.GRASS_BLOCK || blockOn == Blocks.DIRT);//TODO replace with Tags
+        return worldIn.isAirBlock(pos) && ((SoilCropsBlock) DoTBBlocksRegistry.CAMELLIA).isValidGround(DoTBBlocksRegistry.CAMELLIA.getDefaultState(), worldIn, pos.down());
     }
 }

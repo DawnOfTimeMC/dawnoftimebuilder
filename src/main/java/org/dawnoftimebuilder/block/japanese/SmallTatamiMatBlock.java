@@ -29,7 +29,7 @@ import org.dawnoftimebuilder.utils.DoTBBlockStateProperties;
 
 import static net.minecraft.block.Blocks.SPRUCE_PLANKS;
 import static org.dawnoftimebuilder.registries.DoTBBlocksRegistry.SMALL_TATAMI_FLOOR;
-import static org.dawnoftimebuilder.utils.DoTBBlockUtils.DoTBTags.COVERED_BLOCKS;
+import static org.dawnoftimebuilder.utils.DoTBBlockUtils.COVERED_BLOCKS;
 
 public class SmallTatamiMatBlock extends WaterloggedBlock implements IBlockChain {
 
@@ -93,7 +93,7 @@ public class SmallTatamiMatBlock extends WaterloggedBlock implements IBlockChain
             }
         }
         return super.getStateForPlacement(context)
-                .with(ROLLED, COVERED_BLOCKS.contains(world.getBlockState(pos.down()).getBlock()))
+                .with(ROLLED, world.getBlockState(pos.down()).getBlock().isIn(COVERED_BLOCKS))
                 .with(HORIZONTAL_AXIS, context.getPlacementHorizontalFacing().getAxis());
     }
 
@@ -147,7 +147,7 @@ public class SmallTatamiMatBlock extends WaterloggedBlock implements IBlockChain
             int stack = state.get(STACK);
             boolean isRolled = state.get(ROLLED);
             if(isRolled && stack == 1)
-                if(COVERED_BLOCKS.contains(worldIn.getBlockState(pos.down()).getBlock()))
+                if(worldIn.getBlockState(pos.down()).getBlock().isIn(COVERED_BLOCKS))
                     return false;
             if(state.get(STACK) > 1){
                 state = state.with(STACK, stack - 1);

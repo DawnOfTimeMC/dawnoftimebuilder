@@ -11,6 +11,7 @@ import net.minecraft.world.gen.GenerationSettings;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import org.dawnoftimebuilder.block.templates.DoubleGrowingBushBlock;
+import org.dawnoftimebuilder.block.templates.SoilCropsBlock;
 import org.dawnoftimebuilder.registries.DoTBBlocksRegistry;
 import org.dawnoftimebuilder.utils.DoTBConfig;
 
@@ -29,7 +30,7 @@ public class MulberryFeature extends Feature<NoFeatureConfig> {
     @Override
     public boolean place(IWorld worldIn, ChunkGenerator<? extends GenerationSettings> generator, Random rand, BlockPos pos, NoFeatureConfig config) {
         boolean success = false;
-        for (int i = 0; i < 64; ++i) {
+        for (int i = 0; i < DoTBConfig.MULBERRY_ROLLS.get(); ++i) {
             // get next random position.
             BlockPos nextPos = getRandomPos(pos, rand, DoTBConfig.MULBERRY_SPAWN_WIDTH.get(), DoTBConfig.MULBERRY_SPAWN_HIGH.get());
             if (isValidPosition(worldIn, nextPos)) {
@@ -56,8 +57,6 @@ public class MulberryFeature extends Feature<NoFeatureConfig> {
      * Determines if the given position is valid for a mulberry bush.
      */
     private boolean isValidPosition(IWorld worldIn, BlockPos pos) {
-        Block blockOn = worldIn.getBlockState(pos.down()).getBlock();
-        return worldIn.getBlockState(pos).getMaterial().isReplaceable() &&
-                (blockOn == Blocks.GRASS_BLOCK || blockOn == Blocks.DIRT);//TODO replace with tags
+        return worldIn.isAirBlock(pos) && ((SoilCropsBlock) DoTBBlocksRegistry.MULBERRY).isValidGround(DoTBBlocksRegistry.MULBERRY.getDefaultState(), worldIn, pos.down());
     }
 }

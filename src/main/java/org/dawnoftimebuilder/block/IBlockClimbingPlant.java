@@ -33,7 +33,6 @@ public interface IBlockClimbingPlant {
 	 * @param random Use to determine if the Block must grow.
 	 */
 	default void tickPlant(BlockState stateIn, World worldIn, BlockPos pos, Random random){
-		//TODO Add the 3 probabilities to Config file and the required light level.
 		if (!worldIn.isRemote) {
 			if (stateIn.get(CLIMBING_PLANT).hasNoPlant()) return;
 			if (!worldIn.isAreaLoaded(pos, 2)) return; // Forge: prevent loading unloaded chunks when checking neighbor's light

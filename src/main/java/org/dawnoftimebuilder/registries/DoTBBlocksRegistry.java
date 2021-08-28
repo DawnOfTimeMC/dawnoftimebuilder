@@ -12,7 +12,7 @@ import net.minecraft.util.BlockRenderLayer;
 import org.dawnoftimebuilder.block.IBlockCustomItem;
 import org.dawnoftimebuilder.block.french.LimestoneChimneyBlock;
 import org.dawnoftimebuilder.block.precolumbian.*;
-import org.dawnoftimebuilder.block.roman.CypressLeavesBlock;
+import org.dawnoftimebuilder.block.roman.CypressBlock;
 import org.dawnoftimebuilder.block.roman.SandstoneColumnBlock;
 import org.dawnoftimebuilder.block.templates.*;
 import org.dawnoftimebuilder.block.german.*;
@@ -182,6 +182,7 @@ public class DoTBBlocksRegistry {
 	public static final Block GRAY_ROOF_TILES_EDGE = reg("gray_roof_tiles_edge", new EdgeBlock(GRAY_ROOF_TILES));
 	public static final Block GRAY_ROOF_TILES_WALL = reg("gray_roof_tiles_wall", new WallBlockDoTB(Material.ROCK,1.5F, 5.0F));
 	public static final Block CHARRED_SPRUCE_ROOF_SUPPORT = reg("charred_spruce_roof_support", new MixedRoofSupportBlock((SlabBlock) GRAY_ROOF_TILES_SLAB, CHARRED_SPRUCE_PLANKS));
+	//TODO Redo stepping stone's textures
 	public static final Block STEPPING_STONES = reg("stepping_stones", new BlockDoTB(Block.Properties.create(Material.SAND, MaterialColor.STONE).hardnessAndResistance(1.2F).sound(SoundType.GROUND)));
 	public static final Block STEPPING_STONES_SLAB = reg("stepping_stones_slab", new SlabBlockDoTB(STEPPING_STONES));
 	public static final Block CAST_IRON_TEAPOT_GRAY = reg("cast_iron_teapot_gray", new CastIronTeapotBlock(0.15F));
@@ -264,8 +265,7 @@ public class DoTBBlocksRegistry {
 	public static final Block SANDSTONE_BOT_OCHRE_ROOF_TILES_TOP = reg("sandstone_bot_ochre_roof_tiles_top", new NoItemBlock(Material.ROCK, 0.8F, 0.8F));
 	public static final Block OCHRE_ROOF_TILES_SLAB = reg("ochre_roof_tiles_slab", new MixedSlabBlock(OCHRE_ROOF_TILES).addMixedBlockRecipe((SlabBlock) SANDSTONE_SLAB, SANDSTONE_BOT_OCHRE_ROOF_TILES_TOP, false));
 	public static final Block SANDSTONE_COLUMN = reg("sandstone_column", new SandstoneColumnBlock());
-	public static final Block CYPRESS_LEAVES = reg("cypress_leaves", new CypressLeavesBlock().setBurnable());
-	//TODO Add cypress log or sticks
+	public static final Block CYPRESS = reg("cypress", new CypressBlock().setBurnable());
 
 	private static Block reg(String name, Block block){
 		block = block.setRegistryName(MOD_ID, name);

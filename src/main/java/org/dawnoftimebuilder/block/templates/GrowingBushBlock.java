@@ -22,7 +22,7 @@ import org.dawnoftimebuilder.utils.DoTBBlockUtils;
 
 import java.util.List;
 
-import static org.dawnoftimebuilder.utils.DoTBBlockUtils.DoTBTags.SHEARS;
+import static org.dawnoftimebuilder.utils.DoTBBlockUtils.SHEARS;
 
 public class GrowingBushBlock extends SoilCropsBlock {
 
@@ -93,7 +93,7 @@ public class GrowingBushBlock extends SoilCropsBlock {
 		if(this.isMaxAge(state)){
 			if (!worldIn.isRemote()) {
 				ItemStack itemStackHand = playerIn.getHeldItem(hand);
-				boolean holdShears = SHEARS.contains(itemStackHand.getItem());
+				boolean holdShears = itemStackHand.getItem().isIn(SHEARS);
 				if(holdShears) itemStackHand.damageItem(1, playerIn, (p_220287_1_) -> p_220287_1_.sendBreakAnimation(hand));
 
 				ResourceLocation resourceLocation = this.getRegistryName();

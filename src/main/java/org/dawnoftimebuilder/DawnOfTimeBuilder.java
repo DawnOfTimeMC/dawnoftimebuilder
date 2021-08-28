@@ -13,8 +13,6 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLPaths;
 import org.dawnoftimebuilder.proxy.ClientProxy;
 import org.dawnoftimebuilder.proxy.CommonProxy;
-import org.dawnoftimebuilder.registries.DoTBBlocksRegistry;
-import org.dawnoftimebuilder.registries.DoTBItemsRegistry;
 import org.dawnoftimebuilder.utils.DoTBConfig;
 
 import static org.dawnoftimebuilder.registries.DoTBBlocksRegistry.COMMELINA;

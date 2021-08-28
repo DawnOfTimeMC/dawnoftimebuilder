@@ -16,8 +16,8 @@ public class WaxedOakChairBlock extends DoubleChairBlock {
 	private static final VoxelShape[] VS = DoTBBlockUtils.GenerateHorizontalShapes(new VoxelShape[]{
 			VoxelShapes.or(
 					makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 11.0D, 14.0D),
-					makeCuboidShape(3.0D, 11.0D, 3.0D, 13.0D, 16.0D, 5.0D)),
-			makeCuboidShape(3.0D, 0.0D, 3.0D, 13.0D, 10.0D, 5.0D)});
+					makeCuboidShape(2.5D, 11.0D, 3.0D, 12.5D, 16.0D, 5.0D)),
+			makeCuboidShape(2.5D, 0.0D, 3.0D, 12.5D, 10.0D, 5.0D)});
 
 	public WaxedOakChairBlock() {
 		super(Material.WOOD, 2.0F, 2.0F, 11.0D);

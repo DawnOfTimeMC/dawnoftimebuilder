@@ -5,6 +5,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.Item;
 import net.minecraft.util.Direction;
+import net.minecraft.util.IItemProvider;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
 import net.minecraftforge.common.PlantType;
@@ -14,6 +15,7 @@ import org.dawnoftimebuilder.block.IBlockCustomItem;
 import javax.annotation.Nonnull;
 
 import static net.minecraft.block.Blocks.AIR;
+import static net.minecraftforge.common.Tags.Blocks.SAND;
 
 public class SoilCropsBlock extends CropsBlock implements IBlockCustomItem {
 
@@ -29,11 +31,11 @@ public class SoilCropsBlock extends CropsBlock implements IBlockCustomItem {
 	}
 
 	@Override
-	public boolean isValidGround(BlockState state, IBlockReader worldIn, BlockPos pos) {//TODO replace blocks with Tags
+	public boolean isValidGround(BlockState state, IBlockReader worldIn, BlockPos pos) {
 		BlockState stateGround = worldIn.getBlockState(pos);
 		Block blockUnder = stateGround.getBlock();
 		switch (this.plantType) {
-			case Desert: return blockUnder == Blocks.SAND || blockUnder == Blocks.TERRACOTTA || blockUnder instanceof GlazedTerracottaBlock;
+			case Desert: return blockUnder.isIn(SAND) || blockUnder == Blocks.TERRACOTTA || blockUnder instanceof GlazedTerracottaBlock;
 			case Nether: return blockUnder == Blocks.SOUL_SAND;
 			case Crop:   return blockUnder == Blocks.FARMLAND;
 			case Cave:   return BlockDoTB.hasSolidSide(stateGround, worldIn, pos, Direction.UP);
@@ -41,7 +43,7 @@ public class SoilCropsBlock extends CropsBlock implements IBlockCustomItem {
 			case Water:
 				return worldIn.getFluidState(pos.up()).getFluid() == Fluids.WATER && worldIn.getBlockState(pos.up(2)).getBlock() == AIR && (blockUnder == Blocks.GRASS_BLOCK || BlockDoTB.isDirt(blockUnder) || blockUnder == Blocks.FARMLAND || blockUnder == Blocks.GRAVEL);
 			case Beach:
-				boolean isBeach = blockUnder == Blocks.GRASS_BLOCK || BlockDoTB.isDirt(blockUnder) || blockUnder == Blocks.SAND;
+				boolean isBeach = blockUnder == Blocks.GRASS_BLOCK || BlockDoTB.isDirt(blockUnder) || blockUnder.isIn(SAND);
 				boolean hasWater = (worldIn.getBlockState(pos.east()).getMaterial() == Material.WATER ||
 						worldIn.getBlockState(pos.west()).getMaterial() == Material.WATER ||
 						worldIn.getBlockState(pos.north()).getMaterial() == Material.WATER ||
@@ -64,5 +66,10 @@ public class SoilCropsBlock extends CropsBlock implements IBlockCustomItem {
 	@Override
 	public String getCustomItemName() {
 		return this.seedName;
+	}
+
+	@Override
+	protected IItemProvider getSeedsItem() {
+		return this.seed;
 	}
 }

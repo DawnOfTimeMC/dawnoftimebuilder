@@ -11,6 +11,7 @@ import net.minecraft.world.gen.GenerationSettings;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import org.dawnoftimebuilder.block.templates.BlockDoTB;
+import org.dawnoftimebuilder.block.templates.SoilCropsBlock;
 import org.dawnoftimebuilder.block.templates.WaterDoubleCropsBlock;
 import org.dawnoftimebuilder.block.templates.WaterloggedBlock;
 import org.dawnoftimebuilder.registries.DoTBBlocksRegistry;
@@ -31,7 +32,7 @@ public class RiceFeature extends Feature<NoFeatureConfig> {
     @Override
     public boolean place(IWorld worldIn, ChunkGenerator<? extends GenerationSettings> generator, Random rand, BlockPos pos, NoFeatureConfig config) {
         boolean success = false;
-        for (int i = 0; i < 64; ++i) {
+        for (int i = 0; i < DoTBConfig.RICE_ROLLS.get(); ++i) {
             BlockPos nextPos = getRandomPos(pos, rand, DoTBConfig.RICE_SPAWN_WIDTH.get(), DoTBConfig.RICE_SPAWN_HIGH.get());
             if (isValidPosition(worldIn, nextPos)) {
                 success = true;
@@ -57,12 +58,6 @@ public class RiceFeature extends Feature<NoFeatureConfig> {
      * Determines if the given position is valid for a rice plant.
      */
     private boolean isValidPosition(IWorld worldIn, BlockPos pos) {
-        Block block = worldIn.getBlockState(pos).getBlock();
-        Block blockUnder = worldIn.getBlockState(pos.down()).getBlock();
-        Block blockAbove = worldIn.getBlockState(pos.up()).getBlock();
-        if(worldIn.getBlockState(pos).getMaterial().isReplaceable() && block == Blocks.WATER && blockAbove == Blocks.AIR){
-            return BlockDoTB.isDirt(blockUnder) || blockUnder == Blocks.GRAVEL;//TODO replace with tags
-        }
-        return false;
+        return ((SoilCropsBlock) DoTBBlocksRegistry.RICE).isValidGround(DoTBBlocksRegistry.RICE.getDefaultState(), worldIn, pos.down());
     }
 }

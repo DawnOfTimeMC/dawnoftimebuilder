@@ -6,6 +6,8 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.Tag;
 import net.minecraft.util.Hand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
@@ -23,9 +25,16 @@ import net.minecraft.world.storage.loot.LootTable;
 import java.util.List;
 
 import static org.dawnoftimebuilder.DawnOfTimeBuilder.MOD_ID;
-import static org.dawnoftimebuilder.utils.DoTBBlockUtils.DoTBTags.LIGHTERS;
 
 public class DoTBBlockUtils {
+
+	//Item tags
+	public static final Tag<Item> SHEARS = new ItemTags.Wrapper(new ResourceLocation(MOD_ID, "shears"));
+	public static final Tag<Item> LIGHTERS = new ItemTags.Wrapper(new ResourceLocation(MOD_ID, "lighters"));
+
+	//Block tags
+	public static final Tag<Block> CHAINS = new BlockTags.Wrapper(new ResourceLocation(MOD_ID, "chains"));
+	public static final Tag<Block> COVERED_BLOCKS = new BlockTags.Wrapper(new ResourceLocation(MOD_ID, "covered_blocks"));
 
 	/** Fills a table with VS rotated in each horizontal directions in order :<p/>
 	 * south - west - north - east
@@ -100,36 +109,11 @@ public class DoTBBlockUtils {
 	 */
 	public static boolean lightFireBlock(World worldIn, BlockPos pos, PlayerEntity player, Hand handIn){
 		ItemStack itemInHand = player.getHeldItem(handIn);
-		if (!itemInHand.isEmpty() && LIGHTERS.contains(itemInHand.getItem())) {
+		if (!itemInHand.isEmpty() && itemInHand.getItem().isIn(LIGHTERS)) {
 			worldIn.playSound(null, pos, SoundEvents.BLOCK_FIRE_AMBIENT, SoundCategory.BLOCKS, 1.0F, 1.0F);
 			itemInHand.damageItem(1, player, (p) -> p.sendBreakAnimation(handIn));
 			return true;
 		}
 		return false;
-	}
-
-	public enum DoTBTags {
-
-		CHAINS("chains"),
-		COVERED_BLOCKS("covered_blocks"),
-		SHEARS("shears"),
-		LIGHTERS("lighters");
-
-		private final ResourceLocation resource;
-
-		DoTBTags(String tagID) {
-			this.resource = new ResourceLocation(MOD_ID, tagID);
-		}
-
-		public boolean contains(Item item) {
-			//TODO ItemTags don't work :(
-			//Tag<Item> col = ItemTags.getCollection().getOrCreate(this.resource);
-			//return ItemTags.getCollection().getOrCreate(this.resource).contains(item);
-			return true;
-		}//TODO add my blocks and items to Minecraft / Forge tags such as Seeds or Leaves
-
-		public boolean contains(Block block) {
-			return BlockTags.getCollection().getOrCreate(this.resource).contains(block);
-		}
 	}
 }

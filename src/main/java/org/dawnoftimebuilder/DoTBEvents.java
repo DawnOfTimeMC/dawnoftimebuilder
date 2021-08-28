@@ -11,7 +11,6 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
 import org.dawnoftimebuilder.registries.DoTBFeaturesRegistry;
-import org.dawnoftimebuilder.utils.DoTBConfig;
 
 import static org.dawnoftimebuilder.DawnOfTimeBuilder.MOD_ID;
 import static org.dawnoftimebuilder.registries.DoTBBlocksRegistry.BLOCKS;

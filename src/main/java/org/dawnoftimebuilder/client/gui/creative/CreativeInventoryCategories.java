@@ -365,7 +365,7 @@ public enum CreativeInventoryCategories {
 			Item.getItemFromBlock(OCHRE_ROOF_TILES_PLATE),
 			Item.getItemFromBlock(OCHRE_ROOF_TILES_WALL),
 			Item.getItemFromBlock(SANDSTONE_COLUMN),
-			Item.getItemFromBlock(CYPRESS_LEAVES),
+			Item.getItemFromBlock(CYPRESS),
 			DoTBItemsRegistry.GRAPE,
 			DoTBItemsRegistry.GRAPE_SEEDS
 	);
