@@ -17,7 +17,7 @@ import net.minecraft.world.IWorld;
 import org.dawnoftimebuilder.block.templates.PaneBlockDoTB;
 import org.dawnoftimebuilder.utils.DoTBBlockStateProperties;
 
-public class LittleFlagBlock extends PaneBlockDoTB {//TODO Check connections when alone
+public class LittleFlagBlock extends PaneBlockDoTB {
 
     public static final BooleanProperty AXIS_Y = DoTBBlockStateProperties.AXIS_Y;
     private final VoxelShape[] VS_PILLAR = this.makePillarShapes(this.shapes);
@@ -45,10 +45,7 @@ public class LittleFlagBlock extends PaneBlockDoTB {//TODO Check connections whe
     public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
         if(stateIn.get(WATERLOGGED)) worldIn.getPendingFluidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickRate(worldIn));
         if(facing.getAxis().isHorizontal()){
-            boolean canAttach = this.canAttachTo(facingState, facingState.func_224755_d(worldIn, facingPos, facing.getOpposite()));
-            if(canAttach != stateIn.get(FACING_TO_PROPERTY_MAP.get(facing))){
-                //Changed side isn't correctly connected in the BlockState
-                if(this.hasAllConnections(stateIn)){
+            if(this.hasAllConnections(stateIn)){
                     //We must check connections on all sides
                     BlockState northState = worldIn.getBlockState(currentPos.north());
                     BlockState westState = worldIn.getBlockState(currentPos.west());
@@ -59,10 +56,9 @@ public class LittleFlagBlock extends PaneBlockDoTB {//TODO Check connections whe
                             .with(WEST, this.canAttachTo(westState, westState.func_224755_d(worldIn, currentPos.west(), Direction.EAST)))
                             .with(SOUTH, this.canAttachTo(southState, southState.func_224755_d(worldIn, currentPos.south(), Direction.NORTH)))
                             .with(EAST, this.canAttachTo(eastState, eastState.func_224755_d(worldIn, currentPos.east(), Direction.WEST)));
-                }else{
-                    stateIn = stateIn.with(FACING_TO_PROPERTY_MAP.get(facing), canAttach);
-                    if(this.hasNoConnection(stateIn)) return stateIn.with(NORTH, true).with(WEST, true).with(SOUTH, true).with(SOUTH, true);
-                }
+            }else{
+                stateIn = stateIn.with(FACING_TO_PROPERTY_MAP.get(facing), this.canAttachTo(facingState, facingState.func_224755_d(worldIn, facingPos, facing.getOpposite())));
+                if(this.hasNoConnection(stateIn)) return stateIn.with(NORTH, true).with(WEST, true).with(SOUTH, true).with(EAST, true);
             }
         }
         return stateIn;

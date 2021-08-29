@@ -24,11 +24,15 @@ import org.dawnoftimebuilder.utils.DoTBBlockUtils;
 
 public abstract class CandleLampBlock extends WaterloggedBlock implements IBlockSpecialDisplay {
 
-    private static final BooleanProperty LIT = BlockStateProperties.LIT;
+    public static final BooleanProperty LIT = BlockStateProperties.LIT;
+
+    public CandleLampBlock(Properties properties) {
+        super(properties);
+        this.setDefaultState(this.getStateContainer().getBaseState().with(WATERLOGGED,false).with(LIT, false));
+    }
 
     public CandleLampBlock(Material materialIn, float hardness, float resistance) {
-        super(materialIn, hardness, resistance);
-        this.setDefaultState(this.getStateContainer().getBaseState().with(WATERLOGGED,false).with(LIT, false));
+        this(Properties.create(materialIn).hardnessAndResistance(hardness, resistance));
     }
 
     @Override
@@ -96,4 +100,9 @@ public abstract class CandleLampBlock extends WaterloggedBlock implements IBlock
     }
 
     public abstract int getLitLightValue();
+
+    @Override
+    public boolean emitsLight() {
+        return true;
+    }
 }

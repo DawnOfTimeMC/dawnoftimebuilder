@@ -1,9 +1,12 @@
 package org.dawnoftimebuilder.tileentity;
 
+import net.minecraft.block.Block;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.INamedContainerProvider;
+import net.minecraft.item.BlockItem;
+import net.minecraft.item.Item;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
@@ -13,11 +16,13 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
+import org.dawnoftimebuilder.block.IBlockSpecialDisplay;
 import org.dawnoftimebuilder.container.DisplayerContainer;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+import static org.dawnoftimebuilder.block.templates.DisplayerBlock.LIT;
 import static org.dawnoftimebuilder.registries.DoTBTileEntitiesRegistry.DISPLAYER_TE;
 
 public class DisplayerTileEntity extends TileEntity implements INamedContainerProvider {
@@ -46,21 +51,8 @@ public class DisplayerTileEntity extends TileEntity implements INamedContainerPr
 
 	@Override
 	public void handleUpdateTag(CompoundNBT tag) {
+		//Only on client side
 		itemHandler.deserializeNBT(tag.getCompound("inv"));
-		/*
-		int lightLevel = 0;
-		for(int index = 0; index < itemHandler.getSlots(); index++){
-			if(itemHandler.getStackInSlot(index) != ItemStack.EMPTY){
-				Item item = itemHandler.getStackInSlot(index).getItem();
-				if(item instanceof BlockItem){
-					Block block = ((BlockItem) item).getBlock();
-					int testLight = (block instanceof IBlockSpecialDisplay) ? ((IBlockSpecialDisplay) block).getDisplayedLightLevel() : block.getLightValue(block.getDefaultState());
-					if(testLight > lightLevel) lightLevel = testLight;
-				}
-			}
-		}
-		((DisplayerBlock) this.getBlockState().getBlock()).setLightCurrentValue(lightLevel);
-		*/
 		super.handleUpdateTag(tag);
 	}
 

@@ -1,0 +1,6 @@
+{
+	"variants": {
+		"axis=x": { "model": "dawnoftimebuilder:block/roman/birch_footstool"},
+		"axis=z": { "model": "dawnoftimebuilder:block/roman/birch_footstool", "y" : 90}
+	}
+}

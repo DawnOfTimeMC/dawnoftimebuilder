@@ -37,4 +37,9 @@ public class PaperLampBlock extends ColumnConnectibleBlock implements IBlockSpec
     public BlockRenderLayer getRenderLayer() {
         return BlockRenderLayer.CUTOUT_MIPPED;
     }
+
+    @Override
+    public boolean emitsLight() {
+        return true;
+    }
 }

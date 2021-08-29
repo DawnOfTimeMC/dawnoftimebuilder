@@ -24,7 +24,7 @@ public class SpruceLowTableBlock extends DisplayerBlock {
 
 	public SpruceLowTableBlock() {
 		super(Material.WOOD, 2.0F, 2.0F);
-		this.setDefaultState(this.getStateContainer().getBaseState().with(HORIZONTAL_AXIS, Direction.Axis.X).with(WATERLOGGED, Boolean.FALSE));
+		this.setDefaultState(this.getStateContainer().getBaseState().with(HORIZONTAL_AXIS, Direction.Axis.X).with(WATERLOGGED, Boolean.FALSE).with(LIT, false));
 	}
 
 	@Override

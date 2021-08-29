@@ -12,6 +12,7 @@ import net.minecraft.util.BlockRenderLayer;
 import org.dawnoftimebuilder.block.IBlockCustomItem;
 import org.dawnoftimebuilder.block.french.LimestoneChimneyBlock;
 import org.dawnoftimebuilder.block.precolumbian.*;
+import org.dawnoftimebuilder.block.roman.BirchFootstool;
 import org.dawnoftimebuilder.block.roman.CypressBlock;
 import org.dawnoftimebuilder.block.roman.SandstoneColumnBlock;
 import org.dawnoftimebuilder.block.templates.*;
@@ -213,7 +214,7 @@ public class DoTBBlocksRegistry {
 	public static final Block TATAMI_MAT = reg("tatami_mat", new TatamiMatBlock());
 	public static final Block TATAMI_FLOOR = reg("tatami_floor", new TatamiFloorBlock());
 	public static final Block LIGHT_GRAY_FUTON = reg("light_gray_futon", new FutonBlock(DyeColor.GRAY));
-	//public static final Block X = reg(new BlockIrori());
+	public static final Block IRORI_FIREPLACE = reg("irori_fireplace", new IroriFireplace());
 	public static final Block SAKE_BOTTLE = reg("sake_bottle", new SakeBottleBlock());
 	public static final Block SAKE_CUP = reg("sake_cup", new SakeCupBlock());
 	public static final Block STICK_BUNDLE = reg("stick_bundle", new StickBundleBlock().setBurnable());
@@ -265,6 +266,7 @@ public class DoTBBlocksRegistry {
 	public static final Block SANDSTONE_BOT_OCHRE_ROOF_TILES_TOP = reg("sandstone_bot_ochre_roof_tiles_top", new NoItemBlock(Material.ROCK, 0.8F, 0.8F));
 	public static final Block OCHRE_ROOF_TILES_SLAB = reg("ochre_roof_tiles_slab", new MixedSlabBlock(OCHRE_ROOF_TILES).addMixedBlockRecipe((SlabBlock) SANDSTONE_SLAB, SANDSTONE_BOT_OCHRE_ROOF_TILES_TOP, false));
 	public static final Block SANDSTONE_COLUMN = reg("sandstone_column", new SandstoneColumnBlock());
+	public static final Block BIRCH_FOOTSTOOL = reg("birch_footstool", new BirchFootstool());
 	public static final Block CYPRESS = reg("cypress", new CypressBlock().setBurnable());
 
 	private static Block reg(String name, Block block){

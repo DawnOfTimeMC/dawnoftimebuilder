@@ -48,7 +48,7 @@ public class DoTBFeaturesRegistry {
                 DoTBConfig.MULBERRY_GENERATION.get(),
                 DoTBConfig.MULBERRY_BOTTOM.get(),
                 DoTBConfig.MULBERRY_TOP.get(),
-                Biomes.TAIGA, Biomes.TAIGA_HILLS, Biomes.GIANT_SPRUCE_TAIGA, Biomes.GIANT_SPRUCE_TAIGA_HILLS, Biomes.GIANT_TREE_TAIGA, Biomes.GIANT_TREE_TAIGA_HILLS, Biomes.FLOWER_FOREST);
+                Biomes.TAIGA, Biomes.TAIGA_HILLS, Biomes.GIANT_SPRUCE_TAIGA, Biomes.GIANT_SPRUCE_TAIGA_HILLS, Biomes.GIANT_TREE_TAIGA, Biomes.GIANT_TREE_TAIGA_HILLS, Biomes.FLOWER_FOREST, Biomes.WOODED_BADLANDS_PLATEAU, Biomes.MODIFIED_WOODED_BADLANDS_PLATEAU);
         addPlants(RICE_FEATURE,
                 DoTBConfig.RICE_GENERATION.get(),
                 DoTBConfig.RICE_BOTTOM.get(),
