@@ -25,11 +25,11 @@ import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import org.dawnoftimebuilder.block.IBlockChain;
 import org.dawnoftimebuilder.block.templates.WaterloggedBlock;
-import org.dawnoftimebuilder.utils.DoTBBlockStateProperties;
+import org.dawnoftimebuilder.util.DoTBBlockStateProperties;
 
 import static net.minecraft.block.Blocks.SPRUCE_PLANKS;
-import static org.dawnoftimebuilder.registries.DoTBBlocksRegistry.SMALL_TATAMI_FLOOR;
-import static org.dawnoftimebuilder.utils.DoTBBlockUtils.COVERED_BLOCKS;
+import static org.dawnoftimebuilder.registry.DoTBBlocksRegistry.SMALL_TATAMI_FLOOR;
+import static org.dawnoftimebuilder.util.DoTBBlockUtils.COVERED_BLOCKS;
 
 public class SmallTatamiMatBlock extends WaterloggedBlock implements IBlockChain {
 

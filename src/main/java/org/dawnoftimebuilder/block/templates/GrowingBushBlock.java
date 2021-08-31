@@ -17,12 +17,12 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.PlantType;
-import org.dawnoftimebuilder.utils.DoTBBlockStateProperties;
-import org.dawnoftimebuilder.utils.DoTBBlockUtils;
+import org.dawnoftimebuilder.util.DoTBBlockStateProperties;
+import org.dawnoftimebuilder.util.DoTBBlockUtils;
 
 import java.util.List;
 
-import static org.dawnoftimebuilder.utils.DoTBBlockUtils.SHEARS;
+import static org.dawnoftimebuilder.util.DoTBBlockUtils.SHEARS;
 
 public class GrowingBushBlock extends SoilCropsBlock {
 

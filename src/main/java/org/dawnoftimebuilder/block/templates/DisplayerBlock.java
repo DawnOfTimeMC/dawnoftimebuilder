@@ -22,7 +22,7 @@ import org.dawnoftimebuilder.tileentity.DisplayerTileEntity;
 
 import javax.annotation.Nullable;
 
-import static org.dawnoftimebuilder.registries.DoTBTileEntitiesRegistry.DISPLAYER_TE;
+import static org.dawnoftimebuilder.registry.DoTBTileEntitiesRegistry.DISPLAYER_TE;
 
 public abstract class DisplayerBlock extends WaterloggedBlock {
 

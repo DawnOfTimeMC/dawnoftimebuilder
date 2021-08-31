@@ -1,9 +1,7 @@
 package org.dawnoftimebuilder.generation.features;
 
 import com.mojang.datafixers.Dynamic;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.gen.ChunkGenerator;
@@ -12,8 +10,8 @@ import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import org.dawnoftimebuilder.block.templates.GrowingBushBlock;
 import org.dawnoftimebuilder.block.templates.SoilCropsBlock;
-import org.dawnoftimebuilder.registries.DoTBBlocksRegistry;
-import org.dawnoftimebuilder.utils.DoTBConfig;
+import org.dawnoftimebuilder.registry.DoTBBlocksRegistry;
+import org.dawnoftimebuilder.util.DoTBConfig;
 
 import java.util.Random;
 import java.util.function.Function;

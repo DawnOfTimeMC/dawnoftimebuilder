@@ -26,15 +26,15 @@ import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import org.dawnoftimebuilder.block.IBlockChain;
 import org.dawnoftimebuilder.block.templates.BlockDoTB;
-import org.dawnoftimebuilder.utils.DoTBBlockUtils;
-import org.dawnoftimebuilder.utils.DoTBConfig;
+import org.dawnoftimebuilder.util.DoTBBlockUtils;
+import org.dawnoftimebuilder.util.DoTBConfig;
 
 import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 
-import static org.dawnoftimebuilder.registries.DoTBItemsRegistry.SILK_WORMS;
+import static org.dawnoftimebuilder.registry.DoTBItemsRegistry.SILK_WORMS;
 
 public class StickBundleBlock extends BlockDoTB implements IBlockChain {
 

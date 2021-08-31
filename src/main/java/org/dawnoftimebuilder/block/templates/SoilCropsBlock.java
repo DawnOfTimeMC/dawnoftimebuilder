@@ -9,7 +9,7 @@ import net.minecraft.util.IItemProvider;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
 import net.minecraftforge.common.PlantType;
-import org.dawnoftimebuilder.items.templates.SoilSeedsItem;
+import org.dawnoftimebuilder.item.templates.SoilSeedsItem;
 import org.dawnoftimebuilder.block.IBlockCustomItem;
 
 import javax.annotation.Nonnull;

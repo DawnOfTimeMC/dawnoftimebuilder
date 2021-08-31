@@ -2,9 +2,9 @@ package org.dawnoftimebuilder.block;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import org.dawnoftimebuilder.utils.DoTBBlockStateProperties;
+import org.dawnoftimebuilder.util.DoTBBlockStateProperties;
 
-import static org.dawnoftimebuilder.utils.DoTBBlockUtils.CHAINS;
+import static org.dawnoftimebuilder.util.DoTBBlockUtils.CHAINS;
 
 public interface IBlockChain extends IBlockPillar{
 

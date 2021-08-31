@@ -11,16 +11,16 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.ForgeHooks;
-import org.dawnoftimebuilder.utils.DoTBBlockStateProperties;
-import org.dawnoftimebuilder.utils.DoTBBlockUtils;
-import org.dawnoftimebuilder.utils.DoTBConfig;
+import org.dawnoftimebuilder.util.DoTBBlockStateProperties;
+import org.dawnoftimebuilder.util.DoTBBlockUtils;
+import org.dawnoftimebuilder.util.DoTBConfig;
 
 import java.util.List;
 import java.util.Random;
 
 import static net.minecraft.state.properties.BlockStateProperties.WATERLOGGED;
-import static org.dawnoftimebuilder.utils.DoTBBlockStateProperties.AGE_0_6;
-import static org.dawnoftimebuilder.utils.DoTBBlockStateProperties.CLIMBING_PLANT;
+import static org.dawnoftimebuilder.util.DoTBBlockStateProperties.AGE_0_6;
+import static org.dawnoftimebuilder.util.DoTBBlockStateProperties.CLIMBING_PLANT;
 
 public interface IBlockClimbingPlant {
 

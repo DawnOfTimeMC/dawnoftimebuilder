@@ -18,7 +18,7 @@ import org.dawnoftimebuilder.entity.SilkmothEntity;
 import org.dawnoftimebuilder.tileentity.DisplayerTileEntity;
 import org.dawnoftimebuilder.tileentity.DryerTileEntity;
 
-import static org.dawnoftimebuilder.registries.DoTBContainersRegistry.DISPLAYER_CONTAINER;
+import static org.dawnoftimebuilder.registry.DoTBContainersRegistry.DISPLAYER_CONTAINER;
 
 public class ClientProxy extends CommonProxy {
 

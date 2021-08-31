@@ -23,14 +23,14 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import org.dawnoftimebuilder.block.templates.WaterloggedBlock;
-import org.dawnoftimebuilder.utils.DoTBBlockStateProperties;
-import org.dawnoftimebuilder.utils.DoTBBlockUtils;
+import org.dawnoftimebuilder.util.DoTBBlockStateProperties;
+import org.dawnoftimebuilder.util.DoTBBlockUtils;
 
 import javax.annotation.Nullable;
 
 import static net.minecraft.block.Blocks.SPRUCE_PLANKS;
-import static org.dawnoftimebuilder.registries.DoTBBlocksRegistry.TATAMI_FLOOR;
-import static org.dawnoftimebuilder.utils.DoTBBlockUtils.COVERED_BLOCKS;
+import static org.dawnoftimebuilder.registry.DoTBBlocksRegistry.TATAMI_FLOOR;
+import static org.dawnoftimebuilder.util.DoTBBlockUtils.COVERED_BLOCKS;
 
 public class TatamiMatBlock extends WaterloggedBlock {
 

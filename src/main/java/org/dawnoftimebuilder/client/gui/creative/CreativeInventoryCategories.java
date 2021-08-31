@@ -4,14 +4,14 @@ import net.minecraft.item.Item;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import org.dawnoftimebuilder.registries.DoTBItemsRegistry;
+import org.dawnoftimebuilder.registry.DoTBItemsRegistry;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
 import static net.minecraft.block.Blocks.*;
 import static org.dawnoftimebuilder.DawnOfTimeBuilder.MOD_ID;
-import static org.dawnoftimebuilder.registries.DoTBBlocksRegistry.*;
+import static org.dawnoftimebuilder.registry.DoTBBlocksRegistry.*;
 
 @OnlyIn(Dist.CLIENT)
 public enum CreativeInventoryCategories {

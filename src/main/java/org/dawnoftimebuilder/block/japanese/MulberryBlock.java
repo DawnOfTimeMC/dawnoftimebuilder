@@ -6,12 +6,12 @@ import net.minecraft.state.properties.Half;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.dawnoftimebuilder.block.templates.DoubleGrowingBushBlock;
-import org.dawnoftimebuilder.utils.DoTBConfig;
+import org.dawnoftimebuilder.util.DoTBConfig;
 
 import java.util.Random;
 
 import static net.minecraftforge.common.PlantType.Plains;
-import static org.dawnoftimebuilder.registries.DoTBEntitiesRegistry.SILKMOTH_ENTITY;
+import static org.dawnoftimebuilder.registry.DoTBEntitiesRegistry.SILKMOTH_ENTITY;
 
 public class MulberryBlock extends DoubleGrowingBushBlock {
 

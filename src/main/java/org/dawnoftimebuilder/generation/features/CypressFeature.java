@@ -10,13 +10,13 @@ import net.minecraft.world.gen.GenerationSettings;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import org.dawnoftimebuilder.block.roman.CypressBlock;
-import org.dawnoftimebuilder.utils.DoTBConfig;
+import org.dawnoftimebuilder.util.DoTBConfig;
 
 import java.util.Random;
 import java.util.function.Function;
 
 import static net.minecraftforge.common.Tags.Blocks.DIRT;
-import static org.dawnoftimebuilder.registries.DoTBBlocksRegistry.CYPRESS;
+import static org.dawnoftimebuilder.registry.DoTBBlocksRegistry.CYPRESS;
 
 public class CypressFeature extends Feature<NoFeatureConfig> {
 

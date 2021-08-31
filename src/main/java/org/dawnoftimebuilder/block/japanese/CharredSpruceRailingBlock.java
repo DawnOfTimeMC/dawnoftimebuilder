@@ -10,8 +10,8 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
 import org.dawnoftimebuilder.block.templates.FenceBlockDoTB;
-import org.dawnoftimebuilder.utils.DoTBBlockStateProperties;
-import org.dawnoftimebuilder.utils.DoTBBlockStateProperties.FencePillar;
+import org.dawnoftimebuilder.util.DoTBBlockStateProperties;
+import org.dawnoftimebuilder.util.DoTBBlockStateProperties.FencePillar;
 
 public class CharredSpruceRailingBlock extends FenceBlockDoTB {
 

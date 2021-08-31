@@ -17,8 +17,8 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
-import org.dawnoftimebuilder.items.IItemCanBeDried;
-import org.dawnoftimebuilder.utils.DoTBConfig;
+import org.dawnoftimebuilder.item.IItemCanBeDried;
+import org.dawnoftimebuilder.util.DoTBConfig;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -27,7 +27,7 @@ import java.util.Objects;
 import java.util.Random;
 
 import static net.minecraft.block.Block.spawnAsEntity;
-import static org.dawnoftimebuilder.registries.DoTBTileEntitiesRegistry.DRYER_TE;
+import static org.dawnoftimebuilder.registry.DoTBTileEntitiesRegistry.DRYER_TE;
 
 public class DryerTileEntity extends TileEntity implements ITickableTileEntity {
 

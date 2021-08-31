@@ -12,7 +12,7 @@ import org.dawnoftimebuilder.block.templates.ColumnConnectibleBlock;
 
 import javax.annotation.Nonnull;
 
-import static org.dawnoftimebuilder.utils.DoTBBlockStateProperties.VerticalConnection;
+import static org.dawnoftimebuilder.util.DoTBBlockStateProperties.VerticalConnection;
 
 public class PaperLampBlock extends ColumnConnectibleBlock implements IBlockSpecialDisplay {
 

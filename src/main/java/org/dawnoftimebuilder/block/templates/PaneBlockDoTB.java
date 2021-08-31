@@ -11,7 +11,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 
-import static org.dawnoftimebuilder.registries.DoTBBlocksRegistry.PAPER_DOOR;
+import static org.dawnoftimebuilder.registry.DoTBBlocksRegistry.PAPER_DOOR;
 
 public class PaneBlockDoTB extends PaneBlock {
 

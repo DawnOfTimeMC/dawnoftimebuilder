@@ -19,13 +19,13 @@ import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
-import org.dawnoftimebuilder.utils.DoTBConfig;
+import org.dawnoftimebuilder.util.DoTBConfig;
 
 import javax.annotation.Nullable;
 
 import java.util.Random;
 
-import static org.dawnoftimebuilder.registries.DoTBEntitiesRegistry.JAPANESE_DRAGON_ENTITY;
+import static org.dawnoftimebuilder.registry.DoTBEntitiesRegistry.JAPANESE_DRAGON_ENTITY;
 
 public class JapaneseDragonEntity extends CreatureEntity {
 

@@ -13,9 +13,9 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLPaths;
 import org.dawnoftimebuilder.proxy.ClientProxy;
 import org.dawnoftimebuilder.proxy.CommonProxy;
-import org.dawnoftimebuilder.utils.DoTBConfig;
+import org.dawnoftimebuilder.util.DoTBConfig;
 
-import static org.dawnoftimebuilder.registries.DoTBBlocksRegistry.COMMELINA;
+import static org.dawnoftimebuilder.registry.DoTBBlocksRegistry.COMMELINA;
 
 @Mod(DawnOfTimeBuilder.MOD_ID)
 public class DawnOfTimeBuilder {

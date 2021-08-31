@@ -17,7 +17,7 @@ import org.dawnoftimebuilder.block.IBlockSpecialDisplay;
 import org.dawnoftimebuilder.tileentity.DisplayerTileEntity;
 
 import static org.dawnoftimebuilder.block.templates.DisplayerBlock.LIT;
-import static org.dawnoftimebuilder.registries.DoTBContainersRegistry.DISPLAYER_CONTAINER;
+import static org.dawnoftimebuilder.registry.DoTBContainersRegistry.DISPLAYER_CONTAINER;
 
 public class DisplayerContainer extends Container {
 

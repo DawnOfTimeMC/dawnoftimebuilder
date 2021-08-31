@@ -17,14 +17,14 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import org.dawnoftimebuilder.block.templates.DoubleGrowingBushBlock;
-import org.dawnoftimebuilder.utils.DoTBConfig;
+import org.dawnoftimebuilder.util.DoTBConfig;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.dawnoftimebuilder.registries.DoTBBlocksRegistry.MULBERRY;
-import static org.dawnoftimebuilder.registries.DoTBEntitiesRegistry.SILKMOTH_ENTITY;
+import static org.dawnoftimebuilder.registry.DoTBBlocksRegistry.MULBERRY;
+import static org.dawnoftimebuilder.registry.DoTBEntitiesRegistry.SILKMOTH_ENTITY;
 
 public class SilkmothEntity extends AmbientEntity {
 

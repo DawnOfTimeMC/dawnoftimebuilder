@@ -8,7 +8,7 @@ import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import org.dawnoftimebuilder.block.templates.PlateBlock;
 import net.minecraft.block.material.Material;
-import org.dawnoftimebuilder.utils.DoTBBlockUtils;
+import org.dawnoftimebuilder.util.DoTBBlockUtils;
 
 public class RedSculptedPlasteredStoneFriezeBlock extends PlateBlock {
 

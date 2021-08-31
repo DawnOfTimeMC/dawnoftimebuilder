@@ -26,7 +26,7 @@ import org.dawnoftimebuilder.block.templates.NoItemBlock;
 import javax.annotation.Nullable;
 
 import static net.minecraft.block.Blocks.SPRUCE_PLANKS;
-import static org.dawnoftimebuilder.registries.DoTBBlocksRegistry.*;
+import static org.dawnoftimebuilder.registry.DoTBBlocksRegistry.*;
 
 public class TatamiFloorBlock extends NoItemBlock {
 

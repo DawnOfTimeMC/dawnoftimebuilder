@@ -11,7 +11,7 @@ import net.minecraftforge.fml.network.NetworkHooks;
 
 import java.util.List;
 
-import static org.dawnoftimebuilder.registries.DoTBEntitiesRegistry.CHAIR_ENTITY;
+import static org.dawnoftimebuilder.registry.DoTBEntitiesRegistry.CHAIR_ENTITY;
 
 public class ChairEntity extends Entity {
 

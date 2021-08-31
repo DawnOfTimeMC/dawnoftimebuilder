@@ -20,12 +20,12 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
-import org.dawnoftimebuilder.utils.DoTBBlockStateProperties;
-import org.dawnoftimebuilder.utils.DoTBBlockUtils;
+import org.dawnoftimebuilder.util.DoTBBlockStateProperties;
+import org.dawnoftimebuilder.util.DoTBBlockUtils;
 
 import javax.annotation.Nullable;
 
-import static org.dawnoftimebuilder.utils.DoTBBlockStateProperties.SquareCorners;
+import static org.dawnoftimebuilder.util.DoTBBlockStateProperties.SquareCorners;
 
 public class CharredSpruceTallShuttersBlock extends CharredSpruceShuttersBlock {
 
