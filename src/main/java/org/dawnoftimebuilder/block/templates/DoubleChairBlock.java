@@ -26,12 +26,12 @@ public class DoubleChairBlock extends ChairBlock{
 
     public static final EnumProperty<Half> HALF = BlockStateProperties.HALF;
 
-    public DoubleChairBlock(Properties properties, double offsetY) {
+    public DoubleChairBlock(Properties properties, float offsetY) {
         super(properties, offsetY);
         this.setDefaultState(this.getStateContainer().getBaseState().with(HALF, Half.BOTTOM).with(FACING, Direction.NORTH).with(WATERLOGGED,false));
     }
 
-    public DoubleChairBlock(Material materialIn, float hardness, float resistance, double pixelsYOffset) {
+    public DoubleChairBlock(Material materialIn, float hardness, float resistance, float pixelsYOffset) {
         this(Properties.create(materialIn).hardnessAndResistance(hardness, resistance), pixelsYOffset);
     }
 

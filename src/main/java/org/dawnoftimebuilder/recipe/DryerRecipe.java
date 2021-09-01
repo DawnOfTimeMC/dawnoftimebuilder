@@ -9,6 +9,7 @@ import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+import net.minecraftforge.items.wrapper.RecipeWrapper;
 
 import javax.annotation.Nonnull;
 
@@ -35,26 +36,29 @@ public class DryerRecipe implements IRecipe<IInventory> {
     final Ingredient ingredient;
     final ItemStack result;
     final float experience;
-    final int crushingTime;
+    final int dryingTime;
 
-    public DryerRecipe(ResourceLocation resourceLocation, String group, Ingredient ingredient, ItemStack result, float experience, int crushingTime) {
+    public DryerRecipe(ResourceLocation resourceLocation, String group, Ingredient ingredient, ItemStack result, float experience, int dryingTime) {
         this.type = DRYING;
         this.id = resourceLocation;
         this.group = group;
         this.ingredient = ingredient;
         this.result = result;
         this.experience = experience;
-        this.crushingTime = crushingTime;
+        this.dryingTime = dryingTime;
+    }
+
+    public int getDryingTime() {
+        return this.dryingTime;
     }
 
     @Override
-    public boolean matches(IInventory inv, @Nonnull World worldIn) {
-        return this.ingredient.test(inv.getStackInSlot(0));
+    public boolean matches(IInventory inv, World worldIn) {
+        return this.ingredient.test(inv.getStackInSlot(0)) && inv.getStackInSlot(0).getCount() >= this.ingredient.getMatchingStacks()[0].getCount();
     }
 
     @Override
-    @Nonnull
-    public ItemStack getCraftingResult(@Nonnull IInventory inv) {
+    public ItemStack getCraftingResult(IInventory inv) {
         return this.result.copy();
     }
 
@@ -99,9 +103,4 @@ public class DryerRecipe implements IRecipe<IInventory> {
     public ItemStack getIcon() {
         return new ItemStack(BAMBOO_DRYING_TRAY);
     }
-
-    public int getCrushingTime() {
-        return this.crushingTime;
-    }
-
 }

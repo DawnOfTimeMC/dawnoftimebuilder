@@ -6,6 +6,8 @@ import net.minecraftforge.common.ForgeConfigSpec;
 
 import java.nio.file.Path;
 
+import static org.dawnoftimebuilder.util.DoTBBlockUtils.HIGHEST_Y;
+
 public class DoTBConfig {
 
     private static final ForgeConfigSpec.Builder COMMON_BUILDER = new ForgeConfigSpec.Builder();
@@ -191,32 +193,32 @@ public class DoTBConfig {
             COMMON_BUILDER.push("camellia");
                 CAMELLIA_GENERATION = COMMON_BUILDER.comment("Must spawn this plant during world generation :").define("camelliaGeneration", true);
                 CAMELLIA_ROLLS = COMMON_BUILDER.comment("For each spawn zone, a position will be chose x times to place this plant, with x the following value :").defineInRange("camelliaRolls", 60,1,200);
-                CAMELLIA_BOTTOM = COMMON_BUILDER.defineInRange("camelliaLowestY", 60,1,255);
-                CAMELLIA_TOP = COMMON_BUILDER.defineInRange("camelliaHighestY", 255,1,255);
+                CAMELLIA_BOTTOM = COMMON_BUILDER.defineInRange("camelliaLowestY", 60,1,HIGHEST_Y);
+                CAMELLIA_TOP = COMMON_BUILDER.defineInRange("camelliaHighestY", HIGHEST_Y,1,HIGHEST_Y);
                 CAMELLIA_SPAWN_WIDTH = COMMON_BUILDER.comment("Maximal horizontal distance from the center of the spawn zone :").defineInRange("camelliaSpawnWidth", 8,1,20);
                 CAMELLIA_SPAWN_HIGH = COMMON_BUILDER.comment("Maximal vertical distance from the center of the spawn zone :").defineInRange("camelliaSpawnHigh", 4,1,20);
             COMMON_BUILDER.pop();
             COMMON_BUILDER.push("cypress");
                 CYPRESS_GENERATION = COMMON_BUILDER.comment("Must spawn this plant during world generation :").define("cypressGeneration", true);
                 CYPRESS_ROLLS = COMMON_BUILDER.comment("For each spawn zone, a position will be chose x times to place this plant, with x the following value :").defineInRange("cypressRolls", 80,1,200);
-                CYPRESS_BOTTOM = COMMON_BUILDER.defineInRange("cypressLowestY", 60,1,255);
-                CYPRESS_TOP = COMMON_BUILDER.defineInRange("cypressHighestY", 255,1,255);
+                CYPRESS_BOTTOM = COMMON_BUILDER.defineInRange("cypressLowestY", 60,1,HIGHEST_Y);
+                CYPRESS_TOP = COMMON_BUILDER.defineInRange("cypressHighestY", HIGHEST_Y,1,HIGHEST_Y);
                 CYPRESS_SPAWN_WIDTH = COMMON_BUILDER.comment("Maximal horizontal distance from the center of the spawn zone :").defineInRange("cypressSpawnWidth", 8,1,20);
                 CYPRESS_SPAWN_HIGH = COMMON_BUILDER.comment("Maximal vertical distance from the center of the spawn zone :").defineInRange("cypressSpawnHigh", 4,1,20);
             COMMON_BUILDER.pop();
             COMMON_BUILDER.push("mulberry");
                 MULBERRY_GENERATION = COMMON_BUILDER.comment("Must spawn this plant during world generation :").define("mulberryGeneration", true);
                 MULBERRY_ROLLS = COMMON_BUILDER.comment("For each spawn zone, a position will be chose x times to place this plant, with x the following value :").defineInRange("mulberryRolls", 50,1,200);
-                MULBERRY_BOTTOM = COMMON_BUILDER.defineInRange("mulberryLowestY", 62,1,255);
-                MULBERRY_TOP = COMMON_BUILDER.defineInRange("mulberryHighestY", 255,1,255);
+                MULBERRY_BOTTOM = COMMON_BUILDER.defineInRange("mulberryLowestY", 62,1,HIGHEST_Y);
+                MULBERRY_TOP = COMMON_BUILDER.defineInRange("mulberryHighestY", HIGHEST_Y,1,HIGHEST_Y);
                 MULBERRY_SPAWN_WIDTH = COMMON_BUILDER.comment("Maximal horizontal distance from the center of the spawn zone :").defineInRange("mulberrySpawnWidth", 8,1,20);
                 MULBERRY_SPAWN_HIGH = COMMON_BUILDER.comment("Maximal vertical distance from the center of the spawn zone :").defineInRange("mulberrySpawnHigh", 4,1,20);
             COMMON_BUILDER.pop();
             COMMON_BUILDER.push("rice");
                 RICE_GENERATION = COMMON_BUILDER.comment("Must spawn this plant during world generation :").define("riceGeneration", true);
                 RICE_ROLLS = COMMON_BUILDER.comment("For each spawn zone, a position will be chose x times to place this plant, with x the following value :").defineInRange("riceRolls", 80,1,200);
-                RICE_BOTTOM = COMMON_BUILDER.defineInRange("riceLowestY", 60,1,255);
-                RICE_TOP = COMMON_BUILDER.defineInRange("riceHighestY", 65,1,255);
+                RICE_BOTTOM = COMMON_BUILDER.defineInRange("riceLowestY", 60,1,HIGHEST_Y);
+                RICE_TOP = COMMON_BUILDER.defineInRange("riceHighestY", 65,1,HIGHEST_Y);
                 RICE_SPAWN_WIDTH = COMMON_BUILDER.comment("Maximal horizontal distance from the center of the spawn zone :").defineInRange("riceSpawnWidth", 4,1,20);
                 RICE_SPAWN_HIGH = COMMON_BUILDER.comment("Maximal vertical distance from the center of the spawn zone :").defineInRange("riceSpawnHigh", 4,1,20);
             COMMON_BUILDER.pop();

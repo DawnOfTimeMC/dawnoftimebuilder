@@ -131,7 +131,7 @@ public class LatticeBlock extends WaterloggedBlock implements IBlockClimbingPlan
 		ItemStack itemstack = useContext.getItem();
 		if(useContext.isPlacerSneaking()) return false;
 		if (itemstack.getItem() == this.asItem()) {
-			if (useContext.replacingClickedOnBlock()) {
+			if(useContext.replacingClickedOnBlock()) {
 				Direction newDirection = useContext.getPlacementHorizontalFacing();
 				switch(newDirection){
 					default:
@@ -159,6 +159,7 @@ public class LatticeBlock extends WaterloggedBlock implements IBlockClimbingPlan
 		this.tickPlant(state, worldIn, pos, random);
 	}
 
+	//TODO Improve block placement
 	@Override
 	public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
 		if (worldIn.getBlockState(pos.down()).isIn(BlockTags.DIRT_LIKE)){

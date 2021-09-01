@@ -201,6 +201,7 @@ public enum CreativeInventoryCategories {
 			Item.getItemFromBlock(WAXED_OAK_CHAIR),
 			Item.getItemFromBlock(FLAT_ROOF_TILES),
 			Item.getItemFromBlock(FLAT_ROOF_TILES_STAIRS),
+			Item.getItemFromBlock(FLAT_ROOF_TILES_PLATE),
 			Item.getItemFromBlock(FLAT_ROOF_TILES_SLAB),
 			Item.getItemFromBlock(FLAT_ROOF_TILES_EDGE),
 			Item.getItemFromBlock(IRON_PORTCULLIS),
@@ -212,7 +213,7 @@ public enum CreativeInventoryCategories {
 			DoTBItemsRegistry.WAX
 	),
 
-	ISLAMIC("persian",
+	PERSIAN("persian",
 			Item.getItemFromBlock(PERSIAN_CARPET_RED)
 	),
 
@@ -255,13 +256,12 @@ public enum CreativeInventoryCategories {
 			Item.getItemFromBlock(GRAY_ROOF_TILES_SLAB),
 			Item.getItemFromBlock(GRAY_ROOF_TILES_EDGE),
 			Item.getItemFromBlock(GRAY_ROOF_TILES_WALL),
-			Item.getItemFromBlock(RED_PAINTED_BEAM),
-			Item.getItemFromBlock(RICE),
 			Item.getItemFromBlock(PAPER_WALL),
 			Item.getItemFromBlock(PAPER_WALL_FLAT),
 			Item.getItemFromBlock(PAPER_WALL_WINDOWS),
 			Item.getItemFromBlock(PAPER_WALL_FLOWERY),
 			Item.getItemFromBlock(PAPER_DOOR),
+			Item.getItemFromBlock(RED_PAINTED_BEAM),
 			Item.getItemFromBlock(PAPER_FOLDING_SCREEN),
 			Item.getItemFromBlock(FIREPLACE),
 			Item.getItemFromBlock(IRORI_FIREPLACE),
@@ -334,7 +334,7 @@ public enum CreativeInventoryCategories {
 			Item.getItemFromBlock(RED_PLASTERED_STONE_EDGE),
 			Item.getItemFromBlock(RED_ORNAMENTED_PLASTERED_STONE),
 			Item.getItemFromBlock(CHISELED_PLASTERED_STONE),
-			Item.getItemFromBlock(PLASTERED_STONE_FRIEZE),
+			Item.getItemFromBlock(CHISELED_PLASTERED_STONE_FRIEZE),
 			Item.getItemFromBlock(ORNAMENTED_CHISELED_PLASTERED_STONE),
 			Item.getItemFromBlock(RED_CHISELED_PLASTERED_STONE),
 			Item.getItemFromBlock(RED_ORNAMENTED_CHISELED_PLASTERED_STONE),
@@ -370,10 +370,10 @@ public enum CreativeInventoryCategories {
 			Item.getItemFromBlock(SANDSTONE_WALL),
 			Item.getItemFromBlock(SANDSTONE_COLUMN),
 			Item.getItemFromBlock(OCHRE_ROOF_TILES),
-			Item.getItemFromBlock(OCHRE_ROOF_TILES_SLAB),
-			Item.getItemFromBlock(OCHRE_ROOF_TILES_EDGE),
 			Item.getItemFromBlock(OCHRE_ROOF_TILES_STAIRS),
 			Item.getItemFromBlock(OCHRE_ROOF_TILES_PLATE),
+			Item.getItemFromBlock(OCHRE_ROOF_TILES_SLAB),
+			Item.getItemFromBlock(OCHRE_ROOF_TILES_EDGE),
 			Item.getItemFromBlock(OCHRE_ROOF_TILES_WALL),
 			Item.getItemFromBlock(BIRCH_PLANKS),
 			Item.getItemFromBlock(BIRCH_STAIRS),
@@ -391,6 +391,7 @@ public enum CreativeInventoryCategories {
 			Item.getItemFromBlock(BIRCH_DOOR),
 			Item.getItemFromBlock(BIRCH_TRAPDOOR),
 			Item.getItemFromBlock(BIRCH_FOOTSTOOL),
+			Item.getItemFromBlock(BIRCH_COUCH),
 			Item.getItemFromBlock(CYPRESS),
 			DoTBItemsRegistry.GRAPE,
 			DoTBItemsRegistry.GRAPE_SEEDS
@@ -402,7 +403,7 @@ public enum CreativeInventoryCategories {
 
 	CreativeInventoryCategories(String name, Item... items) {
 		this.name = name;
-		this.translation = new TranslationTextComponent("gui." + MOD_ID + "." + name).getString();
+		this.translation = name;//For 1.16 : new TranslationTextComponent("gui." + MOD_ID + "." + name).getFormattedText();
 		this.items.addAll(Arrays.asList(items));
 	}
 

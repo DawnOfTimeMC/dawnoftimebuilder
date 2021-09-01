@@ -19,15 +19,15 @@ import javax.annotation.Nonnull;
 public class ChairBlock extends WaterloggedBlock{
 
     public static final DirectionProperty FACING = HorizontalBlock.HORIZONTAL_FACING;
-    private final double pixelsYOffset;
+    public final float pixelsYOffset;
 
-    public ChairBlock(Properties properties, double pixelsYOffset) {
+    public ChairBlock(Properties properties, float pixelsYOffset) {
         super(properties);
         this.pixelsYOffset = pixelsYOffset;
         this.setDefaultState(this.getStateContainer().getBaseState().with(FACING, Direction.NORTH).with(WATERLOGGED,false));
     }
 
-    public ChairBlock(Material materialIn, float hardness, float resistance, double pixelsYOffset) {
+    public ChairBlock(Material materialIn, float hardness, float resistance, float pixelsYOffset) {
         this(Properties.create(materialIn).hardnessAndResistance(hardness, resistance), pixelsYOffset);
     }
 

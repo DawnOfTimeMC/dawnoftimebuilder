@@ -7,6 +7,10 @@ import net.minecraft.item.Item;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.world.gen.feature.Feature;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.client.event.ModelRegistryEvent;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -21,6 +25,7 @@ import static org.dawnoftimebuilder.registry.DoTBContainersRegistry.CONTAINER_TY
 import static org.dawnoftimebuilder.registry.DoTBEntitiesRegistry.ENTITY_TYPES;
 import static org.dawnoftimebuilder.registry.DoTBFeaturesRegistry.FEATURES;
 import static org.dawnoftimebuilder.registry.DoTBItemsRegistry.ITEMS;
+import static org.dawnoftimebuilder.registry.DoTBSpecialModelRegistry.SPECIAL_MODELS;
 import static org.dawnoftimebuilder.registry.DoTBTileEntitiesRegistry.TILE_ENTITY_TYPES;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD, modid = MOD_ID)
@@ -69,7 +74,7 @@ public class DoTBEvents {
 	 * Register recipes' serializer
 	 */
 	@SubscribeEvent
-	public static void registerSerials(final RegistryEvent.Register<IRecipeSerializer<?>> event) {
+	public static void registerSerializers(final RegistryEvent.Register<IRecipeSerializer<?>> event) {
 		IForgeRegistry<IRecipeSerializer<?>> registry = event.getRegistry();
 		DoTBRecipesRegistry.registerAll(registry);
 	}
@@ -81,12 +86,4 @@ public class DoTBEvents {
 	public static void FMLLoadCompleteEvent(FMLLoadCompleteEvent event) {
 		DoTBFeaturesRegistry.addFeaturesToBiomes();
 	}
-	/*TODO when recipe classes are done, add SpecialModel from items used in recipes of machines that need one. Be careful to register only once per item per machine.
-	@OnlyIn(Dist.CLIENT)
-	@SubscribeEvent
-	public static void onModelRegistryEvent(ModelRegistryEvent event){
-		SPECIAL_MODELS.forEach(ModelLoader::addSpecialModel);
-		SPECIAL_MODELS.clear();
-	}
-	 */
 }

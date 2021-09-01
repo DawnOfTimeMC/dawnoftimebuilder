@@ -42,7 +42,7 @@ public class DryerTERenderer extends TileEntityRenderer<DryerTileEntity> {
                 GlStateManager.enableBlend();
                 GlStateManager.blendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
 
-                dispatcher.getBlockModelRenderer().renderModelBrightnessColor(tileEntity.getItemCustomModel(1), 1.0F, 1.0F, 1.0F, 1.0F);
+                //dispatcher.getBlockModelRenderer().renderModelBrightnessColor(tileEntity.getItemCustomModel(1), 1.0F, 1.0F, 1.0F, 1.0F);
                 GlStateManager.popMatrix();
             }
         });

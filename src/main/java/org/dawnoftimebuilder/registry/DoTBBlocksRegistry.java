@@ -12,6 +12,7 @@ import net.minecraft.util.BlockRenderLayer;
 import org.dawnoftimebuilder.block.IBlockCustomItem;
 import org.dawnoftimebuilder.block.french.LimestoneChimneyBlock;
 import org.dawnoftimebuilder.block.precolumbian.*;
+import org.dawnoftimebuilder.block.roman.BirchCouch;
 import org.dawnoftimebuilder.block.roman.BirchFootstool;
 import org.dawnoftimebuilder.block.roman.CypressBlock;
 import org.dawnoftimebuilder.block.roman.SandstoneColumnBlock;
@@ -113,6 +114,7 @@ public class DoTBBlocksRegistry {
 	//German
 	public static final Block FLAT_ROOF_TILES = reg("flat_roof_tiles", new BlockDoTB(Material.ROCK,1.5F, 5.0F));
 	public static final Block FLAT_ROOF_TILES_STAIRS = reg("flat_roof_tiles_stairs", new StairsBlockDoTB(FLAT_ROOF_TILES));
+	public static final Block FLAT_ROOF_TILES_PLATE = reg("flat_roof_tiles_plate", new PlateBlock(FLAT_ROOF_TILES));
 	public static final Block FLAT_ROOF_TILES_SLAB = reg("flat_roof_tiles_slab", new SlabBlockDoTB(FLAT_ROOF_TILES));
 	public static final Block FLAT_ROOF_TILES_EDGE = reg("flat_roof_tiles_edge", new EdgeBlock(FLAT_ROOF_TILES));
 	public static final Block LATTICE_GLASS = reg("lattice_glass", new GlassBlockDoTB(1.0F, 1.0F));
@@ -226,12 +228,12 @@ public class DoTBBlocksRegistry {
 	public static final Block COMMELINA = reg("commelina", new SoilCropsBlock("commelina", Crop));
 	public static final Block PLASTERED_STONE = reg("plastered_stone", new BlockDoTB(Material.ROCK,1.5F, 6.0F));
 	public static final Block PLASTERED_STONE_EDGE = reg("plastered_stone_edge", new EdgeBlock(PLASTERED_STONE));
-	public static final Block PLASTERED_STONE_FRIEZE = reg("plastered_stone_frieze", new PlateBlock(PLASTERED_STONE));
 	public static final Block PLASTERED_STONE_PLATE = reg("plastered_stone_plate", new PlateBlock(PLASTERED_STONE));
 	public static final Block PLASTERED_STONE_SLAB = reg("plastered_stone_slab", new SlabBlockDoTB(PLASTERED_STONE));
 	public static final Block PLASTERED_STONE_STAIRS = reg("plastered_stone_stairs", new StairsBlockDoTB(PLASTERED_STONE));
 	public static final Block PLASTERED_STONE_WINDOW = reg("plastered_stone_window", new PlasteredStoneWindowBlock());
 	public static final Block CHISELED_PLASTERED_STONE = reg("chiseled_plastered_stone", new BlockDoTB(Material.ROCK,1.5F, 6.0F));
+	public static final Block CHISELED_PLASTERED_STONE_FRIEZE = reg("chiseled_plastered_stone_frieze", new PlateBlock(CHISELED_PLASTERED_STONE));
 	public static final Block ORNAMENTED_CHISELED_PLASTERED_STONE = reg("ornamented_chiseled_plastered_stone", new BlockDoTB(Material.ROCK,1.5F, 6.0F));
 	public static final Block RED_PLASTERED_STONE = reg("red_plastered_stone", new BlockDoTB(Material.ROCK,1.5F, 6.0F));
 	public static final Block RED_CHISELED_PLASTERED_STONE = reg("red_chiseled_plastered_stone", new BlockDoTB(Material.ROCK,1.5F, 6.0F));
@@ -267,6 +269,7 @@ public class DoTBBlocksRegistry {
 	public static final Block OCHRE_ROOF_TILES_SLAB = reg("ochre_roof_tiles_slab", new MixedSlabBlock(OCHRE_ROOF_TILES).addMixedBlockRecipe((SlabBlock) SANDSTONE_SLAB, SANDSTONE_BOT_OCHRE_ROOF_TILES_TOP, false));
 	public static final Block SANDSTONE_COLUMN = reg("sandstone_column", new SandstoneColumnBlock());
 	public static final Block BIRCH_FOOTSTOOL = reg("birch_footstool", new BirchFootstool());
+	public static final Block BIRCH_COUCH = reg("birch_couch", new BirchCouch());
 	public static final Block CYPRESS = reg("cypress", new CypressBlock().setBurnable());
 
 	private static Block reg(String name, Block block){

@@ -3,7 +3,9 @@ package org.dawnoftimebuilder.block.templates;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.BlockItemUseContext;
+import net.minecraft.item.ItemStack;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer;
@@ -14,10 +16,15 @@ import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import org.dawnoftimebuilder.util.DoTBBlockStateProperties;
 import org.dawnoftimebuilder.util.DoTBBlockStateProperties.SidedWindow;
+import org.dawnoftimebuilder.util.DoTBBlockUtils;
+
+import javax.annotation.Nullable;
+import java.util.List;
 
 public class SidedWindowBlock extends BlockDoTB {
 
@@ -122,5 +129,11 @@ public class SidedWindowBlock extends BlockDoTB {
 		SidedWindow side = state.get(SIDED_WINDOW);
 		if(side == SidedWindow.AXIS_X || side == SidedWindow.AXIS_Z) return state;
 		return rotate(state, Rotation.CLOCKWISE_180);
+	}
+
+	@Override
+	public void addInformation(ItemStack stack, @Nullable IBlockReader worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+		super.addInformation(stack, worldIn, tooltip, flagIn);
+		DoTBBlockUtils.addTooltip(tooltip, this);
 	}
 }

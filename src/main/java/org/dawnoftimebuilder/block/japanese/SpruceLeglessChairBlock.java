@@ -18,7 +18,7 @@ public class SpruceLeglessChairBlock extends ChairBlock {
 					makeCuboidShape(2.0D, 3.0D, 0.0D, 14.0D, 11.0D, 4.0D))});
 
 	public SpruceLeglessChairBlock() {
-		super(Material.WOOD, 2.0F, 2.0F, 3.0D);
+		super(Material.WOOD, 2.0F, 2.0F, 3.0F);
 	}
 
 	@Override

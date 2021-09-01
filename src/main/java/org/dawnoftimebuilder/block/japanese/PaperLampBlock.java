@@ -42,4 +42,9 @@ public class PaperLampBlock extends ColumnConnectibleBlock implements IBlockSpec
     public boolean emitsLight() {
         return true;
     }
+
+    @Override
+    public float getDisplayScale() {
+        return 0.75F;
+    }
 }

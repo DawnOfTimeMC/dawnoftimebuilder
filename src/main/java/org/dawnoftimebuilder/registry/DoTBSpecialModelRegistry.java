@@ -1,22 +1,24 @@
 package org.dawnoftimebuilder.registry;
 
-import net.minecraft.client.renderer.model.ModelResourceLocation;
+import net.minecraft.client.Minecraft;
+import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.item.crafting.IRecipeType;
+import net.minecraft.item.crafting.RecipeManager;
+import net.minecraft.util.ResourceLocation;
+import org.dawnoftimebuilder.recipe.DryerRecipe;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
+import java.util.Hashtable;
 
 public class DoTBSpecialModelRegistry {
 
-	public static final List<ModelResourceLocation> SPECIAL_MODELS = new ArrayList<>();
-
-	//public static final ModelResourceLocation DISPLAYER_CONTAINER = reg("displayer", (IContainerFactory<DisplayerContainer>) (windowId, playerInventory, data) -> new DisplayerContainer(windowId, playerInventory, DawnOfTimeBuilder.PROXY.getClientWorld(), data.readBlockPos()));
-/*
-	private static <T extends Container> ContainerType<T> reg(String name, ContainerType.IFactory<T> factory) {
-		ContainerType<T> type = new ContainerType<>(factory);
-		type.setRegistryName(MOD_ID, name);
-		SPECIAL_MODELS.add(type);
-		return type;
+	public static final Hashtable<String, ResourceLocation> SPECIAL_MODELS = new Hashtable<>();
+	static{
+		registerModelsFromRecipe(DryerRecipe.DRYING);
 	}
 
- */
+	private static void registerModelsFromRecipe(IRecipeType<?> drying) {
+		RecipeManager rm = Minecraft.getInstance().world.getRecipeManager();
+		//SPECIAL_MODELS.put(name, new ResourceLocation());
+	}
 }

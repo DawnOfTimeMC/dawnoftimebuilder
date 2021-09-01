@@ -33,6 +33,7 @@ public class DryerRecipeSerializer<T extends DryerRecipe> extends ForgeRegistryE
 
         String group = JSONUtils.getString(json, "group", "");
         Ingredient ingredient = Ingredient.deserialize(json.get("ingredient"));
+        ingredient.getMatchingStacks()[0].setCount(JSONUtils.getInt(JSONUtils.getJsonObject(json, "ingredient"), "count", 1));
         ItemStack itemStackResult = ShapedRecipe.deserializeItem(JSONUtils.getJsonObject(json, "result"));
         float experience = JSONUtils.getFloat(json, "experience", 0.0F);
         int dryingTime = JSONUtils.getInt(json, "dryingTime", 1200);
@@ -57,7 +58,7 @@ public class DryerRecipeSerializer<T extends DryerRecipe> extends ForgeRegistryE
         recipe.ingredient.write(buffer);
         buffer.writeItemStack(recipe.result);
         buffer.writeFloat(recipe.experience);
-        buffer.writeVarInt(recipe.crushingTime);
+        buffer.writeVarInt(recipe.dryingTime);
     }
 
     public interface IFactory<T extends DryerRecipe> {

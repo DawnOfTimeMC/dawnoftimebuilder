@@ -20,7 +20,7 @@ public class WaxedOakChairBlock extends DoubleChairBlock {
 			makeCuboidShape(2.5D, 0.0D, 3.0D, 12.5D, 10.0D, 5.0D)});
 
 	public WaxedOakChairBlock() {
-		super(Material.WOOD, 2.0F, 2.0F, 11.0D);
+		super(Material.WOOD, 2.0F, 2.0F, 11.0F);
 	}
 
 	@Override

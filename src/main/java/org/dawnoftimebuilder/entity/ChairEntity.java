@@ -22,24 +22,28 @@ public class ChairEntity extends Entity {
         this.noClip = true;
     }
 
-    private ChairEntity(World world, BlockPos pos, double pixelsYOffset) {
+    private ChairEntity(World world, BlockPos pos, float pixelsXOffset, float pixelsYOffset, float pixelsZOffset) {
         this(world);
         this.pos = pos;
         //Strangely, the default position (with 0 vertical offset) is 3 pixels above the floor.
-        this.setPosition(pos.getX() + 0.5D, pos.getY() + ((pixelsYOffset - 3.0D) / 16.0D), pos.getZ() + 0.5D);
+        this.setPosition(pos.getX() + pixelsXOffset / 16.0D, pos.getY() + (pixelsYOffset - 3.0D) / 16.0D, pos.getZ() + pixelsZOffset / 16.0D);
     }
 
-    public static boolean createEntity(World world, BlockPos pos, PlayerEntity player, double pixelsYOffset) {
+    public static boolean createEntity(World world, BlockPos pos, PlayerEntity player, float pixelsXOffset, float pixelsYOffset, float pixelsZOffset) {
         if(!world.isRemote()) {
             List<ChairEntity> seats = world.getEntitiesWithinAABB(ChairEntity.class, new AxisAlignedBB(pos.getX(), pos.getY(), pos.getZ(), pos.getX() + 1.0D, pos.getY() + 1.0D, pos.getZ() + 1.0D));
             if(seats.isEmpty()) {
-                ChairEntity seat = new ChairEntity(world, pos, pixelsYOffset);
+                ChairEntity seat = new ChairEntity(world, pos, pixelsXOffset, pixelsYOffset, pixelsZOffset);
                 world.addEntity(seat);
                 player.startRiding(seat, false);
                 return true;
             }
         }
         return false;
+    }
+
+    public static boolean createEntity(World world, BlockPos pos, PlayerEntity player, float pixelsYOffset) {
+        return createEntity(world, pos, player, 8.0F, pixelsYOffset, 8.0F);
     }
 
     @Override

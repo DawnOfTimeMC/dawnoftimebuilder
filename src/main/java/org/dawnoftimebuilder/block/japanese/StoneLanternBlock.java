@@ -77,4 +77,9 @@ public class StoneLanternBlock extends WaterloggedBlock implements IBlockChain, 
     public boolean emitsLight() {
         return true;
     }
+
+    @Override
+    public float getDisplayScale() {
+        return 0.75F;
+    }
 }

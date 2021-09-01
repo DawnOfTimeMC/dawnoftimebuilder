@@ -7,14 +7,12 @@ import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
@@ -24,21 +22,18 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
-import org.dawnoftimebuilder.item.IItemCanBeDried;
 import org.dawnoftimebuilder.tileentity.DryerTileEntity;
 import org.dawnoftimebuilder.util.DoTBBlockStateProperties;
 
 import javax.annotation.Nullable;
 
-import java.util.Optional;
-
-import static org.dawnoftimebuilder.DawnOfTimeBuilder.MOD_ID;
 import static org.dawnoftimebuilder.registry.DoTBTileEntitiesRegistry.DRYER_TE;
 
 public class DryerBlock extends WaterloggedBlock {
 
 	//TODO It doesn't work, especially the renderer :(
 	//TODO Add redstone compatibility : ie emit redstone when dried
+	//TODO A mon avis le mieux dans ce cas, c'est override getModelData dans ton TileEntity (ou BockEntity), de manière à envoyer l'info au model de quel recette est en cours, ensuite, avec un IModelGeometry et un  BakedModel custom, tu peux choiir quel model afficher en fonction des données retournée par getModelData
 	public static final IntegerProperty SIZE = DoTBBlockStateProperties.SIZE_0_2;
 	public static final VoxelShape VS_SIMPLE = makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 4.0D, 16.0D);
 	public static final VoxelShape VS_DOUBLE = makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 12.0D, 16.0D);
@@ -128,18 +123,7 @@ public class DryerBlock extends WaterloggedBlock {
 				if(player.isSneaking()) return tileEntity.dropOneItem(worldIn, pos);
 
 				else {
-					ItemStack itemstack = player.getHeldItem(handIn);
-					if(itemstack.getItem() instanceof IItemCanBeDried) {
-						IItemCanBeDried item = (IItemCanBeDried) itemstack.getItem();
-						int quantityNeeded = item.getItemQuantity();
-						if(quantityNeeded <= itemstack.getCount()){
-							if(tileEntity.putUndriedItem(item, state.get(SIZE) == 0, worldIn, pos)) {
-								if(!player.isCreative()) itemstack.shrink(quantityNeeded);
-								return true;
-							}else return false;
-						}
-					}
-					return tileEntity.dropOneDriedItem(worldIn, pos) >= 0;
+					return tileEntity.tryInsertItemStack(player.getHeldItem(handIn), state.get(SIZE) == 0, worldIn, pos, player);
 				}
 			}
 		}

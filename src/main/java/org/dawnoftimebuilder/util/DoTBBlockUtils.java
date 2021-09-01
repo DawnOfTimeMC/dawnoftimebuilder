@@ -2,6 +2,7 @@ package org.dawnoftimebuilder.util;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -15,6 +16,10 @@ import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraft.world.storage.loot.LootContext;
@@ -28,6 +33,12 @@ import static org.dawnoftimebuilder.DawnOfTimeBuilder.MOD_ID;
 
 public class DoTBBlockUtils {
 
+	//BlockPos
+	public static final int HIGHEST_Y = 255;
+
+	//Tooltip translation text
+	public static final ITextComponent TOOLTIP_HOLD_SHIFT = new TranslationTextComponent("tooltip." + MOD_ID + ".hold_key").applyTextStyle(TextFormatting.GRAY).appendSibling(new TranslationTextComponent("tooltip." + MOD_ID + ".shift").applyTextStyle(TextFormatting.AQUA));
+
 	//Item tags
 	public static final Tag<Item> SHEARS = new ItemTags.Wrapper(new ResourceLocation(MOD_ID, "shears"));
 	public static final Tag<Item> LIGHTERS = new ItemTags.Wrapper(new ResourceLocation(MOD_ID, "lighters"));
@@ -36,7 +47,7 @@ public class DoTBBlockUtils {
 	public static final Tag<Block> CHAINS = new BlockTags.Wrapper(new ResourceLocation(MOD_ID, "chains"));
 	public static final Tag<Block> COVERED_BLOCKS = new BlockTags.Wrapper(new ResourceLocation(MOD_ID, "covered_blocks"));
 
-	/** Fills a table with VS rotated in each horizontal directions in order :<p/>
+	/** Fills a table with VS rotated in each horizontal directions following the horizontal index order :<p/>
 	 * south - west - north - east
 	 *
 	 * @param shapes Contains the VoxelShapes oriented toward south.
@@ -115,5 +126,13 @@ public class DoTBBlockUtils {
 			return true;
 		}
 		return false;
+	}
+
+	public static void addTooltip(List<ITextComponent> tooltip, Block block){
+		ResourceLocation name = block.getRegistryName();
+		if(name != null){
+			if(Screen.hasShiftDown()) tooltip.add(new TranslationTextComponent("tooltip." + MOD_ID + "." + name.getPath()).applyTextStyle(TextFormatting.GRAY));
+			else tooltip.add(TOOLTIP_HOLD_SHIFT);
+		}
 	}
 }

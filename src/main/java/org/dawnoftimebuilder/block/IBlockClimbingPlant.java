@@ -168,7 +168,7 @@ public interface IBlockClimbingPlant {
 		if(plant.hasNoPlant()) return;
 		List<ItemStack> drops = DoTBBlockUtils.getLootList((ServerWorld)worldIn, stateIn, pos, heldItemStack, plant.getName() + "_" + stateIn.get(AGE_0_6));
 		DoTBBlockUtils.dropLootFromList(worldIn, pos, drops, 1.0F);
-	}
+	}//TODO can click only if grown enough
 
 	/**
 	 * @param state Current state of the Block.

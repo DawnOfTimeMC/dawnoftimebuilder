@@ -2,30 +2,41 @@ package org.dawnoftimebuilder.block.roman;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
+import net.minecraft.item.ItemStack;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.Direction;
+import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
+import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.dawnoftimebuilder.block.templates.BlockDoTB;
 import org.dawnoftimebuilder.util.DoTBBlockStateProperties;
+import org.dawnoftimebuilder.util.DoTBBlockUtils;
 
 import javax.annotation.Nullable;
+import java.util.List;
 import java.util.Random;
 
 import static net.minecraft.block.Blocks.OAK_LEAVES;
+import static org.dawnoftimebuilder.util.DoTBBlockUtils.HIGHEST_Y;
 
 public class CypressBlock extends BlockDoTB {
 
@@ -37,7 +48,53 @@ public class CypressBlock extends BlockDoTB {
 
     public CypressBlock() {
         super(Properties.create(Material.LEAVES).hardnessAndResistance(0.2F).sound(SoundType.PLANT));
-        this.setDefaultState(this.getStateContainer().getBaseState().with(SIZE, 0));
+        this.setDefaultState(this.getStateContainer().getBaseState().with(SIZE, 1));
+    }
+
+    @Override
+    public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
+        return hasEnoughSolidSide(worldIn, pos.down(), Direction.UP) || worldIn.getBlockState(pos.down()).getBlock() == this;
+    }
+
+    @Override
+    public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+        ItemStack heldItemStack = player.getHeldItem(handIn);
+        if(player.isSneaking()) {
+            //We remove the highest CypressBlock
+            BlockPos topPos = this.getHighestCypressPos(worldIn, pos);
+            if(topPos != pos){
+                if(!worldIn.isRemote()) {
+                    worldIn.setBlockState(topPos, Blocks.AIR.getDefaultState(), 35);
+                    if (!player.isCreative()) {
+                        Block.spawnDrops(state, worldIn, pos, null, player, heldItemStack);
+                    }
+                }
+                return true;
+            }
+        }else{
+            if(!heldItemStack.isEmpty() && heldItemStack.getItem() == this.asItem()){
+                //We put a CypressBlock on top of the cypress
+                BlockPos topPos = this.getHighestCypressPos(worldIn, pos).up();
+                if(topPos.getY() <= HIGHEST_Y){
+                    if(!worldIn.isRemote()) {
+                        worldIn.setBlockState(topPos, this.getDefaultState(), 11);
+                        if(!player.isCreative()) {
+                            heldItemStack.shrink(1);
+                        }
+                    }
+                    return true;
+                }
+            }
+        }
+        return super.onBlockActivated(state, worldIn, pos, player, handIn, hit);
+    }
+
+    private BlockPos getHighestCypressPos(World worldIn, BlockPos pos){
+        int yOffset;
+        for(yOffset = 0; yOffset + pos.getY() <= HIGHEST_Y; yOffset++){
+            if(worldIn.getBlockState(pos.up(yOffset)).getBlock() != this) break;
+        }
+        return pos.up(yOffset - 1);
     }
 
     @Override
@@ -82,6 +139,7 @@ public class CypressBlock extends BlockDoTB {
     @Override
     public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
         if(facing.getAxis().isVertical()){
+            if(!isValidPosition(stateIn, worldIn, currentPos)) return Blocks.AIR.getDefaultState();
             BlockState adjacentState = worldIn.getBlockState(currentPos.up());
             int size = (adjacentState.getBlock() == this) ? Math.min(adjacentState.get(SIZE) + 1, 5) : 1;
             if(size < 3) return this.getDefaultState().with(SIZE, size);
@@ -127,5 +185,11 @@ public class CypressBlock extends BlockDoTB {
     @Override
     public boolean causesSuffocation(BlockState state, IBlockReader worldIn, BlockPos pos) {
         return false;
+    }
+
+    @Override
+    public void addInformation(ItemStack stack, @Nullable IBlockReader worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+        super.addInformation(stack, worldIn, tooltip, flagIn);
+        DoTBBlockUtils.addTooltip(tooltip, this);
     }
 }
