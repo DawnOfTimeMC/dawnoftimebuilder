@@ -3,6 +3,7 @@ package org.dawnoftimebuilder.block.japanese;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.PushReaction;
 import net.minecraft.entity.player.PlayerEntity;
@@ -41,8 +42,8 @@ public class CharredSpruceShuttersBlock extends WaterloggedBlock {
                     makeCuboidShape(0.0D, 6.0D, 6.0D, 16.0D, 10.0D, 10.0D),
                     makeCuboidShape(0.0D, 3.0D, 3.0D, 16.0D, 7.0D, 7.0D))});
 
-    public CharredSpruceShuttersBlock() {
-        super(Material.WOOD, 2.0F, 2.0F);
+    public CharredSpruceShuttersBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
+        super(Properties.create(materialIn).hardnessAndResistance(hardness, resistance).sound(soundType));
         this.setDefaultState(this.getStateContainer().getBaseState().with(OPEN, false).with(WATERLOGGED, false).with(POWERED, false));
     }
 

@@ -2,6 +2,7 @@ package org.dawnoftimebuilder.block.templates;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -29,8 +30,8 @@ public abstract class DisplayerBlock extends WaterloggedBlock {
 	//TODO Handle particles from blocks inside the table.
 	public static final BooleanProperty LIT = BlockStateProperties.LIT;
 
-	public DisplayerBlock(Material materialIn, float hardness, float resistance) {
-		super(materialIn, hardness, resistance);
+	public DisplayerBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
+		super(materialIn, hardness, resistance, soundType);
 		this.setDefaultState(this.getStateContainer().getBaseState().with(WATERLOGGED,false).with(LIT, false));
 	}
 

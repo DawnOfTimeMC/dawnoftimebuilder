@@ -2,6 +2,7 @@ package org.dawnoftimebuilder.block.precolumbian;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -37,8 +38,8 @@ public class PlasteredStoneCressetBlock extends WaterloggedBlock {
     private static final BooleanProperty BURNING = DoTBBlockStateProperties.BURNING;
     private static final VoxelShape VS = Block.makeCuboidShape(3.0D, 0.0D, 3.0D, 13.0D, 14.0D, 13.0D);
 
-    public PlasteredStoneCressetBlock() {
-        super(Material.ROCK, 1.5F, 6.0F);
+    public PlasteredStoneCressetBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
+        super(Properties.create(materialIn).hardnessAndResistance(hardness, resistance).sound(soundType));
         this.setDefaultState(this.getStateContainer().getBaseState().with(BURNING, false).with(HEAT, 0).with(WATERLOGGED, false));
     }
 

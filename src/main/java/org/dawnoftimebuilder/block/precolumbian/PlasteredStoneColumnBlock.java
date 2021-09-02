@@ -1,6 +1,7 @@
 package org.dawnoftimebuilder.block.precolumbian;
 
 import net.minecraft.block.BlockState;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
@@ -22,8 +23,8 @@ public class PlasteredStoneColumnBlock extends ColumnConnectibleBlock {
 			makeCuboidShape(3.0D, 0.0D, 3.0D, 13.0D, 8.0D, 13.0D)
 	);
 	
-	public PlasteredStoneColumnBlock() {
-		super(Material.ROCK, 1.5F, 6.0F);
+	public PlasteredStoneColumnBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
+		super(Properties.create(materialIn).hardnessAndResistance(hardness, resistance).sound(soundType));
 	}
 
 	@Override

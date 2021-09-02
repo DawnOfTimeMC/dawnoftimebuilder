@@ -1,6 +1,7 @@
 package org.dawnoftimebuilder.block.japanese;
 
 import net.minecraft.block.BlockState;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.math.BlockPos;
@@ -14,8 +15,8 @@ public class CastIronTeacupBlock extends WaterloggedBlock implements IBlockSpeci
 
 	private static final VoxelShape VS = makeCuboidShape(6.0D, 0.0D, 6.0D, 10.0D, 4.0D, 10.0D);
 
-	public CastIronTeacupBlock() {
-		super(Material.IRON, 0.6F, 0.6F);
+	public CastIronTeacupBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
+		super(Properties.create(materialIn).hardnessAndResistance(hardness, resistance).sound(soundType));
 	}
 
 	@Override

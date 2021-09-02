@@ -1,6 +1,7 @@
 package org.dawnoftimebuilder.block.roman;
 
 import net.minecraft.block.BlockState;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
@@ -21,8 +22,8 @@ public class SandstoneColumnBlock extends ColumnConnectibleBlock {
 			makeCuboidShape(4.0D, 0.0D, 4.0D, 12.0D, 8.0D, 12.0D)
 	);
 
-	public SandstoneColumnBlock() {
-		super(Material.ROCK, 0.8F, 0.8F);
+	public SandstoneColumnBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
+		super(Properties.create(materialIn).hardnessAndResistance(hardness, resistance).sound(soundType));
 	}
 
 	@Override

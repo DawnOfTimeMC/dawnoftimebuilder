@@ -2,6 +2,7 @@ package org.dawnoftimebuilder.block.german;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.DirectionProperty;
@@ -32,8 +33,8 @@ public class StoneBricksMachicolationBlock extends WaterloggedBlock {
 	public static final EnumProperty<DoTBBlockStateProperties.HorizontalConnection> HORIZONTAL_CONNECTION = DoTBBlockStateProperties.HORIZONTAL_CONNECTION;
 	private static final VoxelShape[] SHAPES = DoTBBlockUtils.GenerateHorizontalShapes(makeShapes());
 
-	public StoneBricksMachicolationBlock() {
-		super(Material.ROCK, 1.5F, 6.0F);
+	public StoneBricksMachicolationBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
+		super(Properties.create(materialIn).hardnessAndResistance(hardness, resistance).sound(soundType));
 		this.setDefaultState(this.getDefaultState().with(FACING, NORTH).with(HORIZONTAL_CONNECTION, NONE).with(WATERLOGGED, false));
 	}
 

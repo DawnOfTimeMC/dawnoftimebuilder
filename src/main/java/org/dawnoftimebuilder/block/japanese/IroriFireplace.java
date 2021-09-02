@@ -20,8 +20,8 @@ import org.dawnoftimebuilder.block.templates.CandleLampBlock;
 import java.util.Random;
 
 public class IroriFireplace extends CandleLampBlock {
-    public IroriFireplace() {
-        super(Properties.create(Material.ROCK).hardnessAndResistance(1.5F).sound(SoundType.WOOD));
+    public IroriFireplace(Material materialIn, float hardness, float resistance, SoundType soundType) {
+        super(Properties.create(materialIn).hardnessAndResistance(hardness, resistance).sound(soundType));
     }
 
     @Override

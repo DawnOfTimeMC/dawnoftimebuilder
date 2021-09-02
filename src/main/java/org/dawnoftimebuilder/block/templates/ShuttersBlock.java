@@ -3,6 +3,7 @@ package org.dawnoftimebuilder.block.templates;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -31,8 +32,8 @@ public class ShuttersBlock extends SmallShuttersBlock {
         super(properties);
     }
 
-    public ShuttersBlock(Material materialIn, float hardness, float resistance) {
-        this(Properties.create(materialIn).hardnessAndResistance(hardness, resistance));
+    public ShuttersBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
+        this(Properties.create(materialIn).hardnessAndResistance(hardness, resistance).sound(soundType));
     }
 
     @Override

@@ -2,6 +2,7 @@ package org.dawnoftimebuilder.block.templates;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
@@ -15,12 +16,8 @@ public class CarpetBlockDoTB extends WaterloggedBlock {
 
 	private static final VoxelShape VS = makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 1.0D, 16.0D);
 
-	public CarpetBlockDoTB(Properties properties) {
-		super(properties);
-	}
-
-	public CarpetBlockDoTB(Material materialIn, float hardness, float resistance) {
-		this(Properties.create(materialIn).hardnessAndResistance(hardness, resistance));
+	public CarpetBlockDoTB(Material materialIn, float hardness, float resistance, SoundType soundType) {
+		super(Properties.create(materialIn).hardnessAndResistance(hardness, resistance).sound(soundType));
 	}
 
 	@Override

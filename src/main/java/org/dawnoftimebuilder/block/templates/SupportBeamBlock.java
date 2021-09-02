@@ -25,8 +25,8 @@ public class SupportBeamBlock extends WaterloggedBlock {
 	private static final BooleanProperty SUBAXIS = DoTBBlockStateProperties.SUBAXIS;
 	private static final VoxelShape[] SHAPES = makeShapes();
 
-	public SupportBeamBlock(Material materialIn, float hardness, float resistance){
-		super(materialIn, hardness, resistance);
+	public SupportBeamBlock(Material materialIn, float hardness, float resistance, SoundType soundType){
+		super(materialIn, hardness, resistance, soundType);
 		this.setDefaultState(this.getStateContainer().getBaseState().with(HORIZONTAL_AXIS, Direction.Axis.X).with(SUBAXIS, false).with(PILLAR_CONNECTION, DoTBBlockStateProperties.PillarConnection.NOTHING));
 	}
 

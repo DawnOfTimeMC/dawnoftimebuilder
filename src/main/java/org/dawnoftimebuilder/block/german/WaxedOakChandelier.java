@@ -1,6 +1,7 @@
 package org.dawnoftimebuilder.block.german;
 
 import net.minecraft.block.BlockState;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.math.BlockPos;
@@ -12,6 +13,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.dawnoftimebuilder.block.IBlockChain;
+import org.dawnoftimebuilder.block.templates.BlockDoTB;
 import org.dawnoftimebuilder.block.templates.CandleLampBlock;
 
 import java.util.Random;
@@ -22,8 +24,8 @@ public class WaxedOakChandelier extends CandleLampBlock implements IBlockChain {
             makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 8.0D, 16.0D),
             makeCuboidShape(6.0D, 8.0D, 6.0D, 10.0D, 16.0D, 10.0D));
 
-    public WaxedOakChandelier() {
-        super(Material.WOOD, 2.0F, 3.0F);
+    public WaxedOakChandelier(Material materialIn, float hardness, float resistance, SoundType soundType) {
+        super(BlockDoTB.Properties.create(materialIn).hardnessAndResistance(hardness, resistance).sound(soundType));
     }
 
     @Override

@@ -27,8 +27,8 @@ public class PlateBlock extends WaterloggedBlock {
 		this.setDefaultState(this.getStateContainer().getBaseState().with(FACING, Direction.NORTH).with(SHAPE, StairsShape.STRAIGHT));
 	}
 
-	public PlateBlock(Material materialIn, float hardness, float resistance) {
-		this(Properties.create(materialIn).hardnessAndResistance(hardness, resistance));
+	public PlateBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
+		this(Properties.create(materialIn).hardnessAndResistance(hardness, resistance).sound(soundType));
 	}
 
 	public PlateBlock(Block block) {

@@ -2,6 +2,7 @@ package org.dawnoftimebuilder.block.templates;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -39,8 +40,8 @@ public class LatticeBlock extends WaterloggedBlock implements IBlockClimbingPlan
 	private static final IntegerProperty AGE = DoTBBlockStateProperties.AGE_0_6;
 	private static final VoxelShape[] SHAPES = makeShapes();
 
-	public LatticeBlock(Material materialIn, float hardness, float resistance) {
-		super(materialIn, hardness, resistance);
+	public LatticeBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
+		super(materialIn, hardness, resistance,soundType);
 		this.setDefaultState(this.getStateContainer().getBaseState().with(CLIMBING_PLANT, DoTBBlockStateProperties.ClimbingPlant.NONE).with(AGE, 0).with(WATERLOGGED, false).with(NORTH, false).with(EAST, false).with(SOUTH, false).with(WEST, false));
 	}
 

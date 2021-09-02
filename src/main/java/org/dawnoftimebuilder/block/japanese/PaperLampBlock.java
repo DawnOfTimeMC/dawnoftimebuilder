@@ -1,6 +1,7 @@
 package org.dawnoftimebuilder.block.japanese;
 
 import net.minecraft.block.BlockState;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.math.BlockPos;
@@ -19,8 +20,8 @@ public class PaperLampBlock extends ColumnConnectibleBlock implements IBlockSpec
     private static final VoxelShape VS_BOTTOM = makeCuboidShape(4.0D, 0.0D, 4.0D, 12.0D, 16.0D, 12.0D);
     private static final VoxelShape VS_TOP = makeCuboidShape(4.0D, 0.0D, 4.0D, 12.0D, 13.0D, 12.0D);
 
-    public PaperLampBlock() {
-        super(Properties.create(Material.WOOL).hardnessAndResistance(2.0F, 1.5F).lightValue(15));
+    public PaperLampBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
+        super(Properties.create(materialIn).hardnessAndResistance(hardness, resistance).sound(soundType).lightValue(15));
     }
 
     @Nonnull

@@ -9,8 +9,8 @@ public class WallBlockDoTB extends WallBlock {
         super(properties);
     }
 
-    public WallBlockDoTB(Material materialIn, float hardness, float resistance) {
-        this(BlockDoTB.Properties.create(materialIn).hardnessAndResistance(hardness, resistance));
+    public WallBlockDoTB(Material materialIn, float hardness, float resistance, SoundType soundType) {
+        this(BlockDoTB.Properties.create(materialIn).hardnessAndResistance(hardness, resistance).sound(soundType));
     }
 
     /**

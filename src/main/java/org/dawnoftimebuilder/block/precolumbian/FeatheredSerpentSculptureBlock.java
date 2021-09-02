@@ -3,6 +3,7 @@ package org.dawnoftimebuilder.block.precolumbian;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.HorizontalBlock;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.DirectionProperty;
@@ -26,8 +27,8 @@ public class FeatheredSerpentSculptureBlock extends WaterloggedBlock {
 			makeCuboidShape(4.0D, 4.0D, 0.0D, 12.0D, 12.0D, 14.0D)
 	});
 
-	public FeatheredSerpentSculptureBlock() {
-		super(Material.ROCK, 1.5F, 6.0F);
+	public FeatheredSerpentSculptureBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
+		super(Properties.create(materialIn).hardnessAndResistance(hardness, resistance).sound(soundType));
 	    this.setDefaultState(this.stateContainer.getBaseState().with(FACING, Direction.NORTH).with(WATERLOGGED, false));
 	}
 

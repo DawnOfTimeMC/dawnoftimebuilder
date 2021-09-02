@@ -2,6 +2,7 @@ package org.dawnoftimebuilder.block.templates;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.SoundType;
 import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.util.Direction;
@@ -18,8 +19,8 @@ public abstract class ColumnConnectibleBlock extends WaterloggedBlock {
 
 	public static final EnumProperty<DoTBBlockStateProperties.VerticalConnection> VERTICAL_CONNECTION = DoTBBlockStateProperties.VERTICAL_CONNECTION;
 
-	public ColumnConnectibleBlock(Material materialIn, float hardness, float resistance) {
-		this(Block.Properties.create(materialIn).hardnessAndResistance(hardness, resistance));
+	public ColumnConnectibleBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
+		this(Block.Properties.create(materialIn).hardnessAndResistance(hardness, resistance).sound(soundType));
 	}
 
 	public ColumnConnectibleBlock(Properties properties) {

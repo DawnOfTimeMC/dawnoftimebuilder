@@ -3,6 +3,7 @@ package org.dawnoftimebuilder.block.roman;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.PushReaction;
 import net.minecraft.entity.LivingEntity;
@@ -35,8 +36,8 @@ public class BirchCouch extends ChairBlock {
                     makeCuboidShape(0.0D, 13.0D, 0.0D, 16.0D, 19.0D, 8.0D)
             )});
 
-    public BirchCouch() {
-        super(Material.WOOD, 2.0F, 2.0F, 13.0F);
+    public BirchCouch(Material materialIn, float hardness, float resistance, SoundType soundType, float pixelsYOffset) {
+        super(Properties.create(materialIn).hardnessAndResistance(hardness, resistance).sound(soundType), pixelsYOffset);
     }
 
     @Override

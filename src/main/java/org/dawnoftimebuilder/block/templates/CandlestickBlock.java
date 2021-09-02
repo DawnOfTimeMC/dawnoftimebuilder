@@ -2,6 +2,7 @@ package org.dawnoftimebuilder.block.templates;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.BooleanProperty;
@@ -28,8 +29,8 @@ public class CandlestickBlock extends CandleLampBlock {
     public static final DirectionProperty FACING = BlockStateProperties.FACING_EXCEPT_UP;
     private static final BooleanProperty LIT = BlockStateProperties.LIT;
 
-    public CandlestickBlock(Material materialIn, float hardness, float resistance) {
-        super(materialIn, hardness, resistance);
+    public CandlestickBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
+        super(materialIn, hardness, resistance, soundType);
         this.setDefaultState(this.getStateContainer().getBaseState().with(WATERLOGGED,false).with(FACING, Direction.DOWN).with(LIT, false));
     }
 

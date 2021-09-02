@@ -2,6 +2,7 @@ package org.dawnoftimebuilder.block.templates;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -32,8 +33,8 @@ public class MultiblockFireplaceBlock extends SidedPlaneConnectibleBlock {
 	public static final BooleanProperty BURNING = DoTBBlockStateProperties.BURNING;
 	private static final VoxelShape[] SHAPES = DoTBBlockUtils.GenerateHorizontalShapes(makeShapes());
 
-	public MultiblockFireplaceBlock(Material materialIn, float hardness, float resistance) {
-		super(materialIn, hardness, resistance);
+	public MultiblockFireplaceBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
+		super(materialIn, hardness, resistance, soundType);
 		this.setDefaultState(this.getStateContainer().getBaseState().with(BURNING, false).with(WATERLOGGED, false));
 	}
 

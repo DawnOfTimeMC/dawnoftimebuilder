@@ -1,6 +1,7 @@
 package org.dawnoftimebuilder.block.japanese;
 
 import net.minecraft.block.BlockState;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.BlockItemUseContext;
@@ -22,8 +23,8 @@ public class LittleFlagBlock extends PaneBlockDoTB {
     public static final BooleanProperty AXIS_Y = DoTBBlockStateProperties.AXIS_Y;
     private final VoxelShape[] VS_PILLAR = this.makePillarShapes(this.shapes);
 
-    public LittleFlagBlock() {
-        super(Material.WOOL, 0.8F, 0.8F, BlockRenderLayer.CUTOUT_MIPPED);
+    public LittleFlagBlock(Material materialIn, float hardness, float resistance, SoundType soundType, BlockRenderLayer renderLayer) {
+        super(Properties.create(materialIn).hardnessAndResistance(hardness, resistance).sound(soundType), renderLayer);
         this.setDefaultState(this.getStateContainer().getBaseState().with(AXIS_Y, true).with(NORTH, true).with(WEST, true).with(SOUTH, true).with(EAST, true).with(WATERLOGGED,false));
     }
 

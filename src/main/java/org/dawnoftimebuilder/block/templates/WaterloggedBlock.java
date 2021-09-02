@@ -3,6 +3,7 @@ package org.dawnoftimebuilder.block.templates;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.IWaterLoggable;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.fluid.IFluidState;
@@ -25,8 +26,8 @@ public class WaterloggedBlock extends BlockDoTB implements IWaterLoggable {
 		this.setDefaultState(this.getStateContainer().getBaseState().with(WATERLOGGED,false));
 	}
 
-	public WaterloggedBlock(Material materialIn, float hardness, float resistance) {
-		this(Properties.create(materialIn).hardnessAndResistance(hardness, resistance));
+	public WaterloggedBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
+		this(Properties.create(materialIn).hardnessAndResistance(hardness, resistance).sound(soundType));
 	}
 
 	@Override

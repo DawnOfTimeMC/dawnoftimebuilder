@@ -3,6 +3,7 @@ package org.dawnoftimebuilder.block.japanese;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.PushReaction;
 import net.minecraft.entity.player.PlayerEntity;
@@ -34,9 +35,8 @@ public class TatamiFloorBlock extends NoItemBlock {
 	public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 	public static final EnumProperty<Half> HALF = BlockStateProperties.HALF;
 
-	public TatamiFloorBlock() {
-		super(Material.WOOD, 2.0F, 2.0F);
-		this.setBurnable();
+	public TatamiFloorBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
+		super(Properties.create(materialIn).hardnessAndResistance(hardness, resistance).sound(soundType));
 	}
 
 	@Override

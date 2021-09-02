@@ -3,6 +3,7 @@ package org.dawnoftimebuilder.block.templates;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
@@ -38,8 +39,8 @@ public class DryerBlock extends WaterloggedBlock {
 	public static final VoxelShape VS_SIMPLE = makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 4.0D, 16.0D);
 	public static final VoxelShape VS_DOUBLE = makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 12.0D, 16.0D);
 
-	public DryerBlock(Material materialIn, float hardness, float resistance) {
-		super(materialIn, hardness, resistance);
+	public DryerBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
+		super(materialIn, hardness, resistance, soundType);
 		this.setDefaultState(this.stateContainer.getBaseState().with(SIZE, 0).with(WATERLOGGED,false));
 	}
 

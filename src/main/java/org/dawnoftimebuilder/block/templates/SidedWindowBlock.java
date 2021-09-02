@@ -2,6 +2,7 @@ package org.dawnoftimebuilder.block.templates;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.BlockItemUseContext;
@@ -40,12 +41,11 @@ public class SidedWindowBlock extends BlockDoTB {
 
 	public SidedWindowBlock(Properties properties) {
 		super(properties);
-		this.setBurnable();
 		this.setDefaultState(this.getStateContainer().getBaseState().with(SIDED_WINDOW, SidedWindow.AXIS_X).with(UP, false).with(ATTACHED, false));
 	}
 
-	public SidedWindowBlock(Material materialIn, float hardness, float resistance) {
-		this(Properties.create(materialIn).hardnessAndResistance(hardness, resistance));
+	public SidedWindowBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
+		this(Properties.create(materialIn).hardnessAndResistance(hardness, resistance).sound(soundType));
 	}
 
 	@Override

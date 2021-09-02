@@ -17,12 +17,12 @@ public class PaneBlockDoTB extends PaneBlock {
 
 	private final BlockRenderLayer renderLayer;
 
-	public PaneBlockDoTB(Material materialIn, float hardness, float resistance, BlockRenderLayer renderLayer) {
-		this(BlockDoTB.Properties.create(materialIn).hardnessAndResistance(hardness, resistance), renderLayer);
+	public PaneBlockDoTB(Material materialIn, float hardness, float resistance, SoundType soundType, BlockRenderLayer renderLayer) {
+		this(BlockDoTB.Properties.create(materialIn).hardnessAndResistance(hardness, resistance).sound(soundType), renderLayer);
 	}
 
-	public PaneBlockDoTB(Material materialIn, float hardness, float resistance) {
-		this(BlockDoTB.Properties.create(materialIn).hardnessAndResistance(hardness, resistance), BlockRenderLayer.SOLID);
+	public PaneBlockDoTB(Material materialIn, float hardness, float resistance, SoundType soundType) {
+		this(BlockDoTB.Properties.create(materialIn).hardnessAndResistance(hardness, resistance).sound(soundType), BlockRenderLayer.SOLID);
 	}
 
 	public PaneBlockDoTB(Properties properties, BlockRenderLayer renderLayer) {

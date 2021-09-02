@@ -1,6 +1,7 @@
 package org.dawnoftimebuilder.block.japanese;
 
 import net.minecraft.block.BlockState;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.math.BlockPos;
@@ -13,11 +14,9 @@ import org.dawnoftimebuilder.block.templates.WaterloggedBlock;
 public class CastIronTeapotBlock extends WaterloggedBlock implements IBlockSpecialDisplay {
 
 	private static final VoxelShape VS = makeCuboidShape(4.8D, 0.0D, 4.8D, 11.2D, 6.4D, 11.2D);
-	private final float renderYOffset;
 
-	public CastIronTeapotBlock(float renderYOffset) {
-		super(Material.IRON, 0.8F, 0.8F);
-		this.renderYOffset = renderYOffset;
+	public CastIronTeapotBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
+		super(Properties.create(materialIn).hardnessAndResistance(hardness, resistance).sound(soundType));
 	}
 
 	@Override
@@ -28,9 +27,5 @@ public class CastIronTeapotBlock extends WaterloggedBlock implements IBlockSpeci
 	@Override
 	public BlockRenderLayer getRenderLayer() {
 		return BlockRenderLayer.CUTOUT_MIPPED;
-	}
-
-	public float getRenderYOffset() {
-		return this.renderYOffset;
 	}
 }

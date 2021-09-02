@@ -46,8 +46,8 @@ public class CypressBlock extends BlockDoTB {
     private static final VoxelShape VS_2 = makeCuboidShape(4.0D, 0.0D, 4.0D, 12.0D, 16.0D, 12.0D);
     private static final VoxelShape VS_3_4 = makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 16.0D, 14.0D);
 
-    public CypressBlock() {
-        super(Properties.create(Material.LEAVES).hardnessAndResistance(0.2F).sound(SoundType.PLANT));
+    public CypressBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
+        super(Properties.create(materialIn).hardnessAndResistance(hardness, resistance).sound(soundType));
         this.setDefaultState(this.getStateContainer().getBaseState().with(SIZE, 1));
     }
 

@@ -15,8 +15,8 @@ public class FutonBlock extends BedBlock {
 
 	private static final VoxelShape VS = makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 4.0D, 16.0D);
 
-	public FutonBlock(DyeColor colorIn) {
-		super(colorIn, Block.Properties.create(Material.WOOL).sound(SoundType.WOOD).hardnessAndResistance(0.2F));
+	public FutonBlock(DyeColor colorIn, Material materialIn, float hardness, float resistance, SoundType soundType) {
+		super(colorIn, Block.Properties.create(materialIn).hardnessAndResistance(hardness, resistance).sound(soundType));
 	}
 
 	@Override

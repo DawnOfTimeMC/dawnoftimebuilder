@@ -2,6 +2,7 @@ package org.dawnoftimebuilder.block.japanese;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.BlockItemUseContext;
@@ -25,9 +26,8 @@ public class CharredSpruceRailingBlock extends FenceBlockDoTB {
 
 	private static final EnumProperty<DoTBBlockStateProperties.FencePillar> FENCE_PILLAR = DoTBBlockStateProperties.FENCE_PILLAR;
 
-	public CharredSpruceRailingBlock() {
-		super(Material.WOOD, 2.0F, 2.0F);
-		this.setBurnable();
+	public CharredSpruceRailingBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
+		super(materialIn, hardness, resistance, soundType);
 		this.setDefaultState(this.getStateContainer().getBaseState().with(EAST, false).with(NORTH, false).with(FENCE_PILLAR, FencePillar.NONE).with(SOUTH, false).with(WEST, false));
 	}
 

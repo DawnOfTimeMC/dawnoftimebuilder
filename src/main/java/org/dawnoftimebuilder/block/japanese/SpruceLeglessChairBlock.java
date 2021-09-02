@@ -1,6 +1,7 @@
 package org.dawnoftimebuilder.block.japanese;
 
 import net.minecraft.block.BlockState;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
@@ -17,8 +18,8 @@ public class SpruceLeglessChairBlock extends ChairBlock {
 					makeCuboidShape(2.0D, 0.0D, 0.0D, 14.0D, 3.0D, 16.0D),
 					makeCuboidShape(2.0D, 3.0D, 0.0D, 14.0D, 11.0D, 4.0D))});
 
-	public SpruceLeglessChairBlock() {
-		super(Material.WOOD, 2.0F, 2.0F, 3.0F);
+	public SpruceLeglessChairBlock(Material materialIn, float hardness, float resistance, SoundType soundType, float pixelsYOffset) {
+		super(Properties.create(materialIn).hardnessAndResistance(hardness, resistance).sound(soundType), pixelsYOffset);
 	}
 
 	@Override

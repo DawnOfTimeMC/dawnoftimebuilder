@@ -1,6 +1,7 @@
 package org.dawnoftimebuilder.block.templates;
 
 import net.minecraft.block.BlockState;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.EnumProperty;
@@ -24,8 +25,8 @@ public class SupportSlabBlock extends WaterloggedBlock {
 
 	private static final EnumProperty<DoTBBlockStateProperties.PillarConnection> PILLAR_CONNECTION = DoTBBlockStateProperties.PILLAR_CONNECTION;
 
-	public SupportSlabBlock(Material materialIn, float hardness, float resistance) {
-		super(materialIn, hardness, resistance);
+	public SupportSlabBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
+		super(materialIn, hardness, resistance, soundType);
 		this.setDefaultState(this.getStateContainer().getBaseState().with(PILLAR_CONNECTION, DoTBBlockStateProperties.PillarConnection.NOTHING));
 	}
 

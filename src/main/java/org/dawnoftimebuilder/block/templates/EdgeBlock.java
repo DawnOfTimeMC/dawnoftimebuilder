@@ -31,8 +31,8 @@ public class EdgeBlock extends WaterloggedBlock {
 		this.setDefaultState(this.getStateContainer().getBaseState().with(FACING, Direction.NORTH).with(HALF, Half.BOTTOM).with(SHAPE, StairsShape.STRAIGHT));
 	}
 
-	public EdgeBlock(Material materialIn, float hardness, float resistance) {
-		this(Properties.create(materialIn).hardnessAndResistance(hardness, resistance));
+	public EdgeBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
+		this(Properties.create(materialIn).hardnessAndResistance(hardness, resistance).sound(soundType));
 	}
 
 	public EdgeBlock(Block block) {

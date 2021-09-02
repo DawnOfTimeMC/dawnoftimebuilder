@@ -9,8 +9,8 @@ public class SlabBlockDoTB extends SlabBlock {
 		super(properties);
 	}
 
-	public SlabBlockDoTB(Material materialIn, float hardness, float resistance) {
-		this(Properties.create(materialIn).hardnessAndResistance(hardness, resistance));
+	public SlabBlockDoTB(Material materialIn, float hardness, float resistance, SoundType soundType) {
+		this(Properties.create(materialIn).hardnessAndResistance(hardness, resistance).sound(soundType));
 	}
 
 	public SlabBlockDoTB(Block block) {

@@ -1,6 +1,7 @@
 package org.dawnoftimebuilder.block.precolumbian;
 
 import net.minecraft.block.BlockState;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
@@ -14,8 +15,8 @@ public class GreenSculptedPlasteredStoneFriezeBlock extends PlateBlock {
 
 	private static final VoxelShape[] SHAPES = DoTBBlockUtils.GenerateHorizontalShapes(makeShapes());
 
-    public GreenSculptedPlasteredStoneFriezeBlock() {
-    	super(Material.ROCK,1.5F, 6.0F);
+    public GreenSculptedPlasteredStoneFriezeBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
+		super(Properties.create(materialIn).hardnessAndResistance(hardness, resistance).sound(soundType));
     }
 
 	/**

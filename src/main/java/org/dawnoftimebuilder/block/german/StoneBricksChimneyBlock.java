@@ -1,6 +1,7 @@
 package org.dawnoftimebuilder.block.german;
 
 import net.minecraft.block.BlockState;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.math.BlockPos;
@@ -19,8 +20,8 @@ import java.util.Random;
 public class StoneBricksChimneyBlock extends ColumnConnectibleBlock {
 	private static final VoxelShape[] SHAPES = makeShapes();
 
-	public StoneBricksChimneyBlock() {
-		super(Material.ROCK, 1.5F, 6.0F);
+	public StoneBricksChimneyBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
+		super(Properties.create(materialIn).hardnessAndResistance(hardness, resistance).sound(soundType));
 	}
 
 	@Override

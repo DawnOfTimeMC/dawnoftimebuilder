@@ -1,6 +1,7 @@
 package org.dawnoftimebuilder.block.precolumbian;
 
 import net.minecraft.block.BlockState;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.EnumProperty;
@@ -20,8 +21,8 @@ public class PlasteredStoneWindowBlock extends WaterloggedBlock {
 	private static final VoxelShape X_AXIS_VS = makeCuboidShape(0.0D, 0.0D, 6.0D, 16.0D, 16.0D, 10.0D);
     private static final VoxelShape Z_AXIS_VS = makeCuboidShape(6.0D, 0.0D, 0.0D, 10.0D, 16.0D, 16.0D);
 	
-	public PlasteredStoneWindowBlock() {
-		super(Material.ROCK, 1.5F, 6.0F);
+	public PlasteredStoneWindowBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
+		super(Properties.create(materialIn).hardnessAndResistance(hardness, resistance).sound(soundType));
 	    this.setDefaultState(this.stateContainer.getBaseState().with(HORIZONTAL_AXIS, Direction.Axis.X));
 	}
 

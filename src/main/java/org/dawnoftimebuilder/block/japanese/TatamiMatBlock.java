@@ -3,6 +3,7 @@ package org.dawnoftimebuilder.block.japanese;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.PushReaction;
 import net.minecraft.entity.LivingEntity;
@@ -41,9 +42,8 @@ public class TatamiMatBlock extends WaterloggedBlock {
     public static final BooleanProperty ROLLED = DoTBBlockStateProperties.ROLLED;
     public static final IntegerProperty STACK = DoTBBlockStateProperties.STACK;
 
-    public TatamiMatBlock() {
-        super(Material.CARPET, 0.6F, 0.6F);
-        this.setBurnable();
+    public TatamiMatBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
+        super(Properties.create(materialIn).hardnessAndResistance(hardness, resistance).sound(soundType));
         this.setDefaultState(this.stateContainer.getBaseState().with(WATERLOGGED, false).with(ROLLED, false).with(HALF, Half.TOP).with(STACK, 1));
     }
 

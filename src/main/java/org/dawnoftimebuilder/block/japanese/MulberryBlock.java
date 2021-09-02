@@ -2,9 +2,11 @@ package org.dawnoftimebuilder.block.japanese;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.SpawnReason;
+import net.minecraft.item.Food;
 import net.minecraft.state.properties.Half;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.common.PlantType;
 import org.dawnoftimebuilder.block.templates.DoubleGrowingBushBlock;
 import org.dawnoftimebuilder.util.DoTBConfig;
 import org.dawnoftimebuilder.util.DoTBFoods;
@@ -16,8 +18,12 @@ import static org.dawnoftimebuilder.registry.DoTBEntitiesRegistry.SILKMOTH_ENTIT
 
 public class MulberryBlock extends DoubleGrowingBushBlock {
 
-    public MulberryBlock() {
-        super("mulberry", Plains, 3, 2, DoTBFoods.MULBERRY);
+    public MulberryBlock(String seedName, PlantType plantType, int cutAge, int growingAge) {
+        this(seedName, plantType, growingAge, cutAge, null);
+    }
+
+    public MulberryBlock(String seedName, PlantType plantType, int cutAge, int growingAge, Food food) {
+        super(seedName, plantType, growingAge, cutAge, food);
     }
 
     @Override

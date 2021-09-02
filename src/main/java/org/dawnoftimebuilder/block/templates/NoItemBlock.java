@@ -1,5 +1,6 @@
 package org.dawnoftimebuilder.block.templates;
 
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
 import org.dawnoftimebuilder.block.IBlockCustomItem;
@@ -12,8 +13,8 @@ public class NoItemBlock extends BlockDoTB implements IBlockCustomItem {
 		super(properties);
 	}
 
-	public NoItemBlock(Material materialIn, float hardness, float resistance) {
-		this(Properties.create(materialIn).hardnessAndResistance(hardness, resistance));
+	public NoItemBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
+		this(Properties.create(materialIn).hardnessAndResistance(hardness, resistance).sound(soundType));
 	}
 
 	@Nullable

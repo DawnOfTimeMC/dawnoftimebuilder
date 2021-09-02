@@ -2,6 +2,7 @@ package org.dawnoftimebuilder.block.japanese;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.DirectionProperty;
@@ -28,8 +29,8 @@ public class StoneLanternBlock extends WaterloggedBlock implements IBlockChain, 
     private static final VoxelShape[] VS_SIDE = DoTBBlockUtils.GenerateHorizontalShapes(new VoxelShape[]{makeCuboidShape(2.0D, 0.0D, 0.0D, 14.0D, 16.0D, 14.0D)});
     public static final DirectionProperty FACING = BlockStateProperties.FACING;
 
-    public StoneLanternBlock() {
-        super(Properties.create(Material.ROCK).hardnessAndResistance(4.0F, 9.0F).lightValue(15));
+    public StoneLanternBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
+        super(Properties.create(materialIn).hardnessAndResistance(hardness, resistance).sound(soundType).lightValue(15));
         this.setDefaultState(this.getStateContainer().getBaseState().with(WATERLOGGED,false).with(FACING, Direction.DOWN));
     }
 

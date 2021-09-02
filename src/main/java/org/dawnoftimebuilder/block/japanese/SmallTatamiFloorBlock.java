@@ -2,6 +2,7 @@ package org.dawnoftimebuilder.block.japanese;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -29,9 +30,8 @@ public class SmallTatamiFloorBlock extends NoItemBlock {
 	private static final VoxelShape VS = makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 17.0D, 16.0D);
 	public static final EnumProperty<Direction.Axis> HORIZONTAL_AXIS = BlockStateProperties.HORIZONTAL_AXIS;
 
-	public SmallTatamiFloorBlock() {
-		super(Material.WOOD, 2.0F, 2.0F);
-		this.setBurnable();
+	public SmallTatamiFloorBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
+		super(Properties.create(materialIn).hardnessAndResistance(hardness, resistance).sound(soundType));
 	}
 
 	@Override

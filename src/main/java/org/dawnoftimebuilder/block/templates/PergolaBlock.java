@@ -2,6 +2,7 @@ package org.dawnoftimebuilder.block.templates;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.tags.BlockTags;
@@ -22,8 +23,8 @@ public class PergolaBlock extends BeamBlock {
 
 	private static final VoxelShape[] SHAPES = makeShapes();
 
-	public PergolaBlock(Material materialIn, float hardness, float resistance) {
-		super(materialIn, hardness, resistance);
+	public PergolaBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
+		super(materialIn, hardness, resistance, soundType);
 	}
 
 	/**

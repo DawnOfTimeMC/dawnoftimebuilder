@@ -1,6 +1,7 @@
 package org.dawnoftimebuilder.block.japanese;
 
 import net.minecraft.block.BlockState;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.math.BlockPos;
@@ -15,8 +16,8 @@ public class PaperLanternBlock extends WaterloggedBlock {
 
     private static final VoxelShape VS = makeCuboidShape(4.0D, 0.0D, 4.0D, 12.0D, 15.0D, 12.0D);
 
-    public PaperLanternBlock() {
-        super(Properties.create(Material.WOOL).doesNotBlockMovement().hardnessAndResistance(0.5F, 0.5F).lightValue(12));
+    public PaperLanternBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
+        super(Properties.create(materialIn).hardnessAndResistance(hardness, resistance).sound(soundType).lightValue(12));
     }
 
     @Nonnull

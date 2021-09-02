@@ -2,6 +2,7 @@ package org.dawnoftimebuilder.block.french;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.particles.ParticleTypes;
@@ -26,8 +27,8 @@ public class LimestoneChimneyBlock extends ColumnConnectibleBlock {
 	public static final EnumProperty<Direction.Axis> HORIZONTAL_AXIS = BlockStateProperties.HORIZONTAL_AXIS;
 	private static final VoxelShape[] SHAPES = makeShapes();
 
-	public LimestoneChimneyBlock() {
-		super(Material.ROCK, 1.5F, 6.0F);
+	public LimestoneChimneyBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
+		super(materialIn, hardness, resistance, soundType);
 		this.setDefaultState(this.getStateContainer().getBaseState().with(HORIZONTAL_AXIS, Direction.Axis.X));
 	}
 

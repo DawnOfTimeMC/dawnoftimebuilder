@@ -2,6 +2,7 @@ package org.dawnoftimebuilder.block.templates;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -31,8 +32,8 @@ public abstract class CandleLampBlock extends WaterloggedBlock implements IBlock
         this.setDefaultState(this.getStateContainer().getBaseState().with(WATERLOGGED,false).with(LIT, false));
     }
 
-    public CandleLampBlock(Material materialIn, float hardness, float resistance) {
-        this(Properties.create(materialIn).hardnessAndResistance(hardness, resistance));
+    public CandleLampBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
+        this(Properties.create(materialIn).hardnessAndResistance(hardness, resistance).sound(soundType));
     }
 
     @Override

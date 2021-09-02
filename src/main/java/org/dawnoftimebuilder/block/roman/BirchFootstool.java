@@ -1,6 +1,7 @@
 package org.dawnoftimebuilder.block.roman;
 
 import net.minecraft.block.BlockState;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.EnumProperty;
@@ -26,8 +27,8 @@ public class BirchFootstool extends ChairBlock {
             makeCuboidShape(2.0F, 0.0F, 4.0F, 14.0F, 3.0F, 12.0F),
             makeCuboidShape(0.0F, 3.0F, 2.0F, 16.0F, 9.0F, 14.0F));
 
-    public BirchFootstool() {
-        super(Material.WOOD, 2.0F, 2.0F, 9.0F);
+    public BirchFootstool(Material materialIn, float hardness, float resistance, SoundType soundType, float pixelsYOffset) {
+        super(Properties.create(materialIn).hardnessAndResistance(hardness, resistance).sound(soundType), pixelsYOffset);
     }
 
     @Nonnull

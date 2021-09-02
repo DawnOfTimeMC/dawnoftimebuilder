@@ -3,6 +3,7 @@ package org.dawnoftimebuilder.block.templates;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.FireBlock;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 
 public class BlockDoTB extends Block {
@@ -11,8 +12,8 @@ public class BlockDoTB extends Block {
 		super(properties);
 	}
 
-	public BlockDoTB(Material materialIn, float hardness, float resistance) {
-		this(Properties.create(materialIn).hardnessAndResistance(hardness, resistance));
+	public BlockDoTB(Material materialIn, float hardness, float resistance, SoundType soundType) {
+		this(Properties.create(materialIn).hardnessAndResistance(hardness, resistance).sound(soundType));
 	}
 
 	/**

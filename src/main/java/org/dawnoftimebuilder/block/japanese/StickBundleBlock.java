@@ -3,6 +3,7 @@ package org.dawnoftimebuilder.block.japanese;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.PushReaction;
 import net.minecraft.entity.LivingEntity;
@@ -43,8 +44,8 @@ public class StickBundleBlock extends BlockDoTB implements IBlockChain {
 	public static final EnumProperty<Half> HALF = BlockStateProperties.HALF;
 	private static final IntegerProperty AGE = BlockStateProperties.AGE_0_3;
 
-    public StickBundleBlock() {
-        super(Material.WOOD, 2.0F, 3.0F);
+    public StickBundleBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
+		super(Properties.create(materialIn).hardnessAndResistance(hardness, resistance).sound(soundType));
         this.setDefaultState(this.stateContainer.getBaseState().with(AGE, 0).with(HALF, Half.TOP));
     }
 

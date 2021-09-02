@@ -3,6 +3,7 @@ package org.dawnoftimebuilder.block.templates;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.PushReaction;
 import net.minecraft.entity.player.PlayerEntity;
@@ -42,8 +43,8 @@ public class SmallShuttersBlock extends WaterloggedBlock {
         this.setDefaultState(this.getStateContainer().getBaseState().with(OPEN_POSITION, DoTBBlockStateProperties.OpenPosition.CLOSED).with(HINGE, DoorHingeSide.LEFT).with(POWERED, false));
     }
 
-    public SmallShuttersBlock(Material materialIn, float hardness, float resistance) {
-        this(Properties.create(materialIn).hardnessAndResistance(hardness, resistance));
+    public SmallShuttersBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
+        this(Properties.create(materialIn).hardnessAndResistance(hardness, resistance).sound(soundType));
     }
 
     @Override
