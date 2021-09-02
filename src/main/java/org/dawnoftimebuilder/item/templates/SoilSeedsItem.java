@@ -14,14 +14,17 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.common.PlantType;
 import org.dawnoftimebuilder.block.templates.SoilCropsBlock;
+import org.dawnoftimebuilder.util.DoTBFoods;
+
+import javax.annotation.Nullable;
 
 import static org.dawnoftimebuilder.DawnOfTimeBuilder.DOTB_TAB;
 
 public class SoilSeedsItem extends BlockItem implements IPlantable {
     private final SoilCropsBlock crops;
 
-    public SoilSeedsItem(SoilCropsBlock crops) {
-        super(crops, new Item.Properties().group(DOTB_TAB));
+    public SoilSeedsItem(SoilCropsBlock crops, @Nullable Food food) {
+        super(crops, food != null ? new Item.Properties().group(DOTB_TAB).food(food) : new Item.Properties().group(DOTB_TAB));
         this.crops = crops;
     }
 

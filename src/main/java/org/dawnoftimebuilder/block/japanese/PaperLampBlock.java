@@ -45,6 +45,6 @@ public class PaperLampBlock extends ColumnConnectibleBlock implements IBlockSpec
 
     @Override
     public float getDisplayScale() {
-        return 0.75F;
+        return 0.6F;
     }
 }

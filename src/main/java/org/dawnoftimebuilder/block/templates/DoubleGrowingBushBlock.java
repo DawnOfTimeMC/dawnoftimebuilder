@@ -5,6 +5,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.material.PushReaction;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Food;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer;
@@ -33,7 +34,11 @@ public class DoubleGrowingBushBlock extends GrowingBushBlock {
 	public static final EnumProperty<Half> HALF = BlockStateProperties.HALF;
 
 	public DoubleGrowingBushBlock(String seedName, PlantType plantType, int cutAge, int growingAge) {
-		super(seedName, plantType, cutAge);
+		this(seedName, plantType, growingAge, cutAge, null);
+	}
+
+	public DoubleGrowingBushBlock(String seedName, PlantType plantType, int cutAge, int growingAge, Food food) {
+		super(seedName, plantType, cutAge, food);
 		this.growingAge = growingAge;
 		this.TOP_SHAPES = this.makeTopShapes();
 		this.setDefaultState(this.getDefaultState().with(HALF, Half.BOTTOM). with(this.getAgeProperty(), 0).with(this.getCutProperty(), false));

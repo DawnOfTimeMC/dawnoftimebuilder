@@ -7,6 +7,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.dawnoftimebuilder.block.templates.DoubleGrowingBushBlock;
 import org.dawnoftimebuilder.util.DoTBConfig;
+import org.dawnoftimebuilder.util.DoTBFoods;
 
 import java.util.Random;
 
@@ -16,7 +17,7 @@ import static org.dawnoftimebuilder.registry.DoTBEntitiesRegistry.SILKMOTH_ENTIT
 public class MulberryBlock extends DoubleGrowingBushBlock {
 
     public MulberryBlock() {
-        super("mulberry", Plains, 3, 2);
+        super("mulberry", Plains, 3, 2, DoTBFoods.MULBERRY);
     }
 
     @Override

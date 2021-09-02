@@ -2,6 +2,7 @@ package org.dawnoftimebuilder.block.templates;
 
 import net.minecraft.block.*;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Food;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.IntegerProperty;
@@ -31,8 +32,12 @@ public class GrowingBushBlock extends SoilCropsBlock {
 	private static final IntegerProperty AGE = BlockStateProperties.AGE_0_5;
 	private static final BooleanProperty CUT = DoTBBlockStateProperties.CUT;
 
-	public GrowingBushBlock(String seedName, PlantType plantType, int cutAge){
-		super(seedName, plantType);
+	public GrowingBushBlock(String seedName, PlantType plantType, int cutAge) {
+		this(seedName, plantType, cutAge, null);
+	}
+
+	public GrowingBushBlock(String seedName, PlantType plantType, int cutAge, Food food){
+		super(seedName, plantType, food);
 		this.cutAge = cutAge;
 		this.setDefaultState(this.getDefaultState().with(AGE, 0).with(CUT, false));
 		this.SHAPES = this.makeShapes();

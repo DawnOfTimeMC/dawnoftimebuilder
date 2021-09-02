@@ -5,6 +5,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.material.PushReaction;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Food;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer;
@@ -30,9 +31,13 @@ public class DoubleCropsBlock extends SoilCropsBlock {
 	private final int growingAge;
 	public final VoxelShape[] SHAPES;
 	public static final EnumProperty<Half> HALF = BlockStateProperties.HALF;
-	
+
 	public DoubleCropsBlock(String seedName, PlantType plantType, int growingAge) {
-		super(seedName, plantType);
+		this(seedName, plantType, growingAge, null);
+	}
+
+	public DoubleCropsBlock(String seedName, PlantType plantType, int growingAge, Food food) {
+		super(seedName, plantType, food);
 		this.growingAge = growingAge;
 		this.SHAPES = this.makeShapes();
 		this.setDefaultState(this.getDefaultState().with(HALF, Half.BOTTOM).with(this.getAgeProperty(), 0));
@@ -78,15 +83,18 @@ public class DoubleCropsBlock extends SoilCropsBlock {
 
 	@Override
 	public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
-		Half half = stateIn.get(HALF);
-		if (facing.getAxis() == Direction.Axis.Y && half == Half.BOTTOM == (facing == Direction.UP)) {
-			if(facingState.getBlock() == this && facingState.get(HALF) != half){
-				return half == Half.BOTTOM ? stateIn : stateIn.with(AGE, facingState.get(AGE));
-			}else if(half == Half.BOTTOM && stateIn.get(AGE) < this.growingAge) return stateIn;
-			return Blocks.AIR.getDefaultState();
-		}else{
-			return half == Half.BOTTOM && facing == Direction.DOWN && this.isValidGround(stateIn, worldIn, currentPos.down()) ? Blocks.AIR.getDefaultState() : super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+		if(facing.getAxis() == Direction.Axis.Y){
+			boolean isBottom = stateIn.get(HALF) == Half.BOTTOM;
+			if(isBottom == (facing == Direction.UP)) {
+				if(facingState.getBlock() == this && facingState.get(HALF) != stateIn.get(HALF)){
+					return isBottom ? stateIn : stateIn.with(AGE, facingState.get(AGE));
+				}else if(isBottom && stateIn.get(AGE) < this.growingAge) return stateIn;
+				return Blocks.AIR.getDefaultState();
+			}else{
+				return super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+			}
 		}
+		return stateIn;
 	}
 
 	@Override

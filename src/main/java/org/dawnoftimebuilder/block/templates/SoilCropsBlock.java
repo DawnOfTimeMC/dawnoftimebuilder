@@ -3,6 +3,7 @@ package org.dawnoftimebuilder.block.templates;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.fluid.Fluids;
+import net.minecraft.item.Food;
 import net.minecraft.item.Item;
 import net.minecraft.util.Direction;
 import net.minecraft.util.IItemProvider;
@@ -11,11 +12,13 @@ import net.minecraft.world.IBlockReader;
 import net.minecraftforge.common.PlantType;
 import org.dawnoftimebuilder.item.templates.SoilSeedsItem;
 import org.dawnoftimebuilder.block.IBlockCustomItem;
+import org.dawnoftimebuilder.util.DoTBFoods;
 
 import javax.annotation.Nonnull;
 
 import static net.minecraft.block.Blocks.AIR;
 import static net.minecraftforge.common.Tags.Blocks.SAND;
+import static org.dawnoftimebuilder.DawnOfTimeBuilder.DOTB_TAB;
 
 public class SoilCropsBlock extends CropsBlock implements IBlockCustomItem {
 
@@ -23,11 +26,15 @@ public class SoilCropsBlock extends CropsBlock implements IBlockCustomItem {
 	private final String seedName;
 	private final PlantType plantType;
 
-	public SoilCropsBlock(String seedName, PlantType plantType){
+	public SoilCropsBlock(String seedName, PlantType plantType, Food food){
 		super(BlockDoTB.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0.0F).sound(SoundType.CROP));
 		this.plantType = plantType;
 		this.seedName = seedName;
-		this.seed = new SoilSeedsItem(this);
+		this.seed = new SoilSeedsItem(this, food);
+	}
+
+	public SoilCropsBlock(String seedName, PlantType plantType){
+		this(seedName, plantType, null);
 	}
 
 	@Override

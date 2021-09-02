@@ -20,6 +20,7 @@ import org.dawnoftimebuilder.block.templates.*;
 import org.dawnoftimebuilder.block.german.*;
 import org.dawnoftimebuilder.block.general.*;
 import org.dawnoftimebuilder.block.japanese.*;
+import org.dawnoftimebuilder.util.DoTBFoods;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -252,7 +253,7 @@ public class DoTBBlocksRegistry {
 	public static final Block GREEN_PLASTERED_STONE_FRIEZE = reg("green_plastered_stone_frieze", new PlateBlock(PLASTERED_STONE));
 	public static final Block GREEN_SCULPTED_PLASTERED_STONE_FRIEZE = reg("green_sculpted_plastered_stone_frieze", new GreenSculptedPlasteredStoneFriezeBlock());
 	public static final Block GREEN_SMALL_PLASTERED_STONE_FRIEZE = reg("green_small_plastered_stone_frieze", new EdgeBlock(PLASTERED_STONE));
-	public static final Block MAIZE = reg("maize", new DoubleCropsBlock("maize", Crop, 4));
+	public static final Block MAIZE = reg("maize", new DoubleCropsBlock("maize", Crop, 4, DoTBFoods.MAIZE));
 	public static final Block RED_ORNAMENTED_PLASTERED_STONE = reg("red_ornamented_plastered_stone", new BlockDoTB(Material.ROCK,1.5F, 6.0F));
 	public static final Block PLASTERED_STONE_COLUMN = reg("plastered_stone_column", new PlasteredStoneColumnBlock());
 	public static final Block PLASTERED_STONE_CRESSET = reg("plastered_stone_cresset", new PlasteredStoneCressetBlock());

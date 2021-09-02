@@ -6,6 +6,7 @@ import net.minecraft.block.IWaterLoggable;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.fluid.IFluidState;
 import net.minecraft.item.BlockItemUseContext;
+import net.minecraft.item.Food;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
@@ -21,6 +22,10 @@ public class WaterDoubleCropsBlock extends DoubleCropsBlock implements IWaterLog
 	private static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
 	public WaterDoubleCropsBlock(String seedName, int growingAge) {
+		this(seedName, growingAge, null);
+	}
+
+	public WaterDoubleCropsBlock(String seedName, int growingAge, Food food) {
 		super(seedName, PlantType.Water, growingAge);
 		this.setDefaultState(this.getDefaultState().with(WATERLOGGED, true).with(HALF, Half.BOTTOM).with(this.getAgeProperty(), 0));
 	}

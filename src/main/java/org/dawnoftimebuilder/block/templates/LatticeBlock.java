@@ -100,7 +100,7 @@ public class LatticeBlock extends WaterloggedBlock implements IBlockClimbingPlan
 				VoxelShapes.or(vs_sw, vs_north),
 				vs_east,
 				vs_se,
-				VoxelShapes.or(vs_west, vs_se),
+				VoxelShapes.or(vs_west, vs_east),
 				VoxelShapes.or(vs_sw, vs_east),
 				vs_ne,
 				VoxelShapes.or(vs_south, vs_ne),
@@ -130,20 +130,18 @@ public class LatticeBlock extends WaterloggedBlock implements IBlockClimbingPlan
 	public boolean isReplaceable(BlockState state, BlockItemUseContext useContext) {
 		ItemStack itemstack = useContext.getItem();
 		if(useContext.isPlacerSneaking()) return false;
-		if (itemstack.getItem() == this.asItem()) {
-			if(useContext.replacingClickedOnBlock()) {
-				Direction newDirection = useContext.getPlacementHorizontalFacing();
-				switch(newDirection){
-					default:
-					case SOUTH:
-						return !state.get(SOUTH);
-					case WEST:
-						return !state.get(WEST);
-					case NORTH:
-						return !state.get(NORTH);
-					case EAST:
-						return !state.get(EAST);
-				}
+		if(itemstack.getItem() == this.asItem()) {
+			Direction newDirection = useContext.getPlacementHorizontalFacing();
+			switch(newDirection){
+				default:
+				case SOUTH:
+					return !state.get(SOUTH);
+				case WEST:
+					return !state.get(WEST);
+				case NORTH:
+					return !state.get(NORTH);
+				case EAST:
+					return !state.get(EAST);
 			}
 		}
 		return false;
@@ -159,7 +157,6 @@ public class LatticeBlock extends WaterloggedBlock implements IBlockClimbingPlan
 		this.tickPlant(state, worldIn, pos, random);
 	}
 
-	//TODO Improve block placement
 	@Override
 	public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
 		if (worldIn.getBlockState(pos.down()).isIn(BlockTags.DIRT_LIKE)){

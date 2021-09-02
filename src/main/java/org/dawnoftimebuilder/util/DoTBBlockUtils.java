@@ -100,14 +100,17 @@ public class DoTBBlockUtils {
 	 * @param pos Position of the Block.
 	 * @param drops ItemStack list that will be dropped.
 	 * @param multiplier Multiply the quantity of item (round down) per ItemStack (use 1.0F to keep the same number).
+	 * @return True if some items are dropped, False otherwise.
 	 */
-	public static void dropLootFromList(World worldIn, BlockPos pos, List<ItemStack> drops, float multiplier){
+	public static boolean dropLootFromList(World worldIn, BlockPos pos, List<ItemStack> drops, float multiplier){
+		if(drops.isEmpty()) return false;
 		for(ItemStack drop : drops){
 			int quantity = (int) Math.floor(drop.getCount() * multiplier);
 			for (int i = 0; i < quantity; i++){
 				Block.spawnAsEntity(worldIn, pos, new ItemStack(drop.getItem(), 1));
 			}
 		}
+		return true;
 	}
 
 	/**

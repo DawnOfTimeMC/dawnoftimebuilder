@@ -3,15 +3,23 @@ package org.dawnoftimebuilder.block.japanese;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.BlockItemUseContext;
+import net.minecraft.item.ItemStack;
 import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import org.dawnoftimebuilder.block.templates.FenceBlockDoTB;
 import org.dawnoftimebuilder.util.DoTBBlockStateProperties;
 import org.dawnoftimebuilder.util.DoTBBlockStateProperties.FencePillar;
+import org.dawnoftimebuilder.util.DoTBBlockUtils;
+
+import javax.annotation.Nullable;
+import java.util.List;
 
 public class CharredSpruceRailingBlock extends FenceBlockDoTB {
 
@@ -54,5 +62,11 @@ public class CharredSpruceRailingBlock extends FenceBlockDoTB {
 
     private boolean hasNoPillar(BlockState state){
 		return state.get(FENCE_PILLAR) == FencePillar.NONE;
+	}
+
+	@Override
+	public void addInformation(ItemStack stack, @Nullable IBlockReader worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+		super.addInformation(stack, worldIn, tooltip, flagIn);
+		DoTBBlockUtils.addTooltip(tooltip, this);
 	}
 }

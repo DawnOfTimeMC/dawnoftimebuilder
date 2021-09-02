@@ -80,6 +80,6 @@ public class StoneLanternBlock extends WaterloggedBlock implements IBlockChain, 
 
     @Override
     public float getDisplayScale() {
-        return 0.75F;
+        return 0.6F;
     }
 }

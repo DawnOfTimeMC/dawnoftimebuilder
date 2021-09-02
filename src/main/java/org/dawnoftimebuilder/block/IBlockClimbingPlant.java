@@ -110,11 +110,12 @@ public interface IBlockClimbingPlant {
 	 */
 	default boolean harvestPlant(BlockState stateIn, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn){
 		if(stateIn.get(AGE_0_6) > 2){
-			this.dropPlant(stateIn, worldIn, pos, player.getHeldItem(handIn));
-			stateIn = stateIn.with(AGE_0_6, 2);
-			worldIn.setBlockState(pos, stateIn, 10);
-			worldIn.playSound(null, pos, SoundEvents.BLOCK_GRASS_BREAK, SoundCategory.BLOCKS, 1.0F, 1.0F);
-			return true;
+			if(this.dropPlant(stateIn, worldIn, pos, player.getHeldItem(handIn))){
+				stateIn = stateIn.with(AGE_0_6, 2);
+				worldIn.setBlockState(pos, stateIn, 10);
+				worldIn.playSound(null, pos, SoundEvents.BLOCK_GRASS_BREAK, SoundCategory.BLOCKS, 1.0F, 1.0F);
+				return true;
+			}
 		}
 		if(player.isSneaking()){
 			return tryRemovingPlant(stateIn, worldIn, pos, player.getHeldItem(handIn));
@@ -161,14 +162,15 @@ public interface IBlockClimbingPlant {
 	 * @param worldIn World of the Block.
 	 * @param pos Position of the Block.
 	 * @param heldItemStack Item in active hand to apply tool conditions.
+	 * @return True if some loot is dropped. False if there were no loot_table found or item dropped.
 	 */
-	default void dropPlant(BlockState stateIn, World worldIn, BlockPos pos, ItemStack heldItemStack){
-		if(worldIn.isRemote) return;
+	default boolean dropPlant(BlockState stateIn, World worldIn, BlockPos pos, ItemStack heldItemStack){
+		if(worldIn.isRemote()) return false;
 		DoTBBlockStateProperties.ClimbingPlant plant = stateIn.get(CLIMBING_PLANT);
-		if(plant.hasNoPlant()) return;
+		if(plant.hasNoPlant()) return false;
 		List<ItemStack> drops = DoTBBlockUtils.getLootList((ServerWorld)worldIn, stateIn, pos, heldItemStack, plant.getName() + "_" + stateIn.get(AGE_0_6));
-		DoTBBlockUtils.dropLootFromList(worldIn, pos, drops, 1.0F);
-	}//TODO can click only if grown enough
+		return DoTBBlockUtils.dropLootFromList(worldIn, pos, drops, 1.0F);
+	}
 
 	/**
 	 * @param state Current state of the Block.

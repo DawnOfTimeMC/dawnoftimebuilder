@@ -16,6 +16,10 @@ public class DoTBConfig {
     public static final String FOOD_CATEGORY = "food_properties";
     public static ForgeConfigSpec.IntValue GRAPE_HUNGER;
     public static ForgeConfigSpec.DoubleValue GRAPE_SATURATION;
+    public static ForgeConfigSpec.IntValue MAIZE_HUNGER;
+    public static ForgeConfigSpec.DoubleValue MAIZE_SATURATION;
+    public static ForgeConfigSpec.IntValue MULBERRY_HUNGER;
+    public static ForgeConfigSpec.DoubleValue MULBERRY_SATURATION;
 
     public static final String ARMOR_MATERIAL_CATEGORY = "armor_properties";
     public static ForgeConfigSpec.IntValue IRON_PLATE_DURABILITY;
@@ -105,6 +109,14 @@ public class DoTBConfig {
                 GRAPE_HUNGER = COMMON_BUILDER.defineInRange("grapeHunger", 4,1,20);
                 GRAPE_SATURATION = COMMON_BUILDER.defineInRange("grapeSaturation", 0.2,0.1,3.0);
             COMMON_BUILDER.pop();
+            COMMON_BUILDER.push("maize");
+                MAIZE_HUNGER = COMMON_BUILDER.defineInRange("maizeHunger", 6,1,20);
+                MAIZE_SATURATION = COMMON_BUILDER.defineInRange("maizeSaturation", 1.0,0.1,3.0);
+            COMMON_BUILDER.pop();
+            COMMON_BUILDER.push("mulberry");
+                MULBERRY_HUNGER = COMMON_BUILDER.defineInRange("mulberryHunger", 1,1,20);
+                MULBERRY_SATURATION = COMMON_BUILDER.defineInRange("mulberrySaturation", 0.5,0.1,3.0);
+            COMMON_BUILDER.pop();
         COMMON_BUILDER.pop();
 
         COMMON_BUILDER.comment("----------------------------------------|| Armor settings ||---------------------------------------").push(ARMOR_MATERIAL_CATEGORY);
@@ -181,7 +193,7 @@ public class DoTBConfig {
                 DRYING_TIME_VARIATION = COMMON_BUILDER.comment("The drying time of an item is randomly set in an interval around the default time from the recipe. The following value defines the high bound of the interval in percents. IE, if you choose '20', the interval will be [ 83.3% , 120%]. If you chose '200', the interval will be [33.3% , 300%] :").defineInRange("dryingTimeVariationRange", 30, 0, 100000);
             COMMON_BUILDER.pop();
             COMMON_BUILDER.push("climbing_plant");
-                CLIMBING_PLANT_GROWTH_CHANCE = COMMON_BUILDER.comment("The probability to grow is equal to 1/x, with x the following value :").defineInRange("climbingPlantGrowthChance", 25, 1, 1000);
+                CLIMBING_PLANT_GROWTH_CHANCE = COMMON_BUILDER.comment("The probability to grow is equal to 1/x, with x the following value :").defineInRange("climbingPlantGrowthChance", 20, 1, 1000);
                 CLIMBING_PLANT_SPREAD_CHANCE = COMMON_BUILDER.comment("If the plant could have grown (see climbingPlantGrowthChance), it has a probability to spread to an adjacent block equal to 1/x, with x the following value :").defineInRange("climbingPlantSpreadChance", 5, 1, 1000);
             COMMON_BUILDER.pop();
             COMMON_BUILDER.push("stick_bundle");
