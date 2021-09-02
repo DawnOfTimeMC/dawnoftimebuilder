@@ -154,6 +154,13 @@ public class LatticeBlock extends WaterloggedBlock implements IBlockClimbingPlan
 	}
 
 	@Override
+	public void spawnAdditionalDrops(BlockState state, World worldIn, BlockPos pos, ItemStack stack) {
+		super.spawnAdditionalDrops(state, worldIn, pos, stack);
+		//Be careful, climbing plants are not dropping from block's loot_table, but from their own loot_table
+		this.dropPlant(state, worldIn, pos, stack);
+	}
+
+	@Override
 	public void tick(BlockState state, World worldIn, BlockPos pos, Random random) {
 		this.tickPlant(state, worldIn, pos, random);
 	}

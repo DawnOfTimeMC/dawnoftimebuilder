@@ -23,11 +23,13 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
+import net.minecraft.world.storage.loot.LootContext;
 import org.dawnoftimebuilder.block.IBlockClimbingPlant;
 import org.dawnoftimebuilder.block.IBlockPillar;
 import org.dawnoftimebuilder.util.DoTBBlockStateProperties;
 
 import javax.annotation.Nonnull;
+import java.util.List;
 import java.util.Random;
 
 public class BeamBlock extends WaterloggedBlock implements IBlockPillar, IBlockClimbingPlant {
@@ -144,6 +146,13 @@ public class BeamBlock extends WaterloggedBlock implements IBlockPillar, IBlockC
 			}
 		}
 		return false;
+	}
+
+	@Override
+	public void spawnAdditionalDrops(BlockState state, World worldIn, BlockPos pos, ItemStack stack) {
+		super.spawnAdditionalDrops(state, worldIn, pos, stack);
+		//Be careful, climbing plants are not dropping from block's loot_table, but from their own loot_table
+		this.dropPlant(state, worldIn, pos, stack);
 	}
 
 	@Override
