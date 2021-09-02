@@ -7,13 +7,12 @@ import net.minecraft.state.StateContainer;
 import net.minecraft.util.Direction;
 
 import net.minecraft.block.material.Material;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
-import org.dawnoftimebuilder.utils.DoTBBlockStateProperties;
+import org.dawnoftimebuilder.util.DoTBBlockStateProperties;
 
 public abstract class ColumnConnectibleBlock extends WaterloggedBlock {
 

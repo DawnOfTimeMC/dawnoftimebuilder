@@ -2,9 +2,9 @@ package org.dawnoftimebuilder.block;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import org.dawnoftimebuilder.utils.DoTBBlockStateProperties;
+import org.dawnoftimebuilder.util.DoTBBlockStateProperties;
 
-import static org.dawnoftimebuilder.utils.DoTBBlockUtils.DoTBTags.CHAINS;
+import static org.dawnoftimebuilder.util.DoTBBlockUtils.CHAINS;
 
 public interface IBlockChain extends IBlockPillar{
 
@@ -15,7 +15,7 @@ public interface IBlockChain extends IBlockPillar{
 	 */
 	static boolean canBeChained(BlockState state, boolean tryConnectUnder){
 		Block block = state.getBlock();
-		if(CHAINS.contains(block)) return true;
+		if(block.isIn(CHAINS)) return true;
 		if(block instanceof IBlockChain) return tryConnectUnder ? ((IBlockChain) block).canConnectToChainUnder(state) : ((IBlockChain) block).canConnectToChainAbove(state);
 		return false;
 	}

@@ -22,14 +22,18 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
-import org.dawnoftimebuilder.utils.DoTBBlockStateProperties;
+import org.dawnoftimebuilder.tileentity.DryerTileEntity;
+import org.dawnoftimebuilder.util.DoTBBlockStateProperties;
 
 import javax.annotation.Nullable;
 
-import static org.dawnoftimebuilder.registries.DoTBTileEntitiesRegistry.DRYER_TE;
+import static org.dawnoftimebuilder.registry.DoTBTileEntitiesRegistry.DRYER_TE;
 
 public class DryerBlock extends WaterloggedBlock {
 
+	//TODO It doesn't work, especially the renderer :(
+	//TODO Add redstone compatibility : ie emit redstone when dried
+	//TODO A mon avis le mieux dans ce cas, c'est override getModelData dans ton TileEntity (ou BockEntity), de manière à envoyer l'info au model de quel recette est en cours, ensuite, avec un IModelGeometry et un  BakedModel custom, tu peux choiir quel model afficher en fonction des données retournée par getModelData
 	public static final IntegerProperty SIZE = DoTBBlockStateProperties.SIZE_0_2;
 	public static final VoxelShape VS_SIMPLE = makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 4.0D, 16.0D);
 	public static final VoxelShape VS_DOUBLE = makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 12.0D, 16.0D);
@@ -99,11 +103,6 @@ public class DryerBlock extends WaterloggedBlock {
 	}
 
 	@Override
-	public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-		return super.onBlockActivated(state, worldIn, pos, player, handIn, hit);
-	}
-
-	@Override
 	public boolean hasTileEntity(BlockState state) {
 		return true;
 	}
@@ -114,35 +113,22 @@ public class DryerBlock extends WaterloggedBlock {
 		return DRYER_TE.create();
 	}
 
-	/*
 	@Override
-	public boolean onBlockActivate(World worldIn, BlockPos pos, BlockState state, EntityPlayer playerIn, EnumHand hand, Direction facing, float hitX, float hitY, float hitZ){
-		if(!worldIn.isRemote && !worldIn.restoringBlockSnapshots) {
-			TileEntity tE = worldIn.getTileEntity(pos);
-			if(tE instanceof DoTBTileEntityDryer) {
-				DoTBTileEntityDryer tileEntity = (DoTBTileEntityDryer) tE;
+	public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+		if(!worldIn.isRemote()) {
+			if(worldIn.getTileEntity(pos) instanceof DryerTileEntity) {
+				DryerTileEntity tileEntity = (DryerTileEntity) worldIn.getTileEntity(pos);
+				if(tileEntity == null) return false;
 
-				if(playerIn.isSneaking()) return tileEntity.dropOneItem(worldIn, pos);
+				if(player.isSneaking()) return tileEntity.dropOneItem(worldIn, pos);
 
 				else {
-					ItemStack itemstack = playerIn.getHeldItem(hand);
-					Item item = itemstack.getItem();
-
-					if(item instanceof IItemCanBeDried) {
-						int quantityNeeded = ((IItemCanBeDried) item).getItemQuantity();
-						if(quantityNeeded <= itemstack.getCount()){
-							if(tileEntity.putUndriedItem((IItemCanBeDried) item, state.get(SIMPLE), worldIn, pos)) {
-								if(!playerIn.isCreative()) itemstack.shrink(quantityNeeded);
-								return true;
-							}else return false;
-						}
-					}
-					return tileEntity.dropOneDriedItem(worldIn, pos) >= 0;
+					return tileEntity.tryInsertItemStack(player.getHeldItem(handIn), state.get(SIZE) == 0, worldIn, pos, player);
 				}
 			}
 		}
 		return false;
-	}*/
+	}
 
 	@Override
 	public BlockRenderLayer getRenderLayer() {

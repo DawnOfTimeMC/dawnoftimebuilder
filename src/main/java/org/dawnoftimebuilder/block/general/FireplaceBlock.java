@@ -29,9 +29,9 @@ import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.dawnoftimebuilder.block.templates.WaterloggedBlock;
-import org.dawnoftimebuilder.utils.DoTBBlockStateProperties;
-import org.dawnoftimebuilder.utils.DoTBBlockStateProperties.HorizontalConnection;
-import org.dawnoftimebuilder.utils.DoTBBlockUtils;
+import org.dawnoftimebuilder.util.DoTBBlockStateProperties;
+import org.dawnoftimebuilder.util.DoTBBlockStateProperties.HorizontalConnection;
+import org.dawnoftimebuilder.util.DoTBBlockUtils;
 
 import java.util.Random;
 

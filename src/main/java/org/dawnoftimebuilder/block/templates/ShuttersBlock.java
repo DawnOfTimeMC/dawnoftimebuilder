@@ -19,7 +19,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
-import org.dawnoftimebuilder.utils.DoTBBlockStateProperties;
+import org.dawnoftimebuilder.util.DoTBBlockStateProperties;
 
 import javax.annotation.Nullable;
 

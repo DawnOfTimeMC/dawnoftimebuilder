@@ -12,4 +12,11 @@ public interface IBlockCustomItem {
     @Nullable
     Item getCustomItemBlock();
 
+    /**
+     * @return The name used to register this customItem. If return 'null', the name used in the registry is the block's name.
+     */
+    @Nullable
+    default String getCustomItemName(){
+        return null;
+    }
 }

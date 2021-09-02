@@ -23,14 +23,14 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import org.dawnoftimebuilder.block.templates.WaterloggedBlock;
-import org.dawnoftimebuilder.utils.DoTBBlockStateProperties;
-import org.dawnoftimebuilder.utils.DoTBBlockUtils;
+import org.dawnoftimebuilder.util.DoTBBlockStateProperties;
+import org.dawnoftimebuilder.util.DoTBBlockUtils;
 
 import javax.annotation.Nullable;
 
 import static net.minecraft.block.Blocks.SPRUCE_PLANKS;
-import static org.dawnoftimebuilder.registries.DoTBBlocksRegistry.TATAMI_FLOOR;
-import static org.dawnoftimebuilder.utils.DoTBBlockUtils.DoTBTags.COVERED_BLOCKS;
+import static org.dawnoftimebuilder.registry.DoTBBlocksRegistry.TATAMI_FLOOR;
+import static org.dawnoftimebuilder.util.DoTBBlockUtils.COVERED_BLOCKS;
 
 public class TatamiMatBlock extends WaterloggedBlock {
 
@@ -87,7 +87,7 @@ public class TatamiMatBlock extends WaterloggedBlock {
         Direction direction = context.getPlacementHorizontalFacing();
         if(world.getBlockState(pos.offset(direction)).isReplaceable(context))
             return super.getStateForPlacement(context)
-                    .with(ROLLED, COVERED_BLOCKS.contains(world.getBlockState(pos.down()).getBlock()) || COVERED_BLOCKS.contains(world.getBlockState(pos.down().offset(direction)).getBlock()))
+                    .with(ROLLED, world.getBlockState(pos.down()).getBlock().isIn(COVERED_BLOCKS) || world.getBlockState(pos.down().offset(direction)).getBlock().isIn(COVERED_BLOCKS))
                     .with(FACING, direction);
         return null;
     }
@@ -165,7 +165,7 @@ public class TatamiMatBlock extends WaterloggedBlock {
             int stack = state.get(STACK);
             boolean isRolled = state.get(ROLLED);
             if(isRolled && stack == 1) {
-                if (COVERED_BLOCKS.contains(worldIn.getBlockState(pos.down()).getBlock()))
+                if (worldIn.getBlockState(pos.down()).getBlock().isIn(COVERED_BLOCKS))
                     return false;
             }
             if(state.get(STACK) > 1){
@@ -177,7 +177,7 @@ public class TatamiMatBlock extends WaterloggedBlock {
                 if(isRolled){
                     if(!worldIn.isAirBlock(pos.offset(facing)) //Check if the position for the Bottom half is free
                             || worldIn.isAirBlock(pos.offset(facing).down()) //Check if this position can't support tatami
-                            || COVERED_BLOCKS.contains(worldIn.getBlockState(pos.down().offset(facing)).getBlock())) //Check if this position is not supported by a covered block
+                            || worldIn.getBlockState(pos.down().offset(facing)).getBlock().isIn(COVERED_BLOCKS)) //Check if this position is not supported by a covered block
                         return false;
                     worldIn.setBlockState(pos.offset(facing), state.with(HALF, Half.BOTTOM), 2);
                 }else if(state.get(HALF) == Half.BOTTOM){

@@ -8,7 +8,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkEvent;
 import org.dawnoftimebuilder.DawnOfTimeBuilder;
-import org.dawnoftimebuilder.tileentity.DisplayerTileEntity;
 
 import java.util.function.Supplier;
 

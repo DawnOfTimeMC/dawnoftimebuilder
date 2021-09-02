@@ -18,13 +18,13 @@ import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import org.dawnoftimebuilder.block.templates.WaterloggedBlock;
-import org.dawnoftimebuilder.utils.DoTBBlockStateProperties;
-import org.dawnoftimebuilder.utils.DoTBBlockUtils;
+import org.dawnoftimebuilder.util.DoTBBlockStateProperties;
+import org.dawnoftimebuilder.util.DoTBBlockUtils;
 
 import javax.annotation.Nonnull;
 
 import static net.minecraft.util.Direction.NORTH;
-import static org.dawnoftimebuilder.utils.DoTBBlockStateProperties.HorizontalConnection.NONE;
+import static org.dawnoftimebuilder.util.DoTBBlockStateProperties.HorizontalConnection.NONE;
 
 public class StoneBricksMachicolationBlock extends WaterloggedBlock {
 

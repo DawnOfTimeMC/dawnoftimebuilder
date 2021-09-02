@@ -25,7 +25,7 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import org.dawnoftimebuilder.block.IBlockClimbingPlant;
-import org.dawnoftimebuilder.utils.DoTBBlockStateProperties;
+import org.dawnoftimebuilder.util.DoTBBlockStateProperties;
 
 import java.util.Random;
 
@@ -100,7 +100,7 @@ public class LatticeBlock extends WaterloggedBlock implements IBlockClimbingPlan
 				VoxelShapes.or(vs_sw, vs_north),
 				vs_east,
 				vs_se,
-				VoxelShapes.or(vs_west, vs_se),
+				VoxelShapes.or(vs_west, vs_east),
 				VoxelShapes.or(vs_sw, vs_east),
 				vs_ne,
 				VoxelShapes.or(vs_south, vs_ne),
@@ -130,20 +130,18 @@ public class LatticeBlock extends WaterloggedBlock implements IBlockClimbingPlan
 	public boolean isReplaceable(BlockState state, BlockItemUseContext useContext) {
 		ItemStack itemstack = useContext.getItem();
 		if(useContext.isPlacerSneaking()) return false;
-		if (itemstack.getItem() == this.asItem()) {
-			if (useContext.replacingClickedOnBlock()) {
-				Direction newDirection = useContext.getPlacementHorizontalFacing();
-				switch(newDirection){
-					default:
-					case SOUTH:
-						return !state.get(SOUTH);
-					case WEST:
-						return !state.get(WEST);
-					case NORTH:
-						return !state.get(NORTH);
-					case EAST:
-						return !state.get(EAST);
-				}
+		if(itemstack.getItem() == this.asItem()) {
+			Direction newDirection = useContext.getPlacementHorizontalFacing();
+			switch(newDirection){
+				default:
+				case SOUTH:
+					return !state.get(SOUTH);
+				case WEST:
+					return !state.get(WEST);
+				case NORTH:
+					return !state.get(NORTH);
+				case EAST:
+					return !state.get(EAST);
 			}
 		}
 		return false;

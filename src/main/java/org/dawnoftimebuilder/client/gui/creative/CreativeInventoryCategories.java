@@ -4,14 +4,14 @@ import net.minecraft.item.Item;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import org.dawnoftimebuilder.registries.DoTBItemsRegistry;
+import org.dawnoftimebuilder.registry.DoTBItemsRegistry;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
 import static net.minecraft.block.Blocks.*;
 import static org.dawnoftimebuilder.DawnOfTimeBuilder.MOD_ID;
-import static org.dawnoftimebuilder.registries.DoTBBlocksRegistry.*;
+import static org.dawnoftimebuilder.registry.DoTBBlocksRegistry.*;
 
 @OnlyIn(Dist.CLIENT)
 public enum CreativeInventoryCategories {
@@ -198,8 +198,10 @@ public enum CreativeInventoryCategories {
 			Item.getItemFromBlock(STONE_BRICKS_CHIMNEY),
 			Item.getItemFromBlock(CANDLESTICK),
 			Item.getItemFromBlock(WAXED_OAK_CHANDELIER),
+			Item.getItemFromBlock(WAXED_OAK_CHAIR),
 			Item.getItemFromBlock(FLAT_ROOF_TILES),
 			Item.getItemFromBlock(FLAT_ROOF_TILES_STAIRS),
+			Item.getItemFromBlock(FLAT_ROOF_TILES_PLATE),
 			Item.getItemFromBlock(FLAT_ROOF_TILES_SLAB),
 			Item.getItemFromBlock(FLAT_ROOF_TILES_EDGE),
 			Item.getItemFromBlock(IRON_PORTCULLIS),
@@ -211,7 +213,7 @@ public enum CreativeInventoryCategories {
 			DoTBItemsRegistry.WAX
 	),
 
-	ISLAMIC("persian",
+	PERSIAN("persian",
 			Item.getItemFromBlock(PERSIAN_CARPET_RED)
 	),
 
@@ -244,6 +246,7 @@ public enum CreativeInventoryCategories {
 			Item.getItemFromBlock(CHARRED_SPRUCE_DOOR),
 			Item.getItemFromBlock(CHARRED_SPRUCE_TRAPDOOR),
 			Item.getItemFromBlock(CHARRED_SPRUCE_SHUTTERS),
+			Item.getItemFromBlock(CHARRED_SPRUCE_TALL_SHUTTERS),
 			Item.getItemFromBlock(CHARRED_SPRUCE_ROOF_SUPPORT),
 			Item.getItemFromBlock(CHARRED_SPRUCE_TIMBER_FRAME),
 			Item.getItemFromBlock(CHARRED_SPRUCE_TIMBER_FRAME_PILLAR),
@@ -253,28 +256,27 @@ public enum CreativeInventoryCategories {
 			Item.getItemFromBlock(GRAY_ROOF_TILES_SLAB),
 			Item.getItemFromBlock(GRAY_ROOF_TILES_EDGE),
 			Item.getItemFromBlock(GRAY_ROOF_TILES_WALL),
-			Item.getItemFromBlock(RICE),
 			Item.getItemFromBlock(PAPER_WALL),
 			Item.getItemFromBlock(PAPER_WALL_FLAT),
 			Item.getItemFromBlock(PAPER_WALL_WINDOWS),
 			Item.getItemFromBlock(PAPER_WALL_FLOWERY),
+			Item.getItemFromBlock(PAPER_DOOR),
+			Item.getItemFromBlock(RED_PAINTED_BEAM),
 			Item.getItemFromBlock(PAPER_FOLDING_SCREEN),
-			//DoTBItemsRegistry.PAPER_DOOR,
 			Item.getItemFromBlock(FIREPLACE),
-			//Item.getItemFromBlock(IRORI),
+			Item.getItemFromBlock(IRORI_FIREPLACE),
 			Item.getItemFromBlock(CHAIN),
 			DoTBItemsRegistry.GRAY_TILE,
 			DoTBItemsRegistry.GRAY_CLAY_TILE,
-			//Item.getItemFromBlock(RED_PAINTED_LOG),
-			//DoTBItemsRegistry.LITTLE_FLAG,
+			Item.getItemFromBlock(WHITE_LITTLE_FLAG),
 			Item.getItemFromBlock(RED_PAPER_LANTERN),
 			Item.getItemFromBlock(PAPER_LAMP),
 			Item.getItemFromBlock(STONE_LANTERN),
 			Item.getItemFromBlock(SMALL_TATAMI_MAT),
 			Item.getItemFromBlock(TATAMI_MAT),
-			//DoTBItemsRegistry.FUTON,
+			Item.getItemFromBlock(LIGHT_GRAY_FUTON),
 			Item.getItemFromBlock(SPRUCE_LOW_TABLE),
-			//Item.getItemFromBlock(SPRUCE_LEGLESS_CHAIR),
+			Item.getItemFromBlock(SPRUCE_LEGLESS_CHAIR),
 			Item.getItemFromBlock(IKEBANA_FLOWER_POT),
 			Item.getItemFromBlock(SAKE_BOTTLE),
 			Item.getItemFromBlock(SAKE_CUP),
@@ -286,16 +288,16 @@ public enum CreativeInventoryCategories {
 			Item.getItemFromBlock(CAST_IRON_TEACUP_DECORATED),
 			Item.getItemFromBlock(BAMBOO_DRYING_TRAY),
 			Item.getItemFromBlock(CAMELLIA),
-			//DoTBItemsRegistry.CAMELLIA_LEAVES,
+			DoTBItemsRegistry.CAMELLIA_LEAVES,
 			DoTBItemsRegistry.TEA_LEAVES,
+			Item.getItemFromBlock(STICK_BUNDLE),
 			Item.getItemFromBlock(MULBERRY),
 			DoTBItemsRegistry.MULBERRY_LEAVES,
 			DoTBItemsRegistry.SILK_WORM_EGGS,
-			//DoTBItemsRegistry.SILK_WORM_HATCHERY,
+			DoTBItemsRegistry.SILK_WORMS_HATCHERY,
 			DoTBItemsRegistry.SILK_WORMS,
 			DoTBItemsRegistry.SILK_COCOONS,
 			DoTBItemsRegistry.SILK,
-			//DoTBItemsRegistry.STICK_BUNDLE,
 			Item.getItemFromBlock(RICE),
 			DoTBItemsRegistry.TACHI_SWORD,
 			DoTBItemsRegistry.BAMBOO_HAT,
@@ -332,7 +334,7 @@ public enum CreativeInventoryCategories {
 			Item.getItemFromBlock(RED_PLASTERED_STONE_EDGE),
 			Item.getItemFromBlock(RED_ORNAMENTED_PLASTERED_STONE),
 			Item.getItemFromBlock(CHISELED_PLASTERED_STONE),
-			Item.getItemFromBlock(PLASTERED_STONE_FRIEZE),
+			Item.getItemFromBlock(CHISELED_PLASTERED_STONE_FRIEZE),
 			Item.getItemFromBlock(ORNAMENTED_CHISELED_PLASTERED_STONE),
 			Item.getItemFromBlock(RED_CHISELED_PLASTERED_STONE),
 			Item.getItemFromBlock(RED_ORNAMENTED_CHISELED_PLASTERED_STONE),
@@ -356,14 +358,41 @@ public enum CreativeInventoryCategories {
 	),
 
 	ROMAN("roman",
+			Item.getItemFromBlock(SANDSTONE),//TODO Complete sandstone series with edge and plate and stairs if needed
+			Item.getItemFromBlock(SANDSTONE_STAIRS),
+			Item.getItemFromBlock(SANDSTONE_SLAB),
+			Item.getItemFromBlock(CUT_SANDSTONE),
+			Item.getItemFromBlock(CUT_SANDSTONE_SLAB),
+			Item.getItemFromBlock(SMOOTH_SANDSTONE),
+			Item.getItemFromBlock(SMOOTH_SANDSTONE_STAIRS),
+			Item.getItemFromBlock(SMOOTH_SANDSTONE_SLAB),
+			Item.getItemFromBlock(CHISELED_SANDSTONE),
+			Item.getItemFromBlock(SANDSTONE_WALL),
+			Item.getItemFromBlock(SANDSTONE_COLUMN),
 			Item.getItemFromBlock(OCHRE_ROOF_TILES),
-			Item.getItemFromBlock(OCHRE_ROOF_TILES_SLAB),
-			Item.getItemFromBlock(OCHRE_ROOF_TILES_EDGE),
 			Item.getItemFromBlock(OCHRE_ROOF_TILES_STAIRS),
 			Item.getItemFromBlock(OCHRE_ROOF_TILES_PLATE),
+			Item.getItemFromBlock(OCHRE_ROOF_TILES_SLAB),
+			Item.getItemFromBlock(OCHRE_ROOF_TILES_EDGE),
 			Item.getItemFromBlock(OCHRE_ROOF_TILES_WALL),
-			Item.getItemFromBlock(SANDSTONE_COLUMN),
-			Item.getItemFromBlock(CYPRESS_LEAVES),
+			Item.getItemFromBlock(BIRCH_PLANKS),
+			Item.getItemFromBlock(BIRCH_STAIRS),
+			Item.getItemFromBlock(BIRCH_PLANKS_PLATE),
+			Item.getItemFromBlock(BIRCH_SLAB),
+			Item.getItemFromBlock(BIRCH_PLANKS_EDGE),
+			Item.getItemFromBlock(BIRCH_SUPPORT_SLAB),
+			Item.getItemFromBlock(BIRCH_SUPPORT_BEAM),
+			Item.getItemFromBlock(STRIPPED_BIRCH_LOG),
+			Item.getItemFromBlock(BIRCH_BEAM),
+			Item.getItemFromBlock(BIRCH_WALL),
+			Item.getItemFromBlock(BIRCH_PERGOLA),
+			Item.getItemFromBlock(BIRCH_FENCE),
+			Item.getItemFromBlock(BIRCH_LATTICE),
+			Item.getItemFromBlock(BIRCH_DOOR),
+			Item.getItemFromBlock(BIRCH_TRAPDOOR),
+			Item.getItemFromBlock(BIRCH_FOOTSTOOL),
+			Item.getItemFromBlock(BIRCH_COUCH),
+			Item.getItemFromBlock(CYPRESS),
 			DoTBItemsRegistry.GRAPE,
 			DoTBItemsRegistry.GRAPE_SEEDS
 	);
@@ -374,7 +403,7 @@ public enum CreativeInventoryCategories {
 
 	CreativeInventoryCategories(String name, Item... items) {
 		this.name = name;
-		this.translation = new TranslationTextComponent("gui." + MOD_ID + "." + name).getString();
+		this.translation = name;//For 1.16 : new TranslationTextComponent("gui." + MOD_ID + "." + name).getFormattedText();
 		this.items.addAll(Arrays.asList(items));
 	}
 

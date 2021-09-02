@@ -13,7 +13,6 @@ import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import org.dawnoftimebuilder.block.templates.DisplayerBlock;
-import org.dawnoftimebuilder.block.templates.WaterloggedBlock;
 
 import javax.annotation.Nonnull;
 
@@ -25,8 +24,7 @@ public class SpruceLowTableBlock extends DisplayerBlock {
 
 	public SpruceLowTableBlock() {
 		super(Material.WOOD, 2.0F, 2.0F);
-		this.setBurnable();
-		this.setDefaultState(this.getStateContainer().getBaseState().with(HORIZONTAL_AXIS, Direction.Axis.X).with(WATERLOGGED, Boolean.FALSE));
+		this.setDefaultState(this.getStateContainer().getBaseState().with(HORIZONTAL_AXIS, Direction.Axis.X).with(WATERLOGGED, Boolean.FALSE).with(LIT, false));
 	}
 
 	@Override

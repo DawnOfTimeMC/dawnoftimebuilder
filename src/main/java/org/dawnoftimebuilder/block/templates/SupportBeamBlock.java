@@ -16,7 +16,7 @@ import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import org.dawnoftimebuilder.block.IBlockPillar;
-import org.dawnoftimebuilder.utils.DoTBBlockStateProperties;
+import org.dawnoftimebuilder.util.DoTBBlockStateProperties;
 
 public class SupportBeamBlock extends WaterloggedBlock {
 

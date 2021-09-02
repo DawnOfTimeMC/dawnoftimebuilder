@@ -1,0 +1,20 @@
+{
+	"credit": "Made with Blockbench",
+	"textures": {
+		"2": "dawnoftimebuilder:block/charred_spruce_tall_shutters_bottom",
+		"3": "dawnoftimebuilder:block/charred_spruce_tall_shutters_side",
+		"particle": "dawnoftimebuilder:block/charred_spruce_tall_shutters_top"
+	},
+	"elements": [
+		{
+			"from": [0, 0, 14],
+			"to": [16, 16, 16],
+			"faces": {
+				"north": {"uv": [0, 0, 16, 16], "texture": "#2"},
+				"south": {"uv": [0, 0, 16, 16], "texture": "#2"},
+				"west": {"uv": [2, 0, 0, 16], "texture": "#3"},
+				"down": {"uv": [2, 0, 0, 16], "rotation": 270, "texture": "#3"}
+			}
+		}
+	]
+}

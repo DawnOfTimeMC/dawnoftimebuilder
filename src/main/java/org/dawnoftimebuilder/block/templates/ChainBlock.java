@@ -9,8 +9,6 @@ import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import org.dawnoftimebuilder.block.IBlockChain;
-import org.dawnoftimebuilder.block.IBlockPillar;
-import org.dawnoftimebuilder.utils.DoTBBlockStateProperties;
 
 public class ChainBlock extends BlockDoTB implements IBlockChain {
 

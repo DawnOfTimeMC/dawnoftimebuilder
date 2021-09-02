@@ -1,9 +1,10 @@
 {
+	"credit": "Made with Blockbench",
 	"ambientocclusion": false,
 	"textures": {
-		"side": "dawnoftimebuilder:block/spruce_timber_frame_pillar_top",
-		"texture": "dawnoftimebuilder:block/paper_door_upper",
-		"particle": "dawnoftimebuilder:block/paper_door_upper"
+		"side": "dawnoftimebuilder:block/paper_wall",
+		"particle": "dawnoftimebuilder:block/paper_door_upper",
+		"texture": "dawnoftimebuilder:block/paper_door_upper"
 	},
 	"elements": [
 		{
@@ -11,10 +12,10 @@
 			"to": [4, 16, 9.01],
 			"faces": {
 				"north": {"uv": [0, 0, 16, 16], "texture": "#texture"},
-				"east": {"uv": [14, 0, 16, 16], "texture": "#side"},
+				"east": {"uv": [7, 0, 9, 16], "texture": "#side"},
 				"south": {"uv": [16, 0, 0, 16], "texture": "#texture"},
-				"west": {"uv": [14, 0, 16, 16], "texture": "#side"},
-				"up": {"uv": [14, 0, 16, 16], "rotation": 90, "texture": "#side"}
+				"west": {"uv": [7, 0, 9, 16], "texture": "#side"},
+				"up": {"uv": [7, 0, 9, 16], "rotation": 90, "texture": "#side"}
 			}
 		}
 	]

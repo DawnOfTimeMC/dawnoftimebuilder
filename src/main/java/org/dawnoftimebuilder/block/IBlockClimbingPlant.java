@@ -11,15 +11,16 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.ForgeHooks;
-import org.dawnoftimebuilder.utils.DoTBBlockStateProperties;
-import org.dawnoftimebuilder.utils.DoTBBlockUtils;
+import org.dawnoftimebuilder.util.DoTBBlockStateProperties;
+import org.dawnoftimebuilder.util.DoTBBlockUtils;
+import org.dawnoftimebuilder.util.DoTBConfig;
 
 import java.util.List;
 import java.util.Random;
 
 import static net.minecraft.state.properties.BlockStateProperties.WATERLOGGED;
-import static org.dawnoftimebuilder.utils.DoTBBlockStateProperties.AGE_0_6;
-import static org.dawnoftimebuilder.utils.DoTBBlockStateProperties.CLIMBING_PLANT;
+import static org.dawnoftimebuilder.util.DoTBBlockStateProperties.AGE_0_6;
+import static org.dawnoftimebuilder.util.DoTBBlockStateProperties.CLIMBING_PLANT;
 
 public interface IBlockClimbingPlant {
 
@@ -32,14 +33,13 @@ public interface IBlockClimbingPlant {
 	 * @param random Use to determine if the Block must grow.
 	 */
 	default void tickPlant(BlockState stateIn, World worldIn, BlockPos pos, Random random){
-		//TODO Add the 3 probabilities to Config file and the required light level.
 		if (!worldIn.isRemote) {
 			if (stateIn.get(CLIMBING_PLANT).hasNoPlant()) return;
 			if (!worldIn.isAreaLoaded(pos, 2)) return; // Forge: prevent loading unloaded chunks when checking neighbor's light
 
 			if (worldIn.getLightSubtracted(pos, 0) >= 8) {
 				int age = stateIn.get(AGE_0_6);
-				if (ForgeHooks.onCropsGrowPre(worldIn, pos, stateIn, random.nextInt(25) == 0)) {//Probability "can grow"
+				if (ForgeHooks.onCropsGrowPre(worldIn, pos, stateIn, random.nextInt(DoTBConfig.CLIMBING_PLANT_GROWTH_CHANCE.get()) == 0)) {//Probability "can grow"
 					if(age < 2){
 						worldIn.setBlockState(pos, stateIn.with(AGE_0_6, age + 1), 2);
 						ForgeHooks.onCropsGrowPost(worldIn, pos, stateIn);
@@ -52,7 +52,7 @@ public interface IBlockClimbingPlant {
 						}
 					}
 				}
-				if(age < 2 || random.nextInt(10) != 0) return;//Probability "can spread"
+				if(age < 2 || random.nextInt(DoTBConfig.CLIMBING_PLANT_SPREAD_CHANCE.get()) != 0) return;//Probability "can spread"
 				BlockPos[] positions = new BlockPos[]{
 						pos.north(),
 						pos.east(),
@@ -110,11 +110,12 @@ public interface IBlockClimbingPlant {
 	 */
 	default boolean harvestPlant(BlockState stateIn, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn){
 		if(stateIn.get(AGE_0_6) > 2){
-			this.dropPlant(stateIn, worldIn, pos, player.getHeldItem(handIn));
-			stateIn = stateIn.with(AGE_0_6, 2);
-			worldIn.setBlockState(pos, stateIn, 10);
-			worldIn.playSound(null, pos, SoundEvents.BLOCK_GRASS_BREAK, SoundCategory.BLOCKS, 1.0F, 1.0F);
-			return true;
+			if(this.dropPlant(stateIn, worldIn, pos, player.getHeldItem(handIn))){
+				stateIn = stateIn.with(AGE_0_6, 2);
+				worldIn.setBlockState(pos, stateIn, 10);
+				worldIn.playSound(null, pos, SoundEvents.BLOCK_GRASS_BREAK, SoundCategory.BLOCKS, 1.0F, 1.0F);
+				return true;
+			}
 		}
 		if(player.isSneaking()){
 			return tryRemovingPlant(stateIn, worldIn, pos, player.getHeldItem(handIn));
@@ -161,13 +162,14 @@ public interface IBlockClimbingPlant {
 	 * @param worldIn World of the Block.
 	 * @param pos Position of the Block.
 	 * @param heldItemStack Item in active hand to apply tool conditions.
+	 * @return True if some loot is dropped. False if there were no loot_table found or item dropped.
 	 */
-	default void dropPlant(BlockState stateIn, World worldIn, BlockPos pos, ItemStack heldItemStack){
-		if(worldIn.isRemote) return;
+	default boolean dropPlant(BlockState stateIn, World worldIn, BlockPos pos, ItemStack heldItemStack){
+		if(worldIn.isRemote()) return false;
 		DoTBBlockStateProperties.ClimbingPlant plant = stateIn.get(CLIMBING_PLANT);
-		if(plant.hasNoPlant()) return;
+		if(plant.hasNoPlant()) return false;
 		List<ItemStack> drops = DoTBBlockUtils.getLootList((ServerWorld)worldIn, stateIn, pos, heldItemStack, plant.getName() + "_" + stateIn.get(AGE_0_6));
-		DoTBBlockUtils.dropLootFromList(worldIn, pos, drops, 1.0F);
+		return DoTBBlockUtils.dropLootFromList(worldIn, pos, drops, 1.0F);
 	}
 
 	/**

@@ -2,7 +2,8 @@
 	"credit": "Made with Blockbench",
 	"textures": {
 		"1": "dawnoftimebuilder:block/charred_spruce_shutters",
-		"side": "dawnoftimebuilder:block/charred_spruce_shutters_side"
+		"side": "dawnoftimebuilder:block/charred_spruce_shutters_side",
+		"particle": "dawnoftimebuilder:block/charred_spruce_shutters"
 	},
 	"elements": [
 		{

@@ -1,19 +1,23 @@
 package org.dawnoftimebuilder.container;
 
+import net.minecraft.block.Block;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.container.Container;
-import net.minecraft.inventory.container.IContainerListener;
 import net.minecraft.inventory.container.Slot;
+import net.minecraft.item.BlockItem;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IWorldPosCallable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
+import org.dawnoftimebuilder.block.IBlockSpecialDisplay;
 import org.dawnoftimebuilder.tileentity.DisplayerTileEntity;
-import static org.dawnoftimebuilder.registries.DoTBContainersRegistry.DISPLAYER_CONTAINER;
+
+import static org.dawnoftimebuilder.block.templates.DisplayerBlock.LIT;
+import static org.dawnoftimebuilder.registry.DoTBContainersRegistry.DISPLAYER_CONTAINER;
 
 public class DisplayerContainer extends Container {
 
@@ -47,6 +51,33 @@ public class DisplayerContainer extends Container {
 	public boolean canInteractWith(PlayerEntity playerIn) {
 		if(this.tileEntity.getWorld() == null) return false;
 		return isWithinUsableDistance(IWorldPosCallable.of(this.tileEntity.getWorld(), this.tileEntity.getPos()), playerIn, this.tileEntity.getBlockState().getBlock());
+	}
+
+	@Override
+	public void detectAndSendChanges() {
+		super.detectAndSendChanges();
+		//Update light level
+		if(this.tileEntity.getWorld() != null && !this.tileEntity.getWorld().isRemote()){
+			this.tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(h -> {
+				boolean lit = false;
+				for(int index = 0; index < h.getSlots(); index++) {
+					ItemStack itemstack = h.getStackInSlot(index).getStack();
+					if (!itemstack.isEmpty()) {
+						Item item = itemstack.getItem();
+						if (item instanceof BlockItem) {
+							Block block = ((BlockItem) item).getBlock();
+							if (block instanceof IBlockSpecialDisplay) {
+								lit = ((IBlockSpecialDisplay) block).emitsLight();
+							} else lit = block.getLightValue(block.getDefaultState()) > 0;
+						}
+					}
+					if (lit) break;
+				}
+				if(this.tileEntity.getBlockState().get(LIT) != lit){
+					this.tileEntity.getWorld().setBlockState(this.tileEntity.getPos(), this.tileEntity.getBlockState().with(LIT, lit), 10);
+				}
+			});
+		}
 	}
 
 	@Override

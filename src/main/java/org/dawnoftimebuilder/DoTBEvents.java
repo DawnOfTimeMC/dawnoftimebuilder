@@ -1,27 +1,35 @@
 package org.dawnoftimebuilder;
 
 import net.minecraft.block.Block;
+import net.minecraft.entity.EntityType;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.item.Item;
+import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.world.gen.feature.Feature;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.client.event.ModelRegistryEvent;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
-import org.dawnoftimebuilder.registries.DoTBFeaturesRegistry;
+import net.minecraftforge.registries.IForgeRegistry;
+import org.dawnoftimebuilder.registry.DoTBFeaturesRegistry;
+import org.dawnoftimebuilder.registry.DoTBRecipesRegistry;
 
 import static org.dawnoftimebuilder.DawnOfTimeBuilder.MOD_ID;
-import static org.dawnoftimebuilder.registries.DoTBBlocksRegistry.BLOCKS;
-import static org.dawnoftimebuilder.registries.DoTBContainersRegistry.CONTAINER_TYPES;
-import static org.dawnoftimebuilder.registries.DoTBFeaturesRegistry.FEATURES;
-import static org.dawnoftimebuilder.registries.DoTBItemsRegistry.ITEMS;
-import static org.dawnoftimebuilder.registries.DoTBTileEntitiesRegistry.TILE_ENTITY_TYPES;
+import static org.dawnoftimebuilder.registry.DoTBBlocksRegistry.BLOCKS;
+import static org.dawnoftimebuilder.registry.DoTBContainersRegistry.CONTAINER_TYPES;
+import static org.dawnoftimebuilder.registry.DoTBEntitiesRegistry.ENTITY_TYPES;
+import static org.dawnoftimebuilder.registry.DoTBFeaturesRegistry.FEATURES;
+import static org.dawnoftimebuilder.registry.DoTBItemsRegistry.ITEMS;
+import static org.dawnoftimebuilder.registry.DoTBSpecialModelRegistry.SPECIAL_MODELS;
+import static org.dawnoftimebuilder.registry.DoTBTileEntitiesRegistry.TILE_ENTITY_TYPES;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD, modid = MOD_ID)
 public class DoTBEvents {
-
-	public static final DoTBEvents INSTANCE = new DoTBEvents();
 
 	@SubscribeEvent
 	public static void registerBlocks(RegistryEvent.Register<Block> event){
@@ -31,11 +39,14 @@ public class DoTBEvents {
 
 	@SubscribeEvent
 	public static void registerItems(RegistryEvent.Register<Item> event){
-		ITEMS.forEach(item -> {
-			event.getRegistry().register(item);
-			DawnOfTimeBuilder.PROXY.registerSpecialModel(item);
-		});
+		ITEMS.forEach(item -> event.getRegistry().register(item));
 		ITEMS.clear();
+	}
+
+	@SubscribeEvent
+	public static void registerEntityTypes(RegistryEvent.Register<EntityType<?>> event){
+		ENTITY_TYPES.forEach(type -> event.getRegistry().register(type));
+		ENTITY_TYPES.clear();
 	}
 
 	@SubscribeEvent
@@ -57,6 +68,15 @@ public class DoTBEvents {
 	public static void registerFeatures(final RegistryEvent.Register<Feature<?>> event) {
 		FEATURES.forEach(type -> event.getRegistry().register(type));
 		FEATURES.clear();
+	}
+
+	/**
+	 * Register recipes' serializer
+	 */
+	@SubscribeEvent
+	public static void registerSerializers(final RegistryEvent.Register<IRecipeSerializer<?>> event) {
+		IForgeRegistry<IRecipeSerializer<?>> registry = event.getRegistry();
+		DoTBRecipesRegistry.registerAll(registry);
 	}
 
 	/**

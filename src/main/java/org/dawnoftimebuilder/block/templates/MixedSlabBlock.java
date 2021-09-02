@@ -23,7 +23,6 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 
 import static org.dawnoftimebuilder.DawnOfTimeBuilder.DOTB_TAB;
-import static org.dawnoftimebuilder.DawnOfTimeBuilder.MOD_ID;
 
 public class MixedSlabBlock extends SlabBlockDoTB implements IBlockCustomItem {
 
@@ -83,8 +82,6 @@ public class MixedSlabBlock extends SlabBlockDoTB implements IBlockCustomItem {
 	@Nullable
 	@Override
 	public Item getCustomItemBlock() {
-		ResourceLocation resourceLocation = this.getRegistryName();
-		if(resourceLocation == null) return null;
 		return new BlockItem(this, new Item.Properties().group(DOTB_TAB)){
 			@Override
 			public ActionResultType tryPlace(BlockItemUseContext context) {
@@ -128,7 +125,7 @@ public class MixedSlabBlock extends SlabBlockDoTB implements IBlockCustomItem {
 				}
 				return super.tryPlace(context);
 			}
-		}.setRegistryName(MOD_ID, resourceLocation.getPath());
+		};
 	}
 
 	public static class MixedBlockRecipe {

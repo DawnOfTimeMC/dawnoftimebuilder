@@ -2,6 +2,7 @@ package org.dawnoftimebuilder.block.templates;
 
 import net.minecraft.block.*;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Food;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.IntegerProperty;
@@ -17,22 +18,26 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.PlantType;
-import org.dawnoftimebuilder.utils.DoTBBlockStateProperties;
-import org.dawnoftimebuilder.utils.DoTBBlockUtils;
+import org.dawnoftimebuilder.util.DoTBBlockStateProperties;
+import org.dawnoftimebuilder.util.DoTBBlockUtils;
 
 import java.util.List;
 
-import static org.dawnoftimebuilder.utils.DoTBBlockUtils.DoTBTags.SHEARS;
+import static org.dawnoftimebuilder.util.DoTBBlockUtils.SHEARS;
 
 public class GrowingBushBlock extends SoilCropsBlock {
 
-	public VoxelShape[] SHAPES;
-	public int cutAge;
+	public final VoxelShape[] SHAPES;
+	public final int cutAge;
 	private static final IntegerProperty AGE = BlockStateProperties.AGE_0_5;
 	private static final BooleanProperty CUT = DoTBBlockStateProperties.CUT;
 
-	public GrowingBushBlock(String seedName, PlantType plantType, int cutAge){
-		super(seedName, plantType);
+	public GrowingBushBlock(String seedName, PlantType plantType, int cutAge) {
+		this(seedName, plantType, cutAge, null);
+	}
+
+	public GrowingBushBlock(String seedName, PlantType plantType, int cutAge, Food food){
+		super(seedName, plantType, food);
 		this.cutAge = cutAge;
 		this.setDefaultState(this.getDefaultState().with(AGE, 0).with(CUT, false));
 		this.SHAPES = this.makeShapes();
@@ -93,7 +98,7 @@ public class GrowingBushBlock extends SoilCropsBlock {
 		if(this.isMaxAge(state)){
 			if (!worldIn.isRemote()) {
 				ItemStack itemStackHand = playerIn.getHeldItem(hand);
-				boolean holdShears = SHEARS.contains(itemStackHand.getItem());
+				boolean holdShears = itemStackHand.getItem().isIn(SHEARS);
 				if(holdShears) itemStackHand.damageItem(1, playerIn, (p_220287_1_) -> p_220287_1_.sendBreakAnimation(hand));
 
 				ResourceLocation resourceLocation = this.getRegistryName();

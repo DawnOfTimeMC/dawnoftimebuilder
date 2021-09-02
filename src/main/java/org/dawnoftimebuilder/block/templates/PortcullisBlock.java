@@ -17,7 +17,7 @@ import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
-import org.dawnoftimebuilder.utils.DoTBBlockStateProperties;
+import org.dawnoftimebuilder.util.DoTBBlockStateProperties;
 
 public class PortcullisBlock extends WaterloggedBlock {
 
@@ -101,7 +101,7 @@ public class PortcullisBlock extends WaterloggedBlock {
 		} else if(state.get(VERTICAL_CONNECTION) == DoTBBlockStateProperties.VerticalConnection.NONE) {
 			if(state.get(OPEN)) worldIn.setBlockState(pos, state.with(OPEN, false), 2);
 		} else {
-			//update coming from the rest of the portcullis (and when opening) : send a update task to top blocks
+			//update coming from the rest of the portcullis (and when opening) : send an update task to top blocks
 			//NB : VerticalConnection.NONE can't be open
 			if (state.get(OPEN)) {
 				Direction.Axis axis = state.get(HORIZONTAL_AXIS);

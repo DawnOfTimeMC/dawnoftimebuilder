@@ -3,7 +3,7 @@
 	"parent": "block/block",
 	"textures": {
 		"0": "dawnoftimebuilder:block/waxed_oak_log_stripped",
-		"1": "dawnoftimebuilder:block/iron_candlestick",
+		"1": "dawnoftimebuilder:block/candlestick",
 		"particle": "dawnoftimebuilder:block/waxed_oak_log_stripped",
 		"3_all": "dawnoftimebuilder:block/chain",
 		"all": "dawnoftimebuilder:block/candle"

@@ -4,7 +4,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
@@ -16,14 +15,14 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
-import net.minecraft.world.IWorld;
 import org.dawnoftimebuilder.block.IBlockChain;
+import org.dawnoftimebuilder.block.IBlockSpecialDisplay;
 import org.dawnoftimebuilder.block.templates.WaterloggedBlock;
-import org.dawnoftimebuilder.utils.DoTBBlockUtils;
+import org.dawnoftimebuilder.util.DoTBBlockUtils;
 
 import javax.annotation.Nonnull;
 
-public class StoneLanternBlock extends WaterloggedBlock implements IBlockChain {
+public class StoneLanternBlock extends WaterloggedBlock implements IBlockChain, IBlockSpecialDisplay {
 
     private static final VoxelShape VS_CENTER = makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 16.0D, 14.0D);
     private static final VoxelShape[] VS_SIDE = DoTBBlockUtils.GenerateHorizontalShapes(new VoxelShape[]{makeCuboidShape(2.0D, 0.0D, 0.0D, 14.0D, 16.0D, 14.0D)});
@@ -72,5 +71,15 @@ public class StoneLanternBlock extends WaterloggedBlock implements IBlockChain {
     @Override
     public boolean canConnectToChainUnder(BlockState state) {
         return false;
+    }
+
+    @Override
+    public boolean emitsLight() {
+        return true;
+    }
+
+    @Override
+    public float getDisplayScale() {
+        return 0.6F;
     }
 }

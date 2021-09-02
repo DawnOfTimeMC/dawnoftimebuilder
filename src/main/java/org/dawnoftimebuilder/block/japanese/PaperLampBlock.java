@@ -7,13 +7,14 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
+import org.dawnoftimebuilder.block.IBlockSpecialDisplay;
 import org.dawnoftimebuilder.block.templates.ColumnConnectibleBlock;
 
 import javax.annotation.Nonnull;
 
-import static org.dawnoftimebuilder.utils.DoTBBlockStateProperties.VerticalConnection;
+import static org.dawnoftimebuilder.util.DoTBBlockStateProperties.VerticalConnection;
 
-public class PaperLampBlock extends ColumnConnectibleBlock {
+public class PaperLampBlock extends ColumnConnectibleBlock implements IBlockSpecialDisplay {
 
     private static final VoxelShape VS_BOTTOM = makeCuboidShape(4.0D, 0.0D, 4.0D, 12.0D, 16.0D, 12.0D);
     private static final VoxelShape VS_TOP = makeCuboidShape(4.0D, 0.0D, 4.0D, 12.0D, 13.0D, 12.0D);
@@ -35,5 +36,15 @@ public class PaperLampBlock extends ColumnConnectibleBlock {
     @Override
     public BlockRenderLayer getRenderLayer() {
         return BlockRenderLayer.CUTOUT_MIPPED;
+    }
+
+    @Override
+    public boolean emitsLight() {
+        return true;
+    }
+
+    @Override
+    public float getDisplayScale() {
+        return 0.6F;
     }
 }

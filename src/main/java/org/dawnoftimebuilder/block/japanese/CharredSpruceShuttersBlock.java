@@ -26,7 +26,7 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import org.dawnoftimebuilder.block.templates.WaterloggedBlock;
-import org.dawnoftimebuilder.utils.DoTBBlockUtils;
+import org.dawnoftimebuilder.util.DoTBBlockUtils;
 
 public class CharredSpruceShuttersBlock extends WaterloggedBlock {
 
@@ -80,7 +80,7 @@ public class CharredSpruceShuttersBlock extends WaterloggedBlock {
         return canSupportShutters(worldIn, pos, state.get(FACING));
     }
 
-    private boolean canSupportShutters(IWorldReader worldIn, BlockPos shutterPos, Direction direction) {
+    public boolean canSupportShutters(IWorldReader worldIn, BlockPos shutterPos, Direction direction) {
         BlockPos pos = shutterPos.offset(direction).up();
         return hasSolidSide(worldIn.getBlockState(pos), worldIn, pos, direction.getOpposite()) || hasSolidSide(worldIn.getBlockState(pos), worldIn, pos, Direction.DOWN);
     }

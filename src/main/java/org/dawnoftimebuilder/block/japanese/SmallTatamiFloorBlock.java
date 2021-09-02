@@ -22,7 +22,7 @@ import net.minecraft.world.World;
 import org.dawnoftimebuilder.block.templates.NoItemBlock;
 
 import static net.minecraft.block.Blocks.SPRUCE_PLANKS;
-import static org.dawnoftimebuilder.registries.DoTBBlocksRegistry.SMALL_TATAMI_MAT;
+import static org.dawnoftimebuilder.registry.DoTBBlocksRegistry.SMALL_TATAMI_MAT;
 
 public class SmallTatamiFloorBlock extends NoItemBlock {
 
