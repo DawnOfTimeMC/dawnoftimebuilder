@@ -4,10 +4,12 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.particles.ParticleTypes;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.EnumProperty;
 import net.minecraft.state.IntegerProperty;
@@ -22,13 +24,19 @@ import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import org.dawnoftimebuilder.block.IBlockClimbingPlant;
 import org.dawnoftimebuilder.util.DoTBBlockStateProperties;
+import org.dawnoftimebuilder.util.DoTBBlockUtils;
 
+import javax.annotation.Nullable;
+import java.util.List;
 import java.util.Random;
+
+import static org.dawnoftimebuilder.util.DoTBBlockUtils.TOOLTIP_CLIMBING_PLANT;
 
 public class LatticeBlock extends WaterloggedBlock implements IBlockClimbingPlant {
 
@@ -38,17 +46,18 @@ public class LatticeBlock extends WaterloggedBlock implements IBlockClimbingPlan
 	public static final BooleanProperty WEST = BlockStateProperties.WEST;
 	public static final EnumProperty<DoTBBlockStateProperties.ClimbingPlant> CLIMBING_PLANT = DoTBBlockStateProperties.CLIMBING_PLANT;
 	private static final IntegerProperty AGE = DoTBBlockStateProperties.AGE_0_6;
+	public static final BooleanProperty PERSISTENT = BlockStateProperties.PERSISTENT;
 	private static final VoxelShape[] SHAPES = makeShapes();
 
 	public LatticeBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
 		super(materialIn, hardness, resistance,soundType);
-		this.setDefaultState(this.getStateContainer().getBaseState().with(CLIMBING_PLANT, DoTBBlockStateProperties.ClimbingPlant.NONE).with(AGE, 0).with(WATERLOGGED, false).with(NORTH, false).with(EAST, false).with(SOUTH, false).with(WEST, false));
+		this.setDefaultState(this.getStateContainer().getBaseState().with(CLIMBING_PLANT, DoTBBlockStateProperties.ClimbingPlant.NONE).with(AGE, 0).with(WATERLOGGED, false).with(NORTH, false).with(EAST, false).with(SOUTH, false).with(WEST, false).with(PERSISTENT, false));
 	}
 
 	@Override
 	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
 		super.fillStateContainer(builder);
-		builder.add(NORTH, EAST, SOUTH, WEST, CLIMBING_PLANT, AGE);
+		builder.add(NORTH, EAST, SOUTH, WEST, CLIMBING_PLANT, AGE, PERSISTENT);
 	}
 
 	@Override
@@ -167,8 +176,22 @@ public class LatticeBlock extends WaterloggedBlock implements IBlockClimbingPlan
 
 	@Override
 	public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-		if (worldIn.getBlockState(pos.down()).isIn(BlockTags.DIRT_LIKE)){
-			if (this.tryPlacingPlant(state, worldIn, pos, player, handIn)) return true;
+		if(!state.get(PERSISTENT)){
+			if(DoTBBlockUtils.useLighter(worldIn, pos, player, handIn)){
+				Random rand = new Random();
+				for(int i = 0; i < 5; i++){
+					worldIn.addOptionalParticle(ParticleTypes.SMOKE, (double)pos.getX() + rand.nextDouble(), (double)pos.getY() + 0.5D + rand.nextDouble() / 2, (double)pos.getZ() + rand.nextDouble(), 0.0D, 0.07D, 0.0D);
+				}
+				worldIn.setBlockState(pos, state.with(PERSISTENT, true), 10);
+				return true;
+			}
+		}
+		if(player.isCreative()) {
+			if(this.tryPlacingPlant(state, worldIn, pos, player, handIn)) return true;
+		}else{
+			if(worldIn.getBlockState(pos.down()).isIn(BlockTags.DIRT_LIKE)){
+				if(this.tryPlacingPlant(state, worldIn, pos, player, handIn)) return true;
+			}
 		}
 		return this.harvestPlant(state, worldIn, pos, player, handIn);
 	}
@@ -181,5 +204,11 @@ public class LatticeBlock extends WaterloggedBlock implements IBlockClimbingPlan
 	@Override
 	public boolean isLadder(BlockState state, IWorldReader world, BlockPos pos, LivingEntity entity) {
 		return true;
+	}
+
+	@Override
+	public void addInformation(ItemStack stack, @Nullable IBlockReader worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+		super.addInformation(stack, worldIn, tooltip, flagIn);
+		DoTBBlockUtils.addTooltip(tooltip, TOOLTIP_CLIMBING_PLANT);
 	}
 }

@@ -325,6 +325,10 @@ public class DoTBBlockStateProperties {
             return this.name;
         }
 
+        public int maxAge(){
+            return this.cycle ? 6 : 2;
+        }
+
         public boolean canGrow(World worldIn, int currentAge){
             if(!this.cycle) return false;
             if(currentAge < 2 || currentAge > 6) return false;

@@ -61,7 +61,7 @@ public abstract class CandleLampBlock extends WaterloggedBlock implements IBlock
             return true;
         } else {
             if(state.get(WATERLOGGED)) return false;
-            if (DoTBBlockUtils.lightFireBlock(worldIn, pos, player, handIn)) {
+            if (DoTBBlockUtils.useLighter(worldIn, pos, player, handIn)) {
                 worldIn.setBlockState(pos, state.with(LIT, true), 10);
                 return true;
             }

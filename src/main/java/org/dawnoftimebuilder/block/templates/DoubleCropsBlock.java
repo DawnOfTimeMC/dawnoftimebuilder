@@ -40,13 +40,13 @@ public class DoubleCropsBlock extends SoilCropsBlock {
 		super(seedName, plantType, food);
 		this.growingAge = growingAge;
 		this.SHAPES = this.makeShapes();
-		this.setDefaultState(this.getDefaultState().with(HALF, Half.BOTTOM).with(this.getAgeProperty(), 0));
+		this.setDefaultState(this.getDefaultState().with(HALF, Half.BOTTOM).with(this.getAgeProperty(), 0).with(PERSISTENT, false));
 	}
 
 	@Override
 	public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
 		int index = state.get(AGE);
-		if(index >= this.growingAge) index = (state.get(HALF) == Half.BOTTOM) ? this.growingAge : index + 1;
+		if(index >= this.getAgeReachingTopBlock()) index = (state.get(HALF) == Half.BOTTOM) ? this.getAgeReachingTopBlock() : index + 1;
 		return SHAPES[index];
 	}
 
@@ -78,7 +78,8 @@ public class DoubleCropsBlock extends SoilCropsBlock {
 
 	@Override
 	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
-		builder.add(HALF, AGE);
+		super.fillStateContainer(builder);
+		builder.add(HALF);
 	}
 
 	@Override
@@ -87,14 +88,30 @@ public class DoubleCropsBlock extends SoilCropsBlock {
 			boolean isBottom = stateIn.get(HALF) == Half.BOTTOM;
 			if(isBottom == (facing == Direction.UP)) {
 				if(facingState.getBlock() == this && facingState.get(HALF) != stateIn.get(HALF)){
+					stateIn = stateIn.with(PERSISTENT, facingState.get(PERSISTENT));
 					return isBottom ? stateIn : stateIn.with(AGE, facingState.get(AGE));
-				}else if(isBottom && stateIn.get(AGE) < this.growingAge) return stateIn;
+				}else if(isBottom && stateIn.get(AGE) < this.getAgeReachingTopBlock()) return stateIn;
 				return Blocks.AIR.getDefaultState();
 			}else{
 				return super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
 			}
 		}
 		return stateIn;
+	}
+
+	@Override
+	public void setPlantWithAge(BlockState currentState, World worldIn, BlockPos pos, int newAge) {
+		if(currentState.get(HALF) == Half.TOP) pos = pos.down();
+		if(newAge >= this.getAgeReachingTopBlock()){
+			BlockPos posUp = pos.up();
+			if(worldIn.getBlockState(posUp).getBlock() == this || worldIn.isAirBlock(posUp)){
+				worldIn.setBlockState(posUp, currentState.with(this.getAgeProperty(), newAge).with(HALF, Half.TOP), 10);
+			}
+		}
+		if(newAge < this.getAgeReachingTopBlock() && this.getAge(currentState) == this.getAgeReachingTopBlock()){
+			worldIn.setBlockState(pos.up(), Blocks.AIR.getDefaultState(), 10);
+		}
+		worldIn.setBlockState(pos, currentState.with(this.getAgeProperty(), newAge).with(HALF, Half.BOTTOM), 8);
 	}
 
 	@Override
@@ -140,7 +157,7 @@ public class DoubleCropsBlock extends SoilCropsBlock {
 	@Override
 	public void tick(BlockState state, World worldIn, BlockPos pos, Random random) {
 		if(this.isBottomCrop(state)) {
-			if (!worldIn.isAreaLoaded(pos, 1))
+			if (!worldIn.isAreaLoaded(pos, 1) || state.get(PERSISTENT))
 				return; // Forge: prevent loading unloaded chunks when checking neighbor's light
 			if (worldIn.getLightSubtracted(pos, 0) >= 9) {
 				int i = this.getAge(state);
@@ -151,7 +168,7 @@ public class DoubleCropsBlock extends SoilCropsBlock {
 						if (ForgeHooks.onCropsGrowPre(worldIn, pos, state, random.nextInt((int) (25.0F / f) + 1) == 0)) {
 							state = this.withAge(i + 1);
 							worldIn.setBlockState(pos, state, 2);
-							if (i + 1 >= this.growingAge)
+							if (i + 1 >= this.getAgeReachingTopBlock())
 								worldIn.setBlockState(topPos, this.getTopState(state), 2);
 							ForgeHooks.onCropsGrowPost(worldIn, pos, state);
 						}

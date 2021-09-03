@@ -17,7 +17,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
@@ -38,6 +37,8 @@ public class DoTBBlockUtils {
 
 	//Tooltip translation text
 	public static final ITextComponent TOOLTIP_HOLD_SHIFT = new TranslationTextComponent("tooltip." + MOD_ID + ".hold_key").applyTextStyle(TextFormatting.GRAY).appendSibling(new TranslationTextComponent("tooltip." + MOD_ID + ".shift").applyTextStyle(TextFormatting.AQUA));
+	public static final String TOOLTIP_CROP = "crop";
+	public static final String TOOLTIP_CLIMBING_PLANT = "climbing_plant";
 
 	//Item tags
 	public static final Tag<Item> SHEARS = new ItemTags.Wrapper(new ResourceLocation(MOD_ID, "shears"));
@@ -121,7 +122,7 @@ public class DoTBBlockUtils {
 	 * @param handIn Player's hand.
 	 * @return True if the block is now in fire. False otherwise.
 	 */
-	public static boolean lightFireBlock(World worldIn, BlockPos pos, PlayerEntity player, Hand handIn){
+	public static boolean useLighter(World worldIn, BlockPos pos, PlayerEntity player, Hand handIn){
 		ItemStack itemInHand = player.getHeldItem(handIn);
 		if (!itemInHand.isEmpty() && itemInHand.getItem().isIn(LIGHTERS)) {
 			worldIn.playSound(null, pos, SoundEvents.BLOCK_FIRE_AMBIENT, SoundCategory.BLOCKS, 1.0F, 1.0F);
@@ -131,6 +132,11 @@ public class DoTBBlockUtils {
 		return false;
 	}
 
+	public static void addTooltip(List<ITextComponent> tooltip, String name){
+		if(Screen.hasShiftDown()) tooltip.add(new TranslationTextComponent("tooltip." + MOD_ID + "." + name).applyTextStyle(TextFormatting.GRAY));
+		else tooltip.add(TOOLTIP_HOLD_SHIFT);
+	}
+	
 	public static void addTooltip(List<ITextComponent> tooltip, Block block){
 		ResourceLocation name = block.getRegistryName();
 		if(name != null){

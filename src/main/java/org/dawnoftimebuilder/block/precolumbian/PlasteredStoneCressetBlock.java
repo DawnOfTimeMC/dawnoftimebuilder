@@ -63,7 +63,7 @@ public class PlasteredStoneCressetBlock extends WaterloggedBlock {
         } else {
             if(state.get(WATERLOGGED)) return false;
 
-            if(DoTBBlockUtils.lightFireBlock(worldIn, pos, player, handIn)){
+            if(DoTBBlockUtils.useLighter(worldIn, pos, player, handIn)){
                 worldIn.setBlockState(pos, state.with(BURNING, true), 10);
             }
         }

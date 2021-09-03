@@ -9,21 +9,15 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.PlantType;
 import org.dawnoftimebuilder.block.templates.DoubleGrowingBushBlock;
 import org.dawnoftimebuilder.util.DoTBConfig;
-import org.dawnoftimebuilder.util.DoTBFoods;
 
 import java.util.Random;
 
-import static net.minecraftforge.common.PlantType.Plains;
 import static org.dawnoftimebuilder.registry.DoTBEntitiesRegistry.SILKMOTH_ENTITY;
 
 public class MulberryBlock extends DoubleGrowingBushBlock {
 
-    public MulberryBlock(String seedName, PlantType plantType, int cutAge, int growingAge) {
-        this(seedName, plantType, growingAge, cutAge, null);
-    }
-
     public MulberryBlock(String seedName, PlantType plantType, int cutAge, int growingAge, Food food) {
-        super(seedName, plantType, growingAge, cutAge, food);
+        super(seedName, plantType, cutAge, growingAge, food);
     }
 
     @Override

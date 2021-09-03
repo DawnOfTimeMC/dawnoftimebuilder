@@ -39,13 +39,13 @@ public class GrowingBushBlock extends SoilCropsBlock {
 	public GrowingBushBlock(String seedName, PlantType plantType, int cutAge, Food food){
 		super(seedName, plantType, food);
 		this.cutAge = cutAge;
-		this.setDefaultState(this.getDefaultState().with(AGE, 0).with(CUT, false));
+		this.setDefaultState(this.getDefaultState().with(AGE, 0).with(CUT, false).with(PERSISTENT, false));
 		this.SHAPES = this.makeShapes();
 	}
 
 	@Override
 	protected void fillStateContainer(StateContainer.Builder<net.minecraft.block.Block, BlockState> builder) {
-		builder.add(AGE, CUT);
+		builder.add(AGE, PERSISTENT, CUT);
 	}
 
 	@Override
@@ -95,7 +95,8 @@ public class GrowingBushBlock extends SoilCropsBlock {
 
 	@Override
 	public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity playerIn, Hand hand, BlockRayTraceResult ray) {
-		if(this.isMaxAge(state)){
+		if(super.onBlockActivated(state, worldIn, pos, playerIn, hand, ray)) return true;
+		if(this.isMaxAge(state) && !playerIn.isCreative()){
 			if (!worldIn.isRemote()) {
 				ItemStack itemStackHand = playerIn.getHeldItem(hand);
 				boolean holdShears = itemStackHand.getItem().isIn(SHEARS);

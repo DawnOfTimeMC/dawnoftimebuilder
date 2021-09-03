@@ -2,6 +2,7 @@ package org.dawnoftimebuilder.block.templates;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.IWaterLoggable;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.fluid.IFluidState;
@@ -15,6 +16,7 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IWorld;
+import net.minecraft.world.World;
 import net.minecraftforge.common.PlantType;
 
 public class WaterDoubleCropsBlock extends DoubleCropsBlock implements IWaterLoggable {
@@ -27,7 +29,7 @@ public class WaterDoubleCropsBlock extends DoubleCropsBlock implements IWaterLog
 
 	public WaterDoubleCropsBlock(String seedName, int growingAge, Food food) {
 		super(seedName, PlantType.Water, growingAge);
-		this.setDefaultState(this.getDefaultState().with(WATERLOGGED, true).with(HALF, Half.BOTTOM).with(this.getAgeProperty(), 0));
+		this.setDefaultState(this.getDefaultState().with(WATERLOGGED, true).with(HALF, Half.BOTTOM).with(this.getAgeProperty(), 0).with(PERSISTENT, false));
 	}
 
 	/**
@@ -59,7 +61,8 @@ public class WaterDoubleCropsBlock extends DoubleCropsBlock implements IWaterLog
 
 	@Override
 	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
-		builder.add(HALF, AGE, WATERLOGGED);
+		super.fillStateContainer(builder);
+		builder.add(WATERLOGGED);
 	}
 
 	@Override
@@ -83,5 +86,19 @@ public class WaterDoubleCropsBlock extends DoubleCropsBlock implements IWaterLog
 	@Override
 	public BlockState getTopState(BlockState bottomState) {
 		return super.getTopState(bottomState).with(WATERLOGGED, false);
+	}
+
+	@Override
+	public void setPlantWithAge(BlockState currentState, World worldIn, BlockPos pos, int newAge) {		if(currentState.get(HALF) == Half.TOP) pos = pos.down();
+		if(newAge >= this.getAgeReachingTopBlock()){
+			BlockPos posUp = pos.up();
+			if(worldIn.getBlockState(posUp).getBlock() == this || worldIn.isAirBlock(posUp)){
+				worldIn.setBlockState(posUp, currentState.with(this.getAgeProperty(), newAge).with(HALF, Half.TOP).with(WATERLOGGED, false), 10);
+			}
+		}
+		if(newAge < this.getAgeReachingTopBlock() && this.getAge(currentState) == this.getAgeReachingTopBlock()){
+			worldIn.setBlockState(pos.up(), Blocks.AIR.getDefaultState(), 10);
+		}
+		worldIn.setBlockState(pos, currentState.with(this.getAgeProperty(), newAge).with(HALF, Half.BOTTOM).with(WATERLOGGED, true), 8);
 	}
 }

@@ -41,7 +41,7 @@ public class DoubleGrowingBushBlock extends GrowingBushBlock {
 		super(seedName, plantType, cutAge, food);
 		this.growingAge = growingAge;
 		this.TOP_SHAPES = this.makeTopShapes();
-		this.setDefaultState(this.getDefaultState().with(HALF, Half.BOTTOM). with(this.getAgeProperty(), 0).with(this.getCutProperty(), false));
+		this.setDefaultState(this.getDefaultState().with(HALF, Half.BOTTOM). with(this.getAgeProperty(), 0).with(this.getCutProperty(), false).with(PERSISTENT, false));
 	}
 
 	@Override
@@ -90,8 +90,8 @@ public class DoubleGrowingBushBlock extends GrowingBushBlock {
 
 	@Override
 	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
-		builder.add(HALF);
 		super.fillStateContainer(builder);
+		builder.add(HALF);
 	}
 
 	@Override
@@ -99,6 +99,7 @@ public class DoubleGrowingBushBlock extends GrowingBushBlock {
 		Half half = stateIn.get(HALF);
 		if (facing.getAxis() == Direction.Axis.Y && half == Half.BOTTOM == (facing == Direction.UP)) {
 			if(facingState.getBlock() == this && facingState.get(HALF) != half){
+				stateIn = stateIn.with(PERSISTENT, facingState.get(PERSISTENT));
 				return half == Half.BOTTOM ? stateIn : stateIn.with(this.getAgeProperty(), this.getAge(facingState));
 			}else if(half == Half.BOTTOM && this.getAge(stateIn) < this.growingAge) return stateIn;
 			return Blocks.AIR.getDefaultState();
@@ -157,7 +158,7 @@ public class DoubleGrowingBushBlock extends GrowingBushBlock {
 	@Override
 	public void tick(BlockState state, World worldIn, BlockPos pos, Random random) {
 		if(this.isBottomCrop(state)) {
-			if (!worldIn.isAreaLoaded(pos, 1))
+			if (!worldIn.isAreaLoaded(pos, 1) || state.get(PERSISTENT))
 				return; // Forge: prevent loading unloaded chunks when checking neighbor's light
 			if (worldIn.getLightSubtracted(pos, 0) >= 9) {
 				int i = this.getAge(state);
@@ -210,5 +211,20 @@ public class DoubleGrowingBushBlock extends GrowingBushBlock {
 			if(stateUnder.getBlock() == this) return stateUnder.get(HALF) == Half.BOTTOM;
 		}
 		return super.isValidPosition(state, worldIn, pos);
+	}
+
+	@Override
+	public void setPlantWithAge(BlockState currentState, World worldIn, BlockPos pos, int newAge) {
+		if(currentState.get(HALF) == Half.TOP) pos = pos.down();
+		if(newAge >= this.getAgeReachingTopBlock()){
+			BlockPos posUp = pos.up();
+			if(worldIn.getBlockState(posUp).getBlock() == this || worldIn.isAirBlock(posUp)){
+				worldIn.setBlockState(posUp, currentState.with(this.getAgeProperty(), newAge).with(HALF, Half.TOP), 10);
+			}
+		}
+		if(newAge < this.getAgeReachingTopBlock() && this.getAge(currentState) == this.getAgeReachingTopBlock()){
+			worldIn.setBlockState(pos.up(), Blocks.AIR.getDefaultState(), 10);
+		}
+		worldIn.setBlockState(pos, currentState.with(this.getAgeProperty(), newAge).with(HALF, Half.BOTTOM), 8);
 	}
 }

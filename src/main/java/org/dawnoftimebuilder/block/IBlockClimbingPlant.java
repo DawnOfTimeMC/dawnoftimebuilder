@@ -18,6 +18,7 @@ import org.dawnoftimebuilder.util.DoTBConfig;
 import java.util.List;
 import java.util.Random;
 
+import static net.minecraft.state.properties.BlockStateProperties.PERSISTENT;
 import static net.minecraft.state.properties.BlockStateProperties.WATERLOGGED;
 import static org.dawnoftimebuilder.util.DoTBBlockStateProperties.AGE_0_6;
 import static org.dawnoftimebuilder.util.DoTBBlockStateProperties.CLIMBING_PLANT;
@@ -30,11 +31,11 @@ public interface IBlockClimbingPlant {
 	 * @param stateIn Current State of the Block.
 	 * @param worldIn World of the Block.
 	 * @param pos Position of the Block.
-	 * @param random Use to determine if the Block must grow.
+	 * @param random Used to determine if the Block must grow.
 	 */
 	default void tickPlant(BlockState stateIn, World worldIn, BlockPos pos, Random random){
-		if (!worldIn.isRemote) {
-			if (stateIn.get(CLIMBING_PLANT).hasNoPlant()) return;
+		if (!worldIn.isRemote()) {
+			if (stateIn.get(CLIMBING_PLANT).hasNoPlant() || stateIn.get(PERSISTENT)) return;
 			if (!worldIn.isAreaLoaded(pos, 2)) return; // Forge: prevent loading unloaded chunks when checking neighbor's light
 
 			if (worldIn.getLightSubtracted(pos, 0) >= 8) {
@@ -73,11 +74,11 @@ public interface IBlockClimbingPlant {
 	}
 
 	/**
-	 * When a Player right clicks the Block with a Climbing Plant seed, it tries to set the corresponding Climbing Plant on the Block.
+	 * When a Player right-clicks the Block with a Climbing Plant seed, it tries to set the corresponding Climbing Plant on the Block.
 	 * @param stateIn Current State of the Block.
 	 * @param worldIn World of the Block.
 	 * @param pos Position of the Block.
-	 * @param player Player that right clicked the Block.
+	 * @param player Player that right-clicked the Block.
 	 * @param handIn Active hand.
 	 * @return True if a Climbing Plant was successfully put on the Block.
 	 */
@@ -88,7 +89,7 @@ public interface IBlockClimbingPlant {
 			DoTBBlockStateProperties.ClimbingPlant plant = DoTBBlockStateProperties.ClimbingPlant.getFromItem(heldItemStack.getItem());
 			if(!plant.hasNoPlant()){
 				stateIn = stateIn.with(CLIMBING_PLANT, plant);
-				if (!player.abilities.isCreativeMode) {
+				if (!player.isCreative()) {
 					heldItemStack.shrink(1);
 				}
 				worldIn.setBlockState(pos, stateIn, 10);
@@ -99,28 +100,46 @@ public interface IBlockClimbingPlant {
 	}
 
 	/**
-	 * If the Climbing Plant is older than AGE 2, it drops its loots.
-	 * If the player is sneaking and the Climbing Plant can't be harvested, the plant is removed and its loots dropped.
+	 * If the player is in Creative, he can control plant's age with right-click and shift-right-click
+	 * Else, if the Climbing Plant is older than AGE 2 and has a loot_table, it drops its loots.
+	 * Else, if the player is sneaking, the plant is removed and its loots dropped.
 	 * @param stateIn Current State of the Block.
 	 * @param worldIn World of the Block.
 	 * @param pos Position of the Block.
-	 * @param player Player that right clicked the Block.
+	 * @param player Player that right-clicked the Block.
 	 * @param handIn Active hand.
-	 * @return True if the Climbing Plant was harvested or removed.
+	 * @return True if the Climbing Plant was modified.
 	 */
 	default boolean harvestPlant(BlockState stateIn, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn){
-		if(stateIn.get(AGE_0_6) > 2){
-			if(this.dropPlant(stateIn, worldIn, pos, player.getHeldItem(handIn))){
-				stateIn = stateIn.with(AGE_0_6, 2);
-				worldIn.setBlockState(pos, stateIn, 10);
-				worldIn.playSound(null, pos, SoundEvents.BLOCK_GRASS_BREAK, SoundCategory.BLOCKS, 1.0F, 1.0F);
+		if(player.isCreative() && stateIn.get(PERSISTENT) && !stateIn.get(CLIMBING_PLANT).hasNoPlant()){
+			if(player.isSneaking()){
+				if(stateIn.get(AGE_0_6) > 0){
+					worldIn.setBlockState(pos, stateIn.with(AGE_0_6, stateIn.get(AGE_0_6) - 1), 10);
+				}else{
+					worldIn.setBlockState(pos, stateIn.with(CLIMBING_PLANT, DoTBBlockStateProperties.ClimbingPlant.NONE).with(AGE_0_6, 0), 10);
+				}
 				return true;
+			}else{
+				if(stateIn.get(AGE_0_6) < stateIn.get(CLIMBING_PLANT).maxAge()){
+					worldIn.setBlockState(pos, stateIn.with(AGE_0_6, stateIn.get(AGE_0_6) + 1), 10);
+					return true;
+				}
+				return false;
 			}
+		}else{
+			if(stateIn.get(AGE_0_6) > 2){
+				if(this.dropPlant(stateIn, worldIn, pos, player.getHeldItem(handIn))){
+					stateIn = stateIn.with(AGE_0_6, 2);
+					worldIn.setBlockState(pos, stateIn, 10);
+					worldIn.playSound(null, pos, SoundEvents.BLOCK_GRASS_BREAK, SoundCategory.BLOCKS, 1.0F, 1.0F);
+					return true;
+				}
+			}
+			if(player.isSneaking()){
+				return tryRemovingPlant(stateIn, worldIn, pos, player.getHeldItem(handIn));
+			}
+			return false;
 		}
-		if(player.isSneaking()){
-			return tryRemovingPlant(stateIn, worldIn, pos, player.getHeldItem(handIn));
-		}
-		return false;
 	}
 
 	/**
@@ -156,8 +175,8 @@ public interface IBlockClimbingPlant {
 	}
 
 	/**
-	 * Drops one by one each items contained in the LootTable of the Climbing Plant at the corresponding age.
-	 * For example, if the Block contains a plant called "plant" at age "3", it will drop each Items in the LootTable named "plant_3" in Blocks folder.
+	 * Drops one by one each item contained in the LootTable of the Climbing Plant at the corresponding age.
+	 * For example, if the Block contains a plant called "plant" at age "3", it will drop each Item in the LootTable named "plant_3" in Blocks folder.
 	 * @param stateIn Current State of the Block.
 	 * @param worldIn World of the Block.
 	 * @param pos Position of the Block.

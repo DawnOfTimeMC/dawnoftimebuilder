@@ -79,7 +79,7 @@ public class MultiblockFireplaceBlock extends SidedPlaneConnectibleBlock {
 				return true;
 			} else {
 				if (state.get(WATERLOGGED)) return false;
-				if (DoTBBlockUtils.lightFireBlock(worldIn, pos, player, handIn)) {
+				if (DoTBBlockUtils.useLighter(worldIn, pos, player, handIn)) {
 					Direction direction = state.get(FACING);
 					worldIn.setBlockState(pos, state.with(BURNING, true), 10);
 					worldIn.getBlockState(pos.offset(direction.rotateYCCW())).neighborChanged(worldIn, pos.offset(direction.rotateYCCW()), this, pos, false);

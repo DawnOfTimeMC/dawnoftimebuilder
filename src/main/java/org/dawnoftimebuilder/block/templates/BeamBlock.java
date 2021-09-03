@@ -2,10 +2,12 @@ package org.dawnoftimebuilder.block.templates;
 
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.particles.ParticleTypes;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.EnumProperty;
 import net.minecraft.state.IntegerProperty;
@@ -19,18 +21,22 @@ import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
-import net.minecraft.world.storage.loot.LootContext;
 import org.dawnoftimebuilder.block.IBlockClimbingPlant;
 import org.dawnoftimebuilder.block.IBlockPillar;
 import org.dawnoftimebuilder.util.DoTBBlockStateProperties;
+import org.dawnoftimebuilder.util.DoTBBlockUtils;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Random;
+
+import static org.dawnoftimebuilder.util.DoTBBlockUtils.TOOLTIP_CLIMBING_PLANT;
 
 public class BeamBlock extends WaterloggedBlock implements IBlockPillar, IBlockClimbingPlant {
 
@@ -40,17 +46,18 @@ public class BeamBlock extends WaterloggedBlock implements IBlockPillar, IBlockC
 	public static final BooleanProperty AXIS_Z = DoTBBlockStateProperties.AXIS_Z;
 	public static final EnumProperty<DoTBBlockStateProperties.ClimbingPlant> CLIMBING_PLANT = DoTBBlockStateProperties.CLIMBING_PLANT;
 	private static final IntegerProperty AGE = DoTBBlockStateProperties.AGE_0_6;
+	public static final BooleanProperty PERSISTENT = BlockStateProperties.PERSISTENT;
 	private static final VoxelShape[] SHAPES = makeShapes();
 
 	public BeamBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
 		super(materialIn, hardness, resistance, soundType);
-		this.setDefaultState(this.getStateContainer().getBaseState().with(BOTTOM, false).with(AXIS_Y, false).with(AXIS_X, false).with(AXIS_Z, false).with(CLIMBING_PLANT, DoTBBlockStateProperties.ClimbingPlant.NONE).with(AGE, 0).with(WATERLOGGED, false));
+		this.setDefaultState(this.getStateContainer().getBaseState().with(BOTTOM, false).with(AXIS_Y, false).with(AXIS_X, false).with(AXIS_Z, false).with(CLIMBING_PLANT, DoTBBlockStateProperties.ClimbingPlant.NONE).with(AGE, 0).with(WATERLOGGED, false).with(PERSISTENT, false));
 	}
 
 	@Override
 	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
 		super.fillStateContainer(builder);
-		builder.add(BOTTOM, AXIS_Y, AXIS_X, AXIS_Z, CLIMBING_PLANT, AGE);
+		builder.add(BOTTOM, AXIS_Y, AXIS_X, AXIS_Z, CLIMBING_PLANT, AGE, PERSISTENT);
 	}
 
 	@Override
@@ -183,6 +190,19 @@ public class BeamBlock extends WaterloggedBlock implements IBlockPillar, IBlockC
 
 	@Override
 	public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit){
+		if(!state.get(PERSISTENT)){
+			if(DoTBBlockUtils.useLighter(worldIn, pos, player, handIn)){
+				Random rand = new Random();
+				for(int i = 0; i < 5; i++){
+					worldIn.addOptionalParticle(ParticleTypes.SMOKE, (double)pos.getX() + rand.nextDouble(), (double)pos.getY() + 0.5D + rand.nextDouble() / 2, (double)pos.getZ() + rand.nextDouble(), 0.0D, 0.07D, 0.0D);
+				}
+				worldIn.setBlockState(pos, state.with(PERSISTENT, true), 10);
+				return true;
+			}
+		}
+		if(player.isCreative()){
+			if(this.tryPlacingPlant(state, worldIn, pos, player, handIn)) return true;
+		}
 		return this.harvestPlant(state, worldIn, pos, player, handIn);
 	}
 
@@ -205,5 +225,11 @@ public class BeamBlock extends WaterloggedBlock implements IBlockPillar, IBlockC
 	@Override
 	public boolean isLadder(BlockState state, IWorldReader world, BlockPos pos, LivingEntity entity) {
 		return !state.get(CLIMBING_PLANT).hasNoPlant();
+	}
+
+	@Override
+	public void addInformation(ItemStack stack, @Nullable IBlockReader worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+		super.addInformation(stack, worldIn, tooltip, flagIn);
+		DoTBBlockUtils.addTooltip(tooltip, TOOLTIP_CLIMBING_PLANT);
 	}
 }

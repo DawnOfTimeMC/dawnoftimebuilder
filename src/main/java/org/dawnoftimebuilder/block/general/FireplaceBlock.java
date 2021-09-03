@@ -102,7 +102,7 @@ public class FireplaceBlock extends WaterloggedBlock {
 		} else {
 			if(state.get(WATERLOGGED)) return false;
 
-			if(DoTBBlockUtils.lightFireBlock(worldIn, pos, player, handIn)){
+			if(DoTBBlockUtils.useLighter(worldIn, pos, player, handIn)){
 				direction = (state.get(HORIZONTAL_AXIS) == Direction.Axis.X) ? Direction.EAST : Direction.SOUTH;
 				worldIn.setBlockState(pos, state.with(BURNING, true), 10);
 				worldIn.getBlockState(pos.offset(direction)).neighborChanged(worldIn, pos.offset(direction), this, pos, false);
