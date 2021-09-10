@@ -37,8 +37,9 @@ public class DoTBBlockUtils {
 
 	//Tooltip translation text
 	public static final ITextComponent TOOLTIP_HOLD_SHIFT = new TranslationTextComponent("tooltip." + MOD_ID + ".hold_key").applyTextStyle(TextFormatting.GRAY).appendSibling(new TranslationTextComponent("tooltip." + MOD_ID + ".shift").applyTextStyle(TextFormatting.AQUA));
-	public static final String TOOLTIP_CROP = "crop";
+	public static final String TOOLTIP_COLUMN = "column";
 	public static final String TOOLTIP_CLIMBING_PLANT = "climbing_plant";
+	public static final String TOOLTIP_CROP = "crop";
 
 	//Item tags
 	public static final Tag<Item> SHEARS = new ItemTags.Wrapper(new ResourceLocation(MOD_ID, "shears"));

@@ -41,7 +41,7 @@ public class DoTBBlocksRegistry {
 	public static final Block ACACIA_PERGOLA = reg("acacia_pergola", new PergolaBlock(Material.WOOD, 2.0F, 3.0F, SoundType.WOOD).setBurnable());
 	public static final Block ACACIA_LATTICE = reg("acacia_lattice", new LatticeBlock(Material.WOOD, 2.0F, 3.0F, SoundType.WOOD).setBurnable());
 	public static final Block ACACIA_BEAM = reg("acacia_beam", new BeamBlock(Material.WOOD, 2.0F, 3.0F, SoundType.WOOD).setBurnable());
-	public static final Block ACACIA_WALL = reg("acacia_wall", new WallBlockDoTB(Material.ROCK, 1.5F, 6.0F, SoundType.WOOD).setBurnable());
+	public static final Block ACACIA_WALL = reg("acacia_wall", new WallBlockDoTB(Material.WOOD, 1.5F, 6.0F, SoundType.WOOD).setBurnable());
 	public static final Block ACACIA_SUPPORT_BEAM = reg("acacia_support_beam", new SupportBeamBlock(Material.WOOD, 2.0F, 3.0F, SoundType.WOOD).setBurnable());
 	public static final Block ACACIA_SUPPORT_SLAB = reg("acacia_support_slab", new SupportSlabBlock(Material.WOOD, 1.5F, 3.0F, SoundType.WOOD).setBurnable());
 	public static final Block BIRCH_PLANKS_EDGE = reg("birch_planks_edge", new EdgeBlock(Material.WOOD, 2.0F, 3.0F, SoundType.WOOD).setBurnable());
@@ -49,7 +49,7 @@ public class DoTBBlocksRegistry {
 	public static final Block BIRCH_PERGOLA = reg("birch_pergola", new PergolaBlock(Material.WOOD, 2.0F, 3.0F, SoundType.WOOD).setBurnable());
 	public static final Block BIRCH_LATTICE = reg("birch_lattice", new LatticeBlock(Material.WOOD, 2.0F, 3.0F, SoundType.WOOD).setBurnable());
 	public static final Block BIRCH_BEAM = reg("birch_beam", new BeamBlock(Material.WOOD, 2.0F, 3.0F, SoundType.WOOD).setBurnable());
-	public static final Block BIRCH_WALL = reg("birch_wall", new WallBlockDoTB(Material.ROCK, 1.5F, 6.0F, SoundType.WOOD).setBurnable());
+	public static final Block BIRCH_WALL = reg("birch_wall", new WallBlockDoTB(Material.WOOD, 1.5F, 6.0F, SoundType.WOOD).setBurnable());
 	public static final Block BIRCH_SUPPORT_BEAM = reg("birch_support_beam", new SupportBeamBlock(Material.WOOD, 2.0F, 3.0F, SoundType.WOOD).setBurnable());
 	public static final Block BIRCH_SUPPORT_SLAB = reg("birch_support_slab", new SupportSlabBlock(Material.WOOD, 1.5F, 3.0F, SoundType.WOOD).setBurnable());
 	public static final Block CHAIN = reg("chain", new ChainBlock(Material.IRON, 5.0F, 6.0F, SoundType.METAL));
@@ -59,7 +59,7 @@ public class DoTBBlocksRegistry {
 	public static final Block DARK_OAK_PERGOLA = reg("dark_oak_pergola", new PergolaBlock(Material.WOOD, 2.0F, 3.0F, SoundType.WOOD).setBurnable());
 	public static final Block DARK_OAK_LATTICE = reg("dark_oak_lattice", new LatticeBlock(Material.WOOD, 2.0F, 3.0F, SoundType.WOOD).setBurnable());
 	public static final Block DARK_OAK_BEAM = reg("dark_oak_beam", new BeamBlock(Material.WOOD, 2.0F, 3.0F, SoundType.WOOD).setBurnable());
-	public static final Block DARK_OAK_WALL = reg("dark_oak_wall", new WallBlockDoTB(Material.ROCK, 1.5F, 6.0F, SoundType.WOOD).setBurnable());
+	public static final Block DARK_OAK_WALL = reg("dark_oak_wall", new WallBlockDoTB(Material.WOOD, 1.5F, 6.0F, SoundType.WOOD).setBurnable());
 	public static final Block DARK_OAK_SUPPORT_BEAM = reg("dark_oak_support_beam", new SupportBeamBlock(Material.WOOD, 2.0F, 3.0F, SoundType.WOOD).setBurnable());
 	public static final Block DARK_OAK_SUPPORT_SLAB = reg("dark_oak_support_slab", new SupportSlabBlock(Material.WOOD, 1.5F, 3.0F, SoundType.WOOD).setBurnable());
 	public static final Block JUNGLE_PLANKS_EDGE = reg("jungle_planks_edge", new EdgeBlock(Material.WOOD, 2.0F, 3.0F, SoundType.WOOD).setBurnable());
@@ -67,7 +67,7 @@ public class DoTBBlocksRegistry {
 	public static final Block JUNGLE_PERGOLA = reg("jungle_pergola", new PergolaBlock(Material.WOOD, 2.0F, 3.0F, SoundType.WOOD).setBurnable());
 	public static final Block JUNGLE_LATTICE = reg("jungle_lattice", new LatticeBlock(Material.WOOD, 2.0F, 3.0F, SoundType.WOOD).setBurnable());
 	public static final Block JUNGLE_BEAM = reg("jungle_beam", new BeamBlock(Material.WOOD, 2.0F, 3.0F, SoundType.WOOD).setBurnable());
-	public static final Block JUNGLE_WALL = reg("jungle_wall", new WallBlockDoTB(Material.ROCK, 1.5F, 6.0F, SoundType.WOOD).setBurnable());
+	public static final Block JUNGLE_WALL = reg("jungle_wall", new WallBlockDoTB(Material.WOOD, 1.5F, 6.0F, SoundType.WOOD).setBurnable());
 	public static final Block JUNGLE_SUPPORT_BEAM = reg("jungle_support_beam", new SupportBeamBlock(Material.WOOD, 2.0F, 3.0F, SoundType.WOOD).setBurnable());
 	public static final Block JUNGLE_SUPPORT_SLAB = reg("jungle_support_slab", new SupportSlabBlock(Material.WOOD, 1.5F, 3.0F, SoundType.WOOD).setBurnable());
 	public static final Block OAK_PLANKS_PLATE = reg("oak_planks_plate", new PlateBlock(Material.WOOD, 2.0F, 3.0F, SoundType.WOOD).setBurnable());
@@ -75,7 +75,7 @@ public class DoTBBlocksRegistry {
 	public static final Block OAK_PERGOLA = reg("oak_pergola", new PergolaBlock(Material.WOOD, 2.0F, 3.0F, SoundType.WOOD).setBurnable());
 	public static final Block OAK_LATTICE = reg("oak_lattice", new LatticeBlock(Material.WOOD, 2.0F, 3.0F, SoundType.WOOD).setBurnable());
 	public static final Block OAK_BEAM = reg("oak_beam", new BeamBlock(Material.WOOD, 2.0F, 3.0F, SoundType.WOOD).setBurnable());
-	public static final Block OAK_WALL = reg("oak_wall", new WallBlockDoTB(Material.ROCK, 1.5F, 6.0F, SoundType.WOOD).setBurnable());
+	public static final Block OAK_WALL = reg("oak_wall", new WallBlockDoTB(Material.WOOD, 1.5F, 6.0F, SoundType.WOOD).setBurnable());
 	public static final Block OAK_SUPPORT_BEAM = reg("oak_support_beam", new SupportBeamBlock(Material.WOOD, 2.0F, 3.0F, SoundType.WOOD).setBurnable());
 	public static final Block OAK_SUPPORT_SLAB = reg("oak_support_slab", new SupportSlabBlock(Material.WOOD, 1.5F, 3.0F, SoundType.WOOD).setBurnable());
 	public static final Block RAMMED_DIRT = reg("rammed_dirt", new BlockDoTB(Material.EARTH, 0.7F, 0.7F, SoundType.GROUND));
@@ -84,7 +84,7 @@ public class DoTBBlocksRegistry {
 	public static final Block SPRUCE_PERGOLA = reg("spruce_pergola", new PergolaBlock(Material.WOOD, 2.0F, 3.0F, SoundType.WOOD).setBurnable());
 	public static final Block SPRUCE_LATTICE = reg("spruce_lattice", new LatticeBlock(Material.WOOD, 2.0F, 3.0F, SoundType.WOOD).setBurnable());
 	public static final Block SPRUCE_BEAM = reg("spruce_beam", new BeamBlock(Material.WOOD, 2.0F, 3.0F, SoundType.WOOD).setBurnable());
-	public static final Block SPRUCE_WALL = reg("spruce_wall", new WallBlockDoTB(Material.ROCK, 1.5F, 6.0F, SoundType.WOOD).setBurnable());
+	public static final Block SPRUCE_WALL = reg("spruce_wall", new WallBlockDoTB(Material.WOOD, 1.5F, 6.0F, SoundType.WOOD).setBurnable());
 	public static final Block SPRUCE_SUPPORT_BEAM = reg("spruce_support_beam", new SupportBeamBlock(Material.WOOD, 2.0F, 3.0F, SoundType.WOOD).setBurnable());
 	public static final Block SPRUCE_SUPPORT_SLAB = reg("spruce_support_slab", new SupportSlabBlock(Material.WOOD, 1.5F, 3.0F, SoundType.WOOD).setBurnable());
 	public static final Block THATCH_WHEAT = reg("thatch_wheat", new BlockDoTB(Material.ORGANIC, 1.0F, 1.0F, SoundType.PLANT).setBurnable(80, 30));

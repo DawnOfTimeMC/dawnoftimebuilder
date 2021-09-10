@@ -37,6 +37,7 @@ import java.util.Random;
 
 import static net.minecraft.block.Blocks.OAK_LEAVES;
 import static org.dawnoftimebuilder.util.DoTBBlockUtils.HIGHEST_Y;
+import static org.dawnoftimebuilder.util.DoTBBlockUtils.TOOLTIP_COLUMN;
 
 public class CypressBlock extends BlockDoTB {
 
@@ -190,6 +191,6 @@ public class CypressBlock extends BlockDoTB {
     @Override
     public void addInformation(ItemStack stack, @Nullable IBlockReader worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
         super.addInformation(stack, worldIn, tooltip, flagIn);
-        DoTBBlockUtils.addTooltip(tooltip, this);
+        DoTBBlockUtils.addTooltip(tooltip, TOOLTIP_COLUMN);
     }
 }

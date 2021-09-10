@@ -142,31 +142,4 @@ public class CharredSpruceTallShuttersBlock extends CharredSpruceShuttersBlock {
         }
         return stateIn;
     }
-
-    @Override
-    public void harvestBlock(World worldIn, PlayerEntity player, BlockPos pos, BlockState state, @Nullable TileEntity te, ItemStack stack) {
-        super.harvestBlock(worldIn, player, pos, Blocks.AIR.getDefaultState(), te, stack);
-    }
-
-    @Override
-    public void onBlockHarvested(World worldIn, BlockPos pos, BlockState state, PlayerEntity player) {
-        SquareCorners thisCorner = state.get(CORNER);
-        Direction facing = state.get(FACING);
-        ItemStack itemstack = player.getHeldItemMainhand();
-        Block.spawnDrops(state, worldIn, pos, null, player, itemstack);
-        for(SquareCorners corner : SquareCorners.values()){
-            if(thisCorner != corner){
-                BlockPos cornerPos = pos.up(corner.getVerticalOffset(thisCorner)).offset(facing.rotateY(), corner.getHorizontalOffset(thisCorner));
-                BlockState otherState = worldIn.getBlockState(cornerPos);
-                if(otherState.getBlock() == this && otherState.get(CORNER) == corner && otherState.get(FACING) == facing) {
-                    worldIn.setBlockState(cornerPos, Blocks.AIR.getDefaultState(), 35);
-                    worldIn.playEvent(player, 2001, cornerPos, Block.getStateId(otherState));
-                    if(!worldIn.isRemote && !player.isCreative()) {
-                        Block.spawnDrops(otherState, worldIn, cornerPos, null, player, itemstack);
-                    }
-                }
-            }
-        }
-        super.onBlockHarvested(worldIn, pos, state, player);
-    }
 }

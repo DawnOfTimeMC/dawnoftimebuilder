@@ -36,6 +36,12 @@ public class DoorBlockDoTB extends DoorBlock implements IWaterLoggable {
 	@Override
 	public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
 		if (stateIn.get(WATERLOGGED)) worldIn.getPendingFluidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickRate(worldIn));
+		Direction dirOtherDoor = (stateIn.get(HINGE) == DoorHingeSide.LEFT) ? stateIn.get(FACING).rotateY() : stateIn.get(FACING).rotateYCCW();
+		if(facing == dirOtherDoor){
+			if(facingState.getBlock() instanceof DoorBlock){
+				if(stateIn.get(HINGE) != facingState.get(HINGE)) return stateIn.with(OPEN, facingState.get(OPEN));
+			}
+		}
 		return super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
 	}
 
