@@ -214,7 +214,10 @@ public enum CreativeInventoryCategories {
 	),
 
 	PERSIAN("persian",
-			Item.getItemFromBlock(PERSIAN_CARPET_RED)
+			Item.getItemFromBlock(PERSIAN_CARPET_RED),
+			Item.getItemFromBlock(MORAQ_MOSAIC_TILES_DELICATE),
+			Item.getItemFromBlock(MORAQ_MOSAIC_TILES_TRADITIONAL),
+			Item.getItemFromBlock(MORAQ_MOSAIC_TILES_BORDER)
 	),
 
 	JAPANESE("japanese",

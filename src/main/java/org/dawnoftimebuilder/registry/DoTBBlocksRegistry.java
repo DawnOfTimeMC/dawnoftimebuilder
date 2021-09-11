@@ -224,6 +224,9 @@ public class DoTBBlocksRegistry {
 
 	//Persian
 	public static final Block PERSIAN_CARPET_RED = reg("persian_carpet_red", new CarpetBlockDoTB(Material.CARPET, 0.1F, 0.1F, SoundType.CLOTH));
+	public static final Block MORAQ_MOSAIC_TILES_DELICATE = reg("moraq_mosaic_tiles_delicate", new BlockDoTB(Material.WOOD, 1.0F, 1.0F, SoundType.WOOD).setBurnable());
+	public static final Block MORAQ_MOSAIC_TILES_TRADITIONAL = reg("moraq_mosaic_tiles_traditional", new BlockDoTB(Material.WOOD, 1.0F, 1.0F, SoundType.WOOD).setBurnable());
+	public static final Block MORAQ_MOSAIC_TILES_BORDER = reg("moraq_mosaic_tiles_border", new BlockDoTB(Material.WOOD, 1.0F, 1.0F, SoundType.WOOD).setBurnable());
 
 	//Pre_columbian
 	public static final Block COMMELINA = reg("commelina", new SoilCropsBlock("commelina", Crop));
