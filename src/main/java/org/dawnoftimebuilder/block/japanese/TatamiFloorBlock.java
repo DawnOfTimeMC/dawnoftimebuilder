@@ -94,24 +94,11 @@ public class TatamiFloorBlock extends NoItemBlock {
 	}
 
 	@Override
-	public void harvestBlock(World worldIn, PlayerEntity player, BlockPos pos, BlockState state, @Nullable TileEntity te, ItemStack stack) {
-		super.harvestBlock(worldIn, player, pos, Blocks.AIR.getDefaultState(), te, stack);
-	}
-
-	@Override
-	public void onBlockHarvested(World worldIn, BlockPos pos, BlockState state, PlayerEntity player) {
+	public void onPlayerDestroy(IWorld worldIn, BlockPos pos, BlockState state) {
+		super.onPlayerDestroy(worldIn, pos, state);
 		BlockPos otherPos = (state.get(HALF) == Half.TOP) ? pos.offset(state.get(FACING)) : pos.offset(state.get(FACING).getOpposite());
-		BlockState otherState = worldIn.getBlockState(otherPos);
-		if (otherState.getBlock() == this && otherState.get(HALF) != state.get(HALF)) {
-			worldIn.setBlockState(otherPos, Blocks.AIR.getDefaultState(), 10);
-			worldIn.playEvent(player, 2001, otherPos, Block.getStateId(otherState));
-			ItemStack itemstack = player.getHeldItemMainhand();
-			if (!worldIn.isRemote && !player.isCreative()) {
-				Block.spawnDrops(state, worldIn, pos, null, player, itemstack);
-				Block.spawnDrops(otherState, worldIn, otherPos, null, player, itemstack);
-			}
-		}
-		super.onBlockHarvested(worldIn, pos, state, player);
+		worldIn.setBlockState(pos, SPRUCE_PLANKS.getDefaultState(), 10);
+		worldIn.setBlockState(otherPos, SPRUCE_PLANKS.getDefaultState(), 10);
 	}
 
 	@Override

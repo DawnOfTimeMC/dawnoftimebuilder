@@ -213,9 +213,9 @@ public class DoTBBlocksRegistry {
 	public static final Block STONE_LANTERN = reg("stone_lantern", new StoneLanternBlock(Material.ROCK, 4.0F, 9.0F, SoundType.STONE));
 	public static final Block RICE = reg("rice", new WaterDoubleCropsBlock("rice", 2));
 	public static final Block SMALL_TATAMI_MAT = reg("small_tatami_mat", new SmallTatamiMatBlock(Material.CARPET, 0.6F, 0.6F, SoundType.CLOTH));
-	public static final Block SMALL_TATAMI_FLOOR = reg("small_tatami_floor", new SmallTatamiFloorBlock(Material.WOOD, 2.0F, 2.0F, SoundType.WOOD));
+	public static final Block SMALL_TATAMI_FLOOR = reg("small_tatami_floor", new SmallTatamiFloorBlock(Material.CARPET, 0.6F, 0.6F, SoundType.CLOTH));
 	public static final Block TATAMI_MAT = reg("tatami_mat", new TatamiMatBlock(Material.CARPET, 0.6F, 0.6F, SoundType.CLOTH));
-	public static final Block TATAMI_FLOOR = reg("tatami_floor", new TatamiFloorBlock(Material.WOOD, 2.0F, 2.0F, SoundType.WOOD));
+	public static final Block TATAMI_FLOOR = reg("tatami_floor", new TatamiFloorBlock(Material.CARPET, 0.6F, 0.6F, SoundType.CLOTH));
 	public static final Block LIGHT_GRAY_FUTON = reg("light_gray_futon", new FutonBlock(DyeColor.GRAY, Material.WOOD, 0.2F, 0.2F, SoundType.WOOD));
 	public static final Block IRORI_FIREPLACE = reg("irori_fireplace", new IroriFireplace(Material.ROCK, 1.5F, 1.5F, SoundType.WOOD));
 	public static final Block SAKE_BOTTLE = reg("sake_bottle", new SakeBottleBlock(Material.CLAY, 0.8F, 0.8F, SoundType.GROUND));

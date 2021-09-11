@@ -1,0 +1,42 @@
+{
+    "type": "minecraft:block",
+    "pools": [
+        {
+            "rolls": 1,
+            "entries": [
+                {
+                    "name": "dawnoftimebuilder:small_tatami_mat",
+                    "type": "minecraft:item",
+                    "functions": [
+                        {
+                            "function": "minecraft:set_count",
+                            "count": 2,
+                            "conditions": [
+                                {
+                                    "condition": "minecraft:block_state_property",
+                                    "block": "dawnoftimebuilder:small_tatami_mat",
+                                    "properties": {
+                                        "stack": "2"
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "function": "minecraft:set_count",
+                            "count": 3,
+                            "conditions": [
+                                {
+                                    "condition": "minecraft:block_state_property",
+                                    "block": "dawnoftimebuilder:small_tatami_mat",
+                                    "properties": {
+                                        "stack": "3"
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

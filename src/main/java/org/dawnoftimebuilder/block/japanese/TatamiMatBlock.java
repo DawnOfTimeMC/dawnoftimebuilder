@@ -208,27 +208,6 @@ public class TatamiMatBlock extends WaterloggedBlock {
     }
 
     @Override
-    public void harvestBlock(World worldIn, PlayerEntity player, BlockPos pos, BlockState state, @Nullable TileEntity te, ItemStack stack) {
-        super.harvestBlock(worldIn, player, pos, Blocks.AIR.getDefaultState(), te, stack);
-    }
-
-    @Override
-    public void onBlockHarvested(World worldIn, BlockPos pos, BlockState state, PlayerEntity player) {
-        BlockPos blockpos = (state.get(HALF) == Half.TOP) ? pos.offset(state.get(FACING)) : pos.offset(state.get(FACING).getOpposite());
-        BlockState otherState = worldIn.getBlockState(blockpos);
-        if(otherState.getBlock() == this && otherState.get(HALF) != state.get(HALF)) {
-            worldIn.setBlockState(blockpos, Blocks.AIR.getDefaultState(), 35);
-            worldIn.playEvent(player, 2001, blockpos, Block.getStateId(otherState));
-            ItemStack itemstack = player.getHeldItemMainhand();
-            if(!worldIn.isRemote && !player.isCreative()) {
-                Block.spawnDrops(state, worldIn, pos, null, player, itemstack);
-                Block.spawnDrops(otherState, worldIn, blockpos, null, player, itemstack);
-            }
-        }
-        super.onBlockHarvested(worldIn, pos, state, player);
-    }
-
-    @Override
     public BlockState rotate(BlockState state, Rotation rot) {
         return state.with(FACING, rot.rotate(state.get(FACING)));
     }

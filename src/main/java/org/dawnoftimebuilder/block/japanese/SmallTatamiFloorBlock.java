@@ -9,6 +9,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
+import net.minecraft.state.properties.Half;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Rotation;
@@ -72,5 +73,11 @@ public class SmallTatamiFloorBlock extends NoItemBlock {
 	@Override
 	public BlockState rotate(BlockState state, Rotation rot) {
 		return state.with(HORIZONTAL_AXIS, state.get(HORIZONTAL_AXIS) == Direction.Axis.X ? Direction.Axis.Z : Direction.Axis.X);
+	}
+
+	@Override
+	public void onPlayerDestroy(IWorld worldIn, BlockPos pos, BlockState state) {
+		super.onPlayerDestroy(worldIn, pos, state);
+		worldIn.setBlockState(pos, SPRUCE_PLANKS.getDefaultState(), 10);
 	}
 }
