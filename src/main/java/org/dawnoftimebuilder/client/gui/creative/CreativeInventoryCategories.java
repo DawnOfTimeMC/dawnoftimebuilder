@@ -1,7 +1,6 @@
 package org.dawnoftimebuilder.client.gui.creative;
 
 import net.minecraft.item.Item;
-import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.dawnoftimebuilder.registry.DoTBItemsRegistry;
@@ -10,7 +9,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import static net.minecraft.block.Blocks.*;
-import static org.dawnoftimebuilder.DawnOfTimeBuilder.MOD_ID;
 import static org.dawnoftimebuilder.registry.DoTBBlocksRegistry.*;
 
 @OnlyIn(Dist.CLIENT)
@@ -210,6 +208,10 @@ public enum CreativeInventoryCategories {
 			DoTBItemsRegistry.IRON_PLATE_ARMOR_CHEST,
 			DoTBItemsRegistry.IRON_PLATE_ARMOR_LEGS,
 			DoTBItemsRegistry.IRON_PLATE_ARMOR_FEET,
+			DoTBItemsRegistry.HOLY_ARMOR_HEAD,
+			DoTBItemsRegistry.HOLY_ARMOR_CHEST,
+			DoTBItemsRegistry.HOLY_ARMOR_LEGS,
+			DoTBItemsRegistry.HOLY_ARMOR_FEET,
 			DoTBItemsRegistry.WAX
 	),
 

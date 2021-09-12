@@ -28,6 +28,18 @@ public class DoTBMaterials {
 				SoundEvents.ITEM_ARMOR_EQUIP_IRON,
 				DoTBConfig.IRON_PLATE_TOUGHNESS.get().floatValue(),
 				() -> Ingredient.fromItems(Items.IRON_INGOT)),
+		HOLY(
+				"iron_plate",
+				DoTBConfig.HOLY_DURABILITY.get(),
+				new int[]{
+						DoTBConfig.HOLY_DEF_FEET.get(),
+						DoTBConfig.HOLY_DEF_LEGS.get(),
+						DoTBConfig.HOLY_DEF_CHEST.get(),
+						DoTBConfig.HOLY_DEF_HELMET.get()},
+				DoTBConfig.HOLY_ENCHANT.get(),
+				SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND,
+				DoTBConfig.HOLY_TOUGHNESS.get().floatValue(),
+				() -> Ingredient.fromItems(Blocks.GOLD_BLOCK.asItem())),
 		JAPANESE_LIGHT(
 				"japanese_light",
 				DoTBConfig.JAPANESE_LIGHT_DURABILITY.get(),

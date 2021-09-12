@@ -5,6 +5,7 @@ import net.minecraft.item.ItemGroup;
 import net.minecraft.item.SpawnEggItem;
 import net.minecraft.item.SwordItem;
 import org.dawnoftimebuilder.item.egyptian.PharaohArmorItem;
+import org.dawnoftimebuilder.item.german.HolyArmorItem;
 import org.dawnoftimebuilder.item.german.IronPlateArmorItem;
 import org.dawnoftimebuilder.item.japanese.JapaneseLightArmorItem;
 import org.dawnoftimebuilder.item.japanese.OYoroiArmorItem;
@@ -53,6 +54,10 @@ public class DoTBItemsRegistry {
 	public static final Item IRON_PLATE_ARMOR_CHEST = reg(new IronPlateArmorItem(CHEST));
 	public static final Item IRON_PLATE_ARMOR_LEGS = reg(new IronPlateArmorItem(LEGS));
 	public static final Item IRON_PLATE_ARMOR_FEET = reg(new IronPlateArmorItem(FEET));
+	public static final Item HOLY_ARMOR_HEAD = reg(new HolyArmorItem(HEAD));
+	public static final Item HOLY_ARMOR_CHEST = reg(new HolyArmorItem(CHEST));
+	public static final Item HOLY_ARMOR_LEGS = reg(new HolyArmorItem(LEGS));
+	public static final Item HOLY_ARMOR_FEET = reg(new HolyArmorItem(FEET));
 	public static final Item PHARAOH_ARMOR_HEAD = reg(new PharaohArmorItem(HEAD));
 	public static final Item PHARAOH_ARMOR_CHEST = reg(new PharaohArmorItem(CHEST));
 	public static final Item PHARAOH_ARMOR_LEGS = reg(new PharaohArmorItem(LEGS));

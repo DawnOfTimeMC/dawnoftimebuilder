@@ -5,7 +5,7 @@
             "rolls": 1,
             "entries": [
                 {
-                    "name": "dawnoftimebuilder:plastered_stane_slab",
+                    "name": "dawnoftimebuilder:plastered_stone_slab",
                     "type": "minecraft:item",
                     "functions": [
                         {
@@ -14,7 +14,7 @@
                             "conditions": [
                                 {
                                     "condition": "minecraft:block_state_property",
-                                    "block": "dawnoftimebuilder:plastered_stane_slab",
+                                    "block": "dawnoftimebuilder:plastered_stone_slab",
                                     "properties": {
                                         "type": "double"
                                     }
