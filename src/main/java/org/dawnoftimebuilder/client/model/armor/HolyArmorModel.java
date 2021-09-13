@@ -17,14 +17,18 @@ public class HolyArmorModel<T extends LivingEntity> extends CustomArmorModel<T> 
 
 	//Chest
 	public RendererModel chest;
-	public RendererModel chestEffectMain;
-	public RendererModel chestEffectMinor;
-	public RendererModel hipsLeft;
-	public RendererModel hipsRight;
+	public RendererModel chestEffectBig;
+	public RendererModel chestEffectBigRotated;
+	public RendererModel chestEffectMiddle;
+	public RendererModel chestEffectMiddleRotated;
+	public RendererModel chestEffectSmall;
+	public RendererModel chestEffectSmallRotated;
 	public RendererModel chestBack;
 	public RendererModel chestPecRight;
 	public RendererModel chestPecLeft;
 	public RendererModel chestCore;
+	public RendererModel chestEffectFrontA;
+	public RendererModel chestEffectFrontB;
 	public RendererModel abs;
 	public RendererModel armRight;
 	public RendererModel armRightShoulderA;
@@ -32,14 +36,20 @@ public class HolyArmorModel<T extends LivingEntity> extends CustomArmorModel<T> 
 	public RendererModel armRightElbow;
 	public RendererModel armRightWing;
 	public RendererModel armRightGlove;
+	public RendererModel armRightEffect;
+	public RendererModel armRightEffectRotated;
 	public RendererModel armLeft;
-
-	//Leggings
 	public RendererModel armLeftShoulderA;
 	public RendererModel armLeftShoulderB;
 	public RendererModel armLeftElbow;
 	public RendererModel armLeftWing;
 	public RendererModel armLeftGlove;
+	public RendererModel armLeftEffect;
+	public RendererModel armLeftEffectRotated;
+
+	//Leggings
+	public RendererModel hipsLeft;
+	public RendererModel hipsRight;
 
 	//Boots
 	public RendererModel legLeft;
@@ -48,7 +58,7 @@ public class HolyArmorModel<T extends LivingEntity> extends CustomArmorModel<T> 
 	public RendererModel legRightWing;
 
 	public HolyArmorModel(EquipmentSlotType slot, boolean isSteve) {
-		super(slot, 128, 64);
+		super(slot, 128, 128);
 
 		switch (slot) {
 			case HEAD:
@@ -76,13 +86,25 @@ public class HolyArmorModel<T extends LivingEntity> extends CustomArmorModel<T> 
 				this.chest = new RendererModel(this);
 				this.chest.setRotationPoint(0.0F, 0.0F, 0.0F);
 				this.chest.cubeList.add(new ModelBox(this.chest, 0, 28, -4.5F, -0.5F, -2.5F, 9, 13, 5, -0.2F, false));
-				this.chestEffectMain = new RendererModel(this);
-				this.chestEffectMain.setRotationPoint(0.0F, -2.5F, 7.0F);
-				this.chestEffectMain.cubeList.add(new ModelBox(this.chestEffectMain, 66, 0, -15.5F, -15.5F, 0.0F, 31, 31, 0, 0.0F, false));
-				this.chestEffectMinor = new RendererModel(this);
-				this.chestEffectMinor.setRotationPoint(0.0F, 0.0F, 0.0F);
-				this.chestEffectMinor.cubeList.add(new ModelBox(this.chestEffectMinor, 90, 32, -9.5F, -9.5F, 0.0F, 19, 19, 0, 0.0F, false));
-				setRotateAngle(this.chestEffectMinor, 0.0F, 0.0F, 0.7854F);
+				this.chestEffectBig = new RendererModel(this);
+				this.chestEffectBig.setRotationPoint(0.0F, -2.5F, 7.0F);
+				this.chestEffectBig.cubeList.add(new ModelBox(this.chestEffectBig, 66, 0, -15.5F, -15.5F, 0.0F, 31, 31, 0, 0.0F, false));
+				this.chestEffectBigRotated = new RendererModel(this);
+				this.chestEffectBigRotated.setRotationPoint(0.0F, 0.0F, 0.0F);
+				this.chestEffectBigRotated.cubeList.add(new ModelBox(this.chestEffectBigRotated, 90, 31, -9.5F, -9.5F, 0.0F, 19, 19, 0, 0.0F, false));
+				setRotateAngle(this.chestEffectBigRotated, 0.0F, 0.0F, 0.7854F);
+				this.chestEffectMiddle = new RendererModel(this);
+				this.chestEffectMiddle.setRotationPoint(0.0F, -2.5F, 8.0F);
+				this.chestEffectMiddle.cubeList.add(new ModelBox(this.chestEffectMiddle, 0, 63, -8.5F, -8.5F, 0.0F, 17, 17, 0, 0.0F, false));
+				this.chestEffectMiddleRotated = new RendererModel(this);
+				this.chestEffectMiddleRotated.setRotationPoint(0.0F, -2.5F, 8.0F);
+				this.chestEffectMiddleRotated.cubeList.add(new ModelBox(this.chestEffectMiddleRotated, 0, 80, -6.5F, -6.5F, 0.0F, 13, 13, 0, 0.0F, false));
+				this.chestEffectSmall = new RendererModel(this);
+				this.chestEffectSmall.setRotationPoint(0.0F, -2.5F, 9.0F);
+				this.chestEffectSmall.cubeList.add(new ModelBox(this.chestEffectSmall, 83, 50, -4.5F, -4.5F, 0.0F, 9, 9, 0, 0.0F, false));
+				this.chestEffectSmallRotated = new RendererModel(this);
+				this.chestEffectSmallRotated.setRotationPoint(0.0F, -2.5F, 9.0F);
+				this.chestEffectSmallRotated.cubeList.add(new ModelBox(this.chestEffectSmallRotated, 101, 50, -4.5F, -4.5F, 0.0F, 9, 9, 0, 0.0F, false));
 				this.chestBack = new RendererModel(this);
 				this.chestBack.setRotationPoint(0.0F, 6.2F, 2.5F);
 				this.chestBack.cubeList.add(new ModelBox(this.chestBack, 0, 46, -3.5F, -6.5F, -1.7F, 7, 12, 2, 0.0F, false));
@@ -99,6 +121,12 @@ public class HolyArmorModel<T extends LivingEntity> extends CustomArmorModel<T> 
 				this.chestCore.setRotationPoint(0.0F, 4.5F, -3.6F);
 				this.chestCore.cubeList.add(new ModelBox(this.chestCore, 0, 19, -1.0F, -3.5F, 0.0F, 2, 3, 1, 0.0F, false));
 				setRotateAngle(this.chestCore, -0.1745F, 0.0F, 0.0F);
+				this.chestEffectFrontB = new RendererModel(this);
+				this.chestEffectFrontB.setRotationPoint(0.0F, -1.0F, 0.3F);
+				this.chestEffectFrontB.cubeList.add(new ModelBox(this.chestEffectFrontB, 34, 75, -2.5F, -2.5F, 0.0F, 5, 5, 0, 0.0F, false));
+				this.chestEffectFrontA = new RendererModel(this);
+				this.chestEffectFrontA.setRotationPoint(0.0F, -1.0F, 0.3F);
+				this.chestEffectFrontA.cubeList.add(new ModelBox(this.chestEffectFrontA, 34, 70, -2.5F, -2.5F, 0.0F, 5, 5, 0, 0.0F, false));
 				this.abs = new RendererModel(this);
 				this.abs.setRotationPoint(0.0F, 4.7F, -3.3F);
 				this.abs.cubeList.add(new ModelBox(this.abs, 18, 48, -3.5F, -1.0F, 0.3F, 7, 8, 1, 0.0F, false));
@@ -126,6 +154,14 @@ public class HolyArmorModel<T extends LivingEntity> extends CustomArmorModel<T> 
 				this.armRightGlove.setRotationPoint(-1.0F, 9.0F, -3.0F);
 				this.armRightGlove.cubeList.add(new ModelBox(this.armRightGlove, 47, 48, -2.5F, -1.5F, 0.0F, 5, 3, 6, 0.01F, true));
 				setRotateAngle(this.armRightGlove, 0.0F, 0.0F, -0.0873F);
+				this.armRightEffect = new RendererModel(this);
+				this.armRightEffect.setRotationPoint(-3.0F, 5.0F, 0.0F);
+				setRotateAngle(this.armRightEffect, 0.0F, 0.0F, -1.0F);
+				this.armRightEffect.cubeList.add(new ModelBox(this.armRightEffect, 34, 56, 0.0F, -3.5F, -3.5F, 0, 7, 7, 0.01F, true));
+				this.armRightEffectRotated = new RendererModel(this);
+				this.armRightEffectRotated.setRotationPoint(-3.0F, 5.0F, 0.0F);
+				setRotateAngle(this.armRightEffectRotated, -0.7854F, 0.0F, -1.0F);
+				this.armRightEffectRotated.cubeList.add(new ModelBox(this.armRightEffectRotated, 34, 56, 0.0F, -3.5F, -3.5F, 0, 7, 7, 0.01F, true));
 				this.armLeft = new RendererModel(this);
 				this.armLeft.setRotationPoint(5.0F, 2.0F, 0.0F);
 				this.armLeft.cubeList.add(new ModelBox(this.armLeft, 46, 28, -1.5F, -2.0F, -2.5F, 5, 12, 5, -0.19F, false));
@@ -149,15 +185,29 @@ public class HolyArmorModel<T extends LivingEntity> extends CustomArmorModel<T> 
 				this.armLeftGlove.setRotationPoint(1.0F, 9.0F, -3.0F);
 				this.armLeftGlove.cubeList.add(new ModelBox(this.armLeftGlove, 47, 48, -2.5F, -1.5F, 0.0F, 5, 3, 6, 0.01F, false));
 				setRotateAngle(this.armLeftGlove, 0.0F, 0.0F, 0.0873F);
+				this.armLeftEffectRotated = new RendererModel(this);
+				this.armLeftEffectRotated.setRotationPoint(3.0F, 5.0F, 0.0F);
+				setRotateAngle(this.armLeftEffectRotated, -0.7854F, 0.0F, 1.0F);
+				this.armLeftEffectRotated.cubeList.add(new ModelBox(this.armLeftEffectRotated, 34, 56, 0.0F, -3.5F, -3.5F, 0, 7, 7, 0.01F, false));
+				this.armLeftEffect = new RendererModel(this);
+				this.armLeftEffect.setRotationPoint(3.0F, 5.0F, 0.0F);
+				setRotateAngle(armLeftEffect, 0.0F, 0.0F, 1.0F);
+				this.armLeftEffect.cubeList.add(new ModelBox(this.armLeftEffect, 34, 56, 0.0F, -3.5F, -3.5F, 0, 7, 7, 0.01F, false));
 
 				this.bipedBody = this.chest;
 				this.bipedBody.addChild(this.chestBack);
 				this.bipedBody.addChild(this.chestPecRight);
 				this.bipedBody.addChild(this.chestPecLeft);
 				this.bipedBody.addChild(this.chestCore);
+				this.chestCore.addChild(this.chestEffectFrontA);
+				this.chestCore.addChild(this.chestEffectFrontB);
 				this.bipedBody.addChild(this.abs);
-				this.bipedBody.addChild(this.chestEffectMain);
-				this.chestEffectMain.addChild(this.chestEffectMinor);
+				this.bipedBody.addChild(this.chestEffectBig);
+				this.chestEffectBig.addChild(this.chestEffectBigRotated);
+				this.chest.addChild(this.chestEffectMiddle);
+				this.chest.addChild(this.chestEffectMiddleRotated);
+				this.chest.addChild(this.chestEffectSmall);
+				this.chest.addChild(this.chestEffectSmallRotated);
 
 				this.bipedLeftArm = this.armLeft;
 				this.bipedLeftArm.addChild(this.armLeftShoulderA);
@@ -165,6 +215,8 @@ public class HolyArmorModel<T extends LivingEntity> extends CustomArmorModel<T> 
 				this.bipedLeftArm.addChild(this.armLeftGlove);
 				this.bipedLeftArm.addChild(this.armLeftElbow);
 				this.armLeftElbow.addChild(this.armLeftWing);
+				this.armLeft.addChild(this.armLeftEffectRotated);
+				this.armLeft.addChild(this.armLeftEffect);
 
 				this.bipedRightArm = this.armRight;
 				this.bipedRightArm.addChild(this.armRightShoulderA);
@@ -172,6 +224,8 @@ public class HolyArmorModel<T extends LivingEntity> extends CustomArmorModel<T> 
 				this.bipedRightArm.addChild(this.armRightGlove);
 				this.bipedRightArm.addChild(this.armRightElbow);
 				this.armRightElbow.addChild(this.armRightWing);
+				this.armRight.addChild(this.armRightEffect);
+				this.armRight.addChild(this.armRightEffectRotated);
 				break;
 
 			case LEGS:
@@ -236,8 +290,12 @@ public class HolyArmorModel<T extends LivingEntity> extends CustomArmorModel<T> 
 			default:
 				break;
 		}
+	}
 
+	@Override
+	public void render(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
 		this.setVisible(false);
+
 		switch (this.slot) {
 			case HEAD:
 				bipedHead.showModel = true;
@@ -263,6 +321,7 @@ public class HolyArmorModel<T extends LivingEntity> extends CustomArmorModel<T> 
 			default:
 				break;
 		}
+		super.render(entityIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
 	}
 
 	@Override
@@ -276,9 +335,24 @@ public class HolyArmorModel<T extends LivingEntity> extends CustomArmorModel<T> 
 				break;
 
 			case CHEST:
-				this.armLeftWing.rotateAngleX = 0.1745F + 0.1F * sinPI(ageInTicks / 40.0F);
-				this.armRightWing.rotateAngleX = 0.1745F + 0.1F * sinPI(ageInTicks / 40.0F);
-				this.chestEffectMain.offsetY = 0.05F * sinPI((ageInTicks + 10) / 60.0F);
+				float dA = ageInTicks / 40.0F;
+				float rotation = dA % (2.0F * (float)Math.PI);
+				float rotationD = (dA + (float)Math.PI / 4.0F) % (2.0F * (float)Math.PI);
+				this.armLeftWing.rotateAngleX = 0.1745F + 0.1F * sinPI(dA);
+				this.armRightWing.rotateAngleX = 0.1745F + 0.1F * sinPI(dA);
+				this.chestEffectFrontA.rotateAngleZ = rotation;
+				this.chestEffectFrontB.rotateAngleZ = rotationD;
+				this.chestEffectMiddle.rotateAngleZ = rotation;
+				this.chestEffectMiddleRotated.rotateAngleZ = rotationD;
+				this.armLeftEffect.rotateAngleX = rotation;
+				this.armLeftEffectRotated.rotateAngleX = rotationD;
+				this.armRightEffect.rotateAngleX = rotation;
+				this.armRightEffectRotated.rotateAngleX = rotationD;
+				dA = ageInTicks / 20.0F;
+				rotation = dA % (2.0F * (float)Math.PI);
+				rotationD = (dA + (float)Math.PI / 4.0F) % (2.0F * (float)Math.PI);
+				this.chestEffectSmall.rotateAngleZ = -rotation;
+				this.chestEffectSmallRotated.rotateAngleZ = -rotationD;
 				break;
 
 			case FEET:
