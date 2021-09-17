@@ -40,6 +40,7 @@ public class DoTBBlockUtils {
 	public static final String TOOLTIP_COLUMN = "column";
 	public static final String TOOLTIP_CLIMBING_PLANT = "climbing_plant";
 	public static final String TOOLTIP_CROP = "crop";
+	public static final String TOOLTIP_SIDED_WINDOW = "sided_window";
 
 	//Item tags
 	public static final Tag<Item> SHEARS = new ItemTags.Wrapper(new ResourceLocation(MOD_ID, "shears"));

@@ -27,6 +27,8 @@ import org.dawnoftimebuilder.util.DoTBBlockUtils;
 import javax.annotation.Nullable;
 import java.util.List;
 
+import static org.dawnoftimebuilder.util.DoTBBlockUtils.TOOLTIP_SIDED_WINDOW;
+
 public class SidedWindowBlock extends BlockDoTB {
 
 	public static final EnumProperty<DoTBBlockStateProperties.SidedWindow> SIDED_WINDOW = DoTBBlockStateProperties.SIDED_WINDOW;
@@ -134,6 +136,6 @@ public class SidedWindowBlock extends BlockDoTB {
 	@Override
 	public void addInformation(ItemStack stack, @Nullable IBlockReader worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
 		super.addInformation(stack, worldIn, tooltip, flagIn);
-		DoTBBlockUtils.addTooltip(tooltip, this);
+		DoTBBlockUtils.addTooltip(tooltip, TOOLTIP_SIDED_WINDOW);
 	}
 }
