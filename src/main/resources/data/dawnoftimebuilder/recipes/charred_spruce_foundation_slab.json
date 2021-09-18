@@ -5,11 +5,11 @@
 	],
 	"key": {
 		"I": {
-			"item": "dawnoftimebuilder:spruce_foundation"
+			"item": "dawnoftimebuilder:charred_spruce_foundation"
 		}
 	},
 	"result": {
-		"item": "dawnoftimebuilder:spruce_foundation_slab",
+		"item": "dawnoftimebuilder:charred_spruce_foundation_slab",
 		"count": 4
 	}
 }

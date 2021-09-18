@@ -1,20 +1,19 @@
 {
 	"type": "minecraft:crafting_shaped",
 	"pattern": [
-		"IiI",
-		"iii",
-		"IiI"
+		"ii",
+		"II"
 	],
 	"key": {
 		"I": {
-			"item": "minecraft:spruce_planks"
+			"item": "dawnoftimebuilder:silk"
 		},
 		"i": {
 			"tag": "forge:rods/wooden"
 		}
 	},
 	"result": {
-		"item": "dawnoftimebuilder:spruce_foundation",
+		"item": "dawnoftimebuilder:white_little_flag",
 		"count": 4
 	}
 }

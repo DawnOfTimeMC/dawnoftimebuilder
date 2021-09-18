@@ -172,7 +172,7 @@ public class BeamBlock extends WaterloggedBlock implements IBlockPillar, IBlockC
 		return stateIn;
 	}
 
-	private boolean canConnectUnder(BlockState state) {
+	public boolean canConnectUnder(BlockState state) {
 		if (state.getBlock() instanceof BeamBlock)
 			return state.get(AXIS_Y);
 		else return false;

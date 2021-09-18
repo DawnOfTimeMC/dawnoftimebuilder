@@ -69,15 +69,13 @@ public class PergolaBlock extends BeamBlock {
 
 	@Override
 	public BlockState getCurrentState(BlockState stateIn, IWorld worldIn, BlockPos pos) {
-		stateIn = super.getCurrentState(stateIn, worldIn, pos);
-		boolean isBottom = stateIn.get(BOTTOM);
-		return stateIn.with(BOTTOM, isBottom && !worldIn.getBlockState(pos.down()).isIn(BlockTags.DIRT_LIKE) && !stateIn.get(CLIMBING_PLANT).hasNoPlant());
+		return stateIn.with(BOTTOM, super.getCurrentState(stateIn, worldIn, pos).get(BOTTOM) && !stateIn.get(CLIMBING_PLANT).hasNoPlant());
 	}
 
 	@Override
 	public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
 		if (!(worldIn.getBlockState(pos.down()).getBlock() instanceof PergolaBlock)){
-			if (this.tryPlacingPlant(state.with(BOTTOM, !worldIn.getBlockState(pos.down()).isIn(BlockTags.DIRT_LIKE)), worldIn, pos, player, handIn))
+			if (this.tryPlacingPlant(state.with(BOTTOM, state.get(AXIS_Y) && !canConnectUnder(worldIn.getBlockState(pos.down()))), worldIn, pos, player, handIn))
 				return true;
 		}
 		return super.onBlockActivated(state, worldIn, pos, player, handIn, hit);
