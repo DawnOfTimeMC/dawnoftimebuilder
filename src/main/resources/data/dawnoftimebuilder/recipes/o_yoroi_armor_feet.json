@@ -5,10 +5,10 @@
 		"i i"
 	],
 	"key": {
-		"I": {
-			"item": "minecraft:redstone_block"
-		},
 		"i": {
+			"item": "minecraft:diamond_boots"
+		},
+		"I": {
 			"item": "minecraft:coal_block"
 		}
 	},

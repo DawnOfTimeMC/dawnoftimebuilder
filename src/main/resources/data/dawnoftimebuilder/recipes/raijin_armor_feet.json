@@ -9,7 +9,7 @@
 			"item": "minecraft:gold_block"
 		},
 		"i": {
-			"tag": "forge:ingots/gold"
+			"item": "minecraft:diamond_boots"
 		}
 	},
 	"result": {

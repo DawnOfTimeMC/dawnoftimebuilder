@@ -1,0 +1,20 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"I ",
+		"IiI",
+		"I I"
+	],
+	"key": {
+		"I": {
+			"item": "dawnoftimebuilder:waxed_oak_planks"
+		},
+		"i": {
+			"item": "dawnoftimebuilder:wheat_thatch"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:waxed_oak_chair",
+		"count": 1
+	}
+}

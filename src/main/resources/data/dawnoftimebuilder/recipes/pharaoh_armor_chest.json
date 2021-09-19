@@ -7,10 +7,10 @@
 	],
 	"key": {
 		"X": {
-			"item": "minecraft:gold_block"
+			"item": "minecraft:gold_chestplate"
 		},
 		"x": {
-			"tag": "forge:ingots/gold"
+			"item": "minecraft:gold_block"
 		},
 		"i": {
 			"item": "minecraft:string"

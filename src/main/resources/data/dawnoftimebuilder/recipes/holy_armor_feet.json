@@ -6,13 +6,13 @@
 	],
 	"key": {
 		"I": {
-			"item": "minecraft:leather_boots"
+			"item": "minecraft:diamond_boots"
 		},
 		"i": {
-			"item": "minecraft:leather"
+			"item": "minecraft:iron_block"
 		}
 	},
 	"result": {
-		"item": "dawnoftimebuilder:japanese_light_armor_feet"
+		"item": "dawnoftimebuilder:holy_armor_feet"
 	}
 }

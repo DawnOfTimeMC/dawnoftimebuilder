@@ -1,21 +1,21 @@
 {
 	"type": "minecraft:crafting_shaped",
 	"pattern": [
-		"i i",
-		"IoI"
+		"xox",
+		"i i"
 	],
 	"key": {
-		"I": {
-			"item": "minecraft:gold_block"
+		"x": {
+			"item": "minecraft:white_wool"
 		},
 		"i": {
-			"tag": "forge:ingots/gold"
+			"item": "minecraft:gold_block"
 		},
 		"o": {
 			"item": "minecraft:diamond_helmet"
 		}
 	},
 	"result": {
-		"item": "dawnoftimebuilder:raijin_armor_head"
+		"item": "dawnoftimebuilder:holy_armor_head"
 	}
 }

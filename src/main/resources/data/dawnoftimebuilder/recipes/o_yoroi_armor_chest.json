@@ -3,7 +3,7 @@
 	"pattern": [
 		"o o",
 		"IxI",
-		"iii"
+		"oio"
 	],
 	"key": {
 		"o": {
@@ -12,11 +12,8 @@
 		"I": {
 			"item": "minecraft:coal_block"
 		},
-		"i": {
-			"item": "minecraft:redstone"
-		},
 		"x": {
-			"tag": "forge:ingots/gold"
+			"tag": "minecraft:diamond_chestplate"
 		}
 	},
 	"result": {

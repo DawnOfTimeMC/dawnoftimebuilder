@@ -9,10 +9,10 @@
 			"item": "minecraft:string"
 		},
 		"i": {
-			"tag": "forge:ingots/gold"
+			"item": "minecraft:gold_block"
 		},
 		"I": {
-			"item": "minecraft:gold_block"
+			"item": "minecraft:gold_leggings"
 		}
 	},
 	"result": {

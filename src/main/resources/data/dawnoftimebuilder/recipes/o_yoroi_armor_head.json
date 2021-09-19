@@ -9,10 +9,10 @@
 			"item": "minecraft:redstone_block"
 		},
 		"x": {
-			"tag": "forge:ingots/gold"
+			"tag": "minecraft:gold_block"
 		},
 		"o": {
-			"item": "minecraft:redstone"
+			"item": "minecraft:diamond_helmet"
 		}
 	},
 	"result": {

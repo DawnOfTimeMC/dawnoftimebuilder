@@ -1,0 +1,23 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"oio",
+		"iIi",
+		"oio"
+	],
+	"key": {
+		"I": {
+			"item": "minecraft:stone"
+		},
+		"o":{
+			"item": "minecraft:lapis_lazuli"
+		},
+		"i": {
+			"item": "minecraft:blue_dye"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:moraq_mosaic_tiles_traditional",
+		"count": 16
+	}
+}
