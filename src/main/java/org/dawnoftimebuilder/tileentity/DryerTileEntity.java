@@ -6,12 +6,15 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
@@ -29,7 +32,7 @@ import static org.dawnoftimebuilder.registry.DoTBTileEntitiesRegistry.DRYER_TE;
 public class DryerTileEntity extends TileEntity implements ITickableTileEntity {
 
 	private final ItemStackHandler itemHandler = new ItemStackHandler(2);
-	private int[] remainingTicks = new int[2];
+	private final int[] remainingTicks = new int[2];
 
 	public DryerTileEntity() {
 		super(DRYER_TE);
@@ -39,37 +42,31 @@ public class DryerTileEntity extends TileEntity implements ITickableTileEntity {
 	public void tick() {
 		if(this.getWorld() != null){
 			if(!this.getWorld().isRemote()) {
+				boolean shouldUpdate = false;
 				if(this.remainingTicks[0] > 0){
 					this.remainingTicks[0]--;
 					if(this.remainingTicks[0] == 0){
 						//Item dried, we replace it with the recipe result, and clear the recipe cached.
 						DryerRecipe recipe = this.getDryerRecipe(new Inventory(this.itemHandler.getStackInSlot(0)));
-						if(recipe != null) this.itemHandler.setStackInSlot(0, recipe.getRecipeOutput());
+						if(recipe != null) {
+							this.itemHandler.setStackInSlot(0, recipe.getRecipeOutput());
+							shouldUpdate = true;
+						}
 					}
 				}
 				if(this.remainingTicks[1] > 0){
 					this.remainingTicks[1]--;
 					if(this.remainingTicks[1] == 0){
 						DryerRecipe recipe = this.getDryerRecipe(new Inventory(this.itemHandler.getStackInSlot(1)));
-						if(recipe != null) this.itemHandler.setStackInSlot(1, recipe.getRecipeOutput());
+						if(recipe != null) {
+							this.itemHandler.setStackInSlot(1, recipe.getRecipeOutput());
+							shouldUpdate = true;
+						}
 					}
 				}
+				if(shouldUpdate) this.getWorld().notifyBlockUpdate(this.pos, this.getBlockState(), this.getBlockState(), Constants.BlockFlags.BLOCK_UPDATE + Constants.BlockFlags.NOTIFY_NEIGHBORS);
 			}
 		}
-	}
-
-	@Override
-	public void remove() {//TODO Check if useful
-		if(this.getWorld() != null){
-			TileEntity te = this.getWorld().getTileEntity(this.pos);
-			if(te instanceof DryerTileEntity){
-				DryerTileEntity newTE = (DryerTileEntity) te;
-				newTE.itemHandler.setStackInSlot(0, this.itemHandler.getStackInSlot(0));
-				newTE.itemHandler.setStackInSlot(1, this.itemHandler.getStackInSlot(1));
-				newTE.remainingTicks = this.remainingTicks;
-			}
-		}
-		super.remove();
 	}
 
 	public boolean tryInsertItemStack(ItemStack itemStack, boolean simple, World worldIn, BlockPos pos, PlayerEntity player){
@@ -156,32 +153,21 @@ public class DryerTileEntity extends TileEntity implements ITickableTileEntity {
 				float timeVariation = new Random().nextFloat() * 2.0F - 1.0F;
 				int range = (timeVariation >= 0) ? DoTBConfig.DRYING_TIME_VARIATION.get() : 10000 / (100 + DoTBConfig.DRYING_TIME_VARIATION.get());
 				this.remainingTicks[index] = (int) (recipe.getDryingTime() * (100 + timeVariation * range) / 100);
-				//BlockState state = this.getWorld().getBlockState(this.pos);
-				//this.getWorld().notifyBlockUpdate(this.pos, state, state, 2);
+				this.getWorld().notifyBlockUpdate(this.pos, this.getBlockState(), this.getBlockState(), Constants.BlockFlags.BLOCK_UPDATE + Constants.BlockFlags.NOTIFY_NEIGHBORS);
 			}
 		}
 		return false;
 	}
 
 	private void dropItemIndex(int index, World worldIn, BlockPos pos){
-		spawnAsEntity(worldIn, pos, this.itemHandler.extractItem(index, 64, false));
-		this.resetIndex(index);
-	}
-
-	private void resetIndex(int index){
+		spawnAsEntity(worldIn, pos, this.itemHandler.extractItem(index, this.itemHandler.getStackInSlot(index).getCount(), false));
 		this.remainingTicks[index] = 0;
 		if(this.getWorld() != null){
 			BlockState state = this.getWorld().getBlockState(pos);
 			this.getWorld().notifyBlockUpdate(this.pos, state, state, 2);
 		}
 	}
-/*
-	@OnlyIn(Dist.CLIENT)
-	public IBakedModel getItemCustomModel(int index){
-		ModelResourceLocation test = new ModelResourceLocation(IItemCanBeDried.getResourceLocation(Objects.requireNonNull(this.itemHandler.getStackInSlot(index).getItem().getRegistryName()).getPath()).toString());
-		return Minecraft.getInstance().getModelManager().getModel(new ModelResourceLocation(IItemCanBeDried.getResourceLocation(Objects.requireNonNull(this.itemHandler.getStackInSlot(index).getItem().getRegistryName()).getPath()).toString()));
-	}
-*/
+
 	@Nonnull
 	@Override
 	public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
@@ -189,6 +175,24 @@ public class DryerTileEntity extends TileEntity implements ITickableTileEntity {
 			return LazyOptional.of(() -> itemHandler).cast();
 		}
 		return super.getCapability(cap, side);
+	}
+
+	@Nullable
+	@Override
+	public SUpdateTileEntityPacket getUpdatePacket() {
+		CompoundNBT tag = super.getUpdateTag();
+		tag.put("inv", itemHandler.serializeNBT());
+		return new SUpdateTileEntityPacket(this.pos, 1, tag);
+	}
+
+	@Override
+	public void onDataPacket(NetworkManager net, SUpdateTileEntityPacket pkt) {
+		CompoundNBT tag = pkt.getNbtCompound();
+		if(tag.contains("inv") && this.getWorld() !=  null) {
+			this.itemHandler.deserializeNBT(tag.getCompound("inv"));
+			//ModelDataManager.requestModelDataRefresh(this);
+			this.getWorld().notifyBlockUpdate(this.pos, this.getBlockState(), this.getBlockState(), Constants.BlockFlags.BLOCK_UPDATE + Constants.BlockFlags.NOTIFY_NEIGHBORS);
+		}
 	}
 
 	@Override

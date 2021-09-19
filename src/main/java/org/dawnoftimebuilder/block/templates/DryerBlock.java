@@ -6,6 +6,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.IntegerProperty;
@@ -23,6 +24,8 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
+import net.minecraftforge.items.CapabilityItemHandler;
+import org.dawnoftimebuilder.tileentity.DisplayerTileEntity;
 import org.dawnoftimebuilder.tileentity.DryerTileEntity;
 import org.dawnoftimebuilder.util.DoTBBlockStateProperties;
 
@@ -79,6 +82,21 @@ public class DryerBlock extends WaterloggedBlock {
 			return useContext.replacingClickedOnBlock();
 		}
 		return false;
+	}
+
+
+	@Override
+	public void onReplaced(BlockState oldState, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
+		if (oldState.getBlock() != newState.getBlock()) {
+			TileEntity tileEntity = worldIn.getTileEntity(pos);
+			if (tileEntity instanceof DryerTileEntity) {
+				tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(h -> {
+					InventoryHelper.spawnItemStack(worldIn, pos.getX(), pos.getY(), pos.getZ(), h.getStackInSlot(0));
+					InventoryHelper.spawnItemStack(worldIn, pos.getX(), pos.getY(), pos.getZ(), h.getStackInSlot(1));
+				});
+			}
+		}
+		super.onReplaced(oldState, worldIn, pos, newState, isMoving);
 	}
 
 	@Override
