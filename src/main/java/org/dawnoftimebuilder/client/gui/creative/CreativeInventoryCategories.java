@@ -187,7 +187,6 @@ public enum CreativeInventoryCategories {
 			Item.getItemFromBlock(STONE_BRICKS_EDGE),
 			Item.getItemFromBlock(STONE_BRICKS_ARROWSLIT),
 			Item.getItemFromBlock(STONE_BRICKS_MACHICOLATION),
-			//Item.getItemFromBlock(STONE_FRIEZE)
 			Item.getItemFromBlock(LATTICE_GLASS),
 			Item.getItemFromBlock(LATTICE_GLASS_PANE),
 			Item.getItemFromBlock(LATTICE_WAXED_OAK_WINDOW),
@@ -380,6 +379,7 @@ public enum CreativeInventoryCategories {
 			Item.getItemFromBlock(OCHRE_ROOF_TILES_SLAB),
 			Item.getItemFromBlock(OCHRE_ROOF_TILES_EDGE),
 			Item.getItemFromBlock(OCHRE_ROOF_TILES_WALL),
+			Item.getItemFromBlock(MOSAIC_FLOOR),
 			Item.getItemFromBlock(BIRCH_PLANKS),
 			Item.getItemFromBlock(BIRCH_STAIRS),
 			Item.getItemFromBlock(BIRCH_PLANKS_PLATE),

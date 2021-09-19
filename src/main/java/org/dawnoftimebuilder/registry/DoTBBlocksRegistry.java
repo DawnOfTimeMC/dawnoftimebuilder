@@ -272,6 +272,7 @@ public class DoTBBlocksRegistry {
 	public static final Block SANDSTONE_BOT_OCHRE_ROOF_TILES_TOP = reg("sandstone_bot_ochre_roof_tiles_top", new NoItemBlock(Material.ROCK, 0.8F, 0.8F, SoundType.STONE));
 	public static final Block OCHRE_ROOF_TILES_SLAB = reg("ochre_roof_tiles_slab", new MixedSlabBlock(OCHRE_ROOF_TILES).addMixedBlockRecipe((SlabBlock) SANDSTONE_SLAB, SANDSTONE_BOT_OCHRE_ROOF_TILES_TOP, false));
 	public static final Block SANDSTONE_COLUMN = reg("sandstone_column", new SandstoneColumnBlock(Material.ROCK, 0.8F, 0.8F, SoundType.STONE));
+	public static final Block MOSAIC_FLOOR = reg("mosaic_floor", new BlockDoTB(Material.ROCK, 1.5F, 3.0F, SoundType.STONE));
 	public static final Block BIRCH_FOOTSTOOL = reg("birch_footstool", new BirchFootstool(Material.WOOD, 2.0F, 2.0F, SoundType.WOOD, 9.0F));
 	public static final Block BIRCH_COUCH = reg("birch_couch", new BirchCouch(Material.WOOD, 2.0F, 2.0F, SoundType.WOOD, 13.0F));
 	public static final Block CYPRESS = reg("cypress", new CypressBlock(Material.LEAVES, 0.2F, 0.2F, SoundType.PLANT).setBurnable());
