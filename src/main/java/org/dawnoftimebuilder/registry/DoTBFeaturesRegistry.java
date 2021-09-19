@@ -48,12 +48,12 @@ public class DoTBFeaturesRegistry {
                 DoTBConfig.MULBERRY_GENERATION.get(),
                 DoTBConfig.MULBERRY_BOTTOM.get(),
                 DoTBConfig.MULBERRY_TOP.get(),
-                Biomes.TAIGA, Biomes.TAIGA_HILLS, Biomes.GIANT_SPRUCE_TAIGA, Biomes.GIANT_SPRUCE_TAIGA_HILLS, Biomes.GIANT_TREE_TAIGA, Biomes.GIANT_TREE_TAIGA_HILLS, Biomes.FLOWER_FOREST, Biomes.WOODED_BADLANDS_PLATEAU, Biomes.MODIFIED_WOODED_BADLANDS_PLATEAU);
+                Biomes.TAIGA, Biomes.TAIGA_HILLS, Biomes.GIANT_SPRUCE_TAIGA, Biomes.GIANT_SPRUCE_TAIGA_HILLS, Biomes.GIANT_TREE_TAIGA, Biomes.GIANT_TREE_TAIGA_HILLS, Biomes.FLOWER_FOREST);
         addPlants(RICE_FEATURE,
                 DoTBConfig.RICE_GENERATION.get(),
                 DoTBConfig.RICE_BOTTOM.get(),
                 DoTBConfig.RICE_TOP.get(),
-                Biomes.SWAMP, Biomes.RIVER);
+                Biomes.SWAMP, Biomes.RIVER, Biomes.SWAMP_HILLS);
     }
 
     private static void addPlants(Feature<NoFeatureConfig> plant, boolean shouldSpawn, int bottomOffset, int top, Biome... biomeList){

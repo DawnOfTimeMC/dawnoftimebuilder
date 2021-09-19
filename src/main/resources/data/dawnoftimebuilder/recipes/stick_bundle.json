@@ -10,7 +10,7 @@
 			"tag": "forge:rods/wooden"
 		},
 		"I": {
-			"item": "minecraft:string"
+			"item": "dawnoftimebuilder:silk"
 		}
 	},
 	"result": {

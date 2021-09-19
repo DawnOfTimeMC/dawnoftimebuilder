@@ -1,15 +1,12 @@
 {
 	"type": "minecraft:crafting_shaped",
 	"pattern": [
-		"iI",
-		"Ii"
+		"II",
+		"II"
 	],
 	"key": {
 		"I": {
 			"item": "minecraft:bricks"
-		},
-		"i": {
-			"item": "minecraft:orange_dye"
 		}
 	},
 	"result": {
