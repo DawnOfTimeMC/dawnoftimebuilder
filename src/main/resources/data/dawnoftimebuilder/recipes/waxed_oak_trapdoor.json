@@ -6,11 +6,11 @@
 	],
 	"key": {
 		"I": {
-			"tag": "dawnoftimebuilder:waxed_oak_planks"
+			"item": "dawnoftimebuilder:waxed_oak_planks"
 		}
 	},
 	"result": {
 		"item": "dawnoftimebuilder:waxed_oak_trapdoor",
-		"count": "2"
+		"count": 2
 	}
 }

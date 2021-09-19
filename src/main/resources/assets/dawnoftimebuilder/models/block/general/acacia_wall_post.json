@@ -1,6 +1,6 @@
 {
 	"textures": {
-		"particle": "dawnoftimebuilder:block/acacia_beam",
+		"particle": "block/acacia_planks",
 		"wall": "dawnoftimebuilder:block/acacia_beam"
 	},
 	"elements": [

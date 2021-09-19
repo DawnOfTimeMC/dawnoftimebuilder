@@ -6,11 +6,11 @@
 	],
 	"key": {
 		"I": {
-			"item": "minecraft:stone"
+			"item": "dawnoftimebuilder:limestone_bricks"
 		}
 	},
 	"result": {
-		"item": "dawnoftimebuilder:stone_frieze",
+		"item": "dawnoftimebuilder:limestone_baluster",
 		"count": 6
 	}
 }

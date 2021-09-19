@@ -1,6 +1,6 @@
 {
     "parent": "block/template_wall_side",
     "textures": {
-        "wall": "block/spruce_planks"
+        "wall": "dawnoftimebuilder:block/waxed_oak_planks"
     }
 }

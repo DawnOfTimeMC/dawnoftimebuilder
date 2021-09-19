@@ -1,6 +1,6 @@
 {
     "textures": {
-        "particle": "dawnoftimebuilder:block/dark_oak_beam",
+        "particle": "block/dark_oak_planks",
         "wall": "dawnoftimebuilder:block/dark_oak_beam"
     },
     "elements": [

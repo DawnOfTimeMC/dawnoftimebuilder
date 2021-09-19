@@ -99,7 +99,8 @@ public class StickBundleBlock extends BlockDoTB implements IBlockChain {
 	@Override
 	public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
     	pos = pos.up();
-		return state.get(HALF) != Half.TOP || hasSolidSide(worldIn.getBlockState(pos), worldIn, pos, Direction.DOWN);
+    	BlockState stateUp = worldIn.getBlockState(pos);
+		return state.get(HALF) == Half.BOTTOM || hasSolidSide(stateUp, worldIn, pos, Direction.DOWN) || IBlockChain.canBeChained(stateUp, true);
 	}
 
 	@Override

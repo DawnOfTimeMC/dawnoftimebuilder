@@ -1,6 +1,6 @@
 {
     "textures": {
-        "particle": "dawnoftimebuilder:block/jungle_beam",
+        "particle": "block/jungle_planks",
         "wall": "dawnoftimebuilder:block/jungle_beam"
     },
     "elements": [

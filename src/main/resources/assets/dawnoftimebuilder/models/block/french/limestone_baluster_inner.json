@@ -1,7 +1,7 @@
 {
 	"textures": {
-		"particle": "dawnoftimebuilder:block/stone_frieze",
-		"texture": "dawnoftimebuilder:block/stone_frieze"
+		"particle": "dawnoftimebuilder:block/limestone_baluster",
+		"texture": "dawnoftimebuilder:block/limestone_baluster"
 	},
 	"elements": [ 	 
 		{	"from": [ 0, 0, 8 ],

@@ -1,6 +1,6 @@
 {
     "textures": {
-        "particle": "dawnoftimebuilder:block/spruce_beam",
+        "particle": "block/spruce_planks",
         "wall": "dawnoftimebuilder:block/spruce_beam"
     },
     "elements": [

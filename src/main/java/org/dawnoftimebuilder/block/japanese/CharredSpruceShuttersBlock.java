@@ -13,10 +13,7 @@ import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.util.Direction;
-import net.minecraft.util.Hand;
-import net.minecraft.util.Mirror;
-import net.minecraft.util.Rotation;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
@@ -130,5 +127,10 @@ public class CharredSpruceShuttersBlock extends WaterloggedBlock {
     @Override
     public BlockState mirror(BlockState state, Mirror mirrorIn) {
         return this.rotate(state, Rotation.CLOCKWISE_180);
+    }
+
+    @Override
+    public boolean isSolid(BlockState state) {
+        return false;
     }
 }

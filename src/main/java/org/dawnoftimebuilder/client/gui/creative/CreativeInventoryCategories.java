@@ -141,6 +141,7 @@ public enum CreativeInventoryCategories {
 			Item.getItemFromBlock(LIMESTONE_BRICKS_SLAB),
 			Item.getItemFromBlock(LIMESTONE_BRICKS_EDGE),
 			Item.getItemFromBlock(LIMESTONE_BRICKS_WALL),
+			Item.getItemFromBlock(LIMESTONE_BALUSTER),
 			Item.getItemFromBlock(FIREPLACE),
 			Item.getItemFromBlock(LIMESTONE_FIREPLACE),
 			Item.getItemFromBlock(LIMESTONE_CHIMNEY),

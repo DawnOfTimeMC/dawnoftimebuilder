@@ -108,9 +108,9 @@ public class DoTBBlocksRegistry {
 	public static final Block LIMESTONE_BRICKS_SLAB = reg("limestone_bricks_slab", new SlabBlockDoTB(LIMESTONE_BRICKS));
 	public static final Block LIMESTONE_BRICKS_STAIRS = reg("limestone_bricks_stairs", new StairsBlockDoTB(LIMESTONE_BRICKS));
 	public static final Block LIMESTONE_BRICKS_WALL = reg("limestone_bricks_wall", new WallBlockDoTB(Material.ROCK, 1.5F, 6.0F, SoundType.STONE));
+	public static final Block LIMESTONE_BALUSTER = reg("limestone_baluster", new PlateBlock(Material.ROCK, 1.5F, 6.0F, SoundType.STONE));
 	public static final Block LIMESTONE_CHIMNEY = reg("limestone_chimney", new LimestoneChimneyBlock(Material.ROCK, 1.5F, 6.0F, SoundType.STONE));
 	public static final Block LIMESTONE_FIREPLACE = reg("limestone_fireplace", new MultiblockFireplaceBlock(Material.ROCK, 2.0F, 6.0F, SoundType.STONE));
-	//public static final Block X = reg(new BlockStoneFrieze());//TODO decide the name and the texture.
 
 	//German
 	public static final Block FLAT_ROOF_TILES = reg("flat_roof_tiles", new BlockDoTB(Material.ROCK,1.5F, 5.0F, SoundType.STONE));

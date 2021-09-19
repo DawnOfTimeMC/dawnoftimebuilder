@@ -1,6 +1,6 @@
 {
     "textures": {
-        "particle": "dawnoftimebuilder:block/birch_beam",
+        "particle": "block/birch_planks",
         "wall": "dawnoftimebuilder:block/birch_beam"
     },
     "elements": [
