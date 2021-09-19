@@ -9,7 +9,6 @@ import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
-import net.minecraftforge.items.wrapper.RecipeWrapper;
 
 import javax.annotation.Nonnull;
 
@@ -17,16 +16,6 @@ import static org.dawnoftimebuilder.registry.DoTBBlocksRegistry.BAMBOO_DRYING_TR
 import static org.dawnoftimebuilder.registry.DoTBRecipesRegistry.DRYER_RECIPE;
 
 public class DryerRecipe implements IRecipe<IInventory> {
-    /*
-    This class will register the parameters for Dryer Recipes from json file :
-        - input item
-        - input required quantity
-        - time processing
-        - output item
-        - output quantity
-        - generate the ModelResourceLocation for both InputItem and OutputItem
-    */
-    // TODO The event to register SpecialModels will check each recipe in the registry and register a model for each item used in machines that need one.
 
     public static final IRecipeType<DryerRecipe> DRYING = IRecipeType.register("drying");
 

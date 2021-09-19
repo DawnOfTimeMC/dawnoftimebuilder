@@ -9,6 +9,4 @@ public interface IBlockSpecialDisplay {
     default boolean emitsLight(){
 		return false;
 	}
-
-	default void getDisplayedParticles(){}
 }

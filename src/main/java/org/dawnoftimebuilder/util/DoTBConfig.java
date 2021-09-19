@@ -65,10 +65,6 @@ public class DoTBConfig {
     public static ForgeConfigSpec.IntValue RAIJIN_ENCHANT;
     public static ForgeConfigSpec.DoubleValue RAIJIN_TOUGHNESS;
 
-    public static final String WEAPON_CATEGORY = "weapon_properties";
-    public static ForgeConfigSpec.IntValue TACHI_ATT_DMG;
-    public static ForgeConfigSpec.DoubleValue TACHI_ATT_SPD;
-
     public static final String BLOCK_CATEGORY = "block_properties";
     public static ForgeConfigSpec.IntValue DRYING_TIME_VARIATION;
     public static ForgeConfigSpec.IntValue CLIMBING_PLANT_GROWTH_CHANCE;
@@ -180,13 +176,6 @@ public class DoTBConfig {
                 RAIJIN_DEF_FEET = COMMON_BUILDER.comment("Feet damage reduction :").defineInRange("raijinDefenseFeet", 4,1,100);
                 RAIJIN_ENCHANT = COMMON_BUILDER.comment("This armor's enchantability :").defineInRange("raijinEnchantability", 26,1,100);
                 RAIJIN_TOUGHNESS = COMMON_BUILDER.comment("This armor's toughness :").defineInRange("raijinToughness", 2.0,0.0,100.0);
-            COMMON_BUILDER.pop();
-        COMMON_BUILDER.pop();
-
-        COMMON_BUILDER.comment("---------------------------------------|| Weapon settings ||---------------------------------------").push(WEAPON_CATEGORY);
-            COMMON_BUILDER.push("tachi_sword");
-                TACHI_ATT_DMG = COMMON_BUILDER.comment("Tachi sword attack damage :").defineInRange("tachiAttackDamage", 3,1,100);
-                TACHI_ATT_SPD = COMMON_BUILDER.comment("Tachi sword attack speed :").defineInRange("tachiAttackSpeed", -2.4,-100.0,0.0);
             COMMON_BUILDER.pop();
         COMMON_BUILDER.pop();
 

@@ -304,7 +304,6 @@ public enum CreativeInventoryCategories {
 			DoTBItemsRegistry.SILK_COCOONS,
 			DoTBItemsRegistry.SILK,
 			Item.getItemFromBlock(RICE),
-			DoTBItemsRegistry.TACHI_SWORD,
 			DoTBItemsRegistry.BAMBOO_HAT,
 			DoTBItemsRegistry.JAPANESE_LIGHT_ARMOR_HEAD,
 			DoTBItemsRegistry.JAPANESE_LIGHT_ARMOR_CHEST,

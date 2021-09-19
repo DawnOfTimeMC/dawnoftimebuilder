@@ -27,7 +27,6 @@ import static org.dawnoftimebuilder.registry.DoTBTileEntitiesRegistry.DISPLAYER_
 
 public abstract class DisplayerBlock extends WaterloggedBlock {
 
-	//TODO Handle particles from blocks inside the table.
 	public static final BooleanProperty LIT = BlockStateProperties.LIT;
 
 	public DisplayerBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {

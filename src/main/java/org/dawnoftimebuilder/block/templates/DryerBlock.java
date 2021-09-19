@@ -25,7 +25,6 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraftforge.items.CapabilityItemHandler;
-import org.dawnoftimebuilder.tileentity.DisplayerTileEntity;
 import org.dawnoftimebuilder.tileentity.DryerTileEntity;
 import org.dawnoftimebuilder.util.DoTBBlockStateProperties;
 
@@ -35,9 +34,7 @@ import static org.dawnoftimebuilder.registry.DoTBTileEntitiesRegistry.DRYER_TE;
 
 public class DryerBlock extends WaterloggedBlock {
 
-	//TODO It doesn't work, especially the renderer :(
 	//TODO Add redstone compatibility : ie emit redstone when dried
-	//TODO A mon avis le mieux dans ce cas, c'est override getModelData dans ton TileEntity (ou BockEntity), de manière à envoyer l'info au model de quel recette est en cours, ensuite, avec un IModelGeometry et un  BakedModel custom, tu peux choiir quel model afficher en fonction des données retournée par getModelData
 	public static final IntegerProperty SIZE = DoTBBlockStateProperties.SIZE_0_2;
 	public static final VoxelShape VS_SIMPLE = makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 4.0D, 16.0D);
 	public static final VoxelShape VS_DOUBLE = makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 12.0D, 16.0D);
@@ -134,7 +131,7 @@ public class DryerBlock extends WaterloggedBlock {
 
 	@Override
 	public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-		if(!worldIn.isRemote()) {
+		if(!worldIn.isRemote() && handIn == Hand.MAIN_HAND) {
 			if(worldIn.getTileEntity(pos) instanceof DryerTileEntity) {
 				DryerTileEntity tileEntity = (DryerTileEntity) worldIn.getTileEntity(pos);
 				if(tileEntity == null) return false;

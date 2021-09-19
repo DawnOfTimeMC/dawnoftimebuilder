@@ -160,7 +160,7 @@ public class DryerTileEntity extends TileEntity implements ITickableTileEntity {
 	}
 
 	private void dropItemIndex(int index, World worldIn, BlockPos pos){
-		spawnAsEntity(worldIn, pos, this.itemHandler.extractItem(index, this.itemHandler.getStackInSlot(index).getCount(), false));
+		spawnAsEntity(worldIn, pos, this.itemHandler.extractItem(index, 64, false));
 		this.remainingTicks[index] = 0;
 		if(this.getWorld() != null){
 			BlockState state = this.getWorld().getBlockState(pos);

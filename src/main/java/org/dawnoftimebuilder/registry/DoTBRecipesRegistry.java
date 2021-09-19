@@ -8,7 +8,6 @@ import org.dawnoftimebuilder.recipe.DryerRecipeSerializer;
 
 import static org.dawnoftimebuilder.DawnOfTimeBuilder.MOD_ID;
 
-@ObjectHolder(MOD_ID) //TODO If it works, try to remove this to see if it's useful...
 public class DoTBRecipesRegistry {
 
 	@ObjectHolder(MOD_ID + ":dryer")

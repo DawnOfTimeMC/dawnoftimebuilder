@@ -47,7 +47,6 @@ public class DoTBItemsRegistry {
 	public static final Item GRAPE = reg("grape", new ItemDoTB(new Item.Properties().food(DoTBFoods.GRAPE)));
 	public static final Item GRAPE_SEEDS = reg("grape_seeds", new ItemDoTB());
 	//public static final Item CLEMATIS_SEEDS = reg("clematis_seeds", new ItemDoTB());
-	public static final Item TACHI_SWORD = reg("tachi_sword", new SwordItem(DIAMOND, DoTBConfig.TACHI_ATT_DMG.get(), DoTBConfig.TACHI_ATT_SPD.get().floatValue(), new Item.Properties().group(DOTB_TAB)));//TODO import the model!!
 
 	//Armors
 	public static final Item IRON_PLATE_ARMOR_HEAD = reg(new IronPlateArmorItem(HEAD));
