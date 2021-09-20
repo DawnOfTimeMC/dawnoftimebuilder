@@ -2,7 +2,7 @@
 	"type": "minecraft:crafting_shapeless",
 	"ingredients": [
 		{
-			"item": "minecraft:ink_sac"
+			"item": "minecraft:red_dye"
 		},
 		{
 			"item": "minecraft:spruce_log"
