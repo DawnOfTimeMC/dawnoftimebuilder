@@ -1,19 +1,22 @@
 {
 	"type": "minecraft:crafting_shaped",
 	"pattern": [
-		"I I",
+		"o o",
 		"IiI",
-		"III"
+		"oIo"
 	],
 	"key": {
 		"i": {
-			"item": "minecraft:iron_chestplate"
+			"item": "minecraft:diamond_chestplate"
 		},
 		"I": {
 			"item": "minecraft:iron_block"
+		},
+		"o": {
+			"item": "minecraft:gold_block"
 		}
 	},
 	"result": {
-		"item": "dawnoftimebuilder:iron_plate_armor_chest"
+		"item": "dawnoftimebuilder:holy_armor_chest"
 	}
 }

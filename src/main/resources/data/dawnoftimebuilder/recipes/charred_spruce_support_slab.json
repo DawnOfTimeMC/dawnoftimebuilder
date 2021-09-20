@@ -5,11 +5,11 @@
 	],
 	"key": {
 		"I": {
-			"item": "minecraft:spruce_slab"
+			"item": "dawnoftimebuilder:charred_spruce_planks_slab"
 		}
 	},
 	"result": {
-		"item": "dawnoftimebuilder:spruce_support_slab",
+		"item": "dawnoftimebuilder:charred_spruce_support_slab",
 		"count": 6
 	}
 }

@@ -6,10 +6,10 @@
 	],
 	"key": {
 		"I": {
-			"tag": "forge:ingots/gold"
+			"item": "minecraft:gold_block"
 		},
 		"i": {
-			"item": "minecraft:leather"
+			"item": "minecraft:gold_boots"
 		}
 	},
 	"result": {

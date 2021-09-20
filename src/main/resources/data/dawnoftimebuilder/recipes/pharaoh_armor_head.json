@@ -6,14 +6,13 @@
 	],
 	"key": {
 		"x": {
-			"item": "minecraft:lapis_block",
-			"data": 0
+			"item": "minecraft:lapis_block"
 		},
 		"i": {
-			"tag": "forge:ingots/gold"
+			"item": "minecraft:gold_block"
 		},
 		"o": {
-			"item": "minecraft:gold_block"
+			"item": "minecraft:gold_helmet"
 		}
 	},
 	"result": {

@@ -1,7 +1,7 @@
 {
 	"type": "minecraft:crafting_shaped",
 	"pattern": [
-		"iii",
+		"ioi",
 		"I I"
 	],
 	"key": {
@@ -10,6 +10,9 @@
 		},
 		"I": {
 			"item": "minecraft:leather"
+		},
+		"o": {
+			"item": "minecraft:leather_leggings"
 		}
 	},
 	"result": {

@@ -5,10 +5,10 @@
 		"I I"
 	],
 	"key": {
-		"i": {
-			"tag": "forge:ingots/iron"
-		},
 		"I": {
+			"item": "minecraft:iron_boots"
+		},
+		"i": {
 			"item": "minecraft:iron_block"
 		}
 	},

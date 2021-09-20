@@ -1,0 +1,23 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"oio",
+		"iIi",
+		"oio"
+	],
+	"key": {
+		"o": {
+			"item": "minecraft:stone"
+		},
+		"I":{
+			"item": "minecraft:orange_dye"
+		},
+		"i": {
+			"item": "minecraft:green_dye"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:mosaic_floor",
+		"count": 16
+	}
+}

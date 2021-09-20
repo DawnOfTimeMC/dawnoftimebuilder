@@ -1,7 +1,7 @@
 {
 	"type": "minecraft:crafting_shaped",
 	"pattern": [
-		"oio",
+		"oOo",
 		"ixi",
 		"i i"
 	],
@@ -13,7 +13,10 @@
 			"item": "minecraft:gold_block"
 		},
 		"o": {
-			"item": "minecraft:red_dye"
+			"item": "minecraft:redstone_block"
+		},
+		"O": {
+			"item": "minecraft:diamond_chestplate"
 		}
 	},
 	"result": {

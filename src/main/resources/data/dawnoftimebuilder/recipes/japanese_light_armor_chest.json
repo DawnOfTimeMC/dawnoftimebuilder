@@ -1,8 +1,8 @@
 {
 	"type": "minecraft:crafting_shaped",
 	"pattern": [
-		"i i",
-		"ooo",
+		"o o",
+		"oio",
 		"III"
 	],
 	"key": {
@@ -13,7 +13,7 @@
 			"item": "minecraft:leather"
 		},
 		"i": {
-			"tag": "forge:ingots/iron"
+			"item": "minecraft:leather_chestplate"
 		}
 	},
 	"result": {

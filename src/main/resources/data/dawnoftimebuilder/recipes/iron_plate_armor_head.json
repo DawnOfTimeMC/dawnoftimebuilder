@@ -7,10 +7,10 @@
 	],
 	"key": {
 		"I": {
-			"tag": "forge:ingots/iron"
+			"item": "minecraft:iron_block"
 		},
 		"i": {
-			"item": "minecraft:iron_block"
+			"item": "minecraft:iron_helmet"
 		},
 		"o": {
 			"item": "minecraft:red_dye"
