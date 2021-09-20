@@ -2,7 +2,6 @@
 	"type": "minecraft:crafting_shaped",
 	"pattern": [
 		"IiI",
-		"iii",
 		"IiI"
 	],
 	"key": {
@@ -10,11 +9,11 @@
 			"item": "dawnoftimebuilder:charred_spruce_planks"
 		},
 		"i": {
-			"tag": "forge:rods/wooden"
+			"tag": "dawnoftimebuilder:charred_spruce_log_stripped"
 		}
 	},
 	"result": {
-		"item": "dawnoftimebuilder:charred_spruce_foundation",
+		"item": "dawnoftimebuilder:charred_spruce_wall",
 		"count": 6
 	}
 }
