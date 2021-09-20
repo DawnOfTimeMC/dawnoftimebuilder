@@ -10,11 +10,10 @@
 			"item": "dawnoftimebuilder:waxed_oak_planks"
 		},
 		"i": {
-			"item": "dawnoftimebuilder:wheat_thatch"
+			"item": "dawnoftimebuilder:thatch_wheat"
 		}
 	},
 	"result": {
-		"item": "dawnoftimebuilder:waxed_oak_chair",
-		"count": 1
+		"item": "dawnoftimebuilder:waxed_oak_chair"
 	}
 }
