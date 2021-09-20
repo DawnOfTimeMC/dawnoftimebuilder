@@ -6,13 +6,13 @@
 		"oio"
 	],
 	"key": {
-		"o": {
+		"i": {
 			"item": "minecraft:stone"
 		},
 		"I":{
 			"item": "minecraft:lapis_lazuli"
 		},
-		"i": {
+		"o": {
 			"item": "minecraft:blue_dye"
 		}
 	},

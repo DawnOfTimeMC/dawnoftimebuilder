@@ -1,18 +1,18 @@
 {
 	"type": "minecraft:crafting_shaped",
 	"pattern": [
-		"oio",
-		"iIi",
-		"oio"
+		"oIo",
+		"IiI",
+		"oIo"
 	],
 	"key": {
-		"I": {
+		"i": {
 			"item": "minecraft:stone"
 		},
-		"o":{
+		"I":{
 			"item": "minecraft:lapis_lazuli"
 		},
-		"i": {
+		"o": {
 			"item": "minecraft:blue_dye"
 		}
 	},

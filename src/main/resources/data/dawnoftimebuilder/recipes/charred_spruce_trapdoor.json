@@ -1,0 +1,17 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"IiI",
+		"iIi",
+		"IiI"
+	],
+	"key": {
+		"I": {
+			"item": "dawnoftimebuilder:charred_spruce_planks"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:charred_spruce_trapdoor",
+		"count": 6
+	}
+}
