@@ -1,7 +1,7 @@
 {
 	"type": "minecraft:crafting_shaped",
 	"pattern": [
-		"IiI",
+		"iii",
 		"III"
 	],
 	"key": {
@@ -9,11 +9,11 @@
 			"item": "dawnoftimebuilder:charred_spruce_log_stripped"
 		},
 		"i": {
-			"tag": "forge:rods/wooden"
+			"item": "dawnoftimebuilder:charred_spruce_support_slab"
 		}
 	},
 	"result": {
-		"item": "dawnoftimebuilder:charred_spruce_railing",
-		"count": 6
+		"item": "dawnoftimebuilder:charred_spruce_support_beam",
+		"count": 8
 	}
 }
