@@ -3,7 +3,38 @@
     "source": "/src/main/resources/assets/dawnoftimebuilder/lang/en_us.json",
     "translation": "/src/main/resources/assets/dawnoftimebuilder/lang/%locale_with_underscore%.json",
     "translation_replace": {
+      "af_ZA": "af_za"
+      "ar_SA": "ar_sa"
+      "ca_ES": "ca_es"
+      "cs_CZ": "cs_cz"
+      "da_DK": "da_dk"
+      "de_DE": "de_de"
+      "el_GR": "el_gr"
+      "es_ES": "es_es"
+      "fi_FI": "fi_fi"
       "fr_FR": "fr_fr"
+      "he_IL": "he_il"
+      "hu_HU": "hu_hu"
+      "id_ID": "id_id"
+      "it_IT": "it_it"
+      "ja_JP": "ja_jp"
+      "jv_ID": "jv_id"
+      "ko_KR": "ko_kr"
+      "la_LA": "la_la"
+      "lo_LA": "lo_la"
+      "nl_NL": "nl_nl"
+      "no_NO": "no_no"
+      "pl_PL": "pl_pl"
+      "pt_PT": "pt_pt"
+      "ro_RO": "ro_ro"
+      "ru_RU": "ru_ru"
+      "sr_SP": "sr_sp"
+      "sv_SE": "sv_se"
+      "tr_TR": "tr_tr"
+      "uk_UA": "uk_ua"
+      "vi_VN": "vi_vn"
+      "zh_CN": "zh_cn"
+      "zh_TW": "zh_tw
     }
   }
 ]
