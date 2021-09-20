@@ -10,7 +10,7 @@
 			"item": "dawnoftimebuilder:charred_spruce_planks"
 		},
 		"i": {
-			"item": "forge:rods/wooden"
+			"tag": "forge:rods/wooden"
 		}
 	},
 	"result": {
