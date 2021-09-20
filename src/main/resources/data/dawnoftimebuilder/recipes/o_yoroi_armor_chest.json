@@ -3,7 +3,7 @@
 	"pattern": [
 		"o o",
 		"IxI",
-		"oio"
+		"oIo"
 	],
 	"key": {
 		"o": {
@@ -13,7 +13,7 @@
 			"item": "minecraft:coal_block"
 		},
 		"x": {
-			"tag": "minecraft:diamond_chestplate"
+			"item": "minecraft:diamond_chestplate"
 		}
 	},
 	"result": {

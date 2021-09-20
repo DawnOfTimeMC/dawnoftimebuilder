@@ -9,7 +9,7 @@
 			"item": "minecraft:redstone_block"
 		},
 		"x": {
-			"tag": "minecraft:gold_block"
+			"item": "minecraft:gold_block"
 		},
 		"o": {
 			"item": "minecraft:diamond_helmet"
