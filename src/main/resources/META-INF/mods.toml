@@ -1,10 +1,10 @@
 modLoader="javafml"
-loaderVersion="[28,)"
+loaderVersion="[36,)"
 issueTrackerURL="https://github.com/Poulpynou/dawnoftimebuilder/issues/"
 
 [[mods]] #mandatory
     modId="dawnoftimebuilder"
-    version="1.14.4-1.0.5"
+    version="1.16.5-1.0.6"
     displayName="Dawn Of Time : Builder Edition"
     updateJSONURL="https://raw.githubusercontent.com/Poulpynou/dawnoftimebuilder/1.14.4-master/update.json"
     displayURL="https://www.curseforge.com/minecraft/mc-mods/dawn-of-time"
@@ -18,6 +18,6 @@ issueTrackerURL="https://github.com/Poulpynou/dawnoftimebuilder/issues/"
 [[dependencies.dawnoftimebuilder]]
     modId="forge"
     mandatory=true
-    versionRange="[28,)"
+    versionRange="[36,)"
     ordering="NONE"
     side="BOTH"
