@@ -108,7 +108,7 @@ public class JapaneseDragonEntity extends CreatureEntity {
 	@Nullable
 	@Override
 	public SoundEvent getAmbientSound(){
-		return this.rand.nextInt(4) != 0 ? null : SoundEvents.ENTITY_ENDER_DRAGON_AMBIENT;
+		return !DoTBConfig.JAPANESE_DRAGON_MUTE.get() && this.rand.nextInt(4) == 0 ? SoundEvents.ENTITY_ENDER_DRAGON_AMBIENT : null;
 	}
 
 	@Override

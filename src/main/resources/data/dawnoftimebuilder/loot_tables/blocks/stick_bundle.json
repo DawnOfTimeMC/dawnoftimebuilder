@@ -6,6 +6,7 @@
             "entries": [
                 {
                     "type": "minecraft:item",
+                    "name": "dawnoftimebuilder:stick_bundle",
                     "conditions": [
                         {
                             "condition": "minecraft:block_state_property",
@@ -14,8 +15,37 @@
                                 "half": "bottom"
                             }
                         }
+                    ]
+                }
+            ],
+            "conditions": [
+                {
+                    "condition": "minecraft:survives_explosion"
+                }
+            ]
+        },
+        {
+            "rolls": 1,
+            "entries": [
+                {
+                    "type": "minecraft:item",
+                    "name": "dawnoftimebuilder:silk_cocoons",
+                    "conditions": [
+                        {
+                            "condition": "minecraft:block_state_property",
+                            "block": "dawnoftimebuilder:stick_bundle",
+                            "properties": {
+                                "half": "top",
+                                "age": 3
+                            }
+                        }
                     ],
-                    "name": "dawnoftimebuilder:stick_bundle"
+                    "functions": [
+                        {
+                            "function": "minecraft:set_count",
+                            "count": 3
+                        }
+                    ]
                 }
             ],
             "conditions": [

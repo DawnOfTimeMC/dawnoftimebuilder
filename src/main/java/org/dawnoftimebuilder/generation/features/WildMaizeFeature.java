@@ -1,44 +1,43 @@
 package org.dawnoftimebuilder.generation.features;
 
 import com.mojang.datafixers.Dynamic;
-import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.GenerationSettings;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
-import org.dawnoftimebuilder.block.templates.DoubleGrowingBushBlock;
+import org.dawnoftimebuilder.block.precolumbian.WildMaizeBlock;
 import org.dawnoftimebuilder.block.templates.SoilCropsBlock;
+import org.dawnoftimebuilder.block.templates.WildPlantBlock;
 import org.dawnoftimebuilder.registry.DoTBBlocksRegistry;
 import org.dawnoftimebuilder.util.DoTBConfig;
 
 import java.util.Random;
 import java.util.function.Function;
 
-public class MulberryFeature extends Feature<NoFeatureConfig> {
+public class WildMaizeFeature extends Feature<NoFeatureConfig> {
 
-    public MulberryFeature(Function<Dynamic<?>, ? extends NoFeatureConfig> configIn) {
+    public WildMaizeFeature(Function<Dynamic<?>, ? extends NoFeatureConfig> configIn) {
         super(configIn);
     }
 
     /**
-     * Places fully grown mulberry trees in a random pattern around a point.
+     * Places wild maize in a random pattern around a point.
      */
     @Override
     public boolean place(IWorld worldIn, ChunkGenerator<? extends GenerationSettings> generator, Random rand, BlockPos pos, NoFeatureConfig config) {
         boolean success = false;
-        for (int i = 0; i < DoTBConfig.MULBERRY_ROLLS.get(); ++i) {
+        for (int i = 0; i < DoTBConfig.WILD_MAIZE_ROLLS.get(); ++i) {
             // get next random position.
-            BlockPos nextPos = getRandomPos(pos, rand, DoTBConfig.MULBERRY_SPAWN_WIDTH.get(), DoTBConfig.MULBERRY_SPAWN_HIGH.get());
+            BlockPos nextPos = getRandomPos(pos, rand, DoTBConfig.WILD_MAIZE_SPAWN_WIDTH.get(), DoTBConfig.WILD_MAIZE_SPAWN_HIGH.get());
             if (isValidPosition(worldIn, nextPos)) {
                 success = true;
                 // the block states to be placed
-                DoubleGrowingBushBlock mulberry = (DoubleGrowingBushBlock) DoTBBlocksRegistry.MULBERRY;
-                BlockState treeBaseState = mulberry.getDefaultState().with(mulberry.getAgeProperty(),rand.nextInt(mulberry.getMaxAge() - mulberry.getAgeReachingTopBlock() + 1) + mulberry.getAgeReachingTopBlock());
+                WildMaizeBlock maize = (WildMaizeBlock) DoTBBlocksRegistry.WILD_MAIZE;
                 // set the block states
-                worldIn.setBlockState(nextPos, treeBaseState, 2);
-                worldIn.setBlockState(nextPos.up(), mulberry.getTopState(treeBaseState), 2);
+                worldIn.setBlockState(nextPos, maize.getDefaultState(), 2);
+                worldIn.setBlockState(nextPos.up(), maize.getDefaultTopState(), 2);
             }
         }
         return success;
@@ -55,6 +54,7 @@ public class MulberryFeature extends Feature<NoFeatureConfig> {
      * Determines if the given position is valid for a mulberry bush.
      */
     private boolean isValidPosition(IWorld worldIn, BlockPos pos) {
-        return worldIn.isAirBlock(pos) && worldIn.isAirBlock(pos.up()) && ((SoilCropsBlock) DoTBBlocksRegistry.MULBERRY).isValidGround(DoTBBlocksRegistry.MULBERRY.getDefaultState(), worldIn, pos.down());
+        WildMaizeBlock plant = (WildMaizeBlock) DoTBBlocksRegistry.WILD_MAIZE;
+        return worldIn.isAirBlock(pos) && worldIn.isAirBlock(pos.up()) && plant.isValidPosition(plant.getDefaultState(), worldIn, pos);
     }
 }

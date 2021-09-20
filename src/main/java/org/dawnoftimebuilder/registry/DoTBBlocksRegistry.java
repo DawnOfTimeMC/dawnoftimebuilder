@@ -10,6 +10,7 @@ import net.minecraft.item.DyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.util.BlockRenderLayer;
 import org.dawnoftimebuilder.block.IBlockCustomItem;
+import org.dawnoftimebuilder.block.french.LimestoneBalusterBlock;
 import org.dawnoftimebuilder.block.french.LimestoneChimneyBlock;
 import org.dawnoftimebuilder.block.precolumbian.*;
 import org.dawnoftimebuilder.block.roman.BirchCouch;
@@ -108,7 +109,7 @@ public class DoTBBlocksRegistry {
 	public static final Block LIMESTONE_BRICKS_SLAB = reg("limestone_bricks_slab", new SlabBlockDoTB(LIMESTONE_BRICKS));
 	public static final Block LIMESTONE_BRICKS_STAIRS = reg("limestone_bricks_stairs", new StairsBlockDoTB(LIMESTONE_BRICKS));
 	public static final Block LIMESTONE_BRICKS_WALL = reg("limestone_bricks_wall", new WallBlockDoTB(Material.ROCK, 1.5F, 6.0F, SoundType.STONE));
-	public static final Block LIMESTONE_BALUSTER = reg("limestone_baluster", new PlateBlock(Material.ROCK, 1.5F, 6.0F, SoundType.STONE));
+	public static final Block LIMESTONE_BALUSTER = reg("limestone_baluster", new LimestoneBalusterBlock(Material.ROCK, 1.5F, 6.0F, SoundType.STONE));
 	public static final Block LIMESTONE_CHIMNEY = reg("limestone_chimney", new LimestoneChimneyBlock(Material.ROCK, 1.5F, 6.0F, SoundType.STONE));
 	public static final Block LIMESTONE_FIREPLACE = reg("limestone_fireplace", new MultiblockFireplaceBlock(Material.ROCK, 2.0F, 6.0F, SoundType.STONE));
 
@@ -229,7 +230,7 @@ public class DoTBBlocksRegistry {
 	public static final Block MORAQ_MOSAIC_TILES_BORDER = reg("moraq_mosaic_tiles_border", new BlockDoTB(Material.ROCK, 1.0F, 1.0F, SoundType.STONE));
 
 	//Pre_columbian
-	public static final Block COMMELINA = reg("commelina", new SoilCropsBlock("commelina", Crop));
+	public static final Block COMMELINA = reg("commelina", new SoilCropsBlock("commelina", Plains));
 	public static final Block PLASTERED_STONE = reg("plastered_stone", new BlockDoTB(Material.ROCK,1.5F, 6.0F, SoundType.STONE));
 	public static final Block PLASTERED_STONE_EDGE = reg("plastered_stone_edge", new EdgeBlock(PLASTERED_STONE));
 	public static final Block PLASTERED_STONE_PLATE = reg("plastered_stone_plate", new PlateBlock(PLASTERED_STONE));
@@ -256,6 +257,7 @@ public class DoTBBlocksRegistry {
 	public static final Block GREEN_PLASTERED_STONE_FRIEZE = reg("green_plastered_stone_frieze", new PlateBlock(PLASTERED_STONE));
 	public static final Block GREEN_SCULPTED_PLASTERED_STONE_FRIEZE = reg("green_sculpted_plastered_stone_frieze", new GreenSculptedPlasteredStoneFriezeBlock(Material.ROCK, 1.5F, 6.0F, SoundType.STONE));
 	public static final Block GREEN_SMALL_PLASTERED_STONE_FRIEZE = reg("green_small_plastered_stone_frieze", new EdgeBlock(PLASTERED_STONE));
+	public static final Block WILD_MAIZE = reg("wild_maize", new WildMaizeBlock(Material.PLANTS, 0.0F, 0.0F, SoundType.CROP));
 	public static final Block MAIZE = reg("maize", new DoubleCropsBlock("maize", Crop, 4, DoTBFoods.MAIZE));
 	public static final Block RED_ORNAMENTED_PLASTERED_STONE = reg("red_ornamented_plastered_stone", new BlockDoTB(Material.ROCK, 1.5F, 6.0F, SoundType.STONE));
 	public static final Block PLASTERED_STONE_COLUMN = reg("plastered_stone_column", new PlasteredStoneColumnBlock(Material.ROCK, 1.5F, 6.0F, SoundType.STONE));
@@ -275,6 +277,7 @@ public class DoTBBlocksRegistry {
 	public static final Block MOSAIC_FLOOR = reg("mosaic_floor", new BlockDoTB(Material.ROCK, 1.5F, 3.0F, SoundType.STONE));
 	public static final Block BIRCH_FOOTSTOOL = reg("birch_footstool", new BirchFootstool(Material.WOOD, 2.0F, 2.0F, SoundType.WOOD, 9.0F));
 	public static final Block BIRCH_COUCH = reg("birch_couch", new BirchCouch(Material.WOOD, 2.0F, 2.0F, SoundType.WOOD, 13.0F));
+	public static final Block WILD_GRAPE = reg("wild_grape", new WildPlantBlock(Material.PLANTS, 0.0F, 0.0F, SoundType.CROP));
 	public static final Block CYPRESS = reg("cypress", new CypressBlock(Material.LEAVES, 0.2F, 0.2F, SoundType.PLANT).setBurnable());
 
 	private static Block reg(String name, Block block){

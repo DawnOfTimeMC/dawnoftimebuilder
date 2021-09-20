@@ -358,6 +358,7 @@ public enum CreativeInventoryCategories {
 			Item.getItemFromBlock(FEATHERED_SERPENT_SCULPTURE),
 			Item.getItemFromBlock(SERPENT_SCULPTED_COLUMN),
 			Item.getItemFromBlock(COMMELINA),
+			Item.getItemFromBlock(WILD_MAIZE),
 			Item.getItemFromBlock(MAIZE)
 	),
 
@@ -398,6 +399,7 @@ public enum CreativeInventoryCategories {
 			Item.getItemFromBlock(BIRCH_FOOTSTOOL),
 			Item.getItemFromBlock(BIRCH_COUCH),
 			Item.getItemFromBlock(CYPRESS),
+			Item.getItemFromBlock(WILD_GRAPE),
 			DoTBItemsRegistry.GRAPE,
 			DoTBItemsRegistry.GRAPE_SEEDS
 	);
