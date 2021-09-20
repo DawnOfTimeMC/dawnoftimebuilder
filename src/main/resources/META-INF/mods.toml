@@ -4,7 +4,7 @@ issueTrackerURL="https://github.com/Poulpynou/dawnoftimebuilder/issues/"
 
 [[mods]] #mandatory
     modId="dawnoftimebuilder"
-    version="1.14.4-1.0.1"
+    version="1.14.4-1.0.5"
     displayName="Dawn Of Time : Builder Edition"
     updateJSONURL="https://raw.githubusercontent.com/Poulpynou/dawnoftimebuilder/1.14.4-master/update.json"
     displayURL="https://www.curseforge.com/minecraft/mc-mods/dawn-of-time"

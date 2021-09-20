@@ -1,4 +1,9 @@
-files:
-  - source: /src/main/resources/assets/dawnoftimebuilder/lang/en_US.json
-    translation: >-
-      /src/main/resources/assets/dawnoftimebuilder/lang/%locale_with_underscore%.json
+"files": [
+  {
+    "source": "/src/main/resources/assets/dawnoftimebuilder/lang/en_us.json",
+    "translation": "/src/main/resources/assets/dawnoftimebuilder/lang/%locale_with_underscore%.json",
+    "translation_replace": {
+      "fr_FR": "fr_fr"
+    }
+  }
+]
