@@ -1,6 +1,6 @@
 {
-  "replace": false,
-  "values": [
-    "minecraft:shears"
-  ]
+    "replace": false,
+    "values": [
+        "minecraft:shears"
+    ]
 }

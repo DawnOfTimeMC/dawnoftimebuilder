@@ -6,7 +6,7 @@
             "entries": [
                 {
                     "type": "minecraft:item",
-                    "name": "dawnoftimebuilder:commelina"
+                    "name": "dawnoftimebuilder:maize"
                 }
             ]
         },
@@ -32,7 +32,7 @@
             "conditions": [
                 {
                     "condition": "minecraft:block_state_property",
-                    "block": "dawnoftimebuilder:commelina",
+                    "block": "dawnoftimebuilder:maize",
                     "properties": {
                         "age": "7"
                     }

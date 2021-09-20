@@ -167,6 +167,11 @@ public class StickBundleBlock extends BlockDoTB implements IBlockChain {
 	}
 
 	@Override
+	public boolean isSolid(BlockState state) {
+		return false;
+	}
+
+	@Override
 	public boolean canConnectToChainUnder(BlockState state) {
 		return false;
 	}

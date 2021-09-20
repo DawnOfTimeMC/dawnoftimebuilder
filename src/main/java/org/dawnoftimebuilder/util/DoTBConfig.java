@@ -96,6 +96,24 @@ public class DoTBConfig {
     public static ForgeConfigSpec.IntValue RICE_TOP;
     public static ForgeConfigSpec.IntValue RICE_SPAWN_WIDTH;
     public static ForgeConfigSpec.IntValue RICE_SPAWN_HIGH;
+    public static ForgeConfigSpec.BooleanValue WILD_GRAPE_GENERATION;
+    public static ForgeConfigSpec.IntValue WILD_GRAPE_ROLLS;
+    public static ForgeConfigSpec.IntValue WILD_GRAPE_BOTTOM;
+    public static ForgeConfigSpec.IntValue WILD_GRAPE_TOP;
+    public static ForgeConfigSpec.IntValue WILD_GRAPE_SPAWN_WIDTH;
+    public static ForgeConfigSpec.IntValue WILD_GRAPE_SPAWN_HIGH;
+    public static ForgeConfigSpec.BooleanValue WILD_MAIZE_GENERATION;
+    public static ForgeConfigSpec.IntValue WILD_MAIZE_ROLLS;
+    public static ForgeConfigSpec.IntValue WILD_MAIZE_BOTTOM;
+    public static ForgeConfigSpec.IntValue WILD_MAIZE_TOP;
+    public static ForgeConfigSpec.IntValue WILD_MAIZE_SPAWN_WIDTH;
+    public static ForgeConfigSpec.IntValue WILD_MAIZE_SPAWN_HIGH;
+    public static ForgeConfigSpec.BooleanValue COMMELINA_GENERATION;
+    public static ForgeConfigSpec.IntValue COMMELINA_ROLLS;
+    public static ForgeConfigSpec.IntValue COMMELINA_BOTTOM;
+    public static ForgeConfigSpec.IntValue COMMELINA_TOP;
+    public static ForgeConfigSpec.IntValue COMMELINA_SPAWN_WIDTH;
+    public static ForgeConfigSpec.IntValue COMMELINA_SPAWN_HIGH;
 
     public static final String ENTITY_CATEGORY = "entity_properties";
     public static ForgeConfigSpec.IntValue SILKMOTH_SPAWN_CHANCE;
@@ -103,8 +121,10 @@ public class DoTBConfig {
     public static ForgeConfigSpec.IntValue SILKMOTH_ROTATION_MAX_RANGE;
     public static ForgeConfigSpec.BooleanValue SILKMOTH_MUST_DIE;
     public static ForgeConfigSpec.IntValue SILKMOTH_ROTATION_CHANGE;
+    public static ForgeConfigSpec.BooleanValue SILKMOTH_MUTE;
     public static ForgeConfigSpec.IntValue JAPANESE_DRAGON_HEALTH;
     public static ForgeConfigSpec.IntValue JAPANESE_DRAGON_ATTACK;
+    public static ForgeConfigSpec.BooleanValue JAPANESE_DRAGON_MUTE;
 
     static{
         COMMON_BUILDER.comment("----------------------------------------|| Food settings ||----------------------------------------").push(FOOD_CATEGORY);
@@ -135,11 +155,11 @@ public class DoTBConfig {
             COMMON_BUILDER.push("holy");
                 HOLY_DURABILITY = COMMON_BUILDER.comment("DurabilityFactor is multiplied with a value that depends on the armor part (between 11 and 16) to get the total durability :").defineInRange("holyDurabilityFactor", 45,1,1000);
                 HOLY_DEF_HELMET = COMMON_BUILDER.comment("Helmet damage reduction :").defineInRange("holyDefenseHelmet", 5,1,100);
-                HOLY_DEF_CHEST = COMMON_BUILDER.comment("Chest damage reduction :").defineInRange("holyDefenseChest", 12,1,100);
-                HOLY_DEF_LEGS = COMMON_BUILDER.comment("Legs damage reduction :").defineInRange("holyDefenseLegs", 9,1,100);
+                HOLY_DEF_CHEST = COMMON_BUILDER.comment("Chest damage reduction :").defineInRange("holyDefenseChest", 10,1,100);
+                HOLY_DEF_LEGS = COMMON_BUILDER.comment("Legs damage reduction :").defineInRange("holyDefenseLegs", 8,1,100);
                 HOLY_DEF_FEET = COMMON_BUILDER.comment("Feet damage reduction :").defineInRange("holyDefenseFeet", 5,1,100);
-                HOLY_ENCHANT = COMMON_BUILDER.comment("This armor's enchantability :").defineInRange("holyEnchantability", 10,1,100);
-                HOLY_TOUGHNESS = COMMON_BUILDER.comment("This armor's toughness :").defineInRange("holyToughness", 5.0,0.0,100.0);
+                HOLY_ENCHANT = COMMON_BUILDER.comment("This armor's enchantability :").defineInRange("holyEnchantability", 8,1,100);
+                HOLY_TOUGHNESS = COMMON_BUILDER.comment("This armor's toughness :").defineInRange("holyToughness", 4.0,0.0,100.0);
             COMMON_BUILDER.pop();
             COMMON_BUILDER.push("japanese_light");
                 JAPANESE_LIGHT_DURABILITY = COMMON_BUILDER.comment("DurabilityFactor is multiplied with a value that depends on the armor part (between 11 and 16) to get the total durability :").defineInRange("japaneseLightDurabilityFactor", 15,1,1000);
@@ -186,10 +206,12 @@ public class DoTBConfig {
                 SILKMOTH_ROTATION_MAX_RANGE = COMMON_BUILDER.defineInRange("silkmoth_rotation_max_range", 2, 0, 10);
                 SILKMOTH_MUST_DIE = COMMON_BUILDER.define("silkmoth_dies_after_one_day", true);
                 SILKMOTH_ROTATION_CHANGE = COMMON_BUILDER.comment("The probability to change the rotation point each tick is equal to 1/x, with x the following value :").defineInRange("silkmoth_rotation_change", 400, 10, 10000);
+                SILKMOTH_MUTE = COMMON_BUILDER.define("silkmoth_mute", false);
             COMMON_BUILDER.pop();
             COMMON_BUILDER.push("japanese_dragon");
                 JAPANESE_DRAGON_HEALTH = COMMON_BUILDER.defineInRange("japanese_dragon_default_max_health", 60, 1, 10000);
                 JAPANESE_DRAGON_ATTACK = COMMON_BUILDER.defineInRange("japanese_dragon_default_attack", 4, 1, 100);
+                JAPANESE_DRAGON_MUTE = COMMON_BUILDER.define("japanese_dragon_mute", false);
             COMMON_BUILDER.pop();
         COMMON_BUILDER.pop();
 
@@ -238,6 +260,30 @@ public class DoTBConfig {
                 RICE_TOP = COMMON_BUILDER.defineInRange("riceHighestY", 65,1,HIGHEST_Y);
                 RICE_SPAWN_WIDTH = COMMON_BUILDER.comment("Maximal horizontal distance from the center of the spawn zone :").defineInRange("riceSpawnWidth", 4,1,20);
                 RICE_SPAWN_HIGH = COMMON_BUILDER.comment("Maximal vertical distance from the center of the spawn zone :").defineInRange("riceSpawnHigh", 4,1,20);
+                COMMON_BUILDER.pop();
+            COMMON_BUILDER.push("wild_grape");
+                WILD_GRAPE_GENERATION = COMMON_BUILDER.comment("Must spawn this plant during world generation :").define("wildGrapeGeneration", true);
+                WILD_GRAPE_ROLLS = COMMON_BUILDER.comment("For each spawn zone, a position will be chose x times to place this plant, with x the following value :").defineInRange("wildGrapeRolls", 40,1,200);
+                WILD_GRAPE_BOTTOM = COMMON_BUILDER.defineInRange("wildGrapeLowestY", 60,1,HIGHEST_Y);
+                WILD_GRAPE_TOP = COMMON_BUILDER.defineInRange("wildGrapeHighestY", 80,1,HIGHEST_Y);
+                WILD_GRAPE_SPAWN_WIDTH = COMMON_BUILDER.comment("Maximal horizontal distance from the center of the spawn zone :").defineInRange("wildGrapeSpawnWidth", 6,1,20);
+                WILD_GRAPE_SPAWN_HIGH = COMMON_BUILDER.comment("Maximal vertical distance from the center of the spawn zone :").defineInRange("wildGrapeSpawnHigh", 6,1,20);
+            COMMON_BUILDER.pop();
+            COMMON_BUILDER.push("wild_maize");
+                WILD_MAIZE_GENERATION = COMMON_BUILDER.comment("Must spawn this plant during world generation :").define("wildMaizeGeneration", true);
+                WILD_MAIZE_ROLLS = COMMON_BUILDER.comment("For each spawn zone, a position will be chose x times to place this plant, with x the following value :").defineInRange("wildMaizeRolls", 80,1,200);
+                WILD_MAIZE_BOTTOM = COMMON_BUILDER.defineInRange("wildMaizeLowestY", 60,1,HIGHEST_Y);
+                WILD_MAIZE_TOP = COMMON_BUILDER.defineInRange("wildMaizeHighestY", HIGHEST_Y,1,HIGHEST_Y);
+                WILD_MAIZE_SPAWN_WIDTH = COMMON_BUILDER.comment("Maximal horizontal distance from the center of the spawn zone :").defineInRange("wildMaizeSpawnWidth", 4,1,20);
+                WILD_MAIZE_SPAWN_HIGH = COMMON_BUILDER.comment("Maximal vertical distance from the center of the spawn zone :").defineInRange("wildMaizeSpawnHigh", 4,1,20);
+            COMMON_BUILDER.pop();
+            COMMON_BUILDER.push("wild_commelina");
+                COMMELINA_GENERATION = COMMON_BUILDER.comment("Must spawn this plant during world generation :").define("commelinaGeneration", true);
+                COMMELINA_ROLLS = COMMON_BUILDER.comment("For each spawn zone, a position will be chose x times to place this plant, with x the following value :").defineInRange("commelinaRolls", 80,1,200);
+                COMMELINA_BOTTOM = COMMON_BUILDER.defineInRange("commelinaLowestY", 60,1,HIGHEST_Y);
+                COMMELINA_TOP = COMMON_BUILDER.defineInRange("commelinaHighestY", HIGHEST_Y,1,HIGHEST_Y);
+                COMMELINA_SPAWN_WIDTH = COMMON_BUILDER.comment("Maximal horizontal distance from the center of the spawn zone :").defineInRange("commelinaSpawnWidth", 4,1,20);
+                COMMELINA_SPAWN_HIGH = COMMON_BUILDER.comment("Maximal vertical distance from the center of the spawn zone :").defineInRange("commelinaSpawnHigh", 4,1,20);
             COMMON_BUILDER.pop();
         COMMON_BUILDER.pop();
 

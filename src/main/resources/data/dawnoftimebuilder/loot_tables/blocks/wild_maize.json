@@ -1,0 +1,43 @@
+{
+    "type": "minecraft:block",
+    "pools": [
+        {
+            "rolls": 1,
+            "entries": [
+                {
+                    "type": "minecraft:alternatives",
+                    "children": [
+                        {
+                            "type": "minecraft:item",
+                            "name": "dawnoftimebuilder:wild_maize",
+                            "conditions": [
+                                {
+                                    "condition": "minecraft:match_tool",
+                                    "predicate": {
+                                        "item": "minecraft:shears"
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "type": "minecraft:item",
+                            "name": "dawnoftimebuilder:maize",
+                            "conditions": [
+                                {
+                                    "condition": "minecraft:survives_explosion"
+                                },
+                                {
+                                    "condition": "minecraft:block_state_property",
+                                    "block": "dawnoftimebuilder:wild_maize",
+                                    "properties": {
+                                        "half": "bottom"
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

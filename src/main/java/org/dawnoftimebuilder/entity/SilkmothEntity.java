@@ -44,12 +44,6 @@ public class SilkmothEntity extends AmbientEntity {
 		return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 	}
 
-	public static void createEntity(World world) {
-		if(!world.isRemote()) {
-			world.addEntity(new SilkmothEntity(world));
-		}
-	}
-
 	private float getNewRotationDistance(){
 		return 0.5F + DoTBConfig.SILKMOTH_ROTATION_MAX_RANGE.get() * this.rand.nextFloat();
 	}
@@ -187,7 +181,7 @@ public class SilkmothEntity extends AmbientEntity {
 	@Nullable
 	@Override
 	public SoundEvent getAmbientSound() {
-		return this.rand.nextInt(4) != 0 ? null : SoundEvents.ENTITY_BAT_AMBIENT;
+		return !DoTBConfig.SILKMOTH_MUTE.get() && this.rand.nextInt(4) == 0 ? SoundEvents.ENTITY_BAT_AMBIENT : null;
 	}
 
 	@Override
