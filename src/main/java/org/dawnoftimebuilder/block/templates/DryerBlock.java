@@ -126,7 +126,7 @@ public class DryerBlock extends WaterloggedBlock {
 	@Nullable
 	@Override
 	public TileEntity createTileEntity(BlockState state, IBlockReader world){
-		return DRYER_TE.create();
+		return DRYER_TE.get().create();
 	}
 
 	@Override

@@ -8,7 +8,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.PlantType;
 import org.dawnoftimebuilder.block.templates.DoubleGrowingBushBlock;
-import org.dawnoftimebuilder.util.DoTBConfig;
+import org.dawnoftimebuilder.DoTBConfig;
 
 import java.util.Random;
 

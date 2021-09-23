@@ -19,7 +19,7 @@ import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
-import org.dawnoftimebuilder.util.DoTBConfig;
+import org.dawnoftimebuilder.DoTBConfig;
 
 import javax.annotation.Nullable;
 

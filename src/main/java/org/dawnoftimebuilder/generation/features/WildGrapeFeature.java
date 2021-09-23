@@ -9,7 +9,7 @@ import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import org.dawnoftimebuilder.block.templates.WildPlantBlock;
 import org.dawnoftimebuilder.registry.DoTBBlocksRegistry;
-import org.dawnoftimebuilder.util.DoTBConfig;
+import org.dawnoftimebuilder.DoTBConfig;
 
 import java.util.Random;
 import java.util.function.Function;

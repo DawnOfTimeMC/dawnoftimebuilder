@@ -8,7 +8,7 @@ import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraft.world.gen.placement.ChanceRangeConfig;
 import net.minecraft.world.gen.placement.Placement;
 import org.dawnoftimebuilder.generation.features.*;
-import org.dawnoftimebuilder.util.DoTBConfig;
+import org.dawnoftimebuilder.DoTBConfig;
 
 import java.util.ArrayList;
 import java.util.List;

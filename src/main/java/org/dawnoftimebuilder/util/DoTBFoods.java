@@ -1,6 +1,7 @@
 package org.dawnoftimebuilder.util;
 
 import net.minecraft.item.Food;
+import org.dawnoftimebuilder.DoTBConfig;
 
 public class DoTBFoods {
     public static final Food GRAPE = (new Food.Builder())

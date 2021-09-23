@@ -1,8 +1,10 @@
 package org.dawnoftimebuilder.registry;
 
+import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.IRecipeSerializer;
-import net.minecraftforge.registries.IForgeRegistry;
-import net.minecraftforge.registries.ObjectHolder;
+import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
 import org.dawnoftimebuilder.recipe.DryerRecipe;
 import org.dawnoftimebuilder.recipe.DryerRecipeSerializer;
 
@@ -10,10 +12,11 @@ import static org.dawnoftimebuilder.DawnOfTimeBuilder.MOD_ID;
 
 public class DoTBRecipesRegistry {
 
-	@ObjectHolder(MOD_ID + ":dryer")
-	public static final IRecipeSerializer<?> DRYER_RECIPE = null;
+	public static final DeferredRegister<IRecipeSerializer<?>> RECIPES = DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, MOD_ID);
 
-	public static void registerAll(IForgeRegistry<IRecipeSerializer<?>> registry) {
-		registry.register(new DryerRecipeSerializer<>(DryerRecipe::new).setRegistryName(MOD_ID, "dryer"));
+	public static final RegistryObject<DryerRecipeSerializer<DryerRecipe>>  DRYER_RECIPE = reg("dryer", new DryerRecipeSerializer<>(DryerRecipe::new));
+
+	private static <T extends IRecipeSerializer<? extends IRecipe<?>>> RegistryObject<T> reg(String name, T t){
+		return RECIPES.register(name, () -> t);
 	}
 }

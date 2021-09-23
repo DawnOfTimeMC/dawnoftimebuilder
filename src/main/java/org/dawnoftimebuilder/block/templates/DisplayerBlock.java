@@ -48,7 +48,7 @@ public abstract class DisplayerBlock extends WaterloggedBlock {
 	@Nullable
 	@Override
 	public TileEntity createTileEntity(BlockState state, IBlockReader world){
-		return DISPLAYER_TE.create();
+		return DISPLAYER_TE.get().create();
 	}
 
 	@Override

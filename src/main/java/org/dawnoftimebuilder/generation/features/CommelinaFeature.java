@@ -8,10 +8,9 @@ import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.GenerationSettings;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
-import org.dawnoftimebuilder.block.templates.GrowingBushBlock;
 import org.dawnoftimebuilder.block.templates.SoilCropsBlock;
 import org.dawnoftimebuilder.registry.DoTBBlocksRegistry;
-import org.dawnoftimebuilder.util.DoTBConfig;
+import org.dawnoftimebuilder.DoTBConfig;
 
 import java.util.Random;
 import java.util.function.Function;

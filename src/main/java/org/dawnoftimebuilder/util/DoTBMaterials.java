@@ -5,11 +5,13 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.IArmorMaterial;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.util.LazyLoadBase;
+import net.minecraft.util.LazyValue;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import org.dawnoftimebuilder.DoTBConfig;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Supplier;
 
@@ -25,9 +27,9 @@ public class DoTBMaterials {
 						DoTBConfig.IRON_PLATE_DEF_CHEST.get(),
 						DoTBConfig.IRON_PLATE_DEF_HELMET.get()},
 				DoTBConfig.IRON_PLATE_ENCHANT.get(),
-				SoundEvents.ITEM_ARMOR_EQUIP_IRON,
+				SoundEvents.ARMOR_EQUIP_IRON,
 				DoTBConfig.IRON_PLATE_TOUGHNESS.get().floatValue(),
-				() -> Ingredient.fromItems(Items.IRON_INGOT)),
+				() -> Ingredient.of(Items.IRON_INGOT)),
 		HOLY(
 				"iron_plate",
 				DoTBConfig.HOLY_DURABILITY.get(),
@@ -37,9 +39,9 @@ public class DoTBMaterials {
 						DoTBConfig.HOLY_DEF_CHEST.get(),
 						DoTBConfig.HOLY_DEF_HELMET.get()},
 				DoTBConfig.HOLY_ENCHANT.get(),
-				SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND,
+				SoundEvents.ARMOR_EQUIP_DIAMOND,
 				DoTBConfig.HOLY_TOUGHNESS.get().floatValue(),
-				() -> Ingredient.fromItems(Blocks.GOLD_BLOCK.asItem())),
+				() -> Ingredient.of(Blocks.GOLD_BLOCK.asItem())),
 		JAPANESE_LIGHT(
 				"japanese_light",
 				DoTBConfig.JAPANESE_LIGHT_DURABILITY.get(),
@@ -49,9 +51,9 @@ public class DoTBMaterials {
 						DoTBConfig.JAPANESE_LIGHT_DEF_CHEST.get(),
 						DoTBConfig.JAPANESE_LIGHT_DEF_HELMET.get()},
 				DoTBConfig.JAPANESE_LIGHT_ENCHANT.get(),
-				SoundEvents.ITEM_ARMOR_EQUIP_LEATHER,
+				SoundEvents.ARMOR_EQUIP_LEATHER,
 				DoTBConfig.JAPANESE_LIGHT_TOUGHNESS.get().floatValue(),
-				() -> Ingredient.fromItems(Items.LEATHER)),
+				() -> Ingredient.of(Items.LEATHER)),
 		O_YOROI(
 				"o_yoroi",
 				DoTBConfig.O_YOROI_DURABILITY.get(),
@@ -61,9 +63,9 @@ public class DoTBMaterials {
 						DoTBConfig.O_YOROI_DEF_CHEST.get(),
 						DoTBConfig.O_YOROI_DEF_HELMET.get()},
 				DoTBConfig.O_YOROI_ENCHANT.get(),
-				SoundEvents.ITEM_ARMOR_EQUIP_IRON,
+				SoundEvents.ARMOR_EQUIP_IRON,
 				DoTBConfig.O_YOROI_TOUGHNESS.get().floatValue(),
-				() -> Ingredient.fromItems(Items.REDSTONE_BLOCK.asItem())),
+				() -> Ingredient.of(Items.REDSTONE_BLOCK.asItem())),
 		PHARAOH(
 				"pharaoh",
 				DoTBConfig.PHARAOH_DURABILITY.get(),
@@ -73,9 +75,9 @@ public class DoTBMaterials {
 					DoTBConfig.PHARAOH_DEF_CHEST.get(),
 					DoTBConfig.PHARAOH_DEF_HELMET.get()},
 				DoTBConfig.PHARAOH_ENCHANT.get(),
-				SoundEvents.ITEM_ARMOR_EQUIP_GOLD,
+				SoundEvents.ARMOR_EQUIP_GOLD,
 				DoTBConfig.PHARAOH_TOUGHNESS.get().floatValue(),
-				() -> Ingredient.fromItems(Items.GOLD_INGOT)),
+				() -> Ingredient.of(Items.GOLD_INGOT)),
 		RAIJIN(
 				"raijin",
 				DoTBConfig.RAIJIN_DURABILITY.get(),
@@ -85,9 +87,9 @@ public class DoTBMaterials {
 					DoTBConfig.RAIJIN_DEF_CHEST.get(),
 					DoTBConfig.RAIJIN_DEF_HELMET.get()},
 				DoTBConfig.RAIJIN_ENCHANT.get(),
-				SoundEvents.ITEM_ARMOR_EQUIP_LEATHER,
+				SoundEvents.ARMOR_EQUIP_LEATHER,
 				DoTBConfig.RAIJIN_TOUGHNESS.get().floatValue(),
-				() -> Ingredient.fromItems(Blocks.GOLD_BLOCK.asItem()));
+				() -> Ingredient.of(Blocks.GOLD_BLOCK.asItem()));
 
 		private static final int[] MAX_DAMAGE_ARRAY = new int[]{13, 15, 16, 11};
 		private final String name;
@@ -96,7 +98,7 @@ public class DoTBMaterials {
 		private final int enchantability;
 		private final SoundEvent soundEvent;
 		private final float toughness;
-		private final LazyLoadBase<Ingredient> repairMaterial;
+		private final LazyValue<Ingredient> repairMaterial;
 
 		/**
 		 * @param nameIn Material name.
@@ -114,36 +116,48 @@ public class DoTBMaterials {
 			this.enchantability = enchantabilityIn;
 			this.soundEvent = equipSoundIn;
 			this.toughness = toughness;
-			this.repairMaterial = new LazyLoadBase<>(repairMaterialSupplier);
+			this.repairMaterial = new LazyValue<>(repairMaterialSupplier);
 		}
 
-		public int getDurability(EquipmentSlotType slotIn) {
-			return MAX_DAMAGE_ARRAY[slotIn.getIndex()] * this.maxDamageFactor;
-		}
-
-		public int getDamageReductionAmount(EquipmentSlotType slotIn) {
+		@Override
+		public int getDefenseForSlot(EquipmentSlotType slotIn) {
 			return this.damageReductionAmountArray[slotIn.getIndex()];
 		}
 
-		public int getEnchantability() {
+		@Override
+		public int getEnchantmentValue() {
 			return this.enchantability;
 		}
 
-		public SoundEvent getSoundEvent() {
+		@Override
+		public @NotNull SoundEvent getEquipSound() {
 			return this.soundEvent;
 		}
 
-		public Ingredient getRepairMaterial() {
-			return this.repairMaterial.getValue();
+		@Override
+		public @NotNull Ingredient getRepairIngredient() {
+			return this.repairMaterial.get();
 		}
 
+		@Override
+		public int getDurabilityForSlot(EquipmentSlotType slotIn) {
+			return MAX_DAMAGE_ARRAY[slotIn.getIndex()] * this.maxDamageFactor;
+		}
+
+		@Override
 		@OnlyIn(Dist.CLIENT)
-		public String getName() {
+		public @NotNull String getName() {
 			return this.name;
 		}
 
+		@Override
 		public float getToughness() {
 			return this.toughness;
+		}
+
+		@Override
+		public float getKnockbackResistance() {
+			return 0;
 		}
 	}
 
@@ -153,16 +167,16 @@ public class DoTBMaterials {
 			return Ingredient.fromTag(ItemTags.PLANKS);
 		}),
 		STONE(1, 131, 4.0F, 1.0F, 5, () -> {
-			return Ingredient.fromItems(Blocks.COBBLESTONE);
+			return Ingredient.of(Blocks.COBBLESTONE);
 		}),
 		IRON(2, 250, 6.0F, 2.0F, 14, () -> {
-			return Ingredient.fromItems(Items.IRON_INGOT);
+			return Ingredient.of(Items.IRON_INGOT);
 		}),
 		DIAMOND(3, 1561, 8.0F, 3.0F, 10, () -> {
-			return Ingredient.fromItems(Items.DIAMOND);
+			return Ingredient.of(Items.DIAMOND);
 		}),
 		GOLD(0, 32, 12.0F, 0.0F, 22, () -> {
-			return Ingredient.fromItems(Items.GOLD_INGOT);
+			return Ingredient.of(Items.GOLD_INGOT);
 		});
 
 		private final int harvestLevel;

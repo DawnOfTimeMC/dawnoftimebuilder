@@ -13,7 +13,7 @@ import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.ForgeHooks;
 import org.dawnoftimebuilder.util.DoTBBlockStateProperties;
 import org.dawnoftimebuilder.util.DoTBBlockUtils;
-import org.dawnoftimebuilder.util.DoTBConfig;
+import org.dawnoftimebuilder.DoTBConfig;
 
 import java.util.List;
 import java.util.Random;

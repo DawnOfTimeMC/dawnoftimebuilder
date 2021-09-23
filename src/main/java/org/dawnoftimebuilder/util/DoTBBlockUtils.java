@@ -47,7 +47,6 @@ public class DoTBBlockUtils {
 	public static final Tag<Item> LIGHTERS = new ItemTags.Wrapper(new ResourceLocation(MOD_ID, "lighters"));
 
 	//Block tags
-	public static final Tag<Block> CHAINS = new BlockTags.Wrapper(new ResourceLocation(MOD_ID, "chains"));
 	public static final Tag<Block> COVERED_BLOCKS = new BlockTags.Wrapper(new ResourceLocation(MOD_ID, "covered_blocks"));
 
 	/** Fills a table with VS rotated in each horizontal directions following the horizontal index order :<p/>

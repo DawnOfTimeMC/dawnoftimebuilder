@@ -18,7 +18,7 @@ public class ChairEntity extends Entity {
     private BlockPos pos;
 
     public ChairEntity(World world){
-        super(CHAIR_ENTITY, world);
+        super(CHAIR_ENTITY.get(), world);
         this.noClip = true;
     }
 

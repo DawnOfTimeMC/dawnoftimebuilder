@@ -1,12 +1,15 @@
-package org.dawnoftimebuilder.proxy;
+package org.dawnoftimebuilder;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import org.dawnoftimebuilder.client.gui.creative.CreativeInventoryEvents;
 import org.dawnoftimebuilder.client.gui.screen.DisplayerScreen;
 import org.dawnoftimebuilder.client.renderer.entity.JapaneseDragonRenderer;
@@ -20,9 +23,12 @@ import org.dawnoftimebuilder.tileentity.DryerTileEntity;
 
 import static org.dawnoftimebuilder.registry.DoTBContainersRegistry.DISPLAYER_CONTAINER;
 
-public class ClientProxy extends CommonProxy {
+@Mod.EventBusSubscriber(modid = DawnOfTimeBuilder.MOD_ID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.FORGE)
+public class HandlerClient {
 
-	public ClientProxy(){}
+	public static void init(final FMLCommonSetupEvent event){
+
+	}
 
 	@Override
 	public void onSetupClient(){
@@ -35,10 +41,5 @@ public class ClientProxy extends CommonProxy {
 
 		RenderingRegistry.registerEntityRenderingHandler(SilkmothEntity.class, SilkmothRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(JapaneseDragonEntity.class, JapaneseDragonRenderer::new);
-	}
-
-	@Override
-	public World getClientWorld() {
-		return Minecraft.getInstance().world;
 	}
 }

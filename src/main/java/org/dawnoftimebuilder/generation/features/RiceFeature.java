@@ -12,7 +12,7 @@ import org.dawnoftimebuilder.block.templates.SoilCropsBlock;
 import org.dawnoftimebuilder.block.templates.WaterDoubleCropsBlock;
 import org.dawnoftimebuilder.block.templates.WaterloggedBlock;
 import org.dawnoftimebuilder.registry.DoTBBlocksRegistry;
-import org.dawnoftimebuilder.util.DoTBConfig;
+import org.dawnoftimebuilder.DoTBConfig;
 
 import java.util.Random;
 import java.util.function.Function;

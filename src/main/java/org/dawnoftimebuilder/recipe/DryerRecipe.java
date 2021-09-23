@@ -43,23 +43,22 @@ public class DryerRecipe implements IRecipe<IInventory> {
 
     @Override
     public boolean matches(IInventory inv, World worldIn) {
-        return this.ingredient.test(inv.getStackInSlot(0)) && inv.getStackInSlot(0).getCount() >= this.ingredient.getMatchingStacks()[0].getCount();
+        return this.ingredient.test(inv.getItem(0)) && inv.getItem(0).getCount() >= this.ingredient.getItems()[0].getCount();
     }
 
     @Override
-    public ItemStack getCraftingResult(IInventory inv) {
+    public ItemStack getResultItem() {
+        return this.result;
+    }
+
+    @Override
+    public ItemStack assemble(IInventory inv) {
         return this.result.copy();
     }
 
     @Override
-    public boolean canFit(int width, int height) {
+    public boolean canCraftInDimensions(int width, int height) {
         return true;
-    }
-
-    @Override
-    @Nonnull
-    public ItemStack getRecipeOutput() {
-        return this.result;
     }
 
     @Override
@@ -70,7 +69,7 @@ public class DryerRecipe implements IRecipe<IInventory> {
 
     @Override
     public IRecipeSerializer<?> getSerializer() {
-        return DRYER_RECIPE;
+        return DRYER_RECIPE.get();
     }
 
     @Override
@@ -88,8 +87,7 @@ public class DryerRecipe implements IRecipe<IInventory> {
     }
 
     @Override
-    @Nonnull
-    public ItemStack getIcon() {
-        return new ItemStack(BAMBOO_DRYING_TRAY);
+    public ItemStack getToastSymbol() {
+        return new ItemStack(BAMBOO_DRYING_TRAY.get());
     }
 }

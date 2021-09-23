@@ -24,39 +24,39 @@ public class DryerRecipeSerializer<T extends DryerRecipe> extends ForgeRegistryE
 
     @Override
     @Nonnull
-    public T read(@Nonnull ResourceLocation recipeId, @Nonnull JsonObject json) {
+    public T fromJson(@Nonnull ResourceLocation recipeId, @Nonnull JsonObject json) {
 
         if (!json.has("ingredient")) throw new JsonSyntaxException("The object 'ingredient' is missing.");
         if(!json.get("ingredient").isJsonObject()) throw new JsonSyntaxException("'ingredient' is expected to be an object.");
         if (!json.has("result")) throw new JsonSyntaxException("The object 'result' is missing.");
         if(!json.get("result").isJsonObject()) throw new JsonSyntaxException("'result' is expected to be an object.");
 
-        String group = JSONUtils.getString(json, "group", "");
-        Ingredient ingredient = Ingredient.deserialize(json.get("ingredient"));
-        ingredient.getMatchingStacks()[0].setCount(JSONUtils.getInt(JSONUtils.getJsonObject(json, "ingredient"), "count", 1));
-        ItemStack itemStackResult = ShapedRecipe.deserializeItem(JSONUtils.getJsonObject(json, "result"));
-        float experience = JSONUtils.getFloat(json, "experience", 0.0F);
-        int dryingTime = JSONUtils.getInt(json, "dryingTime", 1200);
+        String group = JSONUtils.getAsString(json, "group", "");
+        Ingredient ingredient = Ingredient.fromJson(json.get("ingredient"));
+        ingredient.getItems()[0].setCount(JSONUtils.getAsInt(JSONUtils.getAsJsonObject(json, "ingredient"), "count", 1));
+        ItemStack itemStackResult = ShapedRecipe.itemFromJson(JSONUtils.getAsJsonObject(json, "result"));
+        float experience = JSONUtils.getAsFloat(json, "experience", 0.0F);
+        int dryingTime = JSONUtils.getAsInt(json, "dryingTime", 1200);
 
         return this.FACTORY.create(recipeId, group, ingredient, itemStackResult, experience, dryingTime);
     }
 
     @Nullable
     @Override
-    public T read(@Nonnull ResourceLocation recipeId, PacketBuffer buffer) {
-        String group = buffer.readString(32767);
-        Ingredient ingredient = Ingredient.read(buffer);
-        ItemStack itemStackResult = buffer.readItemStack();
+    public T fromNetwork(@Nonnull ResourceLocation recipeId, PacketBuffer buffer) {
+        String group = buffer.readUtf(32767);
+        Ingredient ingredient = Ingredient.fromNetwork(buffer);
+        ItemStack itemStackResult = buffer.readItem();
         float experience = buffer.readFloat();
         int dryingTime = buffer.readVarInt();
         return this.FACTORY.create(recipeId, group, ingredient, itemStackResult, experience, dryingTime);
     }
 
     @Override
-    public void write(PacketBuffer buffer, T recipe) {
-        buffer.writeString(recipe.group);
-        recipe.ingredient.write(buffer);
-        buffer.writeItemStack(recipe.result);
+    public void toNetwork(PacketBuffer buffer, T recipe) {
+        buffer.writeUtf(recipe.group);
+        recipe.ingredient.toNetwork(buffer);
+        buffer.writeItemStack(recipe.result, true);
         buffer.writeFloat(recipe.experience);
         buffer.writeVarInt(recipe.dryingTime);
     }

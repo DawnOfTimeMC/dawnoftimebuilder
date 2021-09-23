@@ -1,30 +1,26 @@
 package org.dawnoftimebuilder.registry;
 
-import net.minecraft.tileentity.TileEntityType;
-
+import net.minecraft.block.Block;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntityType;
+import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
 import org.dawnoftimebuilder.tileentity.DisplayerTileEntity;
 import org.dawnoftimebuilder.tileentity.DryerTileEntity;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.function.Supplier;
 
 import static org.dawnoftimebuilder.DawnOfTimeBuilder.MOD_ID;
-import static org.dawnoftimebuilder.registry.DoTBBlocksRegistry.BAMBOO_DRYING_TRAY;
-import static org.dawnoftimebuilder.registry.DoTBBlocksRegistry.SPRUCE_LOW_TABLE;
 
 public class DoTBTileEntitiesRegistry {
 
-	public static final List<TileEntityType<?>> TILE_ENTITY_TYPES = new ArrayList<>();
+	public static final DeferredRegister<TileEntityType<?>> TILE_ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.TILE_ENTITIES, MOD_ID);
 
-	public static final TileEntityType<DryerTileEntity> DRYER_TE = reg("dryer", TileEntityType.Builder.create(DryerTileEntity::new, BAMBOO_DRYING_TRAY));
-	public static final TileEntityType<DisplayerTileEntity> DISPLAYER_TE = reg("displayer", TileEntityType.Builder.create(DisplayerTileEntity::new, SPRUCE_LOW_TABLE));
-	//public static final TileEntityType<DoTBTileEntityStove> STOVE_TE = buildType("stove", TileEntityType.Builder.create(DoTBTileEntityStove::new, ));
+	public static final RegistryObject<TileEntityType<DryerTileEntity>> DRYER_TE = reg("dryer", DryerTileEntity::new, () -> new Block[]{DoTBBlocksRegistry.BAMBOO_DRYING_TRAY.get()});
+	public static final RegistryObject<TileEntityType<DisplayerTileEntity>> DISPLAYER_TE = reg("displayer", DisplayerTileEntity::new,  () -> new Block[]{DoTBBlocksRegistry.SPRUCE_LOW_TABLE.get()});
 
-	private static <T extends TileEntity> TileEntityType<T> reg(String id, TileEntityType.Builder<T> builder) {
-		TileEntityType<T> type = builder.build(null);
-		type.setRegistryName(MOD_ID, id);
-		TILE_ENTITY_TYPES.add(type);
-		return type;
+	private static <T extends TileEntity> RegistryObject<TileEntityType<T>> reg(String name, Supplier<T> factoryIn, Supplier<Block[]> validBlocksSupplier){
+		return TILE_ENTITY_TYPES.register(name, () -> TileEntityType.Builder.of(factoryIn, validBlocksSupplier.get()).build(null));
 	}
 }

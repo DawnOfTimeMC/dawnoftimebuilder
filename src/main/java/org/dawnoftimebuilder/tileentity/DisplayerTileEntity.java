@@ -1,5 +1,6 @@
 package org.dawnoftimebuilder.tileentity;
 
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
@@ -25,7 +26,7 @@ public class DisplayerTileEntity extends TileEntity implements INamedContainerPr
 	private final ItemStackHandler itemHandler = createHandler();
 
 	public DisplayerTileEntity() {
-		super(DISPLAYER_TE);
+		super(DISPLAYER_TE.get());
 	}
 
 	@Nonnull
@@ -43,24 +44,23 @@ public class DisplayerTileEntity extends TileEntity implements INamedContainerPr
 		tag.put("inv", itemHandler.serializeNBT());
 		return tag;
 	}
-
 	@Override
-	public void handleUpdateTag(CompoundNBT tag) {
+	public void handleUpdateTag(BlockState state, CompoundNBT tag) {
 		//Only on client side
 		itemHandler.deserializeNBT(tag.getCompound("inv"));
-		super.handleUpdateTag(tag);
+		super.handleUpdateTag(state, tag);
 	}
 
 	@Override
-	public CompoundNBT write(CompoundNBT tag) {
+	public CompoundNBT save(CompoundNBT tag) {
 		tag.put("inv", itemHandler.serializeNBT());
-		return super.write(tag);
+		return super.save(tag);
 	}
 
 	@Override
-	public void read(CompoundNBT tag) {
+	public void load(BlockState state, CompoundNBT tag) {
 		itemHandler.deserializeNBT(tag.getCompound("inv"));
-		super.read(tag);
+		super.load(state, tag);
 	}
 
 	private ItemStackHandler createHandler() {
@@ -74,13 +74,13 @@ public class DisplayerTileEntity extends TileEntity implements INamedContainerPr
 
 	@Override
 	public ITextComponent getDisplayName() {
-		return new StringTextComponent(getType().getRegistryName().getPath());
+		return new StringTextComponent(this.getType().getRegistryName().getPath());
 	}
 
 	@Nullable
 	@Override
 	public Container createMenu(int windowID, PlayerInventory playerInventory, PlayerEntity playerEntity) {
-		if(this.getWorld() == null) return null;
-		return new DisplayerContainer(windowID, playerInventory, this.getWorld(), this.getPos());
+		if(this.getLevel() == null) return null;
+		return new DisplayerContainer(windowID, playerInventory, this.getLevel(), this.getBlockPos());
 	}
 }

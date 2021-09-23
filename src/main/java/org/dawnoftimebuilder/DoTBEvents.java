@@ -7,10 +7,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.world.gen.feature.Feature;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.client.event.ModelRegistryEvent;
-import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -25,41 +21,10 @@ import static org.dawnoftimebuilder.registry.DoTBContainersRegistry.CONTAINER_TY
 import static org.dawnoftimebuilder.registry.DoTBEntitiesRegistry.ENTITY_TYPES;
 import static org.dawnoftimebuilder.registry.DoTBFeaturesRegistry.FEATURES;
 import static org.dawnoftimebuilder.registry.DoTBItemsRegistry.ITEMS;
-import static org.dawnoftimebuilder.registry.DoTBSpecialModelRegistry.SPECIAL_MODELS;
 import static org.dawnoftimebuilder.registry.DoTBTileEntitiesRegistry.TILE_ENTITY_TYPES;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD, modid = MOD_ID)
 public class DoTBEvents {
-
-	@SubscribeEvent
-	public static void registerBlocks(RegistryEvent.Register<Block> event){
-		BLOCKS.forEach(block -> event.getRegistry().register(block));
-		BLOCKS.clear();
-	}
-
-	@SubscribeEvent
-	public static void registerItems(RegistryEvent.Register<Item> event){
-		ITEMS.forEach(item -> event.getRegistry().register(item));
-		ITEMS.clear();
-	}
-
-	@SubscribeEvent
-	public static void registerEntityTypes(RegistryEvent.Register<EntityType<?>> event){
-		ENTITY_TYPES.forEach(type -> event.getRegistry().register(type));
-		ENTITY_TYPES.clear();
-	}
-
-	@SubscribeEvent
-	public static void registerTileEntityTypes(RegistryEvent.Register<TileEntityType<?>> event){
-		TILE_ENTITY_TYPES.forEach(type -> event.getRegistry().register(type));
-		TILE_ENTITY_TYPES.clear();
-	}
-
-	@SubscribeEvent
-	public static void registerContainerTypes(final RegistryEvent.Register<ContainerType<?>> event){
-		CONTAINER_TYPES.forEach(type -> event.getRegistry().register(type));
-		CONTAINER_TYPES.clear();
-	}
 
 	/**
 	 * Register features (plants, flowers, etc.)
@@ -68,15 +33,6 @@ public class DoTBEvents {
 	public static void registerFeatures(final RegistryEvent.Register<Feature<?>> event) {
 		FEATURES.forEach(type -> event.getRegistry().register(type));
 		FEATURES.clear();
-	}
-
-	/**
-	 * Register recipes' serializer
-	 */
-	@SubscribeEvent
-	public static void registerSerializers(final RegistryEvent.Register<IRecipeSerializer<?>> event) {
-		IForgeRegistry<IRecipeSerializer<?>> registry = event.getRegistry();
-		DoTBRecipesRegistry.registerAll(registry);
 	}
 
 	/**

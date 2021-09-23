@@ -28,7 +28,7 @@ import net.minecraft.world.server.ServerWorld;
 import org.dawnoftimebuilder.block.IBlockChain;
 import org.dawnoftimebuilder.block.templates.BlockDoTB;
 import org.dawnoftimebuilder.util.DoTBBlockUtils;
-import org.dawnoftimebuilder.util.DoTBConfig;
+import org.dawnoftimebuilder.DoTBConfig;
 
 import javax.annotation.Nullable;
 import java.util.List;

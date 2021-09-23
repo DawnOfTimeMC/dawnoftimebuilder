@@ -6,6 +6,7 @@ import net.minecraft.client.gui.screen.inventory.CreativeScreen;
 import net.minecraft.client.gui.widget.button.Button;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.GuiScreenEvent;
@@ -42,14 +43,14 @@ public class CreativeInventoryEvents {
 			this.guiCenterY = ((CreativeScreen) event.getGui()).getGuiTop();
 			this.buttons = new ArrayList<>();
 
-			event.addWidget(this.btnScrollUp = new GroupButton(this.guiCenterX - 22, this.guiCenterY - 22, "", button -> {
+			event.addWidget(this.btnScrollUp = new GroupButton(this.guiCenterX - 22, this.guiCenterY - 22, StringTextComponent.EMPTY, button -> {
 				if(page > 0){
 					page--;
 					this.updateCategoryButtons();
 				}
 			}, CREATIVE_ICONS, 0, 56));
 
-			event.addWidget(this.btnScrollDown = new GroupButton(this.guiCenterX - 22, this.guiCenterY + 120, "", button -> {
+			event.addWidget(this.btnScrollDown = new GroupButton(this.guiCenterX - 22, this.guiCenterY + 120, StringTextComponent.EMPTY, button -> {
 				if(page < MAX_PAGE){
 					page++;
 					this.updateCategoryButtons();
@@ -63,7 +64,7 @@ public class CreativeInventoryEvents {
 						buttons.get(selectedCategoryID % 4).setSelected(false);
 						categoryButton.setSelected(true);
 						selectedCategoryID = categoryButton.getCategoryID();
-						Screen screen = Minecraft.getInstance().currentScreen;
+						Screen screen = Minecraft.getInstance().screen;
 						if(screen instanceof CreativeScreen) {
 							this.updateItems((CreativeScreen) screen);
 						}
@@ -74,7 +75,7 @@ public class CreativeInventoryEvents {
 			this.updateCategoryButtons();
 
 			CreativeScreen screen = (CreativeScreen) event.getGui();
-			if(screen.getSelectedTabIndex() == DOTB_TAB.getIndex()) {
+			if(screen.getSelectedTab() == DOTB_TAB.getId()) {
 				this.btnScrollUp.visible = true;
 				this.btnScrollDown.visible = true;
 				tabDoTBSelected = true;
@@ -100,7 +101,7 @@ public class CreativeInventoryEvents {
 			this.guiCenterX = screen.getGuiLeft();
 			this.guiCenterY = screen.getGuiTop();
 			
-			if(screen.getSelectedTabIndex() == DOTB_TAB.getIndex()){
+			if(screen.getSelectedTab() == DOTB_TAB.getId()){
 				tabDoTBSelected = true;
 				this.btnScrollUp.visible = true;
 				this.btnScrollDown.visible = true;
@@ -109,7 +110,7 @@ public class CreativeInventoryEvents {
 				// Render tooltips after so it renders above buttons
 				this.buttons.forEach(button -> {
 					if(button.isMouseOver(event.getMouseX(), event.getMouseY())){
-						screen.renderTooltip(CreativeInventoryCategories.values()[button.getCategoryID()].getTranslation(), event.getMouseX(), event.getMouseY());
+						screen.renderTooltip(event.getMatrixStack(), CreativeInventoryCategories.values()[button.getCategoryID()].getTranslation(), event.getMouseX(), event.getMouseY());
 					}
 				});
 
@@ -130,9 +131,9 @@ public class CreativeInventoryEvents {
 	}
 
 	private void updateItems(CreativeScreen screen){
-		CreativeScreen.CreativeContainer container = screen.getContainer();
-		container.itemList.clear();
-		CreativeInventoryCategories.values()[selectedCategoryID].getItems().forEach(item -> container.itemList.add(new ItemStack(item)));
+		CreativeScreen.CreativeContainer container = screen.getMenu();
+		container.items.clear();
+		CreativeInventoryCategories.values()[selectedCategoryID].getItems().forEach(item -> container.items.add(new ItemStack(item)));
 		container.scrollTo(0);
 	}
 }
