@@ -28,7 +28,7 @@ public class PlateBlock extends WaterloggedBlock {
 	}
 
 	public PlateBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
-		this(Properties.create(materialIn).hardnessAndResistance(hardness, resistance).sound(soundType));
+		this(Properties.of(materialIn).strength(hardness, resistance).sound(soundType));
 	}
 
 	public PlateBlock(Block block) {
@@ -82,14 +82,14 @@ public class PlateBlock extends WaterloggedBlock {
 	 * 11 : SW Inner <p/>
 	 */
 	private static VoxelShape[] makeShapes() {
-		VoxelShape vs_north_flat = makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 8.0D);
-		VoxelShape vs_east_flat = makeCuboidShape(8.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D);
-		VoxelShape vs_south_flat = makeCuboidShape(0.0D, 0.0D, 8.0D, 16.0D, 16.0D, 16.0D);
-		VoxelShape vs_west_flat = makeCuboidShape(0.0D, 0.0D, 0.0D, 8.0D, 16.0D, 16.0D);
-		VoxelShape vs_nw_corner = makeCuboidShape(0.0D, 0.0D, 0.0D, 8.0D, 16.0D, 8.0D);
-		VoxelShape vs_ne_corner = makeCuboidShape(8.0D, 0.0D, 0.0D, 16.0D, 16.0D, 8.0D);
-		VoxelShape vs_se_corner = makeCuboidShape(8.0D, 0.0D, 8.0D, 16.0D, 16.0D, 16.0D);
-		VoxelShape vs_sw_corner = makeCuboidShape(0.0D, 0.0D, 8.0D, 8.0D, 16.0D, 16.0D);
+		VoxelShape vs_north_flat = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 8.0D);
+		VoxelShape vs_east_flat = Block.box(8.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D);
+		VoxelShape vs_south_flat = Block.box(0.0D, 0.0D, 8.0D, 16.0D, 16.0D, 16.0D);
+		VoxelShape vs_west_flat = Block.box(0.0D, 0.0D, 0.0D, 8.0D, 16.0D, 16.0D);
+		VoxelShape vs_nw_corner = Block.box(0.0D, 0.0D, 0.0D, 8.0D, 16.0D, 8.0D);
+		VoxelShape vs_ne_corner = Block.box(8.0D, 0.0D, 0.0D, 16.0D, 16.0D, 8.0D);
+		VoxelShape vs_se_corner = Block.box(8.0D, 0.0D, 8.0D, 16.0D, 16.0D, 16.0D);
+		VoxelShape vs_sw_corner = Block.box(0.0D, 0.0D, 8.0D, 8.0D, 16.0D, 16.0D);
 		return new VoxelShape[]{
 				vs_nw_corner,
 				vs_north_flat,
@@ -109,7 +109,7 @@ public class PlateBlock extends WaterloggedBlock {
 	@Override
 	public BlockState getStateForPlacement(BlockItemUseContext context) {
 		BlockState state = super.getStateForPlacement(context).with(FACING, context.getPlacementHorizontalFacing());
-		return state.with(SHAPE, getShapeProperty(state, context.getWorld(), context.getPos()));
+		return state.with(SHAPE, getShapeProperty(state, context.getLevel(), context.getPos()));
 	}
 
 	@Override

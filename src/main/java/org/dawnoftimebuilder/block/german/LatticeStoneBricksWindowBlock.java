@@ -11,15 +11,15 @@ import org.dawnoftimebuilder.block.templates.SidedWindowBlock;
 
 public class LatticeStoneBricksWindowBlock extends SidedWindowBlock {
 
-	private static final VoxelShape NORTH_VS = makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 6.0D);
-	private static final VoxelShape EAST_VS = makeCuboidShape(10.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D);
-	private static final VoxelShape SOUTH_VS = makeCuboidShape(0.0D, 0.0D, 10.0D, 16.0D, 16.0D, 16.0D);
-	private static final VoxelShape WEST_VS = makeCuboidShape(0.0D, 0.0D, 0.0D, 6.0D, 16.0D, 16.0D);
-	private static final VoxelShape X_VS = makeCuboidShape(5.0D, 0.0D, 0.0D, 11.0D, 16.0D, 16.0D);
-	private static final VoxelShape Z_VS = makeCuboidShape(0.0D, 0.0D, 5.0D, 16.0D, 16.0D, 11.0D);
+	private static final VoxelShape NORTH_VS = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 6.0D);
+	private static final VoxelShape EAST_VS = Block.box(10.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D);
+	private static final VoxelShape SOUTH_VS = Block.box(0.0D, 0.0D, 10.0D, 16.0D, 16.0D, 16.0D);
+	private static final VoxelShape WEST_VS = Block.box(0.0D, 0.0D, 0.0D, 6.0D, 16.0D, 16.0D);
+	private static final VoxelShape X_VS = Block.box(5.0D, 0.0D, 0.0D, 11.0D, 16.0D, 16.0D);
+	private static final VoxelShape Z_VS = Block.box(0.0D, 0.0D, 5.0D, 16.0D, 16.0D, 11.0D);
 
 	public LatticeStoneBricksWindowBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
-		super(Properties.create(materialIn).hardnessAndResistance(hardness, resistance).sound(soundType));
+		super(Properties.of(materialIn).strength(hardness, resistance).sound(soundType));
 	}
 
 	@Override

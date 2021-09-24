@@ -44,7 +44,7 @@ public class SmallShuttersBlock extends WaterloggedBlock {
     }
 
     public SmallShuttersBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
-        this(Properties.create(materialIn).hardnessAndResistance(hardness, resistance).sound(soundType));
+        this(Properties.of(materialIn).strength(hardness, resistance).sound(soundType));
     }
 
     @Override
@@ -83,9 +83,9 @@ public class SmallShuttersBlock extends WaterloggedBlock {
      */
     private static VoxelShape[] makeShapes() {
         return new VoxelShape[]{
-                makeCuboidShape(0.0D, 0.0D, 13.0D, 16.0D, 16.0D, 16.0D),
-                makeCuboidShape(-13.0D, 0.0D, 13.0D, 3.0D, 16.0D, 16.0D),
-                makeCuboidShape(13.0D, 0.0D, 13.0D, 29.0D, 16.0D, 16.0D)
+                Block.box(0.0D, 0.0D, 13.0D, 16.0D, 16.0D, 16.0D),
+                Block.box(-13.0D, 0.0D, 13.0D, 3.0D, 16.0D, 16.0D),
+                Block.box(13.0D, 0.0D, 13.0D, 29.0D, 16.0D, 16.0D)
         };
     }
 
@@ -101,7 +101,7 @@ public class SmallShuttersBlock extends WaterloggedBlock {
 
     @Override
     public BlockState getStateForPlacement(BlockItemUseContext context) {
-        World world = context.getWorld();
+        World world = context.getLevel();
         Direction direction = context.getPlacementHorizontalFacing();
         BlockPos pos = context.getPos();
         int x = direction.getXOffset();
@@ -131,10 +131,10 @@ public class SmallShuttersBlock extends WaterloggedBlock {
         Direction direction = stateIn.get(FACING);
         Direction hingeDirection = (stateIn.get(HINGE) == DoorHingeSide.LEFT) ? direction.rotateYCCW() : direction.rotateY();
         if(!canSupportShutters(worldIn, currentPos, direction, hingeDirection))
-            return Blocks.AIR.getDefaultState();
+            return Blocks.AIR.defaultBlockState();
         if(facing == hingeDirection) {
             stateIn = super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
-            return stateIn.get(OPEN_POSITION) == DoTBBlockStateProperties.OpenPosition.CLOSED ? stateIn : stateIn.with(OPEN_POSITION, getOpenState(stateIn, worldIn.getWorld(), facingPos));
+            return stateIn.get(OPEN_POSITION) == DoTBBlockStateProperties.OpenPosition.CLOSED ? stateIn : stateIn.with(OPEN_POSITION, getOpenState(stateIn, worldIn.getLevel(), facingPos));
         }
         return super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
     }

@@ -13,17 +13,17 @@ import org.dawnoftimebuilder.block.templates.ColumnConnectibleBlock;
 public class SandstoneColumnBlock extends ColumnConnectibleBlock {
 
     private static final VoxelShape VS_BOT = VoxelShapes.or(
-    		makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 8.0D, 14.0D),
-			makeCuboidShape(4.0D, 8.0D, 4.0D, 12.0D, 16.0D, 12.0D)
+    		Block.box(2.0D, 0.0D, 2.0D, 14.0D, 8.0D, 14.0D),
+			Block.box(4.0D, 8.0D, 4.0D, 12.0D, 16.0D, 12.0D)
 	);
-	private static final VoxelShape VS_MID = makeCuboidShape(4.0D, 0.0D, 4.0D, 12.0D, 16.0D, 12.0D);
+	private static final VoxelShape VS_MID = Block.box(4.0D, 0.0D, 4.0D, 12.0D, 16.0D, 12.0D);
 	private static final VoxelShape VS_TOP = VoxelShapes.or(
-			makeCuboidShape(0.0D, 8.0D, 0.0D, 16.0D, 16.0D, 16.0D),
-			makeCuboidShape(4.0D, 0.0D, 4.0D, 12.0D, 8.0D, 12.0D)
+			Block.box(0.0D, 8.0D, 0.0D, 16.0D, 16.0D, 16.0D),
+			Block.box(4.0D, 0.0D, 4.0D, 12.0D, 8.0D, 12.0D)
 	);
 
 	public SandstoneColumnBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
-		super(Properties.create(materialIn).hardnessAndResistance(hardness, resistance).sound(soundType));
+		super(Properties.of(materialIn).strength(hardness, resistance).sound(soundType));
 	}
 
 	@Override

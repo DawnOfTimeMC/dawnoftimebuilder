@@ -18,11 +18,11 @@ import org.dawnoftimebuilder.block.templates.WaterloggedBlock;
 public class PlasteredStoneWindowBlock extends WaterloggedBlock {
 
 	public static final EnumProperty<Direction.Axis> HORIZONTAL_AXIS = BlockStateProperties.HORIZONTAL_AXIS;
-	private static final VoxelShape X_AXIS_VS = makeCuboidShape(0.0D, 0.0D, 6.0D, 16.0D, 16.0D, 10.0D);
-    private static final VoxelShape Z_AXIS_VS = makeCuboidShape(6.0D, 0.0D, 0.0D, 10.0D, 16.0D, 16.0D);
+	private static final VoxelShape X_AXIS_VS = Block.box(0.0D, 0.0D, 6.0D, 16.0D, 16.0D, 10.0D);
+    private static final VoxelShape Z_AXIS_VS = Block.box(6.0D, 0.0D, 0.0D, 10.0D, 16.0D, 16.0D);
 	
 	public PlasteredStoneWindowBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
-		super(Properties.create(materialIn).hardnessAndResistance(hardness, resistance).sound(soundType));
+		super(Properties.of(materialIn).strength(hardness, resistance).sound(soundType));
 	    this.setDefaultState(this.stateContainer.getBaseState().with(HORIZONTAL_AXIS, Direction.Axis.X));
 	}
 

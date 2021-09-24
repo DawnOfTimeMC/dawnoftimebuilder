@@ -18,7 +18,7 @@ public abstract class SidedColumnConnectibleBlock extends ColumnConnectibleBlock
 	public static final DirectionProperty FACING = HorizontalBlock.HORIZONTAL_FACING;
 
 	public SidedColumnConnectibleBlock(Material materialIn, float hardness, float resistance) {
-		this(Properties.create(materialIn).hardnessAndResistance(hardness, resistance));
+		this(Properties.of(materialIn).strength(hardness, resistance));
 	}
 
 	public SidedColumnConnectibleBlock(Properties properties) {

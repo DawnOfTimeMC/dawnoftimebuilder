@@ -11,6 +11,6 @@ public class ItemDoTB extends Item {
     }
 
     public ItemDoTB(Properties properties){
-        super(properties.group(DOTB_TAB));
+        super(properties.tab(DOTB_TAB));
     }
 }

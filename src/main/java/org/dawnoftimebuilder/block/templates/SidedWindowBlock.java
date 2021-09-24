@@ -34,12 +34,12 @@ public class SidedWindowBlock extends BlockDoTB {
 	public static final EnumProperty<DoTBBlockStateProperties.SidedWindow> SIDED_WINDOW = DoTBBlockStateProperties.SIDED_WINDOW;
 	private static final BooleanProperty UP = BlockStateProperties.UP;
 	private static final BooleanProperty ATTACHED = BlockStateProperties.ATTACHED;
-	private static final VoxelShape NORTH_VS = makeCuboidShape(0.0D, 0.0D, 2.0D, 16.0D, 16.0D, 6.0D);
-	private static final VoxelShape EAST_VS = makeCuboidShape(10.0D, 0.0D, 0.0D, 14.0D, 16.0D, 16.0D);
-	private static final VoxelShape SOUTH_VS = makeCuboidShape(0.0D, 0.0D, 10.0D, 16.0D, 16.0D, 14.0D);
-	private static final VoxelShape WEST_VS = makeCuboidShape(2.0D, 0.0D, 0.0D, 6.0D, 16.0D, 16.0D);
-    private static final VoxelShape X_VS = makeCuboidShape(6.0D, 0.0D, 0.0D, 10.0D, 16.0D, 16.0D);
-    private static final VoxelShape Z_VS = makeCuboidShape(0.0D, 0.0D, 6.0D, 16.0D, 16.0D, 10.0D);
+	private static final VoxelShape NORTH_VS = Block.box(0.0D, 0.0D, 2.0D, 16.0D, 16.0D, 6.0D);
+	private static final VoxelShape EAST_VS = Block.box(10.0D, 0.0D, 0.0D, 14.0D, 16.0D, 16.0D);
+	private static final VoxelShape SOUTH_VS = Block.box(0.0D, 0.0D, 10.0D, 16.0D, 16.0D, 14.0D);
+	private static final VoxelShape WEST_VS = Block.box(2.0D, 0.0D, 0.0D, 6.0D, 16.0D, 16.0D);
+    private static final VoxelShape X_VS = Block.box(6.0D, 0.0D, 0.0D, 10.0D, 16.0D, 16.0D);
+    private static final VoxelShape Z_VS = Block.box(0.0D, 0.0D, 6.0D, 16.0D, 16.0D, 10.0D);
 
 	public SidedWindowBlock(Properties properties) {
 		super(properties);
@@ -47,7 +47,7 @@ public class SidedWindowBlock extends BlockDoTB {
 	}
 
 	public SidedWindowBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
-		this(Properties.create(materialIn).hardnessAndResistance(hardness, resistance).sound(soundType));
+		this(Properties.of(materialIn).strength(hardness, resistance).sound(soundType));
 	}
 
 	@Override
@@ -76,9 +76,9 @@ public class SidedWindowBlock extends BlockDoTB {
 
 	@Override
 	public BlockState getStateForPlacement(BlockItemUseContext context) {
-		World worldIn = context.getWorld();
+		World worldIn = context.getLevel();
 		BlockPos pos = context.getPos();
-		BlockState state = this.getDefaultState().with(SIDED_WINDOW, SidedWindow.getSide(context.getPlacementHorizontalFacing(), context.isPlacerSneaking()));
+		BlockState state = this.defaultBlockState().with(SIDED_WINDOW, SidedWindow.getSide(context.getPlacementHorizontalFacing(), context.isPlacerSneaking()));
 		return state.with(UP, canConnectVertical(state, worldIn, pos)).with(ATTACHED, canConnectHorizontal(state, worldIn, pos));
 	}
 

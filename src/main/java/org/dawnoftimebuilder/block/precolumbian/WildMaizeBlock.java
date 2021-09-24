@@ -27,11 +27,11 @@ import javax.annotation.Nullable;
 
 public class WildMaizeBlock extends WildPlantBlock {
 
-    private static final VoxelShape VS = makeCuboidShape(5.0D, 0.0D, 5.0D, 11.0D, 16.0D, 11.0D);
+    private static final VoxelShape VS = Block.box(5.0D, 0.0D, 5.0D, 11.0D, 16.0D, 11.0D);
 	public static final EnumProperty<Half> HALF = BlockStateProperties.HALF;
 
     public WildMaizeBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
-		super(Properties.create(materialIn).hardnessAndResistance(hardness, resistance).sound(soundType));
+		super(Properties.of(materialIn).strength(hardness, resistance).sound(soundType));
         this.setDefaultState(this.stateContainer.getBaseState().with(HALF, Half.BOTTOM));
     }
 
@@ -55,7 +55,7 @@ public class WildMaizeBlock extends WildPlantBlock {
 	@Nullable
 	@Override
 	public BlockState getStateForPlacement(BlockItemUseContext context) {
-		if(!context.getWorld().getBlockState(context.getPos().up()).isReplaceable(context)) return null;
+		if(!context.getLevel().getBlockState(context.getPos().up()).isReplaceable(context)) return null;
 		return super.getStateForPlacement(context);
 	}
 
@@ -73,7 +73,7 @@ public class WildMaizeBlock extends WildPlantBlock {
 					return stateIn;
 				}
 			}
-			return Blocks.AIR.getDefaultState();
+			return Blocks.AIR.defaultBlockState();
 		}
 		if(facing == Direction.DOWN) {
 			if(stateIn.get(HALF) == Half.TOP){
@@ -83,12 +83,12 @@ public class WildMaizeBlock extends WildPlantBlock {
 					}
 				}
 			}else if(isValidPosition(stateIn, worldIn, currentPos)) return stateIn;
-			return Blocks.AIR.getDefaultState();
+			return Blocks.AIR.defaultBlockState();
 		}
     	return stateIn;
 	}
 
     public BlockState getDefaultTopState() {
-    	return this.getDefaultState().with(HALF, Half.TOP);
+    	return this.defaultBlockState().with(HALF, Half.TOP);
     }
 }

@@ -5,7 +5,7 @@ import net.minecraft.block.*;
 public class StairsBlockDoTB extends StairsBlock {
 
     public StairsBlockDoTB(Block block){
-        super(block.getDefaultState(), Block.Properties.from(block));
+        super(block.defaultBlockState(), Block.Properties.from(block));
     }
 
     /**

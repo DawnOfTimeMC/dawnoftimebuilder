@@ -13,10 +13,10 @@ import javax.annotation.Nullable;
 
 public class FutonBlock extends BedBlock {
 
-	private static final VoxelShape VS = makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 4.0D, 16.0D);
+	private static final VoxelShape VS = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 4.0D, 16.0D);
 
 	public FutonBlock(DyeColor colorIn, Material materialIn, float hardness, float resistance, SoundType soundType) {
-		super(colorIn, Block.Properties.create(materialIn).hardnessAndResistance(hardness, resistance).sound(soundType));
+		super(colorIn, Block.Properties.of(materialIn).strength(hardness, resistance).sound(soundType));
 	}
 
 	@Override

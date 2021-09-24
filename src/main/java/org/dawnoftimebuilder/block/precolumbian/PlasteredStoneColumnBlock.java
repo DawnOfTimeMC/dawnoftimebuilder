@@ -12,19 +12,19 @@ import org.dawnoftimebuilder.block.templates.ColumnConnectibleBlock;
 
 public class PlasteredStoneColumnBlock extends ColumnConnectibleBlock {
 
-    private static final VoxelShape VS_LONE = makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 16.0D, 14.0D);
+    private static final VoxelShape VS_LONE = Block.box(2.0D, 0.0D, 2.0D, 14.0D, 16.0D, 14.0D);
     private static final VoxelShape VS_BOT = VoxelShapes.or(
-    		makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 4.0D, 14.0D),
-			makeCuboidShape(3.0D, 4.0D, 3.0D, 13.0D, 16.0D, 13.0D)
+    		Block.box(2.0D, 0.0D, 2.0D, 14.0D, 4.0D, 14.0D),
+			Block.box(3.0D, 4.0D, 3.0D, 13.0D, 16.0D, 13.0D)
 	);
-	private static final VoxelShape VS_MID = makeCuboidShape(3.0D, 0.0D, 3.0D, 13.0D, 16.0D, 13.0D);
+	private static final VoxelShape VS_MID = Block.box(3.0D, 0.0D, 3.0D, 13.0D, 16.0D, 13.0D);
     private static final VoxelShape VS_TOP = VoxelShapes.or(
-    		makeCuboidShape(1.0D, 8.0D, 1.0D, 15.0D, 16.0D, 15.0D),
-			makeCuboidShape(3.0D, 0.0D, 3.0D, 13.0D, 8.0D, 13.0D)
+    		Block.box(1.0D, 8.0D, 1.0D, 15.0D, 16.0D, 15.0D),
+			Block.box(3.0D, 0.0D, 3.0D, 13.0D, 8.0D, 13.0D)
 	);
 	
 	public PlasteredStoneColumnBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
-		super(Properties.create(materialIn).hardnessAndResistance(hardness, resistance).sound(soundType));
+		super(Properties.of(materialIn).strength(hardness, resistance).sound(soundType));
 	}
 
 	@Override

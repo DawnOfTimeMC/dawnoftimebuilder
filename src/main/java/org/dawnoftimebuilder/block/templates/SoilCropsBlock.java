@@ -43,7 +43,7 @@ public class SoilCropsBlock extends CropsBlock implements IBlockCustomItem {
 	public static final BooleanProperty PERSISTENT = BlockStateProperties.PERSISTENT;
 
 	public SoilCropsBlock(String seedName, PlantType plantType, Food food){
-		super(BlockDoTB.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0.0F).sound(SoundType.CROP));
+		super(BlockDoTB.Properties.of(Material.PLANTS).doesNotBlockMovement().tickRandomly().strength(0.0F).sound(SoundType.CROP));
 		this.plantType = plantType;
 		this.seedName = seedName;
 		this.seed = new SoilSeedsItem(this, food);

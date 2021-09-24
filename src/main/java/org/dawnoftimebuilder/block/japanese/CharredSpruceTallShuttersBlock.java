@@ -33,15 +33,15 @@ public class CharredSpruceTallShuttersBlock extends CharredSpruceShuttersBlock {
 
     public static final EnumProperty<DoTBBlockStateProperties.SquareCorners> CORNER = DoTBBlockStateProperties.CORNER;
     private static final VoxelShape[] SHAPES = DoTBBlockUtils.GenerateHorizontalShapes(new VoxelShape[]{
-            makeCuboidShape(0.0D, 0.0D, 14.0D, 16.0D, 16.0D, 16.0D),
+            Block.box(0.0D, 0.0D, 14.0D, 16.0D, 16.0D, 16.0D),
             VoxelShapes.or(
-                    makeCuboidShape(0.0D, 10.0D, 11.0D, 16.0D, 16.0D, 16.0D),
-                    makeCuboidShape(0.0D, 5.0D, 9.0D, 16.0D, 10.0D, 14.0D),
-                    makeCuboidShape(0.0D, 0.0D, 7.0D, 16.0D, 5.0D, 12.0D)),
+                    Block.box(0.0D, 10.0D, 11.0D, 16.0D, 16.0D, 16.0D),
+                    Block.box(0.0D, 5.0D, 9.0D, 16.0D, 10.0D, 14.0D),
+                    Block.box(0.0D, 0.0D, 7.0D, 16.0D, 5.0D, 12.0D)),
             VoxelShapes.or(
-                    makeCuboidShape(0.0D, 11.0D, 5.0D, 16.0D, 16.0D, 10.0D),
-                    makeCuboidShape(0.0D, 6.0D, 3.0D, 16.0D, 11.0D, 8.0D),
-                    makeCuboidShape(0.0D, 1.0D, 1.0D, 16.0D, 6.0D, 6.0D))});
+                    Block.box(0.0D, 11.0D, 5.0D, 16.0D, 16.0D, 10.0D),
+                    Block.box(0.0D, 6.0D, 3.0D, 16.0D, 11.0D, 8.0D),
+                    Block.box(0.0D, 1.0D, 1.0D, 16.0D, 6.0D, 6.0D))});
 
     public CharredSpruceTallShuttersBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
         super(materialIn, hardness, resistance, soundType);
@@ -63,7 +63,7 @@ public class CharredSpruceTallShuttersBlock extends CharredSpruceShuttersBlock {
     @Nullable
     @Override
     public BlockState getStateForPlacement(BlockItemUseContext context) {
-        World world = context.getWorld();
+        World world = context.getLevel();
         BlockPos pos = context.getPos();
         Direction facing = context.getPlacementHorizontalFacing();
 
@@ -128,7 +128,7 @@ public class CharredSpruceTallShuttersBlock extends CharredSpruceShuttersBlock {
     public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
         SquareCorners thisCorner = stateIn.get(CORNER);
         if(stateIn.get(WATERLOGGED)) worldIn.getPendingFluidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickRate(worldIn));
-        if(!canSupportShutters(worldIn, currentPos, stateIn.get(FACING)) && stateIn.get(CORNER).isTopCorner()) return Blocks.AIR.getDefaultState();
+        if(!canSupportShutters(worldIn, currentPos, stateIn.get(FACING)) && stateIn.get(CORNER).isTopCorner()) return Blocks.AIR.defaultBlockState();
         Direction currentFacing = stateIn.get(FACING);
         SquareCorners expectedCorner = thisCorner.getAdjacentCorner(facing.getAxis().isVertical());
         if(currentPos.up(expectedCorner.getVerticalOffset(thisCorner)).offset(currentFacing.rotateY(), expectedCorner.getHorizontalOffset(thisCorner)).equals(facingPos)){
@@ -138,7 +138,7 @@ public class CharredSpruceTallShuttersBlock extends CharredSpruceShuttersBlock {
                     return stateIn.with(OPEN, facingState.get(OPEN));
                 }
             }
-            return Blocks.AIR.getDefaultState();
+            return Blocks.AIR.defaultBlockState();
         }
         return stateIn;
     }

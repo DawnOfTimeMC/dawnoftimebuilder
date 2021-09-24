@@ -24,7 +24,7 @@ public class DoorBlockDoTB extends DoorBlock implements IWaterLoggable {
 	}
 
 	public DoorBlockDoTB(Material materialIn, float hardness, float resistance, SoundType soundType) {
-		this(Properties.create(materialIn).hardnessAndResistance(hardness, resistance).sound(soundType));
+		this(Properties.of(materialIn).strength(hardness, resistance).sound(soundType));
 	}
 
 	@Override
@@ -53,7 +53,7 @@ public class DoorBlockDoTB extends DoorBlock implements IWaterLoggable {
 	@Override
 	public BlockState getStateForPlacement(BlockItemUseContext context) {
 		BlockState state = super.getStateForPlacement(context);
-		return (state != null) ? state.with(WATERLOGGED, context.getWorld().getFluidState(context.getPos()).getFluid() == Fluids.WATER) : null;
+		return (state != null) ? state.with(WATERLOGGED, context.getLevel().getFluidState(context.getPos()).getFluid() == Fluids.WATER) : null;
 	}
 
 	public Block setBurnable() {

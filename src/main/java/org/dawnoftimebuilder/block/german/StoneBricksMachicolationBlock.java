@@ -34,8 +34,8 @@ public class StoneBricksMachicolationBlock extends WaterloggedBlock {
 	private static final VoxelShape[] SHAPES = DoTBBlockUtils.GenerateHorizontalShapes(makeShapes());
 
 	public StoneBricksMachicolationBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
-		super(Properties.create(materialIn).hardnessAndResistance(hardness, resistance).sound(soundType));
-		this.setDefaultState(this.getDefaultState().with(FACING, NORTH).with(HORIZONTAL_CONNECTION, NONE).with(WATERLOGGED, false));
+		super(Properties.of(materialIn).strength(hardness, resistance).sound(soundType));
+		this.setDefaultState(this.defaultBlockState().with(FACING, NORTH).with(HORIZONTAL_CONNECTION, NONE).with(WATERLOGGED, false));
 	}
 
 	@Override
@@ -58,43 +58,43 @@ public class StoneBricksMachicolationBlock extends WaterloggedBlock {
 	 * 3 : S Both <p/>
 	 */
 	private static VoxelShape[] makeShapes() {
-		VoxelShape floorVS = makeCuboidShape(0.0D, 12.0D, 0.0D, 16.0D, 16.0D, 8.0D);
+		VoxelShape floorVS = Block.box(0.0D, 12.0D, 0.0D, 16.0D, 16.0D, 8.0D);
 		return new VoxelShape[]{
 				VoxelShapes.or(
 						floorVS,
-						makeCuboidShape(0.0D, 8.0D, 0.0D, 6.0D, 16.0D, 16.0D),
-						makeCuboidShape(10.0D, 8.0D, 0.0D, 16.0D, 16.0D, 16.0D),
-						makeCuboidShape(0.0D, 4.0D, 5.0D, 6.0D, 8.0D, 16.0D),
-						makeCuboidShape(10.0D, 4.0D, 5.0D, 16.0D, 8.0D, 16.0D),
-						makeCuboidShape(0.0D, 0.0D, 11.0D, 6.0D, 4.0D, 16.0D),
-						makeCuboidShape(10.0D, 0.0D, 11.0D, 16.0D, 4.0D, 16.0D)
+						Block.box(0.0D, 8.0D, 0.0D, 6.0D, 16.0D, 16.0D),
+						Block.box(10.0D, 8.0D, 0.0D, 16.0D, 16.0D, 16.0D),
+						Block.box(0.0D, 4.0D, 5.0D, 6.0D, 8.0D, 16.0D),
+						Block.box(10.0D, 4.0D, 5.0D, 16.0D, 8.0D, 16.0D),
+						Block.box(0.0D, 0.0D, 11.0D, 6.0D, 4.0D, 16.0D),
+						Block.box(10.0D, 0.0D, 11.0D, 16.0D, 4.0D, 16.0D)
 				),
 				VoxelShapes.or(
 						floorVS,
-						makeCuboidShape(0.0D, 8.0D, 0.0D, 6.0D, 16.0D, 16.0D),
-						makeCuboidShape(13.0D, 8.0D, 0.0D, 16.0D, 16.0D, 16.0D),
-						makeCuboidShape(0.0D, 4.0D, 5.0D, 6.0D, 8.0D, 16.0D),
-						makeCuboidShape(13.0D, 4.0D, 5.0D, 16.0D, 8.0D, 16.0D),
-						makeCuboidShape(0.0D, 0.0D, 11.0D, 6.0D, 4.0D, 16.0D),
-						makeCuboidShape(13.0D, 0.0D, 11.0D, 16.0D, 4.0D, 16.0D)
+						Block.box(0.0D, 8.0D, 0.0D, 6.0D, 16.0D, 16.0D),
+						Block.box(13.0D, 8.0D, 0.0D, 16.0D, 16.0D, 16.0D),
+						Block.box(0.0D, 4.0D, 5.0D, 6.0D, 8.0D, 16.0D),
+						Block.box(13.0D, 4.0D, 5.0D, 16.0D, 8.0D, 16.0D),
+						Block.box(0.0D, 0.0D, 11.0D, 6.0D, 4.0D, 16.0D),
+						Block.box(13.0D, 0.0D, 11.0D, 16.0D, 4.0D, 16.0D)
 				),
 				VoxelShapes.or(
 						floorVS,
-						makeCuboidShape(0.0D, 8.0D, 0.0D, 3.0D, 16.0D, 16.0D),
-						makeCuboidShape(10.0D, 8.0D, 0.0D, 16.0D, 16.0D, 16.0D),
-						makeCuboidShape(0.0D, 4.0D, 5.0D, 3.0D, 8.0D, 16.0D),
-						makeCuboidShape(10.0D, 4.0D, 5.0D, 16.0D, 8.0D, 16.0D),
-						makeCuboidShape(0.0D, 0.0D, 11.0D, 3.0D, 4.0D, 16.0D),
-						makeCuboidShape(10.0D, 0.0D, 11.0D, 16.0D, 4.0D, 16.0D)
+						Block.box(0.0D, 8.0D, 0.0D, 3.0D, 16.0D, 16.0D),
+						Block.box(10.0D, 8.0D, 0.0D, 16.0D, 16.0D, 16.0D),
+						Block.box(0.0D, 4.0D, 5.0D, 3.0D, 8.0D, 16.0D),
+						Block.box(10.0D, 4.0D, 5.0D, 16.0D, 8.0D, 16.0D),
+						Block.box(0.0D, 0.0D, 11.0D, 3.0D, 4.0D, 16.0D),
+						Block.box(10.0D, 0.0D, 11.0D, 16.0D, 4.0D, 16.0D)
 				),
 				VoxelShapes.or(
 						floorVS,
-						makeCuboidShape(0.0D, 8.0D, 0.0D, 3.0D, 16.0D, 16.0D),
-						makeCuboidShape(13.0D, 8.0D, 0.0D, 16.0D, 16.0D, 16.0D),
-						makeCuboidShape(0.0D, 4.0D, 5.0D, 3.0D, 8.0D, 16.0D),
-						makeCuboidShape(13.0D, 4.0D, 5.0D, 16.0D, 8.0D, 16.0D),
-						makeCuboidShape(0.0D, 0.0D, 11.0D, 3.0D, 4.0D, 16.0D),
-						makeCuboidShape(13.0D, 0.0D, 11.0D, 16.0D, 4.0D, 16.0D)
+						Block.box(0.0D, 8.0D, 0.0D, 3.0D, 16.0D, 16.0D),
+						Block.box(13.0D, 8.0D, 0.0D, 16.0D, 16.0D, 16.0D),
+						Block.box(0.0D, 4.0D, 5.0D, 3.0D, 8.0D, 16.0D),
+						Block.box(13.0D, 4.0D, 5.0D, 16.0D, 8.0D, 16.0D),
+						Block.box(0.0D, 0.0D, 11.0D, 3.0D, 4.0D, 16.0D),
+						Block.box(13.0D, 0.0D, 11.0D, 16.0D, 4.0D, 16.0D)
 				)
 		};
 	}
@@ -103,7 +103,7 @@ public class StoneBricksMachicolationBlock extends WaterloggedBlock {
 	@Override
 	public BlockState getStateForPlacement(BlockItemUseContext context) {
 		BlockState state = super.getStateForPlacement(context).with(FACING, context.getPlacementHorizontalFacing());
-		return state.with(HORIZONTAL_CONNECTION, this.getLineState(context.getWorld(), context.getPos(), state));
+		return state.with(HORIZONTAL_CONNECTION, this.getLineState(context.getLevel(), context.getPos(), state));
 	}
 
 	@Override

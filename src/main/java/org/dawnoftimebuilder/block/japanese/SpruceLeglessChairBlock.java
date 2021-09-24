@@ -15,11 +15,11 @@ public class SpruceLeglessChairBlock extends ChairBlock {
 
 	private static final VoxelShape[] VS = DoTBBlockUtils.GenerateHorizontalShapes(new VoxelShape[]{
 			VoxelShapes.or(
-					makeCuboidShape(2.0D, 0.0D, 0.0D, 14.0D, 3.0D, 16.0D),
-					makeCuboidShape(2.0D, 3.0D, 0.0D, 14.0D, 11.0D, 4.0D))});
+					Block.box(2.0D, 0.0D, 0.0D, 14.0D, 3.0D, 16.0D),
+					Block.box(2.0D, 3.0D, 0.0D, 14.0D, 11.0D, 4.0D))});
 
 	public SpruceLeglessChairBlock(Material materialIn, float hardness, float resistance, SoundType soundType, float pixelsYOffset) {
-		super(Properties.create(materialIn).hardnessAndResistance(hardness, resistance).sound(soundType), pixelsYOffset);
+		super(Properties.of(materialIn).strength(hardness, resistance).sound(soundType), pixelsYOffset);
 	}
 
 	@Override

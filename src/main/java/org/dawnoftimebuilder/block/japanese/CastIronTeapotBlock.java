@@ -13,10 +13,10 @@ import org.dawnoftimebuilder.block.templates.WaterloggedBlock;
 
 public class CastIronTeapotBlock extends WaterloggedBlock implements IBlockSpecialDisplay {
 
-	private static final VoxelShape VS = makeCuboidShape(4.8D, 0.0D, 4.8D, 11.2D, 6.4D, 11.2D);
+	private static final VoxelShape VS = Block.box(4.8D, 0.0D, 4.8D, 11.2D, 6.4D, 11.2D);
 
 	public CastIronTeapotBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
-		super(Properties.create(materialIn).hardnessAndResistance(hardness, resistance).sound(soundType));
+		super(Properties.of(materialIn).strength(hardness, resistance).sound(soundType));
 	}
 
 	@Override

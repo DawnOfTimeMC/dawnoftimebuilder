@@ -16,7 +16,7 @@ public class GreenSculptedPlasteredStoneFriezeBlock extends PlateBlock {
 	private static final VoxelShape[] SHAPES = DoTBBlockUtils.GenerateHorizontalShapes(makeShapes());
 
     public GreenSculptedPlasteredStoneFriezeBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
-		super(Properties.create(materialIn).hardnessAndResistance(hardness, resistance).sound(soundType));
+		super(Properties.of(materialIn).strength(hardness, resistance).sound(soundType));
     }
 
 	/**
@@ -26,18 +26,18 @@ public class GreenSculptedPlasteredStoneFriezeBlock extends PlateBlock {
 	 * 2 : NW Inner <p/>
 	 */
 	private static VoxelShape[] makeShapes() {
-		VoxelShape vs_qtr_n = makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 4.0D, 8.0D);
-		VoxelShape vs_spike_n = makeCuboidShape(4.5D, 4.0D, 2.0D, 11.5D, 16.0D, 4.0D);
+		VoxelShape vs_qtr_n = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 4.0D, 8.0D);
+		VoxelShape vs_spike_n = Block.box(4.5D, 4.0D, 2.0D, 11.5D, 16.0D, 4.0D);
 		return new VoxelShape[]{
 				VoxelShapes.or(
-						makeCuboidShape(0.0D, 0.0D, 0.0D, 8.0D, 4.0D, 8.0D),
-						makeCuboidShape(0.0D, 4.0D, 0.0D, 6.0D, 16.0D, 6.0D)),
+						Block.box(0.0D, 0.0D, 0.0D, 8.0D, 4.0D, 8.0D),
+						Block.box(0.0D, 4.0D, 0.0D, 6.0D, 16.0D, 6.0D)),
 				VoxelShapes.or(vs_qtr_n, vs_spike_n),
 				VoxelShapes.or(
 						vs_qtr_n,
-						makeCuboidShape(0.0D, 0.0D, 8.0D, 8.0D, 4.0D, 16.0D),
+						Block.box(0.0D, 0.0D, 8.0D, 8.0D, 4.0D, 16.0D),
 						vs_spike_n,
-						makeCuboidShape(2.0D, 4.0D, 4.5D, 4.0D, 16.0D, 11.5D)
+						Block.box(2.0D, 4.0D, 4.5D, 4.0D, 16.0D, 11.5D)
 				)
 		};
 	}

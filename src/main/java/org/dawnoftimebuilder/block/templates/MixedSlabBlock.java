@@ -33,7 +33,7 @@ public class MixedSlabBlock extends SlabBlockDoTB implements IBlockCustomItem {
 	}
 
 	public MixedSlabBlock(Material materialIn, float hardness, float resistance) {
-		this(Properties.create(materialIn).hardnessAndResistance(hardness, resistance));
+		this(Properties.of(materialIn).strength(hardness, resistance));
 	}
 
 	public MixedSlabBlock(Block block) {
@@ -60,7 +60,7 @@ public class MixedSlabBlock extends SlabBlockDoTB implements IBlockCustomItem {
 			for(MixedBlockRecipe recipe : listRecipes) {
 				if(facing == recipe.getFacingForMerging(false)){
 					if (recipe.isConnectibleFirstSlab(state) && itemStack.getItem() == recipe.secondSlab.asItem()) {
-						BlockState madeState = recipe.mixedBlock.getDefaultState();
+						BlockState madeState = recipe.mixedBlock.defaultBlockState();
 						if(worldIn.setBlockState(pos, madeState, 11))  {
 							this.onBlockPlacedBy(worldIn, pos, state, player, itemStack);
 							if (player instanceof ServerPlayerEntity) {
@@ -84,19 +84,19 @@ public class MixedSlabBlock extends SlabBlockDoTB implements IBlockCustomItem {
 	public Item getCustomItemBlock() {
 		return new BlockItem(this, new Item.Properties().group(DOTB_TAB)){
 			@Override
-			public ActionResultType tryPlace(BlockItemUseContext context) {
+			public ActionResultType place(BlockItemUseContext context) {
 				Direction facing = context.getFace();
 				if(context.isPlacerSneaking() || !facing.getAxis().isVertical())
-					return super.tryPlace(context);
+					return super.place(context);
 
 				PlayerEntity player = context.getPlayer();
 				ItemStack itemStack = context.getItem();
-				World worldIn = context.getWorld();
+				World worldIn = context.getLevel();
 				BlockPos pos = context.getPos();
 				if(!context.replacingClickedOnBlock()) pos = pos.offset(facing.getOpposite());
 				if(player != null){
 					if(!player.canPlayerEdit(pos, facing, itemStack))
-						return super.tryPlace(context);
+						return super.place(context);
 				}
 
 				if (!itemStack.isEmpty()) {
@@ -123,7 +123,7 @@ public class MixedSlabBlock extends SlabBlockDoTB implements IBlockCustomItem {
 						}
 					}
 				}
-				return super.tryPlace(context);
+				return super.place(context);
 			}
 		};
 	}

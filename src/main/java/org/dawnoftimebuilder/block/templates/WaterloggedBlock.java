@@ -27,7 +27,7 @@ public class WaterloggedBlock extends BlockDoTB implements IWaterLoggable {
 	}
 
 	public WaterloggedBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
-		this(Properties.create(materialIn).hardnessAndResistance(hardness, resistance).sound(soundType));
+		this(Properties.of(materialIn).strength(hardness, resistance).sound(soundType));
 	}
 
 	@Override
@@ -49,6 +49,6 @@ public class WaterloggedBlock extends BlockDoTB implements IWaterLoggable {
 	@Override
 	@Nonnull
 	public BlockState getStateForPlacement(BlockItemUseContext context) {
-		return this.getDefaultState().with(WATERLOGGED, context.getWorld().getFluidState(context.getPos()).getFluid() == Fluids.WATER);
+		return this.defaultBlockState().with(WATERLOGGED, context.getLevel().getFluidState(context.getPos()).getFluid() == Fluids.WATER);
 	}
 }

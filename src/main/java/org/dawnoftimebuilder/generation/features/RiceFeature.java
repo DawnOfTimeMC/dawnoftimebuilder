@@ -34,7 +34,7 @@ public class RiceFeature extends Feature<NoFeatureConfig> {
             if (isValidPosition(worldIn, nextPos)) {
                 success = true;
                 WaterDoubleCropsBlock rice = (WaterDoubleCropsBlock) DoTBBlocksRegistry.RICE;
-                BlockState baseState = rice.getDefaultState()
+                BlockState baseState = rice.defaultBlockState()
                         .with(rice.getAgeProperty(), rand.nextInt(rice.getMaxAge() - rice.getAgeReachingTopBlock() + 1) + rice.getAgeReachingTopBlock())
                         .with(WaterloggedBlock.WATERLOGGED, true);
                 worldIn.setBlockState(nextPos, baseState, 2);
@@ -55,6 +55,6 @@ public class RiceFeature extends Feature<NoFeatureConfig> {
      * Determines if the given position is valid for a rice plant.
      */
     private boolean isValidPosition(IWorld worldIn, BlockPos pos) {
-        return ((SoilCropsBlock) DoTBBlocksRegistry.RICE).isValidGround(DoTBBlocksRegistry.RICE.getDefaultState(), worldIn, pos.down());
+        return ((SoilCropsBlock) DoTBBlocksRegistry.RICE).isValidGround(DoTBBlocksRegistry.RICE.defaultBlockState(), worldIn, pos.down());
     }
 }

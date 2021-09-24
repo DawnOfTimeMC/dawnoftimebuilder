@@ -49,15 +49,15 @@ public class DisplayerContainer extends Container {
 
 	@Override
 	public boolean canInteractWith(PlayerEntity playerIn) {
-		if(this.tileEntity.getWorld() == null) return false;
-		return isWithinUsableDistance(IWorldPosCallable.of(this.tileEntity.getWorld(), this.tileEntity.getPos()), playerIn, this.tileEntity.getBlockState().getBlock());
+		if(this.tileEntity.getLevel() == null) return false;
+		return isWithinUsableDistance(IWorldPosCallable.of(this.tileEntity.getLevel(), this.tileEntity.getPos()), playerIn, this.tileEntity.getBlockState().getBlock());
 	}
 
 	@Override
 	public void detectAndSendChanges() {
 		super.detectAndSendChanges();
 		//Update light level
-		if(this.tileEntity.getWorld() != null && !this.tileEntity.getWorld().isRemote()){
+		if(this.tileEntity.getLevel() != null && !this.tileEntity.getLevel().isRemote()){
 			this.tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(h -> {
 				boolean lit = false;
 				for(int index = 0; index < h.getSlots(); index++) {
@@ -68,13 +68,13 @@ public class DisplayerContainer extends Container {
 							Block block = ((BlockItem) item).getBlock();
 							if (block instanceof IBlockSpecialDisplay) {
 								lit = ((IBlockSpecialDisplay) block).emitsLight();
-							} else lit = block.getLightValue(block.getDefaultState()) > 0;
+							} else lit = block.getLightValue(block.defaultBlockState()) > 0;
 						}
 					}
 					if (lit) break;
 				}
 				if(this.tileEntity.getBlockState().get(LIT) != lit){
-					this.tileEntity.getWorld().setBlockState(this.tileEntity.getPos(), this.tileEntity.getBlockState().with(LIT, lit), 10);
+					this.tileEntity.getLevel().setBlockState(this.tileEntity.getPos(), this.tileEntity.getBlockState().with(LIT, lit), 10);
 				}
 			});
 		}

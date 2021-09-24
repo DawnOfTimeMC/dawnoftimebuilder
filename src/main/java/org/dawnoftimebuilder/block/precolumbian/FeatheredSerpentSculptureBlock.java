@@ -24,11 +24,11 @@ public class FeatheredSerpentSculptureBlock extends WaterloggedBlock {
 
 	public static final DirectionProperty FACING = HorizontalBlock.HORIZONTAL_FACING;
 	private static final VoxelShape[] SHAPES = DoTBBlockUtils.GenerateHorizontalShapes(new VoxelShape[]{
-			makeCuboidShape(4.0D, 4.0D, 0.0D, 12.0D, 12.0D, 14.0D)
+			Block.box(4.0D, 4.0D, 0.0D, 12.0D, 12.0D, 14.0D)
 	});
 
 	public FeatheredSerpentSculptureBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
-		super(Properties.create(materialIn).hardnessAndResistance(hardness, resistance).sound(soundType));
+		super(Properties.of(materialIn).strength(hardness, resistance).sound(soundType));
 	    this.setDefaultState(this.stateContainer.getBaseState().with(FACING, Direction.NORTH).with(WATERLOGGED, false));
 	}
 

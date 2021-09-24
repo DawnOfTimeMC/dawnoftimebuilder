@@ -10,7 +10,7 @@ public class FenceBlockDoTB extends FenceBlock {
     }
 
     public FenceBlockDoTB(Material materialIn, float hardness, float resistance, SoundType soundType) {
-        this(BlockDoTB.Properties.create(materialIn).hardnessAndResistance(hardness, resistance).sound(soundType));
+        this(BlockDoTB.Properties.of(materialIn).strength(hardness, resistance).sound(soundType));
     }
 
     /**

@@ -25,12 +25,12 @@ import javax.annotation.Nonnull;
 
 public class StoneLanternBlock extends WaterloggedBlock implements IBlockChain, IBlockSpecialDisplay {
 
-    private static final VoxelShape VS_CENTER = makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 16.0D, 14.0D);
-    private static final VoxelShape[] VS_SIDE = DoTBBlockUtils.GenerateHorizontalShapes(new VoxelShape[]{makeCuboidShape(2.0D, 0.0D, 0.0D, 14.0D, 16.0D, 14.0D)});
+    private static final VoxelShape VS_CENTER = Block.box(2.0D, 0.0D, 2.0D, 14.0D, 16.0D, 14.0D);
+    private static final VoxelShape[] VS_SIDE = DoTBBlockUtils.GenerateHorizontalShapes(new VoxelShape[]{Block.box(2.0D, 0.0D, 0.0D, 14.0D, 16.0D, 14.0D)});
     public static final DirectionProperty FACING = BlockStateProperties.FACING;
 
     public StoneLanternBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
-        super(Properties.create(materialIn).hardnessAndResistance(hardness, resistance).sound(soundType).lightValue(15));
+        super(Properties.of(materialIn).strength(hardness, resistance).sound(soundType).lightValue(15));
         this.setDefaultState(this.getStateContainer().getBaseState().with(WATERLOGGED,false).with(FACING, Direction.DOWN));
     }
 

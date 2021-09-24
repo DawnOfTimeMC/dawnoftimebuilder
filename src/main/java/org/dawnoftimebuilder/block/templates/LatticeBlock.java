@@ -91,10 +91,10 @@ public class LatticeBlock extends WaterloggedBlock implements IBlockClimbingPlan
 	 * 14 : WNE <p/>
 	 */
 	private static VoxelShape[] makeShapes() {
-		VoxelShape vs_south = makeCuboidShape(0.0D, 0.0D, 14.0D, 16.0D, 16.0D, 16.0D);
-		VoxelShape vs_west = makeCuboidShape(0.0D, 0.0D, 0.0D, 2.0D, 16.0D, 16.0D);
-		VoxelShape vs_north = makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 2.0D);
-		VoxelShape vs_east = makeCuboidShape(14.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D);
+		VoxelShape vs_south = Block.box(0.0D, 0.0D, 14.0D, 16.0D, 16.0D, 16.0D);
+		VoxelShape vs_west = Block.box(0.0D, 0.0D, 0.0D, 2.0D, 16.0D, 16.0D);
+		VoxelShape vs_north = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 2.0D);
+		VoxelShape vs_east = Block.box(14.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D);
 		VoxelShape vs_sw = VoxelShapes.or(vs_south, vs_west);
 		VoxelShape vs_wn = VoxelShapes.or(vs_west, vs_north);
 		VoxelShape vs_ne = VoxelShapes.or(vs_north, vs_east);
@@ -120,7 +120,7 @@ public class LatticeBlock extends WaterloggedBlock implements IBlockClimbingPlan
 
 	@Override
 	public BlockState getStateForPlacement(BlockItemUseContext context) {
-		BlockState state = context.getWorld().getBlockState(context.getPos());
+		BlockState state = context.getLevel().getBlockState(context.getPos());
 		if (state.getBlock() != this)
 			state = super.getStateForPlacement(context);
 		switch(context.getPlacementHorizontalFacing()){

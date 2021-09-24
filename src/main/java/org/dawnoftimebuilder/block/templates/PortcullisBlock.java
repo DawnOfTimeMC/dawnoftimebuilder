@@ -37,8 +37,8 @@ public class PortcullisBlock extends WaterloggedBlock {
 	private static final EnumProperty<Direction.Axis> HORIZONTAL_AXIS = BlockStateProperties.HORIZONTAL_AXIS;
 	private static final EnumProperty<DoTBBlockStateProperties.VerticalConnection> VERTICAL_CONNECTION = DoTBBlockStateProperties.VERTICAL_CONNECTION;
 
-	private static final VoxelShape VS_AXIS_X = net.minecraft.block.Block.makeCuboidShape(0.0D, 0.0D, 6.0D, 16.0D, 16.0D, 10.0D);
-	private static final VoxelShape VS_AXIS_Z = net.minecraft.block.Block.makeCuboidShape(6.0D, 0.0D, 0.0D, 10.0D, 16.0D, 16.0D);
+	private static final VoxelShape VS_AXIS_X = net.minecraft.block.Block.Block.box(0.0D, 0.0D, 6.0D, 16.0D, 16.0D, 10.0D);
+	private static final VoxelShape VS_AXIS_Z = net.minecraft.block.Block.Block.box(6.0D, 0.0D, 0.0D, 10.0D, 16.0D, 16.0D);
 
 	public PortcullisBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
 		super(materialIn, hardness, resistance, soundType);
@@ -62,7 +62,7 @@ public class PortcullisBlock extends WaterloggedBlock {
 	public BlockState getStateForPlacement(BlockItemUseContext context) {
 		BlockState state = super.getStateForPlacement(context);
 		state = state.with(HORIZONTAL_AXIS, (context.getPlacementHorizontalFacing().getAxis() == Direction.Axis.X) ? Direction.Axis.Z : Direction.Axis.X);
-		return this.getShape(state, context.getWorld(), context.getPos());
+		return this.getShape(state, context.getLevel(), context.getPos());
 	}
 
 	@Override

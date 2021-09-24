@@ -72,13 +72,13 @@ public class SupportBeamBlock extends WaterloggedBlock {
 	 * 11 : Axis X + Z + 10px <p/>
 	 */
 	private static VoxelShape[] makeShapes() {
-		VoxelShape vs = net.minecraft.block.Block.makeCuboidShape(0.0D, 12.0D, 0.0D, 16.0D, 16.0D, 16.0D);
-		VoxelShape vs_axis_x = VoxelShapes.or(vs, net.minecraft.block.Block.makeCuboidShape(0.0D, 4.0D, 4.0D, 16.0D, 12.0D, 12.0D));
-		VoxelShape vs_axis_z = VoxelShapes.or(vs, net.minecraft.block.Block.makeCuboidShape(4.0D, 4.0D, 0.0D, 12.0D, 12.0D, 16.0D));
-		VoxelShape vs_axis_x_z = VoxelShapes.or(vs_axis_x, net.minecraft.block.Block.makeCuboidShape(4.0D, 4.0D, 0.0D, 12.0D, 12.0D, 16.0D));
-		VoxelShape vs_axis_4px = net.minecraft.block.Block.makeCuboidShape(6.0D, 0.0D, 6.0D, 10.0D, 16.0D, 10.0D);
-		VoxelShape vs_axis_8px = net.minecraft.block.Block.makeCuboidShape(4.0D, 0.0D, 4.0D, 12.0D, 16.0D, 12.0D);
-		VoxelShape vs_axis_10px = net.minecraft.block.Block.makeCuboidShape(3.0D, 0.0D, 3.0D, 13.0D, 16.0D, 13.0D);
+		VoxelShape vs = net.minecraft.block.Block.Block.box(0.0D, 12.0D, 0.0D, 16.0D, 16.0D, 16.0D);
+		VoxelShape vs_axis_x = VoxelShapes.or(vs, net.minecraft.block.Block.Block.box(0.0D, 4.0D, 4.0D, 16.0D, 12.0D, 12.0D));
+		VoxelShape vs_axis_z = VoxelShapes.or(vs, net.minecraft.block.Block.Block.box(4.0D, 4.0D, 0.0D, 12.0D, 12.0D, 16.0D));
+		VoxelShape vs_axis_x_z = VoxelShapes.or(vs_axis_x, net.minecraft.block.Block.Block.box(4.0D, 4.0D, 0.0D, 12.0D, 12.0D, 16.0D));
+		VoxelShape vs_axis_4px = net.minecraft.block.Block.Block.box(6.0D, 0.0D, 6.0D, 10.0D, 16.0D, 10.0D);
+		VoxelShape vs_axis_8px = net.minecraft.block.Block.Block.box(4.0D, 0.0D, 4.0D, 12.0D, 16.0D, 12.0D);
+		VoxelShape vs_axis_10px = net.minecraft.block.Block.Block.box(3.0D, 0.0D, 3.0D, 13.0D, 16.0D, 13.0D);
 		return new VoxelShape[]{
 				vs_axis_x,
 				vs_axis_z,
@@ -98,7 +98,7 @@ public class SupportBeamBlock extends WaterloggedBlock {
 	@Override
 	public BlockState getStateForPlacement(BlockItemUseContext context) {
 		BlockState state = super.getStateForPlacement(context).with(HORIZONTAL_AXIS, context.getPlacementHorizontalFacing().getAxis());
-		return this.getCurrentState(state, context.getWorld(), context.getPos());
+		return this.getCurrentState(state, context.getLevel(), context.getPos());
 	}
 
 	@Override

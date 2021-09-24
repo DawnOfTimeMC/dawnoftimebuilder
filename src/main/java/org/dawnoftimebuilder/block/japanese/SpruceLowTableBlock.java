@@ -19,8 +19,8 @@ import javax.annotation.Nonnull;
 
 public class SpruceLowTableBlock extends DisplayerBlock {
 
-	private static final VoxelShape X_AXIS_VS = makeCuboidShape(0.0D, 0.0D, 2.0D, 16.0D, 8.0D, 14.0D);
-	private static final VoxelShape Z_AXIS_VS = makeCuboidShape(2.0D, 0.0D, 0.0D, 14.0D, 8.0D, 16.0D);
+	private static final VoxelShape X_AXIS_VS = Block.box(0.0D, 0.0D, 2.0D, 16.0D, 8.0D, 14.0D);
+	private static final VoxelShape Z_AXIS_VS = Block.box(2.0D, 0.0D, 0.0D, 14.0D, 8.0D, 16.0D);
 	public static final EnumProperty<Direction.Axis> HORIZONTAL_AXIS = BlockStateProperties.HORIZONTAL_AXIS;
 
 	public SpruceLowTableBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
@@ -43,7 +43,7 @@ public class SpruceLowTableBlock extends DisplayerBlock {
 	@Nonnull
 	@Override
 	public BlockState getStateForPlacement(BlockItemUseContext context) {
-		return this.getDefaultState().with(HORIZONTAL_AXIS, context.getPlacementHorizontalFacing().getAxis() == Direction.Axis.Z ? Direction.Axis.X : Direction.Axis.Z);
+		return this.defaultBlockState().with(HORIZONTAL_AXIS, context.getPlacementHorizontalFacing().getAxis() == Direction.Axis.Z ? Direction.Axis.X : Direction.Axis.Z);
 	}
 
 	@Override

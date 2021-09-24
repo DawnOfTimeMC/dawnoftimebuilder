@@ -28,7 +28,7 @@ public class CamelliaFeature extends Feature<NoFeatureConfig> {
         for (int i = 0; i < DoTBConfig.CAMELLIA_ROLLS.get(); ++i) {
             BlockPos nextPos = getRandomPos(pos, rand, DoTBConfig.CAMELLIA_SPAWN_WIDTH.get(), DoTBConfig.CAMELLIA_SPAWN_HIGH.get());
             GrowingBushBlock camellia = (GrowingBushBlock) DoTBBlocksRegistry.CAMELLIA;
-            BlockState bushState = camellia.getDefaultState().with(camellia.getAgeProperty(), rand.nextInt(camellia.getMaxAge() + 1));
+            BlockState bushState = camellia.defaultBlockState().with(camellia.getAgeProperty(), rand.nextInt(camellia.getMaxAge() + 1));
             if (isValidPosition(worldIn, nextPos)) {
                 success = true;
                 worldIn.setBlockState(nextPos, bushState, 2);
@@ -45,6 +45,6 @@ public class CamelliaFeature extends Feature<NoFeatureConfig> {
     }
 
     private boolean isValidPosition(IWorld worldIn, BlockPos pos) {
-        return worldIn.isAirBlock(pos) && ((SoilCropsBlock) DoTBBlocksRegistry.CAMELLIA).isValidGround(DoTBBlocksRegistry.CAMELLIA.getDefaultState(), worldIn, pos.down());
+        return worldIn.isAirBlock(pos) && ((SoilCropsBlock) DoTBBlocksRegistry.CAMELLIA).isValidGround(DoTBBlocksRegistry.CAMELLIA.defaultBlockState(), worldIn, pos.down());
     }
 }

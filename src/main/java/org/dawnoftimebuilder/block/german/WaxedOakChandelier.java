@@ -21,11 +21,11 @@ import java.util.Random;
 public class WaxedOakChandelier extends CandleLampBlock implements IBlockChain {
 
     private static final VoxelShape VS = VoxelShapes.or(
-            makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 8.0D, 16.0D),
-            makeCuboidShape(6.0D, 8.0D, 6.0D, 10.0D, 16.0D, 10.0D));
+            Block.box(0.0D, 0.0D, 0.0D, 16.0D, 8.0D, 16.0D),
+            Block.box(6.0D, 8.0D, 6.0D, 10.0D, 16.0D, 10.0D));
 
     public WaxedOakChandelier(Material materialIn, float hardness, float resistance, SoundType soundType) {
-        super(BlockDoTB.Properties.create(materialIn).hardnessAndResistance(hardness, resistance).sound(soundType));
+        super(BlockDoTB.Properties.of(materialIn).strength(hardness, resistance).sound(soundType));
     }
 
     @Override

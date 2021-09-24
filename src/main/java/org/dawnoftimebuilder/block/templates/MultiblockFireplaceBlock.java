@@ -57,8 +57,8 @@ public class MultiblockFireplaceBlock extends SidedPlaneConnectibleBlock {
 	 */
 	private static VoxelShape[] makeShapes() {
 		return new VoxelShape[]{
-				makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 8.0D),
-				makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 12.0D)
+				Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 8.0D),
+				Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 12.0D)
 		};
 	}
 

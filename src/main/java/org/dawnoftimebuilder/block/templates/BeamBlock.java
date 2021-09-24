@@ -93,11 +93,11 @@ public class BeamBlock extends WaterloggedBlock implements IBlockPillar, IBlockC
 	 * 10 : Axis Y + X + Z + Bottom
 	 */
 	private static VoxelShape[] makeShapes() {
-		VoxelShape vs_axis_x = net.minecraft.block.Block.makeCuboidShape(0.0D, 4.0D, 4.0D, 16.0D, 12.0D, 12.0D);
-		VoxelShape vs_axis_z = net.minecraft.block.Block.makeCuboidShape(4.0D, 4.0D, 0.0D, 12.0D, 12.0D, 16.0D);
+		VoxelShape vs_axis_x = net.minecraft.block.Block.Block.box(0.0D, 4.0D, 4.0D, 16.0D, 12.0D, 12.0D);
+		VoxelShape vs_axis_z = net.minecraft.block.Block.Block.box(4.0D, 4.0D, 0.0D, 12.0D, 12.0D, 16.0D);
 		VoxelShape vs_axis_x_z = VoxelShapes.or(vs_axis_x, vs_axis_z);
-		VoxelShape vs_axis_y = net.minecraft.block.Block.makeCuboidShape(3.0D, 0.0D, 3.0D, 13.0D, 16.0D, 13.0D);
-		VoxelShape vs_axis_y_bottom = VoxelShapes.or(vs_axis_y, net.minecraft.block.Block.makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 4.0D, 14.0D));
+		VoxelShape vs_axis_y = net.minecraft.block.Block.Block.box(3.0D, 0.0D, 3.0D, 13.0D, 16.0D, 13.0D);
+		VoxelShape vs_axis_y_bottom = VoxelShapes.or(vs_axis_y, net.minecraft.block.Block.Block.box(2.0D, 0.0D, 2.0D, 14.0D, 4.0D, 14.0D));
 		return new VoxelShape[]{
 				vs_axis_x,
 				vs_axis_z,
@@ -115,7 +115,7 @@ public class BeamBlock extends WaterloggedBlock implements IBlockPillar, IBlockC
 
 	@Override
 	public BlockState getStateForPlacement(BlockItemUseContext context) {
-		BlockState state = context.getWorld().getBlockState(context.getPos());
+		BlockState state = context.getLevel().getBlockState(context.getPos());
 		if (state.getBlock() != this)
 			state = super.getStateForPlacement(context);
 		switch (context.getFace().getAxis()) {
@@ -129,7 +129,7 @@ public class BeamBlock extends WaterloggedBlock implements IBlockPillar, IBlockC
 				state = state.with(AXIS_Z, true);
 				break;
 		}
-		return this.getCurrentState(state, context.getWorld(), context.getPos());
+		return this.getCurrentState(state, context.getLevel(), context.getPos());
 	}
 
 	public BlockState getCurrentState(BlockState stateIn, IWorld worldIn, BlockPos pos){
@@ -167,7 +167,7 @@ public class BeamBlock extends WaterloggedBlock implements IBlockPillar, IBlockC
 		stateIn = super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
 		stateIn = this.getCurrentState(stateIn, worldIn, currentPos);
 		if(!this.canHavePlant(stateIn) && !stateIn.get(CLIMBING_PLANT).hasNoPlant()){
-			return this.removePlant(stateIn, worldIn.getWorld(), currentPos, ItemStack.EMPTY);
+			return this.removePlant(stateIn, worldIn.getLevel(), currentPos, ItemStack.EMPTY);
 		}
 		return stateIn;
 	}

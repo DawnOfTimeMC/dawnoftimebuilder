@@ -13,10 +13,10 @@ import org.dawnoftimebuilder.block.IBlockChain;
 
 public class ChainBlock extends BlockDoTB implements IBlockChain {
 
-	private static final VoxelShape VS = Block.makeCuboidShape(6.0D, 0.0D, 6.0D, 10.0D, 16.0D, 10.0D);
+	private static final VoxelShape VS = Block.Block.box(6.0D, 0.0D, 6.0D, 10.0D, 16.0D, 10.0D);
 
 	public ChainBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
-		this(Block.Properties.create(materialIn).hardnessAndResistance(hardness, resistance).sound(soundType));
+		this(Block.Properties.of(materialIn).strength(hardness, resistance).sound(soundType));
 	}
 
 	public ChainBlock(Properties properties) {

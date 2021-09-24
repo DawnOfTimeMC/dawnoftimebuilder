@@ -39,13 +39,13 @@ import static org.dawnoftimebuilder.registry.DoTBItemsRegistry.SILK_WORMS;
 
 public class StickBundleBlock extends BlockDoTB implements IBlockChain {
 
-    private static final VoxelShape VS_TOP = makeCuboidShape(4.0D, 0.0D, 4.0D, 12.0D, 16.0D, 12.0D);
-    private static final VoxelShape VS_BOTTOM = makeCuboidShape(4.0D, 4.0D, 4.0D, 12.0D, 16.0D, 12.0D);
+    private static final VoxelShape VS_TOP = Block.box(4.0D, 0.0D, 4.0D, 12.0D, 16.0D, 12.0D);
+    private static final VoxelShape VS_BOTTOM = Block.box(4.0D, 4.0D, 4.0D, 12.0D, 16.0D, 12.0D);
 	public static final EnumProperty<Half> HALF = BlockStateProperties.HALF;
 	private static final IntegerProperty AGE = BlockStateProperties.AGE_0_3;
 
     public StickBundleBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
-		super(Properties.create(materialIn).hardnessAndResistance(hardness, resistance).sound(soundType));
+		super(Properties.of(materialIn).strength(hardness, resistance).sound(soundType));
         this.setDefaultState(this.stateContainer.getBaseState().with(AGE, 0).with(HALF, Half.TOP));
     }
 
@@ -62,9 +62,9 @@ public class StickBundleBlock extends BlockDoTB implements IBlockChain {
 	@Nullable
 	@Override
 	public BlockState getStateForPlacement(BlockItemUseContext context) {
-		World world = context.getWorld();
+		World world = context.getLevel();
 		BlockPos pos = context.getPos();
-		if(!world.getBlockState(pos.down()).isReplaceable(context) || !isValidPosition(this.getDefaultState(), world, pos))
+		if(!world.getBlockState(pos.down()).isReplaceable(context) || !isValidPosition(this.defaultBlockState(), world, pos))
 			return null;
 		return super.getStateForPlacement(context);
 	}
@@ -83,7 +83,7 @@ public class StickBundleBlock extends BlockDoTB implements IBlockChain {
 					return stateIn;
 				}
 			}
-			return Blocks.AIR.getDefaultState();
+			return Blocks.AIR.defaultBlockState();
 		}
 		if(facing == Direction.DOWN && stateIn.get(HALF) == Half.TOP) {
 			if(facingState.getBlock() == this){
@@ -91,7 +91,7 @@ public class StickBundleBlock extends BlockDoTB implements IBlockChain {
 					return stateIn;
 				}
 			}
-			return Blocks.AIR.getDefaultState();
+			return Blocks.AIR.defaultBlockState();
 		}
     	return stateIn;
 	}
@@ -113,9 +113,9 @@ public class StickBundleBlock extends BlockDoTB implements IBlockChain {
 					itemstack.shrink(1);
 					worldIn.setBlockState(pos, state.with(AGE, 1));
 					if(state.get(HALF) == Half.TOP){
-						worldIn.setBlockState(pos.down(), this.getDefaultState().with(HALF, Half.BOTTOM).with(AGE, 1));
+						worldIn.setBlockState(pos.down(), this.defaultBlockState().with(HALF, Half.BOTTOM).with(AGE, 1));
 					}else{
-						worldIn.setBlockState(pos.up(), this.getDefaultState().with(HALF, Half.TOP).with(AGE, 1));
+						worldIn.setBlockState(pos.up(), this.defaultBlockState().with(HALF, Half.TOP).with(AGE, 1));
 					}
 					return true;
 				}
@@ -123,14 +123,14 @@ public class StickBundleBlock extends BlockDoTB implements IBlockChain {
 
 			//The StickBundle has fully grown worms, it's time to harvest !
 			if(state.get(AGE) == 3){
-				List<ItemStack> drops = DoTBBlockUtils.getLootList((ServerWorld)worldIn, state, pos, player.getHeldItem(handIn), Objects.requireNonNull(this.getRegistryName()).getPath() + "_harvest");
+				List<ItemStack> drops = DoTBBlockUtils.getLootList((ServerWorld)worldIn, state, player.getHeldItem(handIn), Objects.requireNonNull(this.getRegistryName()).getPath() + "_harvest");
 				DoTBBlockUtils.dropLootFromList(worldIn, pos, drops, 1.0F);
 				worldIn.setBlockState(pos, state.with(AGE, 0));
 				worldIn.playSound(null, pos, SoundEvents.BLOCK_GRASS_BREAK, SoundCategory.BLOCKS, 1.0F, 1.0F);
 				if(state.get(HALF) == Half.TOP){
-					worldIn.setBlockState(pos.down(), this.getDefaultState().with(HALF, Half.BOTTOM).with(AGE, 0));
+					worldIn.setBlockState(pos.down(), this.defaultBlockState().with(HALF, Half.BOTTOM).with(AGE, 0));
 				}else{
-					worldIn.setBlockState(pos.up(), this.getDefaultState().with(HALF, Half.TOP).with(AGE, 0));
+					worldIn.setBlockState(pos.up(), this.defaultBlockState().with(HALF, Half.TOP).with(AGE, 0));
 				}
 				return true;
 			}

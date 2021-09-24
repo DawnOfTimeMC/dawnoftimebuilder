@@ -36,8 +36,8 @@ public class DryerBlock extends WaterloggedBlock {
 
 	//TODO Add redstone compatibility : ie emit redstone when dried
 	public static final IntegerProperty SIZE = DoTBBlockStateProperties.SIZE_0_2;
-	public static final VoxelShape VS_SIMPLE = makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 4.0D, 16.0D);
-	public static final VoxelShape VS_DOUBLE = makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 12.0D, 16.0D);
+	public static final VoxelShape VS_SIMPLE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 4.0D, 16.0D);
+	public static final VoxelShape VS_DOUBLE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 12.0D, 16.0D);
 
 	public DryerBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
 		super(materialIn, hardness, resistance, soundType);
@@ -66,9 +66,9 @@ public class DryerBlock extends WaterloggedBlock {
 	@Nullable
 	public BlockState getStateForPlacement(BlockItemUseContext context) {
 		BlockPos pos = context.getPos();
-		BlockState state = context.getWorld().getBlockState(pos);
+		BlockState state = context.getLevel().getBlockState(pos);
 		if (state.getBlock() == this) {
-			return state.with(SIZE, (context.getWorld().getBlockState(pos.up()).getBlock() == this) ? 2 : 1);
+			return state.with(SIZE, (context.getLevel().getBlockState(pos.up()).getBlock() == this) ? 2 : 1);
 		}
 		return super.getStateForPlacement(context);
 	}
@@ -110,7 +110,7 @@ public class DryerBlock extends WaterloggedBlock {
 	public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
 		stateIn = super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
 		if(facing == Direction.DOWN){
-			if(!isValidPosition(stateIn,worldIn,currentPos)) return Blocks.AIR.getDefaultState();
+			if(!isValidPosition(stateIn,worldIn,currentPos)) return Blocks.AIR.defaultBlockState();
 		}
 		if(facing == Direction.UP){
 			return stateIn.with(SIZE, (stateIn.get(SIZE) != 0 && facingState.getBlock() == this) ? 2 : 1);

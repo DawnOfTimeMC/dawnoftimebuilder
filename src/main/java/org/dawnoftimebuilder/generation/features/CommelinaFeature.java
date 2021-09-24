@@ -27,7 +27,7 @@ public class CommelinaFeature extends Feature<NoFeatureConfig> {
         for (int i = 0; i < DoTBConfig.COMMELINA_ROLLS.get(); ++i) {
             BlockPos nextPos = getRandomPos(pos, rand, DoTBConfig.COMMELINA_SPAWN_WIDTH.get(), DoTBConfig.COMMELINA_SPAWN_HIGH.get());
             SoilCropsBlock commelina = (SoilCropsBlock) DoTBBlocksRegistry.COMMELINA;
-            BlockState soilState = commelina.getDefaultState().with(commelina.getAgeProperty(), rand.nextInt(commelina.getMaxAge() + 1));
+            BlockState soilState = commelina.defaultBlockState().with(commelina.getAgeProperty(), rand.nextInt(commelina.getMaxAge() + 1));
             if (isValidPosition(worldIn, nextPos)) {
                 success = true;
                 worldIn.setBlockState(nextPos, soilState, 2);
@@ -44,6 +44,6 @@ public class CommelinaFeature extends Feature<NoFeatureConfig> {
     }
 
     private boolean isValidPosition(IWorld worldIn, BlockPos pos) {
-        return worldIn.isAirBlock(pos) && ((SoilCropsBlock) DoTBBlocksRegistry.COMMELINA).isValidGround(DoTBBlocksRegistry.COMMELINA.getDefaultState(), worldIn, pos.down());
+        return worldIn.isAirBlock(pos) && ((SoilCropsBlock) DoTBBlocksRegistry.COMMELINA).isValidGround(DoTBBlocksRegistry.COMMELINA.defaultBlockState(), worldIn, pos.down());
     }
 }

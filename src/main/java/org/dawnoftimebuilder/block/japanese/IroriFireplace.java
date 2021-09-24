@@ -21,7 +21,7 @@ import java.util.Random;
 
 public class IroriFireplace extends CandleLampBlock {
     public IroriFireplace(Material materialIn, float hardness, float resistance, SoundType soundType) {
-        super(Properties.create(materialIn).hardnessAndResistance(hardness, resistance).sound(soundType));
+        super(Properties.of(materialIn).strength(hardness, resistance).sound(soundType));
     }
 
     @Override

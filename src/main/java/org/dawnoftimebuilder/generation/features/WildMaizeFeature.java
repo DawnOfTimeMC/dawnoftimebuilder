@@ -34,7 +34,7 @@ public class WildMaizeFeature extends Feature<NoFeatureConfig> {
                 // the block states to be placed
                 WildMaizeBlock maize = (WildMaizeBlock) DoTBBlocksRegistry.WILD_MAIZE;
                 // set the block states
-                worldIn.setBlockState(nextPos, maize.getDefaultState(), 2);
+                worldIn.setBlockState(nextPos, maize.defaultBlockState(), 2);
                 worldIn.setBlockState(nextPos.up(), maize.getDefaultTopState(), 2);
             }
         }
@@ -53,6 +53,6 @@ public class WildMaizeFeature extends Feature<NoFeatureConfig> {
      */
     private boolean isValidPosition(IWorld worldIn, BlockPos pos) {
         WildMaizeBlock plant = (WildMaizeBlock) DoTBBlocksRegistry.WILD_MAIZE;
-        return worldIn.isAirBlock(pos) && worldIn.isAirBlock(pos.up()) && plant.isValidPosition(plant.getDefaultState(), worldIn, pos);
+        return worldIn.isAirBlock(pos) && worldIn.isAirBlock(pos.up()) && plant.isValidPosition(plant.defaultBlockState(), worldIn, pos);
     }
 }

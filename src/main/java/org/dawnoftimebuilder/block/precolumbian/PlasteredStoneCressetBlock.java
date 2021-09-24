@@ -36,10 +36,10 @@ public class PlasteredStoneCressetBlock extends WaterloggedBlock {
 
     private static final IntegerProperty HEAT = DoTBBlockStateProperties.HEAT_0_3;
     private static final BooleanProperty BURNING = DoTBBlockStateProperties.BURNING;
-    private static final VoxelShape VS = Block.makeCuboidShape(3.0D, 0.0D, 3.0D, 13.0D, 14.0D, 13.0D);
+    private static final VoxelShape VS = Block.Block.box(3.0D, 0.0D, 3.0D, 13.0D, 14.0D, 13.0D);
 
     public PlasteredStoneCressetBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
-        super(Properties.create(materialIn).hardnessAndResistance(hardness, resistance).sound(soundType));
+        super(Properties.of(materialIn).strength(hardness, resistance).sound(soundType));
         this.setDefaultState(this.getStateContainer().getBaseState().with(BURNING, false).with(HEAT, 0).with(WATERLOGGED, false));
     }
 

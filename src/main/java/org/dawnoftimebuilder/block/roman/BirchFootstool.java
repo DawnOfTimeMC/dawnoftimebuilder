@@ -21,14 +21,14 @@ import javax.annotation.Nonnull;
 public class BirchFootstool extends ChairBlock {
 
     private static final VoxelShape X_AXIS_VS = VoxelShapes.or(
-            makeCuboidShape(4.0F, 0.0F, 2.0F, 12.0F, 3.0F, 14.0F),
-            makeCuboidShape(2.0F, 3.0F, 0.0F, 14.0F, 9.0F, 16.0F));
+            Block.box(4.0F, 0.0F, 2.0F, 12.0F, 3.0F, 14.0F),
+            Block.box(2.0F, 3.0F, 0.0F, 14.0F, 9.0F, 16.0F));
     private static final VoxelShape Z_AXIS_VS = VoxelShapes.or(
-            makeCuboidShape(2.0F, 0.0F, 4.0F, 14.0F, 3.0F, 12.0F),
-            makeCuboidShape(0.0F, 3.0F, 2.0F, 16.0F, 9.0F, 14.0F));
+            Block.box(2.0F, 0.0F, 4.0F, 14.0F, 3.0F, 12.0F),
+            Block.box(0.0F, 3.0F, 2.0F, 16.0F, 9.0F, 14.0F));
 
     public BirchFootstool(Material materialIn, float hardness, float resistance, SoundType soundType, float pixelsYOffset) {
-        super(Properties.create(materialIn).hardnessAndResistance(hardness, resistance).sound(soundType), pixelsYOffset);
+        super(Properties.of(materialIn).strength(hardness, resistance).sound(soundType), pixelsYOffset);
     }
 
     @Nonnull

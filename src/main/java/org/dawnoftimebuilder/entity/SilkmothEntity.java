@@ -28,9 +28,9 @@ import static org.dawnoftimebuilder.registry.DoTBEntitiesRegistry.SILKMOTH_ENTIT
 
 public class SilkmothEntity extends AmbientEntity {
 
-	private static final DataParameter<BlockPos> ROTATION_POS = EntityDataManager.createKey(SilkmothEntity.class, DataSerializers.BLOCK_POS);
-	private static final DataParameter<Boolean> CLOCKWISE = EntityDataManager.createKey(SilkmothEntity.class, DataSerializers.BOOLEAN);
-	private static final DataParameter<Float> DISTANCE = EntityDataManager.createKey(SilkmothEntity.class, DataSerializers.FLOAT);
+	private static final DataParameter<BlockPos> ROTATION_POS = EntityDataManager.defineId(SilkmothEntity.class, DataSerializers.BLOCK_POS);
+	private static final DataParameter<Boolean> CLOCKWISE = EntityDataManager.defineId(SilkmothEntity.class, DataSerializers.BOOLEAN);
+	private static final DataParameter<Float> DISTANCE = EntityDataManager.defineId(SilkmothEntity.class, DataSerializers.FLOAT);
 
 	public SilkmothEntity(World worldIn) {
 		super(SILKMOTH_ENTITY, worldIn);

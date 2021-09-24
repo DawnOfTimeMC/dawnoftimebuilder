@@ -49,12 +49,14 @@ public class DoTBBlockStateProperties {
             this.index = index;
         }
 
+        @Override
         public String toString()
         {
             return this.name;
         }
 
-        public String getName()
+        @Override
+        public String getSerializedName()
         {
             return this.name;
         }
@@ -78,12 +80,14 @@ public class DoTBBlockStateProperties {
             this.index = index;
         }
 
+        @Override
         public String toString()
         {
             return this.name;
         }
 
-        public String getName()
+        @Override
+        public String getSerializedName()
         {
             return this.name;
         }
@@ -112,12 +116,14 @@ public class DoTBBlockStateProperties {
             this.name = name;
         }
 
+        @Override
         public String toString()
         {
             return this.name;
         }
 
-        public String getName()
+        @Override
+        public String getSerializedName()
         {
             return this.name;
         }
@@ -136,12 +142,14 @@ public class DoTBBlockStateProperties {
             this.name = name;
         }
 
+        @Override
         public String toString()
         {
             return this.name;
         }
 
-        public String getName()
+        @Override
+        public String getSerializedName()
         {
             return this.name;
         }
@@ -163,12 +171,14 @@ public class DoTBBlockStateProperties {
             this.vertical_offset = vertical_offset;
         }
 
+        @Override
         public String toString()
         {
             return this.name;
         }
 
-        public String getName()
+        @Override
+        public String getSerializedName()
         {
             return this.name;
         }
@@ -219,11 +229,13 @@ public class DoTBBlockStateProperties {
             this.name = name;
         }
 
+        @Override
         public String toString(){
             return this.name;
         }
 
-        public String getName()
+        @Override
+        public String getSerializedName()
         {
             return this.name;
         }
@@ -249,11 +261,13 @@ public class DoTBBlockStateProperties {
             this.direction = offset;
         }
 
+        @Override
         public String toString(){
             return this.name;
         }
 
-        public String getName()
+        @Override
+        public String getSerializedName()
         {
             return this.name;
         }
@@ -263,7 +277,7 @@ public class DoTBBlockStateProperties {
         }
 
         public Direction getOffset() {
-            return this.direction.rotateYCCW();
+            return this.direction.getCounterClockWise();
         }
 
         public static SidedWindow getSide(Direction facing, boolean isSneaking) {
@@ -316,11 +330,13 @@ public class DoTBBlockStateProperties {
             this(name, false, 0, 0, 0, 0, 0);
         }
 
+        @Override
         public String toString(){
             return this.name;
         }
 
-        public String getName()
+        @Override
+        public String getSerializedName()
         {
             return this.name;
         }
@@ -333,7 +349,7 @@ public class DoTBBlockStateProperties {
             if(!this.cycle) return false;
             if(currentAge < 2 || currentAge > 6) return false;
             currentAge -= 2;
-            int currentPhase = worldIn.getDimension().getMoonPhase(worldIn.getDayTime());
+            int currentPhase = worldIn.dimensionType().moonPhase(worldIn.getDayTime());
             return (currentPhase - this.moonPhasePerAge[currentAge] + 8) % 8 < 4;
         }
 
@@ -342,8 +358,8 @@ public class DoTBBlockStateProperties {
         }
 
         public static ClimbingPlant getFromItem(Item item){
-            if(item == GRAPE_SEEDS) return GRAPE;
-            //if(item == CLEMATIS_SEEDS) return CLEMATIS;
+            if(item == GRAPE_SEEDS.get()) return GRAPE;
+            //if(item == CLEMATIS_SEEDS.get()) return CLEMATIS;
             if(item == Blocks.VINE.asItem()) return VINE;
             return NONE;
         }

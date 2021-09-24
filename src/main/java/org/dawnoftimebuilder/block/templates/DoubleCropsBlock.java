@@ -40,7 +40,7 @@ public class DoubleCropsBlock extends SoilCropsBlock {
 		super(seedName, plantType, food);
 		this.growingAge = growingAge;
 		this.SHAPES = this.makeShapes();
-		this.setDefaultState(this.getDefaultState().with(HALF, Half.BOTTOM).with(this.getAgeProperty(), 0).with(PERSISTENT, false));
+		this.setDefaultState(this.defaultBlockState().with(HALF, Half.BOTTOM).with(this.getAgeProperty(), 0).with(PERSISTENT, false));
 	}
 
 	@Override
@@ -64,15 +64,15 @@ public class DoubleCropsBlock extends SoilCropsBlock {
 	 */
 	public VoxelShape[] makeShapes() {
 		return new VoxelShape[]{
-				Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 4.0D, 16.0D),
-				Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 8.0D, 16.0D),
-				Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 12.0D, 16.0D),
-				Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D),
-				Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D),
-				Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 4.0D, 16.0D),
-				Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 8.0D, 16.0D),
-				Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 12.0D, 16.0D),
-				Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D),
+				Block.Block.box(0.0D, 0.0D, 0.0D, 16.0D, 4.0D, 16.0D),
+				Block.Block.box(0.0D, 0.0D, 0.0D, 16.0D, 8.0D, 16.0D),
+				Block.Block.box(0.0D, 0.0D, 0.0D, 16.0D, 12.0D, 16.0D),
+				Block.Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D),
+				Block.Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D),
+				Block.Block.box(0.0D, 0.0D, 0.0D, 16.0D, 4.0D, 16.0D),
+				Block.Block.box(0.0D, 0.0D, 0.0D, 16.0D, 8.0D, 16.0D),
+				Block.Block.box(0.0D, 0.0D, 0.0D, 16.0D, 12.0D, 16.0D),
+				Block.Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D),
 		};
 	}
 
@@ -91,7 +91,7 @@ public class DoubleCropsBlock extends SoilCropsBlock {
 					stateIn = stateIn.with(PERSISTENT, facingState.get(PERSISTENT));
 					return isBottom ? stateIn : stateIn.with(AGE, facingState.get(AGE));
 				}else if(isBottom && stateIn.get(AGE) < this.getAgeReachingTopBlock()) return stateIn;
-				return Blocks.AIR.getDefaultState();
+				return Blocks.AIR.defaultBlockState();
 			}else{
 				return super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
 			}
@@ -109,14 +109,14 @@ public class DoubleCropsBlock extends SoilCropsBlock {
 			}
 		}
 		if(newAge < this.getAgeReachingTopBlock() && this.getAge(currentState) == this.getAgeReachingTopBlock()){
-			worldIn.setBlockState(pos.up(), Blocks.AIR.getDefaultState(), 10);
+			worldIn.setBlockState(pos.up(), Blocks.AIR.defaultBlockState(), 10);
 		}
 		worldIn.setBlockState(pos, currentState.with(this.getAgeProperty(), newAge).with(HALF, Half.BOTTOM), 8);
 	}
 
 	@Override
 	public void harvestBlock(World worldIn, PlayerEntity player, BlockPos pos, BlockState state, @Nullable TileEntity te, ItemStack stack) {
-		super.harvestBlock(worldIn, player, pos, Blocks.AIR.getDefaultState(), te, stack);
+		super.harvestBlock(worldIn, player, pos, Blocks.AIR.defaultBlockState(), te, stack);
 	}
 
 	@Override
@@ -125,7 +125,7 @@ public class DoubleCropsBlock extends SoilCropsBlock {
 		BlockPos blockpos = (half == Half.BOTTOM) ? pos.up() : pos.down();
 		BlockState blockstate = worldIn.getBlockState(blockpos);
 		if (blockstate.getBlock() == this) {
-			worldIn.setBlockState(blockpos, Blocks.AIR.getDefaultState(), 35);
+			worldIn.setBlockState(blockpos, Blocks.AIR.defaultBlockState(), 35);
 			worldIn.playEvent(player, 2001, blockpos, Block.getStateId(blockstate));
 			ItemStack itemstack = player.getHeldItemMainhand();
 			if (!worldIn.isRemote && !player.isCreative()) {

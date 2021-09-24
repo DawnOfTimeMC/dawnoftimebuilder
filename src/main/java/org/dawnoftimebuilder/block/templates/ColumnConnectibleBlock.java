@@ -35,7 +35,7 @@ public abstract class ColumnConnectibleBlock extends WaterloggedBlock {
 	public static final EnumProperty<DoTBBlockStateProperties.VerticalConnection> VERTICAL_CONNECTION = DoTBBlockStateProperties.VERTICAL_CONNECTION;
 
 	public ColumnConnectibleBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
-		this(Block.Properties.create(materialIn).hardnessAndResistance(hardness, resistance).sound(soundType));
+		this(Block.Properties.of(materialIn).strength(hardness, resistance).sound(soundType));
 	}
 
 	public ColumnConnectibleBlock(Properties properties) {
@@ -80,7 +80,7 @@ public abstract class ColumnConnectibleBlock extends WaterloggedBlock {
 			BlockPos topPos = this.getHighestColumnPos(worldIn, pos);
 			if(topPos != pos){
 				if(!worldIn.isRemote()) {
-					worldIn.setBlockState(topPos, Blocks.AIR.getDefaultState(), 35);
+					worldIn.setBlockState(topPos, Blocks.AIR.defaultBlockState(), 35);
 					if (!player.isCreative()) {
 						Block.spawnDrops(state, worldIn, pos, null, player, heldItemStack);
 					}

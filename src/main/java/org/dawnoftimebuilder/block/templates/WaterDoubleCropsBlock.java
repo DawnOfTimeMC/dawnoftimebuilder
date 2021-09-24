@@ -29,7 +29,7 @@ public class WaterDoubleCropsBlock extends DoubleCropsBlock implements IWaterLog
 
 	public WaterDoubleCropsBlock(String seedName, int growingAge, Food food) {
 		super(seedName, PlantType.Water, growingAge);
-		this.setDefaultState(this.getDefaultState().with(WATERLOGGED, true).with(HALF, Half.BOTTOM).with(this.getAgeProperty(), 0).with(PERSISTENT, false));
+		this.setDefaultState(this.defaultBlockState().with(WATERLOGGED, true).with(HALF, Half.BOTTOM).with(this.getAgeProperty(), 0).with(PERSISTENT, false));
 	}
 
 	/**
@@ -47,15 +47,15 @@ public class WaterDoubleCropsBlock extends DoubleCropsBlock implements IWaterLog
 	@Override
 	public VoxelShape[] makeShapes() {
 		return new VoxelShape[]{
-				Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 8.0D, 16.0D),
-				Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 12.0D, 16.0D),
-				Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D),
-				Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 1.0D, 16.0D),
-				Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 5.0D, 16.0D),
-				Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 8.0D, 16.0D),
-				Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 11.0D, 16.0D),
-				Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 14.0D, 16.0D),
-				Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D)
+				Block.Block.box(0.0D, 0.0D, 0.0D, 16.0D, 8.0D, 16.0D),
+				Block.Block.box(0.0D, 0.0D, 0.0D, 16.0D, 12.0D, 16.0D),
+				Block.Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D),
+				Block.Block.box(0.0D, 0.0D, 0.0D, 16.0D, 1.0D, 16.0D),
+				Block.Block.box(0.0D, 0.0D, 0.0D, 16.0D, 5.0D, 16.0D),
+				Block.Block.box(0.0D, 0.0D, 0.0D, 16.0D, 8.0D, 16.0D),
+				Block.Block.box(0.0D, 0.0D, 0.0D, 16.0D, 11.0D, 16.0D),
+				Block.Block.box(0.0D, 0.0D, 0.0D, 16.0D, 14.0D, 16.0D),
+				Block.Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D)
 		};
 	}
 
@@ -73,8 +73,8 @@ public class WaterDoubleCropsBlock extends DoubleCropsBlock implements IWaterLog
 	@Override
 	public BlockState getStateForPlacement(BlockItemUseContext context) {
 		BlockPos pos = context.getPos();
-		IWorld world = context.getWorld();
-		return this.getDefaultState().with(WATERLOGGED, world.getFluidState(pos).getFluid() == Fluids.WATER);
+		IWorld world = context.getLevel();
+		return this.defaultBlockState().with(WATERLOGGED, world.getFluidState(pos).getFluid() == Fluids.WATER);
 	}
 
 	@Override
@@ -97,7 +97,7 @@ public class WaterDoubleCropsBlock extends DoubleCropsBlock implements IWaterLog
 			}
 		}
 		if(newAge < this.getAgeReachingTopBlock() && this.getAge(currentState) == this.getAgeReachingTopBlock()){
-			worldIn.setBlockState(pos.up(), Blocks.AIR.getDefaultState(), 10);
+			worldIn.setBlockState(pos.up(), Blocks.AIR.defaultBlockState(), 10);
 		}
 		worldIn.setBlockState(pos, currentState.with(this.getAgeProperty(), newAge).with(HALF, Half.BOTTOM).with(WATERLOGGED, true), 8);
 	}

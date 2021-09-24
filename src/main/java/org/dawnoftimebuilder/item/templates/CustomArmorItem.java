@@ -24,7 +24,7 @@ public abstract class CustomArmorItem extends ArmorItem {
 	public BipedModel<?> slimModel = null;
 
 	public CustomArmorItem(String set, IArmorMaterial materialIn, EquipmentSlotType slot) {
-		super(materialIn, slot, new Item.Properties().maxStackSize(1).group(DOTB_TAB));
+		super(materialIn, slot, new Item.Properties().stacksTo(1).tab(DOTB_TAB));
 		this.set = set;
 	}
 
@@ -40,12 +40,12 @@ public abstract class CustomArmorItem extends ArmorItem {
 		if(!itemStack.isEmpty()) {
 			if(itemStack.getItem() instanceof ArmorItem) {
 				if(entityLiving instanceof AbstractClientPlayerEntity){
-					if("slim".equals(((AbstractClientPlayerEntity) entityLiving).getSkinType())){
+					if("slim".equals(((AbstractClientPlayerEntity) entityLiving).getModelName())){
 						if(this.slimModel == null) this.slimModel = this.createSlimModel(entityLiving);
 
-						this.slimModel.isChild = _default.isChild;
-						this.slimModel.isSneak = _default.isSneak;
-						this.slimModel.isSitting = _default.isSitting;
+						this.slimModel.young = _default.young;
+						this.slimModel.crouching = _default.crouching;
+						this.slimModel.riding = _default.riding;
 						this.slimModel.rightArmPose = _default.rightArmPose;
 						this.slimModel.leftArmPose = _default.leftArmPose;
 
@@ -54,9 +54,9 @@ public abstract class CustomArmorItem extends ArmorItem {
 				}
 				if(this.model == null) this.model = this.createModel(entityLiving);
 
-				this.model.isChild = _default.isChild;
-				this.model.isSneak = _default.isSneak;
-				this.model.isSitting = _default.isSitting;
+				this.model.young = _default.young;
+				this.model.crouching = _default.crouching;
+				this.model.riding = _default.riding;
 				this.model.rightArmPose = _default.rightArmPose;
 				this.model.leftArmPose = _default.leftArmPose;
 
@@ -70,7 +70,7 @@ public abstract class CustomArmorItem extends ArmorItem {
 	@Override
 	public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlotType slot, String type) {
 		if(entity instanceof AbstractClientPlayerEntity){
-			if("slim".equals(((AbstractClientPlayerEntity) entity).getSkinType())){
+			if("slim".equals(((AbstractClientPlayerEntity) entity).getModelName())){
 				return MOD_ID + ":textures/models/armor/" + this.set + "_slim.png";
 			}
 		}

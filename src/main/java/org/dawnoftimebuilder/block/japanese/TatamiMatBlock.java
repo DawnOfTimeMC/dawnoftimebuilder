@@ -38,7 +38,7 @@ import static org.dawnoftimebuilder.util.DoTBBlockUtils.COVERED_BLOCKS;
 
 public class TatamiMatBlock extends WaterloggedBlock {
 
-    private static final VoxelShape VS = makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 1.0D, 16.0D);
+    private static final VoxelShape VS = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 1.0D, 16.0D);
     private static final VoxelShape[] SHAPES = DoTBBlockUtils.GenerateHorizontalShapes(makeShapes());
     public static final EnumProperty<Half> HALF = BlockStateProperties.HALF;
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
@@ -46,7 +46,7 @@ public class TatamiMatBlock extends WaterloggedBlock {
     public static final IntegerProperty STACK = DoTBBlockStateProperties.STACK;
 
     public TatamiMatBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
-        super(Properties.create(materialIn).hardnessAndResistance(hardness, resistance).sound(soundType));
+        super(Properties.of(materialIn).strength(hardness, resistance).sound(soundType));
         this.setDefaultState(this.stateContainer.getBaseState().with(WATERLOGGED, false).with(ROLLED, false).with(HALF, Half.TOP).with(STACK, 1));
     }
 
@@ -70,16 +70,16 @@ public class TatamiMatBlock extends WaterloggedBlock {
      */
     private static VoxelShape[] makeShapes() {
         return new VoxelShape[]{
-                makeCuboidShape(0.0D, 0.0D, 8.5D, 16.0D, 7.0D, 15.5D),
-                makeCuboidShape(0.0D, 0.0D, 0.5D, 16.0D, 7.0D, 15.5D),
-                makeCuboidShape(0.0D, 0.0D, 0.5D, 16.0D, 14.0D, 15.5D)
+                Block.box(0.0D, 0.0D, 8.5D, 16.0D, 7.0D, 15.5D),
+                Block.box(0.0D, 0.0D, 0.5D, 16.0D, 7.0D, 15.5D),
+                Block.box(0.0D, 0.0D, 0.5D, 16.0D, 14.0D, 15.5D)
         };
     }
 
     @Override
     @Nullable
     public BlockState getStateForPlacement(BlockItemUseContext context) {
-        World world = context.getWorld();
+        World world = context.getLevel();
         BlockPos pos = context.getPos();
         BlockState oldState = world.getBlockState(pos);
         if(oldState.getBlock() == this){
@@ -120,7 +120,7 @@ public class TatamiMatBlock extends WaterloggedBlock {
     public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
         stateIn = super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
         if(facing.getAxis().isVertical()){
-            return !stateIn.isValidPosition(worldIn, currentPos) ? Blocks.AIR.getDefaultState() : this.tryMergingWithSprucePlanks(stateIn, worldIn.getWorld(), currentPos);
+            return !stateIn.isValidPosition(worldIn, currentPos) ? Blocks.AIR.defaultBlockState() : this.tryMergingWithSprucePlanks(stateIn, worldIn.getLevel(), currentPos);
         }else{
             boolean mustDisappear = false;
             if(stateIn.get(ROLLED))
@@ -142,7 +142,7 @@ public class TatamiMatBlock extends WaterloggedBlock {
                     mustDisappear = true;
             }
             if(mustDisappear){
-                stateIn = Blocks.AIR.getDefaultState();
+                stateIn = Blocks.AIR.defaultBlockState();
                 worldIn.setBlockState(currentPos, stateIn, 2); //Avoid the breaking particles
             }
         }
@@ -155,9 +155,9 @@ public class TatamiMatBlock extends WaterloggedBlock {
         Block blockDown = worldIn.getBlockState(pos.down()).getBlock();
         Block blockDownAdjacent = worldIn.getBlockState(pos.offset(facing).down()).getBlock();
         if(blockDown == SPRUCE_PLANKS && blockDownAdjacent == SPRUCE_PLANKS){
-            worldIn.setBlockState(pos.down(), TATAMI_FLOOR.getDefaultState().with(TatamiFloorBlock.FACING, facing).with(TatamiFloorBlock.HALF, state.get(HALF)));
-            worldIn.setBlockState(pos.offset(facing).down(), TATAMI_FLOOR.getDefaultState().with(TatamiFloorBlock.FACING, facing).with(TatamiFloorBlock.HALF, state.get(HALF) == Half.TOP ? Half.BOTTOM : Half.TOP));
-            return Blocks.AIR.getDefaultState();
+            worldIn.setBlockState(pos.down(), TATAMI_FLOOR.defaultBlockState().with(TatamiFloorBlock.FACING, facing).with(TatamiFloorBlock.HALF, state.get(HALF)));
+            worldIn.setBlockState(pos.offset(facing).down(), TATAMI_FLOOR.defaultBlockState().with(TatamiFloorBlock.FACING, facing).with(TatamiFloorBlock.HALF, state.get(HALF) == Half.TOP ? Half.BOTTOM : Half.TOP));
+            return Blocks.AIR.defaultBlockState();
         }
         return state;
     }
@@ -173,7 +173,7 @@ public class TatamiMatBlock extends WaterloggedBlock {
             }
             if(state.get(STACK) > 1){
                 state = state.with(STACK, stack - 1);
-                spawnAsEntity(worldIn.getWorld(), pos, new ItemStack(this.asItem(), 1));
+                spawnAsEntity(worldIn.getLevel(), pos, new ItemStack(this.asItem(), 1));
             }else{
                 state = state.with(ROLLED, !isRolled);
                 Direction facing = state.get(FACING);

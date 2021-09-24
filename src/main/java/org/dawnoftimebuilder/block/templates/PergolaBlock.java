@@ -42,11 +42,11 @@ public class PergolaBlock extends BeamBlock {
 	 * 10 : Axis Y + X + Z + Bottom
 	 */
 	private static VoxelShape[] makeShapes() {
-		VoxelShape vs_axis_x = Block.makeCuboidShape(0.0D, 5.0D, 6.0D, 16.0D, 11.0D, 10.0D);
-		VoxelShape vs_axis_z = Block.makeCuboidShape(6.0D, 5.0D, 0.0D, 10.0D, 11.0D, 16.0D);
+		VoxelShape vs_axis_x = Block.Block.box(0.0D, 5.0D, 6.0D, 16.0D, 11.0D, 10.0D);
+		VoxelShape vs_axis_z = Block.Block.box(6.0D, 5.0D, 0.0D, 10.0D, 11.0D, 16.0D);
 		VoxelShape vs_axis_x_z = VoxelShapes.or(vs_axis_x, vs_axis_z);
-		VoxelShape vs_axis_y = Block.makeCuboidShape(5.0D, 0.0D, 5.0D, 11.0D, 16.0D, 11.0D);
-		VoxelShape vs_axis_y_bottom = VoxelShapes.or(vs_axis_y, Block.makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 2.0D, 14.0D));
+		VoxelShape vs_axis_y = Block.Block.box(5.0D, 0.0D, 5.0D, 11.0D, 16.0D, 11.0D);
+		VoxelShape vs_axis_y_bottom = VoxelShapes.or(vs_axis_y, Block.Block.box(2.0D, 0.0D, 2.0D, 14.0D, 2.0D, 14.0D));
 		return new VoxelShape[]{
 				vs_axis_x,
 				vs_axis_z,

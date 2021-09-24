@@ -1,5 +1,6 @@
 package org.dawnoftimebuilder.block.german;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -17,12 +18,12 @@ public class WaxedOakChairBlock extends DoubleChairBlock {
 
 	private static final VoxelShape[] VS = DoTBBlockUtils.GenerateHorizontalShapes(new VoxelShape[]{
 			VoxelShapes.or(
-					makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 11.0D, 14.0D),
-					makeCuboidShape(2.5D, 11.0D, 3.0D, 13.5D, 16.0D, 5.0D)),
-			makeCuboidShape(2.5D, 0.0D, 3.0D, 13.5D, 10.0D, 5.0D)});
+					Block.box(2.0D, 0.0D, 2.0D, 14.0D, 11.0D, 14.0D),
+					Block.box(2.5D, 11.0D, 3.0D, 13.5D, 16.0D, 5.0D)),
+			Block.box(2.5D, 0.0D, 3.0D, 13.5D, 10.0D, 5.0D)});
 
 	public WaxedOakChairBlock(Material materialIn, float hardness, float resistance, SoundType soundType, float pixelsYOffset) {
-		super(BlockDoTB.Properties.create(materialIn).hardnessAndResistance(hardness, resistance).sound(soundType), pixelsYOffset);
+		super(BlockDoTB.Properties.of(materialIn).strength(hardness, resistance).sound(soundType), pixelsYOffset);
 	}
 
 	@Override

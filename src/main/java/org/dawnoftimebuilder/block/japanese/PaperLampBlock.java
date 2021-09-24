@@ -17,11 +17,11 @@ import static org.dawnoftimebuilder.util.DoTBBlockStateProperties.VerticalConnec
 
 public class PaperLampBlock extends ColumnConnectibleBlock implements IBlockSpecialDisplay {
 
-    private static final VoxelShape VS_BOTTOM = makeCuboidShape(4.0D, 0.0D, 4.0D, 12.0D, 16.0D, 12.0D);
-    private static final VoxelShape VS_TOP = makeCuboidShape(4.0D, 0.0D, 4.0D, 12.0D, 13.0D, 12.0D);
+    private static final VoxelShape VS_BOTTOM = Block.box(4.0D, 0.0D, 4.0D, 12.0D, 16.0D, 12.0D);
+    private static final VoxelShape VS_TOP = Block.box(4.0D, 0.0D, 4.0D, 12.0D, 13.0D, 12.0D);
 
     public PaperLampBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
-        super(Properties.create(materialIn).hardnessAndResistance(hardness, resistance).sound(soundType).lightValue(15));
+        super(Properties.of(materialIn).strength(hardness, resistance).sound(soundType).lightValue(15));
     }
 
     @Nonnull

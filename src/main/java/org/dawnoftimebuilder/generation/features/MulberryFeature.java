@@ -35,7 +35,7 @@ public class MulberryFeature extends Feature<NoFeatureConfig> {
                 success = true;
                 // the block states to be placed
                 DoubleGrowingBushBlock mulberry = (DoubleGrowingBushBlock) DoTBBlocksRegistry.MULBERRY;
-                BlockState treeBaseState = mulberry.getDefaultState().with(mulberry.getAgeProperty(),rand.nextInt(mulberry.getMaxAge() - mulberry.getAgeReachingTopBlock() + 1) + mulberry.getAgeReachingTopBlock());
+                BlockState treeBaseState = mulberry.defaultBlockState().with(mulberry.getAgeProperty(),rand.nextInt(mulberry.getMaxAge() - mulberry.getAgeReachingTopBlock() + 1) + mulberry.getAgeReachingTopBlock());
                 // set the block states
                 worldIn.setBlockState(nextPos, treeBaseState, 2);
                 worldIn.setBlockState(nextPos.up(), mulberry.getTopState(treeBaseState), 2);
@@ -55,6 +55,6 @@ public class MulberryFeature extends Feature<NoFeatureConfig> {
      * Determines if the given position is valid for a mulberry bush.
      */
     private boolean isValidPosition(IWorld worldIn, BlockPos pos) {
-        return worldIn.isAirBlock(pos) && worldIn.isAirBlock(pos.up()) && ((SoilCropsBlock) DoTBBlocksRegistry.MULBERRY).isValidGround(DoTBBlocksRegistry.MULBERRY.getDefaultState(), worldIn, pos.down());
+        return worldIn.isAirBlock(pos) && worldIn.isAirBlock(pos.up()) && ((SoilCropsBlock) DoTBBlocksRegistry.MULBERRY).isValidGround(DoTBBlocksRegistry.MULBERRY.defaultBlockState(), worldIn, pos.down());
     }
 }

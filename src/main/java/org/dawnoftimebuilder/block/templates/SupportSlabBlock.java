@@ -18,10 +18,10 @@ import org.dawnoftimebuilder.util.DoTBBlockStateProperties;
 
 public class SupportSlabBlock extends WaterloggedBlock {
 
-    private static final VoxelShape VS = makeCuboidShape(0.0D, 12.0D, 0.0D, 16.0D, 16.0D, 16.0D);
-	private static final VoxelShape VS_FOUR_PX = VoxelShapes.or(VS, makeCuboidShape(6.0D, 0.0D, 6.0D, 10.0D, 16.0D, 10.0D));
-	private static final VoxelShape VS_EIGHT_PX = VoxelShapes.or(VS, makeCuboidShape(4.0D, 0.0D, 4.0D, 12.0D, 16.0D, 12.0D));
-	private static final VoxelShape VS_TEN_PX = VoxelShapes.or(VS, makeCuboidShape(3.0D, 0.0D, 3.0D, 13.0D, 16.0D, 13.0D));
+    private static final VoxelShape VS = Block.box(0.0D, 12.0D, 0.0D, 16.0D, 16.0D, 16.0D);
+	private static final VoxelShape VS_FOUR_PX = VoxelShapes.or(VS, Block.box(6.0D, 0.0D, 6.0D, 10.0D, 16.0D, 10.0D));
+	private static final VoxelShape VS_EIGHT_PX = VoxelShapes.or(VS, Block.box(4.0D, 0.0D, 4.0D, 12.0D, 16.0D, 12.0D));
+	private static final VoxelShape VS_TEN_PX = VoxelShapes.or(VS, Block.box(3.0D, 0.0D, 3.0D, 13.0D, 16.0D, 13.0D));
 
 	private static final EnumProperty<DoTBBlockStateProperties.PillarConnection> PILLAR_CONNECTION = DoTBBlockStateProperties.PILLAR_CONNECTION;
 
@@ -52,7 +52,7 @@ public class SupportSlabBlock extends WaterloggedBlock {
 
 	@Override
 	public BlockState getStateForPlacement(BlockItemUseContext context) {
-		return super.getStateForPlacement(context).with(PILLAR_CONNECTION, IBlockPillar.getPillarConnectionAbove(context.getWorld(), context.getPos().down()));
+		return super.getStateForPlacement(context).with(PILLAR_CONNECTION, IBlockPillar.getPillarConnectionAbove(context.getLevel(), context.getPos().down()));
 	}
 
 	@Override

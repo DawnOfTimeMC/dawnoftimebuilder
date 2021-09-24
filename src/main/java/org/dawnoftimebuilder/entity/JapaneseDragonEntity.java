@@ -2,6 +2,8 @@ package org.dawnoftimebuilder.entity;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
+import net.minecraft.entity.ai.attributes.Attribute;
+import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
 import net.minecraft.entity.ai.controller.MovementController;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.ai.goal.LookAtGoal;
@@ -17,38 +19,38 @@ import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.DifficultyInstance;
-import net.minecraft.world.IWorld;
+import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 import org.dawnoftimebuilder.DoTBConfig;
 
 import javax.annotation.Nullable;
-
 import java.util.Random;
 
 import static org.dawnoftimebuilder.registry.DoTBEntitiesRegistry.JAPANESE_DRAGON_ENTITY;
 
 public class JapaneseDragonEntity extends CreatureEntity {
 
-	private static final DataParameter<Float> SIZE = EntityDataManager.createKey(JapaneseDragonEntity.class, DataSerializers.FLOAT);
-	private static final DataParameter<Float> ANGLE = EntityDataManager.createKey(JapaneseDragonEntity.class, DataSerializers.FLOAT);
-	private static final DataParameter<Float> ANIM_DURATION = EntityDataManager.createKey(JapaneseDragonEntity.class, DataSerializers.FLOAT);
+	private static final DataParameter<Float> SIZE = EntityDataManager.defineId(JapaneseDragonEntity.class, DataSerializers.FLOAT);
+	private static final DataParameter<Float> ANGLE = EntityDataManager.defineId(JapaneseDragonEntity.class, DataSerializers.FLOAT);
+	private static final DataParameter<Float> ANIM_DURATION = EntityDataManager.defineId(JapaneseDragonEntity.class, DataSerializers.FLOAT);
 	private float previousTickAge = 0.0F;
 	private float animationLoop = 0.0F;
 
 	public JapaneseDragonEntity(World worldIn) {
-		super(JAPANESE_DRAGON_ENTITY, worldIn);
+		super(JAPANESE_DRAGON_ENTITY.get(), worldIn);
 	}
 
 	@Nullable
-	public ILivingEntityData onInitialSpawn(IWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
-		float size = (float) this.rand.nextGaussian();
+	@Override
+	public ILivingEntityData finalizeSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
+		float size = (float) this.random.nextGaussian();
 		if(size < 0) size = -1 / (size - 1);
 		else size = (float) (1.0D + Math.min(size * 0.5D, 15.0D));
 
 		this.setDragonSize(size);
-		this.experienceValue = (int) Math.ceil(100 * size);
+		this.xpReward = (int) Math.ceil(100 * size);
 		this.setAnimDuration(10.0F);
-		return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
+		return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 	}
 
 	@Override

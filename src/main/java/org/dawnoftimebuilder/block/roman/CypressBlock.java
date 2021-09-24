@@ -42,13 +42,13 @@ import static org.dawnoftimebuilder.util.DoTBBlockUtils.TOOLTIP_COLUMN;
 public class CypressBlock extends BlockDoTB {
 
     private static final IntegerProperty SIZE = DoTBBlockStateProperties.SIZE_0_5;
-    private static final VoxelShape VS_0 = makeCuboidShape(6.0D, 0.0D, 6.0D, 10.0D, 16.0D, 10.0D);
-    private static final VoxelShape VS_1 = makeCuboidShape(6.0D, 0.0D, 6.0D, 10.0D, 8.0D, 10.0D);
-    private static final VoxelShape VS_2 = makeCuboidShape(4.0D, 0.0D, 4.0D, 12.0D, 16.0D, 12.0D);
-    private static final VoxelShape VS_3_4 = makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 16.0D, 14.0D);
+    private static final VoxelShape VS_0 = Block.box(6.0D, 0.0D, 6.0D, 10.0D, 16.0D, 10.0D);
+    private static final VoxelShape VS_1 = Block.box(6.0D, 0.0D, 6.0D, 10.0D, 8.0D, 10.0D);
+    private static final VoxelShape VS_2 = Block.box(4.0D, 0.0D, 4.0D, 12.0D, 16.0D, 12.0D);
+    private static final VoxelShape VS_3_4 = Block.box(2.0D, 0.0D, 2.0D, 14.0D, 16.0D, 14.0D);
 
     public CypressBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
-        super(Properties.create(materialIn).hardnessAndResistance(hardness, resistance).sound(soundType));
+        super(Properties.of(materialIn).strength(hardness, resistance).sound(soundType));
         this.setDefaultState(this.getStateContainer().getBaseState().with(SIZE, 1));
     }
 
@@ -65,7 +65,7 @@ public class CypressBlock extends BlockDoTB {
             BlockPos topPos = this.getHighestCypressPos(worldIn, pos);
             if(topPos != pos){
                 if(!worldIn.isRemote()) {
-                    worldIn.setBlockState(topPos, Blocks.AIR.getDefaultState(), 35);
+                    worldIn.setBlockState(topPos, Blocks.AIR.defaultBlockState(), 35);
                     if (!player.isCreative()) {
                         Block.spawnDrops(state, worldIn, pos, null, player, heldItemStack);
                     }
@@ -78,7 +78,7 @@ public class CypressBlock extends BlockDoTB {
                 BlockPos topPos = this.getHighestCypressPos(worldIn, pos).up();
                 if(topPos.getY() <= HIGHEST_Y){
                     if(!worldIn.isRemote()) {
-                        worldIn.setBlockState(topPos, this.getDefaultState(), 11);
+                        worldIn.setBlockState(topPos, this.defaultBlockState(), 11);
                         if(!player.isCreative()) {
                             heldItemStack.shrink(1);
                         }
@@ -128,25 +128,25 @@ public class CypressBlock extends BlockDoTB {
     @Nullable
     @Override
     public BlockState getStateForPlacement(BlockItemUseContext context) {
-        BlockState adjacentState = context.getWorld().getBlockState(context.getPos().up());
+        BlockState adjacentState = context.getLevel().getBlockState(context.getPos().up());
         int size = (adjacentState.getBlock() == this) ? Math.min(adjacentState.get(SIZE) + 1, 5) : 1;
-        if(size < 3) return this.getDefaultState().with(SIZE, size);
+        if(size < 3) return this.defaultBlockState().with(SIZE, size);
         else {
-            adjacentState = context.getWorld().getBlockState(context.getPos().down());
-            return this.getDefaultState().with(SIZE, (adjacentState.getBlock() == this) ? size : 0);
+            adjacentState = context.getLevel().getBlockState(context.getPos().down());
+            return this.defaultBlockState().with(SIZE, (adjacentState.getBlock() == this) ? size : 0);
         }
     }
 
     @Override
     public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
         if(facing.getAxis().isVertical()){
-            if(!isValidPosition(stateIn, worldIn, currentPos)) return Blocks.AIR.getDefaultState();
+            if(!isValidPosition(stateIn, worldIn, currentPos)) return Blocks.AIR.defaultBlockState();
             BlockState adjacentState = worldIn.getBlockState(currentPos.up());
             int size = (adjacentState.getBlock() == this) ? Math.min(adjacentState.get(SIZE) + 1, 5) : 1;
-            if(size < 3) return this.getDefaultState().with(SIZE, size);
+            if(size < 3) return this.defaultBlockState().with(SIZE, size);
             else {
                 adjacentState = worldIn.getBlockState(currentPos.down());
-                return this.getDefaultState().with(SIZE, (adjacentState.getBlock() == this) ? size : 0);
+                return this.defaultBlockState().with(SIZE, (adjacentState.getBlock() == this) ? size : 0);
             }
         }else return stateIn;
     }

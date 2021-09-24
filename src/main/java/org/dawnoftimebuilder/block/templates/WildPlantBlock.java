@@ -21,7 +21,7 @@ import javax.annotation.Nullable;
 
 public class WildPlantBlock extends BlockDoTB {
 
-    private final VoxelShape VS = makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 14.0D, 14.0D);
+    private final VoxelShape VS = Block.box(2.0D, 0.0D, 2.0D, 14.0D, 14.0D, 14.0D);
 
     public WildPlantBlock(Properties properties) {
         super(properties);
@@ -50,7 +50,7 @@ public class WildPlantBlock extends BlockDoTB {
     @Nullable
     @Override
     public BlockState getStateForPlacement(BlockItemUseContext context) {
-        return isValidPosition(this.getDefaultState(), context.getWorld(), context.getPos()) ? super.getStateForPlacement(context) : null;
+        return isValidPosition(this.defaultBlockState(), context.getLevel(), context.getPos()) ? super.getStateForPlacement(context) : null;
     }
 
     @Override

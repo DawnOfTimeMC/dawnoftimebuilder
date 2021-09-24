@@ -32,7 +32,7 @@ public class EdgeBlock extends WaterloggedBlock {
 	}
 
 	public EdgeBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
-		this(Properties.create(materialIn).hardnessAndResistance(hardness, resistance).sound(soundType));
+		this(Properties.of(materialIn).strength(hardness, resistance).sound(soundType));
 	}
 
 	public EdgeBlock(Block block) {
@@ -86,14 +86,14 @@ public class EdgeBlock extends WaterloggedBlock {
 	 * 11 : SW Inner <p/>
 	 */
 	private static VoxelShape[] makeShapes(boolean bottom) {
-		VoxelShape vs_north_flat = net.minecraft.block.Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 8.0D, 8.0D);
-		VoxelShape vs_east_flat = net.minecraft.block.Block.makeCuboidShape(8.0D, 0.0D, 0.0D, 16.0D, 8.0D, 16.0D);
-		VoxelShape vs_south_flat = net.minecraft.block.Block.makeCuboidShape(0.0D, 0.0D, 8.0D, 16.0D, 8.0D, 16.0D);
-		VoxelShape vs_west_flat = net.minecraft.block.Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 8.0D, 8.0D, 16.0D);
-		VoxelShape vs_nw_corner = net.minecraft.block.Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 8.0D, 8.0D, 8.0D);
-		VoxelShape vs_ne_corner = net.minecraft.block.Block.makeCuboidShape(8.0D, 0.0D, 0.0D, 16.0D, 8.0D, 8.0D);
-		VoxelShape vs_se_corner = net.minecraft.block.Block.makeCuboidShape(8.0D, 0.0D, 8.0D, 16.0D, 8.0D, 16.0D);
-		VoxelShape vs_sw_corner = net.minecraft.block.Block.makeCuboidShape(0.0D, 0.0D, 8.0D, 8.0D, 8.0D, 16.0D);
+		VoxelShape vs_north_flat = net.minecraft.block.Block.Block.box(0.0D, 0.0D, 0.0D, 16.0D, 8.0D, 8.0D);
+		VoxelShape vs_east_flat = net.minecraft.block.Block.Block.box(8.0D, 0.0D, 0.0D, 16.0D, 8.0D, 16.0D);
+		VoxelShape vs_south_flat = net.minecraft.block.Block.Block.box(0.0D, 0.0D, 8.0D, 16.0D, 8.0D, 16.0D);
+		VoxelShape vs_west_flat = net.minecraft.block.Block.Block.box(0.0D, 0.0D, 0.0D, 8.0D, 8.0D, 16.0D);
+		VoxelShape vs_nw_corner = net.minecraft.block.Block.Block.box(0.0D, 0.0D, 0.0D, 8.0D, 8.0D, 8.0D);
+		VoxelShape vs_ne_corner = net.minecraft.block.Block.Block.box(8.0D, 0.0D, 0.0D, 16.0D, 8.0D, 8.0D);
+		VoxelShape vs_se_corner = net.minecraft.block.Block.Block.box(8.0D, 0.0D, 8.0D, 16.0D, 8.0D, 16.0D);
+		VoxelShape vs_sw_corner = net.minecraft.block.Block.Block.box(0.0D, 0.0D, 8.0D, 8.0D, 8.0D, 16.0D);
 		VoxelShape[] vss = new VoxelShape[]{
 				vs_nw_corner,
 				vs_north_flat,
@@ -121,7 +121,7 @@ public class EdgeBlock extends WaterloggedBlock {
 		Direction direction = context.getFace();
 		BlockPos pos = context.getPos();
 		state = state.with(FACING, context.getPlacementHorizontalFacing()).with(HALF, direction != Direction.DOWN && (direction == Direction.UP || !(context.getHitVec().y - (double)pos.getY() > 0.5D)) ? Half.BOTTOM : Half.TOP);
-		return state.with(SHAPE, getShapeProperty(state, context.getWorld(), pos));
+		return state.with(SHAPE, getShapeProperty(state, context.getLevel(), pos));
 	}
 
 	@Override

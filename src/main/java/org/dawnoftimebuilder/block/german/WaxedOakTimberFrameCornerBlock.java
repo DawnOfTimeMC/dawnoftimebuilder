@@ -16,8 +16,8 @@ public class WaxedOakTimberFrameCornerBlock extends BlockDoTB {
 	public static final BooleanProperty INVERTED = BlockStateProperties.INVERTED;
 
 	public WaxedOakTimberFrameCornerBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
-		super(Properties.create(materialIn).hardnessAndResistance(hardness, resistance).sound(soundType));
-		this.setDefaultState(this.getDefaultState().with(INVERTED, false));
+		super(Properties.of(materialIn).strength(hardness, resistance).sound(soundType));
+		this.setDefaultState(this.defaultBlockState().with(INVERTED, false));
 	}
 
 	@Override
@@ -30,6 +30,6 @@ public class WaxedOakTimberFrameCornerBlock extends BlockDoTB {
 	public BlockState getStateForPlacement(BlockItemUseContext context) {
 		BlockPos pos = context.getPos();
 		int coordinateSum = (pos.getX() + pos.getY() + pos.getZ() ) % 2;
-		return this.getDefaultState().with(INVERTED, coordinateSum != 0);
+		return this.defaultBlockState().with(INVERTED, coordinateSum != 0);
 	}
 }

@@ -16,7 +16,7 @@ public class SerpentSculptedColumnBlock extends SidedColumnConnectibleBlock {
 	private static final VoxelShape[] SHAPES = DoTBBlockUtils.GenerateHorizontalShapes(makeShapes());
 
 	public SerpentSculptedColumnBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
-		super(Properties.create(materialIn).hardnessAndResistance(hardness, resistance).sound(soundType));
+		super(Properties.of(materialIn).strength(hardness, resistance).sound(soundType));
 	}
 
 	@Override
@@ -33,11 +33,11 @@ public class SerpentSculptedColumnBlock extends SidedColumnConnectibleBlock {
 	 * 3 : S Both <p/>
 	 */
 	private static VoxelShape[] makeShapes() {
-		VoxelShape vs_head = makeCuboidShape(4.0D, 0.0D, 7.0D, 12.0D, 11.0D, 16.0D);
-		VoxelShape vs_tail = makeCuboidShape(5.0D, 0.0D, 0.0D, 11.0D, 16.0D, 6.0D);
+		VoxelShape vs_head = Block.box(4.0D, 0.0D, 7.0D, 12.0D, 11.0D, 16.0D);
+		VoxelShape vs_tail = Block.box(5.0D, 0.0D, 0.0D, 11.0D, 16.0D, 6.0D);
 		return new VoxelShape[]{
-				VoxelShapes.or(vs_head, makeCuboidShape(5.0D, 0.0D, 10.0D, 11.0D, 6.0D, 16.0D)),
-				VoxelShapes.or(vs_tail, makeCuboidShape(5.0D, 10.0D, 6.0D, 11.0D, 16.0D, 15.0D)),
+				VoxelShapes.or(vs_head, Block.box(5.0D, 0.0D, 10.0D, 11.0D, 6.0D, 16.0D)),
+				VoxelShapes.or(vs_tail, Block.box(5.0D, 10.0D, 6.0D, 11.0D, 16.0D, 15.0D)),
 				VoxelShapes.or(vs_head, vs_tail),
 				vs_tail
 		};

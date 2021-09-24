@@ -40,21 +40,21 @@ import static org.dawnoftimebuilder.util.DoTBBlockUtils.COVERED_BLOCKS;
 
 public class SmallTatamiMatBlock extends WaterloggedBlock implements IBlockChain {
 
-    private static final VoxelShape VS = makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 1.0D, 16.0D);
-    private static final VoxelShape X_ROLLED_VS = makeCuboidShape(5.5D, 0.0D, 0.0D, 10.5D, 5.0D, 16.0D);
-    private static final VoxelShape X_ROLLED_VS_2 = makeCuboidShape(1.5D, 0.0D, 0.0D, 14.5D, 5.0D, 16.0D);
-    private static final VoxelShape X_ROLLED_VS_3 = makeCuboidShape(1.5D, 0.0D, 0.0D, 14.5D, 10.0D, 16.0D);
-    private static final VoxelShape Z_ROLLED_VS = makeCuboidShape(0.0D, 0.0D, 5.5D, 16.0D, 5.0D, 10.5D);
-    private static final VoxelShape Z_ROLLED_VS_2 = makeCuboidShape(0.0D, 0.0D, 1.5D, 16.0D, 5.0D, 14.5D);
-    private static final VoxelShape Z_ROLLED_VS_3 = makeCuboidShape(0.0D, 0.0D, 1.5D, 16.0D, 10.0D, 14.5D);
-    private static final VoxelShape ATTACHED_VS = makeCuboidShape(5.5D, 0.0D, 5.5D, 10.5D, 16.0D, 10.5D);
+    private static final VoxelShape VS = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 1.0D, 16.0D);
+    private static final VoxelShape X_ROLLED_VS = Block.box(5.5D, 0.0D, 0.0D, 10.5D, 5.0D, 16.0D);
+    private static final VoxelShape X_ROLLED_VS_2 = Block.box(1.5D, 0.0D, 0.0D, 14.5D, 5.0D, 16.0D);
+    private static final VoxelShape X_ROLLED_VS_3 = Block.box(1.5D, 0.0D, 0.0D, 14.5D, 10.0D, 16.0D);
+    private static final VoxelShape Z_ROLLED_VS = Block.box(0.0D, 0.0D, 5.5D, 16.0D, 5.0D, 10.5D);
+    private static final VoxelShape Z_ROLLED_VS_2 = Block.box(0.0D, 0.0D, 1.5D, 16.0D, 5.0D, 14.5D);
+    private static final VoxelShape Z_ROLLED_VS_3 = Block.box(0.0D, 0.0D, 1.5D, 16.0D, 10.0D, 14.5D);
+    private static final VoxelShape ATTACHED_VS = Block.box(5.5D, 0.0D, 5.5D, 10.5D, 16.0D, 10.5D);
     public static final EnumProperty<Direction.Axis> HORIZONTAL_AXIS = BlockStateProperties.HORIZONTAL_AXIS;
     public static final BooleanProperty ATTACHED = BlockStateProperties.ATTACHED;
     public static final BooleanProperty ROLLED = DoTBBlockStateProperties.ROLLED;
     public static final IntegerProperty STACK = DoTBBlockStateProperties.STACK;
 
     public SmallTatamiMatBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
-        super(Properties.create(materialIn).hardnessAndResistance(hardness, resistance).sound(soundType));
+        super(Properties.of(materialIn).strength(hardness, resistance).sound(soundType));
         this.setDefaultState(this.stateContainer.getBaseState().with(ROLLED, false).with(ATTACHED, false).with(STACK, 1).with(WATERLOGGED, false));
     }
 
@@ -89,7 +89,7 @@ public class SmallTatamiMatBlock extends WaterloggedBlock implements IBlockChain
 
     @Override
     public BlockState getStateForPlacement(BlockItemUseContext context) {
-        World world = context.getWorld();
+        World world = context.getLevel();
         BlockPos pos = context.getPos();
         BlockState oldState = world.getBlockState(pos);
         if(oldState.getBlock() == this){
@@ -126,7 +126,7 @@ public class SmallTatamiMatBlock extends WaterloggedBlock implements IBlockChain
                         || IBlockChain.canBeChained(stateUp, true))
                     stateIn = stateIn.with(ATTACHED, true);
             }
-            return !stateIn.isValidPosition(worldIn, currentPos) ? Blocks.AIR.getDefaultState() : this.tryMergingWithSprucePlanks(stateIn, worldIn.getWorld(), currentPos);
+            return !stateIn.isValidPosition(worldIn, currentPos) ? Blocks.AIR.defaultBlockState() : this.tryMergingWithSprucePlanks(stateIn, worldIn.getLevel(), currentPos);
         }
         return stateIn;
     }
@@ -141,8 +141,8 @@ public class SmallTatamiMatBlock extends WaterloggedBlock implements IBlockChain
         if(state.get(ROLLED)) return state;
         Block blockDown = worldIn.getBlockState(pos.down()).getBlock();
         if(blockDown == SPRUCE_PLANKS){
-            worldIn.setBlockState(pos.down(), SMALL_TATAMI_FLOOR.getDefaultState());
-            return Blocks.AIR.getDefaultState();
+            worldIn.setBlockState(pos.down(), SMALL_TATAMI_FLOOR.defaultBlockState());
+            return Blocks.AIR.defaultBlockState();
         }
         return state.with(ATTACHED, false);
     }
@@ -157,7 +157,7 @@ public class SmallTatamiMatBlock extends WaterloggedBlock implements IBlockChain
                     return false;
             if(state.get(STACK) > 1){
                 state = state.with(STACK, stack - 1);
-                spawnAsEntity(worldIn.getWorld(), pos, new ItemStack(this.asItem(), 1));
+                spawnAsEntity(worldIn.getLevel(), pos, new ItemStack(this.asItem(), 1));
             }else
                 state = state.with(ROLLED, !isRolled);
             state = this.updatePostPlacement(state, Direction.DOWN, worldIn.getBlockState(pos.down()), worldIn, pos, pos.down());

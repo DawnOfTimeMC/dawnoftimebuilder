@@ -28,7 +28,7 @@ public class ChairBlock extends WaterloggedBlock{
     }
 
     public ChairBlock(Material materialIn, float hardness, float resistance, float pixelsYOffset) {
-        this(Properties.create(materialIn).hardnessAndResistance(hardness, resistance), pixelsYOffset);
+        this(Properties.of(materialIn).strength(hardness, resistance), pixelsYOffset);
     }
 
     @Override

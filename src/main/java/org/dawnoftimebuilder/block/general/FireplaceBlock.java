@@ -42,10 +42,10 @@ public class FireplaceBlock extends WaterloggedBlock {
 	public static final BooleanProperty BURNING = DoTBBlockStateProperties.BURNING;
 	public static final EnumProperty<DoTBBlockStateProperties.HorizontalConnection> HORIZONTAL_CONNECTION = DoTBBlockStateProperties.HORIZONTAL_CONNECTION;
 
-	private static final VoxelShape ON_X_SHAPE = net.minecraft.block.Block.makeCuboidShape(0.0D, 0.0D, 2.0D, 16.0D, 14.0D, 14.0D);
-	private static final VoxelShape OFF_X_SHAPE = net.minecraft.block.Block.makeCuboidShape(0.0D, 0.0D, 2.0D, 16.0D, 5.0D, 14.0D);
-	private static final VoxelShape ON_Z_SHAPE = net.minecraft.block.Block.makeCuboidShape(2.0D, 0.0D, 0.0D, 14.0D, 14.0D, 16.0D);
-	private static final VoxelShape OFF_Z_SHAPE = net.minecraft.block.Block.makeCuboidShape(2.0D, 0.0D, 0.0D, 14.0D, 5.0D, 16.0D);
+	private static final VoxelShape ON_X_SHAPE = net.minecraft.block.Block.Block.box(0.0D, 0.0D, 2.0D, 16.0D, 14.0D, 14.0D);
+	private static final VoxelShape OFF_X_SHAPE = net.minecraft.block.Block.Block.box(0.0D, 0.0D, 2.0D, 16.0D, 5.0D, 14.0D);
+	private static final VoxelShape ON_Z_SHAPE = net.minecraft.block.Block.Block.box(2.0D, 0.0D, 0.0D, 14.0D, 14.0D, 16.0D);
+	private static final VoxelShape OFF_Z_SHAPE = net.minecraft.block.Block.Block.box(2.0D, 0.0D, 0.0D, 14.0D, 5.0D, 16.0D);
 
 	public FireplaceBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
 		super(materialIn, hardness, resistance, soundType);
@@ -80,7 +80,7 @@ public class FireplaceBlock extends WaterloggedBlock {
 	@Override
 	public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
 		stateIn = super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
-		return !stateIn.isValidPosition(worldIn, currentPos) ? Blocks.AIR.getDefaultState() : super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+		return !stateIn.isValidPosition(worldIn, currentPos) ? Blocks.AIR.defaultBlockState() : super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
 	}
 
 	@Override
@@ -140,7 +140,7 @@ public class FireplaceBlock extends WaterloggedBlock {
 	public BlockState getStateForPlacement(BlockItemUseContext context) {
 		BlockState state = super.getStateForPlacement(context);
 		Direction.Axis axis = (context.getPlacementHorizontalFacing().getAxis() == Direction.Axis.X)? Direction.Axis.Z : Direction.Axis.X;
-		return state.with(HORIZONTAL_AXIS, axis).with(HORIZONTAL_CONNECTION, getHorizontalShape(context.getWorld(), context.getPos(), axis));
+		return state.with(HORIZONTAL_AXIS, axis).with(HORIZONTAL_CONNECTION, getHorizontalShape(context.getLevel(), context.getPos(), axis));
 	}
 
 	@Override

@@ -18,11 +18,11 @@ public class PaneBlockDoTB extends PaneBlock {
 	private final BlockRenderLayer renderLayer;
 
 	public PaneBlockDoTB(Material materialIn, float hardness, float resistance, SoundType soundType, BlockRenderLayer renderLayer) {
-		this(BlockDoTB.Properties.create(materialIn).hardnessAndResistance(hardness, resistance).sound(soundType), renderLayer);
+		this(BlockDoTB.Properties.of(materialIn).strength(hardness, resistance).sound(soundType), renderLayer);
 	}
 
 	public PaneBlockDoTB(Material materialIn, float hardness, float resistance, SoundType soundType) {
-		this(BlockDoTB.Properties.create(materialIn).hardnessAndResistance(hardness, resistance).sound(soundType), BlockRenderLayer.SOLID);
+		this(BlockDoTB.Properties.of(materialIn).strength(hardness, resistance).sound(soundType), BlockRenderLayer.SOLID);
 	}
 
 	public PaneBlockDoTB(Properties properties, BlockRenderLayer renderLayer) {
@@ -39,9 +39,9 @@ public class PaneBlockDoTB extends PaneBlock {
 	@Override
 	public BlockState getStateForPlacement(BlockItemUseContext context) {
 		//Must be overridden to allow connection to paper_door
-		IBlockReader world = context.getWorld();
+		IBlockReader world = context.getLevel();
 		BlockPos pos = context.getPos();
-		IFluidState ifluidstate = context.getWorld().getFluidState(context.getPos());
+		IFluidState ifluidstate = context.getLevel().getFluidState(context.getPos());
 		BlockPos posNorth = pos.north();
 		BlockPos posSouth = pos.south();
 		BlockPos posWest = pos.west();
@@ -50,7 +50,7 @@ public class PaneBlockDoTB extends PaneBlock {
 		BlockState stateSouth = world.getBlockState(posSouth);
 		BlockState stateWest = world.getBlockState(posWest);
 		BlockState stateEast = world.getBlockState(posEast);
-		return this.getDefaultState()
+		return this.defaultBlockState()
 				.with(NORTH, this.canAttachPane(stateNorth, stateNorth.func_224755_d(world, posNorth, Direction.SOUTH)))
 				.with(SOUTH, this.canAttachPane(stateSouth, stateSouth.func_224755_d(world, posSouth, Direction.NORTH)))
 				.with(WEST, this.canAttachPane(stateWest, stateWest.func_224755_d(world, posWest, Direction.EAST)))

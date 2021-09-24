@@ -32,15 +32,15 @@ public class CharredSpruceShuttersBlock extends WaterloggedBlock {
     public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
     public static final BooleanProperty OPEN = BlockStateProperties.OPEN;
     private static final VoxelShape[] SHAPES = DoTBBlockUtils.GenerateHorizontalShapes(new VoxelShape[]{
-            makeCuboidShape(0.0D, 0.0D, 14.0D, 16.0D, 16.0D, 16.0D),
+            Block.box(0.0D, 0.0D, 14.0D, 16.0D, 16.0D, 16.0D),
             VoxelShapes.or(
-                    makeCuboidShape(0.0D, 12.0D, 12.0D, 16.0D, 16.0D, 16.0D),
-                    makeCuboidShape(0.0D, 9.0D, 9.0D, 16.0D, 13.0D, 13.0D),
-                    makeCuboidShape(0.0D, 6.0D, 6.0D, 16.0D, 10.0D, 10.0D),
-                    makeCuboidShape(0.0D, 3.0D, 3.0D, 16.0D, 7.0D, 7.0D))});
+                    Block.box(0.0D, 12.0D, 12.0D, 16.0D, 16.0D, 16.0D),
+                    Block.box(0.0D, 9.0D, 9.0D, 16.0D, 13.0D, 13.0D),
+                    Block.box(0.0D, 6.0D, 6.0D, 16.0D, 10.0D, 10.0D),
+                    Block.box(0.0D, 3.0D, 3.0D, 16.0D, 7.0D, 7.0D))});
 
     public CharredSpruceShuttersBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
-        super(Properties.create(materialIn).hardnessAndResistance(hardness, resistance).sound(soundType));
+        super(Properties.of(materialIn).strength(hardness, resistance).sound(soundType));
         this.setDefaultState(this.getStateContainer().getBaseState().with(OPEN, false).with(WATERLOGGED, false).with(POWERED, false));
     }
 
@@ -68,7 +68,7 @@ public class CharredSpruceShuttersBlock extends WaterloggedBlock {
 
     @Override
     public BlockState getStateForPlacement(BlockItemUseContext context) {
-        World world = context.getWorld();
+        World world = context.getLevel();
         BlockPos pos = context.getPos();
         return super.getStateForPlacement(context).with(FACING, context.getPlacementHorizontalFacing()).with(POWERED, world.isBlockPowered(pos));
     }
@@ -85,7 +85,7 @@ public class CharredSpruceShuttersBlock extends WaterloggedBlock {
 
     @Override
     public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
-        if(!canSupportShutters(worldIn, currentPos, stateIn.get(FACING))) return Blocks.AIR.getDefaultState();
+        if(!canSupportShutters(worldIn, currentPos, stateIn.get(FACING))) return Blocks.AIR.defaultBlockState();
         return super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
     }
 

@@ -33,7 +33,7 @@ public class ShuttersBlock extends SmallShuttersBlock {
     }
 
     public ShuttersBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
-        this(Properties.create(materialIn).hardnessAndResistance(hardness, resistance).sound(soundType));
+        this(Properties.of(materialIn).strength(hardness, resistance).sound(soundType));
     }
 
     @Override
@@ -45,7 +45,7 @@ public class ShuttersBlock extends SmallShuttersBlock {
     @Nullable
     @Override
     public BlockState getStateForPlacement(BlockItemUseContext context) {
-        World world = context.getWorld();
+        World world = context.getLevel();
         Direction direction = context.getPlacementHorizontalFacing();
         BlockPos pos = context.getPos();
         if(!world.getBlockState(pos.up()).isReplaceable(context))
@@ -86,11 +86,11 @@ public class ShuttersBlock extends SmallShuttersBlock {
         Direction halfDirection = (stateIn.get(HALF) == Half.TOP) ? Direction.DOWN : Direction.UP;
         if(facing == halfDirection){
             if(facingState.getBlock() != this)
-                return Blocks.AIR.getDefaultState();
+                return Blocks.AIR.defaultBlockState();
             if(facingState.get(HALF) == stateIn.get(HALF)
                     || facingState.get(FACING) != stateIn.get(FACING)
                     || facingState.get(HINGE) != stateIn.get(HINGE))
-                return Blocks.AIR.getDefaultState();
+                return Blocks.AIR.defaultBlockState();
             stateIn = stateIn.with(OPEN_POSITION, facingState.get(OPEN_POSITION));
         }
         return super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
@@ -106,7 +106,7 @@ public class ShuttersBlock extends SmallShuttersBlock {
 
     @Override
     public void harvestBlock(World worldIn, PlayerEntity player, BlockPos pos, BlockState state, @Nullable TileEntity te, ItemStack stack) {
-        super.harvestBlock(worldIn, player, pos, Blocks.AIR.getDefaultState(), te, stack);
+        super.harvestBlock(worldIn, player, pos, Blocks.AIR.defaultBlockState(), te, stack);
     }
 
     @Override
@@ -114,7 +114,7 @@ public class ShuttersBlock extends SmallShuttersBlock {
         BlockPos blockpos = (state.get(HALF) == Half.TOP) ? pos.down() : pos.up();
         BlockState otherState = worldIn.getBlockState(blockpos);
         if(otherState.getBlock() == this && otherState.get(HALF) != state.get(HALF)) {
-            worldIn.setBlockState(blockpos, Blocks.AIR.getDefaultState(), 35);
+            worldIn.setBlockState(blockpos, Blocks.AIR.defaultBlockState(), 35);
             worldIn.playEvent(player, 2001, blockpos, Block.getStateId(otherState));
             ItemStack itemstack = player.getHeldItemMainhand();
             if(!worldIn.isRemote && !player.isCreative()) {

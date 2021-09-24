@@ -39,7 +39,7 @@ public class GrowingBushBlock extends SoilCropsBlock {
 	public GrowingBushBlock(String seedName, PlantType plantType, int cutAge, Food food){
 		super(seedName, plantType, food);
 		this.cutAge = cutAge;
-		this.setDefaultState(this.getDefaultState().with(AGE, 0).with(CUT, false).with(PERSISTENT, false));
+		this.setDefaultState(this.defaultBlockState().with(AGE, 0).with(CUT, false).with(PERSISTENT, false));
 		this.SHAPES = this.makeShapes();
 	}
 
@@ -70,12 +70,12 @@ public class GrowingBushBlock extends SoilCropsBlock {
 	 */
 	public VoxelShape[] makeShapes() {
 		return new VoxelShape[]{
-				Block.makeCuboidShape(5.0D, 0.0D, 5.0D, 11.0D, 5.5D, 11.0D),
-				Block.makeCuboidShape(4.0D, 0.0D, 4.0D, 12.0D, 9.0D, 12.0D),
-				Block.makeCuboidShape(3.0D, 0.0D, 3.0D, 13.0D, 10.5D, 13.0D),
-				Block.makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 11.0D, 14.0D),
-				Block.makeCuboidShape(1.5D, 0.0D, 1.5D, 14.5D, 12.0D, 14.5D),
-				Block.makeCuboidShape(1.0D, 0.0D, 1.0D, 15.0D, 12.0D, 15.0D),
+				Block.Block.box(5.0D, 0.0D, 5.0D, 11.0D, 5.5D, 11.0D),
+				Block.Block.box(4.0D, 0.0D, 4.0D, 12.0D, 9.0D, 12.0D),
+				Block.Block.box(3.0D, 0.0D, 3.0D, 13.0D, 10.5D, 13.0D),
+				Block.Block.box(2.0D, 0.0D, 2.0D, 14.0D, 11.0D, 14.0D),
+				Block.Block.box(1.5D, 0.0D, 1.5D, 14.5D, 12.0D, 14.5D),
+				Block.Block.box(1.0D, 0.0D, 1.0D, 15.0D, 12.0D, 15.0D),
 		};
 	}
 
@@ -113,7 +113,7 @@ public class GrowingBushBlock extends SoilCropsBlock {
 	}
 
 	public void harvestWithoutBreaking(BlockState state, World worldIn, BlockPos pos, ItemStack itemStackHand, String blockName, float dropMultiplier ){
-		List<ItemStack> drops = DoTBBlockUtils.getLootList((ServerWorld)worldIn, state, pos, itemStackHand, blockName);
+		List<ItemStack> drops = DoTBBlockUtils.getLootList((ServerWorld)worldIn, state, itemStackHand, blockName);
 		DoTBBlockUtils.dropLootFromList(worldIn, pos, drops, dropMultiplier);
 
 		worldIn.playSound(null, pos, SoundEvents.BLOCK_GRASS_BREAK, SoundCategory.BLOCKS, 1.0F, 1.0F);

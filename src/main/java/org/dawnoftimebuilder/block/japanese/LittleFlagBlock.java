@@ -24,7 +24,7 @@ public class LittleFlagBlock extends PaneBlockDoTB {
     private final VoxelShape[] VS_PILLAR = this.makePillarShapes(this.shapes);
 
     public LittleFlagBlock(Material materialIn, float hardness, float resistance, SoundType soundType, BlockRenderLayer renderLayer) {
-        super(Properties.create(materialIn).hardnessAndResistance(hardness, resistance).sound(soundType), renderLayer);
+        super(Properties.of(materialIn).strength(hardness, resistance).sound(soundType), renderLayer);
         this.setDefaultState(this.getStateContainer().getBaseState().with(AXIS_Y, true).with(NORTH, true).with(WEST, true).with(SOUTH, true).with(EAST, true).with(WATERLOGGED,false));
     }
 
@@ -37,8 +37,8 @@ public class LittleFlagBlock extends PaneBlockDoTB {
     @Override
     public BlockState getStateForPlacement(BlockItemUseContext context) {
         BlockState newState = super.getStateForPlacement(context);
-        if(newState == null) newState = this.getDefaultState();
-        if(this.hasNoConnection(newState)) newState = this.getDefaultState().with(WATERLOGGED, newState.get(WATERLOGGED));
+        if(newState == null) newState = this.defaultBlockState();
+        if(this.hasNoConnection(newState)) newState = this.defaultBlockState().with(WATERLOGGED, newState.get(WATERLOGGED));
         return newState.with(AXIS_Y, context.getFace().getAxis().isVertical());
     }
 
@@ -89,7 +89,7 @@ public class LittleFlagBlock extends PaneBlockDoTB {
      */
     private VoxelShape[] makePillarShapes(VoxelShape[] shapes) {
         VoxelShape[] shapesPillar = new VoxelShape[16];
-        VoxelShape vsPillar = makeCuboidShape(6.0D, 0.0D, 6.0D, 10.0D, 16.0D, 10.0D);
+        VoxelShape vsPillar = Block.box(6.0D, 0.0D, 6.0D, 10.0D, 16.0D, 10.0D);
         for(int index = 0; index < 16; index++){
             shapesPillar[index] = VoxelShapes.or(
                     shapes[index],

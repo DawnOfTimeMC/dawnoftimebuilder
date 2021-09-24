@@ -60,12 +60,12 @@ public class MixedRoofSupportBlock extends SlabBlockDoTB implements IBlockCustom
     @Override
     public BlockState getStateForPlacement(BlockItemUseContext context) {
         BlockPos blockpos = context.getPos();
-        BlockState newState = this.getDefaultState().with(FACING, context.getPlacementHorizontalFacing());
+        BlockState newState = this.defaultBlockState().with(FACING, context.getPlacementHorizontalFacing());
         BlockPos pos = context.getPos();
-        IFluidState ifluidstate = context.getWorld().getFluidState(blockpos);
+        IFluidState ifluidstate = context.getLevel().getFluidState(blockpos);
         Direction direction = context.getFace();
         newState = newState.with(TYPE, (direction != Direction.DOWN && (direction == Direction.UP || !(context.getHitVec().y - (double)blockpos.getY() > 0.5D))) ? SlabType.BOTTOM : SlabType.TOP);
-        return newState.with(WATERLOGGED, ifluidstate.getFluid() == Fluids.WATER).with(SHAPE, getShapeProperty(newState, context.getWorld(), pos));
+        return newState.with(WATERLOGGED, ifluidstate.getFluid() == Fluids.WATER).with(SHAPE, getShapeProperty(newState, context.getLevel(), pos));
     }
 
     @Override
@@ -101,16 +101,16 @@ public class MixedRoofSupportBlock extends SlabBlockDoTB implements IBlockCustom
             public ActionResultType tryPlace(BlockItemUseContext context) {
                 Direction facing = context.getFace();
                 if(context.isPlacerSneaking() || facing != Direction.DOWN)
-                    return super.tryPlace(context);
+                    return super.place(context);
 
                 PlayerEntity player = context.getPlayer();
                 ItemStack itemStack = context.getItem();
-                World worldIn = context.getWorld();
+                World worldIn = context.getLevel();
                 BlockPos pos = context.getPos();
                 if(!context.replacingClickedOnBlock()) pos = pos.offset(facing.getOpposite());
                 if(player != null){
                     if(!player.canPlayerEdit(pos, facing, itemStack))
-                        return super.tryPlace(context);
+                        return super.place(context);
                 }
 
                 if (!itemStack.isEmpty()) {
@@ -120,7 +120,7 @@ public class MixedRoofSupportBlock extends SlabBlockDoTB implements IBlockCustom
                         if(state.get(TYPE) == SlabType.TOP){
                             BlockState madeState = block.getStateForPlacement(context);
                             if(madeState == null)
-                                return super.tryPlace(context);
+                                return super.place(context);
                             madeState = madeState.with(TYPE, SlabType.DOUBLE);
                             if(worldIn.setBlockState(pos, madeState.with(TYPE, SlabType.DOUBLE), 11))  {
                                 this.onBlockPlaced(pos, worldIn, player, itemStack, madeState);
@@ -136,7 +136,7 @@ public class MixedRoofSupportBlock extends SlabBlockDoTB implements IBlockCustom
                         }
                     }
                 }
-                return super.tryPlace(context);
+                return super.place(context);
             }
         };
     }

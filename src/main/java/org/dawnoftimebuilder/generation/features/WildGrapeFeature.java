@@ -28,7 +28,7 @@ public class WildGrapeFeature extends Feature<NoFeatureConfig> {
             WildPlantBlock plant = (WildPlantBlock) DoTBBlocksRegistry.WILD_GRAPE;
             if (isValidPosition(worldIn, nextPos)) {
                 success = true;
-                worldIn.setBlockState(nextPos, plant.getDefaultState(), 2);
+                worldIn.setBlockState(nextPos, plant.defaultBlockState(), 2);
             }
         }
         return success;
@@ -43,6 +43,6 @@ public class WildGrapeFeature extends Feature<NoFeatureConfig> {
 
     private boolean isValidPosition(IWorld worldIn, BlockPos pos) {
         WildPlantBlock plant = (WildPlantBlock) DoTBBlocksRegistry.WILD_GRAPE;
-        return worldIn.isAirBlock(pos) && plant.isValidPosition(plant.getDefaultState(), worldIn, pos);
+        return worldIn.isAirBlock(pos) && plant.isValidPosition(plant.defaultBlockState(), worldIn, pos);
     }
 }

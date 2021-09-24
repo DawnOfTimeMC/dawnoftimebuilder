@@ -21,7 +21,7 @@ public class StoneBricksChimneyBlock extends ColumnConnectibleBlock {
 	private static final VoxelShape[] SHAPES = makeShapes();
 
 	public StoneBricksChimneyBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
-		super(Properties.create(materialIn).hardnessAndResistance(hardness, resistance).sound(soundType));
+		super(Properties.of(materialIn).strength(hardness, resistance).sound(soundType));
 	}
 
 	@Override
@@ -39,14 +39,14 @@ public class StoneBricksChimneyBlock extends ColumnConnectibleBlock {
 	private static VoxelShape[] makeShapes() {
 		return new VoxelShape[]{
 				VoxelShapes.or(
-						makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 8.0D, 14.0D),
-						makeCuboidShape(1.0D, 8.0D, 1.0D, 15.0D, 11.0D, 15.0D)
+						Block.box(2.0D, 0.0D, 2.0D, 14.0D, 8.0D, 14.0D),
+						Block.box(1.0D, 8.0D, 1.0D, 15.0D, 11.0D, 15.0D)
 				),
 				VoxelShapes.or(
-						makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 8.0D, 16.0D),
-						makeCuboidShape(2.0D, 8.0D, 2.0D, 14.0D, 16.0D, 14.0D)
+						Block.box(0.0D, 0.0D, 0.0D, 16.0D, 8.0D, 16.0D),
+						Block.box(2.0D, 8.0D, 2.0D, 14.0D, 16.0D, 14.0D)
 				),
-				makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 16.0D, 14.0D)
+				Block.box(2.0D, 0.0D, 2.0D, 14.0D, 16.0D, 14.0D)
 		};
 	}
 

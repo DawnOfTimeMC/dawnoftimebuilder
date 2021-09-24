@@ -10,7 +10,7 @@ public class RotatedPillarBlockDoTB extends RotatedPillarBlock {
 	}
 
 	public RotatedPillarBlockDoTB(Material materialIn, float hardness, float resistance, SoundType soundType) {
-		this(Properties.create(materialIn).hardnessAndResistance(hardness, resistance).sound(soundType));
+		this(Properties.of(materialIn).strength(hardness, resistance).sound(soundType));
 	}
 
 	/**

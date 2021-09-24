@@ -31,13 +31,13 @@ public class BirchCouch extends ChairBlock {
 
     private static final VoxelShape[] SHAPES = DoTBBlockUtils.GenerateHorizontalShapes(new VoxelShape[]{
             VoxelShapes.or(
-                    makeCuboidShape(1.0D, 0.0D, 2.0D, 15.0D, 8.0D, 6.0D),
-                    makeCuboidShape(0.0D, 8.0D, 0.0D, 16.0D, 13.0D, 16.0D),
-                    makeCuboidShape(0.0D, 13.0D, 0.0D, 16.0D, 19.0D, 8.0D)
+                    Block.box(1.0D, 0.0D, 2.0D, 15.0D, 8.0D, 6.0D),
+                    Block.box(0.0D, 8.0D, 0.0D, 16.0D, 13.0D, 16.0D),
+                    Block.box(0.0D, 13.0D, 0.0D, 16.0D, 19.0D, 8.0D)
             )});
 
     public BirchCouch(Material materialIn, float hardness, float resistance, SoundType soundType, float pixelsYOffset) {
-        super(Properties.create(materialIn).hardnessAndResistance(hardness, resistance).sound(soundType), pixelsYOffset);
+        super(Properties.of(materialIn).strength(hardness, resistance).sound(soundType), pixelsYOffset);
     }
 
     @Override
@@ -71,7 +71,7 @@ public class BirchCouch extends ChairBlock {
     @Override
     public BlockState getStateForPlacement(BlockItemUseContext context) {
         Direction direction = context.getPlacementHorizontalFacing();
-        if(context.getWorld().getBlockState(context.getPos().offset(direction)).isReplaceable(context)) return super.getStateForPlacement(context).with(FACING, direction);
+        if(context.getLevel().getBlockState(context.getPos().offset(direction)).isReplaceable(context)) return super.getStateForPlacement(context).with(FACING, direction);
         return null;
     }
 
@@ -88,7 +88,7 @@ public class BirchCouch extends ChairBlock {
             if(facingState.getBlock() == this){
                 if(facingState.get(FACING).getOpposite() == blockFacing) return super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
             }
-            return Blocks.AIR.getDefaultState();
+            return Blocks.AIR.defaultBlockState();
         }else return super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
     }
 
@@ -100,7 +100,7 @@ public class BirchCouch extends ChairBlock {
 
     @Override
     public void harvestBlock(World worldIn, PlayerEntity player, BlockPos pos, BlockState state, @Nullable TileEntity te, ItemStack stack) {
-        super.harvestBlock(worldIn, player, pos, Blocks.AIR.getDefaultState(), te, stack);
+        super.harvestBlock(worldIn, player, pos, Blocks.AIR.defaultBlockState(), te, stack);
     }
 
     @Override
@@ -108,7 +108,7 @@ public class BirchCouch extends ChairBlock {
         BlockPos otherPos = pos.offset(state.get(FACING));
         BlockState otherState = worldIn.getBlockState(otherPos);
         if(otherState.getBlock() == this) {
-            worldIn.setBlockState(otherPos, Blocks.AIR.getDefaultState(), 35);
+            worldIn.setBlockState(otherPos, Blocks.AIR.defaultBlockState(), 35);
             worldIn.playEvent(player, 2001, otherPos, Block.getStateId(otherState));
             ItemStack itemstack = player.getHeldItemMainhand();
             if(!worldIn.isRemote() && !player.isCreative()) {

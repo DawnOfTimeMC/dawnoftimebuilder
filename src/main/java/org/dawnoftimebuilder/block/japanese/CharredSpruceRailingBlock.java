@@ -40,10 +40,10 @@ public class CharredSpruceRailingBlock extends FenceBlockDoTB {
 	@Override
 	public BlockState getStateForPlacement(BlockItemUseContext context) {
 		BlockState state = super.getStateForPlacement(context);
-		if(state == null) return this.getDefaultState();
+		if(state == null) return this.defaultBlockState();
 		if(context.isPlacerSneaking()){
 			return state.with(FENCE_PILLAR, FencePillar.NONE);
-		}else return this.getPillarShape(state, context.getWorld(), context.getPos());
+		}else return this.getPillarShape(state, context.getLevel(), context.getPos());
 	}
 
 	@Override

@@ -33,7 +33,7 @@ public abstract class CandleLampBlock extends WaterloggedBlock implements IBlock
     }
 
     public CandleLampBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
-        this(Properties.create(materialIn).hardnessAndResistance(hardness, resistance).sound(soundType));
+        this(Properties.of(materialIn).strength(hardness, resistance).sound(soundType));
     }
 
     @Override

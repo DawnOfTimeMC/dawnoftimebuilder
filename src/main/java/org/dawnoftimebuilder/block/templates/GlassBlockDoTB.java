@@ -8,7 +8,7 @@ import net.minecraft.util.BlockRenderLayer;
 
 public class GlassBlockDoTB extends GlassBlock {
     public GlassBlockDoTB(Material materialIn, float hardness, float resistance, SoundType soundType) {
-        super(Block.Properties.create(materialIn).hardnessAndResistance(hardness, resistance).sound(soundType));
+        super(Block.Properties.of(materialIn).strength(hardness, resistance).sound(soundType));
     }
 
     public BlockRenderLayer getRenderLayer() {

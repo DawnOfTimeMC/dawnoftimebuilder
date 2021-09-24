@@ -45,7 +45,7 @@ public class CypressFeature extends Feature<NoFeatureConfig> {
                     int stateSize;
                     for(int j = 0; j < cypressSize; j++){
                         stateSize = (j == 0) ? 0 : Math.min(cypressSize - j, 5);
-                        worldIn.setBlockState(nextPos.up(j), CypressBlock.setSize(CYPRESS.getDefaultState(), stateSize), 2);
+                        worldIn.setBlockState(nextPos.up(j), CypressBlock.setSize(CYPRESS.defaultBlockState(), stateSize), 2);
                     }
                 }
             }

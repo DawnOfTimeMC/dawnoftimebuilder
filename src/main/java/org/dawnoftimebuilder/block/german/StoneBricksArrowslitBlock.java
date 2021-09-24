@@ -28,18 +28,18 @@ public class StoneBricksArrowslitBlock extends WaterloggedBlock {
 	public static final DirectionProperty FACING = HorizontalBlock.HORIZONTAL_FACING;
 	private static final VoxelShape[] SHAPES = DoTBBlockUtils.GenerateHorizontalShapes(new VoxelShape[]{
 			VoxelShapes.or(
-					makeCuboidShape(0.0D, 0.0D, 14.0D, 7.0D, 16.0D, 16.0D),
-					makeCuboidShape(9.0D, 0.0D, 14.0D, 16.0D, 16.0D, 16.0D),
-					makeCuboidShape(0.0D, 0.0D, 8.0D, 2.0D, 16.0D, 14.0D),
-					makeCuboidShape(14.0D, 0.0D, 8.0D, 16.0D, 16.0D, 14.0D),
-					makeCuboidShape(2.0D, 0.0D, 13.0D, 4.5D, 16.0D, 14.0D),
-					makeCuboidShape(11.5D, 0.0D, 13.0D, 14.0D, 16.0D, 14.0D)
+					Block.box(0.0D, 0.0D, 14.0D, 7.0D, 16.0D, 16.0D),
+					Block.box(9.0D, 0.0D, 14.0D, 16.0D, 16.0D, 16.0D),
+					Block.box(0.0D, 0.0D, 8.0D, 2.0D, 16.0D, 14.0D),
+					Block.box(14.0D, 0.0D, 8.0D, 16.0D, 16.0D, 14.0D),
+					Block.box(2.0D, 0.0D, 13.0D, 4.5D, 16.0D, 14.0D),
+					Block.box(11.5D, 0.0D, 13.0D, 14.0D, 16.0D, 14.0D)
 			)
 	});
 
 	public StoneBricksArrowslitBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
-		super(Properties.create(materialIn).hardnessAndResistance(hardness, resistance).sound(soundType));
-		this.setDefaultState(this.getDefaultState().with(FACING, NORTH).with(WATERLOGGED, false));
+		super(Properties.of(materialIn).strength(hardness, resistance).sound(soundType));
+		this.setDefaultState(this.defaultBlockState().with(FACING, NORTH).with(WATERLOGGED, false));
 	}
 
 	@Override

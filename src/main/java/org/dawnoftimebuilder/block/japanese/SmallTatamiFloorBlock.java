@@ -28,11 +28,11 @@ import static org.dawnoftimebuilder.registry.DoTBBlocksRegistry.SMALL_TATAMI_MAT
 
 public class SmallTatamiFloorBlock extends NoItemBlock {
 
-	private static final VoxelShape VS = makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 17.0D, 16.0D);
+	private static final VoxelShape VS = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 17.0D, 16.0D);
 	public static final EnumProperty<Direction.Axis> HORIZONTAL_AXIS = BlockStateProperties.HORIZONTAL_AXIS;
 
 	public SmallTatamiFloorBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
-		super(Properties.create(materialIn).hardnessAndResistance(hardness, resistance).sound(soundType));
+		super(Properties.of(materialIn).strength(hardness, resistance).sound(soundType));
 	}
 
 	@Override
@@ -50,8 +50,8 @@ public class SmallTatamiFloorBlock extends NoItemBlock {
 		if(facing == Direction.UP){
 			BlockState stateAbove = worldIn.getBlockState(facingPos);
 			if(hasSolidSide(stateAbove, worldIn, facingPos, Direction.DOWN) && stateAbove.isSolid()){
-				spawnAsEntity(worldIn.getWorld(), currentPos, new ItemStack(SMALL_TATAMI_MAT.asItem(), 1));
-				return SPRUCE_PLANKS.getDefaultState();
+				spawnAsEntity(worldIn.getLevel(), currentPos, new ItemStack(SMALL_TATAMI_MAT.asItem(), 1));
+				return SPRUCE_PLANKS.defaultBlockState();
 			}
 		}
 		return stateIn;
@@ -61,8 +61,8 @@ public class SmallTatamiFloorBlock extends NoItemBlock {
 	public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
 		if(player.isSneaking()){
 			if(worldIn.isAirBlock(pos.up())){
-				worldIn.setBlockState(pos.up(), SMALL_TATAMI_MAT.getDefaultState().with(SmallTatamiMatBlock.ROLLED, true).with(SmallTatamiMatBlock.HORIZONTAL_AXIS, state.get(HORIZONTAL_AXIS)), 10);
-				worldIn.setBlockState(pos, SPRUCE_PLANKS.getDefaultState(), 10);
+				worldIn.setBlockState(pos.up(), SMALL_TATAMI_MAT.defaultBlockState().with(SmallTatamiMatBlock.ROLLED, true).with(SmallTatamiMatBlock.HORIZONTAL_AXIS, state.get(HORIZONTAL_AXIS)), 10);
+				worldIn.setBlockState(pos, SPRUCE_PLANKS.defaultBlockState(), 10);
 				worldIn.playSound(player, pos.up(), this.soundType.getPlaceSound(), SoundCategory.BLOCKS, (this.soundType.getVolume() + 1.0F) / 2.0F, this.soundType.getPitch() * 0.8F);
 				return true;
 			}
@@ -78,6 +78,6 @@ public class SmallTatamiFloorBlock extends NoItemBlock {
 	@Override
 	public void onPlayerDestroy(IWorld worldIn, BlockPos pos, BlockState state) {
 		super.onPlayerDestroy(worldIn, pos, state);
-		worldIn.setBlockState(pos, SPRUCE_PLANKS.getDefaultState(), 10);
+		worldIn.setBlockState(pos, SPRUCE_PLANKS.defaultBlockState(), 10);
 	}
 }

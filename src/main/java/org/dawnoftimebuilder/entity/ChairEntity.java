@@ -19,22 +19,22 @@ public class ChairEntity extends Entity {
 
     public ChairEntity(World world){
         super(CHAIR_ENTITY.get(), world);
-        this.noClip = true;
+        this.noPhysics = true;
     }
 
     private ChairEntity(World world, BlockPos pos, float pixelsXOffset, float pixelsYOffset, float pixelsZOffset) {
         this(world);
         this.pos = pos;
         //Strangely, the default position (with 0 vertical offset) is 3 pixels above the floor.
-        this.setPosition(pos.getX() + pixelsXOffset / 16.0D, pos.getY() + (pixelsYOffset - 3.0D) / 16.0D, pos.getZ() + pixelsZOffset / 16.0D);
+        this.setPos(pos.getX() + pixelsXOffset / 16.0D, pos.getY() + (pixelsYOffset - 3.0D) / 16.0D, pos.getZ() + pixelsZOffset / 16.0D);
     }
 
     public static boolean createEntity(World world, BlockPos pos, PlayerEntity player, float pixelsXOffset, float pixelsYOffset, float pixelsZOffset) {
-        if(!world.isRemote()) {
-            List<ChairEntity> seats = world.getEntitiesWithinAABB(ChairEntity.class, new AxisAlignedBB(pos.getX(), pos.getY(), pos.getZ(), pos.getX() + 1.0D, pos.getY() + 1.0D, pos.getZ() + 1.0D));
+        if(!world.isClientSide()) {
+            List<ChairEntity> seats = world.getEntitiesOfClass(ChairEntity.class, new AxisAlignedBB(pos.getX(), pos.getY(), pos.getZ(), pos.getX() + 1.0D, pos.getY() + 1.0D, pos.getZ() + 1.0D));
             if(seats.isEmpty()) {
                 ChairEntity seat = new ChairEntity(world, pos, pixelsXOffset, pixelsYOffset, pixelsZOffset);
-                world.addEntity(seat);
+                world.addFreshEntity(seat);
                 player.startRiding(seat, false);
                 return true;
             }
@@ -47,45 +47,46 @@ public class ChairEntity extends Entity {
     }
 
     @Override
+    protected void defineSynchedData() {
+
+    }
+
+    @Override
     public void tick(){
         super.tick();
         if(this.pos == null){
-            this.pos = this.getPosition();
+            this.pos = this.blockPosition();
         }
-        if(!this.world.isRemote()) {
-            if(this.getPassengers().isEmpty() || this.world.isAirBlock(this.pos)) {
+        if(!this.level.isClientSide()) {
+            if(this.getPassengers().isEmpty() || this.level.isEmptyBlock(this.pos)) {
                 this.remove();
-                this.world.updateComparatorOutputLevel(getPosition(), this.world.getBlockState(getPosition()).getBlock());
+                this.level.updateNeighbourForOutputSignal(this.blockPosition(), this.level.getBlockState(this.blockPosition()).getBlock());
             }
         }
     }
 
     @Override
-    protected void registerData() {
+    protected void readAdditionalSaveData(CompoundNBT p_70037_1_) {
 
     }
 
     @Override
-    protected void readAdditional(CompoundNBT compound) {
+    protected void addAdditionalSaveData(CompoundNBT p_213281_1_) {
 
     }
 
     @Override
-    protected void writeAdditional(CompoundNBT compound) {
+    public IPacket<?> getAddEntityPacket() {
+        return NetworkHooks.getEntitySpawningPacket(this);
     }
 
     @Override
-    public double getMountedYOffset(){
+    public double getPassengersRidingOffset() {
         return 0.0D;
     }
 
     @Override
-    protected boolean canBeRidden(Entity entity) {
+    protected boolean canRide(Entity entity) {
         return true;
-    }
-
-    @Override
-    public IPacket<?> createSpawnPacket(){
-        return NetworkHooks.getEntitySpawningPacket(this);
     }
 }

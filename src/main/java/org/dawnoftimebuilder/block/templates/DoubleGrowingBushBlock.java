@@ -41,7 +41,7 @@ public class DoubleGrowingBushBlock extends GrowingBushBlock {
 		super(seedName, plantType, cutAge, food);
 		this.growingAge = growingAge;
 		this.TOP_SHAPES = this.makeTopShapes();
-		this.setDefaultState(this.getDefaultState().with(HALF, Half.BOTTOM). with(this.getAgeProperty(), 0).with(this.getCutProperty(), false).with(PERSISTENT, false));
+		this.setDefaultState(this.defaultBlockState().with(HALF, Half.BOTTOM). with(this.getAgeProperty(), 0).with(this.getCutProperty(), false).with(PERSISTENT, false));
 	}
 
 	@Override
@@ -61,12 +61,12 @@ public class DoubleGrowingBushBlock extends GrowingBushBlock {
 	@Override
 	public VoxelShape[] makeShapes() {
 		return new VoxelShape[]{
-				Block.makeCuboidShape(5.5D, 0.0D, 5.5D, 10.5D, 6.0D, 10.5D),
-				Block.makeCuboidShape(4.5D, 0.0D, 4.5D, 11.5D, 16.0D, 11.5D),
+				Block.Block.box(5.5D, 0.0D, 5.5D, 10.5D, 6.0D, 10.5D),
+				Block.Block.box(4.5D, 0.0D, 4.5D, 11.5D, 16.0D, 11.5D),
 				VoxelShapes.or(
-						Block.makeCuboidShape(6.0D, 0.0D, 6.0D, 10.0D, 12.0D, 10.0D),
-						Block.makeCuboidShape(4.0D, 12.0D, 4.0D, 12.0D, 16.0D, 12.0D)),
-				Block.makeCuboidShape(6.0D, 0.0D, 6.0D, 10.0D, 16.0D, 10.0D),
+						Block.Block.box(6.0D, 0.0D, 6.0D, 10.0D, 12.0D, 10.0D),
+						Block.Block.box(4.0D, 12.0D, 4.0D, 12.0D, 16.0D, 12.0D)),
+				Block.Block.box(6.0D, 0.0D, 6.0D, 10.0D, 16.0D, 10.0D),
 		};
 	}
 
@@ -82,9 +82,9 @@ public class DoubleGrowingBushBlock extends GrowingBushBlock {
 		return new VoxelShape[]{
 				null,
 				null,
-				Block.makeCuboidShape(4.0D, 0.0D, 4.0D, 12.0D, 5.0D, 12.0D),
-				Block.makeCuboidShape(1.0D, 0.0D, 1.0D, 15.0D, 10.0D, 15.0D),
-				Block.makeCuboidShape(1.0D, 0.0D, 1.0D, 15.0D, 15.0D, 15.0D),
+				Block.Block.box(4.0D, 0.0D, 4.0D, 12.0D, 5.0D, 12.0D),
+				Block.Block.box(1.0D, 0.0D, 1.0D, 15.0D, 10.0D, 15.0D),
+				Block.Block.box(1.0D, 0.0D, 1.0D, 15.0D, 15.0D, 15.0D),
 		};
 	}
 
@@ -102,15 +102,15 @@ public class DoubleGrowingBushBlock extends GrowingBushBlock {
 				stateIn = stateIn.with(PERSISTENT, facingState.get(PERSISTENT));
 				return half == Half.BOTTOM ? stateIn : stateIn.with(this.getAgeProperty(), this.getAge(facingState));
 			}else if(half == Half.BOTTOM && this.getAge(stateIn) < this.growingAge) return stateIn;
-			return Blocks.AIR.getDefaultState();
+			return Blocks.AIR.defaultBlockState();
 		}else{
-			return half == Half.BOTTOM && facing == Direction.DOWN && this.isValidGround(stateIn, worldIn, currentPos.down()) ? Blocks.AIR.getDefaultState() : super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+			return half == Half.BOTTOM && facing == Direction.DOWN && this.isValidGround(stateIn, worldIn, currentPos.down()) ? Blocks.AIR.defaultBlockState() : super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
 		}
 	}
 
 	@Override
 	public void harvestBlock(World worldIn, PlayerEntity player, BlockPos pos, BlockState state, @Nullable TileEntity te, ItemStack stack) {
-		super.harvestBlock(worldIn, player, pos, Blocks.AIR.getDefaultState(), te, stack);
+		super.harvestBlock(worldIn, player, pos, Blocks.AIR.defaultBlockState(), te, stack);
 	}
 
 	@Override
@@ -119,7 +119,7 @@ public class DoubleGrowingBushBlock extends GrowingBushBlock {
 		BlockPos blockpos = (half == Half.BOTTOM) ? pos.up() : pos.down();
 		BlockState blockstate = worldIn.getBlockState(blockpos);
 		if (blockstate.getBlock() == this) {
-			worldIn.setBlockState(blockpos, Blocks.AIR.getDefaultState(), 35);
+			worldIn.setBlockState(blockpos, Blocks.AIR.defaultBlockState(), 35);
 			worldIn.playEvent(player, 2001, blockpos, Block.getStateId(blockstate));
 			ItemStack itemstack = player.getHeldItemMainhand();
 			if (!worldIn.isRemote && !player.isCreative()) {
@@ -223,7 +223,7 @@ public class DoubleGrowingBushBlock extends GrowingBushBlock {
 			}
 		}
 		if(newAge < this.getAgeReachingTopBlock() && this.getAge(currentState) == this.getAgeReachingTopBlock()){
-			worldIn.setBlockState(pos.up(), Blocks.AIR.getDefaultState(), 10);
+			worldIn.setBlockState(pos.up(), Blocks.AIR.defaultBlockState(), 10);
 		}
 		worldIn.setBlockState(pos, currentState.with(this.getAgeProperty(), newAge).with(HALF, Half.BOTTOM), 8);
 	}

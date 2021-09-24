@@ -32,7 +32,7 @@ public class DoubleChairBlock extends ChairBlock{
     }
 
     public DoubleChairBlock(Material materialIn, float hardness, float resistance, float pixelsYOffset) {
-        this(Properties.create(materialIn).hardnessAndResistance(hardness, resistance), pixelsYOffset);
+        this(Properties.of(materialIn).strength(hardness, resistance), pixelsYOffset);
     }
 
     @Override
@@ -44,7 +44,7 @@ public class DoubleChairBlock extends ChairBlock{
     @Override
     @Nullable
     public BlockState getStateForPlacement(BlockItemUseContext context) {
-        if(!context.getWorld().getBlockState(context.getPos().up()).isReplaceable(context)) return null;
+        if(!context.getLevel().getBlockState(context.getPos().up()).isReplaceable(context)) return null;
         return super.getStateForPlacement(context).with(FACING, context.getPlacementHorizontalFacing().getOpposite());
     }
 
@@ -63,15 +63,15 @@ public class DoubleChairBlock extends ChairBlock{
     public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
         Direction halfDirection = (stateIn.get(HALF) == Half.TOP) ? Direction.DOWN : Direction.UP;
         if(facing == halfDirection){
-            if(facingState.getBlock() != this) return Blocks.AIR.getDefaultState();
-            if(facingState.get(HALF) == stateIn.get(HALF) || facingState.get(FACING) != stateIn.get(FACING)) return Blocks.AIR.getDefaultState();
+            if(facingState.getBlock() != this) return Blocks.AIR.defaultBlockState();
+            if(facingState.get(HALF) == stateIn.get(HALF) || facingState.get(FACING) != stateIn.get(FACING)) return Blocks.AIR.defaultBlockState();
         }
         return super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
     }
 
     @Override
     public void harvestBlock(World worldIn, PlayerEntity player, BlockPos pos, BlockState state, @Nullable TileEntity te, ItemStack stack) {
-        super.harvestBlock(worldIn, player, pos, Blocks.AIR.getDefaultState(), te, stack);
+        super.harvestBlock(worldIn, player, pos, Blocks.AIR.defaultBlockState(), te, stack);
     }
 
     @Override
@@ -79,7 +79,7 @@ public class DoubleChairBlock extends ChairBlock{
         BlockPos blockpos = (state.get(HALF) == Half.TOP) ? pos.down() : pos.up();
         BlockState otherState = worldIn.getBlockState(blockpos);
         if(otherState.getBlock() == this && otherState.get(HALF) != state.get(HALF)) {
-            worldIn.setBlockState(blockpos, Blocks.AIR.getDefaultState(), 35);
+            worldIn.setBlockState(blockpos, Blocks.AIR.defaultBlockState(), 35);
             worldIn.playEvent(player, 2001, blockpos, Block.getStateId(otherState));
             ItemStack itemstack = player.getHeldItemMainhand();
             if(!worldIn.isRemote && !player.isCreative()) {

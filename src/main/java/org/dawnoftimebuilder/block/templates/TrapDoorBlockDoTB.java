@@ -10,6 +10,6 @@ public class TrapDoorBlockDoTB extends TrapDoorBlock {
 	}
 
 	public TrapDoorBlockDoTB(Material materialIn, float hardness, float resistance, SoundType soundType) {
-		this(Block.Properties.create(materialIn).hardnessAndResistance(hardness, resistance).sound(soundType));
+		this(Block.Properties.of(materialIn).strength(hardness, resistance).sound(soundType));
 	}
 }

@@ -13,10 +13,10 @@ import org.dawnoftimebuilder.block.templates.WaterloggedBlock;
 
 public class SakeCupBlock extends WaterloggedBlock implements IBlockSpecialDisplay {
 
-    private static final VoxelShape VS = makeCuboidShape(6.0D, 0.0D, 6.0D, 10.0D, 3.0D, 10.0D);
+    private static final VoxelShape VS = Block.box(6.0D, 0.0D, 6.0D, 10.0D, 3.0D, 10.0D);
 
     public SakeCupBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
-        super(Properties.create(materialIn).hardnessAndResistance(hardness, resistance).sound(soundType));
+        super(Properties.of(materialIn).strength(hardness, resistance).sound(soundType));
     }
 
     @Override

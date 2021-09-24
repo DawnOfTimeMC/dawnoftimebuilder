@@ -14,10 +14,10 @@ import javax.annotation.Nonnull;
 
 public class PaperLanternBlock extends WaterloggedBlock {
 
-    private static final VoxelShape VS = makeCuboidShape(4.0D, 0.0D, 4.0D, 12.0D, 15.0D, 12.0D);
+    private static final VoxelShape VS = Block.box(4.0D, 0.0D, 4.0D, 12.0D, 15.0D, 12.0D);
 
     public PaperLanternBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
-        super(Properties.create(materialIn).hardnessAndResistance(hardness, resistance).sound(soundType).lightValue(12));
+        super(Properties.of(materialIn).strength(hardness, resistance).sound(soundType).lightValue(12));
     }
 
     @Nonnull

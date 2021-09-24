@@ -11,7 +11,6 @@ import net.minecraft.util.SoundEvents;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.dawnoftimebuilder.DoTBConfig;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Supplier;
 
@@ -130,12 +129,12 @@ public class DoTBMaterials {
 		}
 
 		@Override
-		public @NotNull SoundEvent getEquipSound() {
+		public SoundEvent getEquipSound() {
 			return this.soundEvent;
 		}
 
 		@Override
-		public @NotNull Ingredient getRepairIngredient() {
+		public Ingredient getRepairIngredient() {
 			return this.repairMaterial.get();
 		}
 
@@ -146,7 +145,7 @@ public class DoTBMaterials {
 
 		@Override
 		@OnlyIn(Dist.CLIENT)
-		public @NotNull String getName() {
+		public String getName() {
 			return this.name;
 		}
 
