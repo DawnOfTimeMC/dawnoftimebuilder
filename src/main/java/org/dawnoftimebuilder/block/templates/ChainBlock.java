@@ -32,4 +32,9 @@ public class ChainBlock extends BlockDoTB implements IBlockChain {
 	public BlockRenderLayer getRenderLayer() {
 		return BlockRenderLayer.CUTOUT_MIPPED;
 	}
+
+	@Override
+	public boolean isSolid(BlockState state) {
+		return false;
+	}
 }

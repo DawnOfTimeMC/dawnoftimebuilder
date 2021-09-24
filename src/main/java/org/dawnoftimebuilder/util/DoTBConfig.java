@@ -145,12 +145,12 @@ public class DoTBConfig {
         COMMON_BUILDER.comment("----------------------------------------|| Armor settings ||---------------------------------------").push(ARMOR_MATERIAL_CATEGORY);
             COMMON_BUILDER.push("iron_plate");
                 IRON_PLATE_DURABILITY = COMMON_BUILDER.comment("DurabilityFactor is multiplied with a value that depends on the armor part (between 11 and 16) to get the total durability :").defineInRange("ironPlateDurabilityFactor", 15,1,1000);
-                IRON_PLATE_DEF_HELMET = COMMON_BUILDER.comment("Helmet damage reduction :").defineInRange("ironPlateDefenseHelmet", 2,1,100);
-                IRON_PLATE_DEF_CHEST = COMMON_BUILDER.comment("Chest damage reduction :").defineInRange("ironPlateDefenseChest", 6,1,100);
-                IRON_PLATE_DEF_LEGS = COMMON_BUILDER.comment("Legs damage reduction :").defineInRange("ironPlateDefenseLegs", 5,1,100);
-                IRON_PLATE_DEF_FEET = COMMON_BUILDER.comment("Feet damage reduction :").defineInRange("ironPlateDefenseFeet", 2,1,100);
+                IRON_PLATE_DEF_HELMET = COMMON_BUILDER.comment("Helmet damage reduction :").defineInRange("ironPlateDefenseHelmet", 3,1,100);
+                IRON_PLATE_DEF_CHEST = COMMON_BUILDER.comment("Chest damage reduction :").defineInRange("ironPlateDefenseChest", 7,1,100);
+                IRON_PLATE_DEF_LEGS = COMMON_BUILDER.comment("Legs damage reduction :").defineInRange("ironPlateDefenseLegs", 6,1,100);
+                IRON_PLATE_DEF_FEET = COMMON_BUILDER.comment("Feet damage reduction :").defineInRange("ironPlateDefenseFeet", 3,1,100);
                 IRON_PLATE_ENCHANT = COMMON_BUILDER.comment("This armor's enchantability :").defineInRange("ironPlateEnchantability", 20,1,100);
-                IRON_PLATE_TOUGHNESS = COMMON_BUILDER.comment("This armor's toughness :").defineInRange("ironPlateToughness", 0.0,0.0,100.0);
+                IRON_PLATE_TOUGHNESS = COMMON_BUILDER.comment("This armor's toughness :").defineInRange("ironPlateToughness", 1.0,0.0,100.0);
             COMMON_BUILDER.pop();
             COMMON_BUILDER.push("holy");
                 HOLY_DURABILITY = COMMON_BUILDER.comment("DurabilityFactor is multiplied with a value that depends on the armor part (between 11 and 16) to get the total durability :").defineInRange("holyDurabilityFactor", 45,1,1000);

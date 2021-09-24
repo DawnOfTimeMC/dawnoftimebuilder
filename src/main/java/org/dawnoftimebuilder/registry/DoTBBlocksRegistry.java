@@ -219,8 +219,8 @@ public class DoTBBlocksRegistry {
 	public static final Block TATAMI_FLOOR = reg("tatami_floor", new TatamiFloorBlock(Material.CARPET, 0.6F, 0.6F, SoundType.CLOTH));
 	public static final Block LIGHT_GRAY_FUTON = reg("light_gray_futon", new FutonBlock(DyeColor.GRAY, Material.WOOD, 0.2F, 0.2F, SoundType.WOOD));
 	public static final Block IRORI_FIREPLACE = reg("irori_fireplace", new IroriFireplace(Material.ROCK, 1.5F, 1.5F, SoundType.WOOD));
-	public static final Block SAKE_BOTTLE = reg("sake_bottle", new SakeBottleBlock(Material.CLAY, 0.8F, 0.8F, SoundType.GROUND));
-	public static final Block SAKE_CUP = reg("sake_cup", new SakeCupBlock(Material.CLAY, 0.6F, 0.6F, SoundType.GROUND));
+	public static final Block SAKE_BOTTLE = reg("sake_bottle", new SakeBottleBlock(Material.CLAY, 0.8F, 0.8F, SoundType.STONE));
+	public static final Block SAKE_CUP = reg("sake_cup", new SakeCupBlock(Material.CLAY, 0.6F, 0.6F, SoundType.STONE));
 	public static final Block STICK_BUNDLE = reg("stick_bundle", new StickBundleBlock(Material.WOOD, 2.0F, 3.0F, SoundType.WOOD).setBurnable());
 
 	//Persian
