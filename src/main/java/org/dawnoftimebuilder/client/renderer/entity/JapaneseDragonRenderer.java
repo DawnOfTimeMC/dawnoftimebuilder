@@ -21,7 +21,7 @@ public class JapaneseDragonRenderer extends MobRenderer<JapaneseDragonEntity, Ja
 	}
 
 	@Override
-	protected ResourceLocation getEntityTexture(JapaneseDragonEntity entity) {
+	public ResourceLocation getTextureLocation(JapaneseDragonEntity p_110775_1_) {
 		return JAPANESE_DRAGON_TEXTURES;
 	}
 }

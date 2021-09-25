@@ -1,7 +1,7 @@
 package org.dawnoftimebuilder.client.model.armor;
 
 import net.minecraft.client.renderer.entity.model.BipedModel;
-import net.minecraft.client.renderer.entity.model.RendererModel;
+import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.item.ArmorStandEntity;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -16,51 +16,45 @@ public abstract class CustomArmorModel<T extends LivingEntity> extends BipedMode
 
 	public CustomArmorModel(EquipmentSlotType slot, int textureWidthIn, int textureHeightIn){
 		super(0.0F, 0.0F, textureWidthIn, textureHeightIn);
-
 		this.slot = slot;
 	}
 
 	@Override
-	public void setupAnim(T p_225597_1_, float p_225597_2_, float p_225597_3_, float p_225597_4_, float p_225597_5_, float p_225597_6_) {
-		super.setupAnim(p_225597_1_, p_225597_2_, p_225597_3_, p_225597_4_, p_225597_5_, p_225597_6_);
-	}
-
-	@Override
-	public void setupAnim(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor) {
-		super.setupAnim(entityIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor);
+	public void setupAnim(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+		super.setupAnim(entityIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
 		//Fix the "breathing" and wrong head rotation on ArmorStands
 		if (entityIn instanceof ArmorStandEntity) {
 			ArmorStandEntity entityAS = (ArmorStandEntity) entityIn;
 			float f = (float) Math.PI / 180F;
-			this.bipedHead.rotateAngleX = f * entityAS.getHeadRotation().getX();
-			this.bipedHead.rotateAngleY = f * entityAS.getHeadRotation().getY();
-			this.bipedHead.rotateAngleZ = f * entityAS.getHeadRotation().getZ();
-			this.bipedHead.setRotationPoint(0.0F, 1.0F, 0.0F);
-			this.bipedBody.rotateAngleX = f * entityAS.getBodyRotation().getX();
-			this.bipedBody.rotateAngleY = f * entityAS.getBodyRotation().getY();
-			this.bipedBody.rotateAngleZ = f * entityAS.getBodyRotation().getZ();
-			this.bipedLeftArm.rotateAngleX = f * entityAS.getLeftArmRotation().getX();
-			this.bipedLeftArm.rotateAngleY = f * entityAS.getLeftArmRotation().getY();
-			this.bipedLeftArm.rotateAngleZ = f * entityAS.getLeftArmRotation().getZ();
-			this.bipedRightArm.rotateAngleX = f * entityAS.getRightArmRotation().getX();
-			this.bipedRightArm.rotateAngleY = f * entityAS.getRightArmRotation().getY();
-			this.bipedRightArm.rotateAngleZ = f * entityAS.getRightArmRotation().getZ();
-			this.bipedLeftLeg.rotateAngleX = f * entityAS.getLeftLegRotation().getX();
-			this.bipedLeftLeg.rotateAngleY = f * entityAS.getLeftLegRotation().getY();
-			this.bipedLeftLeg.rotateAngleZ = f * entityAS.getLeftLegRotation().getZ();
-			this.bipedLeftLeg.setRotationPoint(1.9F, 11.0F, 0.0F);
-			this.bipedRightLeg.rotateAngleX = f * entityAS.getRightLegRotation().getX();
-			this.bipedRightLeg.rotateAngleY = f * entityAS.getRightLegRotation().getY();
-			this.bipedRightLeg.rotateAngleZ = f * entityAS.getRightLegRotation().getZ();
-			this.bipedRightLeg.setRotationPoint(-1.9F, 11.0F, 0.0F);
-			this.bipedHeadwear.copyModelAngles(this.bipedHead);
+			this.head.xRot = f * entityAS.getHeadPose().getX();
+			this.head.yRot = f * entityAS.getHeadPose().getY();
+			this.head.zRot = f * entityAS.getHeadPose().getZ();
+			this.head.setPos(0.0F, 1.0F, 0.0F);
+			this.body.xRot = f * entityAS.getBodyPose().getX();
+			this.body.yRot = f * entityAS.getBodyPose().getY();
+			this.body.zRot = f * entityAS.getBodyPose().getZ();
+			this.leftArm.xRot = f * entityAS.getLeftArmPose().getX();
+			this.leftArm.yRot = f * entityAS.getLeftArmPose().getY();
+			this.leftArm.zRot = f * entityAS.getLeftArmPose().getZ();
+			this.rightArm.xRot = f * entityAS.getRightArmPose().getX();
+			this.rightArm.yRot = f * entityAS.getRightArmPose().getY();
+			this.rightArm.zRot = f * entityAS.getRightArmPose().getZ();
+			this.leftLeg.xRot = f * entityAS.getLeftLegPose().getX();
+			this.leftLeg.yRot = f * entityAS.getLeftLegPose().getY();
+			this.leftLeg.zRot = f * entityAS.getLeftLegPose().getZ();
+			this.leftLeg.setPos(1.9F, 11.0F, 0.0F);
+			this.rightLeg.xRot = f * entityAS.getRightLegPose().getX();
+			this.rightLeg.yRot = f * entityAS.getRightLegPose().getY();
+			this.rightLeg.zRot = f * entityAS.getRightLegPose().getZ();
+			this.rightLeg.setPos(-1.9F, 11.0F, 0.0F);
+			this.hat.copyFrom(this.head);
 		}
 	}
 
-	public static void setRotateAngle(RendererModel RendererModel, float x, float y, float z) {
-		RendererModel.rotateAngleX = x;
-		RendererModel.rotateAngleY = y;
-		RendererModel.rotateAngleZ = z;
+	public static void setRotateAngle(ModelRenderer renderer, float x, float y, float z) {
+		renderer.xRot = x;
+		renderer.yRot = y;
+		renderer.zRot = z;
 	}
 
 	public static float sinPI(float f) {

@@ -24,8 +24,8 @@ public class DisplayerContainer extends Container {
 	private final DisplayerTileEntity tileEntity;
 
 	public DisplayerContainer(int windowId, PlayerInventory playerInventory, World world, BlockPos pos) {
-		super(DISPLAYER_CONTAINER, windowId);
-		this.tileEntity = (world.getTileEntity(pos) instanceof DisplayerTileEntity) ? (DisplayerTileEntity) world.getTileEntity(pos) : null;
+		super(DISPLAYER_CONTAINER.get(), windowId);
+		this.tileEntity = (world.getBlockEntity(pos) instanceof DisplayerTileEntity) ? (DisplayerTileEntity) world.getBlockEntity(pos) : null;
 		if(this.tileEntity != null){
 			this.tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(h -> {
 				for(int i = 0; i < 3; i++){
@@ -48,16 +48,16 @@ public class DisplayerContainer extends Container {
 	}
 
 	@Override
-	public boolean canInteractWith(PlayerEntity playerIn) {
+	public boolean stillValid(PlayerEntity playerIn) {
 		if(this.tileEntity.getLevel() == null) return false;
-		return isWithinUsableDistance(IWorldPosCallable.of(this.tileEntity.getLevel(), this.tileEntity.getPos()), playerIn, this.tileEntity.getBlockState().getBlock());
+		return stillValid(IWorldPosCallable.create(this.tileEntity.getLevel(), this.tileEntity.getBlockPos()), playerIn, this.tileEntity.getBlockState().getBlock());
 	}
 
 	@Override
-	public void detectAndSendChanges() {
-		super.detectAndSendChanges();
+	public void broadcastChanges() {
+		super.broadcastChanges();
 		//Update light level
-		if(this.tileEntity.getLevel() != null && !this.tileEntity.getLevel().isRemote()){
+		if(this.tileEntity.getLevel() != null && !this.tileEntity.getLevel().isClientSide()){
 			this.tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(h -> {
 				boolean lit = false;
 				for(int index = 0; index < h.getSlots(); index++) {
@@ -68,32 +68,32 @@ public class DisplayerContainer extends Container {
 							Block block = ((BlockItem) item).getBlock();
 							if (block instanceof IBlockSpecialDisplay) {
 								lit = ((IBlockSpecialDisplay) block).emitsLight();
-							} else lit = block.getLightValue(block.defaultBlockState()) > 0;
+							} else lit = block.getLightValue(block.defaultBlockState(), this.tileEntity.getLevel(), this.tileEntity.getBlockPos()) > 0;
 						}
 					}
 					if (lit) break;
 				}
-				if(this.tileEntity.getBlockState().get(LIT) != lit){
-					this.tileEntity.getLevel().setBlockState(this.tileEntity.getPos(), this.tileEntity.getBlockState().with(LIT, lit), 10);
+				if(this.tileEntity.getBlockState().getValue(LIT) != lit){
+					this.tileEntity.getLevel().setBlock(this.tileEntity.getBlockPos(), this.tileEntity.getBlockState().setValue(LIT, lit), 10);
 				}
 			});
 		}
 	}
 
 	@Override
-	public ItemStack transferStackInSlot(PlayerEntity playerIn, int index) {
+	public ItemStack quickMoveStack(PlayerEntity playerIn, int index) {
 		ItemStack itemStack = ItemStack.EMPTY;
-		Slot slot = this.inventorySlots.get(index);
-		if(slot != null && slot.getHasStack()){
-			ItemStack stackFromSlot = slot.getStack();
+		Slot slot = this.slots.get(index);
+		if(slot != null && slot.hasItem()){
+			ItemStack stackFromSlot = slot.getItem();
 			itemStack = stackFromSlot.copy();
 
 			if(index < 9){
-				if(!this.mergeItemStack(stackFromSlot, 9, this.inventorySlots.size(), true)) return ItemStack.EMPTY;
-			}else if(!this.mergeItemStack(stackFromSlot, 0, 9, false)) return ItemStack.EMPTY;
+				if(!this.moveItemStackTo(stackFromSlot, 9, this.slots.size(), true)) return ItemStack.EMPTY;
+			}else if(!this.moveItemStackTo(stackFromSlot, 0, 9, false)) return ItemStack.EMPTY;
 
-			if(stackFromSlot.isEmpty()) slot.putStack(ItemStack.EMPTY);
-			else slot.onSlotChanged();
+			if(stackFromSlot.isEmpty()) slot.set(ItemStack.EMPTY);
+			else slot.setChanged();
 		}
 		return itemStack;
 	}

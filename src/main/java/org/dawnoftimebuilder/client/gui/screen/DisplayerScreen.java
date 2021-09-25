@@ -1,6 +1,7 @@
 package org.dawnoftimebuilder.client.gui.screen;
 
-import com.mojang.blaze3d.platform.GlStateManager;
+import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
@@ -18,16 +19,16 @@ public class DisplayerScreen extends ContainerScreen<DisplayerContainer> {
 
     public DisplayerScreen(DisplayerContainer container, PlayerInventory playerInventory, ITextComponent title){
         super(container, playerInventory, title);
-        this.xSize = 256;
-        this.ySize = 238;
+        this.width = 256;
+        this.height = 238;
     }
 
     @Override
-    protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
-        GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
+    protected void renderBg(MatrixStack matrixStack, float partialTicks, int mouseX, int mouseY) {
+        RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
         if(this.minecraft != null){
-            this.minecraft.getTextureManager().bindTexture(GUI_CONTAINER);
-            this.blit(this.guiLeft, this.guiTop, 0, 0, this.xSize, this.ySize);
+            this.minecraft.getTextureManager().bind(GUI_CONTAINER);
+            this.blit(matrixStack, this.leftPos, this.topPos, 0, 0, this.width, this.height);
         }
     }
 }
