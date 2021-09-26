@@ -97,8 +97,8 @@ public class GrowingBushBlock extends SoilCropsBlock {
 	public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity playerIn, Hand hand, BlockRayTraceResult ray) {
 		if(super.onBlockActivated(state, worldIn, pos, playerIn, hand, ray)) return true;
 		if(this.isMaxAge(state) && !playerIn.isCreative()){
-			if (!worldIn.isRemote()) {
-				ItemStack itemStackHand = playerIn.getHeldItem(hand);
+			if (!worldIn.isClientSide()) {
+				ItemStack itemStackHand = playerIn.getItemInHand(hand);
 				boolean holdShears = itemStackHand.getItem().isIn(SHEARS);
 				if(holdShears) itemStackHand.damageItem(1, playerIn, (p_220287_1_) -> p_220287_1_.sendBreakAnimation(hand));
 

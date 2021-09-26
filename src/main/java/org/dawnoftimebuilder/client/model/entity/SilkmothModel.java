@@ -10,7 +10,7 @@ import org.dawnoftimebuilder.entity.SilkmothEntity;
 
 @OnlyIn(Dist.CLIENT)
 @SuppressWarnings("FieldCanBeLocal")
-public class SilkmothModel<T extends SilkmothEntity> extends EntityModel<T> {
+public class SilkmothModel extends EntityModel<SilkmothEntity> {
 	private final ModelRenderer body;
 	private final ModelRenderer head;
 	private final ModelRenderer wingLeft;

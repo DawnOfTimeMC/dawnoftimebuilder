@@ -91,13 +91,13 @@ public class WaterDoubleCropsBlock extends DoubleCropsBlock implements IWaterLog
 	@Override
 	public void setPlantWithAge(BlockState currentState, World worldIn, BlockPos pos, int newAge) {		if(currentState.get(HALF) == Half.TOP) pos = pos.down();
 		if(newAge >= this.getAgeReachingTopBlock()){
-			BlockPos posUp = pos.up();
+			BlockPos posUp = pos.above();
 			if(worldIn.getBlockState(posUp).getBlock() == this || worldIn.isAirBlock(posUp)){
 				worldIn.setBlockState(posUp, currentState.with(this.getAgeProperty(), newAge).with(HALF, Half.TOP).with(WATERLOGGED, false), 10);
 			}
 		}
 		if(newAge < this.getAgeReachingTopBlock() && this.getAge(currentState) == this.getAgeReachingTopBlock()){
-			worldIn.setBlockState(pos.up(), Blocks.AIR.defaultBlockState(), 10);
+			worldIn.setBlockState(pos.above(), Blocks.AIR.defaultBlockState(), 10);
 		}
 		worldIn.setBlockState(pos, currentState.with(this.getAgeProperty(), newAge).with(HALF, Half.BOTTOM).with(WATERLOGGED, true), 8);
 	}

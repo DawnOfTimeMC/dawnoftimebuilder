@@ -11,7 +11,7 @@ import org.dawnoftimebuilder.entity.JapaneseDragonEntity;
 
 @OnlyIn(Dist.CLIENT)
 @SuppressWarnings("FieldCanBeLocal")
-public class JapaneseDragonModel<T extends JapaneseDragonEntity> extends EntityModel<T> {
+public class JapaneseDragonModel extends EntityModel<JapaneseDragonEntity> {
 
 	private float dragonScale = 0;
 	private final ModelRenderer HeadCenter;

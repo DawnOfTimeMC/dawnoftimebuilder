@@ -93,7 +93,7 @@ public class MultiblockFireplaceBlock extends SidedPlaneConnectibleBlock {
 
 	@Override
 	public void onProjectileCollision(World worldIn, BlockState state, BlockRayTraceResult hit, Entity projectile) {
-		if (!worldIn.isRemote && projectile instanceof AbstractArrowEntity) {
+		if (!worldIn.isClientSide && projectile instanceof AbstractArrowEntity) {
 			AbstractArrowEntity abstractarrowentity = (AbstractArrowEntity)projectile;
 			if(state.get(VERTICAL_CONNECTION) == DoTBBlockStateProperties.VerticalConnection.BOTH || state.get(VERTICAL_CONNECTION) == DoTBBlockStateProperties.VerticalConnection.UNDER)
 				return;

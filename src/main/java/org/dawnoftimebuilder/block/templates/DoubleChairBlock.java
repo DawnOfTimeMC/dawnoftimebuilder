@@ -44,13 +44,13 @@ public class DoubleChairBlock extends ChairBlock{
     @Override
     @Nullable
     public BlockState getStateForPlacement(BlockItemUseContext context) {
-        if(!context.getLevel().getBlockState(context.getPos().up()).isReplaceable(context)) return null;
+        if(!context.getLevel().getBlockState(context.getPos().above()).isReplaceable(context)) return null;
         return super.getStateForPlacement(context).with(FACING, context.getPlacementHorizontalFacing().getOpposite());
     }
 
     @Override
     public void onBlockPlacedBy(World worldIn, BlockPos pos, BlockState state, LivingEntity placer, ItemStack stack) {
-        worldIn.setBlockState(pos.up(), state.with(HALF, Half.TOP), 10);
+        worldIn.setBlockState(pos.above(), state.with(HALF, Half.TOP), 10);
     }
 
     @Override
@@ -76,13 +76,13 @@ public class DoubleChairBlock extends ChairBlock{
 
     @Override
     public void onBlockHarvested(World worldIn, BlockPos pos, BlockState state, PlayerEntity player) {
-        BlockPos blockpos = (state.get(HALF) == Half.TOP) ? pos.down() : pos.up();
+        BlockPos blockpos = (state.get(HALF) == Half.TOP) ? pos.down() : pos.above();
         BlockState otherState = worldIn.getBlockState(blockpos);
         if(otherState.getBlock() == this && otherState.get(HALF) != state.get(HALF)) {
             worldIn.setBlockState(blockpos, Blocks.AIR.defaultBlockState(), 35);
             worldIn.playEvent(player, 2001, blockpos, Block.getStateId(otherState));
-            ItemStack itemstack = player.getHeldItemMainhand();
-            if(!worldIn.isRemote && !player.isCreative()) {
+            ItemStack itemstack = player.getItemInHandMainhand();
+            if(!worldIn.isClientSide && !player.isCreative()) {
                 Block.spawnDrops(state, worldIn, pos, null, player, itemstack);
                 Block.spawnDrops(otherState, worldIn, blockpos, null, player, itemstack);
             }

@@ -71,8 +71,8 @@ public class MixedRoofSupportBlock extends SlabBlockDoTB implements IBlockCustom
     @Override
     public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
         Direction facing = hit.getFace();
-        ItemStack itemStack = player.getHeldItem(handIn);
-        if(!player.isSneaking() && player.canPlayerEdit(pos, facing, itemStack) && facing.getAxis().isVertical() && !itemStack.isEmpty()){
+        ItemStack itemStack = player.getItemInHand(handIn);
+        if(!player.isCrouching() && player.canPlayerEdit(pos, facing, itemStack) && facing.getAxis().isVertical() && !itemStack.isEmpty()){
             if(facing == Direction.UP){
                 if (state.get(TYPE) == SlabType.BOTTOM && itemStack.getItem() == roofSlabBlock.asItem()) {
                     if(worldIn.setBlockState(pos, state.with(TYPE, SlabType.DOUBLE), 11))  {
@@ -96,7 +96,7 @@ public class MixedRoofSupportBlock extends SlabBlockDoTB implements IBlockCustom
     @Nullable
     @Override
     public Item getCustomItemBlock() {
-        return new BlockItem(this, new Item.Properties().group(DOTB_TAB)){
+        return new BlockItem(this, new Item.Properties().groabove(DOTB_TAB)){
             @Override
             public ActionResultType tryPlace(BlockItemUseContext context) {
                 Direction facing = context.getFace();
@@ -185,7 +185,7 @@ public class MixedRoofSupportBlock extends SlabBlockDoTB implements IBlockCustom
     @Override
     public boolean receiveFluid(IWorld worldIn, BlockPos pos, BlockState state, IFluidState fluidStateIn) {
         if (!state.get(BlockStateProperties.WATERLOGGED) && fluidStateIn.getFluid() == Fluids.WATER) {
-            if (!worldIn.isRemote()) {
+            if (!worldIn.isClientSide()) {
                 worldIn.setBlockState(pos, state.with(BlockStateProperties.WATERLOGGED, true), 3);
                 worldIn.getPendingFluidTicks().scheduleTick(pos, fluidStateIn.getFluid(), fluidStateIn.getFluid().getTickRate(worldIn));
             }

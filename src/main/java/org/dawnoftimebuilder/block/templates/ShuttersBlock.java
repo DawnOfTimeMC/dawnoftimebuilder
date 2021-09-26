@@ -48,7 +48,7 @@ public class ShuttersBlock extends SmallShuttersBlock {
         World world = context.getLevel();
         Direction direction = context.getPlacementHorizontalFacing();
         BlockPos pos = context.getPos();
-        if(!world.getBlockState(pos.up()).isReplaceable(context))
+        if(!world.getBlockState(pos.above()).isReplaceable(context))
             return null;
         int x = direction.getXOffset();
         int z = direction.getZOffset();
@@ -56,7 +56,7 @@ public class ShuttersBlock extends SmallShuttersBlock {
         double onZ = context.getHitVec().z - pos.getZ();
         boolean hingeLeft = (x >= 0 || onZ >= 0.5D) && (x <= 0 || onZ <= 0.5D) && (z >= 0 || onX <= 0.5D) && (z <= 0 || onX >= 0.5D);
         Direction hingeDirection = hingeLeft ? direction.rotateYCCW() : direction.rotateY();
-        if(!canSupportShutters(world, pos, direction, hingeDirection) || !canSupportShutters(world, pos.up(), direction, hingeDirection)) hingeLeft = !hingeLeft;
+        if(!canSupportShutters(world, pos, direction, hingeDirection) || !canSupportShutters(world, pos.above(), direction, hingeDirection)) hingeLeft = !hingeLeft;
         return super.getStateForPlacement(context).with(HINGE, hingeLeft ? DoorHingeSide.LEFT : DoorHingeSide.RIGHT).with(FACING, direction).with(POWERED, world.isBlockPowered(pos)).with(HALF, Half.BOTTOM);
     }
 
@@ -78,7 +78,7 @@ public class ShuttersBlock extends SmallShuttersBlock {
 
     @Override
     public void onBlockPlacedBy(World worldIn, BlockPos pos, BlockState state, LivingEntity placer, ItemStack stack) {
-        worldIn.setBlockState(pos.up(), state.with(HALF, Half.TOP), 10);
+        worldIn.setBlockState(pos.above(), state.with(HALF, Half.TOP), 10);
     }
 
     @Override
@@ -111,13 +111,13 @@ public class ShuttersBlock extends SmallShuttersBlock {
 
     @Override
     public void onBlockHarvested(World worldIn, BlockPos pos, BlockState state, PlayerEntity player) {
-        BlockPos blockpos = (state.get(HALF) == Half.TOP) ? pos.down() : pos.up();
+        BlockPos blockpos = (state.get(HALF) == Half.TOP) ? pos.down() : pos.above();
         BlockState otherState = worldIn.getBlockState(blockpos);
         if(otherState.getBlock() == this && otherState.get(HALF) != state.get(HALF)) {
             worldIn.setBlockState(blockpos, Blocks.AIR.defaultBlockState(), 35);
             worldIn.playEvent(player, 2001, blockpos, Block.getStateId(otherState));
-            ItemStack itemstack = player.getHeldItemMainhand();
-            if(!worldIn.isRemote && !player.isCreative()) {
+            ItemStack itemstack = player.getItemInHandMainhand();
+            if(!worldIn.isClientSide && !player.isCreative()) {
                 Block.spawnDrops(state, worldIn, pos, null, player, itemstack);
                 Block.spawnDrops(otherState, worldIn, blockpos, null, player, itemstack);
             }

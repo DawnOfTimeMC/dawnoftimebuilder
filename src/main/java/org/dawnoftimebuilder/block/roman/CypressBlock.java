@@ -59,12 +59,12 @@ public class CypressBlock extends BlockDoTB {
 
     @Override
     public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-        ItemStack heldItemStack = player.getHeldItem(handIn);
-        if(player.isSneaking()) {
+        ItemStack heldItemStack = player.getItemInHand(handIn);
+        if(player.isCrouching()) {
             //We remove the highest CypressBlock
             BlockPos topPos = this.getHighestCypressPos(worldIn, pos);
             if(topPos != pos){
-                if(!worldIn.isRemote()) {
+                if(!worldIn.isClientSide()) {
                     worldIn.setBlockState(topPos, Blocks.AIR.defaultBlockState(), 35);
                     if (!player.isCreative()) {
                         Block.spawnDrops(state, worldIn, pos, null, player, heldItemStack);
@@ -75,9 +75,9 @@ public class CypressBlock extends BlockDoTB {
         }else{
             if(!heldItemStack.isEmpty() && heldItemStack.getItem() == this.asItem()){
                 //We put a CypressBlock on top of the cypress
-                BlockPos topPos = this.getHighestCypressPos(worldIn, pos).up();
+                BlockPos topPos = this.getHighestCypressPos(worldIn, pos).above();
                 if(topPos.getY() <= HIGHEST_Y){
-                    if(!worldIn.isRemote()) {
+                    if(!worldIn.isClientSide()) {
                         worldIn.setBlockState(topPos, this.defaultBlockState(), 11);
                         if(!player.isCreative()) {
                             heldItemStack.shrink(1);
@@ -93,9 +93,9 @@ public class CypressBlock extends BlockDoTB {
     private BlockPos getHighestCypressPos(World worldIn, BlockPos pos){
         int yOffset;
         for(yOffset = 0; yOffset + pos.getY() <= HIGHEST_Y; yOffset++){
-            if(worldIn.getBlockState(pos.up(yOffset)).getBlock() != this) break;
+            if(worldIn.getBlockState(pos.above(yOffset)).getBlock() != this) break;
         }
-        return pos.up(yOffset - 1);
+        return pos.above(yOffset - 1);
     }
 
     @Override
@@ -128,7 +128,7 @@ public class CypressBlock extends BlockDoTB {
     @Nullable
     @Override
     public BlockState getStateForPlacement(BlockItemUseContext context) {
-        BlockState adjacentState = context.getLevel().getBlockState(context.getPos().up());
+        BlockState adjacentState = context.getLevel().getBlockState(context.getPos().above());
         int size = (adjacentState.getBlock() == this) ? Math.min(adjacentState.get(SIZE) + 1, 5) : 1;
         if(size < 3) return this.defaultBlockState().with(SIZE, size);
         else {
@@ -141,7 +141,7 @@ public class CypressBlock extends BlockDoTB {
     public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
         if(facing.getAxis().isVertical()){
             if(!isValidPosition(stateIn, worldIn, currentPos)) return Blocks.AIR.defaultBlockState();
-            BlockState adjacentState = worldIn.getBlockState(currentPos.up());
+            BlockState adjacentState = worldIn.getBlockState(currentPos.above());
             int size = (adjacentState.getBlock() == this) ? Math.min(adjacentState.get(SIZE) + 1, 5) : 1;
             if(size < 3) return this.defaultBlockState().with(SIZE, size);
             else {
@@ -164,7 +164,7 @@ public class CypressBlock extends BlockDoTB {
 
     @OnlyIn(Dist.CLIENT)
     public void animateTick(BlockState stateIn, World worldIn, BlockPos pos, Random rand) {
-        if (worldIn.isRainingAt(pos.up())) {
+        if (worldIn.isRainingAt(pos.above())) {
             if (rand.nextInt(15) == 1) {
                 BlockPos posDown = pos.down();
                 BlockState stateDown = worldIn.getBlockState(posDown);

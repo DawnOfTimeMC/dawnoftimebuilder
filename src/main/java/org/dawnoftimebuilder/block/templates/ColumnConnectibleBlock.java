@@ -59,7 +59,7 @@ public abstract class ColumnConnectibleBlock extends WaterloggedBlock {
 	}
 
 	public DoTBBlockStateProperties.VerticalConnection getColumnState(IWorld worldIn, BlockPos pos, BlockState stateIn){
-		if(isConnectible(worldIn, pos.up(), stateIn)){
+		if(isConnectible(worldIn, pos.above(), stateIn)){
 			return (isConnectible(worldIn, pos.down(), stateIn)) ? DoTBBlockStateProperties.VerticalConnection.BOTH : DoTBBlockStateProperties.VerticalConnection.ABOVE;
 		}else{
 			return (isConnectible(worldIn, pos.down(), stateIn)) ? DoTBBlockStateProperties.VerticalConnection.UNDER : DoTBBlockStateProperties.VerticalConnection.NONE;
@@ -72,14 +72,14 @@ public abstract class ColumnConnectibleBlock extends WaterloggedBlock {
 
 	@Override
 	public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-		ItemStack heldItemStack = player.getHeldItem(handIn);
-		if(player.isSneaking()) {
+		ItemStack heldItemStack = player.getItemInHand(handIn);
+		if(player.isCrouching()) {
 			//We remove the highest ColumnBlock
 			if(state.get(VERTICAL_CONNECTION) == DoTBBlockStateProperties.VerticalConnection.NONE)
 				return super.onBlockActivated(state, worldIn, pos, player, handIn, hit);
 			BlockPos topPos = this.getHighestColumnPos(worldIn, pos);
 			if(topPos != pos){
-				if(!worldIn.isRemote()) {
+				if(!worldIn.isClientSide()) {
 					worldIn.setBlockState(topPos, Blocks.AIR.defaultBlockState(), 35);
 					if (!player.isCreative()) {
 						Block.spawnDrops(state, worldIn, pos, null, player, heldItemStack);
@@ -90,9 +90,9 @@ public abstract class ColumnConnectibleBlock extends WaterloggedBlock {
 		}else{
 			if(!heldItemStack.isEmpty() && heldItemStack.getItem() == this.asItem()){
 				//We put a ColumnBlock on top of the column
-				BlockPos topPos = this.getHighestColumnPos(worldIn, pos).up();
+				BlockPos topPos = this.getHighestColumnPos(worldIn, pos).above();
 				if(topPos.getY() <= HIGHEST_Y){
-					if(!worldIn.isRemote()) {
+					if(!worldIn.isClientSide()) {
 						worldIn.setBlockState(topPos, state, 11);
 						if(!player.isCreative()) {
 							heldItemStack.shrink(1);
@@ -108,9 +108,9 @@ public abstract class ColumnConnectibleBlock extends WaterloggedBlock {
 	private BlockPos getHighestColumnPos(World worldIn, BlockPos pos){
 		int yOffset;
 		for(yOffset = 0; yOffset + pos.getY() <= HIGHEST_Y; yOffset++){
-			if(worldIn.getBlockState(pos.up(yOffset)).getBlock() != this) break;
+			if(worldIn.getBlockState(pos.above(yOffset)).getBlock() != this) break;
 		}
-		return pos.up(yOffset - 1);
+		return pos.above(yOffset - 1);
 	}
 
 	@Override

@@ -21,8 +21,8 @@ public interface IBlockPillar {
 		BlockState state = worldIn.getBlockState(pos);
 		Block block = state.getBlock();
 		if(block instanceof IBlockPillar) return ((IBlockPillar) block).getBlockPillarConnectionAbove(state);
-		if(block.isIn(BlockTags.FENCES)) return DoTBBlockStateProperties.PillarConnection.FOUR_PX;
-		if(block.isIn(BlockTags.WALLS)) return DoTBBlockStateProperties.PillarConnection.EIGHT_PX;
+		if(block.is(BlockTags.FENCES)) return DoTBBlockStateProperties.PillarConnection.FOUR_PX;
+		if(block.is(BlockTags.WALLS)) return DoTBBlockStateProperties.PillarConnection.EIGHT_PX;
 		return DoTBBlockStateProperties.PillarConnection.NOTHING;
 	}
 
@@ -36,8 +36,8 @@ public interface IBlockPillar {
 		BlockState state = worldIn.getBlockState(pos);
 		Block block = state.getBlock();
 		if(block instanceof IBlockPillar) return ((IBlockPillar) block).getBlockPillarConnectionAbove(state);
-		if(block.isIn(BlockTags.FENCES)) return DoTBBlockStateProperties.PillarConnection.FOUR_PX;
-		if(block.isIn(BlockTags.WALLS)) return DoTBBlockStateProperties.PillarConnection.EIGHT_PX;
+		if(block.is(BlockTags.FENCES)) return DoTBBlockStateProperties.PillarConnection.FOUR_PX;
+		if(block.is(BlockTags.WALLS)) return DoTBBlockStateProperties.PillarConnection.EIGHT_PX;
 		return DoTBBlockStateProperties.PillarConnection.NOTHING;
 	}
 

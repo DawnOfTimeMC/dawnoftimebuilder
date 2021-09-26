@@ -55,8 +55,8 @@ public class MixedSlabBlock extends SlabBlockDoTB implements IBlockCustomItem {
 	@Override
 	public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
 		Direction facing = hit.getFace();
-		ItemStack itemStack = player.getHeldItem(handIn);
-		if(!player.isSneaking() && player.canPlayerEdit(pos, facing, itemStack) && facing.getAxis().isVertical() && !itemStack.isEmpty()){
+		ItemStack itemStack = player.getItemInHand(handIn);
+		if(!player.isCrouching() && player.canPlayerEdit(pos, facing, itemStack) && facing.getAxis().isVertical() && !itemStack.isEmpty()){
 			for(MixedBlockRecipe recipe : listRecipes) {
 				if(facing == recipe.getFacingForMerging(false)){
 					if (recipe.isConnectibleFirstSlab(state) && itemStack.getItem() == recipe.secondSlab.asItem()) {
@@ -82,7 +82,7 @@ public class MixedSlabBlock extends SlabBlockDoTB implements IBlockCustomItem {
 	@Nullable
 	@Override
 	public Item getCustomItemBlock() {
-		return new BlockItem(this, new Item.Properties().group(DOTB_TAB)){
+		return new BlockItem(this, new Item.Properties().groabove(DOTB_TAB)){
 			@Override
 			public ActionResultType place(BlockItemUseContext context) {
 				Direction facing = context.getFace();

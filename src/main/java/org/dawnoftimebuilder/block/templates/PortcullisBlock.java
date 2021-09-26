@@ -73,7 +73,7 @@ public class PortcullisBlock extends WaterloggedBlock {
 
 	private BlockState getShape(BlockState state, IWorld worldIn, BlockPos pos){
 		Direction.Axis axis = state.get(HORIZONTAL_AXIS);
-		if(hasSameAxis(worldIn.getBlockState(pos.up()), axis)){
+		if(hasSameAxis(worldIn.getBlockState(pos.above()), axis)){
 			return state.with(VERTICAL_CONNECTION, (hasSameAxis(worldIn.getBlockState(pos.down()), axis)) ? DoTBBlockStateProperties.VerticalConnection.BOTH : DoTBBlockStateProperties.VerticalConnection.ABOVE);
 		}else{
 			return state.with(VERTICAL_CONNECTION, (hasSameAxis(worldIn.getBlockState(pos.down()), axis)) ? DoTBBlockStateProperties.VerticalConnection.UNDER : DoTBBlockStateProperties.VerticalConnection.NONE);
@@ -130,7 +130,7 @@ public class PortcullisBlock extends WaterloggedBlock {
 
 	private BlockPos getTopPortcullisPos(World worldIn, BlockPos pos, Direction.Axis axis){
 		BlockState state;
-		for (boolean isStillPortcullis = true; isStillPortcullis; pos = pos.up()) {
+		for (boolean isStillPortcullis = true; isStillPortcullis; pos = pos.above()) {
 			state = worldIn.getBlockState(pos);
 			if(state.getBlock() instanceof PortcullisBlock){
 				if(!hasSameAxis(state, axis)) isStillPortcullis = false;
@@ -195,7 +195,7 @@ public class PortcullisBlock extends WaterloggedBlock {
 				}
 			}
 			if(openState) {
-				openState = isCorrectBorder(worldIn, pos.offset(direction, -widthLeft).up(), axis, (isAxisX) ? Direction.WEST : Direction.NORTH, widthLeft + widthRight);
+				openState = isCorrectBorder(worldIn, pos.offset(direction, -widthLeft).above(), axis, (isAxisX) ? Direction.WEST : Direction.NORTH, widthLeft + widthRight);
 				openState = openState && isCorrectBorder(worldIn, pos.offset(direction, -widthLeft).down(height), axis, (isAxisX) ? Direction.WEST : Direction.NORTH, widthLeft + widthRight);
 				openState = openState && isCorrectBorder(worldIn, pos.offset(direction, -widthLeft - 1), axis, Direction.DOWN, height - 1);
 				openState = openState && isCorrectBorder(worldIn, pos.offset(direction, widthRight + 1), axis, Direction.DOWN, height - 1);

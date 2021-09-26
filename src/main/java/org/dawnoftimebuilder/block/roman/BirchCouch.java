@@ -110,8 +110,8 @@ public class BirchCouch extends ChairBlock {
         if(otherState.getBlock() == this) {
             worldIn.setBlockState(otherPos, Blocks.AIR.defaultBlockState(), 35);
             worldIn.playEvent(player, 2001, otherPos, Block.getStateId(otherState));
-            ItemStack itemstack = player.getHeldItemMainhand();
-            if(!worldIn.isRemote() && !player.isCreative()) {
+            ItemStack itemstack = player.getItemInHandMainhand();
+            if(!worldIn.isClientSide() && !player.isCreative()) {
                 //Only one of the 2 blocks drops since there is no way to make a difference between halves in loot_tables
                 Block.spawnDrops(state, worldIn, pos, null, player, itemstack);
             }

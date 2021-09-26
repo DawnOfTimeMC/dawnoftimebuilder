@@ -71,7 +71,7 @@ public class SoilCropsBlock extends CropsBlock implements IBlockCustomItem {
 			case Cave:   return BlockDoTB.hasSolidSide(stateGround, worldIn, pos, Direction.UP);
 			case Plains: return blockUnder == Blocks.GRASS_BLOCK || BlockDoTB.isDirt(blockUnder) || blockUnder == Blocks.FARMLAND;
 			case Water:
-				return worldIn.getFluidState(pos.up()).getFluid() == Fluids.WATER && worldIn.getBlockState(pos.up(2)).getBlock() == AIR && (blockUnder == Blocks.GRASS_BLOCK || BlockDoTB.isDirt(blockUnder) || blockUnder == Blocks.FARMLAND || blockUnder == Blocks.GRAVEL);
+				return worldIn.getFluidState(pos.above()).getFluid() == Fluids.WATER && worldIn.getBlockState(pos.above(2)).getBlock() == AIR && (blockUnder == Blocks.GRASS_BLOCK || BlockDoTB.isDirt(blockUnder) || blockUnder == Blocks.FARMLAND || blockUnder == Blocks.GRAVEL);
 			case Beach:
 				boolean isBeach = blockUnder == Blocks.GRASS_BLOCK || BlockDoTB.isDirt(blockUnder) || blockUnder.isIn(SAND);
 				boolean hasWater = (worldIn.getBlockState(pos.east()).getMaterial() == Material.WATER ||
@@ -94,7 +94,7 @@ public class SoilCropsBlock extends CropsBlock implements IBlockCustomItem {
 		if(state.get(PERSISTENT)){
 			if(player.isCreative()){
 				int age = this.getAge(state);
-				if(player.isSneaking()){
+				if(player.isCrouching()){
 					if(age > 0){
 						this.setPlantWithAge(state, worldIn, pos, age - 1);
 						return true;

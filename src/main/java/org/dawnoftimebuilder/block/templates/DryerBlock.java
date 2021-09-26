@@ -68,7 +68,7 @@ public class DryerBlock extends WaterloggedBlock {
 		BlockPos pos = context.getPos();
 		BlockState state = context.getLevel().getBlockState(pos);
 		if (state.getBlock() == this) {
-			return state.with(SIZE, (context.getLevel().getBlockState(pos.up()).getBlock() == this) ? 2 : 1);
+			return state.with(SIZE, (context.getLevel().getBlockState(pos.above()).getBlock() == this) ? 2 : 1);
 		}
 		return super.getStateForPlacement(context);
 	}
@@ -131,15 +131,15 @@ public class DryerBlock extends WaterloggedBlock {
 
 	@Override
 	public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-		if(!worldIn.isRemote() && handIn == Hand.MAIN_HAND) {
+		if(!worldIn.isClientSide() && handIn == Hand.MAIN_HAND) {
 			if(worldIn.getTileEntity(pos) instanceof DryerTileEntity) {
 				DryerTileEntity tileEntity = (DryerTileEntity) worldIn.getTileEntity(pos);
 				if(tileEntity == null) return false;
 
-				if(player.isSneaking()) return tileEntity.dropOneItem(worldIn, pos);
+				if(player.isCrouching()) return tileEntity.dropOneItem(worldIn, pos);
 
 				else {
-					return tileEntity.tryInsertItemStack(player.getHeldItem(handIn), state.get(SIZE) == 0, worldIn, pos, player);
+					return tileEntity.tryInsertItemStack(player.getItemInHand(handIn), state.get(SIZE) == 0, worldIn, pos, player);
 				}
 			}
 		}

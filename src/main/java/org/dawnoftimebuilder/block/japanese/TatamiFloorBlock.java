@@ -70,18 +70,18 @@ public class TatamiFloorBlock extends NoItemBlock {
 
 	@Override
 	public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-		if(!worldIn.isRemote){
-			if(player.isSneaking()){
+		if(!worldIn.isClientSide){
+			if(player.isCrouching()){
 				boolean isTop = state.get(HALF) == Half.TOP;
 				BlockPos otherPos = (isTop) ? pos.offset(state.get(FACING)) : pos.offset(state.get(FACING).getOpposite());
 				if(isTop)//Check if the blocks above each part are AIR
-					if(!worldIn.isAirBlock(pos.up()))
+					if(!worldIn.isAirBlock(pos.above()))
 						return false;
-					else if(!worldIn.isAirBlock(otherPos.up()))
+					else if(!worldIn.isAirBlock(otherPos.above()))
 						return false;
 				worldIn.setBlockState(pos, SPRUCE_PLANKS.defaultBlockState(), 2);
 				worldIn.setBlockState(otherPos, SPRUCE_PLANKS.defaultBlockState(), 2);
-				worldIn.setBlockState((isTop) ? pos.up() : otherPos.up(), TATAMI_MAT.defaultBlockState().with(TatamiMatBlock.HALF, Half.TOP).with(TatamiMatBlock.FACING, state.get(FACING)).with(TatamiMatBlock.ROLLED, true), 2);
+				worldIn.setBlockState((isTop) ? pos.above() : otherPos.above(), TATAMI_MAT.defaultBlockState().with(TatamiMatBlock.HALF, Half.TOP).with(TatamiMatBlock.FACING, state.get(FACING)).with(TatamiMatBlock.ROLLED, true), 2);
 				return true;
 			}
 		}

@@ -95,7 +95,7 @@ public class SidedWindowBlock extends BlockDoTB {
 	
     private boolean canConnectVertical(BlockState state, World worldIn, BlockPos pos) {
     	if(isSameWindowAndSide(state, worldIn, pos.down())){
-			return !isSameWindowAndSide(state, worldIn, pos.up());
+			return !isSameWindowAndSide(state, worldIn, pos.above());
     	}
     	return false;
     }

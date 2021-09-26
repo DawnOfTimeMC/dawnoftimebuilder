@@ -106,7 +106,7 @@ public class SmallTatamiMatBlock extends WaterloggedBlock implements IBlockChain
     @Override
     public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
         if(state.get(ATTACHED)){
-            BlockState stateUp = worldIn.getBlockState(pos.up());
+            BlockState stateUp = worldIn.getBlockState(pos.above());
             Block blockUp = stateUp.getBlock();
             if(blockUp.isIn(BlockTags.FENCES) || worldIn.getBlockState(pos.down()).getBlock().isIn(BlockTags.FENCES)) return true;
             if(IBlockChain.canBeChained(stateUp, true)) return true;
@@ -120,7 +120,7 @@ public class SmallTatamiMatBlock extends WaterloggedBlock implements IBlockChain
         if(facing.getAxis().isVertical()){
             stateIn = stateIn.with(ATTACHED, false);
             if(stateIn.get(ROLLED) && stateIn.get(STACK) == 1){
-                BlockState stateUp = worldIn.getBlockState(currentPos.up());
+                BlockState stateUp = worldIn.getBlockState(currentPos.above());
                 if(stateUp.getBlock().isIn(BlockTags.FENCES)
                         || worldIn.getBlockState(currentPos.down()).getBlock().isIn(BlockTags.FENCES)
                         || IBlockChain.canBeChained(stateUp, true))
@@ -149,7 +149,7 @@ public class SmallTatamiMatBlock extends WaterloggedBlock implements IBlockChain
 
     @Override
     public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-        if(player.isSneaking()){
+        if(player.isCrouching()){
             int stack = state.get(STACK);
             boolean isRolled = state.get(ROLLED);
             if(isRolled && stack == 1)

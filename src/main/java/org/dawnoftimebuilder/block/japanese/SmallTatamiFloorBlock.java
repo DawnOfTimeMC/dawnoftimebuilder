@@ -59,11 +59,11 @@ public class SmallTatamiFloorBlock extends NoItemBlock {
 
 	@Override
 	public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-		if(player.isSneaking()){
-			if(worldIn.isAirBlock(pos.up())){
-				worldIn.setBlockState(pos.up(), SMALL_TATAMI_MAT.defaultBlockState().with(SmallTatamiMatBlock.ROLLED, true).with(SmallTatamiMatBlock.HORIZONTAL_AXIS, state.get(HORIZONTAL_AXIS)), 10);
+		if(player.isCrouching()){
+			if(worldIn.isAirBlock(pos.above())){
+				worldIn.setBlockState(pos.above(), SMALL_TATAMI_MAT.defaultBlockState().with(SmallTatamiMatBlock.ROLLED, true).with(SmallTatamiMatBlock.HORIZONTAL_AXIS, state.get(HORIZONTAL_AXIS)), 10);
 				worldIn.setBlockState(pos, SPRUCE_PLANKS.defaultBlockState(), 10);
-				worldIn.playSound(player, pos.up(), this.soundType.getPlaceSound(), SoundCategory.BLOCKS, (this.soundType.getVolume() + 1.0F) / 2.0F, this.soundType.getPitch() * 0.8F);
+				worldIn.playSound(player, pos.above(), this.soundType.getPlaceSound(), SoundCategory.BLOCKS, (this.soundType.getVolume() + 1.0F) / 2.0F, this.soundType.getPitch() * 0.8F);
 				return true;
 			}
 		}

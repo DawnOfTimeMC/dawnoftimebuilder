@@ -164,7 +164,7 @@ public class TatamiMatBlock extends WaterloggedBlock {
 
     @Override
     public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-        if(player.isSneaking()){
+        if(player.isCrouching()){
             int stack = state.get(STACK);
             boolean isRolled = state.get(ROLLED);
             if(isRolled && stack == 1) {

@@ -55,13 +55,13 @@ public class WildMaizeBlock extends WildPlantBlock {
 	@Nullable
 	@Override
 	public BlockState getStateForPlacement(BlockItemUseContext context) {
-		if(!context.getLevel().getBlockState(context.getPos().up()).isReplaceable(context)) return null;
+		if(!context.getLevel().getBlockState(context.getPos().above()).isReplaceable(context)) return null;
 		return super.getStateForPlacement(context);
 	}
 
 	@Override
 	public void onBlockPlacedBy(World worldIn, BlockPos pos, BlockState state, LivingEntity placer, ItemStack stack) {
-		worldIn.setBlockState(pos.up(), state.with(HALF, Half.TOP), 10);
+		worldIn.setBlockState(pos.above(), state.with(HALF, Half.TOP), 10);
 	}
 
 	@Override

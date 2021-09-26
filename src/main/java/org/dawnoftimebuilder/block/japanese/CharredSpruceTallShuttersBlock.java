@@ -73,14 +73,14 @@ public class CharredSpruceTallShuttersBlock extends CharredSpruceShuttersBlock {
         boolean left = world.getBlockState(posLeft).isReplaceable(context);
         if(!right && !left) return null;
 
-        if(world.getBlockState(pos.up()).isReplaceable(context) && canSupportShutters(world, pos.up(), facing)){
+        if(world.getBlockState(pos.above()).isReplaceable(context) && canSupportShutters(world, pos.above(), facing)){
             if(right){
-                if(world.getBlockState(posRight.up()).isReplaceable(context) && canSupportShutters(world, posRight.up(), facing)){
+                if(world.getBlockState(posRight.above()).isReplaceable(context) && canSupportShutters(world, posRight.above(), facing)){
                     return super.getStateForPlacement(context).with(CORNER, SquareCorners.BOTTOM_LEFT).with(FACING, facing).with(POWERED, world.isBlockPowered(pos));
                 }
             }
             if(left){
-                if(world.getBlockState(posLeft.up()).isReplaceable(context) && canSupportShutters(world, posLeft.up(), facing)){
+                if(world.getBlockState(posLeft.above()).isReplaceable(context) && canSupportShutters(world, posLeft.above(), facing)){
                     return super.getStateForPlacement(context).with(CORNER, SquareCorners.BOTTOM_RIGHT).with(FACING, facing).with(POWERED, world.isBlockPowered(pos));
                 }
             }
@@ -118,7 +118,7 @@ public class CharredSpruceTallShuttersBlock extends CharredSpruceShuttersBlock {
         //Let's set the 3 other corners
         for(SquareCorners corner : SquareCorners.values()){
             if(thisCorner != corner){
-                BlockPos cornerPos = pos.up(corner.getVerticalOffset(thisCorner)).offset(facing.rotateY(), corner.getHorizontalOffset(thisCorner));
+                BlockPos cornerPos = pos.above(corner.getVerticalOffset(thisCorner)).offset(facing.rotateY(), corner.getHorizontalOffset(thisCorner));
                 worldIn.setBlockState(cornerPos, state.with(CORNER, corner).with(WATERLOGGED, worldIn.getFluidState(cornerPos).getFluid() == Fluids.WATER), 10);
             }
         }
@@ -131,7 +131,7 @@ public class CharredSpruceTallShuttersBlock extends CharredSpruceShuttersBlock {
         if(!canSupportShutters(worldIn, currentPos, stateIn.get(FACING)) && stateIn.get(CORNER).isTopCorner()) return Blocks.AIR.defaultBlockState();
         Direction currentFacing = stateIn.get(FACING);
         SquareCorners expectedCorner = thisCorner.getAdjacentCorner(facing.getAxis().isVertical());
-        if(currentPos.up(expectedCorner.getVerticalOffset(thisCorner)).offset(currentFacing.rotateY(), expectedCorner.getHorizontalOffset(thisCorner)).equals(facingPos)){
+        if(currentPos.above(expectedCorner.getVerticalOffset(thisCorner)).offset(currentFacing.rotateY(), expectedCorner.getHorizontalOffset(thisCorner)).equals(facingPos)){
             //The pos of the updated block is supposed to contain a part of the shutter : let's check it
             if(facingState.getBlock() == this){
                 if(facingState.get(CORNER) == expectedCorner && facingState.get(FACING) == currentFacing){

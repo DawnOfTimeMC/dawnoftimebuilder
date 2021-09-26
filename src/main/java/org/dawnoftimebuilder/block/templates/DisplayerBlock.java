@@ -58,7 +58,7 @@ public abstract class DisplayerBlock extends WaterloggedBlock {
 
 	@Override
 	public boolean onBlockActivated(BlockState blockState, World world, BlockPos pos, PlayerEntity playerEntity, Hand hand, BlockRayTraceResult rayTraceResult) {
-		if(!world.isRemote()){
+		if(!world.isClientSide()){
 			TileEntity tileEntity = world.getTileEntity(pos);
 			if(tileEntity instanceof INamedContainerProvider){
 				NetworkHooks.openGui((ServerPlayerEntity) playerEntity, (INamedContainerProvider) tileEntity, tileEntity.getPos());

@@ -98,24 +98,24 @@ public class StickBundleBlock extends BlockDoTB implements IBlockChain {
 
 	@Override
 	public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
-    	pos = pos.up();
+    	pos = pos.above();
     	BlockState stateUp = worldIn.getBlockState(pos);
 		return state.get(HALF) == Half.BOTTOM || hasSolidSide(stateUp, worldIn, pos, Direction.DOWN) || IBlockChain.canBeChained(stateUp, true);
 	}
 
 	@Override
 	public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-		if(!worldIn.isRemote()){
+		if(!worldIn.isClientSide()){
 			//The StickBundle is empty, we try to put worms on it.
 			if(state.get(AGE) == 0){
-				ItemStack itemstack = player.getHeldItem(handIn);
+				ItemStack itemstack = player.getItemInHand(handIn);
 				if(itemstack.getItem() == SILK_WORMS && !itemstack.isEmpty()){
 					itemstack.shrink(1);
 					worldIn.setBlockState(pos, state.with(AGE, 1));
 					if(state.get(HALF) == Half.TOP){
 						worldIn.setBlockState(pos.down(), this.defaultBlockState().with(HALF, Half.BOTTOM).with(AGE, 1));
 					}else{
-						worldIn.setBlockState(pos.up(), this.defaultBlockState().with(HALF, Half.TOP).with(AGE, 1));
+						worldIn.setBlockState(pos.above(), this.defaultBlockState().with(HALF, Half.TOP).with(AGE, 1));
 					}
 					return true;
 				}
@@ -123,14 +123,14 @@ public class StickBundleBlock extends BlockDoTB implements IBlockChain {
 
 			//The StickBundle has fully grown worms, it's time to harvest !
 			if(state.get(AGE) == 3){
-				List<ItemStack> drops = DoTBBlockUtils.getLootList((ServerWorld)worldIn, state, player.getHeldItem(handIn), Objects.requireNonNull(this.getRegistryName()).getPath() + "_harvest");
+				List<ItemStack> drops = DoTBBlockUtils.getLootList((ServerWorld)worldIn, state, player.getItemInHand(handIn), Objects.requireNonNull(this.getRegistryName()).getPath() + "_harvest");
 				DoTBBlockUtils.dropLootFromList(worldIn, pos, drops, 1.0F);
 				worldIn.setBlockState(pos, state.with(AGE, 0));
 				worldIn.playSound(null, pos, SoundEvents.BLOCK_GRASS_BREAK, SoundCategory.BLOCKS, 1.0F, 1.0F);
 				if(state.get(HALF) == Half.TOP){
 					worldIn.setBlockState(pos.down(), this.defaultBlockState().with(HALF, Half.BOTTOM).with(AGE, 0));
 				}else{
-					worldIn.setBlockState(pos.up(), this.defaultBlockState().with(HALF, Half.TOP).with(AGE, 0));
+					worldIn.setBlockState(pos.above(), this.defaultBlockState().with(HALF, Half.TOP).with(AGE, 0));
 				}
 				return true;
 			}

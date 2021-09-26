@@ -55,7 +55,7 @@ public class CharredSpruceRailingBlock extends FenceBlockDoTB {
 
 	private BlockState getPillarShape(BlockState stateIn, IWorld worldIn, BlockPos currentPos){
 		if((stateIn.get(EAST) || stateIn.get(WEST)) && (stateIn.get(NORTH) || stateIn.get(SOUTH))){
-			if(worldIn.getBlockState(currentPos.up()).isSolid()) return stateIn.with(FENCE_PILLAR, FencePillar.PILLAR_BIG);
+			if(worldIn.getBlockState(currentPos.above()).isSolid()) return stateIn.with(FENCE_PILLAR, FencePillar.PILLAR_BIG);
 			else return stateIn.with(FENCE_PILLAR, FencePillar.CAP_PILLAR_BIG);
 		}else return stateIn.with(FENCE_PILLAR, FencePillar.PILLAR_SMALL);
 	}
