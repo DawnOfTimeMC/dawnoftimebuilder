@@ -23,12 +23,12 @@ public class PlasteredStoneWindowBlock extends WaterloggedBlock {
 	
 	public PlasteredStoneWindowBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
 		super(Properties.of(materialIn).strength(hardness, resistance).sound(soundType));
-	    this.setDefaultState(this.stateContainer.getBaseState().with(HORIZONTAL_AXIS, Direction.Axis.X));
+	    this.registerDefaultState(this.stateContainer.getBaseState().setValue(HORIZONTAL_AXIS, Direction.Axis.X));
 	}
 
 	@Override
-	protected void fillStateContainer(StateContainer.Builder<net.minecraft.block.Block, BlockState> builder) {
-		super.fillStateContainer(builder);
+	protected void createBlockStateDefinition(StateContainer.Builder<net.minecraft.block.Block, BlockState> builder) {
+		super.createBlockStateDefinition(builder);
 		builder.add(HORIZONTAL_AXIS);
 	}
 
@@ -40,12 +40,12 @@ public class PlasteredStoneWindowBlock extends WaterloggedBlock {
 
 	@Override
 	public BlockState getStateForPlacement(BlockItemUseContext context) {
-		return super.getStateForPlacement(context).with(HORIZONTAL_AXIS, context.getPlacementHorizontalFacing().getAxis() == Direction.Axis.Z ? Direction.Axis.X : Direction.Axis.Z);
+		return super.getStateForPlacement(context).setValue(HORIZONTAL_AXIS, context.getHorizontalDirection().getAxis() == Direction.Axis.Z ? Direction.Axis.X : Direction.Axis.Z);
 	}
 
 	@Override
 	public BlockState rotate(BlockState state, Rotation rot) {
-		if(rot == Rotation.CLOCKWISE_90 || rot == Rotation.COUNTERCLOCKWISE_90) return state.with(HORIZONTAL_AXIS, (state.get(HORIZONTAL_AXIS) == Direction.Axis.X) ? Direction.Axis.Z : Direction.Axis.X);
+		if(rot == Rotation.CLOCKWISE_90 || rot == Rotation.COUNTERCLOCKWISE_90) return state.setValue(HORIZONTAL_AXIS, (state.get(HORIZONTAL_AXIS) == Direction.Axis.X) ? Direction.Axis.Z : Direction.Axis.X);
 		else return super.rotate(state, rot);
 	}
 }

@@ -44,7 +44,7 @@ public class RedSculptedPlasteredStoneFriezeBlock extends PlateBlock {
 
 	@Override
 	public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-		int index = (state.get(FACING).getHorizontalIndex() + 2) % 4;
+		int index = (state.get(FACING).get2DDataValue() + 2) % 4;
 		index *= 3;
 		switch (state.get(SHAPE)) {
 			default:

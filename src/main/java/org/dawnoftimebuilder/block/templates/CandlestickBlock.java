@@ -31,19 +31,19 @@ public class CandlestickBlock extends CandleLampBlock {
 
     public CandlestickBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
         super(materialIn, hardness, resistance, soundType);
-        this.setDefaultState(this.getStateContainer().getBaseState().with(WATERLOGGED,false).with(FACING, Direction.DOWN).with(LIT, false));
+        this.registerDefaultState(this.defaultBlockState().setValue(WATERLOGGED,false).setValue(FACING, Direction.DOWN).setValue(LIT, false));
     }
 
     @Nonnull
     @Override
     public BlockState getStateForPlacement(BlockItemUseContext context) {
         Direction facing = context.getFace();
-        return super.getStateForPlacement(context).with(FACING, facing == Direction.UP ? Direction.DOWN : facing);
+        return super.getStateForPlacement(context).setValue(FACING, facing == Direction.UP ? Direction.DOWN : facing);
     }
 
     @Override
-    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
-        super.fillStateContainer(builder);
+    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
+        super.createBlockStateDefinition(builder);
         builder.add(FACING);
     }
 
@@ -61,12 +61,12 @@ public class CandlestickBlock extends CandleLampBlock {
     @Override
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
         Direction facing = state.get(FACING);
-        return facing == Direction.DOWN ? VS_BOTTOM : VS_SIDE[facing.getHorizontalIndex()];
+        return facing == Direction.DOWN ? VS_BOTTOM : VS_SIDE[facing.get2DDataValue()];
     }
 
     @Override
     public BlockState rotate(BlockState state, Rotation rot) {
-        return state.with(FACING, rot.rotate(state.get(FACING)));
+        return state.setValue(FACING, rot.rotate(state.get(FACING)));
     }
 
     @Override

@@ -35,19 +35,19 @@ public class MultiblockFireplaceBlock extends SidedPlaneConnectibleBlock {
 
 	public MultiblockFireplaceBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
 		super(materialIn, hardness, resistance, soundType);
-		this.setDefaultState(this.getStateContainer().getBaseState().with(BURNING, false).with(WATERLOGGED, false));
+		this.registerDefaultState(this.defaultBlockState().setValue(BURNING, false).setValue(WATERLOGGED, false));
 	}
 
 	@Override
-	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
-		super.fillStateContainer(builder);
+	protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
+		super.createBlockStateDefinition(builder);
 		builder.add(BURNING);
 	}
 
 	@Override
 	public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-		int index = (state.get(VERTICAL_CONNECTION) == DoTBBlockStateProperties.VerticalConnection.NONE) ? 0 : 1;
-		return SHAPES[index + state.get(FACING).getHorizontalIndex() * 2];
+		int index = (state.getValue(VERTICAL_CONNECTION) == DoTBBlockStateProperties.VerticalConnection.NONE) ? 0 : 1;
+		return SHAPES[index + state.getValue(FACING).get2DDataValue() * 2];
 	}
 
 	/**
@@ -64,26 +64,26 @@ public class MultiblockFireplaceBlock extends SidedPlaneConnectibleBlock {
 
 	@Override
 	public int getLightValue(BlockState state) {
-		return (state.get(BURNING)) ? 15 : 0;
+		return (state.getValue(BURNING)) ? 15 : 0;
 	}
 
 	@Override
 	public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit){
-		if(state.get(VERTICAL_CONNECTION) != DoTBBlockStateProperties.VerticalConnection.BOTH && state.get(VERTICAL_CONNECTION) != DoTBBlockStateProperties.VerticalConnection.UNDER) {
-			if (state.get(BURNING)) {
-				Direction direction = state.get(FACING);
-				worldIn.setBlockState(pos, state.with(BURNING, false), 10);
+		if(state.getValue(VERTICAL_CONNECTION) != DoTBBlockStateProperties.VerticalConnection.BOTH && state.getValue(VERTICAL_CONNECTION) != DoTBBlockStateProperties.VerticalConnection.UNDER) {
+			if (state.getValue(BURNING)) {
+				Direction direction = state.getValue(FACING);
+				worldIn.setBlock(pos, state.setValue(BURNING, false), 10);
 				worldIn.playSound(null, pos, SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.BLOCKS, 1.0F, 1.0F);
-				worldIn.getBlockState(pos.offset(direction.rotateYCCW())).neighborChanged(worldIn, pos.offset(direction.rotateYCCW()), this, pos, false);
-				worldIn.getBlockState(pos.offset(direction.rotateY())).neighborChanged(worldIn, pos.offset(direction.rotateY()), this, pos, false);
+				worldIn.getBlockState(pos.relative(direction.getCounterClockWise())).neighborChanged(worldIn, pos.relative(direction.getCounterClockWise()), this, pos, false);
+				worldIn.getBlockState(pos.relative(direction.getClockWise())).neighborChanged(worldIn, pos.relative(direction.getClockWise()), this, pos, false);
 				return true;
 			} else {
-				if (state.get(WATERLOGGED)) return false;
+				if (state.getValue(WATERLOGGED)) return false;
 				if (DoTBBlockUtils.useLighter(worldIn, pos, player, handIn)) {
-					Direction direction = state.get(FACING);
-					worldIn.setBlockState(pos, state.with(BURNING, true), 10);
-					worldIn.getBlockState(pos.offset(direction.rotateYCCW())).neighborChanged(worldIn, pos.offset(direction.rotateYCCW()), this, pos, false);
-					worldIn.getBlockState(pos.offset(direction.rotateY())).neighborChanged(worldIn, pos.offset(direction.rotateY()), this, pos, false);
+					Direction direction = state.getValue(FACING);
+					worldIn.setBlock(pos, state.setValue(BURNING, true), 10);
+					worldIn.getBlockState(pos.relative(direction.getCounterClockWise())).neighborChanged(worldIn, pos.relative(direction.getCounterClockWise()), this, pos, false);
+					worldIn.getBlockState(pos.relative(direction.getClockWise())).neighborChanged(worldIn, pos.relative(direction.getClockWise()), this, pos, false);
 					return true;
 				}
 			}
@@ -95,15 +95,15 @@ public class MultiblockFireplaceBlock extends SidedPlaneConnectibleBlock {
 	public void onProjectileCollision(World worldIn, BlockState state, BlockRayTraceResult hit, Entity projectile) {
 		if (!worldIn.isClientSide && projectile instanceof AbstractArrowEntity) {
 			AbstractArrowEntity abstractarrowentity = (AbstractArrowEntity)projectile;
-			if(state.get(VERTICAL_CONNECTION) == DoTBBlockStateProperties.VerticalConnection.BOTH || state.get(VERTICAL_CONNECTION) == DoTBBlockStateProperties.VerticalConnection.UNDER)
+			if(state.getValue(VERTICAL_CONNECTION) == DoTBBlockStateProperties.VerticalConnection.BOTH || state.get(VERTICAL_CONNECTION) == DoTBBlockStateProperties.VerticalConnection.UNDER)
 				return;
 			if (abstractarrowentity.isBurning() && !state.get(BURNING) && !state.get(WATERLOGGED)) {
 				BlockPos pos = hit.getPos();
-				worldIn.setBlockState(pos, state.with(BURNING, true), 10);
+				worldIn.setBlock(pos, state.setValue(BURNING, true), 10);
 				worldIn.playSound(null, pos, SoundEvents.BLOCK_FIRE_AMBIENT, SoundCategory.BLOCKS, 1.0F, 1.0F);
 				Direction direction = state.get(FACING);
-				worldIn.getBlockState(pos.offset(direction.rotateY())).neighborChanged(worldIn, pos.offset(direction.rotateY()), this, pos, false);
-				worldIn.getBlockState(pos.offset(direction.rotateYCCW())).neighborChanged(worldIn, pos.offset(direction.rotateYCCW()), this, pos, false);
+				worldIn.getBlockState(pos.relative(direction.getClockWise())).neighborChanged(worldIn, pos.relative(direction.getClockWise()), this, pos, false);
+				worldIn.getBlockState(pos.relative(direction.getCounterClockWise())).neighborChanged(worldIn, pos.relative(direction.getCounterClockWise()), this, pos, false);
 			}
 		}
 	}
@@ -118,8 +118,8 @@ public class MultiblockFireplaceBlock extends SidedPlaneConnectibleBlock {
 					boolean burning = newState.get(BURNING);
 					if(burning != state.get(BURNING)){
 						if(newState.get(BURNING) && state.get(WATERLOGGED)) return;
-						worldIn.setBlockState(pos, state.with(BURNING, burning), 10);
-						BlockPos newPos = (pos.offset(facing.rotateY()).equals(fromPos)) ? pos.offset(facing.rotateYCCW()) : pos.offset(facing.rotateY());
+						worldIn.setBlock(pos, state.setValue(BURNING, burning), 10);
+						BlockPos newPos = (pos.relative(facing.getClockWise()).equals(fromPos)) ? pos.relative(facing.getCounterClockWise()) : pos.relative(facing.getClockWise());
 						worldIn.getBlockState(newPos).neighborChanged(worldIn, newPos, this, pos, false);
 					}
 				}
@@ -133,8 +133,8 @@ public class MultiblockFireplaceBlock extends SidedPlaneConnectibleBlock {
 			if (state.get(BURNING)) {
 				worldIn.playSound(null, pos, SoundEvents.ENTITY_GENERIC_EXTINGUISH_FIRE, SoundCategory.BLOCKS, 1.0F, 1.0F);
 			}
-			worldIn.setBlockState(pos, state.with(WATERLOGGED, true).with(BURNING, false), 10);
-			worldIn.getPendingFluidTicks().scheduleTick(pos, fluidStateIn.getFluid(), fluidStateIn.getFluid().getTickRate(worldIn));
+			worldIn.setBlock(pos, state.setValue(WATERLOGGED, true).setValue(BURNING, false), 10);
+			worldIn.getLiquidTicks().scheduleTick(pos, fluidStateIn.getFluid(), fluidStateIn.getFluid().getTickRate(worldIn));
 			return true;
 		} else {
 			return false;

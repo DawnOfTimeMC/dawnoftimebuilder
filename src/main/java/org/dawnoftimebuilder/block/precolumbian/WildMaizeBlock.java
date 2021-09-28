@@ -30,9 +30,9 @@ public class WildMaizeBlock extends WildPlantBlock {
     private static final VoxelShape VS = Block.box(5.0D, 0.0D, 5.0D, 11.0D, 16.0D, 11.0D);
 	public static final EnumProperty<Half> HALF = BlockStateProperties.HALF;
 
-    public WildMaizeBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
-		super(Properties.of(materialIn).strength(hardness, resistance).sound(soundType));
-        this.setDefaultState(this.stateContainer.getBaseState().with(HALF, Half.BOTTOM));
+    public WildMaizeBlock(Properties properties) {
+		super(properties);
+        this.registerDefaultState(this.defaultBlockState().setValue(HALF, Half.BOTTOM));
     }
 
     @Override
@@ -42,30 +42,30 @@ public class WildMaizeBlock extends WildPlantBlock {
 	}
 
 	@Override
-	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
+	protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
 		builder.add(HALF);
 	}
 
 	@Override
-	public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
+	public boolean canSurvive(BlockState state, IWorldReader worldIn, BlockPos pos) {
     	if(state.get(HALF) == Half.TOP) return true;
-		return super.isValidPosition(state, worldIn, pos);
+		return super.canSurvive(state, worldIn, pos);
 	}
 
 	@Nullable
 	@Override
 	public BlockState getStateForPlacement(BlockItemUseContext context) {
-		if(!context.getLevel().getBlockState(context.getPos().above()).isReplaceable(context)) return null;
+		if(!context.getLevel().getBlockState(context.getClickedPos().above()).isReplaceable(context)) return null;
 		return super.getStateForPlacement(context);
 	}
 
 	@Override
 	public void onBlockPlacedBy(World worldIn, BlockPos pos, BlockState state, LivingEntity placer, ItemStack stack) {
-		worldIn.setBlockState(pos.above(), state.with(HALF, Half.TOP), 10);
+		worldIn.setBlock(pos.above(), state.setValue(HALF, Half.TOP), 10);
 	}
 
 	@Override
-	public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
+	public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
 		if(facing.getAxis().isHorizontal()) return stateIn;
 		if(facing == Direction.UP && stateIn.get(HALF) == Half.BOTTOM) {
 			if(facingState.getBlock() == this){
@@ -82,13 +82,13 @@ public class WildMaizeBlock extends WildPlantBlock {
 						return stateIn;
 					}
 				}
-			}else if(isValidPosition(stateIn, worldIn, currentPos)) return stateIn;
+			}else if(canSurvive(stateIn, worldIn, currentPos)) return stateIn;
 			return Blocks.AIR.defaultBlockState();
 		}
     	return stateIn;
 	}
 
     public BlockState getDefaultTopState() {
-    	return this.defaultBlockState().with(HALF, Half.TOP);
+    	return this.defaultBlockState().setValue(HALF, Half.TOP);
     }
 }

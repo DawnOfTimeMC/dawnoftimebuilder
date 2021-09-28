@@ -22,7 +22,7 @@ public class SerpentSculptedColumnBlock extends SidedColumnConnectibleBlock {
 	@Override
 	public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
 		int index = state.get(VERTICAL_CONNECTION).getIndex();
-		return SHAPES[index + state.get(FACING).getHorizontalIndex() * 4];
+		return SHAPES[index + state.get(FACING).get2DDataValue() * 4];
 	}
 
 	/**

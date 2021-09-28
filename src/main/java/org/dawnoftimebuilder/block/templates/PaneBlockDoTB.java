@@ -1,11 +1,9 @@
 package org.dawnoftimebuilder.block.templates;
 
 import net.minecraft.block.*;
-import net.minecraft.block.material.Material;
+import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.Fluids;
-import net.minecraft.fluid.IFluidState;
 import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
@@ -15,33 +13,16 @@ import static org.dawnoftimebuilder.registry.DoTBBlocksRegistry.PAPER_DOOR;
 
 public class PaneBlockDoTB extends PaneBlock {
 
-	private final BlockRenderLayer renderLayer;
-
-	public PaneBlockDoTB(Material materialIn, float hardness, float resistance, SoundType soundType, BlockRenderLayer renderLayer) {
-		this(BlockDoTB.Properties.of(materialIn).strength(hardness, resistance).sound(soundType), renderLayer);
-	}
-
-	public PaneBlockDoTB(Material materialIn, float hardness, float resistance, SoundType soundType) {
-		this(BlockDoTB.Properties.of(materialIn).strength(hardness, resistance).sound(soundType), BlockRenderLayer.SOLID);
-	}
-
-	public PaneBlockDoTB(Properties properties, BlockRenderLayer renderLayer) {
+	public PaneBlockDoTB(Properties properties) {
         super(properties);
-		this.renderLayer = renderLayer;
     }
-
-	public Block setBurnable() {
-		FireBlock fireblock = (FireBlock) Blocks.FIRE;
-		fireblock.setFireInfo(this, 5, 20);
-		return this;
-	}
 
 	@Override
 	public BlockState getStateForPlacement(BlockItemUseContext context) {
 		//Must be overridden to allow connection to paper_door
 		IBlockReader world = context.getLevel();
-		BlockPos pos = context.getPos();
-		IFluidState ifluidstate = context.getLevel().getFluidState(context.getPos());
+		BlockPos pos = context.getClickedPos();
+		Fluid fluid = context.getLevel().getFluidState(context.getClickedPos()).getType();
 		BlockPos posNorth = pos.north();
 		BlockPos posSouth = pos.south();
 		BlockPos posWest = pos.west();
@@ -51,27 +32,22 @@ public class PaneBlockDoTB extends PaneBlock {
 		BlockState stateWest = world.getBlockState(posWest);
 		BlockState stateEast = world.getBlockState(posEast);
 		return this.defaultBlockState()
-				.with(NORTH, this.canAttachPane(stateNorth, stateNorth.func_224755_d(world, posNorth, Direction.SOUTH)))
-				.with(SOUTH, this.canAttachPane(stateSouth, stateSouth.func_224755_d(world, posSouth, Direction.NORTH)))
-				.with(WEST, this.canAttachPane(stateWest, stateWest.func_224755_d(world, posWest, Direction.EAST)))
-				.with(EAST, this.canAttachPane(stateEast, stateEast.func_224755_d(world, posEast, Direction.WEST)))
-				.with(WATERLOGGED, ifluidstate.getFluid() == Fluids.WATER);
+				.setValue(NORTH, this.canAttachPane(stateNorth, stateNorth.isFaceSturdy(world, posNorth, Direction.SOUTH)))
+				.setValue(SOUTH, this.canAttachPane(stateSouth, stateSouth.isFaceSturdy(world, posSouth, Direction.NORTH)))
+				.setValue(WEST, this.canAttachPane(stateWest, stateWest.isFaceSturdy(world, posWest, Direction.EAST)))
+				.setValue(EAST, this.canAttachPane(stateEast, stateEast.isFaceSturdy(world, posEast, Direction.WEST)))
+				.setValue(WATERLOGGED, fluid == Fluids.WATER);
 	}
 
 	@Override
-	public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
+	public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
 		//Must be overridden to allow connection to paper_door
-		if (stateIn.get(WATERLOGGED)) worldIn.getPendingFluidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickRate(worldIn));
-		return facing.getAxis().isHorizontal() ? stateIn.with(FACING_TO_PROPERTY_MAP.get(facing), this.canAttachPane(facingState, facingState.func_224755_d(worldIn, facingPos, facing.getOpposite()))) : stateIn;
+		if (stateIn.getValue(WATERLOGGED)) worldIn.getLiquidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(worldIn));
+		return facing.getAxis().isHorizontal() ? stateIn.setValue(PROPERTY_BY_DIRECTION.get(facing), this.canAttachPane(facingState, facingState.isFaceSturdy(worldIn, facingPos, facing.getOpposite()))) : stateIn;
 	}
 
 	public boolean canAttachPane(BlockState adjacentState, boolean hasSolidSide) {
 		Block block = adjacentState.getBlock();
-		return (!cannotAttach(block) && hasSolidSide) || block instanceof PaneBlock || block == PAPER_DOOR;
-	}
-
-	@Override
-	public BlockRenderLayer getRenderLayer() {
-		return this.renderLayer;
+		return (!isExceptionForConnection(block) && hasSolidSide) || block instanceof PaneBlock || block == PAPER_DOOR.get();
 	}
 }

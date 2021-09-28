@@ -24,6 +24,6 @@ public class SpruceLeglessChairBlock extends ChairBlock {
 
 	@Override
 	public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-		return VS[state.get(FACING).getHorizontalIndex()];
+		return VS[state.get(FACING).get2DDataValue()];
 	}
 }

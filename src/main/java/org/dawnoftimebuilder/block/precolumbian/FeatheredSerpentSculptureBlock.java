@@ -29,24 +29,24 @@ public class FeatheredSerpentSculptureBlock extends WaterloggedBlock {
 
 	public FeatheredSerpentSculptureBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
 		super(Properties.of(materialIn).strength(hardness, resistance).sound(soundType));
-	    this.setDefaultState(this.stateContainer.getBaseState().with(FACING, Direction.NORTH).with(WATERLOGGED, false));
+	    this.registerDefaultState(this.stateContainer.getBaseState().setValue(FACING, Direction.NORTH).setValue(WATERLOGGED, false));
 	}
 
 	@Override
-	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
-		super.fillStateContainer(builder);
+	protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
+		super.createBlockStateDefinition(builder);
 		builder.add(FACING);
 	}
 
 	@Override
 	public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-		return SHAPES[state.get(FACING).getHorizontalIndex()];
+		return SHAPES[state.get(FACING).get2DDataValue()];
 	}
 
 	@Nonnull
 	@Override
 	public BlockState getStateForPlacement(BlockItemUseContext context) {
-		return super.getStateForPlacement(context).with(FACING, context.getPlacementHorizontalFacing().getOpposite());
+		return super.getStateForPlacement(context).setValue(FACING, context.getHorizontalDirection().getOpposite());
 	}
 
 	@Override
@@ -56,7 +56,7 @@ public class FeatheredSerpentSculptureBlock extends WaterloggedBlock {
 
 	@Override
 	public BlockState rotate(BlockState state, Rotation rot){
-		return state.with(FACING, rot.rotate(state.get(FACING)));
+		return state.setValue(FACING, rot.rotate(state.get(FACING)));
 	}
 
 	@Override

@@ -28,12 +28,12 @@ public class CharredSpruceRailingBlock extends FenceBlockDoTB {
 
 	public CharredSpruceRailingBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
 		super(materialIn, hardness, resistance, soundType);
-		this.setDefaultState(this.getStateContainer().getBaseState().with(EAST, false).with(NORTH, false).with(FENCE_PILLAR, FencePillar.NONE).with(SOUTH, false).with(WEST, false));
+		this.registerDefaultState(this.defaultBlockState().setValue(EAST, false).setValue(NORTH, false).setValue(FENCE_PILLAR, FencePillar.NONE).setValue(SOUTH, false).setValue(WEST, false));
 	}
 
 	@Override
-	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
-		super.fillStateContainer(builder);
+	protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
+		super.createBlockStateDefinition(builder);
 		builder.add(FENCE_PILLAR);
 	}
 
@@ -42,22 +42,22 @@ public class CharredSpruceRailingBlock extends FenceBlockDoTB {
 		BlockState state = super.getStateForPlacement(context);
 		if(state == null) return this.defaultBlockState();
 		if(context.isPlacerSneaking()){
-			return state.with(FENCE_PILLAR, FencePillar.NONE);
-		}else return this.getPillarShape(state, context.getLevel(), context.getPos());
+			return state.setValue(FENCE_PILLAR, FencePillar.NONE);
+		}else return this.getPillarShape(state, context.getLevel(), context.getClickedPos());
 	}
 
 	@Override
-	public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
-		stateIn = super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+	public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
+		stateIn = super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
 		if(this.hasNoPillar(stateIn)) return stateIn;
 		else return this.getPillarShape(stateIn, worldIn, currentPos);
 	}
 
 	private BlockState getPillarShape(BlockState stateIn, IWorld worldIn, BlockPos currentPos){
-		if((stateIn.get(EAST) || stateIn.get(WEST)) && (stateIn.get(NORTH) || stateIn.get(SOUTH))){
-			if(worldIn.getBlockState(currentPos.above()).isSolid()) return stateIn.with(FENCE_PILLAR, FencePillar.PILLAR_BIG);
-			else return stateIn.with(FENCE_PILLAR, FencePillar.CAP_PILLAR_BIG);
-		}else return stateIn.with(FENCE_PILLAR, FencePillar.PILLAR_SMALL);
+		if((stateIn.getValue(EAST) || stateIn.getValue(WEST)) && (stateIn.getValue(NORTH) || stateIn.getValue(SOUTH))){
+			if(worldIn.getBlockState(currentPos.above()).isSolid()) return stateIn.setValue(FENCE_PILLAR, FencePillar.PILLAR_BIG);
+			else return stateIn.setValue(FENCE_PILLAR, FencePillar.CAP_PILLAR_BIG);
+		}else return stateIn.setValue(FENCE_PILLAR, FencePillar.PILLAR_SMALL);
 	}
 
     private boolean hasNoPillar(BlockState state){
@@ -65,8 +65,8 @@ public class CharredSpruceRailingBlock extends FenceBlockDoTB {
 	}
 
 	@Override
-	public void addInformation(ItemStack stack, @Nullable IBlockReader worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
-		super.addInformation(stack, worldIn, tooltip, flagIn);
+	public void appendHoverText(ItemStack stack, @Nullable IBlockReader worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+		super.appendHoverText(stack, worldIn, tooltip, flagIn);
 		DoTBBlockUtils.addTooltip(tooltip, this);
 	}
 }

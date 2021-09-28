@@ -23,6 +23,6 @@ public class PaperDoorBlock extends DoorBlockDoTB {
 
     @Override
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-        return state.get(OPEN) ? VS_NORTH_OPEN[state.get(HINGE) == DoorHingeSide.LEFT ? state.get(FACING).getOpposite().getHorizontalIndex() : state.get(FACING).getHorizontalIndex()] : VS_NORTH[state.get(FACING).getHorizontalIndex()];
+        return state.get(OPEN) ? VS_NORTH_OPEN[state.get(HINGE) == DoorHingeSide.LEFT ? state.get(FACING).getOpposite().get2DDataValue() : state.get(FACING).get2DDataValue()] : VS_NORTH[state.get(FACING).get2DDataValue()];
     }
 }

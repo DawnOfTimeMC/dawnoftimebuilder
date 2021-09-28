@@ -25,11 +25,11 @@ public class IkebanaFlowerPotBlock extends BlockDoTB implements IBlockSpecialDis
 
 	public IkebanaFlowerPotBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
         super(Properties.of(materialIn).strength(hardness, resistance).sound(soundType));
-        this.setDefaultState(this.getStateContainer().getBaseState().with(FACING, Direction.NORTH));
+        this.registerDefaultState(this.defaultBlockState().setValue(FACING, Direction.NORTH));
     }
 
     @Override
-    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
         builder.add(FACING);
     }
 
@@ -40,7 +40,7 @@ public class IkebanaFlowerPotBlock extends BlockDoTB implements IBlockSpecialDis
 
     @Override
     public BlockState getStateForPlacement(BlockItemUseContext context) {
-        return this.defaultBlockState().with(FACING, context.getPlacementHorizontalFacing());
+        return this.defaultBlockState().setValue(FACING, context.getHorizontalDirection());
     }
     
     @Override

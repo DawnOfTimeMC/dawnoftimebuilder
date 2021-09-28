@@ -24,7 +24,7 @@ public class LatticeStoneBricksWindowBlock extends SidedWindowBlock {
 
 	@Override
 	public VoxelShape getShape(BlockState state, IBlockReader world, BlockPos pos, ISelectionContext context) {
-		switch(state.get(SIDED_WINDOW)){
+		switch(state.getValue(SIDED_WINDOW)){
 			default:
 			case NORTH:
 				return NORTH_VS;

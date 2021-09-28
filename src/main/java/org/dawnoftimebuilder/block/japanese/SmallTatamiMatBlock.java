@@ -55,21 +55,21 @@ public class SmallTatamiMatBlock extends WaterloggedBlock implements IBlockChain
 
     public SmallTatamiMatBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
         super(Properties.of(materialIn).strength(hardness, resistance).sound(soundType));
-        this.setDefaultState(this.stateContainer.getBaseState().with(ROLLED, false).with(ATTACHED, false).with(STACK, 1).with(WATERLOGGED, false));
+        this.registerDefaultState(this.stateContainer.getBaseState().setValue(ROLLED, false).setValue(ATTACHED, false).setValue(STACK, 1).setValue(WATERLOGGED, false));
     }
 
     @Override
-    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
-        super.fillStateContainer(builder);
+    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
+        super.createBlockStateDefinition(builder);
         builder.add(ATTACHED, HORIZONTAL_AXIS, ROLLED, STACK);
     }
 
     @Override
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-        if(state.get(ATTACHED)) return ATTACHED_VS;
-        if(state.get(ROLLED)){
-            boolean isAxisX = state.get(HORIZONTAL_AXIS) == Direction.Axis.X;
-            switch (state.get(STACK)){
+        if(state.getValue(ATTACHED)) return ATTACHED_VS;
+        if(state.getValue(ROLLED)){
+            boolean isAxisX = state.getValue(HORIZONTAL_AXIS) == Direction.Axis.X;
+            switch (state.getValue(STACK)){
                 default:
                 case 1:
                     return isAxisX ? X_ROLLED_VS : Z_ROLLED_VS;
@@ -90,43 +90,43 @@ public class SmallTatamiMatBlock extends WaterloggedBlock implements IBlockChain
     @Override
     public BlockState getStateForPlacement(BlockItemUseContext context) {
         World world = context.getLevel();
-        BlockPos pos = context.getPos();
+        BlockPos pos = context.getClickedPos();
         BlockState oldState = world.getBlockState(pos);
         if(oldState.getBlock() == this){
-            int stack = oldState.get(STACK);
-            if(oldState.get(ROLLED) && !oldState.get(ATTACHED) && stack < 3){
-                return oldState.with(STACK, stack + 1);
+            int stack = oldState.getValue(STACK);
+            if(oldState.getValue(ROLLED) && !oldState.getValue(ATTACHED) && stack < 3){
+                return oldState.setValue(STACK, stack + 1);
             }
         }
         return super.getStateForPlacement(context)
-                .with(ROLLED, world.getBlockState(pos.down()).getBlock().isIn(COVERED_BLOCKS))
-                .with(HORIZONTAL_AXIS, context.getPlacementHorizontalFacing().getAxis());
+                .setValue(ROLLED, world.getBlockState(pos.below()).getBlock().isIn(COVERED_BLOCKS))
+                .setValue(HORIZONTAL_AXIS, context.getHorizontalDirection().getAxis());
     }
 
     @Override
-    public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
+    public boolean canSurvive(BlockState state, IWorldReader worldIn, BlockPos pos) {
         if(state.get(ATTACHED)){
             BlockState stateUp = worldIn.getBlockState(pos.above());
             Block blockUp = stateUp.getBlock();
-            if(blockUp.isIn(BlockTags.FENCES) || worldIn.getBlockState(pos.down()).getBlock().isIn(BlockTags.FENCES)) return true;
+            if(blockUp.isIn(BlockTags.FENCES) || worldIn.getBlockState(pos.below()).getBlock().isIn(BlockTags.FENCES)) return true;
             if(IBlockChain.canBeChained(stateUp, true)) return true;
         }
-        return !worldIn.isAirBlock(pos.down());
+        return !worldIn.isAirBlock(pos.below());
     }
 
     @Override
-    public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
-        stateIn = super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+    public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
+        stateIn = super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
         if(facing.getAxis().isVertical()){
-            stateIn = stateIn.with(ATTACHED, false);
+            stateIn = stateIn.setValue(ATTACHED, false);
             if(stateIn.get(ROLLED) && stateIn.get(STACK) == 1){
                 BlockState stateUp = worldIn.getBlockState(currentPos.above());
                 if(stateUp.getBlock().isIn(BlockTags.FENCES)
-                        || worldIn.getBlockState(currentPos.down()).getBlock().isIn(BlockTags.FENCES)
+                        || worldIn.getBlockState(currentPos.below()).getBlock().isIn(BlockTags.FENCES)
                         || IBlockChain.canBeChained(stateUp, true))
-                    stateIn = stateIn.with(ATTACHED, true);
+                    stateIn = stateIn.setValue(ATTACHED, true);
             }
-            return !stateIn.isValidPosition(worldIn, currentPos) ? Blocks.AIR.defaultBlockState() : this.tryMergingWithSprucePlanks(stateIn, worldIn.getLevel(), currentPos);
+            return !stateIn.canSurvive(worldIn, currentPos) ? Blocks.AIR.defaultBlockState() : this.tryMergingWithSprucePlanks(stateIn, worldIn.getLevel(), currentPos);
         }
         return stateIn;
     }
@@ -134,17 +134,17 @@ public class SmallTatamiMatBlock extends WaterloggedBlock implements IBlockChain
     @Override
     public void onBlockPlacedBy(World worldIn, BlockPos pos, BlockState state, LivingEntity placer, ItemStack stack) {
         BlockState newState = this.tryMergingWithSprucePlanks(state, worldIn, pos);
-        if(newState.getBlock() == Blocks.AIR) worldIn.setBlockState(pos, newState);
+        if(newState.getBlock() == Blocks.AIR) worldIn.setBlock(pos, newState);
     }
 
     private BlockState tryMergingWithSprucePlanks(BlockState state, World worldIn, BlockPos pos){
         if(state.get(ROLLED)) return state;
-        Block blockDown = worldIn.getBlockState(pos.down()).getBlock();
+        Block blockDown = worldIn.getBlockState(pos.below()).getBlock();
         if(blockDown == SPRUCE_PLANKS){
-            worldIn.setBlockState(pos.down(), SMALL_TATAMI_FLOOR.defaultBlockState());
+            worldIn.setBlock(pos.below(), SMALL_TATAMI_FLOOR.defaultBlockState());
             return Blocks.AIR.defaultBlockState();
         }
-        return state.with(ATTACHED, false);
+        return state.setValue(ATTACHED, false);
     }
 
     @Override
@@ -153,15 +153,15 @@ public class SmallTatamiMatBlock extends WaterloggedBlock implements IBlockChain
             int stack = state.get(STACK);
             boolean isRolled = state.get(ROLLED);
             if(isRolled && stack == 1)
-                if(worldIn.getBlockState(pos.down()).getBlock().isIn(COVERED_BLOCKS))
+                if(worldIn.getBlockState(pos.below()).getBlock().isIn(COVERED_BLOCKS))
                     return false;
             if(state.get(STACK) > 1){
-                state = state.with(STACK, stack - 1);
+                state = state.setValue(STACK, stack - 1);
                 spawnAsEntity(worldIn.getLevel(), pos, new ItemStack(this.asItem(), 1));
             }else
-                state = state.with(ROLLED, !isRolled);
-            state = this.updatePostPlacement(state, Direction.DOWN, worldIn.getBlockState(pos.down()), worldIn, pos, pos.down());
-            worldIn.setBlockState(pos, state, 10);
+                state = state.setValue(ROLLED, !isRolled);
+            state = this.updateShape(state, Direction.DOWN, worldIn.getBlockState(pos.below()), worldIn, pos, pos.below());
+            worldIn.setBlock(pos, state, 10);
             worldIn.playSound(player, pos, this.soundType.getPlaceSound(), SoundCategory.BLOCKS, (this.soundType.getVolume() + 1.0F) / 2.0F, this.soundType.getPitch() * 0.8F);
 
             return true;
@@ -190,12 +190,12 @@ public class SmallTatamiMatBlock extends WaterloggedBlock implements IBlockChain
 
     @Override
     public BlockState rotate(BlockState state, Rotation rot) {
-        return state.with(HORIZONTAL_AXIS, state.get(HORIZONTAL_AXIS) == Direction.Axis.X ? Direction.Axis.Z : Direction.Axis.X);
+        return state.setValue(HORIZONTAL_AXIS, state.get(HORIZONTAL_AXIS) == Direction.Axis.X ? Direction.Axis.Z : Direction.Axis.X);
     }
 
     @Override
-    public void addInformation(ItemStack stack, @Nullable IBlockReader worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
-        super.addInformation(stack, worldIn, tooltip, flagIn);
+    public void appendHoverText(ItemStack stack, @Nullable IBlockReader worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+        super.appendHoverText(stack, worldIn, tooltip, flagIn);
         DoTBBlockUtils.addTooltip(tooltip, this);
     }
 }

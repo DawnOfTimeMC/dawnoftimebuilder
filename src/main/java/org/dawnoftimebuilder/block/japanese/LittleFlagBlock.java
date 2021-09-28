@@ -25,12 +25,12 @@ public class LittleFlagBlock extends PaneBlockDoTB {
 
     public LittleFlagBlock(Material materialIn, float hardness, float resistance, SoundType soundType, BlockRenderLayer renderLayer) {
         super(Properties.of(materialIn).strength(hardness, resistance).sound(soundType), renderLayer);
-        this.setDefaultState(this.getStateContainer().getBaseState().with(AXIS_Y, true).with(NORTH, true).with(WEST, true).with(SOUTH, true).with(EAST, true).with(WATERLOGGED,false));
+        this.registerDefaultState(this.defaultBlockState().setValue(AXIS_Y, true).setValue(NORTH, true).setValue(WEST, true).setValue(SOUTH, true).setValue(EAST, true).setValue(WATERLOGGED,false));
     }
 
     @Override
-    protected void fillStateContainer(StateContainer.Builder<net.minecraft.block.Block, BlockState> builder) {
-        super.fillStateContainer(builder);
+    protected void createBlockStateDefinition(StateContainer.Builder<net.minecraft.block.Block, BlockState> builder) {
+        super.createBlockStateDefinition(builder);
         builder.add(AXIS_Y);
     }
 
@@ -38,13 +38,13 @@ public class LittleFlagBlock extends PaneBlockDoTB {
     public BlockState getStateForPlacement(BlockItemUseContext context) {
         BlockState newState = super.getStateForPlacement(context);
         if(newState == null) newState = this.defaultBlockState();
-        if(this.hasNoConnection(newState)) newState = this.defaultBlockState().with(WATERLOGGED, newState.get(WATERLOGGED));
-        return newState.with(AXIS_Y, context.getFace().getAxis().isVertical());
+        if(this.hasNoConnection(newState)) newState = this.defaultBlockState().setValue(WATERLOGGED, newState.get(WATERLOGGED));
+        return newState.setValue(AXIS_Y, context.getFace().getAxis().isVertical());
     }
 
     @Override
-    public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
-        if(stateIn.get(WATERLOGGED)) worldIn.getPendingFluidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickRate(worldIn));
+    public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
+        if(stateIn.get(WATERLOGGED)) worldIn.getLiquidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(worldIn));
         if(facing.getAxis().isHorizontal()){
             if(this.hasAllConnections(stateIn)){
                     //We must check connections on all sides
@@ -53,13 +53,13 @@ public class LittleFlagBlock extends PaneBlockDoTB {
                     BlockState southState = worldIn.getBlockState(currentPos.south());
                     BlockState eastState = worldIn.getBlockState(currentPos.east());
                     return stateIn
-                            .with(NORTH, this.canAttachTo(northState, northState.func_224755_d(worldIn, currentPos.north(), Direction.SOUTH)))
-                            .with(WEST, this.canAttachTo(westState, westState.func_224755_d(worldIn, currentPos.west(), Direction.EAST)))
-                            .with(SOUTH, this.canAttachTo(southState, southState.func_224755_d(worldIn, currentPos.south(), Direction.NORTH)))
-                            .with(EAST, this.canAttachTo(eastState, eastState.func_224755_d(worldIn, currentPos.east(), Direction.WEST)));
+                            .setValue(NORTH, this.canAttachTo(northState, northState.func_224755_d(worldIn, currentPos.north(), Direction.SOUTH)))
+                            .setValue(WEST, this.canAttachTo(westState, westState.func_224755_d(worldIn, currentPos.west(), Direction.EAST)))
+                            .setValue(SOUTH, this.canAttachTo(southState, southState.func_224755_d(worldIn, currentPos.south(), Direction.NORTH)))
+                            .setValue(EAST, this.canAttachTo(eastState, eastState.func_224755_d(worldIn, currentPos.east(), Direction.WEST)));
             }else{
-                stateIn = stateIn.with(FACING_TO_PROPERTY_MAP.get(facing), this.canAttachTo(facingState, facingState.func_224755_d(worldIn, facingPos, facing.getOpposite())));
-                if(this.hasNoConnection(stateIn)) return stateIn.with(NORTH, true).with(WEST, true).with(SOUTH, true).with(EAST, true);
+                stateIn = stateIn.setValue(FACING_TO_PROPERTY_MAP.get(facing), this.canAttachTo(facingState, facingState.func_224755_d(worldIn, facingPos, facing.getOpposite())));
+                if(this.hasNoConnection(stateIn)) return stateIn.setValue(NORTH, true).setValue(WEST, true).setValue(SOUTH, true).setValue(EAST, true);
             }
         }
         return stateIn;

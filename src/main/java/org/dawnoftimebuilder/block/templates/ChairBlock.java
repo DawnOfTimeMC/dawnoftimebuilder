@@ -24,7 +24,7 @@ public class ChairBlock extends WaterloggedBlock{
     public ChairBlock(Properties properties, float pixelsYOffset) {
         super(properties);
         this.pixelsYOffset = pixelsYOffset;
-        this.setDefaultState(this.getStateContainer().getBaseState().with(FACING, Direction.NORTH).with(WATERLOGGED,false));
+        this.registerDefaultState(this.defaultBlockState().setValue(FACING, Direction.NORTH).setValue(WATERLOGGED,false));
     }
 
     public ChairBlock(Material materialIn, float hardness, float resistance, float pixelsYOffset) {
@@ -32,15 +32,15 @@ public class ChairBlock extends WaterloggedBlock{
     }
 
     @Override
-    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
-        super.fillStateContainer(builder);
+    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
+        super.createBlockStateDefinition(builder);
         builder.add(FACING);
     }
 
     @Override
     @Nonnull
     public BlockState getStateForPlacement(BlockItemUseContext context) {
-        return super.getStateForPlacement(context).with(FACING, context.getPlacementHorizontalFacing().getOpposite());
+        return super.getStateForPlacement(context).setValue(FACING, context.getHorizontalDirection().getOpposite());
     }
 
     @Override
@@ -50,7 +50,7 @@ public class ChairBlock extends WaterloggedBlock{
 
     @Override
     public BlockState rotate(BlockState state, Rotation rot) {
-        return state.with(FACING, rot.rotate(state.get(FACING)));
+        return state.setValue(FACING, rot.rotate(state.get(FACING)));
     }
 
     @Override

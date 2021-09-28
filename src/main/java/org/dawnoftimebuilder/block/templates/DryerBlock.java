@@ -41,12 +41,12 @@ public class DryerBlock extends WaterloggedBlock {
 
 	public DryerBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
 		super(materialIn, hardness, resistance, soundType);
-		this.setDefaultState(this.stateContainer.getBaseState().with(SIZE, 0).with(WATERLOGGED,false));
+		this.registerDefaultState(this.stateContainer.getBaseState().setValue(SIZE, 0).setValue(WATERLOGGED,false));
 	}
 
 	@Override
-	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
-		super.fillStateContainer(builder);
+	protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
+		super.createBlockStateDefinition(builder);
 		builder.add(SIZE);
 	}
 
@@ -65,10 +65,10 @@ public class DryerBlock extends WaterloggedBlock {
 
 	@Nullable
 	public BlockState getStateForPlacement(BlockItemUseContext context) {
-		BlockPos pos = context.getPos();
+		BlockPos pos = context.getClickedPos();
 		BlockState state = context.getLevel().getBlockState(pos);
 		if (state.getBlock() == this) {
-			return state.with(SIZE, (context.getLevel().getBlockState(pos.above()).getBlock() == this) ? 2 : 1);
+			return state.setValue(SIZE, (context.getLevel().getBlockState(pos.above()).getBlock() == this) ? 2 : 1);
 		}
 		return super.getStateForPlacement(context);
 	}
@@ -97,8 +97,8 @@ public class DryerBlock extends WaterloggedBlock {
 	}
 
 	@Override
-	public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
-		pos = pos.down();
+	public boolean canSurvive(BlockState state, IWorldReader worldIn, BlockPos pos) {
+		pos = pos.below();
 		BlockState stateDown = worldIn.getBlockState(pos);
 		if(stateDown.getBlock() == this){
 			return stateDown.get(SIZE) != 0;
@@ -107,13 +107,13 @@ public class DryerBlock extends WaterloggedBlock {
 	}
 
 	@Override
-	public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
-		stateIn = super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+	public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
+		stateIn = super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
 		if(facing == Direction.DOWN){
-			if(!isValidPosition(stateIn,worldIn,currentPos)) return Blocks.AIR.defaultBlockState();
+			if(!canSurvive(stateIn,worldIn,currentPos)) return Blocks.AIR.defaultBlockState();
 		}
 		if(facing == Direction.UP){
-			return stateIn.with(SIZE, (stateIn.get(SIZE) != 0 && facingState.getBlock() == this) ? 2 : 1);
+			return stateIn.setValue(SIZE, (stateIn.get(SIZE) != 0 && facingState.getBlock() == this) ? 2 : 1);
 		}
 		return stateIn;
 	}

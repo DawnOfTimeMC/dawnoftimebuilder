@@ -4,8 +4,8 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.IWaterLoggable;
+import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
-import net.minecraft.fluid.IFluidState;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.Food;
 import net.minecraft.state.BooleanProperty;
@@ -28,8 +28,8 @@ public class WaterDoubleCropsBlock extends DoubleCropsBlock implements IWaterLog
 	}
 
 	public WaterDoubleCropsBlock(String seedName, int growingAge, Food food) {
-		super(seedName, PlantType.Water, growingAge);
-		this.setDefaultState(this.defaultBlockState().with(WATERLOGGED, true).with(HALF, Half.BOTTOM).with(this.getAgeProperty(), 0).with(PERSISTENT, false));
+		super(seedName, PlantType.WATER, growingAge, food);
+		this.registerDefaultState(this.defaultBlockState().setValue(WATERLOGGED, true));
 	}
 
 	/**
@@ -47,58 +47,59 @@ public class WaterDoubleCropsBlock extends DoubleCropsBlock implements IWaterLog
 	@Override
 	public VoxelShape[] makeShapes() {
 		return new VoxelShape[]{
-				Block.Block.box(0.0D, 0.0D, 0.0D, 16.0D, 8.0D, 16.0D),
-				Block.Block.box(0.0D, 0.0D, 0.0D, 16.0D, 12.0D, 16.0D),
-				Block.Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D),
-				Block.Block.box(0.0D, 0.0D, 0.0D, 16.0D, 1.0D, 16.0D),
-				Block.Block.box(0.0D, 0.0D, 0.0D, 16.0D, 5.0D, 16.0D),
-				Block.Block.box(0.0D, 0.0D, 0.0D, 16.0D, 8.0D, 16.0D),
-				Block.Block.box(0.0D, 0.0D, 0.0D, 16.0D, 11.0D, 16.0D),
-				Block.Block.box(0.0D, 0.0D, 0.0D, 16.0D, 14.0D, 16.0D),
-				Block.Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D)
+				Block.box(0.0D, 0.0D, 0.0D, 16.0D, 8.0D, 16.0D),
+				Block.box(0.0D, 0.0D, 0.0D, 16.0D, 12.0D, 16.0D),
+				Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D),
+				Block.box(0.0D, 0.0D, 0.0D, 16.0D, 1.0D, 16.0D),
+				Block.box(0.0D, 0.0D, 0.0D, 16.0D, 5.0D, 16.0D),
+				Block.box(0.0D, 0.0D, 0.0D, 16.0D, 8.0D, 16.0D),
+				Block.box(0.0D, 0.0D, 0.0D, 16.0D, 11.0D, 16.0D),
+				Block.box(0.0D, 0.0D, 0.0D, 16.0D, 14.0D, 16.0D),
+				Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D)
 		};
 	}
 
 	@Override
-	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
-		super.fillStateContainer(builder);
+	protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
+		super.createBlockStateDefinition(builder);
 		builder.add(WATERLOGGED);
 	}
 
 	@Override
-	public IFluidState getFluidState(BlockState state) {
-		return state.get(WATERLOGGED) ? Fluids.WATER.getStillFluidState(false) : super.getFluidState(state);
+	public FluidState getFluidState(BlockState state) {
+		return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
 	}
 
 	@Override
 	public BlockState getStateForPlacement(BlockItemUseContext context) {
-		BlockPos pos = context.getPos();
+		BlockPos pos = context.getClickedPos();
 		IWorld world = context.getLevel();
-		return this.defaultBlockState().with(WATERLOGGED, world.getFluidState(pos).getFluid() == Fluids.WATER);
+		return this.defaultBlockState().setValue(WATERLOGGED, world.getFluidState(pos).getFluidState().getType() == Fluids.WATER);
 	}
 
 	@Override
-	public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
-		if (stateIn.get(WATERLOGGED)) worldIn.getPendingFluidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickRate(worldIn));
-		return super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+	public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
+		if (stateIn.getValue(WATERLOGGED)) worldIn.getLiquidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(worldIn));
+		return super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
 	}
 
 	@Override
 	public BlockState getTopState(BlockState bottomState) {
-		return super.getTopState(bottomState).with(WATERLOGGED, false);
+		return super.getTopState(bottomState).setValue(WATERLOGGED, false);
 	}
 
 	@Override
-	public void setPlantWithAge(BlockState currentState, World worldIn, BlockPos pos, int newAge) {		if(currentState.get(HALF) == Half.TOP) pos = pos.down();
+	public void setPlantWithAge(BlockState currentState, World worldIn, BlockPos pos, int newAge) {
+		if(currentState.getValue(HALF) == Half.TOP) pos = pos.below();
 		if(newAge >= this.getAgeReachingTopBlock()){
 			BlockPos posUp = pos.above();
-			if(worldIn.getBlockState(posUp).getBlock() == this || worldIn.isAirBlock(posUp)){
-				worldIn.setBlockState(posUp, currentState.with(this.getAgeProperty(), newAge).with(HALF, Half.TOP).with(WATERLOGGED, false), 10);
+			if(worldIn.getBlockState(posUp).getBlock() == this || worldIn.isEmptyBlock(posUp)){
+				worldIn.setBlock(posUp, currentState.setValue(this.getAgeProperty(), newAge).setValue(HALF, Half.TOP).setValue(WATERLOGGED, false), 10);
 			}
 		}
 		if(newAge < this.getAgeReachingTopBlock() && this.getAge(currentState) == this.getAgeReachingTopBlock()){
-			worldIn.setBlockState(pos.above(), Blocks.AIR.defaultBlockState(), 10);
+			worldIn.setBlock(pos.above(), Blocks.AIR.defaultBlockState(), 10);
 		}
-		worldIn.setBlockState(pos, currentState.with(this.getAgeProperty(), newAge).with(HALF, Half.BOTTOM).with(WATERLOGGED, true), 8);
+		worldIn.setBlock(pos, currentState.setValue(this.getAgeProperty(), newAge).setValue(HALF, Half.BOTTOM).setValue(WATERLOGGED, true), 8);
 	}
 }

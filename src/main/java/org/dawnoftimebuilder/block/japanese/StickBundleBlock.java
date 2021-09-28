@@ -46,7 +46,7 @@ public class StickBundleBlock extends BlockDoTB implements IBlockChain {
 
     public StickBundleBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
 		super(Properties.of(materialIn).strength(hardness, resistance).sound(soundType));
-        this.setDefaultState(this.stateContainer.getBaseState().with(AGE, 0).with(HALF, Half.TOP));
+        this.registerDefaultState(this.stateContainer.getBaseState().setValue(AGE, 0).setValue(HALF, Half.TOP));
     }
 
 	@Override
@@ -55,7 +55,7 @@ public class StickBundleBlock extends BlockDoTB implements IBlockChain {
 	}
 
 	@Override
-	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
+	protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
 		builder.add(HALF, AGE);
 	}
 
@@ -63,19 +63,19 @@ public class StickBundleBlock extends BlockDoTB implements IBlockChain {
 	@Override
 	public BlockState getStateForPlacement(BlockItemUseContext context) {
 		World world = context.getLevel();
-		BlockPos pos = context.getPos();
-		if(!world.getBlockState(pos.down()).isReplaceable(context) || !isValidPosition(this.defaultBlockState(), world, pos))
+		BlockPos pos = context.getClickedPos();
+		if(!world.getBlockState(pos.below()).isReplaceable(context) || !canSurvive(this.defaultBlockState(), world, pos))
 			return null;
 		return super.getStateForPlacement(context);
 	}
 
 	@Override
 	public void onBlockPlacedBy(World worldIn, BlockPos pos, BlockState state, LivingEntity placer, ItemStack stack) {
-		worldIn.setBlockState(pos.down(), state.with(HALF, Half.BOTTOM), 10);
+		worldIn.setBlock(pos.below(), state.setValue(HALF, Half.BOTTOM), 10);
 	}
 
 	@Override
-	public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
+	public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
 		if(facing.getAxis().isHorizontal()) return stateIn;
 		if(facing == Direction.UP && stateIn.get(HALF) == Half.BOTTOM) {
 			if(facingState.getBlock() == this){
@@ -97,7 +97,7 @@ public class StickBundleBlock extends BlockDoTB implements IBlockChain {
 	}
 
 	@Override
-	public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
+	public boolean canSurvive(BlockState state, IWorldReader worldIn, BlockPos pos) {
     	pos = pos.above();
     	BlockState stateUp = worldIn.getBlockState(pos);
 		return state.get(HALF) == Half.BOTTOM || hasSolidSide(stateUp, worldIn, pos, Direction.DOWN) || IBlockChain.canBeChained(stateUp, true);
@@ -111,11 +111,11 @@ public class StickBundleBlock extends BlockDoTB implements IBlockChain {
 				ItemStack itemstack = player.getItemInHand(handIn);
 				if(itemstack.getItem() == SILK_WORMS && !itemstack.isEmpty()){
 					itemstack.shrink(1);
-					worldIn.setBlockState(pos, state.with(AGE, 1));
+					worldIn.setBlock(pos, state.setValue(AGE, 1));
 					if(state.get(HALF) == Half.TOP){
-						worldIn.setBlockState(pos.down(), this.defaultBlockState().with(HALF, Half.BOTTOM).with(AGE, 1));
+						worldIn.setBlock(pos.below(), this.defaultBlockState().setValue(HALF, Half.BOTTOM).setValue(AGE, 1));
 					}else{
-						worldIn.setBlockState(pos.above(), this.defaultBlockState().with(HALF, Half.TOP).with(AGE, 1));
+						worldIn.setBlock(pos.above(), this.defaultBlockState().setValue(HALF, Half.TOP).setValue(AGE, 1));
 					}
 					return true;
 				}
@@ -125,12 +125,12 @@ public class StickBundleBlock extends BlockDoTB implements IBlockChain {
 			if(state.get(AGE) == 3){
 				List<ItemStack> drops = DoTBBlockUtils.getLootList((ServerWorld)worldIn, state, player.getItemInHand(handIn), Objects.requireNonNull(this.getRegistryName()).getPath() + "_harvest");
 				DoTBBlockUtils.dropLootFromList(worldIn, pos, drops, 1.0F);
-				worldIn.setBlockState(pos, state.with(AGE, 0));
+				worldIn.setBlock(pos, state.setValue(AGE, 0));
 				worldIn.playSound(null, pos, SoundEvents.BLOCK_GRASS_BREAK, SoundCategory.BLOCKS, 1.0F, 1.0F);
 				if(state.get(HALF) == Half.TOP){
-					worldIn.setBlockState(pos.down(), this.defaultBlockState().with(HALF, Half.BOTTOM).with(AGE, 0));
+					worldIn.setBlock(pos.below(), this.defaultBlockState().setValue(HALF, Half.BOTTOM).setValue(AGE, 0));
 				}else{
-					worldIn.setBlockState(pos.above(), this.defaultBlockState().with(HALF, Half.TOP).with(AGE, 0));
+					worldIn.setBlock(pos.above(), this.defaultBlockState().setValue(HALF, Half.TOP).setValue(AGE, 0));
 				}
 				return true;
 			}
@@ -148,15 +148,15 @@ public class StickBundleBlock extends BlockDoTB implements IBlockChain {
 		int growth = state.get(AGE);
 		if (growth > 0 && growth < 3) {
 			if(random.nextInt(DoTBConfig.STICK_BUNDLE_GROWTH_CHANCE.get()) == 0) {
-				worldIn.setBlockState(pos, worldIn.getBlockState(pos).with(AGE,growth + 1));
-				worldIn.setBlockState(pos.down(), worldIn.getBlockState(pos.down()).with(AGE,growth + 1));
+				worldIn.setBlock(pos, worldIn.getBlockState(pos).setValue(AGE,growth + 1));
+				worldIn.setBlock(pos.below(), worldIn.getBlockState(pos.below()).setValue(AGE,growth + 1));
 			}
 		}
 
 	}
 
 	@Override
-	public PushReaction getPushReaction(BlockState state) {
+	public PushReaction getPistonPushReaction(BlockState state) {
 		return PushReaction.DESTROY;
 	}
 

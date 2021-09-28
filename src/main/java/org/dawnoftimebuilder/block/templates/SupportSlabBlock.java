@@ -1,8 +1,7 @@
 package org.dawnoftimebuilder.block.templates;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer;
@@ -25,20 +24,20 @@ public class SupportSlabBlock extends WaterloggedBlock {
 
 	private static final EnumProperty<DoTBBlockStateProperties.PillarConnection> PILLAR_CONNECTION = DoTBBlockStateProperties.PILLAR_CONNECTION;
 
-	public SupportSlabBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
-		super(materialIn, hardness, resistance, soundType);
-		this.setDefaultState(this.getStateContainer().getBaseState().with(PILLAR_CONNECTION, DoTBBlockStateProperties.PillarConnection.NOTHING));
+	public SupportSlabBlock(Properties properties) {
+		super(properties);
+		this.registerDefaultState(this.defaultBlockState().setValue(PILLAR_CONNECTION, DoTBBlockStateProperties.PillarConnection.NOTHING));
 	}
 
 	@Override
-	protected void fillStateContainer(StateContainer.Builder<net.minecraft.block.Block, BlockState> builder) {
-		super.fillStateContainer(builder);
+	protected void createBlockStateDefinition(StateContainer.Builder<net.minecraft.block.Block, BlockState> builder) {
+		super.createBlockStateDefinition(builder);
 		builder.add(PILLAR_CONNECTION);
 	}
 
 	@Override
 	public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-		switch (state.get(PILLAR_CONNECTION)) {
+		switch (state.getValue(PILLAR_CONNECTION)) {
 			case FOUR_PX:
 				return VS_FOUR_PX;
 			case EIGHT_PX:
@@ -52,12 +51,12 @@ public class SupportSlabBlock extends WaterloggedBlock {
 
 	@Override
 	public BlockState getStateForPlacement(BlockItemUseContext context) {
-		return super.getStateForPlacement(context).with(PILLAR_CONNECTION, IBlockPillar.getPillarConnectionAbove(context.getLevel(), context.getPos().down()));
+		return super.getStateForPlacement(context).setValue(PILLAR_CONNECTION, IBlockPillar.getPillarConnectionAbove(context.getLevel(), context.getClickedPos().below()));
 	}
 
 	@Override
-	public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
-		stateIn = super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
-		return facing == Direction.DOWN ? stateIn.with(PILLAR_CONNECTION, IBlockPillar.getPillarConnectionAbove(worldIn, currentPos.down())) : stateIn;
+	public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
+		stateIn = super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+		return facing == Direction.DOWN ? stateIn.setValue(PILLAR_CONNECTION, IBlockPillar.getPillarConnectionAbove(worldIn, currentPos.below())) : stateIn;
 	}
 }

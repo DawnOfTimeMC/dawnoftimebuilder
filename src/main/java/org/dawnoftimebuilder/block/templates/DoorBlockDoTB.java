@@ -3,13 +3,11 @@ package org.dawnoftimebuilder.block.templates;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.fluid.Fluids;
-import net.minecraft.fluid.IFluidState;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.state.properties.DoorHingeSide;
-import net.minecraft.state.properties.DoubleBlockHalf;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
@@ -20,7 +18,7 @@ public class DoorBlockDoTB extends DoorBlock implements IWaterLoggable {
 
 	public DoorBlockDoTB(Properties properties) {
 		super(properties);
-		this.setDefaultState(this.stateContainer.getBaseState().with(FACING, Direction.NORTH).with(OPEN, false).with(HINGE, DoorHingeSide.LEFT).with(POWERED, false).with(HALF, DoubleBlockHalf.LOWER).with(WATERLOGGED,false));
+		this.registerDefaultState(this.defaultBlockState().setValue(WATERLOGGED,false));
 	}
 
 	public DoorBlockDoTB(Material materialIn, float hardness, float resistance, SoundType soundType) {
@@ -28,37 +26,26 @@ public class DoorBlockDoTB extends DoorBlock implements IWaterLoggable {
 	}
 
 	@Override
-	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
-		super.fillStateContainer(builder);
+	protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
+		super.createBlockStateDefinition(builder);
 		builder.add(WATERLOGGED);
 	}
 
 	@Override
-	public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
-		if (stateIn.get(WATERLOGGED)) worldIn.getPendingFluidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickRate(worldIn));
-		Direction dirOtherDoor = (stateIn.get(HINGE) == DoorHingeSide.LEFT) ? stateIn.get(FACING).rotateY() : stateIn.get(FACING).rotateYCCW();
+	public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
+		if (stateIn.getValue(WATERLOGGED)) worldIn.getLiquidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(worldIn));
+		Direction dirOtherDoor = (stateIn.getValue(HINGE) == DoorHingeSide.LEFT) ? stateIn.getValue(FACING).getClockWise() : stateIn.getValue(FACING).getCounterClockWise();
 		if(facing == dirOtherDoor){
 			if(facingState.getBlock() instanceof DoorBlock){
-				if(stateIn.get(HINGE) != facingState.get(HINGE)) return stateIn.with(OPEN, facingState.get(OPEN));
+				if(stateIn.getValue(HINGE) != facingState.getValue(HINGE)) return stateIn.setValue(OPEN, facingState.getValue(OPEN));
 			}
 		}
-		return super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
-	}
-
-	@Override
-	public IFluidState getFluidState(BlockState state) {
-		return state.get(WATERLOGGED) ? Fluids.WATER.getStillFluidState(false) : super.getFluidState(state);
+		return super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
 	}
 
 	@Override
 	public BlockState getStateForPlacement(BlockItemUseContext context) {
 		BlockState state = super.getStateForPlacement(context);
-		return (state != null) ? state.with(WATERLOGGED, context.getLevel().getFluidState(context.getPos()).getFluid() == Fluids.WATER) : null;
-	}
-
-	public Block setBurnable() {
-		FireBlock fireblock = (FireBlock) Blocks.FIRE;
-		fireblock.setFireInfo(this, 5, 20);
-		return this;
+		return (state != null) ? state.setValue(WATERLOGGED, context.getLevel().getFluidState(context.getClickedPos()).getType() == Fluids.WATER) : null;
 	}
 }

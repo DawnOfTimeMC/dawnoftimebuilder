@@ -45,58 +45,58 @@ public class CharredSpruceTallShuttersBlock extends CharredSpruceShuttersBlock {
 
     public CharredSpruceTallShuttersBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
         super(materialIn, hardness, resistance, soundType);
-        this.setDefaultState(this.getStateContainer().getBaseState().with(CORNER, DoTBBlockStateProperties.SquareCorners.TOP_LEFT).with(OPEN, false).with(WATERLOGGED, false).with(POWERED, false));
+        this.registerDefaultState(this.defaultBlockState().setValue(CORNER, DoTBBlockStateProperties.SquareCorners.TOP_LEFT).setValue(OPEN, false).setValue(WATERLOGGED, false).setValue(POWERED, false));
     }
 
     @Override
-    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
-        super.fillStateContainer(builder);
+    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
+        super.createBlockStateDefinition(builder);
         builder.add(CORNER);
     }
 
     @Override
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
         int index = state.get(OPEN) ? state.get(CORNER).isTopCorner() ? 1 : 2 : 0;
-        return SHAPES[state.get(FACING).getHorizontalIndex() * 3 + index];
+        return SHAPES[state.get(FACING).get2DDataValue() * 3 + index];
     }
 
     @Nullable
     @Override
     public BlockState getStateForPlacement(BlockItemUseContext context) {
         World world = context.getLevel();
-        BlockPos pos = context.getPos();
-        Direction facing = context.getPlacementHorizontalFacing();
+        BlockPos pos = context.getClickedPos();
+        Direction facing = context.getHorizontalDirection();
 
-        BlockPos posRight = pos.offset(facing.rotateY());
+        BlockPos posRight = pos.relative(facing.getClockWise());
         boolean right = world.getBlockState(posRight).isReplaceable(context);
-        BlockPos posLeft = pos.offset(facing.rotateYCCW());
+        BlockPos posLeft = pos.relative(facing.getCounterClockWise());
         boolean left = world.getBlockState(posLeft).isReplaceable(context);
         if(!right && !left) return null;
 
         if(world.getBlockState(pos.above()).isReplaceable(context) && canSupportShutters(world, pos.above(), facing)){
             if(right){
                 if(world.getBlockState(posRight.above()).isReplaceable(context) && canSupportShutters(world, posRight.above(), facing)){
-                    return super.getStateForPlacement(context).with(CORNER, SquareCorners.BOTTOM_LEFT).with(FACING, facing).with(POWERED, world.isBlockPowered(pos));
+                    return super.getStateForPlacement(context).setValue(CORNER, SquareCorners.BOTTOM_LEFT).setValue(FACING, facing).setValue(POWERED, world.isBlockPowered(pos));
                 }
             }
             if(left){
                 if(world.getBlockState(posLeft.above()).isReplaceable(context) && canSupportShutters(world, posLeft.above(), facing)){
-                    return super.getStateForPlacement(context).with(CORNER, SquareCorners.BOTTOM_RIGHT).with(FACING, facing).with(POWERED, world.isBlockPowered(pos));
+                    return super.getStateForPlacement(context).setValue(CORNER, SquareCorners.BOTTOM_RIGHT).setValue(FACING, facing).setValue(POWERED, world.isBlockPowered(pos));
                 }
             }
         }
         //The block from top row of the shutters can't be put above. The top of the shutters must be on this Y.
         // We need to check if the currentPos can support shutters.
         if(canSupportShutters(world, pos, facing)){
-            if(world.getBlockState(pos.down()).isReplaceable(context)){
+            if(world.getBlockState(pos.below()).isReplaceable(context)){
                 if(right && canSupportShutters(world, posRight, facing)){
-                    if(world.getBlockState(posRight.down()).isReplaceable(context)){
-                        return super.getStateForPlacement(context).with(CORNER, SquareCorners.TOP_LEFT).with(FACING, facing).with(POWERED, world.isBlockPowered(pos));
+                    if(world.getBlockState(posRight.below()).isReplaceable(context)){
+                        return super.getStateForPlacement(context).setValue(CORNER, SquareCorners.TOP_LEFT).setValue(FACING, facing).setValue(POWERED, world.isBlockPowered(pos));
                     }
                 }
                 if(left && canSupportShutters(world, posLeft, facing)){
-                    if(world.getBlockState(posLeft.down()).isReplaceable(context)){
-                        return super.getStateForPlacement(context).with(CORNER, SquareCorners.TOP_RIGHT).with(FACING, facing).with(POWERED, world.isBlockPowered(pos));
+                    if(world.getBlockState(posLeft.below()).isReplaceable(context)){
+                        return super.getStateForPlacement(context).setValue(CORNER, SquareCorners.TOP_RIGHT).setValue(FACING, facing).setValue(POWERED, world.isBlockPowered(pos));
                     }
                 }
             }
@@ -105,7 +105,7 @@ public class CharredSpruceTallShuttersBlock extends CharredSpruceShuttersBlock {
     }
 
     @Override
-    public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
+    public boolean canSurvive(BlockState state, IWorldReader worldIn, BlockPos pos) {
         if(state.get(CORNER).isTopCorner()){
             return canSupportShutters(worldIn, pos, state.get(FACING));
         }else return true;
@@ -118,24 +118,24 @@ public class CharredSpruceTallShuttersBlock extends CharredSpruceShuttersBlock {
         //Let's set the 3 other corners
         for(SquareCorners corner : SquareCorners.values()){
             if(thisCorner != corner){
-                BlockPos cornerPos = pos.above(corner.getVerticalOffset(thisCorner)).offset(facing.rotateY(), corner.getHorizontalOffset(thisCorner));
-                worldIn.setBlockState(cornerPos, state.with(CORNER, corner).with(WATERLOGGED, worldIn.getFluidState(cornerPos).getFluid() == Fluids.WATER), 10);
+                BlockPos cornerPos = pos.above(corner.getVerticalOffset(thisCorner)).relative(facing.getClockWise(), corner.getHorizontalOffset(thisCorner));
+                worldIn.setBlock(cornerPos, state.setValue(CORNER, corner).setValue(WATERLOGGED, worldIn.getFluidState(cornerPos).getFluid() == Fluids.WATER), 10);
             }
         }
     }
 
     @Override
-    public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
+    public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
         SquareCorners thisCorner = stateIn.get(CORNER);
-        if(stateIn.get(WATERLOGGED)) worldIn.getPendingFluidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickRate(worldIn));
+        if(stateIn.get(WATERLOGGED)) worldIn.getLiquidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(worldIn));
         if(!canSupportShutters(worldIn, currentPos, stateIn.get(FACING)) && stateIn.get(CORNER).isTopCorner()) return Blocks.AIR.defaultBlockState();
         Direction currentFacing = stateIn.get(FACING);
         SquareCorners expectedCorner = thisCorner.getAdjacentCorner(facing.getAxis().isVertical());
-        if(currentPos.above(expectedCorner.getVerticalOffset(thisCorner)).offset(currentFacing.rotateY(), expectedCorner.getHorizontalOffset(thisCorner)).equals(facingPos)){
+        if(currentPos.above(expectedCorner.getVerticalOffset(thisCorner)).relative(currentFacing.getClockWise(), expectedCorner.getHorizontalOffset(thisCorner)).equals(facingPos)){
             //The pos of the updated block is supposed to contain a part of the shutter : let's check it
             if(facingState.getBlock() == this){
                 if(facingState.get(CORNER) == expectedCorner && facingState.get(FACING) == currentFacing){
-                    return stateIn.with(OPEN, facingState.get(OPEN));
+                    return stateIn.setValue(OPEN, facingState.get(OPEN));
                 }
             }
             return Blocks.AIR.defaultBlockState();

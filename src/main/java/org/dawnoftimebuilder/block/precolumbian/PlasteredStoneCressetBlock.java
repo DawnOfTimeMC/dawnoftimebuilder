@@ -36,11 +36,11 @@ public class PlasteredStoneCressetBlock extends WaterloggedBlock {
 
     private static final IntegerProperty HEAT = DoTBBlockStateProperties.HEAT_0_3;
     private static final BooleanProperty BURNING = DoTBBlockStateProperties.BURNING;
-    private static final VoxelShape VS = Block.Block.box(3.0D, 0.0D, 3.0D, 13.0D, 14.0D, 13.0D);
+    private static final VoxelShape VS = Block.box(3.0D, 0.0D, 3.0D, 13.0D, 14.0D, 13.0D);
 
     public PlasteredStoneCressetBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
         super(Properties.of(materialIn).strength(hardness, resistance).sound(soundType));
-        this.setDefaultState(this.getStateContainer().getBaseState().with(BURNING, false).with(HEAT, 0).with(WATERLOGGED, false));
+        this.registerDefaultState(this.defaultBlockState().setValue(BURNING, false).setValue(HEAT, 0).setValue(WATERLOGGED, false));
     }
 
     @Override
@@ -49,22 +49,22 @@ public class PlasteredStoneCressetBlock extends WaterloggedBlock {
     }
 
     @Override
-    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
-        super.fillStateContainer(builder);
+    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
+        super.createBlockStateDefinition(builder);
         builder.add(BURNING, HEAT);
     }
 
     @Override
     public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit){
-        if (state.get(BURNING)) {
-            worldIn.setBlockState(pos, state.with(BURNING, false), 10);
+        if (state.getValue(BURNING)) {
+            worldIn.setBlock(pos, state.setValue(BURNING, false), 10);
             worldIn.playSound(null, pos, SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.BLOCKS, 1.0F, 1.0F);
             return true;
         } else {
-            if(state.get(WATERLOGGED)) return false;
+            if(state.getValue(WATERLOGGED)) return false;
 
             if(DoTBBlockUtils.useLighter(worldIn, pos, player, handIn)){
-                worldIn.setBlockState(pos, state.with(BURNING, true), 10);
+                worldIn.setBlock(pos, state.setValue(BURNING, true), 10);
             }
         }
         return false;
@@ -74,9 +74,9 @@ public class PlasteredStoneCressetBlock extends WaterloggedBlock {
     public void onProjectileCollision(World worldIn, BlockState state, BlockRayTraceResult hit, Entity projectile) {
         if (!worldIn.isClientSide && projectile instanceof AbstractArrowEntity) {
             AbstractArrowEntity abstractarrowentity = (AbstractArrowEntity)projectile;
-            if (abstractarrowentity.isBurning() && !state.get(BURNING) && !state.get(WATERLOGGED)) {
+            if (abstractarrowentity.isBurning() && !state.getValue(BURNING) && !state.getValue(WATERLOGGED)) {
                 BlockPos pos = hit.getPos();
-                worldIn.setBlockState(pos, state.with(BURNING, true), 10);
+                worldIn.setBlock(pos, state.setValue(BURNING, true), 10);
                 worldIn.playSound(null, pos, SoundEvents.BLOCK_FIRE_AMBIENT, SoundCategory.BLOCKS, 1.0F, 1.0F);
             }
         }
@@ -84,12 +84,12 @@ public class PlasteredStoneCressetBlock extends WaterloggedBlock {
 
     @Override
     public boolean receiveFluid(IWorld worldIn, BlockPos pos, BlockState state, IFluidState fluidStateIn) {
-        if (!state.get(WATERLOGGED) && fluidStateIn.getFluid() == Fluids.WATER) {
-            if (state.get(BURNING) || state.get(HEAT) > 0) {
+        if (!state.getValue(WATERLOGGED) && fluidStateIn.getFluid() == Fluids.WATER) {
+            if (state.getValue(BURNING) || state.getValue(HEAT) > 0) {
                 worldIn.playSound(null, pos, SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.BLOCKS, 1.0F, 1.0F);
             }
-            worldIn.setBlockState(pos, state.with(WATERLOGGED, true).with(BURNING, false).with(HEAT, 0), 10);
-            worldIn.getPendingFluidTicks().scheduleTick(pos, fluidStateIn.getFluid(), fluidStateIn.getFluid().getTickRate(worldIn));
+            worldIn.setBlock(pos, state.setValue(WATERLOGGED, true).setValue(BURNING, false).setValue(HEAT, 0), 10);
+            worldIn.getLiquidTicks().scheduleTick(pos, fluidStateIn.getFluid(), fluidStateIn.getFluid().getTickRate(worldIn));
             return true;
         } else {
             return false;
@@ -98,20 +98,20 @@ public class PlasteredStoneCressetBlock extends WaterloggedBlock {
 
     @Override
     public boolean ticksRandomly(BlockState state) {
-        return (state.get(BURNING)) ? state.get(HEAT) < 3 : state.get(HEAT) > 0;
+        return (state.getValue(BURNING)) ? state.getValue(HEAT) < 3 : state.getValue(HEAT) > 0;
     }
 
     @Override
     public void tick(BlockState state, World worldIn, BlockPos pos, Random rand) {
         super.tick(state, worldIn, pos, rand);
-        int currentHeat = state.get(HEAT);
-        if (state.get(BURNING)) {
+        int currentHeat = state.getValue(HEAT);
+        if (state.getValue(BURNING)) {
             if (rand.nextInt(10) == 0) {
-                if(currentHeat < 3) worldIn.setBlockState(pos, state.with(HEAT, currentHeat + 1), 2);
+                if(currentHeat < 3) worldIn.setBlock(pos, state.setValue(HEAT, currentHeat + 1), 2);
             }
         }else if(currentHeat > 0){
             if(rand.nextInt(10) == 0) {
-                worldIn.setBlockState(pos, state.with(HEAT, currentHeat - 1), 2);
+                worldIn.setBlock(pos, state.setValue(HEAT, currentHeat - 1), 2);
             }
         }
     }
@@ -119,8 +119,8 @@ public class PlasteredStoneCressetBlock extends WaterloggedBlock {
     @OnlyIn(Dist.CLIENT)
     @Override
     public void animateTick(BlockState stateIn, World worldIn, BlockPos pos, Random rand) {
-        int currentHeat = stateIn.get(HEAT);
-        if (stateIn.get(BURNING)) {
+        int currentHeat = stateIn.getValue(HEAT);
+        if (stateIn.getValue(BURNING)) {
             if (rand.nextInt(10) == 0) {
                 worldIn.playSound((float)pos.getX() + 0.5F, (float)pos.getY() + 0.5F, (float)pos.getZ() + 0.5F, SoundEvents.BLOCK_CAMPFIRE_CRACKLE, SoundCategory.BLOCKS, 0.5F + rand.nextFloat(), rand.nextFloat() * 0.7F + 0.6F, false);
             }
@@ -148,8 +148,8 @@ public class PlasteredStoneCressetBlock extends WaterloggedBlock {
 
     @Override
     public int getLightValue(BlockState state) {
-        if(state.get(WATERLOGGED)) return 0;
-        if(state.get(BURNING)) return 15;
-        return state.get(HEAT) * 2;
+        if(state.getValue(WATERLOGGED)) return 0;
+        if(state.getValue(BURNING)) return 15;
+        return state.getValue(HEAT) * 2;
     }
 }

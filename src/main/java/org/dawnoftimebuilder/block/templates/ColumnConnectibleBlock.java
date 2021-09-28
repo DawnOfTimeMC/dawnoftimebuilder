@@ -34,18 +34,14 @@ public abstract class ColumnConnectibleBlock extends WaterloggedBlock {
 
 	public static final EnumProperty<DoTBBlockStateProperties.VerticalConnection> VERTICAL_CONNECTION = DoTBBlockStateProperties.VERTICAL_CONNECTION;
 
-	public ColumnConnectibleBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
-		this(Block.Properties.of(materialIn).strength(hardness, resistance).sound(soundType));
-	}
-
 	public ColumnConnectibleBlock(Properties properties) {
 		super(properties);
-		this.setDefaultState(this.getStateContainer().getBaseState().with(VERTICAL_CONNECTION, DoTBBlockStateProperties.VerticalConnection.NONE));
+		this.registerDefaultState(this.defaultBlockState().setValue(VERTICAL_CONNECTION, DoTBBlockStateProperties.VerticalConnection.NONE));
 	}
 
 	@Override
-	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
-		super.fillStateContainer(builder);
+	protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
+		super.createBlockStateDefinition(builder);
 		builder.add(VERTICAL_CONNECTION);
 	}
 
@@ -53,16 +49,16 @@ public abstract class ColumnConnectibleBlock extends WaterloggedBlock {
 	public abstract VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context);
 
 	@Override
-	public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
-		stateIn = super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
-		return (facing.getAxis().isVertical()) ? stateIn.with(VERTICAL_CONNECTION, this.getColumnState(worldIn, currentPos, stateIn)) : stateIn;
+	public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
+		stateIn = super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+		return (facing.getAxis().isVertical()) ? stateIn.setValue(VERTICAL_CONNECTION, this.getColumnState(worldIn, currentPos, stateIn)) : stateIn;
 	}
 
 	public DoTBBlockStateProperties.VerticalConnection getColumnState(IWorld worldIn, BlockPos pos, BlockState stateIn){
 		if(isConnectible(worldIn, pos.above(), stateIn)){
-			return (isConnectible(worldIn, pos.down(), stateIn)) ? DoTBBlockStateProperties.VerticalConnection.BOTH : DoTBBlockStateProperties.VerticalConnection.ABOVE;
+			return (isConnectible(worldIn, pos.below(), stateIn)) ? DoTBBlockStateProperties.VerticalConnection.BOTH : DoTBBlockStateProperties.VerticalConnection.ABOVE;
 		}else{
-			return (isConnectible(worldIn, pos.down(), stateIn)) ? DoTBBlockStateProperties.VerticalConnection.UNDER : DoTBBlockStateProperties.VerticalConnection.NONE;
+			return (isConnectible(worldIn, pos.below(), stateIn)) ? DoTBBlockStateProperties.VerticalConnection.UNDER : DoTBBlockStateProperties.VerticalConnection.NONE;
 		}
 	}
 
@@ -80,7 +76,7 @@ public abstract class ColumnConnectibleBlock extends WaterloggedBlock {
 			BlockPos topPos = this.getHighestColumnPos(worldIn, pos);
 			if(topPos != pos){
 				if(!worldIn.isClientSide()) {
-					worldIn.setBlockState(topPos, Blocks.AIR.defaultBlockState(), 35);
+					worldIn.setBlock(topPos, Blocks.AIR.defaultBlockState(), 35);
 					if (!player.isCreative()) {
 						Block.spawnDrops(state, worldIn, pos, null, player, heldItemStack);
 					}
@@ -93,7 +89,7 @@ public abstract class ColumnConnectibleBlock extends WaterloggedBlock {
 				BlockPos topPos = this.getHighestColumnPos(worldIn, pos).above();
 				if(topPos.getY() <= HIGHEST_Y){
 					if(!worldIn.isClientSide()) {
-						worldIn.setBlockState(topPos, state, 11);
+						worldIn.setBlock(topPos, state, 11);
 						if(!player.isCreative()) {
 							heldItemStack.shrink(1);
 						}
@@ -114,8 +110,8 @@ public abstract class ColumnConnectibleBlock extends WaterloggedBlock {
 	}
 
 	@Override
-	public void addInformation(ItemStack stack, @Nullable IBlockReader worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
-		super.addInformation(stack, worldIn, tooltip, flagIn);
+	public void appendHoverText(ItemStack stack, @Nullable IBlockReader worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+		super.appendHoverText(stack, worldIn, tooltip, flagIn);
 		DoTBBlockUtils.addTooltip(tooltip, TOOLTIP_COLUMN);
 	}
 }

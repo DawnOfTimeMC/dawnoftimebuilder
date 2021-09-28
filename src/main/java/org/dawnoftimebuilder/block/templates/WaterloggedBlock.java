@@ -6,7 +6,6 @@ import net.minecraft.block.IWaterLoggable;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.fluid.Fluids;
-import net.minecraft.fluid.IFluidState;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
@@ -23,32 +22,23 @@ public class WaterloggedBlock extends BlockDoTB implements IWaterLoggable {
 
 	public WaterloggedBlock(Properties properties) {
 		super(properties);
-		this.setDefaultState(this.getStateContainer().getBaseState().with(WATERLOGGED,false));
-	}
-
-	public WaterloggedBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
-		this(Properties.of(materialIn).strength(hardness, resistance).sound(soundType));
+		this.registerDefaultState(this.defaultBlockState().setValue(WATERLOGGED,false));
 	}
 
 	@Override
-	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
+	protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
 		builder.add(WATERLOGGED);
 	}
 
 	@Override
-	public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
-		if (stateIn.get(WATERLOGGED)) worldIn.getPendingFluidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickRate(worldIn));
+	public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
+		if (stateIn.getValue(WATERLOGGED)) worldIn.getLiquidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(worldIn));
 		return stateIn;
-	}
-
-	@Override
-	public IFluidState getFluidState(BlockState state) {
-		return state.get(WATERLOGGED) ? Fluids.WATER.getStillFluidState(false) : super.getFluidState(state);
 	}
 
 	@Override
 	@Nonnull
 	public BlockState getStateForPlacement(BlockItemUseContext context) {
-		return this.defaultBlockState().with(WATERLOGGED, context.getLevel().getFluidState(context.getPos()).getFluid() == Fluids.WATER);
+		return this.defaultBlockState().setValue(WATERLOGGED, context.getLevel().getFluidState(context.getClickedPos()).getType() == Fluids.WATER);
 	}
 }

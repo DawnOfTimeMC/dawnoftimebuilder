@@ -29,6 +29,6 @@ public class WaxedOakChairBlock extends DoubleChairBlock {
 	@Override
 	public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
 		int index = (state.get(HALF) == Half.TOP) ? 1 : 0;
-		return VS[state.get(FACING).getHorizontalIndex() * 2 + index];
+		return VS[state.get(FACING).get2DDataValue() * 2 + index];
 	}
 }

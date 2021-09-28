@@ -39,7 +39,7 @@ public class MixedRoofSupportBlock extends SlabBlockDoTB implements IBlockCustom
     public MixedRoofSupportBlock(SlabBlock roofSlabBlock, Properties properties) {
         super(properties);
         this.roofSlabBlock = roofSlabBlock;
-        this.setDefaultState(this.getStateContainer().getBaseState().with(FACING, Direction.NORTH).with(TYPE, SlabType.BOTTOM).with(SHAPE, StairsShape.STRAIGHT).with(WATERLOGGED, false));
+        this.registerDefaultState(this.defaultBlockState().setValue(FACING, Direction.NORTH).setValue(TYPE, SlabType.BOTTOM).setValue(SHAPE, StairsShape.STRAIGHT).setValue(WATERLOGGED, false));
     }
 
     public MixedRoofSupportBlock(SlabBlock roofSlabBlock, Block block) {
@@ -47,8 +47,8 @@ public class MixedRoofSupportBlock extends SlabBlockDoTB implements IBlockCustom
     }
 
     @Override
-    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
-        super.fillStateContainer(builder);
+    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
+        super.createBlockStateDefinition(builder);
         builder.add(FACING, SHAPE);
     }
 
@@ -59,13 +59,13 @@ public class MixedRoofSupportBlock extends SlabBlockDoTB implements IBlockCustom
 
     @Override
     public BlockState getStateForPlacement(BlockItemUseContext context) {
-        BlockPos blockpos = context.getPos();
-        BlockState newState = this.defaultBlockState().with(FACING, context.getPlacementHorizontalFacing());
-        BlockPos pos = context.getPos();
+        BlockPos blockpos = context.getClickedPos();
+        BlockState newState = this.defaultBlockState().setValue(FACING, context.getHorizontalDirection());
+        BlockPos pos = context.getClickedPos();
         IFluidState ifluidstate = context.getLevel().getFluidState(blockpos);
         Direction direction = context.getFace();
-        newState = newState.with(TYPE, (direction != Direction.DOWN && (direction == Direction.UP || !(context.getHitVec().y - (double)blockpos.getY() > 0.5D))) ? SlabType.BOTTOM : SlabType.TOP);
-        return newState.with(WATERLOGGED, ifluidstate.getFluid() == Fluids.WATER).with(SHAPE, getShapeProperty(newState, context.getLevel(), pos));
+        newState = newState.setValue(TYPE, (direction != Direction.DOWN && (direction == Direction.UP || !(context.getHitVec().y - (double)blockpos.getY() > 0.5D))) ? SlabType.BOTTOM : SlabType.TOP);
+        return newState.setValue(WATERLOGGED, ifluidstate.getFluid() == Fluids.WATER).setValue(SHAPE, getShapeProperty(newState, context.getLevel(), pos));
     }
 
     @Override
@@ -75,7 +75,7 @@ public class MixedRoofSupportBlock extends SlabBlockDoTB implements IBlockCustom
         if(!player.isCrouching() && player.canPlayerEdit(pos, facing, itemStack) && facing.getAxis().isVertical() && !itemStack.isEmpty()){
             if(facing == Direction.UP){
                 if (state.get(TYPE) == SlabType.BOTTOM && itemStack.getItem() == roofSlabBlock.asItem()) {
-                    if(worldIn.setBlockState(pos, state.with(TYPE, SlabType.DOUBLE), 11))  {
+                    if(worldIn.setBlock(pos, state.setValue(TYPE, SlabType.DOUBLE), 11))  {
                         this.onBlockPlacedBy(worldIn, pos, state, player, itemStack);
                         if (player instanceof ServerPlayerEntity) {
                             CriteriaTriggers.PLACED_BLOCK.trigger((ServerPlayerEntity)player, pos, itemStack);
@@ -106,8 +106,8 @@ public class MixedRoofSupportBlock extends SlabBlockDoTB implements IBlockCustom
                 PlayerEntity player = context.getPlayer();
                 ItemStack itemStack = context.getItem();
                 World worldIn = context.getLevel();
-                BlockPos pos = context.getPos();
-                if(!context.replacingClickedOnBlock()) pos = pos.offset(facing.getOpposite());
+                BlockPos pos = context.getClickedPos();
+                if(!context.replacingClickedOnBlock()) pos = pos.relative(facing.getOpposite());
                 if(player != null){
                     if(!player.canPlayerEdit(pos, facing, itemStack))
                         return super.place(context);
@@ -121,8 +121,8 @@ public class MixedRoofSupportBlock extends SlabBlockDoTB implements IBlockCustom
                             BlockState madeState = block.getStateForPlacement(context);
                             if(madeState == null)
                                 return super.place(context);
-                            madeState = madeState.with(TYPE, SlabType.DOUBLE);
-                            if(worldIn.setBlockState(pos, madeState.with(TYPE, SlabType.DOUBLE), 11))  {
+                            madeState = madeState.setValue(TYPE, SlabType.DOUBLE);
+                            if(worldIn.setBlock(pos, madeState.setValue(TYPE, SlabType.DOUBLE), 11))  {
                                 this.onBlockPlaced(pos, worldIn, player, itemStack, madeState);
                                 this.getBlock().onBlockPlacedBy(worldIn, pos, state, player, itemStack);
                                 if (player instanceof ServerPlayerEntity) {
@@ -142,9 +142,9 @@ public class MixedRoofSupportBlock extends SlabBlockDoTB implements IBlockCustom
     }
 
     @Override
-    public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
-        stateIn = super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
-        return facing.getAxis().isHorizontal() ? stateIn.with(SHAPE, getShapeProperty(stateIn, worldIn, currentPos)) : stateIn;
+    public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
+        stateIn = super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+        return facing.getAxis().isHorizontal() ? stateIn.setValue(SHAPE, getShapeProperty(stateIn, worldIn, currentPos)) : stateIn;
     }
 
     /**
@@ -152,21 +152,21 @@ public class MixedRoofSupportBlock extends SlabBlockDoTB implements IBlockCustom
      */
     private StairsShape getShapeProperty(BlockState state, IBlockReader worldIn, BlockPos pos) {
         Direction direction = state.get(FACING);
-        BlockState adjacentState = worldIn.getBlockState(pos.offset(direction));
+        BlockState adjacentState = worldIn.getBlockState(pos.relative(direction));
         if (isSameBlock(adjacentState)) {
             if((state.get(TYPE) == SlabType.TOP) == (adjacentState.get(TYPE) == SlabType.TOP)){
                 Direction adjacentDirection = adjacentState.get(FACING);
                 if (adjacentDirection.getAxis() != state.get(FACING).getAxis() && isConnectableRoofSupport(state, worldIn, pos, adjacentDirection.getOpposite())) {
-                    return (adjacentDirection == direction.rotateYCCW()) ? StairsShape.OUTER_LEFT : StairsShape.OUTER_RIGHT;
+                    return (adjacentDirection == direction.getCounterClockWise()) ? StairsShape.OUTER_LEFT : StairsShape.OUTER_RIGHT;
                 }
             }
         }
-        adjacentState = worldIn.getBlockState(pos.offset(direction.getOpposite()));
+        adjacentState = worldIn.getBlockState(pos.relative(direction.getOpposite()));
         if (isSameBlock(adjacentState)) {
             if((state.get(TYPE) == SlabType.TOP) == (adjacentState.get(TYPE) == SlabType.TOP)) {
                 Direction adjacentDirection = adjacentState.get(FACING);
                 if (adjacentDirection.getAxis() != state.get(FACING).getAxis() && isConnectableRoofSupport(state, worldIn, pos, adjacentDirection)) {
-                    return (adjacentDirection == direction.rotateYCCW()) ? StairsShape.INNER_LEFT : StairsShape.INNER_RIGHT;
+                    return (adjacentDirection == direction.getCounterClockWise()) ? StairsShape.INNER_LEFT : StairsShape.INNER_RIGHT;
                 }
             }
         }
@@ -174,7 +174,7 @@ public class MixedRoofSupportBlock extends SlabBlockDoTB implements IBlockCustom
     }
 
     private boolean isConnectableRoofSupport(BlockState state, IBlockReader worldIn, BlockPos pos, Direction face) {
-        BlockState adjacentState = worldIn.getBlockState(pos.offset(face));
+        BlockState adjacentState = worldIn.getBlockState(pos.relative(face));
         return !isSameBlock(adjacentState) || adjacentState.get(FACING) != state.get(FACING) || ((adjacentState.get(TYPE) == SlabType.TOP) != (state.get(TYPE) == SlabType.TOP));
     }
 
@@ -186,8 +186,8 @@ public class MixedRoofSupportBlock extends SlabBlockDoTB implements IBlockCustom
     public boolean receiveFluid(IWorld worldIn, BlockPos pos, BlockState state, IFluidState fluidStateIn) {
         if (!state.get(BlockStateProperties.WATERLOGGED) && fluidStateIn.getFluid() == Fluids.WATER) {
             if (!worldIn.isClientSide()) {
-                worldIn.setBlockState(pos, state.with(BlockStateProperties.WATERLOGGED, true), 3);
-                worldIn.getPendingFluidTicks().scheduleTick(pos, fluidStateIn.getFluid(), fluidStateIn.getFluid().getTickRate(worldIn));
+                worldIn.setBlock(pos, state.setValue(BlockStateProperties.WATERLOGGED, true), 3);
+                worldIn.getLiquidTicks().scheduleTick(pos, fluidStateIn.getFluid(), fluidStateIn.getFluid().getTickRate(worldIn));
             }
             return true;
         }else return false;
@@ -200,7 +200,7 @@ public class MixedRoofSupportBlock extends SlabBlockDoTB implements IBlockCustom
 
     @Override
     public BlockState rotate(BlockState state, Rotation rot) {
-        return state.with(FACING, rot.rotate(state.get(FACING)));
+        return state.setValue(FACING, rot.rotate(state.get(FACING)));
     }
 
     @Override
@@ -212,13 +212,13 @@ public class MixedRoofSupportBlock extends SlabBlockDoTB implements IBlockCustom
                 if (direction.getAxis() == Direction.Axis.Z) {
                     switch(stairsshape) {
                         case INNER_LEFT:
-                            return state.rotate(Rotation.CLOCKWISE_180).with(SHAPE, StairsShape.INNER_RIGHT);
+                            return state.rotate(Rotation.CLOCKWISE_180).setValue(SHAPE, StairsShape.INNER_RIGHT);
                         case INNER_RIGHT:
-                            return state.rotate(Rotation.CLOCKWISE_180).with(SHAPE, StairsShape.INNER_LEFT);
+                            return state.rotate(Rotation.CLOCKWISE_180).setValue(SHAPE, StairsShape.INNER_LEFT);
                         case OUTER_LEFT:
-                            return state.rotate(Rotation.CLOCKWISE_180).with(SHAPE, StairsShape.OUTER_RIGHT);
+                            return state.rotate(Rotation.CLOCKWISE_180).setValue(SHAPE, StairsShape.OUTER_RIGHT);
                         case OUTER_RIGHT:
-                            return state.rotate(Rotation.CLOCKWISE_180).with(SHAPE, StairsShape.OUTER_LEFT);
+                            return state.rotate(Rotation.CLOCKWISE_180).setValue(SHAPE, StairsShape.OUTER_LEFT);
                         default:
                             return state.rotate(Rotation.CLOCKWISE_180);
                     }
@@ -228,13 +228,13 @@ public class MixedRoofSupportBlock extends SlabBlockDoTB implements IBlockCustom
                 if (direction.getAxis() == Direction.Axis.X) {
                     switch(stairsshape) {
                         case INNER_LEFT:
-                            return state.rotate(Rotation.CLOCKWISE_180).with(SHAPE, StairsShape.INNER_LEFT);
+                            return state.rotate(Rotation.CLOCKWISE_180).setValue(SHAPE, StairsShape.INNER_LEFT);
                         case INNER_RIGHT:
-                            return state.rotate(Rotation.CLOCKWISE_180).with(SHAPE, StairsShape.INNER_RIGHT);
+                            return state.rotate(Rotation.CLOCKWISE_180).setValue(SHAPE, StairsShape.INNER_RIGHT);
                         case OUTER_LEFT:
-                            return state.rotate(Rotation.CLOCKWISE_180).with(SHAPE, StairsShape.OUTER_RIGHT);
+                            return state.rotate(Rotation.CLOCKWISE_180).setValue(SHAPE, StairsShape.OUTER_RIGHT);
                         case OUTER_RIGHT:
-                            return state.rotate(Rotation.CLOCKWISE_180).with(SHAPE, StairsShape.OUTER_LEFT);
+                            return state.rotate(Rotation.CLOCKWISE_180).setValue(SHAPE, StairsShape.OUTER_LEFT);
                         case STRAIGHT:
                             return state.rotate(Rotation.CLOCKWISE_180);
                     }

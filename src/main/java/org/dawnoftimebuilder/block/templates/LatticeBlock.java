@@ -49,14 +49,14 @@ public class LatticeBlock extends WaterloggedBlock implements IBlockClimbingPlan
 	public static final BooleanProperty PERSISTENT = BlockStateProperties.PERSISTENT;
 	private static final VoxelShape[] SHAPES = makeShapes();
 
-	public LatticeBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
-		super(materialIn, hardness, resistance,soundType);
-		this.setDefaultState(this.getStateContainer().getBaseState().with(CLIMBING_PLANT, DoTBBlockStateProperties.ClimbingPlant.NONE).with(AGE, 0).with(WATERLOGGED, false).with(NORTH, false).with(EAST, false).with(SOUTH, false).with(WEST, false).with(PERSISTENT, false));
+	public LatticeBlock(Properties properties) {
+		super(properties);
+		this.registerDefaultState(this.defaultBlockState().setValue(CLIMBING_PLANT, DoTBBlockStateProperties.ClimbingPlant.NONE).setValue(AGE, 0).setValue(WATERLOGGED, false).setValue(NORTH, false).setValue(EAST, false).setValue(SOUTH, false).setValue(WEST, false).setValue(PERSISTENT, false));
 	}
 
 	@Override
-	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
-		super.fillStateContainer(builder);
+	protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
+		super.createBlockStateDefinition(builder);
 		builder.add(NORTH, EAST, SOUTH, WEST, CLIMBING_PLANT, AGE, PERSISTENT);
 	}
 
@@ -120,19 +120,19 @@ public class LatticeBlock extends WaterloggedBlock implements IBlockClimbingPlan
 
 	@Override
 	public BlockState getStateForPlacement(BlockItemUseContext context) {
-		BlockState state = context.getLevel().getBlockState(context.getPos());
+		BlockState state = context.getLevel().getBlockState(context.getClickedPos());
 		if (state.getBlock() != this)
 			state = super.getStateForPlacement(context);
-		switch(context.getPlacementHorizontalFacing()){
+		switch(context.getHorizontalDirection()){
 			default:
 			case SOUTH:
-				return state.with(SOUTH, true);
+				return state.setValue(SOUTH, true);
 			case WEST:
-				return state.with(WEST, true);
+				return state.setValue(WEST, true);
 			case NORTH:
-				return state.with(NORTH, true);
+				return state.setValue(NORTH, true);
 			case EAST:
-				return state.with(EAST, true);
+				return state.setValue(EAST, true);
 		}
 	}
 
@@ -141,7 +141,7 @@ public class LatticeBlock extends WaterloggedBlock implements IBlockClimbingPlan
 		ItemStack itemstack = useContext.getItem();
 		if(useContext.isPlacerSneaking()) return false;
 		if(itemstack.getItem() == this.asItem()) {
-			Direction newDirection = useContext.getPlacementHorizontalFacing();
+			Direction newDirection = useContext.getHorizontalDirection();
 			switch(newDirection){
 				default:
 				case SOUTH:
@@ -182,14 +182,14 @@ public class LatticeBlock extends WaterloggedBlock implements IBlockClimbingPlan
 				for(int i = 0; i < 5; i++){
 					worldIn.addOptionalParticle(ParticleTypes.SMOKE, (double)pos.getX() + rand.nextDouble(), (double)pos.getY() + 0.5D + rand.nextDouble() / 2, (double)pos.getZ() + rand.nextDouble(), 0.0D, 0.07D, 0.0D);
 				}
-				worldIn.setBlockState(pos, state.with(PERSISTENT, true), 10);
+				worldIn.setBlock(pos, state.setValue(PERSISTENT, true), 10);
 				return true;
 			}
 		}
 		if(player.isCreative()) {
 			if(this.tryPlacingPlant(state, worldIn, pos, player, handIn)) return true;
 		}else{
-			if(worldIn.getBlockState(pos.down()).isIn(BlockTags.DIRT_LIKE)){
+			if(worldIn.getBlockState(pos.below()).isIn(BlockTags.DIRT_LIKE)){
 				if(this.tryPlacingPlant(state, worldIn, pos, player, handIn)) return true;
 			}
 		}
@@ -207,8 +207,8 @@ public class LatticeBlock extends WaterloggedBlock implements IBlockClimbingPlan
 	}
 
 	@Override
-	public void addInformation(ItemStack stack, @Nullable IBlockReader worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
-		super.addInformation(stack, worldIn, tooltip, flagIn);
+	public void appendHoverText(ItemStack stack, @Nullable IBlockReader worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+		super.appendHoverText(stack, worldIn, tooltip, flagIn);
 		DoTBBlockUtils.addTooltip(tooltip, TOOLTIP_CLIMBING_PLANT);
 	}
 }

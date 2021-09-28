@@ -24,20 +24,20 @@ public class FoldingScreenBlock extends ColumnConnectibleBlock{
 
     public FoldingScreenBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
         super(materialIn, hardness, resistance, soundType);
-        this.setDefaultState(this.getStateContainer().getBaseState().with(WATERLOGGED,false).with(INVERTED,false));
+        this.registerDefaultState(this.defaultBlockState().setValue(WATERLOGGED,false).setValue(INVERTED,false));
     }
 
     @Override
-    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
-        super.fillStateContainer(builder);
+    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
+        super.createBlockStateDefinition(builder);
         builder.add(INVERTED);
     }
 
     @Nonnull
     @Override
     public BlockState getStateForPlacement(BlockItemUseContext context) {
-        BlockPos pos = context.getPos();
-        return super.getStateForPlacement(context).with(INVERTED, ((pos.getX() + pos.getZ()) % 2) == 0);
+        BlockPos pos = context.getClickedPos();
+        return super.getStateForPlacement(context).setValue(INVERTED, ((pos.getX() + pos.getZ()) % 2) == 0);
     }
 
     @Override

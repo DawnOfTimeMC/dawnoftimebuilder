@@ -29,7 +29,7 @@ public abstract class CandleLampBlock extends WaterloggedBlock implements IBlock
 
     public CandleLampBlock(Properties properties) {
         super(properties);
-        this.setDefaultState(this.getStateContainer().getBaseState().with(WATERLOGGED,false).with(LIT, false));
+        this.registerDefaultState(this.defaultBlockState().setValue(WATERLOGGED,false).setValue(LIT, false));
     }
 
     public CandleLampBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
@@ -37,8 +37,8 @@ public abstract class CandleLampBlock extends WaterloggedBlock implements IBlock
     }
 
     @Override
-    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
-        super.fillStateContainer(builder);
+    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
+        super.createBlockStateDefinition(builder);
         builder.add(LIT);
     }
 
@@ -56,13 +56,13 @@ public abstract class CandleLampBlock extends WaterloggedBlock implements IBlock
     @Override
     public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit){
         if (state.get(LIT)) {
-            worldIn.setBlockState(pos, state.with(LIT, false), 10);
+            worldIn.setBlock(pos, state.setValue(LIT, false), 10);
             worldIn.playSound(null, pos, SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.BLOCKS, 1.0F, 1.0F);
             return true;
         } else {
             if(state.get(WATERLOGGED)) return false;
             if (DoTBBlockUtils.useLighter(worldIn, pos, player, handIn)) {
-                worldIn.setBlockState(pos, state.with(LIT, true), 10);
+                worldIn.setBlock(pos, state.setValue(LIT, true), 10);
                 return true;
             }
         }
@@ -75,7 +75,7 @@ public abstract class CandleLampBlock extends WaterloggedBlock implements IBlock
             AbstractArrowEntity abstractarrowentity = (AbstractArrowEntity)projectile;
             if (abstractarrowentity.isBurning() && !state.get(LIT) && !state.get(WATERLOGGED)) {
                 BlockPos pos = hit.getPos();
-                worldIn.setBlockState(pos, state.with(LIT, true), 10);
+                worldIn.setBlock(pos, state.setValue(LIT, true), 10);
                 worldIn.playSound(null, pos, SoundEvents.BLOCK_FIRE_AMBIENT, SoundCategory.BLOCKS, 1.0F, 1.0F);
             }
         }
@@ -87,8 +87,8 @@ public abstract class CandleLampBlock extends WaterloggedBlock implements IBlock
             if (state.get(LIT)) {
                 worldIn.playSound(null, pos, SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.BLOCKS, 1.0F, 1.0F);
             }
-            worldIn.setBlockState(pos, state.with(WATERLOGGED, true).with(LIT, false), 10);
-            worldIn.getPendingFluidTicks().scheduleTick(pos, fluidStateIn.getFluid(), fluidStateIn.getFluid().getTickRate(worldIn));
+            worldIn.setBlock(pos, state.setValue(WATERLOGGED, true).setValue(LIT, false), 10);
+            worldIn.getLiquidTicks().scheduleTick(pos, fluidStateIn.getFluid(), fluidStateIn.getFluid().getTickRate(worldIn));
             return true;
         } else {
             return false;

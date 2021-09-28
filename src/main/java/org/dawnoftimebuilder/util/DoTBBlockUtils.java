@@ -22,6 +22,7 @@ import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.Tags;
@@ -103,12 +104,12 @@ public class DoTBBlockUtils {
 	 * @param multiplier Multiply the quantity of item (round down) per ItemStack (use 1.0F to keep the same number).
 	 * @return True if some items are dropped, False otherwise.
 	 */
-	public static boolean dropLootFromList(World worldIn, BlockPos pos, List<ItemStack> drops, float multiplier){
-		if(drops.isEmpty()) return false;
+	public static boolean dropLootFromList(IWorld worldIn, BlockPos pos, List<ItemStack> drops, float multiplier){
+		if(drops.isEmpty() || !(worldIn instanceof World)) return false;
 		for(ItemStack drop : drops){
 			int quantity = (int) Math.floor(drop.getCount() * multiplier);
 			for (int i = 0; i < quantity; i++){
-				Block.popResource(worldIn, pos, new ItemStack(drop.getItem(), 1));
+				Block.popResource((World) worldIn, pos, new ItemStack(drop.getItem(), 1));
 			}
 		}
 		return true;

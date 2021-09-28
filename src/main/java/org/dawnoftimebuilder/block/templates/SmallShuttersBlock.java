@@ -2,7 +2,6 @@ package org.dawnoftimebuilder.block.templates;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.PushReaction;
@@ -15,17 +14,13 @@ import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.state.properties.DoorHingeSide;
-import net.minecraft.util.Direction;
-import net.minecraft.util.Hand;
-import net.minecraft.util.Mirror;
-import net.minecraft.util.Rotation;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
-import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import org.dawnoftimebuilder.util.DoTBBlockStateProperties;
 import org.dawnoftimebuilder.util.DoTBBlockUtils;
@@ -40,7 +35,7 @@ public class SmallShuttersBlock extends WaterloggedBlock {
 
     public SmallShuttersBlock(Properties properties) {
         super(properties);
-        this.setDefaultState(this.getStateContainer().getBaseState().with(OPEN_POSITION, DoTBBlockStateProperties.OpenPosition.CLOSED).with(HINGE, DoorHingeSide.LEFT).with(POWERED, false));
+        this.registerDefaultState(this.defaultBlockState().setValue(OPEN_POSITION, DoTBBlockStateProperties.OpenPosition.CLOSED).setValue(HINGE, DoorHingeSide.LEFT).setValue(POWERED, false));
     }
 
     public SmallShuttersBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
@@ -48,8 +43,8 @@ public class SmallShuttersBlock extends WaterloggedBlock {
     }
 
     @Override
-    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
-        super.fillStateContainer(builder);
+    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
+        super.createBlockStateDefinition(builder);
         builder.add(FACING, HINGE, OPEN_POSITION, POWERED);
     }
 
@@ -57,18 +52,18 @@ public class SmallShuttersBlock extends WaterloggedBlock {
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
         int index = 0;
         int horizontalIndex = 0;
-        boolean hinge = (state.get(HINGE) == DoorHingeSide.RIGHT);
-        switch (state.get(OPEN_POSITION)) {
+        boolean hinge = (state.getValue(HINGE) == DoorHingeSide.RIGHT);
+        switch (state.getValue(OPEN_POSITION)) {
             case FULL:
                 index = hinge ? 1 : 2;
             case CLOSED:
-                horizontalIndex = state.get(FACING).getHorizontalIndex();
+                horizontalIndex = state.getValue(FACING).get2DDataValue();
                 break;
             case HALF:
                 if(hinge)
-                    horizontalIndex = state.get(FACING).rotateY().getHorizontalIndex();
+                    horizontalIndex = state.getValue(FACING).getClockWise().get2DDataValue();
                 else
-                    horizontalIndex = state.get(FACING).rotateYCCW().getHorizontalIndex();
+                    horizontalIndex = state.getValue(FACING).getCounterClockWise().get2DDataValue();
                 break;
 
         }
@@ -95,86 +90,72 @@ public class SmallShuttersBlock extends WaterloggedBlock {
     }
 
     @Override
-    public PushReaction getPushReaction(BlockState state) {
+    public PushReaction getPistonPushReaction(BlockState state) {
         return PushReaction.DESTROY;
     }
 
     @Override
     public BlockState getStateForPlacement(BlockItemUseContext context) {
         World world = context.getLevel();
-        Direction direction = context.getPlacementHorizontalFacing();
-        BlockPos pos = context.getPos();
-        int x = direction.getXOffset();
-        int z = direction.getZOffset();
-        double onX = context.getHitVec().x - pos.getX();
-        double onZ = context.getHitVec().z - pos.getZ();
+        Direction direction = context.getHorizontalDirection();
+        BlockPos pos = context.getClickedPos();
+        int x = direction.getStepX();
+        int z = direction.getStepZ();
+        double onX = context.getClickLocation().x - pos.getX();
+        double onZ = context.getClickLocation().z - pos.getZ();
         boolean hingeLeft = (x >= 0 || onZ >= 0.5D) && (x <= 0 || onZ <= 0.5D) && (z >= 0 || onX <= 0.5D) && (z <= 0 || onX >= 0.5D);
-        Direction hingeDirection = hingeLeft ? direction.rotateYCCW() : direction.rotateY();
-        if(!canSupportShutters(world, pos, direction, hingeDirection)) hingeLeft = !hingeLeft;
-        return super.getStateForPlacement(context).with(HINGE, hingeLeft ? DoorHingeSide.LEFT : DoorHingeSide.RIGHT).with(FACING, direction).with(POWERED, world.isBlockPowered(pos));
+        boolean powered = world.hasNeighborSignal(pos) || world.hasNeighborSignal(pos.above());
+        BlockState madeState = super.getStateForPlacement(context).setValue(HINGE, hingeLeft ? DoorHingeSide.LEFT : DoorHingeSide.RIGHT).setValue(FACING, direction).setValue(POWERED, powered);
+        return madeState.setValue(OPEN_POSITION, powered ? this.getOpenState(madeState, world, pos) : DoTBBlockStateProperties.OpenPosition.CLOSED);
     }
 
     @Override
-    public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
-        Direction direction = state.get(FACING);
-        Direction hingeDirection = (state.get(HINGE) == DoorHingeSide.LEFT) ? direction.rotateYCCW() : direction.rotateY();
-        return canSupportShutters(worldIn, pos, direction, hingeDirection);
-    }
-
-    protected static boolean canSupportShutters(IWorldReader worldIn, BlockPos shutterPos, Direction direction, Direction hingeDirection) {
-        BlockPos pos = shutterPos.offset(direction).offset(hingeDirection);
-        return hasSolidSide(worldIn.getBlockState(pos), worldIn, pos, direction.getOpposite()) || hasSolidSide(worldIn.getBlockState(pos), worldIn, pos, hingeDirection.getOpposite());
-    }
-
-    @Override
-    public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
-        Direction direction = stateIn.get(FACING);
-        Direction hingeDirection = (stateIn.get(HINGE) == DoorHingeSide.LEFT) ? direction.rotateYCCW() : direction.rotateY();
-        if(!canSupportShutters(worldIn, currentPos, direction, hingeDirection))
-            return Blocks.AIR.defaultBlockState();
+    public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
+        Direction direction = stateIn.getValue(FACING);
+        Direction hingeDirection = (stateIn.getValue(HINGE) == DoorHingeSide.LEFT) ? direction.getCounterClockWise() : direction.getClockWise();
         if(facing == hingeDirection) {
-            stateIn = super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
-            return stateIn.get(OPEN_POSITION) == DoTBBlockStateProperties.OpenPosition.CLOSED ? stateIn : stateIn.with(OPEN_POSITION, getOpenState(stateIn, worldIn.getLevel(), facingPos));
+            stateIn = super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+            return stateIn.getValue(OPEN_POSITION) == DoTBBlockStateProperties.OpenPosition.CLOSED ? stateIn : stateIn.setValue(OPEN_POSITION, getOpenState(stateIn, worldIn, facingPos));
         }
-        return super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+        return super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
     }
 
     @Override
-    public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-        if(state.get(OPEN_POSITION).isOpen())
-            state = state.with(OPEN_POSITION, DoTBBlockStateProperties.OpenPosition.CLOSED);
+    public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+        if(state.getValue(OPEN_POSITION).isOpen())
+            state = state.setValue(OPEN_POSITION, DoTBBlockStateProperties.OpenPosition.CLOSED);
         else{
-            Direction hingeDirection = (state.get(HINGE) == DoorHingeSide.LEFT) ? state.get(FACING).rotateYCCW() : state.get(FACING).rotateY();
-            state = state.with(OPEN_POSITION, getOpenState(state, worldIn, pos.offset(hingeDirection)));
+            Direction hingeDirection = (state.getValue(HINGE) == DoorHingeSide.LEFT) ? state.getValue(FACING).getCounterClockWise() : state.getValue(FACING).getClockWise();
+            state = state.setValue(OPEN_POSITION, getOpenState(state, worldIn, pos.relative(hingeDirection)));
         }
-        worldIn.setBlockState(pos, state, 10);
-        worldIn.playEvent(player, state.get(OPEN_POSITION).isOpen() ? this.getOpenSound() : this.getCloseSound(), pos, 0);
-        if (state.get(WATERLOGGED)) worldIn.getPendingFluidTicks().scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickRate(worldIn));
-        return true;
+        worldIn.setBlock(pos, state, 10);
+        worldIn.levelEvent(player, state.getValue(OPEN_POSITION).isOpen() ? this.getOpenSound() : this.getCloseSound(), pos, 0);
+        if (state.getValue(WATERLOGGED)) worldIn.getLiquidTicks().scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(worldIn));
+        return ActionResultType.SUCCESS;
     }
 
     @Override
     public void neighborChanged(BlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos, boolean isMoving) {
-        boolean isPowered = worldIn.isBlockPowered(pos);
-        if(blockIn != this && isPowered != state.get(POWERED)) {
-            if (isPowered != state.get(OPEN_POSITION).isOpen()) {
+        boolean isPowered = worldIn.hasNeighborSignal(pos);
+        if(blockIn != this && isPowered != state.getValue(POWERED)) {
+            if (isPowered != state.getValue(OPEN_POSITION).isOpen()) {
                 this.playSound(worldIn, pos, isPowered);
             }
             if(isPowered){
-                Direction hingeDirection = (state.get(HINGE) == DoorHingeSide.LEFT) ? state.get(FACING).rotateYCCW() : state.get(FACING).rotateY();
-                state = state.with(OPEN_POSITION, getOpenState(state, worldIn, pos.offset(hingeDirection)));
+                Direction hingeDirection = (state.getValue(HINGE) == DoorHingeSide.LEFT) ? state.getValue(FACING).getCounterClockWise() : state.getValue(FACING).getClockWise();
+                state = state.setValue(OPEN_POSITION, getOpenState(state, worldIn, pos.relative(hingeDirection)));
             }else
-                state = state.with(OPEN_POSITION, DoTBBlockStateProperties.OpenPosition.CLOSED);
-            worldIn.setBlockState(pos, state.with(POWERED, isPowered), 2);
+                state = state.setValue(OPEN_POSITION, DoTBBlockStateProperties.OpenPosition.CLOSED);
+            worldIn.setBlock(pos, state.setValue(POWERED, isPowered), 2);
         }
     }
 
-    protected DoTBBlockStateProperties.OpenPosition getOpenState(BlockState stateIn, World worldIn, BlockPos pos){
+    protected DoTBBlockStateProperties.OpenPosition getOpenState(BlockState stateIn, IWorld worldIn, BlockPos pos){
         return worldIn.getBlockState(pos).getCollisionShape(worldIn, pos).isEmpty() ? DoTBBlockStateProperties.OpenPosition.FULL : DoTBBlockStateProperties.OpenPosition.HALF;
     }
 
     private void playSound(World worldIn, BlockPos pos, boolean isOpening) {
-        worldIn.playEvent(null, isOpening ? this.getOpenSound() : this.getCloseSound(), pos, 0);
+        worldIn.levelEvent(null, isOpening ? this.getOpenSound() : this.getCloseSound(), pos, 0);
     }
 
     private int getCloseSound() {
@@ -187,7 +168,7 @@ public class SmallShuttersBlock extends WaterloggedBlock {
 
     @Override
     public BlockState rotate(BlockState state, Rotation rot) {
-        return state.with(FACING, rot.rotate(state.get(FACING)));
+        return state.setValue(FACING, rot.rotate(state.getValue(FACING)));
     }
 
     @Override
@@ -199,7 +180,7 @@ public class SmallShuttersBlock extends WaterloggedBlock {
             case FRONT_BACK:
                 state = rotate(state, Rotation.CLOCKWISE_180);
             case LEFT_RIGHT:
-                return state.with(HINGE, state.get(HINGE) == DoorHingeSide.RIGHT ? DoorHingeSide.LEFT : DoorHingeSide.RIGHT);
+                return state.setValue(HINGE, state.getValue(HINGE) == DoorHingeSide.RIGHT ? DoorHingeSide.LEFT : DoorHingeSide.RIGHT);
         }
     }
 }

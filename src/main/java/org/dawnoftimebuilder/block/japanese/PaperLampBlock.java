@@ -27,7 +27,7 @@ public class PaperLampBlock extends ColumnConnectibleBlock implements IBlockSpec
     @Nonnull
     @Override
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-        VerticalConnection connection = state.get(VERTICAL_CONNECTION);
+        VerticalConnection connection = state.getValue(VERTICAL_CONNECTION);
         if(connection == VerticalConnection.ABOVE || connection == VerticalConnection.BOTH){
             return VS_BOTTOM;
         }else return VS_TOP;

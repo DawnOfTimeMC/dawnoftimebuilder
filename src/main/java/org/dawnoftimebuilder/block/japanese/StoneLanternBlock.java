@@ -31,27 +31,27 @@ public class StoneLanternBlock extends WaterloggedBlock implements IBlockChain, 
 
     public StoneLanternBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
         super(Properties.of(materialIn).strength(hardness, resistance).sound(soundType).lightValue(15));
-        this.setDefaultState(this.getStateContainer().getBaseState().with(WATERLOGGED,false).with(FACING, Direction.DOWN));
+        this.registerDefaultState(this.defaultBlockState().setValue(WATERLOGGED,false).setValue(FACING, Direction.DOWN));
     }
 
     @Nonnull
     @Override
     public BlockState getStateForPlacement(BlockItemUseContext context) {
-        return super.getStateForPlacement(context).with(FACING, context.getFace());
+        return super.getStateForPlacement(context).setValue(FACING, context.getFace());
     }
 
     @Override
-    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
-        super.fillStateContainer(builder);
+    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
+        super.createBlockStateDefinition(builder);
         builder.add(FACING);
     }
 
     @Override
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-        Direction facing = state.get(FACING);
+        Direction facing = state.getValue(FACING);
         if(facing.getAxis() == Direction.Axis.Y){
             return VS_CENTER;
-        }else return VS_SIDE[facing.getHorizontalIndex()];
+        }else return VS_SIDE[facing.get2DDataValue()];
     }
 
     @Override
@@ -61,7 +61,7 @@ public class StoneLanternBlock extends WaterloggedBlock implements IBlockChain, 
 
     @Override
     public BlockState rotate(BlockState state, Rotation rot) {
-        return state.with(FACING, rot.rotate(state.get(FACING)));
+        return state.setValue(FACING, rot.rotate(state.getValue(FACING)));
     }
 
     @Override

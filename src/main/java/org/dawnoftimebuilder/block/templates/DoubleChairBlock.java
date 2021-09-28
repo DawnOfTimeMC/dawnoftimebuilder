@@ -28,7 +28,7 @@ public class DoubleChairBlock extends ChairBlock{
 
     public DoubleChairBlock(Properties properties, float offsetY) {
         super(properties, offsetY);
-        this.setDefaultState(this.getStateContainer().getBaseState().with(HALF, Half.BOTTOM).with(FACING, Direction.NORTH).with(WATERLOGGED,false));
+        this.registerDefaultState(this.defaultBlockState().setValue(HALF, Half.BOTTOM).setValue(FACING, Direction.NORTH).setValue(WATERLOGGED,false));
     }
 
     public DoubleChairBlock(Material materialIn, float hardness, float resistance, float pixelsYOffset) {
@@ -36,21 +36,21 @@ public class DoubleChairBlock extends ChairBlock{
     }
 
     @Override
-    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
-        super.fillStateContainer(builder);
+    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
+        super.createBlockStateDefinition(builder);
         builder.add(HALF);
     }
 
     @Override
     @Nullable
     public BlockState getStateForPlacement(BlockItemUseContext context) {
-        if(!context.getLevel().getBlockState(context.getPos().above()).isReplaceable(context)) return null;
-        return super.getStateForPlacement(context).with(FACING, context.getPlacementHorizontalFacing().getOpposite());
+        if(!context.getLevel().getBlockState(context.getClickedPos().above()).isReplaceable(context)) return null;
+        return super.getStateForPlacement(context).setValue(FACING, context.getHorizontalDirection().getOpposite());
     }
 
     @Override
     public void onBlockPlacedBy(World worldIn, BlockPos pos, BlockState state, LivingEntity placer, ItemStack stack) {
-        worldIn.setBlockState(pos.above(), state.with(HALF, Half.TOP), 10);
+        worldIn.setBlock(pos.above(), state.setValue(HALF, Half.TOP), 10);
     }
 
     @Override
@@ -60,13 +60,13 @@ public class DoubleChairBlock extends ChairBlock{
     }
 
     @Override
-    public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
+    public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
         Direction halfDirection = (stateIn.get(HALF) == Half.TOP) ? Direction.DOWN : Direction.UP;
         if(facing == halfDirection){
             if(facingState.getBlock() != this) return Blocks.AIR.defaultBlockState();
             if(facingState.get(HALF) == stateIn.get(HALF) || facingState.get(FACING) != stateIn.get(FACING)) return Blocks.AIR.defaultBlockState();
         }
-        return super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+        return super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
     }
 
     @Override
@@ -76,10 +76,10 @@ public class DoubleChairBlock extends ChairBlock{
 
     @Override
     public void onBlockHarvested(World worldIn, BlockPos pos, BlockState state, PlayerEntity player) {
-        BlockPos blockpos = (state.get(HALF) == Half.TOP) ? pos.down() : pos.above();
+        BlockPos blockpos = (state.get(HALF) == Half.TOP) ? pos.below() : pos.above();
         BlockState otherState = worldIn.getBlockState(blockpos);
         if(otherState.getBlock() == this && otherState.get(HALF) != state.get(HALF)) {
-            worldIn.setBlockState(blockpos, Blocks.AIR.defaultBlockState(), 35);
+            worldIn.setBlock(blockpos, Blocks.AIR.defaultBlockState(), 35);
             worldIn.playEvent(player, 2001, blockpos, Block.getStateId(otherState));
             ItemStack itemstack = player.getItemInHandMainhand();
             if(!worldIn.isClientSide && !player.isCreative()) {

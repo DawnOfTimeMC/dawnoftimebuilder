@@ -39,24 +39,24 @@ public class GrowingBushBlock extends SoilCropsBlock {
 	public GrowingBushBlock(String seedName, PlantType plantType, int cutAge, Food food){
 		super(seedName, plantType, food);
 		this.cutAge = cutAge;
-		this.setDefaultState(this.defaultBlockState().with(AGE, 0).with(CUT, false).with(PERSISTENT, false));
+		this.registerDefaultState(this.defaultBlockState().setValue(AGE, 0).setValue(CUT, false).setValue(PERSISTENT, false));
 		this.SHAPES = this.makeShapes();
 	}
 
 	@Override
-	protected void fillStateContainer(StateContainer.Builder<net.minecraft.block.Block, BlockState> builder) {
+	protected void createBlockStateDefinition(StateContainer.Builder<net.minecraft.block.Block, BlockState> builder) {
 		builder.add(AGE, PERSISTENT, CUT);
 	}
 
 	@Override
 	public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-		int index = state.get(AGE);
-		return state.get(CUT) ? SHAPES[5] : SHAPES[index];
+		int index = state.getValue(AGE);
+		return state.getValue(CUT) ? SHAPES[5] : SHAPES[index];
 	}
 
 	@Override
 	public VoxelShape getCollisionShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-		return (state.get(AGE) == 0) ? VoxelShapes.empty() : super.getShape(state, worldIn, pos, context);
+		return (state.getValue(AGE) == 0) ? VoxelShapes.empty() : super.getShape(state, worldIn, pos, context);
 	}
 
 	/**
@@ -70,12 +70,12 @@ public class GrowingBushBlock extends SoilCropsBlock {
 	 */
 	public VoxelShape[] makeShapes() {
 		return new VoxelShape[]{
-				Block.Block.box(5.0D, 0.0D, 5.0D, 11.0D, 5.5D, 11.0D),
-				Block.Block.box(4.0D, 0.0D, 4.0D, 12.0D, 9.0D, 12.0D),
-				Block.Block.box(3.0D, 0.0D, 3.0D, 13.0D, 10.5D, 13.0D),
-				Block.Block.box(2.0D, 0.0D, 2.0D, 14.0D, 11.0D, 14.0D),
-				Block.Block.box(1.5D, 0.0D, 1.5D, 14.5D, 12.0D, 14.5D),
-				Block.Block.box(1.0D, 0.0D, 1.0D, 15.0D, 12.0D, 15.0D),
+				Block.box(5.0D, 0.0D, 5.0D, 11.0D, 5.5D, 11.0D),
+				Block.box(4.0D, 0.0D, 4.0D, 12.0D, 9.0D, 12.0D),
+				Block.box(3.0D, 0.0D, 3.0D, 13.0D, 10.5D, 13.0D),
+				Block.box(2.0D, 0.0D, 2.0D, 14.0D, 11.0D, 14.0D),
+				Block.box(1.5D, 0.0D, 1.5D, 14.5D, 12.0D, 14.5D),
+				Block.box(1.0D, 0.0D, 1.0D, 15.0D, 12.0D, 15.0D),
 		};
 	}
 
@@ -117,6 +117,6 @@ public class GrowingBushBlock extends SoilCropsBlock {
 		DoTBBlockUtils.dropLootFromList(worldIn, pos, drops, dropMultiplier);
 
 		worldIn.playSound(null, pos, SoundEvents.BLOCK_GRASS_BREAK, SoundCategory.BLOCKS, 1.0F, 1.0F);
-		worldIn.setBlockState(pos, state.with(AGE, this.cutAge).with(CUT, true));
+		worldIn.setBlock(pos, state.setValue(AGE, this.cutAge).setValue(CUT, true));
 	}
 }

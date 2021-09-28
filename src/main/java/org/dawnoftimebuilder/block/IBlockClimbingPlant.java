@@ -8,6 +8,7 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.ForgeHooks;
@@ -167,7 +168,7 @@ public interface IBlockClimbingPlant {
 	 * @param heldItemStack Item in active hand to apply tool conditions in the LootTable.
 	 * @return The State in input with no Climbing Plant, and AGE back to 0.
 	 */
-	default BlockState removePlant(BlockState stateIn, World worldIn, BlockPos pos, ItemStack heldItemStack){
+	default BlockState removePlant(BlockState stateIn, IWorld worldIn, BlockPos pos, ItemStack heldItemStack){
 		this.dropPlant(stateIn, worldIn, pos, heldItemStack);
 		worldIn.playSound(null, pos, SoundEvents.GRASS_BREAK, SoundCategory.BLOCKS, 1.0F, 1.0F);
 		stateIn = stateIn.setValue(CLIMBING_PLANT, DoTBBlockStateProperties.ClimbingPlant.NONE).setValue(AGE_0_6, 0);
@@ -183,7 +184,7 @@ public interface IBlockClimbingPlant {
 	 * @param heldItemStack Item in active hand to apply tool conditions.
 	 * @return True if some loot is dropped. False if there were no loot_table found or item dropped.
 	 */
-	default boolean dropPlant(BlockState stateIn, World worldIn, BlockPos pos, ItemStack heldItemStack){
+	default boolean dropPlant(BlockState stateIn, IWorld worldIn, BlockPos pos, ItemStack heldItemStack){
 		if(worldIn.isClientSide()) return false;
 		DoTBBlockStateProperties.ClimbingPlant plant = stateIn.getValue(CLIMBING_PLANT);
 		if(plant.hasNoPlant()) return false;

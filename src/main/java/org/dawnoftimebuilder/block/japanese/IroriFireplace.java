@@ -41,8 +41,8 @@ public class IroriFireplace extends CandleLampBlock {
             if (state.get(LIT)) {
                 worldIn.playSound(null, pos, SoundEvents.ENTITY_GENERIC_EXTINGUISH_FIRE, SoundCategory.BLOCKS, 1.0F, 1.0F);
             }
-            worldIn.setBlockState(pos, state.with(WATERLOGGED, true).with(LIT, false), 10);
-            worldIn.getPendingFluidTicks().scheduleTick(pos, fluidStateIn.getFluid(), fluidStateIn.getFluid().getTickRate(worldIn));
+            worldIn.setBlock(pos, state.setValue(WATERLOGGED, true).setValue(LIT, false), 10);
+            worldIn.getLiquidTicks().scheduleTick(pos, fluidStateIn.getFluid(), fluidStateIn.getFluid().getTickRate(worldIn));
             return true;
         } else {
             return false;

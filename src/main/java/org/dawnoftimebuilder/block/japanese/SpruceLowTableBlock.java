@@ -25,12 +25,12 @@ public class SpruceLowTableBlock extends DisplayerBlock {
 
 	public SpruceLowTableBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
 		super(materialIn, hardness, resistance, soundType);
-		this.setDefaultState(this.getStateContainer().getBaseState().with(HORIZONTAL_AXIS, Direction.Axis.X).with(WATERLOGGED, Boolean.FALSE).with(LIT, false));
+		this.registerDefaultState(this.defaultBlockState().setValue(HORIZONTAL_AXIS, Direction.Axis.X).setValue(WATERLOGGED, Boolean.FALSE).setValue(LIT, false));
 	}
 
 	@Override
-	protected void fillStateContainer(StateContainer.Builder<net.minecraft.block.Block, BlockState> builder) {
-		super.fillStateContainer(builder);
+	protected void createBlockStateDefinition(StateContainer.Builder<net.minecraft.block.Block, BlockState> builder) {
+		super.createBlockStateDefinition(builder);
 		builder.add(HORIZONTAL_AXIS);
 	}
 
@@ -43,7 +43,7 @@ public class SpruceLowTableBlock extends DisplayerBlock {
 	@Nonnull
 	@Override
 	public BlockState getStateForPlacement(BlockItemUseContext context) {
-		return this.defaultBlockState().with(HORIZONTAL_AXIS, context.getPlacementHorizontalFacing().getAxis() == Direction.Axis.Z ? Direction.Axis.X : Direction.Axis.Z);
+		return this.defaultBlockState().setValue(HORIZONTAL_AXIS, context.getHorizontalDirection().getAxis() == Direction.Axis.Z ? Direction.Axis.X : Direction.Axis.Z);
 	}
 
 	@Override
@@ -64,7 +64,7 @@ public class SpruceLowTableBlock extends DisplayerBlock {
 	@Nonnull
 	@Override
 	public BlockState rotate(@Nonnull BlockState state, @Nonnull Rotation rot) {
-		if(rot == Rotation.CLOCKWISE_90 || rot == Rotation.COUNTERCLOCKWISE_90) return state.with(HORIZONTAL_AXIS, (state.get(HORIZONTAL_AXIS) == Direction.Axis.X) ? Direction.Axis.Z : Direction.Axis.X);
+		if(rot == Rotation.CLOCKWISE_90 || rot == Rotation.COUNTERCLOCKWISE_90) return state.setValue(HORIZONTAL_AXIS, (state.get(HORIZONTAL_AXIS) == Direction.Axis.X) ? Direction.Axis.Z : Direction.Axis.X);
 		else return super.rotate(state, rot);
 	}
 }

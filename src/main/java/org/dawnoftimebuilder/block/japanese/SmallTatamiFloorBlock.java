@@ -36,7 +36,7 @@ public class SmallTatamiFloorBlock extends NoItemBlock {
 	}
 
 	@Override
-	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
+	protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
 		builder.add(HORIZONTAL_AXIS);
 	}
 
@@ -46,7 +46,7 @@ public class SmallTatamiFloorBlock extends NoItemBlock {
 	}
 
 	@Override
-	public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
+	public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
 		if(facing == Direction.UP){
 			BlockState stateAbove = worldIn.getBlockState(facingPos);
 			if(hasSolidSide(stateAbove, worldIn, facingPos, Direction.DOWN) && stateAbove.isSolid()){
@@ -61,8 +61,8 @@ public class SmallTatamiFloorBlock extends NoItemBlock {
 	public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
 		if(player.isCrouching()){
 			if(worldIn.isAirBlock(pos.above())){
-				worldIn.setBlockState(pos.above(), SMALL_TATAMI_MAT.defaultBlockState().with(SmallTatamiMatBlock.ROLLED, true).with(SmallTatamiMatBlock.HORIZONTAL_AXIS, state.get(HORIZONTAL_AXIS)), 10);
-				worldIn.setBlockState(pos, SPRUCE_PLANKS.defaultBlockState(), 10);
+				worldIn.setBlock(pos.above(), SMALL_TATAMI_MAT.defaultBlockState().setValue(SmallTatamiMatBlock.ROLLED, true).setValue(SmallTatamiMatBlock.HORIZONTAL_AXIS, state.getValue(HORIZONTAL_AXIS)), 10);
+				worldIn.setBlock(pos, SPRUCE_PLANKS.defaultBlockState(), 10);
 				worldIn.playSound(player, pos.above(), this.soundType.getPlaceSound(), SoundCategory.BLOCKS, (this.soundType.getVolume() + 1.0F) / 2.0F, this.soundType.getPitch() * 0.8F);
 				return true;
 			}
@@ -72,12 +72,12 @@ public class SmallTatamiFloorBlock extends NoItemBlock {
 
 	@Override
 	public BlockState rotate(BlockState state, Rotation rot) {
-		return state.with(HORIZONTAL_AXIS, state.get(HORIZONTAL_AXIS) == Direction.Axis.X ? Direction.Axis.Z : Direction.Axis.X);
+		return state.setValue(HORIZONTAL_AXIS, state.getValue(HORIZONTAL_AXIS) == Direction.Axis.X ? Direction.Axis.Z : Direction.Axis.X);
 	}
 
 	@Override
 	public void onPlayerDestroy(IWorld worldIn, BlockPos pos, BlockState state) {
 		super.onPlayerDestroy(worldIn, pos, state);
-		worldIn.setBlockState(pos, SPRUCE_PLANKS.defaultBlockState(), 10);
+		worldIn.setBlock(pos, SPRUCE_PLANKS.defaultBlockState(), 10);
 	}
 }

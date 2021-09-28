@@ -61,7 +61,7 @@ public class MixedSlabBlock extends SlabBlockDoTB implements IBlockCustomItem {
 				if(facing == recipe.getFacingForMerging(false)){
 					if (recipe.isConnectibleFirstSlab(state) && itemStack.getItem() == recipe.secondSlab.asItem()) {
 						BlockState madeState = recipe.mixedBlock.defaultBlockState();
-						if(worldIn.setBlockState(pos, madeState, 11))  {
+						if(worldIn.setBlock(pos, madeState, 11))  {
 							this.onBlockPlacedBy(worldIn, pos, state, player, itemStack);
 							if (player instanceof ServerPlayerEntity) {
 								CriteriaTriggers.PLACED_BLOCK.trigger((ServerPlayerEntity)player, pos, itemStack);
@@ -92,8 +92,8 @@ public class MixedSlabBlock extends SlabBlockDoTB implements IBlockCustomItem {
 				PlayerEntity player = context.getPlayer();
 				ItemStack itemStack = context.getItem();
 				World worldIn = context.getLevel();
-				BlockPos pos = context.getPos();
-				if(!context.replacingClickedOnBlock()) pos = pos.offset(facing.getOpposite());
+				BlockPos pos = context.getClickedPos();
+				if(!context.replacingClickedOnBlock()) pos = pos.relative(facing.getOpposite());
 				if(player != null){
 					if(!player.canPlayerEdit(pos, facing, itemStack))
 						return super.place(context);
@@ -107,7 +107,7 @@ public class MixedSlabBlock extends SlabBlockDoTB implements IBlockCustomItem {
 								BlockState madeState = recipe.mixedBlock.getStateForPlacement(context);
 								if(madeState == null)
 									continue;
-								if(worldIn.setBlockState(pos, madeState, 11))  {
+								if(worldIn.setBlock(pos, madeState, 11))  {
 									this.onBlockPlaced(pos, worldIn, player, itemStack, madeState);
 									this.getBlock().onBlockPlacedBy(worldIn, pos, state, player, itemStack);
 									if (player instanceof ServerPlayerEntity) {

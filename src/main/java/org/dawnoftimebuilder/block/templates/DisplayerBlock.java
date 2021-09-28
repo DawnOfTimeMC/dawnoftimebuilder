@@ -31,12 +31,12 @@ public abstract class DisplayerBlock extends WaterloggedBlock {
 
 	public DisplayerBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
 		super(materialIn, hardness, resistance, soundType);
-		this.setDefaultState(this.getStateContainer().getBaseState().with(WATERLOGGED,false).with(LIT, false));
+		this.registerDefaultState(this.defaultBlockState().setValue(WATERLOGGED,false).setValue(LIT, false));
 	}
 
 	@Override
-	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
-		super.fillStateContainer(builder);
+	protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
+		super.createBlockStateDefinition(builder);
 		builder.add(LIT);
 	}
 
@@ -84,7 +84,7 @@ public abstract class DisplayerBlock extends WaterloggedBlock {
 
 	@Override
 	public int getLightValue(BlockState state) {
-		return state.get(LIT) ? 14 : 0;
+		return state.getValue(LIT) ? 14 : 0;
 	}
 
 	public abstract double getDisplayerX(BlockState state);

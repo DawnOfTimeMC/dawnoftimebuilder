@@ -2,8 +2,6 @@ package org.dawnoftimebuilder.block.templates;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
@@ -19,49 +17,42 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import org.dawnoftimebuilder.util.DoTBBlockStateProperties;
-import org.dawnoftimebuilder.util.DoTBBlockUtils;
 
 import javax.annotation.Nullable;
 import java.util.List;
-
-import static org.dawnoftimebuilder.util.DoTBBlockUtils.TOOLTIP_COLUMN;
 
 public abstract class SidedPlaneConnectibleBlock extends SidedColumnConnectibleBlock {
 
 	public static final EnumProperty<DoTBBlockStateProperties.HorizontalConnection> HORIZONTAL_CONNECTION = DoTBBlockStateProperties.HORIZONTAL_CONNECTION;
 
-	public SidedPlaneConnectibleBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
-		this(Properties.of(materialIn).strength(hardness, resistance).sound(soundType));
-	}
-
 	public SidedPlaneConnectibleBlock(Properties properties) {
 		super(properties);
-		this.setDefaultState(this.getStateContainer().getBaseState().with(HORIZONTAL_CONNECTION, DoTBBlockStateProperties.HorizontalConnection.NONE));
+		this.registerDefaultState(this.defaultBlockState().setValue(HORIZONTAL_CONNECTION, DoTBBlockStateProperties.HorizontalConnection.NONE));
 	}
 
 	@Override
-	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
-		super.fillStateContainer(builder);
+	protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
+		super.createBlockStateDefinition(builder);
 		builder.add(HORIZONTAL_CONNECTION);
 	}
 
 	@Override
 	public BlockState getStateForPlacement(BlockItemUseContext context) {
-		return super.getStateForPlacement(context).with(FACING, context.getPlacementHorizontalFacing().getOpposite());
+		return super.getStateForPlacement(context).setValue(FACING, context.getHorizontalDirection().getOpposite());
 	}
 
 	@Override
-	public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
-		stateIn = super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
-		return (facing.getAxis() == stateIn.get(FACING).rotateY().getAxis()) ? stateIn.with(HORIZONTAL_CONNECTION, this.getLineState(worldIn, currentPos, stateIn)) : stateIn;
+	public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
+		stateIn = super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+		return (facing.getAxis() == stateIn.getValue(FACING).getClockWise().getAxis()) ? stateIn.setValue(HORIZONTAL_CONNECTION, this.getLineState(worldIn, currentPos, stateIn)) : stateIn;
 	}
 
 	public DoTBBlockStateProperties.HorizontalConnection getLineState(IWorld worldIn, BlockPos pos, BlockState stateIn){
-		Direction direction = stateIn.get(FACING).rotateY();
-		if(isConnectible(worldIn, pos.offset(direction, -1), stateIn)){
-			return (isConnectible(worldIn, pos.offset(direction), stateIn)) ? DoTBBlockStateProperties.HorizontalConnection.BOTH : DoTBBlockStateProperties.HorizontalConnection.LEFT;
+		Direction direction = stateIn.getValue(FACING).getClockWise();
+		if(isConnectible(worldIn, pos.relative(direction, -1), stateIn)){
+			return (isConnectible(worldIn, pos.relative(direction), stateIn)) ? DoTBBlockStateProperties.HorizontalConnection.BOTH : DoTBBlockStateProperties.HorizontalConnection.LEFT;
 		}else{
-			return (isConnectible(worldIn, pos.offset(direction), stateIn)) ? DoTBBlockStateProperties.HorizontalConnection.RIGHT : DoTBBlockStateProperties.HorizontalConnection.NONE;
+			return (isConnectible(worldIn, pos.relative(direction), stateIn)) ? DoTBBlockStateProperties.HorizontalConnection.RIGHT : DoTBBlockStateProperties.HorizontalConnection.NONE;
 		}
 	}
 
@@ -71,5 +62,5 @@ public abstract class SidedPlaneConnectibleBlock extends SidedColumnConnectibleB
 	}
 
 	@Override
-	public void addInformation(ItemStack stack, @Nullable IBlockReader worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {}
+	public void appendHoverText(ItemStack stack, @Nullable IBlockReader worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {}
 }

@@ -40,7 +40,7 @@ public class TatamiFloorBlock extends NoItemBlock {
 	}
 
 	@Override
-	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
+	protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
 		builder.add(HALF, FACING);
 	}
 
@@ -50,13 +50,13 @@ public class TatamiFloorBlock extends NoItemBlock {
 	}
 
 	@Override
-	public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
+	public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
 		Direction directionOtherHalf = (stateIn.get(HALF) == Half.TOP) ? stateIn.get(FACING) : stateIn.get(FACING).getOpposite();
 		if(facing == Direction.UP) {
 			BlockState stateAbove = worldIn.getBlockState(facingPos);
 			if (hasSolidSide(stateAbove, worldIn, facingPos, Direction.DOWN) && stateAbove.isSolid()) {
 				spawnAsEntity(worldIn.getLevel(), currentPos, new ItemStack(TATAMI_MAT.asItem(), 1));
-				worldIn.setBlockState(currentPos.offset(directionOtherHalf), SPRUCE_PLANKS.defaultBlockState(), 10);
+				worldIn.setBlock(currentPos.relative(directionOtherHalf), SPRUCE_PLANKS.defaultBlockState(), 10);
 				return SPRUCE_PLANKS.defaultBlockState();
 			}
 		}
@@ -73,15 +73,15 @@ public class TatamiFloorBlock extends NoItemBlock {
 		if(!worldIn.isClientSide){
 			if(player.isCrouching()){
 				boolean isTop = state.get(HALF) == Half.TOP;
-				BlockPos otherPos = (isTop) ? pos.offset(state.get(FACING)) : pos.offset(state.get(FACING).getOpposite());
+				BlockPos otherPos = (isTop) ? pos.relative(state.get(FACING)) : pos.relative(state.get(FACING).getOpposite());
 				if(isTop)//Check if the blocks above each part are AIR
 					if(!worldIn.isAirBlock(pos.above()))
 						return false;
 					else if(!worldIn.isAirBlock(otherPos.above()))
 						return false;
-				worldIn.setBlockState(pos, SPRUCE_PLANKS.defaultBlockState(), 2);
-				worldIn.setBlockState(otherPos, SPRUCE_PLANKS.defaultBlockState(), 2);
-				worldIn.setBlockState((isTop) ? pos.above() : otherPos.above(), TATAMI_MAT.defaultBlockState().with(TatamiMatBlock.HALF, Half.TOP).with(TatamiMatBlock.FACING, state.get(FACING)).with(TatamiMatBlock.ROLLED, true), 2);
+				worldIn.setBlock(pos, SPRUCE_PLANKS.defaultBlockState(), 2);
+				worldIn.setBlock(otherPos, SPRUCE_PLANKS.defaultBlockState(), 2);
+				worldIn.setBlock((isTop) ? pos.above() : otherPos.above(), TATAMI_MAT.defaultBlockState().setValue(TatamiMatBlock.HALF, Half.TOP).setValue(TatamiMatBlock.FACING, state.get(FACING)).setValue(TatamiMatBlock.ROLLED, true), 2);
 				return true;
 			}
 		}
@@ -89,16 +89,16 @@ public class TatamiFloorBlock extends NoItemBlock {
 	}
 
 	@Override
-	public PushReaction getPushReaction(BlockState state) {
+	public PushReaction getPistonPushReaction(BlockState state) {
 		return PushReaction.DESTROY;
 	}
 
 	@Override
 	public void onPlayerDestroy(IWorld worldIn, BlockPos pos, BlockState state) {
 		super.onPlayerDestroy(worldIn, pos, state);
-		BlockPos otherPos = (state.get(HALF) == Half.TOP) ? pos.offset(state.get(FACING)) : pos.offset(state.get(FACING).getOpposite());
-		worldIn.setBlockState(pos, SPRUCE_PLANKS.defaultBlockState(), 10);
-		worldIn.setBlockState(otherPos, SPRUCE_PLANKS.defaultBlockState(), 10);
+		BlockPos otherPos = (state.get(HALF) == Half.TOP) ? pos.relative(state.get(FACING)) : pos.relative(state.get(FACING).getOpposite());
+		worldIn.setBlock(pos, SPRUCE_PLANKS.defaultBlockState(), 10);
+		worldIn.setBlock(otherPos, SPRUCE_PLANKS.defaultBlockState(), 10);
 	}
 
 	@Override
@@ -108,7 +108,7 @@ public class TatamiFloorBlock extends NoItemBlock {
 
 	@Override
 	public BlockState rotate(BlockState state, Rotation rot) {
-		return state.with(FACING, rot.rotate(state.get(FACING)));
+		return state.setValue(FACING, rot.rotate(state.get(FACING)));
 	}
 
 	@Override

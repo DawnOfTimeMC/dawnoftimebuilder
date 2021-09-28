@@ -1,20 +1,18 @@
 package org.dawnoftimebuilder.block.templates;
 
 import net.minecraft.block.*;
-import net.minecraft.block.material.Material;
+import net.minecraft.state.properties.BlockStateProperties;
+import net.minecraft.util.Direction;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockReader;
 
 public class SlabBlockDoTB extends SlabBlock {
 
+	private int fireSpreadSpeed = 0;
+	private int fireDestructionSpeed = 0;
+
 	public SlabBlockDoTB(Properties properties) {
 		super(properties);
-	}
-
-	public SlabBlockDoTB(Material materialIn, float hardness, float resistance, SoundType soundType) {
-		this(Properties.of(materialIn).strength(hardness, resistance).sound(soundType));
-	}
-
-	public SlabBlockDoTB(Block block) {
-		this(Properties.from(block));
 	}
 
 	/**
@@ -27,13 +25,23 @@ public class SlabBlockDoTB extends SlabBlock {
 
 	/**
 	 * Set burning parameters (default 5 / 20)
-	 * @param encouragement Increases the probability to catch fire
-	 * @param flammability Decreases burning duration
+	 * @param fireSpreadSpeed Increases the probability to catch fire
+	 * @param fireDestructionSpeed Decreases burning duration
 	 * @return this
 	 */
-	public Block setBurnable(int encouragement, int flammability) {
-		FireBlock fireblock = (FireBlock) Blocks.FIRE;
-		fireblock.setFireInfo(this, encouragement, flammability);
+	public Block setBurnable(int fireSpreadSpeed, int fireDestructionSpeed) {
+		this.fireSpreadSpeed = fireSpreadSpeed;
+		this.fireDestructionSpeed = fireDestructionSpeed;
 		return this;
+	}
+
+	@Override
+	public int getFireSpreadSpeed(BlockState state, IBlockReader world, BlockPos pos, Direction face) {
+		return state.hasProperty(BlockStateProperties.WATERLOGGED) && state.getValue(BlockStateProperties.WATERLOGGED) ? 0 : this.fireSpreadSpeed;
+	}
+
+	@Override
+	public int getFlammability(BlockState state, IBlockReader world, BlockPos pos, Direction face) {
+		return state.hasProperty(BlockStateProperties.WATERLOGGED) && state.getValue(BlockStateProperties.WATERLOGGED) ? 0 : this.fireDestructionSpeed;
 	}
 }

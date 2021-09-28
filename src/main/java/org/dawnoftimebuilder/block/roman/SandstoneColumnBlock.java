@@ -28,7 +28,7 @@ public class SandstoneColumnBlock extends ColumnConnectibleBlock {
 
 	@Override
 	public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-		switch (state.get(VERTICAL_CONNECTION)) {
+		switch (state.getValue(VERTICAL_CONNECTION)) {
 			case UNDER:
 				return VS_TOP;
 			default:

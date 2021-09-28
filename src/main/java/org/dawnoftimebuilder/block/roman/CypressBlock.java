@@ -49,12 +49,12 @@ public class CypressBlock extends BlockDoTB {
 
     public CypressBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
         super(Properties.of(materialIn).strength(hardness, resistance).sound(soundType));
-        this.setDefaultState(this.getStateContainer().getBaseState().with(SIZE, 1));
+        this.registerDefaultState(this.defaultBlockState().setValue(SIZE, 1));
     }
 
     @Override
-    public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
-        return hasEnoughSolidSide(worldIn, pos.down(), Direction.UP) || worldIn.getBlockState(pos.down()).getBlock() == this;
+    public boolean canSurvive(BlockState state, IWorldReader worldIn, BlockPos pos) {
+        return hasEnoughSolidSide(worldIn, pos.below(), Direction.UP) || worldIn.getBlockState(pos.below()).getBlock() == this;
     }
 
     @Override
@@ -65,7 +65,7 @@ public class CypressBlock extends BlockDoTB {
             BlockPos topPos = this.getHighestCypressPos(worldIn, pos);
             if(topPos != pos){
                 if(!worldIn.isClientSide()) {
-                    worldIn.setBlockState(topPos, Blocks.AIR.defaultBlockState(), 35);
+                    worldIn.setBlock(topPos, Blocks.AIR.defaultBlockState(), 35);
                     if (!player.isCreative()) {
                         Block.spawnDrops(state, worldIn, pos, null, player, heldItemStack);
                     }
@@ -78,7 +78,7 @@ public class CypressBlock extends BlockDoTB {
                 BlockPos topPos = this.getHighestCypressPos(worldIn, pos).above();
                 if(topPos.getY() <= HIGHEST_Y){
                     if(!worldIn.isClientSide()) {
-                        worldIn.setBlockState(topPos, this.defaultBlockState(), 11);
+                        worldIn.setBlock(topPos, this.defaultBlockState(), 11);
                         if(!player.isCreative()) {
                             heldItemStack.shrink(1);
                         }
@@ -99,17 +99,17 @@ public class CypressBlock extends BlockDoTB {
     }
 
     @Override
-    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
         builder.add(SIZE);
     }
 
     public static BlockState setSize(BlockState state, int size){
-        return state.with(SIZE, size);
+        return state.setValue(SIZE, size);
     }
 
     @Override
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-        switch (state.get(SIZE)) {
+        switch (state.getValue(SIZE)) {
             case 0:
                 return VS_0;
             default:
@@ -128,25 +128,25 @@ public class CypressBlock extends BlockDoTB {
     @Nullable
     @Override
     public BlockState getStateForPlacement(BlockItemUseContext context) {
-        BlockState adjacentState = context.getLevel().getBlockState(context.getPos().above());
+        BlockState adjacentState = context.getLevel().getBlockState(context.getClickedPos().above());
         int size = (adjacentState.getBlock() == this) ? Math.min(adjacentState.get(SIZE) + 1, 5) : 1;
-        if(size < 3) return this.defaultBlockState().with(SIZE, size);
+        if(size < 3) return this.defaultBlockState().setValue(SIZE, size);
         else {
-            adjacentState = context.getLevel().getBlockState(context.getPos().down());
-            return this.defaultBlockState().with(SIZE, (adjacentState.getBlock() == this) ? size : 0);
+            adjacentState = context.getLevel().getBlockState(context.getClickedPos().below());
+            return this.defaultBlockState().setValue(SIZE, (adjacentState.getBlock() == this) ? size : 0);
         }
     }
 
     @Override
-    public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
+    public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
         if(facing.getAxis().isVertical()){
-            if(!isValidPosition(stateIn, worldIn, currentPos)) return Blocks.AIR.defaultBlockState();
+            if(!canSurvive(stateIn, worldIn, currentPos)) return Blocks.AIR.defaultBlockState();
             BlockState adjacentState = worldIn.getBlockState(currentPos.above());
             int size = (adjacentState.getBlock() == this) ? Math.min(adjacentState.get(SIZE) + 1, 5) : 1;
-            if(size < 3) return this.defaultBlockState().with(SIZE, size);
+            if(size < 3) return this.defaultBlockState().setValue(SIZE, size);
             else {
-                adjacentState = worldIn.getBlockState(currentPos.down());
-                return this.defaultBlockState().with(SIZE, (adjacentState.getBlock() == this) ? size : 0);
+                adjacentState = worldIn.getBlockState(currentPos.below());
+                return this.defaultBlockState().setValue(SIZE, (adjacentState.getBlock() == this) ? size : 0);
             }
         }else return stateIn;
     }
@@ -166,7 +166,7 @@ public class CypressBlock extends BlockDoTB {
     public void animateTick(BlockState stateIn, World worldIn, BlockPos pos, Random rand) {
         if (worldIn.isRainingAt(pos.above())) {
             if (rand.nextInt(15) == 1) {
-                BlockPos posDown = pos.down();
+                BlockPos posDown = pos.below();
                 BlockState stateDown = worldIn.getBlockState(posDown);
                 if (!stateDown.isSolid() || !stateDown.func_224755_d(worldIn, posDown, Direction.UP)) {
                     double x = pos.getX() + rand.nextFloat();
@@ -189,8 +189,8 @@ public class CypressBlock extends BlockDoTB {
     }
 
     @Override
-    public void addInformation(ItemStack stack, @Nullable IBlockReader worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
-        super.addInformation(stack, worldIn, tooltip, flagIn);
+    public void appendHoverText(ItemStack stack, @Nullable IBlockReader worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+        super.appendHoverText(stack, worldIn, tooltip, flagIn);
         DoTBBlockUtils.addTooltip(tooltip, TOOLTIP_COLUMN);
     }
 }

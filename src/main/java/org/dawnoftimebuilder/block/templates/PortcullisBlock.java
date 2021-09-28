@@ -1,9 +1,6 @@
 package org.dawnoftimebuilder.block.templates;
 
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
@@ -11,7 +8,6 @@ import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
@@ -28,8 +24,6 @@ import org.dawnoftimebuilder.util.DoTBBlockUtils;
 import javax.annotation.Nullable;
 import java.util.List;
 
-import static org.dawnoftimebuilder.util.DoTBBlockUtils.TOOLTIP_SIDED_WINDOW;
-
 public class PortcullisBlock extends WaterloggedBlock {
 
 	private static final BooleanProperty OPEN =  BlockStateProperties.OPEN;
@@ -37,85 +31,85 @@ public class PortcullisBlock extends WaterloggedBlock {
 	private static final EnumProperty<Direction.Axis> HORIZONTAL_AXIS = BlockStateProperties.HORIZONTAL_AXIS;
 	private static final EnumProperty<DoTBBlockStateProperties.VerticalConnection> VERTICAL_CONNECTION = DoTBBlockStateProperties.VERTICAL_CONNECTION;
 
-	private static final VoxelShape VS_AXIS_X = net.minecraft.block.Block.Block.box(0.0D, 0.0D, 6.0D, 16.0D, 16.0D, 10.0D);
-	private static final VoxelShape VS_AXIS_Z = net.minecraft.block.Block.Block.box(6.0D, 0.0D, 0.0D, 10.0D, 16.0D, 16.0D);
+	private static final VoxelShape VS_AXIS_X = net.minecraft.block.Block.box(0.0D, 0.0D, 6.0D, 16.0D, 16.0D, 10.0D);
+	private static final VoxelShape VS_AXIS_Z = net.minecraft.block.Block.box(6.0D, 0.0D, 0.0D, 10.0D, 16.0D, 16.0D);
 
-	public PortcullisBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
-		super(materialIn, hardness, resistance, soundType);
-		this.setDefaultState(this.getStateContainer().getBaseState().with(OPEN, false).with(POWERED, false).with(HORIZONTAL_AXIS, Direction.Axis.X).with(VERTICAL_CONNECTION, DoTBBlockStateProperties.VerticalConnection.NONE));
+	public PortcullisBlock(Properties properties) {
+		super(properties);
+		this.registerDefaultState(this.defaultBlockState().setValue(OPEN, false).setValue(POWERED, false).setValue(HORIZONTAL_AXIS, Direction.Axis.X).setValue(VERTICAL_CONNECTION, DoTBBlockStateProperties.VerticalConnection.NONE));
 	}
 
 	@Override
-	protected void fillStateContainer(StateContainer.Builder<net.minecraft.block.Block, BlockState> builder) {
-		super.fillStateContainer(builder);
+	protected void createBlockStateDefinition(StateContainer.Builder<net.minecraft.block.Block, BlockState> builder) {
+		super.createBlockStateDefinition(builder);
 		builder.add(OPEN, POWERED, HORIZONTAL_AXIS, VERTICAL_CONNECTION);
 	}
 
 	@Override
 	public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-		if(state.get(OPEN) && state.get(VERTICAL_CONNECTION) != DoTBBlockStateProperties.VerticalConnection.NONE && state.get(VERTICAL_CONNECTION) != DoTBBlockStateProperties.VerticalConnection.UNDER)
+		if(state.getValue(OPEN) && state.getValue(VERTICAL_CONNECTION) != DoTBBlockStateProperties.VerticalConnection.NONE && state.getValue(VERTICAL_CONNECTION) != DoTBBlockStateProperties.VerticalConnection.UNDER)
 			return VoxelShapes.empty();
-		else return (state.get(HORIZONTAL_AXIS) == Direction.Axis.X) ? VS_AXIS_X : VS_AXIS_Z;
+		else return (state.getValue(HORIZONTAL_AXIS) == Direction.Axis.X) ? VS_AXIS_X : VS_AXIS_Z;
 	}
 
 	@Override
 	public BlockState getStateForPlacement(BlockItemUseContext context) {
 		BlockState state = super.getStateForPlacement(context);
-		state = state.with(HORIZONTAL_AXIS, (context.getPlacementHorizontalFacing().getAxis() == Direction.Axis.X) ? Direction.Axis.Z : Direction.Axis.X);
-		return this.getShape(state, context.getLevel(), context.getPos());
+		state = state.setValue(HORIZONTAL_AXIS, (context.getHorizontalDirection().getAxis() == Direction.Axis.X) ? Direction.Axis.Z : Direction.Axis.X);
+		return this.getShape(state, context.getLevel(), context.getClickedPos());
 	}
 
 	@Override
-	public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
-		stateIn = super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+	public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
+		stateIn = super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
 		return this.getShape(stateIn, worldIn, currentPos);
 	}
 
 	private BlockState getShape(BlockState state, IWorld worldIn, BlockPos pos){
-		Direction.Axis axis = state.get(HORIZONTAL_AXIS);
+		Direction.Axis axis = state.getValue(HORIZONTAL_AXIS);
 		if(hasSameAxis(worldIn.getBlockState(pos.above()), axis)){
-			return state.with(VERTICAL_CONNECTION, (hasSameAxis(worldIn.getBlockState(pos.down()), axis)) ? DoTBBlockStateProperties.VerticalConnection.BOTH : DoTBBlockStateProperties.VerticalConnection.ABOVE);
+			return state.setValue(VERTICAL_CONNECTION, (hasSameAxis(worldIn.getBlockState(pos.below()), axis)) ? DoTBBlockStateProperties.VerticalConnection.BOTH : DoTBBlockStateProperties.VerticalConnection.ABOVE);
 		}else{
-			return state.with(VERTICAL_CONNECTION, (hasSameAxis(worldIn.getBlockState(pos.down()), axis)) ? DoTBBlockStateProperties.VerticalConnection.UNDER : DoTBBlockStateProperties.VerticalConnection.NONE);
+			return state.setValue(VERTICAL_CONNECTION, (hasSameAxis(worldIn.getBlockState(pos.below()), axis)) ? DoTBBlockStateProperties.VerticalConnection.UNDER : DoTBBlockStateProperties.VerticalConnection.NONE);
 		}
 	}
 
 	private boolean hasSameAxis(BlockState state, Direction.Axis axis){
 		if(state.getBlock() instanceof PortcullisBlock){
-			return state.get(HORIZONTAL_AXIS) == axis;
+			return state.getValue(HORIZONTAL_AXIS) == axis;
 		}else return false;
 	}
 
 	@Override
 	public void neighborChanged(BlockState state, World worldIn, BlockPos pos, net.minecraft.block.Block blockIn, BlockPos fromPos, boolean isMoving) {
-		if (state.get(VERTICAL_CONNECTION) == DoTBBlockStateProperties.VerticalConnection.UNDER) {
+		if (state.getValue(VERTICAL_CONNECTION) == DoTBBlockStateProperties.VerticalConnection.UNDER) {
 			//update coming from top blocks : check the shape of whole portcullis to know if it can be or stay open
-			Direction.Axis axis = state.get(HORIZONTAL_AXIS);
-			boolean isNowPowered = worldIn.isBlockPowered(pos);
-			if(state.get(OPEN)){
+			Direction.Axis axis = state.getValue(HORIZONTAL_AXIS);
+			boolean isNowPowered = worldIn.hasNeighborSignal(pos);
+			if(state.getValue(OPEN)){
 				if(isInSamePlane(pos, fromPos, axis) && isNowPowered) setOpenState(worldIn, pos, axis,true);
 			}else{
 				if(isNowPowered){
 					setOpenState(worldIn, pos, axis,true);
-					state = state.with(OPEN, true);
+					state = state.setValue(OPEN, true);
 				}
 			}
-			if(!isNowPowered && state.get(POWERED)){
-				state = state.with(POWERED, false);
-				worldIn.setBlockState(pos, state, 2);
+			if(!isNowPowered && state.getValue(POWERED)){
+				state = state.setValue(POWERED, false);
+				worldIn.setBlock(pos, state, 2);
 				if(!hasAnotherPowerSource(worldIn, pos, axis)) setOpenState(worldIn, pos, axis,false);
 			}
-			if(isNowPowered != state.get(POWERED)) {
-				state = state.with(POWERED, isNowPowered);
-				worldIn.setBlockState(pos, state, 2);
+			if(isNowPowered != state.getValue(POWERED)) {
+				state = state.setValue(POWERED, isNowPowered);
+				worldIn.setBlock(pos, state, 2);
 			}
-		} else if(state.get(VERTICAL_CONNECTION) == DoTBBlockStateProperties.VerticalConnection.NONE) {
-			if(state.get(OPEN)) worldIn.setBlockState(pos, state.with(OPEN, false), 2);
+		} else if(state.getValue(VERTICAL_CONNECTION) == DoTBBlockStateProperties.VerticalConnection.NONE) {
+			if(state.getValue(OPEN)) worldIn.setBlock(pos, state.setValue(OPEN, false), 2);
 		} else {
 			//update coming from the rest of the portcullis (and when opening) : send an update task to top blocks
 			//NB : VerticalConnection.NONE can't be open
-			if (state.get(OPEN)) {
-				Direction.Axis axis = state.get(HORIZONTAL_AXIS);
+			if (state.getValue(OPEN)) {
+				Direction.Axis axis = state.getValue(HORIZONTAL_AXIS);
 				if(isInSamePlane(pos, fromPos, axis)){
 					pos = getTopPortcullisPos(worldIn, pos, axis);
 					worldIn.getBlockState(pos).neighborChanged(worldIn, pos, blockIn, fromPos, isMoving);
@@ -136,7 +130,7 @@ public class PortcullisBlock extends WaterloggedBlock {
 				if(!hasSameAxis(state, axis)) isStillPortcullis = false;
 			}else isStillPortcullis = false;
 		}
-		return pos.down();
+		return pos.below();
 	}
 
 	private boolean hasAnotherPowerSource(World worldIn, BlockPos pos, Direction.Axis axis){
@@ -145,10 +139,10 @@ public class PortcullisBlock extends WaterloggedBlock {
 		int widthLeft = getPortcullisWidth(worldIn, pos, axis, (isAxisX) ? Direction.EAST : Direction.SOUTH);
 		int widthRight = getPortcullisWidth(worldIn, pos, axis, (isAxisX) ? Direction.WEST : Direction.NORTH);
 		BlockState state;
-		pos = pos.offset(direction, -widthLeft);
+		pos = pos.relative(direction, -widthLeft);
 		for(int i = 0; i <= (widthLeft + widthRight); i++){
-			state = worldIn.getBlockState(pos.offset(direction, i));
-			if(state.get(POWERED)) return true;
+			state = worldIn.getBlockState(pos.relative(direction, i));
+			if(state.getValue(POWERED)) return true;
 		}
 		return false;
 	}
@@ -164,9 +158,9 @@ public class PortcullisBlock extends WaterloggedBlock {
 		if(openState){
 			for(int horizontal = 1; horizontal <= widthLeft; horizontal++){
 				for(int vertical = 0; vertical < height; vertical++){
-					state = worldIn.getBlockState(pos.offset((isAxisX) ? Direction.EAST : Direction.SOUTH, horizontal).down(vertical));
+					state = worldIn.getBlockState(pos.relative((isAxisX) ? Direction.EAST : Direction.SOUTH, horizontal).below(vertical));
 					if(state.getBlock() instanceof PortcullisBlock){
-						if(state.get(HORIZONTAL_AXIS) != axis) {
+						if(state.getValue(HORIZONTAL_AXIS) != axis) {
 							openState = false;
 							break;
 						}
@@ -180,9 +174,9 @@ public class PortcullisBlock extends WaterloggedBlock {
 			if(openState) {
 				for (int horizontal = 1; horizontal <= widthRight; horizontal++) {
 					for (int vertical = 0; vertical < height; vertical++) {
-						state = worldIn.getBlockState(pos.offset(direction, horizontal).down(vertical));
+						state = worldIn.getBlockState(pos.relative(direction, horizontal).below(vertical));
 						if (state.getBlock() instanceof PortcullisBlock) {
-							if (state.get(HORIZONTAL_AXIS) != axis) {
+							if (state.getValue(HORIZONTAL_AXIS) != axis) {
 								openState = false;
 								break;
 							}
@@ -195,24 +189,24 @@ public class PortcullisBlock extends WaterloggedBlock {
 				}
 			}
 			if(openState) {
-				openState = isCorrectBorder(worldIn, pos.offset(direction, -widthLeft).above(), axis, (isAxisX) ? Direction.WEST : Direction.NORTH, widthLeft + widthRight);
-				openState = openState && isCorrectBorder(worldIn, pos.offset(direction, -widthLeft).down(height), axis, (isAxisX) ? Direction.WEST : Direction.NORTH, widthLeft + widthRight);
-				openState = openState && isCorrectBorder(worldIn, pos.offset(direction, -widthLeft - 1), axis, Direction.DOWN, height - 1);
-				openState = openState && isCorrectBorder(worldIn, pos.offset(direction, widthRight + 1), axis, Direction.DOWN, height - 1);
+				openState = isCorrectBorder(worldIn, pos.relative(direction, -widthLeft).above(), axis, (isAxisX) ? Direction.WEST : Direction.NORTH, widthLeft + widthRight);
+				openState = openState && isCorrectBorder(worldIn, pos.relative(direction, -widthLeft).below(height), axis, (isAxisX) ? Direction.WEST : Direction.NORTH, widthLeft + widthRight);
+				openState = openState && isCorrectBorder(worldIn, pos.relative(direction, -widthLeft - 1), axis, Direction.DOWN, height - 1);
+				openState = openState && isCorrectBorder(worldIn, pos.relative(direction, widthRight + 1), axis, Direction.DOWN, height - 1);
 			}
 		}
-		pos = pos.offset(direction, -widthLeft);
+		pos = pos.relative(direction, -widthLeft);
 		BlockPos newPos;
 		for(int horizontal = 0; horizontal < widthLeft + widthRight + 1; horizontal++){
 			for(int vertical = 0; vertical < height; vertical++){
-				newPos = pos.offset(direction, horizontal).down(vertical);
+				newPos = pos.relative(direction, horizontal).below(vertical);
 				state = worldIn.getBlockState(newPos);
 				if(state.getBlock() instanceof PortcullisBlock){
-					if(state.get(HORIZONTAL_AXIS) == axis) {
-						worldIn.setBlockState(newPos, state.with(OPEN, openState), 10);
+					if(state.getValue(HORIZONTAL_AXIS) == axis) {
+						worldIn.setBlock(newPos, state.setValue(OPEN, openState), 10);
 						if(horizontal == widthLeft){
-							if(vertical == 0 && openState) worldIn.playEvent(null, this.getOpenSound(), newPos, 0);
-							if(vertical == height - 1 && !openState) worldIn.playEvent(null, this.getCloseSound(), newPos, 0);
+							if(vertical == 0 && openState) worldIn.levelEvent(null, this.getOpenSound(), newPos, 0);
+							if(vertical == height - 1 && !openState) worldIn.levelEvent(null, this.getCloseSound(), newPos, 0);
 						}
 					}
 				}
@@ -224,10 +218,10 @@ public class PortcullisBlock extends WaterloggedBlock {
 		int height = 0;
 		BlockState state;
 		for (boolean isSamePortcullis = true; isSamePortcullis; height++) {
-			pos = pos.down();
+			pos = pos.below();
 			state = worldIn.getBlockState(pos);
 			if(state.getBlock() instanceof PortcullisBlock){
-				if(state.get(HORIZONTAL_AXIS) != axis) isSamePortcullis = false;
+				if(state.getValue(HORIZONTAL_AXIS) != axis) isSamePortcullis = false;
 			}else isSamePortcullis = false;
 		}
 		return height;
@@ -237,10 +231,10 @@ public class PortcullisBlock extends WaterloggedBlock {
 		int width = 0;
 		BlockState state;
 		for (boolean isSamePortcullis = true; isSamePortcullis; width++) {
-			pos = pos.offset(direction);
+			pos = pos.relative(direction);
 			state = worldIn.getBlockState(pos);
 			if(state.getBlock() instanceof PortcullisBlock){
-				if(state.get(HORIZONTAL_AXIS) != axis) isSamePortcullis = false;
+				if(state.getValue(HORIZONTAL_AXIS) != axis) isSamePortcullis = false;
 			}else isSamePortcullis = false;
 		}
 		return (width - 1);
@@ -249,9 +243,9 @@ public class PortcullisBlock extends WaterloggedBlock {
 	private boolean isCorrectBorder(World worldIn, BlockPos pos, Direction.Axis axis, Direction direction, int length){
 		BlockState state;
 		for(int i = 0; i <= length; i++){
-			state = worldIn.getBlockState(pos.offset(direction, i));
+			state = worldIn.getBlockState(pos.relative(direction, i));
 			if(state.getBlock() instanceof PortcullisBlock){
-				if(state.get(HORIZONTAL_AXIS) == axis) return false;
+				if(state.getValue(HORIZONTAL_AXIS) == axis) return false;
 			}
 		}
 		return true;
@@ -267,19 +261,14 @@ public class PortcullisBlock extends WaterloggedBlock {
 	}
 
 	@Override
-	public BlockRenderLayer getRenderLayer() {
-		return BlockRenderLayer.CUTOUT_MIPPED;
-	}
-
-	@Override
 	public BlockState rotate(BlockState state, Rotation rot) {
-		if(rot == Rotation.CLOCKWISE_90 || rot == Rotation.COUNTERCLOCKWISE_90) return state.with(HORIZONTAL_AXIS, (state.get(HORIZONTAL_AXIS) == Direction.Axis.X) ? Direction.Axis.Z : Direction.Axis.X);
+		if(rot == Rotation.CLOCKWISE_90 || rot == Rotation.COUNTERCLOCKWISE_90) return state.setValue(HORIZONTAL_AXIS, (state.getValue(HORIZONTAL_AXIS) == Direction.Axis.X) ? Direction.Axis.Z : Direction.Axis.X);
 		else return super.rotate(state, rot);
 	}
 
 	@Override
-	public void addInformation(ItemStack stack, @Nullable IBlockReader worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
-		super.addInformation(stack, worldIn, tooltip, flagIn);
+	public void appendHoverText(ItemStack stack, @Nullable IBlockReader worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+		super.appendHoverText(stack, worldIn, tooltip, flagIn);
 		DoTBBlockUtils.addTooltip(tooltip, this);
 	}
 }

@@ -16,10 +16,6 @@ public class BlockDoTB extends Block {
 		super(properties);
 	}
 
-	public BlockDoTB(Material materialIn, float hardness, float resistance, SoundType soundType) {
-		this(Properties.of(materialIn).strength(hardness, resistance).sound(soundType));
-	}
-
 	/**
 	 * Set Encouragement to 5 and Flammability to 20
 	 * @return this
