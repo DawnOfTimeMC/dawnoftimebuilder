@@ -3,8 +3,6 @@ package org.dawnoftimebuilder.block.roman;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
@@ -12,7 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
-import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
@@ -35,7 +33,6 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Random;
 
-import static net.minecraft.block.Blocks.OAK_LEAVES;
 import static org.dawnoftimebuilder.util.DoTBBlockUtils.HIGHEST_Y;
 import static org.dawnoftimebuilder.util.DoTBBlockUtils.TOOLTIP_COLUMN;
 
@@ -47,18 +44,18 @@ public class CypressBlock extends BlockDoTB {
     private static final VoxelShape VS_2 = Block.box(4.0D, 0.0D, 4.0D, 12.0D, 16.0D, 12.0D);
     private static final VoxelShape VS_3_4 = Block.box(2.0D, 0.0D, 2.0D, 14.0D, 16.0D, 14.0D);
 
-    public CypressBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
-        super(Properties.of(materialIn).strength(hardness, resistance).sound(soundType));
+    public CypressBlock(Properties properties) {
+        super(properties);
         this.registerDefaultState(this.defaultBlockState().setValue(SIZE, 1));
     }
 
     @Override
     public boolean canSurvive(BlockState state, IWorldReader worldIn, BlockPos pos) {
-        return hasEnoughSolidSide(worldIn, pos.below(), Direction.UP) || worldIn.getBlockState(pos.below()).getBlock() == this;
+        return canSupportCenter(worldIn, pos.below(), Direction.UP) || worldIn.getBlockState(pos.below()).getBlock() == this;
     }
 
     @Override
-    public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+    public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
         ItemStack heldItemStack = player.getItemInHand(handIn);
         if(player.isCrouching()) {
             //We remove the highest CypressBlock
@@ -67,10 +64,10 @@ public class CypressBlock extends BlockDoTB {
                 if(!worldIn.isClientSide()) {
                     worldIn.setBlock(topPos, Blocks.AIR.defaultBlockState(), 35);
                     if (!player.isCreative()) {
-                        Block.spawnDrops(state, worldIn, pos, null, player, heldItemStack);
+                        Block.dropResources(state, worldIn, pos, null, player, heldItemStack);
                     }
                 }
-                return true;
+                return ActionResultType.SUCCESS;
             }
         }else{
             if(!heldItemStack.isEmpty() && heldItemStack.getItem() == this.asItem()){
@@ -83,11 +80,11 @@ public class CypressBlock extends BlockDoTB {
                             heldItemStack.shrink(1);
                         }
                     }
-                    return true;
+                    return ActionResultType.SUCCESS;
                 }
             }
         }
-        return super.onBlockActivated(state, worldIn, pos, player, handIn, hit);
+        return super.use(state, worldIn, pos, player, handIn, hit);
     }
 
     private BlockPos getHighestCypressPos(World worldIn, BlockPos pos){
@@ -121,15 +118,20 @@ public class CypressBlock extends BlockDoTB {
             case 4:
                 return VS_3_4;
             case 5:
-                return VoxelShapes.fullCube();
+                return VoxelShapes.block();
         }
+    }
+
+    @Override
+    public VoxelShape getBlockSupportShape(BlockState p_230335_1_, IBlockReader p_230335_2_, BlockPos p_230335_3_) {
+        return VoxelShapes.empty();
     }
 
     @Nullable
     @Override
     public BlockState getStateForPlacement(BlockItemUseContext context) {
         BlockState adjacentState = context.getLevel().getBlockState(context.getClickedPos().above());
-        int size = (adjacentState.getBlock() == this) ? Math.min(adjacentState.get(SIZE) + 1, 5) : 1;
+        int size = (adjacentState.getBlock() == this) ? Math.min(adjacentState.getValue(SIZE) + 1, 5) : 1;
         if(size < 3) return this.defaultBlockState().setValue(SIZE, size);
         else {
             adjacentState = context.getLevel().getBlockState(context.getClickedPos().below());
@@ -142,7 +144,7 @@ public class CypressBlock extends BlockDoTB {
         if(facing.getAxis().isVertical()){
             if(!canSurvive(stateIn, worldIn, currentPos)) return Blocks.AIR.defaultBlockState();
             BlockState adjacentState = worldIn.getBlockState(currentPos.above());
-            int size = (adjacentState.getBlock() == this) ? Math.min(adjacentState.get(SIZE) + 1, 5) : 1;
+            int size = (adjacentState.getBlock() == this) ? Math.min(adjacentState.getValue(SIZE) + 1, 5) : 1;
             if(size < 3) return this.defaultBlockState().setValue(SIZE, size);
             else {
                 adjacentState = worldIn.getBlockState(currentPos.below());
@@ -151,24 +153,13 @@ public class CypressBlock extends BlockDoTB {
         }else return stateIn;
     }
 
-    @Override
-    public BlockRenderLayer getRenderLayer() {
-        //OAK_LEAVES RenderLayer uses renderTranslucent from parameters.
-        return OAK_LEAVES.getRenderLayer();
-    }
-
-    @Override
-    public int getOpacity(BlockState state, IBlockReader worldIn, BlockPos pos) {
-        return 1;
-    }
-
     @OnlyIn(Dist.CLIENT)
     public void animateTick(BlockState stateIn, World worldIn, BlockPos pos, Random rand) {
         if (worldIn.isRainingAt(pos.above())) {
             if (rand.nextInt(15) == 1) {
                 BlockPos posDown = pos.below();
                 BlockState stateDown = worldIn.getBlockState(posDown);
-                if (!stateDown.isSolid() || !stateDown.func_224755_d(worldIn, posDown, Direction.UP)) {
+                if (!stateDown.canOcclude() || !stateDown.isFaceSturdy(worldIn, posDown, Direction.UP)) {
                     double x = pos.getX() + rand.nextFloat();
                     double y = pos.getY() - 0.05D;
                     double z = pos.getZ() + rand.nextFloat();
@@ -176,16 +167,6 @@ public class CypressBlock extends BlockDoTB {
                 }
             }
         }
-    }
-
-    @Override
-    public boolean isSolid(BlockState state) {
-        return false;
-    }
-
-    @Override
-    public boolean causesSuffocation(BlockState state, IBlockReader worldIn, BlockPos pos) {
-        return false;
     }
 
     @Override

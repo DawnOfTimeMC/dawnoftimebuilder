@@ -1,5 +1,6 @@
 package org.dawnoftimebuilder.block.templates;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.SoundType;
@@ -32,6 +33,6 @@ public class CarpetBlockDoTB extends WaterloggedBlock {
 
 	@Override
 	public boolean canSurvive(BlockState state, IWorldReader worldIn, BlockPos pos) {
-		return !worldIn.isAirBlock(pos.below());
+		return !worldIn.isEmptyBlock(pos.below());
 	}
 }

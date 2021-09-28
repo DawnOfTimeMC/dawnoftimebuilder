@@ -4,6 +4,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.IWaterLoggable;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
@@ -111,7 +112,7 @@ public interface IBlockClimbingPlant {
 	 * @param handIn Active hand.
 	 * @return True if the Climbing Plant was modified.
 	 */
-	default boolean harvestPlant(BlockState stateIn, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn){
+	default ActionResultType harvestPlant(BlockState stateIn, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn){
 		if(player.isCreative() && stateIn.getValue(PERSISTENT) && !stateIn.getValue(CLIMBING_PLANT).hasNoPlant()){
 			if(player.isCrouching()){
 				if(stateIn.getValue(AGE_0_6) > 0){
@@ -119,13 +120,13 @@ public interface IBlockClimbingPlant {
 				}else{
 					worldIn.setBlock(pos, stateIn.setValue(CLIMBING_PLANT, DoTBBlockStateProperties.ClimbingPlant.NONE).setValue(AGE_0_6, 0), 10);
 				}
-				return true;
+				return ActionResultType.SUCCESS;
 			}else{
 				if(stateIn.getValue(AGE_0_6) < stateIn.getValue(CLIMBING_PLANT).maxAge()){
 					worldIn.setBlock(pos, stateIn.setValue(AGE_0_6, stateIn.getValue(AGE_0_6) + 1), 10);
-					return true;
+					return ActionResultType.SUCCESS;
 				}
-				return false;
+				return ActionResultType.PASS;
 			}
 		}else{
 			if(stateIn.getValue(AGE_0_6) > 2){
@@ -133,13 +134,13 @@ public interface IBlockClimbingPlant {
 					stateIn = stateIn.setValue(AGE_0_6, 2);
 					worldIn.setBlock(pos, stateIn, 10);
 					worldIn.playSound(null, pos, SoundEvents.GRASS_BREAK, SoundCategory.BLOCKS, 1.0F, 1.0F);
-					return true;
+					return ActionResultType.SUCCESS;
 				}
 			}
 			if(player.isCrouching()){
 				return tryRemovingPlant(stateIn, worldIn, pos, player.getItemInHand(handIn));
 			}
-			return false;
+			return ActionResultType.PASS;
 		}
 	}
 
@@ -151,13 +152,13 @@ public interface IBlockClimbingPlant {
 	 * @param heldItemStack Item in active hand to apply tool conditions in the LootTable.
 	 * @return True if a Climbing Plant was removed.
 	 */
-	default boolean tryRemovingPlant(BlockState stateIn, World worldIn, BlockPos pos, ItemStack heldItemStack){
+	default ActionResultType tryRemovingPlant(BlockState stateIn, World worldIn, BlockPos pos, ItemStack heldItemStack){
 		if(!stateIn.getValue(CLIMBING_PLANT).hasNoPlant()){
 			stateIn = this.removePlant(stateIn, worldIn, pos, heldItemStack);
 			worldIn.setBlock(pos, stateIn, 10);
-			return true;
+			return ActionResultType.SUCCESS;
 		}
-		return false;
+		return ActionResultType.PASS;
 	}
 
 	/**

@@ -4,18 +4,22 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
+import net.minecraft.entity.projectile.ProjectileEntity;
+import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
-import net.minecraft.fluid.IFluidState;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.util.*;
+import net.minecraft.util.ActionResultType;
+import net.minecraft.util.Hand;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
+import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
@@ -44,7 +48,7 @@ public abstract class CandleLampBlock extends WaterloggedBlock implements IBlock
 
     @OnlyIn(Dist.CLIENT)
     public void animateLitCandle(BlockState stateIn, World worldIn, BlockPos pos, double x, double y, double z){
-        if (stateIn.get(LIT)) {
+        if (stateIn.getValue(LIT)) {
             double d0 = (double)pos.getX() + x;
             double d1 = (double)pos.getY() + y;
             double d2 = (double)pos.getZ() + z;
@@ -54,41 +58,41 @@ public abstract class CandleLampBlock extends WaterloggedBlock implements IBlock
     }
 
     @Override
-    public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit){
-        if (state.get(LIT)) {
+    public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit){
+        if (state.getValue(LIT)) {
             worldIn.setBlock(pos, state.setValue(LIT, false), 10);
-            worldIn.playSound(null, pos, SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.BLOCKS, 1.0F, 1.0F);
-            return true;
+            worldIn.playSound(null, pos, SoundEvents.GENERIC_EXTINGUISH_FIRE, SoundCategory.BLOCKS, 1.0F, 1.0F);
+            return ActionResultType.SUCCESS;
         } else {
-            if(state.get(WATERLOGGED)) return false;
+            if(state.getValue(WATERLOGGED)) return ActionResultType.PASS;
             if (DoTBBlockUtils.useLighter(worldIn, pos, player, handIn)) {
                 worldIn.setBlock(pos, state.setValue(LIT, true), 10);
-                return true;
+                return ActionResultType.SUCCESS;
             }
         }
-        return false;
+        return ActionResultType.PASS;
     }
 
     @Override
-    public void onProjectileCollision(World worldIn, BlockState state, BlockRayTraceResult hit, Entity projectile) {
+    public void onProjectileHit(World worldIn, BlockState state, BlockRayTraceResult hit, ProjectileEntity projectile) {
         if (!worldIn.isClientSide && projectile instanceof AbstractArrowEntity) {
             AbstractArrowEntity abstractarrowentity = (AbstractArrowEntity)projectile;
-            if (abstractarrowentity.isBurning() && !state.get(LIT) && !state.get(WATERLOGGED)) {
-                BlockPos pos = hit.getPos();
+            if (abstractarrowentity.isOnFire() && !state.getValue(LIT) && !state.getValue(WATERLOGGED)) {
+                BlockPos pos = hit.getBlockPos();
                 worldIn.setBlock(pos, state.setValue(LIT, true), 10);
-                worldIn.playSound(null, pos, SoundEvents.BLOCK_FIRE_AMBIENT, SoundCategory.BLOCKS, 1.0F, 1.0F);
+                worldIn.playSound(null, pos, SoundEvents.FIRE_AMBIENT, SoundCategory.BLOCKS, 1.0F, 1.0F);
             }
         }
     }
 
     @Override
-    public boolean receiveFluid(IWorld worldIn, BlockPos pos, BlockState state, IFluidState fluidStateIn) {
-        if (!state.get(WATERLOGGED) && fluidStateIn.getFluid() == Fluids.WATER) {
-            if (state.get(LIT)) {
-                worldIn.playSound(null, pos, SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.BLOCKS, 1.0F, 1.0F);
+    public boolean placeLiquid(IWorld worldIn, BlockPos pos, BlockState state, FluidState fluidStateIn) {
+        if (!state.getValue(WATERLOGGED) && fluidStateIn.getType() == Fluids.WATER) {
+            if (state.getValue(LIT)) {
+                worldIn.playSound(null, pos, SoundEvents.GENERIC_EXTINGUISH_FIRE, SoundCategory.BLOCKS, 1.0F, 1.0F);
             }
             worldIn.setBlock(pos, state.setValue(WATERLOGGED, true).setValue(LIT, false), 10);
-            worldIn.getLiquidTicks().scheduleTick(pos, fluidStateIn.getFluid(), fluidStateIn.getFluid().getTickRate(worldIn));
+            worldIn.getLiquidTicks().scheduleTick(pos, fluidStateIn.getType(), fluidStateIn.getType().getTickDelay(worldIn));
             return true;
         } else {
             return false;
@@ -96,8 +100,8 @@ public abstract class CandleLampBlock extends WaterloggedBlock implements IBlock
     }
 
     @Override
-    public int getLightValue(BlockState state) {
-        return state.get(LIT) ? this.getLitLightValue() : 0;
+    public int getLightValue(BlockState state, IBlockReader world, BlockPos pos) {
+        return state.getValue(LIT) ? this.getLitLightValue() : 0;
     }
 
     public abstract int getLitLightValue();

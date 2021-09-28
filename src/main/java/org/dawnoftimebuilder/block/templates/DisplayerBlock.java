@@ -2,8 +2,6 @@ package org.dawnoftimebuilder.block.templates;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.InventoryHelper;
@@ -12,6 +10,7 @@ import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
@@ -29,9 +28,9 @@ public abstract class DisplayerBlock extends WaterloggedBlock {
 
 	public static final BooleanProperty LIT = BlockStateProperties.LIT;
 
-	public DisplayerBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
-		super(materialIn, hardness, resistance, soundType);
-		this.registerDefaultState(this.defaultBlockState().setValue(WATERLOGGED,false).setValue(LIT, false));
+	public DisplayerBlock(Properties properties) {
+		super(properties);
+		this.registerDefaultState(this.defaultBlockState().setValue(LIT, false));
 	}
 
 	@Override
@@ -52,38 +51,33 @@ public abstract class DisplayerBlock extends WaterloggedBlock {
 	}
 
 	@Override
-	public boolean isSolid(final BlockState state) {
-		return false;
-	}
-
-	@Override
-	public boolean onBlockActivated(BlockState blockState, World world, BlockPos pos, PlayerEntity playerEntity, Hand hand, BlockRayTraceResult rayTraceResult) {
+	public ActionResultType use(BlockState blockState, World world, BlockPos pos, PlayerEntity playerEntity, Hand hand, BlockRayTraceResult rayTraceResult) {
 		if(!world.isClientSide()){
-			TileEntity tileEntity = world.getTileEntity(pos);
+			TileEntity tileEntity = world.getBlockEntity(pos);
 			if(tileEntity instanceof INamedContainerProvider){
-				NetworkHooks.openGui((ServerPlayerEntity) playerEntity, (INamedContainerProvider) tileEntity, tileEntity.getPos());
+				NetworkHooks.openGui((ServerPlayerEntity) playerEntity, (INamedContainerProvider) tileEntity, tileEntity.getBlockPos());
 			}
 		}
-		return true;
+		return ActionResultType.SUCCESS;
 	}
 
 	@Override
-	public void onReplaced(BlockState oldState, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
+	public void onRemove(BlockState oldState, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
 		if (oldState.getBlock() != newState.getBlock()) {
-			TileEntity tileEntity = worldIn.getTileEntity(pos);
+			TileEntity tileEntity = worldIn.getBlockEntity(pos);
 			if (tileEntity instanceof DisplayerTileEntity) {
 				tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(h -> {
 					for(int index = 0; index < 9 ; index++){
-						InventoryHelper.spawnItemStack(worldIn, pos.getX(), pos.getY(), pos.getZ(), h.getStackInSlot(index));
+						InventoryHelper.dropItemStack(worldIn, pos.getX(), pos.getY(), pos.getZ(), h.getStackInSlot(index));
 					}
 				});
 			}
 		}
-		super.onReplaced(oldState, worldIn, pos, newState, isMoving);
+		super.onRemove(oldState, worldIn, pos, newState, isMoving);
 	}
 
 	@Override
-	public int getLightValue(BlockState state) {
+	public int getLightValue(BlockState state, IBlockReader world, BlockPos pos) {
 		return state.getValue(LIT) ? 14 : 0;
 	}
 

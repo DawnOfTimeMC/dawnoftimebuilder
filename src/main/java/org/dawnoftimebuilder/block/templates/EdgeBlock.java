@@ -1,26 +1,27 @@
 package org.dawnoftimebuilder.block.templates;
 
-import net.minecraft.block.*;
-
-import net.minecraft.block.material.Material;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.pathfinding.PathType;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.state.properties.Half;
 import net.minecraft.state.properties.StairsShape;
-import net.minecraft.util.*;
+import net.minecraft.util.Direction;
+import net.minecraft.util.Mirror;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
-import net.minecraft.world.*;
+import net.minecraft.world.IBlockReader;
+import net.minecraft.world.IWorld;
 
 public class EdgeBlock extends WaterloggedBlock {
 
-	public static final DirectionProperty FACING = HorizontalBlock.HORIZONTAL_FACING;
+	public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 	public static final EnumProperty<Half> HALF = BlockStateProperties.HALF;
 	public static final EnumProperty<StairsShape> SHAPE = BlockStateProperties.STAIRS_SHAPE;
 	private static final VoxelShape[] SHAPES_TOP = makeShapes(false);
@@ -29,14 +30,6 @@ public class EdgeBlock extends WaterloggedBlock {
 	public EdgeBlock(Properties properties) {
 		super(properties);
 		this.registerDefaultState(this.defaultBlockState().setValue(FACING, Direction.NORTH).setValue(HALF, Half.BOTTOM).setValue(SHAPE, StairsShape.STRAIGHT));
-	}
-
-	public EdgeBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
-		this(Properties.of(materialIn).strength(hardness, resistance).sound(soundType));
-	}
-
-	public EdgeBlock(Block block) {
-		this(Block.Properties.from(block));
 	}
 
 	@Override
@@ -110,7 +103,7 @@ public class EdgeBlock extends WaterloggedBlock {
 		};
 		if(bottom) return vss;
 		for(int i = 0; i < vss.length; i++) {
-			vss[i] = vss[i].withOffset(0.0D, 0.5D, 0.0D);
+			vss[i] = vss[i].move(0.0D, 0.5D, 0.0D);
 		}
 		return vss;
 	}
@@ -118,9 +111,9 @@ public class EdgeBlock extends WaterloggedBlock {
 	@Override
 	public BlockState getStateForPlacement(BlockItemUseContext context) {
 		BlockState state = super.getStateForPlacement(context);
-		Direction direction = context.getFace();
+		Direction direction = context.getClickedFace();
 		BlockPos pos = context.getClickedPos();
-		state = state.setValue(FACING, context.getHorizontalDirection()).setValue(HALF, direction != Direction.DOWN && (direction == Direction.UP || !(context.getHitVec().y - (double)pos.getY() > 0.5D)) ? Half.BOTTOM : Half.TOP);
+		state = state.setValue(FACING, context.getHorizontalDirection()).setValue(HALF, direction != Direction.DOWN && (direction == Direction.UP || !(context.getClickLocation().y - (double)pos.getY() > 0.5D)) ? Half.BOTTOM : Half.TOP);
 		return state.setValue(SHAPE, getShapeProperty(state, context.getLevel(), pos));
 	}
 
@@ -139,15 +132,15 @@ public class EdgeBlock extends WaterloggedBlock {
 		BlockState adjacentState = worldIn.getBlockState(pos.relative(direction));
 		if (isBlockEdge(adjacentState) && state.getValue(HALF) == adjacentState.getValue(HALF)) {
 			Direction adjacentDirection = adjacentState.getValue(FACING);
-			if (adjacentDirection.getAxis() != state.get(FACING).getAxis() && isDifferentEdge(state, worldIn, pos, adjacentDirection.getOpposite())) {
+			if (adjacentDirection.getAxis() != state.getValue(FACING).getAxis() && isDifferentEdge(state, worldIn, pos, adjacentDirection.getOpposite())) {
 				return (adjacentDirection == direction.getCounterClockWise()) ? StairsShape.OUTER_LEFT : StairsShape.OUTER_RIGHT;
 			}
 		}
 
 		adjacentState = worldIn.getBlockState(pos.relative(direction.getOpposite()));
-		if (isBlockEdge(adjacentState) && state.get(HALF) == adjacentState.get(HALF)) {
-			Direction adjacentDirection = adjacentState.get(FACING);
-			if (adjacentDirection.getAxis() != state.get(FACING).getAxis() && isDifferentEdge(state, worldIn, pos, adjacentDirection)) {
+		if (isBlockEdge(adjacentState) && state.getValue(HALF) == adjacentState.getValue(HALF)) {
+			Direction adjacentDirection = adjacentState.getValue(FACING);
+			if (adjacentDirection.getAxis() != state.getValue(FACING).getAxis() && isDifferentEdge(state, worldIn, pos, adjacentDirection)) {
 				return (adjacentDirection == direction.getCounterClockWise()) ? StairsShape.INNER_LEFT : StairsShape.INNER_RIGHT;
 			}
 		}
@@ -157,7 +150,7 @@ public class EdgeBlock extends WaterloggedBlock {
 
 	private static boolean isDifferentEdge(BlockState state, IBlockReader worldIn, BlockPos pos, Direction face) {
 		BlockState adjacentState = worldIn.getBlockState(pos.relative(face));
-		return !isBlockEdge(adjacentState) || adjacentState.get(FACING) != state.get(FACING) || adjacentState.get(HALF) != state.get(HALF);
+		return !isBlockEdge(adjacentState) || adjacentState.getValue(FACING) != state.getValue(FACING) || adjacentState.getValue(HALF) != state.getValue(HALF);
 	}
 
 	public static boolean isBlockEdge(BlockState state) {
@@ -166,13 +159,13 @@ public class EdgeBlock extends WaterloggedBlock {
 
 	@Override
 	public BlockState rotate(BlockState state, Rotation rot) {
-		return state.setValue(FACING, rot.rotate(state.get(FACING)));
+		return state.setValue(FACING, rot.rotate(state.getValue(FACING)));
 	}
 
 	@Override
 	public BlockState mirror(BlockState state, Mirror mirrorIn) {
-		Direction direction = state.get(FACING);
-		StairsShape stairsshape = state.get(SHAPE);
+		Direction direction = state.getValue(FACING);
+		StairsShape stairsshape = state.getValue(SHAPE);
 		switch(mirrorIn) {
 			case LEFT_RIGHT:
 				if (direction.getAxis() == Direction.Axis.Z) {
@@ -208,10 +201,5 @@ public class EdgeBlock extends WaterloggedBlock {
 		}
 
 		return super.mirror(state, mirrorIn);
-	}
-
-	@Override
-	public boolean allowsMovement(BlockState state, IBlockReader worldIn, BlockPos pos, PathType type) {
-		return false;
 	}
 }

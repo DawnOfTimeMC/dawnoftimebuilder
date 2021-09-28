@@ -101,9 +101,9 @@ public class TatamiMatBlock extends WaterloggedBlock {
             BlockState topState = worldIn.getBlockState(pos.relative(state.get(FACING).getOpposite()));
             if(topState.getBlock() == this){
                 if(topState.get(HALF) == Half.TOP && topState.get(FACING) == state.get(FACING))
-                    return !worldIn.isAirBlock(pos.below());
+                    return !worldIn.isEmptyBlock(pos.below());
             }
-        }else return !worldIn.isAirBlock(pos.below());
+        }else return !worldIn.isEmptyBlock(pos.below());
         return false;
     }
 
@@ -163,7 +163,7 @@ public class TatamiMatBlock extends WaterloggedBlock {
     }
 
     @Override
-    public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+    public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
         if(player.isCrouching()){
             int stack = state.get(STACK);
             boolean isRolled = state.get(ROLLED);
@@ -178,8 +178,8 @@ public class TatamiMatBlock extends WaterloggedBlock {
                 state = state.setValue(ROLLED, !isRolled);
                 Direction facing = state.get(FACING);
                 if(isRolled){
-                    if(!worldIn.isAirBlock(pos.relative(facing)) //Check if the position for the Bottom half is free
-                            || worldIn.isAirBlock(pos.relative(facing).below()) //Check if this position can't support tatami
+                    if(!worldIn.isEmptyBlock(pos.relative(facing)) //Check if the position for the Bottom half is free
+                            || worldIn.isEmptyBlock(pos.relative(facing).below()) //Check if this position can't support tatami
                             || worldIn.getBlockState(pos.below().relative(facing)).getBlock().isIn(COVERED_BLOCKS)) //Check if this position is not supported by a covered block
                         return false;
                     worldIn.setBlock(pos.relative(facing), state.setValue(HALF, Half.BOTTOM), 2);

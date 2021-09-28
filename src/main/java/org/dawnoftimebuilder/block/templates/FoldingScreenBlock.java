@@ -2,13 +2,10 @@ package org.dawnoftimebuilder.block.templates;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
@@ -22,9 +19,9 @@ public class FoldingScreenBlock extends ColumnConnectibleBlock{
 
     public static final BooleanProperty INVERTED = BlockStateProperties.INVERTED;
 
-    public FoldingScreenBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
-        super(materialIn, hardness, resistance, soundType);
-        this.registerDefaultState(this.defaultBlockState().setValue(WATERLOGGED,false).setValue(INVERTED,false));
+    public FoldingScreenBlock(Properties properties) {
+        super(properties);
+        this.registerDefaultState(this.defaultBlockState().setValue(INVERTED,false));
     }
 
     @Override
@@ -42,19 +39,14 @@ public class FoldingScreenBlock extends ColumnConnectibleBlock{
 
     @Override
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-        return VoxelShapes.fullCube();
+        return VoxelShapes.block();
     }
 
     public boolean isConnectible(IWorld worldIn, BlockPos pos, BlockState stateIn){
         BlockState state = worldIn.getBlockState(pos);
         if(state.getBlock() == this){
-            return state.get(INVERTED) == stateIn.get(INVERTED);
+            return state.getValue(INVERTED) == stateIn.getValue(INVERTED);
         }
         return false;
-    }
-
-    @Override
-    public BlockRenderLayer getRenderLayer() {
-        return BlockRenderLayer.CUTOUT;
     }
 }

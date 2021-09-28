@@ -90,7 +90,7 @@ public class CharredSpruceShuttersBlock extends WaterloggedBlock {
     }
 
     @Override
-    public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+    public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
         state = state.setValue(OPEN, !state.getValue(OPEN));
         worldIn.setBlock(pos, state, 10);
         worldIn.playEvent(player, state.getValue(OPEN) ? this.getOpenSound() : this.getCloseSound(), pos, 0);

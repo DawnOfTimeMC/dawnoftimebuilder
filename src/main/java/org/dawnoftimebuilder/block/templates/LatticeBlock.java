@@ -2,8 +2,6 @@ package org.dawnoftimebuilder.block.templates;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -15,8 +13,7 @@ import net.minecraft.state.EnumProperty;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.tags.BlockTags;
-import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
@@ -28,6 +25,7 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 import org.dawnoftimebuilder.block.IBlockClimbingPlant;
 import org.dawnoftimebuilder.util.DoTBBlockStateProperties;
 import org.dawnoftimebuilder.util.DoTBBlockUtils;
@@ -36,6 +34,7 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Random;
 
+import static net.minecraftforge.common.Tags.Blocks.DIRT;
 import static org.dawnoftimebuilder.util.DoTBBlockUtils.TOOLTIP_CLIMBING_PLANT;
 
 public class LatticeBlock extends WaterloggedBlock implements IBlockClimbingPlant {
@@ -63,10 +62,10 @@ public class LatticeBlock extends WaterloggedBlock implements IBlockClimbingPlan
 	@Override
 	public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
 		int index = 0;
-		if(state.get(SOUTH)) index += 1;
-		if(state.get(WEST)) index += 2;
-		if(state.get(NORTH)) index += 4;
-		if(state.get(EAST)) index += 8;
+		if(state.getValue(SOUTH)) index += 1;
+		if(state.getValue(WEST)) index += 2;
+		if(state.getValue(NORTH)) index += 4;
+		if(state.getValue(EAST)) index += 8;
 		if(index > 14) index = 0;
 		return SHAPES[index];
 	}
@@ -137,68 +136,63 @@ public class LatticeBlock extends WaterloggedBlock implements IBlockClimbingPlan
 	}
 
 	@Override
-	public boolean isReplaceable(BlockState state, BlockItemUseContext useContext) {
-		ItemStack itemstack = useContext.getItem();
-		if(useContext.isPlacerSneaking()) return false;
+	public boolean canBeReplaced(BlockState state, BlockItemUseContext useContext) {
+		ItemStack itemstack = useContext.getItemInHand();
+		if(useContext.getPlayer() != null && useContext.getPlayer().isCrouching()) return false;
 		if(itemstack.getItem() == this.asItem()) {
 			Direction newDirection = useContext.getHorizontalDirection();
 			switch(newDirection){
 				default:
 				case SOUTH:
-					return !state.get(SOUTH);
+					return !state.getValue(SOUTH);
 				case WEST:
-					return !state.get(WEST);
+					return !state.getValue(WEST);
 				case NORTH:
-					return !state.get(NORTH);
+					return !state.getValue(NORTH);
 				case EAST:
-					return !state.get(EAST);
+					return !state.getValue(EAST);
 			}
 		}
 		return false;
 	}
 
 	@Override
-	public boolean ticksRandomly(BlockState state) {
-		return !state.get(CLIMBING_PLANT).hasNoPlant();
+	public boolean isRandomlyTicking(BlockState state) {
+		return !state.getValue(CLIMBING_PLANT).hasNoPlant();
 	}
 
 	@Override
-	public void spawnAdditionalDrops(BlockState state, World worldIn, BlockPos pos, ItemStack stack) {
-		super.spawnAdditionalDrops(state, worldIn, pos, stack);
+	public void spawnAfterBreak(BlockState state, ServerWorld worldIn, BlockPos pos, ItemStack stack) {
+		super.spawnAfterBreak(state, worldIn, pos, stack);
 		//Be careful, climbing plants are not dropping from block's loot_table, but from their own loot_table
 		this.dropPlant(state, worldIn, pos, stack);
 	}
 
 	@Override
-	public void tick(BlockState state, World worldIn, BlockPos pos, Random random) {
+	public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
 		this.tickPlant(state, worldIn, pos, random);
 	}
 
 	@Override
-	public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-		if(!state.get(PERSISTENT)){
+	public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+		if(!state.getValue(PERSISTENT)){
 			if(DoTBBlockUtils.useLighter(worldIn, pos, player, handIn)){
 				Random rand = new Random();
 				for(int i = 0; i < 5; i++){
-					worldIn.addOptionalParticle(ParticleTypes.SMOKE, (double)pos.getX() + rand.nextDouble(), (double)pos.getY() + 0.5D + rand.nextDouble() / 2, (double)pos.getZ() + rand.nextDouble(), 0.0D, 0.07D, 0.0D);
+					worldIn.addParticle(ParticleTypes.SMOKE, (double)pos.getX() + rand.nextDouble(), (double)pos.getY() + 0.5D + rand.nextDouble() / 2, (double)pos.getZ() + rand.nextDouble(), 0.0D, 0.07D, 0.0D);
 				}
 				worldIn.setBlock(pos, state.setValue(PERSISTENT, true), 10);
-				return true;
+				return ActionResultType.SUCCESS;
 			}
 		}
 		if(player.isCreative()) {
-			if(this.tryPlacingPlant(state, worldIn, pos, player, handIn)) return true;
+			if(this.tryPlacingPlant(state, worldIn, pos, player, handIn)) return ActionResultType.SUCCESS;
 		}else{
-			if(worldIn.getBlockState(pos.below()).isIn(BlockTags.DIRT_LIKE)){
-				if(this.tryPlacingPlant(state, worldIn, pos, player, handIn)) return true;
+			if(worldIn.getBlockState(pos.below()).is(DIRT)){
+				if(this.tryPlacingPlant(state, worldIn, pos, player, handIn)) return ActionResultType.SUCCESS;
 			}
 		}
 		return this.harvestPlant(state, worldIn, pos, player, handIn);
-	}
-
-	@Override
-	public BlockRenderLayer getRenderLayer() {
-		return BlockRenderLayer.CUTOUT;
 	}
 
 	@Override

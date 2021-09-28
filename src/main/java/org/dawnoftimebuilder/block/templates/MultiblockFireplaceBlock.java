@@ -2,18 +2,19 @@ package org.dawnoftimebuilder.block.templates;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
+import net.minecraft.entity.projectile.ProjectileEntity;
+import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
-import net.minecraft.fluid.IFluidState;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.util.*;
+import net.minecraft.util.Direction;
+import net.minecraft.util.Hand;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
@@ -23,8 +24,8 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import org.dawnoftimebuilder.util.DoTBBlockUtils;
 import org.dawnoftimebuilder.util.DoTBBlockStateProperties;
+import org.dawnoftimebuilder.util.DoTBBlockUtils;
 
 import java.util.Random;
 
@@ -33,9 +34,9 @@ public class MultiblockFireplaceBlock extends SidedPlaneConnectibleBlock {
 	public static final BooleanProperty BURNING = DoTBBlockStateProperties.BURNING;
 	private static final VoxelShape[] SHAPES = DoTBBlockUtils.GenerateHorizontalShapes(makeShapes());
 
-	public MultiblockFireplaceBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
-		super(materialIn, hardness, resistance, soundType);
-		this.registerDefaultState(this.defaultBlockState().setValue(BURNING, false).setValue(WATERLOGGED, false));
+	public MultiblockFireplaceBlock(Properties properties) {
+		super(properties);
+		this.registerDefaultState(this.defaultBlockState().setValue(BURNING, false));
 	}
 
 	@Override
@@ -63,17 +64,17 @@ public class MultiblockFireplaceBlock extends SidedPlaneConnectibleBlock {
 	}
 
 	@Override
-	public int getLightValue(BlockState state) {
+	public int getLightValue(BlockState state, IBlockReader world, BlockPos pos) {
 		return (state.getValue(BURNING)) ? 15 : 0;
 	}
 
 	@Override
-	public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit){
+	public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit){
 		if(state.getValue(VERTICAL_CONNECTION) != DoTBBlockStateProperties.VerticalConnection.BOTH && state.getValue(VERTICAL_CONNECTION) != DoTBBlockStateProperties.VerticalConnection.UNDER) {
 			if (state.getValue(BURNING)) {
 				Direction direction = state.getValue(FACING);
 				worldIn.setBlock(pos, state.setValue(BURNING, false), 10);
-				worldIn.playSound(null, pos, SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.BLOCKS, 1.0F, 1.0F);
+				worldIn.playSound(null, pos, SoundEvents.FIRE_EXTINGUISH, SoundCategory.BLOCKS, 1.0F, 1.0F);
 				worldIn.getBlockState(pos.relative(direction.getCounterClockWise())).neighborChanged(worldIn, pos.relative(direction.getCounterClockWise()), this, pos, false);
 				worldIn.getBlockState(pos.relative(direction.getClockWise())).neighborChanged(worldIn, pos.relative(direction.getClockWise()), this, pos, false);
 				return true;
@@ -92,16 +93,16 @@ public class MultiblockFireplaceBlock extends SidedPlaneConnectibleBlock {
 	}
 
 	@Override
-	public void onProjectileCollision(World worldIn, BlockState state, BlockRayTraceResult hit, Entity projectile) {
+	public void onProjectileHit(World worldIn, BlockState state, BlockRayTraceResult hit, ProjectileEntity projectile) {
 		if (!worldIn.isClientSide && projectile instanceof AbstractArrowEntity) {
 			AbstractArrowEntity abstractarrowentity = (AbstractArrowEntity)projectile;
-			if(state.getValue(VERTICAL_CONNECTION) == DoTBBlockStateProperties.VerticalConnection.BOTH || state.get(VERTICAL_CONNECTION) == DoTBBlockStateProperties.VerticalConnection.UNDER)
+			if(state.getValue(VERTICAL_CONNECTION) == DoTBBlockStateProperties.VerticalConnection.BOTH || state.getValue(VERTICAL_CONNECTION) == DoTBBlockStateProperties.VerticalConnection.UNDER)
 				return;
-			if (abstractarrowentity.isBurning() && !state.get(BURNING) && !state.get(WATERLOGGED)) {
-				BlockPos pos = hit.getPos();
+			if (abstractarrowentity.isOnFire() && !state.getValue(BURNING) && !state.getValue(WATERLOGGED)) {
+				BlockPos pos = hit.getBlockPos();
 				worldIn.setBlock(pos, state.setValue(BURNING, true), 10);
-				worldIn.playSound(null, pos, SoundEvents.BLOCK_FIRE_AMBIENT, SoundCategory.BLOCKS, 1.0F, 1.0F);
-				Direction direction = state.get(FACING);
+				worldIn.playSound(null, pos, SoundEvents.FIRE_AMBIENT, SoundCategory.BLOCKS, 1.0F, 1.0F);
+				Direction direction = state.getValue(FACING);
 				worldIn.getBlockState(pos.relative(direction.getClockWise())).neighborChanged(worldIn, pos.relative(direction.getClockWise()), this, pos, false);
 				worldIn.getBlockState(pos.relative(direction.getCounterClockWise())).neighborChanged(worldIn, pos.relative(direction.getCounterClockWise()), this, pos, false);
 			}
@@ -110,14 +111,14 @@ public class MultiblockFireplaceBlock extends SidedPlaneConnectibleBlock {
 
 	@Override
 	public void neighborChanged(BlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos, boolean isMoving) {
-		if(state.get(VERTICAL_CONNECTION) != DoTBBlockStateProperties.VerticalConnection.BOTH && state.get(VERTICAL_CONNECTION) != DoTBBlockStateProperties.VerticalConnection.UNDER){
+		if(state.getValue(VERTICAL_CONNECTION) != DoTBBlockStateProperties.VerticalConnection.BOTH && state.getValue(VERTICAL_CONNECTION) != DoTBBlockStateProperties.VerticalConnection.UNDER){
 			BlockState newState = worldIn.getBlockState(fromPos);
 			if(newState.getBlock() == this){
-				Direction facing = state.get(FACING);
-				if(newState.get(FACING) == facing){
-					boolean burning = newState.get(BURNING);
-					if(burning != state.get(BURNING)){
-						if(newState.get(BURNING) && state.get(WATERLOGGED)) return;
+				Direction facing = state.getValue(FACING);
+				if(newState.getValue(FACING) == facing){
+					boolean burning = newState.getValue(BURNING);
+					if(burning != state.getValue(BURNING)){
+						if(newState.getValue(BURNING) && state.getValue(WATERLOGGED)) return;
 						worldIn.setBlock(pos, state.setValue(BURNING, burning), 10);
 						BlockPos newPos = (pos.relative(facing.getClockWise()).equals(fromPos)) ? pos.relative(facing.getCounterClockWise()) : pos.relative(facing.getClockWise());
 						worldIn.getBlockState(newPos).neighborChanged(worldIn, newPos, this, pos, false);
@@ -128,13 +129,13 @@ public class MultiblockFireplaceBlock extends SidedPlaneConnectibleBlock {
 	}
 
 	@Override
-	public boolean receiveFluid(IWorld worldIn, BlockPos pos, BlockState state, IFluidState fluidStateIn) {
-		if (!state.get(BlockStateProperties.WATERLOGGED) && fluidStateIn.getFluid() == Fluids.WATER) {
-			if (state.get(BURNING)) {
-				worldIn.playSound(null, pos, SoundEvents.ENTITY_GENERIC_EXTINGUISH_FIRE, SoundCategory.BLOCKS, 1.0F, 1.0F);
+	public boolean placeLiquid(IWorld worldIn, BlockPos pos, BlockState state, FluidState fluidStateIn) {
+		if (!state.getValue(BlockStateProperties.WATERLOGGED) && fluidStateIn.getType() == Fluids.WATER) {
+			if (state.getValue(BURNING)) {
+				worldIn.playSound(null, pos, SoundEvents.FIRE_EXTINGUISH, SoundCategory.BLOCKS, 1.0F, 1.0F);
 			}
 			worldIn.setBlock(pos, state.setValue(WATERLOGGED, true).setValue(BURNING, false), 10);
-			worldIn.getLiquidTicks().scheduleTick(pos, fluidStateIn.getFluid(), fluidStateIn.getFluid().getTickRate(worldIn));
+			worldIn.getLiquidTicks().scheduleTick(pos, fluidStateIn.getType(), fluidStateIn.getType().getTickDelay(worldIn));
 			return true;
 		} else {
 			return false;
@@ -144,20 +145,15 @@ public class MultiblockFireplaceBlock extends SidedPlaneConnectibleBlock {
 	@OnlyIn(Dist.CLIENT)
 	@Override
 	public void animateTick(BlockState stateIn, World worldIn, BlockPos pos, Random rand) {
-		if(stateIn.get(VERTICAL_CONNECTION) != DoTBBlockStateProperties.VerticalConnection.BOTH && stateIn.get(VERTICAL_CONNECTION) != DoTBBlockStateProperties.VerticalConnection.UNDER) {
-			if (stateIn.get(BURNING)) {
+		if(stateIn.getValue(VERTICAL_CONNECTION) != DoTBBlockStateProperties.VerticalConnection.BOTH && stateIn.getValue(VERTICAL_CONNECTION) != DoTBBlockStateProperties.VerticalConnection.UNDER) {
+			if (stateIn.getValue(BURNING)) {
 				if (rand.nextInt(24) == 0) {
-					worldIn.playSound((float) pos.getX() + 0.5F, (float) pos.getY() + 0.5F, (float) pos.getZ() + 0.5F, SoundEvents.BLOCK_CAMPFIRE_CRACKLE, SoundCategory.BLOCKS, 1.0F + rand.nextFloat(), rand.nextFloat() * 0.7F + 0.3F, false);
+					worldIn.playLocalSound((double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D, (double)pos.getZ() + 0.5D, SoundEvents.CAMPFIRE_CRACKLE, SoundCategory.BLOCKS, 0.5F + rand.nextFloat(), rand.nextFloat() * 0.7F + 0.6F, false);
 				}
 				for (int i = 0; i < 3; ++i) {
 					worldIn.addParticle(ParticleTypes.SMOKE, (float) pos.getX() + rand.nextDouble() * 0.5F + 0.25F, (float) pos.getY() + rand.nextDouble() * 0.5F + 0.6F, (float) pos.getZ() + rand.nextDouble() * 0.5F + 0.25F, 0.0F, 0.0F, 0.0F);
 				}
 			}
 		}
-	}
-
-	@Override
-	public BlockRenderLayer getRenderLayer() {
-		return BlockRenderLayer.CUTOUT_MIPPED;
 	}
 }

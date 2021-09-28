@@ -45,7 +45,6 @@ public class DoTBBlockUtils {
 	public static final String TOOLTIP_SIDED_WINDOW = "sided_window";
 
 	//Item tags
-	public static final Tags.IOptionalNamedTag<Item> SHEARS = ItemTags.createOptional(new ResourceLocation(FORGE_ID, "shears"));
 	public static final Tags.IOptionalNamedTag<Item> LIGHTERS = ItemTags.createOptional(new ResourceLocation(FORGE_ID, "lighters"));
 
 	//Block tags

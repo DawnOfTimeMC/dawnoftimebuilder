@@ -3,8 +3,6 @@ package org.dawnoftimebuilder.block.templates;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.BlockItemUseContext;
@@ -12,7 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
@@ -39,9 +37,9 @@ public class DryerBlock extends WaterloggedBlock {
 	public static final VoxelShape VS_SIMPLE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 4.0D, 16.0D);
 	public static final VoxelShape VS_DOUBLE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 12.0D, 16.0D);
 
-	public DryerBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
-		super(materialIn, hardness, resistance, soundType);
-		this.registerDefaultState(this.stateContainer.getBaseState().setValue(SIZE, 0).setValue(WATERLOGGED,false));
+	public DryerBlock(Properties properties) {
+		super(properties);
+		this.registerDefaultState(this.defaultBlockState().setValue(SIZE, 0));
 	}
 
 	@Override
@@ -52,14 +50,14 @@ public class DryerBlock extends WaterloggedBlock {
 
 	@Override
 	public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-		switch(state.get(SIZE)) {
+		switch(state.getValue(SIZE)) {
 			default:
 			case 0:
 				return VS_SIMPLE;
 			case 1:
 				return VS_DOUBLE;
 			case 2 :
-				return VoxelShapes.fullCube();
+				return VoxelShapes.block();
 		}
 	}
 
@@ -73,27 +71,27 @@ public class DryerBlock extends WaterloggedBlock {
 		return super.getStateForPlacement(context);
 	}
 
-	public boolean isReplaceable(BlockState state, BlockItemUseContext useContext) {
-		ItemStack itemstack = useContext.getItem();
-		if(state.get(SIZE) == 0 && itemstack.getItem() == this.asItem()) {
+	@Override
+	public boolean canBeReplaced(BlockState state, BlockItemUseContext useContext) {
+		ItemStack itemstack = useContext.getItemInHand();
+		if(state.getValue(SIZE) == 0 && itemstack.getItem() == this.asItem()) {
 			return useContext.replacingClickedOnBlock();
 		}
 		return false;
 	}
 
-
 	@Override
-	public void onReplaced(BlockState oldState, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
+	public void onRemove(BlockState oldState, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
 		if (oldState.getBlock() != newState.getBlock()) {
-			TileEntity tileEntity = worldIn.getTileEntity(pos);
+			TileEntity tileEntity = worldIn.getBlockEntity(pos);
 			if (tileEntity instanceof DryerTileEntity) {
 				tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(h -> {
-					InventoryHelper.spawnItemStack(worldIn, pos.getX(), pos.getY(), pos.getZ(), h.getStackInSlot(0));
-					InventoryHelper.spawnItemStack(worldIn, pos.getX(), pos.getY(), pos.getZ(), h.getStackInSlot(1));
+					InventoryHelper.dropItemStack(worldIn, pos.getX(), pos.getY(), pos.getZ(), h.getStackInSlot(0));
+					InventoryHelper.dropItemStack(worldIn, pos.getX(), pos.getY(), pos.getZ(), h.getStackInSlot(1));
 				});
 			}
 		}
-		super.onReplaced(oldState, worldIn, pos, newState, isMoving);
+		super.onRemove(oldState, worldIn, pos, newState, isMoving);
 	}
 
 	@Override
@@ -101,9 +99,9 @@ public class DryerBlock extends WaterloggedBlock {
 		pos = pos.below();
 		BlockState stateDown = worldIn.getBlockState(pos);
 		if(stateDown.getBlock() == this){
-			return stateDown.get(SIZE) != 0;
+			return stateDown.getValue(SIZE) != 0;
 		}
-		return hasSolidSideOnTop(worldIn, pos);
+		return canSupportRigidBlock(worldIn, pos);
 	}
 
 	@Override
@@ -113,7 +111,7 @@ public class DryerBlock extends WaterloggedBlock {
 			if(!canSurvive(stateIn,worldIn,currentPos)) return Blocks.AIR.defaultBlockState();
 		}
 		if(facing == Direction.UP){
-			return stateIn.setValue(SIZE, (stateIn.get(SIZE) != 0 && facingState.getBlock() == this) ? 2 : 1);
+			return stateIn.setValue(SIZE, (stateIn.getValue(SIZE) != 0 && facingState.getBlock() == this) ? 2 : 1);
 		}
 		return stateIn;
 	}
@@ -130,24 +128,19 @@ public class DryerBlock extends WaterloggedBlock {
 	}
 
 	@Override
-	public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+	public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
 		if(!worldIn.isClientSide() && handIn == Hand.MAIN_HAND) {
-			if(worldIn.getTileEntity(pos) instanceof DryerTileEntity) {
-				DryerTileEntity tileEntity = (DryerTileEntity) worldIn.getTileEntity(pos);
-				if(tileEntity == null) return false;
+			if(worldIn.getBlockEntity(pos) instanceof DryerTileEntity) {
+				DryerTileEntity tileEntity = (DryerTileEntity) worldIn.getBlockEntity(pos);
+				if(tileEntity == null) return ActionResultType.PASS;
 
 				if(player.isCrouching()) return tileEntity.dropOneItem(worldIn, pos);
 
 				else {
-					return tileEntity.tryInsertItemStack(player.getItemInHand(handIn), state.get(SIZE) == 0, worldIn, pos, player);
+					return tileEntity.tryInsertItemStack(player.getItemInHand(handIn), state.getValue(SIZE) == 0, worldIn, pos, player);
 				}
 			}
 		}
-		return false;
-	}
-
-	@Override
-	public BlockRenderLayer getRenderLayer() {
-		return BlockRenderLayer.CUTOUT_MIPPED;
+		return ActionResultType.FAIL;
 	}
 }

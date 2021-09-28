@@ -104,7 +104,7 @@ public class StickBundleBlock extends BlockDoTB implements IBlockChain {
 	}
 
 	@Override
-	public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+	public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
 		if(!worldIn.isClientSide()){
 			//The StickBundle is empty, we try to put worms on it.
 			if(state.get(AGE) == 0){

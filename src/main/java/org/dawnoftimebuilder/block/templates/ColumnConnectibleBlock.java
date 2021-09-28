@@ -9,6 +9,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
 
 import net.minecraft.block.material.Material;
@@ -67,21 +68,21 @@ public abstract class ColumnConnectibleBlock extends WaterloggedBlock {
 	}
 
 	@Override
-	public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+	public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
 		ItemStack heldItemStack = player.getItemInHand(handIn);
 		if(player.isCrouching()) {
 			//We remove the highest ColumnBlock
-			if(state.get(VERTICAL_CONNECTION) == DoTBBlockStateProperties.VerticalConnection.NONE)
-				return super.onBlockActivated(state, worldIn, pos, player, handIn, hit);
+			if(state.getValue(VERTICAL_CONNECTION) == DoTBBlockStateProperties.VerticalConnection.NONE)
+				return super.use(state, worldIn, pos, player, handIn, hit);
 			BlockPos topPos = this.getHighestColumnPos(worldIn, pos);
 			if(topPos != pos){
 				if(!worldIn.isClientSide()) {
 					worldIn.setBlock(topPos, Blocks.AIR.defaultBlockState(), 35);
 					if (!player.isCreative()) {
-						Block.spawnDrops(state, worldIn, pos, null, player, heldItemStack);
+						Block.dropResources(state, worldIn, pos, null, player, heldItemStack);
 					}
 				}
-				return true;
+				return ActionResultType.SUCCESS;
 			}
 		}else{
 			if(!heldItemStack.isEmpty() && heldItemStack.getItem() == this.asItem()){
@@ -94,11 +95,11 @@ public abstract class ColumnConnectibleBlock extends WaterloggedBlock {
 							heldItemStack.shrink(1);
 						}
 					}
-					return true;
+					return ActionResultType.SUCCESS;
 				}
 			}
 		}
-		return super.onBlockActivated(state, worldIn, pos, player, handIn, hit);
+		return super.use(state, worldIn, pos, player, handIn, hit);
 	}
 
 	private BlockPos getHighestColumnPos(World worldIn, BlockPos pos){

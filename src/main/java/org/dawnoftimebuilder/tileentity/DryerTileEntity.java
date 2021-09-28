@@ -10,6 +10,7 @@ import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -68,37 +69,37 @@ public class DryerTileEntity extends TileEntity implements ITickableTileEntity {
 		}
 	}
 
-	public boolean tryInsertItemStack(ItemStack itemStack, boolean simple, World worldIn, BlockPos pos, PlayerEntity player){
+	public ActionResultType tryInsertItemStack(ItemStack itemStack, boolean simple, World worldIn, BlockPos pos, PlayerEntity player){
 		//Try to put the itemStack in an empty dryer
-		if(this.putItemStackInFreeSpace(itemStack, simple, player)) return true;
+		if(this.putItemStackInFreeSpace(itemStack, simple, player)) return ActionResultType.SUCCESS;
 		//No empty dryer, let's see if we could replace a dried item with ours
 		if(simple){
 			if(this.itemIsDried(0)){
 				this.dropItemIndex(0, worldIn, pos);
 				this.putItemStackInIndex(0, itemStack, player);
-				return true;
-			}else return false;
+				return ActionResultType.SUCCESS;
+			}else return ActionResultType.PASS;
 		}else{
 			int index = this.dropOneDriedItem(worldIn, pos);
-			if(index < 0) return false;
+			if(index < 0) return ActionResultType.PASS;
 			else{
 				this.putItemStackInIndex(index, itemStack, player);
-				return true;
+				return ActionResultType.SUCCESS;
 			}
 		}
 	}
 
-	public boolean dropOneItem(World worldIn, BlockPos pos){
-		if(this.dropOneDriedItem(worldIn, pos) > -1) return true;
+	public ActionResultType dropOneItem(World worldIn, BlockPos pos){
+		if(this.dropOneDriedItem(worldIn, pos) > -1) return ActionResultType.SUCCESS;
 		if(!this.itemHandler.getStackInSlot(0).isEmpty()){
 			this.dropItemIndex(0, worldIn, pos);
-			return true;
+			return ActionResultType.SUCCESS;
 		}
 		if(!this.itemHandler.getStackInSlot(1).isEmpty()){
 			this.dropItemIndex(1, worldIn, pos);
-			return true;
+			return ActionResultType.SUCCESS;
 		}
-		return false;
+		return ActionResultType.PASS;
 	}
 
 	/**

@@ -14,7 +14,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
-import org.dawnoftimebuilder.block.templates.FenceBlockDoTB;
 import org.dawnoftimebuilder.util.DoTBBlockStateProperties;
 import org.dawnoftimebuilder.util.DoTBBlockStateProperties.FencePillar;
 import org.dawnoftimebuilder.util.DoTBBlockUtils;

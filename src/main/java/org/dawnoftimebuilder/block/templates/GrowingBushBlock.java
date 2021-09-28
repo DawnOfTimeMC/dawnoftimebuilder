@@ -23,13 +23,13 @@ import org.dawnoftimebuilder.util.DoTBBlockUtils;
 
 import java.util.List;
 
-import static org.dawnoftimebuilder.util.DoTBBlockUtils.SHEARS;
+import static net.minecraftforge.common.Tags.Items.SHEARS;
 
 public class GrowingBushBlock extends SoilCropsBlock {
 
 	public final VoxelShape[] SHAPES;
 	public final int cutAge;
-	private static final IntegerProperty AGE = BlockStateProperties.AGE_0_5;
+	private static final IntegerProperty AGE = BlockStateProperties.AGE_5;
 	private static final BooleanProperty CUT = DoTBBlockStateProperties.CUT;
 
 	public GrowingBushBlock(String seedName, PlantType plantType, int cutAge) {
@@ -39,7 +39,7 @@ public class GrowingBushBlock extends SoilCropsBlock {
 	public GrowingBushBlock(String seedName, PlantType plantType, int cutAge, Food food){
 		super(seedName, plantType, food);
 		this.cutAge = cutAge;
-		this.registerDefaultState(this.defaultBlockState().setValue(AGE, 0).setValue(CUT, false).setValue(PERSISTENT, false));
+		this.registerDefaultState(this.stateDefinition.any().setValue(AGE, 0).setValue(CUT, false).setValue(PERSISTENT, false));
 		this.SHAPES = this.makeShapes();
 	}
 
@@ -94,29 +94,29 @@ public class GrowingBushBlock extends SoilCropsBlock {
 	}
 
 	@Override
-	public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity playerIn, Hand hand, BlockRayTraceResult ray) {
-		if(super.onBlockActivated(state, worldIn, pos, playerIn, hand, ray)) return true;
+	public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity playerIn, Hand hand, BlockRayTraceResult ray) {
+		if(super.use(state, worldIn, pos, playerIn, hand, ray) == ActionResultType.SUCCESS) return ActionResultType.SUCCESS;
 		if(this.isMaxAge(state) && !playerIn.isCreative()){
 			if (!worldIn.isClientSide()) {
 				ItemStack itemStackHand = playerIn.getItemInHand(hand);
-				boolean holdShears = itemStackHand.getItem().isIn(SHEARS);
-				if(holdShears) itemStackHand.damageItem(1, playerIn, (p_220287_1_) -> p_220287_1_.sendBreakAnimation(hand));
+				boolean holdShears = itemStackHand.getItem().is(SHEARS);
+				if(holdShears) itemStackHand.hurtAndBreak(1, playerIn, (p) -> p.broadcastBreakEvent(hand));
 
 				ResourceLocation resourceLocation = this.getRegistryName();
 				if(resourceLocation != null) {
 					this.harvestWithoutBreaking(state, worldIn, pos, itemStackHand, resourceLocation.getPath(), holdShears ? 1.5F : 1.0F);
-					return true;
-				}else return false;
+					return ActionResultType.SUCCESS;
+				}
 			}
 		}
-		return false;
+		return ActionResultType.PASS;
 	}
 
 	public void harvestWithoutBreaking(BlockState state, World worldIn, BlockPos pos, ItemStack itemStackHand, String blockName, float dropMultiplier ){
 		List<ItemStack> drops = DoTBBlockUtils.getLootList((ServerWorld)worldIn, state, itemStackHand, blockName);
 		DoTBBlockUtils.dropLootFromList(worldIn, pos, drops, dropMultiplier);
 
-		worldIn.playSound(null, pos, SoundEvents.BLOCK_GRASS_BREAK, SoundCategory.BLOCKS, 1.0F, 1.0F);
-		worldIn.setBlock(pos, state.setValue(AGE, this.cutAge).setValue(CUT, true));
+		worldIn.playSound(null, pos, SoundEvents.GRASS_BREAK, SoundCategory.BLOCKS, 1.0F, 1.0F);
+		worldIn.setBlock(pos, state.setValue(AGE, this.cutAge).setValue(CUT, true), 2);
 	}
 }

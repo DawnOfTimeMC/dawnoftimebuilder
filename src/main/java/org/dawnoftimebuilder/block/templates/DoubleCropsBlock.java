@@ -20,6 +20,7 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.PlantType;
 
@@ -40,13 +41,13 @@ public class DoubleCropsBlock extends SoilCropsBlock {
 		super(seedName, plantType, food);
 		this.growingAge = growingAge;
 		this.SHAPES = this.makeShapes();
-		this.registerDefaultState(this.defaultBlockState().setValue(HALF, Half.BOTTOM).setValue(this.getAgeProperty(), 0).setValue(PERSISTENT, false));
+		this.registerDefaultState(this.defaultBlockState().setValue(HALF, Half.BOTTOM));
 	}
 
 	@Override
 	public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-		int index = state.get(AGE);
-		if(index >= this.getAgeReachingTopBlock()) index = (state.get(HALF) == Half.BOTTOM) ? this.getAgeReachingTopBlock() : index + 1;
+		int index = state.getValue(AGE);
+		if(index >= this.getAgeReachingTopBlock()) index = (state.getValue(HALF) == Half.BOTTOM) ? this.getAgeReachingTopBlock() : index + 1;
 		return SHAPES[index];
 	}
 
@@ -85,12 +86,12 @@ public class DoubleCropsBlock extends SoilCropsBlock {
 	@Override
 	public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
 		if(facing.getAxis() == Direction.Axis.Y){
-			boolean isBottom = stateIn.get(HALF) == Half.BOTTOM;
+			boolean isBottom = stateIn.getValue(HALF) == Half.BOTTOM;
 			if(isBottom == (facing == Direction.UP)) {
-				if(facingState.getBlock() == this && facingState.get(HALF) != stateIn.get(HALF)){
-					stateIn = stateIn.setValue(PERSISTENT, facingState.get(PERSISTENT));
-					return isBottom ? stateIn : stateIn.setValue(AGE, facingState.get(AGE));
-				}else if(isBottom && stateIn.get(AGE) < this.getAgeReachingTopBlock()) return stateIn;
+				if(facingState.getBlock() == this && facingState.getValue(HALF) != stateIn.getValue(HALF)){
+					stateIn = stateIn.setValue(PERSISTENT, facingState.getValue(PERSISTENT));
+					return isBottom ? stateIn : stateIn.setValue(AGE, facingState.getValue(AGE));
+				}else if(isBottom && stateIn.getValue(AGE) < this.getAgeReachingTopBlock()) return stateIn;
 				return Blocks.AIR.defaultBlockState();
 			}else{
 				return super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
@@ -101,10 +102,10 @@ public class DoubleCropsBlock extends SoilCropsBlock {
 
 	@Override
 	public void setPlantWithAge(BlockState currentState, World worldIn, BlockPos pos, int newAge) {
-		if(currentState.get(HALF) == Half.TOP) pos = pos.below();
+		if(currentState.getValue(HALF) == Half.TOP) pos = pos.below();
 		if(newAge >= this.getAgeReachingTopBlock()){
 			BlockPos posUp = pos.above();
-			if(worldIn.getBlockState(posUp).getBlock() == this || worldIn.isAirBlock(posUp)){
+			if(worldIn.getBlockState(posUp).getBlock() == this || worldIn.isEmptyBlock(posUp)){
 				worldIn.setBlock(posUp, currentState.setValue(this.getAgeProperty(), newAge).setValue(HALF, Half.TOP), 10);
 			}
 		}
@@ -115,38 +116,38 @@ public class DoubleCropsBlock extends SoilCropsBlock {
 	}
 
 	@Override
-	public void harvestBlock(World worldIn, PlayerEntity player, BlockPos pos, BlockState state, @Nullable TileEntity te, ItemStack stack) {
-		super.harvestBlock(worldIn, player, pos, Blocks.AIR.defaultBlockState(), te, stack);
+	public void playerDestroy(World worldIn, PlayerEntity player, BlockPos pos, BlockState state, @Nullable TileEntity te, ItemStack stack) {
+		super.playerDestroy(worldIn, player, pos, Blocks.AIR.defaultBlockState(), te, stack);
 	}
 
 	@Override
-	public void onBlockHarvested(World worldIn, BlockPos pos, BlockState state, PlayerEntity player) {
-		Half half = state.get(HALF);
+	public void playerWillDestroy(World worldIn, BlockPos pos, BlockState state, PlayerEntity player) {
+		Half half = state.getValue(HALF);
 		BlockPos blockpos = (half == Half.BOTTOM) ? pos.above() : pos.below();
 		BlockState blockstate = worldIn.getBlockState(blockpos);
 		if (blockstate.getBlock() == this) {
 			worldIn.setBlock(blockpos, Blocks.AIR.defaultBlockState(), 35);
-			worldIn.playEvent(player, 2001, blockpos, Block.getStateId(blockstate));
-			ItemStack itemstack = player.getItemInHandMainhand();
-			if (!worldIn.isClientSide && !player.isCreative()) {
-				Block.spawnDrops(state, worldIn, pos, null, player, itemstack);
-				Block.spawnDrops(blockstate, worldIn, blockpos, null, player, itemstack);
+			worldIn.levelEvent(player, 2001, blockpos, Block.getId(blockstate));
+			ItemStack itemstack = player.getMainHandItem();
+			if (!worldIn.isClientSide() && !player.isCreative()) {
+				Block.dropResources(state, worldIn, pos, null, player, itemstack);
+				Block.dropResources(blockstate, worldIn, blockpos, null, player, itemstack);
 			}
 		}
 
-		super.onBlockHarvested(worldIn, pos, state, player);
+		super.playerWillDestroy(worldIn, pos, state, player);
 	}
 
 	// Only called with Bonemeal
 	@Override
-    public void grow(World worldIn, BlockPos pos, BlockState state) {
+    public void growCrops(World worldIn, BlockPos pos, BlockState state) {
 		if(this.isBottomCrop(state)){
 	        int newAge = this.getAge(state) + this.getBonemealAgeIncrease(worldIn);
 	        if (newAge > this.getMaxAge()) newAge = this.getMaxAge();
 			if(newAge >= this.getAgeReachingTopBlock()){
 				BlockPos topPos = pos.above();
-				if(worldIn.getBlockState(topPos).getBlock() == this || worldIn.isAirBlock(topPos)){
-					state = this.withAge(newAge);
+				if(worldIn.getBlockState(topPos).getBlock() == this || worldIn.isEmptyBlock(topPos)){
+					state = this.getStateForAge(newAge);
 					worldIn.setBlock(pos, state, 2);
 					worldIn.setBlock(topPos, this.getTopState(state), 2);
 				}
@@ -155,18 +156,18 @@ public class DoubleCropsBlock extends SoilCropsBlock {
     }
 
 	@Override
-	public void tick(BlockState state, World worldIn, BlockPos pos, Random random) {
+	public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
 		if(this.isBottomCrop(state)) {
-			if (!worldIn.isAreaLoaded(pos, 1) || state.get(PERSISTENT))
+			if (!worldIn.isAreaLoaded(pos, 1) || state.getValue(PERSISTENT))
 				return; // Forge: prevent loading unloaded chunks when checking neighbor's light
 			if (worldIn.getRawBrightness(pos, 0) >= 9) {
 				int i = this.getAge(state);
 				if (i < this.getMaxAge()) {
-					float f = getGrowthChance(this, worldIn, pos);
+					float f = getGrowthSpeed(this, worldIn, pos);
 					BlockPos topPos = pos.above();
-					if (worldIn.getBlockState(topPos).getBlock() == this || worldIn.isAirBlock(topPos)) {
+					if (worldIn.getBlockState(topPos).getBlock() == this || worldIn.isEmptyBlock(topPos)) {
 						if (ForgeHooks.onCropsGrowPre(worldIn, pos, state, random.nextInt((int) (25.0F / f) + 1) == 0)) {
-							state = this.withAge(i + 1);
+							state = this.getStateForAge(i + 1);
 							worldIn.setBlock(pos, state, 2);
 							if (i + 1 >= this.getAgeReachingTopBlock())
 								worldIn.setBlock(topPos, this.getTopState(state), 2);
@@ -181,7 +182,7 @@ public class DoubleCropsBlock extends SoilCropsBlock {
 
 	public boolean isBottomCrop(BlockState state){
 		if(state.getBlock() instanceof DoubleCropsBlock){
-			return state.get(HALF) == Half.BOTTOM;
+			return state.getValue(HALF) == Half.BOTTOM;
 		}
 		return false;
 	}
@@ -205,9 +206,9 @@ public class DoubleCropsBlock extends SoilCropsBlock {
 
 	@Override
 	public boolean canSurvive(BlockState state, IWorldReader worldIn, BlockPos pos) {
-		if(state.get(HALF) == Half.TOP){
+		if(state.getValue(HALF) == Half.TOP){
 			BlockState stateUnder = worldIn.getBlockState(pos.below());
-			if(stateUnder.getBlock() == this) return stateUnder.get(HALF) == Half.BOTTOM;
+			if(stateUnder.getBlock() == this) return stateUnder.getValue(HALF) == Half.BOTTOM;
 		}
 		return super.canSurvive(state, worldIn, pos);
 	}

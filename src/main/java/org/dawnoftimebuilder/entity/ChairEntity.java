@@ -4,6 +4,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.IPacket;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -29,20 +30,20 @@ public class ChairEntity extends Entity {
         this.setPos(pos.getX() + pixelsXOffset / 16.0D, pos.getY() + (pixelsYOffset - 3.0D) / 16.0D, pos.getZ() + pixelsZOffset / 16.0D);
     }
 
-    public static boolean createEntity(World world, BlockPos pos, PlayerEntity player, float pixelsXOffset, float pixelsYOffset, float pixelsZOffset) {
+    public static ActionResultType createEntity(World world, BlockPos pos, PlayerEntity player, float pixelsXOffset, float pixelsYOffset, float pixelsZOffset) {
         if(!world.isClientSide()) {
             List<ChairEntity> seats = world.getEntitiesOfClass(ChairEntity.class, new AxisAlignedBB(pos.getX(), pos.getY(), pos.getZ(), pos.getX() + 1.0D, pos.getY() + 1.0D, pos.getZ() + 1.0D));
             if(seats.isEmpty()) {
                 ChairEntity seat = new ChairEntity(world, pos, pixelsXOffset, pixelsYOffset, pixelsZOffset);
                 world.addFreshEntity(seat);
                 player.startRiding(seat, false);
-                return true;
+                return ActionResultType.SUCCESS;
             }
         }
-        return false;
+        return ActionResultType.FAIL;
     }
 
-    public static boolean createEntity(World world, BlockPos pos, PlayerEntity player, float pixelsYOffset) {
+    public static ActionResultType createEntity(World world, BlockPos pos, PlayerEntity player, float pixelsYOffset) {
         return createEntity(world, pos, player, 8.0F, pixelsYOffset, 8.0F);
     }
 

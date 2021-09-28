@@ -69,15 +69,15 @@ public class TatamiFloorBlock extends NoItemBlock {
 	}
 
 	@Override
-	public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+	public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
 		if(!worldIn.isClientSide){
 			if(player.isCrouching()){
 				boolean isTop = state.get(HALF) == Half.TOP;
 				BlockPos otherPos = (isTop) ? pos.relative(state.get(FACING)) : pos.relative(state.get(FACING).getOpposite());
 				if(isTop)//Check if the blocks above each part are AIR
-					if(!worldIn.isAirBlock(pos.above()))
+					if(!worldIn.isEmptyBlock(pos.above()))
 						return false;
-					else if(!worldIn.isAirBlock(otherPos.above()))
+					else if(!worldIn.isEmptyBlock(otherPos.above()))
 						return false;
 				worldIn.setBlock(pos, SPRUCE_PLANKS.defaultBlockState(), 2);
 				worldIn.setBlock(otherPos, SPRUCE_PLANKS.defaultBlockState(), 2);

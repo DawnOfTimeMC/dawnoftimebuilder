@@ -111,7 +111,7 @@ public class SmallTatamiMatBlock extends WaterloggedBlock implements IBlockChain
             if(blockUp.isIn(BlockTags.FENCES) || worldIn.getBlockState(pos.below()).getBlock().isIn(BlockTags.FENCES)) return true;
             if(IBlockChain.canBeChained(stateUp, true)) return true;
         }
-        return !worldIn.isAirBlock(pos.below());
+        return !worldIn.isEmptyBlock(pos.below());
     }
 
     @Override
@@ -148,7 +148,7 @@ public class SmallTatamiMatBlock extends WaterloggedBlock implements IBlockChain
     }
 
     @Override
-    public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+    public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
         if(player.isCrouching()){
             int stack = state.get(STACK);
             boolean isRolled = state.get(ROLLED);

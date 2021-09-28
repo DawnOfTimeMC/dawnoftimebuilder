@@ -1,17 +1,19 @@
 package org.dawnoftimebuilder.block.templates;
 
 import net.minecraft.advancements.CriteriaTriggers;
-import net.minecraft.block.*;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.SlabBlock;
+import net.minecraft.block.SoundType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.fluid.Fluid;
+import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
-import net.minecraft.fluid.IFluidState;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.pathfinding.PathType;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer;
@@ -32,7 +34,7 @@ import static org.dawnoftimebuilder.DawnOfTimeBuilder.DOTB_TAB;
 
 public class MixedRoofSupportBlock extends SlabBlockDoTB implements IBlockCustomItem {
 
-    public static final DirectionProperty FACING = HorizontalBlock.HORIZONTAL_FACING;
+    public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final EnumProperty<StairsShape> SHAPE = BlockStateProperties.STAIRS_SHAPE;
     private final SlabBlock roofSlabBlock;
 
@@ -42,10 +44,6 @@ public class MixedRoofSupportBlock extends SlabBlockDoTB implements IBlockCustom
         this.registerDefaultState(this.defaultBlockState().setValue(FACING, Direction.NORTH).setValue(TYPE, SlabType.BOTTOM).setValue(SHAPE, StairsShape.STRAIGHT).setValue(WATERLOGGED, false));
     }
 
-    public MixedRoofSupportBlock(SlabBlock roofSlabBlock, Block block) {
-        this(roofSlabBlock, Block.Properties.from(block));
-    }
-
     @Override
     protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
         super.createBlockStateDefinition(builder);
@@ -53,7 +51,7 @@ public class MixedRoofSupportBlock extends SlabBlockDoTB implements IBlockCustom
     }
 
     @Override
-    public boolean isReplaceable(BlockState state, BlockItemUseContext useContext) {
+    public boolean canBeReplaced(BlockState state, BlockItemUseContext context) {
         return false;
     }
 
@@ -62,21 +60,21 @@ public class MixedRoofSupportBlock extends SlabBlockDoTB implements IBlockCustom
         BlockPos blockpos = context.getClickedPos();
         BlockState newState = this.defaultBlockState().setValue(FACING, context.getHorizontalDirection());
         BlockPos pos = context.getClickedPos();
-        IFluidState ifluidstate = context.getLevel().getFluidState(blockpos);
-        Direction direction = context.getFace();
-        newState = newState.setValue(TYPE, (direction != Direction.DOWN && (direction == Direction.UP || !(context.getHitVec().y - (double)blockpos.getY() > 0.5D))) ? SlabType.BOTTOM : SlabType.TOP);
-        return newState.setValue(WATERLOGGED, ifluidstate.getFluid() == Fluids.WATER).setValue(SHAPE, getShapeProperty(newState, context.getLevel(), pos));
+        FluidState fluidState = context.getLevel().getFluidState(blockpos);
+        Direction direction = context.getClickedFace();
+        newState = newState.setValue(TYPE, (direction != Direction.DOWN && (direction == Direction.UP || !(context.getClickLocation().y - (double)blockpos.getY() > 0.5D))) ? SlabType.BOTTOM : SlabType.TOP);
+        return newState.setValue(WATERLOGGED, fluidState.getType() == Fluids.WATER).setValue(SHAPE, getShapeProperty(newState, context.getLevel(), pos));
     }
 
     @Override
-    public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-        Direction facing = hit.getFace();
+    public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+        Direction facing = hit.getDirection();
         ItemStack itemStack = player.getItemInHand(handIn);
-        if(!player.isCrouching() && player.canPlayerEdit(pos, facing, itemStack) && facing.getAxis().isVertical() && !itemStack.isEmpty()){
+        if(!player.isCrouching() && player.mayUseItemAt(pos, facing, itemStack) && facing.getAxis().isVertical() && !itemStack.isEmpty()){
             if(facing == Direction.UP){
-                if (state.get(TYPE) == SlabType.BOTTOM && itemStack.getItem() == roofSlabBlock.asItem()) {
+                if (state.getValue(TYPE) == SlabType.BOTTOM && itemStack.getItem() == roofSlabBlock.asItem()) {
                     if(worldIn.setBlock(pos, state.setValue(TYPE, SlabType.DOUBLE), 11))  {
-                        this.onBlockPlacedBy(worldIn, pos, state, player, itemStack);
+                        this.setPlacedBy(worldIn, pos, state, player, itemStack);
                         if (player instanceof ServerPlayerEntity) {
                             CriteriaTriggers.PLACED_BLOCK.trigger((ServerPlayerEntity)player, pos, itemStack);
                         }
@@ -84,32 +82,32 @@ public class MixedRoofSupportBlock extends SlabBlockDoTB implements IBlockCustom
                         worldIn.playSound(player, pos, soundtype.getPlaceSound(), SoundCategory.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F);
                         if(!player.isCreative())
                             itemStack.shrink(1);
-                        return true;
+                        return ActionResultType.SUCCESS;
                     }
                 }
             }
         }
-        return super.onBlockActivated(state, worldIn, pos, player, handIn, hit);
+        return super.use(state, worldIn, pos, player, handIn, hit);
     }
 
 
     @Nullable
     @Override
     public Item getCustomItemBlock() {
-        return new BlockItem(this, new Item.Properties().groabove(DOTB_TAB)){
+        return new BlockItem(this, new Item.Properties().tab(DOTB_TAB)){
             @Override
-            public ActionResultType tryPlace(BlockItemUseContext context) {
-                Direction facing = context.getFace();
-                if(context.isPlacerSneaking() || facing != Direction.DOWN)
+            public ActionResultType place(BlockItemUseContext context) {
+                Direction facing = context.getClickedFace();
+                if((context.getPlayer() != null && context.getPlayer().isCrouching()) || !facing.getAxis().isVertical())
                     return super.place(context);
 
                 PlayerEntity player = context.getPlayer();
-                ItemStack itemStack = context.getItem();
+                ItemStack itemStack = context.getItemInHand();
                 World worldIn = context.getLevel();
                 BlockPos pos = context.getClickedPos();
                 if(!context.replacingClickedOnBlock()) pos = pos.relative(facing.getOpposite());
                 if(player != null){
-                    if(!player.canPlayerEdit(pos, facing, itemStack))
+                    if(!player.mayUseItemAt(pos, facing, itemStack))
                         return super.place(context);
                 }
 
@@ -117,14 +115,13 @@ public class MixedRoofSupportBlock extends SlabBlockDoTB implements IBlockCustom
                     BlockState state = worldIn.getBlockState(pos);
                     MixedRoofSupportBlock block = (MixedRoofSupportBlock) this.getBlock();
                     if (state.getBlock() == block.roofSlabBlock) {
-                        if(state.get(TYPE) == SlabType.TOP){
+                        if(state.getValue(TYPE) == SlabType.TOP){
                             BlockState madeState = block.getStateForPlacement(context);
                             if(madeState == null)
                                 return super.place(context);
                             madeState = madeState.setValue(TYPE, SlabType.DOUBLE);
                             if(worldIn.setBlock(pos, madeState.setValue(TYPE, SlabType.DOUBLE), 11))  {
-                                this.onBlockPlaced(pos, worldIn, player, itemStack, madeState);
-                                this.getBlock().onBlockPlacedBy(worldIn, pos, state, player, itemStack);
+                                this.getBlock().setPlacedBy(worldIn, pos, state, player, itemStack);
                                 if (player instanceof ServerPlayerEntity) {
                                     CriteriaTriggers.PLACED_BLOCK.trigger((ServerPlayerEntity)player, pos, itemStack);
                                 }
@@ -151,21 +148,21 @@ public class MixedRoofSupportBlock extends SlabBlockDoTB implements IBlockCustom
      * Returns a shape property based on the surrounding stairs from the given blockstate and position
      */
     private StairsShape getShapeProperty(BlockState state, IBlockReader worldIn, BlockPos pos) {
-        Direction direction = state.get(FACING);
+        Direction direction = state.getValue(FACING);
         BlockState adjacentState = worldIn.getBlockState(pos.relative(direction));
         if (isSameBlock(adjacentState)) {
-            if((state.get(TYPE) == SlabType.TOP) == (adjacentState.get(TYPE) == SlabType.TOP)){
-                Direction adjacentDirection = adjacentState.get(FACING);
-                if (adjacentDirection.getAxis() != state.get(FACING).getAxis() && isConnectableRoofSupport(state, worldIn, pos, adjacentDirection.getOpposite())) {
+            if((state.getValue(TYPE) == SlabType.TOP) == (adjacentState.getValue(TYPE) == SlabType.TOP)){
+                Direction adjacentDirection = adjacentState.getValue(FACING);
+                if (adjacentDirection.getAxis() != state.getValue(FACING).getAxis() && isConnectableRoofSupport(state, worldIn, pos, adjacentDirection.getOpposite())) {
                     return (adjacentDirection == direction.getCounterClockWise()) ? StairsShape.OUTER_LEFT : StairsShape.OUTER_RIGHT;
                 }
             }
         }
         adjacentState = worldIn.getBlockState(pos.relative(direction.getOpposite()));
         if (isSameBlock(adjacentState)) {
-            if((state.get(TYPE) == SlabType.TOP) == (adjacentState.get(TYPE) == SlabType.TOP)) {
-                Direction adjacentDirection = adjacentState.get(FACING);
-                if (adjacentDirection.getAxis() != state.get(FACING).getAxis() && isConnectableRoofSupport(state, worldIn, pos, adjacentDirection)) {
+            if((state.getValue(TYPE) == SlabType.TOP) == (adjacentState.getValue(TYPE) == SlabType.TOP)) {
+                Direction adjacentDirection = adjacentState.getValue(FACING);
+                if (adjacentDirection.getAxis() != state.getValue(FACING).getAxis() && isConnectableRoofSupport(state, worldIn, pos, adjacentDirection)) {
                     return (adjacentDirection == direction.getCounterClockWise()) ? StairsShape.INNER_LEFT : StairsShape.INNER_RIGHT;
                 }
             }
@@ -175,7 +172,7 @@ public class MixedRoofSupportBlock extends SlabBlockDoTB implements IBlockCustom
 
     private boolean isConnectableRoofSupport(BlockState state, IBlockReader worldIn, BlockPos pos, Direction face) {
         BlockState adjacentState = worldIn.getBlockState(pos.relative(face));
-        return !isSameBlock(adjacentState) || adjacentState.get(FACING) != state.get(FACING) || ((adjacentState.get(TYPE) == SlabType.TOP) != (state.get(TYPE) == SlabType.TOP));
+        return !isSameBlock(adjacentState) || adjacentState.getValue(FACING) != state.getValue(FACING) || ((adjacentState.getValue(TYPE) == SlabType.TOP) != (state.getValue(TYPE) == SlabType.TOP));
     }
 
     public boolean isSameBlock(BlockState state) {
@@ -183,30 +180,32 @@ public class MixedRoofSupportBlock extends SlabBlockDoTB implements IBlockCustom
     }
 
     @Override
-    public boolean receiveFluid(IWorld worldIn, BlockPos pos, BlockState state, IFluidState fluidStateIn) {
-        if (!state.get(BlockStateProperties.WATERLOGGED) && fluidStateIn.getFluid() == Fluids.WATER) {
-            if (!worldIn.isClientSide()) {
-                worldIn.setBlock(pos, state.setValue(BlockStateProperties.WATERLOGGED, true), 3);
-                worldIn.getLiquidTicks().scheduleTick(pos, fluidStateIn.getFluid(), fluidStateIn.getFluid().getTickRate(worldIn));
+    public boolean placeLiquid(IWorld world, BlockPos pos, BlockState state, FluidState fluid) {
+        if (!state.getValue(BlockStateProperties.WATERLOGGED) && fluid.getType() == Fluids.WATER) {
+            if (!world.isClientSide()) {
+                world.setBlock(pos, state.setValue(BlockStateProperties.WATERLOGGED, true), 3);
+                world.getLiquidTicks().scheduleTick(pos, fluid.getType(), fluid.getType().getTickDelay(world));
             }
             return true;
-        }else return false;
+        } else {
+            return false;
+        }
     }
 
     @Override
-    public boolean canContainFluid(IBlockReader worldIn, BlockPos pos, BlockState state, Fluid fluidIn) {
-        return !state.get(BlockStateProperties.WATERLOGGED) && fluidIn == Fluids.WATER;
+    public boolean canPlaceLiquid(IBlockReader world, BlockPos pos, BlockState state, Fluid fluid) {
+        return !state.getValue(BlockStateProperties.WATERLOGGED) && fluid == Fluids.WATER;
     }
 
     @Override
     public BlockState rotate(BlockState state, Rotation rot) {
-        return state.setValue(FACING, rot.rotate(state.get(FACING)));
+        return state.setValue(FACING, rot.rotate(state.getValue(FACING)));
     }
 
     @Override
     public BlockState mirror(BlockState state, Mirror mirrorIn) {
-        Direction direction = state.get(FACING);
-        StairsShape stairsshape = state.get(SHAPE);
+        Direction direction = state.getValue(FACING);
+        StairsShape stairsshape = state.getValue(SHAPE);
         switch(mirrorIn) {
             case LEFT_RIGHT:
                 if (direction.getAxis() == Direction.Axis.Z) {
@@ -242,14 +241,5 @@ public class MixedRoofSupportBlock extends SlabBlockDoTB implements IBlockCustom
         }
 
         return super.mirror(state, mirrorIn);
-    }
-
-    @Override
-    public boolean allowsMovement(BlockState state, IBlockReader worldIn, BlockPos pos, PathType type) {
-        return false;
-    }
-
-    public BlockRenderLayer getRenderLayer() {
-        return BlockRenderLayer.CUTOUT;
     }
 }

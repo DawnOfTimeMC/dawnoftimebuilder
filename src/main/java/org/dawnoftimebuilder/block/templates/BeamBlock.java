@@ -203,7 +203,7 @@ public class BeamBlock extends WaterloggedBlock implements IBlockPillar, IBlockC
 		if(player.isCreative()){
 			if(this.tryPlacingPlant(state, worldIn, pos, player, handIn)) return ActionResultType.SUCCESS;
 		}
-		return ActionResultType.FAIL;
+		return ActionResultType.PASS;
 	}
 
 	@Override

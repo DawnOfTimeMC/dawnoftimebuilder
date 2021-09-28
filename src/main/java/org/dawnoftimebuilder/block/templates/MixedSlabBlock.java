@@ -5,7 +5,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.SlabBlock;
 import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.BlockItem;
@@ -32,14 +31,6 @@ public class MixedSlabBlock extends SlabBlockDoTB implements IBlockCustomItem {
 		super(properties);
 	}
 
-	public MixedSlabBlock(Material materialIn, float hardness, float resistance) {
-		this(Properties.of(materialIn).strength(hardness, resistance));
-	}
-
-	public MixedSlabBlock(Block block) {
-		this(Properties.from(block));
-	}
-
 	/**
 	 * Add a new mixed full Block recipe for this slab
 	 * @param secondSlab full block's second slab
@@ -53,16 +44,16 @@ public class MixedSlabBlock extends SlabBlockDoTB implements IBlockCustomItem {
 	}
 
 	@Override
-	public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-		Direction facing = hit.getFace();
+	public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+		Direction facing = hit.getDirection();
 		ItemStack itemStack = player.getItemInHand(handIn);
-		if(!player.isCrouching() && player.canPlayerEdit(pos, facing, itemStack) && facing.getAxis().isVertical() && !itemStack.isEmpty()){
+		if(!player.isCrouching() && player.mayUseItemAt(pos, facing, itemStack) && facing.getAxis().isVertical() && !itemStack.isEmpty()){
 			for(MixedBlockRecipe recipe : listRecipes) {
 				if(facing == recipe.getFacingForMerging(false)){
 					if (recipe.isConnectibleFirstSlab(state) && itemStack.getItem() == recipe.secondSlab.asItem()) {
 						BlockState madeState = recipe.mixedBlock.defaultBlockState();
 						if(worldIn.setBlock(pos, madeState, 11))  {
-							this.onBlockPlacedBy(worldIn, pos, state, player, itemStack);
+							this.setPlacedBy(worldIn, pos, state, player, itemStack);
 							if (player instanceof ServerPlayerEntity) {
 								CriteriaTriggers.PLACED_BLOCK.trigger((ServerPlayerEntity)player, pos, itemStack);
 							}
@@ -70,32 +61,32 @@ public class MixedSlabBlock extends SlabBlockDoTB implements IBlockCustomItem {
 							worldIn.playSound(player, pos, soundtype.getPlaceSound(), SoundCategory.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F);
 							if(!player.isCreative())
 								itemStack.shrink(1);
-							return true;
+							return ActionResultType.SUCCESS;
 						}
 					}
 				}
 			}
 		}
-		return super.onBlockActivated(state, worldIn, pos, player, handIn, hit);
+		return super.use(state, worldIn, pos, player, handIn, hit);
 	}
 
 	@Nullable
 	@Override
 	public Item getCustomItemBlock() {
-		return new BlockItem(this, new Item.Properties().groabove(DOTB_TAB)){
+		return new BlockItem(this, new Item.Properties().tab(DOTB_TAB)){
 			@Override
 			public ActionResultType place(BlockItemUseContext context) {
-				Direction facing = context.getFace();
-				if(context.isPlacerSneaking() || !facing.getAxis().isVertical())
+				Direction facing = context.getClickedFace();
+				if((context.getPlayer() != null && context.getPlayer().isCrouching()) || !facing.getAxis().isVertical())
 					return super.place(context);
 
 				PlayerEntity player = context.getPlayer();
-				ItemStack itemStack = context.getItem();
+				ItemStack itemStack = context.getItemInHand();
 				World worldIn = context.getLevel();
 				BlockPos pos = context.getClickedPos();
 				if(!context.replacingClickedOnBlock()) pos = pos.relative(facing.getOpposite());
 				if(player != null){
-					if(!player.canPlayerEdit(pos, facing, itemStack))
+					if(!player.mayUseItemAt(pos, facing, itemStack))
 						return super.place(context);
 				}
 
@@ -107,9 +98,8 @@ public class MixedSlabBlock extends SlabBlockDoTB implements IBlockCustomItem {
 								BlockState madeState = recipe.mixedBlock.getStateForPlacement(context);
 								if(madeState == null)
 									continue;
-								if(worldIn.setBlock(pos, madeState, 11))  {
-									this.onBlockPlaced(pos, worldIn, player, itemStack, madeState);
-									this.getBlock().onBlockPlacedBy(worldIn, pos, state, player, itemStack);
+								if(worldIn.setBlock(pos, madeState, 11)){
+									this.getBlock().setPlacedBy(worldIn, pos, state, player, itemStack);
 									if (player instanceof ServerPlayerEntity) {
 										CriteriaTriggers.PLACED_BLOCK.trigger((ServerPlayerEntity)player, pos, itemStack);
 									}
@@ -141,13 +131,13 @@ public class MixedSlabBlock extends SlabBlockDoTB implements IBlockCustomItem {
 		}
 
 		private boolean isConnectibleFirstSlab(BlockState state){
-			return firstSlabIsBottom ? state.get(TYPE) == SlabType.BOTTOM : state.get(TYPE) == SlabType.TOP;
+			return firstSlabIsBottom ? state.getValue(TYPE) == SlabType.BOTTOM : state.getValue(TYPE) == SlabType.TOP;
 		}
 
 		private boolean isConnectibleSecondSlab(BlockState state){
 			if(state.getBlock() == this.secondSlab){
 				if(secondSlab instanceof SlabBlock){
-					return firstSlabIsBottom ? state.get(TYPE) == SlabType.TOP : state.get(TYPE) == SlabType.BOTTOM;
+					return firstSlabIsBottom ? state.getValue(TYPE) == SlabType.TOP : state.getValue(TYPE) == SlabType.BOTTOM;
 				}
 			}
 			return false;
