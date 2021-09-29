@@ -17,8 +17,8 @@ public class CarpetBlockDoTB extends WaterloggedBlock {
 
 	private static final VoxelShape VS = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 1.0D, 16.0D);
 
-	public CarpetBlockDoTB(Material materialIn, float hardness, float resistance, SoundType soundType) {
-		super(Properties.of(materialIn).strength(hardness, resistance).sound(soundType));
+	public CarpetBlockDoTB(Properties properties) {
+		super(properties);
 	}
 
 	@Override

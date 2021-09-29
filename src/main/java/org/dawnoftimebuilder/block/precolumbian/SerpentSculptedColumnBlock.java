@@ -1,8 +1,7 @@
 package org.dawnoftimebuilder.block.precolumbian;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
@@ -15,14 +14,14 @@ public class SerpentSculptedColumnBlock extends SidedColumnConnectibleBlock {
 
 	private static final VoxelShape[] SHAPES = DoTBBlockUtils.GenerateHorizontalShapes(makeShapes());
 
-	public SerpentSculptedColumnBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
-		super(Properties.of(materialIn).strength(hardness, resistance).sound(soundType));
+	public SerpentSculptedColumnBlock(Properties properties) {
+		super(properties);
 	}
 
 	@Override
 	public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-		int index = state.get(VERTICAL_CONNECTION).getIndex();
-		return SHAPES[index + state.get(FACING).get2DDataValue() * 4];
+		int index = state.getValue(VERTICAL_CONNECTION).getIndex();
+		return SHAPES[index + state.getValue(FACING).get2DDataValue() * 4];
 	}
 
 	/**

@@ -23,8 +23,8 @@ public class SandstoneColumnBlock extends ColumnConnectibleBlock {
 			Block.box(4.0D, 0.0D, 4.0D, 12.0D, 8.0D, 12.0D)
 	);
 
-	public SandstoneColumnBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
-		super(Properties.of(materialIn).strength(hardness, resistance).sound(soundType));
+	public SandstoneColumnBlock(Properties properties) {
+		super(properties);
 	}
 
 	@Override

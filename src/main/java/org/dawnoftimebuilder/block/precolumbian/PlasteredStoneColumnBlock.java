@@ -1,8 +1,7 @@
 package org.dawnoftimebuilder.block.precolumbian;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
@@ -23,13 +22,13 @@ public class PlasteredStoneColumnBlock extends ColumnConnectibleBlock {
 			Block.box(3.0D, 0.0D, 3.0D, 13.0D, 8.0D, 13.0D)
 	);
 	
-	public PlasteredStoneColumnBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
-		super(Properties.of(materialIn).strength(hardness, resistance).sound(soundType));
+	public PlasteredStoneColumnBlock(Properties properties) {
+		super(properties);
 	}
 
 	@Override
 	public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-		switch (state.get(VERTICAL_CONNECTION)) {
+		switch (state.getValue(VERTICAL_CONNECTION)) {
 			default:
 			case UNDER:
 				return VS_TOP;

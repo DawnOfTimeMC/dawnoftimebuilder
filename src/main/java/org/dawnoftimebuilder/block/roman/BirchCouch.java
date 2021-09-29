@@ -37,7 +37,7 @@ public class BirchCouch extends ChairBlock {
                     Block.box(0.0D, 13.0D, 0.0D, 16.0D, 19.0D, 8.0D)
             )});
 
-    public BirchCouch(Material materialIn, float hardness, float resistance, SoundType soundType, float pixelsYOffset) {
+    public BirchCouch(Properties properties, float pixelsYOffset) {
         super(Properties.of(materialIn).strength(hardness, resistance).sound(soundType), pixelsYOffset);
     }
 

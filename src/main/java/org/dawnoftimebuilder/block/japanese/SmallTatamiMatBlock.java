@@ -3,11 +3,10 @@ package org.dawnoftimebuilder.block.japanese;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.BooleanProperty;
@@ -53,9 +52,9 @@ public class SmallTatamiMatBlock extends WaterloggedBlock implements IBlockChain
     public static final BooleanProperty ROLLED = DoTBBlockStateProperties.ROLLED;
     public static final IntegerProperty STACK = DoTBBlockStateProperties.STACK;
 
-    public SmallTatamiMatBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
-        super(Properties.of(materialIn).strength(hardness, resistance).sound(soundType));
-        this.registerDefaultState(this.stateContainer.getBaseState().setValue(ROLLED, false).setValue(ATTACHED, false).setValue(STACK, 1).setValue(WATERLOGGED, false));
+    public SmallTatamiMatBlock(Properties properties) {
+        super(properties);
+        this.registerDefaultState(this.defaultBlockState().setValue(ROLLED, false).setValue(ATTACHED, false).setValue(STACK, 1));
     }
 
     @Override
@@ -83,11 +82,6 @@ public class SmallTatamiMatBlock extends WaterloggedBlock implements IBlockChain
     }
 
     @Override
-    public BlockRenderLayer getRenderLayer() {
-        return BlockRenderLayer.CUTOUT;
-    }
-
-    @Override
     public BlockState getStateForPlacement(BlockItemUseContext context) {
         World world = context.getLevel();
         BlockPos pos = context.getClickedPos();
@@ -99,16 +93,16 @@ public class SmallTatamiMatBlock extends WaterloggedBlock implements IBlockChain
             }
         }
         return super.getStateForPlacement(context)
-                .setValue(ROLLED, world.getBlockState(pos.below()).getBlock().isIn(COVERED_BLOCKS))
+                .setValue(ROLLED, world.getBlockState(pos.below()).getBlock().is(COVERED_BLOCKS))
                 .setValue(HORIZONTAL_AXIS, context.getHorizontalDirection().getAxis());
     }
 
     @Override
     public boolean canSurvive(BlockState state, IWorldReader worldIn, BlockPos pos) {
-        if(state.get(ATTACHED)){
+        if(state.getValue(ATTACHED)){
             BlockState stateUp = worldIn.getBlockState(pos.above());
             Block blockUp = stateUp.getBlock();
-            if(blockUp.isIn(BlockTags.FENCES) || worldIn.getBlockState(pos.below()).getBlock().isIn(BlockTags.FENCES)) return true;
+            if(blockUp.is(BlockTags.FENCES) || worldIn.getBlockState(pos.below()).getBlock().is(BlockTags.FENCES)) return true;
             if(IBlockChain.canBeChained(stateUp, true)) return true;
         }
         return !worldIn.isEmptyBlock(pos.below());
@@ -119,29 +113,29 @@ public class SmallTatamiMatBlock extends WaterloggedBlock implements IBlockChain
         stateIn = super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
         if(facing.getAxis().isVertical()){
             stateIn = stateIn.setValue(ATTACHED, false);
-            if(stateIn.get(ROLLED) && stateIn.get(STACK) == 1){
+            if(stateIn.getValue(ROLLED) && stateIn.getValue(STACK) == 1){
                 BlockState stateUp = worldIn.getBlockState(currentPos.above());
-                if(stateUp.getBlock().isIn(BlockTags.FENCES)
-                        || worldIn.getBlockState(currentPos.below()).getBlock().isIn(BlockTags.FENCES)
+                if(stateUp.getBlock().is(BlockTags.FENCES)
+                        || worldIn.getBlockState(currentPos.below()).getBlock().is(BlockTags.FENCES)
                         || IBlockChain.canBeChained(stateUp, true))
                     stateIn = stateIn.setValue(ATTACHED, true);
             }
-            return !stateIn.canSurvive(worldIn, currentPos) ? Blocks.AIR.defaultBlockState() : this.tryMergingWithSprucePlanks(stateIn, worldIn.getLevel(), currentPos);
+            return !stateIn.canSurvive(worldIn, currentPos) ? Blocks.AIR.defaultBlockState() : this.tryMergingWithSprucePlanks(stateIn, worldIn, currentPos);
         }
         return stateIn;
     }
 
     @Override
-    public void onBlockPlacedBy(World worldIn, BlockPos pos, BlockState state, LivingEntity placer, ItemStack stack) {
+    public void setPlacedBy(World worldIn, BlockPos pos, BlockState state, LivingEntity placer, ItemStack stack) {
         BlockState newState = this.tryMergingWithSprucePlanks(state, worldIn, pos);
-        if(newState.getBlock() == Blocks.AIR) worldIn.setBlock(pos, newState);
+        if(newState.getBlock() == Blocks.AIR) worldIn.setBlock(pos, newState, 10);
     }
 
-    private BlockState tryMergingWithSprucePlanks(BlockState state, World worldIn, BlockPos pos){
-        if(state.get(ROLLED)) return state;
+    private BlockState tryMergingWithSprucePlanks(BlockState state, IWorld worldIn, BlockPos pos){
+        if(state.getValue(ROLLED)) return state;
         Block blockDown = worldIn.getBlockState(pos.below()).getBlock();
         if(blockDown == SPRUCE_PLANKS){
-            worldIn.setBlock(pos.below(), SMALL_TATAMI_FLOOR.defaultBlockState());
+            worldIn.setBlock(pos.below(), SMALL_TATAMI_FLOOR.get().defaultBlockState(), 10);
             return Blocks.AIR.defaultBlockState();
         }
         return state.setValue(ATTACHED, false);
@@ -150,29 +144,29 @@ public class SmallTatamiMatBlock extends WaterloggedBlock implements IBlockChain
     @Override
     public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
         if(player.isCrouching()){
-            int stack = state.get(STACK);
-            boolean isRolled = state.get(ROLLED);
+            int stack = state.getValue(STACK);
+            boolean isRolled = state.getValue(ROLLED);
             if(isRolled && stack == 1)
-                if(worldIn.getBlockState(pos.below()).getBlock().isIn(COVERED_BLOCKS))
-                    return false;
-            if(state.get(STACK) > 1){
+                if(worldIn.getBlockState(pos.below()).getBlock().is(COVERED_BLOCKS))
+                    return ActionResultType.PASS;
+            if(state.getValue(STACK) > 1){
                 state = state.setValue(STACK, stack - 1);
-                spawnAsEntity(worldIn.getLevel(), pos, new ItemStack(this.asItem(), 1));
+                InventoryHelper.dropItemStack(worldIn, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(this.asItem()));
             }else
                 state = state.setValue(ROLLED, !isRolled);
             state = this.updateShape(state, Direction.DOWN, worldIn.getBlockState(pos.below()), worldIn, pos, pos.below());
             worldIn.setBlock(pos, state, 10);
             worldIn.playSound(player, pos, this.soundType.getPlaceSound(), SoundCategory.BLOCKS, (this.soundType.getVolume() + 1.0F) / 2.0F, this.soundType.getPitch() * 0.8F);
 
-            return true;
+            return ActionResultType.SUCCESS;
         }
-        return false;
+        return ActionResultType.SUCCESS;
     }
 
-    public boolean isReplaceable(BlockState state, BlockItemUseContext useContext) {
-        ItemStack itemstack = useContext.getItem();
+    public boolean canBeReplaced(BlockState state, BlockItemUseContext useContext) {
+        ItemStack itemstack = useContext.getItemInHand();
         if(itemstack.getItem() == this.asItem()) {
-            if(!state.get(ROLLED) || state.get(ATTACHED) || state.get(STACK) == 3) return false;
+            if(!state.getValue(ROLLED) || state.getValue(ATTACHED) || state.getValue(STACK) == 3) return false;
             return useContext.replacingClickedOnBlock();
         }
         return false;
@@ -180,17 +174,17 @@ public class SmallTatamiMatBlock extends WaterloggedBlock implements IBlockChain
 
     @Override
     public boolean canConnectToChainAbove(BlockState state) {
-        return state.get(ATTACHED);
+        return state.getValue(ATTACHED);
     }
 
     @Override
     public boolean canConnectToChainUnder(BlockState state) {
-        return state.get(ATTACHED);
+        return state.getValue(ATTACHED);
     }
 
     @Override
     public BlockState rotate(BlockState state, Rotation rot) {
-        return state.setValue(HORIZONTAL_AXIS, state.get(HORIZONTAL_AXIS) == Direction.Axis.X ? Direction.Axis.Z : Direction.Axis.X);
+        return state.setValue(HORIZONTAL_AXIS, state.getValue(HORIZONTAL_AXIS) == Direction.Axis.X ? Direction.Axis.Z : Direction.Axis.X);
     }
 
     @Override

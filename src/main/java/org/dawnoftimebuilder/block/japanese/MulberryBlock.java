@@ -5,10 +5,10 @@ import net.minecraft.entity.SpawnReason;
 import net.minecraft.item.Food;
 import net.minecraft.state.properties.Half;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.PlantType;
-import org.dawnoftimebuilder.block.templates.DoubleGrowingBushBlock;
 import org.dawnoftimebuilder.DoTBConfig;
+import org.dawnoftimebuilder.block.templates.DoubleGrowingBushBlock;
 
 import java.util.Random;
 
@@ -21,11 +21,11 @@ public class MulberryBlock extends DoubleGrowingBushBlock {
     }
 
     @Override
-    public void tick(BlockState state, World worldIn, BlockPos pos, Random random) {
+    public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
         super.tick(state, worldIn, pos, random);
-        if(state.get(HALF) == Half.TOP){
+        if(state.getValue(HALF) == Half.TOP){
             if(random.nextInt(DoTBConfig.SILKMOTH_SPAWN_CHANCE.get()) == 0){
-                SILKMOTH_ENTITY.spawn(worldIn, null, null, pos, SpawnReason.SPAWNER, false, true);
+                SILKMOTH_ENTITY.get().spawn(worldIn, null, null, pos, SpawnReason.SPAWNER, false, true);
             }
         }
     }

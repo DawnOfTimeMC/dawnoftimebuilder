@@ -1,8 +1,7 @@
 package org.dawnoftimebuilder.block.german;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
@@ -18,8 +17,8 @@ public class LatticeStoneBricksWindowBlock extends SidedWindowBlock {
 	private static final VoxelShape X_VS = Block.box(5.0D, 0.0D, 0.0D, 11.0D, 16.0D, 16.0D);
 	private static final VoxelShape Z_VS = Block.box(0.0D, 0.0D, 5.0D, 16.0D, 16.0D, 11.0D);
 
-	public LatticeStoneBricksWindowBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
-		super(Properties.of(materialIn).strength(hardness, resistance).sound(soundType));
+	public LatticeStoneBricksWindowBlock(Properties properties) {
+		super(properties);
 	}
 
 	@Override

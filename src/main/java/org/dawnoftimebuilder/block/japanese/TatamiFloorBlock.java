@@ -3,20 +3,16 @@ package org.dawnoftimebuilder.block.japanese;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
 import net.minecraft.block.material.PushReaction;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.state.properties.Half;
-import net.minecraft.util.Direction;
-import net.minecraft.util.Hand;
-import net.minecraft.util.Mirror;
-import net.minecraft.util.Rotation;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
@@ -35,8 +31,8 @@ public class TatamiFloorBlock extends NoItemBlock {
 	public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 	public static final EnumProperty<Half> HALF = BlockStateProperties.HALF;
 
-	public TatamiFloorBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
-		super(Properties.of(materialIn).strength(hardness, resistance).sound(soundType));
+	public TatamiFloorBlock(Properties properties) {
+		super(properties);
 	}
 
 	@Override
@@ -51,11 +47,12 @@ public class TatamiFloorBlock extends NoItemBlock {
 
 	@Override
 	public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
-		Direction directionOtherHalf = (stateIn.get(HALF) == Half.TOP) ? stateIn.get(FACING) : stateIn.get(FACING).getOpposite();
-		if(facing == Direction.UP) {
+		Direction directionOtherHalf = (stateIn.getValue(HALF) == Half.TOP) ? stateIn.getValue(FACING) : stateIn.getValue(FACING).getOpposite();
+		if(facing == Direction.UP && worldIn instanceof World) {
 			BlockState stateAbove = worldIn.getBlockState(facingPos);
-			if (hasSolidSide(stateAbove, worldIn, facingPos, Direction.DOWN) && stateAbove.isSolid()) {
-				spawnAsEntity(worldIn.getLevel(), currentPos, new ItemStack(TATAMI_MAT.asItem(), 1));
+			if (isFaceFull(stateAbove.getShape(worldIn, facingPos), Direction.DOWN) && stateAbove.canOcclude()) {
+				InventoryHelper.dropItemStack((World) worldIn, currentPos.getX(), currentPos.getY(), currentPos.getZ(), new ItemStack(TATAMI_MAT.get().asItem()));
+				new ItemStack(TATAMI_MAT.get().asItem());
 				worldIn.setBlock(currentPos.relative(directionOtherHalf), SPRUCE_PLANKS.defaultBlockState(), 10);
 				return SPRUCE_PLANKS.defaultBlockState();
 			}
@@ -63,7 +60,7 @@ public class TatamiFloorBlock extends NoItemBlock {
 		if(facing == directionOtherHalf){
 			if(facingState.getBlock() != this)
 				return Blocks.AIR.defaultBlockState();
-			else if(facingState.get(FACING) != stateIn.get(FACING) || facingState.get(HALF) == stateIn.get(HALF)) return Blocks.AIR.defaultBlockState();
+			else if(facingState.getValue(FACING) != stateIn.getValue(FACING) || facingState.getValue(HALF) == stateIn.getValue(HALF)) return Blocks.AIR.defaultBlockState();
 		}
 		return stateIn;
 	}
@@ -72,20 +69,20 @@ public class TatamiFloorBlock extends NoItemBlock {
 	public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
 		if(!worldIn.isClientSide){
 			if(player.isCrouching()){
-				boolean isTop = state.get(HALF) == Half.TOP;
-				BlockPos otherPos = (isTop) ? pos.relative(state.get(FACING)) : pos.relative(state.get(FACING).getOpposite());
+				boolean isTop = state.getValue(HALF) == Half.TOP;
+				BlockPos otherPos = (isTop) ? pos.relative(state.getValue(FACING)) : pos.relative(state.getValue(FACING).getOpposite());
 				if(isTop)//Check if the blocks above each part are AIR
 					if(!worldIn.isEmptyBlock(pos.above()))
-						return false;
+						return ActionResultType.PASS;
 					else if(!worldIn.isEmptyBlock(otherPos.above()))
-						return false;
+						return ActionResultType.PASS;
 				worldIn.setBlock(pos, SPRUCE_PLANKS.defaultBlockState(), 2);
 				worldIn.setBlock(otherPos, SPRUCE_PLANKS.defaultBlockState(), 2);
-				worldIn.setBlock((isTop) ? pos.above() : otherPos.above(), TATAMI_MAT.defaultBlockState().setValue(TatamiMatBlock.HALF, Half.TOP).setValue(TatamiMatBlock.FACING, state.get(FACING)).setValue(TatamiMatBlock.ROLLED, true), 2);
-				return true;
+				worldIn.setBlock((isTop) ? pos.above() : otherPos.above(), TATAMI_MAT.get().defaultBlockState().setValue(TatamiMatBlock.HALF, Half.TOP).setValue(TatamiMatBlock.FACING, state.getValue(FACING)).setValue(TatamiMatBlock.ROLLED, true), 2);
+				return ActionResultType.SUCCESS;
 			}
 		}
-		return false;
+		return ActionResultType.PASS;
 	}
 
 	@Override
@@ -94,21 +91,16 @@ public class TatamiFloorBlock extends NoItemBlock {
 	}
 
 	@Override
-	public void onPlayerDestroy(IWorld worldIn, BlockPos pos, BlockState state) {
-		super.onPlayerDestroy(worldIn, pos, state);
-		BlockPos otherPos = (state.get(HALF) == Half.TOP) ? pos.relative(state.get(FACING)) : pos.relative(state.get(FACING).getOpposite());
+	public void playerWillDestroy(World worldIn, BlockPos pos, BlockState state, PlayerEntity player) {
+		super.playerWillDestroy(worldIn, pos, state, player);
+		BlockPos otherPos = (state.getValue(HALF) == Half.TOP) ? pos.relative(state.getValue(FACING)) : pos.relative(state.getValue(FACING).getOpposite());
 		worldIn.setBlock(pos, SPRUCE_PLANKS.defaultBlockState(), 10);
 		worldIn.setBlock(otherPos, SPRUCE_PLANKS.defaultBlockState(), 10);
 	}
 
 	@Override
-	public boolean isSolid(BlockState state) {
-		return true;
-	}
-
-	@Override
 	public BlockState rotate(BlockState state, Rotation rot) {
-		return state.setValue(FACING, rot.rotate(state.get(FACING)));
+		return state.setValue(FACING, rot.rotate(state.getValue(FACING)));
 	}
 
 	@Override

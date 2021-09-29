@@ -10,7 +10,6 @@ import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.dawnoftimebuilder.block.IBlockCustomItem;
-import org.dawnoftimebuilder.block.french.LimestoneBalusterBlock;
 import org.dawnoftimebuilder.block.french.LimestoneChimneyBlock;
 import org.dawnoftimebuilder.block.precolumbian.*;
 import org.dawnoftimebuilder.block.roman.BirchCouch;
@@ -22,9 +21,6 @@ import org.dawnoftimebuilder.block.german.*;
 import org.dawnoftimebuilder.block.general.*;
 import org.dawnoftimebuilder.block.japanese.*;
 import org.dawnoftimebuilder.util.DoTBFoods;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static net.minecraft.block.Blocks.*;
 import static net.minecraftforge.common.PlantType.CROP;
@@ -53,7 +49,7 @@ public class DoTBBlocksRegistry {
 	public static final RegistryObject<Block> BIRCH_WALL = reg("birch_wall", new WallBlockDoTB(AbstractBlock.Properties.copy(BIRCH_PLANKS)).setBurnable());
 	public static final RegistryObject<Block> BIRCH_SUPPORT_BEAM = reg("birch_support_beam", new SupportBeamBlock(AbstractBlock.Properties.copy(BIRCH_PLANKS)).setBurnable());
 	public static final RegistryObject<Block> BIRCH_SUPPORT_SLAB = reg("birch_support_slab", new SupportSlabBlock(AbstractBlock.Properties.copy(BIRCH_PLANKS)).setBurnable());
-	public static final RegistryObject<Block> CANDLESTICK = reg("candlestick", new CandlestickBlock(Material.METAL, 2.0F, 6.0F, SoundType.METAL));
+	public static final RegistryObject<Block> CANDLESTICK = reg("candlestick", new CandlestickBlock(AbstractBlock.Properties.copy(CAULDRON)));
 	public static final RegistryObject<Block> DARK_OAK_PLANKS_EDGE = reg("dark_oak_planks_edge", new EdgeBlock(AbstractBlock.Properties.copy(DARK_OAK_PLANKS)).setBurnable());
 	public static final RegistryObject<Block> DARK_OAK_PLANKS_PLATE = reg("dark_oak_planks_plate", new PlateBlock(AbstractBlock.Properties.copy(DARK_OAK_PLANKS)).setBurnable());
 	public static final RegistryObject<Block> DARK_OAK_PERGOLA = reg("dark_oak_pergola", new PergolaBlock(AbstractBlock.Properties.copy(DARK_OAK_PLANKS)).setBurnable());
@@ -87,15 +83,15 @@ public class DoTBBlocksRegistry {
 	public static final RegistryObject<Block> SPRUCE_WALL = reg("spruce_wall", new WallBlockDoTB(AbstractBlock.Properties.copy(SPRUCE_PLANKS)).setBurnable());
 	public static final RegistryObject<Block> SPRUCE_SUPPORT_BEAM = reg("spruce_support_beam", new SupportBeamBlock(AbstractBlock.Properties.copy(SPRUCE_PLANKS)).setBurnable());
 	public static final RegistryObject<Block> SPRUCE_SUPPORT_SLAB = reg("spruce_support_slab", new SupportSlabBlock(AbstractBlock.Properties.copy(SPRUCE_PLANKS)).setBurnable());
-	public static final RegistryObject<Block> THATCH_WHEAT = reg("thatch_wheat", new BlockDoTB(Material.WOOD, 1.0F, 1.0F, SoundType.ROOTS).setBurnable(80, 30));
-	public static final RegistryObject<Block> THATCH_WHEAT_EDGE = reg("thatch_wheat_edge", new EdgeBlock(THATCH_WHEAT.get()).setBurnable(80, 30));
-	public static final RegistryObject<Block> THATCH_WHEAT_PLATE = reg("thatch_wheat_plate", new PlateBlock(THATCH_WHEAT.get()).setBurnable(80, 30));
-	public static final RegistryObject<Block> THATCH_WHEAT_SLAB = reg("thatch_wheat_slab", new SlabBlockDoTB(THATCH_WHEAT.get()).setBurnable(80, 30));
+	public static final RegistryObject<Block> THATCH_WHEAT = reg("thatch_wheat", new BlockDoTB(AbstractBlock.Properties.of(Material.GRASS, MaterialColor.COLOR_YELLOW).strength(1.0F).sound(SoundType.GRASS)).setBurnable(80, 30));
+	public static final RegistryObject<Block> THATCH_WHEAT_EDGE = reg("thatch_wheat_edge", new EdgeBlock(AbstractBlock.Properties.copy(THATCH_WHEAT.get())).setBurnable(80, 30));
+	public static final RegistryObject<Block> THATCH_WHEAT_PLATE = reg("thatch_wheat_plate", new PlateBlock(AbstractBlock.Properties.copy(THATCH_WHEAT.get())).setBurnable(80, 30));
+	public static final RegistryObject<Block> THATCH_WHEAT_SLAB = reg("thatch_wheat_slab", new SlabBlockDoTB(AbstractBlock.Properties.copy(THATCH_WHEAT.get())).setBurnable(80, 30));
 	public static final RegistryObject<Block> THATCH_WHEAT_STAIRS = reg("thatch_wheat_stairs", new StairsBlockDoTB(THATCH_WHEAT.get()).setBurnable(80, 30));
-	public static final RegistryObject<Block> THATCH_BAMBOO = reg("thatch_bamboo", new BlockDoTB(Material.WOOD, 1.0F, 1.0F, SoundType.ROOTS).setBurnable(40, 30));
-	public static final RegistryObject<Block> THATCH_BAMBOO_EDGE = reg("thatch_bamboo_edge", new EdgeBlock(THATCH_BAMBOO.get()).setBurnable(40, 30));
-	public static final RegistryObject<Block> THATCH_BAMBOO_PLATE = reg("thatch_bamboo_plate", new PlateBlock(THATCH_BAMBOO.get()).setBurnable(40, 30));
-	public static final RegistryObject<Block> THATCH_BAMBOO_SLAB = reg("thatch_bamboo_slab", new SlabBlockDoTB(THATCH_BAMBOO.get()).setBurnable(40, 30));
+	public static final RegistryObject<Block> THATCH_BAMBOO = reg("thatch_bamboo", new BlockDoTB(AbstractBlock.Properties.copy(THATCH_WHEAT.get())).setBurnable(40, 30));
+	public static final RegistryObject<Block> THATCH_BAMBOO_EDGE = reg("thatch_bamboo_edge", new EdgeBlock(AbstractBlock.Properties.copy(THATCH_WHEAT.get())).setBurnable(40, 30));
+	public static final RegistryObject<Block> THATCH_BAMBOO_PLATE = reg("thatch_bamboo_plate", new PlateBlock(AbstractBlock.Properties.copy(THATCH_WHEAT.get())).setBurnable(40, 30));
+	public static final RegistryObject<Block> THATCH_BAMBOO_SLAB = reg("thatch_bamboo_slab", new SlabBlockDoTB(AbstractBlock.Properties.copy(THATCH_WHEAT.get())).setBurnable(40, 30));
 	public static final RegistryObject<Block> THATCH_BAMBOO_STAIRS = reg("thatch_bamboo_stairs", new StairsBlockDoTB(THATCH_BAMBOO.get()).setBurnable(40, 30));
 	public static final RegistryObject<Block> FIREPLACE = reg("fireplace", new FireplaceBlock(Material.STONE,1.5F, 6.0F, SoundType.STONE));
 	public static final RegistryObject<Block> IRON_PORTCULLIS = reg("iron_portcullis", new PortcullisBlock(Material.METAL, 5.0F, 6.0F, SoundType.METAL));
@@ -108,7 +104,7 @@ public class DoTBBlocksRegistry {
 	public static final RegistryObject<Block> LIMESTONE_BRICKS_SLAB = reg("limestone_bricks_slab", new SlabBlockDoTB(LIMESTONE_BRICKS.get()));
 	public static final RegistryObject<Block> LIMESTONE_BRICKS_STAIRS = reg("limestone_bricks_stairs", new StairsBlockDoTB(LIMESTONE_BRICKS.get()));
 	public static final RegistryObject<Block> LIMESTONE_BRICKS_WALL = reg("limestone_bricks_wall", new WallBlockDoTB(Material.STONE, 1.5F, 6.0F, SoundType.STONE));
-	public static final RegistryObject<Block> LIMESTONE_BALUSTER = reg("limestone_baluster", new LimestoneBalusterBlock(Material.STONE, 1.5F, 6.0F, SoundType.STONE));
+	public static final RegistryObject<Block> LIMESTONE_BALUSTER = reg("limestone_baluster", new EdgeBlock(Material.STONE, 1.5F, 6.0F, SoundType.STONE));
 	public static final RegistryObject<Block> LIMESTONE_CHIMNEY = reg("limestone_chimney", new LimestoneChimneyBlock(Material.STONE, 1.5F, 6.0F, SoundType.STONE));
 	public static final RegistryObject<Block> LIMESTONE_FIREPLACE = reg("limestone_fireplace", new MultiblockFireplaceBlock(Material.STONE, 2.0F, 6.0F, SoundType.STONE));
 
@@ -118,7 +114,7 @@ public class DoTBBlocksRegistry {
 	public static final RegistryObject<Block> FLAT_ROOF_TILES_PLATE = reg("flat_roof_tiles_plate", new PlateBlock(FLAT_ROOF_TILES.get()));
 	public static final RegistryObject<Block> FLAT_ROOF_TILES_SLAB = reg("flat_roof_tiles_slab", new SlabBlockDoTB(FLAT_ROOF_TILES.get()));
 	public static final RegistryObject<Block> FLAT_ROOF_TILES_EDGE = reg("flat_roof_tiles_edge", new EdgeBlock(FLAT_ROOF_TILES.get()));
-	public static final RegistryObject<Block> LATTICE_GLASS = reg("lattice_glass", new GlassBlockDoTB(Material.GLASS, 1.0F, 1.0F, SoundType.GLASS));
+	public static final RegistryObject<Block> LATTICE_GLASS = reg("lattice_glass", new GlassBlock(Material.GLASS, 1.0F, 1.0F, SoundType.GLASS));
 	public static final RegistryObject<Block> LATTICE_GLASS_PANE = reg("lattice_glass_pane", new PaneBlockDoTB(Material.GLASS, 1.0F, 1.0F, SoundType.GLASS)); //TODO translucent
 	public static final RegistryObject<Block> LATTICE_WAXED_OAK_WINDOW = reg("lattice_waxed_oak_window", new SidedWindowBlock(Material.GLASS, 2.0F, 3.0F, SoundType.GLASS));
 	public static final RegistryObject<Block> LATTICE_STONE_BRICKS_WINDOW = reg("lattice_stone_bricks_window", new LatticeStoneBricksWindowBlock(Material.STONE, 1.5F, 6.0F, SoundType.GLASS));

@@ -2,13 +2,10 @@ package org.dawnoftimebuilder.block.japanese;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.Rotation;
@@ -29,15 +26,15 @@ public class StoneLanternBlock extends WaterloggedBlock implements IBlockChain, 
     private static final VoxelShape[] VS_SIDE = DoTBBlockUtils.GenerateHorizontalShapes(new VoxelShape[]{Block.box(2.0D, 0.0D, 0.0D, 14.0D, 16.0D, 14.0D)});
     public static final DirectionProperty FACING = BlockStateProperties.FACING;
 
-    public StoneLanternBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
-        super(Properties.of(materialIn).strength(hardness, resistance).sound(soundType).lightValue(15));
-        this.registerDefaultState(this.defaultBlockState().setValue(WATERLOGGED,false).setValue(FACING, Direction.DOWN));
+    public StoneLanternBlock(Properties properties) {
+        super(properties);
+        this.registerDefaultState(this.defaultBlockState().setValue(FACING, Direction.DOWN));
     }
 
     @Nonnull
     @Override
     public BlockState getStateForPlacement(BlockItemUseContext context) {
-        return super.getStateForPlacement(context).setValue(FACING, context.getFace());
+        return super.getStateForPlacement(context).setValue(FACING, context.getClickedFace());
     }
 
     @Override
@@ -55,8 +52,8 @@ public class StoneLanternBlock extends WaterloggedBlock implements IBlockChain, 
     }
 
     @Override
-    public BlockRenderLayer getRenderLayer() {
-        return BlockRenderLayer.CUTOUT_MIPPED;
+    public int getLightValue(BlockState state, IBlockReader world, BlockPos pos) {
+        return 15;
     }
 
     @Override

@@ -1,8 +1,7 @@
 package org.dawnoftimebuilder.block.precolumbian;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
@@ -15,8 +14,8 @@ public class GreenSculptedPlasteredStoneFriezeBlock extends PlateBlock {
 
 	private static final VoxelShape[] SHAPES = DoTBBlockUtils.GenerateHorizontalShapes(makeShapes());
 
-    public GreenSculptedPlasteredStoneFriezeBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
-		super(Properties.of(materialIn).strength(hardness, resistance).sound(soundType));
+    public GreenSculptedPlasteredStoneFriezeBlock(Properties properties) {
+		super(properties);
     }
 
 	/**
@@ -44,9 +43,9 @@ public class GreenSculptedPlasteredStoneFriezeBlock extends PlateBlock {
 
 	@Override
 	public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-		int index = (state.get(FACING).get2DDataValue() + 2) % 4;
+		int index = (state.getValue(FACING).get2DDataValue() + 2) % 4;
 		index *= 3;
-		switch (state.get(SHAPE)) {
+		switch (state.getValue(SHAPE)) {
 			default:
 			case OUTER_LEFT:
 				break;

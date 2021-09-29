@@ -1,22 +1,21 @@
 package org.dawnoftimebuilder.block.precolumbian;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.SoundType;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import org.dawnoftimebuilder.block.templates.PlateBlock;
-import net.minecraft.block.material.Material;
 import org.dawnoftimebuilder.util.DoTBBlockUtils;
 
 public class RedSculptedPlasteredStoneFriezeBlock extends PlateBlock {
 
 	private static final VoxelShape[] SHAPES = DoTBBlockUtils.GenerateHorizontalShapes(makeShapes());
     
-    public RedSculptedPlasteredStoneFriezeBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
-		super(Properties.of(materialIn).strength(hardness, resistance).sound(soundType));
+    public RedSculptedPlasteredStoneFriezeBlock(Properties properties) {
+		super(properties);
     }
 
 	/**
@@ -44,9 +43,9 @@ public class RedSculptedPlasteredStoneFriezeBlock extends PlateBlock {
 
 	@Override
 	public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-		int index = (state.get(FACING).get2DDataValue() + 2) % 4;
+		int index = (state.getValue(FACING).get2DDataValue() + 2) % 4;
 		index *= 3;
-		switch (state.get(SHAPE)) {
+		switch (state.getValue(SHAPE)) {
 			default:
 			case OUTER_LEFT:
 				break;

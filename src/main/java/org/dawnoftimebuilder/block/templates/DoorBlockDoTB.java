@@ -21,10 +21,6 @@ public class DoorBlockDoTB extends DoorBlock implements IWaterLoggable {
 		this.registerDefaultState(this.defaultBlockState().setValue(WATERLOGGED,false));
 	}
 
-	public DoorBlockDoTB(Material materialIn, float hardness, float resistance, SoundType soundType) {
-		this(Properties.of(materialIn).strength(hardness, resistance).sound(soundType));
-	}
-
 	@Override
 	protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
 		super.createBlockStateDefinition(builder);

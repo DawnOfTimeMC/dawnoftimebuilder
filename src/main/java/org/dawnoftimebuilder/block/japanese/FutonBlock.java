@@ -1,7 +1,8 @@
 package org.dawnoftimebuilder.block.japanese;
 
-import net.minecraft.block.*;
-import net.minecraft.block.material.Material;
+import net.minecraft.block.BedBlock;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.DyeColor;
 import net.minecraft.util.math.BlockPos;
@@ -15,8 +16,8 @@ public class FutonBlock extends BedBlock {
 
 	private static final VoxelShape VS = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 4.0D, 16.0D);
 
-	public FutonBlock(DyeColor colorIn, Material materialIn, float hardness, float resistance, SoundType soundType) {
-		super(colorIn, Block.Properties.of(materialIn).strength(hardness, resistance).sound(soundType));
+	public FutonBlock(DyeColor colorIn, Properties properties) {
+		super(colorIn, properties);
 	}
 
 	@Override
@@ -27,10 +28,5 @@ public class FutonBlock extends BedBlock {
 	@Override
 	public boolean isBed(BlockState state, IBlockReader world, BlockPos pos, @Nullable Entity player) {
 		return true;
-	}
-
-	@Override
-	public BlockRenderType getRenderType(BlockState state) {
-		return BlockRenderType.MODEL;
 	}
 }

@@ -2,8 +2,7 @@ package org.dawnoftimebuilder.block.japanese;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
+import net.minecraft.block.FenceBlock;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
@@ -21,13 +20,13 @@ import org.dawnoftimebuilder.util.DoTBBlockUtils;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public class CharredSpruceRailingBlock extends FenceBlockDoTB {
+public class CharredSpruceRailingBlock extends FenceBlock {
 
 	private static final EnumProperty<DoTBBlockStateProperties.FencePillar> FENCE_PILLAR = DoTBBlockStateProperties.FENCE_PILLAR;
 
-	public CharredSpruceRailingBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
-		super(materialIn, hardness, resistance, soundType);
-		this.registerDefaultState(this.defaultBlockState().setValue(EAST, false).setValue(NORTH, false).setValue(FENCE_PILLAR, FencePillar.NONE).setValue(SOUTH, false).setValue(WEST, false));
+	public CharredSpruceRailingBlock(Properties properties) {
+		super(properties);
+		this.registerDefaultState(this.defaultBlockState().setValue(FENCE_PILLAR, FencePillar.NONE));
 	}
 
 	@Override
@@ -39,8 +38,8 @@ public class CharredSpruceRailingBlock extends FenceBlockDoTB {
 	@Override
 	public BlockState getStateForPlacement(BlockItemUseContext context) {
 		BlockState state = super.getStateForPlacement(context);
-		if(state == null) return this.defaultBlockState();
-		if(context.isPlacerSneaking()){
+		if(state == null || context.getPlayer() == null) return this.defaultBlockState();
+		if(context.getPlayer().isCrouching()){
 			return state.setValue(FENCE_PILLAR, FencePillar.NONE);
 		}else return this.getPillarShape(state, context.getLevel(), context.getClickedPos());
 	}
@@ -54,13 +53,13 @@ public class CharredSpruceRailingBlock extends FenceBlockDoTB {
 
 	private BlockState getPillarShape(BlockState stateIn, IWorld worldIn, BlockPos currentPos){
 		if((stateIn.getValue(EAST) || stateIn.getValue(WEST)) && (stateIn.getValue(NORTH) || stateIn.getValue(SOUTH))){
-			if(worldIn.getBlockState(currentPos.above()).isSolid()) return stateIn.setValue(FENCE_PILLAR, FencePillar.PILLAR_BIG);
+			if(worldIn.getBlockState(currentPos.above()).canOcclude()) return stateIn.setValue(FENCE_PILLAR, FencePillar.PILLAR_BIG);
 			else return stateIn.setValue(FENCE_PILLAR, FencePillar.CAP_PILLAR_BIG);
 		}else return stateIn.setValue(FENCE_PILLAR, FencePillar.PILLAR_SMALL);
 	}
 
     private boolean hasNoPillar(BlockState state){
-		return state.get(FENCE_PILLAR) == FencePillar.NONE;
+		return state.getValue(FENCE_PILLAR) == FencePillar.NONE;
 	}
 
 	@Override

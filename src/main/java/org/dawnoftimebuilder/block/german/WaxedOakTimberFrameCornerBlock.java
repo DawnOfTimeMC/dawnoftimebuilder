@@ -2,8 +2,6 @@ package org.dawnoftimebuilder.block.german;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
@@ -15,8 +13,8 @@ public class WaxedOakTimberFrameCornerBlock extends BlockDoTB {
 
 	public static final BooleanProperty INVERTED = BlockStateProperties.INVERTED;
 
-	public WaxedOakTimberFrameCornerBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
-		super(Properties.of(materialIn).strength(hardness, resistance).sound(soundType));
+	public WaxedOakTimberFrameCornerBlock(Properties properties) {
+		super(properties);
 		this.registerDefaultState(this.defaultBlockState().setValue(INVERTED, false));
 	}
 

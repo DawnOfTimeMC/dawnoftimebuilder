@@ -2,13 +2,10 @@ package org.dawnoftimebuilder.block.german;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.HorizontalBlock;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
-import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
@@ -25,7 +22,7 @@ import static net.minecraft.util.Direction.NORTH;
 
 public class StoneBricksArrowslitBlock extends WaterloggedBlock {
 
-	public static final DirectionProperty FACING = HorizontalBlock.HORIZONTAL_FACING;
+	public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 	private static final VoxelShape[] SHAPES = DoTBBlockUtils.GenerateHorizontalShapes(new VoxelShape[]{
 			VoxelShapes.or(
 					Block.box(0.0D, 0.0D, 14.0D, 7.0D, 16.0D, 16.0D),
@@ -37,8 +34,8 @@ public class StoneBricksArrowslitBlock extends WaterloggedBlock {
 			)
 	});
 
-	public StoneBricksArrowslitBlock(Material materialIn, float hardness, float resistance, SoundType soundType) {
-		super(Properties.of(materialIn).strength(hardness, resistance).sound(soundType));
+	public StoneBricksArrowslitBlock(Properties properties) {
+		super(properties);
 		this.registerDefaultState(this.defaultBlockState().setValue(FACING, NORTH).setValue(WATERLOGGED, false));
 	}
 
@@ -50,7 +47,7 @@ public class StoneBricksArrowslitBlock extends WaterloggedBlock {
 
 	@Override
 	public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-		return SHAPES[state.get(FACING).get2DDataValue()];
+		return SHAPES[state.getValue(FACING).get2DDataValue()];
 	}
 
 	@Nonnull
@@ -60,18 +57,8 @@ public class StoneBricksArrowslitBlock extends WaterloggedBlock {
 	}
 
 	@Override
-	public BlockRenderLayer getRenderLayer() {
-		return BlockRenderLayer.CUTOUT;
-	}
-
-	@Override
-	public boolean isSolid(BlockState state) {
-		return true;
-	}
-
-	@Override
 	public BlockState rotate(BlockState state, Rotation rot){
-		return state.setValue(FACING, rot.rotate(state.get(FACING)));
+		return state.setValue(FACING, rot.rotate(state.getValue(FACING)));
 	}
 
 	@Override
