@@ -11,10 +11,7 @@ import net.minecraft.particles.ParticleTypes;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.util.Direction;
-import net.minecraft.util.Hand;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvents;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
@@ -77,19 +74,19 @@ public class MultiblockFireplaceBlock extends SidedPlaneConnectibleBlock {
 				worldIn.playSound(null, pos, SoundEvents.FIRE_EXTINGUISH, SoundCategory.BLOCKS, 1.0F, 1.0F);
 				worldIn.getBlockState(pos.relative(direction.getCounterClockWise())).neighborChanged(worldIn, pos.relative(direction.getCounterClockWise()), this, pos, false);
 				worldIn.getBlockState(pos.relative(direction.getClockWise())).neighborChanged(worldIn, pos.relative(direction.getClockWise()), this, pos, false);
-				return true;
+				return ActionResultType.SUCCESS;
 			} else {
-				if (state.getValue(WATERLOGGED)) return false;
+				if (state.getValue(WATERLOGGED)) return ActionResultType.PASS;
 				if (DoTBBlockUtils.useLighter(worldIn, pos, player, handIn)) {
 					Direction direction = state.getValue(FACING);
 					worldIn.setBlock(pos, state.setValue(BURNING, true), 10);
 					worldIn.getBlockState(pos.relative(direction.getCounterClockWise())).neighborChanged(worldIn, pos.relative(direction.getCounterClockWise()), this, pos, false);
 					worldIn.getBlockState(pos.relative(direction.getClockWise())).neighborChanged(worldIn, pos.relative(direction.getClockWise()), this, pos, false);
-					return true;
+					return ActionResultType.SUCCESS;
 				}
 			}
 		}
-		return false;
+		return ActionResultType.PASS;
 	}
 
 	@Override

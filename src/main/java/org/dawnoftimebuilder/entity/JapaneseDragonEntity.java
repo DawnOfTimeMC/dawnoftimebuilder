@@ -2,8 +2,8 @@ package org.dawnoftimebuilder.entity;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
-import net.minecraft.entity.ai.attributes.Attribute;
-import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
+import net.minecraft.entity.ai.attributes.AttributeModifierMap;
+import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.controller.MovementController;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.ai.goal.LookAtGoal;
@@ -24,6 +24,7 @@ import net.minecraft.world.World;
 import org.dawnoftimebuilder.DoTBConfig;
 
 import javax.annotation.Nullable;
+
 import java.util.Random;
 
 import static org.dawnoftimebuilder.registry.DoTBEntitiesRegistry.JAPANESE_DRAGON_ENTITY;
@@ -40,6 +41,13 @@ public class JapaneseDragonEntity extends CreatureEntity {
 		super(JAPANESE_DRAGON_ENTITY.get(), worldIn);
 	}
 
+	public static AttributeModifierMap.MutableAttribute createAttributes() {
+		return MobEntity.createMobAttributes()
+				.add(Attributes.MAX_HEALTH, DoTBConfig.JAPANESE_DRAGON_HEALTH.get())
+				.add(Attributes.ATTACK_DAMAGE, DoTBConfig.JAPANESE_DRAGON_ATTACK.get());
+
+	}
+
 	@Nullable
 	@Override
 	public ILivingEntityData finalizeSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
@@ -54,42 +62,50 @@ public class JapaneseDragonEntity extends CreatureEntity {
 	}
 
 	@Override
-	protected void registerAttributes() {
-		super.registerAttributes();
-		this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(DoTBConfig.JAPANESE_DRAGON_HEALTH.get() * this.getDragonSize());
-		this.getAttributes().registerAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(DoTBConfig.JAPANESE_DRAGON_ATTACK.get() + 2.0D * this.getDragonSize());
-	}
-
-	@Override
-	public void tick() {
-		super.tick();
-		this.idleTime++;
-	}
-
-	@Override
 	protected float getStandingEyeHeight(Pose poseIn, EntitySize sizeIn) {
 		return sizeIn.height * 0.6F;
 	}
 
 	@Override
-	protected boolean canTriggerWalking(){
+	protected boolean isMovementNoisy() {
 		return false;
 	}
 
 	@Override
-	public void fall(float distance, float damageMultiplier){}
+	public boolean causeFallDamage(float p_225503_1_, float p_225503_2_) {
+		return false;
+	}
 
 	@Override
-	protected void updateFallState(double y, boolean onGroundIn, BlockState state, BlockPos pos) {}
+	protected void checkFallDamage(double p_184231_1_, boolean p_184231_3_, BlockState state, BlockPos pos) {
+	}
 
 	@Override
-	public boolean doesEntityNotTriggerPressurePlate() {
+	public boolean isIgnoringBlockTriggers() {
 		return true;
 	}
 
 	@Override
-	public boolean canDespawn(double distanceToClosestPlayer) {
+	public boolean isPushable() {
 		return false;
+	}
+
+	@Override
+	protected void doPush(Entity entity) {
+	}
+
+	@Override
+	protected void pushEntities() {
+	}
+
+	@Override
+	public boolean removeWhenFarAway(double named) {
+		return false;
+	}
+
+	@Override
+	protected float getVoicePitch() {
+		return super.getVoicePitch() * this.getDragonSize();
 	}
 
 	@Override
@@ -97,69 +113,60 @@ public class JapaneseDragonEntity extends CreatureEntity {
 		return this.getDragonSize();
 	}
 
-	@Override
-	protected float getSoundPitch() {
-		return super.getSoundPitch() * this.getDragonSize();
-	}
-
-	@Override
-	public boolean hasNoGravity() {
-		return true;
-	}
-
 	@Nullable
 	@Override
 	public SoundEvent getAmbientSound(){
-		return !DoTBConfig.JAPANESE_DRAGON_MUTE.get() && this.rand.nextInt(4) == 0 ? SoundEvents.ENTITY_ENDER_DRAGON_AMBIENT : null;
+		return !DoTBConfig.JAPANESE_DRAGON_MUTE.get() && this.random.nextInt(4) == 0 ? SoundEvents.ENDER_DRAGON_AMBIENT : null;
 	}
 
 	@Override
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-		return SoundEvents.ENTITY_ENDER_DRAGON_HURT;
+		return SoundEvents.ENDER_DRAGON_AMBIENT;
 	}
 
 	@Override
 	protected SoundEvent getDeathSound() {
-		return SoundEvents.ENTITY_ENDER_DRAGON_GROWL;
+		return SoundEvents.ENDER_DRAGON_DEATH;
 	}
 
 	@Override
-	protected void registerData() {
-		super.registerData();
-		this.dataManager.register(SIZE, 1.0F);
-		this.dataManager.register(ANGLE, 0.0F);
-		this.dataManager.register(ANIM_DURATION, 50.0F);
+	protected void defineSynchedData() {
+		super.defineSynchedData();
+		this.getEntityData().define(SIZE, 1.0F);
+		this.getEntityData().define(ANGLE, 0.0F);
+		this.getEntityData().define(ANIM_DURATION, 50.0F);
 	}
 
 	private void setDragonSize(float size){
-		this.dataManager.set(SIZE, size);
+		this.getEntityData().set(SIZE, size);
 	}
 
 	public float getDragonSize(){
-		return this.dataManager.get(SIZE);
+		return this.getEntityData().get(SIZE);
 	}
 
-	private float getSpeed(){
+	private float getDragonSpeed(){
 		return 0.4F + this.getDragonSize();
 	}
 
-	private void setHeadTargetAngle(float angle){
-		this.dataManager.set(ANGLE, angle / 2 + this.getHeadTargetAngle() / 2);
+	@Override
+	public void setYHeadRot(float angle){
+		this.getEntityData().set(ANGLE, angle / 2 + this.getHeadTargetAngle() / 2);
 	}
 
 	public float getHeadTargetAngle(){
-		return this.dataManager.get(ANGLE);
+		return this.getEntityData().get(ANGLE);
 	}
 
 	/**
 	 * @param factor is multiplied with 5 + dragon's size. A value of ten give an average speed of animation
 	 */
 	private void setAnimDuration(float factor){
-		this.dataManager.set(ANIM_DURATION, factor * (5.0F + this.getDragonSize()));
+		this.getEntityData().set(ANIM_DURATION, factor * (5.0F + this.getDragonSize()));
 	}
 
 	private float getAnimDuration(){
-		return this.dataManager.get(ANIM_DURATION);
+		return this.getEntityData().get(ANIM_DURATION);
 	}
 
 	public float getAnimationLoop(float tickAge) {
@@ -170,20 +177,20 @@ public class JapaneseDragonEntity extends CreatureEntity {
 	}
 
 	@Override
-	public void readAdditional(CompoundNBT compound) {
-		super.readAdditional(compound);
+	public void readAdditionalSaveData(CompoundNBT compound) {
+		super.readAdditionalSaveData(compound);
 		float size = compound.getFloat("JapaneseDragonSize");
 		if(size > 0.0F){
 			this.setDragonSize(size);
 			this.setAnimDuration(10.0F);
-			this.experienceValue = (int) Math.ceil(100 * size);
+			this.xpReward = (int) Math.ceil(100 * size);
 		}
 	}
 
 	@Override
-	public void writeAdditional(CompoundNBT compound) {
+	public void addAdditionalSaveData(CompoundNBT compound) {
+		super.addAdditionalSaveData(compound);
 		compound.putFloat("JapaneseDragonSize", this.getDragonSize());
-		super.writeAdditional(compound);
 	}
 
 	@Override
@@ -205,23 +212,18 @@ public class JapaneseDragonEntity extends CreatureEntity {
 		}
 
 		@Override
-		public boolean shouldExecute() {
-			if(this.dragon.getIdleTime() < 100) return false;
-			if(this.dragon.posY > 100.0D) return false;
-			if(this.dragon.getRNG().nextInt(200) != 0) return false;
-			BlockPos pos = new BlockPos(this.dragon.posX, this.dragon.posY, this.dragon.posZ);
-			return this.dragon.world.canBlockSeeSky(pos);
+		public boolean canUse() {
+			if(this.dragon.getNoActionTime() < 100) return false;
+			if(this.dragon.blockPosition().getY() > 100.0D) return false;
+			if(this.dragon.getRandom().nextInt(200) != 0) return false;
+			BlockPos pos = new BlockPos(this.dragon.blockPosition().getX(), this.dragon.blockPosition().getY(), this.dragon.blockPosition().getZ());
+			return this.dragon.level.canSeeSky(pos);
 		}
 
 		@Override
-		public boolean shouldContinueExecuting(){
-			return false;
-		}
-
-		@Override
-		public void startExecuting(){
-			this.dragon.setIdleTime(0);
-			this.dragon.getMoveHelper().setMoveTo(this.dragon.posX, 100.0D + 30.0D * this.dragon.getRNG().nextDouble(), this.dragon.posZ, this.dragon.getSpeed() * 1.2D);
+		public void start(){
+			this.dragon.setNoActionTime(0);
+			this.dragon.getMoveControl().setWantedPosition(this.dragon.blockPosition().getX(), 100.0D + 30.0D * this.dragon.getRandom().nextDouble(), this.dragon.blockPosition().getY(), this.dragon.getDragonSpeed() * 1.2D);
 			this.dragon.setAnimDuration(8.0F);
 		}
 	}
@@ -235,34 +237,29 @@ public class JapaneseDragonEntity extends CreatureEntity {
 		}
 
 		@Override
-		public boolean shouldExecute(){
-			if(this.dragon.posY < 100.0D) return false;
-			if(this.dragon.getRNG().nextInt(100) != 0) return false;
+		public boolean canUse(){
+			if(this.dragon.blockPosition().getY() < 100.0D) return false;
+			if(this.dragon.getRandom().nextInt(100) != 0) return false;
 
-			BlockPos pos = new BlockPos(this.dragon.posX, 90.0D, this.dragon.posZ);
-			World world = this.dragon.world;
+			BlockPos pos = new BlockPos(this.dragon.blockPosition().getX(), 90.0D, this.dragon.blockPosition().getZ());
+			World world = this.dragon.level;
 			if(world.getBlockState(pos).getCollisionShape(world, pos) == VoxelShapes.empty() && !world.getBlockState(pos).getMaterial().isLiquid()) return false;
-			int newY = world.getChunk(new BlockPos(this.dragon.posX, this.dragon.posY, this.dragon.posZ)).getTopFilledSegment();
+			int newY = world.getChunk(new BlockPos(this.dragon.blockPosition().getX(), this.dragon.blockPosition().getY(), this.dragon.blockPosition().getZ())).getHighestSectionPosition();
 			for(int y = newY + 16; y >= newY; y--){
-				pos = new BlockPos(this.dragon.posX, y, this.dragon.posZ);
+				pos = new BlockPos(this.dragon.blockPosition().getX(), y, this.dragon.blockPosition().getZ());
 				if(world.getBlockState(pos).getCollisionShape(world, pos) != VoxelShapes.empty() || world.getBlockState(pos).getMaterial().isLiquid()){
 					break;
 				}
 			}
-			if(newY + 11 >= this.dragon.posY) return false;
+			if(newY + 11 >= this.dragon.blockPosition().getY()) return false;
 			this.goalY = newY + 1;
 			return true;
 		}
 
 		@Override
-		public boolean shouldContinueExecuting(){
-			return false;
-		}
-
-		@Override
-		public void startExecuting(){
-			this.dragon.setIdleTime(0);
-			this.dragon.getMoveHelper().setMoveTo(this.dragon.posX, this.goalY + this.dragon.getDragonSize(), this.dragon.posZ, this.dragon.getSpeed() * 1.2D);
+		public void start(){
+			this.dragon.setNoActionTime(0);
+			this.dragon.getMoveControl().setWantedPosition(this.dragon.blockPosition().getX(), this.goalY + this.dragon.getDragonSize(), this.dragon.blockPosition().getZ(), this.dragon.getDragonSpeed() * 1.2D);
 			this.dragon.setAnimDuration(8.0F);
 		}
 	}
@@ -275,43 +272,38 @@ public class JapaneseDragonEntity extends CreatureEntity {
 		}
 
 		@Override
-		public boolean shouldExecute(){
-			if(this.dragon.posY > 100.0D) return false;
-			if(this.dragon.getRNG().nextInt(50) != 0) return false;
+		public boolean canUse(){
+			if(this.dragon.blockPosition().getY() > 100.0D) return false;
+			if(this.dragon.getRandom().nextInt(50) != 0) return false;
 
-			MovementController controller = this.dragon.getMoveHelper();
-			if (!controller.isUpdating()) return true;
+			MovementController controller = this.dragon.getMoveControl();
+			if (!controller.hasWanted()) return true;
 			else{
-				double distanceX = controller.getX() - this.dragon.posX;
-				double distanceY = controller.getY() - this.dragon.posY;
-				double distanceZ = controller.getZ() - this.dragon.posZ;
+				double distanceX = controller.getWantedX() - this.dragon.blockPosition().getX();
+				double distanceY = controller.getWantedY() - this.dragon.blockPosition().getY();
+				double distanceZ = controller.getWantedZ() - this.dragon.blockPosition().getZ();
 				double diagonalSquare = distanceX * distanceX + distanceY * distanceY + distanceZ * distanceZ;
 				return diagonalSquare < 1.0D;
 			}
 		}
 
 		@Override
-		public boolean shouldContinueExecuting(){
-			return false;
-		}
+		public void start(){
+			Random random = this.dragon.getRandom();
+			double newX = this.dragon.blockPosition().getX() + (double)((random.nextFloat() * 2.0F - 1.0F) * 16.0F);
+			double newZ = this.dragon.blockPosition().getZ() + (double)((random.nextFloat() * 2.0F - 1.0F) * 16.0F);
 
-		@Override
-		public void startExecuting(){
-			Random random = this.dragon.getRNG();
-			double newX = this.dragon.posX + (double)((random.nextFloat() * 2.0F - 1.0F) * 16.0F);
-			double newZ = this.dragon.posZ + (double)((random.nextFloat() * 2.0F - 1.0F) * 16.0F);
-
-			World world = this.dragon.world;
+			World world = this.dragon.level;
 			BlockPos pos;
 			this.dragon.setAnimDuration(10.0F);
-			for(double newY = this.dragon.posY - 16.0D; newY <= this.dragon.posY + 16.0D; newY++){
+			for(double newY = this.dragon.blockPosition().getY() - 16.0D; newY <= this.dragon.blockPosition().getY() + 16.0D; newY++){
 				pos = new BlockPos(newX, newY, newZ);
 				if(world.getBlockState(pos).getCollisionShape(world, pos) == VoxelShapes.empty() && !world.getBlockState(pos).getMaterial().isLiquid()){
-					this.dragon.getMoveHelper().setMoveTo(newX, newY + this.dragon.getDragonSize(), newZ, this.dragon.getSpeed());
+					this.dragon.getMoveControl().setWantedPosition(newX, newY + this.dragon.getDragonSize(), newZ, this.dragon.getDragonSpeed());
 					return;
 				}
 			}
-			this.dragon.getMoveHelper().setMoveTo(newX, this.dragon.posY, newZ, this.dragon.getSpeed());
+			this.dragon.getMoveControl().setWantedPosition(newX, this.dragon.blockPosition().getY(), newZ, this.dragon.getDragonSpeed());
 		}
 	}
 
@@ -323,25 +315,20 @@ public class JapaneseDragonEntity extends CreatureEntity {
 		}
 
 		@Override
-		public boolean shouldExecute(){
-			if(this.dragon.posY < 100.0D) return false;
-			BlockPos pos = new BlockPos(this.dragon.posX, this.dragon.posY, this.dragon.posZ);
-			return this.dragon.world.canBlockSeeSky(pos);
+		public boolean canUse(){
+			if(this.dragon.blockPosition().getY() < 100.0D) return false;
+			BlockPos pos = new BlockPos(this.dragon.blockPosition().getX(), this.dragon.blockPosition().getY(), this.dragon.blockPosition().getZ());
+			return this.dragon.level.canSeeSky(pos);
 		}
 
 		@Override
-		public boolean shouldContinueExecuting(){
-			return false;
-		}
+		public void start(){
+			this.dragon.setNoActionTime(0);
+			Random random = this.dragon.getRandom();
+			double newX = this.dragon.blockPosition().getX() + (double)((random.nextFloat() * 2.0F - 1.0F) * 500.0F);
+			double newZ = this.dragon.blockPosition().getZ() + (double)((random.nextFloat() * 2.0F - 1.0F) * 500.0F);
 
-		@Override
-		public void startExecuting(){
-			this.dragon.setIdleTime(0);
-			Random random = this.dragon.getRNG();
-			double newX = this.dragon.posX + (double)((random.nextFloat() * 2.0F - 1.0F) * 500.0F);
-			double newZ = this.dragon.posZ + (double)((random.nextFloat() * 2.0F - 1.0F) * 500.0F);
-
-			this.dragon.getMoveHelper().setMoveTo(newX, this.dragon.posY, newZ, this.dragon.getSpeed() * 2.5F);
+			this.dragon.getMoveControl().setWantedPosition(newX, this.dragon.blockPosition().getY(), newZ, this.dragon.getDragonSpeed() * 2.5F);
 			this.dragon.setAnimDuration(5.0F);
 		}
 	}

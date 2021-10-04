@@ -34,7 +34,8 @@ public class DawnOfTimeBuilder {
         DoTBEntitiesRegistry.ENTITY_TYPES.register(eventBus);
         //DoTBFeaturesRegistry.FEATURES.register(eventBus); TODO fix world gen
 
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(HandlerCommon::init);
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(HandlerClient::init);
+        FMLJavaModLoadingContext.get().getModEventBus().addListener(HandlerCommon::fMLCommonSetupEvent);
+        FMLJavaModLoadingContext.get().getModEventBus().addListener(HandlerCommon::fMLCommonSetupEvent);
+        FMLJavaModLoadingContext.get().getModEventBus().addListener(HandlerClient::fMLClientSetupEvent);
     }
 }
