@@ -12,7 +12,10 @@ import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.properties.SlabType;
-import net.minecraft.util.*;
+import net.minecraft.util.ActionResultType;
+import net.minecraft.util.Direction;
+import net.minecraft.util.Hand;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.World;
@@ -20,6 +23,7 @@ import org.dawnoftimebuilder.block.IBlockCustomItem;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
+import java.util.function.Supplier;
 
 import static org.dawnoftimebuilder.DawnOfTimeBuilder.DOTB_TAB;
 
@@ -38,10 +42,22 @@ public class MixedSlabBlock extends SlabBlockDoTB implements IBlockCustomItem {
 	 * @param thisSlabIsBottom True if this slab is bottom, and the secondSlab is top. False otherwise.
 	 * @return this slab
 	 */
-	public Block addMixedBlockRecipe(SlabBlock secondSlab, Block mixedBlock, boolean thisSlabIsBottom){
+	public Block addMixedBlockRecipe(Block secondSlab, Supplier<Block> mixedBlock, boolean thisSlabIsBottom){
+		return this.addMixedBlockRecipe(() -> secondSlab, mixedBlock, thisSlabIsBottom);
+	}
+
+	/**
+	 * Add a new mixed full Block recipe for this slab
+	 * @param secondSlab full block's second slab
+	 * @param mixedBlock block that results of the combination of both slabs
+	 * @param thisSlabIsBottom True if this slab is bottom, and the secondSlab is top. False otherwise.
+	 * @return this slab
+	 */
+	private Block addMixedBlockRecipe(Supplier<Block> secondSlab, Supplier<Block> mixedBlock, boolean thisSlabIsBottom){
 		this.listRecipes.add(new MixedBlockRecipe(secondSlab, mixedBlock, thisSlabIsBottom));
 		return this;
 	}
+
 
 	@Override
 	public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
@@ -50,14 +66,14 @@ public class MixedSlabBlock extends SlabBlockDoTB implements IBlockCustomItem {
 		if(!player.isCrouching() && player.mayUseItemAt(pos, facing, itemStack) && facing.getAxis().isVertical() && !itemStack.isEmpty()){
 			for(MixedBlockRecipe recipe : listRecipes) {
 				if(facing == recipe.getFacingForMerging(false)){
-					if (recipe.isConnectibleFirstSlab(state) && itemStack.getItem() == recipe.secondSlab.asItem()) {
-						BlockState madeState = recipe.mixedBlock.defaultBlockState();
+					if (recipe.isConnectibleFirstSlab(state) && itemStack.getItem() == recipe.getSecondSlab().asItem()) {
+						BlockState madeState = recipe.getMixedBlock().defaultBlockState();
 						if(worldIn.setBlock(pos, madeState, 11))  {
 							this.setPlacedBy(worldIn, pos, state, player, itemStack);
 							if (player instanceof ServerPlayerEntity) {
 								CriteriaTriggers.PLACED_BLOCK.trigger((ServerPlayerEntity)player, pos, itemStack);
 							}
-							SoundType soundtype = recipe.mixedBlock.getSoundType(state, worldIn, pos, player);
+							SoundType soundtype = recipe.getMixedBlock().getSoundType(state, worldIn, pos, player);
 							worldIn.playSound(player, pos, soundtype.getPlaceSound(), SoundCategory.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F);
 							if(!player.isCreative())
 								itemStack.shrink(1);
@@ -95,7 +111,7 @@ public class MixedSlabBlock extends SlabBlockDoTB implements IBlockCustomItem {
 					for(MixedBlockRecipe recipe : listRecipes) {
 						if(facing == recipe.getFacingForMerging(true)){
 							if (recipe.isConnectibleSecondSlab(state)) {
-								BlockState madeState = recipe.mixedBlock.getStateForPlacement(context);
+								BlockState madeState = recipe.getMixedBlock().getStateForPlacement(context);
 								if(madeState == null)
 									continue;
 								if(worldIn.setBlock(pos, madeState, 11)){
@@ -103,7 +119,7 @@ public class MixedSlabBlock extends SlabBlockDoTB implements IBlockCustomItem {
 									if (player instanceof ServerPlayerEntity) {
 										CriteriaTriggers.PLACED_BLOCK.trigger((ServerPlayerEntity)player, pos, itemStack);
 									}
-									SoundType soundtype = recipe.mixedBlock.getSoundType(state, worldIn, pos, player);
+									SoundType soundtype = recipe.getMixedBlock().getSoundType(state, worldIn, pos, player);
 									worldIn.playSound(player, pos, soundtype.getPlaceSound(), SoundCategory.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F);
 									itemStack.shrink(1);
 									return ActionResultType.SUCCESS;
@@ -120,24 +136,24 @@ public class MixedSlabBlock extends SlabBlockDoTB implements IBlockCustomItem {
 
 	public static class MixedBlockRecipe {
 
-		private final Block secondSlab;
-		private final Block mixedBlock;
+		private final Supplier<Block> secondSlab;
+		private final Supplier<Block> mixedBlock;
 		private final boolean firstSlabIsBottom;
 
-		private MixedBlockRecipe(SlabBlock secondSlab, Block mixedBlock, boolean firstSlabIsBottom){
+		private MixedBlockRecipe(Supplier<Block> secondSlab, Supplier<Block> mixedBlock, boolean firstSlabIsBottom){
 			this.secondSlab = secondSlab;
 			this.mixedBlock = mixedBlock;
 			this.firstSlabIsBottom = firstSlabIsBottom;
 		}
 
 		private boolean isConnectibleFirstSlab(BlockState state){
-			return firstSlabIsBottom ? state.getValue(TYPE) == SlabType.BOTTOM : state.getValue(TYPE) == SlabType.TOP;
+			return this.firstSlabIsBottom ? state.getValue(TYPE) == SlabType.BOTTOM : state.getValue(TYPE) == SlabType.TOP;
 		}
 
 		private boolean isConnectibleSecondSlab(BlockState state){
-			if(state.getBlock() == this.secondSlab){
-				if(secondSlab instanceof SlabBlock){
-					return firstSlabIsBottom ? state.getValue(TYPE) == SlabType.TOP : state.getValue(TYPE) == SlabType.BOTTOM;
+			if(state.getBlock() == this.secondSlab.get()){
+				if(this.secondSlab.get() instanceof SlabBlock){
+					return this.firstSlabIsBottom ? state.getValue(TYPE) == SlabType.TOP : state.getValue(TYPE) == SlabType.BOTTOM;
 				}
 			}
 			return false;
@@ -149,6 +165,14 @@ public class MixedSlabBlock extends SlabBlockDoTB implements IBlockCustomItem {
 			}else{
 				return this.firstSlabIsBottom ? Direction.UP : Direction.DOWN;
 			}
+		}
+
+		protected Block getSecondSlab(){
+			return this.secondSlab.get();
+		}
+
+		protected Block getMixedBlock(){
+			return this.mixedBlock.get();
 		}
 	}
 }

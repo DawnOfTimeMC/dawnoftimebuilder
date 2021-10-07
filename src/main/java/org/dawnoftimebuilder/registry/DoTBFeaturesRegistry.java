@@ -1,35 +1,19 @@
 package org.dawnoftimebuilder.registry;
 
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.Biomes;
-import net.minecraft.world.gen.GenerationStage;
-import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.NoFeatureConfig;
-import net.minecraft.world.gen.placement.Placement;
-import org.dawnoftimebuilder.generation.features.*;
-import org.dawnoftimebuilder.DoTBConfig;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import static org.dawnoftimebuilder.DawnOfTimeBuilder.MOD_ID;
-
 public class DoTBFeaturesRegistry {
+    /*
+    public static final DeferredRegister<Feature<?>> FEATURES = DeferredRegister.create(ForgeRegistries.FEATURES, MOD_ID);
 
-    public static final List<Feature<NoFeatureConfig>> FEATURES = new ArrayList<>();
-
-    public static final Feature<NoFeatureConfig> CAMELLIA_FEATURE = reg("camellia_feature", new CamelliaFeature(NoFeatureConfig::deserialize));
-    public static final Feature<NoFeatureConfig> CYPRESS_FEATURE = reg("cypress_feature", new CypressFeature(NoFeatureConfig::deserialize));
-    public static final Feature<NoFeatureConfig> MULBERRY_FEATURE = reg("mulberry_feature", new MulberryFeature(NoFeatureConfig::deserialize));
-    public static final Feature<NoFeatureConfig> RICE_FEATURE = reg("rice_feature", new RiceFeature(NoFeatureConfig::deserialize));
-    public static final Feature<NoFeatureConfig> COMMELINA_FEATURE = reg("commelina_feature", new CommelinaFeature(NoFeatureConfig::deserialize));
-    public static final Feature<NoFeatureConfig> WILD_MAIZE_FEATURE = reg("wild_maize_feature", new WildMaizeFeature(NoFeatureConfig::deserialize));
-    public static final Feature<NoFeatureConfig> WILD_GRAPE_FEATURE = reg("wild_grape_feature", new WildGrapeFeature(NoFeatureConfig::deserialize));
-
-    private static Feature<NoFeatureConfig> reg(String name, Feature<NoFeatureConfig> feature) {
-        feature.setRegistryName(MOD_ID, name);
-        FEATURES.add(feature);
-        return feature;
+    public static final RegistryObject<Feature<NoFeatureConfig>> CAMELLIA_FEATURE = reg("camellia_feature", () -> new CamelliaFeature(NoFeatureConfig.CODEC));
+    public static final RegistryObject<Feature<NoFeatureConfig>> CYPRESS_FEATURE = reg("cypress_feature", () -> new CypressFeature(NoFeatureConfig::deserialize));
+    public static final RegistryObject<Feature<NoFeatureConfig>> MULBERRY_FEATURE = reg("mulberry_feature", () -> new MulberryFeature(NoFeatureConfig::deserialize));
+    public static final RegistryObject<Feature<NoFeatureConfig>> RICE_FEATURE = reg("rice_feature", () -> new RiceFeature(NoFeatureConfig::deserialize));
+    public static final RegistryObject<Feature<NoFeatureConfig>> COMMELINA_FEATURE = reg("commelina_feature", () -> new CommelinaFeature(NoFeatureConfig::deserialize));
+    public static final RegistryObject<Feature<NoFeatureConfig>> WILD_MAIZE_FEATURE = reg("wild_maize_feature", () -> new WildMaizeFeature(NoFeatureConfig::deserialize));
+    public static final RegistryObject<Feature<NoFeatureConfig>> WILD_GRAPE_FEATURE = reg("wild_grape_feature", () -> new WildGrapeFeature(NoFeatureConfig::deserialize));
+new DecoratedFeature(DecoratedFeatureConfig.CODEC)
+    private static <T extends IFeatureConfig> RegistryObject<Feature<T>> reg(String name, Feature<T> factory) {
+        return FEATURES.register(name, () -> factory);
     }
 
     public static void addFeaturesToBiomes() {
@@ -85,4 +69,5 @@ public class DoTBFeaturesRegistry {
             }
         }
     }
+    */
 }

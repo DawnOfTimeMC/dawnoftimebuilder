@@ -36,7 +36,7 @@ public class SoilSeedsItem extends BlockItem implements IPlantable {
         World world = context.getLevel();
         BlockPos pos = context.getClickedPos();
 
-        if(!this.crops.isValidGround(this.crops.defaultBlockState(), world, pos.below())) return ActionResultType.FAIL;
+        if(!this.crops.canSurvive(this.crops.defaultBlockState(), world, pos.below())) return ActionResultType.FAIL;
         if(!world.getBlockState(pos).canBeReplaced(context)) return ActionResultType.FAIL;
         BlockItemUseContext blockitemusecontext = this.updatePlacementContext(context);
         if (blockitemusecontext == null) {

@@ -3,7 +3,6 @@ package org.dawnoftimebuilder.block.templates;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.SlabBlock;
 import net.minecraft.block.SoundType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -26,9 +25,12 @@ import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.RegistryObject;
 import org.dawnoftimebuilder.block.IBlockCustomItem;
 
 import javax.annotation.Nullable;
+
+import java.util.function.Supplier;
 
 import static org.dawnoftimebuilder.DawnOfTimeBuilder.DOTB_TAB;
 
@@ -36,11 +38,11 @@ public class MixedRoofSupportBlock extends SlabBlockDoTB implements IBlockCustom
 
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final EnumProperty<StairsShape> SHAPE = BlockStateProperties.STAIRS_SHAPE;
-    private final SlabBlock roofSlabBlock;
+    private final Supplier<Block> roofSlabBlockSupplier;
 
-    public MixedRoofSupportBlock(SlabBlock roofSlabBlock, Properties properties) {
+    public MixedRoofSupportBlock(RegistryObject<Block> roofSlabBlockSupplier, Properties properties) {
         super(properties);
-        this.roofSlabBlock = roofSlabBlock;
+        this.roofSlabBlockSupplier = roofSlabBlockSupplier;
         this.registerDefaultState(this.defaultBlockState().setValue(FACING, Direction.NORTH).setValue(TYPE, SlabType.BOTTOM).setValue(SHAPE, StairsShape.STRAIGHT).setValue(WATERLOGGED, false));
     }
 
@@ -72,7 +74,7 @@ public class MixedRoofSupportBlock extends SlabBlockDoTB implements IBlockCustom
         ItemStack itemStack = player.getItemInHand(handIn);
         if(!player.isCrouching() && player.mayUseItemAt(pos, facing, itemStack) && facing.getAxis().isVertical() && !itemStack.isEmpty()){
             if(facing == Direction.UP){
-                if (state.getValue(TYPE) == SlabType.BOTTOM && itemStack.getItem() == roofSlabBlock.asItem()) {
+                if (state.getValue(TYPE) == SlabType.BOTTOM && itemStack.getItem() == this.roofSlabBlockSupplier.get().asItem()) {
                     if(worldIn.setBlock(pos, state.setValue(TYPE, SlabType.DOUBLE), 11))  {
                         this.setPlacedBy(worldIn, pos, state, player, itemStack);
                         if (player instanceof ServerPlayerEntity) {
@@ -114,7 +116,7 @@ public class MixedRoofSupportBlock extends SlabBlockDoTB implements IBlockCustom
                 if (!itemStack.isEmpty()) {
                     BlockState state = worldIn.getBlockState(pos);
                     MixedRoofSupportBlock block = (MixedRoofSupportBlock) this.getBlock();
-                    if (state.getBlock() == block.roofSlabBlock) {
+                    if (state.getBlock() == block.roofSlabBlockSupplier.get()) {
                         if(state.getValue(TYPE) == SlabType.TOP){
                             BlockState madeState = block.getStateForPlacement(context);
                             if(madeState == null)

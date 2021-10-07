@@ -30,7 +30,7 @@ public class CandlestickBlock extends CandleLampBlock {
     private static final BooleanProperty LIT = BlockStateProperties.LIT;
 
     public CandlestickBlock(Properties properties) {
-        super(materialIn, hardness, resistance, soundType);
+        super(properties);
         this.registerDefaultState(this.defaultBlockState().setValue(WATERLOGGED,false).setValue(FACING, Direction.DOWN).setValue(LIT, false));
     }
 

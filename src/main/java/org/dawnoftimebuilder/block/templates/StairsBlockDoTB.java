@@ -5,14 +5,17 @@ import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
+import net.minecraftforge.fml.RegistryObject;
+
+import java.util.function.Supplier;
 
 public class StairsBlockDoTB extends StairsBlock {
 
     private int fireSpreadSpeed = 0;
     private int fireDestructionSpeed = 0;
 
-    public StairsBlockDoTB(Block block){
-        super(block.defaultBlockState(), Block.Properties.copy(block));
+    public StairsBlockDoTB(RegistryObject<Block> regBlock, Properties properties) {
+        super(() -> regBlock.get().defaultBlockState(), properties);
     }
 
     /**

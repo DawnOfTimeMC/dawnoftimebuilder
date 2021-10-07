@@ -1,40 +1,54 @@
 package org.dawnoftimebuilder.generation.features;
 
-import com.mojang.datafixers.Dynamic;
+import com.mojang.serialization.Codec;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.ISeedReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.gen.ChunkGenerator;
-import net.minecraft.world.gen.GenerationSettings;
+import net.minecraft.world.gen.feature.DecoratedFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
+import net.minecraft.world.gen.feature.WorldDecoratingHelper;
+import org.apache.commons.lang3.mutable.MutableBoolean;
+import org.dawnoftimebuilder.DoTBConfig;
 import org.dawnoftimebuilder.block.templates.GrowingBushBlock;
 import org.dawnoftimebuilder.block.templates.SoilCropsBlock;
 import org.dawnoftimebuilder.registry.DoTBBlocksRegistry;
-import org.dawnoftimebuilder.DoTBConfig;
 
 import java.util.Random;
-import java.util.function.Function;
 
-public class CamelliaFeature extends Feature<NoFeatureConfig> {
+public class CamelliaFeature extends Feature<DecoratedFeatureConfig> {
 
-    public CamelliaFeature(Function<Dynamic<?>, ? extends NoFeatureConfig> configIn) {
-        super(configIn);
+    public CamelliaFeature(Codec<DecoratedFeatureConfig> codec) {
+        super(codec);
     }
 
+
     @Override
-    public boolean place(IWorld worldIn, ChunkGenerator<? extends GenerationSettings> generator, Random rand, BlockPos pos, NoFeatureConfig config) {
+    public boolean place(ISeedReader level, ChunkGenerator chunkGenerator, Random random, BlockPos pos, DecoratedFeatureConfig config) {
+        /*
         boolean success = false;
         for (int i = 0; i < DoTBConfig.CAMELLIA_ROLLS.get(); ++i) {
-            BlockPos nextPos = getRandomPos(pos, rand, DoTBConfig.CAMELLIA_SPAWN_WIDTH.get(), DoTBConfig.CAMELLIA_SPAWN_HIGH.get());
-            GrowingBushBlock camellia = (GrowingBushBlock) DoTBBlocksRegistry.CAMELLIA;
-            BlockState bushState = camellia.defaultBlockState().with(camellia.getAgeProperty(), rand.nextInt(camellia.getMaxAge() + 1));
-            if (isValidPosition(worldIn, nextPos)) {
+            BlockPos nextPos = getRandomPos(pos, random, DoTBConfig.CAMELLIA_SPAWN_WIDTH.get(), DoTBConfig.CAMELLIA_SPAWN_HIGH.get());
+            GrowingBushBlock camellia = (GrowingBushBlock) DoTBBlocksRegistry.CAMELLIA.get();
+            BlockState bushState = camellia.defaultBlockState().setValue(camellia.getAgeProperty(), random.nextInt(camellia.getMaxAge() + 1));
+            if (isValidPosition(level, nextPos)) {
                 success = true;
-                worldIn.setBlockState(nextPos, bushState, 2);
+                level.setBlock(nextPos, bushState, 2);
             }
         }
         return success;
+        */
+
+        MutableBoolean mutableboolean = new MutableBoolean();
+        config.decorator.getPositions(new WorldDecoratingHelper(level, chunkGenerator), random, pos).forEach((testPos) -> {
+            if (config.feature.get().place(level, chunkGenerator, random, testPos)) {
+                mutableboolean.setTrue();
+            }
+
+        });
+        return mutableboolean.isTrue();
     }
 
     private BlockPos getRandomPos(BlockPos pos, Random rand, int width, int high){

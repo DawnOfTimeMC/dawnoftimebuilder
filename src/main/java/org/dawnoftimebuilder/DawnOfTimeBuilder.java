@@ -24,14 +24,14 @@ public class DawnOfTimeBuilder {
 
     public DawnOfTimeBuilder(){
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, DoTBConfig.COMMON_CONFIG);
-
+        //TODO Fix armor animation
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
         DoTBBlocksRegistry.BLOCKS.register(eventBus);
+        DoTBEntitiesRegistry.ENTITY_TYPES.register(eventBus);
         DoTBItemsRegistry.ITEMS.register(eventBus);
-        DoTBRecipesRegistry.RECIPES.register(eventBus);
+        DoTBRecipesRegistry.RECIPES.register(eventBus);// TODO fix recipes
         DoTBTileEntitiesRegistry.TILE_ENTITY_TYPES.register(eventBus);
         DoTBContainersRegistry.CONTAINER_TYPES.register(eventBus);
-        DoTBEntitiesRegistry.ENTITY_TYPES.register(eventBus);
         //DoTBFeaturesRegistry.FEATURES.register(eventBus); TODO fix world gen
 
         FMLJavaModLoadingContext.get().getModEventBus().addListener(HandlerCommon::fMLCommonSetupEvent);
