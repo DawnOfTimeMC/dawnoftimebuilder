@@ -1,7 +1,7 @@
 {
     "ctm":{
         "ctm_version": 1,
-        "type":"normal",
+        "type":"ctm",
         "layer":"SOLID",
         "textures":[
             "dawnoftimebuilder:block/paper_wall_flat-ctm"
