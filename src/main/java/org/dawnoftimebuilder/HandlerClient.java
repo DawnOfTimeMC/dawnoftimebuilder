@@ -41,6 +41,7 @@ public class HandlerClient {
 		RenderingRegistry.registerEntityRenderingHandler(CHAIR_ENTITY.get(), ChairRenderer::new);
 
 		//Above Minecraft 1.15, we need to register renderLayer here
+		// General
 		RenderTypeLookup.setRenderLayer(ACACIA_PERGOLA.get(), RenderType.cutoutMipped());
 		RenderTypeLookup.setRenderLayer(ACACIA_LATTICE.get(), RenderType.cutoutMipped());
 		RenderTypeLookup.setRenderLayer(ACACIA_BEAM.get(), RenderType.cutoutMipped());
@@ -61,5 +62,51 @@ public class HandlerClient {
 		RenderTypeLookup.setRenderLayer(SPRUCE_BEAM.get(), RenderType.cutoutMipped());
 		RenderTypeLookup.setRenderLayer(FIREPLACE.get(), RenderType.cutoutMipped());
 		RenderTypeLookup.setRenderLayer(IRON_PORTCULLIS.get(), RenderType.cutoutMipped());
+
+		//French
+		RenderTypeLookup.setRenderLayer(LIMESTONE_FIREPLACE.get(), RenderType.cutoutMipped());
+
+		//German
+		RenderTypeLookup.setRenderLayer(LATTICE_GLASS.get(), RenderType.cutoutMipped());
+		RenderTypeLookup.setRenderLayer(LATTICE_GLASS_PANE.get(), RenderType.cutoutMipped());
+		RenderTypeLookup.setRenderLayer(LATTICE_WAXED_OAK_WINDOW.get(), RenderType.cutoutMipped());
+		RenderTypeLookup.setRenderLayer(LATTICE_STONE_BRICKS_WINDOW.get(), RenderType.cutoutMipped());
+		RenderTypeLookup.setRenderLayer(STONE_BRICKS_FIREPLACE.get(), RenderType.cutoutMipped());
+		RenderTypeLookup.setRenderLayer(WAXED_OAK_DOOR.get(), RenderType.cutoutMipped());
+		RenderTypeLookup.setRenderLayer(WAXED_OAK_TRAPDOOR.get(), RenderType.cutoutMipped());
+		RenderTypeLookup.setRenderLayer(WAXED_OAK_BEAM.get(), RenderType.cutoutMipped());
+		RenderTypeLookup.setRenderLayer(WAXED_OAK_PERGOLA.get(), RenderType.cutoutMipped());
+		RenderTypeLookup.setRenderLayer(WAXED_OAK_LATTICE.get(), RenderType.cutoutMipped());
+		RenderTypeLookup.setRenderLayer(WAXED_OAK_CHANDELIER.get(), RenderType.cutoutMipped());
+
+		//Japanese
+		RenderTypeLookup.setRenderLayer(CHARRED_SPRUCE_DOOR.get(), RenderType.cutoutMipped());
+		RenderTypeLookup.setRenderLayer(CHARRED_SPRUCE_TRAPDOOR.get(), RenderType.cutoutMipped());
+		RenderTypeLookup.setRenderLayer(CHARRED_SPRUCE_PERGOLA.get(), RenderType.cutoutMipped());
+		RenderTypeLookup.setRenderLayer(CHARRED_SPRUCE_LATTICE.get(), RenderType.cutoutMipped());
+		RenderTypeLookup.setRenderLayer(CHARRED_SPRUCE_BEAM.get(), RenderType.cutoutMipped());
+		RenderTypeLookup.setRenderLayer(RED_PAINTED_BEAM.get(), RenderType.cutoutMipped());
+		RenderTypeLookup.setRenderLayer(CAST_IRON_TEAPOT_GRAY.get(), RenderType.cutoutMipped());
+		RenderTypeLookup.setRenderLayer(CAST_IRON_TEAPOT_GREEN.get(), RenderType.cutoutMipped());
+		RenderTypeLookup.setRenderLayer(CAST_IRON_TEAPOT_DECORATED.get(), RenderType.cutoutMipped());
+		RenderTypeLookup.setRenderLayer(BAMBOO_DRYING_TRAY.get(), RenderType.cutoutMipped());
+		RenderTypeLookup.setRenderLayer(CAMELLIA.get(), RenderType.cutoutMipped());
+		RenderTypeLookup.setRenderLayer(MULBERRY.get(), RenderType.cutoutMipped());
+		RenderTypeLookup.setRenderLayer(IKEBANA_FLOWER_POT.get(), RenderType.cutoutMipped());
+		RenderTypeLookup.setRenderLayer(WHITE_LITTLE_FLAG.get(), RenderType.cutoutMipped());
+		RenderTypeLookup.setRenderLayer(RICE.get(), RenderType.cutoutMipped());
+		RenderTypeLookup.setRenderLayer(IRORI_FIREPLACE.get(), RenderType.cutoutMipped());
+		RenderTypeLookup.setRenderLayer(SAKE_BOTTLE.get(), RenderType.cutoutMipped());
+		RenderTypeLookup.setRenderLayer(STICK_BUNDLE.get(), RenderType.cutoutMipped());
+
+		//Pre_columbian
+		RenderTypeLookup.setRenderLayer(COMMELINA.get(), RenderType.cutoutMipped());
+		RenderTypeLookup.setRenderLayer(WILD_MAIZE.get(), RenderType.cutoutMipped());
+		RenderTypeLookup.setRenderLayer(MAIZE.get(), RenderType.cutoutMipped());
+		RenderTypeLookup.setRenderLayer(PLASTERED_STONE_CRESSET.get(), RenderType.cutoutMipped());
+
+		//Roman
+		RenderTypeLookup.setRenderLayer(WILD_GRAPE.get(), RenderType.cutoutMipped());
+		RenderTypeLookup.setRenderLayer(CYPRESS.get(), RenderType.cutoutMipped());
 	}
 }

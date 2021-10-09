@@ -18,9 +18,11 @@ public class DisplayerScreen extends ContainerScreen<DisplayerContainer> {
     private static final ResourceLocation GUI_CONTAINER = new ResourceLocation(MOD_ID + ":textures/gui/displayer_gui.png");
 
     public DisplayerScreen(DisplayerContainer container, PlayerInventory playerInventory, ITextComponent title){
-        super(container, playerInventory, title);
-        this.width = 256;
-        this.height = 238;
+        super(container, playerInventory, ITextComponent.nullToEmpty(null));
+        this.imageWidth = 256;
+        this.imageHeight = 238;
+        this.inventoryLabelX = 20;
+        this.inventoryLabelY = 157;
     }
 
     @Override
@@ -28,7 +30,9 @@ public class DisplayerScreen extends ContainerScreen<DisplayerContainer> {
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
         if(this.minecraft != null){
             this.minecraft.getTextureManager().bind(GUI_CONTAINER);
-            this.blit(matrixStack, this.leftPos, this.topPos, 0, 0, this.width, this.height);
+            int widthPosition = (this.width - this.imageWidth) / 2;
+            int heightPosition = (this.height - this.imageHeight) / 2;
+            this.blit(matrixStack, widthPosition, heightPosition, 0, 0, this.imageWidth, this.imageHeight);
         }
     }
 }
