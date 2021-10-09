@@ -5,8 +5,10 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntitySize;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.Pose;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
 import net.minecraft.entity.passive.AmbientEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
@@ -25,6 +27,7 @@ import org.dawnoftimebuilder.block.templates.DoubleGrowingBushBlock;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import static org.dawnoftimebuilder.registry.DoTBBlocksRegistry.MULBERRY;
 import static org.dawnoftimebuilder.registry.DoTBEntitiesRegistry.SILKMOTH_ENTITY;
@@ -37,11 +40,6 @@ public class SilkmothEntity extends AmbientEntity {
 
 	public SilkmothEntity(World worldIn) {
 		super(SILKMOTH_ENTITY.get(), worldIn);
-	}
-
-	public static AttributeModifierMap.MutableAttribute createAttributes() {
-		return MobEntity.createMobAttributes()
-				.add(Attributes.MAX_HEALTH, DoTBConfig.SILKMOTH_HEALTH.get());
 	}
 
 	private float getNewRotationDistance(){

@@ -377,12 +377,7 @@ public class HolyArmorModel<T extends LivingEntity> extends CustomArmorModel<T> 
 			default:
 				break;
 		}
-	}
-
-	@Override
-	public void renderToBuffer(MatrixStack matrixStack, IVertexBuilder bufferIn, int packedLightIn, int packedOverlayIn, float red, float green, float blue, float alpha){
 		this.setAllVisible(false);
-
 		switch (this.slot) {
 			case HEAD:
 				this.head.visible = true;
@@ -408,6 +403,10 @@ public class HolyArmorModel<T extends LivingEntity> extends CustomArmorModel<T> 
 			default:
 				break;
 		}
+	}
+
+	@Override
+	public void renderToBuffer(MatrixStack matrixStack, IVertexBuilder bufferIn, int packedLightIn, int packedOverlayIn, float red, float green, float blue, float alpha){
 		super.renderToBuffer(matrixStack, bufferIn, packedLightIn, packedOverlayIn, red, green, blue, alpha);
 	}
 

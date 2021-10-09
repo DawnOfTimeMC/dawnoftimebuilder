@@ -113,7 +113,6 @@ public class DoTBConfig {
 
     public static final String ENTITY_CATEGORY = "entity_properties";
     public static ForgeConfigSpec.IntValue SILKMOTH_SPAWN_CHANCE;
-    public static ForgeConfigSpec.IntValue SILKMOTH_HEALTH;
     public static ForgeConfigSpec.IntValue SILKMOTH_ROTATION_MAX_RANGE;
     public static ForgeConfigSpec.BooleanValue SILKMOTH_MUST_DIE;
     public static ForgeConfigSpec.IntValue SILKMOTH_ROTATION_CHANGE;
@@ -198,7 +197,6 @@ public class DoTBConfig {
         COMMON_BUILDER.comment("---------------------------------------|| Entity settings ||---------------------------------------").push(ENTITY_CATEGORY);
             COMMON_BUILDER.push("silkmoth");
                 SILKMOTH_SPAWN_CHANCE = COMMON_BUILDER.comment("The probability to spawn a Silkmoth on a Mulberry each random tick is equal to 1/x, with x the following value :").defineInRange("climbingPlantGrowthChance", 400, 10, 10000);
-                SILKMOTH_HEALTH = COMMON_BUILDER.defineInRange("silkmoth_max_health", 3, 1, 10000);
                 SILKMOTH_ROTATION_MAX_RANGE = COMMON_BUILDER.defineInRange("silkmoth_rotation_max_range", 2, 0, 10);
                 SILKMOTH_MUST_DIE = COMMON_BUILDER.define("silkmoth_dies_after_one_day", true);
                 SILKMOTH_ROTATION_CHANGE = COMMON_BUILDER.comment("The probability to change the rotation point each tick is equal to 1/x, with x the following value :").defineInRange("silkmoth_rotation_change", 400, 10, 10000);

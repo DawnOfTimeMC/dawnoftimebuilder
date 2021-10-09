@@ -27,7 +27,7 @@ public class DawnOfTimeBuilder {
         //TODO Fix armor animation
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
         DoTBBlocksRegistry.BLOCKS.register(eventBus);
-        DoTBEntitiesRegistry.ENTITY_TYPES.register(eventBus);
+        DoTBEntitiesRegistry.ENTITY_TYPES.register(eventBus);// TODO Use dragons config with addTransientModifier
         DoTBItemsRegistry.ITEMS.register(eventBus);
         DoTBRecipesRegistry.RECIPES.register(eventBus);// TODO fix recipes
         DoTBTileEntitiesRegistry.TILE_ENTITY_TYPES.register(eventBus);
@@ -35,7 +35,7 @@ public class DawnOfTimeBuilder {
         //DoTBFeaturesRegistry.FEATURES.register(eventBus); TODO fix world gen
 
         FMLJavaModLoadingContext.get().getModEventBus().addListener(HandlerCommon::fMLCommonSetupEvent);
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(HandlerCommon::fMLCommonSetupEvent);
+        FMLJavaModLoadingContext.get().getModEventBus().addListener(HandlerCommon::entityAttributeCreationEvent);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(HandlerClient::fMLClientSetupEvent);
     }
 }
