@@ -41,12 +41,13 @@ public class DryerTERenderer extends TileEntityRenderer<DryerTileEntity> {
             matrixStack.pushPose();
             matrixStack.translate(0.35D, 0, 0.35D);
             matrixStack.translate((i == 1 || i == 2) ? 0.3D : 0, 0.1D, i >= 2 ? 0.3D : 0);
-            matrixStack.mulPose(Vector3f.YP.rotationDegrees(90.0F * i));
+            matrixStack.mulPose(Vector3f.YN.rotationDegrees(90.0F * i));
             if (isBlockItem) {
                 matrixStack.scale(0.2F, 0.2F, 0.2F);
                 matrixStack.translate(0.0F, 0.4F, 0.0F);
                 itemRenderer.renderStatic(itemStack, ItemCameraTransforms.TransformType.NONE, combinedLightIn, combinedOverlayIn, matrixStack, buffer);
             } else {
+                matrixStack.mulPose(Vector3f.XN.rotationDegrees(90.0F));
                 matrixStack.scale(0.3F, 0.3F, 0.3F);
                 itemRenderer.renderStatic(itemStack, ItemCameraTransforms.TransformType.FIXED, combinedLightIn, combinedOverlayIn, matrixStack, buffer);
             }

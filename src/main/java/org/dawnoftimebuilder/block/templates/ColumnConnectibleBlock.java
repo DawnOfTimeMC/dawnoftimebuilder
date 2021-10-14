@@ -89,7 +89,7 @@ public abstract class ColumnConnectibleBlock extends WaterloggedBlock {
 				//We put a ColumnBlock on top of the column
 				BlockPos topPos = this.getHighestColumnPos(worldIn, pos).above();
 				if(topPos.getY() <= HIGHEST_Y){
-					if(!worldIn.isClientSide()) {
+					if(!worldIn.isClientSide() && worldIn.getBlockState(topPos).isAir(worldIn, topPos)) {
 						worldIn.setBlock(topPos, state, 11);
 						if(!player.isCreative()) {
 							heldItemStack.shrink(1);

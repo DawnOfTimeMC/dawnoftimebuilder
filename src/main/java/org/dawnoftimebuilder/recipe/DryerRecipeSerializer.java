@@ -14,17 +14,13 @@ import net.minecraftforge.registries.ForgeRegistryEntry;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class DryerRecipeSerializer<T extends DryerRecipe> extends ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<T> {
+public class DryerRecipeSerializer extends ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<DryerRecipe> {
 
-    private final DryerRecipeSerializer.IFactory<T> FACTORY;
-
-    public DryerRecipeSerializer(DryerRecipeSerializer.IFactory<T> factory) {
-        this.FACTORY = factory;
-    }
+    public static final DryerRecipeSerializer INSTANCE = new DryerRecipeSerializer();
 
     @Override
     @Nonnull
-    public T fromJson(@Nonnull ResourceLocation recipeId, @Nonnull JsonObject json) {
+    public DryerRecipe fromJson(@Nonnull ResourceLocation recipeId, @Nonnull JsonObject json) {
 
         if (!json.has("ingredient")) throw new JsonSyntaxException("The object 'ingredient' is missing.");
         if(!json.get("ingredient").isJsonObject()) throw new JsonSyntaxException("'ingredient' is expected to be an object.");
@@ -38,30 +34,26 @@ public class DryerRecipeSerializer<T extends DryerRecipe> extends ForgeRegistryE
         float experience = JSONUtils.getAsFloat(json, "experience", 0.0F);
         int dryingTime = JSONUtils.getAsInt(json, "dryingTime", 1200);
 
-        return this.FACTORY.create(recipeId, group, ingredient, itemStackResult, experience, dryingTime);
+        return new DryerRecipe(recipeId, group, ingredient, itemStackResult, experience, dryingTime);
     }
 
     @Nullable
     @Override
-    public T fromNetwork(@Nonnull ResourceLocation recipeId, PacketBuffer buffer) {
+    public DryerRecipe fromNetwork(@Nonnull ResourceLocation recipeId, PacketBuffer buffer) {
         String group = buffer.readUtf(32767);
         Ingredient ingredient = Ingredient.fromNetwork(buffer);
         ItemStack itemStackResult = buffer.readItem();
         float experience = buffer.readFloat();
         int dryingTime = buffer.readVarInt();
-        return this.FACTORY.create(recipeId, group, ingredient, itemStackResult, experience, dryingTime);
+        return new DryerRecipe(recipeId, group, ingredient, itemStackResult, experience, dryingTime);
     }
 
     @Override
-    public void toNetwork(PacketBuffer buffer, T recipe) {
+    public void toNetwork(PacketBuffer buffer, DryerRecipe recipe) {
         buffer.writeUtf(recipe.group);
         recipe.ingredient.toNetwork(buffer);
         buffer.writeItemStack(recipe.result, true);
         buffer.writeFloat(recipe.experience);
         buffer.writeVarInt(recipe.dryingTime);
-    }
-
-    public interface IFactory<T extends DryerRecipe> {
-        T create(ResourceLocation resourceLocation, String group, Ingredient ingredient, ItemStack result, float experience, int cookTime);
     }
 }

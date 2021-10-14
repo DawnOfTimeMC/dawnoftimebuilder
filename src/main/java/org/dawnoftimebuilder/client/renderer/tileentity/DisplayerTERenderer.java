@@ -67,6 +67,7 @@ public class DisplayerTERenderer extends TileEntityRenderer<DisplayerTileEntity>
 						} else {
 							matrixStack.scale(0.3F, 0.3F, 0.3F);
 							matrixStack.mulPose(Vector3f.YP.rotationDegrees(rotationAngle + 90.0F));
+							matrixStack.mulPose(Vector3f.XN.rotationDegrees(90.0F));
 							itemRenderer.renderStatic(itemStack, ItemCameraTransforms.TransformType.FIXED, combinedLightIn, combinedOverlayIn, matrixStack, buffer);
 						}
 						matrixStack.popPose();

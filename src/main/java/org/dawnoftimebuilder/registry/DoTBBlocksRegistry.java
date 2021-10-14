@@ -166,7 +166,7 @@ public class DoTBBlocksRegistry {
 	public static final RegistryObject<Block> CHARRED_SPRUCE_FOUNDATION_SLAB = reg("charred_spruce_foundation_slab", new SlabBlockDoTB(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.COLOR_BLACK).strength(2.0F, 6.0F).sound(SoundType.WOOD)).setBurnable(2, 3));
 	public static final RegistryObject<Block> CHARRED_SPRUCE_WALL = reg("charred_spruce_wall", new WallBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.COLOR_BLACK).strength(2.0F, 6.0F).sound(SoundType.WOOD)));
 	public static final RegistryObject<Block> CHARRED_SPRUCE_FENCE = reg("charred_spruce_fence", new FenceBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.COLOR_BLACK).strength(2.0F, 6.0F).sound(SoundType.WOOD)));
-	public static final RegistryObject<Block> CHARRED_SPRUCE_RAILING = reg("charred_spruce_railing", new CharredSpruceRailingBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.COLOR_BLACK).strength(2.0F, 6.0F).sound(SoundType.WOOD)));
+	public static final RegistryObject<Block> CHARRED_SPRUCE_RAILING = reg("charred_spruce_railing", new CharredSpruceRailingBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.COLOR_BLACK).strength(2.0F, 6.0F).sound(SoundType.WOOD).noOcclusion()));
 	public static final RegistryObject<Block> CHARRED_SPRUCE_PERGOLA = reg("charred_spruce_pergola", new PergolaBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.COLOR_BLACK).strength(2.0F, 6.0F).sound(SoundType.WOOD)).setBurnable(2, 3));
 	public static final RegistryObject<Block> CHARRED_SPRUCE_LATTICE = reg("charred_spruce_lattice", new LatticeBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.COLOR_BLACK).strength(2.0F, 6.0F).sound(SoundType.WOOD).noOcclusion()).setBurnable(2, 3));
 	public static final RegistryObject<Block> CHARRED_SPRUCE_SUPPORT_SLAB = reg("charred_spruce_support_slab", new SupportSlabBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.COLOR_BLACK).strength(2.0F, 6.0F).sound(SoundType.WOOD)).setBurnable(2, 3));
@@ -181,7 +181,7 @@ public class DoTBBlocksRegistry {
 	public static final RegistryObject<Block> GRAY_ROOF_TILES_SLAB = reg("gray_roof_tiles_slab", new SlabBlockDoTB(AbstractBlock.Properties.copy(STONE_BRICKS)));
 	public static final RegistryObject<Block> GRAY_ROOF_TILES_EDGE = reg("gray_roof_tiles_edge", new EdgeBlock(AbstractBlock.Properties.copy(STONE_BRICKS)));
 	public static final RegistryObject<Block> GRAY_ROOF_TILES_WALL = reg("gray_roof_tiles_wall", new WallBlock(AbstractBlock.Properties.copy(STONE_BRICKS)));
-	public static final RegistryObject<Block> CHARRED_SPRUCE_ROOF_SUPPORT = reg("charred_spruce_roof_support", new MixedRoofSupportBlock(GRAY_ROOF_TILES_SLAB, AbstractBlock.Properties.copy(STONE_BRICKS)));
+	public static final RegistryObject<Block> CHARRED_SPRUCE_ROOF_SUPPORT = reg("charred_spruce_roof_support", new MixedRoofSupportBlock(GRAY_ROOF_TILES_SLAB, AbstractBlock.Properties.copy(STONE_BRICKS).noOcclusion()));
 	//TODO Redo stepping stone's textures
 	public static final RegistryObject<Block> STEPPING_STONES = reg("stepping_stones", new BlockDoTB(Block.Properties.of(Material.SAND, MaterialColor.STONE).strength(1.2F).sound(SoundType.GRAVEL)));
 	public static final RegistryObject<Block> STEPPING_STONES_SLAB = reg("stepping_stones_slab", new SlabBlockDoTB(AbstractBlock.Properties.of(Material.SAND, MaterialColor.STONE).strength(1.2F).sound(SoundType.GRAVEL)));
@@ -203,7 +203,7 @@ public class DoTBBlocksRegistry {
 	public static final RegistryObject<Block> PAPER_WALL_FLAT = reg("paper_wall_flat", new PaneBlockDoTB(AbstractBlock.Properties.copy(WHITE_WOOL).strength(1.5F, 1.5F)));
 	public static final RegistryObject<Block> PAPER_WALL_WINDOWS = reg("paper_wall_window", new PaneBlockDoTB(AbstractBlock.Properties.copy(WHITE_WOOL).strength(1.5F, 1.5F)));
 	public static final RegistryObject<Block> PAPER_WALL_FLOWERY = reg("paper_wall_flowery", new PaneBlockDoTB(AbstractBlock.Properties.copy(WHITE_WOOL).strength(1.5F, 1.5F)));
-	public static final RegistryObject<Block> PAPER_FOLDING_SCREEN = reg("paper_folding_screen", new FoldingScreenBlock(AbstractBlock.Properties.copy(WHITE_WOOL).strength(1.5F, 1.5F)));
+	public static final RegistryObject<Block> PAPER_FOLDING_SCREEN = reg("paper_folding_screen", new FoldingScreenBlock(AbstractBlock.Properties.copy(WHITE_WOOL).strength(1.5F, 1.5F).noOcclusion()));
 	public static final RegistryObject<Block> RED_PAPER_LANTERN = reg("red_paper_lantern", new PaperLanternBlock(AbstractBlock.Properties.copy(RED_WOOL).noOcclusion().noCollission()));
 	public static final RegistryObject<Block> PAPER_LAMP = reg("paper_lamp", new PaperLampBlock(AbstractBlock.Properties.copy(WHITE_WOOL).noOcclusion()));
 	public static final RegistryObject<Block> STONE_LANTERN = reg("stone_lantern", new StoneLanternBlock(AbstractBlock.Properties.copy(STONE_BRICKS)));

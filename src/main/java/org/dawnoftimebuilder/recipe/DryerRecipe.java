@@ -12,14 +12,14 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nonnull;
 
+import static org.dawnoftimebuilder.DawnOfTimeBuilder.MOD_ID;
 import static org.dawnoftimebuilder.registry.DoTBBlocksRegistry.BAMBOO_DRYING_TRAY;
 import static org.dawnoftimebuilder.registry.DoTBRecipesRegistry.DRYER_RECIPE;
 
 public class DryerRecipe implements IRecipe<IInventory> {
 
-    public static final IRecipeType<DryerRecipe> DRYING = IRecipeType.register("drying");
+    public static final IRecipeType<DryerRecipe> DRYING = IRecipeType.register(new ResourceLocation(MOD_ID, "drying").toString());
 
-    private final IRecipeType<?> type;
     private final ResourceLocation id;
     final String group;
     final Ingredient ingredient;
@@ -28,7 +28,6 @@ public class DryerRecipe implements IRecipe<IInventory> {
     final int dryingTime;
 
     public DryerRecipe(ResourceLocation resourceLocation, String group, Ingredient ingredient, ItemStack result, float experience, int dryingTime) {
-        this.type = DRYING;
         this.id = resourceLocation;
         this.group = group;
         this.ingredient = ingredient;
@@ -39,6 +38,11 @@ public class DryerRecipe implements IRecipe<IInventory> {
 
     public int getDryingTime() {
         return this.dryingTime;
+    }
+
+    @Override
+    public String getGroup() {
+        return this.group;
     }
 
     @Override
@@ -69,13 +73,13 @@ public class DryerRecipe implements IRecipe<IInventory> {
 
     @Override
     public IRecipeSerializer<?> getSerializer() {
-        return DRYER_RECIPE.get();
+        return DryerRecipeSerializer.INSTANCE;
     }
 
     @Override
     @Nonnull
     public IRecipeType<?> getType() {
-        return this.type;
+        return DRYING;
     }
 
     @Override

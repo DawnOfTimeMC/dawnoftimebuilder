@@ -29,7 +29,7 @@ public class DawnOfTimeBuilder {
         DoTBBlocksRegistry.BLOCKS.register(eventBus);
         DoTBEntitiesRegistry.ENTITY_TYPES.register(eventBus);// TODO Use dragons config with addTransientModifier
         DoTBItemsRegistry.ITEMS.register(eventBus);
-        DoTBRecipesRegistry.RECIPES.register(eventBus);// TODO fix recipes
+        DoTBRecipesRegistry.RECIPES.register(eventBus);
         DoTBTileEntitiesRegistry.TILE_ENTITY_TYPES.register(eventBus);
         DoTBContainersRegistry.CONTAINER_TYPES.register(eventBus);
         //DoTBFeaturesRegistry.FEATURES.register(eventBus); TODO fix world gen
