@@ -278,7 +278,7 @@
     "tooltip.dawnoftimebuilder.shift": "SHIFT",
     "tooltip.dawnoftimebuilder.sided_window": "Use SHIFT to center the window in the middle of a block. The window will be against a side otherwise.",
     "tooltip.dawnoftimebuilder.iron_portcullis": "Use a redstone impulse on a portcullis block to open it, and all adjacent portcullis blocks.",
-    "tooltip.dawnoftimebuilder.charred_spruce_railing": "Use SHIFT to place this block without its vertical pillar.",
+    "tooltip.dawnoftimebuilder.charred_spruce_railing": "Use RIGHT-CLICK on this block to add a column. Use SHIFT remove it.",
     "tooltip.dawnoftimebuilder.small_tatami_mat": "SHIFT + RIGHT-CLICK with an empty hand to roll this tatami. Up to 3 tatamis can be rolled in the same block. A tatami directly under a chain will be rolled vertically. Place this tatami on a Spruce Planks block to be able to put decoration blocks on it.",
     "tooltip.dawnoftimebuilder.tatami_mat": "SHIFT + RIGHT-CLICK with an empty hand to roll this tatami. Up to 3 tatamis can be rolled in the same block. Place this tatami on Spruce Planks blocks to be able to put decoration blocks on it.",
     "tooltip.dawnoftimebuilder.column": "Use RIGHT-CLICK on this block to increase its size or SHIFT + RIGHT-CLICK to reduce its size.",

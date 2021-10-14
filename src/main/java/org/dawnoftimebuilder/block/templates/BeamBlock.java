@@ -174,7 +174,7 @@ public class BeamBlock extends WaterloggedBlock implements IBlockPillar, IBlockC
 
 	public boolean canNotConnectUnder(BlockState state) {
 		if (state.getBlock() instanceof BeamBlock) //TODO Not working... WHY ???
-			return state.getValue(AXIS_Y);
+			return !state.getValue(AXIS_Y);
 		else return true;
 	}
 
