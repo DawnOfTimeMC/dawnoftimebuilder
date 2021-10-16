@@ -126,8 +126,8 @@ public class DoTBBlocksRegistry {
 	public static final RegistryObject<Block> STONE_BRICKS_PLATE = reg("stone_bricks_plate", new PlateBlock(AbstractBlock.Properties.copy(STONE_BRICKS)));
 	public static final RegistryObject<Block> WAXED_OAK_FRAMED_RAMMED_DIRT = reg("waxed_oak_framed_rammed_dirt", new BlockDoTB(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.COLOR_BROWN).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
 	public static final RegistryObject<Block> WAXED_OAK_PLANKS = reg("waxed_oak_planks", new BlockDoTB(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F, 5.0F).sound(SoundType.WOOD)).setBurnable());
-	public static final RegistryObject<Block> WAXED_OAK_DOOR = reg("waxed_oak_door", new DoorBlockDoTB(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F, 5.0F).sound(SoundType.WOOD)));
-	public static final RegistryObject<Block> WAXED_OAK_TRAPDOOR = reg("waxed_oak_trapdoor", new TrapDoorBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F, 5.0F).sound(SoundType.WOOD)));
+	public static final RegistryObject<Block> WAXED_OAK_DOOR = reg("waxed_oak_door", new DoorBlockDoTB(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F, 5.0F).sound(SoundType.WOOD).noOcclusion()));
+	public static final RegistryObject<Block> WAXED_OAK_TRAPDOOR = reg("waxed_oak_trapdoor", new TrapDoorBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F, 5.0F).sound(SoundType.WOOD).noOcclusion()));
 	public static final RegistryObject<Block> WAXED_OAK_SHUTTERS = reg("waxed_oak_shutters", new ShuttersBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F, 5.0F).sound(SoundType.WOOD)));
 	public static final RegistryObject<Block> WAXED_OAK_LOG_STRIPPED = reg("waxed_oak_log_stripped", new RotatedPillarBlockDoTB(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F, 5.0F).sound(SoundType.WOOD)).setBurnable());
 	public static final RegistryObject<Block> WAXED_OAK_BEAM = reg("waxed_oak_beam", new BeamBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F, 5.0F).sound(SoundType.WOOD)).setBurnable());
@@ -158,8 +158,8 @@ public class DoTBBlocksRegistry {
 	public static final RegistryObject<Block> CHARRED_SPRUCE_PLANKS_SLAB = reg("charred_spruce_planks_slab", new SlabBlockDoTB(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.COLOR_BLACK).strength(2.0F, 6.0F).sound(SoundType.WOOD)).setBurnable(2, 3));
 	public static final RegistryObject<Block> CHARRED_SPRUCE_PLANKS_STAIRS = reg("charred_spruce_planks_stairs", new StairsBlockDoTB(CHARRED_SPRUCE_PLANKS, AbstractBlock.Properties.of(Material.WOOD, MaterialColor.COLOR_BLACK).strength(2.0F, 6.0F).sound(SoundType.WOOD)).setBurnable(2, 3));
 	public static final RegistryObject<Block> CHARRED_SPRUCE_BOARDS =reg("charred_spruce_boards", new BlockDoTB(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.COLOR_BLACK).strength(2.0F, 6.0F).sound(SoundType.WOOD)).setBurnable(2, 3));
-	public static final RegistryObject<Block> CHARRED_SPRUCE_DOOR = reg("charred_spruce_door", new DoorBlockDoTB(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.COLOR_BLACK).strength(2.0F, 6.0F).sound(SoundType.WOOD)));
-	public static final RegistryObject<Block> CHARRED_SPRUCE_TRAPDOOR = reg("charred_spruce_trapdoor", new TrapDoorBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.COLOR_BLACK).strength(2.0F, 6.0F).sound(SoundType.WOOD)));
+	public static final RegistryObject<Block> CHARRED_SPRUCE_DOOR = reg("charred_spruce_door", new DoorBlockDoTB(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.COLOR_BLACK).strength(2.0F, 6.0F).sound(SoundType.WOOD).noOcclusion()));
+	public static final RegistryObject<Block> CHARRED_SPRUCE_TRAPDOOR = reg("charred_spruce_trapdoor", new TrapDoorBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.COLOR_BLACK).strength(2.0F, 6.0F).sound(SoundType.WOOD).noOcclusion()));
 	public static final RegistryObject<Block> CHARRED_SPRUCE_SHUTTERS = reg("charred_spruce_shutters", new CharredSpruceShuttersBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.COLOR_BLACK).strength(2.0F, 6.0F).sound(SoundType.WOOD).noOcclusion()));
 	public static final RegistryObject<Block> CHARRED_SPRUCE_TALL_SHUTTERS = reg("charred_spruce_tall_shutters", new CharredSpruceTallShuttersBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.COLOR_BLACK).strength(2.0F, 6.0F).sound(SoundType.WOOD).noOcclusion()));
 	public static final RegistryObject<Block> CHARRED_SPRUCE_FOUNDATION = reg("charred_spruce_foundation", new BlockDoTB(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.COLOR_BLACK).strength(2.0F, 6.0F).sound(SoundType.WOOD)).setBurnable(2, 3));
@@ -205,8 +205,8 @@ public class DoTBBlocksRegistry {
 	public static final RegistryObject<Block> PAPER_WALL_FLOWERY = reg("paper_wall_flowery", new PaneBlockDoTB(AbstractBlock.Properties.copy(WHITE_WOOL).strength(1.5F, 1.5F)));
 	public static final RegistryObject<Block> PAPER_FOLDING_SCREEN = reg("paper_folding_screen", new FoldingScreenBlock(AbstractBlock.Properties.copy(WHITE_WOOL).strength(1.5F, 1.5F).noOcclusion()));
 	public static final RegistryObject<Block> RED_PAPER_LANTERN = reg("red_paper_lantern", new PaperLanternBlock(AbstractBlock.Properties.copy(RED_WOOL).noOcclusion().noCollission()));
-	public static final RegistryObject<Block> PAPER_LAMP = reg("paper_lamp", new PaperLampBlock(AbstractBlock.Properties.copy(WHITE_WOOL).noOcclusion()));
-	public static final RegistryObject<Block> STONE_LANTERN = reg("stone_lantern", new StoneLanternBlock(AbstractBlock.Properties.copy(STONE_BRICKS)));
+	public static final RegistryObject<Block> PAPER_LAMP = reg("paper_lamp", new PaperLampBlock(AbstractBlock.Properties.copy(WHITE_WOOL).noOcclusion().lightLevel((state) -> 14)));
+	public static final RegistryObject<Block> STONE_LANTERN = reg("stone_lantern", new StoneLanternBlock(AbstractBlock.Properties.copy(STONE_BRICKS).noOcclusion()));
 	public static final RegistryObject<Block> RICE = reg("rice", new WaterDoubleCropsBlock("rice", 2));
 	public static final RegistryObject<Block> SMALL_TATAMI_MAT = reg("small_tatami_mat", new SmallTatamiMatBlock(AbstractBlock.Properties.copy(WHITE_CARPET)));
 	public static final RegistryObject<Block> SMALL_TATAMI_FLOOR = reg("small_tatami_floor", new SmallTatamiFloorBlock(AbstractBlock.Properties.copy(WHITE_CARPET)));

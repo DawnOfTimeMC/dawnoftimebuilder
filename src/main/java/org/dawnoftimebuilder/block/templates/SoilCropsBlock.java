@@ -4,7 +4,7 @@ import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.fluid.Fluids;
+import net.minecraft.fluid.FluidState;
 import net.minecraft.item.Food;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -12,6 +12,7 @@ import net.minecraft.particles.ParticleTypes;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
+import net.minecraft.tags.FluidTags;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
@@ -20,24 +21,18 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.IBlockReader;
-import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.PlantType;
-import org.dawnoftimebuilder.item.templates.SoilSeedsItem;
 import org.dawnoftimebuilder.block.IBlockCustomItem;
+import org.dawnoftimebuilder.item.templates.SoilSeedsItem;
 import org.dawnoftimebuilder.util.DoTBBlockUtils;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-
 import java.util.List;
 import java.util.Random;
 
-import static net.minecraft.block.Blocks.AIR;
-import static net.minecraftforge.common.PlantType.*;
-import static net.minecraftforge.common.Tags.Blocks.DIRT;
-import static net.minecraftforge.common.Tags.Blocks.SAND;
 import static org.dawnoftimebuilder.util.DoTBBlockUtils.TOOLTIP_CROP;
 
 public class SoilCropsBlock extends CropsBlock implements IBlockCustomItem {
@@ -66,35 +61,39 @@ public class SoilCropsBlock extends CropsBlock implements IBlockCustomItem {
 	}
 
 	@Override
-	public boolean canSurvive(BlockState state, IWorldReader worldIn, BlockPos pos) {
-		BlockState stateGround = worldIn.getBlockState(pos);
-		Block blockUnder = stateGround.getBlock();
-		if (NETHER.equals(this.plantType)) return blockUnder == Blocks.SOUL_SAND;
-		if (CAVE.equals(this.plantType)) return BlockDoTB.canSupportCenter( worldIn, pos, Direction.UP);
-		if((worldIn.getRawBrightness(pos, 0) < 8 && !worldIn.canSeeSky(pos))) return false;
-		if (DESERT.equals(this.plantType)) {
-			return blockUnder.is(SAND) || blockUnder == Blocks.TERRACOTTA || blockUnder instanceof GlazedTerracottaBlock;
-		} else if (CROP.equals(this.plantType)) {
-			return blockUnder == Blocks.FARMLAND;
-		} else if (PLAINS.equals(this.plantType)) {
-			return blockUnder == Blocks.GRASS_BLOCK || blockUnder.is(DIRT) || blockUnder == Blocks.FARMLAND;
-		} else if (WATER.equals(this.plantType)) {
-			return worldIn.getFluidState(pos.above()).getFluidState().getType() == Fluids.WATER && worldIn.getBlockState(pos.above(2)).getBlock() == AIR && (blockUnder == Blocks.GRASS_BLOCK || blockUnder.is(DIRT) || blockUnder == Blocks.FARMLAND || blockUnder == Blocks.GRAVEL);
-		} else if (BEACH.equals(this.plantType)) {
-			boolean isBeach = blockUnder == Blocks.GRASS_BLOCK || blockUnder.is(DIRT) || blockUnder.is(SAND);
-			boolean hasWater = (worldIn.getBlockState(pos.east()).getMaterial() == Material.WATER ||
-					worldIn.getBlockState(pos.west()).getMaterial() == Material.WATER ||
-					worldIn.getBlockState(pos.north()).getMaterial() == Material.WATER ||
-					worldIn.getBlockState(pos.south()).getMaterial() == Material.WATER);
-			return isBeach && hasWater;
-		}
-		return false;
-	}
-
-	@Override
 	public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
 		if(state.getValue(PERSISTENT)) return;
 		super.tick(state, worldIn, pos, random);
+	}
+
+	@Override
+	protected boolean mayPlaceOn(BlockState state, IBlockReader world, BlockPos pos) {
+		if(this.getPlantType(world, pos).equals(PlantType.DESERT)){
+			return this.getBlock() == Blocks.SAND || this.getBlock() == Blocks.TERRACOTTA || this.getBlock() instanceof GlazedTerracottaBlock;
+		} else if (this.getPlantType(world, pos).equals(PlantType.NETHER)) {
+			return this.getBlock() == Blocks.SOUL_SAND;
+		} else if (this.getPlantType(world, pos).equals(PlantType.CROP)) {
+			return state.is(Blocks.FARMLAND);
+		} else if (this.getPlantType(world, pos).equals(PlantType.CAVE)) {
+			return state.isFaceSturdy(world, pos, Direction.UP);
+		} else if (this.getPlantType(world, pos).equals(PlantType.PLAINS)) {
+			return this.getBlock() == Blocks.GRASS_BLOCK || net.minecraftforge.common.Tags.Blocks.DIRT.contains(this) || this.getBlock() == Blocks.FARMLAND;
+		} else if (this.getPlantType(world, pos).equals(PlantType.WATER)) {
+			return state.getMaterial() == net.minecraft.block.material.Material.WATER;
+		} else if (this.getPlantType(world, pos).equals(PlantType.BEACH)) {
+			boolean isBeach = state.is(Blocks.GRASS_BLOCK) || net.minecraftforge.common.Tags.Blocks.DIRT.contains(this) || state.is(Blocks.SAND) || state.is(Blocks.RED_SAND);
+			boolean hasWater = false;
+			for (Direction face : Direction.Plane.HORIZONTAL) {
+				BlockState blockState = world.getBlockState(pos.relative(face));
+				FluidState fluidState = world.getFluidState(pos.relative(face));
+				hasWater = blockState.is(Blocks.FROSTED_ICE);
+				hasWater |= fluidState.is(FluidTags.WATER);
+				if (hasWater)
+					break; //No point continuing.
+			}
+			return isBeach && hasWater;
+		}
+		return false;
 	}
 
 	@Override
@@ -131,7 +130,8 @@ public class SoilCropsBlock extends CropsBlock implements IBlockCustomItem {
 		worldIn.setBlock(pos, currentState.setValue(this.getAgeProperty(), newAge), 10);
 	}
 
-	public PlantType getPlantType(){
+	@Override
+	public PlantType getPlantType(IBlockReader world, BlockPos pos) {
 		return this.plantType;
 	}
 

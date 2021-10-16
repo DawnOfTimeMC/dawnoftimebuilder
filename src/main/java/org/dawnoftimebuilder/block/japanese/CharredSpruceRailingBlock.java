@@ -81,6 +81,9 @@ public class CharredSpruceRailingBlock extends FenceBlock {
 	@Override
 	public boolean canBeReplaced(BlockState state, BlockItemUseContext useContext) {
 		if(useContext.getItemInHand().getItem() == this.asItem()) {
+			if(useContext.getPlayer() != null && useContext.getPlayer().isCrouching()){
+				return useContext.replacingClickedOnBlock();
+			}
 			return this.isSmallPillar(state);
 		}
 		return useContext.replacingClickedOnBlock();

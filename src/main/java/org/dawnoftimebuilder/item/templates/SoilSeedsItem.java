@@ -11,17 +11,14 @@ import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
-import net.minecraftforge.common.IPlantable;
-import net.minecraftforge.common.PlantType;
 import org.dawnoftimebuilder.block.templates.SoilCropsBlock;
 
 import javax.annotation.Nullable;
 
 import static org.dawnoftimebuilder.DawnOfTimeBuilder.DOTB_TAB;
 
-public class SoilSeedsItem extends BlockItem implements IPlantable {
+public class SoilSeedsItem extends BlockItem {
     private final SoilCropsBlock crops;
 
     public SoilSeedsItem(SoilCropsBlock crops, @Nullable Food food) {
@@ -36,7 +33,7 @@ public class SoilSeedsItem extends BlockItem implements IPlantable {
         World world = context.getLevel();
         BlockPos pos = context.getClickedPos();
 
-        if(!this.crops.canSurvive(this.crops.defaultBlockState(), world, pos.below())) return ActionResultType.FAIL;
+        if(!this.crops.canSurvive(this.crops.defaultBlockState(), world, pos)) return ActionResultType.FAIL;
         if(!world.getBlockState(pos).canBeReplaced(context)) return ActionResultType.FAIL;
         BlockItemUseContext blockitemusecontext = this.updatePlacementContext(context);
         if (blockitemusecontext == null) {
@@ -65,15 +62,5 @@ public class SoilSeedsItem extends BlockItem implements IPlantable {
                 return ActionResultType.SUCCESS;
             }
         }
-    }
-    
-    @Override
-    public PlantType getPlantType(IBlockReader world, BlockPos pos){
-        return this.crops.getPlantType();
-    }
-
-    @Override
-    public BlockState getPlant(IBlockReader world, BlockPos pos) {
-        return this.crops.defaultBlockState();
     }
 }

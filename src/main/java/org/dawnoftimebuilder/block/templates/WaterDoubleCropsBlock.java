@@ -1,9 +1,7 @@
 package org.dawnoftimebuilder.block.templates;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.IWaterLoggable;
+import net.minecraft.block.*;
+import net.minecraft.block.material.Material;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.BlockItemUseContext;
@@ -15,9 +13,16 @@ import net.minecraft.state.properties.Half;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
+import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraftforge.common.PlantType;
+
+import static net.minecraft.block.Blocks.AIR;
+import static net.minecraftforge.common.PlantType.*;
+import static net.minecraftforge.common.Tags.Blocks.DIRT;
+import static net.minecraftforge.common.Tags.Blocks.SAND;
 
 public class WaterDoubleCropsBlock extends DoubleCropsBlock implements IWaterLoggable {
 
@@ -101,5 +106,22 @@ public class WaterDoubleCropsBlock extends DoubleCropsBlock implements IWaterLog
 			worldIn.setBlock(pos.above(), Blocks.AIR.defaultBlockState(), 10);
 		}
 		worldIn.setBlock(pos, currentState.setValue(this.getAgeProperty(), newAge).setValue(HALF, Half.BOTTOM).setValue(WATERLOGGED, true), 8);
+	}
+
+	@Override
+	protected boolean mayPlaceOn(BlockState state, IBlockReader world, BlockPos pos) {
+		Block blockUnder = world.getBlockState(pos.below()).getBlock();
+		return world.getFluidState(pos.above()).getFluidState().getType() == Fluids.WATER
+				&& world.getBlockState(pos.above()).getBlock() == AIR
+				&& (blockUnder == Blocks.GRASS_BLOCK || blockUnder.is(DIRT) || blockUnder == Blocks.FARMLAND || blockUnder == Blocks.GRAVEL);
+	}
+
+	@Override
+	public boolean canSurvive(BlockState state, IWorldReader worldIn, BlockPos pos) {
+		BlockState stateGround = worldIn.getBlockState(pos);
+		Block blockUnder = stateGround.getBlock();
+		return worldIn.getFluidState(pos.above()).getFluidState().getType() == Fluids.WATER
+				&& worldIn.getBlockState(pos.above(2)).getBlock() == AIR
+				&& (blockUnder == Blocks.GRASS_BLOCK || blockUnder.is(DIRT) || blockUnder == Blocks.FARMLAND || blockUnder == Blocks.GRAVEL);
 	}
 }
