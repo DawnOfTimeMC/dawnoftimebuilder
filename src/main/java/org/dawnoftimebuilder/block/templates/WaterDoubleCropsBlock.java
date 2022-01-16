@@ -107,21 +107,4 @@ public class WaterDoubleCropsBlock extends DoubleCropsBlock implements IWaterLog
 		}
 		worldIn.setBlock(pos, currentState.setValue(this.getAgeProperty(), newAge).setValue(HALF, Half.BOTTOM).setValue(WATERLOGGED, true), 8);
 	}
-
-	@Override
-	protected boolean mayPlaceOn(BlockState state, IBlockReader world, BlockPos pos) {
-		Block blockUnder = world.getBlockState(pos.below()).getBlock();
-		return world.getFluidState(pos.above()).getFluidState().getType() == Fluids.WATER
-				&& world.getBlockState(pos.above()).getBlock() == AIR
-				&& (blockUnder == Blocks.GRASS_BLOCK || blockUnder.is(DIRT) || blockUnder == Blocks.FARMLAND || blockUnder == Blocks.GRAVEL);
-	}
-
-	@Override
-	public boolean canSurvive(BlockState state, IWorldReader worldIn, BlockPos pos) {
-		BlockState stateGround = worldIn.getBlockState(pos);
-		Block blockUnder = stateGround.getBlock();
-		return worldIn.getFluidState(pos.above()).getFluidState().getType() == Fluids.WATER
-				&& worldIn.getBlockState(pos.above(2)).getBlock() == AIR
-				&& (blockUnder == Blocks.GRASS_BLOCK || blockUnder.is(DIRT) || blockUnder == Blocks.FARMLAND || blockUnder == Blocks.GRAVEL);
-	}
 }

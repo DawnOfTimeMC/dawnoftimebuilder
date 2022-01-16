@@ -2,6 +2,8 @@ package org.dawnoftimebuilder;
 
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
@@ -24,6 +26,7 @@ public class DawnOfTimeBuilder {
 
     public DawnOfTimeBuilder(){
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, DoTBConfig.COMMON_CONFIG);
+
         //TODO Fix armor animation
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
         DoTBBlocksRegistry.BLOCKS.register(eventBus);
@@ -33,9 +36,11 @@ public class DawnOfTimeBuilder {
         DoTBTileEntitiesRegistry.TILE_ENTITY_TYPES.register(eventBus);
         DoTBContainersRegistry.CONTAINER_TYPES.register(eventBus);
         //DoTBFeaturesRegistry.FEATURES.register(eventBus); TODO fix world gen
+        eventBus.addListener(HandlerCommon::fMLCommonSetupEvent);
+        eventBus.addListener(HandlerCommon::entityAttributeCreationEvent);
+        eventBus.addListener(HandlerClient::fMLClientSetupEvent);
 
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(HandlerCommon::fMLCommonSetupEvent);
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(HandlerCommon::entityAttributeCreationEvent);
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(HandlerClient::fMLClientSetupEvent);
+        IEventBus forgeBus = MinecraftForge.EVENT_BUS;
+        forgeBus.addListener(EventPriority.HIGH, HandlerCommon::biomeLoadingEvent);
     }
 }

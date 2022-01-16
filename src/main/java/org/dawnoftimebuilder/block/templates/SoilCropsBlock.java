@@ -5,6 +5,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
+import net.minecraft.fluid.Fluids;
 import net.minecraft.item.Food;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -21,9 +22,12 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.IBlockReader;
+import net.minecraft.world.IWorld;
+import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.PlantType;
+import net.minecraftforge.common.Tags;
 import org.dawnoftimebuilder.block.IBlockCustomItem;
 import org.dawnoftimebuilder.item.templates.SoilSeedsItem;
 import org.dawnoftimebuilder.util.DoTBBlockUtils;
@@ -33,6 +37,7 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Random;
 
+import static net.minecraftforge.common.Tags.Blocks.DIRT;
 import static org.dawnoftimebuilder.util.DoTBBlockUtils.TOOLTIP_CROP;
 
 public class SoilCropsBlock extends CropsBlock implements IBlockCustomItem {
@@ -67,34 +72,66 @@ public class SoilCropsBlock extends CropsBlock implements IBlockCustomItem {
 	}
 
 	@Override
+	public boolean canSurvive(BlockState state, IWorldReader world, BlockPos pos) {
+		return mayGenerateOn(world, pos.below(), this.getPlantType(world, pos)) && super.canSurvive(state, world, pos);
+	}
+
+	@Override
 	protected boolean mayPlaceOn(BlockState state, IBlockReader world, BlockPos pos) {
-		if(this.getPlantType(world, pos).equals(PlantType.DESERT)){
-			return this.getBlock() == Blocks.SAND || this.getBlock() == Blocks.TERRACOTTA || this.getBlock() instanceof GlazedTerracottaBlock;
-		} else if (this.getPlantType(world, pos).equals(PlantType.NETHER)) {
-			return this.getBlock() == Blocks.SOUL_SAND;
-		} else if (this.getPlantType(world, pos).equals(PlantType.CROP)) {
-			return state.is(Blocks.FARMLAND);
-		} else if (this.getPlantType(world, pos).equals(PlantType.CAVE)) {
-			return state.isFaceSturdy(world, pos, Direction.UP);
-		} else if (this.getPlantType(world, pos).equals(PlantType.PLAINS)) {
-			return this.getBlock() == Blocks.GRASS_BLOCK || net.minecraftforge.common.Tags.Blocks.DIRT.contains(this) || this.getBlock() == Blocks.FARMLAND;
-		} else if (this.getPlantType(world, pos).equals(PlantType.WATER)) {
-			return state.getMaterial() == net.minecraft.block.material.Material.WATER;
-		} else if (this.getPlantType(world, pos).equals(PlantType.BEACH)) {
-			boolean isBeach = state.is(Blocks.GRASS_BLOCK) || net.minecraftforge.common.Tags.Blocks.DIRT.contains(this) || state.is(Blocks.SAND) || state.is(Blocks.RED_SAND);
-			boolean hasWater = false;
-			for (Direction face : Direction.Plane.HORIZONTAL) {
-				BlockState blockState = world.getBlockState(pos.relative(face));
-				FluidState fluidState = world.getFluidState(pos.relative(face));
-				hasWater = blockState.is(Blocks.FROSTED_ICE);
-				hasWater |= fluidState.is(FluidTags.WATER);
-				if (hasWater)
-					break; //No point continuing.
+		return mayGenerateOn(world, pos, this.getPlantType(world, pos));
+	}
+
+	public static boolean mayGenerateOn(IBlockReader worldIn, BlockPos pos, PlantType plantType){
+		BlockState stateOn = worldIn.getBlockState(pos);
+		Block blockOn = stateOn.getBlock();
+
+		if(plantType.equals(PlantType.DESERT)){
+			return stateOn.is(Blocks.SAND)
+					|| stateOn.is(Blocks.TERRACOTTA)
+					|| blockOn instanceof GlazedTerracottaBlock;
+
+		} else if (plantType.equals(PlantType.NETHER)) {
+			return stateOn.is(Blocks.SOUL_SAND);
+
+		} else if (plantType.equals(PlantType.CROP)) {
+			return stateOn.is(Blocks.FARMLAND);
+
+		} else if (plantType.equals(PlantType.CAVE)) {
+			return stateOn.isFaceSturdy(worldIn, pos, Direction.UP);
+
+		} else if (plantType.equals(PlantType.PLAINS)) {
+			return stateOn.is(Blocks.GRASS_BLOCK)
+					|| stateOn.is(Tags.Blocks.DIRT)
+					|| stateOn.is(Blocks.FARMLAND);
+
+		} else if (plantType.equals(PlantType.WATER)) {
+			return worldIn.getFluidState(pos.above()).getFluidState().getType() == Fluids.WATER
+					&& (stateOn.is(Blocks.GRASS_BLOCK)
+					|| stateOn.is(Tags.Blocks.DIRT)
+					|| stateOn.is(Blocks.FARMLAND)
+					|| stateOn.is(Blocks.GRAVEL));
+
+		} else if (plantType.equals(PlantType.BEACH)) {
+			boolean isBeach = stateOn.is(Blocks.GRASS_BLOCK)
+					|| stateOn.is(Tags.Blocks.DIRT)
+					|| stateOn.is(Blocks.SAND)
+					|| stateOn.is(Blocks.RED_SAND);
+			if(isBeach){
+				boolean hasWater = false;
+				for (Direction face : Direction.Plane.HORIZONTAL) {
+					BlockState blockState = worldIn.getBlockState(pos.relative(face));
+					FluidState fluidState = worldIn.getFluidState(pos.relative(face));
+					hasWater = blockState.is(Blocks.FROSTED_ICE);
+					hasWater |= fluidState.is(FluidTags.WATER);
+					if (hasWater)
+						break; //No point continuing.
+				}
+				return hasWater;
 			}
-			return isBeach && hasWater;
 		}
 		return false;
 	}
+
 
 	@Override
 	public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {

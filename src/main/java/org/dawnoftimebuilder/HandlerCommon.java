@@ -5,6 +5,7 @@ import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
+import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -24,12 +25,16 @@ public class HandlerCommon {
 
 	}
 
-	//DoTBFeaturesRegistry.addFeaturesToBiomes();
-
 	@SubscribeEvent
 	public static void entityAttributeCreationEvent(EntityAttributeCreationEvent event) {
 		//We need to set att least the default values here
 		event.put(SILKMOTH_ENTITY.get(), MobEntity.createMobAttributes().add(Attributes.MAX_HEALTH, 3.0D).build());
 		event.put(JAPANESE_DRAGON_ENTITY.get(), MobEntity.createMobAttributes().add(Attributes.MAX_HEALTH, 20.0D).build());
+	}
+
+	@SubscribeEvent
+	public static void biomeLoadingEvent(BiomeLoadingEvent event){
+		//Must be EventPriority.HIGH
+
 	}
 }
