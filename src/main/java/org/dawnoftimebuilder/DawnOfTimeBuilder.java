@@ -41,6 +41,6 @@ public class DawnOfTimeBuilder {
         eventBus.addListener(HandlerClient::fMLClientSetupEvent);
 
         IEventBus forgeBus = MinecraftForge.EVENT_BUS;
-        forgeBus.addListener(EventPriority.HIGH, HandlerCommon::biomeLoadingEvent);
+        //forgeBus.addListener(EventPriority.HIGH, HandlerCommon::biomeLoadingEvent);
     }
 }

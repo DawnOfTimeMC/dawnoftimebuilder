@@ -45,7 +45,7 @@ public class DoTBBlockUtils {
 	public static final String TOOLTIP_SIDED_WINDOW = "sided_window";
 
 	//Item tags
-	public static final Tags.IOptionalNamedTag<Item> LIGHTERS = ItemTags.createOptional(new ResourceLocation(FORGE_ID, "lighters"));
+	public static final Tags.IOptionalNamedTag<Item> LIGHTERS = ItemTags.createOptional(new ResourceLocation(MOD_ID, "lighters"));
 
 	//Block tags
 	public static final Tags.IOptionalNamedTag<Block> COVERED_BLOCKS = BlockTags.createOptional(new ResourceLocation(MOD_ID, "covered_blocks"));

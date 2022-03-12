@@ -6,11 +6,13 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
+import org.dawnoftimebuilder.block.IBlockSpecialDisplay;
+import org.dawnoftimebuilder.block.templates.ColumnConnectibleBlock;
 import org.dawnoftimebuilder.block.templates.WaterloggedBlock;
 
 import javax.annotation.Nonnull;
 
-public class PaperLanternBlock extends WaterloggedBlock {
+public class PaperLanternBlock extends WaterloggedBlock implements IBlockSpecialDisplay{
 
     private static final VoxelShape VS = Block.box(4.0D, 0.0D, 4.0D, 12.0D, 15.0D, 12.0D);
 
@@ -25,7 +27,7 @@ public class PaperLanternBlock extends WaterloggedBlock {
     }
 
     @Override
-    public int getLightValue(BlockState state, IBlockReader world, BlockPos pos) {
-        return 12;
+    public boolean emitsLight() {
+        return true;
     }
 }

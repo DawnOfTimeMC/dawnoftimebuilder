@@ -279,7 +279,7 @@ public enum CreativeInventoryCategories {
 			STONE_LANTERN.get().asItem(),
 			SMALL_TATAMI_MAT.get().asItem(),
 			TATAMI_MAT.get().asItem(),
-			LIGHT_GRAY_FUTON.get().asItem(),
+			//LIGHT_GRAY_FUTON.get().asItem(), TODO Fix the Futon
 			SPRUCE_LOW_TABLE.get().asItem(),
 			SPRUCE_LEGLESS_CHAIR.get().asItem(),
 			IKEBANA_FLOWER_POT.get().asItem(),

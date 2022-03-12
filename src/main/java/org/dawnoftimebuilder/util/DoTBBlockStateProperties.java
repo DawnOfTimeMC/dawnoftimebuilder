@@ -203,6 +203,10 @@ public class DoTBBlockStateProperties {
             return this.vertical_offset == 1;
         }
 
+        /**
+         * @param vertically must be true if the adjacent corner must be above or under.
+         * @return the adjacent SquareCorner vertically or horizontally.
+         */
         public SquareCorners getAdjacentCorner(boolean vertically){
             switch (this) {
                 default:

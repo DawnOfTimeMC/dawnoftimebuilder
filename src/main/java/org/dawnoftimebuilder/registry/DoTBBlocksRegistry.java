@@ -204,9 +204,9 @@ public class DoTBBlocksRegistry {
 	public static final RegistryObject<Block> PAPER_WALL_WINDOWS = reg("paper_wall_window", new PaneBlockDoTB(AbstractBlock.Properties.copy(WHITE_WOOL).strength(1.5F, 1.5F)));
 	public static final RegistryObject<Block> PAPER_WALL_FLOWERY = reg("paper_wall_flowery", new PaneBlockDoTB(AbstractBlock.Properties.copy(WHITE_WOOL).strength(1.5F, 1.5F)));
 	public static final RegistryObject<Block> PAPER_FOLDING_SCREEN = reg("paper_folding_screen", new FoldingScreenBlock(AbstractBlock.Properties.copy(WHITE_WOOL).strength(1.5F, 1.5F).noOcclusion()));
-	public static final RegistryObject<Block> RED_PAPER_LANTERN = reg("red_paper_lantern", new PaperLanternBlock(AbstractBlock.Properties.copy(RED_WOOL).noOcclusion().noCollission()));
+	public static final RegistryObject<Block> RED_PAPER_LANTERN = reg("red_paper_lantern", new PaperLanternBlock(AbstractBlock.Properties.copy(RED_WOOL).noOcclusion().noCollission().lightLevel((state) -> 12)));
 	public static final RegistryObject<Block> PAPER_LAMP = reg("paper_lamp", new PaperLampBlock(AbstractBlock.Properties.copy(WHITE_WOOL).noOcclusion().lightLevel((state) -> 14)));
-	public static final RegistryObject<Block> STONE_LANTERN = reg("stone_lantern", new StoneLanternBlock(AbstractBlock.Properties.copy(STONE_BRICKS).noOcclusion()));
+	public static final RegistryObject<Block> STONE_LANTERN = reg("stone_lantern", new StoneLanternBlock(AbstractBlock.Properties.copy(STONE_BRICKS).noOcclusion().lightLevel((state) -> 15)));
 	public static final RegistryObject<Block> RICE = reg("rice", new WaterDoubleCropsBlock("rice", 2));
 	public static final RegistryObject<Block> SMALL_TATAMI_MAT = reg("small_tatami_mat", new SmallTatamiMatBlock(AbstractBlock.Properties.copy(WHITE_CARPET)));
 	public static final RegistryObject<Block> SMALL_TATAMI_FLOOR = reg("small_tatami_floor", new SmallTatamiFloorBlock(AbstractBlock.Properties.copy(WHITE_CARPET)));

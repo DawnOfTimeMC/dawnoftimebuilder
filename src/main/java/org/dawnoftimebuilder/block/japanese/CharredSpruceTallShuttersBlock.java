@@ -114,7 +114,6 @@ public class CharredSpruceTallShuttersBlock extends CharredSpruceShuttersBlock {
     public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
         SquareCorners thisCorner = stateIn.getValue(CORNER);
         if(stateIn.getValue(WATERLOGGED)) worldIn.getLiquidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(worldIn));
-        if(stateIn.getValue(CORNER).isTopCorner()) return Blocks.AIR.defaultBlockState();
         Direction currentFacing = stateIn.getValue(FACING);
         SquareCorners expectedCorner = thisCorner.getAdjacentCorner(facing.getAxis().isVertical());
         if(currentPos.above(expectedCorner.getVerticalOffset(thisCorner)).relative(currentFacing.getClockWise(), expectedCorner.getHorizontalOffset(thisCorner)).equals(facingPos)){

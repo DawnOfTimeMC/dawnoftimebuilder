@@ -32,9 +32,4 @@ public class HandlerCommon {
 		event.put(JAPANESE_DRAGON_ENTITY.get(), MobEntity.createMobAttributes().add(Attributes.MAX_HEALTH, 20.0D).build());
 	}
 
-	@SubscribeEvent
-	public static void biomeLoadingEvent(BiomeLoadingEvent event){
-		//Must be EventPriority.HIGH
-
-	}
 }
