@@ -94,13 +94,6 @@ public abstract class CandleLampBlock extends WaterloggedBlock implements IBlock
     }
 
     @Override
-    public int getLightValue(BlockState state, IBlockReader world, BlockPos pos) {
-        return state.getValue(LIT) ? this.getLitLightValue() : 0;
-    }
-
-    public abstract int getLitLightValue();
-
-    @Override
     public boolean emitsLight() {
         return true;
     }

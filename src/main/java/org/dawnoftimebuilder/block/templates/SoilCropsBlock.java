@@ -26,6 +26,7 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.PlantType;
 import net.minecraftforge.common.Tags;
 import org.dawnoftimebuilder.block.IBlockCustomItem;
@@ -48,7 +49,7 @@ public class SoilCropsBlock extends CropsBlock implements IBlockCustomItem {
 	public static final BooleanProperty PERSISTENT = BlockStateProperties.PERSISTENT;
 
 	public SoilCropsBlock(String seedName, PlantType plantType, Food food){
-		super(BlockDoTB.Properties.of(Material.VEGETABLE).noCollission().randomTicks().strength(0.0F).sound(SoundType.CROP));
+		super(BlockDoTB.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.CROP));
 		this.plantType = plantType;
 		this.seedName = seedName;
 		this.seed = new SoilSeedsItem(this, food);
@@ -68,7 +69,17 @@ public class SoilCropsBlock extends CropsBlock implements IBlockCustomItem {
 	@Override
 	public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
 		if(state.getValue(PERSISTENT)) return;
-		super.tick(state, worldIn, pos, random);
+		if (!worldIn.isAreaLoaded(pos, 1)) return; // Forge: prevent loading unloaded chunks when checking neighbor's light
+		if (worldIn.getRawBrightness(pos, 0) >= 9) {
+			int age = this.getAge(state);
+			if (age < this.getMaxAge()) {
+				float f = getGrowthSpeed(this, worldIn, pos);
+				if (ForgeHooks.onCropsGrowPre(worldIn, pos, state, random.nextInt((int)(25.0F / f) + 1) == 0)) {
+					this.setPlantWithAge(state, worldIn, pos, age + 1);
+					ForgeHooks.onCropsGrowPost(worldIn, pos, state);
+				}
+			}
+		}
 	}
 
 	@Override

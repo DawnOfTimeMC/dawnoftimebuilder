@@ -1,0 +1,19 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"Ii",
+		"iI"
+	],
+	"key": {
+		"i": {
+			"item": "minecraft:red_carpet"
+		},
+		"I": {
+			"item": "minecraft:blue_carpet"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:persian_carpet_red",
+		"count": 16
+	}
+}

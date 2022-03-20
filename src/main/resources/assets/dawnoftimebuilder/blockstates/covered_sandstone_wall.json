@@ -1,0 +1,98 @@
+{
+    "multipart": [
+        {
+            "when": {
+                "pillar": "low"
+            },
+            "apply": {
+                "model": "dawnoftimebuilder:block/roman/covered_sandstone_wall_post_low"
+            }
+        },
+        {
+            "when": {
+                "north": "low"
+            },
+            "apply": {
+                "model": "dawnoftimebuilder:block/roman/covered_sandstone_wall_side",
+                "uvlock": true
+            }
+        },
+        {
+            "when": {
+                "east": "low"
+            },
+            "apply": {
+                "model": "dawnoftimebuilder:block/roman/covered_sandstone_wall_side",
+                "y": 90,
+                "uvlock": true
+            }
+        },
+        {
+            "when": {
+                "south": "low"
+            },
+            "apply": {
+                "model": "dawnoftimebuilder:block/roman/covered_sandstone_wall_side",
+                "y": 180,
+                "uvlock": true
+            }
+        },
+        {
+            "when": {
+                "west": "low"
+            },
+            "apply": {
+                "model": "dawnoftimebuilder:block/roman/covered_sandstone_wall_side",
+                "y": 270,
+                "uvlock": true
+            }
+        },
+        {
+            "when": {
+                "pillar": "tall"
+            },
+            "apply": {
+                "model": "dawnoftimebuilder:block/roman/covered_sandstone_wall_post_tall"
+            }
+        },
+        {
+            "when": {
+                "north": "tall"
+            },
+            "apply": {
+                "model": "dawnoftimebuilder:block/roman/covered_sandstone_wall_side_tall",
+                "uvlock": true
+            }
+        },
+        {
+            "when": {
+                "east": "tall"
+            },
+            "apply": {
+                "model": "dawnoftimebuilder:block/roman/covered_sandstone_wall_side_tall",
+                "y": 90,
+                "uvlock": true
+            }
+        },
+        {
+            "when": {
+                "south": "tall"
+            },
+            "apply": {
+                "model": "dawnoftimebuilder:block/roman/covered_sandstone_wall_side_tall",
+                "y": 180,
+                "uvlock": true
+            }
+        },
+        {
+            "when": {
+                "west": "tall"
+            },
+            "apply": {
+                "model": "dawnoftimebuilder:block/roman/covered_sandstone_wall_side_tall",
+                "y": 270,
+                "uvlock": true
+            }
+        }
+    ]
+}

@@ -15,13 +15,13 @@ import org.dawnoftimebuilder.block.templates.CandleLampBlock;
 
 import java.util.Random;
 
-public class WaxedOakChandelier extends CandleLampBlock implements IBlockChain {
+public class WaxedOakChandelierBlock extends CandleLampBlock implements IBlockChain {
 
     private static final VoxelShape VS = VoxelShapes.or(
             Block.box(0.0D, 0.0D, 0.0D, 16.0D, 8.0D, 16.0D),
             Block.box(6.0D, 8.0D, 6.0D, 10.0D, 16.0D, 10.0D));
 
-    public WaxedOakChandelier(Properties properties) {
+    public WaxedOakChandelierBlock(Properties properties) {
         super(properties);
     }
 
@@ -37,11 +37,6 @@ public class WaxedOakChandelier extends CandleLampBlock implements IBlockChain {
         this.animateLitCandle(stateIn, worldIn, pos, 0.5D, 0.5D, 0.12D);
         this.animateLitCandle(stateIn, worldIn, pos, 0.5D, 0.5D, 0.88D);
         this.animateLitCandle(stateIn, worldIn, pos, 0.88D, 0.5D, 0.5D);
-    }
-
-    @Override
-    public int getLitLightValue() {
-        return 15;
     }
 
     @Override

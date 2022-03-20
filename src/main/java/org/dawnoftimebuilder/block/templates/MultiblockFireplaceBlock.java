@@ -28,18 +28,18 @@ import java.util.Random;
 
 public class MultiblockFireplaceBlock extends SidedPlaneConnectibleBlock {
 
-	public static final BooleanProperty BURNING = DoTBBlockStateProperties.BURNING;
+	public static final BooleanProperty LIT = BlockStateProperties.LIT;
 	private static final VoxelShape[] SHAPES = DoTBBlockUtils.GenerateHorizontalShapes(makeShapes());
 
 	public MultiblockFireplaceBlock(Properties properties) {
 		super(properties);
-		this.registerDefaultState(this.defaultBlockState().setValue(BURNING, false));
+		this.registerDefaultState(this.defaultBlockState().setValue(LIT, false));
 	}
 
 	@Override
 	protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
 		super.createBlockStateDefinition(builder);
-		builder.add(BURNING);
+		builder.add(LIT);
 	}
 
 	@Override
@@ -61,16 +61,11 @@ public class MultiblockFireplaceBlock extends SidedPlaneConnectibleBlock {
 	}
 
 	@Override
-	public int getLightValue(BlockState state, IBlockReader world, BlockPos pos) {
-		return (state.getValue(BURNING)) ? 15 : 0;
-	}
-
-	@Override
 	public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit){
 		if(state.getValue(VERTICAL_CONNECTION) != DoTBBlockStateProperties.VerticalConnection.BOTH && state.getValue(VERTICAL_CONNECTION) != DoTBBlockStateProperties.VerticalConnection.UNDER) {
-			if (state.getValue(BURNING)) {
+			if (state.getValue(LIT)) {
 				Direction direction = state.getValue(FACING);
-				worldIn.setBlock(pos, state.setValue(BURNING, false), 10);
+				worldIn.setBlock(pos, state.setValue(LIT, false), 10);
 				worldIn.playSound(null, pos, SoundEvents.FIRE_EXTINGUISH, SoundCategory.BLOCKS, 1.0F, 1.0F);
 				worldIn.getBlockState(pos.relative(direction.getCounterClockWise())).neighborChanged(worldIn, pos.relative(direction.getCounterClockWise()), this, pos, false);
 				worldIn.getBlockState(pos.relative(direction.getClockWise())).neighborChanged(worldIn, pos.relative(direction.getClockWise()), this, pos, false);
@@ -79,7 +74,7 @@ public class MultiblockFireplaceBlock extends SidedPlaneConnectibleBlock {
 				if (state.getValue(WATERLOGGED)) return ActionResultType.PASS;
 				if (DoTBBlockUtils.useLighter(worldIn, pos, player, handIn)) {
 					Direction direction = state.getValue(FACING);
-					worldIn.setBlock(pos, state.setValue(BURNING, true), 10);
+					worldIn.setBlock(pos, state.setValue(LIT, true), 10);
 					worldIn.getBlockState(pos.relative(direction.getCounterClockWise())).neighborChanged(worldIn, pos.relative(direction.getCounterClockWise()), this, pos, false);
 					worldIn.getBlockState(pos.relative(direction.getClockWise())).neighborChanged(worldIn, pos.relative(direction.getClockWise()), this, pos, false);
 					return ActionResultType.SUCCESS;
@@ -95,9 +90,9 @@ public class MultiblockFireplaceBlock extends SidedPlaneConnectibleBlock {
 			AbstractArrowEntity abstractarrowentity = (AbstractArrowEntity)projectile;
 			if(state.getValue(VERTICAL_CONNECTION) == DoTBBlockStateProperties.VerticalConnection.BOTH || state.getValue(VERTICAL_CONNECTION) == DoTBBlockStateProperties.VerticalConnection.UNDER)
 				return;
-			if (abstractarrowentity.isOnFire() && !state.getValue(BURNING) && !state.getValue(WATERLOGGED)) {
+			if (abstractarrowentity.isOnFire() && !state.getValue(LIT) && !state.getValue(WATERLOGGED)) {
 				BlockPos pos = hit.getBlockPos();
-				worldIn.setBlock(pos, state.setValue(BURNING, true), 10);
+				worldIn.setBlock(pos, state.setValue(LIT, true), 10);
 				worldIn.playSound(null, pos, SoundEvents.FIRE_AMBIENT, SoundCategory.BLOCKS, 1.0F, 1.0F);
 				Direction direction = state.getValue(FACING);
 				worldIn.getBlockState(pos.relative(direction.getClockWise())).neighborChanged(worldIn, pos.relative(direction.getClockWise()), this, pos, false);
@@ -113,10 +108,10 @@ public class MultiblockFireplaceBlock extends SidedPlaneConnectibleBlock {
 			if(newState.getBlock() == this){
 				Direction facing = state.getValue(FACING);
 				if(newState.getValue(FACING) == facing){
-					boolean burning = newState.getValue(BURNING);
-					if(burning != state.getValue(BURNING)){
-						if(newState.getValue(BURNING) && state.getValue(WATERLOGGED)) return;
-						worldIn.setBlock(pos, state.setValue(BURNING, burning), 10);
+					boolean burning = newState.getValue(LIT);
+					if(burning != state.getValue(LIT)){
+						if(newState.getValue(LIT) && state.getValue(WATERLOGGED)) return;
+						worldIn.setBlock(pos, state.setValue(LIT, burning), 10);
 						BlockPos newPos = (pos.relative(facing.getClockWise()).equals(fromPos)) ? pos.relative(facing.getCounterClockWise()) : pos.relative(facing.getClockWise());
 						worldIn.getBlockState(newPos).neighborChanged(worldIn, newPos, this, pos, false);
 					}
@@ -128,10 +123,10 @@ public class MultiblockFireplaceBlock extends SidedPlaneConnectibleBlock {
 	@Override
 	public boolean placeLiquid(IWorld worldIn, BlockPos pos, BlockState state, FluidState fluidStateIn) {
 		if (!state.getValue(BlockStateProperties.WATERLOGGED) && fluidStateIn.getType() == Fluids.WATER) {
-			if (state.getValue(BURNING)) {
+			if (state.getValue(LIT)) {
 				worldIn.playSound(null, pos, SoundEvents.FIRE_EXTINGUISH, SoundCategory.BLOCKS, 1.0F, 1.0F);
 			}
-			worldIn.setBlock(pos, state.setValue(WATERLOGGED, true).setValue(BURNING, false), 10);
+			worldIn.setBlock(pos, state.setValue(WATERLOGGED, true).setValue(LIT, false), 10);
 			worldIn.getLiquidTicks().scheduleTick(pos, fluidStateIn.getType(), fluidStateIn.getType().getTickDelay(worldIn));
 			return true;
 		} else {
@@ -143,7 +138,7 @@ public class MultiblockFireplaceBlock extends SidedPlaneConnectibleBlock {
 	@Override
 	public void animateTick(BlockState stateIn, World worldIn, BlockPos pos, Random rand) {
 		if(stateIn.getValue(VERTICAL_CONNECTION) != DoTBBlockStateProperties.VerticalConnection.BOTH && stateIn.getValue(VERTICAL_CONNECTION) != DoTBBlockStateProperties.VerticalConnection.UNDER) {
-			if (stateIn.getValue(BURNING)) {
+			if (stateIn.getValue(LIT)) {
 				if (rand.nextInt(24) == 0) {
 					worldIn.playLocalSound((double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D, (double)pos.getZ() + 0.5D, SoundEvents.CAMPFIRE_CRACKLE, SoundCategory.BLOCKS, 0.5F + rand.nextFloat(), rand.nextFloat() * 0.7F + 0.6F, false);
 				}

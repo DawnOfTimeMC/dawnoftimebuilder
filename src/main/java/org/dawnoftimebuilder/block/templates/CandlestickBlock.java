@@ -54,11 +54,6 @@ public class CandlestickBlock extends CandleLampBlock {
     }
 
     @Override
-    public int getLitLightValue() {
-        return 10;
-    }
-
-    @Override
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
         Direction facing = state.getValue(FACING);
         return facing == Direction.DOWN ? VS_BOTTOM : VS_SIDE[facing.get2DDataValue()];

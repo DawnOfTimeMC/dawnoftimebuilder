@@ -1,0 +1,16 @@
+{
+    "ctm":{
+        "ctm_version": 1,
+        "type":"ctm",
+        "layer":"SOLID",
+        "textures":[
+            "dawnoftimebuilder:block/persian_carpet_red-ctm"
+        ],
+        "extra": {
+            "connect_to": [
+				{ "block": "dawnoftimebuilder:persian_carpet_red" },
+				{ "block": "dawnoftimebuilder:persian_carpet_delicate_red" }
+            ]
+        }
+    }
+}

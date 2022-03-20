@@ -76,11 +76,6 @@ public abstract class DisplayerBlock extends WaterloggedBlock {
 		super.onRemove(oldState, worldIn, pos, newState, isMoving);
 	}
 
-	@Override
-	public int getLightValue(BlockState state, IBlockReader world, BlockPos pos) {
-		return state.getValue(LIT) ? 14 : 0;
-	}
-
 	public abstract double getDisplayerX(BlockState state);
 
 	public abstract double getDisplayerY(BlockState state);

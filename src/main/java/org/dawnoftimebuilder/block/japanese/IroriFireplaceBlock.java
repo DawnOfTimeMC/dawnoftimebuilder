@@ -14,14 +14,9 @@ import org.dawnoftimebuilder.block.templates.CandleLampBlock;
 
 import java.util.Random;
 
-public class IroriFireplace extends CandleLampBlock {
-    public IroriFireplace(Properties properties) {
+public class IroriFireplaceBlock extends CandleLampBlock {
+    public IroriFireplaceBlock(Properties properties) {
         super(properties);
-    }
-
-    @Override
-    public int getLitLightValue() {
-        return 15;
     }
 
     @Override

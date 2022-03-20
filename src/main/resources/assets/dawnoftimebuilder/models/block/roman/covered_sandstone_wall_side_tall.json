@@ -1,0 +1,19 @@
+{
+    "parent": "block/template_wall_side_tall",
+    "textures": {
+        "wall": "minecraft:block/sandstone",
+        "top": "dawnoftimebuilder:block/covered_sandstone_wall_top"
+    },
+    "elements": [
+        {   "from": [ 5, 0, 0 ],
+            "to": [ 11, 16, 8 ],
+            "faces": {
+                "down":  { "texture": "#wall", "cullface": "down" },
+                "up":    { "texture": "#wall", "cullface": "up"},
+                "north": { "texture": "#wall", "cullface": "north" },
+                "west":  { "texture": "#wall" },
+                "east":  { "texture": "#wall" }
+            }
+        }
+    ]
+}

@@ -177,6 +177,7 @@ public enum CreativeInventoryCategories {
 			WAXED_OAK_WALL.get().asItem(),
 			WAXED_OAK_PERGOLA.get().asItem(),
 			WAXED_OAK_FENCE.get().asItem(),
+			WAXED_OAK_BALUSTER.get().asItem(),
 			WAXED_OAK_LATTICE.get().asItem(),
 			WAXED_OAK_DOOR.get().asItem(),
 			WAXED_OAK_TRAPDOOR.get().asItem(),
@@ -218,6 +219,7 @@ public enum CreativeInventoryCategories {
 
 	PERSIAN("persian",
 			PERSIAN_CARPET_RED.get().asItem(),
+			PERSIAN_CARPET_DELICATE_RED.get().asItem(),
 			MORAQ_MOSAIC_TILES_DELICATE.get().asItem(),
 			MORAQ_MOSAIC_TILES_TRADITIONAL.get().asItem(),
 			MORAQ_MOSAIC_TILES_BORDER.get().asItem()
@@ -373,6 +375,7 @@ public enum CreativeInventoryCategories {
 			SMOOTH_SANDSTONE_SLAB.asItem(),
 			CHISELED_SANDSTONE.asItem(),
 			SANDSTONE_WALL.asItem(),
+			COVERED_SANDSTONE_WALL.get().asItem(),
 			SANDSTONE_COLUMN.get().asItem(),
 			OCHRE_ROOF_TILES.get().asItem(),
 			OCHRE_ROOF_TILES_STAIRS.get().asItem(),
@@ -381,6 +384,7 @@ public enum CreativeInventoryCategories {
 			OCHRE_ROOF_TILES_EDGE.get().asItem(),
 			OCHRE_ROOF_TILES_WALL.get().asItem(),
 			MOSAIC_FLOOR.get().asItem(),
+			MARBLE_STATUE_MARS.get().asItem(),
 			BIRCH_PLANKS.asItem(),
 			BIRCH_STAIRS.asItem(),
 			BIRCH_PLANKS_PLATE.get().asItem(),

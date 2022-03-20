@@ -6,21 +6,21 @@ import net.minecraft.block.material.MaterialColor;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.DyeColor;
 import net.minecraft.item.Item;
+import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.dawnoftimebuilder.block.IBlockCustomItem;
 import org.dawnoftimebuilder.block.french.LimestoneChimneyBlock;
 import org.dawnoftimebuilder.block.precolumbian.*;
-import org.dawnoftimebuilder.block.roman.BirchCouch;
-import org.dawnoftimebuilder.block.roman.BirchFootstool;
-import org.dawnoftimebuilder.block.roman.CypressBlock;
-import org.dawnoftimebuilder.block.roman.SandstoneColumnBlock;
+import org.dawnoftimebuilder.block.roman.*;
 import org.dawnoftimebuilder.block.templates.*;
 import org.dawnoftimebuilder.block.german.*;
 import org.dawnoftimebuilder.block.general.*;
 import org.dawnoftimebuilder.block.japanese.*;
 import org.dawnoftimebuilder.util.DoTBFoods;
+
+import java.util.function.ToIntFunction;
 
 import static net.minecraft.block.Blocks.*;
 import static net.minecraftforge.common.PlantType.CROP;
@@ -49,7 +49,7 @@ public class DoTBBlocksRegistry {
 	public static final RegistryObject<Block> BIRCH_WALL = reg("birch_wall", new WallBlock(AbstractBlock.Properties.copy(BIRCH_PLANKS)));
 	public static final RegistryObject<Block> BIRCH_SUPPORT_BEAM = reg("birch_support_beam", new SupportBeamBlock(AbstractBlock.Properties.copy(BIRCH_PLANKS)).setBurnable());
 	public static final RegistryObject<Block> BIRCH_SUPPORT_SLAB = reg("birch_support_slab", new SupportSlabBlock(AbstractBlock.Properties.copy(BIRCH_PLANKS)).setBurnable());
-	public static final RegistryObject<Block> CANDLESTICK = reg("candlestick", new CandlestickBlock(AbstractBlock.Properties.copy(CAULDRON)));
+	public static final RegistryObject<Block> CANDLESTICK = reg("candlestick", new CandlestickBlock(AbstractBlock.Properties.copy(CAULDRON).lightLevel(litBlockEmission(10))));
 	public static final RegistryObject<Block> DARK_OAK_PLANKS_EDGE = reg("dark_oak_planks_edge", new EdgeBlock(AbstractBlock.Properties.copy(DARK_OAK_PLANKS)).setBurnable());
 	public static final RegistryObject<Block> DARK_OAK_PLANKS_PLATE = reg("dark_oak_planks_plate", new PlateBlock(AbstractBlock.Properties.copy(DARK_OAK_PLANKS)).setBurnable());
 	public static final RegistryObject<Block> DARK_OAK_PERGOLA = reg("dark_oak_pergola", new PergolaBlock(AbstractBlock.Properties.copy(DARK_OAK_PLANKS)).setBurnable());
@@ -93,7 +93,7 @@ public class DoTBBlocksRegistry {
 	public static final RegistryObject<Block> THATCH_BAMBOO_PLATE = reg("thatch_bamboo_plate", new PlateBlock(AbstractBlock.Properties.of(Material.GRASS, MaterialColor.COLOR_YELLOW).strength(1.0F).sound(SoundType.GRASS)).setBurnable(40, 30));
 	public static final RegistryObject<Block> THATCH_BAMBOO_SLAB = reg("thatch_bamboo_slab", new SlabBlockDoTB(AbstractBlock.Properties.of(Material.GRASS, MaterialColor.COLOR_YELLOW).strength(1.0F).sound(SoundType.GRASS)).setBurnable(40, 30));
 	public static final RegistryObject<Block> THATCH_BAMBOO_STAIRS = reg("thatch_bamboo_stairs", new StairsBlockDoTB(THATCH_BAMBOO, AbstractBlock.Properties.of(Material.GRASS, MaterialColor.COLOR_YELLOW).strength(1.0F).sound(SoundType.GRASS)).setBurnable(40, 30));
-	public static final RegistryObject<Block> FIREPLACE = reg("fireplace", new FireplaceBlock(AbstractBlock.Properties.of(Material.STONE).strength(1.5F, 6.0F)));
+	public static final RegistryObject<Block> FIREPLACE = reg("fireplace", new FireplaceBlock(AbstractBlock.Properties.of(Material.STONE).strength(1.5F, 6.0F).lightLevel(litBlockEmission(15))));
 	public static final RegistryObject<Block> IRON_PORTCULLIS = reg("iron_portcullis", new PortcullisBlock(AbstractBlock.Properties.copy(IRON_DOOR)));
 
 	//French
@@ -104,9 +104,9 @@ public class DoTBBlocksRegistry {
 	public static final RegistryObject<Block> LIMESTONE_BRICKS_SLAB = reg("limestone_bricks_slab", new SlabBlockDoTB(AbstractBlock.Properties.copy(STONE_BRICKS)));
 	public static final RegistryObject<Block> LIMESTONE_BRICKS_STAIRS = reg("limestone_bricks_stairs", new StairsBlockDoTB(LIMESTONE_BRICKS, AbstractBlock.Properties.copy(STONE_BRICKS)));
 	public static final RegistryObject<Block> LIMESTONE_BRICKS_WALL = reg("limestone_bricks_wall", new WallBlock(AbstractBlock.Properties.copy(STONE_BRICKS)));
-	public static final RegistryObject<Block> LIMESTONE_BALUSTER = reg("limestone_baluster", new EdgeBlock(AbstractBlock.Properties.copy(STONE_BRICKS)));
+	public static final RegistryObject<Block> LIMESTONE_BALUSTER = reg("limestone_baluster", new PlateBlock(AbstractBlock.Properties.copy(STONE_BRICKS).noOcclusion()));
 	public static final RegistryObject<Block> LIMESTONE_CHIMNEY = reg("limestone_chimney", new LimestoneChimneyBlock(AbstractBlock.Properties.copy(STONE_BRICKS)));
-	public static final RegistryObject<Block> LIMESTONE_FIREPLACE = reg("limestone_fireplace", new MultiblockFireplaceBlock(AbstractBlock.Properties.copy(STONE_BRICKS)));
+	public static final RegistryObject<Block> LIMESTONE_FIREPLACE = reg("limestone_fireplace", new MultiblockFireplaceBlock(AbstractBlock.Properties.copy(STONE_BRICKS).noOcclusion().lightLevel(litBlockEmission(15))));
 
 	//German
 	public static final RegistryObject<Block> FLAT_ROOF_TILES = reg("flat_roof_tiles", new BlockDoTB(AbstractBlock.Properties.copy(STONE_BRICKS)));
@@ -121,7 +121,7 @@ public class DoTBBlocksRegistry {
 	public static final RegistryObject<Block> STONE_BRICKS_ARROWSLIT = reg("stone_bricks_arrowslit", new StoneBricksArrowslitBlock(AbstractBlock.Properties.copy(STONE_BRICKS).noOcclusion()));
 	public static final RegistryObject<Block> STONE_BRICKS_CHIMNEY = reg("stone_bricks_chimney", new StoneBricksChimneyBlock(AbstractBlock.Properties.copy(STONE_BRICKS)));
 	public static final RegistryObject<Block> STONE_BRICKS_EDGE = reg("stone_bricks_edge", new EdgeBlock(AbstractBlock.Properties.copy(STONE_BRICKS)));
-	public static final RegistryObject<Block> STONE_BRICKS_FIREPLACE = reg("stone_bricks_fireplace", new MultiblockFireplaceBlock(AbstractBlock.Properties.copy(STONE_BRICKS)));
+	public static final RegistryObject<Block> STONE_BRICKS_FIREPLACE = reg("stone_bricks_fireplace", new MultiblockFireplaceBlock(AbstractBlock.Properties.copy(STONE_BRICKS).noOcclusion().lightLevel(litBlockEmission(15))));
 	public static final RegistryObject<Block> STONE_BRICKS_MACHICOLATION = reg("stone_bricks_machicolation", new StoneBricksMachicolationBlock(AbstractBlock.Properties.copy(STONE_BRICKS).noOcclusion()));
 	public static final RegistryObject<Block> STONE_BRICKS_PLATE = reg("stone_bricks_plate", new PlateBlock(AbstractBlock.Properties.copy(STONE_BRICKS)));
 	public static final RegistryObject<Block> WAXED_OAK_FRAMED_RAMMED_DIRT = reg("waxed_oak_framed_rammed_dirt", new BlockDoTB(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.COLOR_BROWN).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
@@ -130,6 +130,7 @@ public class DoTBBlocksRegistry {
 	public static final RegistryObject<Block> WAXED_OAK_TRAPDOOR = reg("waxed_oak_trapdoor", new TrapDoorBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F, 5.0F).sound(SoundType.WOOD).noOcclusion()));
 	public static final RegistryObject<Block> WAXED_OAK_SHUTTERS = reg("waxed_oak_shutters", new ShuttersBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F, 5.0F).sound(SoundType.WOOD)));
 	public static final RegistryObject<Block> WAXED_OAK_LOG_STRIPPED = reg("waxed_oak_log_stripped", new RotatedPillarBlockDoTB(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F, 5.0F).sound(SoundType.WOOD)).setBurnable());
+	public static final RegistryObject<Block> WAXED_OAK_BALUSTER = reg("waxed_oak_baluster", new WaxedOakBalusterBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F, 5.0F).sound(SoundType.WOOD).noOcclusion()));
 	public static final RegistryObject<Block> WAXED_OAK_BEAM = reg("waxed_oak_beam", new BeamBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F, 5.0F).sound(SoundType.WOOD)).setBurnable());
 	public static final RegistryObject<Block> WAXED_OAK_SUPPORT_BEAM = reg("waxed_oak_support_beam", new SupportBeamBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F, 5.0F).sound(SoundType.WOOD)).setBurnable());
 	public static final RegistryObject<Block> WAXED_OAK_SUPPORT_SLAB = reg("waxed_oak_support_slab", new SupportSlabBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F, 5.0F).sound(SoundType.WOOD)).setBurnable());
@@ -147,7 +148,7 @@ public class DoTBBlocksRegistry {
 	public static final RegistryObject<Block> WAXED_OAK_PLANKS_PLATE = reg("waxed_oak_planks_plate", new PlateBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F, 5.0F).sound(SoundType.WOOD)).setBurnable());
 	public static final RegistryObject<Block> WAXED_OAK_PLANKS_SLAB = reg("waxed_oak_planks_slab", new SlabBlockDoTB(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F, 5.0F).sound(SoundType.WOOD)).setBurnable());
 	public static final RegistryObject<Block> WAXED_OAK_PLANKS_STAIRS = reg("waxed_oak_planks_stairs", new StairsBlockDoTB(WAXED_OAK_PLANKS, AbstractBlock.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F, 5.0F).sound(SoundType.WOOD)).setBurnable());
-	public static final RegistryObject<Block> WAXED_OAK_CHANDELIER = reg("waxed_oak_chandelier", new WaxedOakChandelier(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F, 5.0F).sound(SoundType.WOOD).noOcclusion()));
+	public static final RegistryObject<Block> WAXED_OAK_CHANDELIER = reg("waxed_oak_chandelier", new WaxedOakChandelierBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F, 5.0F).sound(SoundType.WOOD).noOcclusion().lightLevel(litBlockEmission(15))));
 	public static final RegistryObject<Block> WAXED_OAK_CHAIR = reg("waxed_oak_chair", new WaxedOakChairBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F, 5.0F).sound(SoundType.WOOD).noOcclusion(), 11.0F));
 
 	//Japanese
@@ -195,7 +196,7 @@ public class DoTBBlocksRegistry {
 	public static final RegistryObject<Block> CAMELLIA = reg("camellia", new GrowingBushBlock("camellia_seeds", PLAINS, 3));
 	public static final RegistryObject<Block> MULBERRY = reg("mulberry", new MulberryBlock("mulberry", PLAINS, 3, 2, DoTBFoods.MULBERRY));
 	public static final RegistryObject<Block> IKEBANA_FLOWER_POT = reg("ikebana_flower_pot", new IkebanaFlowerPotBlock(AbstractBlock.Properties.copy(FLOWER_POT)));
-	public static final RegistryObject<Block> SPRUCE_LOW_TABLE = reg("spruce_low_table" ,new SpruceLowTableBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.COLOR_BLACK).strength(2.0F, 6.0F).sound(SoundType.WOOD).noOcclusion()));
+	public static final RegistryObject<Block> SPRUCE_LOW_TABLE = reg("spruce_low_table" ,new SpruceLowTableBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.COLOR_BLACK).strength(2.0F, 6.0F).sound(SoundType.WOOD).noOcclusion().lightLevel(litBlockEmission(14))));
 	public static final RegistryObject<Block> SPRUCE_LEGLESS_CHAIR = reg("spruce_legless_chair", new SpruceLeglessChairBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.COLOR_BLACK).strength(2.0F, 6.0F).sound(SoundType.WOOD).noOcclusion(), 3.0F));
 	public static final RegistryObject<Block> WHITE_LITTLE_FLAG = reg("white_little_flag", new LittleFlagBlock(AbstractBlock.Properties.copy(WHITE_WOOL)));
 	public static final RegistryObject<Block> PAPER_WALL = reg("paper_wall", new PaneBlockDoTB(AbstractBlock.Properties.copy(WHITE_WOOL).strength(1.5F, 1.5F)));
@@ -213,13 +214,14 @@ public class DoTBBlocksRegistry {
 	public static final RegistryObject<Block> TATAMI_MAT = reg("tatami_mat", new TatamiMatBlock(AbstractBlock.Properties.copy(WHITE_CARPET)));
 	public static final RegistryObject<Block> TATAMI_FLOOR = reg("tatami_floor", new TatamiFloorBlock(AbstractBlock.Properties.copy(WHITE_CARPET)));
 	public static final RegistryObject<Block> LIGHT_GRAY_FUTON = reg("light_gray_futon", new FutonBlock(DyeColor.LIGHT_GRAY, AbstractBlock.Properties.copy(LIGHT_GRAY_BED)));
-	public static final RegistryObject<Block> IRORI_FIREPLACE = reg("irori_fireplace", new IroriFireplace(AbstractBlock.Properties.copy(SPRUCE_PLANKS)));
+	public static final RegistryObject<Block> IRORI_FIREPLACE = reg("irori_fireplace", new IroriFireplaceBlock(AbstractBlock.Properties.copy(SPRUCE_PLANKS).noOcclusion().lightLevel(litBlockEmission(15))));
 	public static final RegistryObject<Block> SAKE_BOTTLE = reg("sake_bottle", new SakeBottleBlock(AbstractBlock.Properties.copy(FLOWER_POT)));
 	public static final RegistryObject<Block> SAKE_CUP = reg("sake_cup", new SakeCupBlock(AbstractBlock.Properties.copy(FLOWER_POT)));
 	public static final RegistryObject<Block> STICK_BUNDLE = reg("stick_bundle", new StickBundleBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(2.0F, 3.0F).sound(SoundType.GRASS).noOcclusion()).setBurnable());
 
 	//Persian
 	public static final RegistryObject<Block> PERSIAN_CARPET_RED = reg("persian_carpet_red", new CarpetBlockDoTB(AbstractBlock.Properties.copy(RED_WOOL)));
+	public static final RegistryObject<Block> PERSIAN_CARPET_DELICATE_RED = reg("persian_carpet_delicate_red", new CarpetBlockDoTB(AbstractBlock.Properties.copy(RED_WOOL)));
 	public static final RegistryObject<Block> MORAQ_MOSAIC_TILES_DELICATE = reg("moraq_mosaic_tiles_delicate", new BlockDoTB(AbstractBlock.Properties.copy(BRICKS)));
 	public static final RegistryObject<Block> MORAQ_MOSAIC_TILES_TRADITIONAL = reg("moraq_mosaic_tiles_traditional", new BlockDoTB(AbstractBlock.Properties.copy(BRICKS)));
 	public static final RegistryObject<Block> MORAQ_MOSAIC_TILES_BORDER = reg("moraq_mosaic_tiles_border", new BlockDoTB(AbstractBlock.Properties.copy(BRICKS)));
@@ -256,7 +258,7 @@ public class DoTBBlocksRegistry {
 	public static final RegistryObject<Block> MAIZE = reg("maize", new DoubleCropsBlock("maize", CROP, 4, DoTBFoods.MAIZE));
 	public static final RegistryObject<Block> RED_ORNAMENTED_PLASTERED_STONE = reg("red_ornamented_plastered_stone", new BlockDoTB(AbstractBlock.Properties.copy(STONE_BRICKS)));
 	public static final RegistryObject<Block> PLASTERED_STONE_COLUMN = reg("plastered_stone_column", new PlasteredStoneColumnBlock(AbstractBlock.Properties.copy(STONE_BRICKS)));
-	public static final RegistryObject<Block> PLASTERED_STONE_CRESSET = reg("plastered_stone_cresset", new PlasteredStoneCressetBlock(AbstractBlock.Properties.copy(STONE_BRICKS).noOcclusion()));
+	public static final RegistryObject<Block> PLASTERED_STONE_CRESSET = reg("plastered_stone_cresset", new PlasteredStoneCressetBlock(AbstractBlock.Properties.copy(STONE_BRICKS).noOcclusion().lightLevel(litBlockEmission(15))));
 	public static final RegistryObject<Block> FEATHERED_SERPENT_SCULPTURE = reg("feathered_serpent_sculpture", new FeatheredSerpentSculptureBlock(AbstractBlock.Properties.copy(STONE_BRICKS).noOcclusion()));
 	public static final RegistryObject<Block> SERPENT_SCULPTED_COLUMN = reg("serpent_sculpted_column", new SerpentSculptedColumnBlock(AbstractBlock.Properties.copy(STONE_BRICKS)));
 
@@ -269,9 +271,11 @@ public class DoTBBlocksRegistry {
 	public static final RegistryObject<Block> SANDSTONE_BOT_OCHRE_ROOF_TILES_TOP = reg("sandstone_bot_ochre_roof_tiles_top", new NoItemBlock(AbstractBlock.Properties.copy(BRICKS)));
 	public static final RegistryObject<Block> OCHRE_ROOF_TILES_SLAB = reg("ochre_roof_tiles_slab", new MixedSlabBlock(AbstractBlock.Properties.copy(BRICKS)).addMixedBlockRecipe(SANDSTONE_SLAB, SANDSTONE_BOT_OCHRE_ROOF_TILES_TOP, false));
 	public static final RegistryObject<Block> SANDSTONE_COLUMN = reg("sandstone_column", new SandstoneColumnBlock(AbstractBlock.Properties.copy(SANDSTONE)));
+	public static final RegistryObject<Block> COVERED_SANDSTONE_WALL = reg("covered_sandstone_wall", new CappedWallBlock(AbstractBlock.Properties.copy(SANDSTONE)));
 	public static final RegistryObject<Block> MOSAIC_FLOOR = reg("mosaic_floor", new BlockDoTB(AbstractBlock.Properties.copy(SANDSTONE)));
-	public static final RegistryObject<Block> BIRCH_FOOTSTOOL = reg("birch_footstool", new BirchFootstool(AbstractBlock.Properties.copy(BIRCH_PLANKS), 9.0F));
-	public static final RegistryObject<Block> BIRCH_COUCH = reg("birch_couch", new BirchCouch(AbstractBlock.Properties.copy(BIRCH_PLANKS), 13.0F));
+	public static final RegistryObject<Block> BIRCH_FOOTSTOOL = reg("birch_footstool", new BirchFootstoolBlock(AbstractBlock.Properties.copy(BIRCH_PLANKS), 9.0F));
+	public static final RegistryObject<Block> BIRCH_COUCH = reg("birch_couch", new BirchCouchBlock(AbstractBlock.Properties.copy(BIRCH_PLANKS), 13.0F));
+	public static final RegistryObject<Block> MARBLE_STATUE_MARS = reg("marble_statue_mars", new MarbleStatueBlock(AbstractBlock.Properties.copy(SANDSTONE).noOcclusion()));
 	public static final RegistryObject<Block> WILD_GRAPE = reg("wild_grape", new WildPlantBlock(AbstractBlock.Properties.copy(DANDELION)));
 	public static final RegistryObject<Block> CYPRESS = reg("cypress", new CypressBlock(AbstractBlock.Properties.copy(SPRUCE_LEAVES)).setBurnable());
 
@@ -286,5 +290,9 @@ public class DoTBBlocksRegistry {
 		}
 		if(item != null) DoTBItemsRegistry.reg(itemName == null ? name : itemName, item);
 		return BLOCKS.register(name, () -> block);
+	}
+
+	private static ToIntFunction<BlockState> litBlockEmission(int lightValue) {
+		return state -> state.getValue(BlockStateProperties.LIT) ? lightValue : 0;
 	}
 }

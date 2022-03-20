@@ -1,6 +1,6 @@
 {
     "variants": {
-        "burning=true":  { "model": "dawnoftimebuilder:block/precolumbian/plastered_stone_cresset_on" },
-        "burning=false":  { "model": "dawnoftimebuilder:block/precolumbian/plastered_stone_cresset_off" }
+        "lit=true":  { "model": "dawnoftimebuilder:block/precolumbian/plastered_stone_cresset_on" },
+        "lit=false":  { "model": "dawnoftimebuilder:block/precolumbian/plastered_stone_cresset_off" }
     }
 }

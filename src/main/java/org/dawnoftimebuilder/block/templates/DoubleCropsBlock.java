@@ -41,7 +41,7 @@ public class DoubleCropsBlock extends SoilCropsBlock {
 		super(seedName, plantType, food);
 		this.growingAge = growingAge;
 		this.SHAPES = this.makeShapes();
-		this.registerDefaultState(this.defaultBlockState().setValue(HALF, Half.BOTTOM));
+		this.registerDefaultState(this.defaultBlockState().setValue(HALF, Half.BOTTOM).setValue(this.getAgeProperty(),0).setValue(PERSISTENT, false));
 	}
 
 	@Override
@@ -85,18 +85,21 @@ public class DoubleCropsBlock extends SoilCropsBlock {
 
 	@Override
 	public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
-		if(facing.getAxis() == Direction.Axis.Y){
-			boolean isBottom = stateIn.getValue(HALF) == Half.BOTTOM;
-			if(isBottom == (facing == Direction.UP)) {
-				if(facingState.getBlock() == this && facingState.getValue(HALF) != stateIn.getValue(HALF)){
-					stateIn = stateIn.setValue(PERSISTENT, facingState.getValue(PERSISTENT));
-					return isBottom ? stateIn : stateIn.setValue(AGE, facingState.getValue(AGE));
-				}else if(isBottom && stateIn.getValue(AGE) < this.getAgeReachingTopBlock()) return stateIn;
-				return Blocks.AIR.defaultBlockState();
-			}else{
-				return super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+		if(this.isBottomCrop(stateIn)){
+			if(facing == Direction.UP){
+				if(facingState.getBlock() == this && !this.isBottomCrop(facingState)){
+					return stateIn.setValue(PERSISTENT, facingState.getValue(PERSISTENT));
+				}else return (stateIn.getValue(AGE) < this.getAgeReachingTopBlock()) ? stateIn : Blocks.AIR.defaultBlockState();
+			}
+
+		}else{
+			if(facing == Direction.DOWN){
+				if(facingState.getBlock() == this && this.isBottomCrop(facingState)){
+					return stateIn.setValue(AGE, facingState.getValue(AGE)).setValue(PERSISTENT, facingState.getValue(PERSISTENT));
+				}else return Blocks.AIR.defaultBlockState();
 			}
 		}
+
 		return stateIn;
 	}
 
@@ -206,10 +209,7 @@ public class DoubleCropsBlock extends SoilCropsBlock {
 
 	@Override
 	public boolean canSurvive(BlockState state, IWorldReader worldIn, BlockPos pos) {
-		if(state.getValue(HALF) == Half.TOP){
-			BlockState stateUnder = worldIn.getBlockState(pos.below());
-			if(stateUnder.getBlock() == this) return stateUnder.getValue(HALF) == Half.BOTTOM;
-		}
+		if(state.getValue(HALF) == Half.TOP) return true;
 		return super.canSurvive(state, worldIn, pos);
 	}
 }

@@ -28,7 +28,7 @@ import org.dawnoftimebuilder.util.DoTBBlockUtils;
 
 import javax.annotation.Nullable;
 
-public class BirchCouch extends ChairBlock {
+public class BirchCouchBlock extends ChairBlock {
 
     private static final VoxelShape[] SHAPES = DoTBBlockUtils.GenerateHorizontalShapes(new VoxelShape[]{
             VoxelShapes.or(
@@ -37,7 +37,7 @@ public class BirchCouch extends ChairBlock {
                     Block.box(0.0D, 13.0D, 0.0D, 16.0D, 19.0D, 8.0D)
             )});
 
-    public BirchCouch(Properties properties, float pixelsYOffset) {
+    public BirchCouchBlock(Properties properties, float pixelsYOffset) {
         super(properties, pixelsYOffset);
     }
 

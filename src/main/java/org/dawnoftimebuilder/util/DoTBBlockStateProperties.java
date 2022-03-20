@@ -1,6 +1,7 @@
 package org.dawnoftimebuilder.util;
 
 import net.minecraft.block.Blocks;
+import net.minecraft.block.WallHeight;
 import net.minecraft.item.Item;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.EnumProperty;
@@ -13,7 +14,6 @@ import static org.dawnoftimebuilder.registry.DoTBItemsRegistry.GRAPE_SEEDS;
 
 public class DoTBBlockStateProperties {
 
-    public static final BooleanProperty BURNING = BooleanProperty.create("burning");
     public static final BooleanProperty CUT = BooleanProperty.create("cut");
     public static final BooleanProperty ROLLED = BooleanProperty.create("rolled");
     public static final BooleanProperty AXIS_X = BooleanProperty.create("axis_x");
@@ -21,8 +21,9 @@ public class DoTBBlockStateProperties {
     public static final BooleanProperty AXIS_Z = BooleanProperty.create("axis_z");
     public static final BooleanProperty SUBAXIS = BooleanProperty.create("subaxis");
 
+    public static final IntegerProperty MULTIBLOCK_0_2 = IntegerProperty.create("multiblock", 0, 2);
     public static final IntegerProperty AGE_0_6 = IntegerProperty.create("age", 0, 6);
-    public static final IntegerProperty HEAT_0_3 = IntegerProperty.create("heat", 0, 3);
+    public static final IntegerProperty HEAT_0_4 = IntegerProperty.create("heat", 0, 4);
     public static final IntegerProperty SIZE_0_2 = IntegerProperty.create("size", 0, 2);
     public static final IntegerProperty SIZE_0_5 = IntegerProperty.create("size", 0, 5);
     public static final IntegerProperty STACK = IntegerProperty.create("stack", 1, 3);
@@ -34,6 +35,7 @@ public class DoTBBlockStateProperties {
     public static final EnumProperty<SidedWindow> SIDED_WINDOW = EnumProperty.create("sided_window", SidedWindow.class);
     public static final EnumProperty<VerticalConnection> VERTICAL_CONNECTION = EnumProperty.create("vertical_connection", VerticalConnection.class);
     public static final EnumProperty<SquareCorners> CORNER = EnumProperty.create("corner", SquareCorners.class);
+    public static final EnumProperty<WallHeight> PILLAR_WALL = EnumProperty.create("pillar", WallHeight.class);
 
     public enum HorizontalConnection implements IStringSerializable {
         NONE("none", 0),

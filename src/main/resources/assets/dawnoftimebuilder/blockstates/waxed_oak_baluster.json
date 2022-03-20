@@ -1,0 +1,24 @@
+{
+    "variants": {
+        "facing=east,shape=straight":  { "model": "dawnoftimebuilder:block/german/waxed_oak_baluster", "y": 270},
+        "facing=west,shape=straight":  { "model": "dawnoftimebuilder:block/german/waxed_oak_baluster", "y": 90},
+        "facing=south,shape=straight": { "model": "dawnoftimebuilder:block/german/waxed_oak_baluster" },
+        "facing=north,shape=straight": { "model": "dawnoftimebuilder:block/german/waxed_oak_baluster", "y": 180},
+        "facing=east,shape=outer_right":  { "model": "dawnoftimebuilder:block/german/waxed_oak_baluster_outer", "y": 270},
+        "facing=west,shape=outer_right":  { "model": "dawnoftimebuilder:block/german/waxed_oak_baluster_outer", "y": 90},
+        "facing=south,shape=outer_right": { "model": "dawnoftimebuilder:block/german/waxed_oak_baluster_outer" },
+        "facing=north,shape=outer_right": { "model": "dawnoftimebuilder:block/german/waxed_oak_baluster_outer", "y": 180},
+        "facing=east,shape=outer_left":  { "model": "dawnoftimebuilder:block/german/waxed_oak_baluster_outer", "y": 180},
+        "facing=west,shape=outer_left":  { "model": "dawnoftimebuilder:block/german/waxed_oak_baluster_outer" },
+        "facing=south,shape=outer_left": { "model": "dawnoftimebuilder:block/german/waxed_oak_baluster_outer", "y": 270},
+        "facing=north,shape=outer_left": { "model": "dawnoftimebuilder:block/german/waxed_oak_baluster_outer", "y": 90},
+        "facing=east,shape=inner_right":  { "model": "dawnoftimebuilder:block/german/waxed_oak_baluster_inner", "y": 270},
+        "facing=west,shape=inner_right":  { "model": "dawnoftimebuilder:block/german/waxed_oak_baluster_inner", "y": 90},
+        "facing=south,shape=inner_right": { "model": "dawnoftimebuilder:block/german/waxed_oak_baluster_inner" },
+        "facing=north,shape=inner_right": { "model": "dawnoftimebuilder:block/german/waxed_oak_baluster_inner", "y": 180},
+        "facing=east,shape=inner_left":  { "model": "dawnoftimebuilder:block/german/waxed_oak_baluster_inner", "y": 180},
+        "facing=west,shape=inner_left":  { "model": "dawnoftimebuilder:block/german/waxed_oak_baluster_inner" },
+        "facing=south,shape=inner_left": { "model": "dawnoftimebuilder:block/german/waxed_oak_baluster_inner", "y": 270},
+        "facing=north,shape=inner_left": { "model": "dawnoftimebuilder:block/german/waxed_oak_baluster_inner", "y": 90}
+    }
+}

@@ -57,7 +57,6 @@ public class WildMaizeBlock extends WildPlantBlock {
 		return super.getStateForPlacement(context);
 	}
 
-
 	@Override
 	public void setPlacedBy(World worldIn, BlockPos pos, BlockState state, LivingEntity placer, ItemStack stack) {
 		worldIn.setBlock(pos.above(), state.setValue(HALF, Half.TOP), 10);
@@ -66,6 +65,7 @@ public class WildMaizeBlock extends WildPlantBlock {
 	@Override
 	public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
 		if(facing.getAxis().isHorizontal()) return stateIn;
+
 		if(facing == Direction.UP && stateIn.getValue(HALF) == Half.BOTTOM) {
 			if(facingState.getBlock() == this){
 				if(facingState.getValue(HALF) == Half.TOP){
@@ -74,6 +74,7 @@ public class WildMaizeBlock extends WildPlantBlock {
 			}
 			return Blocks.AIR.defaultBlockState();
 		}
+
 		if(facing == Direction.DOWN) {
 			if(stateIn.getValue(HALF) == Half.TOP){
 				if(facingState.getBlock() == this){
@@ -84,6 +85,7 @@ public class WildMaizeBlock extends WildPlantBlock {
 			}else if(canSurvive(stateIn, worldIn, currentPos)) return stateIn;
 			return Blocks.AIR.defaultBlockState();
 		}
+
     	return stateIn;
 	}
 
