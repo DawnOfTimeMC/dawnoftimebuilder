@@ -71,6 +71,7 @@ public class HandlerClient {
 		RenderTypeLookup.setRenderLayer(LATTICE_GLASS_PANE.get(), RenderType.cutoutMipped());
 		RenderTypeLookup.setRenderLayer(LATTICE_WAXED_OAK_WINDOW.get(), RenderType.cutoutMipped());
 		RenderTypeLookup.setRenderLayer(LATTICE_STONE_BRICKS_WINDOW.get(), RenderType.cutoutMipped());
+		RenderTypeLookup.setRenderLayer(STONE_BRICKS_ARROWSLIT.get(), RenderType.cutoutMipped());
 		RenderTypeLookup.setRenderLayer(STONE_BRICKS_FIREPLACE.get(), RenderType.cutoutMipped());
 		RenderTypeLookup.setRenderLayer(WAXED_OAK_DOOR.get(), RenderType.cutoutMipped());
 		RenderTypeLookup.setRenderLayer(WAXED_OAK_TRAPDOOR.get(), RenderType.cutoutMipped());

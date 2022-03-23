@@ -115,7 +115,7 @@ public class DoubleCropsBlock extends SoilCropsBlock {
 		if(newAge < this.getAgeReachingTopBlock() && this.getAge(currentState) == this.getAgeReachingTopBlock()){
 			worldIn.setBlock(pos.above(), Blocks.AIR.defaultBlockState(), 10);
 		}
-		worldIn.setBlock(pos, currentState.setValue(this.getAgeProperty(), newAge).setValue(HALF, Half.BOTTOM), 8);
+		worldIn.setBlock(pos, currentState.setValue(this.getAgeProperty(), newAge).setValue(HALF, Half.BOTTOM), 10);
 	}
 
 	@Override

@@ -1,0 +1,22 @@
+{
+	"credit": "Made with Blockbench",
+	"textures": {
+		"1": "dawnoftimebuilder:block/waxed_oak_timber_frame_pillar_top",
+		"particle": "dawnoftimebuilder:block/waxed_oak_timber_frame_pillar_vertical",
+		"west": "dawnoftimebuilder:block/waxed_oak_timber_frame_pillar_vertical"
+	},
+	"elements": [
+		{
+			"from": [0, 0, 0],
+			"to": [16, 16, 16],
+			"faces": {
+				"north": {"uv": [0, 0, 16, 16], "texture": "#west", "cullface": "north"},
+				"east": {"uv": [0, 0, 16, 16], "texture": "#west", "cullface": "east"},
+				"south": {"uv": [0, 0, 16, 16], "texture": "#west", "cullface": "south"},
+				"west": {"uv": [0, 0, 16, 16], "texture": "#west", "cullface": "west"},
+				"up": {"uv": [0, 0, 16, 16], "texture": "#1", "cullface": "up"},
+				"down": {"uv": [0, 0, 16, 16], "texture": "#1", "cullface": "down"}
+			}
+		}
+	]
+}

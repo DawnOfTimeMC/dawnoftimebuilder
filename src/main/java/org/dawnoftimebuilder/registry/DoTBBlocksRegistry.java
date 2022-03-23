@@ -12,6 +12,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.dawnoftimebuilder.block.IBlockCustomItem;
 import org.dawnoftimebuilder.block.french.LimestoneChimneyBlock;
+import org.dawnoftimebuilder.block.french.LimestoneGargoyleBlock;
 import org.dawnoftimebuilder.block.precolumbian.*;
 import org.dawnoftimebuilder.block.roman.*;
 import org.dawnoftimebuilder.block.templates.*;
@@ -105,6 +106,7 @@ public class DoTBBlocksRegistry {
 	public static final RegistryObject<Block> LIMESTONE_BRICKS_STAIRS = reg("limestone_bricks_stairs", new StairsBlockDoTB(LIMESTONE_BRICKS, AbstractBlock.Properties.copy(STONE_BRICKS)));
 	public static final RegistryObject<Block> LIMESTONE_BRICKS_WALL = reg("limestone_bricks_wall", new WallBlock(AbstractBlock.Properties.copy(STONE_BRICKS)));
 	public static final RegistryObject<Block> LIMESTONE_BALUSTER = reg("limestone_baluster", new PlateBlock(AbstractBlock.Properties.copy(STONE_BRICKS).noOcclusion()));
+	public static final RegistryObject<Block> LIMESTONE_GARGOYLE = reg("limestone_gargoyle", new LimestoneGargoyleBlock(AbstractBlock.Properties.copy(STONE_BRICKS).noOcclusion().randomTicks()));
 	public static final RegistryObject<Block> LIMESTONE_CHIMNEY = reg("limestone_chimney", new LimestoneChimneyBlock(AbstractBlock.Properties.copy(STONE_BRICKS)));
 	public static final RegistryObject<Block> LIMESTONE_FIREPLACE = reg("limestone_fireplace", new MultiblockFireplaceBlock(AbstractBlock.Properties.copy(STONE_BRICKS).noOcclusion().lightLevel(litBlockEmission(15))));
 
@@ -124,6 +126,7 @@ public class DoTBBlocksRegistry {
 	public static final RegistryObject<Block> STONE_BRICKS_FIREPLACE = reg("stone_bricks_fireplace", new MultiblockFireplaceBlock(AbstractBlock.Properties.copy(STONE_BRICKS).noOcclusion().lightLevel(litBlockEmission(15))));
 	public static final RegistryObject<Block> STONE_BRICKS_MACHICOLATION = reg("stone_bricks_machicolation", new StoneBricksMachicolationBlock(AbstractBlock.Properties.copy(STONE_BRICKS).noOcclusion()));
 	public static final RegistryObject<Block> STONE_BRICKS_PLATE = reg("stone_bricks_plate", new PlateBlock(AbstractBlock.Properties.copy(STONE_BRICKS)));
+	public static final RegistryObject<Block> STONE_BRICKS_MASONRY = reg("stone_bricks_masonry", new BlockDoTB(AbstractBlock.Properties.copy(STONE_BRICKS)));
 	public static final RegistryObject<Block> WAXED_OAK_FRAMED_RAMMED_DIRT = reg("waxed_oak_framed_rammed_dirt", new BlockDoTB(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.COLOR_BROWN).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
 	public static final RegistryObject<Block> WAXED_OAK_PLANKS = reg("waxed_oak_planks", new BlockDoTB(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F, 5.0F).sound(SoundType.WOOD)).setBurnable());
 	public static final RegistryObject<Block> WAXED_OAK_DOOR = reg("waxed_oak_door", new DoorBlockDoTB(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F, 5.0F).sound(SoundType.WOOD).noOcclusion()));

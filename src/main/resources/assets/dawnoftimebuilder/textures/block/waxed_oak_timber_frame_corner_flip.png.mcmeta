@@ -8,10 +8,10 @@
         ],
         "extra": {
             "connect_to": [
-				{ "block": "dawnoftimebuilder:waxed_oak_timber_frame" },
+				{ "block": "dawnoftimebuilder:waxed_oak_timber_frame_pillar" },
 				{ "block": "dawnoftimebuilder:waxed_oak_timber_frame_corner" },
 				{ "block": "dawnoftimebuilder:waxed_oak_timber_frame_crossed" },
-				{ "block": "dawnoftimebuilder:waxed_oak_timber_frame_square" }
+				{ "block": "dawnoftimebuilder:waxed_oak_timber_frame_squared" }
             ]
         }
     }

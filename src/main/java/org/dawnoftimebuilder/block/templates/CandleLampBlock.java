@@ -80,13 +80,13 @@ public abstract class CandleLampBlock extends WaterloggedBlock implements IBlock
     }
 
     @Override
-    public boolean placeLiquid(IWorld worldIn, BlockPos pos, BlockState state, FluidState fluidStateIn) {
-        if (!state.getValue(WATERLOGGED) && fluidStateIn.getType() == Fluids.WATER) {
+    public boolean placeLiquid(IWorld world, BlockPos pos, BlockState state, FluidState fluid) {
+        if (!state.getValue(WATERLOGGED) && fluid.getType() == Fluids.WATER) {
             if (state.getValue(LIT)) {
-                worldIn.playSound(null, pos, SoundEvents.GENERIC_EXTINGUISH_FIRE, SoundCategory.BLOCKS, 1.0F, 1.0F);
+                world.playSound(null, pos, SoundEvents.GENERIC_EXTINGUISH_FIRE, SoundCategory.BLOCKS, 1.0F, 1.0F);
             }
-            worldIn.setBlock(pos, state.setValue(WATERLOGGED, true).setValue(LIT, false), 10);
-            worldIn.getLiquidTicks().scheduleTick(pos, fluidStateIn.getType(), fluidStateIn.getType().getTickDelay(worldIn));
+            world.setBlock(pos, state.setValue(WATERLOGGED, true).setValue(LIT, false), 10);
+            world.getLiquidTicks().scheduleTick(pos, fluid.getType(), fluid.getType().getTickDelay(world));
             return true;
         } else {
             return false;

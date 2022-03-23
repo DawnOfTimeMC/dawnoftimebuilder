@@ -189,7 +189,7 @@ public class BeamBlock extends WaterloggedBlock implements IBlockPillar, IBlockC
 	}
 
 	@Override
-	public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit){
+	public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit){ //TODO Add a feature to remove the BOTTOM on Right-Click
 		if(!state.getValue(PERSISTENT)){
 			if(DoTBBlockUtils.useLighter(worldIn, pos, player, handIn)){
 				Random rand = new Random();

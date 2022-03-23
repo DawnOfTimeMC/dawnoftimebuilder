@@ -20,8 +20,8 @@ public class IroriFireplaceBlock extends CandleLampBlock {
     }
 
     @Override
-    public boolean placeLiquid(IWorld worldIn, BlockPos pos, BlockState state, FluidState fluidStateIn) {
-        return super.placeLiquid(worldIn, pos, state, fluidStateIn);
+    public boolean placeLiquid(IWorld world, BlockPos pos, BlockState state, FluidState fluid) {
+        return super.placeLiquid(world, pos, state, fluid);
     }
 
     @OnlyIn(Dist.CLIENT)

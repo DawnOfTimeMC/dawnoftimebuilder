@@ -22,6 +22,7 @@ public class DoTBBlockStateProperties {
     public static final BooleanProperty SUBAXIS = BooleanProperty.create("subaxis");
 
     public static final IntegerProperty MULTIBLOCK_0_2 = IntegerProperty.create("multiblock", 0, 2);
+    public static final IntegerProperty HUMIDITY_0_8 = IntegerProperty.create("humidity", 0, 8);
     public static final IntegerProperty AGE_0_6 = IntegerProperty.create("age", 0, 6);
     public static final IntegerProperty HEAT_0_4 = IntegerProperty.create("heat", 0, 4);
     public static final IntegerProperty SIZE_0_2 = IntegerProperty.create("size", 0, 2);
