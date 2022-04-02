@@ -36,6 +36,7 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Random;
 
+import static org.dawnoftimebuilder.util.DoTBBlockUtils.TOOLTIP_BEAM;
 import static org.dawnoftimebuilder.util.DoTBBlockUtils.TOOLTIP_CLIMBING_PLANT;
 
 public class BeamBlock extends WaterloggedBlock implements IBlockPillar, IBlockClimbingPlant {
@@ -173,7 +174,7 @@ public class BeamBlock extends WaterloggedBlock implements IBlockPillar, IBlockC
 	}
 
 	public boolean canNotConnectUnder(BlockState state) {
-		if (state.getBlock() instanceof BeamBlock) //TODO Not working... WHY ???
+		if (state.getBlock() instanceof BeamBlock)
 			return !state.getValue(AXIS_Y);
 		else return true;
 	}
@@ -189,7 +190,7 @@ public class BeamBlock extends WaterloggedBlock implements IBlockPillar, IBlockC
 	}
 
 	@Override
-	public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit){ //TODO Add a feature to remove the BOTTOM on Right-Click
+	public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit){
 		if(!state.getValue(PERSISTENT)){
 			if(DoTBBlockUtils.useLighter(worldIn, pos, player, handIn)){
 				Random rand = new Random();
@@ -202,6 +203,12 @@ public class BeamBlock extends WaterloggedBlock implements IBlockPillar, IBlockC
 		}
 		if(player.isCreative()){
 			if(this.tryPlacingPlant(state, worldIn, pos, player, handIn)) return ActionResultType.SUCCESS;
+		}
+		if(this.harvestPlant(state, worldIn, pos, player, handIn) == ActionResultType.SUCCESS){
+			return ActionResultType.SUCCESS;
+		}
+		if(player.isCrouching() && state.getValue(BOTTOM)){
+			worldIn.setBlock(pos, state.setValue(BOTTOM, false), 10);
 		}
 		return ActionResultType.PASS;
 	}
@@ -225,6 +232,6 @@ public class BeamBlock extends WaterloggedBlock implements IBlockPillar, IBlockC
 	@Override
 	public void appendHoverText(ItemStack stack, @Nullable IBlockReader worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
 		super.appendHoverText(stack, worldIn, tooltip, flagIn);
-		DoTBBlockUtils.addTooltip(tooltip, TOOLTIP_CLIMBING_PLANT);
+		DoTBBlockUtils.addTooltip(tooltip, TOOLTIP_BEAM, TOOLTIP_CLIMBING_PLANT);
 	}
 }

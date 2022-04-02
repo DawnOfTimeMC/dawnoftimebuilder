@@ -3,6 +3,7 @@ package org.dawnoftimebuilder.block.roman;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.material.PushReaction;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.BlockItemUseContext;
@@ -88,5 +89,10 @@ public class MarbleStatueBlock extends WaterloggedBlock {
         }
 
         return Blocks.AIR.defaultBlockState();
+    }
+
+    @Override
+    public PushReaction getPistonPushReaction(BlockState state) {
+        return PushReaction.DESTROY;
     }
 }

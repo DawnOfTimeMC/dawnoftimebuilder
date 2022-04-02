@@ -2,18 +2,24 @@ package org.dawnoftimebuilder.block.french;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.BlockItemUseContext;
+import net.minecraft.item.ItemStack;
 import net.minecraft.particles.ParticleTypes;
+import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
@@ -26,19 +32,22 @@ import org.dawnoftimebuilder.util.DoTBBlockStateProperties;
 import org.dawnoftimebuilder.util.DoTBBlockUtils;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import java.util.List;
 import java.util.Random;
 
 public class LimestoneGargoyleBlock extends WaterloggedBlock {
 
 	private static final IntegerProperty HUMIDITY = DoTBBlockStateProperties.HUMIDITY_0_8;
 	public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
+	public static final BooleanProperty PERSISTENT = BlockStateProperties.PERSISTENT;
 	private static final VoxelShape[] SHAPES = DoTBBlockUtils.GenerateHorizontalShapes(new VoxelShape[]{
 			Block.box(4.0D, 7.0D, 0.0D, 12.0D, 14.0D, 16.0D)
 	});
 
 	public LimestoneGargoyleBlock(Properties properties) {
 		super(properties);
-	    this.registerDefaultState(this.defaultBlockState().setValue(FACING, Direction.NORTH).setValue(WATERLOGGED, false).setValue(HUMIDITY, 0));
+	    this.registerDefaultState(this.defaultBlockState().setValue(FACING, Direction.NORTH).setValue(WATERLOGGED, false).setValue(HUMIDITY, 0).setValue(PERSISTENT, false));
 	}
 
 	private int getMaxHumidity(){
@@ -48,7 +57,7 @@ public class LimestoneGargoyleBlock extends WaterloggedBlock {
 	@Override
 	protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
 		super.createBlockStateDefinition(builder);
-		builder.add(FACING, HUMIDITY);
+		builder.add(FACING, HUMIDITY, PERSISTENT);
 	}
 
 	@Override
@@ -65,6 +74,36 @@ public class LimestoneGargoyleBlock extends WaterloggedBlock {
 	@Override
 	public BlockState rotate(BlockState state, Rotation rot){
 		return state.setValue(FACING, rot.rotate(state.getValue(FACING)));
+	}
+
+	@Override
+	public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+		if(state.getValue(PERSISTENT)){
+			if(player.isCreative()){
+				int humidity = state.getValue(HUMIDITY);
+				if(player.isCrouching()){
+					if(humidity > 0){
+						worldIn.setBlock(pos, state.setValue(HUMIDITY, humidity - 1), 10);
+						return ActionResultType.SUCCESS;
+					}
+				}else{
+					if(humidity < this.getMaxHumidity()) {
+						worldIn.setBlock(pos, state.setValue(HUMIDITY, humidity + 1), 10);
+						return ActionResultType.SUCCESS;
+					}
+				}
+			}else{
+				if(DoTBBlockUtils.useLighter(worldIn, pos, player, handIn)){
+					Random rand = new Random();
+					for(int i = 0; i < 5; i++){
+						worldIn.addAlwaysVisibleParticle(ParticleTypes.SMOKE, (double)pos.getX() + rand.nextDouble(), (double)pos.getY() + 0.5D + rand.nextDouble() / 2, (double)pos.getZ() + rand.nextDouble(), 0.0D, 0.07D, 0.0D);
+					}
+					worldIn.setBlock(pos, state.setValue(PERSISTENT, true), 10);
+					return ActionResultType.SUCCESS;
+				}
+			}
+		}
+		return super.use(state, worldIn, pos, player, handIn, hit);
 	}
 
 	@Override
@@ -98,6 +137,11 @@ public class LimestoneGargoyleBlock extends WaterloggedBlock {
 	public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random rand) {
 		int humidity = state.getValue(HUMIDITY);
 
+		if(state.getValue(PERSISTENT)){
+			super.randomTick(state, world, pos, rand);
+			return;
+		}
+
 		if(world.getBiome(pos).getPrecipitation() == Biome.RainType.RAIN && world.isRaining() && world.canSeeSky(pos)){
 			if(state.getValue(HUMIDITY) < this.getMaxHumidity()) {
 				world.setBlock(pos, state.setValue(HUMIDITY, this.getMaxHumidity()), 2);
@@ -120,5 +164,11 @@ public class LimestoneGargoyleBlock extends WaterloggedBlock {
 		} else {
 			return false;
 		}
+	}
+
+	@Override
+	public void appendHoverText(ItemStack stack, @Nullable IBlockReader worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+		super.appendHoverText(stack, worldIn, tooltip, flagIn);
+		DoTBBlockUtils.addTooltip(tooltip, this);
 	}
 }

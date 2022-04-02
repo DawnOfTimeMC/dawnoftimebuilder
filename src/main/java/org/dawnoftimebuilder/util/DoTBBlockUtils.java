@@ -19,6 +19,7 @@ import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
@@ -27,6 +28,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.Tags;
 
+import javax.annotation.Nullable;
 import java.util.List;
 
 import static org.dawnoftimebuilder.DawnOfTimeBuilder.MOD_ID;
@@ -41,6 +43,7 @@ public class DoTBBlockUtils {
 	public static final ITextComponent TOOLTIP_HOLD_SHIFT = new TranslationTextComponent("tooltip." + MOD_ID + ".hold_key").withStyle(TextFormatting.GRAY).append(new TranslationTextComponent("tooltip." + MOD_ID + ".shift").withStyle(TextFormatting.AQUA));
 	public static final String TOOLTIP_COLUMN = "column";
 	public static final String TOOLTIP_CLIMBING_PLANT = "climbing_plant";
+	public static final String TOOLTIP_BEAM = "beam";
 	public static final String TOOLTIP_CROP = "crop";
 	public static final String TOOLTIP_SIDED_WINDOW = "sided_window";
 
@@ -90,7 +93,8 @@ public class DoTBBlockUtils {
 		LootContext.Builder builder = (new LootContext.Builder(serverWorld))
 				.withRandom(serverWorld.random)
 				.withParameter(LootParameters.BLOCK_STATE, stateIn)
-				.withParameter(LootParameters.TOOL, itemStackHand);
+				.withParameter(LootParameters.TOOL, itemStackHand)
+				.withParameter(LootParameters.ORIGIN, new Vector3d(0, 0, 0));
 		LootContext lootcontext = builder.create(LootParameterSets.BLOCK);
 		return table.getRandomItems(lootcontext);
 	}
@@ -132,16 +136,22 @@ public class DoTBBlockUtils {
 		return false;
 	}
 
-	public static void addTooltip(List<ITextComponent> tooltip, String name){
-		if(Screen.hasShiftDown()) tooltip.add(new TranslationTextComponent("tooltip." + MOD_ID + "." + name).withStyle(TextFormatting.GRAY));
-		else tooltip.add(TOOLTIP_HOLD_SHIFT);
+	public static void addTooltip(List<ITextComponent> tooltip, String... tooltipNames){
+		addTooltip(tooltip, null, tooltipNames);
 	}
 	
-	public static void addTooltip(List<ITextComponent> tooltip, Block block){
-		ResourceLocation name = block.getRegistryName();
-		if(name != null){
-			if(Screen.hasShiftDown()) tooltip.add(new TranslationTextComponent("tooltip." + MOD_ID + "." + name.getPath()).withStyle(TextFormatting.GRAY));
-			else tooltip.add(TOOLTIP_HOLD_SHIFT);
-		}
+	public static void addTooltip(List<ITextComponent> tooltip, @Nullable Block block, String... tooltipNames){
+		if(Screen.hasShiftDown()){
+			if(block != null){
+				ResourceLocation blockName = block.getRegistryName();
+				if(blockName != null){
+					tooltip.add(new TranslationTextComponent("tooltip." + MOD_ID + "." + blockName.getPath()).withStyle(TextFormatting.GRAY));
+				}
+			}
+			for(String tooltipName : tooltipNames){
+				tooltip.add(new TranslationTextComponent("tooltip." + MOD_ID + "." + tooltipName).withStyle(TextFormatting.GRAY));
+			}
+		}else tooltip.add(TOOLTIP_HOLD_SHIFT);
+
 	}
 }

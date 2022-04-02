@@ -1,5 +1,6 @@
 {
 	"credit": "Made with Blockbench",
+	"ambientocclusion": false,
 	"textures": {
 		"0": "dawnoftimebuilder:block/marble_statue_mars",
 		"particle": "dawnoftimebuilder:block/marble_statue_mars"

@@ -17,6 +17,9 @@
 		},
 		"S": {
 			"item": "minecraft:shield"
+		},
+		"i": {
+			"item": "minecraft:cut_sandstone_slab"
 		}
 	},
 	"result": {

@@ -129,6 +129,7 @@
     "block.dawnoftimebuilder.flat_roof_tiles_stairs": "Flat Roof Tile Stairs",
     "block.dawnoftimebuilder.flat_roof_tiles_slab": "Flat Roof Tiles Slab",
     "block.dawnoftimebuilder.flat_roof_tiles_edge": "Flat Roof Tile Edge",
+    "block.dawnoftimebuilder.planter_geranium_pink_bottom": "Pink Geranium Planter",
     "block.dawnoftimebuilder.iron_portcullis": "Portcullis",
     "item.dawnoftimebuilder.iron_plate_armor_head": "Iron Plate Helmet",
     "item.dawnoftimebuilder.iron_plate_armor_chest": "Iron Plate Chestplate",
@@ -285,9 +286,11 @@
     "tooltip.dawnoftimebuilder.sided_window": "Use SHIFT to center the window in the middle of a block. The window will be against a side otherwise.",
     "tooltip.dawnoftimebuilder.iron_portcullis": "Use a redstone impulse on a portcullis block to open it, and all adjacent portcullis blocks.",
     "tooltip.dawnoftimebuilder.charred_spruce_railing": "Use RIGHT-CLICK on this block to add a column. Use SHIFT remove it.",
+    "tooltip.dawnoftimebuilder.beam": "Use SHIFT + RIGHT-CLICK on this block to remove its base if it has one.",
     "tooltip.dawnoftimebuilder.small_tatami_mat": "SHIFT + RIGHT-CLICK with an empty hand to roll this tatami. Up to 3 tatamis can be rolled in the same block. A tatami directly under a chain will be rolled vertically. Place this tatami on a Spruce Planks block to be able to put decoration blocks on it.",
     "tooltip.dawnoftimebuilder.tatami_mat": "SHIFT + RIGHT-CLICK with an empty hand to roll this tatami. Up to 3 tatamis can be rolled in the same block. Place this tatami on Spruce Planks blocks to be able to put decoration blocks on it.",
     "tooltip.dawnoftimebuilder.column": "Use RIGHT-CLICK on this block to increase its size or SHIFT + RIGHT-CLICK to reduce its size.",
+    "tooltip.dawnoftimebuilder.limestone_gargoyle": "In Creative, use a lighter on this block to stabilise its flow of drops. Then, you can use RIGHT-CLICK and SHIFT + RIGHT-CLICK to control the flow.",
     "tooltip.dawnoftimebuilder.crop": "Use a lighter on this plant to prevent its growth. Then, in Creative, you can use RIGHT-CLICK and SHIFT + RIGHT-CLICK to control the age.",
     "tooltip.dawnoftimebuilder.climbing_plant": "This block supports climbing plants. Use RIGHT-CLICK with lighter to interrupt plant growth. In Creative, use RIGHT-CLICK and SHIFT + RIGHT-CLICK with an empty hand to increase or decrease plant's age."
 }

@@ -2,7 +2,7 @@
     "type": "minecraft:block",
     "pools": [
         {
-            "rolls": 1.0,
+            "rolls": 1,
             "entries": [
                 {
                     "type": "minecraft:group",
@@ -45,7 +45,7 @@
                             "functions": [
                                 {
                                     "function": "minecraft:set_count",
-                                    "count": 2.0
+                                    "count": 2
                                 }
                             ]
                         }

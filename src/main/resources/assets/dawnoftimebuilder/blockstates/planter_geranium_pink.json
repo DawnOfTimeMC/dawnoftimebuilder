@@ -1,0 +1,12 @@
+{
+    "variants": {
+        "facing=north,half=bottom": { "model": "dawnoftimebuilder:block/german/planter_geranium_pink_bottom", "y": 180 },
+        "facing=east,half=bottom":  { "model": "dawnoftimebuilder:block/german/planter_geranium_pink_bottom", "y": 270 },
+        "facing=west,half=bottom":  { "model": "dawnoftimebuilder:block/german/planter_geranium_pink_bottom", "y": 90 },
+        "facing=south,half=bottom": { "model": "dawnoftimebuilder:block/german/planter_geranium_pink_bottom" },
+        "facing=north,half=top": { "model": "dawnoftimebuilder:block/german/planter_geranium_pink_top", "y": 180  },
+        "facing=east,half=top":  { "model": "dawnoftimebuilder:block/german/planter_geranium_pink_top", "y": 270 },
+        "facing=west,half=top":  { "model": "dawnoftimebuilder:block/german/planter_geranium_pink_top", "y": 90 },
+        "facing=south,half=top": { "model": "dawnoftimebuilder:block/german/planter_geranium_pink_top" }
+    }
+}
