@@ -30,6 +30,7 @@ import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.PlantType;
 import net.minecraftforge.common.Tags;
 import org.dawnoftimebuilder.block.IBlockCustomItem;
+import org.dawnoftimebuilder.block.IBlockGeneration;
 import org.dawnoftimebuilder.item.templates.SoilSeedsItem;
 import org.dawnoftimebuilder.util.DoTBBlockUtils;
 
@@ -38,10 +39,9 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Random;
 
-import static net.minecraftforge.common.Tags.Blocks.DIRT;
 import static org.dawnoftimebuilder.util.DoTBBlockUtils.TOOLTIP_CROP;
 
-public class SoilCropsBlock extends CropsBlock implements IBlockCustomItem {
+public class SoilCropsBlock extends CropsBlock implements IBlockCustomItem, IBlockGeneration {
 
 	private final SoilSeedsItem seed;
 	private final String seedName;
@@ -84,15 +84,22 @@ public class SoilCropsBlock extends CropsBlock implements IBlockCustomItem {
 
 	@Override
 	public boolean canSurvive(BlockState state, IWorldReader world, BlockPos pos) {
-		return mayGenerateOn(world, pos.below(), this.getPlantType(world, pos)) && super.canSurvive(state, world, pos);
+		return this.mayGenerateOn(world, pos.below(), this.getPlantType(world, pos)) && super.canSurvive(state, world, pos);
 	}
 
 	@Override
 	protected boolean mayPlaceOn(BlockState state, IBlockReader world, BlockPos pos) {
-		return mayGenerateOn(world, pos, this.getPlantType(world, pos));
+		return this.mayGenerateOn(world, pos, this.getPlantType(world, pos));
 	}
 
-	public static boolean mayGenerateOn(IBlockReader worldIn, BlockPos pos, PlantType plantType){
+	/**
+	 * Checks the block at the given position and states if the plant can be generated on.
+	 * @param worldIn of the block.
+	 * @param pos to be checked (block under the plant).
+	 * @param plantType of the plant, which is used to get the whitelisted blocks.
+	 * @return true if the plant can be generated on this block, false otherwise.
+	 */
+	public boolean mayGenerateOn(IBlockReader worldIn, BlockPos pos, PlantType plantType){
 		BlockState stateOn = worldIn.getBlockState(pos);
 		Block blockOn = stateOn.getBlock();
 
@@ -117,7 +124,7 @@ public class SoilCropsBlock extends CropsBlock implements IBlockCustomItem {
 
 		} else if (plantType.equals(PlantType.WATER)) {
 			return worldIn.getFluidState(pos.above()).getFluidState().getType() == Fluids.WATER
-					&& (stateOn.is(Blocks.GRASS_BLOCK)
+					&& (stateOn.is(Blocks.CLAY)
 					|| stateOn.is(Tags.Blocks.DIRT)
 					|| stateOn.is(Blocks.FARMLAND)
 					|| stateOn.is(Blocks.GRAVEL));
@@ -142,7 +149,6 @@ public class SoilCropsBlock extends CropsBlock implements IBlockCustomItem {
 		}
 		return false;
 	}
-
 
 	@Override
 	public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
@@ -174,7 +180,7 @@ public class SoilCropsBlock extends CropsBlock implements IBlockCustomItem {
 		return super.use(state, worldIn, pos, player, handIn, hit);
 	}
 
-	public void setPlantWithAge(BlockState currentState, World worldIn, BlockPos pos, int newAge){
+	public void setPlantWithAge(BlockState currentState, IWorld worldIn, BlockPos pos, int newAge){
 		worldIn.setBlock(pos, currentState.setValue(this.getAgeProperty(), newAge), 10);
 	}
 
@@ -203,5 +209,10 @@ public class SoilCropsBlock extends CropsBlock implements IBlockCustomItem {
 	public void appendHoverText(ItemStack stack, @Nullable IBlockReader worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
 		super.appendHoverText(stack, worldIn, tooltip, flagIn);
 		DoTBBlockUtils.addTooltip(tooltip, TOOLTIP_CROP);
+	}
+
+	@Override
+	public void generateOnPos(IWorld world, BlockPos pos, BlockState state, Random random) {
+		this.setPlantWithAge(state, world, pos, random.nextInt(this.getMaxAge() + 1));
 	}
 }

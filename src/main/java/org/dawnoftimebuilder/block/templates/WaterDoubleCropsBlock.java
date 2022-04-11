@@ -1,7 +1,9 @@
 package org.dawnoftimebuilder.block.templates;
 
-import net.minecraft.block.*;
-import net.minecraft.block.material.Material;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.IWaterLoggable;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.BlockItemUseContext;
@@ -13,16 +15,8 @@ import net.minecraft.state.properties.Half;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
-import net.minecraft.world.IWorldReader;
-import net.minecraft.world.World;
 import net.minecraftforge.common.PlantType;
-
-import static net.minecraft.block.Blocks.AIR;
-import static net.minecraftforge.common.PlantType.*;
-import static net.minecraftforge.common.Tags.Blocks.DIRT;
-import static net.minecraftforge.common.Tags.Blocks.SAND;
 
 public class WaterDoubleCropsBlock extends DoubleCropsBlock implements IWaterLoggable {
 
@@ -94,7 +88,7 @@ public class WaterDoubleCropsBlock extends DoubleCropsBlock implements IWaterLog
 	}
 
 	@Override
-	public void setPlantWithAge(BlockState currentState, World worldIn, BlockPos pos, int newAge) {
+	public void setPlantWithAge(BlockState currentState, IWorld worldIn, BlockPos pos, int newAge) {
 		if(currentState.getValue(HALF) == Half.TOP) pos = pos.below();
 		if(newAge >= this.getAgeReachingTopBlock()){
 			BlockPos posUp = pos.above();

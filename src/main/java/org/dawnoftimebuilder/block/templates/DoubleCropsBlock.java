@@ -104,7 +104,7 @@ public class DoubleCropsBlock extends SoilCropsBlock {
 	}
 
 	@Override
-	public void setPlantWithAge(BlockState currentState, World worldIn, BlockPos pos, int newAge) {
+	public void setPlantWithAge(BlockState currentState, IWorld worldIn, BlockPos pos, int newAge) {
 		if(currentState.getValue(HALF) == Half.TOP) pos = pos.below();
 		if(newAge >= this.getAgeReachingTopBlock()){
 			BlockPos posUp = pos.above();

@@ -35,12 +35,11 @@ public class DawnOfTimeBuilder {
         DoTBRecipesRegistry.RECIPES.register(eventBus);
         DoTBTileEntitiesRegistry.TILE_ENTITY_TYPES.register(eventBus);
         DoTBContainersRegistry.CONTAINER_TYPES.register(eventBus);
-        //DoTBFeaturesRegistry.FEATURES.register(eventBus); TODO fix world gen
         eventBus.addListener(HandlerCommon::fMLCommonSetupEvent);
         eventBus.addListener(HandlerCommon::entityAttributeCreationEvent);
         eventBus.addListener(HandlerClient::fMLClientSetupEvent);
 
         IEventBus forgeBus = MinecraftForge.EVENT_BUS;
-        //forgeBus.addListener(EventPriority.HIGH, HandlerCommon::biomeLoadingEvent);
+        forgeBus.addListener(EventPriority.HIGH, HandlerCommon::biomeLoadingEvent);
     }
 }

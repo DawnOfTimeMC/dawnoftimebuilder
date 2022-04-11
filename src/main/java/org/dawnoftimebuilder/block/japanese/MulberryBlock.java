@@ -6,10 +6,12 @@ import net.minecraft.item.Food;
 import net.minecraft.state.properties.Half;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.PlantType;
 import org.dawnoftimebuilder.DoTBConfig;
 import org.dawnoftimebuilder.block.templates.DoubleGrowingBushBlock;
 
+import java.util.List;
 import java.util.Random;
 
 import static org.dawnoftimebuilder.registry.DoTBEntitiesRegistry.SILKMOTH_ENTITY;

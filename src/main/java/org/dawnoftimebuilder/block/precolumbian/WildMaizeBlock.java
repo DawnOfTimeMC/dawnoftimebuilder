@@ -19,11 +19,13 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
+import org.dawnoftimebuilder.block.IBlockGeneration;
 import org.dawnoftimebuilder.block.templates.WildPlantBlock;
 
 import javax.annotation.Nullable;
+import java.util.Random;
 
-public class WildMaizeBlock extends WildPlantBlock {
+public class WildMaizeBlock extends WildPlantBlock implements IBlockGeneration {
 
     private static final VoxelShape VS = Block.box(5.0D, 0.0D, 5.0D, 11.0D, 16.0D, 11.0D);
 	public static final EnumProperty<Half> HALF = BlockStateProperties.HALF;
@@ -89,7 +91,9 @@ public class WildMaizeBlock extends WildPlantBlock {
     	return stateIn;
 	}
 
-    public BlockState getDefaultTopState() {
-    	return this.defaultBlockState().setValue(HALF, Half.TOP);
-    }
+	@Override
+	public void generateOnPos(IWorld world, BlockPos pos, BlockState state, Random random) {
+		world.setBlock(pos, state, 2);
+		world.setBlock(pos.above(), state.setValue(HALF, Half.TOP), 2);
+	}
 }

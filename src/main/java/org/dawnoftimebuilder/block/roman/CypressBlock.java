@@ -25,6 +25,7 @@ import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import org.dawnoftimebuilder.block.IBlockGeneration;
 import org.dawnoftimebuilder.block.templates.BlockDoTB;
 import org.dawnoftimebuilder.util.DoTBBlockStateProperties;
 import org.dawnoftimebuilder.util.DoTBBlockUtils;
@@ -36,7 +37,7 @@ import java.util.Random;
 import static org.dawnoftimebuilder.util.DoTBBlockUtils.HIGHEST_Y;
 import static org.dawnoftimebuilder.util.DoTBBlockUtils.TOOLTIP_COLUMN;
 
-public class CypressBlock extends BlockDoTB {
+public class CypressBlock extends BlockDoTB implements IBlockGeneration {
 
     private static final IntegerProperty SIZE = DoTBBlockStateProperties.SIZE_0_5;
     private static final VoxelShape VS_0 = Block.box(6.0D, 0.0D, 6.0D, 10.0D, 16.0D, 10.0D);
@@ -173,5 +174,16 @@ public class CypressBlock extends BlockDoTB {
     public void appendHoverText(ItemStack stack, @Nullable IBlockReader worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
         super.appendHoverText(stack, worldIn, tooltip, flagIn);
         DoTBBlockUtils.addTooltip(tooltip, TOOLTIP_COLUMN);
+    }
+
+    @Override
+    public void generateOnPos(IWorld world, BlockPos pos, BlockState state, Random random) {
+        int maxSize = 2 + random.nextInt(5);
+        world.setBlock(pos, state.setValue(SIZE, 0), 2);
+        int size = 1;
+        for (int i = maxSize; i > 0; i--){
+            world.setBlock(pos.above(i), state.setValue(SIZE, size), 2);
+            if(size < 5) size++;
+        }
     }
 }
