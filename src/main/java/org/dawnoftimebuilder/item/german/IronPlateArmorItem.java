@@ -18,13 +18,13 @@ public class IronPlateArmorItem extends CustomArmorItem {
 
 	@OnlyIn(Dist.CLIENT)
 	@Override
-	public CustomArmorModel<?> createModel(LivingEntity entityLiving) {
+	public CustomArmorModel<LivingEntity> createModel(LivingEntity entityLiving) {
 		return new IronPlateArmorModel<>(this.slot, true);
 	}
 
 	@OnlyIn(Dist.CLIENT)
 	@Override
-	public CustomArmorModel<?> createSlimModel(LivingEntity entityLiving) {
+	public CustomArmorModel<LivingEntity> createSlimModel(LivingEntity entityLiving) {
 		return new IronPlateArmorModel<>(this.slot, false);
 	}
 }

@@ -19,9 +19,7 @@ public abstract class CustomArmorModel<T extends LivingEntity> extends BipedMode
 		this.slot = slot;
 	}
 
-	@Override
-	public void setupAnim(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-		super.setupAnim(entityIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
+	public void setupArmorAnim(T entityIn, float ageInTicks) {
 		//Fix the "breathing" and wrong head rotation on ArmorStands
 		if (entityIn instanceof ArmorStandEntity) {
 			ArmorStandEntity entityAS = (ArmorStandEntity) entityIn;
@@ -48,6 +46,7 @@ public abstract class CustomArmorModel<T extends LivingEntity> extends BipedMode
 			this.rightLeg.zRot = f * entityAS.getRightLegPose().getZ();
 			this.rightLeg.setPos(-1.9F, 11.0F, 0.0F);
 			this.hat.copyFrom(this.head);
+			return;
 		}
 	}
 

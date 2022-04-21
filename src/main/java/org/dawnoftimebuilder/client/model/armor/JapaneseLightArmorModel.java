@@ -182,14 +182,14 @@ public class JapaneseLightArmorModel<T extends LivingEntity> extends CustomArmor
 	}
 
 	@Override
-	public void setupAnim(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-		super.setupAnim(entityIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
+	public void setupArmorAnim(T entityIn, float ageInTicks) {
+		super.setupArmorAnim(entityIn, ageInTicks);
 
 		if (this.slot == EquipmentSlotType.HEAD) {
 			float f = 0.3F * sinPI(ageInTicks / 60.0F + 1.0F) + Math.abs(this.rightLeg.xRot);
-			this.ribbonA.xRot = Math.max(0.35F + f * 0.15F - headPitch * 0.017453292F, 0.2F);
+			this.ribbonA.xRot = Math.max(0.35F + f * 0.15F - this.head.xRot, 0.2F);
 			this.ribbonA.zRot = -0.1F + f * 0.2F;
-			this.ribbonB.xRot = Math.max(0.175F + f * 0.1F - headPitch * 0.017453292F, 0.075F);
+			this.ribbonB.xRot = Math.max(0.175F + f * 0.1F - this.head.xRot, 0.075F);
 			this.ribbonB.zRot = -f * 0.2F;
 		}
 	}

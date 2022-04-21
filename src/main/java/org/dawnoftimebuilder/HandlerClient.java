@@ -101,6 +101,7 @@ public class HandlerClient {
 		RenderTypeLookup.setRenderLayer(IRORI_FIREPLACE.get(), RenderType.cutoutMipped());
 		RenderTypeLookup.setRenderLayer(SAKE_BOTTLE.get(), RenderType.cutoutMipped());
 		RenderTypeLookup.setRenderLayer(STICK_BUNDLE.get(), RenderType.cutoutMipped());
+		RenderTypeLookup.setRenderLayer(STONE_LANTERN.get(), RenderType.cutoutMipped());
 
 		//Pre_columbian
 		RenderTypeLookup.setRenderLayer(COMMELINA.get(), RenderType.cutoutMipped());

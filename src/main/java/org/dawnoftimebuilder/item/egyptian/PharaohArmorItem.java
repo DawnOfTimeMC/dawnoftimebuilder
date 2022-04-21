@@ -18,13 +18,13 @@ public class PharaohArmorItem extends CustomArmorItem {
 
 	@OnlyIn(Dist.CLIENT)
 	@Override
-	public CustomArmorModel<?> createModel(LivingEntity entityLiving) {
+	public CustomArmorModel<LivingEntity> createModel(LivingEntity entityLiving) {
 		return new PharaohArmorModel<>(this.slot, true);
 	}
 
 	@OnlyIn(Dist.CLIENT)
 	@Override
-	public CustomArmorModel<?> createSlimModel(LivingEntity entityLiving) {
+	public CustomArmorModel<LivingEntity> createSlimModel(LivingEntity entityLiving) {
 		return new PharaohArmorModel<>(this.slot, false);
 	}
 }

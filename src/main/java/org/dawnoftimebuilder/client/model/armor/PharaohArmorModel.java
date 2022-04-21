@@ -240,8 +240,8 @@ public class PharaohArmorModel<T extends LivingEntity> extends CustomArmorModel<
 	}
 
 	@Override
-	public void setupAnim(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-		super.setupAnim(entityIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
+	public void setupArmorAnim(T entityIn, float ageInTicks) {
+		super.setupArmorAnim(entityIn, ageInTicks);
 
 		float f = 1.0F;
 		if (entityIn.getFallFlyingTicks() > 4) {
@@ -254,14 +254,13 @@ public class PharaohArmorModel<T extends LivingEntity> extends CustomArmorModel<
 		}
 		switch (this.slot) {
 			case HEAD:
-				f = 0.3F * sinPI(ageInTicks / 60.0F + 1.0F) + MathHelper.cos(limbSwing * 0.3331F + (float) Math.PI) * limbSwingAmount / f;
-				this.headTail.xRot = f * 0.1F - headPitch * 0.017453292F * 0.8F;
+				f = 0.3F * sinPI(ageInTicks / 60.0F + 1.0F) + Math.abs(this.rightLeg.xRot);
+				this.headTail.xRot = f * 0.1F - this.head.xRot * 0.8F;
 				this.headTail.zRot = -f * 0.1F;
 				break;
 
 			case LEGS:
-				f = MathHelper.abs(MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount / f);
-				this.bodyGoldenStrip.xRot = -f;
+				this.bodyGoldenStrip.xRot = Math.abs(this.rightLeg.xRot);
 
 				if (this.riding) {
 					this.bodyGoldenStrip.xRot -= 1.0F;

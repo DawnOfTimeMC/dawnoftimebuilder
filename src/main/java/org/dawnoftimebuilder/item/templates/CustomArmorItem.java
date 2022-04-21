@@ -21,8 +21,8 @@ import static org.dawnoftimebuilder.DawnOfTimeBuilder.MOD_ID;
 public abstract class CustomArmorItem extends ArmorItem {
 
 	public final String set;
-	public CustomArmorModel<?> model = null;
-	public CustomArmorModel<?> slimModel = null;
+	public CustomArmorModel<LivingEntity> model = null;
+	public CustomArmorModel<LivingEntity> slimModel = null;
 
 	public CustomArmorItem(String set, IArmorMaterial materialIn, EquipmentSlotType slot) {
 		super(materialIn, slot, new Item.Properties().stacksTo(1).tab(DOTB_TAB));
@@ -40,6 +40,7 @@ public abstract class CustomArmorItem extends ArmorItem {
 	public <A extends BipedModel<?>> A getArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlotType armorSlot, A _default) {
 		if(!itemStack.isEmpty()) {
 			if(itemStack.getItem() instanceof ArmorItem) {
+
 				if(entityLiving instanceof AbstractClientPlayerEntity){
 					if("slim".equals(((AbstractClientPlayerEntity) entityLiving).getModelName())){
 						if(this.slimModel == null) this.slimModel = this.createSlimModel(entityLiving);
@@ -48,17 +49,19 @@ public abstract class CustomArmorItem extends ArmorItem {
 						this.slimModel.riding = _default.riding;
 						this.slimModel.rightArmPose = _default.rightArmPose;
 						this.slimModel.leftArmPose = _default.leftArmPose;
+						this.slimModel.setupArmorAnim(entityLiving, (float)entityLiving.tickCount);
 
 						return (A) this.slimModel;
 					}
 				}
-				if(this.model == null) this.model = this.createModel(entityLiving);
 
+				if(this.model == null) this.model = this.createModel(entityLiving);
 				this.model.young = _default.young;
 				this.model.crouching = _default.crouching;
 				this.model.riding = _default.riding;
 				this.model.rightArmPose = _default.rightArmPose;
 				this.model.leftArmPose = _default.leftArmPose;
+				this.model.setupArmorAnim(entityLiving, (float)entityLiving.tickCount);
 
 				return (A) this.model;
 			}
@@ -78,8 +81,8 @@ public abstract class CustomArmorItem extends ArmorItem {
 	}
 
 	@OnlyIn(Dist.CLIENT)
-	public abstract CustomArmorModel<?> createModel(LivingEntity entityLiving);
+	public abstract CustomArmorModel<LivingEntity> createModel(LivingEntity entityLiving);
 
 	@OnlyIn(Dist.CLIENT)
-	public abstract CustomArmorModel<?> createSlimModel(LivingEntity entityLiving);
+	public abstract CustomArmorModel<LivingEntity> createSlimModel(LivingEntity entityLiving);
 }

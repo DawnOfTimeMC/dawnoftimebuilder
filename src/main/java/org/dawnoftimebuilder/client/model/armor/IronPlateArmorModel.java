@@ -323,8 +323,8 @@ public class IronPlateArmorModel<T extends LivingEntity> extends CustomArmorMode
 	}
 
 	@Override
-	public void setupAnim(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-		super.setupAnim(entityIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
+	public void setupArmorAnim(T entityIn, float ageInTicks) {
+		super.setupArmorAnim(entityIn, ageInTicks);
 
 		float f = Math.abs(this.rightLeg.xRot);
 		switch (this.slot) {

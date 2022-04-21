@@ -411,8 +411,8 @@ public class HolyArmorModel<T extends LivingEntity> extends CustomArmorModel<T> 
 	}
 
 	@Override
-	public void setupAnim(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-		super.setupAnim(entityIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
+	public void setupArmorAnim(T entityIn, float ageInTicks) {
+		super.setupArmorAnim(entityIn, ageInTicks);
 
 		switch (this.slot) {
 			case HEAD:
