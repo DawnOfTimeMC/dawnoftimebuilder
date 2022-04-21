@@ -1,10 +1,10 @@
 package org.dawnoftimebuilder.item.german;
 
-import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import org.dawnoftimebuilder.client.model.armor.CustomArmorModel;
 import org.dawnoftimebuilder.client.model.armor.HolyArmorModel;
 import org.dawnoftimebuilder.item.templates.CustomArmorItem;
 
@@ -18,13 +18,13 @@ public class HolyArmorItem extends CustomArmorItem {
 
 	@OnlyIn(Dist.CLIENT)
 	@Override
-	public BipedModel<?> createModel(LivingEntity entityLiving) {
+	public CustomArmorModel<?> createModel(LivingEntity entityLiving) {
 		return new HolyArmorModel<>(this.slot, true);
 	}
 
 	@OnlyIn(Dist.CLIENT)
 	@Override
-	public BipedModel<?> createSlimModel(LivingEntity entityLiving) {
+	public CustomArmorModel<?> createSlimModel(LivingEntity entityLiving) {
 		return new HolyArmorModel<>(this.slot, false);
 	}
 }

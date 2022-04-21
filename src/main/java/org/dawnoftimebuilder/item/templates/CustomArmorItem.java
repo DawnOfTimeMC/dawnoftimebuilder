@@ -11,6 +11,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import org.dawnoftimebuilder.client.model.armor.CustomArmorModel;
 
 import javax.annotation.Nullable;
 
@@ -20,8 +21,8 @@ import static org.dawnoftimebuilder.DawnOfTimeBuilder.MOD_ID;
 public abstract class CustomArmorItem extends ArmorItem {
 
 	public final String set;
-	public BipedModel<?> model = null;
-	public BipedModel<?> slimModel = null;
+	public CustomArmorModel<?> model = null;
+	public CustomArmorModel<?> slimModel = null;
 
 	public CustomArmorItem(String set, IArmorMaterial materialIn, EquipmentSlotType slot) {
 		super(materialIn, slot, new Item.Properties().stacksTo(1).tab(DOTB_TAB));
@@ -42,7 +43,6 @@ public abstract class CustomArmorItem extends ArmorItem {
 				if(entityLiving instanceof AbstractClientPlayerEntity){
 					if("slim".equals(((AbstractClientPlayerEntity) entityLiving).getModelName())){
 						if(this.slimModel == null) this.slimModel = this.createSlimModel(entityLiving);
-
 						this.slimModel.young = _default.young;
 						this.slimModel.crouching = _default.crouching;
 						this.slimModel.riding = _default.riding;
@@ -78,8 +78,8 @@ public abstract class CustomArmorItem extends ArmorItem {
 	}
 
 	@OnlyIn(Dist.CLIENT)
-	public abstract BipedModel<?> createModel(LivingEntity entityLiving);
+	public abstract CustomArmorModel<?> createModel(LivingEntity entityLiving);
 
 	@OnlyIn(Dist.CLIENT)
-	public abstract BipedModel<?> createSlimModel(LivingEntity entityLiving);
+	public abstract CustomArmorModel<?> createSlimModel(LivingEntity entityLiving);
 }

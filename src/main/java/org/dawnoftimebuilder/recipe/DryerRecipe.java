@@ -73,7 +73,7 @@ public class DryerRecipe implements IRecipe<IInventory> {
 
     @Override
     public IRecipeSerializer<?> getSerializer() {
-        return DryerRecipeSerializer.INSTANCE;
+        return DRYER_RECIPE.get();
     }
 
     @Override
@@ -93,5 +93,10 @@ public class DryerRecipe implements IRecipe<IInventory> {
     @Override
     public ItemStack getToastSymbol() {
         return new ItemStack(BAMBOO_DRYING_TRAY.get());
+    }
+
+    @Override
+    public boolean isSpecial(){
+        return true;
     }
 }

@@ -27,7 +27,6 @@ public class DawnOfTimeBuilder {
     public DawnOfTimeBuilder(){
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, DoTBConfig.COMMON_CONFIG);
 
-        //TODO Fix armor animation
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
         DoTBBlocksRegistry.BLOCKS.register(eventBus);
         DoTBEntitiesRegistry.ENTITY_TYPES.register(eventBus);// TODO Use dragons config with addTransientModifier

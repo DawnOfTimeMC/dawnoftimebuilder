@@ -27,8 +27,6 @@ public class DoTBItemsRegistry {
 	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MOD_ID);
 
 	//General
-	//public static final RegistryObject<Item> SILKMOTH_SPAWN_EGG = reg("silkmoth_spawn_egg", new SpawnEggItem(SILKMOTH_ENTITY.get(), 0xDBD8BD, 0xFEFEFC, (new Item.Properties()).tab(ItemGroup.TAB_MISC)));
-	//public static final RegistryObject<Item> JAPANESE_DRAGON_SPAWN_EGG = reg("japanese_dragon_spawn_egg", new SpawnEggItem(JAPANESE_DRAGON_ENTITY.get(), 0xFFFFFF, 0xFFFFFF, (new Item.Properties()).tab(ItemGroup.TAB_MISC)));
 	public static final RegistryObject<Item> SILK_WORMS = reg("silk_worms", new ItemDoTB());
 	public static final RegistryObject<Item> SILK_WORMS_HATCHERY = reg("silk_worm_hatchery", new ItemDoTB());
 	public static final RegistryObject<Item> SILK_WORM_EGGS = reg("silk_worm_eggs", new ItemDoTB());

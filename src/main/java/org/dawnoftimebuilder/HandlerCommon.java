@@ -3,6 +3,9 @@ package org.dawnoftimebuilder;
 
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemGroup;
+import net.minecraft.item.SpawnEggItem;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.blockplacer.SimpleBlockPlacer;
@@ -11,6 +14,7 @@ import net.minecraft.world.gen.feature.BlockClusterFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.Features;
 import net.minecraftforge.common.world.BiomeGenerationSettingsBuilder;
+import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
@@ -21,6 +25,7 @@ import org.dawnoftimebuilder.generation.DefaultCropsFeature;
 import org.dawnoftimebuilder.generation.DoTBBlockPlacer;
 import org.dawnoftimebuilder.registry.DoTBBlocksRegistry;
 
+import static org.dawnoftimebuilder.DawnOfTimeBuilder.MOD_ID;
 import static org.dawnoftimebuilder.DoTBConfig.*;
 import static org.dawnoftimebuilder.registry.DoTBEntitiesRegistry.JAPANESE_DRAGON_ENTITY;
 import static org.dawnoftimebuilder.registry.DoTBEntitiesRegistry.SILKMOTH_ENTITY;
@@ -38,6 +43,13 @@ public class HandlerCommon {
         //We need to set att least the default values here
         event.put(SILKMOTH_ENTITY.get(), MobEntity.createMobAttributes().add(Attributes.MAX_HEALTH, 3.0D).build());
         event.put(JAPANESE_DRAGON_ENTITY.get(), MobEntity.createMobAttributes().add(Attributes.MAX_HEALTH, 20.0D).build());
+    }
+
+    @SubscribeEvent
+    public static void eggRegisterEvent(RegistryEvent.Register<Item> event){
+        //The eggs can only be registered here
+        event.getRegistry().register(new SpawnEggItem(SILKMOTH_ENTITY.get(), 0xDBD8BD, 0xFEFEFC, new Item.Properties().tab(ItemGroup.TAB_MISC)));
+        event.getRegistry().register(new SpawnEggItem(JAPANESE_DRAGON_ENTITY.get(), 0xFFFFFF, 0xFFFFFF, new Item.Properties().tab(ItemGroup.TAB_MISC)));
     }
 
     @SubscribeEvent(priority = EventPriority.HIGH)
