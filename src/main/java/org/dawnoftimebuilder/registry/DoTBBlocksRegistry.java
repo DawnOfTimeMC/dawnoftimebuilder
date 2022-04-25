@@ -268,6 +268,13 @@ public class DoTBBlocksRegistry {
 	public static final RegistryObject<Block> SERPENT_SCULPTED_COLUMN = reg("serpent_sculpted_column", new SerpentSculptedColumnBlock(AbstractBlock.Properties.copy(STONE_BRICKS)));
 
 	//Roman
+	public static final RegistryObject<Block> SANDSTONE_PLATE = reg("sandstone_plate", new PlateBlock(AbstractBlock.Properties.copy(SANDSTONE)));
+	public static final RegistryObject<Block> SANDSTONE_EDGE = reg("sandstone_edge", new EdgeBlock(AbstractBlock.Properties.copy(SANDSTONE)));
+	public static final RegistryObject<Block> CUT_SANDSTONE_STAIRS = reg("cut_sandstone_stairs", new StairsBlock(CUT_SANDSTONE::defaultBlockState, AbstractBlock.Properties.copy(CUT_SANDSTONE)));
+	public static final RegistryObject<Block> CUT_SANDSTONE_PLATE = reg("cut_sandstone_plate", new PlateBlock(AbstractBlock.Properties.copy(CUT_SANDSTONE)));
+	public static final RegistryObject<Block> CUT_SANDSTONE_EDGE = reg("cut_sandstone_edge", new EdgeBlock(AbstractBlock.Properties.copy(CUT_SANDSTONE)));
+	public static final RegistryObject<Block> SMOOTH_SANDSTONE_PLATE = reg("smooth_sandstone_plate", new PlateBlock(AbstractBlock.Properties.copy(SMOOTH_SANDSTONE)));
+	public static final RegistryObject<Block> SMOOTH_SANDSTONE_EDGE = reg("smooth_sandstone_edge", new EdgeBlock(AbstractBlock.Properties.copy(SMOOTH_SANDSTONE)));
 	public static final RegistryObject<Block> OCHRE_ROOF_TILES = reg("ochre_roof_tiles", new BlockDoTB(AbstractBlock.Properties.copy(BRICKS)));
 	public static final RegistryObject<Block> OCHRE_ROOF_TILES_EDGE = reg("ochre_roof_tiles_edge", new EdgeBlock(AbstractBlock.Properties.copy(BRICKS)));
 	public static final RegistryObject<Block> OCHRE_ROOF_TILES_PLATE = reg("ochre_roof_tiles_plate", new PlateBlock(AbstractBlock.Properties.copy(BRICKS)));

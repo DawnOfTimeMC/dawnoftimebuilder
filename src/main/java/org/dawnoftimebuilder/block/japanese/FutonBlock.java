@@ -2,6 +2,7 @@ package org.dawnoftimebuilder.block.japanese;
 
 import net.minecraft.block.BedBlock;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.DyeColor;
@@ -28,5 +29,10 @@ public class FutonBlock extends BedBlock {
 	@Override
 	public boolean isBed(BlockState state, IBlockReader world, BlockPos pos, @Nullable Entity player) {
 		return true;
+	}
+
+	@Override
+	public BlockRenderType getRenderShape(BlockState p_149645_1_) {
+		return BlockRenderType.MODEL;
 	}
 }
