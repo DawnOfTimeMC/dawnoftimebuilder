@@ -1,0 +1,23 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		" i ",
+		"IxI",
+		" i "
+	],
+	"key": {
+		"I":{
+			"item": "dawnoftimebuilder:mosaic_floor_delicate"
+		},
+		"i": {
+			"item": "dawnoftimebuilder:mosaic_floor"
+		},
+		"x": {
+			"item": "minecraft:sandstone"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:mosaic_floor_rosette",
+		"count": 5
+	}
+}

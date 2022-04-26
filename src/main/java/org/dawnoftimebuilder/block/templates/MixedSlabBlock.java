@@ -42,7 +42,7 @@ public class MixedSlabBlock extends SlabBlockDoTB implements IBlockCustomItem {
 	 * @param thisSlabIsBottom True if this slab is bottom, and the secondSlab is top. False otherwise.
 	 * @return this slab
 	 */
-	public Block addMixedBlockRecipe(Block secondSlab, Supplier<Block> mixedBlock, boolean thisSlabIsBottom){
+	public MixedSlabBlock addMixedBlockRecipe(Block secondSlab, Supplier<Block> mixedBlock, boolean thisSlabIsBottom){
 		return this.addMixedBlockRecipe(() -> secondSlab, mixedBlock, thisSlabIsBottom);
 	}
 
@@ -53,7 +53,7 @@ public class MixedSlabBlock extends SlabBlockDoTB implements IBlockCustomItem {
 	 * @param thisSlabIsBottom True if this slab is bottom, and the secondSlab is top. False otherwise.
 	 * @return this slab
 	 */
-	private Block addMixedBlockRecipe(Supplier<Block> secondSlab, Supplier<Block> mixedBlock, boolean thisSlabIsBottom){
+	private MixedSlabBlock addMixedBlockRecipe(Supplier<Block> secondSlab, Supplier<Block> mixedBlock, boolean thisSlabIsBottom){
 		this.listRecipes.add(new MixedBlockRecipe(secondSlab, mixedBlock, thisSlabIsBottom));
 		return this;
 	}

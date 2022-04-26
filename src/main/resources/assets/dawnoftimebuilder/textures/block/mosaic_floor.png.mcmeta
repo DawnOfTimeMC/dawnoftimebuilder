@@ -5,6 +5,12 @@
         "layer":"SOLID",
         "textures":[
             "dawnoftimebuilder:block/mosaic_floor-ctm"
-        ]
+        ],
+        "extra": {
+            "connect_to": [
+				{ "block": "dawnoftimebuilder:mosaic_floor" },
+				{ "block": "dawnoftimebuilder:mosaic_floor_delicate" }
+            ]
+        }
     }
 }

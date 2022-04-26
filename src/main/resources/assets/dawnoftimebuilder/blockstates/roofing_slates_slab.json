@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "type=bottom": { "model": "dawnoftimebuilder:block/french/roofing_slates_slab_bottom" },
+        "type=top": { "model": "dawnoftimebuilder:block/french/roofing_slates_slab_top" },
+        "type=double": { "model": "dawnoftimebuilder:block/french/roofing_slates" }
+    }
+}

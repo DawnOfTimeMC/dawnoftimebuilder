@@ -110,6 +110,11 @@ public class DoTBBlocksRegistry {
 	public static final RegistryObject<Block> LIMESTONE_GARGOYLE = reg("limestone_gargoyle", new LimestoneGargoyleBlock(AbstractBlock.Properties.copy(STONE_BRICKS).noOcclusion().randomTicks()));
 	public static final RegistryObject<Block> LIMESTONE_CHIMNEY = reg("limestone_chimney", new LimestoneChimneyBlock(AbstractBlock.Properties.copy(STONE_BRICKS)));
 	public static final RegistryObject<Block> LIMESTONE_FIREPLACE = reg("limestone_fireplace", new MultiblockFireplaceBlock(AbstractBlock.Properties.copy(STONE_BRICKS).noOcclusion().lightLevel(litBlockEmission(15))));
+	public static final RegistryObject<Block> ROOFING_SLATES = reg("roofing_slates", new BlockDoTB(AbstractBlock.Properties.copy(STONE_BRICKS)));
+	public static final RegistryObject<Block> ROOFING_SLATES_STAIRS = reg("roofing_slates_stairs", new StairsBlockDoTB(ROOFING_SLATES, AbstractBlock.Properties.copy(STONE_BRICKS)));
+	public static final RegistryObject<Block> ROOFING_SLATES_PLATE = reg("roofing_slates_plate", new PlateBlock(AbstractBlock.Properties.copy(STONE_BRICKS)));
+	public static final RegistryObject<Block> ROOFING_SLATES_SLAB = reg("roofing_slates_slab", new SlabBlockDoTB(AbstractBlock.Properties.copy(STONE_BRICKS)));
+	public static final RegistryObject<Block> ROOFING_SLATES_EDGE = reg("roofing_slates_edge", new EdgeBlock(AbstractBlock.Properties.copy(STONE_BRICKS)));
 
 	//German
 	public static final RegistryObject<Block> FLAT_ROOF_TILES = reg("flat_roof_tiles", new BlockDoTB(AbstractBlock.Properties.copy(STONE_BRICKS)));
@@ -281,10 +286,14 @@ public class DoTBBlocksRegistry {
 	public static final RegistryObject<Block> OCHRE_ROOF_TILES_STAIRS = reg("ochre_roof_tiles_stairs", new StairsBlockDoTB(OCHRE_ROOF_TILES, AbstractBlock.Properties.copy(BRICKS)));
 	public static final RegistryObject<Block> OCHRE_ROOF_TILES_WALL = reg("ochre_roof_tiles_wall", new WallBlock(AbstractBlock.Properties.copy(BRICKS)));
 	public static final RegistryObject<Block> SANDSTONE_BOT_OCHRE_ROOF_TILES_TOP = reg("sandstone_bot_ochre_roof_tiles_top", new NoItemBlock(AbstractBlock.Properties.copy(BRICKS)));
-	public static final RegistryObject<Block> OCHRE_ROOF_TILES_SLAB = reg("ochre_roof_tiles_slab", new MixedSlabBlock(AbstractBlock.Properties.copy(BRICKS)).addMixedBlockRecipe(SANDSTONE_SLAB, SANDSTONE_BOT_OCHRE_ROOF_TILES_TOP, false));
+	public static final RegistryObject<Block> CUT_SANDSTONE_BOT_OCHRE_ROOF_TILES_TOP = reg("cut_sandstone_bot_ochre_roof_tiles_top", new NoItemBlock(AbstractBlock.Properties.copy(BRICKS)));
+	public static final RegistryObject<Block> SMOOTH_SANDSTONE_BOT_OCHRE_ROOF_TILES_TOP = reg("smooth_sandstone_bot_ochre_roof_tiles_top", new NoItemBlock(AbstractBlock.Properties.copy(BRICKS)));
+	public static final RegistryObject<Block> OCHRE_ROOF_TILES_SLAB = reg("ochre_roof_tiles_slab", new MixedSlabBlock(AbstractBlock.Properties.copy(BRICKS)).addMixedBlockRecipe(SANDSTONE_SLAB, SANDSTONE_BOT_OCHRE_ROOF_TILES_TOP, false).addMixedBlockRecipe(CUT_SANDSTONE_SLAB, CUT_SANDSTONE_BOT_OCHRE_ROOF_TILES_TOP, false).addMixedBlockRecipe(SMOOTH_SANDSTONE_SLAB, SMOOTH_SANDSTONE_BOT_OCHRE_ROOF_TILES_TOP, false));
 	public static final RegistryObject<Block> SANDSTONE_COLUMN = reg("sandstone_column", new SandstoneColumnBlock(AbstractBlock.Properties.copy(SANDSTONE)));
 	public static final RegistryObject<Block> COVERED_SANDSTONE_WALL = reg("covered_sandstone_wall", new CappedWallBlock(AbstractBlock.Properties.copy(SANDSTONE)));
 	public static final RegistryObject<Block> MOSAIC_FLOOR = reg("mosaic_floor", new BlockDoTB(AbstractBlock.Properties.copy(SANDSTONE)));
+	public static final RegistryObject<Block> MOSAIC_FLOOR_DELICATE = reg("mosaic_floor_delicate", new BlockDoTB(AbstractBlock.Properties.copy(SANDSTONE)));
+	public static final RegistryObject<Block> MOSAIC_FLOOR_ROSETTE = reg("mosaic_floor_rosette", new BlockDoTB(AbstractBlock.Properties.copy(SANDSTONE)));
 	public static final RegistryObject<Block> BIRCH_FOOTSTOOL = reg("birch_footstool", new BirchFootstoolBlock(AbstractBlock.Properties.copy(BIRCH_PLANKS), 9.0F));
 	public static final RegistryObject<Block> BIRCH_COUCH = reg("birch_couch", new BirchCouchBlock(AbstractBlock.Properties.copy(BIRCH_PLANKS), 13.0F));
 	public static final RegistryObject<Block> MARBLE_STATUE_MARS = reg("marble_statue_mars", new MarbleStatueBlock(AbstractBlock.Properties.copy(SANDSTONE).noOcclusion()));

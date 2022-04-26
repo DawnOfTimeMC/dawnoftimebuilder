@@ -34,7 +34,6 @@ public class DoTBItemsRegistry {
 	public static final RegistryObject<Item> SILK = reg("silk", new ItemDoTB());
 	public static final RegistryObject<Item> TEA_LEAVES = reg("tea_leaves", new ItemDoTB());
 	public static final RegistryObject<Item> CAMELLIA_LEAVES = reg("camellia_leaves", new ItemDoTB());
-	public static final RegistryObject<Item> WAX = reg("wax", new ItemDoTB());
 	public static final RegistryObject<Item> BAMBOO_HAT = reg("bamboo_hat", new HatItem());
 	public static final RegistryObject<Item> GRAY_TILE = reg("gray_tile", new ItemDoTB());
 	public static final RegistryObject<Item> GRAY_CLAY_TILE = reg("gray_clay_tile", new ItemDoTB());

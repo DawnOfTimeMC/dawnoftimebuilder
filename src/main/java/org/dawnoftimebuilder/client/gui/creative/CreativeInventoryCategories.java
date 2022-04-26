@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import static net.minecraft.block.Blocks.*;
+import static net.minecraft.item.Items.FLINT_AND_STEEL;
 import static org.dawnoftimebuilder.DawnOfTimeBuilder.MOD_ID;
 import static org.dawnoftimebuilder.registry.DoTBBlocksRegistry.*;
 import static org.dawnoftimebuilder.registry.DoTBItemsRegistry.*;
@@ -41,9 +42,11 @@ public enum CreativeInventoryCategories {
 			ACACIA_WALL.get().asItem(),
 			ACACIA_PERGOLA.get().asItem(),
 			ACACIA_FENCE.asItem(),
+			ACACIA_FENCE_GATE.asItem(),
 			ACACIA_LATTICE.get().asItem(),
 			ACACIA_DOOR.asItem(),
 			ACACIA_TRAPDOOR.asItem(),
+			ACACIA_LEAVES.asItem(),
 			BIRCH_PLANKS.asItem(),
 			BIRCH_STAIRS.asItem(),
 			BIRCH_PLANKS_PLATE.get().asItem(),
@@ -56,9 +59,11 @@ public enum CreativeInventoryCategories {
 			BIRCH_WALL.get().asItem(),
 			BIRCH_PERGOLA.get().asItem(),
 			BIRCH_FENCE.asItem(),
+			BIRCH_FENCE_GATE.asItem(),
 			BIRCH_LATTICE.get().asItem(),
 			BIRCH_DOOR.asItem(),
 			BIRCH_TRAPDOOR.asItem(),
+			BIRCH_LEAVES.asItem(),
 			DARK_OAK_PLANKS.asItem(),
 			DARK_OAK_STAIRS.asItem(),
 			DARK_OAK_PLANKS_PLATE.get().asItem(),
@@ -71,9 +76,11 @@ public enum CreativeInventoryCategories {
 			DARK_OAK_WALL.get().asItem(),
 			DARK_OAK_PERGOLA.get().asItem(),
 			DARK_OAK_FENCE.asItem(),
+			DARK_OAK_FENCE_GATE.asItem(),
 			DARK_OAK_LATTICE.get().asItem(),
 			DARK_OAK_DOOR.asItem(),
 			DARK_OAK_TRAPDOOR.asItem(),
+			DARK_OAK_LEAVES.asItem(),
 			JUNGLE_PLANKS.asItem(),
 			JUNGLE_STAIRS.asItem(),
 			JUNGLE_PLANKS_PLATE.get().asItem(),
@@ -86,9 +93,11 @@ public enum CreativeInventoryCategories {
 			JUNGLE_WALL.get().asItem(),
 			JUNGLE_PERGOLA.get().asItem(),
 			JUNGLE_FENCE.asItem(),
+			JUNGLE_FENCE_GATE.asItem(),
 			JUNGLE_LATTICE.get().asItem(),
 			JUNGLE_DOOR.asItem(),
 			JUNGLE_TRAPDOOR.asItem(),
+			JUNGLE_LEAVES.asItem(),
 			OAK_PLANKS.asItem(),
 			OAK_STAIRS.asItem(),
 			OAK_PLANKS_PLATE.get().asItem(),
@@ -101,9 +110,11 @@ public enum CreativeInventoryCategories {
 			OAK_WALL.get().asItem(),
 			OAK_PERGOLA.get().asItem(),
 			OAK_FENCE.asItem(),
+			OAK_FENCE_GATE.asItem(),
 			OAK_LATTICE.get().asItem(),
 			OAK_DOOR.asItem(),
 			OAK_TRAPDOOR.asItem(),
+			OAK_LEAVES.asItem(),
 			SPRUCE_PLANKS.asItem(),
 			SPRUCE_STAIRS.asItem(),
 			SPRUCE_PLANKS_PLATE.get().asItem(),
@@ -116,10 +127,13 @@ public enum CreativeInventoryCategories {
 			SPRUCE_WALL.get().asItem(),
 			SPRUCE_PERGOLA.get().asItem(),
 			SPRUCE_FENCE.asItem(),
+			SPRUCE_FENCE_GATE.asItem(),
 			SPRUCE_LATTICE.get().asItem(),
 			SPRUCE_DOOR.asItem(),
 			SPRUCE_TRAPDOOR.asItem(),
-			FIREPLACE.get().asItem()
+			SPRUCE_LEAVES.asItem(),
+			FIREPLACE.get().asItem(),
+			FLINT_AND_STEEL
 	),
 
 	EGYPTIAN("egyptian",
@@ -148,9 +162,15 @@ public enum CreativeInventoryCategories {
 			FIREPLACE.get().asItem(),
 			LIMESTONE_FIREPLACE.get().asItem(),
 			LIMESTONE_CHIMNEY.get().asItem(),
+			ROOFING_SLATES.get().asItem(),
+			ROOFING_SLATES_STAIRS.get().asItem(),
+			ROOFING_SLATES_PLATE.get().asItem(),
+			ROOFING_SLATES_SLAB.get().asItem(),
+			ROOFING_SLATES_EDGE.get().asItem(),
 			CANDLESTICK.get().asItem(),
 			GRAPE.get(),
-			GRAPE_SEEDS.get()
+			GRAPE_SEEDS.get(),
+			FLINT_AND_STEEL
 	),
 
 	GERMAN("german",
@@ -217,7 +237,7 @@ public enum CreativeInventoryCategories {
 			HOLY_ARMOR_CHEST.get(),
 			HOLY_ARMOR_LEGS.get(),
 			HOLY_ARMOR_FEET.get(),
-			WAX.get()
+			FLINT_AND_STEEL
 	),
 
 	PERSIAN("persian",
@@ -321,7 +341,8 @@ public enum CreativeInventoryCategories {
 			RAIJIN_ARMOR_HEAD.get(),
 			RAIJIN_ARMOR_CHEST.get(),
 			RAIJIN_ARMOR_LEGS.get(),
-			RAIJIN_ARMOR_FEET.get()
+			RAIJIN_ARMOR_FEET.get(),
+			FLINT_AND_STEEL
 	),
 
 	PRE_COLOMBIAN("pre-columbian",
@@ -364,7 +385,8 @@ public enum CreativeInventoryCategories {
 			SERPENT_SCULPTED_COLUMN.get().asItem(),
 			COMMELINA.get().asItem(),
 			WILD_MAIZE.get().asItem(),
-			MAIZE.get().asItem()
+			MAIZE.get().asItem(),
+			FLINT_AND_STEEL
 	),
 
 	ROMAN("roman",
@@ -394,6 +416,8 @@ public enum CreativeInventoryCategories {
 			OCHRE_ROOF_TILES_EDGE.get().asItem(),
 			OCHRE_ROOF_TILES_WALL.get().asItem(),
 			MOSAIC_FLOOR.get().asItem(),
+			MOSAIC_FLOOR_DELICATE.get().asItem(),
+			MOSAIC_FLOOR_ROSETTE.get().asItem(),
 			MARBLE_STATUE_MARS.get().asItem(),
 			BIRCH_PLANKS.asItem(),
 			BIRCH_STAIRS.asItem(),
