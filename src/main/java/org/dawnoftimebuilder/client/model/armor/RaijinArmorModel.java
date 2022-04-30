@@ -424,25 +424,25 @@ public class RaijinArmorModel<T extends LivingEntity> extends CustomArmorModel<T
 		switch (this.slot) {
 			case HEAD:
 				f = d % (2.0F * (float)Math.PI);
-				this.flyA.y = 0.05F * sinPI(d + 1.0F);
+				this.flyA.y = -15.0F + sinPI(d + 1.0F);
 				this.flyA.zRot = f;
-				this.flyB.y = 0.05F * sinPI(d + 1.333F);
+				this.flyB.y = -15.0F + sinPI(d + 1.333F);
 				this.flyB.zRot = f + 0.33F;
-				this.flyC.y = 0.05F * sinPI(d + 1.667F);
+				this.flyC.y = -7.5F + sinPI(d + 1.667F);
 				this.flyC.zRot = f + 0.67F;
-				this.flyD.y = 0.05F * sinPI(d + 0.333F);
+				this.flyD.y = -7.5F + sinPI(d + 0.333F);
 				this.flyD.zRot = f + 0.17F;
-				this.flyE.y = 0.05F * sinPI(d);
+				this.flyE.y = 2.0F + sinPI(d);
 				this.flyE.zRot = f + 0.83F;
-				this.flyF.y = 0.05F * sinPI(d + 0.667F);
+				this.flyF.y = 2.0F + sinPI(d + 0.667F);
 				this.flyF.zRot = f + 0.5F;
 				break;
 
 			case CHEST:
 				f = 0.03F * sinPI(2 * d);
-				d = (0.866F - sinPI(0.333F - f)) * 0.25F;
-				this.chestScarfTop.z = d * 0.8659F;
-				this.chestScarfTop.y = -d * 0.75F;
+				d = (0.866F - sinPI(0.333F - f)) * 4.0F;
+				this.chestScarfTop.y = -4.5F + -d * 0.75F;
+				this.chestScarfTop.z = 6.5F + d * 0.8659F;
 				this.chestScarfRightA.y = d * 0.5F;
 				this.chestScarfRightB.xRot = 1.047F + f * (float)Math.PI;
 				this.chestScarfTopRightA.zRot = -1.047F - f * (float)Math.PI;
