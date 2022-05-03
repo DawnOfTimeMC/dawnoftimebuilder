@@ -34,6 +34,7 @@ public class DawnOfTimeBuilder {
         DoTBRecipesRegistry.RECIPES.register(eventBus);
         DoTBTileEntitiesRegistry.TILE_ENTITY_TYPES.register(eventBus);
         DoTBContainersRegistry.CONTAINER_TYPES.register(eventBus);
+        DoTBBlockPlacerRegistry.PLACER_TYPES.register(eventBus);
         eventBus.addListener(HandlerCommon::fMLCommonSetupEvent);
         eventBus.addListener(HandlerCommon::entityAttributeCreationEvent);
         eventBus.addListener(HandlerClient::fMLClientSetupEvent);

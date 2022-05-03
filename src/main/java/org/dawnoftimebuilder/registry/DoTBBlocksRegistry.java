@@ -206,7 +206,7 @@ public class DoTBBlocksRegistry {
 	public static final RegistryObject<Block> CAMELLIA = reg("camellia", new GrowingBushBlock("camellia_seeds", PLAINS, 3));
 	public static final RegistryObject<Block> MULBERRY = reg("mulberry", new MulberryBlock("mulberry", PLAINS, 3, 2, DoTBFoods.MULBERRY));
 	public static final RegistryObject<Block> IKEBANA_FLOWER_POT = reg("ikebana_flower_pot", new IkebanaFlowerPotBlock(AbstractBlock.Properties.copy(FLOWER_POT)));
-	public static final RegistryObject<Block> SPRUCE_LOW_TABLE = reg("spruce_low_table" ,new SpruceLowTableBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.COLOR_BLACK).strength(2.0F, 6.0F).sound(SoundType.WOOD).noOcclusion().lightLevel(litBlockEmission(14))));
+	public static final RegistryObject<Block> SPRUCE_LOW_TABLE = reg("spruce_low_table", new SpruceLowTableBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.COLOR_BLACK).strength(2.0F, 6.0F).sound(SoundType.WOOD).noOcclusion().lightLevel(litBlockEmission(14))));
 	public static final RegistryObject<Block> SPRUCE_LEGLESS_CHAIR = reg("spruce_legless_chair", new SpruceLeglessChairBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.COLOR_BLACK).strength(2.0F, 6.0F).sound(SoundType.WOOD).noOcclusion(), 3.0F));
 	public static final RegistryObject<Block> WHITE_LITTLE_FLAG = reg("white_little_flag", new LittleFlagBlock(AbstractBlock.Properties.copy(WHITE_WOOL)));
 	public static final RegistryObject<Block> PAPER_WALL = reg("paper_wall", new PaneBlockDoTB(AbstractBlock.Properties.copy(WHITE_WOOL).strength(1.5F, 1.5F)));

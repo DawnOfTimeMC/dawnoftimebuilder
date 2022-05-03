@@ -3,6 +3,7 @@ package org.dawnoftimebuilder.block.precolumbian;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.material.Material;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
@@ -93,6 +94,8 @@ public class WildMaizeBlock extends WildPlantBlock implements IBlockGeneration {
 
 	@Override
 	public void generateOnPos(IWorld world, BlockPos pos, BlockState state, Random random) {
+		if(world.getBlockState(pos.above()).getMaterial() != Material.AIR)
+			return;
 		world.setBlock(pos, state, 2);
 		world.setBlock(pos.above(), state.setValue(HALF, Half.TOP), 2);
 	}

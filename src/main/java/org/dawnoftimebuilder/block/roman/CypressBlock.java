@@ -3,6 +3,7 @@ package org.dawnoftimebuilder.block.roman;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.material.Material;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
@@ -179,6 +180,11 @@ public class CypressBlock extends BlockDoTB implements IBlockGeneration {
     @Override
     public void generateOnPos(IWorld world, BlockPos pos, BlockState state, Random random) {
         int maxSize = 2 + random.nextInt(5);
+        for(int i = 0; i < maxSize; i++){
+            if(world.getBlockState(pos.above(i)).getMaterial() != Material.AIR){
+                return;
+            }
+        }
         world.setBlock(pos, state.setValue(SIZE, 0), 2);
         int size = 1;
         for (int i = maxSize; i > 0; i--){
