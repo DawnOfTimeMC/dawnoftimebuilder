@@ -2,6 +2,9 @@
   {
     "source": "/src/main/resources/assets/dawnoftimebuilder/lang/en_us.json",
     "translation": "/src/main/resources/assets/dawnoftimebuilder/lang/%locale_with_underscore%.json",
+    "excluded_target_languages": [
+        "uk",
+    ]
     "translation_replace": {
       "af_ZA": "af_za"
       "ar_SA": "ar_sa"

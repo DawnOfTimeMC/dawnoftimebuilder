@@ -76,7 +76,7 @@ public class CypressBlock extends BlockDoTB implements IBlockGeneration {
                 //We put a CypressBlock on top of the cypress
                 BlockPos topPos = this.getHighestCypressPos(worldIn, pos).above();
                 if(topPos.getY() <= HIGHEST_Y){
-                    if(!worldIn.isClientSide()) {
+                    if(!worldIn.isClientSide() && worldIn.getBlockState(topPos).isAir(worldIn, topPos)) {
                         worldIn.setBlock(topPos, this.defaultBlockState(), 11);
                         if(!player.isCreative()) {
                             heldItemStack.shrink(1);

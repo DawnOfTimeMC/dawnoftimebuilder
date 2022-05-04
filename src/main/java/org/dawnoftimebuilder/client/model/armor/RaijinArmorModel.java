@@ -79,7 +79,7 @@ public class RaijinArmorModel<T extends LivingEntity> extends CustomArmorModel<T
 
 		switch (slot) {
 			case HEAD:
-				this.headArmor = new ModelRenderer(this, 0, 0);
+				this.headArmor = new ModelRenderer(this);
 				this.headArmor.setPos(0.0F, 0.0F, 0.0F);
 				this.headHornLeftA = new ModelRenderer(this, 0, 0);
 				this.headHornLeftA.setPos(2.5F, -6.5F, -5.0F);
