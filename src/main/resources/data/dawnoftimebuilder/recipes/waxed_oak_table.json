@@ -1,16 +1,16 @@
 {
 	"type": "minecraft:crafting_shaped",
 	"pattern": [
-		"I  ",
-		"IiI",
-		"I I"
+		"III",
+		"i i",
+		"i i"
 	],
 	"key": {
 		"I": {
 			"item": "dawnoftimebuilder:waxed_oak_planks_slab"
 		},
 		"i": {
-			"item": "dawnoftimebuilder:thatch_wheat"
+			"tag": "forge:rods/wooden"
 		}
 	},
 	"result": {

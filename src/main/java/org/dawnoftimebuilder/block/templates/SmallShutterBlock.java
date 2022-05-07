@@ -23,7 +23,7 @@ import net.minecraft.world.World;
 import org.dawnoftimebuilder.util.DoTBBlockStateProperties;
 import org.dawnoftimebuilder.util.DoTBBlockUtils;
 
-public class SmallShuttersBlock extends WaterloggedBlock {
+public class SmallShutterBlock extends WaterloggedBlock {
 
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
@@ -31,7 +31,7 @@ public class SmallShuttersBlock extends WaterloggedBlock {
     public static final EnumProperty<DoorHingeSide> HINGE = BlockStateProperties.DOOR_HINGE;
     private static final VoxelShape[] SHAPES = DoTBBlockUtils.GenerateHorizontalShapes(makeShapes());
 
-    public SmallShuttersBlock(Properties properties) {
+    public SmallShutterBlock(Properties properties) {
         super(properties);
         this.registerDefaultState(this.defaultBlockState().setValue(OPEN_POSITION, DoTBBlockStateProperties.OpenPosition.CLOSED).setValue(HINGE, DoorHingeSide.LEFT).setValue(POWERED, false));
     }

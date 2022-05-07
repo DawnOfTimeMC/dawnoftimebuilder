@@ -20,11 +20,11 @@ import org.dawnoftimebuilder.util.DoTBBlockStateProperties;
 
 import javax.annotation.Nullable;
 
-public class ShuttersBlock extends SmallShuttersBlock {
+public class ShutterBlock extends SmallShutterBlock {
 
     public static final EnumProperty<Half> HALF = BlockStateProperties.HALF;
 
-    public ShuttersBlock(Properties properties) {
+    public ShutterBlock(Properties properties) {
         super(properties);
         this.registerDefaultState(this.defaultBlockState().setValue(HALF, Half.BOTTOM));
     }

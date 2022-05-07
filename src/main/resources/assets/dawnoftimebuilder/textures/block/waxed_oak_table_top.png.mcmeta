@@ -1,0 +1,15 @@
+{
+    "ctm":{
+        "ctm_version": 1,
+        "type":"ctm",
+        "layer":"SOLID",
+        "textures":[
+            "dawnoftimebuilder:block/waxed_oak_table_top-ctm"
+        ],
+        "extra": {
+            "connect_to": [
+                { "block": "dawnoftimebuilder:waxed_oak_table" }
+            ]
+        }
+    }
+}

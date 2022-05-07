@@ -1,81 +1,66 @@
 package org.dawnoftimebuilder.block.german;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.state.BooleanProperty;
-import net.minecraft.state.StateContainer;
-import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.util.Direction;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.World;
-import org.dawnoftimebuilder.block.templates.DisplayerBlock;
+import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.util.math.shapes.VoxelShapes;
+import org.dawnoftimebuilder.block.templates.MultiblockTableBlock;
+import org.dawnoftimebuilder.util.DoTBBlockUtils;
 
-import javax.annotation.Nonnull;
+public class WaxedOakTableBlock extends MultiblockTableBlock {
 
-public class WaxedOakTableBlock extends DisplayerBlock {
-
-    public static final BooleanProperty NORTH = BlockStateProperties.NORTH;
-    public static final BooleanProperty EAST = BlockStateProperties.EAST;
-    public static final BooleanProperty SOUTH = BlockStateProperties.SOUTH;
-    public static final BooleanProperty WEST = BlockStateProperties.WEST;
+    private static final VoxelShape[] BOT_SHAPES = makeShapes();
+    private static final VoxelShape TOP_SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D);
 
     public WaxedOakTableBlock(Properties properties) {
         super(properties);
-        this.registerDefaultState(this.defaultBlockState().setValue(EAST, false).setValue(SOUTH, false).setValue(WEST, false).setValue(NORTH, false).setValue(WATERLOGGED, Boolean.FALSE).setValue(LIT, false));
-    }
-
-    @Nonnull
-    @Override
-    public BlockState getStateForPlacement(BlockItemUseContext context) {
-        BlockState state = super.getStateForPlacement(context);
-        World world = context.getLevel();
-        BlockPos pos = context.getClickedPos();
-        return state
-                .setValue(NORTH, world.getBlockState(pos.north()).getBlock().equals(this))
-                .setValue(EAST, world.getBlockState(pos.east()).getBlock().equals(this))
-                .setValue(SOUTH, world.getBlockState(pos.south()).getBlock().equals(this))
-                .setValue(WEST, world.getBlockState(pos.west()).getBlock().equals(this));
     }
 
     @Override
-    protected void createBlockStateDefinition(StateContainer.Builder<net.minecraft.block.Block, BlockState> builder) {
-        super.createBlockStateDefinition(builder);
-        builder.add(NORTH, EAST, SOUTH, WEST);
+    public VoxelShape getShapeByIndex(int index, boolean top) {
+        return top ? TOP_SHAPE : BOT_SHAPES[index];
+    }
+    private static VoxelShape[] makeShapes() {
+        // South - West - North - East:
+        VoxelShape[] vs_side = DoTBBlockUtils.GenerateHorizontalShapes(new VoxelShape[]{VoxelShapes.or(Block.box(1.0D, 1.0D, 13.5D, 15.0D, 3.0D, 14.5D), Block.box(1.0D, 12.0D, 13.5D, 15.0D, 16.0D, 14.5D))});
+        // SW - NW - NE - SE:
+        VoxelShape[] vs_pillar = DoTBBlockUtils.GenerateHorizontalShapes(new VoxelShape[]{Block.box(0.5D, 0.0D, 12.5D, 3.5D, 16.0D, 15.5D)});
+        // W - N - E - S
+        VoxelShape[] vs_pillar_left = DoTBBlockUtils.GenerateHorizontalShapes(new VoxelShape[]{Block.box(0.0D, 0.0D, 13.0D, 1.0D, 16.0D, 15.0D)});
+        // S - W - N - E
+        VoxelShape[] vs_pillar_right = DoTBBlockUtils.GenerateHorizontalShapes(new VoxelShape[]{Block.box(1.0D, 0.0D, 15.0D, 3.0D, 16.0D, 16.0D)});
+        return new VoxelShape[]{
+                VoxelShapes.empty(),
+                VoxelShapes.or(vs_side[0], vs_pillar_left[0], vs_pillar_right[3]),
+                VoxelShapes.or(vs_side[1], vs_pillar_left[1], vs_pillar_right[0]),
+                VoxelShapes.or(vs_side[0], vs_side[1], vs_pillar[0], vs_pillar_left[1], vs_pillar_right[3]),
+                VoxelShapes.or(vs_side[2], vs_pillar_left[2], vs_pillar_right[1]),
+                VoxelShapes.or(vs_side[0], vs_side[2], vs_pillar_left[0], vs_pillar_right[3], vs_pillar_left[2], vs_pillar_right[1]),
+                VoxelShapes.or(vs_side[1], vs_side[2], vs_pillar[1], vs_pillar_left[2], vs_pillar_right[0]),
+                VoxelShapes.or(vs_side[0], vs_side[1], vs_side[2], vs_pillar[0], vs_pillar[1], vs_pillar_left[2], vs_pillar_right[3]),
+                VoxelShapes.or(vs_side[3], vs_pillar_left[3], vs_pillar_right[2]),
+                VoxelShapes.or(vs_side[0], vs_side[3], vs_pillar[3], vs_pillar_left[0], vs_pillar_right[2]),
+                VoxelShapes.or(vs_side[1], vs_side[3], vs_pillar_left[1], vs_pillar_right[0], vs_pillar_left[3], vs_pillar_right[2]),
+                VoxelShapes.or(vs_side[0], vs_side[1], vs_side[3], vs_pillar[0], vs_pillar[3], vs_pillar_left[1], vs_pillar_right[2]),
+                VoxelShapes.or(vs_side[2], vs_side[3], vs_pillar[2], vs_pillar_right[1], vs_pillar_left[3]),
+                VoxelShapes.or(vs_side[0], vs_side[2], vs_side[3], vs_pillar[2], vs_pillar[3], vs_pillar_left[0], vs_pillar_right[1]),
+                VoxelShapes.or(vs_side[1],vs_side[2], vs_side[3], vs_pillar[1], vs_pillar[2], vs_pillar_left[3], vs_pillar_right[0]),
+                VoxelShapes.or(vs_side[0], vs_side[1], vs_side[2], vs_side[3], vs_pillar[0], vs_pillar[1], vs_pillar[2], vs_pillar[3]),
+        };
     }
 
     @Override
-    public double getDisplayerX(BlockState state) {
-        return 0;
+    public double getDisplayerX(BlockState state){
+        return 0.1875D;
     }
 
     @Override
-    public double getDisplayerY(BlockState state) {
-        return 0;
+    public double getDisplayerY(BlockState state){
+        return 0.125D;
     }
 
     @Override
-    public double getDisplayerZ(BlockState state) {
-        return 0;
-    }
-
-    @Override
-    public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
-        if(facing.getAxis().isHorizontal()){
-            BlockState state = super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
-            boolean canConnect = facingState.getBlock().equals(this);
-            switch(facing){
-                default:
-                case NORTH:
-                    return state.setValue(NORTH, canConnect);
-                case WEST:
-                    return state.setValue(WEST, canConnect);
-                case SOUTH:
-                    return state.setValue(SOUTH, canConnect);
-                case EAST:
-                    return state.setValue(EAST, canConnect);
-            }
-        }
-        return super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+    public double getDisplayerZ(BlockState state){
+        return 0.1875D;
     }
 }

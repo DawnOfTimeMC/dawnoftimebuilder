@@ -1,5 +1,6 @@
 package org.dawnoftimebuilder.block.templates;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.BlockItemUseContext;
@@ -31,8 +32,8 @@ public class PortcullisBlock extends WaterloggedBlock {
 	private static final EnumProperty<Direction.Axis> HORIZONTAL_AXIS = BlockStateProperties.HORIZONTAL_AXIS;
 	private static final EnumProperty<DoTBBlockStateProperties.VerticalConnection> VERTICAL_CONNECTION = DoTBBlockStateProperties.VERTICAL_CONNECTION;
 
-	private static final VoxelShape VS_AXIS_X = net.minecraft.block.Block.box(0.0D, 0.0D, 6.0D, 16.0D, 16.0D, 10.0D);
-	private static final VoxelShape VS_AXIS_Z = net.minecraft.block.Block.box(6.0D, 0.0D, 0.0D, 10.0D, 16.0D, 16.0D);
+	private static final VoxelShape VS_AXIS_X = Block.box(0.0D, 0.0D, 6.0D, 16.0D, 16.0D, 10.0D);
+	private static final VoxelShape VS_AXIS_Z = Block.box(6.0D, 0.0D, 0.0D, 10.0D, 16.0D, 16.0D);
 
 	public PortcullisBlock(Properties properties) {
 		super(properties);
