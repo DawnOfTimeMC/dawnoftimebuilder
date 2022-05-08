@@ -46,8 +46,8 @@ public class PharaohArmorModel<T extends LivingEntity> extends CustomArmorModel<
 	private ModelRenderer footRight;
 	private ModelRenderer footLeft;
 
-	public PharaohArmorModel(EquipmentSlotType slot, boolean isSteve) {
-		super(slot, 64, 64);
+	public PharaohArmorModel(EquipmentSlotType slot, boolean isSteve, float scale) {
+		super(slot, 64, 64, scale);
 
 		switch (slot) {
 			case HEAD:

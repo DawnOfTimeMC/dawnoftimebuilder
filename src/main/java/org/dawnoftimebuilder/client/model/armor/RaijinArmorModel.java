@@ -74,8 +74,8 @@ public class RaijinArmorModel<T extends LivingEntity> extends CustomArmorModel<T
 	public ModelRenderer legRingRightA;
 	public ModelRenderer legRingRightB;
 
-	public RaijinArmorModel(EquipmentSlotType slot, boolean isSteve) {
-		super(slot, 64, 64);
+	public RaijinArmorModel(EquipmentSlotType slot, boolean isSteve, float scale) {
+		super(slot, 64, 64, scale);
 
 		switch (slot) {
 			case HEAD:

@@ -19,12 +19,12 @@ public class HolyArmorItem extends CustomArmorItem {
 	@OnlyIn(Dist.CLIENT)
 	@Override
 	public CustomArmorModel<LivingEntity> createModel(LivingEntity entityLiving) {
-		return new HolyArmorModel<>(this.slot, true);
+		return new HolyArmorModel<>(this.slot, true, entityLiving.getScale());
 	}
 
 	@OnlyIn(Dist.CLIENT)
 	@Override
 	public CustomArmorModel<LivingEntity> createSlimModel(LivingEntity entityLiving) {
-		return new HolyArmorModel<>(this.slot, false);
+		return new HolyArmorModel<>(this.slot, false, entityLiving.getScale());
 	}
 }

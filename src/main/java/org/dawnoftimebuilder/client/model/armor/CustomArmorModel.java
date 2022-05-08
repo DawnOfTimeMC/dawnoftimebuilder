@@ -14,9 +14,10 @@ public abstract class CustomArmorModel<T extends LivingEntity> extends BipedMode
 
 	public final EquipmentSlotType slot;
 
-	public CustomArmorModel(EquipmentSlotType slot, int textureWidthIn, int textureHeightIn){
-		super(0.0F, 0.0F, textureWidthIn, textureHeightIn);
+	public CustomArmorModel(EquipmentSlotType slot, int textureWidthIn, int textureHeightIn, float scale){
+		super(scale, 0.0F, textureWidthIn, textureHeightIn);
 		this.slot = slot;
+		this.hat = new ModelRenderer(this, 0, 0);
 	}
 
 	public void setupArmorAnim(T entityIn, float ageInTicks) {
@@ -45,7 +46,6 @@ public abstract class CustomArmorModel<T extends LivingEntity> extends BipedMode
 			this.rightLeg.yRot = f * entityAS.getRightLegPose().getY();
 			this.rightLeg.zRot = f * entityAS.getRightLegPose().getZ();
 			this.rightLeg.setPos(-1.9F, 11.0F, 0.0F);
-			this.hat.copyFrom(this.head);
 			return;
 		}
 	}

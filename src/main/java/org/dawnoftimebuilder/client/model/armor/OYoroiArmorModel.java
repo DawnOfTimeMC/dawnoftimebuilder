@@ -55,8 +55,8 @@ public class OYoroiArmorModel<T extends LivingEntity> extends CustomArmorModel<T
 	public ModelRenderer legRightProt;
 	public ModelRenderer legRightSub;
 
-	public OYoroiArmorModel(EquipmentSlotType slot, boolean isSteve) {
-		super(slot,64, 64);
+	public OYoroiArmorModel(EquipmentSlotType slot, boolean isSteve, float scale) {
+		super(slot,64, 64, scale);
 
 		switch (slot) {
 			case HEAD:

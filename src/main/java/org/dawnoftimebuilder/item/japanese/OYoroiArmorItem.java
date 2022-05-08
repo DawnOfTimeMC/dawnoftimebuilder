@@ -19,12 +19,12 @@ public class OYoroiArmorItem extends CustomArmorItem {
 	@OnlyIn(Dist.CLIENT)
 	@Override
 	public CustomArmorModel<LivingEntity> createModel(LivingEntity entityLiving) {
-		return new OYoroiArmorModel<>(this.slot, true);
+		return new OYoroiArmorModel<>(this.slot, true, entityLiving.getScale());
 	}
 
 	@OnlyIn(Dist.CLIENT)
 	@Override
 	public CustomArmorModel<LivingEntity> createSlimModel(LivingEntity entityLiving) {
-		return new OYoroiArmorModel<>(this.slot, false);
+		return new OYoroiArmorModel<>(this.slot, false, entityLiving.getScale());
 	}
 }

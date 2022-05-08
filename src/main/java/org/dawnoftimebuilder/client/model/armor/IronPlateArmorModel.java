@@ -54,8 +54,8 @@ public class IronPlateArmorModel<T extends LivingEntity> extends CustomArmorMode
 	public ModelRenderer armorLeftLeg;
 	public ModelRenderer armorRightLeg;
 
-	public IronPlateArmorModel(EquipmentSlotType slot, boolean isSteve) {
-		super(slot, 128, 64);
+	public IronPlateArmorModel(EquipmentSlotType slot, boolean isSteve, float scale) {
+		super(slot, 128, 64, scale);
 
 		switch (slot) {
 			case HEAD:
