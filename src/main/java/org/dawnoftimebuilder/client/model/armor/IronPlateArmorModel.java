@@ -154,15 +154,15 @@ public class IronPlateArmorModel<T extends LivingEntity> extends CustomArmorMode
 				this.middleTopBody.setPos(-1.5F, 9.2F, -2.4F);
 				this.middleTopBody.addBox(0.0F, -7.0F, 0.0F, 3, 7, 0, 0.0F);
 				setRotateAngle(middleTopBody, 0.3490658503988659F, 0.0F, 0.0F);
-				this.miscA = new ModelRenderer(this, 85, 35);
-				this.miscA.setPos(0.0F, 8.6F, 3.3F);
-				this.miscA.addBox(-3.5F, 0.2F, 0.0F, 7, 12, 0, 0.0F);
-				setRotateAngle(miscA, 0.045553093477052F, 0.0F, 0.0F);
 				this.rightTopBody = new ModelRenderer(this, 33, 18);
 				this.rightTopBody.mirror = true;
 				this.rightTopBody.setPos(0.0F, 0.0F, 0.0F);
 				this.rightTopBody.addBox(-1.1F, 0.1F, -5.3F, 4, 8, 1, 0.0F);
 				setRotateAngle(rightTopBody, 0.36425021489121656F, 0.4553564018453205F, 0.36425021489121656F);
+				this.miscA = new ModelRenderer(this, 85, 35);
+				this.miscA.setPos(0.0F, 8.6F, 3.3F);
+				this.miscA.addBox(-3.5F, 0.2F, 0.0F, 7, 12, 0, 0.0F);
+				setRotateAngle(miscA, 0.045553093477052F, 0.0F, 0.0F);
 
 				if(isSteve){
 					this.leftHand = new ModelRenderer(this, 112, 48);
@@ -218,8 +218,8 @@ public class IronPlateArmorModel<T extends LivingEntity> extends CustomArmorMode
 				this.body.addChild(this.backRightBody);
 				this.body.addChild(this.leftTopBody);
 				this.body.addChild(this.middleTopBody);
-				this.body.addChild(this.miscA);
 				this.body.addChild(this.rightTopBody);
+				this.body.addChild(this.miscA);
 
 				this.leftArm = leftHand;
 				this.leftArm.addChild(this.leftShoulderA);

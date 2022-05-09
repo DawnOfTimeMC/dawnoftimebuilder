@@ -52,7 +52,7 @@ public class SpruceLowTableBlock extends DisplayerBlock {
 
 	@Override
 	public double getDisplayerY(BlockState state){
-		return 0.4375D;
+		return 0.46875D;
 	}
 
 	@Override

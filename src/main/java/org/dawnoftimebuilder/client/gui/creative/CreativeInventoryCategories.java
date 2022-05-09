@@ -223,7 +223,6 @@ public enum CreativeInventoryCategories {
 			WAXED_OAK_CHANDELIER.get().asItem(),
 			WAXED_OAK_TABLE.get().asItem(),
 			WAXED_OAK_CHAIR.get().asItem(),
-			WAXED_OAK_TABLE.get().asItem(),
 			PLANTER_GERANIUM_PINK.get().asItem(),
 			FLAT_ROOF_TILES.get().asItem(),
 			FLAT_ROOF_TILES_STAIRS.get().asItem(),
