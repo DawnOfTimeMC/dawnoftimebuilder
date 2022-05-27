@@ -104,10 +104,11 @@ public class PlasteredStoneCressetBlock extends WaterloggedBlock {
     @Override
     public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
         super.tick(state, worldIn, pos, rand);
-        int currentHeat = Math.max(state.getValue(HEAT), 0);
-        if(state.getValue(LIT) && currentHeat < 4){
+        int heat = state.getValue(HEAT);
+        if(state.getValue(LIT) && heat < 4){
             if(rand.nextInt(10) == 0) {
-                worldIn.setBlock(pos, state.setValue(HEAT, currentHeat - 1).setValue(LIT, currentHeat > 0), 2);
+                heat = Math.max(heat - 1, 0);
+                worldIn.setBlock(pos, state.setValue(HEAT, heat).setValue(LIT, heat > 0), 2);
             }
         }
     }
