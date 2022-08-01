@@ -24,10 +24,9 @@ public class SilkmothModel extends EntityModel<SilkmothEntity> {
 		this.texHeight = 32;
 
 		this.body = new ModelRenderer(this, 0, 13);
-		this.body.setPos(0.0F, 0.0F, 0.0F);
+		this.body.setPos(0.0F, 40.0F, 0.0F);
 		this.body.addBox(-1.0F, -1.0F, -0.2F, 2, 2, 5, -0.2F);
 		this.setRotateAngle(body, -0.175F, 0.0F, 0.0F);
-		this.body.y = 1.4F;
 		this.head = new ModelRenderer(this, 0, 0);
 		this.head.setPos(0.0F, 0.0F, 0.0F);
 		this.head.addBox(-1.5F, -1.5F, -2.0F, 3, 3, 3, -1.0F);

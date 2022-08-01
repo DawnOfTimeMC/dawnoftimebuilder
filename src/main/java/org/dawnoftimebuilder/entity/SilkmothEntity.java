@@ -1,10 +1,7 @@
 package org.dawnoftimebuilder.entity;
 
 import net.minecraft.block.BlockState;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntitySize;
-import net.minecraft.entity.MobEntity;
-import net.minecraft.entity.Pose;
+import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
@@ -20,6 +17,8 @@ import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 import org.dawnoftimebuilder.DoTBConfig;
 import org.dawnoftimebuilder.block.templates.DoubleGrowingBushBlock;
@@ -52,6 +51,14 @@ public class SilkmothEntity extends AmbientEntity {
 		this.setDeltaMovement(this.getDeltaMovement().multiply(1.0D, 0.6D, 1.0D));
 	}
 
+	@Nullable
+	@Override
+	public ILivingEntityData finalizeSpawn(IServerWorld world, DifficultyInstance difficultyInstance, SpawnReason spawnReason, @Nullable ILivingEntityData data, @Nullable CompoundNBT nbt) {
+		this.getEntityData().set(ROTATION_POS, this.blockPosition());
+		return super.finalizeSpawn(world, difficultyInstance, spawnReason, data, nbt);
+	}
+
+	@Override
 	protected void customServerAiStep() {
 		super.customServerAiStep();
 
@@ -82,8 +89,7 @@ public class SilkmothEntity extends AmbientEntity {
 
 		Vector3d motionVector = this.getDeltaMovement();
 		this.setDeltaMovement(motionVector.x * 0.5D + Math.cos(alpha) * 0.15D, Math.sin(this.tickCount / 20.0D) * 0.05D, motionVector.z * 0.5D + Math.sin(alpha) * 0.15D);
-
-		this.yHeadRot = (float) MathHelper.wrapDegrees(180.0D * alpha / Math.PI - 90.0D);
+		this.yRot = (float) MathHelper.wrapDegrees(180.0D * alpha / Math.PI - 90.0D);
 	}
 
 	private void changeRotationPos(){

@@ -157,7 +157,7 @@ public class DoubleGrowingBushBlock extends GrowingBushBlock {
     }
 
 	@Override
-	public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
+	public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
 		if(this.isBottomCrop(state)) {
 			if (!worldIn.isAreaLoaded(pos, 1) || state.getValue(PERSISTENT))
 				return; // Forge: prevent loading unloaded chunks when checking neighbor's light
