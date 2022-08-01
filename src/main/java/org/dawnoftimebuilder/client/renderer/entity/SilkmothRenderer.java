@@ -16,7 +16,7 @@ public class SilkmothRenderer extends MobRenderer<SilkmothEntity, SilkmothModel>
 	private static final ResourceLocation SILKMOTH_TEXTURES = new ResourceLocation(MOD_ID, "textures/entity/silkmoth.png");
 
 	public SilkmothRenderer(EntityRendererManager renderManagerIn) {
-		super(renderManagerIn, new SilkmothModel(), 0.1F);
+				super(renderManagerIn, new SilkmothModel(), 0.1F);
 	}
 
 	@Override

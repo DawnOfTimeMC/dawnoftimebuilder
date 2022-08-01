@@ -47,7 +47,7 @@ public class DisplayerTERenderer extends TileEntityRenderer<DisplayerTileEntity>
 					if (!itemStack.isEmpty()) {
 						matrixStack.pushPose();
 						matrixStack.translate(xStart, yStart, zStart);
-						matrixStack.translate((0.5D - xStart) * (i % 3), 0.05D, (0.5D - zStart) * Math.floor((double) i / 3));
+						matrixStack.translate((0.5D - xStart) * (i % 3), 0.015D, (0.5D - zStart) * Math.floor((double) i / 3));
 						if (i == 0 || i == 8) rotationAngle = 20.0F;
 						else if (i == 2 || i == 6) rotationAngle = -20.0F;
 						else rotationAngle = 0.0F;
@@ -61,7 +61,7 @@ public class DisplayerTERenderer extends TileEntityRenderer<DisplayerTileEntity>
 								matrixStack.translate(0.0F, 0.485F, 0.0F);
 							} else {
 								matrixStack.scale(0.2F, 0.2F, 0.2F);
-								matrixStack.translate(0.0F, 0.4F, 0.0F);
+								matrixStack.translate(0.0F, 0.45F, 0.0F);
 							}
 							itemRenderer.renderStatic(itemStack, ItemCameraTransforms.TransformType.NONE, combinedLightIn, combinedOverlayIn, matrixStack, buffer);
 						} else {

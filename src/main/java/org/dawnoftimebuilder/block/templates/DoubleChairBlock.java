@@ -18,11 +18,12 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.IWorld;
+import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
-public class DoubleChairBlock extends ChairBlock{
+public class DoubleChairBlock extends ChairBlock {
 
     public static final EnumProperty<Half> HALF = BlockStateProperties.HALF;
 
@@ -66,23 +67,13 @@ public class DoubleChairBlock extends ChairBlock{
     }
 
     @Override
-    public void playerDestroy(World worldIn, PlayerEntity player, BlockPos pos, BlockState state, @Nullable TileEntity te, ItemStack stack) {
-        super.playerDestroy(worldIn, player, pos, Blocks.AIR.defaultBlockState(), te, stack);
-    }
-
-    @Override
-    public void playerWillDestroy(World worldIn, BlockPos pos, BlockState state, PlayerEntity player) {
-        BlockPos blockpos = (state.getValue(HALF) == Half.TOP) ? pos.below() : pos.above();
-        BlockState otherState = worldIn.getBlockState(blockpos);
-        if(otherState.getBlock() == this && otherState.getValue(HALF) != state.getValue(HALF)) {
-            worldIn.setBlock(blockpos, Blocks.AIR.defaultBlockState(), 35);
-            worldIn.levelEvent(player, 2001, blockpos, Block.getId(otherState));
-            ItemStack itemstack = player.getMainHandItem();
-            if(!worldIn.isClientSide() && !player.isCreative()) {
-                Block.dropResources(state, worldIn, pos, null, player, itemstack);
-                Block.dropResources(otherState, worldIn, blockpos, null, player, itemstack);
+    public boolean canSurvive(BlockState state, IWorldReader worldIn, BlockPos pos) {
+        if(state.getValue(HALF) == Half.TOP){
+            BlockState bottomState = worldIn.getBlockState(pos.below());
+            if(bottomState.getBlock() == this){
+                return bottomState.getValue(HALF) == Half.BOTTOM && bottomState.getValue(FACING) == state.getValue(FACING);
             }
-        }
-        super.playerWillDestroy(worldIn, pos, state, player);
+        }else return true;
+        return false;
     }
 }

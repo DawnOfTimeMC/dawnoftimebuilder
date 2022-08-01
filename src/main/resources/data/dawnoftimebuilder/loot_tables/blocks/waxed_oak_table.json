@@ -9,13 +9,13 @@
                     "conditions": [
                         {
                             "condition": "minecraft:block_state_property",
-                            "block": "dawnoftimebuilder:waxed_oak_chair",
+                            "block": "dawnoftimebuilder:waxed_oak_table",
                             "properties": {
                                 "half": "bottom"
                             }
                         }
                     ],
-                    "name": "dawnoftimebuilder:waxed_oak_chair"
+                    "name": "dawnoftimebuilder:waxed_oak_table"
                 }
             ],
             "conditions": [

@@ -58,8 +58,8 @@ public class HolyArmorModel<T extends LivingEntity> extends CustomArmorModel<T> 
 	public ModelRenderer armorLegRight;
 	public ModelRenderer legRightWing;
 
-	public HolyArmorModel(EquipmentSlotType slot, boolean isSteve) {
-		super(slot, 128, 128);
+	public HolyArmorModel(EquipmentSlotType slot, boolean isSteve, float scale) {
+		super(slot, 128, 128, scale);
 
 		switch (slot) {
 			case HEAD:

@@ -34,8 +34,8 @@ public class JapaneseLightArmorModel<T extends LivingEntity> extends CustomArmor
 	private ModelRenderer legLeftLayer;
 	private ModelRenderer legRightLayer;
 
-	public JapaneseLightArmorModel(EquipmentSlotType slot, boolean isSteve) {
-		super(slot, 64, 32);
+	public JapaneseLightArmorModel(EquipmentSlotType slot, boolean isSteve, float scale) {
+		super(slot, 64, 32, scale);
 
 		switch (slot) {
 			case HEAD:

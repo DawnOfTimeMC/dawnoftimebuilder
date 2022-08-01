@@ -1,0 +1,72 @@
+{
+	"multipart": [
+		{
+			"when": { "half": "top" },
+			"apply": { "model": "dawnoftimebuilder:block/german/waxed_oak_table_top"}
+		},
+		{
+			"when": { "half": "bottom", "south": "false" },
+			"apply": { "model": "dawnoftimebuilder:block/german/waxed_oak_table_side"}
+		},
+		{
+			"when": { "half": "bottom", "west": "false" },
+			"apply": { "model": "dawnoftimebuilder:block/german/waxed_oak_table_side", "y": 90}
+		},
+		{
+			"when": { "half": "bottom", "north": "false" },
+			"apply": { "model": "dawnoftimebuilder:block/german/waxed_oak_table_side", "y": 180}
+		},
+		{
+			"when": { "half": "bottom", "east": "false" },
+			"apply": { "model": "dawnoftimebuilder:block/german/waxed_oak_table_side", "y": 270}
+		},
+		{
+			"when": { "half": "bottom", "south": "false", "west": "false" },
+			"apply": { "model": "dawnoftimebuilder:block/german/waxed_oak_table_pillar"}
+		},
+		{
+			"when": { "half": "bottom", "west": "false", "north": "false" },
+			"apply": { "model": "dawnoftimebuilder:block/german/waxed_oak_table_pillar", "y": 90}
+		},
+		{
+			"when": { "half": "bottom", "north": "false", "east": "false" },
+			"apply": { "model": "dawnoftimebuilder:block/german/waxed_oak_table_pillar", "y": 180}
+		},
+		{
+			"when": { "half": "bottom", "east": "false", "south": "false" },
+			"apply": { "model": "dawnoftimebuilder:block/german/waxed_oak_table_pillar", "y": 270}
+		},
+		{
+			"when": { "half": "bottom", "south": "false", "west": "true" },
+			"apply": { "model": "dawnoftimebuilder:block/german/waxed_oak_table_pillar_left"}
+		},
+		{
+			"when": { "half": "bottom", "west": "false", "north": "true" },
+			"apply": { "model": "dawnoftimebuilder:block/german/waxed_oak_table_pillar_left", "y": 90}
+		},
+		{
+			"when": { "half": "bottom", "north": "false", "east": "true" },
+			"apply": { "model": "dawnoftimebuilder:block/german/waxed_oak_table_pillar_left", "y": 180}
+		},
+		{
+			"when": { "half": "bottom", "east": "false", "south": "true" },
+			"apply": { "model": "dawnoftimebuilder:block/german/waxed_oak_table_pillar_left", "y": 270}
+		},
+		{
+			"when": { "half": "bottom", "south": "true", "west": "false" },
+			"apply": { "model": "dawnoftimebuilder:block/german/waxed_oak_table_pillar_right"}
+		},
+		{
+			"when": { "half": "bottom", "west": "true", "north": "false" },
+			"apply": { "model": "dawnoftimebuilder:block/german/waxed_oak_table_pillar_right", "y": 90}
+		},
+		{
+			"when": { "half": "bottom", "north": "true", "east": "false" },
+			"apply": { "model": "dawnoftimebuilder:block/german/waxed_oak_table_pillar_right", "y": 180}
+		},
+		{
+			"when": { "half": "bottom", "east": "true", "south": "false" },
+			"apply": { "model": "dawnoftimebuilder:block/german/waxed_oak_table_pillar_right", "y": 270}
+		}
+	]
+}

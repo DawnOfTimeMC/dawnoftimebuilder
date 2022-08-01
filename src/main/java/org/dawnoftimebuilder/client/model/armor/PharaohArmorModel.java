@@ -46,14 +46,14 @@ public class PharaohArmorModel<T extends LivingEntity> extends CustomArmorModel<
 	private ModelRenderer footRight;
 	private ModelRenderer footLeft;
 
-	public PharaohArmorModel(EquipmentSlotType slot, boolean isSteve) {
-		super(slot, 64, 64);
+	public PharaohArmorModel(EquipmentSlotType slot, boolean isSteve, float scale) {
+		super(slot, 64, 64, scale);
 
 		switch (slot) {
 			case HEAD:
-				this.armorHead = new ModelRenderer(this, 20, 19);
+				this.armorHead = new ModelRenderer(this);
 				this.armorHead.setPos(0.0F, 0.0F, 0.0F);
-				this.armorHead.addBox(-4.5F, -8.5F, -4.5F, 9, 9, 9, 0.1F);
+				this.armorHead.texOffs(20, 19).addBox(-4.5F, -8.5F, -4.5F, 9, 9, 9, 0.1F, false);
 				this.headLeftSideBottom = new ModelRenderer(this, 0, 57);
 				this.headLeftSideBottom.mirror = true;
 				this.headLeftSideBottom.setPos(9.58F, -1.23F, 0.91F);
@@ -100,7 +100,7 @@ public class PharaohArmorModel<T extends LivingEntity> extends CustomArmorModel<
 				this.snakeHead.addBox(-1.5F, -1.0F, -2.0F, 3, 3, 3, -0.99F);
 				setRotateAngle(snakeHead, 0.2792526803190927F, 0.0F, 0.0F);
 
-				this.head = armorHead;
+				this.head = this.armorHead;
 				this.head.addChild(snakeBody);
 				this.head.addChild(headLeftSideBottom);
 				this.head.addChild(snakeHead);

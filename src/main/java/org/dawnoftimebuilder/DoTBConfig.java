@@ -170,16 +170,16 @@ public class DoTBConfig {
 
         COMMON_BUILDER.comment("---------------------------------------|| Entity settings ||---------------------------------------").push(ENTITY_CATEGORY);
             COMMON_BUILDER.push("silkmoth");
-                SILKMOTH_SPAWN_CHANCE = COMMON_BUILDER.comment("The probability to spawn a Silkmoth on a Mulberry each random tick is equal to 1/x, with x the following value :").defineInRange("climbingPlantGrowthChance", 400, 10, 10000);
-                SILKMOTH_ROTATION_MAX_RANGE = COMMON_BUILDER.defineInRange("silkmoth_rotation_max_range", 2, 0, 10);
-                SILKMOTH_MUST_DIE = COMMON_BUILDER.define("silkmoth_dies_after_one_day", true);
-                SILKMOTH_ROTATION_CHANGE = COMMON_BUILDER.comment("The probability to change the rotation point each tick is equal to 1/x, with x the following value :").defineInRange("silkmoth_rotation_change", 400, 10, 10000);
-                SILKMOTH_MUTE = COMMON_BUILDER.define("silkmoth_mute", false);
+                SILKMOTH_SPAWN_CHANCE = COMMON_BUILDER.comment("The probability to spawn a Silkmoth on a Mulberry each random tick is equal to 1/x, with x the following value :").defineInRange("silkmothSpawnChance", 400, 10, 10000);
+                SILKMOTH_ROTATION_MAX_RANGE = COMMON_BUILDER.defineInRange("silkmothRotationMaxRange", 2, 0, 10);
+                SILKMOTH_MUST_DIE = COMMON_BUILDER.define("silkmothDiesAfterOneDay", true);
+                SILKMOTH_ROTATION_CHANGE = COMMON_BUILDER.comment("The probability to change the rotation point each tick is equal to 1/x, with x the following value :").defineInRange("silkmothRotationChange", 400, 10, 10000);
+                SILKMOTH_MUTE = COMMON_BUILDER.define("silkmothMute", false);
             COMMON_BUILDER.pop();
             COMMON_BUILDER.push("japanese_dragon");
-                JAPANESE_DRAGON_HEALTH = COMMON_BUILDER.defineInRange("japanese_dragon_default_max_health", 60, 1, 10000);
-                JAPANESE_DRAGON_ATTACK = COMMON_BUILDER.defineInRange("japanese_dragon_default_attack", 4, 1, 100);
-                JAPANESE_DRAGON_MUTE = COMMON_BUILDER.define("japanese_dragon_mute", false);
+                JAPANESE_DRAGON_HEALTH = COMMON_BUILDER.defineInRange("japaneseDragonDefaultMaxHealth", 60, 1, 10000);
+                JAPANESE_DRAGON_ATTACK = COMMON_BUILDER.defineInRange("japaneseDragonDefaultAttack", 4, 1, 100);
+                JAPANESE_DRAGON_MUTE = COMMON_BUILDER.define("japaneseDragonMute", false);
             COMMON_BUILDER.pop();
         COMMON_BUILDER.pop();
 

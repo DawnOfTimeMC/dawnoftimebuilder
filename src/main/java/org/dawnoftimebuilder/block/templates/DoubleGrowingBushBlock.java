@@ -73,16 +73,16 @@ public class DoubleGrowingBushBlock extends GrowingBushBlock {
 
 	/**
 	 * @return Stores default VoxelShape for Top half with index : <p/>
-	 * 0 : stage 0 top null <p/>
-	 * 1 : stage 1 top null <p/>
+	 * 0 : stage 0 top empty <p/>
+	 * 1 : stage 1 top empty <p/>
 	 * 2 : stage 2 top 5px <p/>
 	 * 3 : stage 3 top 10px <p/>
 	 * 4 : stage 4+ OR Cut top 15px <p/>
 	 */
 	public VoxelShape[] makeTopShapes() {
 		return new VoxelShape[]{
-				null,
-				null,
+				VoxelShapes.empty(),
+				VoxelShapes.empty(),
 				Block.box(4.0D, 0.0D, 4.0D, 12.0D, 5.0D, 12.0D),
 				Block.box(1.0D, 0.0D, 1.0D, 15.0D, 10.0D, 15.0D),
 				Block.box(1.0D, 0.0D, 1.0D, 15.0D, 15.0D, 15.0D),
@@ -157,7 +157,7 @@ public class DoubleGrowingBushBlock extends GrowingBushBlock {
     }
 
 	@Override
-	public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
+	public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
 		if(this.isBottomCrop(state)) {
 			if (!worldIn.isAreaLoaded(pos, 1) || state.getValue(PERSISTENT))
 				return; // Forge: prevent loading unloaded chunks when checking neighbor's light

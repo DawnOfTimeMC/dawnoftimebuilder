@@ -101,8 +101,8 @@ dependencies {
     // Specify the version of Minecraft to use, If this is any group other then 'net.minecraft' it is assumed
     minecraft 'net.minecraftforge:forge:' + minecraft_version + '-' + forge_version
     // Both numbers comes from Curse. The first number is the project_id (on the right) and the second one is the file_id (in the URL)
-    runtimeOnly fg.deobf("curse.maven:ctm-267602:3137659")
-    runtimeOnly fg.deobf("curse.maven:epicfight-405076:3534866")
+    runtimeOnly fg.deobf("curse.maven:ctm-267602:3137659") // CTM (Connected Texture Mod)
+    runtimeOnly fg.deobf("curse.maven:epicfight-405076:3534866") // Epic Fight Mod (Animation of player model)
 }
 
 // Example for how to get properties into the manifest for reading by the runtime..

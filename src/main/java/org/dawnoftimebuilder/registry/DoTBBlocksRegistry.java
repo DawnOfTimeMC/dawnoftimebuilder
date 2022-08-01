@@ -10,7 +10,6 @@ import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
-import org.dawnoftimebuilder.DoTBConfig;
 import org.dawnoftimebuilder.block.IBlockCustomItem;
 import org.dawnoftimebuilder.block.french.LimestoneChimneyBlock;
 import org.dawnoftimebuilder.block.french.LimestoneGargoyleBlock;
@@ -137,13 +136,13 @@ public class DoTBBlocksRegistry {
 	public static final RegistryObject<Block> WAXED_OAK_PLANKS = reg("waxed_oak_planks", new BlockDoTB(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F, 5.0F).sound(SoundType.WOOD)).setBurnable());
 	public static final RegistryObject<Block> WAXED_OAK_DOOR = reg("waxed_oak_door", new DoorBlockDoTB(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F, 5.0F).sound(SoundType.WOOD).noOcclusion()));
 	public static final RegistryObject<Block> WAXED_OAK_TRAPDOOR = reg("waxed_oak_trapdoor", new TrapDoorBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F, 5.0F).sound(SoundType.WOOD).noOcclusion()));
-	public static final RegistryObject<Block> WAXED_OAK_SHUTTERS = reg("waxed_oak_shutters", new ShuttersBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F, 5.0F).sound(SoundType.WOOD)));
+	public static final RegistryObject<Block> WAXED_OAK_SHUTTER = reg("waxed_oak_shutters", new ShutterBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F, 5.0F).sound(SoundType.WOOD)));
 	public static final RegistryObject<Block> WAXED_OAK_LOG_STRIPPED = reg("waxed_oak_log_stripped", new RotatedPillarBlockDoTB(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F, 5.0F).sound(SoundType.WOOD)).setBurnable());
 	public static final RegistryObject<Block> WAXED_OAK_BALUSTER = reg("waxed_oak_baluster", new WaxedOakBalusterBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F, 5.0F).sound(SoundType.WOOD).noOcclusion()));
 	public static final RegistryObject<Block> WAXED_OAK_BEAM = reg("waxed_oak_beam", new BeamBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F, 5.0F).sound(SoundType.WOOD)).setBurnable());
 	public static final RegistryObject<Block> WAXED_OAK_SUPPORT_BEAM = reg("waxed_oak_support_beam", new SupportBeamBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F, 5.0F).sound(SoundType.WOOD)).setBurnable());
 	public static final RegistryObject<Block> WAXED_OAK_SUPPORT_SLAB = reg("waxed_oak_support_slab", new SupportSlabBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F, 5.0F).sound(SoundType.WOOD)).setBurnable());
-	public static final RegistryObject<Block> WAXED_OAK_SMALL_SHUTTERS = reg("waxed_oak_small_shutters", new SmallShuttersBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F, 5.0F).sound(SoundType.WOOD)).setBurnable());
+	public static final RegistryObject<Block> WAXED_OAK_SMALL_SHUTTER = reg("waxed_oak_small_shutters", new SmallShutterBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F, 5.0F).sound(SoundType.WOOD)).setBurnable());
 	public static final RegistryObject<Block> WAXED_OAK_TIMBER_FRAME = reg("waxed_oak_timber_frame", new BlockDoTB(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F, 5.0F).sound(SoundType.WOOD)).setBurnable());
 	public static final RegistryObject<Block> WAXED_OAK_TIMBER_FRAME_CORNER = reg("waxed_oak_timber_frame_corner", new WaxedOakTimberFrameCornerBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F, 5.0F).sound(SoundType.WOOD)).setBurnable());
 	public static final RegistryObject<Block> WAXED_OAK_TIMBER_FRAME_CROSSED = reg("waxed_oak_timber_frame_crossed", new BlockDoTB(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F, 5.0F).sound(SoundType.WOOD)).setBurnable());
@@ -159,6 +158,7 @@ public class DoTBBlocksRegistry {
 	public static final RegistryObject<Block> WAXED_OAK_PLANKS_STAIRS = reg("waxed_oak_planks_stairs", new StairsBlockDoTB(WAXED_OAK_PLANKS, AbstractBlock.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F, 5.0F).sound(SoundType.WOOD)).setBurnable());
 	public static final RegistryObject<Block> WAXED_OAK_CHANDELIER = reg("waxed_oak_chandelier", new WaxedOakChandelierBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F, 5.0F).sound(SoundType.WOOD).noOcclusion().lightLevel(litBlockEmission(15))));
 	public static final RegistryObject<Block> WAXED_OAK_CHAIR = reg("waxed_oak_chair", new WaxedOakChairBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F, 5.0F).sound(SoundType.WOOD).noOcclusion(), 11.0F));
+	public static final RegistryObject<Block> WAXED_OAK_TABLE = reg("waxed_oak_table", new WaxedOakTableBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F, 5.0F).sound(SoundType.WOOD).noOcclusion()));
 	public static final RegistryObject<Block> PLANTER_GERANIUM_PINK = reg("planter_geranium_pink", new PlanterBlock(AbstractBlock.Properties.of(Material.CLAY).strength(0.6F).noOcclusion()));
 
 	//Japanese
@@ -260,7 +260,7 @@ public class DoTBBlocksRegistry {
 	public static final RegistryObject<Block> RED_SCULPTED_PLASTERED_STONE_FRIEZE = reg("red_sculpted_plastered_stone_frieze", new RedSculptedPlasteredStoneFriezeBlock(AbstractBlock.Properties.copy(STONE_BRICKS)));
 	public static final RegistryObject<Block> GREEN_CHISELED_PLASTERED_STONE = reg("green_chiseled_plastered_stone", new BlockDoTB(AbstractBlock.Properties.copy(STONE_BRICKS)));
 	public static final RegistryObject<Block> GREEN_ORNAMENTED_CHISELED_PLASTERED_STONE = reg("green_ornamented_chiseled_plastered_stone", new BlockDoTB(AbstractBlock.Properties.copy(STONE_BRICKS)));
-	public static final RegistryObject<Block> GREEN_ORNAMENTED_PLASTERED_STONE_FRIEZE = reg("green_ornamented_plastered_stone_frieze", new PlateBlock(AbstractBlock.Properties.copy(STONE_BRICKS)));
+	public static final RegistryObject<Block> GREEN_ORNAMENTED_PLASTERED_STONE_FRIEZE = reg("green_ornamented_plastered_stone_frieze", new PlateBlock(AbstractBlock.Properties.copy(STONE_BRICKS).noOcclusion()));
 	public static final RegistryObject<Block> GREEN_PLASTERED_STONE_FRIEZE = reg("green_plastered_stone_frieze", new PlateBlock(AbstractBlock.Properties.copy(STONE_BRICKS)));
 	public static final RegistryObject<Block> GREEN_SCULPTED_PLASTERED_STONE_FRIEZE = reg("green_sculpted_plastered_stone_frieze", new GreenSculptedPlasteredStoneFriezeBlock(AbstractBlock.Properties.copy(STONE_BRICKS)));
 	public static final RegistryObject<Block> GREEN_SMALL_PLASTERED_STONE_FRIEZE = reg("green_small_plastered_stone_frieze", new EdgeBlock(AbstractBlock.Properties.copy(STONE_BRICKS)));

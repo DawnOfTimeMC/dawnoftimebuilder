@@ -1,0 +1,30 @@
+{
+	"credit": "Made with Blockbench",
+	"textures": {
+		"1": "dawnoftimebuilder:block/waxed_oak_table_side",
+		"particle": "dawnoftimebuilder:block/waxed_oak_table_side"
+	},
+	"elements": [
+		{
+			"from": [1, 12, 13.5],
+			"to": [15, 16, 14.5],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 8, 8]},
+			"faces": {
+				"north": {"uv": [0, 0, 14, 4], "texture": "#1"},
+				"south": {"uv": [0, 0, 14, 4], "texture": "#1"},
+				"down": {"uv": [0, 3, 14, 4], "rotation": 180, "texture": "#1"}
+			}
+		},
+		{
+			"from": [1, 1, 13.5],
+			"to": [15, 3, 14.5],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 8, 8]},
+			"faces": {
+				"north": {"uv": [0, 4, 14, 6], "texture": "#1"},
+				"south": {"uv": [0, 4, 14, 6], "texture": "#1"},
+				"up": {"uv": [0, 4, 14, 5], "rotation": 180, "texture": "#1"},
+				"down": {"uv": [0, 5, 14, 6], "rotation": 180, "texture": "#1"}
+			}
+		}
+	]
+}

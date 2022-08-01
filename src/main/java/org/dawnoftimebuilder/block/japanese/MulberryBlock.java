@@ -23,12 +23,17 @@ public class MulberryBlock extends DoubleGrowingBushBlock {
     }
 
     @Override
-    public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
-        super.tick(state, worldIn, pos, random);
+    public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
+        super.randomTick(state, worldIn, pos, random);
         if(state.getValue(HALF) == Half.TOP){
             if(random.nextInt(DoTBConfig.SILKMOTH_SPAWN_CHANCE.get()) == 0){
                 SILKMOTH_ENTITY.get().spawn(worldIn, null, null, pos, SpawnReason.SPAWNER, false, true);
             }
         }
+    }
+
+    @Override
+    public boolean isRandomlyTicking(BlockState p_149653_1_) {
+        return true;
     }
 }

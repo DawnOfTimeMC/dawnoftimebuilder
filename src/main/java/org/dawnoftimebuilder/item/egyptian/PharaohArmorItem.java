@@ -19,12 +19,12 @@ public class PharaohArmorItem extends CustomArmorItem {
 	@OnlyIn(Dist.CLIENT)
 	@Override
 	public CustomArmorModel<LivingEntity> createModel(LivingEntity entityLiving) {
-		return new PharaohArmorModel<>(this.slot, true);
+		return new PharaohArmorModel<>(this.slot, true, entityLiving.getScale());
 	}
 
 	@OnlyIn(Dist.CLIENT)
 	@Override
 	public CustomArmorModel<LivingEntity> createSlimModel(LivingEntity entityLiving) {
-		return new PharaohArmorModel<>(this.slot, false);
+		return new PharaohArmorModel<>(this.slot, false, entityLiving.getScale());
 	}
 }
