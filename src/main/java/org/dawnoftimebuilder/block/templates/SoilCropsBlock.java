@@ -29,7 +29,7 @@ import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.PlantType;
 import net.minecraftforge.common.Tags;
-import org.dawnoftimebuilder.block.IBlockCustomItem;
+import org.dawnoftimebuilder.block.ICustomBlockItem;
 import org.dawnoftimebuilder.block.IBlockGeneration;
 import org.dawnoftimebuilder.item.templates.SoilSeedsItem;
 import org.dawnoftimebuilder.util.DoTBBlockUtils;
@@ -41,7 +41,7 @@ import java.util.Random;
 
 import static org.dawnoftimebuilder.util.DoTBBlockUtils.TOOLTIP_CROP;
 
-public class SoilCropsBlock extends CropsBlock implements IBlockCustomItem, IBlockGeneration {
+public class SoilCropsBlock extends CropsBlock implements ICustomBlockItem, IBlockGeneration {
 
 	private final SoilSeedsItem seed;
 	private final String seedName;
@@ -190,7 +190,7 @@ public class SoilCropsBlock extends CropsBlock implements IBlockCustomItem, IBlo
 	}
 
 	@Override
-	public Item getCustomItemBlock() {
+	public Item getCustomBlockItem() {
 		return this.seed;
 	}
 

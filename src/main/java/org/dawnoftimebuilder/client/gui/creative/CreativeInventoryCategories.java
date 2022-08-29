@@ -246,7 +246,8 @@ public enum CreativeInventoryCategories {
 			PERSIAN_CARPET_DELICATE_RED.get().asItem(),
 			MORAQ_MOSAIC_TILES_DELICATE.get().asItem(),
 			MORAQ_MOSAIC_TILES_TRADITIONAL.get().asItem(),
-			MORAQ_MOSAIC_TILES_BORDER.get().asItem()
+			MORAQ_MOSAIC_TILES_BORDER.get().asItem(),
+			MORAQ_MOSAIC_RECESS.get().asItem()
 	),
 
 	JAPANESE("japanese",

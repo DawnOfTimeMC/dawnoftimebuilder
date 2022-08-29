@@ -26,7 +26,7 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.RegistryObject;
-import org.dawnoftimebuilder.block.IBlockCustomItem;
+import org.dawnoftimebuilder.block.ICustomBlockItem;
 
 import javax.annotation.Nullable;
 
@@ -34,7 +34,7 @@ import java.util.function.Supplier;
 
 import static org.dawnoftimebuilder.DawnOfTimeBuilder.DOTB_TAB;
 
-public class MixedRoofSupportBlock extends SlabBlockDoTB implements IBlockCustomItem {
+public class MixedRoofSupportBlock extends SlabBlockDoTB implements ICustomBlockItem {
 
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final EnumProperty<StairsShape> SHAPE = BlockStateProperties.STAIRS_SHAPE;
@@ -95,7 +95,7 @@ public class MixedRoofSupportBlock extends SlabBlockDoTB implements IBlockCustom
 
     @Nullable
     @Override
-    public Item getCustomItemBlock() {
+    public Item getCustomBlockItem() {
         return new BlockItem(this, new Item.Properties().tab(DOTB_TAB)){
             @Override
             public ActionResultType place(BlockItemUseContext context) {

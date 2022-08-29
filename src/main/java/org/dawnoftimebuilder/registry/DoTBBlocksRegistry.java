@@ -10,7 +10,7 @@ import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
-import org.dawnoftimebuilder.block.IBlockCustomItem;
+import org.dawnoftimebuilder.block.ICustomBlockItem;
 import org.dawnoftimebuilder.block.french.LimestoneChimneyBlock;
 import org.dawnoftimebuilder.block.french.LimestoneGargoyleBlock;
 import org.dawnoftimebuilder.block.precolumbian.*;
@@ -235,6 +235,7 @@ public class DoTBBlocksRegistry {
 	public static final RegistryObject<Block> MORAQ_MOSAIC_TILES_DELICATE = reg("moraq_mosaic_tiles_delicate", new BlockDoTB(AbstractBlock.Properties.copy(BRICKS)));
 	public static final RegistryObject<Block> MORAQ_MOSAIC_TILES_TRADITIONAL = reg("moraq_mosaic_tiles_traditional", new BlockDoTB(AbstractBlock.Properties.copy(BRICKS)));
 	public static final RegistryObject<Block> MORAQ_MOSAIC_TILES_BORDER = reg("moraq_mosaic_tiles_border", new BlockDoTB(AbstractBlock.Properties.copy(BRICKS)));
+	public static final RegistryObject<Block> MORAQ_MOSAIC_RECESS = reg("moraq_mosaic_recess", new StairsBlockDoTB(MORAQ_MOSAIC_TILES_DELICATE, AbstractBlock.Properties.copy(BRICKS)));
 
 	//Pre_columbian
 	public static final RegistryObject<Block> COMMELINA = reg("commelina", new SoilCropsBlock("commelina", PLAINS));
@@ -303,9 +304,9 @@ public class DoTBBlocksRegistry {
 	private static RegistryObject<Block> reg(String name, Block block){
 		Item item;
 		String itemName = null;
-		if(block instanceof IBlockCustomItem){
-			item = ((IBlockCustomItem)block).getCustomItemBlock();
-			itemName = ((IBlockCustomItem)block).getCustomItemName();
+		if(block instanceof ICustomBlockItem){
+			item = ((ICustomBlockItem)block).getCustomBlockItem();
+			itemName = ((ICustomBlockItem)block).getCustomItemName();
 		}else{
 			item = new BlockItem(block, new Item.Properties().tab(DOTB_TAB));
 		}
