@@ -198,6 +198,7 @@ public enum CreativeInventoryCategories {
 			WAXED_OAK_WALL.get().asItem(),
 			WAXED_OAK_PERGOLA.get().asItem(),
 			WAXED_OAK_FENCE.get().asItem(),
+			WAXED_OAK_FENCE_GATE.get().asItem(),
 			WAXED_OAK_BALUSTER.get().asItem(),
 			WAXED_OAK_LATTICE.get().asItem(),
 			WAXED_OAK_DOOR.get().asItem(),
