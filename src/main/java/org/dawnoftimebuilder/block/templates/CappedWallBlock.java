@@ -113,7 +113,7 @@ public class CappedWallBlock extends Block implements IWaterLoggable {
 
     private boolean connectsTo(BlockState state, boolean p_220113_2_, Direction direction) {
         Block block = state.getBlock();
-        boolean flag = block instanceof FenceGateBlock && FenceGateBlock.connectsToDirection(state, direction);
+        boolean flag = block instanceof FenceGateBlockDoTB && FenceGateBlockDoTB.connectsToDirection(state, direction);
         return state.is(BlockTags.WALLS) || !isExceptionForConnection(block) && p_220113_2_ || block instanceof PaneBlock || flag;
     }
 
