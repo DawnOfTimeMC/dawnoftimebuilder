@@ -1,6 +1,7 @@
 package org.dawnoftimebuilder.client.gui.creative;
 
 import net.minecraft.item.Item;
+import net.minecraft.item.Items;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.api.distmarker.Dist;
@@ -64,6 +65,19 @@ public enum CreativeInventoryCategories {
 			BIRCH_DOOR.asItem(),
 			BIRCH_TRAPDOOR.asItem(),
 			BIRCH_LEAVES.asItem(),
+			CRIMSON_PLANKS.asItem(),
+			CRIMSON_STAIRS.asItem(),
+			CRIMSON_PLANKS_PLATE.get().asItem(),
+			CRIMSON_SLAB.asItem(),
+			CRIMSON_SUPPORT_SLAB.get().asItem(),
+			CRIMSON_PLANKS_EDGE.get().asItem(),
+			STRIPPED_CRIMSON_STEM.asItem(),
+			CRIMSON_WALL_SIGN.asItem(),
+			CRIMSON_PERGOLA.get().asItem(),
+			CRIMSON_FENCE.asItem(),
+			CRIMSON_FENCE_GATE.asItem(),
+			CRIMSON_DOOR.asItem(),
+			CRIMSON_TRAPDOOR.asItem(),
 			DARK_OAK_PLANKS.asItem(),
 			DARK_OAK_STAIRS.asItem(),
 			DARK_OAK_PLANKS_PLATE.get().asItem(),
@@ -132,6 +146,14 @@ public enum CreativeInventoryCategories {
 			SPRUCE_DOOR.asItem(),
 			SPRUCE_TRAPDOOR.asItem(),
 			SPRUCE_LEAVES.asItem(),
+			WARPED_PLANKS.asItem(),
+			WARPED_STAIRS.asItem(),
+			WARPED_SLAB.asItem(),
+			WARPED_DOOR.asItem(),
+			WARPED_FENCE_GATE.asItem(),
+			WARPED_PLANKS_PLATE.get().asItem(),
+			WARPED_PLANKS_EDGE.get().asItem(),
+			WARPED_SUPPORT_SLAB.get().asItem(),
 			FIREPLACE.get().asItem(),
 			FLINT_AND_STEEL
 	),

@@ -1,5 +1,6 @@
 package org.dawnoftimebuilder.registry;
 
+import com.sun.javafx.geom.Edge;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
@@ -51,6 +52,10 @@ public class DoTBBlocksRegistry {
 	public static final RegistryObject<Block> BIRCH_SUPPORT_BEAM = reg("birch_support_beam", new SupportBeamBlock(AbstractBlock.Properties.copy(BIRCH_PLANKS)).setBurnable());
 	public static final RegistryObject<Block> BIRCH_SUPPORT_SLAB = reg("birch_support_slab", new SupportSlabBlock(AbstractBlock.Properties.copy(BIRCH_PLANKS)).setBurnable());
 	public static final RegistryObject<Block> CANDLESTICK = reg("candlestick", new CandlestickBlock(AbstractBlock.Properties.copy(CAULDRON).lightLevel(litBlockEmission(10))));
+	public static final RegistryObject<Block> CRIMSON_PLANKS_EDGE = reg("crimson_planks_edge", new EdgeBlock(AbstractBlock.Properties.copy(CRIMSON_PLANKS)).setBurnable());
+	public static final RegistryObject<Block> CRIMSON_PLANKS_PLATE = reg("crimson_planks_plate", new PlateBlock(AbstractBlock.Properties.copy(CRIMSON_PLANKS)).setBurnable());
+	public static final RegistryObject<Block> CRIMSON_PERGOLA = reg("crimson_pergola", new PergolaBlock(AbstractBlock.Properties.copy(CRIMSON_PLANKS)).setBurnable());
+	public static final RegistryObject<Block> CRIMSON_SUPPORT_SLAB = reg("crimson_support_slab", new SupportSlabBlock(AbstractBlock.Properties.copy(CRIMSON_PLANKS)).setBurnable());
 	public static final RegistryObject<Block> DARK_OAK_PLANKS_EDGE = reg("dark_oak_planks_edge", new EdgeBlock(AbstractBlock.Properties.copy(DARK_OAK_PLANKS)).setBurnable());
 	public static final RegistryObject<Block> DARK_OAK_PLANKS_PLATE = reg("dark_oak_planks_plate", new PlateBlock(AbstractBlock.Properties.copy(DARK_OAK_PLANKS)).setBurnable());
 	public static final RegistryObject<Block> DARK_OAK_PERGOLA = reg("dark_oak_pergola", new PergolaBlock(AbstractBlock.Properties.copy(DARK_OAK_PLANKS)).setBurnable());
@@ -94,6 +99,9 @@ public class DoTBBlocksRegistry {
 	public static final RegistryObject<Block> THATCH_BAMBOO_PLATE = reg("thatch_bamboo_plate", new PlateBlock(AbstractBlock.Properties.of(Material.GRASS, MaterialColor.COLOR_YELLOW).strength(1.0F).sound(SoundType.GRASS)).setBurnable(40, 30));
 	public static final RegistryObject<Block> THATCH_BAMBOO_SLAB = reg("thatch_bamboo_slab", new SlabBlockDoTB(AbstractBlock.Properties.of(Material.GRASS, MaterialColor.COLOR_YELLOW).strength(1.0F).sound(SoundType.GRASS)).setBurnable(40, 30));
 	public static final RegistryObject<Block> THATCH_BAMBOO_STAIRS = reg("thatch_bamboo_stairs", new StairsBlockDoTB(THATCH_BAMBOO, AbstractBlock.Properties.of(Material.GRASS, MaterialColor.COLOR_YELLOW).strength(1.0F).sound(SoundType.GRASS)).setBurnable(40, 30));
+	public static final RegistryObject<Block> WARPED_PLANKS_EDGE = reg("warped_planks_edge", new EdgeBlock(AbstractBlock.Properties.copy(WARPED_PLANKS)).setBurnable());
+	public static final RegistryObject<Block> WARPED_PLANKS_PLATE = reg("warped_planks_plate", new PlateBlock(AbstractBlock.Properties.copy(WARPED_PLANKS)).setBurnable());
+	public static final RegistryObject<Block> WARPED_SUPPORT_SLAB = reg("warped_support_slab", new SupportSlabBlock(AbstractBlock.Properties.copy(WARPED_PLANKS)).setBurnable());
 	public static final RegistryObject<Block> FIREPLACE = reg("fireplace", new FireplaceBlock(AbstractBlock.Properties.of(Material.STONE).strength(1.5F, 6.0F).lightLevel(litBlockEmission(15))));
 	public static final RegistryObject<Block> IRON_PORTCULLIS = reg("iron_portcullis", new PortcullisBlock(AbstractBlock.Properties.copy(IRON_DOOR)));
 
