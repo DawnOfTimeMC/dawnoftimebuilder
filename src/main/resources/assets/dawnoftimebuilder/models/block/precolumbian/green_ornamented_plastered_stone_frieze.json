@@ -1,7 +1,8 @@
 {
+	"credit": "Made with Blockbench",
 	"textures": {
-		"frieze": "dawnoftimebuilder:block/green_ornamented_plastered_stone_frieze",
 		"particle": "dawnoftimebuilder:block/green_ornamented_plastered_stone_frieze",
+		"frieze": "dawnoftimebuilder:block/green_ornamented_plastered_stone_frieze",
 		"side": "dawnoftimebuilder:block/plastered_stone",
 		"top": "dawnoftimebuilder:block/plastered_stone_slab"
 	},
@@ -60,13 +61,13 @@
 			"rotation": [0, 90, 0],
 			"scale": [0.4, 0.4, 0.4]
 		},
-		"gui": {
-			"rotation": [30, 225, 0],
-			"scale": [0.625, 0.625, 0.625]
-		},
 		"ground": {
 			"translation": [0, 3, 0],
 			"scale": [0.25, 0.25, 0.25]
+		},
+		"gui": {
+			"rotation": [30, 225, 0],
+			"scale": [0.625, 0.625, 0.625]
 		},
 		"fixed": {
 			"translation": [0, 0, -3],

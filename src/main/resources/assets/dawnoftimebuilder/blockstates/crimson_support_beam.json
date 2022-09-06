@@ -1,0 +1,27 @@
+{
+    "multipart": [
+        {   "apply": { "model": "dawnoftimebuilder:block/general/crimson_support_slab" }
+        },
+        {   "when": { "axis": "x", "subaxis": "false"},
+            "apply": { "model": "dawnoftimebuilder:block/general/crimson_beam_x" }
+        },
+        {   "when": { "axis": "z", "subaxis": "false"},
+            "apply": { "model": "dawnoftimebuilder:block/general/crimson_beam_x", "y": 90 }
+        },
+        {   "when": { "subaxis": "true" },
+            "apply": { "model": "dawnoftimebuilder:block/general/crimson_beam_x_z" }
+        },
+        {   "when": { "pillar_connection": "4_pixels" },
+            "apply": { "model": "dawnoftimebuilder:block/general/crimson_support_4_pixels" }
+        },
+        {   "when": { "pillar_connection": "6_pixels" },
+            "apply": { "model": "dawnoftimebuilder:block/general/crimson_support_6_pixels" }
+        },
+        {   "when": { "pillar_connection": "8_pixels" },
+            "apply": { "model": "dawnoftimebuilder:block/general/crimson_support_8_pixels" }
+        },
+        {   "when": { "pillar_connection": "10_pixels" },
+            "apply": { "model": "dawnoftimebuilder:block/general/crimson_support_10_pixels" }
+        }
+    ]
+}

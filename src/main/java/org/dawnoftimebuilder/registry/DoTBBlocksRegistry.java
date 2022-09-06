@@ -56,6 +56,10 @@ public class DoTBBlocksRegistry {
 	public static final RegistryObject<Block> CRIMSON_PLANKS_PLATE = reg("crimson_planks_plate", new PlateBlock(AbstractBlock.Properties.copy(CRIMSON_PLANKS)).setBurnable());
 	public static final RegistryObject<Block> CRIMSON_PERGOLA = reg("crimson_pergola", new PergolaBlock(AbstractBlock.Properties.copy(CRIMSON_PLANKS)).setBurnable());
 	public static final RegistryObject<Block> CRIMSON_SUPPORT_SLAB = reg("crimson_support_slab", new SupportSlabBlock(AbstractBlock.Properties.copy(CRIMSON_PLANKS)).setBurnable());
+	public static final RegistryObject<Block> CRIMSON_LATTICE = reg("crimson_lattice", new LatticeBlock(AbstractBlock.Properties.copy(CRIMSON_PLANKS).noOcclusion()).setBurnable());
+	public static final RegistryObject<Block> CRIMSON_BEAM = reg("crimson_beam", new BeamBlock(AbstractBlock.Properties.copy(CRIMSON_PLANKS)).setBurnable());
+	public static final RegistryObject<Block> CRIMSON_SUPPORT_BEAM = reg("crimson_support_beam", new SupportBeamBlock(AbstractBlock.Properties.copy(CRIMSON_PLANKS)).setBurnable());
+	public static final RegistryObject<Block> CRIMSON_WALL = reg("crimson_wall", new WallBlock(AbstractBlock.Properties.copy(CRIMSON_PLANKS)));
 	public static final RegistryObject<Block> DARK_OAK_PLANKS_EDGE = reg("dark_oak_planks_edge", new EdgeBlock(AbstractBlock.Properties.copy(DARK_OAK_PLANKS)).setBurnable());
 	public static final RegistryObject<Block> DARK_OAK_PLANKS_PLATE = reg("dark_oak_planks_plate", new PlateBlock(AbstractBlock.Properties.copy(DARK_OAK_PLANKS)).setBurnable());
 	public static final RegistryObject<Block> DARK_OAK_PERGOLA = reg("dark_oak_pergola", new PergolaBlock(AbstractBlock.Properties.copy(DARK_OAK_PLANKS)).setBurnable());
@@ -102,6 +106,11 @@ public class DoTBBlocksRegistry {
 	public static final RegistryObject<Block> WARPED_PLANKS_EDGE = reg("warped_planks_edge", new EdgeBlock(AbstractBlock.Properties.copy(WARPED_PLANKS)).setBurnable());
 	public static final RegistryObject<Block> WARPED_PLANKS_PLATE = reg("warped_planks_plate", new PlateBlock(AbstractBlock.Properties.copy(WARPED_PLANKS)).setBurnable());
 	public static final RegistryObject<Block> WARPED_SUPPORT_SLAB = reg("warped_support_slab", new SupportSlabBlock(AbstractBlock.Properties.copy(WARPED_PLANKS)).setBurnable());
+	public static final RegistryObject<Block> WARPED_PERGOLA = reg("warped_pergola", new PergolaBlock(AbstractBlock.Properties.copy(WARPED_PLANKS)).setBurnable());
+	public static final RegistryObject<Block> WARPED_LATTICE = reg("warped_lattice", new LatticeBlock(AbstractBlock.Properties.copy(WARPED_PLANKS).noOcclusion()).setBurnable());
+	public static final RegistryObject<Block> WARPED_BEAM = reg("warped_beam", new BeamBlock(AbstractBlock.Properties.copy(WARPED_PLANKS)).setBurnable());
+	public static final RegistryObject<Block> WARPED_SUPPORT_BEAM = reg("warped_support_beam", new SupportBeamBlock(AbstractBlock.Properties.copy(WARPED_PLANKS)).setBurnable());
+	public static final RegistryObject<Block> WARPED_WALL = reg("warped_wall", new WallBlock(AbstractBlock.Properties.copy(WARPED_PLANKS)));
 	public static final RegistryObject<Block> FIREPLACE = reg("fireplace", new FireplaceBlock(AbstractBlock.Properties.of(Material.STONE).strength(1.5F, 6.0F).lightLevel(litBlockEmission(15))));
 	public static final RegistryObject<Block> IRON_PORTCULLIS = reg("iron_portcullis", new PortcullisBlock(AbstractBlock.Properties.copy(IRON_DOOR)));
 
@@ -267,12 +276,12 @@ public class DoTBBlocksRegistry {
 	public static final RegistryObject<Block> RED_PLASTERED_STONE_SLAB = reg("red_plastered_stone_slab", new SlabBlockDoTB(AbstractBlock.Properties.copy(STONE_BRICKS)));
 	public static final RegistryObject<Block> RED_PLASTERED_STONE_STAIRS = reg("red_plastered_stone_stairs", new StairsBlockDoTB(RED_PLASTERED_STONE, AbstractBlock.Properties.copy(BRICKS)));
 	public static final RegistryObject<Block> RED_SMALL_PLASTERED_STONE_FRIEZE = reg("red_small_plastered_stone_frieze", new EdgeBlock(AbstractBlock.Properties.copy(STONE_BRICKS)));
-	public static final RegistryObject<Block> RED_ORNAMENTED_PLASTERED_STONE_FRIEZE = reg("red_ornamented_plastered_stone_frieze", new PlateBlock(AbstractBlock.Properties.copy(STONE_BRICKS)));
+	public static final RegistryObject<Block> RED_ORNAMENTED_PLASTERED_STONE_FRIEZE = reg("red_ornamented_plastered_stone_frieze", new PlateBlock(AbstractBlock.Properties.copy(STONE_BRICKS).noOcclusion()));
 	public static final RegistryObject<Block> RED_SCULPTED_PLASTERED_STONE_FRIEZE = reg("red_sculpted_plastered_stone_frieze", new RedSculptedPlasteredStoneFriezeBlock(AbstractBlock.Properties.copy(STONE_BRICKS)));
 	public static final RegistryObject<Block> GREEN_CHISELED_PLASTERED_STONE = reg("green_chiseled_plastered_stone", new BlockDoTB(AbstractBlock.Properties.copy(STONE_BRICKS)));
 	public static final RegistryObject<Block> GREEN_ORNAMENTED_CHISELED_PLASTERED_STONE = reg("green_ornamented_chiseled_plastered_stone", new BlockDoTB(AbstractBlock.Properties.copy(STONE_BRICKS)));
 	public static final RegistryObject<Block> GREEN_ORNAMENTED_PLASTERED_STONE_FRIEZE = reg("green_ornamented_plastered_stone_frieze", new PlateBlock(AbstractBlock.Properties.copy(STONE_BRICKS).noOcclusion()));
-	public static final RegistryObject<Block> GREEN_PLASTERED_STONE_FRIEZE = reg("green_plastered_stone_frieze", new PlateBlock(AbstractBlock.Properties.copy(STONE_BRICKS)));
+	public static final RegistryObject<Block> GREEN_PLASTERED_STONE_FRIEZE = reg("green_plastered_stone_frieze", new PlateBlock(AbstractBlock.Properties.copy(STONE_BRICKS).noOcclusion()));
 	public static final RegistryObject<Block> GREEN_SCULPTED_PLASTERED_STONE_FRIEZE = reg("green_sculpted_plastered_stone_frieze", new GreenSculptedPlasteredStoneFriezeBlock(AbstractBlock.Properties.copy(STONE_BRICKS)));
 	public static final RegistryObject<Block> GREEN_SMALL_PLASTERED_STONE_FRIEZE = reg("green_small_plastered_stone_frieze", new EdgeBlock(AbstractBlock.Properties.copy(STONE_BRICKS)));
 	public static final RegistryObject<Block> WILD_MAIZE = reg("wild_maize", new WildMaizeBlock(AbstractBlock.Properties.copy(DANDELION)));
