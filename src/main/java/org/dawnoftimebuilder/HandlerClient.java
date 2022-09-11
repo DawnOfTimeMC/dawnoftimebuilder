@@ -1,22 +1,15 @@
 package org.dawnoftimebuilder;
 
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.Block;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.RenderPlayerEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
-import org.dawnoftimebuilder.block.templates.BlockDoTB;
-import org.dawnoftimebuilder.block.templates.CarpetBlockDoTB;
-import org.dawnoftimebuilder.block.templates.StairsBlockDoTB;
 import org.dawnoftimebuilder.client.gui.creative.CreativeInventoryEvents;
 import org.dawnoftimebuilder.client.gui.screen.DisplayerScreen;
 import org.dawnoftimebuilder.client.renderer.entity.ChairRenderer;
@@ -25,8 +18,6 @@ import org.dawnoftimebuilder.client.renderer.entity.SilkmothRenderer;
 import org.dawnoftimebuilder.client.renderer.tileentity.DisplayerTERenderer;
 import org.dawnoftimebuilder.client.renderer.tileentity.DryerTERenderer;
 
-import static net.minecraft.block.Blocks.BRICKS;
-import static net.minecraft.block.Blocks.RED_WOOL;
 import static org.dawnoftimebuilder.registry.DoTBBlocksRegistry.*;
 import static org.dawnoftimebuilder.registry.DoTBContainersRegistry.DISPLAYER_CONTAINER;
 import static org.dawnoftimebuilder.registry.DoTBEntitiesRegistry.*;

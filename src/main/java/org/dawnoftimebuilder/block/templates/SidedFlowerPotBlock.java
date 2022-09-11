@@ -1,4 +1,4 @@
-package org.dawnoftimebuilder.block.japanese;
+package org.dawnoftimebuilder.block.templates;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -14,13 +14,13 @@ import net.minecraft.world.IBlockReader;
 import org.dawnoftimebuilder.block.IBlockSpecialDisplay;
 import org.dawnoftimebuilder.block.templates.BlockDoTB;
 
-public class IkebanaFlowerPotBlock extends BlockDoTB implements IBlockSpecialDisplay {
+public class SidedFlowerPotBlock extends FlowerPotBlockDoTB {
 
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 
     private static final VoxelShape VS = Block.box(6.0D, 0.0D, 6.0D, 10.0D, 4.0D, 10.0D);
 
-	public IkebanaFlowerPotBlock(Properties properties) {
+	public SidedFlowerPotBlock(Properties properties) {
         super(properties);
         this.registerDefaultState(this.defaultBlockState().setValue(FACING, Direction.NORTH));
     }
@@ -28,11 +28,6 @@ public class IkebanaFlowerPotBlock extends BlockDoTB implements IBlockSpecialDis
     @Override
     protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
         builder.add(FACING);
-    }
-
-    @Override
-    public VoxelShape getShape(BlockState p_220053_1_, IBlockReader p_220053_2_, BlockPos p_220053_3_, ISelectionContext p_220053_4_) {
-        return VS;
     }
 
     @Override

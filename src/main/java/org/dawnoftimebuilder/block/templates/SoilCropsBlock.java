@@ -56,8 +56,8 @@ public class SoilCropsBlock extends CropsBlock implements ICustomBlockItem, IBlo
 		this.registerDefaultState(this.stateDefinition.any().setValue(this.getAgeProperty(),0).setValue(PERSISTENT, false));
 	}
 
-	public SoilCropsBlock(String seedName, PlantType plantType){
-		this(seedName, plantType, null);
+	public SoilCropsBlock(String seedName, PlantType plantType, Block flowerPot){
+		this(seedName, plantType, flowerPot, null);
 	}
 
 	@Override

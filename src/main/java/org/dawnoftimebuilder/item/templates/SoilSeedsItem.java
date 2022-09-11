@@ -19,11 +19,11 @@ import javax.annotation.Nullable;
 import static org.dawnoftimebuilder.DawnOfTimeBuilder.DOTB_TAB;
 
 public class SoilSeedsItem extends BlockItem {
-    private final SoilCropsBlock crops;
+    private final Block flowerPot;
 
     public SoilSeedsItem(SoilCropsBlock crops, @Nullable Food food) {
         super(crops, food != null ? new Item.Properties().tab(DOTB_TAB).food(food) : new Item.Properties().tab(DOTB_TAB));
-        this.crops = crops;
+        this.flowerPot = flowerPot;
     }
 
     @Override
@@ -33,7 +33,7 @@ public class SoilSeedsItem extends BlockItem {
         World world = context.getLevel();
         BlockPos pos = context.getClickedPos();
 
-        if(!this.crops.canSurvive(this.crops.defaultBlockState(), world, pos)) return ActionResultType.FAIL;
+        if(!this.getBlock().canSurvive(this.getBlock().defaultBlockState(), world, pos)) return ActionResultType.FAIL;
         if(!world.getBlockState(pos).canBeReplaced(context)) return ActionResultType.FAIL;
         BlockItemUseContext blockitemusecontext = this.updatePlacementContext(context);
         if (blockitemusecontext == null) {
@@ -62,5 +62,9 @@ public class SoilSeedsItem extends BlockItem {
                 return ActionResultType.SUCCESS;
             }
         }
+    }
+
+    public Block getFlowerPot() {
+        return this.flowerPot;
     }
 }

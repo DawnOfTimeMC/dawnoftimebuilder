@@ -33,15 +33,19 @@ public class DoubleCropsBlock extends SoilCropsBlock {
 	public final VoxelShape[] SHAPES;
 	public static final EnumProperty<Half> HALF = BlockStateProperties.HALF;
 
-	public DoubleCropsBlock(String seedName, PlantType plantType, int growingAge) {
-		this(seedName, plantType, growingAge, null);
-	}
-
-	public DoubleCropsBlock(String seedName, PlantType plantType, int growingAge, Food food) {
-		super(seedName, plantType, food);
+	public DoubleCropsBlock(String seedName, PlantType plantType, Block flowerPot, int growingAge, Food food) {
+		super(seedName, plantType, flowerPot, food);
 		this.growingAge = growingAge;
 		this.SHAPES = this.makeShapes();
 		this.registerDefaultState(this.defaultBlockState().setValue(HALF, Half.BOTTOM).setValue(this.getAgeProperty(),0).setValue(PERSISTENT, false));
+	}
+
+	public DoubleCropsBlock(String seedName, PlantType plantType, Block flowerPot, int growingAge) {
+		this(seedName, plantType, flowerPot, growingAge, null);
+	}
+
+	public DoubleCropsBlock(String seedName, PlantType plantType, int growingAge) {
+		this(seedName, plantType, null, growingAge, null);
 	}
 
 	@Override
