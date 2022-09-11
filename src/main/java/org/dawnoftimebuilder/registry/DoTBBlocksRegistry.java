@@ -1,6 +1,5 @@
 package org.dawnoftimebuilder.registry;
 
-import com.sun.javafx.geom.Edge;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
@@ -322,6 +321,8 @@ public class DoTBBlocksRegistry {
 	public static final RegistryObject<Block> BIRCH_COUCH = reg("birch_couch", new BirchCouchBlock(AbstractBlock.Properties.copy(BIRCH_PLANKS), 13.0F));
 	public static final RegistryObject<Block> MARBLE_STATUE_MARS = reg("marble_statue_mars", new MarbleStatueBlock(AbstractBlock.Properties.copy(SANDSTONE).noOcclusion()));
 	public static final RegistryObject<Block> WILD_GRAPE = reg("wild_grape", new WildPlantBlock(AbstractBlock.Properties.copy(DANDELION)));
+	public static final RegistryObject<Block> GRAPE_FLOWER_POT = reg("grape_flower_pot", new FlowerPotBlockDoTB(AbstractBlock.Properties.copy(FLOWER_POT)));
+	public static final RegistryObject<Block> CYPRESS_FLOWER_POT = reg("cypress_flower_pot", new FlowerPotBlockDoTB(AbstractBlock.Properties.copy(FLOWER_POT)));
 	public static final RegistryObject<Block> CYPRESS = reg("cypress", new CypressBlock(AbstractBlock.Properties.copy(SPRUCE_LEAVES)).setBurnable());
 
 	private static RegistryObject<Block> reg(String name, Block block){

@@ -18,8 +18,6 @@ public class SidedFlowerPotBlock extends FlowerPotBlockDoTB {
 
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 
-    private static final VoxelShape VS = Block.box(6.0D, 0.0D, 6.0D, 10.0D, 4.0D, 10.0D);
-
 	public SidedFlowerPotBlock(Properties properties) {
         super(properties);
         this.registerDefaultState(this.defaultBlockState().setValue(FACING, Direction.NORTH));

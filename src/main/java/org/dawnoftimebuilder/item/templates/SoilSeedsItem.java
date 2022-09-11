@@ -21,7 +21,7 @@ import static org.dawnoftimebuilder.DawnOfTimeBuilder.DOTB_TAB;
 public class SoilSeedsItem extends BlockItem {
     private final Block flowerPot;
 
-    public SoilSeedsItem(SoilCropsBlock crops, @Nullable Food food) {
+    public SoilSeedsItem(SoilCropsBlock crops, Block flowerPot, @Nullable Food food) {
         super(crops, food != null ? new Item.Properties().tab(DOTB_TAB).food(food) : new Item.Properties().tab(DOTB_TAB));
         this.flowerPot = flowerPot;
     }
