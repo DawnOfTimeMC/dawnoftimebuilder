@@ -1,0 +1,19 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"IiI",
+		"IiI"
+	],
+	"key": {
+		"i": {
+			"item": "minecraft:crimson_stem"
+		},
+		"I": {
+			"item": "minecraft:crimson_planks"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:crimson_wall",
+		"count": 9
+	}
+}

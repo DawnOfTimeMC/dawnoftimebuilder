@@ -1,0 +1,18 @@
+{
+    "multipart": [
+        {   "apply": { "model": "dawnoftimebuilder:block/general/warped_support_slab" }
+        },
+        {   "when": { "pillar_connection": "4_pixels" },
+            "apply": { "model": "dawnoftimebuilder:block/general/warped_support_4_pixels" }
+        },
+        {   "when": { "pillar_connection": "6_pixels" },
+            "apply": { "model": "dawnoftimebuilder:block/general/warped_support_6_pixels" }
+        },
+        {   "when": { "pillar_connection": "8_pixels" },
+            "apply": { "model": "dawnoftimebuilder:block/general/warped_support_8_pixels" }
+        },
+        {   "when": { "pillar_connection": "10_pixels" },
+            "apply": { "model": "dawnoftimebuilder:block/general/warped_support_10_pixels" }
+        }
+    ]
+}
