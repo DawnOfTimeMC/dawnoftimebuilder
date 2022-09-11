@@ -44,6 +44,4 @@ public class DawnOfTimeBuilder {
     }
 }
 //TODO Vérifier le fichier config qui spammerait la console sur server
-
-//TODO Ajouter les blocks manquants pour les deux bois du Nether
 //TODO En 1.18 remplacer le craft de la statue romaine, et des roofing_slates

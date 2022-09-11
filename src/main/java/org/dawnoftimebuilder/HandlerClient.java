@@ -123,5 +123,13 @@ public class HandlerClient {
 		//Roman
 		RenderTypeLookup.setRenderLayer(WILD_GRAPE.get(), RenderType.cutoutMipped());
 		RenderTypeLookup.setRenderLayer(CYPRESS.get(), RenderType.cutoutMipped());
+
+		//TODO For Choco
+		RenderTypeLookup.setRenderLayer(WAXED_OAK_CHAIR.get(), RenderType.cutoutMipped());
+		RenderTypeLookup.setRenderLayer(SERPENT_SCULPTED_COLUMN.get(), RenderType.cutoutMipped());
+		RenderTypeLookup.setRenderLayer(RED_PAPER_LANTERN.get(), RenderType.cutoutMipped());
+		RenderTypeLookup.setRenderLayer(PAPER_LAMP.get(), RenderType.cutoutMipped());
+		RenderTypeLookup.setRenderLayer(SMALL_TATAMI_MAT.get(), RenderType.cutoutMipped());
+		RenderTypeLookup.setRenderLayer(TATAMI_MAT.get(), RenderType.cutoutMipped());
 	}
 }
