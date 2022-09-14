@@ -48,6 +48,9 @@ public class HandlerClient {
 		RenderTypeLookup.setRenderLayer(BIRCH_PERGOLA.get(), RenderType.cutoutMipped());
 		RenderTypeLookup.setRenderLayer(BIRCH_LATTICE.get(), RenderType.cutoutMipped());
 		RenderTypeLookup.setRenderLayer(BIRCH_BEAM.get(), RenderType.cutoutMipped());
+		RenderTypeLookup.setRenderLayer(CRIMSON_PERGOLA.get(), RenderType.cutoutMipped());
+		RenderTypeLookup.setRenderLayer(CRIMSON_LATTICE.get(), RenderType.cutoutMipped());
+		RenderTypeLookup.setRenderLayer(CRIMSON_BEAM.get(), RenderType.cutoutMipped());
 		RenderTypeLookup.setRenderLayer(DARK_OAK_PERGOLA.get(), RenderType.cutoutMipped());
 		RenderTypeLookup.setRenderLayer(DARK_OAK_LATTICE.get(), RenderType.cutoutMipped());
 		RenderTypeLookup.setRenderLayer(DARK_OAK_BEAM.get(), RenderType.cutoutMipped());
@@ -60,6 +63,9 @@ public class HandlerClient {
 		RenderTypeLookup.setRenderLayer(SPRUCE_PERGOLA.get(), RenderType.cutoutMipped());
 		RenderTypeLookup.setRenderLayer(SPRUCE_LATTICE.get(), RenderType.cutoutMipped());
 		RenderTypeLookup.setRenderLayer(SPRUCE_BEAM.get(), RenderType.cutoutMipped());
+		RenderTypeLookup.setRenderLayer(WARPED_PERGOLA.get(), RenderType.cutoutMipped());
+		RenderTypeLookup.setRenderLayer(WARPED_LATTICE.get(), RenderType.cutoutMipped());
+		RenderTypeLookup.setRenderLayer(WARPED_BEAM.get(), RenderType.cutoutMipped());
 		RenderTypeLookup.setRenderLayer(FIREPLACE.get(), RenderType.cutoutMipped());
 		RenderTypeLookup.setRenderLayer(IRON_PORTCULLIS.get(), RenderType.cutoutMipped());
 
