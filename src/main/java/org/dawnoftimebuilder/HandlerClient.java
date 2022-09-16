@@ -1,5 +1,6 @@
 package org.dawnoftimebuilder;
 
+import net.minecraft.block.Block;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
@@ -122,5 +123,10 @@ public class HandlerClient {
 		RenderTypeLookup.setRenderLayer(PAPER_LAMP.get(), RenderType.cutoutMipped());
 		RenderTypeLookup.setRenderLayer(SMALL_TATAMI_MAT.get(), RenderType.cutoutMipped());
 		RenderTypeLookup.setRenderLayer(TATAMI_MAT.get(), RenderType.cutoutMipped());
+
+		//Flower pots
+		for(Block pot : POT_BLOCKS.values()){
+			RenderTypeLookup.setRenderLayer(pot, RenderType.cutoutMipped());
+		}
 	}
 }

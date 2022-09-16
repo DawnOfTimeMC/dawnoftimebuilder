@@ -1,11 +1,12 @@
 package org.dawnoftimebuilder.registry;
 
+import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.SpawnEggItem;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+import org.dawnoftimebuilder.block.templates.FlowerPotBlockDoTB;
+import org.dawnoftimebuilder.item.IHasFlowerPot;
 import org.dawnoftimebuilder.item.egyptian.PharaohArmorItem;
 import org.dawnoftimebuilder.item.german.HolyArmorItem;
 import org.dawnoftimebuilder.item.german.IronPlateArmorItem;
@@ -15,12 +16,13 @@ import org.dawnoftimebuilder.item.japanese.RaijinArmorItem;
 import org.dawnoftimebuilder.item.templates.CustomArmorItem;
 import org.dawnoftimebuilder.item.templates.HatItem;
 import org.dawnoftimebuilder.item.templates.ItemDoTB;
+import org.dawnoftimebuilder.item.templates.PotItem;
 import org.dawnoftimebuilder.util.DoTBFoods;
 
 import static net.minecraft.inventory.EquipmentSlotType.*;
+import static org.dawnoftimebuilder.DawnOfTimeBuilder.DOTB_TAB;
 import static org.dawnoftimebuilder.DawnOfTimeBuilder.MOD_ID;
-import static org.dawnoftimebuilder.registry.DoTBEntitiesRegistry.JAPANESE_DRAGON_ENTITY;
-import static org.dawnoftimebuilder.registry.DoTBEntitiesRegistry.SILKMOTH_ENTITY;
+import static org.dawnoftimebuilder.registry.DoTBBlocksRegistry.POT_BLOCKS;
 
 public class DoTBItemsRegistry {
 
@@ -38,7 +40,7 @@ public class DoTBItemsRegistry {
 	public static final RegistryObject<Item> GRAY_TILE = reg("gray_tile", new ItemDoTB());
 	public static final RegistryObject<Item> GRAY_CLAY_TILE = reg("gray_clay_tile", new ItemDoTB());
 	public static final RegistryObject<Item> MULBERRY_LEAVES = reg("mulberry_leaves", new ItemDoTB());
-	public static final RegistryObject<Item> GRAPE = reg("grape", new ItemDoTB(new Item.Properties().food(DoTBFoods.GRAPE)));
+	public static final RegistryObject<Item> GRAPE = reg("grape", new PotItem(new Item.Properties().food(DoTBFoods.GRAPE)));
 	public static final RegistryObject<Item> GRAPE_SEEDS = reg("grape_seeds", new ItemDoTB());
 	//public static final RegistryObject<Item> CLEMATIS_SEEDS = reg("clematis_seeds", new ItemDoTB());
 
@@ -72,7 +74,22 @@ public class DoTBItemsRegistry {
 		return reg(item.getItemPartName(), item);
 	}
 
-	public static RegistryObject<Item> reg(String name, Item item) {
+	private static RegistryObject<Item> reg(String name, Item item) {
+		if(item instanceof IHasFlowerPot){
+			IHasFlowerPot itemForPot = (IHasFlowerPot) item;
+			if(itemForPot.hasFlowerPot()){
+				String potName = name + "_flower_pot";
+				FlowerPotBlockDoTB potBlock = itemForPot.makeFlowerPotInstance(item);
+				itemForPot.setPotBlock(potBlock);
+				DoTBBlocksRegistry.finalReg(potName, potBlock);
+				finalReg(potName, new BlockItem(potBlock, new Item.Properties().tab(DOTB_TAB)));
+				POT_BLOCKS.put(potName, potBlock);
+			}
+		}
+		return finalReg(name, item);
+	}
+
+	public static RegistryObject<Item> finalReg(String name, Item item){
 		return ITEMS.register(name, () -> item);
 	}
 }

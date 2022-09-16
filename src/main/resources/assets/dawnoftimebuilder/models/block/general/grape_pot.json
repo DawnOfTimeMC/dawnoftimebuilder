@@ -3,9 +3,9 @@
 	"ambientocclusion": false,
 	"textures": {
 		"2": "dawnoftimebuilder:block/wild_grape",
+		"particle": "dawnoftimebuilder:block/wild_grape",
 		"flowerpot": "block/flower_pot",
-		"dirt": "block/dirt",
-		"particle": "dawnoftimebuilder:block/wild_grape"
+		"dirt": "block/dirt"
 	},
 	"elements": [
 		{
@@ -117,53 +117,40 @@
 	],
 	"display": {
 		"thirdperson_righthand": {
-			"rotation": [-20, 0, 0],
-			"translation": [0, 1, 0],
-			"scale": [0.3, 0.3, 0.3]
+			"rotation": [45, 45, 0],
+			"translation": [0, 2.5, 1.5],
+			"scale": [0.5, 0.5, 0.5]
 		},
 		"thirdperson_lefthand": {
-			"rotation": [-20, 0, 0],
-			"translation": [0, 1, 0],
-			"scale": [0.3, 0.3, 0.3]
+			"rotation": [45, 45, 0],
+			"translation": [0, 2.5, 1.5],
+			"scale": [0.5, 0.5, 0.5]
 		},
 		"firstperson_righthand": {
-			"rotation": [-20, 0, 0],
-			"translation": [0, 1, 0],
+			"rotation": [0, 60, 0],
+			"translation": [0, 4.5, 2.5],
 			"scale": [0.5, 0.5, 0.5]
 		},
 		"firstperson_lefthand": {
-			"rotation": [-20, 0, 0],
-			"translation": [0, 1, 0],
+			"rotation": [0, 60, 0],
+			"translation": [0, 4.5, 2.5],
 			"scale": [0.5, 0.5, 0.5]
 		},
 		"ground": {
-			"scale": [0.3, 0.3, 0.3]
+			"translation": [0, 3, 0],
+			"scale": [0.5, 0.5, 0.5]
 		},
 		"gui": {
-			"rotation": [20, 91.5, 0],
-			"scale": [0.55, 0.55, 0.55]
+			"rotation": [30, 135, 0],
+			"translation": [0, -0.5, 0],
+			"scale": [0.7, 0.7, 0.7]
 		},
 		"head": {
-			"translation": [0, 15, 0],
-			"scale": [2.1, 2.1, 2.1]
+			"translation": [0, 19, 0],
+			"scale": [2.2, 2.2, 2.2]
 		},
 		"fixed": {
-			"rotation": [-12, 45, 0],
-			"translation": [0, -1, -1],
-			"scale": [0.6, 0.6, 0.6]
+			"translation": [0, 0, -3]
 		}
-	},
-	"groups": [
-		0,
-		1,
-		2,
-		3,
-		4,
-		{
-			"name": "wild_grape",
-			"origin": [8, 8, 8],
-			"color": 0,
-			"children": [5, 6, 7, 8, 9, 10]
-		}
-	]
+	}
 }

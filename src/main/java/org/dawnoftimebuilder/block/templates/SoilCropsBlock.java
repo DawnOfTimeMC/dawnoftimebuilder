@@ -48,20 +48,20 @@ public class SoilCropsBlock extends CropsBlock implements ICustomBlockItem, IBlo
 	private final PlantType plantType;
 	public static final BooleanProperty PERSISTENT = BlockStateProperties.PERSISTENT;
 
-	public SoilCropsBlock(String seedName, PlantType plantType, Block flowerPot, Food food){
+	public SoilCropsBlock(String seedName, PlantType plantType, Food food){
 		super(BlockDoTB.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.CROP));
 		this.plantType = plantType;
 		this.seedName = seedName;
-		this.seed = new SoilSeedsItem(this, flowerPot, food);
+		this.seed = makeSeed(food);
 		this.registerDefaultState(this.stateDefinition.any().setValue(this.getAgeProperty(),0).setValue(PERSISTENT, false));
 	}
 
-	public SoilCropsBlock(String seedName, PlantType plantType, Block flowerPot){
-		this(seedName, plantType, flowerPot, null);
+	public SoilCropsBlock(String seedName, PlantType plantType){
+		this(seedName, plantType, null);
 	}
 
-	public SoilCropsBlock(String seedName, PlantType plantType, Food food){
-		this(seedName, plantType, null, food);
+	public SoilSeedsItem makeSeed(Food food){
+		return new SoilSeedsItem(this, food);
 	}
 
 	@Override

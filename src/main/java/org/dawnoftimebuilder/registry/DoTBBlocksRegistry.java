@@ -11,6 +11,7 @@ import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.dawnoftimebuilder.block.ICustomBlockItem;
+import org.dawnoftimebuilder.item.IHasFlowerPot;
 import org.dawnoftimebuilder.block.french.LimestoneChimneyBlock;
 import org.dawnoftimebuilder.block.french.LimestoneGargoyleBlock;
 import org.dawnoftimebuilder.block.precolumbian.*;
@@ -21,6 +22,7 @@ import org.dawnoftimebuilder.block.general.*;
 import org.dawnoftimebuilder.block.japanese.*;
 import org.dawnoftimebuilder.util.DoTBFoods;
 
+import java.util.HashMap;
 import java.util.function.ToIntFunction;
 
 import static net.minecraft.block.Blocks.*;
@@ -32,6 +34,7 @@ import static org.dawnoftimebuilder.DawnOfTimeBuilder.MOD_ID;
 public class DoTBBlocksRegistry {
 
 	public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, MOD_ID);
+	public static final HashMap<String,Block> POT_BLOCKS = new HashMap<>();
 
 	//General
     public static final RegistryObject<Block> ACACIA_PLANKS_EDGE = reg("acacia_planks_edge", new EdgeBlock(AbstractBlock.Properties.copy(ACACIA_PLANKS)).setBurnable());
@@ -221,11 +224,9 @@ public class DoTBBlocksRegistry {
 	public static final RegistryObject<Block> CAST_IRON_TEACUP_GREEN = reg("cast_iron_teacup_green", new CastIronTeacupBlock(AbstractBlock.Properties.of(Material.METAL).strength(1.0F).sound(SoundType.METAL).noOcclusion()));
 	public static final RegistryObject<Block> CAST_IRON_TEACUP_DECORATED = reg("cast_iron_teacup_decorated", new CastIronTeacupBlock(AbstractBlock.Properties.of(Material.METAL).strength(1.0F).sound(SoundType.METAL).noOcclusion()));
 	public static final RegistryObject<Block> BAMBOO_DRYING_TRAY = reg("bamboo_drying_tray", new DryerBlock(AbstractBlock.Properties.copy(OAK_PLANKS).noOcclusion()));
-	public static final RegistryObject<Block> CAMELLIA_FLOWER_POT = reg("camellia_flower_pot", new FlowerPotBlockDoTB(AbstractBlock.Properties.copy(FLOWER_POT)));
 	public static final RegistryObject<Block> CAMELLIA = reg("camellia", new GrowingBushBlock("camellia_seeds", PLAINS, 3));
-	public static final RegistryObject<Block> MULBERRY_FLOWER_POT = reg("mulberry_flower_pot", new FlowerPotBlockDoTB(AbstractBlock.Properties.copy(FLOWER_POT)));
 	public static final RegistryObject<Block> MULBERRY = reg("mulberry", new MulberryBlock("mulberry", PLAINS, 3, 2, DoTBFoods.MULBERRY));
-	public static final RegistryObject<Block> IKEBANA_FLOWER_POT = reg("ikebana_flower_pot", new SidedFlowerPotBlock(AbstractBlock.Properties.copy(FLOWER_POT)));
+	public static final RegistryObject<Block> IKEBANA_FLOWER_POT = reg("ikebana_flower_pot", new SidedFlowerPotBlock(null));
 	public static final RegistryObject<Block> SPRUCE_LOW_TABLE = reg("spruce_low_table", new SpruceLowTableBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.COLOR_BLACK).strength(2.0F, 6.0F).sound(SoundType.WOOD).noOcclusion().lightLevel(litBlockEmission(14))));
 	public static final RegistryObject<Block> SPRUCE_LEGLESS_CHAIR = reg("spruce_legless_chair", new SpruceLeglessChairBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.COLOR_BLACK).strength(2.0F, 6.0F).sound(SoundType.WOOD).noOcclusion(), 3.0F));
 	public static final RegistryObject<Block> WHITE_LITTLE_FLAG = reg("white_little_flag", new LittleFlagBlock(AbstractBlock.Properties.copy(WHITE_WOOL)));
@@ -258,8 +259,7 @@ public class DoTBBlocksRegistry {
 	public static final RegistryObject<Block> MORAQ_MOSAIC_RECESS = reg("moraq_mosaic_recess", new StairsBlockDoTB(MORAQ_MOSAIC_TILES_DELICATE, AbstractBlock.Properties.copy(BRICKS)));
 
 	//Pre_columbian
-	public static final RegistryObject<Block> COMMELINA_FLOWER_POT = reg("commelina_flower_pot", new FlowerPotBlockDoTB(AbstractBlock.Properties.copy(FLOWER_POT)));
-	public static final RegistryObject<Block> COMMELINA = reg("commelina", new SoilCropsBlock("commelina", PLAINS, COMMELINA_FLOWER_POT.get()));
+	public static final RegistryObject<Block> COMMELINA = reg("commelina", new SoilCropsBlock("commelina", PLAINS));
 	public static final RegistryObject<Block> PLASTERED_STONE = reg("plastered_stone", new BlockDoTB(AbstractBlock.Properties.copy(STONE_BRICKS)));
 	public static final RegistryObject<Block> PLASTERED_STONE_EDGE = reg("plastered_stone_edge", new EdgeBlock(AbstractBlock.Properties.copy(STONE_BRICKS)));
 	public static final RegistryObject<Block> PLASTERED_STONE_PLATE = reg("plastered_stone_plate", new PlateBlock(AbstractBlock.Properties.copy(STONE_BRICKS)));
@@ -287,8 +287,7 @@ public class DoTBBlocksRegistry {
 	public static final RegistryObject<Block> GREEN_SCULPTED_PLASTERED_STONE_FRIEZE = reg("green_sculpted_plastered_stone_frieze", new GreenSculptedPlasteredStoneFriezeBlock(AbstractBlock.Properties.copy(STONE_BRICKS)));
 	public static final RegistryObject<Block> GREEN_SMALL_PLASTERED_STONE_FRIEZE = reg("green_small_plastered_stone_frieze", new EdgeBlock(AbstractBlock.Properties.copy(STONE_BRICKS)));
 	public static final RegistryObject<Block> WILD_MAIZE = reg("wild_maize", new WildMaizeBlock(AbstractBlock.Properties.copy(DANDELION)));
-	public static final RegistryObject<Block> MAIZE_FLOWER_POT = reg("commelina_flower_pot", new FlowerPotBlockDoTB(AbstractBlock.Properties.copy(FLOWER_POT)));
-	public static final RegistryObject<Block> MAIZE = reg("maize", new DoubleCropsBlock("maize", CROP, MAIZE_FLOWER_POT.get(), 4, DoTBFoods.MAIZE));
+	public static final RegistryObject<Block> MAIZE = reg("maize", new DoubleCropsBlock("maize", CROP, 4, DoTBFoods.MAIZE));
 	public static final RegistryObject<Block> RED_ORNAMENTED_PLASTERED_STONE = reg("red_ornamented_plastered_stone", new BlockDoTB(AbstractBlock.Properties.copy(STONE_BRICKS)));
 	public static final RegistryObject<Block> PLASTERED_STONE_COLUMN = reg("plastered_stone_column", new PlasteredStoneColumnBlock(AbstractBlock.Properties.copy(STONE_BRICKS)));
 	public static final RegistryObject<Block> PLASTERED_STONE_CRESSET = reg("plastered_stone_cresset", new PlasteredStoneCressetBlock(AbstractBlock.Properties.copy(STONE_BRICKS).noOcclusion().lightLevel(litBlockEmission(15))));
@@ -321,8 +320,6 @@ public class DoTBBlocksRegistry {
 	public static final RegistryObject<Block> BIRCH_COUCH = reg("birch_couch", new BirchCouchBlock(AbstractBlock.Properties.copy(BIRCH_PLANKS), 13.0F));
 	public static final RegistryObject<Block> MARBLE_STATUE_MARS = reg("marble_statue_mars", new MarbleStatueBlock(AbstractBlock.Properties.copy(SANDSTONE).noOcclusion()));
 	public static final RegistryObject<Block> WILD_GRAPE = reg("wild_grape", new WildPlantBlock(AbstractBlock.Properties.copy(DANDELION)));
-	public static final RegistryObject<Block> GRAPE_FLOWER_POT = reg("grape_flower_pot", new FlowerPotBlockDoTB(AbstractBlock.Properties.copy(FLOWER_POT)));
-	public static final RegistryObject<Block> CYPRESS_FLOWER_POT = reg("cypress_flower_pot", new FlowerPotBlockDoTB(AbstractBlock.Properties.copy(FLOWER_POT)));
 	public static final RegistryObject<Block> CYPRESS = reg("cypress", new CypressBlock(AbstractBlock.Properties.copy(SPRUCE_LEAVES)).setBurnable());
 
 	private static RegistryObject<Block> reg(String name, Block block){
@@ -334,7 +331,24 @@ public class DoTBBlocksRegistry {
 		}else{
 			item = new BlockItem(block, new Item.Properties().tab(DOTB_TAB));
 		}
-		if(item != null) DoTBItemsRegistry.reg(itemName == null ? name : itemName, item);
+		if(item != null){
+			if(item instanceof IHasFlowerPot){
+				IHasFlowerPot itemForPot = (IHasFlowerPot) item;
+				if(itemForPot.hasFlowerPot()){
+					String potName = name + "_flower_pot";
+					FlowerPotBlockDoTB potBlock = itemForPot.makeFlowerPotInstance(item);
+					itemForPot.setPotBlock(potBlock);
+					finalReg(potName, potBlock);
+					DoTBItemsRegistry.finalReg(potName, new BlockItem(potBlock, new Item.Properties().tab(DOTB_TAB)));
+					POT_BLOCKS.put(potName, potBlock);
+				}
+			}
+			DoTBItemsRegistry.finalReg(itemName == null ? name : itemName, item);
+		}
+		return finalReg(name, block);
+	}
+
+	public static RegistryObject<Block> finalReg(String name, Block block){
 		return BLOCKS.register(name, () -> block);
 	}
 

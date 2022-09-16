@@ -5,12 +5,12 @@ issueTrackerURL="https://github.com/Poulpynou/dawnoftimebuilder/issues/"
 
 [[mods]] #mandatory
     modId="dawnoftimebuilder"
-    version="1.16.5-1.2.6"
+    version="1.16.5-1.2.7"
     displayName="Dawn Of Time : Builder Edition"
     updateJSONURL="https://raw.githubusercontent.com/Poulpynou/dawnoftimebuilder/1.16.5-master/update.json"
     displayURL="https://www.curseforge.com/minecraft/mc-mods/dawn-of-time"
     logoFile="logo.png"
-    credits="InstantNootles, Mr_ch0c0late, Hahdrim, Grandgibus, Kalista, Knoxxturre, Dmf444, Gamble and many others"
+    credits="LightRabbitz, Grandgibus, Mr_ch0c0late, Kalista, Knoxxturre, InstantNootles, Hahdrim and many others"
     authors="Poulpinou & TheGoldenWorld"
     description='''
     This mod adds many blocks and items from different cultures.

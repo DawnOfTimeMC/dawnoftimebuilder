@@ -1,9 +1,7 @@
 package org.dawnoftimebuilder.item.templates;
 
 import net.minecraft.advancements.CriteriaTriggers;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.SoundType;
+import net.minecraft.block.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.*;
@@ -12,18 +10,37 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import org.dawnoftimebuilder.block.templates.FlowerPotBlockDoTB;
 import org.dawnoftimebuilder.block.templates.SoilCropsBlock;
+import org.dawnoftimebuilder.item.IHasFlowerPot;
 
 import javax.annotation.Nullable;
 
 import static org.dawnoftimebuilder.DawnOfTimeBuilder.DOTB_TAB;
 
-public class SoilSeedsItem extends BlockItem {
-    private final Block flowerPot;
+public class SoilSeedsItem extends BlockItem implements IHasFlowerPot {
 
-    public SoilSeedsItem(SoilCropsBlock crops, Block flowerPot, @Nullable Food food) {
+    private FlowerPotBlockDoTB potBlock;
+
+    public SoilSeedsItem(SoilCropsBlock crops, @Nullable Food food) {
         super(crops, food != null ? new Item.Properties().tab(DOTB_TAB).food(food) : new Item.Properties().tab(DOTB_TAB));
-        this.flowerPot = flowerPot;
+    }
+
+    @Override
+    public ActionResultType onItemUseFirst(ItemStack stack, ItemUseContext context) {
+        World world = context.getLevel();
+        if(!world.isClientSide() && this.getPotBlock() != null){
+            BlockPos pos = context.getClickedPos();
+            BlockState state = world.getBlockState(pos);
+            if(state.getBlock() instanceof FlowerPotBlock){
+                FlowerPotBlock pot = (FlowerPotBlock) state.getBlock();
+                if(pot.getEmptyPot().getContent() == Blocks.AIR){
+                    world.setBlock(pos, this.getPotBlock().getRandomState(), 2);
+                    return ActionResultType.SUCCESS;
+                }
+            }
+        }
+        return super.onItemUseFirst(stack, context);
     }
 
     @Override
@@ -64,7 +81,13 @@ public class SoilSeedsItem extends BlockItem {
         }
     }
 
-    public Block getFlowerPot() {
-        return this.flowerPot;
+    @Override
+    public FlowerPotBlockDoTB getPotBlock() {
+        return this.potBlock;
+    }
+
+    @Override
+    public void setPotBlock(FlowerPotBlockDoTB pot) {
+        this.potBlock = pot;
     }
 }

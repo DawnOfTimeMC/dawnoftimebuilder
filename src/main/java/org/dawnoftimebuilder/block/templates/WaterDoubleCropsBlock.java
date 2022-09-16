@@ -17,6 +17,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IWorld;
 import net.minecraftforge.common.PlantType;
+import org.dawnoftimebuilder.item.templates.SoilSeedsItem;
 
 public class WaterDoubleCropsBlock extends DoubleCropsBlock implements IWaterLoggable {
 
@@ -29,6 +30,16 @@ public class WaterDoubleCropsBlock extends DoubleCropsBlock implements IWaterLog
 	public WaterDoubleCropsBlock(String seedName, int growingAge, Food food) {
 		super(seedName, PlantType.WATER, growingAge, food);
 		this.registerDefaultState(this.defaultBlockState().setValue(WATERLOGGED, true));
+	}
+
+	@Override
+	public SoilSeedsItem makeSeed(Food food) {
+		return new SoilSeedsItem(this, food){
+			@Override
+			public boolean hasFlowerPot() {
+				return false;
+			}
+		};
 	}
 
 	/**

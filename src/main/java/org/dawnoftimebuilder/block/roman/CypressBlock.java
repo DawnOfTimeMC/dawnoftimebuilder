@@ -6,7 +6,9 @@ import net.minecraft.block.Blocks;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.BlockItem;
 import net.minecraft.item.BlockItemUseContext;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.state.IntegerProperty;
@@ -27,7 +29,9 @@ import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.dawnoftimebuilder.block.IBlockGeneration;
+import org.dawnoftimebuilder.block.ICustomBlockItem;
 import org.dawnoftimebuilder.block.templates.BlockDoTB;
+import org.dawnoftimebuilder.item.templates.PotAndBlockItem;
 import org.dawnoftimebuilder.util.DoTBBlockStateProperties;
 import org.dawnoftimebuilder.util.DoTBBlockUtils;
 
@@ -35,10 +39,11 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Random;
 
+import static org.dawnoftimebuilder.DawnOfTimeBuilder.DOTB_TAB;
 import static org.dawnoftimebuilder.util.DoTBBlockUtils.HIGHEST_Y;
 import static org.dawnoftimebuilder.util.DoTBBlockUtils.TOOLTIP_COLUMN;
 
-public class CypressBlock extends BlockDoTB implements IBlockGeneration {
+public class CypressBlock extends BlockDoTB implements IBlockGeneration, ICustomBlockItem {
 
     private static final IntegerProperty SIZE = DoTBBlockStateProperties.SIZE_0_5;
     private static final VoxelShape VS_0 = Block.box(6.0D, 0.0D, 6.0D, 10.0D, 16.0D, 10.0D);
@@ -100,10 +105,6 @@ public class CypressBlock extends BlockDoTB implements IBlockGeneration {
     @Override
     protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
         builder.add(SIZE);
-    }
-
-    public static BlockState setSize(BlockState state, int size){
-        return state.setValue(SIZE, size);
     }
 
     @Override
@@ -191,5 +192,11 @@ public class CypressBlock extends BlockDoTB implements IBlockGeneration {
             world.setBlock(pos.above(i), state.setValue(SIZE, size), 2);
             if(size < 5) size++;
         }
+    }
+
+    @Nullable
+    @Override
+    public Item getCustomBlockItem() {
+        return new PotAndBlockItem(this, new Item.Properties().tab(DOTB_TAB));
     }
 }
