@@ -19,8 +19,8 @@ public class PotItem extends ItemDoTB implements IHasFlowerPot {
 
     private FlowerPotBlockDoTB potBlock;
 
-    public PotItem(Properties properties){
-        super(properties.tab(DOTB_TAB));
+    public PotItem(){
+        super();
     }
 
     @Override

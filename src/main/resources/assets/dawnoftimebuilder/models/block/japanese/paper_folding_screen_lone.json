@@ -1,4 +1,5 @@
 {
+	"ambientocclusion": false,
 	"textures": {
 		"texture": "dawnoftimebuilder:block/paper_folding_screen_none",
 		"particle": "dawnoftimebuilder:block/paper_folding_screen_none"

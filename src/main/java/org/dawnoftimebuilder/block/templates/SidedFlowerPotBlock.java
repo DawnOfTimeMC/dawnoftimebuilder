@@ -35,4 +35,9 @@ public class SidedFlowerPotBlock extends FlowerPotBlockDoTB {
     public BlockState getRandomState() {
         return this.defaultBlockState().setValue(FACING, Direction.Plane.HORIZONTAL.getRandomDirection(new Random()));
     }
+
+    @Override
+    public float getDisplayScale() {
+        return 1.0F;
+    }
 }

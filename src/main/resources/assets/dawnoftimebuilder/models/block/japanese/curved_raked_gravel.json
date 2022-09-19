@@ -1,0 +1,13 @@
+{
+	"parent": "block/cube",
+	"textures": {
+		"particle": "dawnoftimebuilder:block/curved_raked_gravel",
+		"down": "#side",
+		"north": "#side",
+		"east": "#side",
+		"south": "#side",
+		"west": "#side",
+		"up": "dawnoftimebuilder:block/curved_raked_gravel",
+		"side": "minecraft:block/gravel"
+	}
+}

@@ -40,8 +40,8 @@ public class DoTBItemsRegistry {
 	public static final RegistryObject<Item> GRAY_TILE = reg("gray_tile", new ItemDoTB());
 	public static final RegistryObject<Item> GRAY_CLAY_TILE = reg("gray_clay_tile", new ItemDoTB());
 	public static final RegistryObject<Item> MULBERRY_LEAVES = reg("mulberry_leaves", new ItemDoTB());
-	public static final RegistryObject<Item> GRAPE = reg("grape", new PotItem(new Item.Properties().food(DoTBFoods.GRAPE)));
-	public static final RegistryObject<Item> GRAPE_SEEDS = reg("grape_seeds", new ItemDoTB());
+	public static final RegistryObject<Item> GRAPE = reg("grape", new ItemDoTB(new Item.Properties().food(DoTBFoods.GRAPE)));
+	public static final RegistryObject<Item> GRAPE_SEEDS = reg("grape_seeds", new PotItem());
 	//public static final RegistryObject<Item> CLEMATIS_SEEDS = reg("clematis_seeds", new ItemDoTB());
 
 	//Armors

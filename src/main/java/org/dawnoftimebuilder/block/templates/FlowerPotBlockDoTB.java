@@ -51,4 +51,9 @@ public class FlowerPotBlockDoTB extends BlockDoTB implements IBlockSpecialDispla
     public BlockState getRandomState() {
         return this.defaultBlockState();
     }
+
+    @Override
+    public float getDisplayScale() {
+        return 0.667F;
+    }
 }

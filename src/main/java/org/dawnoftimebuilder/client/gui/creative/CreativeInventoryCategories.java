@@ -287,6 +287,9 @@ public enum CreativeInventoryCategories {
 	),
 
 	JAPANESE("japanese",
+			GRAVEL.asItem(),
+			STRAIGHT_RAKED_GRAVEL.get().asItem(),
+			CURVED_RAKED_GRAVEL.get().asItem(),
 			STEPPING_STONES.get().asItem(),
 			STEPPING_STONES_SLAB.get().asItem(),
 			THATCH_BAMBOO.get().asItem(),

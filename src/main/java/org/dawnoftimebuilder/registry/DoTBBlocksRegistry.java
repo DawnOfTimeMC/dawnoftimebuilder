@@ -217,6 +217,8 @@ public class DoTBBlocksRegistry {
 	//TODO Redo stepping stone's textures
 	public static final RegistryObject<Block> STEPPING_STONES = reg("stepping_stones", new BlockDoTB(Block.Properties.of(Material.SAND, MaterialColor.STONE).strength(1.2F).sound(SoundType.GRAVEL)));
 	public static final RegistryObject<Block> STEPPING_STONES_SLAB = reg("stepping_stones_slab", new SlabBlockDoTB(AbstractBlock.Properties.of(Material.SAND, MaterialColor.STONE).strength(1.2F).sound(SoundType.GRAVEL)));
+	public static final RegistryObject<Block> CURVED_RAKED_GRAVEL = reg("curved_raked_gravel", new HorizontalBlockDoTB(AbstractBlock.Properties.of(Material.SAND, MaterialColor.STONE).strength(1.0F).sound(SoundType.GRAVEL)));
+	public static final RegistryObject<Block> STRAIGHT_RAKED_GRAVEL = reg("straight_raked_gravel", new HorizontalAxisBlockDoTB(AbstractBlock.Properties.of(Material.SAND, MaterialColor.STONE).strength(1.0F).sound(SoundType.GRAVEL)));
 	public static final RegistryObject<Block> CAST_IRON_TEAPOT_GRAY = reg("cast_iron_teapot_gray", new CastIronTeapotBlock(AbstractBlock.Properties.of(Material.METAL).strength(1.0F).sound(SoundType.METAL).noOcclusion()));
 	public static final RegistryObject<Block> CAST_IRON_TEAPOT_GREEN = reg("cast_iron_teapot_green", new CastIronTeapotBlock(AbstractBlock.Properties.of(Material.METAL).strength(1.0F).sound(SoundType.METAL).noOcclusion()));
 	public static final RegistryObject<Block> CAST_IRON_TEAPOT_DECORATED = reg("cast_iron_teapot_decorated", new CastIronTeapotBlock(AbstractBlock.Properties.of(Material.METAL).strength(1.0F).sound(SoundType.METAL).noOcclusion()));
