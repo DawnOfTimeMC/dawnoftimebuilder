@@ -216,6 +216,7 @@ public enum CreativeInventoryCategories {
 			THATCH_WHEAT_EDGE.get().asItem(),
 			RAMMED_DIRT.get().asItem(),
 			WAXED_OAK_FRAMED_RAMMED_DIRT.get().asItem(),
+			WAXED_OAK_FRAMED_RAMMED_DIRT_PILLAR.get().asItem(),
 			WAXED_OAK_TIMBER_FRAME.get().asItem(),
 			WAXED_OAK_TIMBER_FRAME_PILLAR.get().asItem(),
 			WAXED_OAK_TIMBER_FRAME_CORNER.get().asItem(),
