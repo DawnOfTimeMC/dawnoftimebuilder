@@ -1,15 +1,12 @@
 {
     "type": "minecraft:crafting_shaped",
     "pattern": [
-        "ixi",
+        " x ",
         "III"
     ],
     "key": {
         "x": {
-            "item": "minecraft:allium"
-        },
-        "i": {
-            "item": "minecraft:wheat_seeds"
+            "item": "dawnoftimebuilder:geranium_pink"
         },
         "I": {
             "item": "minecraft:flower_pot"

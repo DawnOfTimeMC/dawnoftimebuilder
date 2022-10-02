@@ -86,6 +86,7 @@ public class HandlerClient {
 		RenderTypeLookup.setRenderLayer(WAXED_OAK_PERGOLA.get(), RenderType.cutoutMipped());
 		RenderTypeLookup.setRenderLayer(WAXED_OAK_LATTICE.get(), RenderType.cutoutMipped());
 		RenderTypeLookup.setRenderLayer(WAXED_OAK_CHANDELIER.get(), RenderType.cutoutMipped());
+		RenderTypeLookup.setRenderLayer(GERANIUM_PINK.get(), RenderType.cutoutMipped());
 		RenderTypeLookup.setRenderLayer(PLANTER_GERANIUM_PINK.get(), RenderType.cutoutMipped());
 
 		//Japanese

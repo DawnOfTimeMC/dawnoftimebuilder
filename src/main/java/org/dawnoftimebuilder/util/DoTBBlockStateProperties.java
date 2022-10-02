@@ -306,6 +306,7 @@ public class DoTBBlockStateProperties {
     public enum ClimbingPlant implements IStringSerializable {
         NONE("none"),
         VINE("vine"),
+        //IVY("ivy"),
         GRAPE("grape", true, 4, 6, 0, 2, 2);
         //CLEMATIS("clematis", true, 4, 5, 1, 2, 2);
 
@@ -368,6 +369,7 @@ public class DoTBBlockStateProperties {
             if(item == GRAPE_SEEDS.get()) return GRAPE;
             //if(item == CLEMATIS_SEEDS.get()) return CLEMATIS;
             if(item == Blocks.VINE.asItem()) return VINE;
+            //if(item == Blocks.IVY.asItem()) return IVY;
             return NONE;
         }
     }

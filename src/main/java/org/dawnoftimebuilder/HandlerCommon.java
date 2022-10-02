@@ -80,6 +80,9 @@ public class HandlerCommon {
             if (WILD_MAIZE_GENERATION.get().contains(name.toString())) {
                 generation.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, cropsFeature.configured(new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(DoTBBlocksRegistry.WILD_MAIZE.get().defaultBlockState()), new DoTBBlockPlacer()).tries(WILD_MAIZE_ROLLS.get()).xspread(2).zspread(2).build()).decorated(Features.Placements.ADD_32).decorated(Features.Placements.HEIGHTMAP_SQUARE));
             }
+            if (GERANIUM_PINK_GENERATION.get().contains(name.toString())) {
+                generation.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, cropsFeature.configured(new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(DoTBBlocksRegistry.GERANIUM_PINK.get().defaultBlockState()), SimpleBlockPlacer.INSTANCE).tries(GERANIUM_PINK_ROLLS.get()).xspread(2).zspread(2).build()).decorated(Features.Placements.HEIGHTMAP_SQUARE));
+            }
         }
     }
 }

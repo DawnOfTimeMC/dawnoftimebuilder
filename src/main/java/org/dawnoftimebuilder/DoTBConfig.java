@@ -84,6 +84,8 @@ public class DoTBConfig {
     public static ForgeConfigSpec.IntValue WILD_MAIZE_ROLLS;
     public static ForgeConfigSpec.ConfigValue<List<? extends String>> COMMELINA_GENERATION;
     public static ForgeConfigSpec.IntValue COMMELINA_ROLLS;
+    public static ForgeConfigSpec.ConfigValue<List<? extends String>> GERANIUM_PINK_GENERATION;
+    public static ForgeConfigSpec.IntValue GERANIUM_PINK_ROLLS;
 
     public static final String ENTITY_CATEGORY = "entity_properties";
     public static ForgeConfigSpec.IntValue SILKMOTH_SPAWN_CHANCE;
@@ -224,6 +226,10 @@ public class DoTBConfig {
             COMMON_BUILDER.push("commelina");
                 COMMELINA_GENERATION = COMMON_BUILDER.comment("List of biomes where this plant should spawn during world generation (must be empty if the plant must not spawn :").define("commelinaBiomes", Arrays.asList("minecraft:flower_forest", "minecraft:swamp", "minecraft:swamp_hills"), obj -> true);
                 COMMELINA_ROLLS = COMMON_BUILDER.comment("For each spawn zone, a position will be chose x times to place this plant, with x the following value :").defineInRange("commelinaRolls", 64,1,200);
+            COMMON_BUILDER.pop();
+            COMMON_BUILDER.push("geranium_pink");
+                GERANIUM_PINK_GENERATION = COMMON_BUILDER.comment("List of biomes where this plant should spawn during world generation (must be empty if the plant must not spawn :").define("geraniumPinkBiomes", Arrays.asList("minecraft:flower_forest", "minecraft:tall_birch_forest", "minecraft:tall_birch_hills", "minecraft:birch_forest", "minecraft:birch_forest_hills"), obj -> true);
+                GERANIUM_PINK_ROLLS = COMMON_BUILDER.comment("For each spawn zone, a position will be chose x times to place this plant, with x the following value :").defineInRange("geraniumPinkRolls", 5,1,200);
             COMMON_BUILDER.pop();
         COMMON_BUILDER.pop();
 
