@@ -180,6 +180,8 @@ public class DoTBBlocksRegistry {
 	public static final RegistryObject<Block> WAXED_OAK_CHANDELIER = reg("waxed_oak_chandelier", new WaxedOakChandelierBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F, 5.0F).sound(SoundType.WOOD).noOcclusion().lightLevel(litBlockEmission(15))));
 	public static final RegistryObject<Block> WAXED_OAK_CHAIR = reg("waxed_oak_chair", new WaxedOakChairBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F, 5.0F).sound(SoundType.WOOD).noOcclusion(), 11.0F));
 	public static final RegistryObject<Block> WAXED_OAK_TABLE = reg("waxed_oak_table", new WaxedOakTableBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F, 5.0F).sound(SoundType.WOOD).noOcclusion()));
+	public static final RegistryObject<Block> IVY = reg("ivy", new IvyBlock(AbstractBlock.Properties.of(Material.REPLACEABLE_PLANT).noCollission().randomTicks().strength(0.2F).sound(SoundType.VINE)));
+	// TODO flowerpot for ivy
 	public static final RegistryObject<Block> GERANIUM_PINK = reg("geranium_pink", new GeraniumBlock(AbstractBlock.Properties.of(Material.PLANT).noCollission().instabreak().sound(SoundType.GRASS)));
 	public static final RegistryObject<Block> PLANTER_GERANIUM_PINK = reg("planter_geranium_pink", new PlanterBlock(AbstractBlock.Properties.of(Material.CLAY).strength(0.6F).noOcclusion()));
 
