@@ -2,6 +2,8 @@ package org.dawnoftimebuilder.registry;
 
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemGroup;
+import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -42,6 +44,8 @@ public class DoTBItemsRegistry {
 	public static final RegistryObject<Item> MULBERRY_LEAVES = reg("mulberry_leaves", new ItemDoTB());
 	public static final RegistryObject<Item> GRAPE = reg("grape", new ItemDoTB(new Item.Properties().food(DoTBFoods.GRAPE)));
 	public static final RegistryObject<Item> GRAPE_SEEDS = reg("grape_seeds", new PotItem());
+	public static final RegistryObject<Item> JAPANESE_DRAGON_SPAWN_EGG = ITEMS.register("japanese_dragon_spawn_egg", () -> new ForgeSpawnEggItem(DoTBEntitiesRegistry.JAPANESE_DRAGON_ENTITY, 0x002B32, 0xB0EAF0, new Item.Properties().stacksTo(1).tab(ItemGroup.TAB_MISC)));
+	public static final RegistryObject<Item> SILKMOTH_SPAWN_EGG = ITEMS.register("silkmoth_spawn_egg", () -> new ForgeSpawnEggItem(DoTBEntitiesRegistry.SILKMOTH_ENTITY, 0xF9F9F4, 0xEDEBDC, new Item.Properties().stacksTo(1).tab(ItemGroup.TAB_MISC)));
 	//public static final RegistryObject<Item> CLEMATIS_SEEDS = reg("clematis_seeds", new ItemDoTB());
 
 	//Armors
