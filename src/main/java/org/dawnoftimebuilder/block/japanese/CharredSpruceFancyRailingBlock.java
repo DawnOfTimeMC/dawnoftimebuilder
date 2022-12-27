@@ -27,9 +27,5 @@ public class CharredSpruceFancyRailingBlock extends PaneBlockDoTB {
         return state.setValue(HANGING, clickedFace == Direction.DOWN || (clickedFace != Direction.UP && context.getClickLocation().y - pos.getY() > 0.5D));
     }
 
-    //TODO Modifier la hitbox en fonction de HANGING True / False
-    //TODO Override canAttachPane pour prendre en compte HANGING
-    //TODO Ajouter un tooltip qui explique le block peut être sous le plafond
-    //TODO Faire toutes les ressources
-    //TODO Ajouter au registry et à l'inventaire dans l'onglet japonais
+
 }
