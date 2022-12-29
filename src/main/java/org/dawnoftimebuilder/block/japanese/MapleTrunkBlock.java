@@ -1,27 +1,28 @@
 package org.dawnoftimebuilder.block.japanese;
 
-import javax.annotation.Nullable;
+import java.util.List;
 
 import org.dawnoftimebuilder.block.ICustomBlockItem;
 import org.dawnoftimebuilder.block.templates.BlockDoTB;
-import org.dawnoftimebuilder.registry.DoTBBlocksRegistry;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.material.PushReaction;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.loot.LootContext.Builder;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.Tags;
 
 public class MapleTrunkBlock extends BlockDoTB implements ICustomBlockItem
@@ -46,64 +47,6 @@ public class MapleTrunkBlock extends BlockDoTB implements ICustomBlockItem
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
         return state.getValue(MULTIBLOCK) == 2 ? VS_TOP : VS;
     }**/
-
-    public final static boolean isValidForPlacement(World worldIn, BlockPos bottomCenterIn, boolean isSaplingCallIn)
-    {
-    	BlockPos floorCenter = bottomCenterIn.below();
-    	BlockState state = worldIn.getBlockState(floorCenter);
-
-    	if(!Tags.Blocks.DIRT.contains(state.getBlock()))
-    		return false;
-
-    	state = worldIn.getBlockState(bottomCenterIn);
-
-    	System.out.println("A ");
-    	if(!state.getMaterial().isReplaceable() || !(isSaplingCallIn && state.getBlock() instanceof MapleSaplingBlock))
-    		return true;
-
-    	System.out.println("B ");
-
-        for(int x = -1; x <= 1; x ++)
-        {
-            for(int y = 0; y <= 1; y ++)
-            {
-                for(int z = -1; z <= 1; z ++)
-                {
-                	state = worldIn.getBlockState(bottomCenterIn.offset(x, y + 1, z));
-
-                	System.out.println(state);
-                	if(state == null || !state.getMaterial().isReplaceable())
-                	{
-                		return false;
-                	}
-                }
-            }
-        }
-
-        return true;
-    }
-    
-    @Nullable
-    @Override
-    public BlockState getStateForPlacement(BlockItemUseContext context)
-    {
-    	BlockPos bottomCenter = context.getClickedPos();
-    	
-    	if( context.getPlayer().position().x >= bottomCenter.getX() - 1.75f &&
-    		context.getPlayer().position().y >= bottomCenter.getY() - 0.75f &&
-    		context.getPlayer().position().z >= bottomCenter.getZ() - 1.75f &&
-    		context.getPlayer().position().x <= bottomCenter.getX() + 1.75f &&
-    		context.getPlayer().position().y <= bottomCenter.getY() + 2.75f &&
-    	    context.getPlayer().position().z <= bottomCenter.getZ() + 1.75f)
-    	    		return Blocks.AIR.defaultBlockState();
-    	
-    	if(isValidForPlacement(context.getLevel(), context.getClickedPos(), false))
-    	{
-            return super.getStateForPlacement(context).setValue(FACING, Direction.Plane.HORIZONTAL.getRandomDirection(context.getLevel().random));
-    	}
-    	
-		return Blocks.AIR.defaultBlockState();
-    }
 
     public void playerWillDestroy(World worldIn, BlockPos blockPosIn, BlockState blockStateIn, PlayerEntity playerEntityIn) 
     {
@@ -134,37 +77,18 @@ public class MapleTrunkBlock extends BlockDoTB implements ICustomBlockItem
 
         super.playerWillDestroy(worldIn, blockPosIn, blockStateIn, playerEntityIn);
     }
-    
-    @Override
-    public void setPlacedBy(World worldIn, BlockPos pos, BlockState state, LivingEntity placer, ItemStack stack)
-    {
-        worldIn.setBlock(pos, state
-        		.setValue(FACING, state.getValue(FACING)), 10);
-    	
-        for(int x = -1; x <= 1; x ++)
-        {
-            for(int y = 0; y <= 1; y ++)
-            {
-                for(int z = -1; z <= 1; z ++)
-                {
-                	BlockPos newBlockPosition = new BlockPos(pos.getX() + x, pos.getY() + y+1, pos.getZ() + z);
-
-                    worldIn.setBlock(newBlockPosition, DoTBBlocksRegistry.MAPLE_RED_LEAVES.get().defaultBlockState()
-                    		.setValue(FACING, state.getValue(FACING))
-                    		.setValue(MapleLeavesBlock.MULTIBLOCK_X, x+1)
-                    		.setValue(MapleLeavesBlock.MULTIBLOCK_Y, y)
-                    		.setValue(MapleLeavesBlock.MULTIBLOCK_Z, z+1), 10);
-                }
-            }
-        }
-    }
 
     @Override
     public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos)
     {
+    	if(facing.equals(Direction.DOWN))
+    	{
+    		BlockState state = worldIn.getBlockState((currentPos.below()));
+        	if(!Tags.Blocks.DIRT.contains(state.getBlock()))
+        		return Blocks.AIR.defaultBlockState();
+    	}
     	/**if(facingState.getBlock() == this)
     	{
-    		
     	}**/
      	
         return stateIn;
@@ -174,10 +98,23 @@ public class MapleTrunkBlock extends BlockDoTB implements ICustomBlockItem
     public PushReaction getPistonPushReaction(BlockState state) {
         return PushReaction.DESTROY;
     }
-    
+  
     @Override
     public Item getCustomBlockItem()
     {
     	return null;
+    }
+
+    /**
+     * Glass code like
+     */
+    
+    @OnlyIn(Dist.CLIENT)
+    public float getShadeBrightness(BlockState p_220080_1_, IBlockReader p_220080_2_, BlockPos p_220080_3_) {
+       return 1.0F;
+    }
+
+    public boolean propagatesSkylightDown(BlockState p_200123_1_, IBlockReader p_200123_2_, BlockPos p_200123_3_) {
+       return true;
     }
 }

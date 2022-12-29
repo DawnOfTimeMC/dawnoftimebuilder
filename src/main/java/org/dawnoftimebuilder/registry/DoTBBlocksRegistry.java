@@ -142,10 +142,13 @@ import net.minecraft.block.TrapDoorBlock;
 import net.minecraft.block.WallBlock;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
+import net.minecraft.entity.EntityType;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.DyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.state.properties.BlockStateProperties;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockReader;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -374,9 +377,9 @@ public class DoTBBlocksRegistry {
 	public static final RegistryObject<Block> SAKE_BOTTLE = reg("sake_bottle", new SakeBottleBlock(AbstractBlock.Properties.copy(FLOWER_POT)));
 	public static final RegistryObject<Block> SAKE_CUP = reg("sake_cup", new SakeCupBlock(AbstractBlock.Properties.copy(FLOWER_POT)));
 	public static final RegistryObject<Block> STICK_BUNDLE = reg("stick_bundle", new StickBundleBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(2.0F, 3.0F).sound(SoundType.GRASS).noOcclusion()).setBurnable());
-	public static final RegistryObject<Block> MAPLE_RED_TRUNK = reg("maple_red_trunk", new MapleTrunkBlock(AbstractBlock.Properties.of(Material.LEAVES, MaterialColor.WOOD).strength(2.0F, 3.0F).sound(SoundType.GRASS).noOcclusion()).setBurnable());
-	public static final RegistryObject<Block> MAPLE_RED_LEAVES = reg("maple_red_leaves", new MapleLeavesBlock(AbstractBlock.Properties.of(Material.LEAVES, MaterialColor.WOOD).strength(2.0F, 3.0F).sound(SoundType.GRASS).noOcclusion()).setBurnable());
-	public static final RegistryObject<Block> MAPLE_RED_SAPLING = reg("maple_red_sapling", new MapleSaplingBlock(AbstractBlock.Properties.of(Material.LEAVES, MaterialColor.WOOD).strength(2.0F, 3.0F).sound(SoundType.GRASS).noOcclusion()).setBurnable());
+	public static final RegistryObject<Block> MAPLE_RED_TRUNK = reg("maple_red_trunk", new MapleTrunkBlock(AbstractBlock.Properties.of(Material.LEAVES, MaterialColor.WOOD).sound(SoundType.WOOD).noOcclusion().isValidSpawn(DoTBBlocksRegistry::ocelotOrParrot).isSuffocating(DoTBBlocksRegistry::never).isViewBlocking(DoTBBlocksRegistry::never)).setBurnable());
+	public static final RegistryObject<Block> MAPLE_RED_LEAVES = reg("maple_red_leaves", new MapleLeavesBlock(AbstractBlock.Properties.of(Material.LEAVES, MaterialColor.GRASS).sound(SoundType.GRASS).noOcclusion().isValidSpawn(DoTBBlocksRegistry::ocelotOrParrot).isSuffocating(DoTBBlocksRegistry::never).isViewBlocking(DoTBBlocksRegistry::never)).setBurnable());
+	public static final RegistryObject<Block> MAPLE_RED_SAPLING = reg("maple_red_sapling", new MapleSaplingBlock(AbstractBlock.Properties.of(Material.LEAVES, MaterialColor.GRASS).sound(SoundType.GRASS).noOcclusion().isSuffocating(DoTBBlocksRegistry::never).isViewBlocking(DoTBBlocksRegistry::never).noCollission()));
 
 	//Persian
 	public static final RegistryObject<Block> PERSIAN_CARPET_RED = reg("persian_carpet_red", new CarpetBlockDoTB(AbstractBlock.Properties.copy(RED_WOOL)));
@@ -478,11 +481,23 @@ public class DoTBBlocksRegistry {
 		return finalReg(name, block);
 	}
 
-	public static RegistryObject<Block> finalReg(String name, Block block){
+	public static RegistryObject<Block> finalReg(String name, Block block)
+	{
 		return BLOCKS.register(name, () -> block);
 	}
 
-	private static ToIntFunction<BlockState> litBlockEmission(int lightValue) {
+	private static ToIntFunction<BlockState> litBlockEmission(int lightValue)
+	{
 		return state -> state.getValue(BlockStateProperties.LIT) ? lightValue : 0;
+	}
+
+	private static Boolean ocelotOrParrot(BlockState p_235441_0_, IBlockReader p_235441_1_, BlockPos p_235441_2_, EntityType<?> p_235441_3_)
+	{
+		return p_235441_3_ == EntityType.OCELOT || p_235441_3_ == EntityType.PARROT;
+	}
+
+	private static boolean never(BlockState p_235436_0_, IBlockReader p_235436_1_, BlockPos p_235436_2_)
+	{
+		return false;
 	}
 }

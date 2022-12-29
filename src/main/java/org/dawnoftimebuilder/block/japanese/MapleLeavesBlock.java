@@ -14,8 +14,11 @@ import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class MapleLeavesBlock extends BlockDoTB implements ICustomBlockItem
 {
@@ -32,6 +35,8 @@ public class MapleLeavesBlock extends BlockDoTB implements ICustomBlockItem
         		.setValue(MULTIBLOCK_X, 0)
         		.setValue(MULTIBLOCK_Y, 0)
         		.setValue(MULTIBLOCK_Z, 0));
+        
+        Blocks e;
     }
 
     public void playerWillDestroy(World worldIn, BlockPos blockPosIn, BlockState blockStateIn, PlayerEntity playerEntityIn) 
@@ -96,4 +101,17 @@ public class MapleLeavesBlock extends BlockDoTB implements ICustomBlockItem
 	{
 		return null;
 	}
+
+    /**
+     * Glass code like
+     */
+    
+    @OnlyIn(Dist.CLIENT)
+    public float getShadeBrightness(BlockState p_220080_1_, IBlockReader p_220080_2_, BlockPos p_220080_3_) {
+       return 1.0F;
+    }
+
+    public boolean propagatesSkylightDown(BlockState p_200123_1_, IBlockReader p_200123_2_, BlockPos p_200123_3_) {
+       return true;
+    }
 }
