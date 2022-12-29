@@ -1,5 +1,6 @@
 {
 	"credit": "mr_ch0c0late",
+	"texture_size": [32, 32],
 	"textures": {
 		"0": "dawnoftimebuilder:block/birch_couch",
 		"particle": "block/birch_planks"
@@ -11,9 +12,9 @@
 			"rotation": {"angle": 45, "axis": "x", "origin": [6.99, 13.41421, 8.58579]},
 			"faces": {
 				"north": {"uv": [15, 13, 11, 7], "rotation": 90, "texture": "#0"},
-				"east": {"uv": [9.5, 4, 10, 8], "rotation": 180, "texture": "#0"},
-				"west": {"uv": [9.5, 8, 10, 4], "texture": "#0"},
-				"up": {"uv": [9.5, 7, 9, 13], "rotation": 90, "texture": "#0"}
+				"east": {"uv": [11, 12.5, 15, 13], "rotation": 90, "texture": "#0"},
+				"west": {"uv": [15, 12.5, 11, 13], "rotation": 90, "texture": "#0"},
+				"up": {"uv": [15, 7, 14.5, 13], "rotation": 90, "texture": "#0"}
 			}
 		},
 		{
@@ -21,8 +22,8 @@
 			"to": [13.99, 15, 14],
 			"rotation": {"angle": 0, "axis": "y", "origin": [8, 8, 8]},
 			"faces": {
-				"east": {"uv": [8, 3.5, 9.5, 5], "texture": "#0"},
-				"south": {"uv": [8, 3.5, 9.5, 5], "texture": "#0"},
+				"east": {"uv": [9.5, 3.5, 8, 5], "texture": "#0"},
+				"south": {"uv": [9.5, 7, 11, 8.5], "texture": "#0"},
 				"west": {"uv": [8, 3.5, 9.5, 5], "texture": "#0"}
 			}
 		},
@@ -31,8 +32,8 @@
 			"to": [5.01, 15, 14],
 			"rotation": {"angle": 0, "axis": "y", "origin": [8, 8, 8]},
 			"faces": {
-				"east": {"uv": [8, 3.5, 9.5, 5], "texture": "#0"},
-				"south": {"uv": [8, 3.5, 9.5, 5], "texture": "#0"},
+				"east": {"uv": [9.5, 3.5, 8, 5], "texture": "#0"},
+				"south": {"uv": [9.5, 7, 11, 8.5], "texture": "#0"},
 				"west": {"uv": [8, 3.5, 9.5, 5], "texture": "#0"}
 			}
 		},
@@ -53,10 +54,9 @@
 			"to": [15.01, 13, 10],
 			"rotation": {"angle": 0, "axis": "y", "origin": [8, 8, 8]},
 			"faces": {
-				"east": {"uv": [10, 13, 9.5, 8], "rotation": 270, "texture": "#0"},
-				"west": {"uv": [10, 8, 9.5, 13], "rotation": 270, "texture": "#0"},
-				"up": {"uv": [15, 7.01, 10, 0], "rotation": 270, "texture": "#0"},
-				"down": {"uv": [10.5, 0, 8, 3.5], "rotation": 90, "texture": "#0"}
+				"east": {"uv": [10, 7, 15, 6.5], "rotation": 180, "texture": "#0"},
+				"west": {"uv": [15, 0.5, 10, 0], "rotation": 180, "texture": "#0"},
+				"up": {"uv": [15, 7.01, 10, 0], "rotation": 270, "texture": "#0"}
 			}
 		},
 		{

@@ -110,6 +110,8 @@ public class HandlerClient {
 		RenderTypeLookup.setRenderLayer(SAKE_BOTTLE.get(), RenderType.cutoutMipped());
 		RenderTypeLookup.setRenderLayer(STICK_BUNDLE.get(), RenderType.cutoutMipped());
 		RenderTypeLookup.setRenderLayer(STONE_LANTERN.get(), RenderType.cutoutMipped());
+		RenderTypeLookup.setRenderLayer(MAPLE_RED_TRUNK.get(), RenderType.cutoutMipped());
+		RenderTypeLookup.setRenderLayer(MAPLE_RED_LEAVES.get(), RenderType.cutoutMipped());
 
 		//Persian
 		RenderTypeLookup.setRenderLayer(MORAQ_MOSAIC_RECESS.get(), RenderType.cutoutMipped());

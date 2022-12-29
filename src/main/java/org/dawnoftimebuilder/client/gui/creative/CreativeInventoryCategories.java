@@ -361,6 +361,7 @@ public enum CreativeInventoryCategories {
 			CAST_IRON_TEACUP_GREEN.get().asItem(),
 			CAST_IRON_TEAPOT_DECORATED.get().asItem(),
 			CAST_IRON_TEACUP_DECORATED.get().asItem(),
+			MAPLE_RED_TRUNK.get().asItem(),
 			BAMBOO_DRYING_TRAY.get().asItem(),
 			CAMELLIA.get().asItem(),
 			CAMELLIA_LEAVES.get(),

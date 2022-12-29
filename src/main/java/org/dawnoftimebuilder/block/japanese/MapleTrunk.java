@@ -2,6 +2,8 @@ package org.dawnoftimebuilder.block.japanese;
 
 import javax.annotation.Nullable;
 
+import net.minecraft.item.Item;
+import org.dawnoftimebuilder.block.ICustomBlockItem;
 import org.dawnoftimebuilder.block.templates.BlockDoTB;
 import org.dawnoftimebuilder.registry.DoTBBlocksRegistry;
 
@@ -23,11 +25,11 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraftforge.common.Tags;
 
-public class MappleTrunk extends BlockDoTB
+public class MapleTrunk extends BlockDoTB implements ICustomBlockItem
 {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 
-    public MappleTrunk(Properties properties) {
+    public MapleTrunk(Properties properties) {
         super(properties);
 
         this.registerDefaultState(this.defaultBlockState()
@@ -136,11 +138,11 @@ public class MappleTrunk extends BlockDoTB
                 {
                 	BlockPos newBlockPosition = new BlockPos(pos.getX() + x, pos.getY() + y+1, pos.getZ() + z);
 
-                    worldIn.setBlock(newBlockPosition, DoTBBlocksRegistry.MAPPLE_LEAVES.get().defaultBlockState()
+                    worldIn.setBlock(newBlockPosition, DoTBBlocksRegistry.MAPLE_RED_LEAVES.get().defaultBlockState()
                     		.setValue(FACING, state.getValue(FACING))
-                    		.setValue(MappleLeaves.MULTIBLOCK_X, x+1)
-                    		.setValue(MappleLeaves.MULTIBLOCK_Y, y)
-                    		.setValue(MappleLeaves.MULTIBLOCK_Z, z+1), 10);
+                    		.setValue(MapleLeaves.MULTIBLOCK_X, x+1)
+                    		.setValue(MapleLeaves.MULTIBLOCK_Y, y)
+                    		.setValue(MapleLeaves.MULTIBLOCK_Z, z+1), 10);
                 }
             }
         }
@@ -160,5 +162,11 @@ public class MappleTrunk extends BlockDoTB
     @Override
     public PushReaction getPistonPushReaction(BlockState state) {
         return PushReaction.DESTROY;
+    }
+
+    @Nullable
+    @Override
+    public Item getCustomBlockItem() {
+        return null;
     }
 }

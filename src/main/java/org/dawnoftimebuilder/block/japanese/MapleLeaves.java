@@ -17,18 +17,18 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 
-public class MappleLeaves extends BlockDoTB implements ICustomBlockItem
+public class MapleLeaves extends BlockDoTB implements ICustomBlockItem
 {
     public static final IntegerProperty MULTIBLOCK_X = DoTBBlockStateProperties.MULTIBLOCK_3X;
     public static final IntegerProperty MULTIBLOCK_Y = DoTBBlockStateProperties.MULTIBLOCK_2Y;
     public static final IntegerProperty MULTIBLOCK_Z = DoTBBlockStateProperties.MULTIBLOCK_3Z;
 
-    public MappleLeaves(Properties properties)
+    public MapleLeaves(Properties properties)
     {
         super(properties);
 
         this.registerDefaultState(this.defaultBlockState()
-        		.setValue(MappleTrunk.FACING, Direction.NORTH)
+        		.setValue(MapleTrunk.FACING, Direction.NORTH)
         		.setValue(MULTIBLOCK_X, 0)
         		.setValue(MULTIBLOCK_Y, 0)
         		.setValue(MULTIBLOCK_Z, 0));
@@ -38,9 +38,9 @@ public class MappleLeaves extends BlockDoTB implements ICustomBlockItem
     {
         if(!worldIn.isClientSide)
     	{
-        	float currentX = 0-blockStateIn.getValue(MULTIBLOCK_X);
-	    	float currentY = 0-blockStateIn.getValue(MULTIBLOCK_Y);
-	    	float currentZ = 0-blockStateIn.getValue(MULTIBLOCK_Z);
+        	float currentX = -blockStateIn.getValue(MULTIBLOCK_X);
+	    	float currentY = -blockStateIn.getValue(MULTIBLOCK_Y);
+	    	float currentZ = -blockStateIn.getValue(MULTIBLOCK_Z);
 	        for(int x = 0; x <= 2; x ++)
 	        {
 	            for(int y = 0; y <= 1; y ++)
@@ -76,7 +76,7 @@ public class MappleLeaves extends BlockDoTB implements ICustomBlockItem
     protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder)
     {
         super.createBlockStateDefinition(builder);
-        builder.add(MappleTrunk.FACING, MULTIBLOCK_X, MULTIBLOCK_Y, MULTIBLOCK_Z);
+        builder.add(MapleTrunk.FACING, MULTIBLOCK_X, MULTIBLOCK_Y, MULTIBLOCK_Z);
     }
 
     @Override
