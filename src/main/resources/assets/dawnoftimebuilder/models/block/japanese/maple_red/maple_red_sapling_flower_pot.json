@@ -1,6 +1,4 @@
 {
-	"credit": "Made with Blockbench",
-	"parent": "block/fence_post",
 	"ambientocclusion": false,
 	"textures": {
 		"flowerpot": "block/flower_pot",
@@ -64,7 +62,6 @@
 		{
 			"from": [2.5, 4, 8],
 			"to": [13.5, 19, 8],
-			"shade": false,
 			"rotation": {"angle": 45, "axis": "y", "origin": [8, 11.5, 8]},
 			"faces": {
 				"north": {"uv": [2, 1, 13, 16], "texture": "#cross"},
@@ -74,7 +71,6 @@
 		{
 			"from": [2.5, 4, 8],
 			"to": [13.5, 19, 8],
-			"shade": false,
 			"rotation": {"angle": -45, "axis": "y", "origin": [8, 11.5, 8]},
 			"faces": {
 				"north": {"uv": [2, 1, 13, 16], "texture": "#cross"},
