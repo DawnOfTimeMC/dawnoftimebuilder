@@ -59,8 +59,9 @@ import org.dawnoftimebuilder.block.japanese.CharredSpruceTallShuttersBlock;
 import org.dawnoftimebuilder.block.japanese.FutonBlock;
 import org.dawnoftimebuilder.block.japanese.IroriFireplaceBlock;
 import org.dawnoftimebuilder.block.japanese.LittleFlagBlock;
-import org.dawnoftimebuilder.block.japanese.MapleLeaves;
-import org.dawnoftimebuilder.block.japanese.MapleTrunk;
+import org.dawnoftimebuilder.block.japanese.MapleLeavesBlock;
+import org.dawnoftimebuilder.block.japanese.MapleSaplingBlock;
+import org.dawnoftimebuilder.block.japanese.MapleTrunkBlock;
 import org.dawnoftimebuilder.block.japanese.MulberryBlock;
 import org.dawnoftimebuilder.block.japanese.PaperDoorBlock;
 import org.dawnoftimebuilder.block.japanese.PaperLampBlock;
@@ -373,8 +374,9 @@ public class DoTBBlocksRegistry {
 	public static final RegistryObject<Block> SAKE_BOTTLE = reg("sake_bottle", new SakeBottleBlock(AbstractBlock.Properties.copy(FLOWER_POT)));
 	public static final RegistryObject<Block> SAKE_CUP = reg("sake_cup", new SakeCupBlock(AbstractBlock.Properties.copy(FLOWER_POT)));
 	public static final RegistryObject<Block> STICK_BUNDLE = reg("stick_bundle", new StickBundleBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(2.0F, 3.0F).sound(SoundType.GRASS).noOcclusion()).setBurnable());
-	public static final RegistryObject<Block> MAPLE_RED_TRUNK = reg("maple_red_trunk", new MapleTrunk(AbstractBlock.Properties.of(Material.LEAVES, MaterialColor.WOOD).strength(2.0F, 3.0F).sound(SoundType.GRASS).noOcclusion()).setBurnable());
-	public static final RegistryObject<Block> MAPLE_RED_LEAVES = reg("maple_red_leaves", new MapleLeaves(AbstractBlock.Properties.of(Material.LEAVES, MaterialColor.WOOD).strength(2.0F, 3.0F).sound(SoundType.GRASS).noOcclusion()).setBurnable());
+	public static final RegistryObject<Block> MAPLE_RED_TRUNK = reg("maple_red_trunk", new MapleTrunkBlock(AbstractBlock.Properties.of(Material.LEAVES, MaterialColor.WOOD).strength(2.0F, 3.0F).sound(SoundType.GRASS).noOcclusion()).setBurnable());
+	public static final RegistryObject<Block> MAPLE_RED_LEAVES = reg("maple_red_leaves", new MapleLeavesBlock(AbstractBlock.Properties.of(Material.LEAVES, MaterialColor.WOOD).strength(2.0F, 3.0F).sound(SoundType.GRASS).noOcclusion()).setBurnable());
+	public static final RegistryObject<Block> MAPLE_RED_SAPLING = reg("maple_red_sapling", new MapleSaplingBlock(AbstractBlock.Properties.of(Material.LEAVES, MaterialColor.WOOD).strength(2.0F, 3.0F).sound(SoundType.GRASS).noOcclusion()).setBurnable());
 
 	//Persian
 	public static final RegistryObject<Block> PERSIAN_CARPET_RED = reg("persian_carpet_red", new CarpetBlockDoTB(AbstractBlock.Properties.copy(RED_WOOL)));
