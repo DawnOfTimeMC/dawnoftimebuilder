@@ -6,7 +6,6 @@ import org.dawnoftimebuilder.block.ICustomBlockItem;
 import org.dawnoftimebuilder.block.templates.BlockDoTB;
 import org.dawnoftimebuilder.registry.DoTBBlocksRegistry;
 
-import net.minecraft.block.AirBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -48,20 +47,21 @@ public class MapleTrunkBlock extends BlockDoTB implements ICustomBlockItem
         return state.getValue(MULTIBLOCK) == 2 ? VS_TOP : VS;
     }**/
 
-    public final static boolean isValidForPlacement(World worldIn, BlockPos bottomCenterIn)
+    public final static boolean isValidForPlacement(World worldIn, BlockPos bottomCenterIn, boolean isSaplingCallIn)
     {
-    	BlockState state = worldIn.getBlockState(new BlockPos(bottomCenterIn.getX(),bottomCenterIn.getY() - 1,bottomCenterIn.getZ()));
+    	BlockPos floorCenter = bottomCenterIn.below();
+    	BlockState state = worldIn.getBlockState(floorCenter);
 
     	if(!Tags.Blocks.DIRT.contains(state.getBlock()))
     		return false;
 
     	state = worldIn.getBlockState(bottomCenterIn);
 
-    	if(!(state.getBlock() instanceof AirBlock))
-    	{
-    		return false;
-    	}
+    	System.out.println("A ");
+    	if(!state.getMaterial().isReplaceable() || !(isSaplingCallIn && state.getBlock() instanceof MapleSaplingBlock))
+    		return true;
 
+    	System.out.println("B ");
 
         for(int x = -1; x <= 1; x ++)
         {
@@ -69,9 +69,10 @@ public class MapleTrunkBlock extends BlockDoTB implements ICustomBlockItem
             {
                 for(int z = -1; z <= 1; z ++)
                 {
-                	state = worldIn.getBlockState(new BlockPos(bottomCenterIn.getX() + x, bottomCenterIn.getY() + y + 1, bottomCenterIn.getZ() + z));
+                	state = worldIn.getBlockState(bottomCenterIn.offset(x, y + 1, z));
 
-                	if(state == null || (!(state.getBlock() instanceof AirBlock)))
+                	System.out.println(state);
+                	if(state == null || !state.getMaterial().isReplaceable())
                 	{
                 		return false;
                 	}
@@ -95,13 +96,8 @@ public class MapleTrunkBlock extends BlockDoTB implements ICustomBlockItem
     		context.getPlayer().position().y <= bottomCenter.getY() + 2.75f &&
     	    context.getPlayer().position().z <= bottomCenter.getZ() + 1.75f)
     	    		return Blocks.AIR.defaultBlockState();
-
-    	BlockState state = context.getLevel().getBlockState(new BlockPos(bottomCenter.getX(),bottomCenter.getY() - 1,bottomCenter.getZ()));
     	
-    	if(!state.canBeReplaced(context))
-    		return Blocks.AIR.defaultBlockState();
-
-    	if(isValidForPlacement(context.getLevel(), context.getClickedPos()))
+    	if(isValidForPlacement(context.getLevel(), context.getClickedPos(), false))
     	{
             return super.getStateForPlacement(context).setValue(FACING, Direction.Plane.HORIZONTAL.getRandomDirection(context.getLevel().random));
     	}

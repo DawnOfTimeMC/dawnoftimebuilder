@@ -14,6 +14,7 @@ import org.dawnoftimebuilder.registry.DoTBBlocksRegistry;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.IGrowable;
+import net.minecraft.block.SaplingBlock;
 import net.minecraft.item.Item;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
@@ -29,6 +30,7 @@ public class MapleSaplingBlock extends BushBlockDoT implements IBlockGeneration,
     {
         super(properties);
         this.registerDefaultState(this.defaultBlockState());
+        SaplingBlock a;
     }
 
     /**
@@ -60,11 +62,11 @@ public class MapleSaplingBlock extends BushBlockDoT implements IBlockGeneration,
         return SHAPE;
      }**/
 
-    @Override
+    /**@Override
     public boolean isRandomlyTicking(BlockState blockstateIn)
     {
     	return true;
-    }
+    }**/
 
 	@Override
     public void randomTick(BlockState p_225542_1_, ServerWorld p_225542_2_, BlockPos p_225542_3_, Random p_225542_4_)
@@ -80,7 +82,7 @@ public class MapleSaplingBlock extends BushBlockDoT implements IBlockGeneration,
 
      public void advanceTree(ServerWorld p_226942_1_, BlockPos p_226942_2_, BlockState p_226942_3_, Random p_226942_4_)
      {
-    	 if(MapleTrunkBlock.isValidForPlacement(p_226942_1_, p_226942_2_))
+    	 if(MapleTrunkBlock.isValidForPlacement(p_226942_1_, p_226942_2_, true))
     	 {
     		 p_226942_1_.setBlock(p_226942_2_, DoTBBlocksRegistry.MAPLE_RED_TRUNK.get().defaultBlockState(), 4); 
     	 }
@@ -95,7 +97,6 @@ public class MapleSaplingBlock extends BushBlockDoT implements IBlockGeneration,
      @Override
      public boolean isBonemealSuccess(World p_180670_1_, Random p_180670_2_, BlockPos p_180670_3_, BlockState p_180670_4_)
      {
-    	 System.out.println("a !");
         return (double)p_180670_1_.random.nextFloat() < 0.45D;
      }
 
