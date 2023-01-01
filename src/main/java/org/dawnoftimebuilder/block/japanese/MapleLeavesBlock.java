@@ -22,79 +22,167 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class MapleLeavesBlock extends BlockDoTB implements ICustomBlockItem
 {
-    public static final IntegerProperty MULTIBLOCK_X = DoTBBlockStateProperties.MULTIBLOCK_3X;
-    public static final IntegerProperty MULTIBLOCK_Y = DoTBBlockStateProperties.MULTIBLOCK_2Y;
-    public static final IntegerProperty MULTIBLOCK_Z = DoTBBlockStateProperties.MULTIBLOCK_3Z;
+	public static final IntegerProperty	MULTIBLOCK_X	= DoTBBlockStateProperties.MULTIBLOCK_3X;
+	public static final IntegerProperty	MULTIBLOCK_Y	= DoTBBlockStateProperties.MULTIBLOCK_2Y;
+	public static final IntegerProperty	MULTIBLOCK_Z	= DoTBBlockStateProperties.MULTIBLOCK_3Z;
 
-    public MapleLeavesBlock(Properties properties)
-    {
-        super(properties);
+	public MapleLeavesBlock(final Properties properties)
+	{
+		super(properties);
 
-        this.registerDefaultState(this.defaultBlockState()
-        		.setValue(MapleTrunkBlock.FACING, Direction.NORTH)
-        		.setValue(MULTIBLOCK_X, 0)
-        		.setValue(MULTIBLOCK_Y, 0)
-        		.setValue(MULTIBLOCK_Z, 0));
-        
-        Blocks e;
-    }
+		this.registerDefaultState(this.defaultBlockState().setValue(MapleTrunkBlock.FACING, Direction.NORTH)
+				.setValue(MapleLeavesBlock.MULTIBLOCK_X, 0).setValue(MapleLeavesBlock.MULTIBLOCK_Y, 0)
+				.setValue(MapleLeavesBlock.MULTIBLOCK_Z, 0));
+	}
 
-    public void playerWillDestroy(World worldIn, BlockPos blockPosIn, BlockState blockStateIn, PlayerEntity playerEntityIn) 
-    {
-        if(!worldIn.isClientSide)
-    	{
-        	float currentX = 0-blockStateIn.getValue(MULTIBLOCK_X);
-	    	float currentY = 0-blockStateIn.getValue(MULTIBLOCK_Y);
-	    	float currentZ = 0-blockStateIn.getValue(MULTIBLOCK_Z);
-	        for(int x = 0; x <= 2; x ++)
-	        {
-	            for(int y = 0; y <= 1; y ++)
-	            {
-	                for(int z = 0; z <= 2; z ++)
-	                {
-	        	    	BlockPos baseBlockPos = new BlockPos(blockPosIn.getX() + x + currentX, blockPosIn.getY() + y + currentY, blockPosIn.getZ() + z + currentZ);
-	        	    	BlockState state = worldIn.getBlockState(baseBlockPos);
-	        			worldIn.setBlock(baseBlockPos, Blocks.AIR.defaultBlockState(), 35);
-	        			worldIn.levelEvent(playerEntityIn, 2001, blockPosIn, Block.getId(state));
-	                }
-	            }
-	        }
-	        
-	        if(!playerEntityIn.isCreative())
-	        {
-		        BlockPos trunkBlockPos = new BlockPos(blockPosIn.getX() + currentX + 1, blockPosIn.getY() + currentY - 1, blockPosIn.getZ() + currentZ + 1);
-		        worldIn.destroyBlock(trunkBlockPos, true);
-	        }
-	        else
-	        {
-		        BlockPos trunkBlockPos = new BlockPos(blockPosIn.getX() + currentX + 1, blockPosIn.getY() + currentY - 1, blockPosIn.getZ() + currentZ + 1);
-    	    	BlockState state = worldIn.getBlockState(trunkBlockPos);
-    			worldIn.setBlock(trunkBlockPos, Blocks.AIR.defaultBlockState(), 35);
-    			worldIn.levelEvent(playerEntityIn, 2001, blockPosIn, Block.getId(state));
-	        }
-	    }
-        
-        super.playerWillDestroy(worldIn, blockPosIn, blockStateIn, playerEntityIn);
-    }
-    
-    @Override
-    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder)
-    {
-        super.createBlockStateDefinition(builder);
-        builder.add(MapleTrunkBlock.FACING, MULTIBLOCK_X, MULTIBLOCK_Y, MULTIBLOCK_Z);
-    }
+	@Override
+	public void playerWillDestroy(final World worldIn, final BlockPos blockPosIn, final BlockState blockStateIn,
+			final PlayerEntity playerEntityIn)
+	{
+		if (!worldIn.isClientSide)
+		{
+			final float	currentX	= 0 - blockStateIn.getValue(MapleLeavesBlock.MULTIBLOCK_X);
+			final float	currentY	= 0 - blockStateIn.getValue(MapleLeavesBlock.MULTIBLOCK_Y);
+			final float	currentZ	= 0 - blockStateIn.getValue(MapleLeavesBlock.MULTIBLOCK_Z);
+			for (int x = 0; x <= 2; x++)
+			{
+				for (int y = 0; y <= 1; y++)
+				{
+					for (int z = 0; z <= 2; z++)
+					{
+						final BlockPos		baseBlockPos	= new BlockPos(blockPosIn.getX() + x + currentX,
+								blockPosIn.getY() + y + currentY, blockPosIn.getZ() + z + currentZ);
+						final BlockState	state			= worldIn.getBlockState(baseBlockPos);
+						worldIn.setBlock(baseBlockPos, Blocks.AIR.defaultBlockState(), 35);
+						worldIn.levelEvent(playerEntityIn, 2001, blockPosIn, Block.getId(state));
+					}
+				}
+			}
 
-    @Override
-    public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos)
-    {	
-        return stateIn;
-    }
+			if (!playerEntityIn.isCreative())
+			{
+				final BlockPos trunkBlockPos = new BlockPos(blockPosIn.getX() + currentX + 1,
+						blockPosIn.getY() + currentY - 1, blockPosIn.getZ() + currentZ + 1);
+				worldIn.destroyBlock(trunkBlockPos, true);
+			}
+			else
+			{
+				final BlockPos		trunkBlockPos	= new BlockPos(blockPosIn.getX() + currentX + 1,
+						blockPosIn.getY() + currentY - 1, blockPosIn.getZ() + currentZ + 1);
+				final BlockState	state			= worldIn.getBlockState(trunkBlockPos);
+				worldIn.setBlock(trunkBlockPos, Blocks.AIR.defaultBlockState(), 35);
+				worldIn.levelEvent(playerEntityIn, 2001, blockPosIn, Block.getId(state));
+			}
+		}
 
-    @Override
-    public PushReaction getPistonPushReaction(BlockState state)
-    {
-        return PushReaction.DESTROY;
-    }
+		super.playerWillDestroy(worldIn, blockPosIn, blockStateIn, playerEntityIn);
+	}
+
+	@Override
+	protected void createBlockStateDefinition(final StateContainer.Builder<Block, BlockState> builder)
+	{
+		super.createBlockStateDefinition(builder);
+		builder.add(MapleTrunkBlock.FACING, MapleLeavesBlock.MULTIBLOCK_X, MapleLeavesBlock.MULTIBLOCK_Y,
+				MapleLeavesBlock.MULTIBLOCK_Z);
+	}
+
+	@Override
+	public BlockState updateShape(final BlockState stateIn, final Direction facing, final BlockState facingState,
+			final IWorld worldIn, final BlockPos currentPos, final BlockPos facingPos)
+	{
+		final Direction	currentFacing	= stateIn.getValue(MapleTrunkBlock.FACING);
+		final float		multiblockX		= stateIn.getValue(MapleLeavesBlock.MULTIBLOCK_X);
+		final float		multiblockY		= stateIn.getValue(MapleLeavesBlock.MULTIBLOCK_Y);
+		final float		multiblockZ		= stateIn.getValue(MapleLeavesBlock.MULTIBLOCK_Z);
+
+		if (Direction.DOWN.equals(facing))
+		{
+			if (multiblockX == 1 && multiblockY == 0 && multiblockZ == 1)
+			{
+				final BlockState state = worldIn.getBlockState(currentPos.offset(0, -1, 0));
+
+				if (!(state.getBlock() instanceof MapleTrunkBlock) || currentFacing == null
+						|| !currentFacing.equals(state.getValue(MapleTrunkBlock.FACING)))
+				{
+					return Blocks.AIR.defaultBlockState();
+				}
+			}
+			else if (multiblockY == 1)
+			{
+				final BlockState state = worldIn.getBlockState(currentPos.offset(0, -1, 0));
+
+				if (!(state.getBlock() instanceof MapleLeavesBlock) || currentFacing == null
+						|| !currentFacing.equals(state.getValue(MapleTrunkBlock.FACING)))
+				{
+					return Blocks.AIR.defaultBlockState();
+				}
+			}
+		}
+		else if (Direction.UP.equals(facing) && multiblockY == 0)
+		{
+			final BlockState state = worldIn.getBlockState(currentPos.offset(0, 1, 0));
+
+			if (!(state.getBlock() instanceof MapleLeavesBlock) || currentFacing == null
+					|| !currentFacing.equals(state.getValue(MapleTrunkBlock.FACING)))
+			{
+				return Blocks.AIR.defaultBlockState();
+			}
+		}
+		else if (Direction.WEST.equals(facing) && multiblockX > 0)
+		{
+			final BlockState state = worldIn.getBlockState(currentPos.offset(-1, 0, 0));
+
+			if (!(state.getBlock() instanceof MapleLeavesBlock) || currentFacing == null
+					|| !currentFacing.equals(state.getValue(MapleTrunkBlock.FACING)))
+			{
+				return Blocks.AIR.defaultBlockState();
+			}
+		}
+		else if (Direction.EAST.equals(facing))
+		{
+			if (multiblockX < 2)
+			{
+				final BlockState state = worldIn.getBlockState(currentPos.offset(1, 0, 0));
+
+				if (!(state.getBlock() instanceof MapleLeavesBlock) || currentFacing == null
+						|| !currentFacing.equals(state.getValue(MapleTrunkBlock.FACING)))
+				{
+					return Blocks.AIR.defaultBlockState();
+				}
+			}
+		}
+		else if (Direction.NORTH.equals(facing))
+		{
+			if (multiblockZ > 0)
+			{
+				final BlockState state = worldIn.getBlockState(currentPos.offset(0, 0, -1));
+
+				if (!(state.getBlock() instanceof MapleLeavesBlock) || currentFacing == null
+						|| !currentFacing.equals(state.getValue(MapleTrunkBlock.FACING)))
+				{
+					return Blocks.AIR.defaultBlockState();
+				}
+			}
+		}
+		else if (Direction.SOUTH.equals(facing) && multiblockZ < 2)
+		{
+			final BlockState state = worldIn.getBlockState(currentPos.offset(0, 0, 1));
+
+			if (!(state.getBlock() instanceof MapleLeavesBlock) || currentFacing == null
+					|| !currentFacing.equals(state.getValue(MapleTrunkBlock.FACING)))
+			{
+				return Blocks.AIR.defaultBlockState();
+			}
+		}
+
+		return stateIn;
+	}
+
+	@Override
+	public PushReaction getPistonPushReaction(final BlockState state)
+	{
+		return PushReaction.DESTROY;
+	}
 
 	@Override
 	public Item getCustomBlockItem()
@@ -102,16 +190,28 @@ public class MapleLeavesBlock extends BlockDoTB implements ICustomBlockItem
 		return null;
 	}
 
-    /**
-     * Glass code like
-     */
-    
-    @OnlyIn(Dist.CLIENT)
-    public float getShadeBrightness(BlockState p_220080_1_, IBlockReader p_220080_2_, BlockPos p_220080_3_) {
-       return 1.0F;
-    }
+	/**
+	 * Lights methods
+	 */
 
-    public boolean propagatesSkylightDown(BlockState p_200123_1_, IBlockReader p_200123_2_, BlockPos p_200123_3_) {
-       return true;
-    }
+	@Override
+	public boolean useShapeForLightOcclusion(final BlockState p_220074_1_In)
+	{
+		return false;
+	}
+
+	@Override
+	@OnlyIn(Dist.CLIENT)
+	public float getShadeBrightness(final BlockState p_220080_1_, final IBlockReader p_220080_2_,
+			final BlockPos p_220080_3_)
+	{
+		return 1.0F;
+	}
+
+	@Override
+	public boolean propagatesSkylightDown(final BlockState p_200123_1_, final IBlockReader p_200123_2_,
+			final BlockPos p_200123_3_)
+	{
+		return true;
+	}
 }

@@ -2,14 +2,16 @@
     "type": "minecraft:block",
     "pools": [
         {
-            "rolls": 1,
+	    "min_rolls": 1,
+	    "min_rolls": 2,
+	    "bonus_rolls": 1,
             "entries": [
                 {
                     "type": "minecraft:item",
                     "conditions": [
                         {
                             "condition": "minecraft:block_state_property",
-                            "block": "dawnoftimebuilder:maple_red_sapling"
+                            "block": "dawnoftimebuilder:maple_red_trunk"
                         }
                     ],
                     "name": "dawnoftimebuilder:maple_red_sapling"
