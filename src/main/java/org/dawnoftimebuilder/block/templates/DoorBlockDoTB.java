@@ -1,7 +1,6 @@
 package org.dawnoftimebuilder.block.templates;
 
 import net.minecraft.block.*;
-import net.minecraft.block.material.Material;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.BooleanProperty;

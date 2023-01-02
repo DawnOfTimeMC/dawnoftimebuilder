@@ -10,7 +10,6 @@ import net.minecraftforge.common.PlantType;
 import org.dawnoftimebuilder.DoTBConfig;
 import org.dawnoftimebuilder.block.templates.DoubleGrowingBushBlock;
 
-import javax.annotation.Nullable;
 import java.util.Random;
 
 import static org.dawnoftimebuilder.registry.DoTBEntitiesRegistry.SILKMOTH_ENTITY;

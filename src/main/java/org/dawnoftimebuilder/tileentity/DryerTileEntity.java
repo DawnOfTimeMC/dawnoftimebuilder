@@ -24,7 +24,6 @@ import org.dawnoftimebuilder.recipe.DryerRecipe;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.util.List;
 import java.util.Random;
 
 import static net.minecraft.block.Block.popResource;

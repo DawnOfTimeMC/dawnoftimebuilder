@@ -13,8 +13,6 @@ import org.dawnoftimebuilder.item.IHasFlowerPot;
 
 import javax.annotation.Nullable;
 
-import static org.dawnoftimebuilder.DawnOfTimeBuilder.DOTB_TAB;
-
 public class PotItem extends ItemDoTB implements IHasFlowerPot {
 
     private FlowerPotBlockDoTB potBlock;
