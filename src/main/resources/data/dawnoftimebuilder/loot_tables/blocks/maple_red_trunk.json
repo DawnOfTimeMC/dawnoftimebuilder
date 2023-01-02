@@ -4,7 +4,6 @@
         {
 	    "min_rolls": 1,
 	    "min_rolls": 2,
-	    "bonus_rolls": 1,
             "entries": [
                 {
                     "type": "minecraft:item",

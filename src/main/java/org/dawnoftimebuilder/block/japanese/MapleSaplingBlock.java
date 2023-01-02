@@ -13,6 +13,7 @@ import org.dawnoftimebuilder.item.templates.PotAndBlockItem;
 import org.dawnoftimebuilder.registry.DoTBBlocksRegistry;
 import org.dawnoftimebuilder.util.DoTBBlockUtils;
 
+import net.minecraft.block.AirBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.IGrowable;
@@ -68,7 +69,7 @@ public class MapleSaplingBlock extends BushBlockDoT implements IBlockGeneration,
 				{
 					state = worldIn.getBlockState(bottomCenterIn.offset(x, y + 1, z));
 
-					if (state == null || !state.getMaterial().isReplaceable())
+					if (state == null || state.getBlock() instanceof AirBlock)
 					{
 						return false;
 					}
@@ -187,7 +188,6 @@ public class MapleSaplingBlock extends BushBlockDoT implements IBlockGeneration,
 	public void tick(final BlockState p_225542_1_, final ServerWorld p_225542_2_, final BlockPos p_225542_3_,
 			final Random p_225542_4_)
 	{
-		System.out.println("A §");
 		//super.tick(p_225542_1_, p_225542_2_, p_225542_3_, p_225542_4_);
 
 		if (p_225542_2_.getMaxLocalRawBrightness(p_225542_3_.above()) >= 9 && p_225542_4_.nextInt(7) == 0)
