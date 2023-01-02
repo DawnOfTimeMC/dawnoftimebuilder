@@ -938,12 +938,14 @@ public class DoTBBlocksRegistry
 		return state -> state.getValue(BlockStateProperties.LIT) ? lightValue : 0;
 	}
 
+	@SuppressWarnings("unused")
 	private static Boolean ocelotOrParrot(final BlockState p_235441_0_, final IBlockReader p_235441_1_,
 			final BlockPos p_235441_2_, final EntityType<?> p_235441_3_)
 	{
 		return p_235441_3_ == EntityType.OCELOT || p_235441_3_ == EntityType.PARROT;
 	}
 
+	@SuppressWarnings("unused")
 	private static boolean never(final BlockState p_235436_0_, final IBlockReader p_235436_1_,
 			final BlockPos p_235436_2_)
 	{

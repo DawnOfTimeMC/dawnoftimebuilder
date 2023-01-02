@@ -46,6 +46,7 @@ public class HandlerCommon
 				MobEntity.createMobAttributes().add(Attributes.MAX_HEALTH, 20.0D).build());
 	}
 
+	@SuppressWarnings("deprecation")
 	@SubscribeEvent
 	public static void eggRegisterEvent(final RegistryEvent.Register<Item> event)
 	{

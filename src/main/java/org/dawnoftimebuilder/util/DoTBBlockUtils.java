@@ -38,7 +38,7 @@ public class DoTBBlockUtils
 {
 
 	//General
-	private static final String							FORGE_ID				= "forge";
+	public static final String							FORGE_ID				= "forge";
 	public static final int								HIGHEST_Y				= 255;
 
 	//Tooltip translation text
