@@ -100,6 +100,7 @@ public class HandlerClient
 		RenderTypeLookup.setRenderLayer(DoTBBlocksRegistry.CHARRED_SPRUCE_PERGOLA.get(), RenderType.cutoutMipped());
 		RenderTypeLookup.setRenderLayer(DoTBBlocksRegistry.CHARRED_SPRUCE_LATTICE.get(), RenderType.cutoutMipped());
 		RenderTypeLookup.setRenderLayer(DoTBBlocksRegistry.CHARRED_SPRUCE_BEAM.get(), RenderType.cutoutMipped());
+		RenderTypeLookup.setRenderLayer(DoTBBlocksRegistry.CHARRED_SPRUCE_FANCY_RAILING.get(), RenderType.cutoutMipped());
 		RenderTypeLookup.setRenderLayer(DoTBBlocksRegistry.RED_PAINTED_BEAM.get(), RenderType.cutoutMipped());
 		RenderTypeLookup.setRenderLayer(DoTBBlocksRegistry.CAST_IRON_TEAPOT_GRAY.get(), RenderType.cutoutMipped());
 		RenderTypeLookup.setRenderLayer(DoTBBlocksRegistry.CAST_IRON_TEAPOT_GREEN.get(), RenderType.cutoutMipped());

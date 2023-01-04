@@ -1,8 +1,10 @@
 package org.dawnoftimebuilder.block.japanese;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.BooleanProperty;
+import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
@@ -26,5 +28,9 @@ public class CharredSpruceFancyRailingBlock extends PaneBlockDoTB {
         return state.setValue(HANGING, clickedFace == Direction.DOWN || (clickedFace != Direction.UP && context.getClickLocation().y - pos.getY() > 0.5D));
     }
 
-
+    @Override
+    public void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
+        super.createBlockStateDefinition(builder);
+        builder.add(HANGING);
+    }
 }

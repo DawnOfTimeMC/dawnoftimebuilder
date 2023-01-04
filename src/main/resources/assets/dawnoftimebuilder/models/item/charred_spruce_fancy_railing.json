@@ -2,8 +2,8 @@
 	"credit": "mr_ch0c0late",
 	"texture_size": [32, 32],
 	"textures": {
-		"0": "wooden_railing",
-		"particle": "wooden_railing"
+		"0": "dawnoftimebuilder:block/charred_spruce_fancy_railing",
+		"particle": "dawnoftimebuilder:block/charred_spruce_fancy_railing"
 	},
 	"elements": [
 		{
@@ -54,5 +54,33 @@
 				"south": {"uv": [0, 0.5, 8, 8], "texture": "#0"}
 			}
 		}
-	]
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [1, -35, 0],
+			"translation": [-2, 0, -1.5],
+			"scale": [0.4, 0.4, 0.4]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [1, -35, 0],
+			"translation": [-2, 0, -1.5],
+			"scale": [0.4, 0.4, 0.4]
+		},
+		"firstperson_righthand": {
+			"rotation": [0, -70, 0],
+			"translation": [0, 1.5, 1.5],
+			"scale": [0.6, 0.6, 0.6]
+		},
+		"firstperson_lefthand": {
+			"rotation": [0, -70, 0],
+			"translation": [0, 1.5, 1.5],
+			"scale": [0.6, 0.6, 0.6]
+		},
+		"ground": {
+			"scale": [0.3, 0.3, 0.3]
+		},
+		"head": {
+			"translation": [0, 0, -6.5]
+		}
+	}
 }

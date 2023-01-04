@@ -19,32 +19,7 @@ import org.dawnoftimebuilder.block.german.WaxedOakChairBlock;
 import org.dawnoftimebuilder.block.german.WaxedOakChandelierBlock;
 import org.dawnoftimebuilder.block.german.WaxedOakTableBlock;
 import org.dawnoftimebuilder.block.german.WaxedOakTimberFrameCornerBlock;
-import org.dawnoftimebuilder.block.japanese.CastIronTeacupBlock;
-import org.dawnoftimebuilder.block.japanese.CastIronTeapotBlock;
-import org.dawnoftimebuilder.block.japanese.CharredSpruceRailingBlock;
-import org.dawnoftimebuilder.block.japanese.CharredSpruceShuttersBlock;
-import org.dawnoftimebuilder.block.japanese.CharredSpruceTallShuttersBlock;
-import org.dawnoftimebuilder.block.japanese.FutonBlock;
-import org.dawnoftimebuilder.block.japanese.IroriFireplaceBlock;
-import org.dawnoftimebuilder.block.japanese.LittleFlagBlock;
-import org.dawnoftimebuilder.block.japanese.MapleLeavesBlock;
-import org.dawnoftimebuilder.block.japanese.MapleSaplingBlock;
-import org.dawnoftimebuilder.block.japanese.MapleTrunkBlock;
-import org.dawnoftimebuilder.block.japanese.MulberryBlock;
-import org.dawnoftimebuilder.block.japanese.PaperDoorBlock;
-import org.dawnoftimebuilder.block.japanese.PaperLampBlock;
-import org.dawnoftimebuilder.block.japanese.PaperLanternBlock;
-import org.dawnoftimebuilder.block.japanese.PausedMapleSaplingBlock;
-import org.dawnoftimebuilder.block.japanese.SakeBottleBlock;
-import org.dawnoftimebuilder.block.japanese.SakeCupBlock;
-import org.dawnoftimebuilder.block.japanese.SmallTatamiFloorBlock;
-import org.dawnoftimebuilder.block.japanese.SmallTatamiMatBlock;
-import org.dawnoftimebuilder.block.japanese.SpruceLeglessChairBlock;
-import org.dawnoftimebuilder.block.japanese.SpruceLowTableBlock;
-import org.dawnoftimebuilder.block.japanese.StickBundleBlock;
-import org.dawnoftimebuilder.block.japanese.StoneLanternBlock;
-import org.dawnoftimebuilder.block.japanese.TatamiFloorBlock;
-import org.dawnoftimebuilder.block.japanese.TatamiMatBlock;
+import org.dawnoftimebuilder.block.japanese.*;
 import org.dawnoftimebuilder.block.precolumbian.FeatheredSerpentSculptureBlock;
 import org.dawnoftimebuilder.block.precolumbian.GreenSculptedPlasteredStoneFriezeBlock;
 import org.dawnoftimebuilder.block.precolumbian.PlasteredStoneColumnBlock;
@@ -573,6 +548,8 @@ public class DoTBBlocksRegistry
 	public static final RegistryObject<Block>	CHARRED_SPRUCE_RAILING						= DoTBBlocksRegistry.reg(
 			"charred_spruce_railing",
 			new CharredSpruceRailingBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.COLOR_BLACK)
+					.strength(2.0F, 6.0F).sound(SoundType.WOOD).noOcclusion()));
+	public static final RegistryObject<Block>	CHARRED_SPRUCE_FANCY_RAILING = DoTBBlocksRegistry.reg("charred_spruce_fancy_railing", new CharredSpruceFancyRailingBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.COLOR_BLACK)
 					.strength(2.0F, 6.0F).sound(SoundType.WOOD).noOcclusion()));
 	public static final RegistryObject<Block>	CHARRED_SPRUCE_PERGOLA						= DoTBBlocksRegistry.reg(
 			"charred_spruce_pergola",

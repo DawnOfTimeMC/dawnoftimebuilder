@@ -317,6 +317,7 @@ public enum CreativeInventoryCategories {
 			CHARRED_SPRUCE_FENCE.get().asItem(),
 			CHARRED_SPRUCE_FENCE_GATE.get().asItem(),
 			CHARRED_SPRUCE_RAILING.get().asItem(),
+			CHARRED_SPRUCE_FANCY_RAILING.get().asItem(),
 			CHARRED_SPRUCE_LATTICE.get().asItem(),
 			CHARRED_SPRUCE_DOOR.get().asItem(),
 			CHARRED_SPRUCE_TRAPDOOR.get().asItem(),
