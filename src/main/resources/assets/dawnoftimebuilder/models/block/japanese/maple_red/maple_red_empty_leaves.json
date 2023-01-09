@@ -2,6 +2,6 @@
 	"credit": "Made with Blockbench",
 	"ambientocclusion": false,
 	"textures": {
-		"particle": "dawnoftimebuilder:block/maple_red_sapling"
+		"particle": "dawnoftimebuilder:block/transparent"
 	}
 }
