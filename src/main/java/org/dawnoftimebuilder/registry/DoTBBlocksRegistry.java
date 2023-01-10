@@ -8,12 +8,16 @@ import org.dawnoftimebuilder.block.ICustomBlockItem;
 import org.dawnoftimebuilder.block.french.LimestoneChimneyBlock;
 import org.dawnoftimebuilder.block.french.LimestoneGargoyleBlock;
 import org.dawnoftimebuilder.block.general.FireplaceBlock;
+import org.dawnoftimebuilder.block.german.FaucetBlock;
 import org.dawnoftimebuilder.block.german.GeraniumBlock;
 import org.dawnoftimebuilder.block.german.IvyBlock;
 import org.dawnoftimebuilder.block.german.LatticeStoneBricksWindowBlock;
+import org.dawnoftimebuilder.block.german.PoolBlock;
 import org.dawnoftimebuilder.block.german.StoneBricksArrowslitBlock;
 import org.dawnoftimebuilder.block.german.StoneBricksChimneyBlock;
 import org.dawnoftimebuilder.block.german.StoneBricksMachicolationBlock;
+import org.dawnoftimebuilder.block.german.WaterJetBlock;
+import org.dawnoftimebuilder.block.german.WaterTrickleBlock;
 import org.dawnoftimebuilder.block.german.WaxedOakBalusterBlock;
 import org.dawnoftimebuilder.block.german.WaxedOakChairBlock;
 import org.dawnoftimebuilder.block.german.WaxedOakChandelierBlock;
@@ -286,6 +290,10 @@ public class DoTBBlocksRegistry {
 	public static final RegistryObject<Block>	BOXWOOD_BUSH								= DoTBBlocksRegistry.reg("boxwood_bush", new BushBlockDoT(AbstractBlock.Properties.copy(Blocks.SPRUCE_LEAVES)));
 	public static final RegistryObject<Block>	BOXWOOD_TALL_EDGE							= DoTBBlocksRegistry.reg("boxwood_tall_edge", new EdgeBlock(AbstractBlock.Properties.copy(Blocks.SPRUCE_LEAVES)));
 	public static final RegistryObject<Block>	BOXWOOD_SMALL_EDGE							= DoTBBlocksRegistry.reg("boxwood_small_edge", new PlateBlock(AbstractBlock.Properties.copy(Blocks.SPRUCE_LEAVES)));
+	public static final RegistryObject<Block>	FAUCET										= DoTBBlocksRegistry.reg("faucet", new FaucetBlock(AbstractBlock.Properties.copy(Blocks.STONE)));
+	public static final RegistryObject<Block>	POOL										= DoTBBlocksRegistry.reg("pool", new PoolBlock(AbstractBlock.Properties.copy(Blocks.STONE)));
+	public static final RegistryObject<Block>	WATER_JET									= DoTBBlocksRegistry.reg("water_jet", new WaterJetBlock(AbstractBlock.Properties.copy(Blocks.STONE)));
+	public static final RegistryObject<Block>	WATER_TRICKLE								= DoTBBlocksRegistry.reg("water_trickle", new WaterTrickleBlock(AbstractBlock.Properties.copy(Blocks.STONE)));
 
 	//Japanese
 	public static final RegistryObject<Block>	CHARRED_SPRUCE_PLANKS						= DoTBBlocksRegistry.reg("charred_spruce_planks", new BlockDoTB(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.COLOR_BLACK).strength(2.0F, 6.0F).sound(SoundType.WOOD)).setBurnable(2, 3));
