@@ -115,21 +115,19 @@ public class PoolBlock extends WaterloggedBlock {
 
 	@Override
 	public ActionResultType use(BlockState blockStateIn, final World worldIn, final BlockPos blockPosIn, final PlayerEntity playerEntityIn, final Hand handIn, final BlockRayTraceResult blockRayTraceResultIn) {
-		final ItemStack itemStack = playerEntityIn.getMainHandItem();
-
-		if (itemStack != null && itemStack.getItem() instanceof BucketItem) {
-			System.out.println(((BucketItem) itemStack.getItem()).getFluid());
-			if (((BucketItem) itemStack.getItem()).getFluid() instanceof EmptyFluid) {
-				PoolBlock.REMOVE_WATER_MAP.clear();
-				if (PoolBlock.removeWater(PoolBlock.REMOVE_WATER_MAP, blockStateIn, blockPosIn, worldIn, 0, 0)) {
-					return ActionResultType.SUCCESS;
+		if (playerEntityIn.isShiftKeyDown()) {
+			final ItemStack itemStack = playerEntityIn.getMainHandItem();
+			if (itemStack != null && itemStack.getItem() instanceof BucketItem) {
+				if (((BucketItem) itemStack.getItem()).getFluid() instanceof EmptyFluid) {
+					PoolBlock.REMOVE_WATER_MAP.clear();
+					if (PoolBlock.removeWater(PoolBlock.REMOVE_WATER_MAP, blockStateIn, blockPosIn, worldIn, 0, 0)) {
+						return ActionResultType.SUCCESS;
+					}
 				}
+
+				return ActionResultType.PASS;
 			}
 
-			return ActionResultType.PASS;
-		}
-
-		if (playerEntityIn.isShiftKeyDown()) {
 			blockStateIn = blockStateIn.setValue(DoTBBlockStateProperties.HAS_WALL, !blockStateIn.getValue(DoTBBlockStateProperties.HAS_WALL));
 
 			worldIn.setBlock(blockPosIn, blockStateIn, 10);
