@@ -27,14 +27,17 @@ public class FaucetBlock extends BlockDoTB {
 	 */
 	public FaucetBlock(final Properties propertiesIn) {
 		super(propertiesIn);
-		this.registerDefaultState(this.defaultBlockState().setValue(BlockStateProperties.NORTH, false).setValue(BlockStateProperties.EAST, false).setValue(BlockStateProperties.SOUTH, false).setValue(BlockStateProperties.WEST, false).setValue(DoTBBlockStateProperties.TRICKLE_NORTH, false).setValue(DoTBBlockStateProperties.TRICKLE_EAST, false).setValue(DoTBBlockStateProperties.TRICKLE_SOUTH, false).setValue(DoTBBlockStateProperties.TRICKLE_WEST, false).setValue(BlockStateProperties.POWERED, false)
-				.setValue(DoTBBlockStateProperties.ACTIVATED, false));
+		this.registerDefaultState(this.defaultBlockState().setValue(BlockStateProperties.NORTH, false).setValue(BlockStateProperties.EAST, false).setValue(BlockStateProperties.SOUTH, false).setValue(BlockStateProperties.WEST, false)
+				/**.setValue(DoTBBlockStateProperties.TRICKLE_NORTH, false).setValue(DoTBBlockStateProperties.TRICKLE_EAST, false).setValue(DoTBBlockStateProperties.TRICKLE_SOUTH, false).setValue(DoTBBlockStateProperties.TRICKLE_WEST, false)**/
+				.setValue(BlockStateProperties.POWERED, false).setValue(DoTBBlockStateProperties.ACTIVATED, false));
 	}
 
 	@Override
 	protected void createBlockStateDefinition(final StateContainer.Builder<Block, BlockState> builder) {
 		super.createBlockStateDefinition(builder);
-		builder.add(BlockStateProperties.NORTH).add(BlockStateProperties.EAST).add(BlockStateProperties.SOUTH).add(BlockStateProperties.WEST).add(DoTBBlockStateProperties.TRICKLE_NORTH).add(DoTBBlockStateProperties.TRICKLE_EAST).add(DoTBBlockStateProperties.TRICKLE_SOUTH).add(DoTBBlockStateProperties.TRICKLE_WEST).add(BlockStateProperties.POWERED).add(DoTBBlockStateProperties.ACTIVATED);
+		builder.add(BlockStateProperties.NORTH).add(BlockStateProperties.EAST).add(BlockStateProperties.SOUTH).add(BlockStateProperties.WEST)
+				/**.add(DoTBBlockStateProperties.TRICKLE_NORTH).add(DoTBBlockStateProperties.TRICKLE_EAST).add(DoTBBlockStateProperties.TRICKLE_SOUTH).add(DoTBBlockStateProperties.TRICKLE_WEST)**/
+				.add(BlockStateProperties.POWERED).add(DoTBBlockStateProperties.ACTIVATED);
 	}
 
 	@Override

@@ -43,15 +43,16 @@ public class DoTBBlockStateProperties {
 
 	// Fountain - pool and TrickleWater
 
-	public static final BooleanProperty						HAS_NORTH				= BooleanProperty.create("north");
-	public static final BooleanProperty						HAS_EAST				= BooleanProperty.create("east");
-	public static final BooleanProperty						HAS_SOUTH				= BooleanProperty.create("south");
-	public static final BooleanProperty						HAS_WEST				= BooleanProperty.create("west");
 	public static final BooleanProperty						HAS_WALL				= BooleanProperty.create("wall");
+	public static final BooleanProperty						FLOOR					= BooleanProperty.create("floor");
 
 	// Fountain - Faucet
 
 	public static final BooleanProperty						ACTIVATED				= BooleanProperty.create("activated");
+	public static final BooleanProperty						TRICKLE_NORTH			= BooleanProperty.create("trickle_north");
+	public static final BooleanProperty						TRICKLE_EAST			= BooleanProperty.create("trickle_east");
+	public static final BooleanProperty						TRICKLE_SOUTH			= BooleanProperty.create("trickle_south");
+	public static final BooleanProperty						TRICKLE_WEST			= BooleanProperty.create("trickle_west");
 
 	// Fountain - WaterJet
 
