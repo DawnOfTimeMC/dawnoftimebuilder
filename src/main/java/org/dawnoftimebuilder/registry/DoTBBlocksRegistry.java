@@ -63,6 +63,7 @@ import org.dawnoftimebuilder.block.roman.MarbleStatueBlock;
 import org.dawnoftimebuilder.block.roman.SandstoneColumnBlock;
 import org.dawnoftimebuilder.block.templates.BeamBlock;
 import org.dawnoftimebuilder.block.templates.BlockDoTB;
+import org.dawnoftimebuilder.block.templates.BushBlockDoT;
 import org.dawnoftimebuilder.block.templates.CandlestickBlock;
 import org.dawnoftimebuilder.block.templates.CappedWallBlock;
 import org.dawnoftimebuilder.block.templates.CarpetBlockDoTB;
@@ -245,6 +246,10 @@ public class DoTBBlocksRegistry {
 	public static final RegistryObject<Block>	STONE_BRICKS_MACHICOLATION					= DoTBBlocksRegistry.reg("stone_bricks_machicolation", new StoneBricksMachicolationBlock(AbstractBlock.Properties.copy(Blocks.STONE_BRICKS).noOcclusion()));
 	public static final RegistryObject<Block>	STONE_BRICKS_PLATE							= DoTBBlocksRegistry.reg("stone_bricks_plate", new PlateBlock(AbstractBlock.Properties.copy(Blocks.STONE_BRICKS)));
 	public static final RegistryObject<Block>	STONE_BRICKS_MASONRY						= DoTBBlocksRegistry.reg("stone_bricks_masonry", new BlockDoTB(AbstractBlock.Properties.copy(Blocks.STONE_BRICKS)));
+	public static final RegistryObject<Block>	STONE_BRICKS_MASONRY_STAIRS					= DoTBBlocksRegistry.reg("stone_bricks_masonry_stairs", new StairsBlockDoTB(DoTBBlocksRegistry.STONE_BRICKS_MASONRY, AbstractBlock.Properties.copy(Blocks.STONE_BRICKS)));
+	public static final RegistryObject<Block>	STONE_BRICKS_MASONRY_PLATE					= DoTBBlocksRegistry.reg("stone_bricks_masonry_plate", new PlateBlock(AbstractBlock.Properties.copy(Blocks.STONE_BRICKS)));
+	public static final RegistryObject<Block>	STONE_BRICKS_MASONRY_SLAB					= DoTBBlocksRegistry.reg("stone_bricks_masonry_slab", new SlabBlockDoTB(AbstractBlock.Properties.copy(Blocks.STONE_BRICKS)));
+	public static final RegistryObject<Block>	STONE_BRICKS_MASONRY_EDGE					= DoTBBlocksRegistry.reg("stone_bricks_masonry_edge", new EdgeBlock(AbstractBlock.Properties.copy(Blocks.STONE_BRICKS)));
 	public static final RegistryObject<Block>	WAXED_OAK_FRAMED_RAMMED_DIRT				= DoTBBlocksRegistry.reg("waxed_oak_framed_rammed_dirt", new BlockDoTB(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.COLOR_BROWN).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
 	public static final RegistryObject<Block>	WAXED_OAK_FRAMED_RAMMED_DIRT_PILLAR			= DoTBBlocksRegistry.reg("waxed_oak_framed_rammed_dirt_pillar", new RotatedPillarBlockDoTB(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F, 5.0F).sound(SoundType.WOOD)).setBurnable());
 	public static final RegistryObject<Block>	WAXED_OAK_PLANKS							= DoTBBlocksRegistry.reg("waxed_oak_planks", new BlockDoTB(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F, 5.0F).sound(SoundType.WOOD)).setBurnable());
@@ -278,6 +283,9 @@ public class DoTBBlocksRegistry {
 	// TODO flowerpot for ivy
 	public static final RegistryObject<Block>	GERANIUM_PINK								= DoTBBlocksRegistry.reg("geranium_pink", new GeraniumBlock(AbstractBlock.Properties.of(Material.PLANT).noCollission().instabreak().sound(SoundType.GRASS)));
 	public static final RegistryObject<Block>	PLANTER_GERANIUM_PINK						= DoTBBlocksRegistry.reg("planter_geranium_pink", new PlanterBlock(AbstractBlock.Properties.of(Material.CLAY).strength(0.6F).noOcclusion()));
+	public static final RegistryObject<Block>	BOXWOOD_BUSH								= DoTBBlocksRegistry.reg("boxwood_bush", new BushBlockDoT(AbstractBlock.Properties.copy(Blocks.SPRUCE_LEAVES)));
+	public static final RegistryObject<Block>	BOXWOOD_TALL_EDGE							= DoTBBlocksRegistry.reg("boxwood_tall_edge", new EdgeBlock(AbstractBlock.Properties.copy(Blocks.SPRUCE_LEAVES)));
+	public static final RegistryObject<Block>	BOXWOOD_SMALL_EDGE							= DoTBBlocksRegistry.reg("boxwood_small_edge", new PlateBlock(AbstractBlock.Properties.copy(Blocks.SPRUCE_LEAVES)));
 
 	//Japanese
 	public static final RegistryObject<Block>	CHARRED_SPRUCE_PLANKS						= DoTBBlocksRegistry.reg("charred_spruce_planks", new BlockDoTB(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.COLOR_BLACK).strength(2.0F, 6.0F).sound(SoundType.WOOD)).setBurnable(2, 3));
