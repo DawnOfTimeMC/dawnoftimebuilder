@@ -115,7 +115,7 @@ public class PoolBlock extends WaterloggedBlock {
 
 	@Override
 	public ActionResultType use(BlockState blockStateIn, final World worldIn, final BlockPos blockPosIn, final PlayerEntity playerEntityIn, final Hand handIn, final BlockRayTraceResult blockRayTraceResultIn) {
-		if (playerEntityIn.isShiftKeyDown()) {
+		if (playerEntityIn.isCrouching()) {
 			/*
 			 * Seynax : allows the player to remove the contents of all stuck basins, with a single click with an empty bucket while sneaking
 			 */

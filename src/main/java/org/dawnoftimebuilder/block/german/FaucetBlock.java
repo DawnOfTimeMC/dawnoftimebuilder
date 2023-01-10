@@ -71,7 +71,7 @@ public class FaucetBlock extends BlockDoTB {
 	@Override
 	public boolean canBeReplaced(final BlockState state, final BlockItemUseContext useContext) {
 		final ItemStack itemstack = useContext.getItemInHand();
-		if (useContext.getPlayer() != null && useContext.getPlayer().isCrouching()) {
+		if (useContext.getPlayer() != null && !useContext.getPlayer().isCrouching()) {
 			return false;
 		}
 		if (itemstack.getItem() == this.asItem()) {
@@ -98,38 +98,43 @@ public class FaucetBlock extends BlockDoTB {
 	@Override
 	public ActionResultType use(BlockState blockStateIn, final World worldIn, final BlockPos blockPosIn, final PlayerEntity playerEntityIn, final Hand handIn, final BlockRayTraceResult blockRaytraceResultIn) {
 
+		if (playerEntityIn.isCrouching()) {
+			return ActionResultType.PASS;
+		}
+
 		final boolean activated = !blockStateIn.getValue(DoTBBlockStateProperties.ACTIVATED);
-		System.out.println("A : " + blockStateIn.getValue(DoTBBlockStateProperties.ACTIVATED));
 		blockStateIn = blockStateIn.setValue(DoTBBlockStateProperties.ACTIVATED, activated);
 		worldIn.setBlock(blockPosIn, blockStateIn, 10);
-		System.out.println("B : " + blockStateIn.getValue(DoTBBlockStateProperties.ACTIVATED));
 
 		final BlockPos below = blockPosIn.below();
 		if (activated) {
-			final BlockPos		belowBlockPosOfBelow	= below.below();
-			final BlockState	bottomBlockStateOfBelow	= worldIn.getBlockState(belowBlockPosOfBelow);
+			if (worldIn.getBlockState(below).getBlock() instanceof AirBlock) {
+				final BlockPos		belowBlockPosOfBelow	= below.below();
+				final BlockState	bottomBlockStateOfBelow	= worldIn.getBlockState(belowBlockPosOfBelow);
 
-			if (bottomBlockStateOfBelow.getBlock() instanceof AirBlock) {
-				final BlockState state = DoTBBlocksRegistry.WATER_MOVING_TRICKLE.get().defaultBlockState().setValue(BlockStateProperties.NORTH, blockStateIn.getValue(BlockStateProperties.NORTH)).setValue(BlockStateProperties.EAST, blockStateIn.getValue(BlockStateProperties.EAST)).setValue(BlockStateProperties.SOUTH, blockStateIn.getValue(BlockStateProperties.SOUTH)).setValue(BlockStateProperties.WEST, blockStateIn.getValue(BlockStateProperties.WEST));
+				if (bottomBlockStateOfBelow.getBlock() instanceof AirBlock) {
+					final BlockState state = DoTBBlocksRegistry.WATER_MOVING_TRICKLE.get().defaultBlockState().setValue(BlockStateProperties.NORTH, blockStateIn.getValue(BlockStateProperties.NORTH)).setValue(BlockStateProperties.EAST, blockStateIn.getValue(BlockStateProperties.EAST)).setValue(BlockStateProperties.SOUTH, blockStateIn.getValue(BlockStateProperties.SOUTH)).setValue(BlockStateProperties.WEST, blockStateIn.getValue(BlockStateProperties.WEST));
 
-				worldIn.setBlock(below, state, 10);
+					worldIn.setBlock(below, state, 10);
+				}
+				else {
+					final BlockState state = DoTBBlocksRegistry.WATER_TRICKLE.get().defaultBlockState().setValue(BlockStateProperties.NORTH, blockStateIn.getValue(BlockStateProperties.NORTH)).setValue(BlockStateProperties.EAST, blockStateIn.getValue(BlockStateProperties.EAST)).setValue(BlockStateProperties.SOUTH, blockStateIn.getValue(BlockStateProperties.SOUTH)).setValue(BlockStateProperties.WEST, blockStateIn.getValue(BlockStateProperties.WEST))
+
+							.setValue(DoTBBlockStateProperties.FLOOR, /**!(bottomBlockStateOfBelow.getBlock() instanceof AirBlock) &&**/
+									Block.canSupportCenter(worldIn, belowBlockPosOfBelow, Direction.UP));
+
+					worldIn.setBlock(below, state, 10);
+				}
 			}
 			else {
-				final BlockState state = DoTBBlocksRegistry.WATER_TRICKLE.get().defaultBlockState().setValue(BlockStateProperties.NORTH, blockStateIn.getValue(BlockStateProperties.NORTH)).setValue(BlockStateProperties.EAST, blockStateIn.getValue(BlockStateProperties.EAST)).setValue(BlockStateProperties.SOUTH, blockStateIn.getValue(BlockStateProperties.SOUTH)).setValue(BlockStateProperties.WEST, blockStateIn.getValue(BlockStateProperties.WEST))
+				final BlockState bottomState = worldIn.getBlockState(below);
 
-						.setValue(DoTBBlockStateProperties.FLOOR, /**!(bottomBlockStateOfBelow.getBlock() instanceof AirBlock) &&**/
-								Block.canSupportCenter(worldIn, belowBlockPosOfBelow, Direction.UP));
-
-				worldIn.setBlock(below, state, 10);
+				if (bottomState.getBlock() instanceof WaterTrickleBlock || bottomState.getBlock() instanceof WaterMovingTrickleBlock) {
+					worldIn.setBlock(below, Blocks.AIR.defaultBlockState(), 10);
+				}
 			}
 		}
-		else {
-			final BlockState bottomState = worldIn.getBlockState(below);
 
-			if (bottomState.getBlock() instanceof WaterTrickleBlock || bottomState.getBlock() instanceof WaterMovingTrickleBlock) {
-				worldIn.setBlock(below, Blocks.AIR.defaultBlockState(), 10);
-			}
-		}
 		return ActionResultType.SUCCESS;
 	}
 
