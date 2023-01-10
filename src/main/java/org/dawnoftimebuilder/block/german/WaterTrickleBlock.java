@@ -21,7 +21,7 @@ public class WaterTrickleBlock extends BlockDoTB {
 	 */
 	public WaterTrickleBlock(final Properties propertiesIn) {
 		super(propertiesIn);
-		this.registerDefaultState(this.defaultBlockState().setValue(BlockStateProperties.NORTH, false).setValue(BlockStateProperties.EAST, false).setValue(BlockStateProperties.SOUTH, false).setValue(BlockStateProperties.WEST, false).setValue(DoTBBlockStateProperties.HAS_WALL, false).setValue(DoTBBlockStateProperties.FLOOR, false));
+		this.registerDefaultState(this.defaultBlockState().setValue(BlockStateProperties.NORTH, false).setValue(BlockStateProperties.EAST, false).setValue(BlockStateProperties.SOUTH, false).setValue(BlockStateProperties.WEST, false).setValue(DoTBBlockStateProperties.FLOOR, false));
 	}
 
 	@Override
