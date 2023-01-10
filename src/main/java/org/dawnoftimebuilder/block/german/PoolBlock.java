@@ -116,28 +116,31 @@ public class PoolBlock extends WaterloggedBlock {
 	@Override
 	public ActionResultType use(BlockState blockStateIn, final World worldIn, final BlockPos blockPosIn, final PlayerEntity playerEntityIn, final Hand handIn, final BlockRayTraceResult blockRayTraceResultIn) {
 		if (playerEntityIn.isShiftKeyDown()) {
+			/*
+			 * Seynax : allows the player to remove the contents of all stuck basins, with a single click with an empty bucket while sneaking
+			 */
 			final ItemStack itemStack = playerEntityIn.getMainHandItem();
-			if (itemStack != null && itemStack.getItem() instanceof BucketItem) {
-				if (((BucketItem) itemStack.getItem()).getFluid() instanceof EmptyFluid) {
-					PoolBlock.REMOVE_WATER_MAP.clear();
-					if (PoolBlock.removeWater(PoolBlock.REMOVE_WATER_MAP, blockStateIn, blockPosIn, worldIn, 0, 0)) {
-						return ActionResultType.SUCCESS;
-					}
-				}
+			if ((itemStack == null) || !(itemStack.getItem() instanceof BucketItem)) {
+				blockStateIn = blockStateIn.setValue(DoTBBlockStateProperties.HAS_WALL, !blockStateIn.getValue(DoTBBlockStateProperties.HAS_WALL));
 
-				return ActionResultType.PASS;
+				worldIn.setBlock(blockPosIn, blockStateIn, 10);
+
+				return ActionResultType.SUCCESS;
 			}
-
-			blockStateIn = blockStateIn.setValue(DoTBBlockStateProperties.HAS_WALL, !blockStateIn.getValue(DoTBBlockStateProperties.HAS_WALL));
-
-			worldIn.setBlock(blockPosIn, blockStateIn, 10);
-
-			return ActionResultType.SUCCESS;
+			if (((BucketItem) itemStack.getItem()).getFluid() instanceof EmptyFluid) {
+				PoolBlock.REMOVE_WATER_MAP.clear();
+				if (PoolBlock.removeWater(PoolBlock.REMOVE_WATER_MAP, blockStateIn, blockPosIn, worldIn, 0, 0)) {
+					return ActionResultType.SUCCESS;
+				}
+			}
 		}
 
 		return ActionResultType.PASS;
 	}
 
+	/*
+	 * Seynax : allows the player to prevent the appearance of a pole in the basin below, under sneak conditions
+	 */
 	@Override
 	public void setPlacedBy(final World worldIn, final BlockPos blockPosIn, final BlockState blockStateIn, final LivingEntity entityIn, final ItemStack itemStackIn) {
 		if (entityIn instanceof PlayerEntity && !((PlayerEntity) entityIn).isShiftKeyDown()) {
@@ -161,7 +164,6 @@ public class PoolBlock extends WaterloggedBlock {
 
 		switch (facingIn) {
 			case NORTH:
-
 				stateIn = stateIn.setValue(BlockStateProperties.NORTH, hasPoolInSide);
 
 				if (hasPoolInSide && facingStateIn.getValue(BlockStateProperties.WATERLOGGED)) {
