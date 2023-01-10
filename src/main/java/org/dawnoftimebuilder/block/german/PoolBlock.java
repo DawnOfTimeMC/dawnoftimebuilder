@@ -157,12 +157,12 @@ public class PoolBlock extends WaterloggedBlock {
 	}
 
 	@Override
-	public BlockState updateShape(BlockState stateIn, final Direction facingIn, final BlockState facingStateIn, final IWorld worldIn, final BlockPos currentPosIn, final BlockPos facingPosIn) {
+	public BlockState updateShape(BlockState stateIn, final Direction directionIn, final BlockState facingStateIn, final IWorld worldIn, final BlockPos currentPosIn, final BlockPos facingPosIn) {
 		final BlockState	state			= facingStateIn;
 
 		final boolean		hasPoolInSide	= state.getBlock() instanceof PoolBlock;
 
-		switch (facingIn) {
+		switch (directionIn) {
 			case NORTH:
 				stateIn = stateIn.setValue(BlockStateProperties.NORTH, hasPoolInSide);
 
@@ -199,6 +199,6 @@ public class PoolBlock extends WaterloggedBlock {
 		}
 		worldIn.setBlock(currentPosIn, stateIn, 10);
 
-		return super.updateShape(stateIn, facingIn, facingStateIn, worldIn, currentPosIn, facingPosIn);
+		return super.updateShape(stateIn, directionIn, facingStateIn, worldIn, currentPosIn, facingPosIn);
 	}
 }
