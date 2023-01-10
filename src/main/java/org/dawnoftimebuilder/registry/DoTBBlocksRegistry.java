@@ -17,6 +17,8 @@ import org.dawnoftimebuilder.block.german.StoneBricksArrowslitBlock;
 import org.dawnoftimebuilder.block.german.StoneBricksChimneyBlock;
 import org.dawnoftimebuilder.block.german.StoneBricksMachicolationBlock;
 import org.dawnoftimebuilder.block.german.WaterJetBlock;
+import org.dawnoftimebuilder.block.german.WaterMovingTrickleBlock;
+import org.dawnoftimebuilder.block.german.WaterSourceTrickleBlock;
 import org.dawnoftimebuilder.block.german.WaterTrickleBlock;
 import org.dawnoftimebuilder.block.german.WaxedOakBalusterBlock;
 import org.dawnoftimebuilder.block.german.WaxedOakChairBlock;
@@ -294,6 +296,8 @@ public class DoTBBlocksRegistry {
 	public static final RegistryObject<Block>	POOL										= DoTBBlocksRegistry.reg("pool", new PoolBlock(AbstractBlock.Properties.copy(Blocks.STONE)));
 	public static final RegistryObject<Block>	WATER_JET									= DoTBBlocksRegistry.reg("water_jet", new WaterJetBlock(AbstractBlock.Properties.copy(Blocks.STONE)));
 	public static final RegistryObject<Block>	WATER_TRICKLE								= DoTBBlocksRegistry.reg("water_trickle", new WaterTrickleBlock(AbstractBlock.Properties.copy(Blocks.STONE)));
+	public static final RegistryObject<Block>	WATER_MOVING_TRICKLE						= DoTBBlocksRegistry.reg("water_moving_trickle", new WaterMovingTrickleBlock(AbstractBlock.Properties.copy(Blocks.STONE).randomTicks()));
+	public static final RegistryObject<Block>	WATER_SOURCE_TRICKLE						= DoTBBlocksRegistry.reg("water_source_trickle", new WaterSourceTrickleBlock(AbstractBlock.Properties.copy(Blocks.STONE).randomTicks()));
 
 	//Japanese
 	public static final RegistryObject<Block>	CHARRED_SPRUCE_PLANKS						= DoTBBlocksRegistry.reg("charred_spruce_planks", new BlockDoTB(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.COLOR_BLACK).strength(2.0F, 6.0F).sound(SoundType.WOOD)).setBurnable(2, 3));

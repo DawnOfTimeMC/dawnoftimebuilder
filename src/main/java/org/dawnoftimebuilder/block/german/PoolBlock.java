@@ -120,7 +120,7 @@ public class PoolBlock extends WaterloggedBlock {
 			 * Seynax : allows the player to remove the contents of all stuck basins, with a single click with an empty bucket while sneaking
 			 */
 			final ItemStack itemStack = playerEntityIn.getMainHandItem();
-			if ((itemStack == null) || !(itemStack.getItem() instanceof BucketItem)) {
+			if (itemStack == null || !(itemStack.getItem() instanceof BucketItem)) {
 				blockStateIn = blockStateIn.setValue(DoTBBlockStateProperties.HAS_WALL, !blockStateIn.getValue(DoTBBlockStateProperties.HAS_WALL));
 
 				worldIn.setBlock(blockPosIn, blockStateIn, 10);
@@ -197,7 +197,6 @@ public class PoolBlock extends WaterloggedBlock {
 			default:
 				break;
 		}
-		worldIn.setBlock(currentPosIn, stateIn, 10);
 
 		return super.updateShape(stateIn, directionIn, facingStateIn, worldIn, currentPosIn, facingPosIn);
 	}

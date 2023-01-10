@@ -36,11 +36,12 @@ public class WaterJetBlock extends BlockDoTB {
 	}
 
 	@Override
-	public ActionResultType use(final BlockState p_225533_1_In, final World p_225533_2_In, final BlockPos p_225533_3_In, final PlayerEntity p_225533_4_In, final Hand p_225533_5_In, final BlockRayTraceResult p_225533_6_In) {
-		if (!p_225533_2_In.isClientSide()) {
-			p_225533_1_In.setValue(DoTBBlockStateProperties.LATERAL, !p_225533_1_In.getValue(DoTBBlockStateProperties.LATERAL));
-		}
+	public ActionResultType use(BlockState blockStateIn, final World worldIn, final BlockPos blockPosIn, final PlayerEntity playerEntityIn, final Hand handIn, final BlockRayTraceResult blockRaytraceResultIn) {
 
-		return super.use(p_225533_1_In, p_225533_2_In, p_225533_3_In, p_225533_4_In, p_225533_5_In, p_225533_6_In);
+		blockStateIn = blockStateIn.setValue(DoTBBlockStateProperties.LATERAL, !blockStateIn.getValue(DoTBBlockStateProperties.LATERAL));
+
+		worldIn.setBlock(blockPosIn, blockStateIn, 10);
+
+		return ActionResultType.SUCCESS;
 	}
 }
