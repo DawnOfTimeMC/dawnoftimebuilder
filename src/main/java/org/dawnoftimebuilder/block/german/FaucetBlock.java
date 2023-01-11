@@ -34,14 +34,14 @@ public class FaucetBlock extends BlockDoTB {
 	 */
 	public FaucetBlock(final Properties propertiesIn) {
 		super(propertiesIn);
-		this.registerDefaultState(this.defaultBlockState().setValue(BlockStateProperties.NORTH, false).setValue(BlockStateProperties.EAST, false).setValue(BlockStateProperties.SOUTH, false).setValue(BlockStateProperties.WEST, false).setValue(DoTBBlockStateProperties.HALF_NORTH, false).setValue(DoTBBlockStateProperties.HALF_EAST, false).setValue(DoTBBlockStateProperties.HALF_SOUTH, false).setValue(DoTBBlockStateProperties.HALF_WEST, false).setValue(BlockStateProperties.POWERED, false)
-				.setValue(DoTBBlockStateProperties.ACTIVATED, false));
+		this.registerDefaultState(this.defaultBlockState().setValue(BlockStateProperties.UP, false).setValue(BlockStateProperties.DOWN, false).setValue(BlockStateProperties.NORTH, false).setValue(BlockStateProperties.EAST, false).setValue(BlockStateProperties.SOUTH, false).setValue(BlockStateProperties.WEST, false).setValue(DoTBBlockStateProperties.HALF_NORTH, false).setValue(DoTBBlockStateProperties.HALF_EAST, false).setValue(DoTBBlockStateProperties.HALF_SOUTH, false)
+				.setValue(DoTBBlockStateProperties.HALF_WEST, false).setValue(BlockStateProperties.POWERED, false).setValue(DoTBBlockStateProperties.ACTIVATED, false));
 	}
 
 	@Override
 	protected void createBlockStateDefinition(final StateContainer.Builder<Block, BlockState> builder) {
 		super.createBlockStateDefinition(builder);
-		builder.add(BlockStateProperties.NORTH).add(BlockStateProperties.EAST).add(BlockStateProperties.SOUTH).add(BlockStateProperties.WEST).add(DoTBBlockStateProperties.HALF_NORTH).add(DoTBBlockStateProperties.HALF_EAST).add(DoTBBlockStateProperties.HALF_SOUTH).add(DoTBBlockStateProperties.HALF_WEST).add(BlockStateProperties.POWERED).add(DoTBBlockStateProperties.ACTIVATED);
+		builder.add(BlockStateProperties.UP).add(BlockStateProperties.DOWN).add(BlockStateProperties.NORTH).add(BlockStateProperties.EAST).add(BlockStateProperties.SOUTH).add(BlockStateProperties.WEST).add(DoTBBlockStateProperties.HALF_NORTH).add(DoTBBlockStateProperties.HALF_EAST).add(DoTBBlockStateProperties.HALF_SOUTH).add(DoTBBlockStateProperties.HALF_WEST).add(BlockStateProperties.POWERED).add(DoTBBlockStateProperties.ACTIVATED);
 	}
 
 	@Override
@@ -51,7 +51,7 @@ public class FaucetBlock extends BlockDoTB {
 		if (state.getBlock() != this) {
 			state = super.getStateForPlacement(context);
 		}
-		switch (context.getHorizontalDirection()) {
+		switch (context.getClickedFace()) {
 			default:
 			case UP:
 				return state.setValue(BlockStateProperties.UP, true);
@@ -71,11 +71,11 @@ public class FaucetBlock extends BlockDoTB {
 	@Override
 	public boolean canBeReplaced(final BlockState state, final BlockItemUseContext useContext) {
 		final ItemStack itemstack = useContext.getItemInHand();
-		if (useContext.getPlayer() != null && !useContext.getPlayer().isCrouching()) {
+		if (useContext.getPlayer() != null && useContext.getPlayer().isCrouching()) {
 			return false;
 		}
 		if (itemstack.getItem() == this.asItem()) {
-			final Direction newDirection = useContext.getHorizontalDirection();
+			final Direction newDirection = useContext.getClickedFace();
 			switch (newDirection) {
 				default:
 				case UP:
@@ -98,7 +98,8 @@ public class FaucetBlock extends BlockDoTB {
 	@Override
 	public ActionResultType use(BlockState blockStateIn, final World worldIn, final BlockPos blockPosIn, final PlayerEntity playerEntityIn, final Hand handIn, final BlockRayTraceResult blockRaytraceResultIn) {
 
-		if (playerEntityIn.isCrouching()) {
+		final ItemStack mainHandItemStack = playerEntityIn.getMainHandItem();
+		if (mainHandItemStack != null && mainHandItemStack.getItem() == this.asItem()) {
 			return ActionResultType.PASS;
 		}
 
