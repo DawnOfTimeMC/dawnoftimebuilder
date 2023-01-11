@@ -14,49 +14,82 @@ import net.minecraft.world.World;
 
 public class DoTBBlockStateProperties {
 
-	public static final BooleanProperty						CUT						= BooleanProperty.create("cut");
-	public static final BooleanProperty						ROLLED					= BooleanProperty.create("rolled");
-	public static final BooleanProperty						AXIS_X					= BooleanProperty.create("axis_x");
-	public static final BooleanProperty						AXIS_Y					= BooleanProperty.create("axis_y");
-	public static final BooleanProperty						AXIS_Z					= BooleanProperty.create("axis_z");
-	public static final BooleanProperty						SUBAXIS					= BooleanProperty.create("subaxis");
+	public static final BooleanProperty							CUT						= BooleanProperty.create("cut");
+	public static final BooleanProperty							ROLLED					= BooleanProperty.create("rolled");
+	public static final BooleanProperty							AXIS_X					= BooleanProperty.create("axis_x");
+	public static final BooleanProperty							AXIS_Y					= BooleanProperty.create("axis_y");
+	public static final BooleanProperty							AXIS_Z					= BooleanProperty.create("axis_z");
+	public static final BooleanProperty							SUBAXIS					= BooleanProperty.create("subaxis");
 
-	public static final IntegerProperty						MULTIBLOCK_0_2			= IntegerProperty.create("multiblock", 0, 2);
-	public static final IntegerProperty						MULTIBLOCK_3X			= IntegerProperty.create("multiblock_3x", 0, 2);
-	public static final IntegerProperty						MULTIBLOCK_2Y			= IntegerProperty.create("multiblock_2y", 0, 1);
-	public static final IntegerProperty						MULTIBLOCK_3Z			= IntegerProperty.create("multiblock_3z", 0, 2);
-	public static final IntegerProperty						HUMIDITY_0_8			= IntegerProperty.create("humidity", 0, 8);
-	public static final IntegerProperty						AGE_0_6					= IntegerProperty.create("age", 0, 6);
-	public static final IntegerProperty						HEAT_0_4				= IntegerProperty.create("heat", 0, 4);
-	public static final IntegerProperty						SIZE_0_2				= IntegerProperty.create("size", 0, 2);
-	public static final IntegerProperty						SIZE_0_5				= IntegerProperty.create("size", 0, 5);
-	public static final IntegerProperty						STACK					= IntegerProperty.create("stack", 1, 3);
-	public static final EnumProperty<ClimbingPlant>			CLIMBING_PLANT			= EnumProperty.create("climbing_plant", ClimbingPlant.class);
-	public static final EnumProperty<FencePillar>			FENCE_PILLAR			= EnumProperty.create("fence_pillar", FencePillar.class);
-	public static final EnumProperty<HorizontalConnection>	HORIZONTAL_CONNECTION	= EnumProperty.create("horizontal_connection", HorizontalConnection.class);
-	public static final EnumProperty<OpenPosition>			OPEN_POSITION			= EnumProperty.create("open_position", OpenPosition.class);
-	public static final EnumProperty<PillarConnection>		PILLAR_CONNECTION		= EnumProperty.create("pillar_connection", PillarConnection.class);
-	public static final EnumProperty<SidedWindow>			SIDED_WINDOW			= EnumProperty.create("sided_window", SidedWindow.class);
-	public static final EnumProperty<VerticalConnection>	VERTICAL_CONNECTION		= EnumProperty.create("vertical_connection", VerticalConnection.class);
-	public static final EnumProperty<SquareCorners>			CORNER					= EnumProperty.create("corner", SquareCorners.class);
-	public static final EnumProperty<WallHeight>			PILLAR_WALL				= EnumProperty.create("pillar", WallHeight.class);
+	public static final IntegerProperty							MULTIBLOCK_0_2			= IntegerProperty.create("multiblock", 0, 2);
+	public static final IntegerProperty							MULTIBLOCK_3X			= IntegerProperty.create("multiblock_3x", 0, 2);
+	public static final IntegerProperty							MULTIBLOCK_2Y			= IntegerProperty.create("multiblock_2y", 0, 1);
+	public static final IntegerProperty							MULTIBLOCK_3Z			= IntegerProperty.create("multiblock_3z", 0, 2);
+	public static final IntegerProperty							HUMIDITY_0_8			= IntegerProperty.create("humidity", 0, 8);
+	public static final IntegerProperty							AGE_0_6					= IntegerProperty.create("age", 0, 6);
+	public static final IntegerProperty							HEAT_0_4				= IntegerProperty.create("heat", 0, 4);
+	public static final IntegerProperty							SIZE_0_2				= IntegerProperty.create("size", 0, 2);
+	public static final IntegerProperty							SIZE_0_5				= IntegerProperty.create("size", 0, 5);
+	public static final IntegerProperty							STACK					= IntegerProperty.create("stack", 1, 3);
+	public static final EnumProperty<ClimbingPlant>				CLIMBING_PLANT			= EnumProperty.create("climbing_plant", ClimbingPlant.class);
+	public static final EnumProperty<FencePillar>				FENCE_PILLAR			= EnumProperty.create("fence_pillar", FencePillar.class);
+	public static final EnumProperty<HorizontalConnection>		HORIZONTAL_CONNECTION	= EnumProperty.create("horizontal_connection", HorizontalConnection.class);
+	public static final EnumProperty<OpenPosition>				OPEN_POSITION			= EnumProperty.create("open_position", OpenPosition.class);
+	public static final EnumProperty<PillarConnection>			PILLAR_CONNECTION		= EnumProperty.create("pillar_connection", PillarConnection.class);
+	public static final EnumProperty<SidedWindow>				SIDED_WINDOW			= EnumProperty.create("sided_window", SidedWindow.class);
+	public static final EnumProperty<VerticalConnection>		VERTICAL_CONNECTION		= EnumProperty.create("vertical_connection", VerticalConnection.class);
+	public static final EnumProperty<SquareCorners>				CORNER					= EnumProperty.create("corner", SquareCorners.class);
+	public static final EnumProperty<WallHeight>				PILLAR_WALL				= EnumProperty.create("pillar", WallHeight.class);
 
 	// Fountain - pool and TrickleWater
 
-	public static final BooleanProperty						HAS_WALL				= BooleanProperty.create("wall");
-	public static final BooleanProperty						FLOOR					= BooleanProperty.create("floor");
+	public static final BooleanProperty							HAS_WALL				= BooleanProperty.create("wall");
+	public static final BooleanProperty							FLOOR					= BooleanProperty.create("floor");
 
 	// Fountain - Faucet
 
-	public static final BooleanProperty						ACTIVATED				= BooleanProperty.create("activated");
-	public static final BooleanProperty						HALF_NORTH				= BooleanProperty.create("half_north");
-	public static final BooleanProperty						HALF_EAST				= BooleanProperty.create("half_east");
-	public static final BooleanProperty						HALF_SOUTH				= BooleanProperty.create("half_south");
-	public static final BooleanProperty						HALF_WEST				= BooleanProperty.create("half_west");
+	public static final BooleanProperty							ACTIVATED				= BooleanProperty.create("activated");
+
+	public static final EnumProperty<VerticalLimitedConnection>	NORTHSTATE				= EnumProperty.create("northstate", VerticalLimitedConnection.class);
+	public static final EnumProperty<VerticalLimitedConnection>	EASTSTATE				= EnumProperty.create("eaststate", VerticalLimitedConnection.class);
+	public static final EnumProperty<VerticalLimitedConnection>	SOUTHSTATE				= EnumProperty.create("southstate", VerticalLimitedConnection.class);
+	public static final EnumProperty<VerticalLimitedConnection>	WESTSTATE				= EnumProperty.create("weststate", VerticalLimitedConnection.class);
 
 	// Fountain - WaterJet
 
-	public static final BooleanProperty						LATERAL					= BooleanProperty.create("lateral");
+	public static final BooleanProperty							LATERAL					= BooleanProperty.create("lateral");
+
+	public enum VerticalLimitedConnection implements IStringSerializable {
+		NONE("none", 0), BOTTOM("bottom", 1), TOP("top", 2);
+
+		private final String	name;
+		private final int		index;
+
+		VerticalLimitedConnection(final String name, final int index) {
+			this.name	= name;
+			this.index	= index;
+		}
+
+		@Override
+		public String toString() {
+			return this.name;
+		}
+
+		@Override
+		public String getSerializedName() {
+			return this.name;
+		}
+
+		/**
+		 * @return 0 : NONE,
+		 * 1 : UNDER,
+		 * 2 : ABOVE,
+		 * 3 : BOTH
+		 */
+		public int getIndex() {
+			return this.index;
+		}
+	}
 
 	public enum HorizontalConnection implements IStringSerializable {
 		NONE("none", 0), LEFT("left", 1), RIGHT("right", 2), BOTH("both", 3);
