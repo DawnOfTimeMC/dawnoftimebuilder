@@ -41,7 +41,7 @@ public class FaucetBlock extends BlockDoTB {
 	@Override
 	protected void createBlockStateDefinition(final StateContainer.Builder<Block, BlockState> builder) {
 		super.createBlockStateDefinition(builder);
-		builder.add(BlockStateProperties.UP).add(BlockStateProperties.DOWN).add(BlockStateProperties.NORTH).add(DoTBBlockStateProperties.NORTHSTATE).add(DoTBBlockStateProperties.EASTSTATE).add(DoTBBlockStateProperties.SOUTHSTATE).add(DoTBBlockStateProperties.WESTSTATE).add(BlockStateProperties.POWERED).add(DoTBBlockStateProperties.ACTIVATED);
+		builder.add(BlockStateProperties.UP).add(BlockStateProperties.DOWN).add(DoTBBlockStateProperties.NORTHSTATE).add(DoTBBlockStateProperties.EASTSTATE).add(DoTBBlockStateProperties.SOUTHSTATE).add(DoTBBlockStateProperties.WESTSTATE).add(BlockStateProperties.POWERED).add(DoTBBlockStateProperties.ACTIVATED);
 	}
 
 	@Override
@@ -58,13 +58,13 @@ public class FaucetBlock extends BlockDoTB {
 			case DOWN:
 				return state.setValue(BlockStateProperties.DOWN, true);
 			case SOUTH:
-				return state.setValue(BlockStateProperties.SOUTH, true);
+				return state.setValue(DoTBBlockStateProperties.NORTHSTATE, DoTBBlockStateProperties.VerticalLimitedConnection.NONE);
 			case WEST:
-				return state.setValue(BlockStateProperties.WEST, true);
+				return state.setValue(DoTBBlockStateProperties.EASTSTATE, DoTBBlockStateProperties.VerticalLimitedConnection.NONE);
 			case NORTH:
-				return state.setValue(BlockStateProperties.NORTH, true);
+				return state.setValue(DoTBBlockStateProperties.SOUTHSTATE, DoTBBlockStateProperties.VerticalLimitedConnection.NONE);
 			case EAST:
-				return state.setValue(BlockStateProperties.EAST, true);
+				return state.setValue(DoTBBlockStateProperties.WESTSTATE, DoTBBlockStateProperties.VerticalLimitedConnection.NONE);
 		}
 	}
 
@@ -83,13 +83,13 @@ public class FaucetBlock extends BlockDoTB {
 				case DOWN:
 					return !state.getValue(BlockStateProperties.DOWN);
 				case SOUTH:
-					return !state.getValue(BlockStateProperties.SOUTH);
+					return DoTBBlockStateProperties.VerticalLimitedConnection.NONE.equals(state.getValue(DoTBBlockStateProperties.NORTHSTATE));
 				case WEST:
-					return !state.getValue(BlockStateProperties.WEST);
+					return DoTBBlockStateProperties.VerticalLimitedConnection.NONE.equals(state.getValue(DoTBBlockStateProperties.EASTSTATE));
 				case NORTH:
-					return !state.getValue(BlockStateProperties.NORTH);
+					return DoTBBlockStateProperties.VerticalLimitedConnection.NONE.equals(state.getValue(DoTBBlockStateProperties.SOUTHSTATE));
 				case EAST:
-					return !state.getValue(BlockStateProperties.EAST);
+					return DoTBBlockStateProperties.VerticalLimitedConnection.NONE.equals(state.getValue(DoTBBlockStateProperties.WESTSTATE));
 			}
 		}
 		return false;
@@ -114,12 +114,14 @@ public class FaucetBlock extends BlockDoTB {
 				final BlockState	bottomBlockStateOfBelow	= worldIn.getBlockState(belowBlockPosOfBelow);
 
 				if (bottomBlockStateOfBelow.getBlock() instanceof AirBlock) {
-					final BlockState state = DoTBBlocksRegistry.WATER_MOVING_TRICKLE.get().defaultBlockState().setValue(BlockStateProperties.NORTH, blockStateIn.getValue(BlockStateProperties.NORTH)).setValue(BlockStateProperties.EAST, blockStateIn.getValue(BlockStateProperties.EAST)).setValue(BlockStateProperties.SOUTH, blockStateIn.getValue(BlockStateProperties.SOUTH)).setValue(BlockStateProperties.WEST, blockStateIn.getValue(BlockStateProperties.WEST));
+					final BlockState state = DoTBBlocksRegistry.WATER_MOVING_TRICKLE.get().defaultBlockState().setValue(BlockStateProperties.NORTH, !DoTBBlockStateProperties.VerticalLimitedConnection.NONE.equals(blockStateIn.getValue(DoTBBlockStateProperties.NORTHSTATE))).setValue(BlockStateProperties.EAST, !DoTBBlockStateProperties.VerticalLimitedConnection.NONE.equals(blockStateIn.getValue(DoTBBlockStateProperties.EASTSTATE)))
+							.setValue(BlockStateProperties.SOUTH, DoTBBlockStateProperties.VerticalLimitedConnection.NONE.equals(blockStateIn.getValue(DoTBBlockStateProperties.SOUTHSTATE))).setValue(BlockStateProperties.WEST, !DoTBBlockStateProperties.VerticalLimitedConnection.NONE.equals(blockStateIn.getValue(DoTBBlockStateProperties.WESTSTATE)));
 
 					worldIn.setBlock(below, state, 10);
 				}
 				else {
-					final BlockState state = DoTBBlocksRegistry.WATER_TRICKLE.get().defaultBlockState().setValue(BlockStateProperties.NORTH, blockStateIn.getValue(BlockStateProperties.NORTH)).setValue(BlockStateProperties.EAST, blockStateIn.getValue(BlockStateProperties.EAST)).setValue(BlockStateProperties.SOUTH, blockStateIn.getValue(BlockStateProperties.SOUTH)).setValue(BlockStateProperties.WEST, blockStateIn.getValue(BlockStateProperties.WEST))
+					final BlockState state = DoTBBlocksRegistry.WATER_TRICKLE.get().defaultBlockState().setValue(BlockStateProperties.NORTH, !DoTBBlockStateProperties.VerticalLimitedConnection.NONE.equals(blockStateIn.getValue(DoTBBlockStateProperties.NORTHSTATE))).setValue(BlockStateProperties.EAST, !DoTBBlockStateProperties.VerticalLimitedConnection.NONE.equals(blockStateIn.getValue(DoTBBlockStateProperties.EASTSTATE)))
+							.setValue(BlockStateProperties.SOUTH, DoTBBlockStateProperties.VerticalLimitedConnection.NONE.equals(blockStateIn.getValue(DoTBBlockStateProperties.SOUTHSTATE))).setValue(BlockStateProperties.WEST, !DoTBBlockStateProperties.VerticalLimitedConnection.NONE.equals(blockStateIn.getValue(DoTBBlockStateProperties.WESTSTATE)))
 
 							.setValue(DoTBBlockStateProperties.FLOOR, /**!(bottomBlockStateOfBelow.getBlock() instanceof AirBlock) &&**/
 									Block.canSupportCenter(worldIn, belowBlockPosOfBelow, Direction.UP));
@@ -127,12 +129,12 @@ public class FaucetBlock extends BlockDoTB {
 					worldIn.setBlock(below, state, 10);
 				}
 			}
-			else {
-				final BlockState bottomState = worldIn.getBlockState(below);
+		}
+		else {
+			final BlockState bottomState = worldIn.getBlockState(below);
 
-				if (bottomState.getBlock() instanceof WaterTrickleBlock || bottomState.getBlock() instanceof WaterMovingTrickleBlock) {
-					worldIn.setBlock(below, Blocks.AIR.defaultBlockState(), 10);
-				}
+			if (bottomState.getBlock() instanceof WaterTrickleBlock || bottomState.getBlock() instanceof WaterMovingTrickleBlock) {
+				worldIn.setBlock(below, Blocks.AIR.defaultBlockState(), 10);
 			}
 		}
 

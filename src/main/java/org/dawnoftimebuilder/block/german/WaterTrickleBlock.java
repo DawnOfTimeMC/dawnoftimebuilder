@@ -45,7 +45,6 @@ public class WaterTrickleBlock extends BlockDoTB {
 		builder.add(BlockStateProperties.NORTH).add(BlockStateProperties.EAST).add(BlockStateProperties.SOUTH).add(BlockStateProperties.WEST).add(DoTBBlockStateProperties.FLOOR);
 	}
 
-	// TODO Return the correct block between moving and static water trickle
 	@Override
 	public BlockState getStateForPlacement(final BlockItemUseContext contextIn) {
 		final World			level			= contextIn.getLevel();
