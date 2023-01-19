@@ -75,13 +75,14 @@ public class HandlerClient
 
 		//French
 		RenderTypeLookup.setRenderLayer(DoTBBlocksRegistry.LIMESTONE_FIREPLACE.get(), RenderType.cutoutMipped());
+		RenderTypeLookup.setRenderLayer(DoTBBlocksRegistry.WROUGHT_IRON_BALUSTER.get(), RenderType.cutoutMipped());
+		RenderTypeLookup.setRenderLayer(DoTBBlocksRegistry.WROUGHT_IRON_FENCE.get(), RenderType.cutoutMipped());
 
 		//German
 		RenderTypeLookup.setRenderLayer(DoTBBlocksRegistry.LATTICE_GLASS.get(), RenderType.cutoutMipped());
 		RenderTypeLookup.setRenderLayer(DoTBBlocksRegistry.LATTICE_GLASS_PANE.get(), RenderType.cutoutMipped());
 		RenderTypeLookup.setRenderLayer(DoTBBlocksRegistry.LATTICE_WAXED_OAK_WINDOW.get(), RenderType.cutoutMipped());
-		RenderTypeLookup.setRenderLayer(DoTBBlocksRegistry.LATTICE_STONE_BRICKS_WINDOW.get(),
-				RenderType.cutoutMipped());
+		RenderTypeLookup.setRenderLayer(DoTBBlocksRegistry.LATTICE_STONE_BRICKS_WINDOW.get(), RenderType.cutoutMipped());
 		RenderTypeLookup.setRenderLayer(DoTBBlocksRegistry.STONE_BRICKS_ARROWSLIT.get(), RenderType.cutoutMipped());
 		RenderTypeLookup.setRenderLayer(DoTBBlocksRegistry.STONE_BRICKS_FIREPLACE.get(), RenderType.cutoutMipped());
 		RenderTypeLookup.setRenderLayer(DoTBBlocksRegistry.WAXED_OAK_DOOR.get(), RenderType.cutoutMipped());

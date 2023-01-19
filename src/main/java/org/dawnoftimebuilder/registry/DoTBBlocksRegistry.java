@@ -5,6 +5,7 @@ import java.util.function.ToIntFunction;
 
 import org.dawnoftimebuilder.DawnOfTimeBuilder;
 import org.dawnoftimebuilder.block.ICustomBlockItem;
+import org.dawnoftimebuilder.block.french.WroughtIronFenceBlock;
 import org.dawnoftimebuilder.block.french.LimestoneChimneyBlock;
 import org.dawnoftimebuilder.block.french.LimestoneGargoyleBlock;
 import org.dawnoftimebuilder.block.general.FireplaceBlock;
@@ -20,7 +21,7 @@ import org.dawnoftimebuilder.block.german.WaterJetBlock;
 import org.dawnoftimebuilder.block.german.WaterMovingTrickleBlock;
 import org.dawnoftimebuilder.block.german.WaterSourceTrickleBlock;
 import org.dawnoftimebuilder.block.german.WaterTrickleBlock;
-import org.dawnoftimebuilder.block.german.WaxedOakBalusterBlock;
+import org.dawnoftimebuilder.block.templates.BalusterBlock;
 import org.dawnoftimebuilder.block.german.WaxedOakChairBlock;
 import org.dawnoftimebuilder.block.german.WaxedOakChandelierBlock;
 import org.dawnoftimebuilder.block.german.WaxedOakTableBlock;
@@ -234,6 +235,8 @@ public class DoTBBlocksRegistry {
 	public static final RegistryObject<Block>	ROOFING_SLATES_PLATE						= DoTBBlocksRegistry.reg("roofing_slates_plate", new PlateBlock(AbstractBlock.Properties.copy(Blocks.STONE_BRICKS)));
 	public static final RegistryObject<Block>	ROOFING_SLATES_SLAB							= DoTBBlocksRegistry.reg("roofing_slates_slab", new SlabBlockDoTB(AbstractBlock.Properties.copy(Blocks.STONE_BRICKS)));
 	public static final RegistryObject<Block>	ROOFING_SLATES_EDGE							= DoTBBlocksRegistry.reg("roofing_slates_edge", new EdgeBlock(AbstractBlock.Properties.copy(Blocks.STONE_BRICKS)));
+	public static final RegistryObject<Block>	WROUGHT_IRON_BALUSTER						= DoTBBlocksRegistry.reg("wrought_iron_baluster", new BalusterBlock(AbstractBlock.Properties.copy(Blocks.IRON_BARS)));
+	public static final RegistryObject<Block>   WROUGHT_IRON_FENCE 							= DoTBBlocksRegistry.reg("wrought_iron_fence", new WroughtIronFenceBlock(AbstractBlock.Properties.copy(Blocks.IRON_BARS)));
 
 	//German
 	public static final RegistryObject<Block>	FLAT_ROOF_TILES								= DoTBBlocksRegistry.reg("flat_roof_tiles", new BlockDoTB(AbstractBlock.Properties.copy(Blocks.STONE_BRICKS)));
@@ -263,7 +266,7 @@ public class DoTBBlocksRegistry {
 	public static final RegistryObject<Block>	WAXED_OAK_TRAPDOOR							= DoTBBlocksRegistry.reg("waxed_oak_trapdoor", new TrapDoorBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F, 5.0F).sound(SoundType.WOOD).noOcclusion()));
 	public static final RegistryObject<Block>	WAXED_OAK_SHUTTER							= DoTBBlocksRegistry.reg("waxed_oak_shutters", new ShutterBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F, 5.0F).sound(SoundType.WOOD)));
 	public static final RegistryObject<Block>	WAXED_OAK_LOG_STRIPPED						= DoTBBlocksRegistry.reg("waxed_oak_log_stripped", new RotatedPillarBlockDoTB(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F, 5.0F).sound(SoundType.WOOD)).setBurnable());
-	public static final RegistryObject<Block>	WAXED_OAK_BALUSTER							= DoTBBlocksRegistry.reg("waxed_oak_baluster", new WaxedOakBalusterBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F, 5.0F).sound(SoundType.WOOD).noOcclusion()));
+	public static final RegistryObject<Block>	WAXED_OAK_BALUSTER							= DoTBBlocksRegistry.reg("waxed_oak_baluster", new BalusterBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F, 5.0F).sound(SoundType.WOOD).noOcclusion()));
 	public static final RegistryObject<Block>	WAXED_OAK_BEAM								= DoTBBlocksRegistry.reg("waxed_oak_beam", new BeamBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F, 5.0F).sound(SoundType.WOOD)).setBurnable());
 	public static final RegistryObject<Block>	WAXED_OAK_SUPPORT_BEAM						= DoTBBlocksRegistry.reg("waxed_oak_support_beam", new SupportBeamBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F, 5.0F).sound(SoundType.WOOD)).setBurnable());
 	public static final RegistryObject<Block>	WAXED_OAK_SUPPORT_SLAB						= DoTBBlocksRegistry.reg("waxed_oak_support_slab", new SupportSlabBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F, 5.0F).sound(SoundType.WOOD)).setBurnable());
@@ -292,7 +295,7 @@ public class DoTBBlocksRegistry {
 	public static final RegistryObject<Block>	BOXWOOD_BUSH								= DoTBBlocksRegistry.reg("boxwood_bush", new BushBlockDoT(AbstractBlock.Properties.copy(Blocks.SPRUCE_LEAVES)));
 	public static final RegistryObject<Block>	BOXWOOD_TALL_EDGE							= DoTBBlocksRegistry.reg("boxwood_tall_edge", new EdgeBlock(AbstractBlock.Properties.copy(Blocks.SPRUCE_LEAVES)));
 	public static final RegistryObject<Block>	BOXWOOD_SMALL_EDGE							= DoTBBlocksRegistry.reg("boxwood_small_edge", new PlateBlock(AbstractBlock.Properties.copy(Blocks.SPRUCE_LEAVES)));
-	public static final RegistryObject<Block>	FAUCET										= DoTBBlocksRegistry.reg("faucet", new FaucetBlock(AbstractBlock.Properties.copy(Blocks.STONE)));
+	public static final RegistryObject<Block> 	STONE_BRICKS_FAUCET 						= DoTBBlocksRegistry.reg("stone_bricks_faucet", new FaucetBlock(AbstractBlock.Properties.copy(Blocks.STONE)));
 	public static final RegistryObject<Block>	POOL										= DoTBBlocksRegistry.reg("pool", new PoolBlock(AbstractBlock.Properties.copy(Blocks.STONE)));
 	public static final RegistryObject<Block>	WATER_JET									= DoTBBlocksRegistry.reg("water_jet", new WaterJetBlock(AbstractBlock.Properties.copy(Blocks.STONE)));
 	public static final RegistryObject<Block>	WATER_TRICKLE								= DoTBBlocksRegistry.reg("water_trickle", new WaterTrickleBlock(AbstractBlock.Properties.copy(Blocks.STONE)));

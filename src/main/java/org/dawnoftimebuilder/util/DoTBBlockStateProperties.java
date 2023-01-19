@@ -20,6 +20,7 @@ public class DoTBBlockStateProperties {
 	public static final BooleanProperty							AXIS_Y					= BooleanProperty.create("axis_y");
 	public static final BooleanProperty							AXIS_Z					= BooleanProperty.create("axis_z");
 	public static final BooleanProperty							SUBAXIS					= BooleanProperty.create("subaxis");
+	public static final BooleanProperty 						PILLAR 					= BooleanProperty.create("pillar");
 
 	public static final IntegerProperty							MULTIBLOCK_0_2			= IntegerProperty.create("multiblock", 0, 2);
 	public static final IntegerProperty							MULTIBLOCK_3X			= IntegerProperty.create("multiblock_3x", 0, 2);
@@ -50,16 +51,16 @@ public class DoTBBlockStateProperties {
 
 	public static final BooleanProperty							ACTIVATED				= BooleanProperty.create("activated");
 
-	public static final EnumProperty<VerticalLimitedConnection>	NORTHSTATE				= EnumProperty.create("northstate", VerticalLimitedConnection.class);
-	public static final EnumProperty<VerticalLimitedConnection>	EASTSTATE				= EnumProperty.create("eaststate", VerticalLimitedConnection.class);
-	public static final EnumProperty<VerticalLimitedConnection>	SOUTHSTATE				= EnumProperty.create("southstate", VerticalLimitedConnection.class);
-	public static final EnumProperty<VerticalLimitedConnection>	WESTSTATE				= EnumProperty.create("weststate", VerticalLimitedConnection.class);
+	public static final EnumProperty<VerticalLimitedConnection> NORTH_STATE				= EnumProperty.create("north_state", VerticalLimitedConnection.class);
+	public static final EnumProperty<VerticalLimitedConnection> EAST_STATE 				= EnumProperty.create("east_state", VerticalLimitedConnection.class);
+	public static final EnumProperty<VerticalLimitedConnection> SOUTH_STATE 			= EnumProperty.create("south_state", VerticalLimitedConnection.class);
+	public static final EnumProperty<VerticalLimitedConnection> WEST_STATE 				= EnumProperty.create("west_state", VerticalLimitedConnection.class);
 
 	// Fountain - WaterJet
 
 	public static final BooleanProperty							LATERAL					= BooleanProperty.create("lateral");
 
-	public enum VerticalLimitedConnection implements IStringSerializable {
+    public enum VerticalLimitedConnection implements IStringSerializable {
 		NONE("none", 0), BOTTOM("bottom", 1), TOP("top", 2);
 
 		private final String	name;

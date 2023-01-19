@@ -1,4 +1,4 @@
-package org.dawnoftimebuilder.block.german;
+package org.dawnoftimebuilder.block.templates;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -10,11 +10,11 @@ import net.minecraft.world.IBlockReader;
 import org.dawnoftimebuilder.block.templates.PlateBlock;
 import org.dawnoftimebuilder.util.DoTBBlockUtils;
 
-public class WaxedOakBalusterBlock extends PlateBlock {
+public class BalusterBlock extends PlateBlock {
 
     private static final VoxelShape[] SHAPES = DoTBBlockUtils.GenerateHorizontalShapes(makeShapes());
 
-    public WaxedOakBalusterBlock(Properties properties) {
+    public BalusterBlock(Properties properties) {
         super(properties);
     }
 
