@@ -5,7 +5,8 @@ import java.util.function.ToIntFunction;
 
 import org.dawnoftimebuilder.DawnOfTimeBuilder;
 import org.dawnoftimebuilder.block.ICustomBlockItem;
-import org.dawnoftimebuilder.block.french.WroughtIronFenceBlock;
+import org.dawnoftimebuilder.block.french.ReinforcedIronFenceBlock;
+import org.dawnoftimebuilder.block.general.IronFenceBlock;
 import org.dawnoftimebuilder.block.french.LimestoneChimneyBlock;
 import org.dawnoftimebuilder.block.french.LimestoneGargoyleBlock;
 import org.dawnoftimebuilder.block.general.FireplaceBlock;
@@ -217,6 +218,7 @@ public class DoTBBlocksRegistry {
 	public static final RegistryObject<Block>	WARPED_WALL									= DoTBBlocksRegistry.reg("warped_wall", new WallBlock(AbstractBlock.Properties.copy(Blocks.WARPED_PLANKS)));
 	public static final RegistryObject<Block>	FIREPLACE									= DoTBBlocksRegistry.reg("fireplace", new FireplaceBlock(AbstractBlock.Properties.of(Material.STONE).strength(1.5F, 6.0F).lightLevel(DoTBBlocksRegistry.litBlockEmission(15))));
 	public static final RegistryObject<Block>	IRON_PORTCULLIS								= DoTBBlocksRegistry.reg("iron_portcullis", new PortcullisBlock(AbstractBlock.Properties.copy(Blocks.IRON_DOOR)));
+	public static final RegistryObject<Block>   WROUGHT_IRON_FENCE 							= DoTBBlocksRegistry.reg("wrought_iron_fence", new IronFenceBlock(AbstractBlock.Properties.copy(Blocks.IRON_BARS)));
 
 	//French
 	public static final RegistryObject<Block>	COBBLED_LIMESTONE							= DoTBBlocksRegistry.reg("cobbled_limestone", new BlockDoTB(AbstractBlock.Properties.copy(Blocks.STONE_BRICKS)));
@@ -235,8 +237,10 @@ public class DoTBBlocksRegistry {
 	public static final RegistryObject<Block>	ROOFING_SLATES_PLATE						= DoTBBlocksRegistry.reg("roofing_slates_plate", new PlateBlock(AbstractBlock.Properties.copy(Blocks.STONE_BRICKS)));
 	public static final RegistryObject<Block>	ROOFING_SLATES_SLAB							= DoTBBlocksRegistry.reg("roofing_slates_slab", new SlabBlockDoTB(AbstractBlock.Properties.copy(Blocks.STONE_BRICKS)));
 	public static final RegistryObject<Block>	ROOFING_SLATES_EDGE							= DoTBBlocksRegistry.reg("roofing_slates_edge", new EdgeBlock(AbstractBlock.Properties.copy(Blocks.STONE_BRICKS)));
-	public static final RegistryObject<Block>	WROUGHT_IRON_BALUSTER						= DoTBBlocksRegistry.reg("wrought_iron_baluster", new BalusterBlock(AbstractBlock.Properties.copy(Blocks.IRON_BARS)));
-	public static final RegistryObject<Block>   WROUGHT_IRON_FENCE 							= DoTBBlocksRegistry.reg("wrought_iron_fence", new WroughtIronFenceBlock(AbstractBlock.Properties.copy(Blocks.IRON_BARS)));
+	public static final RegistryObject<Block>   BLACK_WROUGHT_IRON_BALUSTER 				= DoTBBlocksRegistry.reg("black_wrought_iron_baluster", new BalusterBlock(AbstractBlock.Properties.copy(Blocks.IRON_BARS)));
+	public static final RegistryObject<Block>   BLACK_WROUGHT_IRON_FENCE 					= DoTBBlocksRegistry.reg("black_wrought_iron_fence", new IronFenceBlock(AbstractBlock.Properties.copy(Blocks.IRON_BARS)));
+	public static final RegistryObject<Block>   REINFORCED_BLACK_WROUGHT_IRON_FENCE 		= DoTBBlocksRegistry.reg("reinforced_black_wrought_iron_fence", new ReinforcedIronFenceBlock(AbstractBlock.Properties.copy(Blocks.IRON_BARS)));
+	public static final RegistryObject<Block>   REINFORCED_GOLDEN_WROUGHT_IRON_FENCE 		= DoTBBlocksRegistry.reg("reinforced_golden_wrought_iron_fence", new ReinforcedIronFenceBlock(AbstractBlock.Properties.copy(Blocks.IRON_BARS)));
 
 	//German
 	public static final RegistryObject<Block>	FLAT_ROOF_TILES								= DoTBBlocksRegistry.reg("flat_roof_tiles", new BlockDoTB(AbstractBlock.Properties.copy(Blocks.STONE_BRICKS)));

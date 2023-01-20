@@ -1,4 +1,4 @@
-package org.dawnoftimebuilder.block.french;
+package org.dawnoftimebuilder.block.general;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -20,13 +20,13 @@ import org.dawnoftimebuilder.block.templates.PlateBlock;
 import org.dawnoftimebuilder.util.DoTBBlockStateProperties;
 import org.dawnoftimebuilder.util.DoTBBlockUtils;
 
-public class WroughtIronFenceBlock extends PlateBlock {
+public class IronFenceBlock extends PlateBlock {
 
     private static final BooleanProperty UP = BlockStateProperties.UP;
     private static final VoxelShape[] SHAPES_UP = DoTBBlockUtils.GenerateHorizontalShapes(makeShapes(true));
     private static final VoxelShape[] SHAPES_FULL = DoTBBlockUtils.GenerateHorizontalShapes(makeShapes(false));
 
-    public WroughtIronFenceBlock(Properties properties) {
+    public IronFenceBlock(Properties properties) {
         super(properties);
         this.registerDefaultState(this.defaultBlockState()
                 .setValue(PlateBlock.FACING, Direction.NORTH)

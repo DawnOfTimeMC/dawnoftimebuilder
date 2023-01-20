@@ -1,4 +1,4 @@
-package org.dawnoftimebuilder.block.templates;
+package org.dawnoftimebuilder.block.french;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -17,22 +17,27 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
+import org.dawnoftimebuilder.block.templates.ColumnConnectibleBlock;
+import org.dawnoftimebuilder.block.templates.PlateBlock;
+import org.dawnoftimebuilder.util.DoTBBlockStateProperties;
+import org.dawnoftimebuilder.util.DoTBBlockStateProperties.VerticalConnection;
 
-public class PlateBlock extends WaterloggedBlock {
+public class ReinforcedIronFenceBlock extends ColumnConnectibleBlock {
 
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final EnumProperty<StairsShape> SHAPE = BlockStateProperties.STAIRS_SHAPE;
-    private static final VoxelShape[] SHAPES = PlateBlock.makeShapes();
+    private static final VoxelShape[] SHAPES_BOTTOM = makeBottomShapes();
+    private static final VoxelShape[] SHAPES = makeShapes();
 
-    public PlateBlock(final Properties properties) {
+    public ReinforcedIronFenceBlock(Properties properties) {
         super(properties);
-        this.registerDefaultState(this.defaultBlockState().setValue(PlateBlock.FACING, Direction.NORTH).setValue(PlateBlock.SHAPE, StairsShape.STRAIGHT));
+        this.registerDefaultState(this.defaultBlockState().setValue(FACING, Direction.NORTH).setValue(SHAPE, StairsShape.STRAIGHT).setValue(VERTICAL_CONNECTION, DoTBBlockStateProperties.VerticalConnection.NONE));
     }
 
     @Override
     protected void createBlockStateDefinition(final StateContainer.Builder<Block, BlockState> builder) {
         super.createBlockStateDefinition(builder);
-        builder.add(PlateBlock.FACING, PlateBlock.SHAPE);
+        builder.add(FACING, SHAPE);
     }
 
     @Override
@@ -57,7 +62,7 @@ public class PlateBlock extends WaterloggedBlock {
                 break;
         }
         index %= 12;
-        return PlateBlock.SHAPES[index];
+        return state.getValue(VERTICAL_CONNECTION) == VerticalConnection.NONE || state.getValue(VERTICAL_CONNECTION) == VerticalConnection.ABOVE ? SHAPES_BOTTOM[index] : SHAPES[index];
     }
 
     /**
@@ -76,61 +81,79 @@ public class PlateBlock extends WaterloggedBlock {
      * 11 : SW Inner <p/>
      */
     private static VoxelShape[] makeShapes() {
-        final VoxelShape vs_north_flat = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 8.0D);
-        final VoxelShape vs_east_flat = Block.box(8.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D);
-        final VoxelShape vs_south_flat = Block.box(0.0D, 0.0D, 8.0D, 16.0D, 16.0D, 16.0D);
-        final VoxelShape vs_west_flat = Block.box(0.0D, 0.0D, 0.0D, 8.0D, 16.0D, 16.0D);
-        final VoxelShape vs_nw_corner = Block.box(0.0D, 0.0D, 0.0D, 8.0D, 16.0D, 8.0D);
-        final VoxelShape vs_ne_corner = Block.box(8.0D, 0.0D, 0.0D, 16.0D, 16.0D, 8.0D);
-        final VoxelShape vs_se_corner = Block.box(8.0D, 0.0D, 8.0D, 16.0D, 16.0D, 16.0D);
-        final VoxelShape vs_sw_corner = Block.box(0.0D, 0.0D, 8.0D, 8.0D, 16.0D, 16.0D);
+        VoxelShape vs_north_flat = Block.box(0.0D, 0.0D, 3.0D, 16.0D, 16.0D, 5.0D);
+        VoxelShape vs_east_flat = Block.box(11.0D, 0.0D, 0.0D, 13.0D, 16.0D, 16.0D);
+        VoxelShape vs_south_flat = Block.box(0.0D, 0.0D, 11.0D, 16.0D, 16.0D, 13.0D);
+        VoxelShape vs_west_flat = Block.box(3.0D, 0.0D, 0.0D, 5.0D, 16.0D, 16.0D);
+        VoxelShape vs_nw_corner = Block.box(0.0D, 0.0D, 0.0D, 10.0D, 16.0D, 10.0D);
+        VoxelShape vs_ne_corner = Block.box(6.0D, 0.0D, 0.0D, 16.0D, 16.0D, 10.0D);
+        VoxelShape vs_se_corner = Block.box(6.0D, 0.0D, 6.0D, 16.0D, 16.0D, 16.0D);
+        VoxelShape vs_sw_corner = Block.box(0.0D, 0.0D, 6.0D, 10.0D, 16.0D, 16.0D);
+        return new VoxelShape[]{vs_nw_corner, vs_north_flat, VoxelShapes.or(vs_north_flat, vs_sw_corner), vs_ne_corner, vs_east_flat, VoxelShapes.or(vs_east_flat, vs_nw_corner), vs_se_corner, vs_south_flat, VoxelShapes.or(vs_south_flat, vs_ne_corner), vs_sw_corner, vs_west_flat, VoxelShapes.or(vs_west_flat, vs_se_corner)};
+    }
+
+    /**
+     * @return Stores VoxelShape with index : <p/>
+     * 0 : NW Outer <p/>
+     * 1 : N Default <p/>
+     * 2 : NW Inner <p/>
+     * 3 : NE Outer <p/>
+     * 4 : N Default <p/>
+     * 5 : NE Inner <p/>
+     * 6 : SE Outer <p/>
+     * 7 : S Default <p/>
+     * 8 : SE Inner <p/>
+     * 9 : SW Outer <p/>
+     * 10 : S Default <p/>
+     * 11 : SW Inner <p/>
+     */
+    private static VoxelShape[] makeBottomShapes() {
+        VoxelShape vs_north_flat = VoxelShapes.or(Block.box(0.0D, 8.0D, 3.0D, 16.0D, 16.0D, 5.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 8.0D, 8.0D));
+        VoxelShape vs_east_flat = VoxelShapes.or(Block.box(11.0D, 8.0D, 0.0D, 13.0D, 16.0D, 16.0D), Block.box(8.0D, 0.0D, 0.0D, 16.0D, 8.0D, 16.0D));
+        VoxelShape vs_south_flat = VoxelShapes.or(Block.box(0.0D, 8.0D, 11.0D, 16.0D, 16.0D, 13.0D), Block.box(0.0D, 0.0D, 8.0D, 16.0D, 8.0D, 16.0D));
+        VoxelShape vs_west_flat = VoxelShapes.or(Block.box(3.0D, 8.0D, 0.0D, 5.0D, 16.0D, 16.0D), Block.box(0.0D, 0.0D, 0.0D, 8.0D, 8.0D, 16.0D));
+        VoxelShape vs_nw_corner = Block.box(0.0D, 0.0D, 0.0D, 10.0D, 16.0D, 10.0D);
+        VoxelShape vs_ne_corner = Block.box(6.0D, 0.0D, 0.0D, 16.0D, 16.0D, 10.0D);
+        VoxelShape vs_se_corner = Block.box(6.0D, 0.0D, 6.0D, 16.0D, 16.0D, 16.0D);
+        VoxelShape vs_sw_corner = Block.box(0.0D, 0.0D, 6.0D, 10.0D, 16.0D, 16.0D);
         return new VoxelShape[]{vs_nw_corner, vs_north_flat, VoxelShapes.or(vs_north_flat, vs_sw_corner), vs_ne_corner, vs_east_flat, VoxelShapes.or(vs_east_flat, vs_nw_corner), vs_se_corner, vs_south_flat, VoxelShapes.or(vs_south_flat, vs_ne_corner), vs_sw_corner, vs_west_flat, VoxelShapes.or(vs_west_flat, vs_se_corner),};
     }
 
     @Override
     public BlockState getStateForPlacement(final BlockItemUseContext context) {
         final BlockState state = super.getStateForPlacement(context).setValue(PlateBlock.FACING, context.getHorizontalDirection());
-        return state.setValue(PlateBlock.SHAPE, PlateBlock.getShapeProperty(state, context.getLevel(), context.getClickedPos()));
+        return state.setValue(PlateBlock.SHAPE, getShapeProperty(state, context.getLevel(), context.getClickedPos()));
     }
 
     @Override
     public BlockState updateShape(BlockState stateIn, final Direction facing, final BlockState facingState, final IWorld worldIn, final BlockPos currentPos, final BlockPos facingPos) {
         stateIn = super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
-        return facing.getAxis().isHorizontal() ? stateIn.setValue(PlateBlock.SHAPE, PlateBlock.getShapeProperty(stateIn, worldIn, currentPos)) : stateIn;
+        return facing.getAxis().isHorizontal() ? stateIn.setValue(PlateBlock.SHAPE, getShapeProperty(stateIn, worldIn, currentPos)) : stateIn;
     }
 
     /**
-     * Returns a plate shape property based on the surrounding plates from the given blockstate and position
+     * Returns a shape property based on the surrounding blocks from the given blockstate and position
      */
     private static StairsShape getShapeProperty(final BlockState state, final IBlockReader worldIn, final BlockPos pos) {
         final Direction direction = state.getValue(PlateBlock.FACING);
 
         BlockState adjacentState = worldIn.getBlockState(pos.relative(direction));
-        if (PlateBlock.isBlockPlate(adjacentState)) {
+        if (adjacentState.getBlock() instanceof ReinforcedIronFenceBlock) {
             final Direction adjacentDirection = adjacentState.getValue(PlateBlock.FACING);
-            if (adjacentDirection.getAxis() != state.getValue(PlateBlock.FACING).getAxis() && PlateBlock.isDifferentPlate(state, worldIn, pos, adjacentDirection.getOpposite())) {
+            if (adjacentDirection.getAxis() != state.getValue(PlateBlock.FACING).getAxis()) {
                 return adjacentDirection == direction.getCounterClockWise() ? StairsShape.OUTER_LEFT : StairsShape.OUTER_RIGHT;
             }
         }
 
         adjacentState = worldIn.getBlockState(pos.relative(direction.getOpposite()));
-        if (PlateBlock.isBlockPlate(adjacentState)) {
+        if (adjacentState.getBlock() instanceof ReinforcedIronFenceBlock) {
             final Direction adjacentDirection = adjacentState.getValue(PlateBlock.FACING);
-            if (adjacentDirection.getAxis() != state.getValue(PlateBlock.FACING).getAxis() && PlateBlock.isDifferentPlate(state, worldIn, pos, adjacentDirection)) {
+            if (adjacentDirection.getAxis() != state.getValue(PlateBlock.FACING).getAxis()) {
                 return adjacentDirection == direction.getCounterClockWise() ? StairsShape.INNER_LEFT : StairsShape.INNER_RIGHT;
             }
         }
 
         return StairsShape.STRAIGHT;
-    }
-
-    private static boolean isDifferentPlate(final BlockState state, final IBlockReader worldIn, final BlockPos pos, final Direction face) {
-        final BlockState adjacentState = worldIn.getBlockState(pos.relative(face));
-        return !PlateBlock.isBlockPlate(adjacentState) || adjacentState.getValue(PlateBlock.FACING) != state.getValue(PlateBlock.FACING);
-    }
-
-    public static boolean isBlockPlate(final BlockState state) {
-        return state.getBlock() instanceof PlateBlock;
     }
 
     @Override

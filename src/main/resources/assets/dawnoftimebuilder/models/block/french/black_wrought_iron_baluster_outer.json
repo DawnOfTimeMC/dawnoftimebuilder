@@ -2,8 +2,8 @@
 	"credit": "Made with Blockbench",
 	"texture_size": [32, 32],
 	"textures": {
-		"0": "dawnoftimebuilder:block/wrought_iron_baluster",
-		"particle": "dawnoftimebuilder:block/wrought_iron_baluster"
+		"0": "dawnoftimebuilder:block/black_wrought_iron_baluster",
+		"particle": "dawnoftimebuilder:block/black_wrought_iron_baluster"
 	},
 	"elements": [
 		{
