@@ -81,15 +81,27 @@ public class ReinforcedIronFenceBlock extends ColumnConnectibleBlock {
      * 11 : SW Inner <p/>
      */
     private static VoxelShape[] makeShapes() {
-        VoxelShape vs_north_flat = Block.box(0.0D, 0.0D, 3.0D, 16.0D, 16.0D, 5.0D);
-        VoxelShape vs_east_flat = Block.box(11.0D, 0.0D, 0.0D, 13.0D, 16.0D, 16.0D);
-        VoxelShape vs_south_flat = Block.box(0.0D, 0.0D, 11.0D, 16.0D, 16.0D, 13.0D);
-        VoxelShape vs_west_flat = Block.box(3.0D, 0.0D, 0.0D, 5.0D, 16.0D, 16.0D);
+        VoxelShape vs_north_flat = Block.box(0.0D, 0.0D, 4.0D, 16.0D, 16.0D, 6.0D);
+        VoxelShape vs_east_flat = Block.box(10.0D, 0.0D, 0.0D, 12.0D, 16.0D, 16.0D);
+        VoxelShape vs_south_flat = Block.box(0.0D, 0.0D, 10.0D, 16.0D, 16.0D, 12.0D);
+        VoxelShape vs_west_flat = Block.box(4.0D, 0.0D, 0.0D, 6.0D, 16.0D, 16.0D);
         VoxelShape vs_nw_corner = Block.box(0.0D, 0.0D, 0.0D, 10.0D, 16.0D, 10.0D);
         VoxelShape vs_ne_corner = Block.box(6.0D, 0.0D, 0.0D, 16.0D, 16.0D, 10.0D);
         VoxelShape vs_se_corner = Block.box(6.0D, 0.0D, 6.0D, 16.0D, 16.0D, 16.0D);
         VoxelShape vs_sw_corner = Block.box(0.0D, 0.0D, 6.0D, 10.0D, 16.0D, 16.0D);
-        return new VoxelShape[]{vs_nw_corner, vs_north_flat, VoxelShapes.or(vs_north_flat, vs_sw_corner), vs_ne_corner, vs_east_flat, VoxelShapes.or(vs_east_flat, vs_nw_corner), vs_se_corner, vs_south_flat, VoxelShapes.or(vs_south_flat, vs_ne_corner), vs_sw_corner, vs_west_flat, VoxelShapes.or(vs_west_flat, vs_se_corner)};
+        return new VoxelShape[]{
+                vs_nw_corner,
+                vs_north_flat,
+                VoxelShapes.or(vs_north_flat, vs_west_flat, vs_nw_corner),
+                vs_ne_corner,
+                vs_east_flat,
+                VoxelShapes.or(vs_east_flat, vs_north_flat, vs_ne_corner),
+                vs_se_corner,
+                vs_south_flat,
+                VoxelShapes.or(vs_south_flat, vs_east_flat, vs_se_corner),
+                vs_sw_corner,
+                vs_west_flat,
+                VoxelShapes.or(vs_west_flat, vs_south_flat, vs_sw_corner)};
     }
 
     /**
@@ -108,15 +120,27 @@ public class ReinforcedIronFenceBlock extends ColumnConnectibleBlock {
      * 11 : SW Inner <p/>
      */
     private static VoxelShape[] makeBottomShapes() {
-        VoxelShape vs_north_flat = VoxelShapes.or(Block.box(0.0D, 8.0D, 3.0D, 16.0D, 16.0D, 5.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 8.0D, 8.0D));
-        VoxelShape vs_east_flat = VoxelShapes.or(Block.box(11.0D, 8.0D, 0.0D, 13.0D, 16.0D, 16.0D), Block.box(8.0D, 0.0D, 0.0D, 16.0D, 8.0D, 16.0D));
-        VoxelShape vs_south_flat = VoxelShapes.or(Block.box(0.0D, 8.0D, 11.0D, 16.0D, 16.0D, 13.0D), Block.box(0.0D, 0.0D, 8.0D, 16.0D, 8.0D, 16.0D));
-        VoxelShape vs_west_flat = VoxelShapes.or(Block.box(3.0D, 8.0D, 0.0D, 5.0D, 16.0D, 16.0D), Block.box(0.0D, 0.0D, 0.0D, 8.0D, 8.0D, 16.0D));
+        VoxelShape vs_north_flat = VoxelShapes.or(Block.box(0.0D, 8.0D, 4.0D, 16.0D, 16.0D, 6.0D), Block.box(0.0D, 0.0D, 1.0D, 16.0D, 8.0D, 9.0D));
+        VoxelShape vs_east_flat = VoxelShapes.or(Block.box(10.0D, 8.0D, 0.0D, 12.0D, 16.0D, 16.0D), Block.box(7.0D, 0.0D, 0.0D, 15.0D, 8.0D, 16.0D));
+        VoxelShape vs_south_flat = VoxelShapes.or(Block.box(0.0D, 8.0D, 10.0D, 16.0D, 16.0D, 12.0D), Block.box(0.0D, 0.0D, 7.0D, 16.0D, 8.0D, 15.0D));
+        VoxelShape vs_west_flat = VoxelShapes.or(Block.box(4.0D, 8.0D, 0.0D, 6.0D, 16.0D, 16.0D), Block.box(1.0D, 0.0D, 0.0D, 9.0D, 8.0D, 16.0D));
         VoxelShape vs_nw_corner = Block.box(0.0D, 0.0D, 0.0D, 10.0D, 16.0D, 10.0D);
         VoxelShape vs_ne_corner = Block.box(6.0D, 0.0D, 0.0D, 16.0D, 16.0D, 10.0D);
         VoxelShape vs_se_corner = Block.box(6.0D, 0.0D, 6.0D, 16.0D, 16.0D, 16.0D);
         VoxelShape vs_sw_corner = Block.box(0.0D, 0.0D, 6.0D, 10.0D, 16.0D, 16.0D);
-        return new VoxelShape[]{vs_nw_corner, vs_north_flat, VoxelShapes.or(vs_north_flat, vs_sw_corner), vs_ne_corner, vs_east_flat, VoxelShapes.or(vs_east_flat, vs_nw_corner), vs_se_corner, vs_south_flat, VoxelShapes.or(vs_south_flat, vs_ne_corner), vs_sw_corner, vs_west_flat, VoxelShapes.or(vs_west_flat, vs_se_corner),};
+        return new VoxelShape[]{
+                vs_nw_corner,
+                vs_north_flat,
+                VoxelShapes.or(vs_north_flat, vs_west_flat, vs_nw_corner),
+                vs_ne_corner,
+                vs_east_flat,
+                VoxelShapes.or(vs_east_flat, vs_north_flat, vs_ne_corner),
+                vs_se_corner,
+                vs_south_flat,
+                VoxelShapes.or(vs_south_flat, vs_east_flat, vs_se_corner),
+                vs_sw_corner,
+                vs_west_flat,
+                VoxelShapes.or(vs_west_flat, vs_south_flat, vs_sw_corner)};
     }
 
     @Override
