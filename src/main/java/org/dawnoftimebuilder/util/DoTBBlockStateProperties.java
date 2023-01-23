@@ -20,7 +20,6 @@ public class DoTBBlockStateProperties {
 	public static final BooleanProperty							AXIS_Y					= BooleanProperty.create("axis_y");
 	public static final BooleanProperty							AXIS_Z					= BooleanProperty.create("axis_z");
 	public static final BooleanProperty							SUBAXIS					= BooleanProperty.create("subaxis");
-	public static final BooleanProperty 						PILLAR 					= BooleanProperty.create("pillar");
 
 	public static final IntegerProperty							MULTIBLOCK_0_2			= IntegerProperty.create("multiblock", 0, 2);
 	public static final IntegerProperty							MULTIBLOCK_3X			= IntegerProperty.create("multiblock_3x", 0, 2);
@@ -43,12 +42,10 @@ public class DoTBBlockStateProperties {
 	public static final EnumProperty<WallHeight>				PILLAR_WALL				= EnumProperty.create("pillar", WallHeight.class);
 
 	// Fountain - pool and TrickleWater
-
-	public static final BooleanProperty							HAS_WALL				= BooleanProperty.create("wall");
+	public static final BooleanProperty 						HAS_PILLAR = BooleanProperty.create("has_pillar");
 	public static final BooleanProperty							FLOOR					= BooleanProperty.create("floor");
 
 	// Fountain - Faucet
-
 	public static final BooleanProperty							ACTIVATED				= BooleanProperty.create("activated");
 
 	public static final EnumProperty<VerticalLimitedConnection> NORTH_STATE				= EnumProperty.create("north_state", VerticalLimitedConnection.class);

@@ -1,11 +1,4 @@
-/**
- *
- */
 package org.dawnoftimebuilder.block.german;
-
-import org.dawnoftimebuilder.block.templates.BlockDoTB;
-import org.dawnoftimebuilder.registry.DoTBBlocksRegistry;
-import org.dawnoftimebuilder.util.DoTBBlockStateProperties;
 
 import net.minecraft.block.AirBlock;
 import net.minecraft.block.Block;
@@ -23,15 +16,16 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
+import org.dawnoftimebuilder.block.templates.BlockDoTB;
+import org.dawnoftimebuilder.registry.DoTBBlocksRegistry;
+import org.dawnoftimebuilder.util.DoTBBlockStateProperties;
 
 /**
  * @author seyro
  *
  */
 public class FaucetBlock extends BlockDoTB {
-	/**
-	 * @param propertiesIn
-	 */
+
 	public FaucetBlock(final Properties propertiesIn) {
 		super(propertiesIn);
 		this.registerDefaultState(this.defaultBlockState().setValue(BlockStateProperties.UP, false).setValue(BlockStateProperties.DOWN, false).setValue(DoTBBlockStateProperties.NORTH_STATE, DoTBBlockStateProperties.VerticalLimitedConnection.NONE).setValue(DoTBBlockStateProperties.EAST_STATE, DoTBBlockStateProperties.VerticalLimitedConnection.NONE).setValue(DoTBBlockStateProperties.SOUTH_STATE, DoTBBlockStateProperties.VerticalLimitedConnection.NONE)
@@ -41,16 +35,27 @@ public class FaucetBlock extends BlockDoTB {
 	@Override
 	protected void createBlockStateDefinition(final StateContainer.Builder<Block, BlockState> builder) {
 		super.createBlockStateDefinition(builder);
-		builder.add(BlockStateProperties.UP).add(BlockStateProperties.DOWN).add(DoTBBlockStateProperties.NORTH_STATE).add(DoTBBlockStateProperties.EAST_STATE).add(DoTBBlockStateProperties.SOUTH_STATE).add(DoTBBlockStateProperties.WEST_STATE).add(BlockStateProperties.POWERED).add(DoTBBlockStateProperties.ACTIVATED);
+		builder.add(
+				BlockStateProperties.UP,
+				BlockStateProperties.DOWN,
+				DoTBBlockStateProperties.NORTH_STATE,
+				DoTBBlockStateProperties.EAST_STATE,
+				DoTBBlockStateProperties.SOUTH_STATE,
+				DoTBBlockStateProperties.WEST_STATE,
+				BlockStateProperties.POWERED,
+				DoTBBlockStateProperties.ACTIVATED);
 	}
 
 	@Override
 	public BlockState getStateForPlacement(final BlockItemUseContext context) {
-
 		BlockState state = context.getLevel().getBlockState(context.getClickedPos());
 		if (state.getBlock() != this) {
 			state = super.getStateForPlacement(context);
 		}
+		if(state == null){
+			return this.defaultBlockState().setValue(BlockStateProperties.DOWN, true);
+		}
+		DoTBBlockStateProperties.VerticalLimitedConnection clickedFace = (context.getClickLocation().y - context.getClickedPos().getY() <= 0.5D) ? DoTBBlockStateProperties.VerticalLimitedConnection.BOTTOM : DoTBBlockStateProperties.VerticalLimitedConnection.TOP;
 		switch (context.getClickedFace()) {
 			default:
 			case UP:
@@ -58,13 +63,13 @@ public class FaucetBlock extends BlockDoTB {
 			case DOWN:
 				return state.setValue(BlockStateProperties.DOWN, true);
 			case SOUTH:
-				return state.setValue(DoTBBlockStateProperties.NORTH_STATE, DoTBBlockStateProperties.VerticalLimitedConnection.NONE);
+				return state.setValue(DoTBBlockStateProperties.NORTH_STATE, clickedFace);
 			case WEST:
-				return state.setValue(DoTBBlockStateProperties.EAST_STATE, DoTBBlockStateProperties.VerticalLimitedConnection.NONE);
+				return state.setValue(DoTBBlockStateProperties.EAST_STATE, clickedFace);
 			case NORTH:
-				return state.setValue(DoTBBlockStateProperties.SOUTH_STATE, DoTBBlockStateProperties.VerticalLimitedConnection.NONE);
+				return state.setValue(DoTBBlockStateProperties.SOUTH_STATE, clickedFace);
 			case EAST:
-				return state.setValue(DoTBBlockStateProperties.WEST_STATE, DoTBBlockStateProperties.VerticalLimitedConnection.NONE);
+				return state.setValue(DoTBBlockStateProperties.WEST_STATE, clickedFace);
 		}
 	}
 
@@ -123,7 +128,7 @@ public class FaucetBlock extends BlockDoTB {
 					final BlockState state = DoTBBlocksRegistry.WATER_TRICKLE.get().defaultBlockState().setValue(BlockStateProperties.NORTH, !DoTBBlockStateProperties.VerticalLimitedConnection.NONE.equals(blockStateIn.getValue(DoTBBlockStateProperties.NORTH_STATE))).setValue(BlockStateProperties.EAST, !DoTBBlockStateProperties.VerticalLimitedConnection.NONE.equals(blockStateIn.getValue(DoTBBlockStateProperties.EAST_STATE)))
 							.setValue(BlockStateProperties.SOUTH, DoTBBlockStateProperties.VerticalLimitedConnection.NONE.equals(blockStateIn.getValue(DoTBBlockStateProperties.SOUTH_STATE))).setValue(BlockStateProperties.WEST, !DoTBBlockStateProperties.VerticalLimitedConnection.NONE.equals(blockStateIn.getValue(DoTBBlockStateProperties.WEST_STATE)))
 
-							.setValue(DoTBBlockStateProperties.FLOOR, /**!(bottomBlockStateOfBelow.getBlock() instanceof AirBlock) &&**/
+							.setValue(DoTBBlockStateProperties.FLOOR,
 									Block.canSupportCenter(worldIn, belowBlockPosOfBelow, Direction.UP));
 
 					worldIn.setBlock(below, state, 10);

@@ -90,6 +90,7 @@ public class HandlerClient {
         RenderTypeLookup.setRenderLayer(DoTBBlocksRegistry.WAXED_OAK_PERGOLA.get(), RenderType.cutoutMipped());
         RenderTypeLookup.setRenderLayer(DoTBBlocksRegistry.WAXED_OAK_LATTICE.get(), RenderType.cutoutMipped());
         RenderTypeLookup.setRenderLayer(DoTBBlocksRegistry.WAXED_OAK_CHANDELIER.get(), RenderType.cutoutMipped());
+        RenderTypeLookup.setRenderLayer(DoTBBlocksRegistry.STONE_BRICKS_FAUCET.get(), RenderType.translucent());
         RenderTypeLookup.setRenderLayer(DoTBBlocksRegistry.IVY.get(), RenderType.cutoutMipped());
         RenderTypeLookup.setRenderLayer(DoTBBlocksRegistry.GERANIUM_PINK.get(), RenderType.cutoutMipped());
         RenderTypeLookup.setRenderLayer(DoTBBlocksRegistry.PLANTER_GERANIUM_PINK.get(), RenderType.cutoutMipped());

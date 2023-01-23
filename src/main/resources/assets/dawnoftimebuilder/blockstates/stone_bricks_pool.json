@@ -1,0 +1,27 @@
+{
+	"multipart": [
+		{
+			"apply": { "model": "dawnoftimebuilder:block/german/stone_bricks_pool_floor"}
+		},
+		{
+			"when": { "north": "false" },
+			"apply": { "model": "dawnoftimebuilder:block/german/stone_bricks_pool_side", "y": 180 }
+		},
+		{
+			"when": { "east": "false" },
+			"apply": { "model": "dawnoftimebuilder:block/german/stone_bricks_pool_side", "y": 270 }
+		},
+		{
+			"when": { "south": "false" },
+			"apply": { "model": "dawnoftimebuilder:block/german/stone_bricks_pool_side"}
+		},
+		{
+			"when": { "west": "false" },
+			"apply": { "model": "dawnoftimebuilder:block/german/stone_bricks_pool_side", "y": 90 }
+		},
+		{
+			"when": { "has_pillar": "true" },
+			"apply": { "model": "dawnoftimebuilder:block/german/stone_bricks_pool_pillar" }
+		}
+	]
+}
