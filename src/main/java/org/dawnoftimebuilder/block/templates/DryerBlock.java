@@ -112,7 +112,6 @@ public class DryerBlock extends WaterloggedBlock {
 			return Blocks.AIR.defaultBlockState();
 		}
 		if (facing == Direction.UP && facingState.getBlock() == this) {
-			System.out.println(stateIn.getBlock() + " : " + facingState.getBlock());
 			return stateIn.setValue(DryerBlock.SIZE, stateIn.getValue(DryerBlock.SIZE) != 0 && facingState.getBlock() == this ? 2 : 1);
 		}
 		return stateIn;
