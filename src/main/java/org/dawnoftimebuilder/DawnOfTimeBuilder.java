@@ -1,6 +1,6 @@
 package org.dawnoftimebuilder;
 
-import org.dawnoftimebuilder.registry.DoTBBlockAndItemColorRegistry;
+import org.dawnoftimebuilder.registry.DoTBBlockAndItemColorsRegistry;
 import org.dawnoftimebuilder.registry.DoTBBlockPlacerRegistry;
 import org.dawnoftimebuilder.registry.DoTBBlocksRegistry;
 import org.dawnoftimebuilder.registry.DoTBContainersRegistry;
@@ -45,8 +45,8 @@ public class DawnOfTimeBuilder {
 		eventBus.addListener(HandlerCommon::fMLCommonSetupEvent);
 		eventBus.addListener(HandlerCommon::entityAttributeCreationEvent);
 		eventBus.addListener(HandlerClient::fMLClientSetupEvent);
-		eventBus.addListener(DoTBBlockAndItemColorRegistry::registerItemsColors);
-		eventBus.addListener(DoTBBlockAndItemColorRegistry::registerBlockColors);
+		eventBus.addListener(DoTBBlockAndItemColorsRegistry::registerItemsColors);
+		eventBus.addListener(DoTBBlockAndItemColorsRegistry::registerBlockColors);
 
 		final IEventBus forgeBus = MinecraftForge.EVENT_BUS;
 		forgeBus.addListener(EventPriority.HIGH, HandlerCommon::biomeLoadingEvent);
