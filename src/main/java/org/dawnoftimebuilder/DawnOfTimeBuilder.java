@@ -1,5 +1,14 @@
 package org.dawnoftimebuilder;
 
+import org.dawnoftimebuilder.registry.DoTBBlockAndItemColorRegistry;
+import org.dawnoftimebuilder.registry.DoTBBlockPlacerRegistry;
+import org.dawnoftimebuilder.registry.DoTBBlocksRegistry;
+import org.dawnoftimebuilder.registry.DoTBContainersRegistry;
+import org.dawnoftimebuilder.registry.DoTBEntitiesRegistry;
+import org.dawnoftimebuilder.registry.DoTBItemsRegistry;
+import org.dawnoftimebuilder.registry.DoTBRecipesRegistry;
+import org.dawnoftimebuilder.registry.DoTBTileEntitiesRegistry;
+
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
@@ -9,39 +18,40 @@ import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import org.dawnoftimebuilder.registry.*;
-
-import static org.dawnoftimebuilder.registry.DoTBBlocksRegistry.COMMELINA;
 
 @Mod(DawnOfTimeBuilder.MOD_ID)
 public class DawnOfTimeBuilder {
 
-    public static final String MOD_ID = "dawnoftimebuilder";
-    public static final ItemGroup DOTB_TAB = new ItemGroup(ItemGroup.getGroupCountSafe(), MOD_ID) {
-        @Override
-        public ItemStack makeIcon() {
-            return new ItemStack(COMMELINA.get());
-        }
-    };
+	public static final String		MOD_ID		= "dawnoftimebuilder";
+	public static final ItemGroup	DOTB_TAB	= new ItemGroup(ItemGroup.getGroupCountSafe(), DawnOfTimeBuilder.MOD_ID) {
+													@Override
+													public ItemStack makeIcon() {
+														return new ItemStack(DoTBBlocksRegistry.COMMELINA.get());
+													}
+												};
 
-    public DawnOfTimeBuilder(){
-        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, DoTBConfig.COMMON_CONFIG);
+	public DawnOfTimeBuilder() {
+		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, DoTBConfig.COMMON_CONFIG);
 
-        IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
-        DoTBBlocksRegistry.BLOCKS.register(eventBus);
-        DoTBEntitiesRegistry.ENTITY_TYPES.register(eventBus);// TODO Use dragons config with addTransientModifier
-        DoTBItemsRegistry.ITEMS.register(eventBus);
-        DoTBRecipesRegistry.RECIPES.register(eventBus);
-        DoTBTileEntitiesRegistry.TILE_ENTITY_TYPES.register(eventBus);
-        DoTBContainersRegistry.CONTAINER_TYPES.register(eventBus);
-        DoTBBlockPlacerRegistry.PLACER_TYPES.register(eventBus);
-        eventBus.addListener(HandlerCommon::fMLCommonSetupEvent);
-        eventBus.addListener(HandlerCommon::entityAttributeCreationEvent);
-        eventBus.addListener(HandlerClient::fMLClientSetupEvent);
+		final IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
+		DoTBBlocksRegistry.BLOCKS.register(eventBus);
+		DoTBEntitiesRegistry.ENTITY_TYPES.register(eventBus);// TODO Use dragons config with addTransientModifier
+		DoTBItemsRegistry.ITEMS.register(eventBus);
+		DoTBRecipesRegistry.RECIPES.register(eventBus);
+		DoTBTileEntitiesRegistry.TILE_ENTITY_TYPES.register(eventBus);
+		DoTBContainersRegistry.CONTAINER_TYPES.register(eventBus);
+		DoTBBlockPlacerRegistry.PLACER_TYPES.register(eventBus);
 
-        IEventBus forgeBus = MinecraftForge.EVENT_BUS;
-        forgeBus.addListener(EventPriority.HIGH, HandlerCommon::biomeLoadingEvent);
-    }
+		eventBus.addListener(HandlerCommon::fMLCommonSetupEvent);
+		eventBus.addListener(HandlerCommon::entityAttributeCreationEvent);
+		eventBus.addListener(HandlerClient::fMLClientSetupEvent);
+		eventBus.addListener(DoTBBlockAndItemColorRegistry::registerItemsColors);
+		eventBus.addListener(DoTBBlockAndItemColorRegistry::registerBlockColors);
+
+		final IEventBus forgeBus = MinecraftForge.EVENT_BUS;
+		forgeBus.addListener(EventPriority.HIGH, HandlerCommon::biomeLoadingEvent);
+
+	}
 }
 //TODO Vérifier le fichier config qui spammerait la console sur server
 //TODO En 1.18 remplacer le craft de la statue romaine, et des roofing_slates

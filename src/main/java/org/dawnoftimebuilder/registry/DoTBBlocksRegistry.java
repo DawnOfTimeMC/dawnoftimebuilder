@@ -5,16 +5,15 @@ import java.util.function.ToIntFunction;
 
 import org.dawnoftimebuilder.DawnOfTimeBuilder;
 import org.dawnoftimebuilder.block.ICustomBlockItem;
-import org.dawnoftimebuilder.block.french.ReinforcedIronFenceBlock;
-import org.dawnoftimebuilder.block.general.IronFenceBlock;
 import org.dawnoftimebuilder.block.french.LimestoneChimneyBlock;
 import org.dawnoftimebuilder.block.french.LimestoneGargoyleBlock;
+import org.dawnoftimebuilder.block.french.ReinforcedIronFenceBlock;
 import org.dawnoftimebuilder.block.general.FireplaceBlock;
+import org.dawnoftimebuilder.block.general.IronFenceBlock;
 import org.dawnoftimebuilder.block.german.FaucetBlock;
 import org.dawnoftimebuilder.block.german.GeraniumBlock;
 import org.dawnoftimebuilder.block.german.IvyBlock;
 import org.dawnoftimebuilder.block.german.LatticeStoneBricksWindowBlock;
-import org.dawnoftimebuilder.block.templates.PoolBlock;
 import org.dawnoftimebuilder.block.german.StoneBricksArrowslitBlock;
 import org.dawnoftimebuilder.block.german.StoneBricksChimneyBlock;
 import org.dawnoftimebuilder.block.german.StoneBricksMachicolationBlock;
@@ -22,7 +21,6 @@ import org.dawnoftimebuilder.block.german.WaterJetBlock;
 import org.dawnoftimebuilder.block.german.WaterMovingTrickleBlock;
 import org.dawnoftimebuilder.block.german.WaterSourceTrickleBlock;
 import org.dawnoftimebuilder.block.german.WaterTrickleBlock;
-import org.dawnoftimebuilder.block.templates.BalusterBlock;
 import org.dawnoftimebuilder.block.german.WaxedOakChairBlock;
 import org.dawnoftimebuilder.block.german.WaxedOakChandelierBlock;
 import org.dawnoftimebuilder.block.german.WaxedOakTableBlock;
@@ -69,6 +67,7 @@ import org.dawnoftimebuilder.block.roman.CypressBlock;
 import org.dawnoftimebuilder.block.roman.MarbleBigFlowerPotBlock;
 import org.dawnoftimebuilder.block.roman.MarbleStatueBlock;
 import org.dawnoftimebuilder.block.roman.SandstoneColumnBlock;
+import org.dawnoftimebuilder.block.templates.BalusterBlock;
 import org.dawnoftimebuilder.block.templates.BeamBlock;
 import org.dawnoftimebuilder.block.templates.BlockDoTB;
 import org.dawnoftimebuilder.block.templates.BushBlockDoT;
@@ -94,6 +93,7 @@ import org.dawnoftimebuilder.block.templates.PaneBlockDoTB;
 import org.dawnoftimebuilder.block.templates.PergolaBlock;
 import org.dawnoftimebuilder.block.templates.PlanterBlock;
 import org.dawnoftimebuilder.block.templates.PlateBlock;
+import org.dawnoftimebuilder.block.templates.PoolBlock;
 import org.dawnoftimebuilder.block.templates.PortcullisBlock;
 import org.dawnoftimebuilder.block.templates.RotatedPillarBlockDoTB;
 import org.dawnoftimebuilder.block.templates.ShutterBlock;
@@ -218,7 +218,7 @@ public class DoTBBlocksRegistry {
 	public static final RegistryObject<Block>	WARPED_WALL									= DoTBBlocksRegistry.reg("warped_wall", new WallBlock(AbstractBlock.Properties.copy(Blocks.WARPED_PLANKS)));
 	public static final RegistryObject<Block>	FIREPLACE									= DoTBBlocksRegistry.reg("fireplace", new FireplaceBlock(AbstractBlock.Properties.of(Material.STONE).strength(1.5F, 6.0F).lightLevel(DoTBBlocksRegistry.litBlockEmission(15))));
 	public static final RegistryObject<Block>	IRON_PORTCULLIS								= DoTBBlocksRegistry.reg("iron_portcullis", new PortcullisBlock(AbstractBlock.Properties.copy(Blocks.IRON_DOOR)));
-	public static final RegistryObject<Block>   WROUGHT_IRON_FENCE 							= DoTBBlocksRegistry.reg("wrought_iron_fence", new IronFenceBlock(AbstractBlock.Properties.copy(Blocks.IRON_BARS)));
+	public static final RegistryObject<Block>	WROUGHT_IRON_FENCE							= DoTBBlocksRegistry.reg("wrought_iron_fence", new IronFenceBlock(AbstractBlock.Properties.copy(Blocks.IRON_BARS)));
 
 	//French
 	public static final RegistryObject<Block>	COBBLED_LIMESTONE							= DoTBBlocksRegistry.reg("cobbled_limestone", new BlockDoTB(AbstractBlock.Properties.copy(Blocks.STONE_BRICKS)));
@@ -237,10 +237,10 @@ public class DoTBBlocksRegistry {
 	public static final RegistryObject<Block>	ROOFING_SLATES_PLATE						= DoTBBlocksRegistry.reg("roofing_slates_plate", new PlateBlock(AbstractBlock.Properties.copy(Blocks.STONE_BRICKS)));
 	public static final RegistryObject<Block>	ROOFING_SLATES_SLAB							= DoTBBlocksRegistry.reg("roofing_slates_slab", new SlabBlockDoTB(AbstractBlock.Properties.copy(Blocks.STONE_BRICKS)));
 	public static final RegistryObject<Block>	ROOFING_SLATES_EDGE							= DoTBBlocksRegistry.reg("roofing_slates_edge", new EdgeBlock(AbstractBlock.Properties.copy(Blocks.STONE_BRICKS)));
-	public static final RegistryObject<Block>   BLACK_WROUGHT_IRON_BALUSTER 				= DoTBBlocksRegistry.reg("black_wrought_iron_baluster", new BalusterBlock(AbstractBlock.Properties.copy(Blocks.IRON_BARS)));
-	public static final RegistryObject<Block>   BLACK_WROUGHT_IRON_FENCE 					= DoTBBlocksRegistry.reg("black_wrought_iron_fence", new IronFenceBlock(AbstractBlock.Properties.copy(Blocks.IRON_BARS)));
-	public static final RegistryObject<Block>   REINFORCED_BLACK_WROUGHT_IRON_FENCE 		= DoTBBlocksRegistry.reg("reinforced_black_wrought_iron_fence", new ReinforcedIronFenceBlock(AbstractBlock.Properties.copy(Blocks.IRON_BARS)));
-	public static final RegistryObject<Block>   REINFORCED_GOLDEN_WROUGHT_IRON_FENCE 		= DoTBBlocksRegistry.reg("reinforced_golden_wrought_iron_fence", new ReinforcedIronFenceBlock(AbstractBlock.Properties.copy(Blocks.IRON_BARS)));
+	public static final RegistryObject<Block>	BLACK_WROUGHT_IRON_BALUSTER					= DoTBBlocksRegistry.reg("black_wrought_iron_baluster", new BalusterBlock(AbstractBlock.Properties.copy(Blocks.IRON_BARS)));
+	public static final RegistryObject<Block>	BLACK_WROUGHT_IRON_FENCE					= DoTBBlocksRegistry.reg("black_wrought_iron_fence", new IronFenceBlock(AbstractBlock.Properties.copy(Blocks.IRON_BARS)));
+	public static final RegistryObject<Block>	REINFORCED_BLACK_WROUGHT_IRON_FENCE			= DoTBBlocksRegistry.reg("reinforced_black_wrought_iron_fence", new ReinforcedIronFenceBlock(AbstractBlock.Properties.copy(Blocks.IRON_BARS)));
+	public static final RegistryObject<Block>	REINFORCED_GOLDEN_WROUGHT_IRON_FENCE		= DoTBBlocksRegistry.reg("reinforced_golden_wrought_iron_fence", new ReinforcedIronFenceBlock(AbstractBlock.Properties.copy(Blocks.IRON_BARS)));
 
 	//German
 	public static final RegistryObject<Block>	FLAT_ROOF_TILES								= DoTBBlocksRegistry.reg("flat_roof_tiles", new BlockDoTB(AbstractBlock.Properties.copy(Blocks.STONE_BRICKS)));
@@ -299,8 +299,8 @@ public class DoTBBlocksRegistry {
 	public static final RegistryObject<Block>	BOXWOOD_BUSH								= DoTBBlocksRegistry.reg("boxwood_bush", new BushBlockDoT(AbstractBlock.Properties.copy(Blocks.SPRUCE_LEAVES)));
 	public static final RegistryObject<Block>	BOXWOOD_TALL_EDGE							= DoTBBlocksRegistry.reg("boxwood_tall_edge", new EdgeBlock(AbstractBlock.Properties.copy(Blocks.SPRUCE_LEAVES)));
 	public static final RegistryObject<Block>	BOXWOOD_SMALL_EDGE							= DoTBBlocksRegistry.reg("boxwood_small_edge", new PlateBlock(AbstractBlock.Properties.copy(Blocks.SPRUCE_LEAVES)));
-	public static final RegistryObject<Block> 	STONE_BRICKS_FAUCET 						= DoTBBlocksRegistry.reg("stone_bricks_faucet", new FaucetBlock(AbstractBlock.Properties.copy(Blocks.STONE).noOcclusion().noCollission()));
-	public static final RegistryObject<Block>   STONE_BRICKS_POOL 							= DoTBBlocksRegistry.reg("stone_bricks_pool", new PoolBlock(AbstractBlock.Properties.copy(Blocks.STONE)));
+	public static final RegistryObject<Block>	STONE_BRICKS_FAUCET							= DoTBBlocksRegistry.reg("stone_bricks_faucet", new FaucetBlock(AbstractBlock.Properties.of(Material.GRASS).noOcclusion().noCollission()));
+	public static final RegistryObject<Block>	STONE_BRICKS_POOL							= DoTBBlocksRegistry.reg("stone_bricks_pool", new PoolBlock(AbstractBlock.Properties.copy(Blocks.STONE)));
 	public static final RegistryObject<Block>	WATER_JET									= DoTBBlocksRegistry.reg("water_jet", new WaterJetBlock(AbstractBlock.Properties.copy(Blocks.STONE)));
 	public static final RegistryObject<Block>	WATER_TRICKLE								= DoTBBlocksRegistry.reg("water_trickle", new WaterTrickleBlock(AbstractBlock.Properties.copy(Blocks.STONE)));
 	public static final RegistryObject<Block>	WATER_MOVING_TRICKLE						= DoTBBlocksRegistry.reg("water_moving_trickle", new WaterMovingTrickleBlock(AbstractBlock.Properties.copy(Blocks.STONE).randomTicks()));
