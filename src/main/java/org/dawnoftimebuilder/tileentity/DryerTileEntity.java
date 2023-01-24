@@ -49,6 +49,7 @@ public class DryerTileEntity extends TileEntity implements ITickableTileEntity {
 				this.remainingTicks[i]--;
 
 				if (this.remainingTicks[i] <= 0) {
+					this.remainingTicks[i] = 0;
 					//Item dried, we replace it with the recipe result, and clear the recipe cached.
 					final DryerRecipe recipe = this.getDryerRecipe(new Inventory(this.itemHandler.getStackInSlot(i)));
 
@@ -130,7 +131,7 @@ public class DryerTileEntity extends TileEntity implements ITickableTileEntity {
 		if (this.itemHandler.getStackInSlot(index).isEmpty()) {
 			return false;
 		}
-		return this.remainingTicks[index] == 0;
+		return this.remainingTicks[index] <= 0;
 	}
 
 	private boolean putItemStackInFreeSpace(final ItemStack itemStack, final boolean simple, final PlayerEntity player) {
