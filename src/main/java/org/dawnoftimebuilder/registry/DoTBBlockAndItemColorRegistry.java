@@ -28,7 +28,7 @@ public class DoTBBlockAndItemColorRegistry {
 	private final static Map<IBlockColor, List<Block>>	blocksColorRegistry	= new HashMap<>();
 	private final static Map<IItemColor, List<Item>>	itemsColorRegistry	= new HashMap<>();
 
-	public final static IBlockColor						faucetBlockColor	= DoTBBlockAndItemColorRegistry.register((p_getColor_1_In, p_getColor_2_In, p_getColor_3_In, p_getColor_4_In) -> BiomeColors.getAverageWaterColor(p_getColor_2_In, p_getColor_3_In), DoTBBlocksRegistry.STONE_BRICKS_FAUCET.get());
+	public final static IBlockColor						faucetBlockColor	= DoTBBlockAndItemColorRegistry.register((blockStateIn, blockDisplayReaderIn, blockPosIn, tintIndexIn) -> BiomeColors.getAverageWaterColor(blockDisplayReaderIn, blockPosIn), DoTBBlocksRegistry.STONE_BRICKS_FAUCET.get());
 
 	// Items
 
