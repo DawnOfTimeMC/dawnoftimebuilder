@@ -237,6 +237,7 @@ public class DoTBBlocksRegistry {
 	public static final RegistryObject<Block>	ROOFING_SLATES_PLATE						= DoTBBlocksRegistry.reg("roofing_slates_plate", new PlateBlock(AbstractBlock.Properties.copy(Blocks.STONE_BRICKS)));
 	public static final RegistryObject<Block>	ROOFING_SLATES_SLAB							= DoTBBlocksRegistry.reg("roofing_slates_slab", new SlabBlockDoTB(AbstractBlock.Properties.copy(Blocks.STONE_BRICKS)));
 	public static final RegistryObject<Block>	ROOFING_SLATES_EDGE							= DoTBBlocksRegistry.reg("roofing_slates_edge", new EdgeBlock(AbstractBlock.Properties.copy(Blocks.STONE_BRICKS)));
+	public static final RegistryObject<Block>	ROOFING_SLATES_WALL							= DoTBBlocksRegistry.reg("roofing_slates_wall", new WallBlock(AbstractBlock.Properties.copy(Blocks.STONE_BRICKS)));
 	public static final RegistryObject<Block>	BLACK_WROUGHT_IRON_BALUSTER					= DoTBBlocksRegistry.reg("black_wrought_iron_baluster", new BalusterBlock(AbstractBlock.Properties.copy(Blocks.IRON_BARS)));
 	public static final RegistryObject<Block>	BLACK_WROUGHT_IRON_FENCE					= DoTBBlocksRegistry.reg("black_wrought_iron_fence", new IronFenceBlock(AbstractBlock.Properties.copy(Blocks.IRON_BARS)));
 	public static final RegistryObject<Block>	REINFORCED_BLACK_WROUGHT_IRON_FENCE			= DoTBBlocksRegistry.reg("reinforced_black_wrought_iron_fence", new ReinforcedIronFenceBlock(AbstractBlock.Properties.copy(Blocks.IRON_BARS)));
@@ -248,6 +249,7 @@ public class DoTBBlocksRegistry {
 	public static final RegistryObject<Block>	FLAT_ROOF_TILES_PLATE						= DoTBBlocksRegistry.reg("flat_roof_tiles_plate", new PlateBlock(AbstractBlock.Properties.copy(Blocks.STONE_BRICKS)));
 	public static final RegistryObject<Block>	FLAT_ROOF_TILES_SLAB						= DoTBBlocksRegistry.reg("flat_roof_tiles_slab", new SlabBlockDoTB(AbstractBlock.Properties.copy(Blocks.STONE_BRICKS)));
 	public static final RegistryObject<Block>	FLAT_ROOF_TILES_EDGE						= DoTBBlocksRegistry.reg("flat_roof_tiles_edge", new EdgeBlock(AbstractBlock.Properties.copy(Blocks.STONE_BRICKS)));
+	public static final RegistryObject<Block>	FLAT_ROOF_TILES_WALL						= DoTBBlocksRegistry.reg("flat_roof_tiles_wall", new WallBlock(AbstractBlock.Properties.copy(Blocks.STONE_BRICKS)));
 	public static final RegistryObject<Block>	LATTICE_GLASS								= DoTBBlocksRegistry.reg("lattice_glass", new GlassBlock(AbstractBlock.Properties.copy(Blocks.GLASS)));
 	public static final RegistryObject<Block>	LATTICE_GLASS_PANE							= DoTBBlocksRegistry.reg("lattice_glass_pane", new PaneBlockDoTB(AbstractBlock.Properties.copy(Blocks.GLASS)));
 	public static final RegistryObject<Block>	LATTICE_WAXED_OAK_WINDOW					= DoTBBlocksRegistry.reg("lattice_waxed_oak_window", new SidedWindowBlock(AbstractBlock.Properties.copy(Blocks.GLASS)));
