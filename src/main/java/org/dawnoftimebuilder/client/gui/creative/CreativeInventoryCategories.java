@@ -1,10 +1,17 @@
 package org.dawnoftimebuilder.client.gui.creative;
 
+import net.minecraft.block.AbstractBlock;
+import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.fml.RegistryObject;
+import org.dawnoftimebuilder.block.templates.PlateBlock;
+import org.dawnoftimebuilder.block.templates.SlabBlockDoTB;
+import org.dawnoftimebuilder.registry.DoTBBlocksRegistry;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -172,13 +179,6 @@ public enum CreativeInventoryCategories {
 			FLINT_AND_STEEL
 	),
 
-	EGYPTIAN("egyptian",
-			PHARAOH_ARMOR_HEAD.get(),
-			PHARAOH_ARMOR_CHEST.get(),
-			PHARAOH_ARMOR_LEGS.get(),
-			PHARAOH_ARMOR_FEET.get()
-	),
-
 	FRENCH("french",
 			THATCH_WHEAT.get().asItem(),
 			THATCH_WHEAT_STAIRS.get().asItem(),
@@ -248,6 +248,10 @@ public enum CreativeInventoryCategories {
 			WAXED_OAK_SMALL_SHUTTER.get().asItem(),
 			WAXED_OAK_SHUTTER.get().asItem(),
 			STONE_BRICKS_MASONRY.get().asItem(),
+			STONE_BRICKS_MASONRY_STAIRS.get().asItem(),
+			STONE_BRICKS_MASONRY_PLATE.get().asItem(),
+			STONE_BRICKS_MASONRY_SLAB.get().asItem(),
+			STONE_BRICKS_MASONRY_EDGE.get().asItem(),
 			STONE_BRICKS.asItem(),
 			STONE_BRICK_STAIRS.asItem(),
 			STONE_BRICKS_PLATE.get().asItem(),
@@ -288,15 +292,6 @@ public enum CreativeInventoryCategories {
 			HOLY_ARMOR_LEGS.get(),
 			HOLY_ARMOR_FEET.get(),
 			FLINT_AND_STEEL
-	),
-
-	PERSIAN("persian",
-			PERSIAN_CARPET_RED.get().asItem(),
-			PERSIAN_CARPET_DELICATE_RED.get().asItem(),
-			MORAQ_MOSAIC_TILES_DELICATE.get().asItem(),
-			MORAQ_MOSAIC_TILES_TRADITIONAL.get().asItem(),
-			MORAQ_MOSAIC_TILES_BORDER.get().asItem(),
-			MORAQ_MOSAIC_RECESS.get().asItem()
 	),
 
 	JAPANESE("japanese",
@@ -501,6 +496,24 @@ public enum CreativeInventoryCategories {
 			WILD_GRAPE.get().asItem(),
 			GRAPE.get(),
 			GRAPE_SEEDS.get()
+	),
+
+	// Temporary position until this tab is done.
+	PERSIAN("persian",
+			PERSIAN_CARPET_RED.get().asItem(),
+			PERSIAN_CARPET_DELICATE_RED.get().asItem(),
+			MORAQ_MOSAIC_TILES_DELICATE.get().asItem(),
+			MORAQ_MOSAIC_TILES_TRADITIONAL.get().asItem(),
+			MORAQ_MOSAIC_TILES_BORDER.get().asItem(),
+			MORAQ_MOSAIC_RECESS.get().asItem()
+	),
+
+	// Temporary position until this tab is done.
+	EGYPTIAN("egyptian",
+			PHARAOH_ARMOR_HEAD.get(),
+			PHARAOH_ARMOR_CHEST.get(),
+			PHARAOH_ARMOR_LEGS.get(),
+			PHARAOH_ARMOR_FEET.get()
 	);
 
 	private final String name;

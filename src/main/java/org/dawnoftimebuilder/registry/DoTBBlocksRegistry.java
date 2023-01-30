@@ -299,8 +299,8 @@ public class DoTBBlocksRegistry {
 	public static final RegistryObject<Block>	GERANIUM_PINK								= DoTBBlocksRegistry.reg("geranium_pink", new GeraniumBlock(AbstractBlock.Properties.of(Material.PLANT).noCollission().instabreak().sound(SoundType.GRASS)));
 	public static final RegistryObject<Block>	PLANTER_GERANIUM_PINK						= DoTBBlocksRegistry.reg("planter_geranium_pink", new PlanterBlock(AbstractBlock.Properties.of(Material.CLAY).strength(0.6F).noOcclusion()));
 	public static final RegistryObject<Block>	BOXWOOD_BUSH								= DoTBBlocksRegistry.reg("boxwood_bush", new BushBlockDoT(AbstractBlock.Properties.copy(Blocks.SPRUCE_LEAVES)));
-	public static final RegistryObject<Block>	BOXWOOD_TALL_EDGE							= DoTBBlocksRegistry.reg("boxwood_tall_edge", new EdgeBlock(AbstractBlock.Properties.copy(Blocks.SPRUCE_LEAVES)));
-	public static final RegistryObject<Block>	BOXWOOD_SMALL_EDGE							= DoTBBlocksRegistry.reg("boxwood_small_edge", new PlateBlock(AbstractBlock.Properties.copy(Blocks.SPRUCE_LEAVES)));
+	public static final RegistryObject<Block>   BOXWOOD_TALL_HEDGE 							= DoTBBlocksRegistry.reg("boxwood_tall_hedge", new EdgeBlock(AbstractBlock.Properties.copy(Blocks.SPRUCE_LEAVES)));
+	public static final RegistryObject<Block>   BOXWOOD_SMALL_HEDGE 						= DoTBBlocksRegistry.reg("boxwood_small_hedge", new PlateBlock(AbstractBlock.Properties.copy(Blocks.SPRUCE_LEAVES)));
 	public static final RegistryObject<Block>	STONE_BRICKS_FAUCET							= DoTBBlocksRegistry.reg("stone_bricks_faucet", new FaucetBlock(AbstractBlock.Properties.of(Material.GRASS).noOcclusion().noCollission()));
 	public static final RegistryObject<Block>	STONE_BRICKS_POOL							= DoTBBlocksRegistry.reg("stone_bricks_pool", new PoolBlock(AbstractBlock.Properties.copy(Blocks.STONE)));
 	public static final RegistryObject<Block>	WATER_JET									= DoTBBlocksRegistry.reg("water_jet", new WaterJetBlock(AbstractBlock.Properties.copy(Blocks.STONE)));
