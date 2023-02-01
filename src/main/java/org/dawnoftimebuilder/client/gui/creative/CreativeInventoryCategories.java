@@ -211,6 +211,9 @@ public enum CreativeInventoryCategories {
 			REINFORCED_GOLDEN_WROUGHT_IRON_FENCE.get().asItem(),
 			GRAPE.get(),
 			GRAPE_SEEDS.get(),
+			BOXWOOD_BUSH.get().asItem(),
+			BOXWOOD_SMALL_HEDGE.get().asItem(),
+			BOXWOOD_TALL_HEDGE.get().asItem(),
 			FLINT_AND_STEEL
 	),
 
