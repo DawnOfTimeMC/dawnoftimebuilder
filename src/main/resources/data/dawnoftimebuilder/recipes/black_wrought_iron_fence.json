@@ -10,7 +10,7 @@
 			"item": "dawnoftimebuilder:wrought_iron_fence"
 		},
 		"x": {
-			"tag": "minecraft:black_dye"
+			"tag": "forge:dyes/black"
 		}
 	},
 	"result": {

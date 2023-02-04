@@ -28,7 +28,7 @@ public class DoTBBlockAndItemColorsRegistry {
 	private final static Map<IBlockColor, List<Block>>	blocksColorRegistry	= new HashMap<>();
 	private final static Map<IItemColor, List<Item>>	itemsColorRegistry	= new HashMap<>();
 
-	public final static IBlockColor						waterBlockColor	= DoTBBlockAndItemColorsRegistry.register((blockStateIn, blockDisplayReaderIn, blockPosIn, tintIndexIn) -> BiomeColors.getAverageWaterColor(blockDisplayReaderIn, blockPosIn), DoTBBlocksRegistry.STONE_BRICKS_FAUCET.get(), DoTBBlocksRegistry.STONE_BRICKS_POOL.get(), DoTBBlocksRegistry.WATER_MOVING_TRICKLE.get(), DoTBBlocksRegistry.WATER_SOURCE_TRICKLE.get(), DoTBBlocksRegistry.WATER_TRICKLE.get(), DoTBBlocksRegistry.WATER_JET.get());
+	public final static IBlockColor						waterBlockColor	= DoTBBlockAndItemColorsRegistry.register((blockStateIn, blockDisplayReaderIn, blockPosIn, tintIndexIn) -> BiomeColors.getAverageWaterColor(blockDisplayReaderIn, blockPosIn), DoTBBlocksRegistry.STONE_BRICKS_FAUCET.get(), DoTBBlocksRegistry.STONE_BRICKS_POOL.get(), DoTBBlocksRegistry.WATER_MOVING_TRICKLE.get(), DoTBBlocksRegistry.WATER_SOURCE_TRICKLE.get(), DoTBBlocksRegistry.WATER_TRICKLE.get(), DoTBBlocksRegistry.STONE_BRICKS_WATER_JET.get());
 
 	// Items
 

@@ -102,62 +102,34 @@ public class PoolBlock extends WaterloggedBlock {
 	 * Seynax : binary method to remove water on all associated pool
 	 */
 	public static boolean removeWater(final Map<BlockPos, BlockState> testedPositionsIn, BlockState blockStateIn, final BlockPos blockPosIn, final World worldIn, final float prohibitedXIn, final float prohibitedZIn) {
-
 		boolean success = blockStateIn.getValue(BlockStateProperties.WATERLOGGED);
 		blockStateIn = blockStateIn.setValue(BlockStateProperties.WATERLOGGED, false);
 		worldIn.setBlock(blockPosIn, blockStateIn, 10);
-
-		if (prohibitedXIn != 1) {
-			final BlockPos pos = blockPosIn.offset(1, 0, 0);
-			if (!testedPositionsIn.containsKey(pos)) {
-				final BlockState state = worldIn.getBlockState(pos);
-				if (state.getBlock() instanceof PoolBlock) {
-					testedPositionsIn.put(pos, state);
-					if (PoolBlock.removeWater(testedPositionsIn, state, pos, worldIn, 1, 0)) {
-						success = true;
-					}
-				}
-			}
+		if (prohibitedXIn != 1 && removeWaterOffset(testedPositionsIn, blockPosIn, worldIn, 1, 0)){
+			success = true;
 		}
-		if (prohibitedXIn != -1) {
-			final BlockPos pos = blockPosIn.offset(-1, 0, 0);
-			if (!testedPositionsIn.containsKey(pos)) {
-				final BlockState state = worldIn.getBlockState(pos);
-				if (state.getBlock() instanceof PoolBlock) {
-					testedPositionsIn.put(pos, state);
-					if (PoolBlock.removeWater(testedPositionsIn, state, pos, worldIn, -1, 0)) {
-						success = true;
-					}
-				}
-			}
+		if (prohibitedXIn != -1 && removeWaterOffset(testedPositionsIn, blockPosIn, worldIn, -1, 0)){
+			success = true;
 		}
-
-		if (prohibitedZIn != 1) {
-			final BlockPos pos = blockPosIn.offset(0, 0, 1);
-			if (!testedPositionsIn.containsKey(pos)) {
-				final BlockState state = worldIn.getBlockState(pos);
-				if (state.getBlock() instanceof PoolBlock) {
-					testedPositionsIn.put(pos, state);
-					if (PoolBlock.removeWater(testedPositionsIn, state, pos, worldIn, 0, 1)) {
-						success = true;
-					}
-				}
-			}
+		if (prohibitedZIn != 1 && removeWaterOffset(testedPositionsIn, blockPosIn, worldIn, 0, 1)){
+			success = true;
 		}
-		if (prohibitedZIn != -1) {
-			final BlockPos pos = blockPosIn.offset(0, 0, -1);
-			if (!testedPositionsIn.containsKey(pos)) {
-				final BlockState state = worldIn.getBlockState(pos);
-				if (state.getBlock() instanceof PoolBlock) {
-					testedPositionsIn.put(pos, state);
-					if (PoolBlock.removeWater(testedPositionsIn, state, pos, worldIn, 0, -1)) {
-						success = true;
-					}
-				}
-			}
+		if (prohibitedZIn != -1 && removeWaterOffset(testedPositionsIn, blockPosIn, worldIn, 0, -1)){
+			success = true;
 		}
-
 		return success;
+	}
+
+	private static boolean removeWaterOffset(final Map<BlockPos, BlockState> testedPositionsIn, BlockPos blockPosIn, World worldIn, int x, int z){
+		final BlockPos pos = blockPosIn.offset(x, 0, z);
+		if (!testedPositionsIn.containsKey(pos)) {
+			final BlockState state = worldIn.getBlockState(pos);
+			if (state.getBlock() instanceof PoolBlock) {
+				testedPositionsIn.put(pos, state);
+				return PoolBlock.removeWater(testedPositionsIn, state, pos, worldIn, x, z);
+			}
+		}
+		return false;
 	}
 
 	@Override
@@ -167,7 +139,7 @@ public class PoolBlock extends WaterloggedBlock {
 			 * Seynax : allows the player to remove the contents of all stuck basins, with a single click with an empty bucket while sneaking
 			 */
 			final ItemStack itemStack = playerEntityIn.getMainHandItem();
-			if (itemStack == null || !(itemStack.getItem() instanceof BucketItem)) {
+			if (itemStack.isEmpty() || !(itemStack.getItem() instanceof BucketItem)) {
 				blockStateIn = blockStateIn.setValue(DoTBBlockStateProperties.HAS_PILLAR, !blockStateIn.getValue(DoTBBlockStateProperties.HAS_PILLAR));
 
 				worldIn.setBlock(blockPosIn, blockStateIn, 10);
@@ -181,8 +153,6 @@ public class PoolBlock extends WaterloggedBlock {
 				}
 			}
 		}
-
-		final IBlockColor a;
 		return ActionResultType.PASS;
 	}
 
@@ -196,7 +166,7 @@ public class PoolBlock extends WaterloggedBlock {
 
 			final BlockPos	blockPos	= blockPosIn.below();
 			BlockState		blockState	= worldIn.getBlockState(blockPos);
-			if (blockState.getBlock() instanceof PoolBlock) {
+			if (blockState.getBlock() == this) {
 				blockState = blockState.setValue(DoTBBlockStateProperties.HAS_PILLAR, true);
 				worldIn.setBlock(blockPos, blockState, 10);
 			}
@@ -206,42 +176,27 @@ public class PoolBlock extends WaterloggedBlock {
 
 	@Override
 	public BlockState updateShape(BlockState stateIn, final Direction directionIn, final BlockState facingStateIn, final IWorld worldIn, final BlockPos currentPosIn, final BlockPos facingPosIn) {
-		final boolean hasPoolInSide = facingStateIn.getBlock() instanceof PoolBlock;
-
-		switch (directionIn) {
-			case NORTH:
-				stateIn = stateIn.setValue(BlockStateProperties.NORTH, hasPoolInSide);
-
-				if (hasPoolInSide && facingStateIn.getValue(BlockStateProperties.WATERLOGGED)) {
-					stateIn = stateIn.setValue(BlockStateProperties.WATERLOGGED, true);
-				}
-
-				break;
-			case EAST:
-				stateIn = stateIn.setValue(BlockStateProperties.EAST, hasPoolInSide);
-
-				if (hasPoolInSide && facingStateIn.getValue(BlockStateProperties.WATERLOGGED)) {
-					stateIn = stateIn.setValue(BlockStateProperties.WATERLOGGED, true);
-				}
-
-				break;
-			case SOUTH:
-				stateIn = stateIn.setValue(BlockStateProperties.SOUTH, hasPoolInSide);
-
-				if (hasPoolInSide && facingStateIn.getValue(BlockStateProperties.WATERLOGGED)) {
-					stateIn = stateIn.setValue(BlockStateProperties.WATERLOGGED, true);
-				}
-
-				break;
-			case WEST:
-				stateIn = stateIn.setValue(BlockStateProperties.WEST, hasPoolInSide);
-
-				if (hasPoolInSide && facingStateIn.getValue(BlockStateProperties.WATERLOGGED)) {
-					stateIn = stateIn.setValue(BlockStateProperties.WATERLOGGED, true);
-				}
-				break;
-			default:
-				break;
+		if(directionIn.getAxis().isHorizontal()){
+			final boolean hasPoolInSide = facingStateIn.getBlock() == this;
+			if (hasPoolInSide && facingStateIn.getValue(BlockStateProperties.WATERLOGGED)) {
+				stateIn = stateIn.setValue(BlockStateProperties.WATERLOGGED, true);
+			}
+			switch (directionIn) {
+				case NORTH:
+					stateIn = stateIn.setValue(BlockStateProperties.NORTH, hasPoolInSide);
+					break;
+				case EAST:
+					stateIn = stateIn.setValue(BlockStateProperties.EAST, hasPoolInSide);
+					break;
+				case SOUTH:
+					stateIn = stateIn.setValue(BlockStateProperties.SOUTH, hasPoolInSide);
+					break;
+				case WEST:
+					stateIn = stateIn.setValue(BlockStateProperties.WEST, hasPoolInSide);
+					break;
+				default:
+					break;
+			}
 		}
 
 		return super.updateShape(stateIn, directionIn, facingStateIn, worldIn, currentPosIn, facingPosIn);

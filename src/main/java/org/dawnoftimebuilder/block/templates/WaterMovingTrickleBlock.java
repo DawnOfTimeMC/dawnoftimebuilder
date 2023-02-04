@@ -1,10 +1,11 @@
 /**
  *
  */
-package org.dawnoftimebuilder.block.german;
+package org.dawnoftimebuilder.block.templates;
 
 import java.util.Random;
 
+import org.dawnoftimebuilder.block.templates.WaterTrickleBlock;
 import org.dawnoftimebuilder.registry.DoTBBlocksRegistry;
 import org.dawnoftimebuilder.util.DoTBBlockStateProperties;
 

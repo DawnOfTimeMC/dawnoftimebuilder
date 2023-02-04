@@ -76,6 +76,9 @@ public class HandlerClient {
 		RenderTypeLookup.setRenderLayer(DoTBBlocksRegistry.BLACK_WROUGHT_IRON_FENCE.get(), RenderType.cutoutMipped());
 		RenderTypeLookup.setRenderLayer(DoTBBlocksRegistry.REINFORCED_BLACK_WROUGHT_IRON_FENCE.get(), RenderType.cutoutMipped());
 		RenderTypeLookup.setRenderLayer(DoTBBlocksRegistry.REINFORCED_GOLDEN_WROUGHT_IRON_FENCE.get(), RenderType.cutoutMipped());
+		RenderTypeLookup.setRenderLayer(DoTBBlocksRegistry.BOXWOOD_BUSH.get(), RenderType.cutoutMipped());
+		RenderTypeLookup.setRenderLayer(DoTBBlocksRegistry.BOXWOOD_SMALL_HEDGE.get(), RenderType.cutoutMipped());
+		RenderTypeLookup.setRenderLayer(DoTBBlocksRegistry.BOXWOOD_TALL_HEDGE.get(), RenderType.cutoutMipped());
 
 		//German
 		RenderTypeLookup.setRenderLayer(DoTBBlocksRegistry.LATTICE_GLASS.get(), RenderType.cutoutMipped());

@@ -2,7 +2,7 @@
 	"credit": "Made with Blockbench",
 	"textures": {
 		"1": "block/water_still",
-		"particle": "dawnoftimebuilder:block/stone_bricks_faucet"
+		"particle": "dawnoftimebuilder:block/transparent"
 	},
 	"elements": [
 		{

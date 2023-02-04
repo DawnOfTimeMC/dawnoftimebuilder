@@ -1,4 +1,4 @@
-package org.dawnoftimebuilder.block.german;
+package org.dawnoftimebuilder.block.templates;
 
 import net.minecraft.block.AirBlock;
 import net.minecraft.block.Block;
@@ -16,7 +16,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
-import org.dawnoftimebuilder.block.templates.BlockDoTB;
 import org.dawnoftimebuilder.registry.DoTBBlocksRegistry;
 import org.dawnoftimebuilder.util.DoTBBlockStateProperties;
 

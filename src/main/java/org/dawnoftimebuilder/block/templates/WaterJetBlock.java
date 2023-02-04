@@ -1,7 +1,7 @@
 /**
  *
  */
-package org.dawnoftimebuilder.block.german;
+package org.dawnoftimebuilder.block.templates;
 
 import org.dawnoftimebuilder.block.templates.BlockDoTB;
 import org.dawnoftimebuilder.util.DoTBBlockStateProperties;

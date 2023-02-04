@@ -282,6 +282,7 @@ public enum CreativeInventoryCategories {
 			IRON_PORTCULLIS.get().asItem(),
 			WROUGHT_IRON_FENCE.get().asItem(),
 			STONE_BRICKS_POOL.get().asItem(),
+			STONE_BRICKS_SMALL_POOL.get().asItem(),
 			STONE_BRICKS_FAUCET.get().asItem(),
 			GERANIUM_PINK.get().asItem(),
 			PLANTER_GERANIUM_PINK.get().asItem(),
