@@ -68,6 +68,9 @@ public class HandlerCommon {
 			if (DoTBConfig.RED_MAPLE_GENERATION.get().contains(name.toString())) {
 				generation.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.RANDOM_PATCH.configured(new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(DoTBBlocksRegistry.MAPLE_RED_SAPLING.get().defaultBlockState()), new DoTBBlockPlacer()).tries(DoTBConfig.CYPRESS_ROLLS.get()).xspread(2).zspread(2).build()).decorated(Features.Placements.HEIGHTMAP_SQUARE));
 			}
+			if (DoTBConfig.BOXWOOD_BUSH_GENERATION.get().contains(name.toString())) {
+				generation.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.RANDOM_PATCH.configured(new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(DoTBBlocksRegistry.BOXWOOD_BUSH.get().defaultBlockState()), new DoTBBlockPlacer()).tries(DoTBConfig.BOXWOOD_BUSH_ROLLS.get()).xspread(2).zspread(2).build()).decorated(Features.Placements.HEIGHTMAP_SQUARE));
+			}
 			if (DoTBConfig.MULBERRY_GENERATION.get().contains(name.toString())) {
 				generation.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, cropsFeature.configured(new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(DoTBBlocksRegistry.MULBERRY.get().defaultBlockState()), new DoTBBlockPlacer()).tries(DoTBConfig.MULBERRY_ROLLS.get()).xspread(2).zspread(2).build()).decorated(Features.Placements.ADD_32).decorated(Features.Placements.HEIGHTMAP_SQUARE));
 			}
