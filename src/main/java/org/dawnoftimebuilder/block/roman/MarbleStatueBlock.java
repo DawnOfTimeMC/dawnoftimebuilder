@@ -45,17 +45,21 @@ public class MarbleStatueBlock extends WaterloggedBlock {
 	}
 
 	@Override
-	public void playerWillDestroy(final World p_176208_1_In, final BlockPos p_176208_2_In, final BlockState p_176208_3_In, final PlayerEntity p_176208_4_In) {
-		super.playerWillDestroy(p_176208_1_In, p_176208_2_In, p_176208_3_In, p_176208_4_In);
+	public void playerWillDestroy(final World worldIn, final BlockPos blockPosIn, final BlockState blockStateIn, final PlayerEntity playerEntityIn) {
 
-		if (p_176208_3_In.getValue(MarbleStatueBlock.MULTIBLOCK) == 2) {
-			p_176208_1_In.setBlock(p_176208_2_In.below(), Blocks.AIR.defaultBlockState(), 10);
-			p_176208_1_In.setBlock(p_176208_2_In.below(2), Blocks.AIR.defaultBlockState(), 10);
+		if (playerEntityIn.isCreative() && playerEntityIn.isCreative()) {
+			BlockPos blockPos = blockPosIn;
+			System.out.println(blockStateIn.getValue(MarbleStatueBlock.MULTIBLOCK));
+			if (blockStateIn.getValue(MarbleStatueBlock.MULTIBLOCK) > 0) {
+				blockPos = blockPosIn.below(blockStateIn.getValue(MarbleStatueBlock.MULTIBLOCK));
+			}
+
+			final BlockState blockState = worldIn.getBlockState(blockPos);
+			worldIn.setBlock(blockPos, Blocks.AIR.defaultBlockState(), 35);
+			worldIn.levelEvent(playerEntityIn, 2001, blockPos, Block.getId(blockState));
 		}
-		else if (p_176208_3_In.getValue(MarbleStatueBlock.MULTIBLOCK) == 1) {
-			p_176208_1_In.setBlock(p_176208_2_In.above(), Blocks.AIR.defaultBlockState(), 10);
-			p_176208_1_In.setBlock(p_176208_2_In.below(), Blocks.AIR.defaultBlockState(), 10);
-		}
+
+		super.playerWillDestroy(worldIn, blockPosIn, blockStateIn, playerEntityIn);
 	}
 
 	@Override
@@ -89,13 +93,13 @@ public class MarbleStatueBlock extends WaterloggedBlock {
 		}
 		final int multipart = stateIn.getValue(MarbleStatueBlock.MULTIBLOCK);
 
-		if ((facing == Direction.UP && multipart < 2) && (facingState.getBlock() == this)) {
+		if (facing == Direction.UP && multipart < 2 && facingState.getBlock() == this) {
 			if (facingState.getValue(MarbleStatueBlock.FACING) == stateIn.getValue(MarbleStatueBlock.FACING) && facingState.getValue(MarbleStatueBlock.MULTIBLOCK) == multipart + 1) {
 				return stateIn;
 			}
 		}
 
-		if ((facing == Direction.DOWN && multipart > 0) && (facingState.getBlock() == this)) {
+		if (facing == Direction.DOWN && multipart > 0 && facingState.getBlock() == this) {
 			if (facingState.getValue(MarbleStatueBlock.FACING) == stateIn.getValue(MarbleStatueBlock.FACING) && facingState.getValue(MarbleStatueBlock.MULTIBLOCK) == multipart - 1) {
 				return stateIn;
 			}
