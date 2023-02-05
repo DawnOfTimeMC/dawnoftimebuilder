@@ -1,10 +1,16 @@
 package org.dawnoftimebuilder.block.roman;
 
+import javax.annotation.Nullable;
+
+import org.dawnoftimebuilder.block.templates.WaterloggedBlock;
+import org.dawnoftimebuilder.util.DoTBBlockStateProperties;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.material.PushReaction;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
@@ -19,80 +25,87 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
-import org.dawnoftimebuilder.block.templates.WaterloggedBlock;
-import org.dawnoftimebuilder.util.DoTBBlockStateProperties;
-
-import javax.annotation.Nullable;
 
 public class MarbleStatueBlock extends WaterloggedBlock {
 
-    private static final VoxelShape VS = Block.box(2.0D, 0.0D, 2.0D, 14.0D, 16.0D, 14.0D);
-    private static final VoxelShape VS_TOP = Block.box(2.0D, 0.0D, 2.0D, 14.0D, 12.0D, 14.0D);
-    public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
-    public static final IntegerProperty MULTIBLOCK = DoTBBlockStateProperties.MULTIBLOCK_0_2;
+	private static final VoxelShape			VS			= Block.box(2.0D, 0.0D, 2.0D, 14.0D, 16.0D, 14.0D);
+	private static final VoxelShape			VS_TOP		= Block.box(2.0D, 0.0D, 2.0D, 14.0D, 12.0D, 14.0D);
+	public static final DirectionProperty	FACING		= BlockStateProperties.HORIZONTAL_FACING;
+	public static final IntegerProperty		MULTIBLOCK	= DoTBBlockStateProperties.MULTIBLOCK_0_2;
 
-    public MarbleStatueBlock(Properties properties) {
-        super(properties);
-        this.registerDefaultState(this.defaultBlockState().setValue(FACING, Direction.NORTH).setValue(MULTIBLOCK, 0).setValue(WATERLOGGED, false));
-    }
+	public MarbleStatueBlock(final Properties properties) {
+		super(properties);
+		this.registerDefaultState(this.defaultBlockState().setValue(MarbleStatueBlock.FACING, Direction.NORTH).setValue(MarbleStatueBlock.MULTIBLOCK, 0).setValue(WaterloggedBlock.WATERLOGGED, false));
+	}
 
-    @Override
-    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
-        super.createBlockStateDefinition(builder);
-        builder.add(FACING, MULTIBLOCK);
-    }
+	@Override
+	protected void createBlockStateDefinition(final StateContainer.Builder<Block, BlockState> builder) {
+		super.createBlockStateDefinition(builder);
+		builder.add(MarbleStatueBlock.FACING, MarbleStatueBlock.MULTIBLOCK);
+	}
 
-    @Override
-    public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-        return state.getValue(MULTIBLOCK) == 2 ? VS_TOP : VS;
-    }
+	@Override
+	public void playerWillDestroy(final World p_176208_1_In, final BlockPos p_176208_2_In, final BlockState p_176208_3_In, final PlayerEntity p_176208_4_In) {
+		super.playerWillDestroy(p_176208_1_In, p_176208_2_In, p_176208_3_In, p_176208_4_In);
 
-    @Nullable
-    @Override
-    public BlockState getStateForPlacement(BlockItemUseContext context) {
-        BlockPos pos = context.getClickedPos();
-        World level = context.getLevel();
-        if(!level.getBlockState(pos.above()).canBeReplaced(context)
-                || !level.getBlockState(pos.above(2)).canBeReplaced(context)){
-            return null;
-        }
-        return super.getStateForPlacement(context).setValue(FACING, context.getHorizontalDirection().getOpposite());
-    }
+		if (p_176208_3_In.getValue(MarbleStatueBlock.MULTIBLOCK) == 2) {
+			p_176208_1_In.setBlock(p_176208_2_In.below(), Blocks.AIR.defaultBlockState(), 10);
+			p_176208_1_In.setBlock(p_176208_2_In.below(2), Blocks.AIR.defaultBlockState(), 10);
+		}
+		else if (p_176208_3_In.getValue(MarbleStatueBlock.MULTIBLOCK) == 1) {
+			p_176208_1_In.setBlock(p_176208_2_In.above(), Blocks.AIR.defaultBlockState(), 10);
+			p_176208_1_In.setBlock(p_176208_2_In.below(), Blocks.AIR.defaultBlockState(), 10);
+		}
+	}
 
-    @Override
-    public void setPlacedBy(World worldIn, BlockPos pos, BlockState state, LivingEntity placer, ItemStack stack) {
-        BlockPos abovePos = pos.above();
-        worldIn.setBlock(abovePos, state.setValue(MULTIBLOCK, 1).setValue(WATERLOGGED, worldIn.getFluidState(abovePos).getType() == Fluids.WATER), 10);
-        abovePos = abovePos.above();
-        worldIn.setBlock(abovePos, state.setValue(MULTIBLOCK, 2).setValue(WATERLOGGED, worldIn.getFluidState(abovePos).getType() == Fluids.WATER), 10);
-    }
+	@Override
+	public VoxelShape getShape(final BlockState state, final IBlockReader worldIn, final BlockPos pos, final ISelectionContext context) {
+		return state.getValue(MarbleStatueBlock.MULTIBLOCK) == 2 ? MarbleStatueBlock.VS_TOP : MarbleStatueBlock.VS;
+	}
 
-    @Override
-    public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
-        if(facing.getAxis().isHorizontal()) return stateIn;
-        int multipart = stateIn.getValue(MULTIBLOCK);
+	@Nullable
+	@Override
+	public BlockState getStateForPlacement(final BlockItemUseContext context) {
+		final BlockPos	pos		= context.getClickedPos();
+		final World		level	= context.getLevel();
+		if (!level.getBlockState(pos.above()).canBeReplaced(context) || !level.getBlockState(pos.above(2)).canBeReplaced(context)) {
+			return null;
+		}
+		return super.getStateForPlacement(context).setValue(MarbleStatueBlock.FACING, context.getHorizontalDirection().getOpposite());
+	}
 
-        if(facing == Direction.UP && multipart < 2) {
-            if(facingState.getBlock() == this){
-                if(facingState.getValue(FACING) == stateIn.getValue(FACING) && facingState.getValue(MULTIBLOCK) == multipart + 1){
-                    return stateIn;
-                }
-            }
-        }
+	@Override
+	public void setPlacedBy(final World worldIn, final BlockPos pos, final BlockState state, final LivingEntity placer, final ItemStack stack) {
+		BlockPos abovePos = pos.above();
+		worldIn.setBlock(abovePos, state.setValue(MarbleStatueBlock.MULTIBLOCK, 1).setValue(WaterloggedBlock.WATERLOGGED, worldIn.getFluidState(abovePos).getType() == Fluids.WATER), 10);
+		abovePos = abovePos.above();
+		worldIn.setBlock(abovePos, state.setValue(MarbleStatueBlock.MULTIBLOCK, 2).setValue(WaterloggedBlock.WATERLOGGED, worldIn.getFluidState(abovePos).getType() == Fluids.WATER), 10);
+	}
 
-        if(facing == Direction.DOWN && multipart > 0) {
-            if(facingState.getBlock() == this){
-                if(facingState.getValue(FACING) == stateIn.getValue(FACING) && facingState.getValue(MULTIBLOCK) == multipart - 1){
-                    return stateIn;
-                }
-            }
-        }
+	@Override
+	public BlockState updateShape(final BlockState stateIn, final Direction facing, final BlockState facingState, final IWorld worldIn, final BlockPos currentPos, final BlockPos facingPos) {
+		if (facing.getAxis().isHorizontal()) {
+			return stateIn;
+		}
+		final int multipart = stateIn.getValue(MarbleStatueBlock.MULTIBLOCK);
 
-        return Blocks.AIR.defaultBlockState();
-    }
+		if ((facing == Direction.UP && multipart < 2) && (facingState.getBlock() == this)) {
+			if (facingState.getValue(MarbleStatueBlock.FACING) == stateIn.getValue(MarbleStatueBlock.FACING) && facingState.getValue(MarbleStatueBlock.MULTIBLOCK) == multipart + 1) {
+				return stateIn;
+			}
+		}
 
-    @Override
-    public PushReaction getPistonPushReaction(BlockState state) {
-        return PushReaction.DESTROY;
-    }
+		if ((facing == Direction.DOWN && multipart > 0) && (facingState.getBlock() == this)) {
+			if (facingState.getValue(MarbleStatueBlock.FACING) == stateIn.getValue(MarbleStatueBlock.FACING) && facingState.getValue(MarbleStatueBlock.MULTIBLOCK) == multipart - 1) {
+				return stateIn;
+			}
+		}
+
+		return Blocks.AIR.defaultBlockState();
+	}
+
+	@Override
+	public PushReaction getPistonPushReaction(final BlockState state) {
+		return PushReaction.DESTROY;
+	}
 }

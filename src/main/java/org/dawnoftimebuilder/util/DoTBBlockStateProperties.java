@@ -42,22 +42,22 @@ public class DoTBBlockStateProperties {
 	public static final EnumProperty<WallHeight>				PILLAR_WALL				= EnumProperty.create("pillar", WallHeight.class);
 
 	// Fountain - pool and TrickleWater
-	public static final BooleanProperty 						HAS_PILLAR = BooleanProperty.create("has_pillar");
+	public static final BooleanProperty							HAS_PILLAR				= BooleanProperty.create("has_pillar");
 	public static final BooleanProperty							FLOOR					= BooleanProperty.create("floor");
 
 	// Fountain - Faucet
 	public static final BooleanProperty							ACTIVATED				= BooleanProperty.create("activated");
 
-	public static final EnumProperty<VerticalLimitedConnection> NORTH_STATE				= EnumProperty.create("north_state", VerticalLimitedConnection.class);
-	public static final EnumProperty<VerticalLimitedConnection> EAST_STATE 				= EnumProperty.create("east_state", VerticalLimitedConnection.class);
-	public static final EnumProperty<VerticalLimitedConnection> SOUTH_STATE 			= EnumProperty.create("south_state", VerticalLimitedConnection.class);
-	public static final EnumProperty<VerticalLimitedConnection> WEST_STATE 				= EnumProperty.create("west_state", VerticalLimitedConnection.class);
+	public static final EnumProperty<VerticalLimitedConnection>	NORTH_STATE				= EnumProperty.create("north_state", VerticalLimitedConnection.class);
+	public static final EnumProperty<VerticalLimitedConnection>	EAST_STATE				= EnumProperty.create("east_state", VerticalLimitedConnection.class);
+	public static final EnumProperty<VerticalLimitedConnection>	SOUTH_STATE				= EnumProperty.create("south_state", VerticalLimitedConnection.class);
+	public static final EnumProperty<VerticalLimitedConnection>	WEST_STATE				= EnumProperty.create("west_state", VerticalLimitedConnection.class);
 
 	// Fountain - WaterJet
 
 	public static final BooleanProperty							LATERAL					= BooleanProperty.create("lateral");
 
-    public enum VerticalLimitedConnection implements IStringSerializable {
+	public enum VerticalLimitedConnection implements IStringSerializable {
 		NONE("none", 0), BOTTOM("bottom", 1), TOP("top", 2);
 
 		private final String	name;
