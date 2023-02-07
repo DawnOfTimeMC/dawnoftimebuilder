@@ -163,7 +163,7 @@ public class PoolBlock extends BlockDoTB {
 
 				if (potion.getEffects().size() <= 0) {
 					final int newLevel = blockStateIn.getValue(BlockStateProperties.LEVEL) - 1;
-					blockStateIn = blockStateIn.setValue(BlockStateProperties.LEVEL, newLevel >= 0 ? newLevel : 0);
+					blockStateIn = blockStateIn.setValue(BlockStateProperties.LEVEL, Math.max(newLevel, 0));
 
 					worldIn.setBlock(blockPosIn, blockStateIn, 10);
 

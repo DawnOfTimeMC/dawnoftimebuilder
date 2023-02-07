@@ -1,16 +1,28 @@
 {
     "multipart": [
         {   "apply": { "model": "dawnoftimebuilder:block/japanese/paper_wall_post" }},
-        {   "when": { "north": true },
+        {   "when": { "north": true, "bottom": true },
+            "apply": { "model": "dawnoftimebuilder:block/japanese/paper_wall_side_bottom" }
+        },
+        {   "when": { "east": true, "bottom": true },
+            "apply": { "model": "dawnoftimebuilder:block/japanese/paper_wall_side_bottom", "y": 90 }
+        },
+        {   "when": { "south": true, "bottom": true },
+            "apply": { "model": "dawnoftimebuilder:block/japanese/paper_wall_side_bottom", "y": 180 }
+        },
+        {   "when": { "west": true, "bottom": true},
+            "apply": { "model": "dawnoftimebuilder:block/japanese/paper_wall_side_bottom", "y": 270}
+        },
+        {   "when": { "north": true, "bottom": false },
             "apply": { "model": "dawnoftimebuilder:block/japanese/paper_wall_side" }
         },
-        {   "when": { "east": true },
+        {   "when": { "east": true, "bottom": false },
             "apply": { "model": "dawnoftimebuilder:block/japanese/paper_wall_side", "y": 90 }
         },
-        {   "when": { "south": true },
+        {   "when": { "south": true, "bottom": false },
             "apply": { "model": "dawnoftimebuilder:block/japanese/paper_wall_side", "y": 180 }
         },
-        {   "when": { "west": true },
+        {   "when": { "west": true, "bottom": false },
             "apply": { "model": "dawnoftimebuilder:block/japanese/paper_wall_side", "y": 270 }
         },
         {   "when": { "north": false },
