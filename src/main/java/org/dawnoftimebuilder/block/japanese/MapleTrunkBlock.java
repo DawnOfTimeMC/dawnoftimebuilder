@@ -2,6 +2,7 @@ package org.dawnoftimebuilder.block.japanese;
 
 import org.dawnoftimebuilder.block.ICustomBlockItem;
 import org.dawnoftimebuilder.block.templates.BlockDoTB;
+import org.dawnoftimebuilder.registry.DoTBBlocksRegistry;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -9,11 +10,13 @@ import net.minecraft.block.Blocks;
 import net.minecraft.block.material.PushReaction;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
@@ -105,6 +108,11 @@ public class MapleTrunkBlock extends BlockDoTB implements ICustomBlockItem {
 	@Override
 	public Item getCustomBlockItem() {
 		return null;
+	}
+
+	@Override
+	public ItemStack getPickBlock(final BlockState stateIn, final RayTraceResult targetIn, final IBlockReader worldIn, final BlockPos posIn, final PlayerEntity playerIn) {
+		return new ItemStack(DoTBBlocksRegistry.MAPLE_RED_SAPLING.get().asItem());
 	}
 
 	/**

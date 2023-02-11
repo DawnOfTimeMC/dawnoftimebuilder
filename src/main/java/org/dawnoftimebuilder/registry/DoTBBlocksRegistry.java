@@ -61,7 +61,54 @@ import org.dawnoftimebuilder.block.roman.CypressBlock;
 import org.dawnoftimebuilder.block.roman.MarbleBigFlowerPotBlock;
 import org.dawnoftimebuilder.block.roman.MarbleStatueBlock;
 import org.dawnoftimebuilder.block.roman.SandstoneColumnBlock;
-import org.dawnoftimebuilder.block.templates.*;
+import org.dawnoftimebuilder.block.templates.BalusterBlock;
+import org.dawnoftimebuilder.block.templates.BaseChimneyDoTB;
+import org.dawnoftimebuilder.block.templates.BeamBlock;
+import org.dawnoftimebuilder.block.templates.BlockDoTB;
+import org.dawnoftimebuilder.block.templates.BottomPaneBlockDoTB;
+import org.dawnoftimebuilder.block.templates.BushBlockDoT;
+import org.dawnoftimebuilder.block.templates.CandlestickBlock;
+import org.dawnoftimebuilder.block.templates.CappedWallBlock;
+import org.dawnoftimebuilder.block.templates.CarpetBlockDoTB;
+import org.dawnoftimebuilder.block.templates.DoorBlockDoTB;
+import org.dawnoftimebuilder.block.templates.DoubleCropsBlock;
+import org.dawnoftimebuilder.block.templates.DryerBlock;
+import org.dawnoftimebuilder.block.templates.EdgeBlock;
+import org.dawnoftimebuilder.block.templates.FaucetBlock;
+import org.dawnoftimebuilder.block.templates.FenceGateBlockDoTB;
+import org.dawnoftimebuilder.block.templates.FlowerPotBlockDoTB;
+import org.dawnoftimebuilder.block.templates.FoldingScreenBlock;
+import org.dawnoftimebuilder.block.templates.GrowingBushBlock;
+import org.dawnoftimebuilder.block.templates.HorizontalAxisBlockDoTB;
+import org.dawnoftimebuilder.block.templates.HorizontalBlockDoTB;
+import org.dawnoftimebuilder.block.templates.LatticeBlock;
+import org.dawnoftimebuilder.block.templates.MixedRoofSupportBlock;
+import org.dawnoftimebuilder.block.templates.MixedSlabBlock;
+import org.dawnoftimebuilder.block.templates.MultiblockFireplaceBlock;
+import org.dawnoftimebuilder.block.templates.NoItemBlock;
+import org.dawnoftimebuilder.block.templates.PaneBlockDoTB;
+import org.dawnoftimebuilder.block.templates.PergolaBlock;
+import org.dawnoftimebuilder.block.templates.PlanterBlock;
+import org.dawnoftimebuilder.block.templates.PlateBlock;
+import org.dawnoftimebuilder.block.templates.PoolBlock;
+import org.dawnoftimebuilder.block.templates.PortcullisBlock;
+import org.dawnoftimebuilder.block.templates.RotatedPillarBlockDoTB;
+import org.dawnoftimebuilder.block.templates.ShutterBlock;
+import org.dawnoftimebuilder.block.templates.SidedFlowerPotBlock;
+import org.dawnoftimebuilder.block.templates.SidedWindowBlock;
+import org.dawnoftimebuilder.block.templates.SlabBlockDoTB;
+import org.dawnoftimebuilder.block.templates.SmallPoolBlock;
+import org.dawnoftimebuilder.block.templates.SmallShutterBlock;
+import org.dawnoftimebuilder.block.templates.SoilCropsBlock;
+import org.dawnoftimebuilder.block.templates.StairsBlockDoTB;
+import org.dawnoftimebuilder.block.templates.SupportBeamBlock;
+import org.dawnoftimebuilder.block.templates.SupportSlabBlock;
+import org.dawnoftimebuilder.block.templates.WaterDoubleCropsBlock;
+import org.dawnoftimebuilder.block.templates.WaterJetBlock;
+import org.dawnoftimebuilder.block.templates.WaterMovingTrickleBlock;
+import org.dawnoftimebuilder.block.templates.WaterSourceTrickleBlock;
+import org.dawnoftimebuilder.block.templates.WaterTrickleBlock;
+import org.dawnoftimebuilder.block.templates.WildPlantBlock;
 import org.dawnoftimebuilder.item.IHasFlowerPot;
 import org.dawnoftimebuilder.util.DoTBFoods;
 
@@ -400,10 +447,8 @@ public class DoTBBlocksRegistry {
 	public static final RegistryObject<Block>	SANDSTONE_BOT_OCHRE_ROOF_TILES_TOP			= DoTBBlocksRegistry.reg("sandstone_bot_ochre_roof_tiles_top", new NoItemBlock(AbstractBlock.Properties.copy(Blocks.BRICKS)));
 	public static final RegistryObject<Block>	CUT_SANDSTONE_BOT_OCHRE_ROOF_TILES_TOP		= DoTBBlocksRegistry.reg("cut_sandstone_bot_ochre_roof_tiles_top", new NoItemBlock(AbstractBlock.Properties.copy(Blocks.BRICKS)));
 	public static final RegistryObject<Block>	SMOOTH_SANDSTONE_BOT_OCHRE_ROOF_TILES_TOP	= DoTBBlocksRegistry.reg("smooth_sandstone_bot_ochre_roof_tiles_top", new NoItemBlock(AbstractBlock.Properties.copy(Blocks.BRICKS)));
-	public static final RegistryObject<Block>	OCHRE_ROOF_TILES_SLAB						= DoTBBlocksRegistry.reg("ochre_roof_tiles_slab", new MixedSlabBlock(AbstractBlock.Properties.copy(Blocks.BRICKS))
-																									.addMixedBlockRecipe(Blocks.SANDSTONE_SLAB, DoTBBlocksRegistry.SANDSTONE_BOT_OCHRE_ROOF_TILES_TOP, false)
-																									.addMixedBlockRecipe(Blocks.CUT_SANDSTONE_SLAB, DoTBBlocksRegistry.CUT_SANDSTONE_BOT_OCHRE_ROOF_TILES_TOP, false)
-																									.addMixedBlockRecipe(Blocks.SMOOTH_SANDSTONE_SLAB, DoTBBlocksRegistry.SMOOTH_SANDSTONE_BOT_OCHRE_ROOF_TILES_TOP, false));
+	public static final RegistryObject<Block>	OCHRE_ROOF_TILES_SLAB						= DoTBBlocksRegistry.reg("ochre_roof_tiles_slab",
+			new MixedSlabBlock(AbstractBlock.Properties.copy(Blocks.BRICKS)).addMixedBlockRecipe(Blocks.SANDSTONE_SLAB, DoTBBlocksRegistry.SANDSTONE_BOT_OCHRE_ROOF_TILES_TOP, false).addMixedBlockRecipe(Blocks.CUT_SANDSTONE_SLAB, DoTBBlocksRegistry.CUT_SANDSTONE_BOT_OCHRE_ROOF_TILES_TOP, false).addMixedBlockRecipe(Blocks.SMOOTH_SANDSTONE_SLAB, DoTBBlocksRegistry.SMOOTH_SANDSTONE_BOT_OCHRE_ROOF_TILES_TOP, false));
 	public static final RegistryObject<Block>	SANDSTONE_COLUMN							= DoTBBlocksRegistry.reg("sandstone_column", new SandstoneColumnBlock(AbstractBlock.Properties.copy(Blocks.SANDSTONE)));
 	public static final RegistryObject<Block>	COVERED_SANDSTONE_WALL						= DoTBBlocksRegistry.reg("covered_sandstone_wall", new CappedWallBlock(AbstractBlock.Properties.copy(Blocks.SANDSTONE)));
 	public static final RegistryObject<Block>	MOSAIC_FLOOR								= DoTBBlocksRegistry.reg("mosaic_floor", new BlockDoTB(AbstractBlock.Properties.copy(Blocks.SANDSTONE)));
