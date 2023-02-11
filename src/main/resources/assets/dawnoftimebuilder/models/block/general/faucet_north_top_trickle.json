@@ -1,7 +1,7 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"1": "block/water_still",
+		"1": "block/water_flow",
 		"particle": "dawnoftimebuilder:block/transparent"
 	},
 	"elements": [

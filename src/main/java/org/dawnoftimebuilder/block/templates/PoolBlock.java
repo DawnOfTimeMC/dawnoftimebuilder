@@ -40,7 +40,13 @@ public class PoolBlock extends BlockDoTB {
 
 	public PoolBlock(final Properties propertiesIn) {
 		super(propertiesIn);
-		this.registerDefaultState(this.defaultBlockState().setValue(BlockStateProperties.NORTH, false).setValue(BlockStateProperties.EAST, false).setValue(BlockStateProperties.SOUTH, false).setValue(BlockStateProperties.WEST, false).setValue(DoTBBlockStateProperties.HAS_PILLAR, false).setValue(BlockStateProperties.LEVEL, 0));
+		this.registerDefaultState(this.defaultBlockState()
+				.setValue(BlockStateProperties.NORTH, false)
+				.setValue(BlockStateProperties.EAST, false)
+				.setValue(BlockStateProperties.SOUTH, false)
+				.setValue(BlockStateProperties.WEST, false)
+				.setValue(DoTBBlockStateProperties.HAS_PILLAR, false)
+				.setValue(BlockStateProperties.LEVEL, 0));
 	}
 
 	@Override
@@ -173,7 +179,7 @@ public class PoolBlock extends BlockDoTB {
 					}
 				}
 			}
-			else if (((BucketItem) itemStack.getItem()).getFluid() instanceof EmptyFluid) {
+			else if (itemStack.getItem() instanceof BucketItem && ((BucketItem) itemStack.getItem()).getFluid() instanceof EmptyFluid) {
 				PoolBlock.REMOVE_WATER_MAP.clear();
 				if (PoolBlock.removeWater(PoolBlock.REMOVE_WATER_MAP, blockStateIn, blockPosIn, worldIn, 0, 0)) {
 					return ActionResultType.SUCCESS;

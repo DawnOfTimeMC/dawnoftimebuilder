@@ -5,8 +5,16 @@
 			"apply": { "model": "dawnoftimebuilder:block/german/stone_bricks_faucet_up" }
 		},
 		{
+			"when": { "up": "true", "activated": "true" },
+			"apply": { "model": "dawnoftimebuilder:block/general/faucet_up_trickle"}
+		},
+		{
 			"when": { "down": "true" },
 			"apply": { "model": "dawnoftimebuilder:block/german/stone_bricks_faucet_down" }
+		},
+		{
+			"when": { "down": "true", "activated": "true" },
+			"apply": { "model": "dawnoftimebuilder:block/general/faucet_down_trickle"}
 		},
 		{
 			"when": { "north_state": "bottom" },
@@ -14,7 +22,7 @@
 		},
 		{
 			"when": { "north_state": "bottom", "activated": "true" },
-			"apply": { "model": "dawnoftimebuilder:block/german/stone_bricks_faucet_north_bottom_trickle"}
+			"apply": { "model": "dawnoftimebuilder:block/general/faucet_north_bottom_trickle"}
 		},
 		{
 			"when": { "north_state": "top" },
@@ -22,7 +30,7 @@
 		},
 		{
 			"when": { "north_state": "top", "activated": "true" },
-			"apply": { "model": "dawnoftimebuilder:block/german/stone_bricks_faucet_north_top_trickle"}
+			"apply": { "model": "dawnoftimebuilder:block/general/faucet_north_top_trickle"}
 		},
 		{
 			"when": { "east_state": "bottom" },
@@ -30,7 +38,7 @@
 		},
 		{
 			"when": { "east_state": "bottom", "activated": "true" },
-			"apply": { "model": "dawnoftimebuilder:block/german/stone_bricks_faucet_north_bottom_trickle", "y": 90}
+			"apply": { "model": "dawnoftimebuilder:block/general/faucet_north_bottom_trickle", "y": 90}
 		},
 		{
 			"when": { "east_state": "top" },
@@ -38,7 +46,7 @@
 		},
 		{
 			"when": { "east_state": "top", "activated": "true" },
-			"apply": { "model": "dawnoftimebuilder:block/german/stone_bricks_faucet_north_top_trickle", "y": 90}
+			"apply": { "model": "dawnoftimebuilder:block/general/faucet_north_top_trickle", "y": 90}
 		},
 		{
 			"when": { "south_state": "bottom" },
@@ -46,7 +54,7 @@
 		},
 		{
 			"when": { "south_state": "bottom", "activated": "true" },
-			"apply": { "model": "dawnoftimebuilder:block/german/stone_bricks_faucet_north_bottom_trickle", "y": 180}
+			"apply": { "model": "dawnoftimebuilder:block/general/faucet_north_bottom_trickle", "y": 180}
 		},
 		{
 			"when": { "south_state": "top" },
@@ -54,7 +62,7 @@
 		},
 		{
 			"when": { "south_state": "top", "activated": "true" },
-			"apply": { "model": "dawnoftimebuilder:block/german/stone_bricks_faucet_north_top_trickle", "y": 180}
+			"apply": { "model": "dawnoftimebuilder:block/general/faucet_north_top_trickle", "y": 180}
 		},
 		{
 			"when": { "west_state": "bottom" },
@@ -62,7 +70,7 @@
 		},
 		{
 			"when": { "west_state": "bottom", "activated": "true" },
-			"apply": { "model": "dawnoftimebuilder:block/german/stone_bricks_faucet_north_bottom_trickle", "y": 270}
+			"apply": { "model": "dawnoftimebuilder:block/general/faucet_north_bottom_trickle", "y": 270}
 		},
 		{
 			"when": { "west_state": "top" },
@@ -70,7 +78,7 @@
 		},
 		{
 			"when": { "west_state": "top", "activated": "true" },
-			"apply": { "model": "dawnoftimebuilder:block/german/stone_bricks_faucet_north_top_trickle", "y": 270}
+			"apply": { "model": "dawnoftimebuilder:block/general/faucet_north_top_trickle", "y": 270}
 		}
 	]
 }

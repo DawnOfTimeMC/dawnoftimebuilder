@@ -211,11 +211,11 @@ public class DoTBConfig {
 		DoTBConfig.CYPRESS_ROLLS		= DoTBConfig.COMMON_BUILDER.comment("For each spawn zone, a position will be chose x times to place this plant, with x the following value :").defineInRange("cypressRolls", 15, 1, 200);
 		DoTBConfig.COMMON_BUILDER.pop();
 		DoTBConfig.COMMON_BUILDER.push("red_maple");
-		DoTBConfig.RED_MAPLE_GENERATION	= DoTBConfig.COMMON_BUILDER.comment("List of biomes where this plant should spawn during world generation (must be empty if the plant must not spawn :").define("redMapleBiomes", Arrays.asList("minecraft:taiga", "minecraft:taiga_hills", "minecraft:giant_tree_taiga", "minecraft:giant_tree_taiga_hills", "minecraft:giant_spruce_taiga", "minecraft:giant_spruce_taiga_hills"), obj -> true);
-		DoTBConfig.RED_MAPLE_ROLLS		= DoTBConfig.COMMON_BUILDER.comment("For each spawn zone, a position will be chose x times to place this plant, with x the following value :").defineInRange("redMapleRolls", 15, 1, 200);
+		DoTBConfig.RED_MAPLE_GENERATION	= DoTBConfig.COMMON_BUILDER.comment("List of biomes where this plant should spawn during world generation (must be empty if the plant must not spawn :").define("redMapleBiomes", Arrays.asList("minecraft:flower_forest", "minecraft:taiga", "minecraft:taiga_hills", "minecraft:giant_tree_taiga", "minecraft:giant_tree_taiga_hills", "minecraft:giant_spruce_taiga", "minecraft:giant_spruce_taiga_hills"), obj -> true);
+		DoTBConfig.RED_MAPLE_ROLLS		= DoTBConfig.COMMON_BUILDER.comment("For each spawn zone, a position will be chose x times to place this plant, with x the following value :").defineInRange("redMapleRolls", 5, 1, 200);
 		DoTBConfig.COMMON_BUILDER.pop();
 		DoTBConfig.COMMON_BUILDER.push("boxwood_bush");
-		DoTBConfig.BOXWOOD_BUSH_GENERATION	= DoTBConfig.COMMON_BUILDER.comment("List of biomes where this plant should spawn during world generation (must be empty if the plant must not spawn :").define("boxwoodBushBiomes", Arrays.asList("minecraft:taiga", "minecraft:taiga_hills", "minecraft:giant_tree_taiga", "minecraft:giant_tree_taiga_hills", "minecraft:giant_spruce_taiga", "minecraft:giant_spruce_taiga_hills"), obj -> true);
+		DoTBConfig.BOXWOOD_BUSH_GENERATION	= DoTBConfig.COMMON_BUILDER.comment("List of biomes where this plant should spawn during world generation (must be empty if the plant must not spawn :").define("boxwoodBushBiomes", Arrays.asList("minecraft:flower_forest", "minecraft:forest", "minecraft:wooded_hills"), obj -> true);
 		DoTBConfig.BOXWOOD_BUSH_ROLLS		= DoTBConfig.COMMON_BUILDER.comment("For each spawn zone, a position will be chose x times to place this plant, with x the following value :").defineInRange("boxwoodBushRolls", 15, 1, 200);
 		DoTBConfig.COMMON_BUILDER.pop();
 		DoTBConfig.COMMON_BUILDER.push("mulberry");
