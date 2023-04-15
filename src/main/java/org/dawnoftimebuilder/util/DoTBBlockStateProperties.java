@@ -1,5 +1,6 @@
 package org.dawnoftimebuilder.util;
 
+import org.dawnoftimebuilder.registry.DoTBBlocksRegistry;
 import org.dawnoftimebuilder.registry.DoTBItemsRegistry;
 
 import net.minecraft.block.Blocks;
@@ -321,8 +322,9 @@ public class DoTBBlockStateProperties {
 	}
 
 	public enum ClimbingPlant implements IStringSerializable {
-		NONE("none"), VINE("vine"),
-		//IVY("ivy"),
+		NONE("none"),
+		VINE("vine"),
+		IVY("ivy"),
 		GRAPE("grape", true, 4, 6, 0, 2, 2);
 		//CLEMATIS("clematis", true, 4, 5, 1, 2, 2);
 
@@ -391,7 +393,9 @@ public class DoTBBlockStateProperties {
 			if (item == Blocks.VINE.asItem()) {
 				return VINE;
 			}
-			//if(item == Blocks.IVY.asItem()) return IVY;
+			if(item == DoTBBlocksRegistry.IVY.get().asItem()){
+				return IVY;
+			}
 			return NONE;
 		}
 	}

@@ -17,7 +17,7 @@ import javax.annotation.Nullable;
 
 import static net.minecraftforge.common.Tags.Blocks.DIRT;
 
-public class WildPlantBlock extends BlockDoTB{
+public class WildPlantBlock extends BlockDoTB {
 
     private final VoxelShape VS = Block.box(2.0D, 0.0D, 2.0D, 14.0D, 14.0D, 14.0D);
 

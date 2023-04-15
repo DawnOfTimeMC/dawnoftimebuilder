@@ -1,8 +1,16 @@
 package org.dawnoftimebuilder.registry;
 
-import java.util.HashMap;
-import java.util.function.ToIntFunction;
-
+import net.minecraft.block.*;
+import net.minecraft.block.material.Material;
+import net.minecraft.block.material.MaterialColor;
+import net.minecraft.item.BlockItem;
+import net.minecraft.item.DyeColor;
+import net.minecraft.item.Item;
+import net.minecraft.state.properties.BlockStateProperties;
+import net.minecraftforge.common.PlantType;
+import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
 import org.dawnoftimebuilder.DawnOfTimeBuilder;
 import org.dawnoftimebuilder.block.ICustomBlockItem;
 import org.dawnoftimebuilder.block.french.LimestoneChimneyBlock;
@@ -10,84 +18,21 @@ import org.dawnoftimebuilder.block.french.LimestoneGargoyleBlock;
 import org.dawnoftimebuilder.block.french.ReinforcedIronFenceBlock;
 import org.dawnoftimebuilder.block.general.FireplaceBlock;
 import org.dawnoftimebuilder.block.general.IronFenceBlock;
-import org.dawnoftimebuilder.block.german.GeraniumBlock;
-import org.dawnoftimebuilder.block.german.IvyBlock;
-import org.dawnoftimebuilder.block.german.LatticeStoneBricksWindowBlock;
-import org.dawnoftimebuilder.block.german.StoneBricksArrowslitBlock;
-import org.dawnoftimebuilder.block.german.StoneBricksMachicolationBlock;
-import org.dawnoftimebuilder.block.german.WaxedOakChairBlock;
-import org.dawnoftimebuilder.block.german.WaxedOakChandelierBlock;
-import org.dawnoftimebuilder.block.german.WaxedOakTableBlock;
-import org.dawnoftimebuilder.block.german.WaxedOakTimberFrameCornerBlock;
-import org.dawnoftimebuilder.block.japanese.CastIronTeacupBlock;
-import org.dawnoftimebuilder.block.japanese.CastIronTeapotBlock;
-import org.dawnoftimebuilder.block.japanese.CharredSpruceFancyRailingBlock;
-import org.dawnoftimebuilder.block.japanese.CharredSpruceRailingBlock;
-import org.dawnoftimebuilder.block.japanese.CharredSpruceShuttersBlock;
-import org.dawnoftimebuilder.block.japanese.CharredSpruceTallShuttersBlock;
-import org.dawnoftimebuilder.block.japanese.FutonBlock;
-import org.dawnoftimebuilder.block.japanese.IroriFireplaceBlock;
-import org.dawnoftimebuilder.block.japanese.LittleFlagBlock;
-import org.dawnoftimebuilder.block.japanese.MapleLeavesBlock;
-import org.dawnoftimebuilder.block.japanese.MapleSaplingBlock;
-import org.dawnoftimebuilder.block.japanese.MapleTrunkBlock;
-import org.dawnoftimebuilder.block.japanese.MulberryBlock;
-import org.dawnoftimebuilder.block.japanese.PaperDoorBlock;
-import org.dawnoftimebuilder.block.japanese.PaperLampBlock;
-import org.dawnoftimebuilder.block.japanese.PaperLanternBlock;
-import org.dawnoftimebuilder.block.japanese.PausedMapleSaplingBlock;
-import org.dawnoftimebuilder.block.japanese.SakeBottleBlock;
-import org.dawnoftimebuilder.block.japanese.SakeCupBlock;
-import org.dawnoftimebuilder.block.japanese.SmallTatamiFloorBlock;
-import org.dawnoftimebuilder.block.japanese.SmallTatamiMatBlock;
-import org.dawnoftimebuilder.block.japanese.SpruceLeglessChairBlock;
-import org.dawnoftimebuilder.block.japanese.SpruceLowTableBlock;
-import org.dawnoftimebuilder.block.japanese.StickBundleBlock;
-import org.dawnoftimebuilder.block.japanese.StoneLanternBlock;
-import org.dawnoftimebuilder.block.japanese.TatamiFloorBlock;
-import org.dawnoftimebuilder.block.japanese.TatamiMatBlock;
-import org.dawnoftimebuilder.block.precolumbian.FeatheredSerpentSculptureBlock;
-import org.dawnoftimebuilder.block.precolumbian.GreenSculptedPlasteredStoneFriezeBlock;
-import org.dawnoftimebuilder.block.precolumbian.PlasteredStoneColumnBlock;
-import org.dawnoftimebuilder.block.precolumbian.PlasteredStoneCressetBlock;
-import org.dawnoftimebuilder.block.precolumbian.PlasteredStoneWindowBlock;
-import org.dawnoftimebuilder.block.precolumbian.RedSculptedPlasteredStoneFriezeBlock;
-import org.dawnoftimebuilder.block.precolumbian.SerpentSculptedColumnBlock;
-import org.dawnoftimebuilder.block.precolumbian.WildMaizeBlock;
-import org.dawnoftimebuilder.block.roman.BigFlowerPotBlock;
-import org.dawnoftimebuilder.block.roman.BirchCouchBlock;
-import org.dawnoftimebuilder.block.roman.BirchFootstoolBlock;
-import org.dawnoftimebuilder.block.roman.CypressBlock;
-import org.dawnoftimebuilder.block.roman.MarbleBigFlowerPotBlock;
-import org.dawnoftimebuilder.block.roman.MarbleStatueBlock;
-import org.dawnoftimebuilder.block.roman.SandstoneColumnBlock;
+import org.dawnoftimebuilder.block.german.*;
+import org.dawnoftimebuilder.block.japanese.*;
+import org.dawnoftimebuilder.block.precolumbian.*;
+import org.dawnoftimebuilder.block.roman.*;
+import org.dawnoftimebuilder.block.templates.FaucetBlock;
+import org.dawnoftimebuilder.block.templates.WaterJetBlock;
+import org.dawnoftimebuilder.block.templates.WaterMovingTrickleBlock;
+import org.dawnoftimebuilder.block.templates.WaterSourceTrickleBlock;
+import org.dawnoftimebuilder.block.templates.WaterTrickleBlock;
 import org.dawnoftimebuilder.block.templates.*;
 import org.dawnoftimebuilder.item.IHasFlowerPot;
 import org.dawnoftimebuilder.util.DoTBFoods;
 
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.FenceBlock;
-import net.minecraft.block.GlassBlock;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.StairsBlock;
-import net.minecraft.block.TrapDoorBlock;
-import net.minecraft.block.WallBlock;
-import net.minecraft.block.material.Material;
-import net.minecraft.block.material.MaterialColor;
-import net.minecraft.entity.EntityType;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.DyeColor;
-import net.minecraft.item.Item;
-import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockReader;
-import net.minecraftforge.common.PlantType;
-import net.minecraftforge.fml.RegistryObject;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
+import java.util.HashMap;
+import java.util.function.ToIntFunction;
 
 public class DoTBBlocksRegistry {
 
@@ -253,13 +198,12 @@ public class DoTBBlocksRegistry {
 	public static final RegistryObject<Block>	WAXED_OAK_CHAIR								= DoTBBlocksRegistry.reg("waxed_oak_chair", new WaxedOakChairBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F, 5.0F).sound(SoundType.WOOD).noOcclusion(), 11.0F));
 	public static final RegistryObject<Block>	WAXED_OAK_TABLE								= DoTBBlocksRegistry.reg("waxed_oak_table", new WaxedOakTableBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F, 5.0F).sound(SoundType.WOOD).noOcclusion()));
 	public static final RegistryObject<Block>	IVY											= DoTBBlocksRegistry.reg("ivy", new IvyBlock(AbstractBlock.Properties.of(Material.REPLACEABLE_PLANT).noCollission().randomTicks().strength(0.2F).sound(SoundType.VINE)));
-	// TODO flowerpot for ivy
 	public static final RegistryObject<Block>	GERANIUM_PINK								= DoTBBlocksRegistry.reg("geranium_pink", new GeraniumBlock(AbstractBlock.Properties.of(Material.PLANT).noCollission().instabreak().sound(SoundType.GRASS)));
 	public static final RegistryObject<Block>	PLANTER_GERANIUM_PINK						= DoTBBlocksRegistry.reg("planter_geranium_pink", new PlanterBlock(AbstractBlock.Properties.of(Material.CLAY).strength(0.6F).noOcclusion()));
 	public static final RegistryObject<Block>	STONE_BRICKS_POOL							= DoTBBlocksRegistry.reg("stone_bricks_pool", new PoolBlock(AbstractBlock.Properties.copy(Blocks.STONE)));
 	public static final RegistryObject<Block>	STONE_BRICKS_SMALL_POOL						= DoTBBlocksRegistry.reg("stone_bricks_small_pool", new SmallPoolBlock(AbstractBlock.Properties.copy(Blocks.STONE)));
-	public static final RegistryObject<Block>	STONE_BRICKS_FAUCET							= DoTBBlocksRegistry.reg("stone_bricks_faucet", new FaucetBlock(AbstractBlock.Properties.of(Material.GRASS).noOcclusion().noCollission()));
-	public static final RegistryObject<Block>	STONE_BRICKS_WATER_JET						= DoTBBlocksRegistry.reg("stone_bricks_water_jet", new WaterJetBlock(AbstractBlock.Properties.copy(Blocks.STONE)));
+	public static final RegistryObject<Block>	STONE_BRICKS_FAUCET							= DoTBBlocksRegistry.reg("stone_bricks_faucet", new FaucetBlock(AbstractBlock.Properties.of(Material.STONE).noOcclusion().noCollission()));
+	public static final RegistryObject<Block>	STONE_BRICKS_WATER_JET						= DoTBBlocksRegistry.reg("stone_bricks_water_jet", new WaterJetBlock(AbstractBlock.Properties.copy(Blocks.STONE).noOcclusion().noCollission()));
 	public static final RegistryObject<Block>	WATER_TRICKLE								= DoTBBlocksRegistry.reg("water_trickle", new WaterTrickleBlock(AbstractBlock.Properties.copy(Blocks.STONE)));
 	public static final RegistryObject<Block>	WATER_MOVING_TRICKLE						= DoTBBlocksRegistry.reg("water_moving_trickle", new WaterMovingTrickleBlock(AbstractBlock.Properties.copy(Blocks.STONE).randomTicks()));
 	public static final RegistryObject<Block>	WATER_SOURCE_TRICKLE						= DoTBBlocksRegistry.reg("water_source_trickle", new WaterSourceTrickleBlock(AbstractBlock.Properties.copy(Blocks.STONE).randomTicks()));
@@ -417,22 +361,30 @@ public class DoTBBlocksRegistry {
 	public static final RegistryObject<Block>	BIG_FLOWER_POT								= DoTBBlocksRegistry.reg("big_flower_pot", new BigFlowerPotBlock(AbstractBlock.Properties.copy(Blocks.CLAY)));
 	public static final RegistryObject<Block>	MARBLE_BIG_FLOWER_POT						= DoTBBlocksRegistry.reg("marble_big_flower_pot", new MarbleBigFlowerPotBlock(AbstractBlock.Properties.copy(Blocks.SANDSTONE)));
 
+	/**
+	 * A utility method to register a Block and its corresponding Item.
+	 * By default, creates a BlockItem for the block passed in parameter.
+	 * If the given Block is an instance of ICustomBlockItem, the custom Item is retrieved and registered (if not null).
+	 * If the Item implements IHasFlowerPot, a new FlowerPotBlock and its corresponding BlockItem will be also registered.
+	 * @param name  the name to register the Block and Item with
+	 * @param block the Block to register
+	 * @return the registered Block as a RegistryObject
+	 */
 	private static RegistryObject<Block> reg(final String name, final Block block) {
-		Item	item;
-		String	itemName	= null;
+		Item item;
+		String itemName = null;
 		if (block instanceof ICustomBlockItem) {
-			item		= ((ICustomBlockItem) block).getCustomBlockItem();
-			itemName	= ((ICustomBlockItem) block).getCustomItemName();
-		}
-		else {
+			item = ((ICustomBlockItem) block).getCustomBlockItem();
+			itemName = ((ICustomBlockItem) block).getCustomItemName();
+		} else {
 			item = new BlockItem(block, new Item.Properties().tab(DawnOfTimeBuilder.DOTB_TAB));
 		}
 		if (item != null) {
 			if (item instanceof IHasFlowerPot) {
 				final IHasFlowerPot itemForPot = (IHasFlowerPot) item;
 				if (itemForPot.hasFlowerPot()) {
-					final String				potName		= name + "_flower_pot";
-					final FlowerPotBlockDoTB	potBlock	= itemForPot.makeFlowerPotInstance(item);
+					final String potName = name + "_flower_pot";
+					final FlowerPotBlockDoTB potBlock = itemForPot.makeFlowerPotInstance(item);
 					itemForPot.setPotBlock(potBlock);
 					DoTBBlocksRegistry.finalReg(potName, potBlock);
 					DoTBItemsRegistry.finalReg(potName, new BlockItem(potBlock, new Item.Properties().tab(DawnOfTimeBuilder.DOTB_TAB)));
@@ -450,15 +402,5 @@ public class DoTBBlocksRegistry {
 
 	private static ToIntFunction<BlockState> litBlockEmission(final int lightValue) {
 		return state -> state.getValue(BlockStateProperties.LIT) ? lightValue : 0;
-	}
-
-	@SuppressWarnings("unused")
-	private static Boolean ocelotOrParrot(final BlockState p_235441_0_, final IBlockReader p_235441_1_, final BlockPos p_235441_2_, final EntityType<?> p_235441_3_) {
-		return p_235441_3_ == EntityType.OCELOT || p_235441_3_ == EntityType.PARROT;
-	}
-
-	@SuppressWarnings("unused")
-	private static boolean never(final BlockState p_235436_0_, final IBlockReader p_235436_1_, final BlockPos p_235436_2_) {
-		return false;
 	}
 }

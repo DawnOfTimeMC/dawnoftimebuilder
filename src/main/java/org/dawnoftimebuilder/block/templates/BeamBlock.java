@@ -202,13 +202,16 @@ public class BeamBlock extends WaterloggedBlock implements IBlockPillar, IBlockC
 			}
 		}
 		if(player.isCreative()){
-			if(this.tryPlacingPlant(state, worldIn, pos, player, handIn)) return ActionResultType.SUCCESS;
+			if(this.tryPlacingPlant(state, worldIn, pos, player, handIn)){
+				return ActionResultType.SUCCESS;
+			}
 		}
 		if(this.harvestPlant(state, worldIn, pos, player, handIn) == ActionResultType.SUCCESS){
 			return ActionResultType.SUCCESS;
 		}
 		if(player.isCrouching() && state.getValue(BOTTOM)){
 			worldIn.setBlock(pos, state.setValue(BOTTOM, false), 10);
+			return ActionResultType.SUCCESS;
 		}
 		return ActionResultType.PASS;
 	}

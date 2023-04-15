@@ -3,9 +3,11 @@ package org.dawnoftimebuilder.block.german;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.material.PushReaction;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.state.BooleanProperty;
@@ -27,17 +29,21 @@ import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.ForgeHooks;
 import org.dawnoftimebuilder.DoTBConfig;
+import org.dawnoftimebuilder.block.ICustomBlockItem;
 import org.dawnoftimebuilder.block.templates.BlockDoTB;
+import org.dawnoftimebuilder.item.templates.PotAndBlockItem;
 import org.dawnoftimebuilder.util.DoTBBlockUtils;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Random;
 
 import static net.minecraft.tags.BlockTags.SAND;
 import static net.minecraftforge.common.Tags.Blocks.DIRT;
 import static net.minecraftforge.common.Tags.Blocks.GRAVEL;
+import static org.dawnoftimebuilder.DawnOfTimeBuilder.DOTB_TAB;
 
-public class IvyBlock extends BlockDoTB {
+public class IvyBlock extends BlockDoTB implements ICustomBlockItem {
 
     public static final BooleanProperty NORTH = BlockStateProperties.NORTH;
     public static final BooleanProperty EAST = BlockStateProperties.EAST;
@@ -296,5 +302,16 @@ public class IvyBlock extends BlockDoTB {
     @Override
     public boolean isLadder(BlockState state, IWorldReader world, BlockPos pos, LivingEntity entity) {
         return true;
+    }
+
+    @Nullable
+    @Override
+    public Item getCustomBlockItem() {
+        return new PotAndBlockItem(this, new Item.Properties().tab(DOTB_TAB));
+    }
+
+    @Override
+    public PushReaction getPistonPushReaction(BlockState state) {
+        return PushReaction.DESTROY;
     }
 }
