@@ -61,7 +61,7 @@ public class MapleSaplingBlock extends BushBlockDoT implements IBlockGeneration,
 				for (int z = -1; z <= 1; z++) {
 					state = worldIn.getBlockState(bottomCenterIn.offset(x, y + 1, z));
 
-					if ((state != null) && !(state.getBlock() instanceof AirBlock)) {
+					if (state != null && !(state.getBlock() instanceof AirBlock)) {
 						return false;
 					}
 				}
