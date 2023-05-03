@@ -57,6 +57,7 @@ public class DoTBBlockStateProperties {
 	// Fountain - WaterJet
 
 	public static final BooleanProperty							LATERAL					= BooleanProperty.create("lateral");
+	   public static final IntegerProperty LEVEL = IntegerProperty.create("level", 0, 16);
 
 	public enum VerticalLimitedConnection implements IStringSerializable {
 		NONE("none", 0), BOTTOM("bottom", 1), TOP("top", 2);

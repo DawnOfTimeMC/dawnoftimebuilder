@@ -51,6 +51,7 @@ public class DawnOfTimeBuilder {
 		final IEventBus forgeBus = MinecraftForge.EVENT_BUS;
 		forgeBus.addListener(EventPriority.HIGH, HandlerCommon::biomeLoadingEvent);
 
+
 	}
 }
 //TODO Vérifier le fichier config qui spammerait la console sur server

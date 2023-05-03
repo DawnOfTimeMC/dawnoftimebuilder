@@ -9,6 +9,7 @@ import org.dawnoftimebuilder.block.templates.WaterloggedBlock;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.FireChargeItem;
@@ -58,6 +59,7 @@ public class DoTBBlockUtils {
 	public static final String							TOOLTIP_CROP			= "crop";
 	public static final String							TOOLTIP_INVERT_GROWTH	= "invert_growth";
 	public static final String							TOOLTIP_SIDED_WINDOW	= "sided_window";
+	public static final String					FIREPLACE				= "fireplace";
 
 	//Item tags
 	public static final Tags.IOptionalNamedTag<Item>	LIGHTERS				= ItemTags.createOptional(new ResourceLocation(DawnOfTimeBuilder.MOD_ID, "lighters"));
@@ -148,38 +150,83 @@ public class DoTBBlockUtils {
 		return false;
 	}
 
+	/**
+	 * Checks if the player can light the block. If yes, damages the item is player is not in creative mod used and display the sound.
+	 * @param worldIn World of the Block.
+	 * @param pos Position of the Block.
+	 * @param player Player that clicks on the Block.
+	 * @param handIn Player's hand.
+	 * @return True if the block is now in fire. False otherwise.
+	 */
+	public static boolean useLighterAndDamageItemIfPlayerIsNotCreative(final World worldIn, final BlockPos pos, final PlayerEntity player, final Hand handIn) {
+		final ItemStack itemInHand = player.getItemInHand(handIn);
+		if (!itemInHand.isEmpty() && itemInHand.getItem().is(DoTBBlockUtils.LIGHTERS)) {
+			worldIn.playSound(null, pos, SoundEvents.FLINTANDSTEEL_USE, SoundCategory.BLOCKS, 1.0F, 1.0F);
+			if(!player.isCreative())
+				itemInHand.hurtAndBreak(1, player, p -> p.broadcastBreakEvent(handIn));
+			return true;
+		}
+		return false;
+	}
+
 	public final static boolean useFireActivatorOnBlockIfPossible(final BlockState blockstateIn, final World worldIn, final BlockPos pos, final PlayerEntity player, final Hand handIn) {
 		if (blockstateIn.getValue(WaterloggedBlock.WATERLOGGED)) {
 			return false;
 		}
-		if (player.getMainHandItem().getItem() instanceof FireChargeItem) {
-			if (player.isCreative()) {
-				player.getMainHandItem().shrink(1);
+		final ItemStack itemStackInHand = player.getItemInHand(handIn);
+		if(!itemStackInHand.isEmpty())
+		{
+			final Item itemInHand = itemStackInHand.getItem();
+			if (itemInHand instanceof FireChargeItem)
+			{
+				if (!player.isCreative()) {
+					player.getMainHandItem().shrink(1);
+				}
+
+				return true;
 			}
-			return true;
+			else if (itemInHand.getItem().is(DoTBBlockUtils.LIGHTERS))
+			{
+				worldIn.playSound(null, pos, SoundEvents.FLINTANDSTEEL_USE, SoundCategory.BLOCKS, 1.0F, 1.0F);
+				if(!player.isCreative())
+				{
+					itemStackInHand.hurtAndBreak(1, player, p -> p.broadcastBreakEvent(handIn));
+				}
+				return true;
+			}
 		}
 
-		return DoTBBlockUtils.useLighter(worldIn, pos, player, handIn);
+		return false;
 	}
 
-	public final static boolean useFireStopperIfPossible(final PlayerEntity playerEntityIn) {
-		final ItemStack mainItemStack = playerEntityIn.getMainHandItem();
-		if (playerEntityIn.isCreative()) {
+	public final static boolean useFireStopperIfPossible(final BlockState blockstateIn, final World worldIn, final BlockPos pos, final PlayerEntity player, final Hand handIn) {
+		final ItemStack mainItemStack = player.getMainHandItem();
+		if (player.isCreative()) {
+			return true;
+		}
+		if(mainItemStack.isEmpty())
+			return false;
+		if (mainItemStack.getItem().is(DoTBBlockUtils.LIGHTERS))
+		{
+			worldIn.playSound(null, pos, SoundEvents.FLINTANDSTEEL_USE, SoundCategory.BLOCKS, 1.0F, 1.0F);
+			if(!player.isCreative())
+			{
+				mainItemStack.hurtAndBreak(1, player, p -> p.broadcastBreakEvent(handIn));
+			}
 			return true;
 		}
 		if (mainItemStack.getItem() instanceof PotionItem && !(mainItemStack.getItem() instanceof SplashPotionItem)) {
 			final Potion potion = PotionUtils.getPotion(mainItemStack);
 
 			if (potion != null && potion.getEffects().size() <= 0) {
-				playerEntityIn.getMainHandItem().shrink(1);
-				playerEntityIn.inventory.add(new ItemStack(Items.GLASS_BOTTLE));
+				player.getMainHandItem().shrink(1);
+				player.inventory.add(new ItemStack(Items.GLASS_BOTTLE));
 
 				return true;
 			}
 		}
 		else if (mainItemStack.getItem() instanceof SnowballItem) {
-
-			playerEntityIn.getMainHandItem().shrink(1);
+			player.getMainHandItem().shrink(1);
 
 			return true;
 		}
@@ -190,10 +237,10 @@ public class DoTBBlockUtils {
 	public final static int changeBlockLitStateWithItemOrCreativePlayer(final BlockState stateIn, final World worldIn, final BlockPos pos, final PlayerEntity player, final Hand handIn) {
 		int activation = -1;
 
-		if (stateIn.getValue(BlockStateProperties.LIT) && DoTBBlockUtils.useFireStopperIfPossible(player)) {
+		if (stateIn.getValue(BlockStateProperties.LIT) && DoTBBlockUtils.useFireStopperIfPossible(stateIn, worldIn, pos, player, handIn)) {
 			activation = 0;
 		}
-		else if (DoTBBlockUtils.useFireActivatorOnBlockIfPossible(stateIn, worldIn, pos, player, handIn)) {
+		else if (!stateIn.getValue(BlockStateProperties.LIT) && DoTBBlockUtils.useFireActivatorOnBlockIfPossible(stateIn, worldIn, pos, player, handIn)) {
 			activation = 1;
 		}
 

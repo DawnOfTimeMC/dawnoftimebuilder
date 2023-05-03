@@ -22,6 +22,70 @@
 		{
 			"when": { "has_pillar": "true" },
 			"apply": { "model": "dawnoftimebuilder:block/german/stone_bricks_pool_pillar" }
+		},
+		{
+			"when": { "level": "1" },
+			"apply": { "model": "dawnoftimebuilder:block/german/stone_bricks_pool_water_1" }
+		},
+		{
+			"when": { "level": "2" },
+			"apply": { "model": "dawnoftimebuilder:block/german/stone_bricks_pool_water_2" }
+		},
+		{
+			"when": { "level": "3" },
+			"apply": { "model": "dawnoftimebuilder:block/german/stone_bricks_pool_water_3" }
+		},
+		{
+			"when": { "level": "4" },
+			"apply": { "model": "dawnoftimebuilder:block/german/stone_bricks_pool_water_4" }
+		},
+		{
+			"when": { "level": "5" },
+			"apply": { "model": "dawnoftimebuilder:block/german/stone_bricks_pool_water_5" }
+		},
+		{
+			"when": { "level": "6" },
+			"apply": { "model": "dawnoftimebuilder:block/german/stone_bricks_pool_water_6" }
+		},
+		{
+			"when": { "level": "7" },
+			"apply": { "model": "dawnoftimebuilder:block/german/stone_bricks_pool_water_7" }
+		},
+		{
+			"when": { "level": "8" },
+			"apply": { "model": "dawnoftimebuilder:block/german/stone_bricks_pool_water_8" }
+		},
+		{
+			"when": { "level": "9" },
+			"apply": { "model": "dawnoftimebuilder:block/german/stone_bricks_pool_water_9" }
+		},
+		{
+			"when": { "level": "10" },
+			"apply": { "model": "dawnoftimebuilder:block/german/stone_bricks_pool_water_10" }
+		},
+		{
+			"when": { "level": "11" },
+			"apply": { "model": "dawnoftimebuilder:block/german/stone_bricks_pool_water_11" }
+		},
+		{
+			"when": { "level": "12" },
+			"apply": { "model": "dawnoftimebuilder:block/german/stone_bricks_pool_water_12" }
+		},
+		{
+			"when": { "level": "13" },
+			"apply": { "model": "dawnoftimebuilder:block/german/stone_bricks_pool_water_13" }
+		},
+		{
+			"when": { "level": "14" },
+			"apply": { "model": "dawnoftimebuilder:block/german/stone_bricks_pool_water_14" }
+		},
+		{
+			"when": { "level": "15" },
+			"apply": { "model": "dawnoftimebuilder:block/german/stone_bricks_pool_water_15" }
+		},
+		{
+			"when": { "level": "16" },
+			"apply": { "model": "dawnoftimebuilder:block/german/stone_bricks_pool_water_16" }
 		}
 	]
 }
