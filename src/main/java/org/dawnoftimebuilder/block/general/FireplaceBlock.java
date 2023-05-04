@@ -1,7 +1,11 @@
 package org.dawnoftimebuilder.block.general;
 
+import java.util.List;
 import java.util.Random;
 
+import javax.annotation.Nullable;
+
+import org.dawnoftimebuilder.block.templates.BaseChimneyDoTB;
 import org.dawnoftimebuilder.block.templates.WaterloggedBlock;
 import org.dawnoftimebuilder.util.DoTBBlockStateProperties;
 import org.dawnoftimebuilder.util.DoTBBlockStateProperties.HorizontalConnection;
@@ -10,6 +14,7 @@ import org.dawnoftimebuilder.util.DoTBBlockUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -22,6 +27,7 @@ import net.minecraft.entity.projectile.SnowballEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.BlockItemUseContext;
+import net.minecraft.item.ItemStack;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.PotionUtils;
 import net.minecraft.state.BooleanProperty;
@@ -39,6 +45,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
@@ -99,7 +106,6 @@ public class FireplaceBlock extends WaterloggedBlock {
 
 	@Override
 	public void onProjectileHit(final World worldIn, final BlockState state, final BlockRayTraceResult hit, final ProjectileEntity projectile) {
-
 		int activation = -1;
 
 		if (!state.getValue(WaterloggedBlock.WATERLOGGED) && !state.getValue(FireplaceBlock.LIT) && (projectile instanceof AbstractArrowEntity && ((AbstractArrowEntity) projectile).isOnFire() || projectile instanceof FireballEntity)) {
@@ -226,5 +232,11 @@ public class FireplaceBlock extends WaterloggedBlock {
 	public BlockState rotate(final BlockState state, final Rotation rot) {
 		final Direction.Axis axis = state.getValue(FireplaceBlock.HORIZONTAL_AXIS);
 		return rot == Rotation.CLOCKWISE_90 || rot == Rotation.COUNTERCLOCKWISE_90 ? state.setValue(FireplaceBlock.HORIZONTAL_AXIS, axis == Direction.Axis.X ? Direction.Axis.Z : Direction.Axis.X) : state;
+	}
+
+	@Override
+	public void appendHoverText(final ItemStack stack, @Nullable final IBlockReader worldIn, final List<ITextComponent> tooltip, final ITooltipFlag flagIn) {
+		super.appendHoverText(stack, worldIn, tooltip, flagIn);
+		DoTBBlockUtils.addTooltip(tooltip, DoTBBlockUtils.FIREPLACE);
 	}
 }

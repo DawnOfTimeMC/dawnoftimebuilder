@@ -2,6 +2,7 @@ package org.dawnoftimebuilder.block.templates;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 import org.dawnoftimebuilder.util.DoTBBlockStateProperties;
 
@@ -31,6 +32,7 @@ import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 
 /**
  * @author seyro
@@ -40,7 +42,7 @@ public class PoolBlock extends BlockDoTB {
 
 	public PoolBlock(final Properties propertiesIn) {
 		super(propertiesIn);
-		this.registerDefaultState(this.defaultBlockState().setValue(BlockStateProperties.NORTH, false).setValue(BlockStateProperties.EAST, false).setValue(BlockStateProperties.SOUTH, false).setValue(BlockStateProperties.WEST, false).setValue(DoTBBlockStateProperties.HAS_PILLAR, false).setValue(BlockStateProperties.LEVEL, 0));
+		this.registerDefaultState(this.defaultBlockState().setValue(BlockStateProperties.NORTH, false).setValue(BlockStateProperties.EAST, false).setValue(BlockStateProperties.SOUTH, false).setValue(BlockStateProperties.WEST, false).setValue(DoTBBlockStateProperties.HAS_PILLAR, false).setValue(DoTBBlockStateProperties.LEVEL, 0));
 	}
 
 	@Override
@@ -97,17 +99,17 @@ public class PoolBlock extends BlockDoTB {
 	@Override
 	protected void createBlockStateDefinition(final StateContainer.Builder<Block, BlockState> builder) {
 		super.createBlockStateDefinition(builder);
-		builder.add(BlockStateProperties.NORTH).add(BlockStateProperties.EAST).add(BlockStateProperties.SOUTH).add(BlockStateProperties.WEST).add(DoTBBlockStateProperties.HAS_PILLAR).add(BlockStateProperties.LEVEL);
+		builder.add(BlockStateProperties.NORTH).add(BlockStateProperties.EAST).add(BlockStateProperties.SOUTH).add(BlockStateProperties.WEST).add(DoTBBlockStateProperties.HAS_PILLAR).add(DoTBBlockStateProperties.LEVEL);
 	}
 
-	private final static Map<BlockPos, BlockState> REMOVE_WATER_MAP = new HashMap<>();
+	protected final static Map<BlockPos, BlockState> REMOVE_WATER_MAP = new HashMap<>();
 
 	/**
 	 * Seynax : binary method to remove water on all associated pool
 	 */
 	public static boolean removeWater(final Map<BlockPos, BlockState> testedPositionsIn, BlockState blockStateIn, final BlockPos blockPosIn, final World worldIn, final float prohibitedXIn, final float prohibitedZIn) {
-		boolean success = blockStateIn.getValue(BlockStateProperties.LEVEL) > 0;
-		blockStateIn = blockStateIn.setValue(BlockStateProperties.LEVEL, 0);
+		boolean success = blockStateIn.getValue(DoTBBlockStateProperties.LEVEL) > 0;
+		blockStateIn = blockStateIn.setValue(DoTBBlockStateProperties.LEVEL, 0);
 		worldIn.setBlock(blockPosIn, blockStateIn, 10);
 		if (prohibitedXIn != 1 && PoolBlock.removeWaterOffset(testedPositionsIn, blockPosIn, worldIn, 1, 0)) {
 			success = true;
@@ -124,13 +126,65 @@ public class PoolBlock extends BlockDoTB {
 		return success;
 	}
 
-	private static boolean removeWaterOffset(final Map<BlockPos, BlockState> testedPositionsIn, final BlockPos blockPosIn, final World worldIn, final int x, final int z) {
+	private static boolean removeWaterOffset(final Map<BlockPos, BlockState> testedPositionsIn, final BlockPos blockPosIn,
+			final World worldIn, final int x, final int z) {
 		final BlockPos pos = blockPosIn.offset(x, 0, z);
 		if (!testedPositionsIn.containsKey(pos)) {
-			final BlockState state = worldIn.getBlockState(pos);
+			BlockState state = worldIn.getBlockState(pos);
 			if (state.getBlock() instanceof PoolBlock) {
 				testedPositionsIn.put(pos, state);
 				return PoolBlock.removeWater(testedPositionsIn, state, pos, worldIn, x, z);
+			}
+			if (state.getBlock() instanceof FaucetBlock) {
+				state = state.setValue(DoTBBlockStateProperties.ACTIVATED, false);
+				worldIn.setBlock(pos, state, 10);
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * Seynax : binary method to remove water on all associated pool
+	 */
+	public static boolean hasOneActivatedFaucetOrJet(final Map<BlockPos, BlockState> testedPositionsIn, final BlockPos blockPosIn, final IWorld worldIn, final float prohibitedXIn, final float prohibitedZIn) {
+
+		BlockState state = worldIn.getBlockState(blockPosIn.above());
+		if (state.getBlock() instanceof FaucetBlock) {
+			if(state.getValue(DoTBBlockStateProperties.ACTIVATED))
+			{
+				return true;
+			}
+		}
+		if (prohibitedXIn != 1 && PoolBlock.hasOneActivatedFaucetOrJetOffset(testedPositionsIn, blockPosIn, worldIn, 1, 0)) {
+			return true;
+		}
+		if (prohibitedXIn != -1 && PoolBlock.hasOneActivatedFaucetOrJetOffset(testedPositionsIn, blockPosIn, worldIn, -1, 0)) {
+			return true;
+		}
+		if (prohibitedZIn != 1 && PoolBlock.hasOneActivatedFaucetOrJetOffset(testedPositionsIn, blockPosIn, worldIn, 0, 1)) {
+			return true;
+		}
+		if (prohibitedZIn != -1 && PoolBlock.hasOneActivatedFaucetOrJetOffset(testedPositionsIn, blockPosIn, worldIn, 0, -1)) {
+			return true;
+		}
+		return false;
+	}
+
+	private static boolean hasOneActivatedFaucetOrJetOffset(final Map<BlockPos, BlockState> testedPositionsIn, final BlockPos blockPosIn,
+			final IWorld worldIn, final int x, final int z) {
+		final BlockPos pos = blockPosIn.offset(x, 0, z);
+		if (!testedPositionsIn.containsKey(pos)) {
+			BlockState state = worldIn.getBlockState(pos.above());
+			if (state.getBlock() instanceof FaucetBlock) {
+				if(state.getValue(DoTBBlockStateProperties.ACTIVATED))
+				{
+					return true;
+				}
+			}
+			state = worldIn.getBlockState(pos);
+			if (state.getBlock() instanceof PoolBlock) {
+				testedPositionsIn.put(pos, state);
+				return PoolBlock.hasOneActivatedFaucetOrJet(testedPositionsIn, pos, worldIn, x, z);
 			}
 		}
 		return false;
@@ -144,8 +198,7 @@ public class PoolBlock extends BlockDoTB {
 			 * Seynax : allows the player to remove the contents of all stuck basins, with a single click with an empty bucket while sneaking
 			 */
 			if (itemStack.getItem() instanceof BucketItem && ((BucketItem) itemStack.getItem()).getFluid() instanceof WaterFluid) {
-				blockStateIn = blockStateIn.setValue(BlockStateProperties.LEVEL, 15);
-
+				blockStateIn = blockStateIn.setValue(DoTBBlockStateProperties.LEVEL, 16);
 				worldIn.setBlock(blockPosIn, blockStateIn, 10);
 
 				return ActionResultType.SUCCESS;
@@ -160,8 +213,8 @@ public class PoolBlock extends BlockDoTB {
 				final Potion potion = PotionUtils.getPotion(itemStack);
 
 				if (potion.getEffects().size() <= 0) {
-					final int newLevel = blockStateIn.getValue(BlockStateProperties.LEVEL) + 1;
-					blockStateIn = blockStateIn.setValue(BlockStateProperties.LEVEL, newLevel < 16 ? newLevel : 15);
+					final int newLevel = blockStateIn.getValue(DoTBBlockStateProperties.LEVEL) + 1;
+					blockStateIn = blockStateIn.setValue(DoTBBlockStateProperties.LEVEL, newLevel < 17 ? newLevel : 16);
 
 					worldIn.setBlock(blockPosIn, blockStateIn, 10);
 
@@ -172,8 +225,8 @@ public class PoolBlock extends BlockDoTB {
 				final Potion potion = PotionUtils.getPotion(itemStack);
 
 				if (potion.getEffects().size() <= 0) {
-					final int newLevel = blockStateIn.getValue(BlockStateProperties.LEVEL) - 1;
-					blockStateIn = blockStateIn.setValue(BlockStateProperties.LEVEL, Math.max(newLevel, 0));
+					final int newLevel = blockStateIn.getValue(DoTBBlockStateProperties.LEVEL) - 1;
+					blockStateIn = blockStateIn.setValue(DoTBBlockStateProperties.LEVEL, Math.max(newLevel, 0));
 
 					worldIn.setBlock(blockPosIn, blockStateIn, 10);
 
@@ -207,15 +260,61 @@ public class PoolBlock extends BlockDoTB {
 				worldIn.setBlock(blockPos, blockState, 10);
 			}
 		}
-
 	}
+
+	@SuppressWarnings("deprecation")
+	@Override
+	public void tick(BlockState p_225534_1_, ServerWorld p_225534_2_, BlockPos p_225534_3_, Random p_225534_4_)
+	{
+		super.tick(p_225534_1_, p_225534_2_, p_225534_3_, p_225534_4_);
+
+		REMOVE_WATER_MAP.clear();
+		boolean increase = hasOneActivatedFaucetOrJet(REMOVE_WATER_MAP, p_225534_3_, p_225534_2_, 0, 0);
+
+		int maxLevel = p_225534_1_.getBlock() instanceof SmallPoolBlock ? 6 : 16;
+		System.out.println("Max : " + maxLevel);
+
+		if(increase)
+		{
+			int level = p_225534_1_.getValue(DoTBBlockStateProperties.LEVEL);
+
+			if(level < maxLevel)
+			{
+				p_225534_1_ = p_225534_1_.setValue(DoTBBlockStateProperties.LEVEL
+					, level + 1);
+				p_225534_2_.setBlock(p_225534_3_, p_225534_1_, 10);
+
+				if(level+1 < maxLevel)
+				{
+					((ServerWorld) p_225534_2_).getBlockTicks().scheduleTick(p_225534_3_, this, 5);
+				}
+			}
+		}
+		else
+		{
+			int level = p_225534_1_.getValue(DoTBBlockStateProperties.LEVEL);
+
+			if(level > 0)
+			{
+				p_225534_1_ = p_225534_1_.setValue(DoTBBlockStateProperties.LEVEL
+					, level - 1);
+				p_225534_2_.setBlock(p_225534_3_, p_225534_1_, 10);
+
+				if(level-1 > 0)
+				{
+					((ServerWorld) p_225534_2_).getBlockTicks().scheduleTick(p_225534_3_, this, 5);
+				}
+			}
+		}
+	}
+
 
 	@Override
 	public BlockState updateShape(BlockState stateIn, final Direction directionIn, final BlockState facingStateIn, final IWorld worldIn, final BlockPos currentPosIn, final BlockPos facingPosIn) {
 		if (directionIn.getAxis().isHorizontal()) {
 			final boolean hasPoolInSide = facingStateIn.getBlock() == this;
-			if (hasPoolInSide && facingStateIn.getValue(BlockStateProperties.LEVEL) > 0) {
-				stateIn = stateIn.setValue(BlockStateProperties.LEVEL, facingStateIn.getValue(BlockStateProperties.LEVEL));
+			if (hasPoolInSide && facingStateIn.getValue(DoTBBlockStateProperties.LEVEL) >= 0) {
+				stateIn = stateIn.setValue(DoTBBlockStateProperties.LEVEL, facingStateIn.getValue(DoTBBlockStateProperties.LEVEL));
 			}
 			switch (directionIn) {
 				case NORTH:
@@ -235,6 +334,49 @@ public class PoolBlock extends BlockDoTB {
 			}
 		}
 
-		return super.updateShape(stateIn, directionIn, facingStateIn, worldIn, currentPosIn, facingPosIn);
+		int level = stateIn.getValue(DoTBBlockStateProperties.LEVEL);
+		if(facingStateIn.getBlock() instanceof FaucetBlock)
+		{
+			if(facingPosIn.getY() == currentPosIn.getY() + 1)
+			{
+				int lastLevel = level;
+				PoolBlock.REMOVE_WATER_MAP.clear();
+				if(hasOneActivatedFaucetOrJet(REMOVE_WATER_MAP, currentPosIn, worldIn, 0, 0))
+				{
+					if(stateIn.getBlock() instanceof SmallPoolBlock)
+					{
+						if(level < 6)
+						{
+							level ++;
+						}
+					}
+					else
+					{
+						if(level < 16)
+						{
+							level ++;
+						}
+					}
+				}
+				else
+				{
+						if(level > 0)
+						{
+							level --;
+						}
+				}
+
+				System.out.println("level " + lastLevel + " / " + level);
+
+				stateIn = stateIn.setValue(DoTBBlockStateProperties.LEVEL, level);
+
+				if(!worldIn.isClientSide() && lastLevel != level)
+				{
+					((ServerWorld) worldIn).getBlockTicks().scheduleTick(currentPosIn, this, 5);
+				}
+			}
+		}
+
+		return stateIn;
 	}
 }

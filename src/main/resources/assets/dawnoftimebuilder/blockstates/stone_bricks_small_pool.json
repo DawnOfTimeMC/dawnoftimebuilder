@@ -26,6 +26,30 @@
 		{
 			"when": { "bottom": "true" },
 			"apply": { "model": "dawnoftimebuilder:block/german/stone_bricks_small_pool_bottom" }
+		},
+		{
+			"when": { "level": "1" },
+			"apply": { "model": "dawnoftimebuilder:block/german/stone_bricks_small_pool_water_1" }
+		},
+		{
+			"when": { "level": "2" },
+			"apply": { "model": "dawnoftimebuilder:block/german/stone_bricks_small_pool_water_2" }
+		},
+		{
+			"when": { "level": "3" },
+			"apply": { "model": "dawnoftimebuilder:block/german/stone_bricks_small_pool_water_3" }
+		},
+		{
+			"when": { "level": "4" },
+			"apply": { "model": "dawnoftimebuilder:block/german/stone_bricks_small_pool_water_4" }
+		},
+		{
+			"when": { "level": "5" },
+			"apply": { "model": "dawnoftimebuilder:block/german/stone_bricks_small_pool_water_5" }
+		},
+		{
+			"when": { "level": "6" },
+			"apply": { "model": "dawnoftimebuilder:block/german/stone_bricks_small_pool_water_6" }
 		}
 	]
 }

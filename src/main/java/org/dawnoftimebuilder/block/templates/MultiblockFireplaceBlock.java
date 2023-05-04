@@ -1,6 +1,9 @@
 package org.dawnoftimebuilder.block.templates;
 
+import java.util.List;
 import java.util.Random;
+
+import javax.annotation.Nullable;
 
 import org.dawnoftimebuilder.block.general.FireplaceBlock;
 import org.dawnoftimebuilder.util.DoTBBlockStateProperties;
@@ -9,6 +12,7 @@ import org.dawnoftimebuilder.util.DoTBBlockUtils;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.entity.projectile.AbstractFireballEntity;
@@ -17,6 +21,8 @@ import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.entity.projectile.SnowballEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
+import net.minecraft.item.BlockItem;
+import net.minecraft.item.ItemStack;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.PotionUtils;
 import net.minecraft.state.BooleanProperty;
@@ -31,46 +37,14 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class MultiblockFireplaceBlock extends SidedPlaneConnectibleBlock {
-
-	public static final BooleanProperty	LIT		= BlockStateProperties.LIT;
-	private static final VoxelShape[]	SHAPES	= DoTBBlockUtils.GenerateHorizontalShapes(MultiblockFireplaceBlock.makeShapes());
-
-	public MultiblockFireplaceBlock(final Properties properties) {
-		super(properties);
-		this.registerDefaultState(this.defaultBlockState().setValue(MultiblockFireplaceBlock.LIT, false));
-	}
-
-	@Override
-	protected void createBlockStateDefinition(final StateContainer.Builder<Block, BlockState> builder) {
-		super.createBlockStateDefinition(builder);
-		builder.add(MultiblockFireplaceBlock.LIT);
-	}
-
-	@Override
-	public VoxelShape getShape(final BlockState state, final IBlockReader worldIn, final BlockPos pos, final ISelectionContext context) {
-		final int index = state.getValue(ColumnConnectibleBlock.VERTICAL_CONNECTION) == DoTBBlockStateProperties.VerticalConnection.NONE ? 0 : 1;
-		return MultiblockFireplaceBlock.SHAPES[index + state.getValue(SidedColumnConnectibleBlock.FACING).get2DDataValue() * 2];
-	}
-
-	/**
-	 * @return Stores VoxelShape for "South" with index : <p/>
-	 * 0 : S Small fireplace <p/>
-	 * 1 : S Big fireplace <p/>
-	 */
-	private static VoxelShape[] makeShapes() {
-		return new VoxelShape[] {
-				Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 8.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 12.0D)
-		};
-	}
-
 	public final static void updateChimneys(final boolean isActivatedIn, final BlockState blockStateIn, final BlockPos posIn, final World worldIn) {
 		BlockPos	pos			= posIn;
 
@@ -149,17 +123,51 @@ public class MultiblockFireplaceBlock extends SidedPlaneConnectibleBlock {
 		}
 	}
 
+	public static final BooleanProperty	LIT		= BlockStateProperties.LIT;
+	private static final VoxelShape[]	SHAPES	= DoTBBlockUtils.GenerateHorizontalShapes(MultiblockFireplaceBlock.makeShapes());
+
+	public MultiblockFireplaceBlock(final Properties properties) {
+		super(properties);
+		this.registerDefaultState(this.defaultBlockState().setValue(MultiblockFireplaceBlock.LIT, false));
+	}
+
+	@Override
+	protected void createBlockStateDefinition(final StateContainer.Builder<Block, BlockState> builder) {
+		super.createBlockStateDefinition(builder);
+		builder.add(MultiblockFireplaceBlock.LIT);
+	}
+
+	@Override
+	public VoxelShape getShape(final BlockState state, final IBlockReader worldIn, final BlockPos pos, final ISelectionContext context) {
+		final int index = state.getValue(ColumnConnectibleBlock.VERTICAL_CONNECTION) == DoTBBlockStateProperties.VerticalConnection.NONE ? 0 : 1;
+		return MultiblockFireplaceBlock.SHAPES[index + state.getValue(SidedColumnConnectibleBlock.FACING).get2DDataValue() * 2];
+	}
+
+	/**
+	 * @return Stores VoxelShape for "South" with index : <p/>
+	 * 0 : S Small fireplace <p/>
+	 * 1 : S Big fireplace <p/>
+	 */
+	private static VoxelShape[] makeShapes() {
+		return new VoxelShape[] {
+				Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 8.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 12.0D)
+		};
+	}
+
 	@Override
 	public ActionResultType use(final BlockState stateIn, final World worldIn, final BlockPos pos, final PlayerEntity player, final Hand handIn, final BlockRayTraceResult hit) {
+		if(player.getMainHandItem() != null && player.getMainHandItem().getItem() instanceof BlockItem &&
+				((BlockItem) player.getMainHandItem().getItem()).getBlock() instanceof MultiblockFireplaceBlock)
+		{
+			return ActionResultType.PASS;
+		}
 		if (stateIn.getValue(ColumnConnectibleBlock.VERTICAL_CONNECTION) != DoTBBlockStateProperties.VerticalConnection.BOTH && stateIn.getValue(ColumnConnectibleBlock.VERTICAL_CONNECTION) != DoTBBlockStateProperties.VerticalConnection.UNDER) {
-
 			final int activation = DoTBBlockUtils.changeBlockLitStateWithItemOrCreativePlayer(stateIn, worldIn, pos, player, handIn);
 			if (activation >= 0) {
 				final Direction direction = stateIn.getValue(SidedColumnConnectibleBlock.FACING);
 				worldIn.getBlockState(pos.relative(direction.getCounterClockWise())).neighborChanged(worldIn, pos.relative(direction.getCounterClockWise()), this, pos, false);
 				worldIn.getBlockState(pos.relative(direction.getClockWise())).neighborChanged(worldIn, pos.relative(direction.getClockWise()), stateIn.getBlock(), pos, false);
 
-				System.out.println(activation == 1);
 				MultiblockFireplaceBlock.updateChimneys(activation == 1, stateIn, pos, worldIn);
 
 				return ActionResultType.SUCCESS;
@@ -171,21 +179,16 @@ public class MultiblockFireplaceBlock extends SidedPlaneConnectibleBlock {
 	}
 
 	@Override
-	public void onProjectileHit(final World worldIn, final BlockState state, final BlockRayTraceResult hit, final ProjectileEntity projectile) {
+	public void onProjectileHit(final World worldIn, BlockState state, final BlockRayTraceResult hit, final ProjectileEntity projectile) {
 
 		int activation = -1;
 
-		if (!state.getValue(WaterloggedBlock.WATERLOGGED)) {
-			if (!state.getValue(FireplaceBlock.LIT) && projectile instanceof AbstractArrowEntity && ((AbstractArrowEntity) projectile).isOnFire()) {
+		if (!state.getValue(WaterloggedBlock.WATERLOGGED) && !state.getValue(FireplaceBlock.LIT)) {
+			if (projectile instanceof AbstractArrowEntity && ((AbstractArrowEntity) projectile).isOnFire()) {
 				activation = 1;
 			}
 			else if (projectile instanceof AbstractFireballEntity) {
 				activation = 1;
-
-				if (!worldIn.isClientSide && worldIn instanceof ServerWorld) {
-
-					((ServerWorld) worldIn).despawn(projectile);
-				}
 			}
 		}
 		else if (state.getValue(FireplaceBlock.LIT) && (projectile instanceof SnowballEntity || projectile instanceof PotionEntity && PotionUtils.getPotion(((PotionEntity) projectile).getItem()).getEffects().size() <= 0)) {
@@ -193,12 +196,12 @@ public class MultiblockFireplaceBlock extends SidedPlaneConnectibleBlock {
 		}
 
 		if (activation >= 0) {
-
 			final BlockPos	pos			= hit.getBlockPos();
 			final boolean	isActivated	= activation == 1;
 
 			if (!worldIn.isClientSide()) {
-				worldIn.setBlock(pos, state.setValue(FireplaceBlock.LIT, isActivated), 10);
+				state = state.setValue(FireplaceBlock.LIT, isActivated);
+				worldIn.setBlock(pos, state, 10);
 				worldIn.playSound(null, pos, isActivated ? SoundEvents.FIRE_AMBIENT : SoundEvents.FIRE_EXTINGUISH, SoundCategory.BLOCKS, 1.0F, 1.0F);
 			}
 			else if (!isActivated && worldIn.isClientSide()) {
@@ -222,6 +225,11 @@ public class MultiblockFireplaceBlock extends SidedPlaneConnectibleBlock {
 			if (newState.getBlock() == this) {
 				final Direction facing = state.getValue(SidedColumnConnectibleBlock.FACING);
 				if (newState.getValue(SidedColumnConnectibleBlock.FACING) == facing) {
+					if((facing.equals(Direction.NORTH) || facing.equals(Direction.SOUTH)) && fromPos.getZ() != pos.getZ())
+						return;
+					if((facing.equals(Direction.EAST) || facing.equals(Direction.WEST)) && fromPos.getX() != pos.getX())
+						return;
+
 					final boolean burning = newState.getValue(MultiblockFireplaceBlock.LIT);
 					if (burning != state.getValue(MultiblockFireplaceBlock.LIT)) {
 						if (newState.getValue(MultiblockFireplaceBlock.LIT) && state.getValue(WaterloggedBlock.WATERLOGGED)) {
@@ -260,5 +268,11 @@ public class MultiblockFireplaceBlock extends SidedPlaneConnectibleBlock {
 				worldIn.addParticle(ParticleTypes.SMOKE, pos.getX() + rand.nextDouble() * 0.5F + 0.25F, pos.getY() + rand.nextDouble() * 0.5F + 0.6F, pos.getZ() + rand.nextDouble() * 0.5F + 0.25F, 0.0F, 0.0F, 0.0F);
 			}
 		}
+	}
+
+	@Override
+	public void appendHoverText(final ItemStack stack, @Nullable final IBlockReader worldIn, final List<ITextComponent> tooltip, final ITooltipFlag flagIn) {
+		super.appendHoverText(stack, worldIn, tooltip, flagIn);
+		DoTBBlockUtils.addTooltip(tooltip, DoTBBlockUtils.FIREPLACE);
 	}
 }

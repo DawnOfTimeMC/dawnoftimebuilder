@@ -1,5 +1,8 @@
 package org.dawnoftimebuilder.block.templates;
 
+import org.dawnoftimebuilder.util.DoTBBlockStateProperties;
+import org.dawnoftimebuilder.util.DoTBBlockStateProperties.VerticalLimitedConnection;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
@@ -14,7 +17,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
-import org.dawnoftimebuilder.util.DoTBBlockStateProperties;
 
 public class WaterJetBlock extends BlockDoTB {
 
@@ -27,7 +29,6 @@ public class WaterJetBlock extends BlockDoTB {
 				.setValue(DoTBBlockStateProperties.EAST_STATE, DoTBBlockStateProperties.VerticalLimitedConnection.NONE)
 				.setValue(DoTBBlockStateProperties.SOUTH_STATE, DoTBBlockStateProperties.VerticalLimitedConnection.NONE)
 				.setValue(DoTBBlockStateProperties.WEST_STATE, DoTBBlockStateProperties.VerticalLimitedConnection.NONE)
-				.setValue(BlockStateProperties.POWERED, false)
 				.setValue(DoTBBlockStateProperties.ACTIVATED, false));
 	}
 
@@ -41,7 +42,6 @@ public class WaterJetBlock extends BlockDoTB {
 				DoTBBlockStateProperties.EAST_STATE,
 				DoTBBlockStateProperties.SOUTH_STATE,
 				DoTBBlockStateProperties.WEST_STATE,
-				BlockStateProperties.POWERED,
 				DoTBBlockStateProperties.ACTIVATED);
 	}
 
@@ -61,14 +61,14 @@ public class WaterJetBlock extends BlockDoTB {
 				return state.setValue(BlockStateProperties.DOWN, true);
 			case DOWN:
 				return state.setValue(BlockStateProperties.UP, true);
-			case SOUTH:
-				return state.setValue(DoTBBlockStateProperties.NORTH_STATE, clickedFace);
-			case WEST:
-				return state.setValue(DoTBBlockStateProperties.EAST_STATE, clickedFace);
 			case NORTH:
 				return state.setValue(DoTBBlockStateProperties.SOUTH_STATE, clickedFace);
+			case SOUTH:
+				return state.setValue(DoTBBlockStateProperties.NORTH_STATE, clickedFace);
 			case EAST:
 				return state.setValue(DoTBBlockStateProperties.WEST_STATE, clickedFace);
+			case WEST:
+				return state.setValue(DoTBBlockStateProperties.EAST_STATE, clickedFace);
 		}
 	}
 
@@ -83,9 +83,9 @@ public class WaterJetBlock extends BlockDoTB {
 			switch (newDirection) {
 				default:
 				case UP:
-					return !state.getValue(BlockStateProperties.UP);
-				case DOWN:
 					return !state.getValue(BlockStateProperties.DOWN);
+				case DOWN:
+					return !state.getValue(BlockStateProperties.UP);
 				case SOUTH:
 					return DoTBBlockStateProperties.VerticalLimitedConnection.NONE.equals(state.getValue(DoTBBlockStateProperties.NORTH_STATE));
 				case WEST:
@@ -103,7 +103,7 @@ public class WaterJetBlock extends BlockDoTB {
 	public ActionResultType use(BlockState blockStateIn, final World worldIn, final BlockPos blockPosIn, final PlayerEntity playerEntityIn, final Hand handIn, final BlockRayTraceResult blockRaytraceResultIn) {
 
 		final ItemStack mainHandItemStack = playerEntityIn.getMainHandItem();
-		if (!mainHandItemStack.isEmpty() && mainHandItemStack.getItem() == this.asItem()) {
+		if (mainHandItemStack != null && !mainHandItemStack.isEmpty() && mainHandItemStack.getItem() == this.asItem()) {
 			return ActionResultType.PASS;
 		}
 		blockStateIn = blockStateIn.setValue(DoTBBlockStateProperties.ACTIVATED, !blockStateIn.getValue(DoTBBlockStateProperties.ACTIVATED));
@@ -114,8 +114,61 @@ public class WaterJetBlock extends BlockDoTB {
 
 	@Override
 	public BlockState updateShape(BlockState stateIn, final Direction directionIn, final BlockState facingStateIn, final IWorld worldIn, final BlockPos currentPosIn, final BlockPos facingPosIn) {
-		if (Direction.DOWN.equals(directionIn)) {
-			stateIn = stateIn.setValue(DoTBBlockStateProperties.ACTIVATED, facingStateIn.getBlock() instanceof WaterMovingTrickleBlock || facingStateIn.getBlock() instanceof WaterTrickleBlock);
+
+
+		if(!(facingStateIn.getBlock() instanceof PoolBlock))
+		{
+			return stateIn;
+		}
+		boolean isSmallPool = (facingStateIn.getBlock() instanceof SmallPoolBlock);
+
+		switch(directionIn)
+		{
+		case UP:
+			if(stateIn.getValue(BlockStateProperties.UP))
+			{
+				stateIn = stateIn.setValue(DoTBBlockStateProperties.ACTIVATED, facingStateIn.getValue(DoTBBlockStateProperties.LEVEL) > (isSmallPool ? 5 : 15));
+			}
+			break;
+		case DOWN:
+			if(stateIn.getValue(BlockStateProperties.DOWN))
+			{
+				stateIn = stateIn.setValue(DoTBBlockStateProperties.ACTIVATED, facingStateIn.getValue(DoTBBlockStateProperties.LEVEL) > 0);
+			}
+			break;
+		case NORTH:
+			if(!stateIn.getValue(DoTBBlockStateProperties.NORTH_STATE).equals(VerticalLimitedConnection.NONE))
+			{
+				int targetLevel = isSmallPool || stateIn.getValue(DoTBBlockStateProperties.NORTH_STATE).equals(VerticalLimitedConnection.BOTTOM) ? 5 : 14;
+
+
+				stateIn = stateIn.setValue(DoTBBlockStateProperties.ACTIVATED, facingStateIn.getValue(DoTBBlockStateProperties.LEVEL) > targetLevel);
+			}
+			break;
+		case SOUTH:
+			if(!stateIn.getValue(DoTBBlockStateProperties.SOUTH_STATE).equals(VerticalLimitedConnection.NONE))
+			{
+				int targetLevel = isSmallPool || stateIn.getValue(DoTBBlockStateProperties.SOUTH_STATE).equals(VerticalLimitedConnection.BOTTOM) ? 5 : 15;
+
+				stateIn = stateIn.setValue(DoTBBlockStateProperties.ACTIVATED, facingStateIn.getValue(DoTBBlockStateProperties.LEVEL) > targetLevel);
+			}
+			break;
+		case EAST:
+			if(!stateIn.getValue(DoTBBlockStateProperties.EAST_STATE).equals(VerticalLimitedConnection.NONE))
+			{
+				int targetLevel = isSmallPool || stateIn.getValue(DoTBBlockStateProperties.EAST_STATE).equals(VerticalLimitedConnection.BOTTOM) ? 5 : 15;
+
+				stateIn = stateIn.setValue(DoTBBlockStateProperties.ACTIVATED, facingStateIn.getValue(DoTBBlockStateProperties.LEVEL) > targetLevel);
+			}
+			break;
+		case WEST:
+			if(!stateIn.getValue(DoTBBlockStateProperties.WEST_STATE).equals(VerticalLimitedConnection.NONE))
+			{
+				int targetLevel = isSmallPool || stateIn.getValue(DoTBBlockStateProperties.WEST_STATE).equals(VerticalLimitedConnection.BOTTOM) ? 5 : 15;
+
+				stateIn = stateIn.setValue(DoTBBlockStateProperties.ACTIVATED, facingStateIn.getValue(DoTBBlockStateProperties.LEVEL) > targetLevel);
+			}
+			break;
 		}
 
 		return stateIn;

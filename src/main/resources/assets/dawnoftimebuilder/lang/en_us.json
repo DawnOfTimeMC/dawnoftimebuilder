@@ -342,6 +342,7 @@
     "tooltip.dawnoftimebuilder.small_tatami_mat": "SHIFT + RIGHT-CLICK with an empty hand to roll this tatami. Up to 3 tatamis can be rolled in the same block. A tatami directly under a chain will be rolled vertically. Place this tatami on a Spruce Planks block to be able to put decoration blocks on it.",
     "tooltip.dawnoftimebuilder.tatami_mat": "SHIFT + RIGHT-CLICK with an empty hand to roll this tatami. Up to 3 tatamis can be rolled in the same block. Place this tatami on Spruce Planks blocks to be able to put decoration blocks on it.",
     "tooltip.dawnoftimebuilder.column": "Use RIGHT-CLICK on this block to increase its size or SHIFT + RIGHT-CLICK to reduce its size.",
+    "tooltip.dawnoftimebuilder.fireplace": "Can be ignited with a lighter, fireball or flaming arrow, it can be extinguished with a lighter, snowball, splah or normal water potion",
     "tooltip.dawnoftimebuilder.limestone_gargoyle": "In Creative, use a lighter on this block to stabilise its flow of drops. Then, you can use RIGHT-CLICK and SHIFT + RIGHT-CLICK to control the flow.",
     "tooltip.dawnoftimebuilder.crop": "Use a lighter on this plant to prevent its growth. Then, in Creative, you can use RIGHT-CLICK and SHIFT + RIGHT-CLICK to control the age.",
     "tooltip.dawnoftimebuilder.climbing_plant": "This block supports climbing plants. Use RIGHT-CLICK with lighter to interrupt plant growth. In Creative, use RIGHT-CLICK and SHIFT + RIGHT-CLICK with an empty hand to increase or decrease plant's age."

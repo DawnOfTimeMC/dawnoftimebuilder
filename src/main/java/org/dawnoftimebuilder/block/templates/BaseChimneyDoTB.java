@@ -3,22 +3,30 @@
  */
 package org.dawnoftimebuilder.block.templates;
 
+import java.util.List;
 import java.util.Random;
+
+import javax.annotation.Nullable;
 
 import org.dawnoftimebuilder.block.general.FireplaceBlock;
 import org.dawnoftimebuilder.util.DoTBBlockStateProperties;
 import org.dawnoftimebuilder.util.DoTBBlockStateProperties.VerticalConnection;
 import org.dawnoftimebuilder.util.DoTBBlockUtils;
 
+import net.minecraft.block.AirBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.entity.projectile.FireballEntity;
 import net.minecraft.entity.projectile.PotionEntity;
 import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.entity.projectile.SnowballEntity;
+import net.minecraft.item.BlockItem;
 import net.minecraft.item.BlockItemUseContext;
+import net.minecraft.item.ItemStack;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.PotionUtils;
 import net.minecraft.state.BooleanProperty;
@@ -34,46 +42,19 @@ import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.IBlockReader;
+import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 /**
- * @author seyro
+ * @author Seynax
  *
  */
-public class BaseChimneyDoTB extends ColumnConnectibleBlock {
-	private static final VoxelShape[]	SHAPES	= BaseChimneyDoTB.makeShapes();
-	public static final BooleanProperty	LIT		= BlockStateProperties.LIT;
-
-	public BaseChimneyDoTB(final Properties properties) {
-		super(properties);
-		this.registerDefaultState(this.defaultBlockState().setValue(BlockStateProperties.LIT, true));
-	}
-
-	@Override
-	protected void createBlockStateDefinition(final StateContainer.Builder<Block, BlockState> builder) {
-		super.createBlockStateDefinition(builder);
-		builder.add(BlockStateProperties.LIT);
-	}
-
-	@Override
-	public BlockState getStateForPlacement(final BlockItemUseContext context) {
-
-		final BlockState	state		= super.getStateForPlacement(context);
-
-		final World			world		= context.getLevel();
-
-		final BlockState	blockState	= world.getBlockState(context.getClickedPos().below());
-
-		if (blockState != null && (blockState.getBlock() instanceof BaseChimneyDoTB || blockState.getBlock() instanceof MultiblockFireplaceBlock)) {
-			return state.setValue(BlockStateProperties.LIT, blockState.getValue(BlockStateProperties.LIT));
-		}
-
-		return state.setValue(BlockStateProperties.LIT, true);
-	}
-
+public class BaseChimneyDoTB extends ColumnConnectibleBlock
+{
 	public final static void updateAllChimneyConductParts(final boolean isActivatedIn, BlockState stateIn, final BlockPos blockPosIn, final World worldIn) {
 		stateIn = stateIn.setValue(BlockStateProperties.LIT, isActivatedIn);
 		worldIn.setBlock(blockPosIn, stateIn, 10);
@@ -118,8 +99,57 @@ public class BaseChimneyDoTB extends ColumnConnectibleBlock {
 		}
 	}
 
+	private static final VoxelShape[]	SHAPES	= BaseChimneyDoTB.makeShapes();
+	public static final BooleanProperty	LIT		= BlockStateProperties.LIT;
+
+	public BaseChimneyDoTB(final Properties properties) {
+		super(properties);
+		this.registerDefaultState(this.defaultBlockState().setValue(BlockStateProperties.LIT, true));
+	}
+
+	@Override
+	protected void createBlockStateDefinition(final StateContainer.Builder<Block, BlockState> builder) {
+		super.createBlockStateDefinition(builder);
+		builder.add(BlockStateProperties.LIT);
+	}
+
+	@Override
+	public BlockState getStateForPlacement(final BlockItemUseContext context) {
+		final BlockState	state		= super.getStateForPlacement(context);
+		final World			world		= context.getLevel();
+		BlockPos		belowBlockPos = context.getClickedPos().below();
+		BlockState	blockState	= world.getBlockState(belowBlockPos);
+
+		if(blockState == null)
+		{
+			return state;
+		}
+
+		if (blockState.getBlock() instanceof BaseChimneyDoTB)
+		{
+			return state.setValue(BlockStateProperties.LIT, blockState.getValue(BlockStateProperties.LIT));
+		}
+
+		if(blockState.getBlock() instanceof MultiblockFireplaceBlock)
+		{
+			BlockState findedBlockState = blockState;
+			belowBlockPos = belowBlockPos.below();
+			while( (findedBlockState = world.getBlockState(belowBlockPos)) != null && findedBlockState.getBlock() instanceof MultiblockFireplaceBlock)
+			{
+				blockState = findedBlockState;
+				belowBlockPos = belowBlockPos.below();
+			}
+			return state.setValue(BlockStateProperties.LIT, blockState.getValue(BlockStateProperties.LIT));
+		}
+
+		return state;
+	}
+
 	@Override
 	public ActionResultType use(final BlockState blockStateIn, final World worldIn, final BlockPos blockPosIn, final PlayerEntity player, final Hand handIn, final BlockRayTraceResult hit) {
+		if(super.use(blockStateIn, worldIn, blockPosIn, player, handIn, hit).equals(ActionResultType.SUCCESS))
+			return ActionResultType.SUCCESS;
+
 		final int activation = DoTBBlockUtils.changeBlockLitStateWithItemOrCreativePlayer(blockStateIn, worldIn, blockPosIn, player, handIn);
 		if (activation >= 0) {
 			final boolean isActivated = activation == 1;
@@ -188,8 +218,34 @@ public class BaseChimneyDoTB extends ColumnConnectibleBlock {
 	 * 2 : Both
 	 */
 	private static VoxelShape[] makeShapes() {
-		return new VoxelShape[] {
-				VoxelShapes.or(Block.box(2.0D, 0.0D, 2.0D, 14.0D, 8.0D, 14.0D), Block.box(1.0D, 8.0D, 1.0D, 15.0D, 11.0D, 15.0D)), VoxelShapes.or(Block.box(0.0D, 0.0D, 0.0D, 16.0D, 8.0D, 16.0D), Block.box(2.0D, 8.0D, 2.0D, 14.0D, 16.0D, 14.0D)), Block.box(2.0D, 0.0D, 2.0D, 14.0D, 16.0D, 14.0D)
+		return new VoxelShape[]{
+				VoxelShapes.or(
+						Block.box(2.0D, 0.0D, 2.0D, 14.0D, 8.0D, 14.0D),
+						Block.box(1.0D, 8.0D, 1.0D, 15.0D, 11.0D, 15.0D)
+				),
+				VoxelShapes.or(
+						Block.box(0.0D, 0.0D, 0.0D, 16.0D, 8.0D, 16.0D),
+						Block.box(2.0D, 8.0D, 2.0D, 14.0D, 16.0D, 14.0D)
+				),
+				Block.box(2.0D, 0.0D, 2.0D, 14.0D, 16.0D, 14.0D)
 		};
+	}
+
+	@Override
+	public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn,
+			BlockPos currentPos, BlockPos facingPos)
+	{
+		if(facingState.getBlock() instanceof BaseChimneyDoTB || facingState.getBlock() instanceof MultiblockFireplaceBlock)
+		{
+			stateIn.getBlockState().setValue(LIT, facingState.getBlockState().getValue(LIT));
+		}
+
+		return super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+	}
+
+	@Override
+	public void appendHoverText(final ItemStack stack, @Nullable final IBlockReader worldIn, final List<ITextComponent> tooltip, final ITooltipFlag flagIn) {
+		super.appendHoverText(stack, worldIn, tooltip, flagIn);
+		DoTBBlockUtils.addTooltip(tooltip, DoTBBlockUtils.FIREPLACE);
 	}
 }
