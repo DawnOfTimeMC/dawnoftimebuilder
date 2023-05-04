@@ -20,8 +20,15 @@ public class WaterJetBlock extends BlockDoTB {
 
 	public WaterJetBlock(final Properties propertiesIn) {
 		super(propertiesIn);
-		this.registerDefaultState(this.defaultBlockState().setValue(BlockStateProperties.UP, false).setValue(BlockStateProperties.DOWN, false).setValue(DoTBBlockStateProperties.NORTH_STATE, DoTBBlockStateProperties.VerticalLimitedConnection.NONE).setValue(DoTBBlockStateProperties.EAST_STATE, DoTBBlockStateProperties.VerticalLimitedConnection.NONE).setValue(DoTBBlockStateProperties.SOUTH_STATE, DoTBBlockStateProperties.VerticalLimitedConnection.NONE)
-				.setValue(DoTBBlockStateProperties.WEST_STATE, DoTBBlockStateProperties.VerticalLimitedConnection.NONE).setValue(BlockStateProperties.POWERED, false).setValue(DoTBBlockStateProperties.ACTIVATED, false));
+		this.registerDefaultState(this.defaultBlockState()
+				.setValue(BlockStateProperties.UP, false)
+				.setValue(BlockStateProperties.DOWN, false)
+				.setValue(DoTBBlockStateProperties.NORTH_STATE, DoTBBlockStateProperties.VerticalLimitedConnection.NONE)
+				.setValue(DoTBBlockStateProperties.EAST_STATE, DoTBBlockStateProperties.VerticalLimitedConnection.NONE)
+				.setValue(DoTBBlockStateProperties.SOUTH_STATE, DoTBBlockStateProperties.VerticalLimitedConnection.NONE)
+				.setValue(DoTBBlockStateProperties.WEST_STATE, DoTBBlockStateProperties.VerticalLimitedConnection.NONE)
+				.setValue(BlockStateProperties.POWERED, false)
+				.setValue(DoTBBlockStateProperties.ACTIVATED, false));
 	}
 
 	@Override
@@ -72,7 +79,7 @@ public class WaterJetBlock extends BlockDoTB {
 			return false;
 		}
 		if (itemstack.getItem() == this.asItem()) {
-			final Direction newDirection = useContext.getClickedFace();
+			final Direction newDirection = useContext.getNearestLookingDirection();
 			switch (newDirection) {
 				default:
 				case UP:

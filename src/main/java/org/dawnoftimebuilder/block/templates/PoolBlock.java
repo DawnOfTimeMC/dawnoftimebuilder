@@ -138,7 +138,6 @@ public class PoolBlock extends BlockDoTB {
 
 	@Override
 	public ActionResultType use(BlockState blockStateIn, final World worldIn, final BlockPos blockPosIn, final PlayerEntity playerEntityIn, final Hand handIn, final BlockRayTraceResult blockRayTraceResultIn) {
-
 		final ItemStack itemStack = playerEntityIn.getMainHandItem();
 		if (!playerEntityIn.isCrouching()) {
 			/*
@@ -185,13 +184,10 @@ public class PoolBlock extends BlockDoTB {
 					return ActionResultType.SUCCESS;
 				}
 			}
-			else {
-				blockStateIn = blockStateIn.setValue(DoTBBlockStateProperties.HAS_PILLAR, !blockStateIn.getValue(DoTBBlockStateProperties.HAS_PILLAR));
-
-				worldIn.setBlock(blockPosIn, blockStateIn, 10);
-
-				return ActionResultType.SUCCESS;
-			}
+		}else if(itemStack.isEmpty()) {
+			blockStateIn = blockStateIn.setValue(DoTBBlockStateProperties.HAS_PILLAR, !blockStateIn.getValue(DoTBBlockStateProperties.HAS_PILLAR));
+			worldIn.setBlock(blockPosIn, blockStateIn, 10);
+			return ActionResultType.SUCCESS;
 		}
 		return ActionResultType.PASS;
 	}
