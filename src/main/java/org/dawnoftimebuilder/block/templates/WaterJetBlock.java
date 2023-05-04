@@ -101,9 +101,8 @@ public class WaterJetBlock extends BlockDoTB {
 
 	@Override
 	public ActionResultType use(BlockState blockStateIn, final World worldIn, final BlockPos blockPosIn, final PlayerEntity playerEntityIn, final Hand handIn, final BlockRayTraceResult blockRaytraceResultIn) {
-
 		final ItemStack mainHandItemStack = playerEntityIn.getMainHandItem();
-		if (mainHandItemStack != null && !mainHandItemStack.isEmpty() && mainHandItemStack.getItem() == this.asItem()) {
+		if(!mainHandItemStack.isEmpty() && mainHandItemStack.getItem() == this.asItem()) {
 			return ActionResultType.PASS;
 		}
 		blockStateIn = blockStateIn.setValue(DoTBBlockStateProperties.ACTIVATED, !blockStateIn.getValue(DoTBBlockStateProperties.ACTIVATED));
