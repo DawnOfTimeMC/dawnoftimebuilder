@@ -21,6 +21,14 @@ public class DoTBBlockStateProperties {
 	public static final BooleanProperty							AXIS_Y					= BooleanProperty.create("axis_y");
 	public static final BooleanProperty							AXIS_Z					= BooleanProperty.create("axis_z");
 	public static final BooleanProperty							SUBAXIS					= BooleanProperty.create("subaxis");
+	public static final BooleanProperty							HAS_PILLAR				= BooleanProperty.create("has_pillar");
+	public static final BooleanProperty							CENTER					= BooleanProperty.create("center");
+	public static final BooleanProperty							NORTH_TRICKLE			= BooleanProperty.create("north_trickle");
+	public static final BooleanProperty							EAST_TRICKLE			= BooleanProperty.create("east_trickle");
+	public static final BooleanProperty							SOUTH_TRICKLE			= BooleanProperty.create("south_trickle");
+	public static final BooleanProperty							WEST_TRICKLE			= BooleanProperty.create("west_trickle");
+	public static final BooleanProperty							CENTER_TRICKLE			= BooleanProperty.create("center_trickle");
+	public static final BooleanProperty							ACTIVATED				= BooleanProperty.create("activated");
 
 	public static final IntegerProperty							MULTIBLOCK_0_2			= IntegerProperty.create("multiblock", 0, 2);
 	public static final IntegerProperty							MULTIBLOCK_3X			= IntegerProperty.create("multiblock_3x", 0, 2);
@@ -32,6 +40,8 @@ public class DoTBBlockStateProperties {
 	public static final IntegerProperty							SIZE_0_2				= IntegerProperty.create("size", 0, 2);
 	public static final IntegerProperty							SIZE_0_5				= IntegerProperty.create("size", 0, 5);
 	public static final IntegerProperty							STACK					= IntegerProperty.create("stack", 1, 3);
+	public static final IntegerProperty 						LEVEL 					= IntegerProperty.create("level", 0, 16);
+
 	public static final EnumProperty<ClimbingPlant>				CLIMBING_PLANT			= EnumProperty.create("climbing_plant", ClimbingPlant.class);
 	public static final EnumProperty<FencePillar>				FENCE_PILLAR			= EnumProperty.create("fence_pillar", FencePillar.class);
 	public static final EnumProperty<HorizontalConnection>		HORIZONTAL_CONNECTION	= EnumProperty.create("horizontal_connection", HorizontalConnection.class);
@@ -41,26 +51,16 @@ public class DoTBBlockStateProperties {
 	public static final EnumProperty<VerticalConnection>		VERTICAL_CONNECTION		= EnumProperty.create("vertical_connection", VerticalConnection.class);
 	public static final EnumProperty<SquareCorners>				CORNER					= EnumProperty.create("corner", SquareCorners.class);
 	public static final EnumProperty<WallHeight>				PILLAR_WALL				= EnumProperty.create("pillar", WallHeight.class);
-
-	// Fountain - pool and TrickleWater
-	public static final BooleanProperty							HAS_PILLAR				= BooleanProperty.create("has_pillar");
-	public static final BooleanProperty							FLOOR					= BooleanProperty.create("floor");
-
-	// Fountain - Faucet
-	public static final BooleanProperty							ACTIVATED				= BooleanProperty.create("activated");
-
 	public static final EnumProperty<VerticalLimitedConnection>	NORTH_STATE				= EnumProperty.create("north_state", VerticalLimitedConnection.class);
 	public static final EnumProperty<VerticalLimitedConnection>	EAST_STATE				= EnumProperty.create("east_state", VerticalLimitedConnection.class);
 	public static final EnumProperty<VerticalLimitedConnection>	SOUTH_STATE				= EnumProperty.create("south_state", VerticalLimitedConnection.class);
 	public static final EnumProperty<VerticalLimitedConnection>	WEST_STATE				= EnumProperty.create("west_state", VerticalLimitedConnection.class);
-
-	// Fountain - WaterJet
-
-	public static final BooleanProperty							LATERAL					= BooleanProperty.create("lateral");
-	   public static final IntegerProperty LEVEL = IntegerProperty.create("level", 0, 16);
+	public static final EnumProperty<WaterTrickleEnd>			WATER_TRICKLE_END		= EnumProperty.create("water_end", WaterTrickleEnd.class);
 
 	public enum VerticalLimitedConnection implements IStringSerializable {
-		NONE("none", 0), BOTTOM("bottom", 1), TOP("top", 2);
+		NONE("none", 0),
+		BOTTOM("bottom", 1),
+		TOP("top", 2);
 
 		private final String	name;
 		private final int		index;
@@ -92,7 +92,10 @@ public class DoTBBlockStateProperties {
 	}
 
 	public enum HorizontalConnection implements IStringSerializable {
-		NONE("none", 0), LEFT("left", 1), RIGHT("right", 2), BOTH("both", 3);
+		NONE("none", 0),
+		LEFT("left", 1),
+		RIGHT("right", 2),
+		BOTH("both", 3);
 
 		private final String	name;
 		private final int		index;
@@ -118,7 +121,10 @@ public class DoTBBlockStateProperties {
 	}
 
 	public enum VerticalConnection implements IStringSerializable {
-		NONE("none", 0), UNDER("under", 1), ABOVE("above", 2), BOTH("both", 3);
+		NONE("none", 0),
+		UNDER("under", 1),
+		ABOVE("above", 2),
+		BOTH("both", 3);
 
 		private final String	name;
 		private final int		index;
@@ -150,7 +156,11 @@ public class DoTBBlockStateProperties {
 	}
 
 	public enum PillarConnection implements IStringSerializable {
-		NOTHING("nothing"), FOUR_PX("4_pixels"), SIX_PX("6_pixels"), EIGHT_PX("8_pixels"), TEN_PX("10_pixels");
+		NOTHING("nothing"),
+		FOUR_PX("4_pixels"),
+		SIX_PX("6_pixels"),
+		EIGHT_PX("8_pixels"),
+		TEN_PX("10_pixels");
 
 		private final String name;
 
@@ -170,7 +180,10 @@ public class DoTBBlockStateProperties {
 	}
 
 	public enum FencePillar implements IStringSerializable {
-		NONE("none"), PILLAR_BIG("pillar_big"), PILLAR_SMALL("pillar_small"), CAP_PILLAR_BIG("cap_pillar_big");
+		NONE("none"),
+		PILLAR_BIG("pillar_big"),
+		PILLAR_SMALL("pillar_small"),
+		CAP_PILLAR_BIG("cap_pillar_big");
 
 		private final String name;
 
@@ -190,7 +203,10 @@ public class DoTBBlockStateProperties {
 	}
 
 	public enum SquareCorners implements IStringSerializable {
-		TOP_LEFT("top_left", -1, 1), TOP_RIGHT("top_right", 1, 1), BOTTOM_RIGHT("bottom_right", 1, -1), BOTTOM_LEFT("bottom_left", -1, -1);
+		TOP_LEFT("top_left", -1, 1),
+		TOP_RIGHT("top_right", 1, 1),
+		BOTTOM_RIGHT("bottom_right", 1, -1),
+		BOTTOM_LEFT("bottom_left", -1, -1);
 
 		private final String	name;
 		private final int		horizontal_offset;
@@ -252,7 +268,9 @@ public class DoTBBlockStateProperties {
 	}
 
 	public enum OpenPosition implements IStringSerializable {
-		CLOSED("closed"), HALF("half"), FULL("full");
+		CLOSED("closed"),
+		HALF("half"),
+		FULL("full");
 
 		private final String name;
 
@@ -276,7 +294,12 @@ public class DoTBBlockStateProperties {
 	}
 
 	public enum SidedWindow implements IStringSerializable {
-		NORTH("north", Direction.NORTH), EAST("east", Direction.EAST), SOUTH("south", Direction.SOUTH), WEST("west", Direction.WEST), AXIS_X("axis_x", Direction.EAST), AXIS_Z("axis_z", Direction.NORTH);
+		NORTH("north", Direction.NORTH),
+		EAST("east", Direction.EAST),
+		SOUTH("south", Direction.SOUTH),
+		WEST("west", Direction.WEST),
+		AXIS_X("axis_x", Direction.EAST),
+		AXIS_Z("axis_z", Direction.NORTH);
 
 		private final String	name;
 		private final Direction	direction;
@@ -319,6 +342,28 @@ public class DoTBBlockStateProperties {
 				case WEST:
 					return WEST;
 			}
+		}
+	}
+
+	public enum WaterTrickleEnd implements IStringSerializable {
+		STRAIGHT("straight"),
+		FADE("fade"),
+		SPLASH("splash");
+
+		private final String name;
+
+		WaterTrickleEnd(final String name) {
+			this.name = name;
+		}
+
+		@Override
+		public String toString() {
+			return this.name;
+		}
+
+		@Override
+		public String getSerializedName() {
+			return this.name;
 		}
 	}
 

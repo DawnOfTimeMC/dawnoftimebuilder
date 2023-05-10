@@ -69,6 +69,8 @@ public class HandlerClient {
 		RenderTypeLookup.setRenderLayer(DoTBBlocksRegistry.FIREPLACE.get(), RenderType.cutoutMipped());
 		RenderTypeLookup.setRenderLayer(DoTBBlocksRegistry.IRON_PORTCULLIS.get(), RenderType.cutoutMipped());
 		RenderTypeLookup.setRenderLayer(DoTBBlocksRegistry.WROUGHT_IRON_FENCE.get(), RenderType.cutoutMipped());
+		RenderTypeLookup.setRenderLayer(DoTBBlocksRegistry.WATER_FLOWING_TRICKLE.get(), RenderType.translucent());
+		RenderTypeLookup.setRenderLayer(DoTBBlocksRegistry.WATER_SOURCE_TRICKLE.get(), RenderType.translucent());
 
 		//French
 		RenderTypeLookup.setRenderLayer(DoTBBlocksRegistry.LIMESTONE_FIREPLACE.get(), RenderType.cutoutMipped());
@@ -87,6 +89,8 @@ public class HandlerClient {
 		RenderTypeLookup.setRenderLayer(DoTBBlocksRegistry.LATTICE_STONE_BRICKS_WINDOW.get(), RenderType.cutoutMipped());
 		RenderTypeLookup.setRenderLayer(DoTBBlocksRegistry.STONE_BRICKS_ARROWSLIT.get(), RenderType.cutoutMipped());
 		RenderTypeLookup.setRenderLayer(DoTBBlocksRegistry.STONE_BRICKS_FIREPLACE.get(), RenderType.cutoutMipped());
+		RenderTypeLookup.setRenderLayer(DoTBBlocksRegistry.STONE_BRICKS_POOL.get(), RenderType.translucent());
+		RenderTypeLookup.setRenderLayer(DoTBBlocksRegistry.STONE_BRICKS_SMALL_POOL.get(), RenderType.translucent());
 		RenderTypeLookup.setRenderLayer(DoTBBlocksRegistry.WAXED_OAK_DOOR.get(), RenderType.cutoutMipped());
 		RenderTypeLookup.setRenderLayer(DoTBBlocksRegistry.WAXED_OAK_TRAPDOOR.get(), RenderType.cutoutMipped());
 		RenderTypeLookup.setRenderLayer(DoTBBlocksRegistry.WAXED_OAK_BEAM.get(), RenderType.cutoutMipped());

@@ -1,17 +1,10 @@
 package org.dawnoftimebuilder.client.gui.creative;
 
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.fml.RegistryObject;
-import org.dawnoftimebuilder.block.templates.PlateBlock;
-import org.dawnoftimebuilder.block.templates.SlabBlockDoTB;
-import org.dawnoftimebuilder.registry.DoTBBlocksRegistry;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -173,6 +166,7 @@ public enum CreativeInventoryCategories {
 			WARPED_DOOR.asItem(),
 			WARPED_TRAPDOOR.asItem(),
 			WARPED_WART_BLOCK.asItem(),
+			WATER_SOURCE_TRICKLE.get().asItem(),
 			IRON_PORTCULLIS.get().asItem(),
 			WROUGHT_IRON_FENCE.get().asItem(),
 			FIREPLACE.get().asItem(),

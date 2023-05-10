@@ -13,10 +13,8 @@ import org.dawnoftimebuilder.util.DoTBBlockStateProperties;
 import org.dawnoftimebuilder.util.DoTBBlockStateProperties.VerticalConnection;
 import org.dawnoftimebuilder.util.DoTBBlockUtils;
 
-import net.minecraft.block.AirBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
@@ -24,7 +22,6 @@ import net.minecraft.entity.projectile.FireballEntity;
 import net.minecraft.entity.projectile.PotionEntity;
 import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.entity.projectile.SnowballEntity;
-import net.minecraft.item.BlockItem;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particles.ParticleTypes;
@@ -53,51 +50,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
  * @author Seynax
  *
  */
-public class BaseChimneyDoTB extends ColumnConnectibleBlock
-{
-	public final static void updateAllChimneyConductParts(final boolean isActivatedIn, BlockState stateIn, final BlockPos blockPosIn, final World worldIn) {
-		stateIn = stateIn.setValue(BlockStateProperties.LIT, isActivatedIn);
-		worldIn.setBlock(blockPosIn, stateIn, 10);
-		BaseChimneyDoTB.updateisActivatedInAllPartsOfBottom(isActivatedIn, stateIn, blockPosIn, worldIn);
-		BaseChimneyDoTB.updateisActivatedInAllPartsOfTop(isActivatedIn, stateIn, blockPosIn, worldIn);
-	}
-
-	public final static void updateisActivatedInAllPartsOfBottom(final boolean isActivatedIn, final BlockState stateIn, final BlockPos blockPosIn, final World worldIn) {
-		BlockState	blockState	= null;
-		BlockPos	blockPos	= blockPosIn;
-		while ((blockState = worldIn.getBlockState(blockPos = blockPos.below())) != null && blockState.getBlock() instanceof BaseChimneyDoTB) {
-			blockState = blockState.setValue(BlockStateProperties.LIT, isActivatedIn);
-			worldIn.setBlock(blockPos, blockState, 10);
-		}
-	}
-
-	public final static void updateisActivatedInAllPartsOfTop(final boolean isActivatedIn, final BlockState stateIn, final BlockPos blockPosIn, final World worldIn) {
-		BlockState	blockState	= null;
-		BlockPos	blockPos	= blockPosIn;
-		while ((blockState = worldIn.getBlockState(blockPos = blockPos.above())) != null && blockState.getBlock() instanceof BaseChimneyDoTB) {
-			blockState = blockState.setValue(BlockStateProperties.LIT, isActivatedIn);
-			worldIn.setBlock(blockPos, blockState, 10);
-		}
-	}
-
-	public final static void updateFireplace(final boolean isActivatedIn, final BlockPos blockPosIn, final World worldIn) {
-		BlockState	blockState	= null;
-		BlockPos	blockPos	= blockPosIn;
-		while ((blockState = worldIn.getBlockState(blockPos = blockPos.below())) != null && blockState.getBlock() instanceof BaseChimneyDoTB) {
-		}
-
-		while ((blockState = worldIn.getBlockState(blockPos = blockPos.below())) != null && blockState.getBlock() instanceof MultiblockFireplaceBlock) {
-			final VerticalConnection verticalConnection = blockState.getValue(ColumnConnectibleBlock.VERTICAL_CONNECTION);
-			if (verticalConnection != null && VerticalConnection.ABOVE.equals(verticalConnection)) {
-				blockState = blockState.setValue(BlockStateProperties.LIT, isActivatedIn);
-				worldIn.setBlock(blockPos, blockState, 10);
-				final Direction direction = blockState.getValue(SidedColumnConnectibleBlock.FACING);
-				worldIn.getBlockState(blockPos.relative(direction.getCounterClockWise())).neighborChanged(worldIn, blockPos.relative(direction.getCounterClockWise()), blockState.getBlock(), blockPos, false);
-				worldIn.getBlockState(blockPos.relative(direction.getClockWise())).neighborChanged(worldIn, blockPos.relative(direction.getClockWise()), blockState.getBlock(), blockPos, false);
-
-			}
-		}
-	}
+public class BaseChimneyDoTB extends ColumnConnectibleBlock {
 
 	private static final VoxelShape[]	SHAPES	= BaseChimneyDoTB.makeShapes();
 	public static final BooleanProperty	LIT		= BlockStateProperties.LIT;
@@ -115,33 +68,28 @@ public class BaseChimneyDoTB extends ColumnConnectibleBlock
 
 	@Override
 	public BlockState getStateForPlacement(final BlockItemUseContext context) {
-		final BlockState	state		= super.getStateForPlacement(context);
-		final World			world		= context.getLevel();
-		BlockPos		belowBlockPos = context.getClickedPos().below();
-		BlockState	blockState	= world.getBlockState(belowBlockPos);
+		final BlockState state = super.getStateForPlacement(context);
+		final World world = context.getLevel();
+		BlockPos belowBlockPos = context.getClickedPos().below();
+		BlockState	blockState = world.getBlockState(belowBlockPos);
 
-		if(blockState == null)
-		{
+		if(blockState == null) {
 			return state;
 		}
 
-		if (blockState.getBlock() instanceof BaseChimneyDoTB)
-		{
+		if (blockState.getBlock() instanceof BaseChimneyDoTB) {
 			return state.setValue(BlockStateProperties.LIT, blockState.getValue(BlockStateProperties.LIT));
 		}
 
-		if(blockState.getBlock() instanceof MultiblockFireplaceBlock)
-		{
-			BlockState findedBlockState = blockState;
+		if(blockState.getBlock() instanceof MultiblockFireplaceBlock) {
+			BlockState foundBlockState = blockState;
 			belowBlockPos = belowBlockPos.below();
-			while( (findedBlockState = world.getBlockState(belowBlockPos)) != null && findedBlockState.getBlock() instanceof MultiblockFireplaceBlock)
-			{
-				blockState = findedBlockState;
+			while((foundBlockState = world.getBlockState(belowBlockPos)) != null && foundBlockState.getBlock() instanceof MultiblockFireplaceBlock) {
+				blockState = foundBlockState;
 				belowBlockPos = belowBlockPos.below();
 			}
 			return state.setValue(BlockStateProperties.LIT, blockState.getValue(BlockStateProperties.LIT));
 		}
-
 		return state;
 	}
 
@@ -247,5 +195,49 @@ public class BaseChimneyDoTB extends ColumnConnectibleBlock
 	public void appendHoverText(final ItemStack stack, @Nullable final IBlockReader worldIn, final List<ITextComponent> tooltip, final ITooltipFlag flagIn) {
 		super.appendHoverText(stack, worldIn, tooltip, flagIn);
 		DoTBBlockUtils.addTooltip(tooltip, DoTBBlockUtils.FIREPLACE);
+	}
+
+	public static void updateAllChimneyConductParts(final boolean isActivatedIn, BlockState stateIn, final BlockPos blockPosIn, final World worldIn) {
+		stateIn = stateIn.setValue(BlockStateProperties.LIT, isActivatedIn);
+		worldIn.setBlock(blockPosIn, stateIn, 10);
+		BaseChimneyDoTB.updateIsActivatedInAllPartsOfBottom(isActivatedIn, stateIn, blockPosIn, worldIn);
+		BaseChimneyDoTB.updateIsActivatedInAllPartsOfTop(isActivatedIn, stateIn, blockPosIn, worldIn);
+	}
+
+	public static void updateIsActivatedInAllPartsOfBottom(final boolean isActivatedIn, final BlockState stateIn, final BlockPos blockPosIn, final World worldIn) {
+		BlockState	blockState	= null;
+		BlockPos	blockPos	= blockPosIn;
+		while ((blockState = worldIn.getBlockState(blockPos = blockPos.below())) != null && blockState.getBlock() instanceof BaseChimneyDoTB) {
+			blockState = blockState.setValue(BlockStateProperties.LIT, isActivatedIn);
+			worldIn.setBlock(blockPos, blockState, 10);
+		}
+	}
+
+	public static void updateIsActivatedInAllPartsOfTop(final boolean isActivatedIn, final BlockState stateIn, final BlockPos blockPosIn, final World worldIn) {
+		BlockState	blockState	= null;
+		BlockPos	blockPos	= blockPosIn;
+		while ((blockState = worldIn.getBlockState(blockPos = blockPos.above())) != null && blockState.getBlock() instanceof BaseChimneyDoTB) {
+			blockState = blockState.setValue(BlockStateProperties.LIT, isActivatedIn);
+			worldIn.setBlock(blockPos, blockState, 10);
+		}
+	}
+
+	public static void updateFireplace(final boolean isActivatedIn, final BlockPos blockPosIn, final World worldIn) {
+		BlockState	blockState	= null;
+		BlockPos	blockPos	= blockPosIn;
+		while ((blockState = worldIn.getBlockState(blockPos = blockPos.below())) != null && blockState.getBlock() instanceof BaseChimneyDoTB) {
+		}
+
+		while ((blockState = worldIn.getBlockState(blockPos = blockPos.below())) != null && blockState.getBlock() instanceof MultiblockFireplaceBlock) {
+			final VerticalConnection verticalConnection = blockState.getValue(ColumnConnectibleBlock.VERTICAL_CONNECTION);
+			if (verticalConnection != null && VerticalConnection.ABOVE.equals(verticalConnection)) {
+				blockState = blockState.setValue(BlockStateProperties.LIT, isActivatedIn);
+				worldIn.setBlock(blockPos, blockState, 10);
+				final Direction direction = blockState.getValue(SidedColumnConnectibleBlock.FACING);
+				worldIn.getBlockState(blockPos.relative(direction.getCounterClockWise())).neighborChanged(worldIn, blockPos.relative(direction.getCounterClockWise()), blockState.getBlock(), blockPos, false);
+				worldIn.getBlockState(blockPos.relative(direction.getClockWise())).neighborChanged(worldIn, blockPos.relative(direction.getClockWise()), blockState.getBlock(), blockPos, false);
+
+			}
+		}
 	}
 }

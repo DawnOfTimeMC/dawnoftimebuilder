@@ -16,17 +16,13 @@ import org.dawnoftimebuilder.block.ICustomBlockItem;
 import org.dawnoftimebuilder.block.french.LimestoneChimneyBlock;
 import org.dawnoftimebuilder.block.french.LimestoneGargoyleBlock;
 import org.dawnoftimebuilder.block.french.ReinforcedIronFenceBlock;
-import org.dawnoftimebuilder.block.general.FireplaceBlock;
-import org.dawnoftimebuilder.block.general.IronFenceBlock;
+import org.dawnoftimebuilder.block.general.*;
 import org.dawnoftimebuilder.block.german.*;
 import org.dawnoftimebuilder.block.japanese.*;
 import org.dawnoftimebuilder.block.precolumbian.*;
 import org.dawnoftimebuilder.block.roman.*;
 import org.dawnoftimebuilder.block.templates.FaucetBlock;
 import org.dawnoftimebuilder.block.templates.WaterJetBlock;
-import org.dawnoftimebuilder.block.templates.WaterMovingTrickleBlock;
-import org.dawnoftimebuilder.block.templates.WaterSourceTrickleBlock;
-import org.dawnoftimebuilder.block.templates.WaterTrickleBlock;
 import org.dawnoftimebuilder.block.templates.*;
 import org.dawnoftimebuilder.item.IHasFlowerPot;
 import org.dawnoftimebuilder.util.DoTBFoods;
@@ -119,6 +115,8 @@ public class DoTBBlocksRegistry {
 	public static final RegistryObject<Block>	FIREPLACE									= DoTBBlocksRegistry.reg("fireplace", new FireplaceBlock(AbstractBlock.Properties.of(Material.STONE).strength(1.5F, 6.0F).lightLevel(DoTBBlocksRegistry.litBlockEmission(15))));
 	public static final RegistryObject<Block>	IRON_PORTCULLIS								= DoTBBlocksRegistry.reg("iron_portcullis", new PortcullisBlock(AbstractBlock.Properties.copy(Blocks.IRON_DOOR)));
 	public static final RegistryObject<Block>	WROUGHT_IRON_FENCE							= DoTBBlocksRegistry.reg("wrought_iron_fence", new IronFenceBlock(AbstractBlock.Properties.copy(Blocks.IRON_BARS)));
+	public static final RegistryObject<Block> 	WATER_FLOWING_TRICKLE 						= DoTBBlocksRegistry.reg("water_flowing_trickle", new WaterFlowingTrickleBlock(AbstractBlock.Properties.copy(Blocks.WATER).randomTicks().noCollission()));
+	public static final RegistryObject<Block>	WATER_SOURCE_TRICKLE						= DoTBBlocksRegistry.reg("water_source_trickle", new WaterSourceTrickleBlock(AbstractBlock.Properties.of(Material.WATER_PLANT).randomTicks().noCollission()));
 
 	//French
 	public static final RegistryObject<Block>	COBBLED_LIMESTONE							= DoTBBlocksRegistry.reg("cobbled_limestone", new BlockDoTB(AbstractBlock.Properties.copy(Blocks.STONE_BRICKS)));
@@ -202,11 +200,8 @@ public class DoTBBlocksRegistry {
 	public static final RegistryObject<Block>	PLANTER_GERANIUM_PINK						= DoTBBlocksRegistry.reg("planter_geranium_pink", new PlanterBlock(AbstractBlock.Properties.of(Material.CLAY).strength(0.6F).noOcclusion()));
 	public static final RegistryObject<Block>	STONE_BRICKS_POOL							= DoTBBlocksRegistry.reg("stone_bricks_pool", new PoolBlock(AbstractBlock.Properties.copy(Blocks.STONE)));
 	public static final RegistryObject<Block>	STONE_BRICKS_SMALL_POOL						= DoTBBlocksRegistry.reg("stone_bricks_small_pool", new SmallPoolBlock(AbstractBlock.Properties.copy(Blocks.STONE)));
-	public static final RegistryObject<Block>	STONE_BRICKS_FAUCET							= DoTBBlocksRegistry.reg("stone_bricks_faucet", new FaucetBlock(AbstractBlock.Properties.of(Material.STONE).noOcclusion().noCollission()));
+	public static final RegistryObject<Block>	STONE_BRICKS_FAUCET							= DoTBBlocksRegistry.reg("stone_bricks_faucet", new FaucetBlock(AbstractBlock.Properties.of(Material.STONE).noOcclusion().noCollission().randomTicks()));
 	public static final RegistryObject<Block>	STONE_BRICKS_WATER_JET						= DoTBBlocksRegistry.reg("stone_bricks_water_jet", new WaterJetBlock(AbstractBlock.Properties.copy(Blocks.STONE).noOcclusion().noCollission()));
-	public static final RegistryObject<Block>	WATER_TRICKLE								= DoTBBlocksRegistry.reg("water_trickle", new WaterTrickleBlock(AbstractBlock.Properties.copy(Blocks.STONE)));
-	public static final RegistryObject<Block>	WATER_MOVING_TRICKLE						= DoTBBlocksRegistry.reg("water_moving_trickle", new WaterMovingTrickleBlock(AbstractBlock.Properties.copy(Blocks.STONE).randomTicks()));
-	public static final RegistryObject<Block>	WATER_SOURCE_TRICKLE						= DoTBBlocksRegistry.reg("water_source_trickle", new WaterSourceTrickleBlock(AbstractBlock.Properties.copy(Blocks.STONE).randomTicks()));
 
 	//Japanese
 	public static final RegistryObject<Block>	CHARRED_SPRUCE_PLANKS						= DoTBBlocksRegistry.reg("charred_spruce_planks", new BlockDoTB(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.COLOR_BLACK).strength(2.0F, 6.0F).sound(SoundType.WOOD)).setBurnable(2, 3));

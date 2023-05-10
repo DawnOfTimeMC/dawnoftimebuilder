@@ -29,27 +29,27 @@
 		},
 		{
 			"when": { "level": "1" },
-			"apply": { "model": "dawnoftimebuilder:block/german/stone_bricks_small_pool_water_1" }
+			"apply": { "model": "dawnoftimebuilder:block/general/water/pool_water_11px" }
 		},
 		{
 			"when": { "level": "2" },
-			"apply": { "model": "dawnoftimebuilder:block/german/stone_bricks_small_pool_water_2" }
+			"apply": { "model": "dawnoftimebuilder:block/general/water/pool_water_12px" }
 		},
 		{
 			"when": { "level": "3" },
-			"apply": { "model": "dawnoftimebuilder:block/german/stone_bricks_small_pool_water_3" }
+			"apply": { "model": "dawnoftimebuilder:block/general/water/pool_water_13px" }
 		},
 		{
 			"when": { "level": "4" },
-			"apply": { "model": "dawnoftimebuilder:block/german/stone_bricks_small_pool_water_4" }
+			"apply": { "model": "dawnoftimebuilder:block/general/water/pool_water_14px" }
 		},
 		{
 			"when": { "level": "5" },
-			"apply": { "model": "dawnoftimebuilder:block/german/stone_bricks_small_pool_water_5" }
+			"apply": { "model": "dawnoftimebuilder:block/general/water/pool_water_15px" }
 		},
 		{
 			"when": { "level": "6" },
-			"apply": { "model": "dawnoftimebuilder:block/german/stone_bricks_small_pool_water_6" }
+			"apply": { "model": "dawnoftimebuilder:block/general/water/pool_water_16px" }
 		}
 	]
 }

@@ -18,25 +18,27 @@ import net.minecraftforge.fml.RegistryObject;
 
 /**
  * @author Seynax
- *
  */
 public class DoTBBlockAndItemColorsRegistry {
 
 	private final static Map<IBlockColor, List<Block>>	blocksColorRegistry	= new HashMap<>();
 	private final static Map<IItemColor, List<Item>>	itemsColorRegistry	= new HashMap<>();
 
-	public final static IBlockColor						waterBlockColor	= DoTBBlockAndItemColorsRegistry.register((blockStateIn, blockDisplayReaderIn, blockPosIn, tintIndexIn) ->
-	BiomeColors.getAverageWaterColor(blockDisplayReaderIn, blockPosIn), DoTBBlocksRegistry.STONE_BRICKS_FAUCET.get(), DoTBBlocksRegistry.STONE_BRICKS_POOL.get(), DoTBBlocksRegistry.STONE_BRICKS_SMALL_POOL.get(), DoTBBlocksRegistry.WATER_MOVING_TRICKLE.get(), DoTBBlocksRegistry.WATER_SOURCE_TRICKLE.get(),
-	DoTBBlocksRegistry.WATER_TRICKLE.get(), DoTBBlocksRegistry.STONE_BRICKS_WATER_JET.get());
+	public final static IBlockColor	waterBlockColor	= DoTBBlockAndItemColorsRegistry.register((blockStateIn, blockDisplayReaderIn, blockPosIn, tintIndexIn) ->
+					BiomeColors.getAverageWaterColor(blockDisplayReaderIn, blockPosIn),
+			DoTBBlocksRegistry.STONE_BRICKS_FAUCET.get(),
+			DoTBBlocksRegistry.STONE_BRICKS_POOL.get(),
+			DoTBBlocksRegistry.STONE_BRICKS_SMALL_POOL.get(),
+			DoTBBlocksRegistry.WATER_FLOWING_TRICKLE.get(),
+			DoTBBlocksRegistry.WATER_SOURCE_TRICKLE.get(),
+			DoTBBlocksRegistry.STONE_BRICKS_WATER_JET.get());
 
 	// Items
+	private static IItemColor register(final IItemColor itemColorIn, final RegistryObject<Item>[] itemsRegistryObjectsIn) {
+		final Item[] items = new Item[itemsRegistryObjectsIn.length];
 
-	@SuppressWarnings("unused")
-	private final static IItemColor register(final IItemColor itemColorIn, final RegistryObject<Item>[] itemssRegistryObjectsIn) {
-		final Item[] items = new Item[itemssRegistryObjectsIn.length];
-
-		for (int i = 0; i < itemssRegistryObjectsIn.length; i++) {
-			items[i] = itemssRegistryObjectsIn[i].get();
+		for (int i = 0; i < itemsRegistryObjectsIn.length; i++) {
+			items[i] = itemsRegistryObjectsIn[i].get();
 		}
 
 		DoTBBlockAndItemColorsRegistry.register(itemColorIn, items);
@@ -44,7 +46,7 @@ public class DoTBBlockAndItemColorsRegistry {
 		return itemColorIn;
 	}
 
-	private final static IItemColor register(final IItemColor itemColorIn, final Item... itemsIn) {
+	private static IItemColor register(final IItemColor itemColorIn, final Item... itemsIn) {
 		List<Item> items = DoTBBlockAndItemColorsRegistry.getItems(itemColorIn);
 
 		if (items == null) {
@@ -57,7 +59,7 @@ public class DoTBBlockAndItemColorsRegistry {
 		return itemColorIn;
 	}
 
-	private final static List<Item> getItems(final IItemColor blockColorIn) {
+	private static List<Item> getItems(final IItemColor blockColorIn) {
 		for (final Entry<IItemColor, List<Item>> entry : DoTBBlockAndItemColorsRegistry.itemsColorRegistry.entrySet()) {
 			if (entry.getKey().getClass() == blockColorIn.getClass()) {
 				return entry.getValue();
@@ -68,7 +70,7 @@ public class DoTBBlockAndItemColorsRegistry {
 	}
 
 	@SubscribeEvent
-	public final static void registerItemsColors(final ColorHandlerEvent.Item eventIn) {
+	public static void registerItemsColors(final ColorHandlerEvent.Item eventIn) {
 		for (final Entry<IItemColor, List<Item>> entry : DoTBBlockAndItemColorsRegistry.itemsColorRegistry.entrySet()) {
 			final Item[]	items	= new Item[entry.getValue().size()];
 			int				i		= 0;
@@ -84,9 +86,7 @@ public class DoTBBlockAndItemColorsRegistry {
 	}
 
 	// Blocks
-
-	@SuppressWarnings("unused")
-	private final static IBlockColor register(final IBlockColor blockColorIn, final RegistryObject<Block>[] blocksRegistryObjectsIn) {
+	private static IBlockColor register(final IBlockColor blockColorIn, final RegistryObject<Block>[] blocksRegistryObjectsIn) {
 		final Block[] blocks = new Block[blocksRegistryObjectsIn.length];
 
 		for (int i = 0; i < blocksRegistryObjectsIn.length; i++) {
@@ -98,7 +98,7 @@ public class DoTBBlockAndItemColorsRegistry {
 		return blockColorIn;
 	}
 
-	private final static IBlockColor register(final IBlockColor blockColorIn, final Block... blocksIn) {
+	private static IBlockColor register(final IBlockColor blockColorIn, final Block... blocksIn) {
 		List<Block> blocks = DoTBBlockAndItemColorsRegistry.getBlocks(blockColorIn);
 
 		if (blocks == null) {
@@ -111,7 +111,7 @@ public class DoTBBlockAndItemColorsRegistry {
 		return blockColorIn;
 	}
 
-	private final static List<Block> getBlocks(final IBlockColor blockColorIn) {
+	private static List<Block> getBlocks(final IBlockColor blockColorIn) {
 		for (final Entry<IBlockColor, List<Block>> entry : DoTBBlockAndItemColorsRegistry.blocksColorRegistry.entrySet()) {
 			if (entry.getKey().getClass() == blockColorIn.getClass()) {
 				return entry.getValue();
@@ -122,7 +122,7 @@ public class DoTBBlockAndItemColorsRegistry {
 	}
 
 	@SubscribeEvent
-	public final static void registerBlockColors(final ColorHandlerEvent.Block eventIn) {
+	public static void registerBlockColors(final ColorHandlerEvent.Block eventIn) {
 		for (final Entry<IBlockColor, List<Block>> entry : DoTBBlockAndItemColorsRegistry.blocksColorRegistry.entrySet()) {
 			final Block[]	blocks	= new Block[entry.getValue().size()];
 			int				i		= 0;
