@@ -121,8 +121,8 @@ public abstract class WaterTrickleBlock extends BlockDoTB {
 	}
 
 	@Override
-	public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random rand) {
-		super.randomTick(state, world, pos, rand);
+	public void tick(BlockState state, ServerWorld world, BlockPos pos, Random rand) {
+		super.tick(state, world, pos, rand);
 		// We consider that this Water Trickle won't be unstable by the end of this random tick.
 		state = state.setValue(BlockStateProperties.UNSTABLE, false);
 		BlockPos bottomPos = pos.below();
@@ -156,6 +156,8 @@ public abstract class WaterTrickleBlock extends BlockDoTB {
 		// Finally, we synchronize this water trickle with the block above. If it changes, this block stays unstable.
 		if(aboveState.getBlock() instanceof WaterTrickleBlock){
 			currentState = this.inheritWaterTrickles(currentState, aboveState);
+		}else{
+			currentState = this.inheritWaterTrickles(currentState, this.defaultBlockState());
 		}
 		return currentState;
 	}

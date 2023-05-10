@@ -23,10 +23,6 @@ public class WaterFlowingTrickleBlock extends WaterTrickleBlock implements ICust
     @Override
     public BlockState updateWaterTrickle(World world, BlockState currentState, BlockPos bottomPos, BlockState bottomState, BlockState aboveState) {
         currentState = super.updateWaterTrickle(world, currentState, bottomPos, bottomState, aboveState);
-        // If the block under has a full face, we create a Water Block;
-        if(Block.isFaceFull(bottomState.getCollisionShape(world, bottomPos), Direction.UP)){
-            return Blocks.WATER.defaultBlockState();
-        }
         BooleanProperty[] properties = new BooleanProperty[]{
                 DoTBBlockStateProperties.NORTH_TRICKLE,
                 DoTBBlockStateProperties.EAST_TRICKLE,
@@ -35,12 +31,21 @@ public class WaterFlowingTrickleBlock extends WaterTrickleBlock implements ICust
                 DoTBBlockStateProperties.CENTER_TRICKLE
         };
         // If one of the bool properties is True, it means this flowing water trickle is not empty. It disappears otherwise.
+        boolean hasTickle = false;
         for(BooleanProperty prop : properties){
             if(currentState.getValue(prop)){
-                return currentState;
+                hasTickle = true;
+                break;
             }
         }
-        return Blocks.AIR.defaultBlockState();
+        if(!hasTickle){
+            return Blocks.AIR.defaultBlockState();
+        }
+        // If the block under has a full face, we create a Water Block;
+        if(Block.isFaceFull(bottomState.getCollisionShape(world, bottomPos), Direction.UP)){
+            return Blocks.WATER.defaultBlockState();
+        }
+        return currentState;
     }
 
     @Override
