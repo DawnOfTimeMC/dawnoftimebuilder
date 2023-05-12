@@ -22,13 +22,13 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import org.dawnoftimebuilder.block.templates.ChairBlock;
 import org.dawnoftimebuilder.entity.ChairEntity;
-import org.dawnoftimebuilder.util.DoTBBlockUtils;
+import org.dawnoftimebuilder.util.DoTBUtils;
 
 import javax.annotation.Nullable;
 
 public class BirchCouchBlock extends ChairBlock {
 
-    private static final VoxelShape[] SHAPES = DoTBBlockUtils.GenerateHorizontalShapes(new VoxelShape[]{
+    private static final VoxelShape[] SHAPES = DoTBUtils.GenerateHorizontalShapes(new VoxelShape[]{
             VoxelShapes.or(
                     Block.box(1.0D, 0.0D, 2.0D, 15.0D, 8.0D, 6.0D),
                     Block.box(0.0D, 8.0D, 0.0D, 16.0D, 13.0D, 16.0D),

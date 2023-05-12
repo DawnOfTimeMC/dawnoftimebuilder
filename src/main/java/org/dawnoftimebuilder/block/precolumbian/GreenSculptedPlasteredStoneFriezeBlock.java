@@ -8,11 +8,11 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import org.dawnoftimebuilder.block.templates.PlateBlock;
-import org.dawnoftimebuilder.util.DoTBBlockUtils;
+import org.dawnoftimebuilder.util.DoTBUtils;
 
 public class GreenSculptedPlasteredStoneFriezeBlock extends PlateBlock {
 
-	private static final VoxelShape[] SHAPES = DoTBBlockUtils.GenerateHorizontalShapes(makeShapes());
+	private static final VoxelShape[] SHAPES = DoTBUtils.GenerateHorizontalShapes(makeShapes());
 
     public GreenSculptedPlasteredStoneFriezeBlock(Properties properties) {
 		super(properties);

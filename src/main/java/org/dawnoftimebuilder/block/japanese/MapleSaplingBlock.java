@@ -1,6 +1,5 @@
 package org.dawnoftimebuilder.block.japanese;
 
-import java.util.List;
 import java.util.Random;
 
 import javax.annotation.Nullable;
@@ -11,17 +10,14 @@ import org.dawnoftimebuilder.block.ICustomBlockItem;
 import org.dawnoftimebuilder.block.templates.BushBlockDoT;
 import org.dawnoftimebuilder.item.templates.PotAndBlockItem;
 import org.dawnoftimebuilder.registry.DoTBBlocksRegistry;
-import org.dawnoftimebuilder.util.DoTBBlockUtils;
 
 import net.minecraft.block.AirBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.IGrowable;
-import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.FlintAndSteelItem;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
@@ -32,7 +28,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
@@ -71,7 +66,7 @@ public class MapleSaplingBlock extends BushBlockDoT implements IBlockGeneration,
 		return true;
 	}
 
-	public final static void placeFinalTreeIfPossible(final IWorld worldIn, final BlockPos centerPosIn) {
+	public static void placeFinalTreeIfPossible(final IWorld worldIn, final BlockPos centerPosIn) {
 		if (MapleSaplingBlock.isValidForPlacement(worldIn, centerPosIn, true)) {
 			final Direction direction = Direction.Plane.HORIZONTAL.getRandomDirection(worldIn.getRandom());
 			worldIn.setBlock(centerPosIn, DoTBBlocksRegistry.MAPLE_RED_TRUNK.get().defaultBlockState().setValue(MapleTrunkBlock.FACING, direction), 10);
@@ -127,11 +122,6 @@ public class MapleSaplingBlock extends BushBlockDoT implements IBlockGeneration,
 		return new PotAndBlockItem(this, new Item.Properties().tab(DawnOfTimeBuilder.DOTB_TAB));
 	}
 
-	@Override
-	public void appendHoverText(final ItemStack stack, @Nullable final IBlockReader worldIn, final List<ITextComponent> tooltip, final ITooltipFlag flagIn) {
-		super.appendHoverText(stack, worldIn, tooltip, flagIn);
-		DoTBBlockUtils.addTooltip(tooltip, DoTBBlockUtils.TOOLTIP_INVERT_GROWTH);
-	}
 
 	@Override
 	protected void createBlockStateDefinition(final StateContainer.Builder<Block, BlockState> p_206840_1_) {
@@ -149,8 +139,6 @@ public class MapleSaplingBlock extends BushBlockDoT implements IBlockGeneration,
 
 	@Override
 	public void tick(final BlockState p_225542_1_, final ServerWorld p_225542_2_, final BlockPos p_225542_3_, final Random p_225542_4_) {
-		//super.tick(p_225542_1_, p_225542_2_, p_225542_3_, p_225542_4_);
-
 		if (p_225542_2_.getMaxLocalRawBrightness(p_225542_3_.above()) >= 9 && p_225542_4_.nextInt(7) == 0) {
 			if (!p_225542_2_.isAreaLoaded(p_225542_3_, 1)) {
 				return; // Forge: prevent loading unloaded chunks when checking neighbor's light

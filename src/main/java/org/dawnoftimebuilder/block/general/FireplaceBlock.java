@@ -5,11 +5,10 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
-import org.dawnoftimebuilder.block.templates.BaseChimneyDoTB;
 import org.dawnoftimebuilder.block.templates.WaterloggedBlock;
 import org.dawnoftimebuilder.util.DoTBBlockStateProperties;
 import org.dawnoftimebuilder.util.DoTBBlockStateProperties.HorizontalConnection;
-import org.dawnoftimebuilder.util.DoTBBlockUtils;
+import org.dawnoftimebuilder.util.DoTBUtils;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -101,7 +100,7 @@ public class FireplaceBlock extends WaterloggedBlock {
 
 	@Override
 	public ActionResultType use(final BlockState state, final World worldIn, final BlockPos pos, final PlayerEntity player, final Hand handIn, final BlockRayTraceResult hit) {
-		return DoTBBlockUtils.changeBlockLitStateWithItemOrCreativePlayer(state, worldIn, pos, player, handIn) >= 0 ? ActionResultType.SUCCESS : ActionResultType.PASS;
+		return DoTBUtils.changeBlockLitStateWithItemOrCreativePlayer(state, worldIn, pos, player, handIn) >= 0 ? ActionResultType.SUCCESS : ActionResultType.PASS;
 	}
 
 	@Override
@@ -237,6 +236,6 @@ public class FireplaceBlock extends WaterloggedBlock {
 	@Override
 	public void appendHoverText(final ItemStack stack, @Nullable final IBlockReader worldIn, final List<ITextComponent> tooltip, final ITooltipFlag flagIn) {
 		super.appendHoverText(stack, worldIn, tooltip, flagIn);
-		DoTBBlockUtils.addTooltip(tooltip, DoTBBlockUtils.FIREPLACE);
+		DoTBUtils.addTooltip(tooltip, DoTBUtils.TOOLTIP_FIREPLACE);
 	}
 }

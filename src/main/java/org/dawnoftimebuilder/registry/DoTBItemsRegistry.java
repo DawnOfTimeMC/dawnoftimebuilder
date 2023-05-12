@@ -29,10 +29,10 @@ public class DoTBItemsRegistry {
 	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MOD_ID);
 
 	//General
-	public static final RegistryObject<Item> SILK_WORMS = reg("silk_worms", new ItemDoTB());
-	public static final RegistryObject<Item> SILK_WORMS_HATCHERY = reg("silk_worm_hatchery", new ItemDoTB());
-	public static final RegistryObject<Item> SILK_WORM_EGGS = reg("silk_worm_eggs", new ItemDoTB());
-	public static final RegistryObject<Item> SILK_COCOONS = reg("silk_cocoons", new ItemDoTB());
+	public static final RegistryObject<Item> SILK_WORMS = reg("silk_worms", new ItemDoTB(true));
+	public static final RegistryObject<Item> SILK_WORMS_HATCHERY = reg("silk_worm_hatchery", new ItemDoTB(true));
+	public static final RegistryObject<Item> SILK_WORM_EGGS = reg("silk_worm_eggs", new ItemDoTB(true));
+	public static final RegistryObject<Item> SILK_COCOONS = reg("silk_cocoons", new ItemDoTB(true));
 	public static final RegistryObject<Item> SILK = reg("silk", new ItemDoTB());
 	public static final RegistryObject<Item> TEA_LEAVES = reg("tea_leaves", new ItemDoTB());
 	public static final RegistryObject<Item> CAMELLIA_LEAVES = reg("camellia_leaves", new ItemDoTB());

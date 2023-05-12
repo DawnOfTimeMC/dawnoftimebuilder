@@ -8,13 +8,13 @@ import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import org.dawnoftimebuilder.block.templates.DoorBlockDoTB;
-import org.dawnoftimebuilder.util.DoTBBlockUtils;
+import org.dawnoftimebuilder.util.DoTBUtils;
 
 public class PaperDoorBlock extends DoorBlockDoTB {
 
     //VoxelShapes are slightly larger than paper_walls so that it can easily be right-clicked when opened.
-    private static final VoxelShape[] VS_NORTH = DoTBBlockUtils.GenerateHorizontalShapes(new VoxelShape[]{Block.box(0.0D, 0.0D, 6.99D, 16.0D, 16.0D, 8.01D)});
-    private static final VoxelShape[] VS_NORTH_OPEN = DoTBBlockUtils.GenerateHorizontalShapes(new VoxelShape[]{Block.box(-12.0D, 0.0D, 6.99D, 4.0D, 16.0D, 8.01)});
+    private static final VoxelShape[] VS_NORTH = DoTBUtils.GenerateHorizontalShapes(new VoxelShape[]{Block.box(0.0D, 0.0D, 6.99D, 16.0D, 16.0D, 8.01D)});
+    private static final VoxelShape[] VS_NORTH_OPEN = DoTBUtils.GenerateHorizontalShapes(new VoxelShape[]{Block.box(-12.0D, 0.0D, 6.99D, 4.0D, 16.0D, 8.01)});
 
     public PaperDoorBlock(Properties properties) {
         super(properties);

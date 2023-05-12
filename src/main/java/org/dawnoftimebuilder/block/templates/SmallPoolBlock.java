@@ -4,6 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.EmptyFluid;
+import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.WaterFluid;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.BucketItem;
@@ -49,26 +50,31 @@ public class SmallPoolBlock extends PoolBlock {
 
 	@Override
 	public ActionResultType use(BlockState blockStateIn, final World worldIn, final BlockPos blockPosIn, final PlayerEntity playerEntityIn, final Hand handIn, final BlockRayTraceResult blockRayTraceResultIn) {
-
 		final ItemStack itemStack = playerEntityIn.getMainHandItem();
-		if (!playerEntityIn.isCrouching()) {
+		if(playerEntityIn.isCrouching()){
+			if(itemStack.isEmpty()){
+				blockStateIn = blockStateIn.setValue(DoTBBlockStateProperties.HAS_PILLAR, !blockStateIn.getValue(DoTBBlockStateProperties.HAS_PILLAR));
+				worldIn.setBlock(blockPosIn, blockStateIn, 10);
+				return ActionResultType.SUCCESS;
+			}
+		}else{
 			/*
 			 * Seynax : allows the player to remove the contents of all stuck basins, with a single click with an empty bucket while sneaking
 			 */
-			if (itemStack.getItem() instanceof BucketItem && ((BucketItem) itemStack.getItem()).getFluid() instanceof WaterFluid) {
-				blockStateIn = blockStateIn.setValue(DoTBBlockStateProperties.LEVEL, 6);
-
-				worldIn.setBlock(blockPosIn, blockStateIn, 10);
-
-				return ActionResultType.SUCCESS;
-			}
-			if (itemStack.getItem() instanceof BucketItem && ((BucketItem) itemStack.getItem()).getFluid() instanceof EmptyFluid) {
-				PoolBlock.REMOVE_WATER_MAP.clear();
-				if (PoolBlock.removeWater(PoolBlock.REMOVE_WATER_MAP, blockStateIn, blockPosIn, worldIn, 0, 0)) {
+			if (itemStack.getItem() instanceof BucketItem) {
+				Fluid fluid = ((BucketItem) itemStack.getItem()).getFluid();
+				if(fluid instanceof WaterFluid){
+					blockStateIn = blockStateIn.setValue(DoTBBlockStateProperties.LEVEL, 6);
+					worldIn.setBlock(blockPosIn, blockStateIn, 10);
 					return ActionResultType.SUCCESS;
 				}
-			}
-			else if (itemStack.getItem() instanceof PotionItem) {
+				if(fluid instanceof EmptyFluid){
+					PoolBlock.REMOVE_WATER_MAP.clear();
+					if (PoolBlock.removeWater(PoolBlock.REMOVE_WATER_MAP, blockStateIn, blockPosIn, worldIn, 0, 0)) {
+						return ActionResultType.SUCCESS;
+					}
+				}
+			} else if (itemStack.getItem() instanceof PotionItem) {
 				final Potion potion = PotionUtils.getPotion(itemStack);
 
 				if (potion.getEffects().size() <= 0) {
@@ -79,8 +85,7 @@ public class SmallPoolBlock extends PoolBlock {
 
 					return ActionResultType.SUCCESS;
 				}
-			}
-			else if (itemStack.getItem() instanceof GlassBottleItem) {
+			} else if (itemStack.getItem() instanceof GlassBottleItem) {
 				final Potion potion = PotionUtils.getPotion(itemStack);
 
 				if (potion.getEffects().size() <= 0) {
@@ -95,13 +100,6 @@ public class SmallPoolBlock extends PoolBlock {
 					}
 					return ActionResultType.SUCCESS;
 				}
-			}
-			else {
-				blockStateIn = blockStateIn.setValue(DoTBBlockStateProperties.HAS_PILLAR, !blockStateIn.getValue(DoTBBlockStateProperties.HAS_PILLAR));
-
-				worldIn.setBlock(blockPosIn, blockStateIn, 10);
-
-				return ActionResultType.SUCCESS;
 			}
 		}
 		return ActionResultType.PASS;

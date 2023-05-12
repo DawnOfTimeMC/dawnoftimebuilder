@@ -11,7 +11,7 @@ import org.dawnoftimebuilder.block.ICustomBlockItem;
 import org.dawnoftimebuilder.block.templates.BlockDoTB;
 import org.dawnoftimebuilder.item.templates.PotAndBlockItem;
 import org.dawnoftimebuilder.util.DoTBBlockStateProperties;
-import org.dawnoftimebuilder.util.DoTBBlockUtils;
+import org.dawnoftimebuilder.util.DoTBUtils;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -90,7 +90,7 @@ public class CypressBlock extends BlockDoTB implements IBlockGeneration, ICustom
 		{
 			//We put a CypressBlock on top of the cypress
 			final BlockPos topPos = this.getHighestCypressPos(worldIn, pos).above();
-			if (topPos.getY() <= DoTBBlockUtils.HIGHEST_Y)
+			if (topPos.getY() <= DoTBUtils.HIGHEST_Y)
 			{
 				if (!worldIn.isClientSide() && worldIn.getBlockState(topPos).isAir(worldIn, topPos))
 				{
@@ -109,7 +109,7 @@ public class CypressBlock extends BlockDoTB implements IBlockGeneration, ICustom
 	private BlockPos getHighestCypressPos(final World worldIn, final BlockPos pos)
 	{
 		int yOffset;
-		for (yOffset = 0; yOffset + pos.getY() <= DoTBBlockUtils.HIGHEST_Y; yOffset++)
+		for (yOffset = 0; yOffset + pos.getY() <= DoTBUtils.HIGHEST_Y; yOffset++)
 		{
 			if (worldIn.getBlockState(pos.above(yOffset)).getBlock() != this)
 			{
@@ -216,7 +216,7 @@ public class CypressBlock extends BlockDoTB implements IBlockGeneration, ICustom
 			final List<ITextComponent> tooltip, final ITooltipFlag flagIn)
 	{
 		super.appendHoverText(stack, worldIn, tooltip, flagIn);
-		DoTBBlockUtils.addTooltip(tooltip, DoTBBlockUtils.TOOLTIP_COLUMN);
+		DoTBUtils.addTooltip(tooltip, DoTBUtils.TOOLTIP_COLUMN);
 	}
 
 	@Override

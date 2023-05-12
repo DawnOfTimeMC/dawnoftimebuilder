@@ -14,7 +14,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.ForgeHooks;
 import org.dawnoftimebuilder.util.DoTBBlockStateProperties;
-import org.dawnoftimebuilder.util.DoTBBlockUtils;
+import org.dawnoftimebuilder.util.DoTBUtils;
 import org.dawnoftimebuilder.DoTBConfig;
 
 import java.util.List;
@@ -189,8 +189,8 @@ public interface IBlockClimbingPlant {
 		if(worldIn.isClientSide()) return false;
 		DoTBBlockStateProperties.ClimbingPlant plant = stateIn.getValue(CLIMBING_PLANT);
 		if(plant.hasNoPlant()) return false;
-		List<ItemStack> drops = DoTBBlockUtils.getLootList((ServerWorld)worldIn, stateIn, heldItemStack, plant.getSerializedName() + "_" + stateIn.getValue(AGE_0_6));
-		return DoTBBlockUtils.dropLootFromList(worldIn, pos, drops, 1.0F);
+		List<ItemStack> drops = DoTBUtils.getLootList((ServerWorld)worldIn, stateIn, heldItemStack, plant.getSerializedName() + "_" + stateIn.getValue(AGE_0_6));
+		return DoTBUtils.dropLootFromList(worldIn, pos, drops, 1.0F);
 	}
 
 	/**

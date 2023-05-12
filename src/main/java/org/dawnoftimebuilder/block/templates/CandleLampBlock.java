@@ -1,7 +1,7 @@
 package org.dawnoftimebuilder.block.templates;
 
 import org.dawnoftimebuilder.block.IBlockSpecialDisplay;
-import org.dawnoftimebuilder.util.DoTBBlockUtils;
+import org.dawnoftimebuilder.util.DoTBUtils;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -57,7 +57,7 @@ public abstract class CandleLampBlock extends WaterloggedBlock implements IBlock
 
 	@Override
 	public ActionResultType use(final BlockState state, final World worldIn, final BlockPos pos, final PlayerEntity player, final Hand handIn, final BlockRayTraceResult hit) {
-		return DoTBBlockUtils.changeBlockLitStateWithItemOrCreativePlayer(state, worldIn, pos, player, handIn) >= 0 ? ActionResultType.SUCCESS : ActionResultType.PASS;
+		return DoTBUtils.changeBlockLitStateWithItemOrCreativePlayer(state, worldIn, pos, player, handIn) >= 0 ? ActionResultType.SUCCESS : ActionResultType.PASS;
 	}
 
 	@Override

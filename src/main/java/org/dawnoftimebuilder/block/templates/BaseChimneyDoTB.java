@@ -11,7 +11,7 @@ import javax.annotation.Nullable;
 import org.dawnoftimebuilder.block.general.FireplaceBlock;
 import org.dawnoftimebuilder.util.DoTBBlockStateProperties;
 import org.dawnoftimebuilder.util.DoTBBlockStateProperties.VerticalConnection;
-import org.dawnoftimebuilder.util.DoTBBlockUtils;
+import org.dawnoftimebuilder.util.DoTBUtils;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -98,7 +98,7 @@ public class BaseChimneyDoTB extends ColumnConnectibleBlock {
 		if(super.use(blockStateIn, worldIn, blockPosIn, player, handIn, hit).equals(ActionResultType.SUCCESS))
 			return ActionResultType.SUCCESS;
 
-		final int activation = DoTBBlockUtils.changeBlockLitStateWithItemOrCreativePlayer(blockStateIn, worldIn, blockPosIn, player, handIn);
+		final int activation = DoTBUtils.changeBlockLitStateWithItemOrCreativePlayer(blockStateIn, worldIn, blockPosIn, player, handIn);
 		if (activation >= 0) {
 			final boolean isActivated = activation == 1;
 
@@ -194,7 +194,7 @@ public class BaseChimneyDoTB extends ColumnConnectibleBlock {
 	@Override
 	public void appendHoverText(final ItemStack stack, @Nullable final IBlockReader worldIn, final List<ITextComponent> tooltip, final ITooltipFlag flagIn) {
 		super.appendHoverText(stack, worldIn, tooltip, flagIn);
-		DoTBBlockUtils.addTooltip(tooltip, DoTBBlockUtils.FIREPLACE);
+		DoTBUtils.addTooltip(tooltip, DoTBUtils.TOOLTIP_FIREPLACE);
 	}
 
 	public static void updateAllChimneyConductParts(final boolean isActivatedIn, BlockState stateIn, final BlockPos blockPosIn, final World worldIn) {

@@ -29,15 +29,15 @@ import net.minecraft.world.server.ServerWorld;
 import org.dawnoftimebuilder.block.IBlockClimbingPlant;
 import org.dawnoftimebuilder.block.IBlockPillar;
 import org.dawnoftimebuilder.util.DoTBBlockStateProperties;
-import org.dawnoftimebuilder.util.DoTBBlockUtils;
+import org.dawnoftimebuilder.util.DoTBUtils;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Random;
 
-import static org.dawnoftimebuilder.util.DoTBBlockUtils.TOOLTIP_BEAM;
-import static org.dawnoftimebuilder.util.DoTBBlockUtils.TOOLTIP_CLIMBING_PLANT;
+import static org.dawnoftimebuilder.util.DoTBUtils.TOOLTIP_BEAM;
+import static org.dawnoftimebuilder.util.DoTBUtils.TOOLTIP_CLIMBING_PLANT;
 
 public class BeamBlock extends WaterloggedBlock implements IBlockPillar, IBlockClimbingPlant {
 
@@ -192,7 +192,7 @@ public class BeamBlock extends WaterloggedBlock implements IBlockPillar, IBlockC
 	@Override
 	public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit){
 		if(!state.getValue(PERSISTENT)){
-			if(DoTBBlockUtils.useLighter(worldIn, pos, player, handIn)){
+			if(DoTBUtils.useLighter(worldIn, pos, player, handIn)){
 				Random rand = new Random();
 				for(int i = 0; i < 5; i++){
 					worldIn.addAlwaysVisibleParticle(ParticleTypes.SMOKE, (double)pos.getX() + rand.nextDouble(), (double)pos.getY() + 0.5D + rand.nextDouble() / 2, (double)pos.getZ() + rand.nextDouble(), 0.0D, 0.07D, 0.0D);
@@ -235,6 +235,6 @@ public class BeamBlock extends WaterloggedBlock implements IBlockPillar, IBlockC
 	@Override
 	public void appendHoverText(ItemStack stack, @Nullable IBlockReader worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
 		super.appendHoverText(stack, worldIn, tooltip, flagIn);
-		DoTBBlockUtils.addTooltip(tooltip, TOOLTIP_BEAM, TOOLTIP_CLIMBING_PLANT);
+		DoTBUtils.addTooltip(tooltip, TOOLTIP_BEAM, TOOLTIP_CLIMBING_PLANT);
 	}
 }

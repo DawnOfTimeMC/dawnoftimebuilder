@@ -32,7 +32,7 @@ import org.dawnoftimebuilder.DoTBConfig;
 import org.dawnoftimebuilder.block.ICustomBlockItem;
 import org.dawnoftimebuilder.block.templates.BlockDoTB;
 import org.dawnoftimebuilder.item.templates.PotAndBlockItem;
-import org.dawnoftimebuilder.util.DoTBBlockUtils;
+import org.dawnoftimebuilder.util.DoTBUtils;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -287,7 +287,7 @@ public class IvyBlock extends BlockDoTB implements ICustomBlockItem {
     @Override
     public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
         if(!state.getValue(PERSISTENT)){
-            if(DoTBBlockUtils.useLighter(worldIn, pos, player, handIn)){
+            if(DoTBUtils.useLighter(worldIn, pos, player, handIn)){
                 Random rand = new Random();
                 for(int i = 0; i < 5; i++){
                     worldIn.addParticle(ParticleTypes.SMOKE, (double)pos.getX() + rand.nextDouble(), (double)pos.getY() + 0.5D + rand.nextDouble() / 2, (double)pos.getZ() + rand.nextDouble(), 0.0D, 0.07D, 0.0D);

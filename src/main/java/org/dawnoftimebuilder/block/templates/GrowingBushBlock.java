@@ -20,7 +20,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.PlantType;
 import org.dawnoftimebuilder.util.DoTBBlockStateProperties;
-import org.dawnoftimebuilder.util.DoTBBlockUtils;
+import org.dawnoftimebuilder.util.DoTBUtils;
 
 import java.util.List;
 
@@ -114,8 +114,8 @@ public class GrowingBushBlock extends SoilCropsBlock {
 	}
 
 	public void harvestWithoutBreaking(BlockState state, World worldIn, BlockPos pos, ItemStack itemStackHand, String blockName, float dropMultiplier){
-		List<ItemStack> drops = DoTBBlockUtils.getLootList((ServerWorld)worldIn, state, itemStackHand, blockName);
-		DoTBBlockUtils.dropLootFromList(worldIn, pos, drops, dropMultiplier);
+		List<ItemStack> drops = DoTBUtils.getLootList((ServerWorld)worldIn, state, itemStackHand, blockName);
+		DoTBUtils.dropLootFromList(worldIn, pos, drops, dropMultiplier);
 
 		worldIn.playSound(null, pos, SoundEvents.GRASS_BREAK, SoundCategory.BLOCKS, 1.0F, 1.0F);
 		worldIn.setBlock(pos, state.setValue(AGE, this.cutAge).setValue(CUT, true), 2);

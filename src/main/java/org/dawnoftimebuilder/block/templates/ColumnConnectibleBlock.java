@@ -5,7 +5,7 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import org.dawnoftimebuilder.util.DoTBBlockStateProperties;
-import org.dawnoftimebuilder.util.DoTBBlockUtils;
+import org.dawnoftimebuilder.util.DoTBUtils;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -84,7 +84,7 @@ public abstract class ColumnConnectibleBlock extends WaterloggedBlock {
 		else if (!heldItemStack.isEmpty() && heldItemStack.getItem() == this.asItem()) {
 			//We put a ColumnBlock on top of the column
 			final BlockPos topPos = this.getHighestColumnPos(worldIn, pos).above();
-			if (topPos.getY() <= DoTBBlockUtils.HIGHEST_Y) {
+			if (topPos.getY() <= DoTBUtils.HIGHEST_Y) {
 				if (!worldIn.isClientSide() && worldIn.getBlockState(topPos).isAir(worldIn, topPos)) {
 					worldIn.setBlock(topPos, state, 11);
 					if (!player.isCreative()) {
@@ -99,7 +99,7 @@ public abstract class ColumnConnectibleBlock extends WaterloggedBlock {
 
 	private BlockPos getHighestColumnPos(final World worldIn, final BlockPos pos) {
 		int yOffset;
-		for (yOffset = 0; yOffset + pos.getY() <= DoTBBlockUtils.HIGHEST_Y; yOffset++) {
+		for (yOffset = 0; yOffset + pos.getY() <= DoTBUtils.HIGHEST_Y; yOffset++) {
 			if (worldIn.getBlockState(pos.above(yOffset)).getBlock() != this) {
 				break;
 			}
@@ -110,6 +110,6 @@ public abstract class ColumnConnectibleBlock extends WaterloggedBlock {
 	@Override
 	public void appendHoverText(final ItemStack stack, @Nullable final IBlockReader worldIn, final List<ITextComponent> tooltip, final ITooltipFlag flagIn) {
 		super.appendHoverText(stack, worldIn, tooltip, flagIn);
-		DoTBBlockUtils.addTooltip(tooltip, DoTBBlockUtils.TOOLTIP_COLUMN);
+		DoTBUtils.addTooltip(tooltip, DoTBUtils.TOOLTIP_COLUMN);
 	}
 }

@@ -40,9 +40,9 @@ public class MapleLeavesBlock extends BlockDoTB implements ICustomBlockItem {
 	@Override
 	public void playerWillDestroy(final World worldIn, final BlockPos blockPosIn, final BlockState blockStateIn, final PlayerEntity playerEntityIn) {
 		if (!worldIn.isClientSide) {
-			final float	currentX	= 0 - blockStateIn.getValue(MapleLeavesBlock.MULTIBLOCK_X);
-			final float	currentY	= 0 - blockStateIn.getValue(MapleLeavesBlock.MULTIBLOCK_Y);
-			final float	currentZ	= 0 - blockStateIn.getValue(MapleLeavesBlock.MULTIBLOCK_Z);
+			final float	currentX	= -blockStateIn.getValue(MapleLeavesBlock.MULTIBLOCK_X);
+			final float	currentY	= -blockStateIn.getValue(MapleLeavesBlock.MULTIBLOCK_Y);
+			final float	currentZ	= -blockStateIn.getValue(MapleLeavesBlock.MULTIBLOCK_Z);
 			for (int x = 0; x <= 2; x++) {
 				for (int y = 0; y <= 1; y++) {
 					for (int z = 0; z <= 2; z++) {

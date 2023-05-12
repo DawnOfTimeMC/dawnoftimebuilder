@@ -5,7 +5,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import org.dawnoftimebuilder.block.templates.MultiblockTableBlock;
-import org.dawnoftimebuilder.util.DoTBBlockUtils;
+import org.dawnoftimebuilder.util.DoTBUtils;
 
 public class WaxedOakTableBlock extends MultiblockTableBlock {
 
@@ -22,13 +22,13 @@ public class WaxedOakTableBlock extends MultiblockTableBlock {
     }
     private static VoxelShape[] makeShapes() {
         // South - West - North - East:
-        VoxelShape[] vs_side = DoTBBlockUtils.GenerateHorizontalShapes(new VoxelShape[]{VoxelShapes.or(Block.box(1.0D, 1.0D, 13.5D, 15.0D, 3.0D, 14.5D), Block.box(1.0D, 12.0D, 13.5D, 15.0D, 16.0D, 14.5D))});
+        VoxelShape[] vs_side = DoTBUtils.GenerateHorizontalShapes(new VoxelShape[]{VoxelShapes.or(Block.box(1.0D, 1.0D, 13.5D, 15.0D, 3.0D, 14.5D), Block.box(1.0D, 12.0D, 13.5D, 15.0D, 16.0D, 14.5D))});
         // SW - NW - NE - SE:
-        VoxelShape[] vs_pillar = DoTBBlockUtils.GenerateHorizontalShapes(new VoxelShape[]{Block.box(0.5D, 0.0D, 12.5D, 3.5D, 16.0D, 15.5D)});
+        VoxelShape[] vs_pillar = DoTBUtils.GenerateHorizontalShapes(new VoxelShape[]{Block.box(0.5D, 0.0D, 12.5D, 3.5D, 16.0D, 15.5D)});
         // W - N - E - S
-        VoxelShape[] vs_pillar_left = DoTBBlockUtils.GenerateHorizontalShapes(new VoxelShape[]{Block.box(0.0D, 0.0D, 13.0D, 1.0D, 16.0D, 15.0D)});
+        VoxelShape[] vs_pillar_left = DoTBUtils.GenerateHorizontalShapes(new VoxelShape[]{Block.box(0.0D, 0.0D, 13.0D, 1.0D, 16.0D, 15.0D)});
         // S - W - N - E
-        VoxelShape[] vs_pillar_right = DoTBBlockUtils.GenerateHorizontalShapes(new VoxelShape[]{Block.box(1.0D, 0.0D, 15.0D, 3.0D, 16.0D, 16.0D)});
+        VoxelShape[] vs_pillar_right = DoTBUtils.GenerateHorizontalShapes(new VoxelShape[]{Block.box(1.0D, 0.0D, 15.0D, 3.0D, 16.0D, 16.0D)});
         return new VoxelShape[]{
                 VoxelShapes.empty(),
                 VoxelShapes.or(vs_side[0], vs_pillar_left[0], vs_pillar_right[3]),

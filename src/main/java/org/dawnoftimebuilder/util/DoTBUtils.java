@@ -2,6 +2,7 @@ package org.dawnoftimebuilder.util;
 
 import java.util.List;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import org.dawnoftimebuilder.DawnOfTimeBuilder;
@@ -9,7 +10,6 @@ import org.dawnoftimebuilder.block.templates.WaterloggedBlock;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.FireChargeItem;
@@ -45,21 +45,19 @@ import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.Tags;
 
-public class DoTBBlockUtils {
+public class DoTBUtils {
 
 	//General
-	public static final String							FORGE_ID				= "forge";
-	public static final int								HIGHEST_Y				= 255;
+	public static final int						HIGHEST_Y				= 255;
 
 	//Tooltip translation text
-	public static final ITextComponent					TOOLTIP_HOLD_SHIFT		= new TranslationTextComponent("tooltip." + DawnOfTimeBuilder.MOD_ID + ".hold_key").withStyle(TextFormatting.GRAY).append(new TranslationTextComponent("tooltip." + DawnOfTimeBuilder.MOD_ID + ".shift").withStyle(TextFormatting.AQUA));
-	public static final String							TOOLTIP_COLUMN			= "column";
-	public static final String							TOOLTIP_CLIMBING_PLANT	= "climbing_plant";
-	public static final String							TOOLTIP_BEAM			= "beam";
-	public static final String							TOOLTIP_CROP			= "crop";
-	public static final String							TOOLTIP_INVERT_GROWTH	= "invert_growth";
-	public static final String							TOOLTIP_SIDED_WINDOW	= "sided_window";
-	public static final String					FIREPLACE				= "fireplace";
+	public static final ITextComponent			TOOLTIP_HOLD_SHIFT		= new TranslationTextComponent("tooltip." + DawnOfTimeBuilder.MOD_ID + ".hold_key").withStyle(TextFormatting.GRAY).append(new TranslationTextComponent("tooltip." + DawnOfTimeBuilder.MOD_ID + ".shift").withStyle(TextFormatting.AQUA));
+	public static final String					TOOLTIP_COLUMN			= "column";
+	public static final String					TOOLTIP_CLIMBING_PLANT	= "climbing_plant";
+	public static final String					TOOLTIP_BEAM			= "beam";
+	public static final String					TOOLTIP_CROP			= "crop";
+	public static final String					TOOLTIP_SIDED_WINDOW	= "sided_window";
+	public static final String 					TOOLTIP_FIREPLACE 		= "fireplace";
 
 	//Item tags
 	public static final Tags.IOptionalNamedTag<Item>	LIGHTERS				= ItemTags.createOptional(new ResourceLocation(DawnOfTimeBuilder.MOD_ID, "lighters"));
@@ -142,7 +140,7 @@ public class DoTBBlockUtils {
 	 */
 	public static boolean useLighter(final World worldIn, final BlockPos pos, final PlayerEntity player, final Hand handIn) {
 		final ItemStack itemInHand = player.getItemInHand(handIn);
-		if (!itemInHand.isEmpty() && itemInHand.getItem().is(DoTBBlockUtils.LIGHTERS)) {
+		if (!itemInHand.isEmpty() && itemInHand.getItem().is(DoTBUtils.LIGHTERS)) {
 			worldIn.playSound(null, pos, SoundEvents.FLINTANDSTEEL_USE, SoundCategory.BLOCKS, 1.0F, 1.0F);
 			itemInHand.hurtAndBreak(1, player, p -> p.broadcastBreakEvent(handIn));
 			return true;
@@ -160,7 +158,7 @@ public class DoTBBlockUtils {
 	 */
 	public static boolean useLighterAndDamageItemIfPlayerIsNotCreative(final World worldIn, final BlockPos pos, final PlayerEntity player, final Hand handIn) {
 		final ItemStack itemInHand = player.getItemInHand(handIn);
-		if (!itemInHand.isEmpty() && itemInHand.getItem().is(DoTBBlockUtils.LIGHTERS)) {
+		if (!itemInHand.isEmpty() && itemInHand.getItem().is(DoTBUtils.LIGHTERS)) {
 			worldIn.playSound(null, pos, SoundEvents.FLINTANDSTEEL_USE, SoundCategory.BLOCKS, 1.0F, 1.0F);
 			if(!player.isCreative())
 				itemInHand.hurtAndBreak(1, player, p -> p.broadcastBreakEvent(handIn));
@@ -169,7 +167,7 @@ public class DoTBBlockUtils {
 		return false;
 	}
 
-	public final static boolean useFireActivatorOnBlockIfPossible(final BlockState blockstateIn, final World worldIn, final BlockPos pos, final PlayerEntity player, final Hand handIn) {
+	public static boolean useFireActivatorOnBlockIfPossible(final BlockState blockstateIn, final World worldIn, final BlockPos pos, final PlayerEntity player, final Hand handIn) {
 		if (blockstateIn.getValue(WaterloggedBlock.WATERLOGGED)) {
 			return false;
 		}
@@ -185,7 +183,7 @@ public class DoTBBlockUtils {
 
 				return true;
 			}
-			else if (itemInHand.getItem().is(DoTBBlockUtils.LIGHTERS))
+			else if (itemInHand.getItem().is(DoTBUtils.LIGHTERS))
 			{
 				worldIn.playSound(null, pos, SoundEvents.FLINTANDSTEEL_USE, SoundCategory.BLOCKS, 1.0F, 1.0F);
 				if(!player.isCreative())
@@ -199,14 +197,14 @@ public class DoTBBlockUtils {
 		return false;
 	}
 
-	public final static boolean useFireStopperIfPossible(final BlockState blockstateIn, final World worldIn, final BlockPos pos, final PlayerEntity player, final Hand handIn) {
+	public static boolean useFireStopperIfPossible(final BlockState blockstateIn, final World worldIn, final BlockPos pos, final PlayerEntity player, final Hand handIn) {
 		final ItemStack mainItemStack = player.getMainHandItem();
 		if (player.isCreative()) {
 			return true;
 		}
 		if(mainItemStack.isEmpty())
 			return false;
-		if (mainItemStack.getItem().is(DoTBBlockUtils.LIGHTERS))
+		if (mainItemStack.getItem().is(DoTBUtils.LIGHTERS))
 		{
 			worldIn.playSound(null, pos, SoundEvents.FLINTANDSTEEL_USE, SoundCategory.BLOCKS, 1.0F, 1.0F);
 			if(!player.isCreative())
@@ -234,13 +232,13 @@ public class DoTBBlockUtils {
 		return false;
 	}
 
-	public final static int changeBlockLitStateWithItemOrCreativePlayer(final BlockState stateIn, final World worldIn, final BlockPos pos, final PlayerEntity player, final Hand handIn) {
+	public static int changeBlockLitStateWithItemOrCreativePlayer(final BlockState stateIn, final World worldIn, final BlockPos pos, final PlayerEntity player, final Hand handIn) {
 		int activation = -1;
 
-		if (stateIn.getValue(BlockStateProperties.LIT) && DoTBBlockUtils.useFireStopperIfPossible(stateIn, worldIn, pos, player, handIn)) {
+		if (stateIn.getValue(BlockStateProperties.LIT) && DoTBUtils.useFireStopperIfPossible(stateIn, worldIn, pos, player, handIn)) {
 			activation = 0;
 		}
-		else if (!stateIn.getValue(BlockStateProperties.LIT) && DoTBBlockUtils.useFireActivatorOnBlockIfPossible(stateIn, worldIn, pos, player, handIn)) {
+		else if (!stateIn.getValue(BlockStateProperties.LIT) && DoTBUtils.useFireActivatorOnBlockIfPossible(stateIn, worldIn, pos, player, handIn)) {
 			activation = 1;
 		}
 
@@ -265,25 +263,33 @@ public class DoTBBlockUtils {
 		return activation;
 	}
 
-	public static void addTooltip(final List<ITextComponent> tooltip, final String... tooltipNames) {
-		DoTBBlockUtils.addTooltip(tooltip, null, tooltipNames);
+	public static void addTooltip(final List<ITextComponent> tooltip, @Nonnull final Item item, final String... tooltipNames) {
+		final ResourceLocation itemName = item.getRegistryName();
+		if (itemName != null){
+			String[] tts = new String[tooltipNames.length + 1];
+			System.arraycopy(tooltipNames, 0, tts, 0, tooltipNames.length);
+			tts[tooltipNames.length] = itemName.getPath();
+			DoTBUtils.addTooltip(tooltip, tts);
+		}
 	}
 
-	public static void addTooltip(final List<ITextComponent> tooltip, @Nullable final Block block, final String... tooltipNames) {
+	public static void addTooltip(final List<ITextComponent> tooltip, @Nonnull final Block block, final String... tooltipNames) {
+		final ResourceLocation itemName = block.getRegistryName();
+		if (itemName != null){
+			String[] tts = new String[tooltipNames.length + 1];
+			System.arraycopy(tooltipNames, 0, tts, 0, tooltipNames.length);
+			tts[tooltipNames.length] = itemName.getPath();
+			DoTBUtils.addTooltip(tooltip, tts);
+		}
+	}
+
+	public static void addTooltip(final List<ITextComponent> tooltip, final String... tooltipNames) {
 		if (Screen.hasShiftDown()) {
-			if (block != null) {
-				final ResourceLocation blockName = block.getRegistryName();
-				if (blockName != null) {
-					tooltip.add(new TranslationTextComponent("tooltip." + DawnOfTimeBuilder.MOD_ID + "." + blockName.getPath()).withStyle(TextFormatting.GRAY));
-				}
-			}
 			for (final String tooltipName : tooltipNames) {
 				tooltip.add(new TranslationTextComponent("tooltip." + DawnOfTimeBuilder.MOD_ID + "." + tooltipName).withStyle(TextFormatting.GRAY));
 			}
+		} else {
+			tooltip.add(DoTBUtils.TOOLTIP_HOLD_SHIFT);
 		}
-		else {
-			tooltip.add(DoTBBlockUtils.TOOLTIP_HOLD_SHIFT);
-		}
-
 	}
 }

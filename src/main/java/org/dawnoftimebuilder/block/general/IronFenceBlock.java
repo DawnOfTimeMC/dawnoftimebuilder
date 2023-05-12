@@ -2,7 +2,6 @@ package org.dawnoftimebuilder.block.general;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.FenceBlock;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
@@ -15,16 +14,14 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
-import net.minecraft.world.World;
 import org.dawnoftimebuilder.block.templates.PlateBlock;
-import org.dawnoftimebuilder.util.DoTBBlockStateProperties;
-import org.dawnoftimebuilder.util.DoTBBlockUtils;
+import org.dawnoftimebuilder.util.DoTBUtils;
 
 public class IronFenceBlock extends PlateBlock {
 
     private static final BooleanProperty UP = BlockStateProperties.UP;
-    private static final VoxelShape[] SHAPES_UP = DoTBBlockUtils.GenerateHorizontalShapes(makeShapes(true));
-    private static final VoxelShape[] SHAPES_FULL = DoTBBlockUtils.GenerateHorizontalShapes(makeShapes(false));
+    private static final VoxelShape[] SHAPES_UP = DoTBUtils.GenerateHorizontalShapes(makeShapes(true));
+    private static final VoxelShape[] SHAPES_FULL = DoTBUtils.GenerateHorizontalShapes(makeShapes(false));
 
     public IronFenceBlock(Properties properties) {
         super(properties);

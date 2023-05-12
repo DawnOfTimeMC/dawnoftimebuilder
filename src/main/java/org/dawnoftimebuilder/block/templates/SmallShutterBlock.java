@@ -1,7 +1,7 @@
 package org.dawnoftimebuilder.block.templates;
 
 import org.dawnoftimebuilder.util.DoTBBlockStateProperties;
-import org.dawnoftimebuilder.util.DoTBBlockUtils;
+import org.dawnoftimebuilder.util.DoTBUtils;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -34,7 +34,7 @@ public class SmallShutterBlock extends WaterloggedBlock {
 	public static final BooleanProperty										POWERED			= BlockStateProperties.POWERED;
 	public static final EnumProperty<DoTBBlockStateProperties.OpenPosition>	OPEN_POSITION	= DoTBBlockStateProperties.OPEN_POSITION;
 	public static final EnumProperty<DoorHingeSide>							HINGE			= BlockStateProperties.DOOR_HINGE;
-	private static final VoxelShape[]										SHAPES			= DoTBBlockUtils.GenerateHorizontalShapes(SmallShutterBlock.makeShapes());
+	private static final VoxelShape[]										SHAPES			= DoTBUtils.GenerateHorizontalShapes(SmallShutterBlock.makeShapes());
 
 	public SmallShutterBlock(final Properties properties) {
 		super(properties);

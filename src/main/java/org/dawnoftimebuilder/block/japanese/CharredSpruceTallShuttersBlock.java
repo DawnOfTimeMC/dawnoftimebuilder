@@ -18,7 +18,7 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import org.dawnoftimebuilder.util.DoTBBlockStateProperties;
-import org.dawnoftimebuilder.util.DoTBBlockUtils;
+import org.dawnoftimebuilder.util.DoTBUtils;
 
 import javax.annotation.Nullable;
 
@@ -27,7 +27,7 @@ import static org.dawnoftimebuilder.util.DoTBBlockStateProperties.SquareCorners;
 public class CharredSpruceTallShuttersBlock extends CharredSpruceShuttersBlock {
 
     public static final EnumProperty<DoTBBlockStateProperties.SquareCorners> CORNER = DoTBBlockStateProperties.CORNER;
-    private static final VoxelShape[] SHAPES = DoTBBlockUtils.GenerateHorizontalShapes(new VoxelShape[]{
+    private static final VoxelShape[] SHAPES = DoTBUtils.GenerateHorizontalShapes(new VoxelShape[]{
             Block.box(0.0D, 0.0D, 14.0D, 16.0D, 16.0D, 16.0D),
             VoxelShapes.or(
                     Block.box(0.0D, 10.0D, 11.0D, 16.0D, 16.0D, 16.0D),

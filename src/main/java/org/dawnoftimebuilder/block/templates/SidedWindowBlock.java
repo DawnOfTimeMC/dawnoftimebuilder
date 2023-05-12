@@ -19,12 +19,12 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import org.dawnoftimebuilder.util.DoTBBlockStateProperties;
 import org.dawnoftimebuilder.util.DoTBBlockStateProperties.SidedWindow;
-import org.dawnoftimebuilder.util.DoTBBlockUtils;
+import org.dawnoftimebuilder.util.DoTBUtils;
 
 import javax.annotation.Nullable;
 import java.util.List;
 
-import static org.dawnoftimebuilder.util.DoTBBlockUtils.TOOLTIP_SIDED_WINDOW;
+import static org.dawnoftimebuilder.util.DoTBUtils.TOOLTIP_SIDED_WINDOW;
 
 public class SidedWindowBlock extends BlockDoTB {
 
@@ -124,6 +124,6 @@ public class SidedWindowBlock extends BlockDoTB {
 	@Override
 	public void appendHoverText(ItemStack stack, @Nullable IBlockReader worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
 		super.appendHoverText(stack, worldIn, tooltip, flagIn);
-		DoTBBlockUtils.addTooltip(tooltip, TOOLTIP_SIDED_WINDOW);
+		DoTBUtils.addTooltip(tooltip, TOOLTIP_SIDED_WINDOW);
 	}
 }
