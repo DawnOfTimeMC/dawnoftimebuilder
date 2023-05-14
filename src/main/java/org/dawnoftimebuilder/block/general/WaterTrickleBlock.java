@@ -1,5 +1,14 @@
 package org.dawnoftimebuilder.block.general;
 
+import static net.minecraft.util.Hand.MAIN_HAND;
+
+import java.util.Random;
+
+import org.dawnoftimebuilder.block.templates.BlockDoTB;
+import org.dawnoftimebuilder.registry.DoTBBlocksRegistry;
+import org.dawnoftimebuilder.util.DoTBBlockStateProperties;
+import org.dawnoftimebuilder.util.DoTBBlockStateProperties.WaterTrickleEnd;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ILiquidContainer;
@@ -7,6 +16,7 @@ import net.minecraft.block.material.PushReaction;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.particles.IParticleData;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
@@ -18,14 +28,6 @@ import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
-import org.dawnoftimebuilder.block.templates.BlockDoTB;
-import org.dawnoftimebuilder.registry.DoTBBlocksRegistry;
-import org.dawnoftimebuilder.util.DoTBBlockStateProperties;
-import org.dawnoftimebuilder.util.DoTBBlockStateProperties.WaterTrickleEnd;
-
-import java.util.Random;
-
-import static net.minecraft.util.Hand.MAIN_HAND;
 
 public abstract class WaterTrickleBlock extends BlockDoTB {
 
@@ -201,26 +203,43 @@ public abstract class WaterTrickleBlock extends BlockDoTB {
 	public void animateTick(BlockState state, World worldIn, BlockPos pos, Random rand) {
 		super.animateTick(state, worldIn, pos, rand);
 		boolean[] trickles = this.getWaterTrickleOutPut(state);
-		if(state.getValue(DoTBBlockStateProperties.WATER_TRICKLE_END) == WaterTrickleEnd.SPLASH){
-			this.spawnParticle(worldIn, pos, trickles[0], rand, 0.0D, 0.5D);
-			this.spawnParticle(worldIn, pos, trickles[1], rand, 0.5D, 1.0D);
-			this.spawnParticle(worldIn, pos, trickles[2], rand, 1.0D, 0.5D);
-			this.spawnParticle(worldIn, pos, trickles[3], rand, 0.5D, 0.0D);
-			this.spawnParticle(worldIn, pos, trickles[4], rand,0.5D, 0.5D);
+		if(state.getValue(DoTBBlockStateProperties.WATER_TRICKLE_END) == WaterTrickleEnd.SPLASH)
+		{
+			this.spawnParticle(ParticleTypes.BUBBLE_POP, worldIn, pos, trickles[0], rand, 0.5D, 0.4D, 0.040D, 0.07D, 0.040D);
+			this.spawnParticle(ParticleTypes.BUBBLE_POP, worldIn, pos, trickles[1], rand, 0.6D, 0.5D, 0.040D, 0.07D, 0.040D);
+			this.spawnParticle(ParticleTypes.BUBBLE_POP, worldIn, pos, trickles[2], rand, 0.5D, 0.6D, 0.040D, 0.07D, 0.040D);
+			this.spawnParticle(ParticleTypes.BUBBLE_POP, worldIn, pos, trickles[3], rand, 0.5D, 0.6D, 0.040D, 0.07D, 0.040D);
+			this.spawnParticle(ParticleTypes.BUBBLE_POP, worldIn, pos, trickles[4], rand, 0.5D, 0.5D, 0.040D, 0.07D, 0.040D);
 		}
 	}
 
-	private void spawnParticle(World worldIn, BlockPos pos, boolean isOn, Random rand, double xOffset, double zOffset){
+	private void spawnParticle(IParticleData particleDataIn, World worldIn, BlockPos pos, boolean isOn, Random rand, double xOffset, double zOffset, double velocityXIn, double velocityYIn, double velocityZIn){
 		if(isOn){
-			worldIn.addParticle(
-					ParticleTypes.BUBBLE_POP,
-					true,
-					pos.getX() + xOffset + rand.nextDouble() * 0.25D,
-					pos.getY() + 0.1D,
-					pos.getZ() + zOffset + rand.nextDouble() * 0.25D,
-					0.0D,
-					0.07D,
-					0.0D);
+			double offset;
+			for(int i = 0; i < 4; i ++)
+			{
+				offset = 0.75D;
+				worldIn.addParticle(
+						ParticleTypes.BUBBLE_POP,
+						true,
+						pos.getX() + xOffset + (rand.nextDouble() * offset - offset/2.0D),
+						pos.getY() + 0.1D,
+						pos.getZ() + zOffset + (rand.nextDouble() * offset - offset/2.0D),
+						0.0125D,
+						0.075D,
+						0.0125D);
+
+				offset = 0.60D;
+				worldIn.addParticle(
+						ParticleTypes.CLOUD,
+						true,
+						pos.getX() + xOffset + (rand.nextDouble() * offset - offset/2.0D),
+						pos.getY() + 0.0D,
+						pos.getZ() + zOffset + (rand.nextDouble() * offset - offset/2.0D),
+						0.0005D,
+						0.010D,
+						0.0005D);
+			}
 		}
 	}
 
