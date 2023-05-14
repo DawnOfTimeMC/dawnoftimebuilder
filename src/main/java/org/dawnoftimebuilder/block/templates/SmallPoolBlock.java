@@ -1,44 +1,29 @@
 package org.dawnoftimebuilder.block.templates;
 
+import javax.annotation.Nullable;
+
+import org.dawnoftimebuilder.util.DoTBBlockStateProperties;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.fluid.EmptyFluid;
-import net.minecraft.fluid.Fluid;
-import net.minecraft.fluid.WaterFluid;
 import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.item.BucketItem;
-import net.minecraft.item.GlassBottleItem;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.item.PotionItem;
-import net.minecraft.potion.Potion;
-import net.minecraft.potion.PotionUtils;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
-import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
-import net.minecraft.world.World;
 
-import org.dawnoftimebuilder.util.DoTBBlockStateProperties;
-
-import javax.annotation.Nullable;
-
-public class SmallPoolBlock extends PoolBlock {
+public class SmallPoolBlock extends BasePoolBlock {
 
 	private static final VoxelShape[] SHAPES = SmallPoolBlock.makeShapes();
 	private static final VoxelShape[] SMALL_SHAPES = SmallPoolBlock.makeSmallShapes();
 
 	public SmallPoolBlock(final Properties propertiesIn) {
-		super(propertiesIn);
+		super(propertiesIn, 6, 4);
 		this.registerDefaultState(this.defaultBlockState().setValue(BlockStateProperties.BOTTOM, true));
 	}
 
@@ -46,63 +31,6 @@ public class SmallPoolBlock extends PoolBlock {
 	protected void createBlockStateDefinition(final StateContainer.Builder<Block, BlockState> builder) {
 		super.createBlockStateDefinition(builder);
 		builder.add(BlockStateProperties.BOTTOM);
-	}
-
-	@Override
-	public ActionResultType use(BlockState blockStateIn, final World worldIn, final BlockPos blockPosIn, final PlayerEntity playerEntityIn, final Hand handIn, final BlockRayTraceResult blockRayTraceResultIn) {
-		final ItemStack itemStack = playerEntityIn.getMainHandItem();
-		if(playerEntityIn.isCrouching()){
-			if(itemStack.isEmpty()){
-				blockStateIn = blockStateIn.setValue(DoTBBlockStateProperties.HAS_PILLAR, !blockStateIn.getValue(DoTBBlockStateProperties.HAS_PILLAR));
-				worldIn.setBlock(blockPosIn, blockStateIn, 10);
-				return ActionResultType.SUCCESS;
-			}
-		}else{
-			/*
-			 * Seynax : allows the player to remove the contents of all stuck basins, with a single click with an empty bucket while sneaking
-			 */
-			if (itemStack.getItem() instanceof BucketItem) {
-				Fluid fluid = ((BucketItem) itemStack.getItem()).getFluid();
-				if(fluid instanceof WaterFluid){
-					blockStateIn = blockStateIn.setValue(DoTBBlockStateProperties.LEVEL, 6);
-					worldIn.setBlock(blockPosIn, blockStateIn, 10);
-					return ActionResultType.SUCCESS;
-				}
-				if(fluid instanceof EmptyFluid){
-					PoolBlock.REMOVE_WATER_MAP.clear();
-					if (PoolBlock.removeWater(PoolBlock.REMOVE_WATER_MAP, blockStateIn, blockPosIn, worldIn, 0, 0)) {
-						return ActionResultType.SUCCESS;
-					}
-				}
-			} else if (itemStack.getItem() instanceof PotionItem) {
-				final Potion potion = PotionUtils.getPotion(itemStack);
-
-				if (potion.getEffects().size() <= 0) {
-					final int newLevel = blockStateIn.getValue(DoTBBlockStateProperties.LEVEL) + 1;
-					blockStateIn = blockStateIn.setValue(DoTBBlockStateProperties.LEVEL, newLevel < 7 ? newLevel : 6);
-
-					worldIn.setBlock(blockPosIn, blockStateIn, 10);
-
-					return ActionResultType.SUCCESS;
-				}
-			} else if (itemStack.getItem() instanceof GlassBottleItem) {
-				final Potion potion = PotionUtils.getPotion(itemStack);
-
-				if (potion.getEffects().size() <= 0) {
-					final int newLevel = blockStateIn.getValue(DoTBBlockStateProperties.LEVEL) - 1;
-					blockStateIn = blockStateIn.setValue(DoTBBlockStateProperties.LEVEL, Math.max(newLevel, 0));
-
-					worldIn.setBlock(blockPosIn, blockStateIn, 10);
-
-					if (!playerEntityIn.isCreative()) {
-						playerEntityIn.getMainHandItem().shrink(1);
-						playerEntityIn.inventory.add(new ItemStack(Items.GLASS_BOTTLE));
-					}
-					return ActionResultType.SUCCESS;
-				}
-			}
-		}
-		return ActionResultType.PASS;
 	}
 
 	@Override
