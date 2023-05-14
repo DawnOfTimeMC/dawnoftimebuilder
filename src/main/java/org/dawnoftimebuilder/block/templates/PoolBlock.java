@@ -71,8 +71,4 @@ public class PoolBlock extends BasePoolBlock {
 		}
 		return shapes;
 	}
-
-
-
-
 }

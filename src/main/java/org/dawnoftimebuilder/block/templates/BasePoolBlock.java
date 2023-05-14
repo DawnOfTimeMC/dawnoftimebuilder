@@ -13,6 +13,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.EmptyFluid;
 import net.minecraft.fluid.WaterFluid;
+import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.BucketItem;
 import net.minecraft.item.GlassBottleItem;
 import net.minecraft.item.ItemStack;
@@ -64,7 +65,7 @@ public abstract class BasePoolBlock extends BlockDoTB
 	}
 
 	/**
-	 * Used by removeWater(final Map<BlockPos, BlockState> testedPositionsIn, BlockState blockStateIn, final BlockPos blockPosIn, final World worldIn, final float prohibitedXIn, final float prohibitedZIn)
+	 * Used by removeWaterAround(final Map<BlockPos, BlockState> testedPositionsIn, BlockState blockStateIn, final BlockPos blockPosIn, final World worldIn, final float prohibitedXIn, final float prohibitedZIn)
 	 * @param testedPositionsIn
 	 * @param blockPosIn
 	 * @param worldIn
@@ -95,54 +96,56 @@ public abstract class BasePoolBlock extends BlockDoTB
 	 * @param worldIn
 	 * @return
 	 */
-	public final static boolean hasOnePoolActivatorAround(final BlockPos blockPosIn, final IWorld worldIn)
+	public final static EnumActivatorState hasOnePoolActivatorAround(final BlockPos blockPosIn, final IWorld worldIn)
 	{
 		return hasOnePoolActivatorAround(new LinkedHashMap<>(), blockPosIn, worldIn, 0.0f, 0.0f);
 	}
 
 	/**
-	 * You can use hasOneActivatedFaucetOrJet(final BlockPos blockPosIn, final IWorld worldIn)
+	 * You can use hasOnePoolActivatorAround(final BlockPos blockPosIn, final IWorld worldIn)
 	 * Seynax : binary method to remove water on all associated pool
 	 */
-	private static boolean hasOnePoolActivatorAround(final Map<BlockPos, BlockState> testedPositionsIn, final BlockPos blockPosIn, final IWorld worldIn, final float prohibitedXIn, final float prohibitedZIn) {
+	private static EnumActivatorState hasOnePoolActivatorAround(final Map<BlockPos, BlockState> testedPositionsIn, final BlockPos blockPosIn, final IWorld worldIn, final float prohibitedXIn, final float prohibitedZIn) {
 		BlockState state = worldIn.getBlockState(blockPosIn.above());
 		if (state.getBlock() instanceof FaucetBlock)
 		{
 			if(state.getValue(DoTBBlockStateProperties.ACTIVATED))
 			{
-				return true;
+				return EnumActivatorState.ENABLED;
 			}
+
+			return EnumActivatorState.DISABLED;
 		}
 		else if(state.getBlock() instanceof WaterTrickleBlock)
 		{
-			return true;
+			return EnumActivatorState.ENABLED;
 		}
 
-		if (prohibitedXIn != 1 && hasOnePoolActivatorAroundOffset(testedPositionsIn, blockPosIn, worldIn, 1, 0))
+		if (prohibitedXIn != 1 && hasOnePoolActivatorAroundOffset(testedPositionsIn, blockPosIn, worldIn, 1, 0).equals(EnumActivatorState.ENABLED))
 		{
-			return true;
+			return EnumActivatorState.ENABLED;
 		}
 
-		if (prohibitedXIn != -1 && hasOnePoolActivatorAroundOffset(testedPositionsIn, blockPosIn, worldIn, -1, 0))
+		if (prohibitedXIn != -1 && hasOnePoolActivatorAroundOffset(testedPositionsIn, blockPosIn, worldIn, -1, 0).equals(EnumActivatorState.ENABLED))
 		{
-			return true;
+			return EnumActivatorState.ENABLED;
 		}
 
-		if (prohibitedZIn != 1 && hasOnePoolActivatorAroundOffset(testedPositionsIn, blockPosIn, worldIn, 0, 1))
+		if (prohibitedZIn != 1 && hasOnePoolActivatorAroundOffset(testedPositionsIn, blockPosIn, worldIn, 0, 1).equals(EnumActivatorState.ENABLED))
 		{
-			return true;
+			return EnumActivatorState.ENABLED;
 		}
 
-		if (prohibitedZIn != -1 && hasOnePoolActivatorAroundOffset(testedPositionsIn, blockPosIn, worldIn, 0, -1))
+		if (prohibitedZIn != -1 && hasOnePoolActivatorAroundOffset(testedPositionsIn, blockPosIn, worldIn, 0, -1).equals(EnumActivatorState.ENABLED))
 		{
-			return true;
+			return EnumActivatorState.ENABLED;
 		}
 
-		return false;
+		return EnumActivatorState.NO;
 	}
 
 	/**
-	 * Used by hasOneActivatedFaucetOrJet(final BlockPos blockPosIn, final IWorld worldIn)
+	 * Used by hasOnePoolActivatorAround(final BlockPos blockPosIn, final IWorld worldIn)
 	 * @param testedPositionsIn
 	 * @param blockPosIn
 	 * @param worldIn
@@ -150,12 +153,12 @@ public abstract class BasePoolBlock extends BlockDoTB
 	 * @param zIn
 	 * @return
 	 */
-	private static boolean hasOnePoolActivatorAroundOffset(final Map<BlockPos, BlockState> testedPositionsIn, final BlockPos blockPosIn,
+	private static EnumActivatorState hasOnePoolActivatorAroundOffset(final Map<BlockPos, BlockState> testedPositionsIn, final BlockPos blockPosIn,
 			final IWorld worldIn, final int xIn, final int zIn) {
 		final BlockPos pos = blockPosIn.offset(xIn, 0, zIn);
 		if (testedPositionsIn.containsKey(pos))
 		{
-			return false;
+			return EnumActivatorState.NO;
 		}
 
 		BlockState state = worldIn.getBlockState(pos);
@@ -167,10 +170,10 @@ public abstract class BasePoolBlock extends BlockDoTB
 			return hasOnePoolActivatorAround(testedPositionsIn, pos, worldIn, xIn, zIn);
 		}
 
-		return false;
+		return EnumActivatorState.NO;
 	}
 
-	private final int maxLevel;
+	public final int maxLevel;
 	public final int faucetLevel;
 
 	public BasePoolBlock(final Properties propertiesIn, final int maxLevelIn, final int faucetLevelIn)
@@ -185,6 +188,25 @@ public abstract class BasePoolBlock extends BlockDoTB
 	protected void createBlockStateDefinition(final StateContainer.Builder<Block, BlockState> builder) {
 		super.createBlockStateDefinition(builder);
 		builder.add(BlockStateProperties.NORTH).add(BlockStateProperties.EAST).add(BlockStateProperties.SOUTH).add(BlockStateProperties.WEST).add(DoTBBlockStateProperties.HAS_PILLAR).add(DoTBBlockStateProperties.LEVEL);
+	}
+
+	@Override
+	public BlockState getStateForPlacement(BlockItemUseContext contextIn) {
+
+		BlockState state = super.getStateForPlacement(contextIn);
+
+		if(hasOnePoolActivatorAround(contextIn.getClickedPos(), contextIn.getLevel()).equals(EnumActivatorState.ENABLED))
+		{
+			state = state.setValue(DoTBBlockStateProperties.LEVEL, 1);
+			contextIn.getLevel().setBlock(contextIn.getClickedPos(), state, 10);
+
+			if(!contextIn.getLevel().isClientSide())
+			{
+				((ServerWorld) contextIn.getLevel()).getBlockTicks().scheduleTick(contextIn.getClickedPos(), this, 5);
+			}
+		}
+
+		return state;
 	}
 
 	@Override
@@ -238,7 +260,7 @@ public abstract class BasePoolBlock extends BlockDoTB
 			{
 				final Potion potion = PotionUtils.getPotion(itemStack);
 
-				if (potion.getEffects() != null && potion.getEffects().size() <= 0 && nextLevel - 1 > 0)
+				if (potion.getEffects() != null && potion.getEffects().size() <= 0 && nextLevel - 1 >= 0)
 				{
 					nextLevel --;
 
@@ -265,10 +287,7 @@ public abstract class BasePoolBlock extends BlockDoTB
 
 					if(nextLevel == 0)
 					{
-						if(!removeWaterAround(blockStateIn, blockPosIn, worldIn))
-						{
-							return ActionResultType.CONSUME;
-						}
+						removeWaterAround(blockStateIn, blockPosIn, worldIn);
 					}
 
 					return ActionResultType.SUCCESS;
@@ -311,7 +330,7 @@ public abstract class BasePoolBlock extends BlockDoTB
 	{
 		super.tick(blockStateIn, serverWorldIn, blockPosIn, randomIn);
 
-		boolean increase = hasOnePoolActivatorAround(blockPosIn, serverWorldIn);
+		boolean increase = hasOnePoolActivatorAround(blockPosIn, serverWorldIn).equals(EnumActivatorState.ENABLED);
 
 		if(increase)
 		{
@@ -333,13 +352,13 @@ public abstract class BasePoolBlock extends BlockDoTB
 		{
 			int level = blockStateIn.getValue(DoTBBlockStateProperties.LEVEL);
 
-			if(level-1 > 0)
+			if(level - 1 >= 0)
 			{
 				level --;
 				blockStateIn = blockStateIn.setValue(DoTBBlockStateProperties.LEVEL, level);
 				serverWorldIn.setBlock(blockPosIn, blockStateIn, 10);
 
-				if(level-1 > 0)
+				if(level-1 >= 0)
 				{
 					((ServerWorld) serverWorldIn).getBlockTicks().scheduleTick(blockPosIn, this, 5);
 				}
@@ -378,14 +397,16 @@ public abstract class BasePoolBlock extends BlockDoTB
 		if(facingPosIn.getY() == currentPosIn.getY() + 1)
 		{
 			int lastLevel = level;
-			if(hasOnePoolActivatorAround( currentPosIn, worldIn))
+			EnumActivatorState state = hasOnePoolActivatorAround(currentPosIn, worldIn);
+
+			if(state.equals(EnumActivatorState.ENABLED))
 			{
 				if(level < maxLevel)
 				{
 					level ++;
 				}
 			}
-			else if(level > 0)
+			else if(state.equals(EnumActivatorState.DISABLED) && level - 1 >= 0)
 			{
 				level --;
 			}
@@ -399,5 +420,10 @@ public abstract class BasePoolBlock extends BlockDoTB
 		}
 
 		return stateIn;
+	}
+
+	public static enum EnumActivatorState
+	{
+		NO, DISABLED, ENABLED,
 	}
 }

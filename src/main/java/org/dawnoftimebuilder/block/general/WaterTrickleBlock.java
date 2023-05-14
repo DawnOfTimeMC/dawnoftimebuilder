@@ -14,6 +14,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ILiquidContainer;
 import net.minecraft.block.material.PushReaction;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
@@ -58,15 +59,35 @@ public abstract class WaterTrickleBlock extends BlockDoTB {
 	}
 
 	@Override
+	public void setPlacedBy(World p_180633_1_, BlockPos p_180633_2_, BlockState p_180633_3_, LivingEntity p_180633_4_,
+			ItemStack p_180633_5_)
+	{
+		super.setPlacedBy(p_180633_1_, p_180633_2_, p_180633_3_, p_180633_4_, p_180633_5_);
+
+		if(!p_180633_1_.isClientSide() && p_180633_3_.getValue(BlockStateProperties.UNSTABLE))
+		{
+			((ServerWorld) p_180633_1_).getBlockTicks().scheduleTick(p_180633_2_, this, 5);
+		}
+	}
+
+	@Override
 	public BlockState updateShape(BlockState stateIn, final Direction directionIn, BlockState facingStateIn, final IWorld worldIn, final BlockPos currentPosIn, final BlockPos facingPosIn) {
 		// If a block above or under changed, the water trickle is set UNSTABLE. Unstable water trickles are updated on the next randomTick.
 		if(directionIn == Direction.UP){
 			if(facingStateIn.getBlock() instanceof WaterTrickleBlock){
+				if(!worldIn.isClientSide())
+				{
+					((ServerWorld) worldIn).getBlockTicks().scheduleTick(currentPosIn, this, 5);
+				}
 				return stateIn.setValue(BlockStateProperties.UNSTABLE, true);
 			}
 		}
 		if(directionIn == Direction.DOWN){
 			if(worldIn instanceof World){
+				if(!worldIn.isClientSide())
+				{
+					((ServerWorld) worldIn).getBlockTicks().scheduleTick(currentPosIn, this, 5);
+				}
 				return stateIn
 							.setValue(DoTBBlockStateProperties.WATER_TRICKLE_END, this.getWaterTrickleEnd((World) worldIn, facingPosIn, facingStateIn))
 							.setValue(BlockStateProperties.UNSTABLE, true);
@@ -119,11 +140,6 @@ public abstract class WaterTrickleBlock extends BlockDoTB {
 	}
 
 	@Override
-	public boolean isRandomlyTicking(BlockState state) {
-		return state.getValue(BlockStateProperties.UNSTABLE);
-	}
-
-	@Override
 	public void tick(BlockState state, ServerWorld world, BlockPos pos, Random rand) {
 		super.tick(state, world, pos, rand);
 		// We consider that this Water Trickle won't be unstable by the end of this random tick.
@@ -162,6 +178,7 @@ public abstract class WaterTrickleBlock extends BlockDoTB {
 		}else{
 			currentState = this.inheritWaterTrickles(currentState, this.defaultBlockState());
 		}
+
 		return currentState;
 	}
 

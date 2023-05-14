@@ -1,5 +1,6 @@
 package org.dawnoftimebuilder.block.templates;
 
+import net.minecraft.advancements.criterion.BlockPredicate;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
@@ -14,7 +15,10 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
+
 import org.dawnoftimebuilder.block.general.WaterSourceTrickleBlock;
+import org.dawnoftimebuilder.block.general.WaterTrickleBlock;
 import org.dawnoftimebuilder.util.DoTBBlockStateProperties;
 import org.dawnoftimebuilder.util.DoTBBlockStateProperties.VerticalLimitedConnection;
 
@@ -36,6 +40,20 @@ public class FaucetBlock extends WaterSourceTrickleBlock {
 	}
 
 	@Override
+	public BlockState getStateForPlacement(BlockItemUseContext contextIn)
+	{
+		final World level = contextIn.getLevel();
+		final BlockPos pos = contextIn.getClickedPos();
+		final BlockState currentState = level.getBlockState(pos);
+		final Direction targetDirection = contextIn.getHorizontalDirection();
+
+		// If the current block is a WaterTrickle, we keep its state to add a new trickle in this block.
+		BlockState outState = currentState.getBlock().is(this) ? currentState : this.defaultBlockState();
+		// We add a trickle for the target direction and the end type.
+		return outState.setValue(getPropertyFromDirection(targetDirection), true);
+	}
+
+	@Override
 	public boolean[] getWaterTrickleOutPut(BlockState currentState) {
 		if(!currentState.getValue(DoTBBlockStateProperties.ACTIVATED)){
 			return new boolean[]{
@@ -54,7 +72,15 @@ public class FaucetBlock extends WaterSourceTrickleBlock {
 		if (!mainHandItemStack.isEmpty() && mainHandItemStack.getItem() == this.asItem()) {
 			return ActionResultType.PASS;
 		}
-		worldIn.setBlock(blockPosIn, blockStateIn.setValue(DoTBBlockStateProperties.ACTIVATED, !blockStateIn.getValue(DoTBBlockStateProperties.ACTIVATED)), 10);
+		boolean activated = !blockStateIn.getValue(DoTBBlockStateProperties.ACTIVATED);
+		blockStateIn = blockStateIn.setValue(DoTBBlockStateProperties.ACTIVATED, activated);
+		if(activated)
+		{
+			blockStateIn = blockStateIn.setValue(BlockStateProperties.UNSTABLE, true);
+		}
+
+		worldIn.setBlock(blockPosIn, blockStateIn, 10);
+
 		return ActionResultType.SUCCESS;
 	}
 
@@ -63,6 +89,7 @@ public class FaucetBlock extends WaterSourceTrickleBlock {
 			BlockPos currentPosIn, BlockPos facingPosIn)
 	{
 		BlockState state = super.updateShape(stateIn, directionIn, facingStateIn, worldIn, currentPosIn, facingPosIn);
+		boolean lastActivation = state.getValue(DoTBBlockStateProperties.ACTIVATED);
 
 		switch(directionIn)
 		{
@@ -94,6 +121,25 @@ public class FaucetBlock extends WaterSourceTrickleBlock {
 				state = state.setValue(DoTBBlockStateProperties.ACTIVATED, level >= ((BasePoolBlock) facingStateIn.getBlock()).faucetLevel);
 			}
 			break;
+		case DOWN:
+			if(state.getValue(DoTBBlockStateProperties.ACTIVATED))
+			{
+				if(facingStateIn.getBlock() instanceof WaterTrickleBlock )
+				{
+					state = state.setValue(BlockStateProperties.UNSTABLE, false);
+				}
+				else
+				{
+					state = state.setValue(BlockStateProperties.UNSTABLE, true);
+				}
+			}
+			break;
+		}
+
+
+		if(!worldIn.isClientSide() && state.getValue(DoTBBlockStateProperties.ACTIVATED) != lastActivation)
+		{
+			((ServerWorld) worldIn).getBlockTicks().scheduleTick(currentPosIn, this, 5);
 		}
 
 		return state;
