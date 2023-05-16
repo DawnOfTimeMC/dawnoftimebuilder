@@ -40,23 +40,12 @@ public class DoTBBlockAndItemColorsRegistry {
 			DoTBBlocksRegistry.WATER_SOURCE_TRICKLE.get(),
 			DoTBBlocksRegistry.STONE_BRICKS_WATER_JET.get());
 
-	public final static IItemColor	waterItemColor	= DoTBBlockAndItemColorsRegistry.register((p_getColor_1_, p_getColor_2_) ->
-	ForgeRegistries.BIOMES.getValue(Biomes.OCEAN.location()).getWaterColor(),
-			DoTBBlocksRegistry.WATER_SOURCE_TRICKLE.get().asItem());
+	public final static IItemColor WATER_ITEM_COLOR = DoTBBlockAndItemColorsRegistry.register((p_getColor_1_, p_getColor_2_) -> ForgeRegistries.BIOMES.getValue(Biomes.OCEAN.location()).getWaterColor(),
+			DoTBBlocksRegistry.STONE_BRICKS_FAUCET.get().asItem(),
+			DoTBBlocksRegistry.WATER_SOURCE_TRICKLE.get().asItem(),
+			DoTBBlocksRegistry.STONE_BRICKS_WATER_JET.get().asItem());
+
 	// Items
-	private static IItemColor register(final IItemColor itemColorIn, final RegistryObject<Item>[] itemsRegistryObjectsIn) {
-		final Item[] items = new Item[itemsRegistryObjectsIn.length];
-
-
-		for (int i = 0; i < itemsRegistryObjectsIn.length; i++) {
-			items[i] = itemsRegistryObjectsIn[i].get();
-		}
-
-		DoTBBlockAndItemColorsRegistry.register(itemColorIn, items);
-
-		return itemColorIn;
-	}
-
 	private static IItemColor register(final IItemColor itemColorIn, final Item... itemsIn) {
 		List<Item> items = DoTBBlockAndItemColorsRegistry.getItems(itemColorIn);
 
@@ -76,7 +65,6 @@ public class DoTBBlockAndItemColorsRegistry {
 				return entry.getValue();
 			}
 		}
-
 		return null;
 	}
 
@@ -87,26 +75,21 @@ public class DoTBBlockAndItemColorsRegistry {
 			int				i		= 0;
 			for (final Item item : entry.getValue()) {
 				items[i] = item;
-
 				i++;
 			}
 			eventIn.getItemColors().register(entry.getKey(), items);
 		}
-
 		DoTBBlockAndItemColorsRegistry.ITEMS_COLOR_REGISTRY.clear();
 	}
 
 	// Blocks
 	private static IBlockColor register(final IBlockColor blockColorIn, final Block... blocksIn) {
 		List<Block> blocks = DoTBBlockAndItemColorsRegistry.getBlocks(blockColorIn);
-
 		if (blocks == null) {
 			blocks = new ArrayList<>();
 			DoTBBlockAndItemColorsRegistry.BLOCKS_COLOR_REGISTRY.put(blockColorIn, blocks);
 		}
-
 		Collections.addAll(blocks, blocksIn);
-
 		return blockColorIn;
 	}
 
@@ -116,7 +99,6 @@ public class DoTBBlockAndItemColorsRegistry {
 				return entry.getValue();
 			}
 		}
-
 		return null;
 	}
 
