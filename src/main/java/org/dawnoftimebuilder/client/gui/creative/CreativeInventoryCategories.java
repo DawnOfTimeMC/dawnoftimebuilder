@@ -278,6 +278,8 @@ public enum CreativeInventoryCategories {
 			STONE_BRICKS_POOL.get().asItem(),
 			STONE_BRICKS_SMALL_POOL.get().asItem(),
 			STONE_BRICKS_FAUCET.get().asItem(),
+			STONE_BRICKS_WATER_JET.get().asItem(),
+			WATER_SOURCE_TRICKLE.get().asItem(),
 			GERANIUM_PINK.get().asItem(),
 			PLANTER_GERANIUM_PINK.get().asItem(),
 			IVY.get().asItem(),

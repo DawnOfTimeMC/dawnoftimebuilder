@@ -1,19 +1,26 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"1": "block/water_flow",
+		"5": "dawnoftimebuilder:block/water_jet_up",
 		"particle": "dawnoftimebuilder:block/transparent"
 	},
 	"elements": [
 		{
-			"from": [6, -1, 6],
-			"to": [10, 13, 10],
-			"rotation": {"angle": 0, "axis": "y", "origin": [0, -0.5, 0]},
+			"from": [8, 0, 0],
+			"to": [8, 13, 16],
+			"rotation": {"angle": -45, "axis": "y", "origin": [8, 7.5, 8]},
 			"faces": {
-				"north": {"uv": [0, 0, 4, 14], "texture": "#1", "tintindex": 0},
-				"east": {"uv": [0, 0, 4, 14], "texture": "#1", "tintindex": 0},
-				"south": {"uv": [0, 0, 4, 14], "texture": "#1", "tintindex": 0},
-				"west": {"uv": [0, 0, 4, 14], "texture": "#1", "tintindex": 0}
+				"east": {"uv": [16, 0, 0, 13], "texture": "#5", "tintindex": 0},
+				"west": {"uv": [16, 0, 0, 13], "texture": "#5", "tintindex": 0}
+			}
+		},
+		{
+			"from": [8, 0, 0],
+			"to": [8, 13, 16],
+			"rotation": {"angle": 45, "axis": "y", "origin": [8, 7.5, 8]},
+			"faces": {
+				"east": {"uv": [16, 0, 0, 13], "texture": "#5", "tintindex": 0},
+				"west": {"uv": [16, 0, 0, 13], "texture": "#5", "tintindex": 0}
 			}
 		}
 	]
