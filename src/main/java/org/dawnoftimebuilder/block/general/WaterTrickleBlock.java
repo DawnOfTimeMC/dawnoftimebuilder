@@ -1,12 +1,24 @@
 package org.dawnoftimebuilder.block.general;
 
+import static net.minecraft.util.Hand.MAIN_HAND;
+
+import java.util.Random;
+
+import org.dawnoftimebuilder.block.templates.BasePoolBlock;
+import org.dawnoftimebuilder.block.templates.BlockDoTB;
+import org.dawnoftimebuilder.registry.DoTBBlocksRegistry;
+import org.dawnoftimebuilder.util.DoTBBlockStateProperties;
+import org.dawnoftimebuilder.util.DoTBBlockStateProperties.WaterTrickleEnd;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ILiquidContainer;
 import net.minecraft.block.material.PushReaction;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.particles.IParticleData;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
@@ -18,14 +30,6 @@ import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
-import org.dawnoftimebuilder.block.templates.BlockDoTB;
-import org.dawnoftimebuilder.registry.DoTBBlocksRegistry;
-import org.dawnoftimebuilder.util.DoTBBlockStateProperties;
-import org.dawnoftimebuilder.util.DoTBBlockStateProperties.WaterTrickleEnd;
-
-import java.util.Random;
-
-import static net.minecraft.util.Hand.MAIN_HAND;
 
 public abstract class WaterTrickleBlock extends BlockDoTB {
 
@@ -55,15 +59,35 @@ public abstract class WaterTrickleBlock extends BlockDoTB {
 	}
 
 	@Override
+	public void setPlacedBy(World p_180633_1_, BlockPos p_180633_2_, BlockState p_180633_3_, LivingEntity p_180633_4_,
+			ItemStack p_180633_5_)
+	{
+		super.setPlacedBy(p_180633_1_, p_180633_2_, p_180633_3_, p_180633_4_, p_180633_5_);
+
+		if(!p_180633_1_.isClientSide() && p_180633_3_.getValue(BlockStateProperties.UNSTABLE))
+		{
+			((ServerWorld) p_180633_1_).getBlockTicks().scheduleTick(p_180633_2_, this, 5);
+		}
+	}
+
+	@Override
 	public BlockState updateShape(BlockState stateIn, final Direction directionIn, BlockState facingStateIn, final IWorld worldIn, final BlockPos currentPosIn, final BlockPos facingPosIn) {
 		// If a block above or under changed, the water trickle is set UNSTABLE. Unstable water trickles are updated on the next randomTick.
 		if(directionIn == Direction.UP){
 			if(facingStateIn.getBlock() instanceof WaterTrickleBlock){
+				if(!worldIn.isClientSide())
+				{
+					((ServerWorld) worldIn).getBlockTicks().scheduleTick(currentPosIn, this, 5);
+				}
 				return stateIn.setValue(BlockStateProperties.UNSTABLE, true);
 			}
 		}
 		if(directionIn == Direction.DOWN){
 			if(worldIn instanceof World){
+				if(!worldIn.isClientSide())
+				{
+					((ServerWorld) worldIn).getBlockTicks().scheduleTick(currentPosIn, this, 5);
+				}
 				return stateIn
 							.setValue(DoTBBlockStateProperties.WATER_TRICKLE_END, this.getWaterTrickleEnd((World) worldIn, facingPosIn, facingStateIn))
 							.setValue(BlockStateProperties.UNSTABLE, true);
@@ -116,11 +140,6 @@ public abstract class WaterTrickleBlock extends BlockDoTB {
 	}
 
 	@Override
-	public boolean isRandomlyTicking(BlockState state) {
-		return state.getValue(BlockStateProperties.UNSTABLE);
-	}
-
-	@Override
 	public void tick(BlockState state, ServerWorld world, BlockPos pos, Random rand) {
 		super.tick(state, world, pos, rand);
 		// We consider that this Water Trickle won't be unstable by the end of this random tick.
@@ -159,6 +178,7 @@ public abstract class WaterTrickleBlock extends BlockDoTB {
 		}else{
 			currentState = this.inheritWaterTrickles(currentState, this.defaultBlockState());
 		}
+
 		return currentState;
 	}
 
@@ -201,26 +221,87 @@ public abstract class WaterTrickleBlock extends BlockDoTB {
 	public void animateTick(BlockState state, World worldIn, BlockPos pos, Random rand) {
 		super.animateTick(state, worldIn, pos, rand);
 		boolean[] trickles = this.getWaterTrickleOutPut(state);
-		if(state.getValue(DoTBBlockStateProperties.WATER_TRICKLE_END) == WaterTrickleEnd.SPLASH){
-			this.spawnParticle(worldIn, pos, trickles[0], rand, 0.0D, 0.5D);
-			this.spawnParticle(worldIn, pos, trickles[1], rand, 0.5D, 1.0D);
-			this.spawnParticle(worldIn, pos, trickles[2], rand, 1.0D, 0.5D);
-			this.spawnParticle(worldIn, pos, trickles[3], rand, 0.5D, 0.0D);
-			this.spawnParticle(worldIn, pos, trickles[4], rand,0.5D, 0.5D);
+		if(state.getValue(DoTBBlockStateProperties.WATER_TRICKLE_END) == WaterTrickleEnd.SPLASH)
+		{
+			this.spawnFullParticles(worldIn, pos, trickles[0], rand, 0.5D, 0.4D);
+			this.spawnFullParticles(worldIn, pos, trickles[1], rand, 0.6D, 0.5D);
+			this.spawnFullParticles(worldIn, pos, trickles[2], rand, 0.5D, 0.6D);
+			this.spawnFullParticles(worldIn, pos, trickles[3], rand, 0.5D, 0.6D);
+			this.spawnFullParticles(worldIn, pos, trickles[4], rand, 0.5D, 0.5D);
+
+			return;
+		}
+
+		BlockState belowState = worldIn.getBlockState(pos.below());
+
+		if(belowState.getBlock() instanceof BasePoolBlock)
+		{
+			if(belowState.getValue(DoTBBlockStateProperties.LEVEL) > ((BasePoolBlock) belowState.getBlock()).faucetLevel)
+			{
+				this.spawnLimitedParticles(worldIn, pos, trickles[0], rand, 0.5D, 0.4D);
+				this.spawnLimitedParticles(worldIn, pos, trickles[1], rand, 0.6D, 0.5D);
+				this.spawnLimitedParticles(worldIn, pos, trickles[2], rand, 0.5D, 0.6D);
+				this.spawnLimitedParticles(worldIn, pos, trickles[3], rand, 0.5D, 0.6D);
+				this.spawnLimitedParticles(worldIn, pos, trickles[4], rand, 0.5D, 0.5D);
+			}
 		}
 	}
 
-	private void spawnParticle(World worldIn, BlockPos pos, boolean isOn, Random rand, double xOffset, double zOffset){
+	private void spawnLimitedParticles(World worldIn, BlockPos pos, boolean isOn, Random rand, double xOffset, double zOffset)
+	{
 		if(isOn){
+			double offset = 0.75D;
 			worldIn.addParticle(
 					ParticleTypes.BUBBLE_POP,
 					true,
-					pos.getX() + xOffset + rand.nextDouble() * 0.25D,
+					pos.getX() + xOffset + (rand.nextDouble() * offset - offset/2.0D),
 					pos.getY() + 0.1D,
-					pos.getZ() + zOffset + rand.nextDouble() * 0.25D,
-					0.0D,
-					0.07D,
-					0.0D);
+					pos.getZ() + zOffset + (rand.nextDouble() * offset - offset/2.0D),
+					0.0125D,
+					0.075D,
+					0.0125D);
+
+			offset = 0.60D;
+			worldIn.addParticle(
+					ParticleTypes.CLOUD,
+					true,
+					pos.getX() + xOffset + (rand.nextDouble() * offset - offset/2.0D),
+					pos.getY() + 0.0D,
+					pos.getZ() + zOffset + (rand.nextDouble() * offset - offset/2.0D),
+					0.0005D,
+					0.010D,
+					0.0005D);
+		}
+	}
+
+	private void spawnFullParticles(World worldIn, BlockPos pos, boolean isOn, Random rand, double xOffset, double zOffset)
+	{
+		if(isOn){
+			double offset;
+			for(int i = 0; i < 4; i ++)
+			{
+				offset = 0.75D;
+				worldIn.addParticle(
+						ParticleTypes.BUBBLE_POP,
+						true,
+						pos.getX() + xOffset + (rand.nextDouble() * offset - offset/2.0D),
+						pos.getY() + 0.1D,
+						pos.getZ() + zOffset + (rand.nextDouble() * offset - offset/2.0D),
+						0.0125D,
+						0.075D,
+						0.0125D);
+
+				offset = 0.60D;
+				worldIn.addParticle(
+						ParticleTypes.CLOUD,
+						true,
+						pos.getX() + xOffset + (rand.nextDouble() * offset - offset/2.0D),
+						pos.getY() + 0.0D,
+						pos.getZ() + zOffset + (rand.nextDouble() * offset - offset/2.0D),
+						0.0005D,
+						0.010D,
+						0.0005D);
+			}
 		}
 	}
 

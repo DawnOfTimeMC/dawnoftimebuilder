@@ -16,8 +16,11 @@ import net.minecraft.item.Item;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockDisplayReader;
 import net.minecraft.world.biome.BiomeColors;
+import net.minecraft.world.biome.Biomes;
 import net.minecraftforge.client.event.ColorHandlerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.registries.ForgeRegistries;
 
 /**
  * @author Seynax
@@ -36,18 +39,24 @@ public class DoTBBlockAndItemColorsRegistry {
 			DoTBBlocksRegistry.WATER_FLOWING_TRICKLE.get(),
 			DoTBBlocksRegistry.WATER_SOURCE_TRICKLE.get(),
 			DoTBBlocksRegistry.STONE_BRICKS_WATER_JET.get());
-	/* TODO Seynax pleeeeease :)
-	public final static IItemColor WATER_ITEM_COLOR = register(
-			(itemStack, p_210235_2_) -> {
-				BlockState blockstate = ((BlockItem)itemStack.getItem()).getBlock().defaultBlockState();
-				return BiomeColors.getAverageWaterColor(blockDisplayReaderIn, blockPosIn);
-			},
-			DoTBBlocksRegistry.WATER_FLOWING_TRICKLE.get().asItem(),
-			DoTBBlocksRegistry.WATER_SOURCE_TRICKLE.get().asItem(),
-			DoTBBlocksRegistry.STONE_BRICKS_WATER_JET.get().asItem());
-	*/
 
+	public final static IItemColor	waterItemColor	= DoTBBlockAndItemColorsRegistry.register((p_getColor_1_, p_getColor_2_) ->
+	ForgeRegistries.BIOMES.getValue(Biomes.OCEAN.location()).getWaterColor(),
+			DoTBBlocksRegistry.WATER_SOURCE_TRICKLE.get().asItem());
 	// Items
+	private static IItemColor register(final IItemColor itemColorIn, final RegistryObject<Item>[] itemsRegistryObjectsIn) {
+		final Item[] items = new Item[itemsRegistryObjectsIn.length];
+
+
+		for (int i = 0; i < itemsRegistryObjectsIn.length; i++) {
+			items[i] = itemsRegistryObjectsIn[i].get();
+		}
+
+		DoTBBlockAndItemColorsRegistry.register(itemColorIn, items);
+
+		return itemColorIn;
+	}
+
 	private static IItemColor register(final IItemColor itemColorIn, final Item... itemsIn) {
 		List<Item> items = DoTBBlockAndItemColorsRegistry.getItems(itemColorIn);
 
