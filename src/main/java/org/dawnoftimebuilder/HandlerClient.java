@@ -139,6 +139,7 @@ public class HandlerClient {
 		RenderTypeLookup.setRenderLayer(DoTBBlocksRegistry.PLASTERED_STONE_CRESSET.get(), RenderType.cutoutMipped());
 
 		//Roman
+		RenderTypeLookup.setRenderLayer(DoTBBlocksRegistry.BIG_FLOWER_POT.get(), RenderType.cutoutMipped());
 		RenderTypeLookup.setRenderLayer(DoTBBlocksRegistry.WILD_GRAPE.get(), RenderType.cutoutMipped());
 		RenderTypeLookup.setRenderLayer(DoTBBlocksRegistry.CYPRESS.get(), RenderType.cutoutMipped());
 

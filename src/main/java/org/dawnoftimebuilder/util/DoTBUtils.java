@@ -58,6 +58,7 @@ public class DoTBUtils {
 	public static final String					TOOLTIP_CROP			= "crop";
 	public static final String					TOOLTIP_SIDED_WINDOW	= "sided_window";
 	public static final String 					TOOLTIP_FIREPLACE 		= "fireplace";
+	public static final String 					TOOLTIP_ADD_COLUMN 		= "add_column";
 
 	//Item tags
 	public static final Tags.IOptionalNamedTag<Item>	LIGHTERS				= ItemTags.createOptional(new ResourceLocation(DawnOfTimeBuilder.MOD_ID, "lighters"));

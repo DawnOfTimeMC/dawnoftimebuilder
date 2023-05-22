@@ -102,6 +102,7 @@ dependencies {
     minecraft 'net.minecraftforge:forge:' + minecraft_version + '-' + forge_version
     // Both numbers comes from Curse. The first number is the project_id (on the right) and the second one is the file_id (in the URL)
     runtimeOnly fg.deobf("curse.maven:ctm-267602:3137659") // CTM (Connected Texture Mod)
+    runtimeOnly fg.deobf("curse.maven:jei-238222:4371666") // JEI (Just Enough Items)
 }
 
 // Example for how to get properties into the manifest for reading by the runtime..

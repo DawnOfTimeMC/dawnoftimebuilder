@@ -1,9 +1,13 @@
 package org.dawnoftimebuilder.block.templates;
 
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.world.IBlockReader;
 import org.dawnoftimebuilder.block.general.WaterTrickleBlock;
 import org.dawnoftimebuilder.util.DoTBBlockStateProperties;
 
@@ -31,6 +35,9 @@ import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
+import org.dawnoftimebuilder.util.DoTBUtils;
+
+import javax.annotation.Nullable;
 
 public abstract class BasePoolBlock extends BlockDoTB
 {
@@ -422,8 +429,13 @@ public abstract class BasePoolBlock extends BlockDoTB
 		return stateIn;
 	}
 
-	public static enum EnumActivatorState
-	{
+	public static enum EnumActivatorState {
 		NO, DISABLED, ENABLED,
+	}
+
+	@Override
+	public void appendHoverText(final ItemStack stack, @Nullable final IBlockReader worldIn, final List<ITextComponent> tooltip, final ITooltipFlag flagIn) {
+		super.appendHoverText(stack, worldIn, tooltip, flagIn);
+		DoTBUtils.addTooltip(tooltip, DoTBUtils.TOOLTIP_ADD_COLUMN);
 	}
 }

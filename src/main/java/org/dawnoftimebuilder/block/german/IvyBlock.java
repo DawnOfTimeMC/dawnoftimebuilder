@@ -124,27 +124,26 @@ public class IvyBlock extends BlockDoTB implements ICustomBlockItem {
 
     @Override
     public BlockState getStateForPlacement(BlockItemUseContext context) {
-        BlockState state = context.getLevel().getBlockState(context.getClickedPos());
+        World level = context.getLevel();
+        BlockPos pos = context.getClickedPos();
+        BlockState state = level.getBlockState(pos);
+        Direction facing = context.getHorizontalDirection();
+        pos = pos.relative(facing);
+        if(!hasFullFace(level.getBlockState(pos), level, pos, facing)){
+            return null;
+        }
         if (state.getBlock() != this){
             state = this.defaultBlockState();
         }
-        switch(context.getHorizontalDirection()){
-            default:
-            case SOUTH:
-                return state.setValue(SOUTH, true);
-            case WEST:
-                return state.setValue(WEST, true);
-            case NORTH:
-                return state.setValue(NORTH, true);
-            case EAST:
-                return state.setValue(EAST, true);
-        }
+        return state.setValue(getProperty(facing), true);
     }
 
     @Override
     public boolean canBeReplaced(BlockState state, BlockItemUseContext useContext) {
         ItemStack itemstack = useContext.getItemInHand();
-        if(useContext.getPlayer() != null && useContext.getPlayer().isCrouching()) return false;
+        if(useContext.getPlayer() != null && useContext.getPlayer().isCrouching()) {
+            return false;
+        }
         if(itemstack.getItem() == this.asItem()) {
             Direction newDirection = useContext.getHorizontalDirection();
             switch(newDirection){
