@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:shroomlight",
+    "minecraft:soul_campfire",
+    "minecraft:torch",
+    "minecraft:soul_torch",
+    "minecraft:lantern",
+    "minecraft:soul_lantern"
+  ]
+}
