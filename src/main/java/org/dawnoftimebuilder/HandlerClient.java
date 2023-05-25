@@ -32,6 +32,7 @@ import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
 
+
 import static org.dawnoftimebuilder.registry.DoTBBlocksRegistry.*;
 import static org.dawnoftimebuilder.registry.DoTBContainersRegistry.DISPLAYER_CONTAINER;
 import static org.dawnoftimebuilder.registry.DoTBEntitiesRegistry.*;
@@ -82,9 +83,19 @@ public class HandlerClient {
 		RenderTypeLookup.setRenderLayer(WARPED_BEAM.get(), RenderType.cutoutMipped());
 		RenderTypeLookup.setRenderLayer(FIREPLACE.get(), RenderType.cutoutMipped());
 		RenderTypeLookup.setRenderLayer(IRON_PORTCULLIS.get(), RenderType.cutoutMipped());
+		RenderTypeLookup.setRenderLayer(WROUGHT_IRON_FENCE.get(), RenderType.cutoutMipped());
+		RenderTypeLookup.setRenderLayer(WATER_FLOWING_TRICKLE.get(), RenderType.translucent());
+		RenderTypeLookup.setRenderLayer(WATER_SOURCE_TRICKLE.get(), RenderType.translucent());
 
 		//French
 		RenderTypeLookup.setRenderLayer(LIMESTONE_FIREPLACE.get(), RenderType.cutoutMipped());
+		RenderTypeLookup.setRenderLayer(BLACK_WROUGHT_IRON_BALUSTER.get(), RenderType.cutoutMipped());
+		RenderTypeLookup.setRenderLayer(BLACK_WROUGHT_IRON_FENCE.get(), RenderType.cutoutMipped());
+		RenderTypeLookup.setRenderLayer(REINFORCED_BLACK_WROUGHT_IRON_FENCE.get(), RenderType.cutoutMipped());
+		RenderTypeLookup.setRenderLayer(REINFORCED_GOLDEN_WROUGHT_IRON_FENCE.get(), RenderType.cutoutMipped());
+		RenderTypeLookup.setRenderLayer(BOXWOOD_BUSH.get(), RenderType.cutoutMipped());
+		RenderTypeLookup.setRenderLayer(BOXWOOD_SMALL_HEDGE.get(), RenderType.cutoutMipped());
+		RenderTypeLookup.setRenderLayer(BOXWOOD_TALL_HEDGE.get(), RenderType.cutoutMipped());
 
 		//German
 		RenderTypeLookup.setRenderLayer(LATTICE_GLASS.get(), RenderType.cutoutMipped());
@@ -93,20 +104,26 @@ public class HandlerClient {
 		RenderTypeLookup.setRenderLayer(LATTICE_STONE_BRICKS_WINDOW.get(), RenderType.cutoutMipped());
 		RenderTypeLookup.setRenderLayer(STONE_BRICKS_ARROWSLIT.get(), RenderType.cutoutMipped());
 		RenderTypeLookup.setRenderLayer(STONE_BRICKS_FIREPLACE.get(), RenderType.cutoutMipped());
+		RenderTypeLookup.setRenderLayer(STONE_BRICKS_POOL.get(), RenderType.translucent());
+		RenderTypeLookup.setRenderLayer(STONE_BRICKS_SMALL_POOL.get(), RenderType.translucent());
 		RenderTypeLookup.setRenderLayer(WAXED_OAK_DOOR.get(), RenderType.cutoutMipped());
 		RenderTypeLookup.setRenderLayer(WAXED_OAK_TRAPDOOR.get(), RenderType.cutoutMipped());
 		RenderTypeLookup.setRenderLayer(WAXED_OAK_BEAM.get(), RenderType.cutoutMipped());
 		RenderTypeLookup.setRenderLayer(WAXED_OAK_PERGOLA.get(), RenderType.cutoutMipped());
 		RenderTypeLookup.setRenderLayer(WAXED_OAK_LATTICE.get(), RenderType.cutoutMipped());
 		RenderTypeLookup.setRenderLayer(WAXED_OAK_CHANDELIER.get(), RenderType.cutoutMipped());
+		RenderTypeLookup.setRenderLayer(STONE_BRICKS_FAUCET.get(), RenderType.translucent());
+		RenderTypeLookup.setRenderLayer(STONE_BRICKS_WATER_JET.get(), RenderType.translucent());
+		RenderTypeLookup.setRenderLayer(IVY.get(), RenderType.cutoutMipped());
+		RenderTypeLookup.setRenderLayer(GERANIUM_PINK.get(), RenderType.cutoutMipped());
 		RenderTypeLookup.setRenderLayer(PLANTER_GERANIUM_PINK.get(), RenderType.cutoutMipped());
-
 		//Japanese
 		RenderTypeLookup.setRenderLayer(CHARRED_SPRUCE_DOOR.get(), RenderType.cutoutMipped());
 		RenderTypeLookup.setRenderLayer(CHARRED_SPRUCE_TRAPDOOR.get(), RenderType.cutoutMipped());
 		RenderTypeLookup.setRenderLayer(CHARRED_SPRUCE_PERGOLA.get(), RenderType.cutoutMipped());
 		RenderTypeLookup.setRenderLayer(CHARRED_SPRUCE_LATTICE.get(), RenderType.cutoutMipped());
 		RenderTypeLookup.setRenderLayer(CHARRED_SPRUCE_BEAM.get(), RenderType.cutoutMipped());
+		RenderTypeLookup.setRenderLayer(CHARRED_SPRUCE_FANCY_RAILING.get(), RenderType.cutoutMipped());
 		RenderTypeLookup.setRenderLayer(RED_PAINTED_BEAM.get(), RenderType.cutoutMipped());
 		RenderTypeLookup.setRenderLayer(CAST_IRON_TEAPOT_GRAY.get(), RenderType.cutoutMipped());
 		RenderTypeLookup.setRenderLayer(CAST_IRON_TEAPOT_GREEN.get(), RenderType.cutoutMipped());
@@ -121,7 +138,10 @@ public class HandlerClient {
 		RenderTypeLookup.setRenderLayer(SAKE_BOTTLE.get(), RenderType.cutoutMipped());
 		RenderTypeLookup.setRenderLayer(STICK_BUNDLE.get(), RenderType.cutoutMipped());
 		RenderTypeLookup.setRenderLayer(STONE_LANTERN.get(), RenderType.cutoutMipped());
-
+		RenderTypeLookup.setRenderLayer(MAPLE_RED_TRUNK.get(), RenderType.cutoutMipped());
+		RenderTypeLookup.setRenderLayer(MAPLE_RED_LEAVES.get(), RenderType.cutoutMipped());
+		RenderTypeLookup.setRenderLayer(MAPLE_RED_SAPLING.get(), RenderType.cutoutMipped());
+		RenderTypeLookup.setRenderLayer(PAUSED_MAPLE_RED_SAPLING.get(), RenderType.cutoutMipped());
 		//Persian
 		RenderTypeLookup.setRenderLayer(MORAQ_MOSAIC_RECESS.get(), RenderType.cutoutMipped());
 
@@ -132,10 +152,12 @@ public class HandlerClient {
 		RenderTypeLookup.setRenderLayer(PLASTERED_STONE_CRESSET.get(), RenderType.cutoutMipped());
 
 		//Roman
+		RenderTypeLookup.setRenderLayer(BIG_FLOWER_POT.get(), RenderType.cutoutMipped());
 		RenderTypeLookup.setRenderLayer(WILD_GRAPE.get(), RenderType.cutoutMipped());
 		RenderTypeLookup.setRenderLayer(CYPRESS.get(), RenderType.cutoutMipped());
 
 		//TODO For Choco
+		//TODO Temporary : added for Choco's testings
 		RenderTypeLookup.setRenderLayer(WAXED_OAK_CHAIR.get(), RenderType.cutoutMipped());
 		RenderTypeLookup.setRenderLayer(SERPENT_SCULPTED_COLUMN.get(), RenderType.cutoutMipped());
 		RenderTypeLookup.setRenderLayer(RED_PAPER_LANTERN.get(), RenderType.cutoutMipped());
