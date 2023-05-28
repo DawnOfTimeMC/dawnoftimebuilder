@@ -4,6 +4,8 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -36,7 +38,6 @@ public class DawnOfTimeBuilder {
         instance = this;
 
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, DoTBConfig.COMMON_CONFIG);
-        MinecraftForge.EVENT_BUS.register(this.events = new CreativeInventoryFilters());
 
         final IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
         DoTBBlocksRegistry.BLOCKS.register(eventBus);
@@ -50,12 +51,9 @@ public class DawnOfTimeBuilder {
         eventBus.addListener(HandlerCommon::fMLCommonSetupEvent);
         eventBus.addListener(HandlerCommon::entityAttributeCreationEvent);
         eventBus.addListener(HandlerClient::fMLClientSetupEvent);
-        eventBus.addListener(DoTBBlockAndItemColorsRegistry::registerItemsColors);
-        eventBus.addListener(DoTBBlockAndItemColorsRegistry::registerBlockColors);
 
         final IEventBus forgeBus = MinecraftForge.EVENT_BUS;
         forgeBus.addListener(EventPriority.HIGH, HandlerCommon::biomeLoadingEvent);
-
 
     }
 
@@ -74,7 +72,6 @@ public class DawnOfTimeBuilder {
     public boolean hasFilters(ItemGroup group) {
         return HandlerClient.getFilterMap().containsKey(group);
     }
-
 }
 //TODO Vérifier le fichier config qui spammerait la console sur server
 //TODO En 1.18 remplacer le craft de la statue romaine, et des roofing_slates

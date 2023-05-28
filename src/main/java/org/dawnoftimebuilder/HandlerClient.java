@@ -12,18 +12,22 @@ import net.minecraft.item.Items;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.dawnoftimebuilder.client.gui.creative.CreativeInventoryEvents;
+import org.dawnoftimebuilder.client.gui.filters.CreativeInventoryFilters;
 import org.dawnoftimebuilder.client.gui.screen.DisplayerScreen;
 import org.dawnoftimebuilder.client.renderer.entity.ChairRenderer;
 import org.dawnoftimebuilder.client.renderer.entity.JapaneseDragonRenderer;
 import org.dawnoftimebuilder.client.renderer.entity.SilkmothRenderer;
 import org.dawnoftimebuilder.client.renderer.tileentity.DisplayerTERenderer;
 import org.dawnoftimebuilder.client.renderer.tileentity.DryerTERenderer;
+import org.dawnoftimebuilder.registry.DoTBBlockAndItemColorsRegistry;
 import org.dawnoftimebuilder.registry.DoTBItemsRegistry;
 import org.dawnoftimebuilder.util.DoTBFilterEntry;
 
@@ -169,6 +173,11 @@ public class HandlerClient {
 		for(Block pot : POT_BLOCKS.values()){
 			RenderTypeLookup.setRenderLayer(pot, RenderType.cutoutMipped());
 		}
+
+		final IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
+		eventBus.addListener(DoTBBlockAndItemColorsRegistry::registerItemsColors);
+		eventBus.addListener(DoTBBlockAndItemColorsRegistry::registerBlockColors);
+		MinecraftForge.EVENT_BUS.register(DawnOfTimeBuilder.get().events = new CreativeInventoryFilters());
 
 		registerTabs();
 	}
