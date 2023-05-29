@@ -16,10 +16,10 @@ public class Hooks {
             animation = 48;
             return 172;
         }
-        if (animation == 0) return 124;
+        if (animation == 0) return 150;
         else {
             animation -= 3;
-            return 124 + animation;
+            return 150 + animation;
         }
     }
 
@@ -27,7 +27,7 @@ public class Hooks {
     {
         if(screen instanceof CreativeScreen)
         {
-            return 182;
+            return 185;
         }
         return 160;
     }
