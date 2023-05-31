@@ -7,6 +7,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.dawnoftimebuilder.block.templates.FlowerPotBlockDoTB;
 import org.dawnoftimebuilder.item.IHasFlowerPot;
+import org.dawnoftimebuilder.item.IconItem;
 import org.dawnoftimebuilder.item.egyptian.PharaohArmorItem;
 import org.dawnoftimebuilder.item.german.HolyArmorItem;
 import org.dawnoftimebuilder.item.german.IronPlateArmorItem;
@@ -27,6 +28,15 @@ import static org.dawnoftimebuilder.registry.DoTBBlocksRegistry.POT_BLOCKS;
 public class DoTBItemsRegistry {
 
 	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MOD_ID);
+
+	public static final RegistryObject<Item> GENERAL= reg("general", new IconItem());
+	public static final RegistryObject<Item> EGYPTIAN= reg("egyptian", new IconItem());
+	public static final RegistryObject<Item> FRENCH= reg("french", new IconItem());
+	public static final RegistryObject<Item> GERMAN= reg("german", new IconItem());
+	public static final RegistryObject<Item> PERSIAN= reg("persian", new IconItem());
+	public static final RegistryObject<Item> JAPANESE= reg("japanese", new IconItem());
+	public static final RegistryObject<Item> PRE_COLUMBIAN= reg("pre_columbian", new IconItem());
+	public static final RegistryObject<Item> ROMAN= reg("roman", new IconItem());
 
 	//General
 	public static final RegistryObject<Item> SILK_WORMS = reg("silk_worms", new ItemDoTB(true));

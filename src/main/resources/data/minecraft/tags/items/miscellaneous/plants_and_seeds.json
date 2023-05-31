@@ -1,0 +1,16 @@
+{
+    "replace": false,
+    "values": [
+        "minecraft:wheat_seeds",
+        "minecraft:wheat",
+        "minecraft:sugar_cane",
+        "minecraft:kelp",
+        "minecraft:bamboo",
+        "minecraft:pumpkin_seeds",
+        "minecraft:melon_seeds",
+        "minecraft:nether_wart",
+        "minecraft:chorus_fruit",
+        "minecraft:popped_chorus_fruit",
+        "minecraft:beetroot_seeds"
+    ]
+}
