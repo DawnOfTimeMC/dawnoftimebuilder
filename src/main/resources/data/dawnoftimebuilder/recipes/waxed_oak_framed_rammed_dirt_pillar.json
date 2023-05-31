@@ -1,9 +1,9 @@
 {
 	"type": "minecraft:crafting_shaped",
 	"pattern": [
-		"III",
-		"iii",
-		"III"
+		"IiI",
+		"IiI",
+		"IiI"
 	],
 	"key": {
 		"I": {
@@ -14,7 +14,7 @@
 		}
 	},
 	"result": {
-		"item": "dawnoftimebuilder:waxed_oak_framed_rammed_dirt",
+		"item": "dawnoftimebuilder:waxed_oak_framed_rammed_dirt_pillar",
 		"count": 8
 	}
 }

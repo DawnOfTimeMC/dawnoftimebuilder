@@ -1,0 +1,15 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+		{
+			"item": "minecraft:flower_pot"
+		},
+		{
+			"item": "dawnoftimebuilder:geranium_pink"
+		}
+	],
+	"result": {
+		"item": "dawnoftimebuilder:geranium_pink_flower_pot",
+		"count": 1
+	}
+}
