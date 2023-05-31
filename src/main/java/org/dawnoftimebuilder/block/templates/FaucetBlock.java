@@ -74,9 +74,14 @@ public class FaucetBlock extends WaterSourceTrickleBlock {
 		}
 		boolean activated = !blockStateIn.getValue(DoTBBlockStateProperties.ACTIVATED);
 		blockStateIn = blockStateIn.setValue(DoTBBlockStateProperties.ACTIVATED, activated);
+
 		if(activated)
 		{
 			blockStateIn = blockStateIn.setValue(BlockStateProperties.UNSTABLE, true);
+		}
+		if(!worldIn.isClientSide())
+		{
+			((ServerWorld) worldIn).getBlockTicks().scheduleTick(blockPosIn, this, 5);
 		}
 
 		worldIn.setBlock(blockPosIn, blockStateIn, 10);
