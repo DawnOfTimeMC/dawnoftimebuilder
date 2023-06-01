@@ -30,7 +30,7 @@ public class SocialsButton extends Button {
             this.blit(matrixStack, this.x - 1, this.y, 0, (this.isHovered()) ? 28 : 0, 28, 28);
 
             mc.getTextureManager().bind(buttonIcons);
-            blit(matrixStack, this.x + 3, this.y + 6, 0, 0, 0, 20, 15, 15, 20);
+            blit(matrixStack, this.x + 3, this.y + 4, 0, 0, 0, 20, 20, 20, 20);
         }
     }
 }
