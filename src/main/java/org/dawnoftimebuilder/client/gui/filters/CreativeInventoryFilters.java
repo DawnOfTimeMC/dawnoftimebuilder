@@ -23,6 +23,8 @@ import net.minecraftforge.client.event.GuiScreenEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.dawnoftimebuilder.DawnOfTimeBuilder;
+import org.dawnoftimebuilder.client.gui.creative.CreativeInventoryCategories;
+import org.dawnoftimebuilder.client.gui.creative.CreativeInventoryEvents;
 import org.dawnoftimebuilder.client.gui.creative.SocialsButton;
 import org.dawnoftimebuilder.util.DoTBFilterEntry;
 import org.dawnoftimebuilder.util.filters.TabHelper;
@@ -233,7 +235,7 @@ public class CreativeInventoryFilters {
 
     private void updateItems(CreativeScreen screen) {
         CreativeScreen.CreativeContainer container = screen.getMenu();
-        List<Item> filteredItems = new ArrayList<>();
+        Set<Item> filteredItems = new LinkedHashSet<>();
         ItemGroup group = TabHelper.getGroup(screen.getSelectedTab());
         if (group != null) {
             if (DawnOfTimeBuilder.get().hasFilters(group)) {
