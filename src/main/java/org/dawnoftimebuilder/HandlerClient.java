@@ -50,6 +50,10 @@ public class HandlerClient {
 
 	@SubscribeEvent
 	public static void fMLClientSetupEvent(final FMLClientSetupEvent event){
+        final IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
+		eventBus.addListener(DoTBBlockAndItemColorsRegistry::registerItemsColors);
+		eventBus.addListener(DoTBBlockAndItemColorsRegistry::registerBlockColors);
+
 		ScreenManager.register(DISPLAYER_CONTAINER.get(), DisplayerScreen::new);
 
 		ClientRegistry.bindTileEntityRenderer(DISPLAYER_TE.get(), DisplayerTERenderer::new);
@@ -174,9 +178,6 @@ public class HandlerClient {
 			RenderTypeLookup.setRenderLayer(pot, RenderType.cutoutMipped());
 		}
 
-		final IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
-		eventBus.addListener(DoTBBlockAndItemColorsRegistry::registerItemsColors);
-		eventBus.addListener(DoTBBlockAndItemColorsRegistry::registerBlockColors);
 		MinecraftForge.EVENT_BUS.register(DawnOfTimeBuilder.get().events = new CreativeInventoryFilters());
 
 		registerTabs();

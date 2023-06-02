@@ -7,19 +7,20 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.dawnoftimebuilder.DawnOfTimeBuilder;
+import org.spongepowered.asm.mixin.MixinEnvironment.Side;
+
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
 import net.minecraft.client.renderer.color.IBlockColor;
 import net.minecraft.client.renderer.color.IItemColor;
-import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockDisplayReader;
 import net.minecraft.world.biome.BiomeColors;
 import net.minecraft.world.biome.Biomes;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.ColorHandlerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ForgeRegistries;
 
 /**
@@ -69,6 +70,7 @@ public class DoTBBlockAndItemColorsRegistry {
 	}
 
 	@SubscribeEvent
+	@OnlyIn(Dist.CLIENT)
 	public static void registerItemsColors(final ColorHandlerEvent.Item eventIn) {
 		for (final Entry<IItemColor, List<Item>> entry : DoTBBlockAndItemColorsRegistry.ITEMS_COLOR_REGISTRY.entrySet()) {
 			final Item[]	items	= new Item[entry.getValue().size()];
@@ -103,6 +105,7 @@ public class DoTBBlockAndItemColorsRegistry {
 	}
 
 	@SubscribeEvent
+	@OnlyIn(Dist.CLIENT)
 	public static void registerBlockColors(final ColorHandlerEvent.Block eventIn) {
 		for (final Entry<IBlockColor, List<Block>> entry : DoTBBlockAndItemColorsRegistry.BLOCKS_COLOR_REGISTRY.entrySet()) {
 			final Block[]	blocks	= new Block[entry.getValue().size()];

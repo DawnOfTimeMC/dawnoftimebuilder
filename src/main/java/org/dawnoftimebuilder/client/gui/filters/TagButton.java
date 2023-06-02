@@ -52,7 +52,6 @@ public class TagButton extends Button {
         this.active = active;
     }
 
-    @SuppressWarnings("unused")
     public boolean getActive() {
         return active;
     }
