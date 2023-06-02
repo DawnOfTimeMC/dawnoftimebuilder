@@ -49,6 +49,7 @@ public class DoTBBlocksRegistry {
 	public static final RegistryObject<Block>	BIRCH_PERGOLA								= DoTBBlocksRegistry.reg("birch_pergola", new PergolaBlock(AbstractBlock.Properties.copy(Blocks.BIRCH_PLANKS)).setBurnable());
 	public static final RegistryObject<Block>	BIRCH_LATTICE								= DoTBBlocksRegistry.reg("birch_lattice", new LatticeBlock(AbstractBlock.Properties.copy(Blocks.BIRCH_PLANKS).noOcclusion()).setBurnable());
 	public static final RegistryObject<Block>	BIRCH_BEAM									= DoTBBlocksRegistry.reg("birch_beam", new BeamBlock(AbstractBlock.Properties.copy(Blocks.BIRCH_PLANKS)).setBurnable());
+	public static final RegistryObject<Block>	BIRCH_FANCY_FENCE							= DoTBBlocksRegistry.reg("birch_fancy_fence", new BalusterBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F, 5.0F).sound(SoundType.WOOD).noOcclusion()));
 	public static final RegistryObject<Block>	BIRCH_WALL									= DoTBBlocksRegistry.reg("birch_wall", new WallBlock(AbstractBlock.Properties.copy(Blocks.BIRCH_PLANKS)));
 	public static final RegistryObject<Block>	BIRCH_SUPPORT_BEAM							= DoTBBlocksRegistry.reg("birch_support_beam", new SupportBeamBlock(AbstractBlock.Properties.copy(Blocks.BIRCH_PLANKS)).setBurnable());
 	public static final RegistryObject<Block>	BIRCH_SUPPORT_SLAB							= DoTBBlocksRegistry.reg("birch_support_slab", new SupportSlabBlock(AbstractBlock.Properties.copy(Blocks.BIRCH_PLANKS)).setBurnable());
@@ -349,11 +350,12 @@ public class DoTBBlocksRegistry {
 	public static final RegistryObject<Block>	MOSAIC_FLOOR_ROSETTE						= DoTBBlocksRegistry.reg("mosaic_floor_rosette", new BlockDoTB(AbstractBlock.Properties.copy(Blocks.SANDSTONE)));
 	public static final RegistryObject<Block>	BIRCH_FOOTSTOOL								= DoTBBlocksRegistry.reg("birch_footstool", new BirchFootstoolBlock(AbstractBlock.Properties.copy(Blocks.BIRCH_PLANKS), 9.0F));
 	public static final RegistryObject<Block>	BIRCH_COUCH									= DoTBBlocksRegistry.reg("birch_couch", new BirchCouchBlock(AbstractBlock.Properties.copy(Blocks.BIRCH_PLANKS), 13.0F));
-	public static final RegistryObject<Block>	MARBLE_STATUE_MARS							= DoTBBlocksRegistry.reg("marble_statue_mars", new MarbleStatueBlock(AbstractBlock.Properties.copy(Blocks.SANDSTONE).noOcclusion()));
+	public static final RegistryObject<Block>	MARBLE_STATUE_MARS							= DoTBBlocksRegistry.reg("marble_statue_mars", new MarbleStatueBlock(AbstractBlock.Properties.copy(Blocks.BRICKS).noOcclusion()));
 	public static final RegistryObject<Block>	WILD_GRAPE									= DoTBBlocksRegistry.reg("wild_grape", new WildPlantBlock(AbstractBlock.Properties.copy(Blocks.DANDELION)));
 	public static final RegistryObject<Block>	CYPRESS										= DoTBBlocksRegistry.reg("cypress", new CypressBlock(AbstractBlock.Properties.copy(Blocks.SPRUCE_LEAVES)).setBurnable());
 	public static final RegistryObject<Block>	BIG_FLOWER_POT								= DoTBBlocksRegistry.reg("big_flower_pot", new BigFlowerPotBlock(AbstractBlock.Properties.copy(Blocks.CLAY)));
-	public static final RegistryObject<Block>	MARBLE_BIG_FLOWER_POT						= DoTBBlocksRegistry.reg("marble_big_flower_pot", new MarbleBigFlowerPotBlock(AbstractBlock.Properties.copy(Blocks.SANDSTONE)));
+	public static final RegistryObject<Block>	MARBLE_BIG_FLOWER_POT						= DoTBBlocksRegistry.reg("marble_big_flower_pot", new MarbleBigFlowerPotBlock(AbstractBlock.Properties.copy(Blocks.BRICKS)));
+	public static final RegistryObject<Block>	MARBLE_FANCY_FENCE							= DoTBBlocksRegistry.reg("marble_fancy_fence", new BalusterBlock(AbstractBlock.Properties.of(Material.STONE, MaterialColor.STONE).strength(3.0F, 5.0F).sound(SoundType.STONE).noOcclusion()));
 
 	/**
 	 * A utility method to register a Block and its corresponding Item.
