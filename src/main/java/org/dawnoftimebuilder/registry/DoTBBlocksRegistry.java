@@ -49,7 +49,6 @@ public class DoTBBlocksRegistry {
 	public static final RegistryObject<Block>	BIRCH_PERGOLA								= DoTBBlocksRegistry.reg("birch_pergola", new PergolaBlock(AbstractBlock.Properties.copy(Blocks.BIRCH_PLANKS)).setBurnable());
 	public static final RegistryObject<Block>	BIRCH_LATTICE								= DoTBBlocksRegistry.reg("birch_lattice", new LatticeBlock(AbstractBlock.Properties.copy(Blocks.BIRCH_PLANKS).noOcclusion()).setBurnable());
 	public static final RegistryObject<Block>	BIRCH_BEAM									= DoTBBlocksRegistry.reg("birch_beam", new BeamBlock(AbstractBlock.Properties.copy(Blocks.BIRCH_PLANKS)).setBurnable());
-	public static final RegistryObject<Block>	BIRCH_FANCY_FENCE							= DoTBBlocksRegistry.reg("birch_fancy_fence", new BalusterBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F, 5.0F).sound(SoundType.WOOD).noOcclusion()));
 	public static final RegistryObject<Block>	BIRCH_WALL									= DoTBBlocksRegistry.reg("birch_wall", new WallBlock(AbstractBlock.Properties.copy(Blocks.BIRCH_PLANKS)));
 	public static final RegistryObject<Block>	BIRCH_SUPPORT_BEAM							= DoTBBlocksRegistry.reg("birch_support_beam", new SupportBeamBlock(AbstractBlock.Properties.copy(Blocks.BIRCH_PLANKS)).setBurnable());
 	public static final RegistryObject<Block>	BIRCH_SUPPORT_SLAB							= DoTBBlocksRegistry.reg("birch_support_slab", new SupportSlabBlock(AbstractBlock.Properties.copy(Blocks.BIRCH_PLANKS)).setBurnable());
@@ -348,6 +347,7 @@ public class DoTBBlocksRegistry {
 	public static final RegistryObject<Block>	MOSAIC_FLOOR								= DoTBBlocksRegistry.reg("mosaic_floor", new BlockDoTB(AbstractBlock.Properties.copy(Blocks.SANDSTONE)));
 	public static final RegistryObject<Block>	MOSAIC_FLOOR_DELICATE						= DoTBBlocksRegistry.reg("mosaic_floor_delicate", new BlockDoTB(AbstractBlock.Properties.copy(Blocks.SANDSTONE)));
 	public static final RegistryObject<Block>	MOSAIC_FLOOR_ROSETTE						= DoTBBlocksRegistry.reg("mosaic_floor_rosette", new BlockDoTB(AbstractBlock.Properties.copy(Blocks.SANDSTONE)));
+	public static final RegistryObject<Block>	BIRCH_FANCY_FENCE							= DoTBBlocksRegistry.reg("birch_fancy_fence", new BalusterBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F, 5.0F).sound(SoundType.WOOD).noOcclusion()));
 	public static final RegistryObject<Block>	BIRCH_FOOTSTOOL								= DoTBBlocksRegistry.reg("birch_footstool", new BirchFootstoolBlock(AbstractBlock.Properties.copy(Blocks.BIRCH_PLANKS), 9.0F));
 	public static final RegistryObject<Block>	BIRCH_COUCH									= DoTBBlocksRegistry.reg("birch_couch", new BirchCouchBlock(AbstractBlock.Properties.copy(Blocks.BIRCH_PLANKS), 13.0F));
 	public static final RegistryObject<Block>	MARBLE_STATUE_MARS							= DoTBBlocksRegistry.reg("marble_statue_mars", new MarbleStatueBlock(AbstractBlock.Properties.copy(Blocks.BRICKS).noOcclusion()));

@@ -63,7 +63,7 @@ public class HandlerClient {
 		RenderingRegistry.registerEntityRenderingHandler(JAPANESE_DRAGON_ENTITY.get(), JapaneseDragonRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(CHAIR_ENTITY.get(), ChairRenderer::new);
 
-		//Above Minecraft 1.15, we need to register renderLayer here
+		// Above Minecraft 1.15, we need to register renderLayer here
 		// General
 		RenderTypeLookup.setRenderLayer(ACACIA_PERGOLA.get(), RenderType.cutoutMipped());
 		RenderTypeLookup.setRenderLayer(ACACIA_LATTICE.get(), RenderType.cutoutMipped());
@@ -150,6 +150,7 @@ public class HandlerClient {
 		RenderTypeLookup.setRenderLayer(MAPLE_RED_LEAVES.get(), RenderType.cutoutMipped());
 		RenderTypeLookup.setRenderLayer(MAPLE_RED_SAPLING.get(), RenderType.cutoutMipped());
 		RenderTypeLookup.setRenderLayer(PAUSED_MAPLE_RED_SAPLING.get(), RenderType.cutoutMipped());
+
 		//Persian
 		RenderTypeLookup.setRenderLayer(MORAQ_MOSAIC_RECESS.get(), RenderType.cutoutMipped());
 
@@ -160,6 +161,8 @@ public class HandlerClient {
 		RenderTypeLookup.setRenderLayer(PLASTERED_STONE_CRESSET.get(), RenderType.cutoutMipped());
 
 		//Roman
+		RenderTypeLookup.setRenderLayer(BIRCH_FANCY_FENCE.get(), RenderType.cutoutMipped());
+		RenderTypeLookup.setRenderLayer(MARBLE_FANCY_FENCE.get(), RenderType.cutoutMipped());
 		RenderTypeLookup.setRenderLayer(BIG_FLOWER_POT.get(), RenderType.cutoutMipped());
 		RenderTypeLookup.setRenderLayer(WILD_GRAPE.get(), RenderType.cutoutMipped());
 		RenderTypeLookup.setRenderLayer(CYPRESS.get(), RenderType.cutoutMipped());
