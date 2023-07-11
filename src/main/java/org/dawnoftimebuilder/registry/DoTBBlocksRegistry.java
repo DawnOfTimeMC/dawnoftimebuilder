@@ -344,6 +344,9 @@ public class DoTBBlocksRegistry {
 																									.addMixedBlockRecipe(Blocks.SMOOTH_SANDSTONE_SLAB, DoTBBlocksRegistry.SMOOTH_SANDSTONE_BOT_OCHRE_ROOF_TILES_TOP, false));
 	public static final RegistryObject<Block>	SANDSTONE_COLUMN							= DoTBBlocksRegistry.reg("sandstone_column", new SandstoneColumnBlock(AbstractBlock.Properties.copy(Blocks.SANDSTONE)));
 	public static final RegistryObject<Block>	COVERED_SANDSTONE_WALL						= DoTBBlocksRegistry.reg("covered_sandstone_wall", new CappedWallBlock(AbstractBlock.Properties.copy(Blocks.SANDSTONE)));
+	public static final RegistryObject<Block>	TERRACOTTA_WALL								= DoTBBlocksRegistry.reg("terracotta_wall", new WallBlock(AbstractBlock.Properties.copy(Blocks.TERRACOTTA)));
+	public static final RegistryObject<Block>	ROMAN_FRESCO_BLACK							= DoTBBlocksRegistry.reg("roman_fresco_black", new BlockDoTB(AbstractBlock.Properties.copy(Blocks.TERRACOTTA)));
+	public static final RegistryObject<Block>	ROMAN_FRESCO_RED							= DoTBBlocksRegistry.reg("roman_fresco_red", new BlockDoTB(AbstractBlock.Properties.copy(Blocks.TERRACOTTA)));
 	public static final RegistryObject<Block>	MOSAIC_FLOOR								= DoTBBlocksRegistry.reg("mosaic_floor", new BlockDoTB(AbstractBlock.Properties.copy(Blocks.SANDSTONE)));
 	public static final RegistryObject<Block>	MOSAIC_FLOOR_DELICATE						= DoTBBlocksRegistry.reg("mosaic_floor_delicate", new BlockDoTB(AbstractBlock.Properties.copy(Blocks.SANDSTONE)));
 	public static final RegistryObject<Block>	MOSAIC_FLOOR_ROSETTE						= DoTBBlocksRegistry.reg("mosaic_floor_rosette", new BlockDoTB(AbstractBlock.Properties.copy(Blocks.SANDSTONE)));
@@ -354,8 +357,9 @@ public class DoTBBlocksRegistry {
 	public static final RegistryObject<Block>	WILD_GRAPE									= DoTBBlocksRegistry.reg("wild_grape", new WildPlantBlock(AbstractBlock.Properties.copy(Blocks.DANDELION)));
 	public static final RegistryObject<Block>	CYPRESS										= DoTBBlocksRegistry.reg("cypress", new CypressBlock(AbstractBlock.Properties.copy(Blocks.SPRUCE_LEAVES)).setBurnable());
 	public static final RegistryObject<Block>	BIG_FLOWER_POT								= DoTBBlocksRegistry.reg("big_flower_pot", new BigFlowerPotBlock(AbstractBlock.Properties.copy(Blocks.CLAY)));
-	public static final RegistryObject<Block>	MARBLE_BIG_FLOWER_POT						= DoTBBlocksRegistry.reg("marble_big_flower_pot", new MarbleBigFlowerPotBlock(AbstractBlock.Properties.copy(Blocks.BRICKS)));
+	public static final RegistryObject<Block>	MARBLE_BIG_FLOWER_POT						= DoTBBlocksRegistry.reg("marble_big_flower_pot", new MarbleBigFlowerPotBlock(AbstractBlock.Properties.copy(Blocks.STONE)));
 	public static final RegistryObject<Block>	MARBLE_FANCY_FENCE							= DoTBBlocksRegistry.reg("marble_fancy_fence", new BalusterBlock(AbstractBlock.Properties.of(Material.STONE, MaterialColor.STONE).strength(3.0F, 5.0F).sound(SoundType.STONE).noOcclusion()));
+	public static final RegistryObject<Block>	MARBLE_COLUMN								= DoTBBlocksRegistry.reg("marble_column", new MarbleColumnBlock(AbstractBlock.Properties.copy(Blocks.STONE)));
 
 	/**
 	 * A utility method to register a Block and its corresponding Item.

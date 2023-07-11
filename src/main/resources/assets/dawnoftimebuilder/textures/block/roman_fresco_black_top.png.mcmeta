@@ -1,0 +1,10 @@
+{
+    "ctm":{
+        "ctm_version": 1,
+        "type":"ctm",
+        "layer":"SOLID",
+        "textures":[
+            "dawnoftimebuilder:block/roman_fresco_black_top-ctm"
+        ]
+    }
+}

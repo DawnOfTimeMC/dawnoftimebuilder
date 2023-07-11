@@ -1,6 +1,7 @@
 package org.dawnoftimebuilder.block.templates;
 
-import net.minecraft.block.*;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -13,7 +14,6 @@ import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
@@ -22,7 +22,6 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.IBlockReader;
-import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
@@ -121,7 +120,9 @@ public class BeamBlock extends WaterloggedBlock implements IBlockPillar, IBlockC
 			state = super.getStateForPlacement(context);
 		switch (context.getClickedFace().getAxis()) {
 			case X:
-				state = state.setValue(AXIS_X, true);
+				state = state
+						.setValue(AXIS_X, true)
+						.setValue(BOTTOM, canNotConnectUnder(context.getLevel().getBlockState(context.getClickedPos().below())));
 				break;
 			case Y:
 				state = state.setValue(AXIS_Y, true);
@@ -130,11 +131,7 @@ public class BeamBlock extends WaterloggedBlock implements IBlockPillar, IBlockC
 				state = state.setValue(AXIS_Z, true);
 				break;
 		}
-		return this.getCurrentState(state, context.getLevel(), context.getClickedPos());
-	}
-
-	public BlockState getCurrentState(BlockState stateIn, IWorld worldIn, BlockPos pos){
-		return stateIn.getValue(AXIS_Y) ? stateIn.setValue(BOTTOM, canNotConnectUnder(worldIn.getBlockState(pos.below()))) : stateIn;
+		return state;
 	}
 
 	@Override
@@ -161,16 +158,6 @@ public class BeamBlock extends WaterloggedBlock implements IBlockPillar, IBlockC
 		super.spawnAfterBreak(state, worldIn, pos, stack);
 		//Be careful, climbing plants are not dropping from block's loot_table, but from their own loot_table
 		this.dropPlant(state, worldIn, pos, stack);
-	}
-
-	@Override
-	public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
-		stateIn = super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
-		stateIn = this.getCurrentState(stateIn, worldIn, currentPos);
-		if(!this.canHavePlant(stateIn) && !stateIn.getValue(CLIMBING_PLANT).hasNoPlant()){
-			return this.removePlant(stateIn, worldIn, currentPos, ItemStack.EMPTY);
-		}
-		return stateIn;
 	}
 
 	public boolean canNotConnectUnder(BlockState state) {
@@ -209,8 +196,12 @@ public class BeamBlock extends WaterloggedBlock implements IBlockPillar, IBlockC
 		if(this.harvestPlant(state, worldIn, pos, player, handIn) == ActionResultType.SUCCESS){
 			return ActionResultType.SUCCESS;
 		}
-		if(player.isCrouching() && state.getValue(BOTTOM)){
-			worldIn.setBlock(pos, state.setValue(BOTTOM, false), 10);
+		if(player.isCrouching() && state.getValue(AXIS_Y)){
+			state = state.setValue(BOTTOM, !state.getValue(BOTTOM));
+			if(!this.canHavePlant(state) && !state.getValue(CLIMBING_PLANT).hasNoPlant()){
+				state = this.removePlant(state, worldIn, pos, ItemStack.EMPTY);
+			}
+			worldIn.setBlock(pos, state, 10);
 			return ActionResultType.SUCCESS;
 		}
 		return ActionResultType.PASS;

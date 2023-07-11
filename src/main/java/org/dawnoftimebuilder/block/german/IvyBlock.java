@@ -4,6 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.material.PushReaction;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
@@ -22,6 +23,7 @@ import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
@@ -36,12 +38,14 @@ import org.dawnoftimebuilder.util.DoTBUtils;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import static net.minecraft.tags.BlockTags.SAND;
 import static net.minecraftforge.common.Tags.Blocks.DIRT;
 import static net.minecraftforge.common.Tags.Blocks.GRAVEL;
 import static org.dawnoftimebuilder.DawnOfTimeBuilder.DOTB_TAB;
+import static org.dawnoftimebuilder.util.DoTBUtils.TOOLTIP_CROP;
 
 public class IvyBlock extends BlockDoTB implements ICustomBlockItem {
 
@@ -285,11 +289,26 @@ public class IvyBlock extends BlockDoTB implements ICustomBlockItem {
 
     @Override
     public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-        if(!state.getValue(PERSISTENT)){
+        if(state.getValue(PERSISTENT)){
+            if(player.isCreative()){
+                int age = state.getValue(AGE);
+                if(player.isCrouching()){
+                    if(age > 0){
+                        worldIn.setBlock(pos, state.setValue(AGE, age - 1), 10);
+                        return ActionResultType.SUCCESS;
+                    }
+                }else{
+                    if(age < 2) {
+                        worldIn.setBlock(pos, state.setValue(AGE, age + 1), 10);
+                        return ActionResultType.SUCCESS;
+                    }
+                }
+            }
+        }else{
             if(DoTBUtils.useLighter(worldIn, pos, player, handIn)){
                 Random rand = new Random();
                 for(int i = 0; i < 5; i++){
-                    worldIn.addParticle(ParticleTypes.SMOKE, (double)pos.getX() + rand.nextDouble(), (double)pos.getY() + 0.5D + rand.nextDouble() / 2, (double)pos.getZ() + rand.nextDouble(), 0.0D, 0.07D, 0.0D);
+                    worldIn.addAlwaysVisibleParticle(ParticleTypes.SMOKE, (double)pos.getX() + rand.nextDouble(), (double)pos.getY() + 0.5D + rand.nextDouble() / 2, (double)pos.getZ() + rand.nextDouble(), 0.0D, 0.07D, 0.0D);
                 }
                 worldIn.setBlock(pos, state.setValue(PERSISTENT, true), 10);
                 return ActionResultType.SUCCESS;
@@ -312,5 +331,11 @@ public class IvyBlock extends BlockDoTB implements ICustomBlockItem {
     @Override
     public PushReaction getPistonPushReaction(BlockState state) {
         return PushReaction.DESTROY;
+    }
+
+    @Override
+    public void appendHoverText(ItemStack stack, @Nullable IBlockReader worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+        super.appendHoverText(stack, worldIn, tooltip, flagIn);
+        DoTBUtils.addTooltip(tooltip, TOOLTIP_CROP);
     }
 }

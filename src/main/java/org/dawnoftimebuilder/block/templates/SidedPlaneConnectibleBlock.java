@@ -50,10 +50,10 @@ public abstract class SidedPlaneConnectibleBlock extends SidedColumnConnectibleB
 
 	public DoTBBlockStateProperties.HorizontalConnection getLineState(IWorld worldIn, BlockPos pos, BlockState stateIn){
 		Direction direction = stateIn.getValue(FACING).getClockWise();
-		if(isConnectible(worldIn, pos.relative(direction, -1), stateIn)){
-			return (isConnectible(worldIn, pos.relative(direction), stateIn)) ? DoTBBlockStateProperties.HorizontalConnection.BOTH : DoTBBlockStateProperties.HorizontalConnection.LEFT;
+		if(isConnectible(stateIn, worldIn, pos.relative(direction, -1), direction)){
+			return (isConnectible(stateIn, worldIn, pos.relative(direction), direction)) ? DoTBBlockStateProperties.HorizontalConnection.BOTH : DoTBBlockStateProperties.HorizontalConnection.LEFT;
 		}else{
-			return (isConnectible(worldIn, pos.relative(direction), stateIn)) ? DoTBBlockStateProperties.HorizontalConnection.RIGHT : DoTBBlockStateProperties.HorizontalConnection.NONE;
+			return (isConnectible(stateIn, worldIn, pos.relative(direction), direction)) ? DoTBBlockStateProperties.HorizontalConnection.RIGHT : DoTBBlockStateProperties.HorizontalConnection.NONE;
 		}
 	}
 

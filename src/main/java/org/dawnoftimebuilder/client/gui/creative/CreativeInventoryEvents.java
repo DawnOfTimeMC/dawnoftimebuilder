@@ -52,7 +52,7 @@ public class CreativeInventoryEvents {
             this.guiCenterX = ((CreativeScreen) event.getGui()).getGuiLeft();
             this.guiCenterY = ((CreativeScreen) event.getGui()).getGuiTop();
             this.buttons = new ArrayList<>();
-
+/*
             event.addWidget(this.btnScrollUp = new GroupButton(this.guiCenterX - 22, this.guiCenterY - 22,
                     StringTextComponent.EMPTY, button -> {
                 if (CreativeInventoryEvents.page > 0) {
@@ -68,7 +68,7 @@ public class CreativeInventoryEvents {
                     this.updateCategoryButtons();
                 }
             }, CreativeInventoryEvents.CREATIVE_ICONS, 16, 56));
-
+*/
             event.addWidget(this.discord = new SocialsButton(this.guiCenterX + 200, this.guiCenterY, "discord", button -> openLink("https://discord.gg/cteCdn9Hnf")));
             event.addWidget(this.curse = new SocialsButton(this.guiCenterX + 200, this.guiCenterY + 35, "curse", button -> openLink("https://www.curseforge.com/minecraft/mc-mods/dawn-of-time")));
             event.addWidget(this.patreon = new SocialsButton(this.guiCenterX + 200, this.guiCenterY + 70, "patreon", button -> openLink("https://www.patreon.com/dawnoftimemod")));

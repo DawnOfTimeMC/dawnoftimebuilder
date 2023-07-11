@@ -32,8 +32,8 @@ public abstract class SidedColumnConnectibleBlock extends ColumnConnectibleBlock
 		return super.getStateForPlacement(context).setValue(FACING, context.getHorizontalDirection().getOpposite());
 	}
 
-	public boolean isConnectible(IWorld worldIn, BlockPos pos, BlockState stateIn){
-		boolean isSameBlock = super.isConnectible(worldIn, pos, stateIn);
+	public boolean isConnectible(BlockState stateIn, IWorld worldIn, BlockPos pos, Direction faceToConnect){
+		boolean isSameBlock = super.isConnectible(stateIn, worldIn, pos, faceToConnect);
 		if(!isSameBlock) return false;
 		return worldIn.getBlockState(pos).getValue(FACING) == stateIn.getValue(FACING);
 	}

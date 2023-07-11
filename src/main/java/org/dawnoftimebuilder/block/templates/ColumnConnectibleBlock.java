@@ -52,13 +52,13 @@ public abstract class ColumnConnectibleBlock extends WaterloggedBlock {
 	}
 
 	public DoTBBlockStateProperties.VerticalConnection getColumnState(final IWorld worldIn, final BlockPos pos, final BlockState stateIn) {
-		if (this.isConnectible(worldIn, pos.above(), stateIn)) {
-			return this.isConnectible(worldIn, pos.below(), stateIn) ? DoTBBlockStateProperties.VerticalConnection.BOTH : DoTBBlockStateProperties.VerticalConnection.ABOVE;
+		if (this.isConnectible(stateIn, worldIn, pos.above(), Direction.DOWN)) {
+			return this.isConnectible(stateIn, worldIn, pos.below(), Direction.UP) ? DoTBBlockStateProperties.VerticalConnection.BOTH : DoTBBlockStateProperties.VerticalConnection.ABOVE;
 		}
-		return this.isConnectible(worldIn, pos.below(), stateIn) ? DoTBBlockStateProperties.VerticalConnection.UNDER : DoTBBlockStateProperties.VerticalConnection.NONE;
+		return this.isConnectible(stateIn, worldIn, pos.below(), Direction.UP) ? DoTBBlockStateProperties.VerticalConnection.UNDER : DoTBBlockStateProperties.VerticalConnection.NONE;
 	}
 
-	public boolean isConnectible(final IWorld worldIn, final BlockPos pos, final BlockState stateIn) {
+	public boolean isConnectible(final BlockState stateIn, final IWorld worldIn, final BlockPos pos, final Direction faceToConnect) {
 		return worldIn.getBlockState(pos).getBlock() == this;
 	}
 

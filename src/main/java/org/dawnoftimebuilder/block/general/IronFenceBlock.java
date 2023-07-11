@@ -2,20 +2,34 @@ package org.dawnoftimebuilder.block.general;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
+import net.minecraft.item.ItemStack;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.state.properties.StairsShape;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
+import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
+import net.minecraft.world.World;
+import org.dawnoftimebuilder.block.templates.ColumnConnectibleBlock;
 import org.dawnoftimebuilder.block.templates.PlateBlock;
+import org.dawnoftimebuilder.util.DoTBBlockStateProperties;
 import org.dawnoftimebuilder.util.DoTBUtils;
+
+import javax.annotation.Nullable;
+import java.util.List;
 
 public class IronFenceBlock extends PlateBlock {
 
@@ -75,10 +89,10 @@ public class IronFenceBlock extends PlateBlock {
     private static VoxelShape[] makeShapes(boolean up) {
         int size_flat = up ? 8 : 16;
         int size_corner = up ? 10 : 16;
-        VoxelShape vs_north_flat = Block.box(0.0D, 0.0D, 0.5D, 16.0D, size_flat, 2.5D);
-        VoxelShape vs_east_flat = Block.box(13.5D, 0.0D, 0.0D, 15.5D, size_flat, 16.0D);
-        VoxelShape vs_south_flat = Block.box(0.0D, 0.0D, 13.5D, 16.0D, size_flat, 15.5D);
-        VoxelShape vs_west_flat = Block.box(0.5D, 0.0D, 0.0D, 2.5D, size_flat, 16.0D);
+        VoxelShape vs_north_flat = Block.box(0.0D, 0.0D, 0.0D, 16.0D, size_flat, 2.5D);
+        VoxelShape vs_east_flat = Block.box(13.5D, 0.0D, 0.0D, 16.0D, size_flat, 16.0D);
+        VoxelShape vs_south_flat = Block.box(0.0D, 0.0D, 13.5D, 16.0D, size_flat, 16.0D);
+        VoxelShape vs_west_flat = Block.box(0.0D, 0.0D, 0.0D, 2.5D, size_flat, 16.0D);
         VoxelShape vs_nw_corner = Block.box(0.0D, 0.0D, 0.0D, 3.0D, size_corner, 3.0D);
         VoxelShape vs_ne_corner = Block.box(13.0D, 0.0D, 0.0D, 16.0D, size_corner, 3.0D);
         VoxelShape vs_se_corner = Block.box(13.0D, 0.0D, 13.0D, 16.0D, size_corner, 16.0D);
@@ -116,5 +130,56 @@ public class IronFenceBlock extends PlateBlock {
             stateIn = stateIn.setValue(UP, !facingState.getBlock().is(this));
         }
         return super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+    }
+
+    @Override
+    public ActionResultType use(final BlockState state, final World worldIn, final BlockPos pos, final PlayerEntity player, final Hand handIn, final BlockRayTraceResult hit) {
+        final ItemStack heldItemStack = player.getItemInHand(handIn);
+        if (player.isCrouching()) {
+            //We remove the highest Block
+            if (state.getValue(UP)) {
+                return super.use(state, worldIn, pos, player, handIn, hit);
+            }
+            final BlockPos topPos = this.getHighestColumnPos(worldIn, pos);
+            if (topPos != pos) {
+                if (!worldIn.isClientSide()) {
+                    worldIn.setBlock(topPos, Blocks.AIR.defaultBlockState(), 35);
+                    if (!player.isCreative()) {
+                        Block.dropResources(state, worldIn, pos, null, player, heldItemStack);
+                    }
+                }
+                return ActionResultType.SUCCESS;
+            }
+        }
+        else if (!heldItemStack.isEmpty() && heldItemStack.getItem() == this.asItem()) {
+            //We put a ColumnBlock on top of the column
+            final BlockPos topPos = this.getHighestColumnPos(worldIn, pos).above();
+            if (topPos.getY() <= DoTBUtils.HIGHEST_Y) {
+                if (!worldIn.isClientSide() && worldIn.getBlockState(topPos).isAir(worldIn, topPos)) {
+                    worldIn.setBlock(topPos, state, 11);
+                    if (!player.isCreative()) {
+                        heldItemStack.shrink(1);
+                    }
+                }
+                return ActionResultType.SUCCESS;
+            }
+        }
+        return super.use(state, worldIn, pos, player, handIn, hit);
+    }
+
+    private BlockPos getHighestColumnPos(final World worldIn, final BlockPos pos) {
+        int yOffset;
+        for (yOffset = 0; yOffset + pos.getY() <= DoTBUtils.HIGHEST_Y; yOffset++) {
+            if (worldIn.getBlockState(pos.above(yOffset)).getBlock() != this) {
+                break;
+            }
+        }
+        return pos.above(yOffset - 1);
+    }
+
+    @Override
+    public void appendHoverText(final ItemStack stack, @Nullable final IBlockReader worldIn, final List<ITextComponent> tooltip, final ITooltipFlag flagIn) {
+        super.appendHoverText(stack, worldIn, tooltip, flagIn);
+        DoTBUtils.addTooltip(tooltip, DoTBUtils.TOOLTIP_COLUMN);
     }
 }

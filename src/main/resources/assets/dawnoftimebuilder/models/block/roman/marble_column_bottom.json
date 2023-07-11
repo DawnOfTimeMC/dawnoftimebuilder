@@ -1,0 +1,43 @@
+{
+	"credit": "Made with Blockbench",
+	"texture_size": [32, 32],
+	"textures": {
+		"texture": "dawnoftimebuilder:block/marble_column",
+		"particle": "dawnoftimebuilder:block/marble_column_top"
+	},
+	"elements": [
+		{
+			"from": [2, 0, 2],
+			"to": [14, 4, 14],
+			"faces": {
+				"north": {"uv": [1, 14, 7, 16], "texture": "#texture"},
+				"east": {"uv": [1, 14, 7, 16], "texture": "#texture"},
+				"south": {"uv": [1, 14, 7, 16], "texture": "#texture"},
+				"west": {"uv": [1, 14, 7, 16], "texture": "#texture"},
+				"up": {"uv": [9, 9, 15, 15], "texture": "#texture"},
+				"down": {"uv": [9, 1, 15, 7], "texture": "#texture", "cullface": "down"}
+			}
+		},
+		{
+			"from": [3, 4, 3],
+			"to": [13, 6, 13],
+			"faces": {
+				"north": {"uv": [1.5, 13, 6.5, 14], "texture": "#texture"},
+				"east": {"uv": [1.5, 13, 6.5, 14], "texture": "#texture"},
+				"south": {"uv": [1.5, 13, 6.5, 14], "texture": "#texture"},
+				"west": {"uv": [1.5, 13, 6.5, 14], "texture": "#texture"},
+				"up": {"uv": [9.5, 9.5, 14.5, 14.5], "texture": "#texture"}
+			}
+		},
+		{
+			"from": [4, 6, 4],
+			"to": [12, 16, 12],
+			"faces": {
+				"north": {"uv": [2, 8, 6, 13], "texture": "#texture"},
+				"east": {"uv": [2, 8, 6, 13], "texture": "#texture"},
+				"south": {"uv": [2, 8, 6, 13], "texture": "#texture"},
+				"west": {"uv": [2, 8, 6, 13], "texture": "#texture"}
+			}
+		}
+	]
+}
