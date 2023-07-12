@@ -10,7 +10,7 @@
 			"item": "minecraft:sandstone"
 		},
 		"x": {
-			"tag": "forge:dies/black"
+			"tag": "forge:dyes/black"
 		}
 	},
 	"result": {
