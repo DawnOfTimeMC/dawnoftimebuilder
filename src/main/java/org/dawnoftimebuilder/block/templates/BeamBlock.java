@@ -121,11 +121,12 @@ public class BeamBlock extends WaterloggedBlock implements IBlockPillar, IBlockC
 		switch (context.getClickedFace().getAxis()) {
 			case X:
 				state = state
-						.setValue(AXIS_X, true)
-						.setValue(BOTTOM, canNotConnectUnder(context.getLevel().getBlockState(context.getClickedPos().below())));
+						.setValue(AXIS_X, true);
 				break;
 			case Y:
-				state = state.setValue(AXIS_Y, true);
+				state = state
+						.setValue(AXIS_Y, true)
+						.setValue(BOTTOM, canNotConnectUnder(context.getLevel().getBlockState(context.getClickedPos().below())));
 				break;
 			case Z:
 				state = state.setValue(AXIS_Z, true);

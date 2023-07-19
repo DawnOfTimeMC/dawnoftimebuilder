@@ -15,6 +15,7 @@ import org.dawnoftimebuilder.DawnOfTimeBuilder;
 import org.dawnoftimebuilder.block.ICustomBlockItem;
 import org.dawnoftimebuilder.block.french.LimestoneChimneyBlock;
 import org.dawnoftimebuilder.block.french.LimestoneGargoyleBlock;
+import org.dawnoftimebuilder.block.french.LimestoneSidedColumnBlock;
 import org.dawnoftimebuilder.block.french.ReinforcedIronFenceBlock;
 import org.dawnoftimebuilder.block.general.*;
 import org.dawnoftimebuilder.block.german.*;
@@ -127,6 +128,7 @@ public class DoTBBlocksRegistry {
 	public static final RegistryObject<Block>	LIMESTONE_BRICKS_STAIRS						= DoTBBlocksRegistry.reg("limestone_bricks_stairs", new StairsBlockDoTB(DoTBBlocksRegistry.LIMESTONE_BRICKS, AbstractBlock.Properties.copy(Blocks.STONE_BRICKS)));
 	public static final RegistryObject<Block>	LIMESTONE_BRICKS_WALL						= DoTBBlocksRegistry.reg("limestone_bricks_wall", new WallBlock(AbstractBlock.Properties.copy(Blocks.STONE_BRICKS)));
 	public static final RegistryObject<Block>	LIMESTONE_BALUSTER							= DoTBBlocksRegistry.reg("limestone_baluster", new PlateBlock(AbstractBlock.Properties.copy(Blocks.STONE_BRICKS).noOcclusion()));
+	public static final RegistryObject<Block>	LIMESTONE_SIDED_COLUMN						= DoTBBlocksRegistry.reg("limestone_sided_column", new LimestoneSidedColumnBlock(AbstractBlock.Properties.copy(Blocks.STONE_BRICKS)));
 	public static final RegistryObject<Block>	LIMESTONE_GARGOYLE							= DoTBBlocksRegistry.reg("limestone_gargoyle", new LimestoneGargoyleBlock(AbstractBlock.Properties.copy(Blocks.STONE_BRICKS).noOcclusion().randomTicks()));
 	public static final RegistryObject<Block>	LIMESTONE_CHIMNEY							= DoTBBlocksRegistry.reg("limestone_chimney", new LimestoneChimneyBlock(AbstractBlock.Properties.copy(Blocks.STONE_BRICKS)));
 	public static final RegistryObject<Block>	LIMESTONE_FIREPLACE							= DoTBBlocksRegistry.reg("limestone_fireplace", new MultiblockFireplaceBlock(AbstractBlock.Properties.copy(Blocks.STONE_BRICKS).noOcclusion().lightLevel(DoTBBlocksRegistry.litBlockEmission(15))));
@@ -254,11 +256,11 @@ public class DoTBBlocksRegistry {
 	public static final RegistryObject<Block>	SPRUCE_LOW_TABLE							= DoTBBlocksRegistry.reg("spruce_low_table", new SpruceLowTableBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.COLOR_BLACK).strength(2.0F, 6.0F).sound(SoundType.WOOD).noOcclusion().lightLevel(DoTBBlocksRegistry.litBlockEmission(14))));
 	public static final RegistryObject<Block>	SPRUCE_LEGLESS_CHAIR						= DoTBBlocksRegistry.reg("spruce_legless_chair", new SpruceLeglessChairBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.COLOR_BLACK).strength(2.0F, 6.0F).sound(SoundType.WOOD).noOcclusion(), 3.0F));
 	public static final RegistryObject<Block>	WHITE_LITTLE_FLAG							= DoTBBlocksRegistry.reg("white_little_flag", new LittleFlagBlock(AbstractBlock.Properties.copy(Blocks.WHITE_WOOL)));
-	public static final RegistryObject<Block>	PAPER_WALL									= DoTBBlocksRegistry.reg("paper_wall", new BottomPaneBlockDoTB(AbstractBlock.Properties.copy(Blocks.WHITE_WOOL).strength(1.5F, 1.5F)));
 	public static final RegistryObject<Block>	PAPER_DOOR									= DoTBBlocksRegistry.reg("paper_door", new PaperDoorBlock(AbstractBlock.Properties.copy(Blocks.WHITE_WOOL).strength(1.5F, 1.5F)));
-	public static final RegistryObject<Block>	PAPER_WALL_FLAT								= DoTBBlocksRegistry.reg("paper_wall_flat", new PaneBlockDoTB(AbstractBlock.Properties.copy(Blocks.WHITE_WOOL).strength(1.5F, 1.5F)));
-	public static final RegistryObject<Block>	PAPER_WALL_WINDOWS							= DoTBBlocksRegistry.reg("paper_wall_window", new PaneBlockDoTB(AbstractBlock.Properties.copy(Blocks.WHITE_WOOL).strength(1.5F, 1.5F)));
-	public static final RegistryObject<Block>	PAPER_WALL_FLOWERY							= DoTBBlocksRegistry.reg("paper_wall_flowery", new PaneBlockDoTB(AbstractBlock.Properties.copy(Blocks.WHITE_WOOL).strength(1.5F, 1.5F)));
+	public static final RegistryObject<Block>	PAPER_WALL									= DoTBBlocksRegistry.reg("paper_wall", new BottomPaneBlockDoTB(AbstractBlock.Properties.copy(Blocks.WHITE_WOOL).strength(1.5F, 1.5F)));
+	public static final RegistryObject<Block>	PAPER_WALL_FLAT								= DoTBBlocksRegistry.reg("paper_wall_flat", new PillarPaneBlock(AbstractBlock.Properties.copy(Blocks.WHITE_WOOL).strength(1.5F, 1.5F)));
+	public static final RegistryObject<Block>	PAPER_WALL_WINDOWS							= DoTBBlocksRegistry.reg("paper_wall_window", new PillarPaneBlock(AbstractBlock.Properties.copy(Blocks.WHITE_WOOL).strength(1.5F, 1.5F)));
+	public static final RegistryObject<Block>	PAPER_WALL_FLOWERY							= DoTBBlocksRegistry.reg("paper_wall_flowery", new PillarPaneBlock(AbstractBlock.Properties.copy(Blocks.WHITE_WOOL).strength(1.5F, 1.5F)));
 	public static final RegistryObject<Block>	PAPER_FOLDING_SCREEN						= DoTBBlocksRegistry.reg("paper_folding_screen", new FoldingScreenBlock(AbstractBlock.Properties.copy(Blocks.WHITE_WOOL).strength(1.5F, 1.5F).noOcclusion()));
 	public static final RegistryObject<Block>	RED_PAPER_LANTERN							= DoTBBlocksRegistry.reg("red_paper_lantern", new PaperLanternBlock(AbstractBlock.Properties.copy(Blocks.RED_WOOL).noOcclusion().noCollission().lightLevel(state -> 12)));
 	public static final RegistryObject<Block>	PAPER_LAMP									= DoTBBlocksRegistry.reg("paper_lamp", new PaperLampBlock(AbstractBlock.Properties.copy(Blocks.WHITE_WOOL).noOcclusion().lightLevel(state -> 14)));
@@ -362,6 +364,8 @@ public class DoTBBlocksRegistry {
 	public static final RegistryObject<Block>	MARBLE_FANCY_FENCE							= DoTBBlocksRegistry.reg("marble_fancy_fence", new BalusterBlock(AbstractBlock.Properties.of(Material.STONE, MaterialColor.STONE).strength(3.0F, 5.0F).sound(SoundType.STONE).noOcclusion()));
 	public static final RegistryObject<Block>	MARBLE_COLUMN								= DoTBBlocksRegistry.reg("marble_column", new MarbleColumnBlock(AbstractBlock.Properties.copy(Blocks.STONE)));
 	public static final RegistryObject<Block>	MARBLE_SIDED_COLUMN							= DoTBBlocksRegistry.reg("marble_sided_column", new MarbleSidedColumnBlock(AbstractBlock.Properties.copy(Blocks.STONE)));
+	public static final RegistryObject<Block>	MARBLE_COFFER								= DoTBBlocksRegistry.reg("marble_coffer", new BlockDoTB(AbstractBlock.Properties.copy(Blocks.STONE)));
+	public static final RegistryObject<Block>	MARBLE_COFFER_SLAB							= DoTBBlocksRegistry.reg("marble_coffer_slab", new SlabBlockDoTB(AbstractBlock.Properties.copy(Blocks.STONE)));
 
 	/**
 	 * A utility method to register a Block and its corresponding Item.

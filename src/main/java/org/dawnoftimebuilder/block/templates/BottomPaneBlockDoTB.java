@@ -12,7 +12,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 
-public class BottomPaneBlockDoTB extends PaneBlockDoTB {
+public class BottomPaneBlockDoTB extends PillarPaneBlock {
 	private static final BooleanProperty BOTTOM = BlockStateProperties.BOTTOM;
 
 	public BottomPaneBlockDoTB(final Properties propertiesIn) {
