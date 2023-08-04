@@ -45,15 +45,15 @@ public class JapaneseLightArmorModel<T extends LivingEntity> extends CustomArmor
 				this.knotBase = new ModelRenderer(this, 56, 9);
 				this.knotBase.setPos(0.0F, 0.0F, 0.0F);
 				this.knotBase.addBox(2.9F, -4.9F, 3.7F, 2, 2, 1, 0.4F);
-				setRotateAngle(knotBase, 0.0F, 0.0F, -0.785F);
+				setRotationAngle(knotBase, 0.0F, 0.0F, -0.785F);
 				this.ribbonA = new ModelRenderer(this, 56, 0);
 				this.ribbonA.setPos(0.0F, -5.0F, 4.2F);
 				this.ribbonA.addBox(-1.0F, 0.0F, 0.0F, 2, 7, 0, 0.0F);
-				setRotateAngle(ribbonA, 0.35F, 0.0F, 0.0F);
+				setRotationAngle(ribbonA, 0.35F, 0.0F, 0.0F);
 				this.ribbonB = new ModelRenderer(this, 60, 0);
 				this.ribbonB.setPos(0.0F, -5.0F, 4.2F);
 				this.ribbonB.addBox(-1.0F, 0.0F, 0.0F, 2, 9, 0, 0.0F);
-				setRotateAngle(ribbonB, 0.175F, 0.0F, 0.0F);
+				setRotationAngle(ribbonB, 0.175F, 0.0F, 0.0F);
 
 				this.head = headBase;
 				this.head.addChild(knotBase);
@@ -98,7 +98,7 @@ public class JapaneseLightArmorModel<T extends LivingEntity> extends CustomArmor
 					this.bodyBreast = new ModelRenderer(this, 0, 26);
 					this.bodyBreast.setPos(0.0F, 1.3F, -2.0F);
 					this.bodyBreast.addBox(-3.0F, 0.0F, -3.65F, 6, 2, 3, 0.1F);
-					setRotateAngle(bodyBreast, 0.9948376736367678F, 0.0F, 0.0F);
+					setRotationAngle(bodyBreast, 0.9948376736367678F, 0.0F, 0.0F);
 				}
 
 				this.body = baseBody;
@@ -116,11 +116,11 @@ public class JapaneseLightArmorModel<T extends LivingEntity> extends CustomArmor
 				this.legLeftArmor.mirror = true;
 				this.legLeftArmor.setPos(0.0F, 0.0F, 0.0F);
 				this.legLeftArmor.addBox(0.4F, -0.2F, -2.0F, 2, 5, 4, 0.6F);
-				setRotateAngle(legLeftArmor, 0.0F, 0.0F, -0.2F);
+				setRotationAngle(legLeftArmor, 0.0F, 0.0F, -0.2F);
 				this.legRightArmor = new ModelRenderer(this, 0, 16);
 				this.legRightArmor.setPos(-0.0F, 0.0F, 0.0F);
 				this.legRightArmor.addBox(-2.4F, -0.2F, -2.0F, 2, 5, 4, 0.6F);
-				setRotateAngle(legRightArmor, 0.0F, 0.0F, 0.2F);
+				setRotationAngle(legRightArmor, 0.0F, 0.0F, 0.2F);
 
 				this.legLeftLayer = new ModelRenderer(this, 0, 0);
 				this.legLeftLayer.setPos(1.9F, 12.0F, 0.0F);

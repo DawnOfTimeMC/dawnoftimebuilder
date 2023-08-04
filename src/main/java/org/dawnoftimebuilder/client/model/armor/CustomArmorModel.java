@@ -50,7 +50,7 @@ public abstract class CustomArmorModel<T extends LivingEntity> extends BipedMode
 		}
 	}
 
-	public static void setRotateAngle(ModelRenderer renderer, float x, float y, float z) {
+	public static void setRotationAngle(ModelRenderer renderer, float x, float y, float z) {
 		renderer.xRot = x;
 		renderer.yRot = y;
 		renderer.zRot = z;

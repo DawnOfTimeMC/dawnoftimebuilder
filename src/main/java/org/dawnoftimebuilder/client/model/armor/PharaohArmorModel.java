@@ -57,33 +57,33 @@ public class PharaohArmorModel<T extends LivingEntity> extends CustomArmorModel<
 				this.headLeftSideBottom.mirror = true;
 				this.headLeftSideBottom.setPos(9.58F, -1.23F, 0.91F);
 				this.headLeftSideBottom.addBox(-3.0F, -1.0F, -4.0F, 3, 1, 4, 0.0F);
-				setRotateAngle(headLeftSideBottom, 0.0F, 0.9147270609702279F, -0.26878070480712674F);
+				setRotationAngle(headLeftSideBottom, 0.0F, 0.9147270609702279F, -0.26878070480712674F);
 				this.headLeftSideMiddle = new ModelRenderer(this, 14, 51);
 				this.headLeftSideMiddle.mirror = true;
 				this.headLeftSideMiddle.setPos(7.82F, -7.11F, 0.86F);
 				this.headLeftSideMiddle.addBox(-5.0F, 0.0F, 0.19F, 5, 6, 2, 0.14F);
-				setRotateAngle(headLeftSideMiddle, 0.0F, 0.0F, -0.26878070480712674F);
+				setRotationAngle(headLeftSideMiddle, 0.0F, 0.0F, -0.26878070480712674F);
 				this.headRightSideTop = new ModelRenderer(this, 0, 51);
 				this.headRightSideTop.setPos(-4.6F, -11.4F, 0.86F);
 				this.headRightSideTop.addBox(-5.15F, 0.13F, 0.19F, 5, 4, 2, 0.13F);
-				setRotateAngle(headRightSideTop, 0.0F, 0.0F, -0.890117918517108F);
+				setRotationAngle(headRightSideTop, 0.0F, 0.0F, -0.890117918517108F);
 				this.headRightSideMiddle = new ModelRenderer(this, 14, 51);
 				this.headRightSideMiddle.setPos(-7.82F, -7.11F, 0.86F);
 				this.headRightSideMiddle.addBox(0.0F, 0.0F, 0.19F, 5, 6, 2, 0.14F);
-				setRotateAngle(headRightSideMiddle, 0.0F, 0.0F, 0.26878070480712674F);
+				setRotationAngle(headRightSideMiddle, 0.0F, 0.0F, 0.26878070480712674F);
 				this.headRightSideBottom = new ModelRenderer(this, 0, 57);
 				this.headRightSideBottom.setPos(-9.58F, -1.23F, 0.91F);
 				this.headRightSideBottom.addBox(0.0F, -1.0F, -4.0F, 3, 1, 4, 0.0F);
-				setRotateAngle(headRightSideBottom, 0.0F, -0.9147270609702279F, 0.26878070480712674F);
+				setRotationAngle(headRightSideBottom, 0.0F, -0.9147270609702279F, 0.26878070480712674F);
 				this.headLeftSideTop = new ModelRenderer(this, 0, 51);
 				this.headLeftSideTop.mirror = true;
 				this.headLeftSideTop.setPos(4.6F, -11.4F, 0.86F);
 				this.headLeftSideTop.addBox(0.15F, 0.13F, 0.19F, 5, 4, 2, 0.13F);
-				setRotateAngle(headLeftSideTop, 0.0F, 0.0F, 0.890117918517108F);
+				setRotationAngle(headLeftSideTop, 0.0F, 0.0F, 0.890117918517108F);
 				this.headTop = new ModelRenderer(this, 20, 37);
 				this.headTop.setPos(0.0F, -8.55F, -4.45F);
 				this.headTop.addBox(-4.5F, 0.0F, 0.0F, 9, 4, 8, 0.09F);
-				setRotateAngle(headTop, 0.4714134309636684F, 0.0F, 0.0F);
+				setRotationAngle(headTop, 0.4714134309636684F, 0.0F, 0.0F);
 				this.headCap = new ModelRenderer(this, 18, 49);
 				this.headCap.setPos(0.0F, -11.4F, 0.85F);
 				this.headCap.addBox(-4.5F, 0.15F, 0.19F, 9, 0, 2, 0.131F);
@@ -93,11 +93,11 @@ public class PharaohArmorModel<T extends LivingEntity> extends CustomArmorModel<
 				this.snakeBody = new ModelRenderer(this, 60, 0);
 				this.snakeBody.setPos(0.0F, -7.5F, -4.6F);
 				this.snakeBody.addBox(-0.5F, -3.0F, -1.0F, 1, 3, 1, 0.0F);
-				setRotateAngle(snakeBody, -0.3490658503988659F, 0.0F, 0.0F);
+				setRotationAngle(snakeBody, -0.3490658503988659F, 0.0F, 0.0F);
 				this.snakeHead = new ModelRenderer(this, 47, 19);
 				this.snakeHead.setPos(0.0F, -10.65F, -4.5F);
 				this.snakeHead.addBox(-1.5F, -1.0F, -2.0F, 3, 3, 3, -0.99F);
-				setRotateAngle(snakeHead, 0.2792526803190927F, 0.0F, 0.0F);
+				setRotationAngle(snakeHead, 0.2792526803190927F, 0.0F, 0.0F);
 
 				this.head = this.armorHead;
 				this.head.addChild(snakeBody);
@@ -139,11 +139,11 @@ public class PharaohArmorModel<T extends LivingEntity> extends CustomArmorModel<
 					this.bodyBreast = new ModelRenderer(this, 38, 49);
 					this.bodyBreast.setPos(0.0F, 0.9F, -2.1F);
 					this.bodyBreast.addBox(-3.5F, 0.0F, -3.65F, 7, 2, 3, -0.1F);
-					setRotateAngle(bodyBreast, 0.9948376736367678F, 0.0F, 0.0F);
+					setRotationAngle(bodyBreast, 0.9948376736367678F, 0.0F, 0.0F);
 					this.bodyBreastCollar = new ModelRenderer(this, 38, 54);
 					this.bodyBreastCollar.setPos(0.0F, -0.25F, -2.5F);
 					this.bodyBreastCollar.addBox(-5.5F, 0.0F, 0.0F, 11, 5, 0, 0.2F);
-					setRotateAngle(bodyBreastCollar, -0.3403392041388943F, 0.0F, 0.0F);
+					setRotationAngle(bodyBreastCollar, -0.3403392041388943F, 0.0F, 0.0F);
 				}
 
 				this.body = armorBody;
@@ -165,7 +165,7 @@ public class PharaohArmorModel<T extends LivingEntity> extends CustomArmorModel<
 				this.bodyJewel = new ModelRenderer(this, 56, 10);
 				this.bodyJewel.setPos(0.0F, 10.0F, -2.0F);
 				this.bodyJewel.addBox(-1.5F, -1.5F, -1.0F, 3, 3, 1, -0.3F);
-				setRotateAngle(bodyJewel, 0.0F, 0.0F, 0.7853981633974483F);
+				setRotationAngle(bodyJewel, 0.0F, 0.0F, 0.7853981633974483F);
 				this.bodyGoldenStrip = new ModelRenderer(this, 56, 14);
 				this.bodyGoldenStrip.setPos(0.0F, 10.0F, -2.6F);
 				this.bodyGoldenStrip.addBox(-1.5F, 0.0F, 0.0F, 3, 8, 0, 0.0F);

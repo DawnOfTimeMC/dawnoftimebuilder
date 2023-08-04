@@ -66,37 +66,37 @@ public class OYoroiArmorModel<T extends LivingEntity> extends CustomArmorModel<T
 				this.headFront = new ModelRenderer(this, 38, 17);
 				this.headFront.setPos(0.0F, 0.0F, 0.0F);
 				this.headFront.addBox(-4.5F, -7.3F, -2.0F, 9, 1, 3, -0.1F);
-				setRotateAngle(headFront, 0.6981317007977318F, 0.0F, 0.0F);
+				setRotationAngle(headFront, 0.6981317007977318F, 0.0F, 0.0F);
 				this.helmetHorn = new ModelRenderer(this, 46, 0);
 				this.helmetHorn.setPos(0.0F, 0.0F, 0.0F);
 				this.helmetHorn.addBox(2.2F, -6.0F, 2.2F, 6, 0, 6, 0.0F);
-				setRotateAngle(helmetHorn, 1.4311699866353502F, -0.13962634015954636F, -0.7853981633974483F);
+				setRotationAngle(helmetHorn, 1.4311699866353502F, -0.13962634015954636F, -0.7853981633974483F);
 				this.helmetJewel = new ModelRenderer(this, 52, 6);
 				this.helmetJewel.setPos(0.0F, 0.0F, 0.0F);
 				this.helmetJewel.addBox(-1.0F, -5.0F, -6.8F, 2, 2, 1, 0.0F);
-				setRotateAngle(helmetJewel, -0.2617993877991494F, 0.0F, 0.0F);
+				setRotationAngle(helmetJewel, -0.2617993877991494F, 0.0F, 0.0F);
 				this.headRight = new ModelRenderer(this, 11, 20);
 				this.headRight.mirror = true;
 				this.headRight.setPos(0.0F, 0.0F, 0.0F);
 				this.headRight.addBox(0.0F, -6.5F, -4.5F, 4, 1, 9, -0.1F);
-				setRotateAngle(headRight, 0.0F, 0.0F, 0.6981317007977318F);
+				setRotationAngle(headRight, 0.0F, 0.0F, 0.6981317007977318F);
 				this.headRightSide = new ModelRenderer(this, 52, 9);
 				this.headRightSide.mirror = true;
 				this.headRightSide.setPos(0.0F, 0.0F, 0.0F);
 				this.headRightSide.addBox(0.0F, -8.3F, -4.5F, 3, 2, 1, -0.1F);
-				setRotateAngle(headRightSide, 0.0F, 0.0F, 0.6981317007977318F);
+				setRotationAngle(headRightSide, 0.0F, 0.0F, 0.6981317007977318F);
 				this.headLeft = new ModelRenderer(this, 11, 20);
 				this.headLeft.setPos(0.0F, 0.0F, 0.0F);
 				this.headLeft.addBox(-4.0F, -6.5F, -4.5F, 4, 1, 9, -0.1F);
-				setRotateAngle(headLeft, 0.0F, 0.0F, -0.6981317007977318F);
+				setRotationAngle(headLeft, 0.0F, 0.0F, -0.6981317007977318F);
 				this.headLeftSide = new ModelRenderer(this, 52, 9);
 				this.headLeftSide.setPos(0.0F, 0.0F, 0.0F);
 				this.headLeftSide.addBox(-3.0F, -8.3F, -4.5F, 3, 2, 1, -0.1F);
-				setRotateAngle(headLeftSide, 0.0F, 0.0F, -0.6981317007977318F);
+				setRotationAngle(headLeftSide, 0.0F, 0.0F, -0.6981317007977318F);
 				this.headBack = new ModelRenderer(this, 36, 12);
 				this.headBack.setPos(0.0F, 0.0F, 0.0F);
 				this.headBack.addBox(-4.5F, -6.5F, 0.0F, 9, 1, 4, -0.1F);
-				setRotateAngle(headBack, -0.6981317007977318F, 0.0F, 0.0F);
+				setRotationAngle(headBack, -0.6981317007977318F, 0.0F, 0.0F);
 
 				this.head = helmet;
 				this.head.addChild(headLeftSide);
@@ -136,7 +136,7 @@ public class OYoroiArmorModel<T extends LivingEntity> extends CustomArmorModel<T
 					this.armRightShoulder = new ModelRenderer(this, 46, 35);
 					this.armRightShoulder.setPos(0.0F, 0.0F, 0.0F);
 					this.armRightShoulder.addBox(-4.5F, -5.5F, -3.0F, 1, 8, 6, 0.0F);
-					setRotateAngle(armRightShoulder, 0.0F, 0.0F, 0.3490658503988659F);
+					setRotationAngle(armRightShoulder, 0.0F, 0.0F, 0.3490658503988659F);
 
 					this.armLeftSub = new ModelRenderer(this, 0, 30);
 					this.armLeftSub.mirror = true;
@@ -158,7 +158,7 @@ public class OYoroiArmorModel<T extends LivingEntity> extends CustomArmorModel<T
 					this.armLeftShoulder.mirror = true;
 					this.armLeftShoulder.setPos(0.0F, 0.0F, 0.0F);
 					this.armLeftShoulder.addBox(3.5F, -5.5F, -3.0F, 1, 8, 6, 0.0F);
-					setRotateAngle(armLeftShoulder, 0.0F, 0.0F, -0.3490658503988659F);
+					setRotationAngle(armLeftShoulder, 0.0F, 0.0F, -0.3490658503988659F);
 				}else{
 					this.chestProtTop = new ModelRenderer(this, 24, 12);
 					this.chestProtTop.setPos(0.0F, 0.0F, -0.5F);
@@ -166,11 +166,11 @@ public class OYoroiArmorModel<T extends LivingEntity> extends CustomArmorModel<T
 					this.bodyBreast = new ModelRenderer(this, 27, 47);
 					this.bodyBreast.setPos(0.0F, 0.9F, -2.1F);
 					this.bodyBreast.addBox(-3.5F, 0.0F, -3.65F, 7, 2, 3, -0.1F);
-					setRotateAngle(bodyBreast, 0.9948376736367678F, 0.0F, 0.0F);
+					setRotationAngle(bodyBreast, 0.9948376736367678F, 0.0F, 0.0F);
 					this.bodyBreastProt = new ModelRenderer(this, 24, 15);
 					this.bodyBreastProt.setPos(0.0F, 0.9F, -2.1F);
 					this.bodyBreastProt.addBox(-3.0F, 0.8F, -0.1F, 6, 2, 1, 0.1F);
-					setRotateAngle(bodyBreastProt, -0.5759586531581287F, 0.0F, 0.0F);
+					setRotationAngle(bodyBreastProt, -0.5759586531581287F, 0.0F, 0.0F);
 
 					this.armRightSub = new ModelRenderer(this, 0, 30);
 					this.armRightSub.setPos(-5.0F, 2.5F, 0.0F);
@@ -187,7 +187,7 @@ public class OYoroiArmorModel<T extends LivingEntity> extends CustomArmorModel<T
 					this.armRightShoulder = new ModelRenderer(this, 46, 35);
 					this.armRightShoulder.setPos(0.0F, 0.0F, 0.0F);
 					this.armRightShoulder.addBox(-3.5F, -5.5F, -3.0F, 1, 8, 6, 0.0F);
-					setRotateAngle(armRightShoulder, 0.0F, 0.0F, 0.2617993877991494F);
+					setRotationAngle(armRightShoulder, 0.0F, 0.0F, 0.2617993877991494F);
 
 					this.armLeftSub = new ModelRenderer(this, 0, 30);
 					this.armLeftSub.mirror = true;
@@ -209,7 +209,7 @@ public class OYoroiArmorModel<T extends LivingEntity> extends CustomArmorModel<T
 					this.armLeftShoulder.mirror = true;
 					this.armLeftShoulder.setPos(0.0F, 0.0F, 0.0F);
 					this.armLeftShoulder.addBox(2.5F, -5.5F, -3.0F, 1, 8, 6, 0.0F);
-					setRotateAngle(armLeftShoulder, 0.0F, 0.0F, -0.2617993877991494F);
+					setRotationAngle(armLeftShoulder, 0.0F, 0.0F, -0.2617993877991494F);
 				}
 
 				this.body = chestSub;

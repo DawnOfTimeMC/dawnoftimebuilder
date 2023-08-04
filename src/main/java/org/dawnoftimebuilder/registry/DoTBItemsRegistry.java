@@ -14,6 +14,7 @@ import org.dawnoftimebuilder.item.german.IronPlateArmorItem;
 import org.dawnoftimebuilder.item.japanese.JapaneseLightArmorItem;
 import org.dawnoftimebuilder.item.japanese.OYoroiArmorItem;
 import org.dawnoftimebuilder.item.japanese.RaijinArmorItem;
+import org.dawnoftimebuilder.item.roman.CenturionArmorItem;
 import org.dawnoftimebuilder.item.templates.CustomArmorItem;
 import org.dawnoftimebuilder.item.templates.HatItem;
 import org.dawnoftimebuilder.item.templates.ItemDoTB;
@@ -55,6 +56,10 @@ public class DoTBItemsRegistry {
 	//public static final RegistryObject<Item> CLEMATIS_SEEDS = reg("clematis_seeds", new ItemDoTB());
 
 	//Armors
+	public static final RegistryObject<Item> CENTURION_ARMOR_HEAD = reg(new CenturionArmorItem(HEAD));
+	public static final RegistryObject<Item> CENTURION_ARMOR_CHEST = reg(new CenturionArmorItem(CHEST));
+	public static final RegistryObject<Item> CENTURION_ARMOR_LEGS = reg(new CenturionArmorItem(LEGS));
+	public static final RegistryObject<Item> CENTURION_ARMOR_FEET = reg(new CenturionArmorItem(FEET));
 	public static final RegistryObject<Item> IRON_PLATE_ARMOR_HEAD = reg(new IronPlateArmorItem(HEAD));
 	public static final RegistryObject<Item> IRON_PLATE_ARMOR_CHEST = reg(new IronPlateArmorItem(CHEST));
 	public static final RegistryObject<Item> IRON_PLATE_ARMOR_LEGS = reg(new IronPlateArmorItem(LEGS));
