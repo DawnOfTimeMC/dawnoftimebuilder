@@ -14,6 +14,7 @@ import org.dawnoftimebuilder.item.german.IronPlateArmorItem;
 import org.dawnoftimebuilder.item.japanese.JapaneseLightArmorItem;
 import org.dawnoftimebuilder.item.japanese.OYoroiArmorItem;
 import org.dawnoftimebuilder.item.japanese.RaijinArmorItem;
+import org.dawnoftimebuilder.item.precolumbian.QuetzalcoatlArmorItem;
 import org.dawnoftimebuilder.item.roman.CenturionArmorItem;
 import org.dawnoftimebuilder.item.templates.CustomArmorItem;
 import org.dawnoftimebuilder.item.templates.HatItem;
@@ -80,6 +81,10 @@ public class DoTBItemsRegistry {
 	public static final RegistryObject<Item> O_YOROI_ARMOR_CHEST = reg(new OYoroiArmorItem(CHEST));
 	public static final RegistryObject<Item> O_YOROI_ARMOR_LEGS = reg(new OYoroiArmorItem(LEGS));
 	public static final RegistryObject<Item> O_YOROI_ARMOR_FEET = reg(new OYoroiArmorItem(FEET));
+	public static final RegistryObject<Item> QUETZALCOATL_ARMOR_HEAD = reg(new QuetzalcoatlArmorItem(HEAD));
+	public static final RegistryObject<Item> QUETZALCOATL_ARMOR_CHEST = reg(new QuetzalcoatlArmorItem(CHEST));
+	public static final RegistryObject<Item> QUETZALCOATL_ARMOR_LEGS = reg(new QuetzalcoatlArmorItem(LEGS));
+	public static final RegistryObject<Item> QUETZALCOATL_ARMOR_FEET = reg(new QuetzalcoatlArmorItem(FEET));
 	public static final RegistryObject<Item> RAIJIN_ARMOR_HEAD = reg(new RaijinArmorItem(HEAD));
 	public static final RegistryObject<Item> RAIJIN_ARMOR_CHEST = reg(new RaijinArmorItem(CHEST));
 	public static final RegistryObject<Item> RAIJIN_ARMOR_LEGS = reg(new RaijinArmorItem(LEGS));
