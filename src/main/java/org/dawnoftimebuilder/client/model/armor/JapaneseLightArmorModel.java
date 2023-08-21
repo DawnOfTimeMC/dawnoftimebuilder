@@ -92,6 +92,8 @@ public class JapaneseLightArmorModel<T extends LivingEntity> extends CustomArmor
 				break;
 
 			case LEGS:
+				this.body = new ModelRenderer(this);
+
 				this.rightLeg = new ModelRenderer(this, 0, 0);
 				this.rightLeg.setPos(-1.9F, 12.0F, 0.0F);
 				ModelRenderer legRightArmor = new ModelRenderer(this, 0, 16);
@@ -130,35 +132,7 @@ public class JapaneseLightArmorModel<T extends LivingEntity> extends CustomArmor
 	}
 
 	@Override
-	public void renderToBuffer(MatrixStack matrixStack, IVertexBuilder bufferIn, int packedLightIn, int packedOverlayIn, float red, float green, float blue, float alpha){
-		this.setAllVisible(false);
-
-		switch (this.slot) {
-			case HEAD:
-				head.visible = true;
-				break;
-
-			case CHEST:
-				body.visible = true;
-				leftArm.visible = true;
-				rightArm.visible = true;
-				break;
-
-			case LEGS:
-			case FEET:
-				leftLeg.visible = true;
-				rightLeg.visible = true;
-				break;
-
-			default:
-				break;
-		}
-		super.renderToBuffer(matrixStack, bufferIn, packedLightIn, packedOverlayIn, red, green, blue, alpha);
-	}
-
-	@Override
 	public void setupArmorAnim(T entityIn, float ageInTicks) {
-		super.setupArmorAnim(entityIn, ageInTicks);
 
 		if (this.slot == EquipmentSlotType.HEAD) {
 			float f = 0.3F * sinPI(ageInTicks / 60.0F + 1.0F) + Math.abs(this.rightLeg.xRot);

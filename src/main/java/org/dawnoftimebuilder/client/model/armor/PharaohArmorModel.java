@@ -207,40 +207,7 @@ public class PharaohArmorModel<T extends LivingEntity> extends CustomArmorModel<
 	}
 
 	@Override
-	public void renderToBuffer(MatrixStack matrixStack, IVertexBuilder bufferIn, int packedLightIn, int packedOverlayIn, float red, float green, float blue, float alpha){
-		this.setAllVisible(false);
-
-		switch (this.slot) {
-			case HEAD:
-				head.visible = true;
-				break;
-
-			case CHEST:
-				body.visible = true;
-				leftArm.visible = true;
-				rightArm.visible = true;
-				break;
-
-			case LEGS:
-				body.visible = true;
-				leftLeg.visible = true;
-				rightLeg.visible = true;
-				break;
-
-			case FEET:
-				leftLeg.visible = true;
-				rightLeg.visible = true;
-				break;
-
-			default:
-				break;
-		}
-		super.renderToBuffer(matrixStack, bufferIn, packedLightIn, packedOverlayIn, red, green, blue, alpha);
-	}
-
-	@Override
 	public void setupArmorAnim(T entityIn, float ageInTicks) {
-		super.setupArmorAnim(entityIn, ageInTicks);
 
 		float f = 1.0F;
 		if (entityIn.getFallFlyingTicks() > 4) {

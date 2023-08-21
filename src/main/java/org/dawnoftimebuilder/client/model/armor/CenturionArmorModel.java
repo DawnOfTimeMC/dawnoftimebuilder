@@ -11,15 +11,9 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 @OnlyIn(Dist.CLIENT)
 public class CenturionArmorModel<T extends LivingEntity> extends CustomArmorModel<T> {
 
-	//Helmet
-	public ModelRenderer jow;
-
 	public CenturionArmorModel(EquipmentSlotType slot, boolean isSteve, float scale) {
 		super(slot, 128, 64, scale);
 
-		ModelRenderer right_shoulder;
-		ModelRenderer left_shoulder;
-		ModelRenderer chestBelt;
 		switch (slot) {
 			case HEAD:
 				this.head = new ModelRenderer(this);
@@ -30,8 +24,7 @@ public class CenturionArmorModel<T extends LivingEntity> extends CustomArmorMode
 				this.head.texOffs(40, 17).addBox(-1.0F, -14.25F, -2.75F, 2.0F, 11.0F, 12.0F, 0.25F, false);
 				this.head.texOffs(0, 0).addBox(-1.0F, -14.25F, -3.75F, 2.0F, 4.0F, 1.0F, 0.0F, false);
 				this.head.texOffs(0, 5).addBox(-1.0F, -14.25F, -3.75F, 2.0F, 4.0F, 0.0F, 0.25F, false);
-
-				jow = new ModelRenderer(this);
+				ModelRenderer jow = new ModelRenderer(this);
 				jow.setPos(0.0F, 24.0F, 0.0F);
 				jow.texOffs(18, -4).addBox(4.65F, -26.0F, 4.75F, 0.0F, 3.0F, 6.0F, 0.0F, false);
 				jow.texOffs(18, -4).addBox(-4.65F, -26.0F, 4.75F, 0.0F, 3.0F, 6.0F, 0.0F, false);
@@ -45,8 +38,10 @@ public class CenturionArmorModel<T extends LivingEntity> extends CustomArmorMode
 				this.body.texOffs(0, 34).addBox(-4.0F, 0.0F, -2.0F, 8.0F, 12.0F, 4.0F, 0.55F, false);
 				this.body.texOffs(0, 50).addBox(2.1768F, 5.8232F, -3.0F, 2.0F, 2.0F, 6.0F, 0.0F, false);
 
+				ModelRenderer chestBelt = new ModelRenderer(this);
+				ModelRenderer right_shoulder = new ModelRenderer(this);
+				ModelRenderer left_shoulder = new ModelRenderer(this);
 				if(isSteve){
-					chestBelt = new ModelRenderer(this);
 					chestBelt.setPos(-4.0F, 1.0F, -2.5F);
 					chestBelt.texOffs(24, 29).addBox(0.0F, -1.0F, 0.0F, 2.0F, 10.0F, 5.0F, 0.2F, false);
 					setRotationAngle(chestBelt, 0.0F, 0.0F, -0.7854F);
@@ -56,7 +51,6 @@ public class CenturionArmorModel<T extends LivingEntity> extends CustomArmorMode
 					this.rightArm.setPos(-5.0F, 2.0F, 0.0F);
 					this.rightArm.texOffs(19, 47).addBox(-3.5F, -2.5F, -2.5F, 5.0F, 12.0F, 5.0F, 0.0F, false);
 					this.rightArm.texOffs(39, 47).addBox(-3.5F, -2.5F, -2.5F, 5.0F, 12.0F, 5.0F, 0.25F, false);
-					right_shoulder = new ModelRenderer(this);
 					right_shoulder.setPos(-0.25F, -0.25F, 0.0F);
 					right_shoulder.texOffs(56, 17).addBox(-3.2726F, -3.4043F, -3.0F, 5.0F, 2.0F, 6.0F, 0.0F, false);
 					right_shoulder.texOffs(74, 11).addBox(0.0F, -3.5F, -3.0F, 1.0F, 2.0F, 6.0F, 0.25F, false);
@@ -65,16 +59,13 @@ public class CenturionArmorModel<T extends LivingEntity> extends CustomArmorMode
 					this.leftArm.setPos(5.0F, 2.0F, 0.0F);
 					this.leftArm.texOffs(19, 47).addBox(-1.5F, -2.5F, -2.5F, 5.0F, 12.0F, 5.0F, 0.0F, true);
 					this.leftArm.texOffs(39, 47).addBox(-1.5F, -2.5F, -2.5F, 5.0F, 12.0F, 5.0F, 0.25F, true);
-					left_shoulder = new ModelRenderer(this);
 					left_shoulder.setPos(0.25F, -0.25F, 0.0F);
 					left_shoulder.texOffs(56, 17).addBox(-1.7274F, -3.4043F, -3.0F, 5.0F, 2.0F, 6.0F, 0.0F, true);
 				}else{
-					//Chest
 					ModelRenderer chestBreast = new ModelRenderer(this);
 					chestBreast.setPos(0.0F, 2.0F, -3.0F);
 					chestBreast.texOffs(68, 25).addBox(-3.5F, -1.75F, 0.0F, 7.0F, 4.0F, 2.0F, 0.0F, false);
 					setRotationAngle(chestBreast, -0.48F, 0.0F, 0.0F);
-					chestBelt = new ModelRenderer(this);
 					chestBelt.setPos(1.9309F, 5.4684F, -3.542F);
 					chestBelt.texOffs(84, 0).addBox(-1.0F, -2.0F, 0.0F, 2.0F, 4.0F, 0.0F, 0.0F, false);
 					setRotationAngle(chestBelt, 0.4386F, -0.0319F, -0.7317F);
@@ -95,7 +86,6 @@ public class CenturionArmorModel<T extends LivingEntity> extends CustomArmorMode
 					this.rightArm.setPos(-5.0F, 2.0F, 0.0F);
 					this.rightArm.texOffs(19, 47).addBox(-2.5F, -2.5F, -2.5F, 4.0F, 12.0F, 5.0F, 0.0F, false);
 					this.rightArm.texOffs(37, 47).addBox(-2.5F, -2.5F, -2.5F, 4.0F, 12.0F, 5.0F, 0.25F, false);
-					right_shoulder = new ModelRenderer(this);
 					right_shoulder.setPos(-0.25F, -0.25F, 0.0F);
 					right_shoulder.texOffs(56, 17).addBox(-2.2726F, -3.4043F, -3.0F, 4.0F, 2.0F, 6.0F, 0.0F, false);
 					right_shoulder.texOffs(74, 11).addBox(0.0F, -3.5F, -3.0F, 1.0F, 2.0F, 6.0F, 0.25F, false);
@@ -104,7 +94,6 @@ public class CenturionArmorModel<T extends LivingEntity> extends CustomArmorMode
 					this.leftArm.setPos(5.0F, 2.0F, 0.0F);
 					this.leftArm.texOffs(19, 47).addBox(-1.5F, -2.5F, -2.5F, 4.0F, 12.0F, 5.0F, 0.0F, true);
 					this.leftArm.texOffs(37, 47).addBox(-1.5F, -2.5F, -2.5F, 4.0F, 12.0F, 5.0F, 0.25F, true);
-					left_shoulder = new ModelRenderer(this);
 					left_shoulder.setPos(0.25F, -0.25F, 0.0F);
 					left_shoulder.texOffs(56, 17).addBox(-1.7274F, -3.4043F, -3.0F, 4.0F, 2.0F, 6.0F, 0.0F, true);
 				}
@@ -112,11 +101,14 @@ public class CenturionArmorModel<T extends LivingEntity> extends CustomArmorMode
 				left_shoulder.texOffs(74, 11).addBox(-1.0F, -3.5F, -3.0F, 1.0F, 2.0F, 6.0F, 0.25F, true);
 				setRotationAngle(right_shoulder, 0.0F, 0.0F, -0.3927F);
 				setRotationAngle(left_shoulder, 0.0F, 0.0F, 0.3927F);
+
 				this.rightArm.addChild(right_shoulder);
 				this.leftArm.addChild(left_shoulder);
 				break;
 
 			case LEGS:
+				this.body = new ModelRenderer(this);
+
 				this.rightLeg = new ModelRenderer(this);
 				this.rightLeg.setPos(-1.9F, 12.0F, 0.0F);
 				this.rightLeg.texOffs(40, 0).addBox(-2.6F, 0.3F, -2.5F, 5.0F, 8.0F, 5.0F, 0.0F, false);
@@ -146,29 +138,7 @@ public class CenturionArmorModel<T extends LivingEntity> extends CustomArmorMode
 	}
 
 	@Override
-	public void renderToBuffer(MatrixStack matrixStack, IVertexBuilder bufferIn, int packedLightIn, int packedOverlayIn, float red, float green, float blue, float alpha){
-		this.setAllVisible(false);
+	protected void setupArmorAnim(T entityIn, float ageInTicks) {
 
-		switch (this.slot) {
-			case HEAD:
-				head.visible = true;
-				break;
-
-			case CHEST:
-				body.visible = true;
-				leftArm.visible = true;
-				rightArm.visible = true;
-				break;
-
-			case LEGS:
-			case FEET:
-				leftLeg.visible = true;
-				rightLeg.visible = true;
-				break;
-
-			default:
-				break;
-		}
-		super.renderToBuffer(matrixStack, bufferIn, packedLightIn, packedOverlayIn, red, green, blue, alpha);
 	}
 }

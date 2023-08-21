@@ -1,7 +1,5 @@
 package org.dawnoftimebuilder.client.model.armor;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
-import com.mojang.blaze3d.vertex.IVertexBuilder;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -36,7 +34,7 @@ public class QuetzalcoatlModel<T extends LivingEntity> extends CustomArmorModel<
 	public ModelRenderer legFeatherLeft;
 
 	public QuetzalcoatlModel(EquipmentSlotType slot, boolean isSteve, float scale) {
-		super(slot, 128, 128, scale);
+		super(slot, 128, 64, scale);
 
 		switch (slot) {
 			case HEAD:
@@ -329,6 +327,10 @@ public class QuetzalcoatlModel<T extends LivingEntity> extends CustomArmorModel<
 				this.underwearBack.setPos(0.0F, 11.3F, 2.3F);
 				this.underwearBack.texOffs(68, 30).addBox(-2.5F, 0.1F, 0.1F, 5.0F, 5.0F, 0.0F, 0.0F, false);
 
+				this.rightLeg = new ModelRenderer(this);
+
+				this.leftLeg = new ModelRenderer(this);
+
 				this.body.addChild(stomachProtectionTop);
 				this.body.addChild(stomachProtectionLeft);
 				this.body.addChild(stomachProtectionRight);
@@ -383,83 +385,49 @@ public class QuetzalcoatlModel<T extends LivingEntity> extends CustomArmorModel<
 			default:
 				break;
 		}
-		this.setAllVisible(false);
-		switch (this.slot) {
-			case HEAD:
-				this.head.visible = true;
-				break;
-
-			case CHEST:
-				this.body.visible = true;
-				this.leftArm.visible = true;
-				this.rightArm.visible = true;
-				break;
-
-			case LEGS:
-				this.body.visible = true;
-				break;
-
-			case FEET:
-				this.leftLeg.visible = true;
-				this.rightLeg.visible = true;
-				break;
-
-			default:
-				break;
-		}
-	}
-
-	@Override
-	public void renderToBuffer(MatrixStack matrixStack, IVertexBuilder bufferIn, int packedLightIn, int packedOverlayIn, float red, float green, float blue, float alpha){
-		super.renderToBuffer(matrixStack, bufferIn, packedLightIn, packedOverlayIn, red, green, blue, alpha);
 	}
 
 	@Override
 	public void setupArmorAnim(T entityIn, float ageInTicks) {
-		super.setupArmorAnim(entityIn, ageInTicks);
-		/*
+
 		switch (this.slot) {
 			case HEAD:
-				this.headWingLeft.xRot = 0.3491F + 0.15F * sinPI(ageInTicks / 40.0F);
-				this.headWingRight.xRot = 0.3491F + 0.15F * sinPI(ageInTicks / 40.0F);
+				float rh = -0.4363F + 0.1F * sinPI(ageInTicks / 40.0F);
+				this.featherCrownLeft.xRot = rh;
+				this.featherCrownRight.xRot = rh;
+				this.featherCrownMiddle.xRot = rh;
 				break;
 
 			case CHEST:
-				float dA = ageInTicks / 40.0F;
-				float rotation = dA % (2.0F * (float)Math.PI);
-				float rotationD = (dA + (float)Math.PI / 4.0F) % (2.0F * (float)Math.PI);
-				this.chestEffectFrontA.zRot = rotation;
-				this.chestEffectFrontB.zRot = rotationD;
-				this.chestEffectMiddle.zRot = rotation;
-				this.chestEffectMiddleRotated.zRot = rotationD;
-				this.armLeftEffect.xRot = -rotation;
-				this.armLeftEffectRotated.xRot = -rotationD;
-				this.armRightEffect.xRot = -rotation;
-				this.armRightEffectRotated.xRot = -rotationD;
-				dA = 0.1F * sinPI(dA);
-				this.armLeftWing.xRot = 0.1745F + dA;
-				this.armRightWing.xRot = 0.1745F + dA;
-				dA = 0.06F * sinPI(ageInTicks / 80.0F);
-				this.chestEffectBig.y = dA;
-				this.chestEffectMiddle.y = dA;
-				this.chestEffectMiddleRotated.y = dA;
-				this.chestEffectSmall.y = dA;
-				this.chestEffectSmallRotated.y = dA;
-				dA = ageInTicks / 20.0F;
-				rotation = dA % (2.0F * (float)Math.PI);
-				rotationD = (dA + (float)Math.PI / 4.0F) % (2.0F * (float)Math.PI);
-				this.chestEffectSmall.zRot = -rotation;
-				this.chestEffectSmallRotated.zRot = -rotationD;
+				float rA = sinPI(ageInTicks / 40.0F);
+				float rB = sinPI((ageInTicks - 15) / 40.0F);
+				this.tail.zRot = 0.2182F + 0.1F * rA;
+				this.tailTip.zRot = 0.1F * rB;
+				this.armFeather.zRot = -0.05F * rB;
+				this.armFeather.xRot = 0.1F * rB;
+				this.neckStart.xRot = -0.3F + 0.2F * rA;
+				this.neckStart.zRot = 0.2F + 0.04F * rB;
+				this.neckEnd.xRot = 0.6F + 0.1F * rB;
+				this.snakeHead.xRot = -0.2F * rB;
+				this.jow.xRot = 0.13F + 0.1F * rA;
+				this.snakeCrownRight.yRot = 0.3378F + 0.1F * rB;
+				this.snakeCrownLeft.yRot = 0.3378F - 0.1F * rB;
+				break;
+
+			case LEGS:
+				float f = Math.abs(0.05F + 1.02F * this.rightLeg.xRot) + 0.05F * (1 + sinPI(ageInTicks / 40.0F));
+				this.underwearFront.xRot = -f;
+				this.underwearBack.xRot = f;
 				break;
 
 			case FEET:
-				this.legLeftWing.xRot = -0.1745F + 0.1F * sinPI(ageInTicks / 40.0F);
-				this.legRightWing.xRot = -0.1745F + 0.1F * sinPI(ageInTicks / 40.0F);
+				float rf = -0.7931F + 0.2F * sinPI((ageInTicks + 10) / 40.0F);
+				this.legFeatherRight.xRot = rf;
+				this.legFeatherLeft.xRot = rf;
 				break;
 
 			default:
 				break;
 		}
-		 */
 	}
 }

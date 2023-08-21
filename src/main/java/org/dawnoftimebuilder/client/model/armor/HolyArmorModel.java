@@ -1,7 +1,5 @@
 package org.dawnoftimebuilder.client.model.armor;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
-import com.mojang.blaze3d.vertex.IVertexBuilder;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -377,42 +375,10 @@ public class HolyArmorModel<T extends LivingEntity> extends CustomArmorModel<T> 
 			default:
 				break;
 		}
-		this.setAllVisible(false);
-		switch (this.slot) {
-			case HEAD:
-				this.head.visible = true;
-				break;
-
-			case CHEST:
-				this.body.visible = true;
-				this.leftArm.visible = true;
-				this.rightArm.visible = true;
-				break;
-
-			case LEGS:
-				this.body.visible = true;
-				this.leftLeg.visible = true;
-				this.rightLeg.visible = true;
-				break;
-
-			case FEET:
-				this.leftLeg.visible = true;
-				this.rightLeg.visible = true;
-				break;
-
-			default:
-				break;
-		}
-	}
-
-	@Override
-	public void renderToBuffer(MatrixStack matrixStack, IVertexBuilder bufferIn, int packedLightIn, int packedOverlayIn, float red, float green, float blue, float alpha){
-		super.renderToBuffer(matrixStack, bufferIn, packedLightIn, packedOverlayIn, red, green, blue, alpha);
 	}
 
 	@Override
 	public void setupArmorAnim(T entityIn, float ageInTicks) {
-		super.setupArmorAnim(entityIn, ageInTicks);
 
 		switch (this.slot) {
 			case HEAD:

@@ -18,15 +18,17 @@ import javax.annotation.Nullable;
 import static org.dawnoftimebuilder.DawnOfTimeBuilder.DOTB_TAB;
 import static org.dawnoftimebuilder.DawnOfTimeBuilder.MOD_ID;
 
-public abstract class CustomArmorItem extends ArmorItem {
+public class CustomArmorItem extends ArmorItem {
 
 	public final String set;
+	private final ArmorModelFactory modelFactory;
 	public CustomArmorModel<LivingEntity> model = null;
 	public CustomArmorModel<LivingEntity> slimModel = null;
 
-	public CustomArmorItem(String set, IArmorMaterial materialIn, EquipmentSlotType slot) {
+	public CustomArmorItem(String set, IArmorMaterial materialIn, EquipmentSlotType slot, ArmorModelFactory modelFactory) {
 		super(materialIn, slot, new Item.Properties().stacksTo(1).tab(DOTB_TAB));
 		this.set = set;
+		this.modelFactory = modelFactory;
 	}
 
 	public String getItemPartName(){
@@ -49,7 +51,7 @@ public abstract class CustomArmorItem extends ArmorItem {
 						this.slimModel.riding = _default.riding;
 						this.slimModel.rightArmPose = _default.rightArmPose;
 						this.slimModel.leftArmPose = _default.leftArmPose;
-						this.slimModel.setupArmorAnim(entityLiving, (float)entityLiving.tickCount);
+						this.slimModel.setupAnim(entityLiving, (float)entityLiving.tickCount);
 
 						return (A) this.slimModel;
 					}
@@ -61,7 +63,7 @@ public abstract class CustomArmorItem extends ArmorItem {
 				this.model.riding = _default.riding;
 				this.model.rightArmPose = _default.rightArmPose;
 				this.model.leftArmPose = _default.leftArmPose;
-				this.model.setupArmorAnim(entityLiving, (float)entityLiving.tickCount);
+				this.model.setupAnim(entityLiving, (float)entityLiving.tickCount);
 
 				return (A) this.model;
 			}
@@ -81,8 +83,17 @@ public abstract class CustomArmorItem extends ArmorItem {
 	}
 
 	@OnlyIn(Dist.CLIENT)
-	public abstract CustomArmorModel<LivingEntity> createModel(LivingEntity entityLiving);
+	public CustomArmorModel<LivingEntity> createModel(LivingEntity entityLiving){
+		return this.modelFactory.create(this.slot, true, entityLiving.getScale());
+	}
 
 	@OnlyIn(Dist.CLIENT)
-	public abstract CustomArmorModel<LivingEntity> createSlimModel(LivingEntity entityLiving);
+	public CustomArmorModel<LivingEntity> createSlimModel(LivingEntity entityLiving){
+		return this.modelFactory.create(this.slot, false, entityLiving.getScale());
+	}
+
+	@FunctionalInterface
+	public interface ArmorModelFactory {
+		CustomArmorModel<LivingEntity> create(EquipmentSlotType slot, boolean isSteve, float scale);
+	}
 }
