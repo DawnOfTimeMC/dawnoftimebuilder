@@ -18,17 +18,15 @@ import javax.annotation.Nullable;
 import static org.dawnoftimebuilder.DawnOfTimeBuilder.DOTB_TAB;
 import static org.dawnoftimebuilder.DawnOfTimeBuilder.MOD_ID;
 
-public class CustomArmorItem extends ArmorItem {
+public abstract class CustomArmorItem extends ArmorItem {
 
 	public final String set;
-	private final ArmorModelFactory modelFactory;
 	public CustomArmorModel<LivingEntity> model = null;
 	public CustomArmorModel<LivingEntity> slimModel = null;
 
-	public CustomArmorItem(String set, IArmorMaterial materialIn, EquipmentSlotType slot, ArmorModelFactory modelFactory) {
+	public CustomArmorItem(String set, IArmorMaterial materialIn, EquipmentSlotType slot) {
 		super(materialIn, slot, new Item.Properties().stacksTo(1).tab(DOTB_TAB));
 		this.set = set;
-		this.modelFactory = modelFactory;
 	}
 
 	public String getItemPartName(){
@@ -84,13 +82,16 @@ public class CustomArmorItem extends ArmorItem {
 
 	@OnlyIn(Dist.CLIENT)
 	public CustomArmorModel<LivingEntity> createModel(LivingEntity entityLiving){
-		return this.modelFactory.create(this.slot, true, entityLiving.getScale());
+		return this.getModelFactory().create(this.slot, true, entityLiving.getScale());
 	}
 
 	@OnlyIn(Dist.CLIENT)
 	public CustomArmorModel<LivingEntity> createSlimModel(LivingEntity entityLiving){
-		return this.modelFactory.create(this.slot, false, entityLiving.getScale());
+		return this.getModelFactory().create(this.slot, false, entityLiving.getScale());
 	}
+
+	@OnlyIn(Dist.CLIENT)
+	public abstract ArmorModelFactory getModelFactory();
 
 	@FunctionalInterface
 	public interface ArmorModelFactory {

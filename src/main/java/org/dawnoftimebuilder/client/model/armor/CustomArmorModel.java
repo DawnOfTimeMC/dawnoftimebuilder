@@ -6,10 +6,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.item.ArmorStandEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.util.math.MathHelper;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 
-@OnlyIn(Dist.CLIENT)
 public abstract class CustomArmorModel<T extends LivingEntity> extends BipedModel<T> {
 
 	public final EquipmentSlotType slot;

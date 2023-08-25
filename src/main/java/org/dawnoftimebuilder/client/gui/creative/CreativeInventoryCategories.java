@@ -283,14 +283,14 @@ public enum CreativeInventoryCategories {
 			GERANIUM_PINK.get().asItem(),
 			PLANTER_GERANIUM_PINK.get().asItem(),
 			IVY.get().asItem(),
-			IRON_PLATE_ARMOR_HEAD.get(),
-			IRON_PLATE_ARMOR_CHEST.get(),
-			IRON_PLATE_ARMOR_LEGS.get(),
-			IRON_PLATE_ARMOR_FEET.get(),
-			HOLY_ARMOR_HEAD.get(),
-			HOLY_ARMOR_CHEST.get(),
-			HOLY_ARMOR_LEGS.get(),
-			HOLY_ARMOR_FEET.get(),
+			IRON_PLATE_ARMOR_SET.head.get(),
+			IRON_PLATE_ARMOR_SET.chest.get(),
+			IRON_PLATE_ARMOR_SET.legs.get(),
+			IRON_PLATE_ARMOR_SET.feet.get(),
+			HOLY_ARMOR_SET.head.get(),
+			HOLY_ARMOR_SET.chest.get(),
+			HOLY_ARMOR_SET.legs.get(),
+			HOLY_ARMOR_SET.feet.get(),
 			FLINT_AND_STEEL
 	),
 
@@ -382,18 +382,18 @@ public enum CreativeInventoryCategories {
 			SILK.get(),
 			RICE.get().asItem(),
 			BAMBOO_HAT.get(),
-			JAPANESE_LIGHT_ARMOR_HEAD.get(),
-			JAPANESE_LIGHT_ARMOR_CHEST.get(),
-			JAPANESE_LIGHT_ARMOR_LEGS.get(),
-			JAPANESE_LIGHT_ARMOR_FEET.get(),
-			O_YOROI_ARMOR_HEAD.get(),
-			O_YOROI_ARMOR_CHEST.get(),
-			O_YOROI_ARMOR_LEGS.get(),
-			O_YOROI_ARMOR_FEET.get(),
-			RAIJIN_ARMOR_HEAD.get(),
-			RAIJIN_ARMOR_CHEST.get(),
-			RAIJIN_ARMOR_LEGS.get(),
-			RAIJIN_ARMOR_FEET.get(),
+			JAPANESE_LIGHT_ARMOR_SET.head.get(),
+			JAPANESE_LIGHT_ARMOR_SET.chest.get(),
+			JAPANESE_LIGHT_ARMOR_SET.legs.get(),
+			JAPANESE_LIGHT_ARMOR_SET.feet.get(),
+			O_YOROI_ARMOR_SET.head.get(),
+			O_YOROI_ARMOR_SET.chest.get(),
+			O_YOROI_ARMOR_SET.legs.get(),
+			O_YOROI_ARMOR_SET.feet.get(),
+			RAIJIN_ARMOR_SET.head.get(),
+			RAIJIN_ARMOR_SET.chest.get(),
+			RAIJIN_ARMOR_SET.legs.get(),
+			RAIJIN_ARMOR_SET.feet.get(),
 			FLINT_AND_STEEL
 	),
 
@@ -438,6 +438,10 @@ public enum CreativeInventoryCategories {
 			COMMELINA.get().asItem(),
 			WILD_MAIZE.get().asItem(),
 			MAIZE.get().asItem(),
+			QUETZALCOATL_ARMOR_SET.head.get(),
+			QUETZALCOATL_ARMOR_SET.chest.get(),
+			QUETZALCOATL_ARMOR_SET.legs.get(),
+			QUETZALCOATL_ARMOR_SET.feet.get(),
 			FLINT_AND_STEEL
 	),
 
@@ -495,7 +499,11 @@ public enum CreativeInventoryCategories {
 			CYPRESS.get().asItem(),
 			WILD_GRAPE.get().asItem(),
 			GRAPE.get(),
-			GRAPE_SEEDS.get()
+			GRAPE_SEEDS.get(),
+			CENTURION_ARMOR_SET.head.get(),
+			CENTURION_ARMOR_SET.chest.get(),
+			CENTURION_ARMOR_SET.legs.get(),
+			CENTURION_ARMOR_SET.feet.get()
 	),
 
 	// Temporary position until this tab is done.
@@ -510,10 +518,10 @@ public enum CreativeInventoryCategories {
 
 	// Temporary position until this tab is done.
 	EGYPTIAN("egyptian",
-			PHARAOH_ARMOR_HEAD.get(),
-			PHARAOH_ARMOR_CHEST.get(),
-			PHARAOH_ARMOR_LEGS.get(),
-			PHARAOH_ARMOR_FEET.get()
+			PHARAOH_ARMOR_SET.head.get(),
+			PHARAOH_ARMOR_SET.chest.get(),
+			PHARAOH_ARMOR_SET.legs.get(),
+			PHARAOH_ARMOR_SET.feet.get()
 	);
 
 	private final String name;

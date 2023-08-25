@@ -3,10 +3,7 @@ package org.dawnoftimebuilder.client.model.armor;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 
-@OnlyIn(Dist.CLIENT)
 public class OYoroiArmorModel<T extends LivingEntity> extends CustomArmorModel<T> {
 
 	//Helmet
