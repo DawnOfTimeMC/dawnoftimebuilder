@@ -3,7 +3,6 @@ package org.dawnoftimebuilder;
 import java.util.Set;
 
 import org.dawnoftimebuilder.client.gui.filters.CreativeInventoryFilters;
-import org.dawnoftimebuilder.registry.DoTBBlockAndItemColorsRegistry;
 import org.dawnoftimebuilder.registry.DoTBBlockPlacerRegistry;
 import org.dawnoftimebuilder.registry.DoTBBlocksRegistry;
 import org.dawnoftimebuilder.registry.DoTBContainersRegistry;
@@ -29,16 +28,16 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 @Mod(DawnOfTimeBuilder.MOD_ID)
 public class DawnOfTimeBuilder
 {
-
-	public static final String			MOD_ID		= "dawnoftimebuilder";
-	public static final ItemGroup		DOTB_TAB	= new ItemGroup(ItemGroup.getGroupCountSafe(), DawnOfTimeBuilder.MOD_ID)
+	public static final String		MOD_ID		= "dawnoftimebuilder";
+	public static final ItemGroup	DOTB_TAB	= new ItemGroup(ItemGroup.getGroupCountSafe(), DawnOfTimeBuilder.MOD_ID)
+												{
+													@Override
+													public ItemStack makeIcon()
 													{
-														@Override
-														public ItemStack makeIcon()
-														{
-															return new ItemStack(DoTBBlocksRegistry.COMMELINA.get());
-														}
-													};
+														return new ItemStack(DoTBBlocksRegistry.COMMELINA.get());
+													}
+												};
+
 	private static DawnOfTimeBuilder	instance;
 	public CreativeInventoryFilters		events;
 
@@ -61,12 +60,8 @@ public class DawnOfTimeBuilder
 		eventBus.addListener(HandlerCommon::entityAttributeCreationEvent);
 		eventBus.addListener(HandlerClient::fMLClientSetupEvent);
 
-		eventBus.addListener(DoTBBlockAndItemColorsRegistry::registerBlockColors);
-		eventBus.addListener(DoTBBlockAndItemColorsRegistry::registerItemsColors);
-
 		final IEventBus forgeBus = MinecraftForge.EVENT_BUS;
 		forgeBus.addListener(EventPriority.HIGH, HandlerCommon::biomeLoadingEvent);
-
 	}
 
 	public static DawnOfTimeBuilder get()

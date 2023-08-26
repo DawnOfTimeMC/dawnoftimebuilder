@@ -5,7 +5,7 @@
 		},
 		{
 			"when": { "north": "false" },
-			"apply": { "model": "dawnoftimebuilder:block/german/stone_bricks_pool_side", "y": 180 }
+			"apply": { "model": "dawnoftimebuilder:block/german/stone_bricks_pool_side_small", "y": 180 }
 		},
 		{
 			"when": { "east": "false" },
@@ -13,7 +13,7 @@
 		},
 		{
 			"when": { "south": "false" },
-			"apply": { "model": "dawnoftimebuilder:block/german/stone_bricks_pool_side"}
+			"apply": { "model": "dawnoftimebuilder:block/german/stone_bricks_pool_side_small"}
 		},
 		{
 			"when": { "west": "false" },
