@@ -15,8 +15,11 @@ import org.dawnoftimebuilder.util.DoTBFilterEntry;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.dedicated.DedicatedServer;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -24,28 +27,23 @@ import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.fml.server.ServerLifecycleHooks;
 
 @Mod(DawnOfTimeBuilder.MOD_ID)
-public class DawnOfTimeBuilder
-{
-	public static final String		MOD_ID		= "dawnoftimebuilder";
-	public static final ItemGroup	DOTB_TAB	= new ItemGroup(ItemGroup.getGroupCountSafe(), DawnOfTimeBuilder.MOD_ID)
-												{
-													@Override
-													public ItemStack makeIcon()
-													{
-														return new ItemStack(DoTBBlocksRegistry.COMMELINA.get());
-													}
-												};
+public class DawnOfTimeBuilder {
+	public static final String MOD_ID = "dawnoftimebuilder";
+	public static final ItemGroup DOTB_TAB = new ItemGroup(ItemGroup.getGroupCountSafe(), DawnOfTimeBuilder.MOD_ID) {
+		@Override
+		public ItemStack makeIcon() {
+			return new ItemStack(DoTBBlocksRegistry.COMMELINA.get());
+		}
+	};
 
-	private static DawnOfTimeBuilder	instance;
-	public CreativeInventoryFilters		events;
+	private static DawnOfTimeBuilder instance;
+	public CreativeInventoryFilters events;
 
-	public DawnOfTimeBuilder()
-	{
+	public DawnOfTimeBuilder() {
 		DawnOfTimeBuilder.instance = this;
-
-		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, DoTBConfig.COMMON_CONFIG);
 
 		final IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
 		DoTBBlocksRegistry.BLOCKS.register(eventBus);
@@ -56,6 +54,8 @@ public class DawnOfTimeBuilder
 		DoTBContainersRegistry.CONTAINER_TYPES.register(eventBus);
 		DoTBBlockPlacerRegistry.PLACER_TYPES.register(eventBus);
 
+		eventBus.addListener(HandlerCommon::modConfigLoadingEvent);
+		eventBus.addListener(HandlerCommon::fMLDedicatedServerSetupEvent);
 		eventBus.addListener(HandlerCommon::fMLCommonSetupEvent);
 		eventBus.addListener(HandlerCommon::entityAttributeCreationEvent);
 		eventBus.addListener(HandlerClient::fMLClientSetupEvent);
@@ -64,23 +64,19 @@ public class DawnOfTimeBuilder
 		forgeBus.addListener(EventPriority.HIGH, HandlerCommon::biomeLoadingEvent);
 	}
 
-	public static DawnOfTimeBuilder get()
-	{
+	public static DawnOfTimeBuilder get() {
 		return DawnOfTimeBuilder.instance;
 	}
 
-	public Set<ItemGroup> getGroups()
-	{
+	public Set<ItemGroup> getGroups() {
 		return ImmutableSet.copyOf(HandlerClient.getFilterMap().keySet());
 	}
 
-	public ImmutableList<DoTBFilterEntry> getFilters(final ItemGroup group)
-	{
+	public ImmutableList<DoTBFilterEntry> getFilters(final ItemGroup group) {
 		return ImmutableList.copyOf(HandlerClient.getFilterMap().get(group));
 	}
 
-	public boolean hasFilters(final ItemGroup group)
-	{
+	public boolean hasFilters(final ItemGroup group) {
 		return HandlerClient.getFilterMap().containsKey(group);
 	}
 }
