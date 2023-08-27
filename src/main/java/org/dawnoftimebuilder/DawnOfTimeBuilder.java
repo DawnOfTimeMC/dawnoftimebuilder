@@ -1,33 +1,13 @@
 package org.dawnoftimebuilder;
 
-import java.util.Set;
-
-import org.dawnoftimebuilder.client.gui.filters.CreativeInventoryFilters;
-import org.dawnoftimebuilder.registry.DoTBBlockPlacerRegistry;
-import org.dawnoftimebuilder.registry.DoTBBlocksRegistry;
-import org.dawnoftimebuilder.registry.DoTBContainersRegistry;
-import org.dawnoftimebuilder.registry.DoTBEntitiesRegistry;
-import org.dawnoftimebuilder.registry.DoTBItemsRegistry;
-import org.dawnoftimebuilder.registry.DoTBRecipesRegistry;
-import org.dawnoftimebuilder.registry.DoTBTileEntitiesRegistry;
-import org.dawnoftimebuilder.util.DoTBFilterEntry;
-
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableSet;
-
-import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.dedicated.DedicatedServer;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.fml.server.ServerLifecycleHooks;
+import org.dawnoftimebuilder.registry.*;
 
 @Mod(DawnOfTimeBuilder.MOD_ID)
 public class DawnOfTimeBuilder {
@@ -40,7 +20,6 @@ public class DawnOfTimeBuilder {
 	};
 
 	private static DawnOfTimeBuilder instance;
-	public CreativeInventoryFilters events;
 
 	public DawnOfTimeBuilder() {
 		DawnOfTimeBuilder.instance = this;
@@ -66,18 +45,6 @@ public class DawnOfTimeBuilder {
 
 	public static DawnOfTimeBuilder get() {
 		return DawnOfTimeBuilder.instance;
-	}
-
-	public Set<ItemGroup> getGroups() {
-		return ImmutableSet.copyOf(HandlerClient.getFilterMap().keySet());
-	}
-
-	public ImmutableList<DoTBFilterEntry> getFilters(final ItemGroup group) {
-		return ImmutableList.copyOf(HandlerClient.getFilterMap().get(group));
-	}
-
-	public boolean hasFilters(final ItemGroup group) {
-		return HandlerClient.getFilterMap().containsKey(group);
 	}
 }
 //TODO Vérifier le fichier config qui spammerait la console sur server

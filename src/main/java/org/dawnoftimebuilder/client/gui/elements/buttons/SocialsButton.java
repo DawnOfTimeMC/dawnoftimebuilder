@@ -1,4 +1,4 @@
-package org.dawnoftimebuilder.client.gui.creative;
+package org.dawnoftimebuilder.client.gui.elements.buttons;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
@@ -8,22 +8,22 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.StringTextComponent;
 
 import static org.dawnoftimebuilder.DawnOfTimeBuilder.MOD_ID;
-import static org.dawnoftimebuilder.client.gui.creative.CreativeInventoryEvents.SOCIAL_ICONS;
 
 public class SocialsButton extends Button {
 
-    private final ResourceLocation buttonIcons;
+    private final ResourceLocation buttonIcons, socialIcons;
 
     public SocialsButton(int x, int y, String buttonName, IPressable pressable) {
         super(x, y, 32, 28, StringTextComponent.EMPTY, pressable);
         this.buttonIcons = new ResourceLocation(MOD_ID, "textures/gui/social_" + buttonName + ".png");
+        this.socialIcons = new ResourceLocation(MOD_ID, "textures/gui/social_icons.png");
     }
 
     @Override
     public void renderButton(MatrixStack matrixStack, int mouseX, int mouseY, float partialTicks) {
         if (this.active) {
             Minecraft mc = Minecraft.getInstance();
-            mc.getTextureManager().bind(SOCIAL_ICONS);
+            mc.getTextureManager().bind(socialIcons);
             RenderSystem.disableLighting();
             RenderSystem.color4f(1.0F, 1.0F, 1.0F, this.alpha);
             RenderSystem.enableBlend();

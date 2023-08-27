@@ -1,4 +1,4 @@
-package org.dawnoftimebuilder.client.gui.creative;
+package org.dawnoftimebuilder.client.gui.elements.buttons;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
@@ -8,6 +8,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import org.dawnoftimebuilder.client.gui.creative.CreativeInventoryCategories;
+import org.dawnoftimebuilder.client.gui.creative.CreativeInventoryEvents;
 
 import static org.dawnoftimebuilder.DawnOfTimeBuilder.MOD_ID;
 import static org.dawnoftimebuilder.client.gui.creative.CreativeInventoryEvents.CREATIVE_ICONS;
@@ -60,4 +62,5 @@ public class CategoryButton extends Button {
         }
         return table;
     }
+
 }

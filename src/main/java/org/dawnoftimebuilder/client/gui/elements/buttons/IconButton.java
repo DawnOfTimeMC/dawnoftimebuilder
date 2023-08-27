@@ -1,4 +1,4 @@
-package org.dawnoftimebuilder.client.gui.filters;
+package org.dawnoftimebuilder.client.gui.elements.buttons;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.gui.widget.button.ImageButton;
