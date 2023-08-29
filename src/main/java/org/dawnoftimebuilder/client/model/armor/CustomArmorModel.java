@@ -59,4 +59,8 @@ public abstract class CustomArmorModel<T extends LivingEntity> extends BipedMode
 	public static float sinPI(float f) {
 		return MathHelper.sin(f * (float)Math.PI);
 	}
+
+	public static float cosPI(float f) {
+		return MathHelper.cos(f * (float)Math.PI);
+	}
 }

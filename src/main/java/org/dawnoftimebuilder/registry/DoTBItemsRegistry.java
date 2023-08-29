@@ -18,14 +18,7 @@ import java.util.function.Supplier;
 import org.dawnoftimebuilder.DawnOfTimeBuilder;
 import org.dawnoftimebuilder.DoTBConfig;
 import org.dawnoftimebuilder.block.templates.FlowerPotBlockDoTB;
-import org.dawnoftimebuilder.client.model.armor.CenturionArmorModel;
-import org.dawnoftimebuilder.client.model.armor.HolyArmorModel;
-import org.dawnoftimebuilder.client.model.armor.IronPlateArmorModel;
-import org.dawnoftimebuilder.client.model.armor.JapaneseLightArmorModel;
-import org.dawnoftimebuilder.client.model.armor.OYoroiArmorModel;
-import org.dawnoftimebuilder.client.model.armor.PharaohArmorModel;
-import org.dawnoftimebuilder.client.model.armor.QuetzalcoatlModel;
-import org.dawnoftimebuilder.client.model.armor.RaijinArmorModel;
+import org.dawnoftimebuilder.client.model.armor.*;
 import org.dawnoftimebuilder.item.IHasFlowerPot;
 import org.dawnoftimebuilder.item.IconItem;
 import org.dawnoftimebuilder.item.templates.CustomArmorItem;
@@ -60,10 +53,8 @@ public class DoTBItemsRegistry {
 
 	// General
 	public static final RegistryObject<Item> SILK_WORMS = DoTBItemsRegistry.reg("silk_worms", new ItemDoTB(true));
-	public static final RegistryObject<Item> SILK_WORMS_HATCHERY = DoTBItemsRegistry.reg("silk_worm_hatchery",
-			new ItemDoTB(true));
-	public static final RegistryObject<Item> SILK_WORM_EGGS = DoTBItemsRegistry.reg("silk_worm_eggs",
-			new ItemDoTB(true));
+	public static final RegistryObject<Item> SILK_WORMS_HATCHERY = DoTBItemsRegistry.reg("silk_worm_hatchery", new ItemDoTB(true));
+	public static final RegistryObject<Item> SILK_WORM_EGGS = DoTBItemsRegistry.reg("silk_worm_eggs", new ItemDoTB(true));
 	public static final RegistryObject<Item> SILK_COCOONS = DoTBItemsRegistry.reg("silk_cocoons", new ItemDoTB(true));
 	public static final RegistryObject<Item> SILK = DoTBItemsRegistry.reg("silk", new ItemDoTB());
 	public static final RegistryObject<Item> TEA_LEAVES = DoTBItemsRegistry.reg("tea_leaves", new ItemDoTB());
@@ -72,30 +63,21 @@ public class DoTBItemsRegistry {
 	public static final RegistryObject<Item> GRAY_TILE = DoTBItemsRegistry.reg("gray_tile", new ItemDoTB());
 	public static final RegistryObject<Item> GRAY_CLAY_TILE = DoTBItemsRegistry.reg("gray_clay_tile", new ItemDoTB());
 	public static final RegistryObject<Item> MULBERRY_LEAVES = DoTBItemsRegistry.reg("mulberry_leaves", new ItemDoTB());
-	public static final RegistryObject<Item> GRAPE = DoTBItemsRegistry.reg("grape",
-			new ItemDoTB(new Item.Properties().food(DoTBFoods.GRAPE)));
+	public static final RegistryObject<Item> GRAPE = DoTBItemsRegistry.reg("grape", new ItemDoTB(new Item.Properties().food(DoTBFoods.GRAPE)));
 	public static final RegistryObject<Item> GRAPE_SEEDS = DoTBItemsRegistry.reg("grape_seeds", new PotItem());
-	// public static final RegistryObject<Item> CLEMATIS_SEEDS =
-	// reg("clematis_seeds", new ItemDoTB());
+	// public static final RegistryObject<Item> CLEMATIS_SEEDS = reg("clematis_seeds", new ItemDoTB());
 
 	// Armors
-	public static final ArmorSetRegistryObject CENTURION_ARMOR_SET = new ArmorSetRegistryObject("centurion_armor",
-			IRON_PLATE, () -> CenturionArmorModel::new);
-	public static final ArmorSetRegistryObject IRON_PLATE_ARMOR_SET = new ArmorSetRegistryObject("iron_plate_armor",
-			IRON_PLATE, () -> IronPlateArmorModel::new);
-	public static final ArmorSetRegistryObject HOLY_ARMOR_SET = new ArmorSetRegistryObject("holy_armor", HOLY,
-			() -> HolyArmorModel::new);
-	public static final ArmorSetRegistryObject PHARAOH_ARMOR_SET = new ArmorSetRegistryObject("pharaoh_armor", PHARAOH,
-			() -> PharaohArmorModel::new);
-	public static final ArmorSetRegistryObject JAPANESE_LIGHT_ARMOR_SET = new ArmorSetRegistryObject(
-			"japanese_light_armor", JAPANESE_LIGHT, () -> JapaneseLightArmorModel::new);
-	public static final ArmorSetRegistryObject O_YOROI_ARMOR_SET = new ArmorSetRegistryObject("o_yoroi_armor", O_YOROI,
-			() -> OYoroiArmorModel::new);
-	public static final ArmorSetRegistryObject QUETZALCOATL_ARMOR_SET = new ArmorSetRegistryObject("quetzalcoatl_armor",
-			RAIJIN, () -> QuetzalcoatlModel::new);
 	// TODO optimize, avoid to create several instance of armor model
-	public static final ArmorSetRegistryObject RAIJIN_ARMOR_SET = new ArmorSetRegistryObject("raijin_armor", RAIJIN,
-			() -> RaijinArmorModel::new);
+	public static final ArmorSetRegistryObject ANUBIS_ARMOR_SET = new ArmorSetRegistryObject("anubis_armor", RAIJIN, () -> AnubisModel::new);
+	public static final ArmorSetRegistryObject CENTURION_ARMOR_SET = new ArmorSetRegistryObject("centurion_armor", IRON_PLATE, () -> CenturionArmorModel::new);
+	public static final ArmorSetRegistryObject IRON_PLATE_ARMOR_SET = new ArmorSetRegistryObject("iron_plate_armor", IRON_PLATE, () -> IronPlateArmorModel::new);
+	public static final ArmorSetRegistryObject HOLY_ARMOR_SET = new ArmorSetRegistryObject("holy_armor", HOLY, () -> HolyArmorModel::new);
+	public static final ArmorSetRegistryObject PHARAOH_ARMOR_SET = new ArmorSetRegistryObject("pharaoh_armor", PHARAOH, () -> PharaohArmorModel::new);
+	public static final ArmorSetRegistryObject JAPANESE_LIGHT_ARMOR_SET = new ArmorSetRegistryObject("japanese_light_armor", JAPANESE_LIGHT, () -> JapaneseLightArmorModel::new);
+	public static final ArmorSetRegistryObject O_YOROI_ARMOR_SET = new ArmorSetRegistryObject("o_yoroi_armor", O_YOROI, () -> OYoroiArmorModel::new);
+	public static final ArmorSetRegistryObject QUETZALCOATL_ARMOR_SET = new ArmorSetRegistryObject("quetzalcoatl_armor", RAIJIN, () -> QuetzalcoatlModel::new);
+	public static final ArmorSetRegistryObject RAIJIN_ARMOR_SET = new ArmorSetRegistryObject("raijin_armor", RAIJIN, () -> RaijinArmorModel::new);
 
 	private static RegistryObject<Item> reg(final String name, final Item item) {
 		if (item instanceof IHasFlowerPot) {
@@ -126,8 +108,7 @@ public class DoTBItemsRegistry {
 		public final RegistryObject<Item> feet;
 		public final Supplier<CustomArmorItem.ArmorModelFactory> factorySupplier;
 
-		protected ArmorSetRegistryObject(final String setNameIn, final IArmorMaterial materialIn,
-				Supplier<CustomArmorItem.ArmorModelFactory> factorySupplierIn) {
+		private ArmorSetRegistryObject(final String setNameIn, final IArmorMaterial materialIn, Supplier<CustomArmorItem.ArmorModelFactory> factorySupplierIn) {
 			this.material = materialIn;
 			factorySupplier = factorySupplierIn;
 

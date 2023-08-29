@@ -53,24 +53,24 @@ public abstract class CustomArmorItem extends ArmorItem implements IArmorVanisha
 			UUID.fromString("9F3D476D-C118-4544-8365-64846904B48E"),
 			UUID.fromString("2AD3F246-FEE1-4E67-B886-69FD380BB150") };
 	public static final IDispenseItemBehavior DISPENSE_ITEM_BEHAVIOR = new DefaultDispenseItemBehavior() {
-		protected ItemStack execute(IBlockSource p_82487_1_, ItemStack p_82487_2_) {
-			return dispenseArmor(p_82487_1_, p_82487_2_) ? p_82487_2_ : super.execute(p_82487_1_, p_82487_2_);
+		protected ItemStack execute(IBlockSource blockSource, ItemStack stack) {
+			return dispenseArmor(blockSource, stack) ? stack : super.execute(blockSource, stack);
 		}
 	};
 
 	// ARMOR ITEM CLASS STATIC METHODS
 
-	public static boolean dispenseArmor(IBlockSource p_226626_0_, ItemStack p_226626_1_) {
-		BlockPos blockpos = p_226626_0_.getPos().relative(p_226626_0_.getBlockState().getValue(DispenserBlock.FACING));
-		List<LivingEntity> list = p_226626_0_.getLevel().getEntitiesOfClass(LivingEntity.class,
+	public static boolean dispenseArmor(IBlockSource blockSource, ItemStack stack) {
+		BlockPos blockpos = blockSource.getPos().relative(blockSource.getBlockState().getValue(DispenserBlock.FACING));
+		List<LivingEntity> list = blockSource.getLevel().getEntitiesOfClass(LivingEntity.class,
 				new AxisAlignedBB(blockpos),
-				EntityPredicates.NO_SPECTATORS.and(new EntityPredicates.ArmoredMob(p_226626_1_)));
+				EntityPredicates.NO_SPECTATORS.and(new EntityPredicates.ArmoredMob(stack)));
 		if (list.isEmpty()) {
 			return false;
 		} else {
 			LivingEntity livingentity = list.get(0);
-			EquipmentSlotType equipmentslottype = MobEntity.getEquipmentSlotForItem(p_226626_1_);
-			ItemStack itemstack = p_226626_1_.split(1);
+			EquipmentSlotType equipmentslottype = MobEntity.getEquipmentSlotForItem(stack);
+			ItemStack itemstack = stack.split(1);
 			livingentity.setItemSlot(equipmentslottype, itemstack);
 			if (livingentity instanceof MobEntity) {
 				((MobEntity) livingentity).setDropChance(equipmentslottype, 2.0F);
@@ -113,14 +113,11 @@ public abstract class CustomArmorItem extends ArmorItem implements IArmorVanisha
 	public final void updateAttributes() {
 		Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
 		UUID uuid = ARMOR_MODIFIER_UUID_PER_SLOT[slot.getIndex()];
-		builder.put(Attributes.ARMOR, new AttributeModifier(uuid, "Armor modifier", (double) this.getDefense(),
-				AttributeModifier.Operation.ADDITION));
-		builder.put(Attributes.ARMOR_TOUGHNESS, new AttributeModifier(uuid, "Armor toughness",
-				(double) this.getToughness(), AttributeModifier.Operation.ADDITION));
+		builder.put(Attributes.ARMOR, new AttributeModifier(uuid, "Armor modifier", this.getDefense(), AttributeModifier.Operation.ADDITION));
+		builder.put(Attributes.ARMOR_TOUGHNESS, new AttributeModifier(uuid, "Armor toughness", this.getToughness(), AttributeModifier.Operation.ADDITION));
 
 		if (this.material.getKnockbackResistance() > 0) {
-			builder.put(Attributes.KNOCKBACK_RESISTANCE, new AttributeModifier(uuid, "Armor knockback resistance",
-					(double) material.getKnockbackResistance(), AttributeModifier.Operation.ADDITION));
+			builder.put(Attributes.KNOCKBACK_RESISTANCE, new AttributeModifier(uuid, "Armor knockback resistance", material.getKnockbackResistance(), AttributeModifier.Operation.ADDITION));
 		}
 
 		this.defaultModifiers = builder.build();
@@ -130,15 +127,14 @@ public abstract class CustomArmorItem extends ArmorItem implements IArmorVanisha
 	@Nullable
 	@Override
 	@OnlyIn(Dist.CLIENT)
-	public <A extends BipedModel<?>> A getArmorModel(LivingEntity entityLiving, ItemStack itemStack,
-			EquipmentSlotType armorSlot, A _default) {
+	public <A extends BipedModel<?>> A getArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlotType armorSlot, A _default) {
 		if (!itemStack.isEmpty()) {
 			if (itemStack.getItem() instanceof CustomArmorItem) {
-
 				if (entityLiving instanceof AbstractClientPlayerEntity) {
 					if ("slim".equals(((AbstractClientPlayerEntity) entityLiving).getModelName())) {
-						if (this.slimModel == null)
+						if (this.slimModel == null) {
 							this.slimModel = this.createSlimModel(entityLiving);
+						}
 						this.slimModel.young = _default.young;
 						this.slimModel.crouching = _default.crouching;
 						this.slimModel.riding = _default.riding;
@@ -150,8 +146,9 @@ public abstract class CustomArmorItem extends ArmorItem implements IArmorVanisha
 					}
 				}
 
-				if (this.model == null)
+				if (this.model == null) {
 					this.model = this.createModel(entityLiving);
+				}
 				this.model.young = _default.young;
 				this.model.crouching = _default.crouching;
 				this.model.riding = _default.riding;

@@ -521,7 +521,11 @@ public enum CreativeInventoryCategories {
             PHARAOH_ARMOR_SET.head.get(),
             PHARAOH_ARMOR_SET.chest.get(),
             PHARAOH_ARMOR_SET.legs.get(),
-            PHARAOH_ARMOR_SET.feet.get()
+            PHARAOH_ARMOR_SET.feet.get(),
+            ANUBIS_ARMOR_SET.head.get(),
+            ANUBIS_ARMOR_SET.chest.get(),
+            ANUBIS_ARMOR_SET.legs.get(),
+            ANUBIS_ARMOR_SET.feet.get()
     );
 
     private final String name;
