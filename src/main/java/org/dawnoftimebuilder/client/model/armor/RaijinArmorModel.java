@@ -19,21 +19,17 @@ public class RaijinArmorModel<T extends LivingEntity> extends CustomArmorModel<T
 	public ModelRenderer headHornRightC;
 	public ModelRenderer headHornRightD;
 
-	//Set
-	public ModelRenderer bodyArmor;
+	//Chest
 	public ModelRenderer flyA;
 	public ModelRenderer flyB;
 	public ModelRenderer flyC;
 	public ModelRenderer flyD;
 	public ModelRenderer flyE;
 	public ModelRenderer flyF;
-
-	//Chest
 	public ModelRenderer armRingLeftA;
 	public ModelRenderer armRingLeftB;
 	public ModelRenderer armRingRightB;
 	public ModelRenderer armRingRightA;
-	public ModelRenderer chestNecklace;
 	public ModelRenderer bodyBreast;
 	public ModelRenderer bodyBreastNecklace;
 	public ModelRenderer chestScarfTop;
@@ -120,45 +116,6 @@ public class RaijinArmorModel<T extends LivingEntity> extends CustomArmorModel<T
 				this.headHornRightA.addChild(this.headHornRightB);
 				this.headHornRightA.addChild(this.headHornRightC);
 				this.headHornRightA.addChild(this.headHornRightD);
-
-				this.bodyArmor = new ModelRenderer(this, 0, 0);
-				this.bodyArmor.setPos(0.0F, 0.0F, 0.0F);
-
-				this.flyA = new ModelRenderer(this, 45, 0);
-				this.flyA.addBox(-1.5F, -1.5F, 0.0F, 3, 3, 2, 0.0F);
-				this.flyB = new ModelRenderer(this, 45, 0);
-				this.flyB.addBox(-1.5F, -1.5F, 0.0F, 3, 3, 2, 0.0F);
-				this.flyC = new ModelRenderer(this, 45, 0);
-				this.flyC.addBox(-1.5F, -1.5F, 0.0F, 3, 3, 2, 0.0F);
-				this.flyD = new ModelRenderer(this, 45, 0);
-				this.flyD.addBox(-1.5F, -1.5F, 0.0F, 3, 3, 2, 0.0F);
-				this.flyE = new ModelRenderer(this, 45, 0);
-				this.flyE.addBox(-1.5F, -1.5F, 0.0F, 3, 3, 2, 0.0F);
-				this.flyF = new ModelRenderer(this, 45, 0);
-				this.flyF.addBox(-1.5F, -1.5F, 0.0F, 3, 3, 2, 0.0F);
-				if(isSteve){
-					this.flyA.setPos(-5.0F, -15.0F, 3.0F);
-					this.flyB.setPos(5.0F, -15.0F, 3.0F);
-					this.flyC.setPos(-11.0F, -7.5F, 3.0F);
-					this.flyD.setPos(11.0F, -7.5F, 3.0F);
-					this.flyE.setPos(-9.0F, 2.0F, 3.0F);
-					this.flyF.setPos(9.0F, 2.0F, 3.0F);
-				}else{
-					this.flyA.setPos(-4.5F, -15.0F, 3.0F);
-					this.flyB.setPos(4.5F, -15.0F, 3.0F);
-					this.flyC.setPos(-10.0F, -7.5F, 3.0F);
-					this.flyD.setPos(10.0F, -7.5F, 3.0F);
-					this.flyE.setPos(-8.0F, 2.0F, 3.0F);
-					this.flyF.setPos(8.0F, 2.0F, 3.0F);
-				}
-
-				this.body = bodyArmor;
-				this.body.addChild(this.flyA);
-				this.body.addChild(this.flyB);
-				this.body.addChild(this.flyC);
-				this.body.addChild(this.flyD);
-				this.body.addChild(this.flyE);
-				this.body.addChild(this.flyF);
 				break;
 
 			case CHEST:
@@ -175,9 +132,9 @@ public class RaijinArmorModel<T extends LivingEntity> extends CustomArmorModel<T
 					this.armRingRightB = new ModelRenderer(this, 0, 0);
 					this.armRingRightB.setPos(0.0F, 0.0F, 0.0F);
 					this.armRingRightB.addBox(-3.5F, 5.5F, -2.5F, 5, 1, 5, 0.0F);
-					this.chestNecklace = new ModelRenderer(this, 0, 7);
-					this.chestNecklace.setPos(0.0F, 0.0F, 0.0F);
-					this.chestNecklace.addBox(-4.0F, 0.0F, -2.0F, 8, 5, 4, 0.3F);
+					this.body = new ModelRenderer(this, 0, 7);
+					this.body.setPos(0.0F, 0.0F, 0.0F);
+					this.body.addBox(-4.0F, 0.0F, -2.0F, 8, 5, 4, 0.3F);
 				}else{
 					this.armRingLeftA = new ModelRenderer(this, 0, 33);
 					this.armRingLeftA.setPos(5.0F, 2.5F, 0.0F);
@@ -195,9 +152,9 @@ public class RaijinArmorModel<T extends LivingEntity> extends CustomArmorModel<T
 					this.bodyBreast.setPos(0.0F, 0.9F, -2.1F);
 					this.bodyBreast.addBox(-3.5F, 0.0F, -3.65F, 7, 2, 3, 0.2F);
 					setRotationAngle(bodyBreast, 0.9948376736367678F, 0.0F, 0.0F);
-					this.chestNecklace = new ModelRenderer(this, 0, 7);
-					this.chestNecklace.setPos(0.0F, 0.0F, 0.0F);
-					this.chestNecklace.addBox(-4.0F, 0.0F, -2.0F, 8, 5, 4, 0.2F);
+					this.body = new ModelRenderer(this, 0, 7);
+					this.body.setPos(0.0F, 0.0F, 0.0F);
+					this.body.addBox(-4.0F, 0.0F, -2.0F, 8, 5, 4, 0.2F);
 					this.bodyBreastNecklace = new ModelRenderer(this, 39, 23);
 					this.bodyBreastNecklace.setPos(0.0F, -0.2F, -2.2F);
 					this.bodyBreastNecklace.addBox(-4.0F, 0.2F, -5.2F, 8, 0, 5, 0.2F);
@@ -248,11 +205,44 @@ public class RaijinArmorModel<T extends LivingEntity> extends CustomArmorModel<T
 				this.chestScarfRightC.addBox(-1.0F, 0.0F, -0.5F, 2, 6, 1, 0.0F);
 				setRotationAngle(chestScarfRightC, -0.8726646259971648F, 0.8726646259971648F, 0.0F);
 
-				this.body = chestNecklace;
+				this.flyA = new ModelRenderer(this, 45, 0);
+				this.flyA.addBox(-1.5F, -1.5F, 0.0F, 3, 3, 2, 0.0F);
+				this.flyB = new ModelRenderer(this, 45, 0);
+				this.flyB.addBox(-1.5F, -1.5F, 0.0F, 3, 3, 2, 0.0F);
+				this.flyC = new ModelRenderer(this, 45, 0);
+				this.flyC.addBox(-1.5F, -1.5F, 0.0F, 3, 3, 2, 0.0F);
+				this.flyD = new ModelRenderer(this, 45, 0);
+				this.flyD.addBox(-1.5F, -1.5F, 0.0F, 3, 3, 2, 0.0F);
+				this.flyE = new ModelRenderer(this, 45, 0);
+				this.flyE.addBox(-1.5F, -1.5F, 0.0F, 3, 3, 2, 0.0F);
+				this.flyF = new ModelRenderer(this, 45, 0);
+				this.flyF.addBox(-1.5F, -1.5F, 0.0F, 3, 3, 2, 0.0F);
+				if(isSteve){
+					this.flyA.setPos(-5.0F, -15.0F, 3.0F);
+					this.flyB.setPos(5.0F, -15.0F, 3.0F);
+					this.flyC.setPos(-11.0F, -7.5F, 3.0F);
+					this.flyD.setPos(11.0F, -7.5F, 3.0F);
+					this.flyE.setPos(-9.0F, 2.0F, 3.0F);
+					this.flyF.setPos(9.0F, 2.0F, 3.0F);
+				}else{
+					this.flyA.setPos(-4.5F, -15.0F, 3.0F);
+					this.flyB.setPos(4.5F, -15.0F, 3.0F);
+					this.flyC.setPos(-10.0F, -7.5F, 3.0F);
+					this.flyD.setPos(10.0F, -7.5F, 3.0F);
+					this.flyE.setPos(-8.0F, 2.0F, 3.0F);
+					this.flyF.setPos(8.0F, 2.0F, 3.0F);
+				}
+
 				if(!isSteve){
 					this.body.addChild(bodyBreast);
 					this.body.addChild(bodyBreastNecklace);
 				}
+				this.body.addChild(this.flyA);
+				this.body.addChild(this.flyB);
+				this.body.addChild(this.flyC);
+				this.body.addChild(this.flyD);
+				this.body.addChild(this.flyE);
+				this.body.addChild(this.flyF);
 				this.body.addChild(this.chestScarfTop);
 				this.chestScarfTop.addChild(this.chestScarfTopLeftA);
 				this.chestScarfTopLeftA.addChild(this.chestScarfTopLeftB);
@@ -380,36 +370,11 @@ public class RaijinArmorModel<T extends LivingEntity> extends CustomArmorModel<T
 	}
 
 	@Override
-	public void renderToBuffer(MatrixStack matrixStack, IVertexBuilder bufferIn, int packedLightIn, int packedOverlayIn, float red, float green, float blue, float alpha){
-		super.renderToBuffer(matrixStack, bufferIn, packedLightIn, packedOverlayIn, red, green, blue, alpha);
-		// We need to override renderToBuffer to display the body, which is not visible by default on Head equipments.
-		if (this.slot == EquipmentSlotType.HEAD) {
-			this.body.visible = true;
-		}
-	}
-
-	@Override
 	public void setupArmorAnim(T entityIn, float ageInTicks) {
 
 		float f;
 		float d = ageInTicks / 60.0F;
 		switch (this.slot) {
-			case HEAD:
-				f = d % (2.0F * (float)Math.PI);
-				this.flyA.y = -15.0F + sinPI(d + 1.0F);
-				this.flyA.zRot = f;
-				this.flyB.y = -15.0F + sinPI(d + 1.333F);
-				this.flyB.zRot = f + 0.33F;
-				this.flyC.y = -7.5F + sinPI(d + 1.667F);
-				this.flyC.zRot = f + 0.67F;
-				this.flyD.y = -7.5F + sinPI(d + 0.333F);
-				this.flyD.zRot = f + 0.17F;
-				this.flyE.y = 2.0F + sinPI(d);
-				this.flyE.zRot = f + 0.83F;
-				this.flyF.y = 2.0F + sinPI(d + 0.667F);
-				this.flyF.zRot = f + 0.5F;
-				break;
-
 			case CHEST:
 				f = 0.03F * sinPI(2 * d);
 				d = (0.866F - sinPI(0.333F - f)) * 4.0F;
@@ -426,6 +391,20 @@ public class RaijinArmorModel<T extends LivingEntity> extends CustomArmorModel<T
 				f = -0.872F + 0.03F * sinPI((ageInTicks - 15) / 30.0F) * (float)Math.PI;
 				this.chestScarfRightC.xRot = f;
 				this.chestScarfLeftC.xRot = f;
+
+				f = d % (2.0F * (float)Math.PI);
+				this.flyA.y = -15.0F + sinPI(d + 1.0F);
+				this.flyA.zRot = f;
+				this.flyB.y = -15.0F + sinPI(d + 1.333F);
+				this.flyB.zRot = f + 0.33F;
+				this.flyC.y = -7.5F + sinPI(d + 1.667F);
+				this.flyC.zRot = f + 0.67F;
+				this.flyD.y = -7.5F + sinPI(d + 0.333F);
+				this.flyD.zRot = f + 0.17F;
+				this.flyE.y = 2.0F + sinPI(d);
+				this.flyE.zRot = f + 0.83F;
+				this.flyF.y = 2.0F + sinPI(d + 0.667F);
+				this.flyF.zRot = f + 0.5F;
 				break;
 
 			case LEGS:
