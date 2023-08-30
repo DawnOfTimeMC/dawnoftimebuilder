@@ -100,7 +100,7 @@ public class DoTBItemsRegistry {
 	}
 
 	public final static class ArmorSetRegistryObject {
-		private static final EquipmentSlotType[] SLOT_LIST = { HEAD, CHEST, LEGS, FEET };
+		private static final EquipmentSlotType[] SLOT_LIST = {HEAD, CHEST, LEGS, FEET };
 		private final IArmorMaterial material;
 		public final RegistryObject<Item> head;
 		public final RegistryObject<Item> chest;
@@ -110,7 +110,7 @@ public class DoTBItemsRegistry {
 
 		private ArmorSetRegistryObject(final String setNameIn, final IArmorMaterial materialIn, Supplier<CustomArmorItem.ArmorModelFactory> factorySupplierIn) {
 			this.material = materialIn;
-			factorySupplier = factorySupplierIn;
+			this.factorySupplier = factorySupplierIn;
 
 			final List<RegistryObject<Item>> objectList = new ArrayList<>();
 			for (final EquipmentSlotType slot : ArmorSetRegistryObject.SLOT_LIST) {

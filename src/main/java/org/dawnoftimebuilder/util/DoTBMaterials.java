@@ -18,76 +18,61 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 public class DoTBMaterials {
 
 	public enum ArmorMaterial implements IArmorMaterial {
-		IRON_PLATE("iron_plate", () -> DoTBConfig.IRON_PLATE_DURABILITY.get(),
-				() -> DoTBConfig.IRON_PLATE_DEF_FEET.get(), () -> DoTBConfig.IRON_PLATE_DEF_LEGS.get(),
-				() -> DoTBConfig.IRON_PLATE_DEF_CHEST.get(), () -> DoTBConfig.IRON_PLATE_DEF_HELMET.get(),
-				() -> DoTBConfig.IRON_PLATE_ENCHANT.get(), SoundEvents.ARMOR_EQUIP_IRON,
-				() -> DoTBConfig.IRON_PLATE_TOUGHNESS.get().floatValue(), () -> Ingredient.of(Items.IRON_INGOT)),
-		HOLY("iron_plate", () -> DoTBConfig.HOLY_DURABILITY.get(), () -> DoTBConfig.HOLY_DEF_FEET.get(),
-				() -> DoTBConfig.HOLY_DEF_LEGS.get(), () -> DoTBConfig.HOLY_DEF_CHEST.get(),
-				() -> DoTBConfig.HOLY_DEF_HELMET.get(), () -> DoTBConfig.HOLY_ENCHANT.get(),
-				SoundEvents.ARMOR_EQUIP_DIAMOND, () -> DoTBConfig.HOLY_TOUGHNESS.get().floatValue(),
+		IRON_PLATE("iron_plate",
+				DoTBConfig.IRON_PLATE_ARMOR_CONFIG,
+				SoundEvents.ARMOR_EQUIP_IRON,
+				() -> Ingredient.of(Items.IRON_BLOCK.asItem())),
+		HOLY("holy",
+				DoTBConfig.HOLY_ARMOR_CONFIG,
+				SoundEvents.ARMOR_EQUIP_DIAMOND,
 				() -> Ingredient.of(Blocks.GOLD_BLOCK.asItem())),
-		JAPANESE_LIGHT("japanese_light", () -> DoTBConfig.JAPANESE_LIGHT_DURABILITY.get(),
-				() -> DoTBConfig.JAPANESE_LIGHT_DEF_FEET.get(), () -> DoTBConfig.JAPANESE_LIGHT_DEF_LEGS.get(),
-				() -> DoTBConfig.JAPANESE_LIGHT_DEF_CHEST.get(), () -> DoTBConfig.JAPANESE_LIGHT_DEF_HELMET.get(),
-				() -> DoTBConfig.JAPANESE_LIGHT_ENCHANT.get(), SoundEvents.ARMOR_EQUIP_LEATHER,
-				() -> DoTBConfig.JAPANESE_LIGHT_TOUGHNESS.get().floatValue(), () -> Ingredient.of(Items.LEATHER)),
-		O_YOROI("o_yoroi", () -> DoTBConfig.O_YOROI_DURABILITY.get(), () -> DoTBConfig.O_YOROI_DEF_FEET.get(),
-				() -> DoTBConfig.O_YOROI_DEF_LEGS.get(), () -> DoTBConfig.O_YOROI_DEF_CHEST.get(),
-				() -> DoTBConfig.O_YOROI_DEF_HELMET.get(), () -> DoTBConfig.O_YOROI_ENCHANT.get(),
-				SoundEvents.ARMOR_EQUIP_IRON, () -> DoTBConfig.O_YOROI_TOUGHNESS.get().floatValue(),
+		JAPANESE_LIGHT(
+				"japanese_light",
+				DoTBConfig.JAPANESE_LIGHT_ARMOR_CONFIG,
+				SoundEvents.ARMOR_EQUIP_LEATHER,
+				() -> Ingredient.of(Items.LEATHER)),
+		O_YOROI("o_yoroi",
+				DoTBConfig.O_YOROI_ARMOR_CONFIG,
+				SoundEvents.ARMOR_EQUIP_IRON,
 				() -> Ingredient.of(Items.REDSTONE_BLOCK.asItem())),
-		PHARAOH("pharaoh", () -> DoTBConfig.PHARAOH_DURABILITY.get(), () -> DoTBConfig.PHARAOH_DEF_FEET.get(),
-				() -> DoTBConfig.PHARAOH_DEF_LEGS.get(), () -> DoTBConfig.PHARAOH_DEF_CHEST.get(),
-				() -> DoTBConfig.PHARAOH_DEF_HELMET.get(), () -> DoTBConfig.PHARAOH_ENCHANT.get(),
-				SoundEvents.ARMOR_EQUIP_GOLD, () -> DoTBConfig.PHARAOH_TOUGHNESS.get().floatValue(),
-				() -> Ingredient.of(Items.GOLD_INGOT)),
-		RAIJIN("raijin", () -> DoTBConfig.RAIJIN_DURABILITY.get(), () -> DoTBConfig.RAIJIN_DEF_FEET.get(),
-				() -> DoTBConfig.RAIJIN_DEF_LEGS.get(), () -> DoTBConfig.RAIJIN_DEF_CHEST.get(),
-				() -> DoTBConfig.RAIJIN_DEF_HELMET.get(), () -> DoTBConfig.RAIJIN_ENCHANT.get(),
-				SoundEvents.ARMOR_EQUIP_LEATHER, () -> DoTBConfig.RAIJIN_TOUGHNESS.get().floatValue(),
-				() -> Ingredient.of(Blocks.GOLD_BLOCK.asItem()));
+		RAIJIN("raijin",
+				DoTBConfig.RAIJIN_ARMOR_CONFIG,
+				SoundEvents.ARMOR_EQUIP_LEATHER,
+				() -> Ingredient.of(Blocks.GOLD_BLOCK.asItem())),
+		PHARAOH("pharaoh",
+				DoTBConfig.PHARAOH_ARMOR_CONFIG,
+				SoundEvents.ARMOR_EQUIP_GOLD,
+				() -> Ingredient.of(Items.GOLD_BLOCK.asItem())),
+		ANUBIS("anubis",
+				DoTBConfig.ANUBIS_ARMOR_CONFIG,
+				SoundEvents.ARMOR_EQUIP_GOLD,
+				() -> Ingredient.of(Blocks.LAPIS_BLOCK.asItem())),
+		CENTURION("centurion",
+			   DoTBConfig.CENTURION_ARMOR_CONFIG,
+				SoundEvents.ARMOR_EQUIP_CHAIN,
+				() -> Ingredient.of(Blocks.GOLD_BLOCK.asItem())),
+		QUETZALCOATL("quetzalcoatl",
+				DoTBConfig.QUETZALCOATL_ARMOR_CONFIG,
+				SoundEvents.ARMOR_EQUIP_TURTLE,
+				() -> Ingredient.of(Items.FEATHER));
 
-		private static final int[] MAX_DAMAGE_ARRAY = { 13, 15, 16, 11 };
+		private static final int[] MAX_DAMAGE_ARRAY = {13, 15, 16, 11 };
 		private final String name;
-		private final Supplier<Integer> maxDamageFactor;
-		private final Supplier<Integer> damageReductionAmountArrayFeet;
-		private final Supplier<Integer> damageReductionAmountArrayLegs;
-		private final Supplier<Integer> damageReductionAmountArrayChest;
-		private final Supplier<Integer> damageReductionAmountArrayHelmet;
-		private final Supplier<Integer> enchantability;
+		private final DoTBConfig.ArmorConfig armorConfig;
 		private final SoundEvent soundEvent;
-		private final Supplier<Float> toughness;
 		private final LazyValue<Ingredient> repairMaterial;
 
 		/**
 		 * @param nameIn                   Material name.
-		 * @param maxDamageFactorIn        Durability factor.
-		 * @param damageReductionAmountsIn Defense of each armor part in the following
-		 *                                 order : Feet, Legs, Chest, Helmet.
-		 * @param enchantabilityIn         Impact the chance of getting powerful
-		 *                                 enchants.
+		 * @param config			       Armor config that contains all the parameters of the armor
+		 *                                    (durability, armor, enchantability, toughness)
 		 * @param equipSoundIn             Sound when equipped.
-		 * @param toughness                Toughness value (same for every part).
 		 * @param repairMaterialSupplier   Ingredient used to repair the armor.
 		 */
-		ArmorMaterial(final String nameIn, final Supplier<Integer> maxDamageFactorIn,
-				final Supplier<Integer> damageReductionAmountArrayFeetIn,
-				final Supplier<Integer> damageReductionAmountArrayLegsIn,
-				final Supplier<Integer> damageReductionAmountArrayChestIn,
-				final Supplier<Integer> damageReductionAmountArrayHelmetIn, final Supplier<Integer> enchantabilityIn,
-				final SoundEvent equipSoundIn, final Supplier<Float> toughness,
-				final Supplier<Ingredient> repairMaterialSupplier) {
+		ArmorMaterial(final String nameIn, DoTBConfig.ArmorConfig config, final SoundEvent equipSoundIn, final Supplier<Ingredient> repairMaterialSupplier) {
 			this.name = nameIn;
-			this.maxDamageFactor = maxDamageFactorIn;
-			this.damageReductionAmountArrayFeet = damageReductionAmountArrayFeetIn;
-			this.damageReductionAmountArrayLegs = damageReductionAmountArrayLegsIn;
-			this.damageReductionAmountArrayChest = damageReductionAmountArrayChestIn;
-			this.damageReductionAmountArrayHelmet = damageReductionAmountArrayHelmetIn;
-			this.enchantability = enchantabilityIn;
+			this.armorConfig = config;
 			this.soundEvent = equipSoundIn;
-			this.toughness = toughness;
 			this.repairMaterial = new LazyValue<>(repairMaterialSupplier);
 		}
 
@@ -95,16 +80,16 @@ public class DoTBMaterials {
 		public int getDefenseForSlot(final EquipmentSlotType slotIn) {
 			switch (slotIn) {
 			case FEET:
-				return this.damageReductionAmountArrayFeet.get();
+				return this.armorConfig.feetDefSupplier().get();
 
 			case LEGS:
-				return this.damageReductionAmountArrayLegs.get();
+				return this.armorConfig.legsDefSupplier().get();
 
 			case CHEST:
-				return this.damageReductionAmountArrayChest.get();
+				return this.armorConfig.chestDefSupplier().get();
 
 			case HEAD:
-				return this.damageReductionAmountArrayHelmet.get();
+				return this.armorConfig.helmetDefSupplier().get();
 
 			default:
 				return 0;
@@ -113,7 +98,7 @@ public class DoTBMaterials {
 
 		@Override
 		public int getEnchantmentValue() {
-			return this.enchantability.get();
+			return this.armorConfig.enchantabilitySupplier().get();
 		}
 
 		@Override
@@ -128,7 +113,7 @@ public class DoTBMaterials {
 
 		@Override
 		public int getDurabilityForSlot(final EquipmentSlotType slotIn) {
-			return ArmorMaterial.MAX_DAMAGE_ARRAY[slotIn.getIndex()] * this.maxDamageFactor.get();
+			return ArmorMaterial.MAX_DAMAGE_ARRAY[slotIn.getIndex()] * this.armorConfig.durabilitySupplier().get();
 		}
 
 		@Override
@@ -139,7 +124,7 @@ public class DoTBMaterials {
 
 		@Override
 		public float getToughness() {
-			return this.toughness.get();
+			return this.armorConfig.toughnessSupplier().get();
 		}
 
 		@Override
