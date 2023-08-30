@@ -376,6 +376,20 @@ public class RaijinArmorModel<T extends LivingEntity> extends CustomArmorModel<T
 		float d = ageInTicks / 60.0F;
 		switch (this.slot) {
 			case CHEST:
+				f = d % (2.0F * (float)Math.PI);
+				this.flyA.y = -15.0F + sinPI(d + 1.0F);
+				this.flyA.zRot = f;
+				this.flyB.y = -15.0F + sinPI(d + 1.333F);
+				this.flyB.zRot = f + 0.33F;
+				this.flyC.y = -7.5F + sinPI(d + 1.667F);
+				this.flyC.zRot = f + 0.67F;
+				this.flyD.y = -7.5F + sinPI(d + 0.333F);
+				this.flyD.zRot = f + 0.17F;
+				this.flyE.y = 2.0F + sinPI(d);
+				this.flyE.zRot = f + 0.83F;
+				this.flyF.y = 2.0F + sinPI(d + 0.667F);
+				this.flyF.zRot = f + 0.5F;
+
 				f = 0.03F * sinPI(2 * d);
 				d = (0.866F - sinPI(0.333F - f)) * 4.0F;
 				this.chestScarfTop.y = -4.5F + -d * 0.75F;
@@ -391,20 +405,6 @@ public class RaijinArmorModel<T extends LivingEntity> extends CustomArmorModel<T
 				f = -0.872F + 0.03F * sinPI((ageInTicks - 15) / 30.0F) * (float)Math.PI;
 				this.chestScarfRightC.xRot = f;
 				this.chestScarfLeftC.xRot = f;
-
-				f = d % (2.0F * (float)Math.PI);
-				this.flyA.y = -15.0F + sinPI(d + 1.0F);
-				this.flyA.zRot = f;
-				this.flyB.y = -15.0F + sinPI(d + 1.333F);
-				this.flyB.zRot = f + 0.33F;
-				this.flyC.y = -7.5F + sinPI(d + 1.667F);
-				this.flyC.zRot = f + 0.67F;
-				this.flyD.y = -7.5F + sinPI(d + 0.333F);
-				this.flyD.zRot = f + 0.17F;
-				this.flyE.y = 2.0F + sinPI(d);
-				this.flyE.zRot = f + 0.83F;
-				this.flyF.y = 2.0F + sinPI(d + 0.667F);
-				this.flyF.zRot = f + 0.5F;
 				break;
 
 			case LEGS:
