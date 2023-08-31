@@ -1,0 +1,25 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"xVx",
+		"ioi",
+		"x x"
+	],
+	"key": {
+		"i": {
+			"item": "minecraft:lapis_block"
+		},
+		"x": {
+			"item": "minecraft:gold_block"
+		},
+		"V": {
+			"item": "minecraft:coal_block"
+		},
+		"o": {
+			"item": "minecraft:diamond_helmet"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:anubis_armor_head"
+	}
+}

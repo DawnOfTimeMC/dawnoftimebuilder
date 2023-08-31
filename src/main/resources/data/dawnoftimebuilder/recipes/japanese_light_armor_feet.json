@@ -9,7 +9,7 @@
 			"item": "minecraft:leather_boots"
 		},
 		"i": {
-			"item": "minecraft:leather"
+			"tag": "forge:leather"
 		}
 	},
 	"result": {

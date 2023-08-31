@@ -1,21 +1,21 @@
 {
 	"type": "minecraft:crafting_shaped",
 	"pattern": [
-		"IxI",
-		"i i"
+		"ixi",
+		"I I"
 	],
 	"key": {
 		"I": {
-			"item": "minecraft:gold_block"
+			"tag": "forge:leather"
 		},
 		"i": {
 			"tag": "forge:ingots/gold"
 		},
 		"x": {
-			"item": "minecraft:golden_boots"
+			"item": "minecraft:leather_boots"
 		}
 	},
 	"result": {
-		"item": "dawnoftimebuilder:pharaoh_armor_feet"
+		"item": "dawnoftimebuilder:centurion_armor_feet"
 	}
 }

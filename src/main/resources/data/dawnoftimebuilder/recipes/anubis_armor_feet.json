@@ -9,13 +9,13 @@
 			"item": "minecraft:gold_block"
 		},
 		"i": {
-			"tag": "forge:ingots/gold"
+			"item": "minecraft:lapis_block"
 		},
 		"x": {
-			"item": "minecraft:golden_boots"
+			"item": "minecraft:diamond_boots"
 		}
 	},
 	"result": {
-		"item": "dawnoftimebuilder:pharaoh_armor_feet"
+		"item": "dawnoftimebuilder:anubis_armor_feet"
 	}
 }

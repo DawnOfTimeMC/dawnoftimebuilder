@@ -10,7 +10,7 @@
 			"item": "dawnoftimebuilder:plastered_stone"
 		},
 		"i": {
-			"item": "minecraft:green_dye"
+			"tag": "forge:dyes/green"
 		}
 	},
 	"result": {

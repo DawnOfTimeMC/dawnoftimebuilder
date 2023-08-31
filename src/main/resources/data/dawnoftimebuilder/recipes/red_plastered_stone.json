@@ -9,7 +9,7 @@
 			"item": "minecraft:stone"
 		},
 		"i": {
-			"item": "minecraft:red_dye"
+			"tag": "forge:dyes/red"
 		}
 	},
 	"result": {

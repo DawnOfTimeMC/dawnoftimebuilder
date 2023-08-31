@@ -13,7 +13,7 @@
 			"item": "minecraft:lapis_lazuli"
 		},
 		"o": {
-			"item": "minecraft:blue_dye"
+			"tag": "forge:dyes/blue"
 		}
 	},
 	"result": {

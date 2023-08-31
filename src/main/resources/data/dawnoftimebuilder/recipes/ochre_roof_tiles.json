@@ -9,7 +9,7 @@
 			"item": "minecraft:stone"
 		},
 		"i": {
-			"item": "minecraft:orange_dye"
+			"tag": "forge:dyes/orange"
 		}
 	},
 	"result": {

@@ -10,7 +10,7 @@
 			"item": "dawnoftimebuilder:silk"
 		},
 		"I": {
-			"item": "minecraft:leather"
+			"tag": "forge:leather"
 		},
 		"i": {
 			"item": "minecraft:leather_chestplate"
