@@ -27,7 +27,7 @@ public interface IBlockPillar {
 	}
 
 	/**
-	 * Get the block pillar connection on the down side. Useful to connect blocks with elements of good size.
+	 * Get the block pillar connection on the downside. Useful to connect blocks with elements of good size.
 	 * @param worldIn World of the block.
 	 * @param pos Position of the block
 	 * @return PillarConnection of the Block toward the block under it.
@@ -50,7 +50,7 @@ public interface IBlockPillar {
 
 	/**
 	 * @param state BlockState of the block.
-	 * @return The pillar connection on the Down side for a given blockstate.
+	 * @return The pillar connection on the Downside for a given blockstate.
 	 * Default : return getBlockPillarConnectionAbove value.
 	 */
 	@Nonnull

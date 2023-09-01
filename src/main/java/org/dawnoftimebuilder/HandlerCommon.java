@@ -35,7 +35,7 @@ import net.minecraftforge.fml.server.ServerLifecycleHooks;
 
 @Mod.EventBusSubscriber(modid = DawnOfTimeBuilder.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class HandlerCommon {
-	private static boolean DEDICATED = false;
+	private static final boolean DEDICATED = false;
 
 	@SubscribeEvent
 	public static void modConfigLoadingEvent(final ModConfig.Loading event) {
