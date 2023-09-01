@@ -185,7 +185,7 @@ public class CappedWallBlock extends Block implements IWaterLoggable {
     }
 
     private WallHeight shouldRaisePost(BlockState state, BlockState stateTop, VoxelShape shape) {
-        boolean flag = stateTop.getBlock() instanceof WallBlock && !(stateTop.getValue(PILLAR) == WallHeight.NONE);
+        boolean flag = stateTop.getBlock() instanceof WallBlock && stateTop.getValue(WallBlock.UP);
         if (flag) {
             return this.getPillarState(stateTop);
         } else {

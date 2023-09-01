@@ -33,24 +33,24 @@ public class LimestoneSidedColumnBlock extends SidedColumnConnectibleBlock {
 	 */
 	private static VoxelShape[] makeShapes() {
 		VoxelShape vs_column = VoxelShapes.or(
-				Block.box(1.0D, 0.0D, 0.0D, 15.0D, 16.0D, 3.0D),
-				Block.box(5.0D, 0.0D, 3.0D, 11.0D, 16.0D, 6.0D));
+				Block.box(1.5D, 0.0D, 0.0D, 14.5D, 16.0D, 3.0D),
+				Block.box(5.5D, 0.0D, 3.0D, 10.5D, 16.0D, 6.0D));
 		return new VoxelShape[]{
 				vs_column,
 				VoxelShapes.or(
-						Block.box(1.0D, 0.0D, 0.0D, 15.0D, 9.0D, 3.0D),
-						Block.box(5.0D, 0.0D, 3.0D, 11.0D, 9.0D, 6.0D),
-						Block.box(0.0D, 9.0D, 0.0D, 16.0D, 14.0D, 4.0D),
-						Block.box(4.0D, 9.0D, 4.0D, 12.0D, 14.0D, 7.0D),
+						Block.box(1.5D, 0.0D, 0.0D, 14.5D, 9.0D, 3.0D),
+						Block.box(5.5D, 0.0D, 3.0D, 10.5D, 9.0D, 6.0D),
+						Block.box(0.5D, 9.0D, 0.0D, 15.5D, 14.0D, 4.0D),
+						Block.box(4.5D, 9.0D, 4.0D, 11.5D, 14.0D, 7.0D),
 						Block.box(0.0D, 14.0D, 0.0D, 16.0D, 16.0D, 5.0D),
-						Block.box(3.0D, 14.0D, 5.0D, 13.0D, 16.0D, 8.0D)),
+						Block.box(3.5D, 14.0D, 5.0D, 12.5D, 16.0D, 8.0D)),
 				VoxelShapes.or(
-						Block.box(1.0D, 4.0D, 0.0D, 15.0D, 16.0D, 3.0D),
-						Block.box(5.0D, 4.0D, 3.0D, 11.0D, 16.0D, 6.0D),
-						Block.box(0.5D, 5.0D, 0.0D, 15.5D, 6.0D, 3.5D),
-						Block.box(4.5D, 5.0D, 3.5D, 11.5D, 6.0D, 6.5D),
-						Block.box(0.0D, 0.0D, 0.0D, 16.0D, 4.0D, 4.0D),
-						Block.box(4.0D, 0.0D, 4.0D, 12.0D, 4.0D, 7.0D)),
+						Block.box(1.5D, 4.0D, 0.0D, 14.5D, 16.0D, 3.0D),
+						Block.box(5.5D, 4.0D, 3.0D, 10.5D, 16.0D, 6.0D),
+						Block.box(1.0D, 5.0D, 0.0D, 15.0D, 6.0D, 3.5D),
+						Block.box(5.0D, 5.0D, 3.5D, 11.0D, 6.0D, 6.5D),
+						Block.box(0.5D, 0.0D, 0.0D, 15.5D, 4.0D, 4.0D),
+						Block.box(4.5D, 0.0D, 4.0D, 11.5D, 4.0D, 7.0D)),
 				vs_column
 		};
 	}

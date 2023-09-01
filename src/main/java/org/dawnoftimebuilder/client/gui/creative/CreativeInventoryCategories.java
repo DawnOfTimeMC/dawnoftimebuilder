@@ -186,6 +186,7 @@ public enum CreativeInventoryCategories {
             LIMESTONE_BRICKS_PLATE.get().asItem(),
             LIMESTONE_BRICKS_SLAB.get().asItem(),
             LIMESTONE_BRICKS_EDGE.get().asItem(),
+            LIMESTONE_SIDED_COLUMN.get().asItem(),
             LIMESTONE_BRICKS_WALL.get().asItem(),
             LIMESTONE_BALUSTER.get().asItem(),
             LIMESTONE_GARGOYLE.get().asItem(),
