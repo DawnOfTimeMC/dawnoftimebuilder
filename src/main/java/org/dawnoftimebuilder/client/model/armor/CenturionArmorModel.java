@@ -14,15 +14,15 @@ public class CenturionArmorModel<T extends LivingEntity> extends CustomArmorMode
 				this.head = new ModelRenderer(this);
 				this.head.setPos(0.0F, 0.0F, 0.0F);
 				this.head.texOffs(0, 0).addBox(-4.5F, -8.5F, -4.5F, 9.0F, 9.0F, 9.0F, 0.25F, false);
-				this.head.texOffs(18, 0).addBox(-5.0F, -6.0F, -5.25F, 10.0F, 1.0F, 1.0F, 0.0F, false);
+				this.head.texOffs(75, 0).addBox(-5.0F, -6.0F, -5.25F, 10.0F, 1.0F, 1.0F, 0.0F, false);
 				this.head.texOffs(24, 6).addBox(-1.0F, -14.25F, -2.75F, 2.0F, 11.0F, 12.0F, 0.0F, false);
 				this.head.texOffs(40, 17).addBox(-1.0F, -14.25F, -2.75F, 2.0F, 11.0F, 12.0F, 0.25F, false);
 				this.head.texOffs(0, 0).addBox(-1.0F, -14.25F, -3.75F, 2.0F, 4.0F, 1.0F, 0.0F, false);
-				this.head.texOffs(0, 5).addBox(-1.0F, -14.25F, -3.75F, 2.0F, 4.0F, 0.0F, 0.25F, false);
+				this.head.texOffs(0, 59).addBox(-1.0F, -14.25F, -3.75F, 2.0F, 4.0F, 1.0F, 0.25F, false);
 				ModelRenderer jow = new ModelRenderer(this);
 				jow.setPos(0.0F, 24.0F, 0.0F);
-				jow.texOffs(18, -4).addBox(4.65F, -26.0F, 4.75F, 0.0F, 3.0F, 6.0F, 0.0F, false);
-				jow.texOffs(18, -4).addBox(-4.65F, -26.0F, 4.75F, 0.0F, 3.0F, 6.0F, 0.0F, false);
+				jow.texOffs(75, -4).addBox(4.65F, -26.0F, 4.75F, 0.0F, 3.0F, 6.0F, 0.0F, false);
+				jow.texOffs(75, -4).addBox(-4.65F, -26.0F, 4.75F, 0.0F, 3.0F, 6.0F, 0.0F, false);
 				setRotationAngle(jow, 0.3927F, 0.0F, 0.0F);
 				this.head.addChild(jow);
 
@@ -62,11 +62,11 @@ public class CenturionArmorModel<T extends LivingEntity> extends CustomArmorMode
 					chestBreast.texOffs(68, 25).addBox(-3.5F, -1.75F, 0.0F, 7.0F, 4.0F, 2.0F, 0.0F, false);
 					setRotationAngle(chestBreast, -0.48F, 0.0F, 0.0F);
 					chestBelt.setPos(1.9309F, 5.4684F, -3.542F);
-					chestBelt.texOffs(84, 0).addBox(-1.0F, -2.0F, 0.0F, 2.0F, 4.0F, 0.0F, 0.0F, false);
+					chestBelt.texOffs(74, 12).addBox(-1.0F, -2.0F, 0.0F, 2.0F, 4.0F, 0.0F, 0.0F, false);
 					setRotationAngle(chestBelt, 0.4386F, -0.0319F, -0.7317F);
 					ModelRenderer chestBeltDown = new ModelRenderer(this);
 					chestBeltDown.setPos(-4.0505F, 0.6704F, -3.0498F);
-					chestBeltDown.texOffs(80, 0).addBox(0.0F, -1.0F, 0.0F, 2.0F, 7.0F, 0.0F, 0.0F, false);
+					chestBeltDown.texOffs(70, 12).addBox(0.0F, -1.0F, 0.0F, 2.0F, 7.0F, 0.0F, 0.0F, false);
 					setRotationAngle(chestBeltDown, -0.2397F, -0.0564F, -0.7652F);
 					ModelRenderer chestBeltUp = new ModelRenderer(this);
 					chestBeltUp.setPos(-4.0F, 1.0F, -2.5F);
