@@ -25,7 +25,7 @@ import static net.minecraft.block.Blocks.FLOWER_POT;
 public class FlowerPotBlockDoTB extends BlockDoTB implements IBlockSpecialDisplay {
 
     private final Item itemInPot;
-    private static final VoxelShape VS = Block.box(6.0D, 0.0D, 6.0D, 10.0D, 4.0D, 10.0D);
+    private static final VoxelShape VS = Block.box(5.0D, 0.0D, 5.0D, 11.0D, 4.0D, 11.0D);
 
 	public FlowerPotBlockDoTB(@Nullable Item itemInPot) {
         super(AbstractBlock.Properties.copy(FLOWER_POT));

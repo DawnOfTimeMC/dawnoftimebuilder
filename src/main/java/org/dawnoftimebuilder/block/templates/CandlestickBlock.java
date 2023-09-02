@@ -23,7 +23,7 @@ import java.util.Random;
 public class CandlestickBlock extends CandleLampBlock {
 
     private static final VoxelShape VS_BOTTOM = Block.box(5.0D, 0.0D, 5.0D, 11.0D, 15.0D, 11.0D);
-    private static final VoxelShape[] VS_SIDE = DoTBUtils.GenerateHorizontalShapes(new VoxelShape[]{Block.box(4.0D, 1.0D, 0.0D, 14.0D, 15.0D, 14.0D)});
+    private static final VoxelShape[] VS_SIDE = DoTBUtils.GenerateHorizontalShapes(new VoxelShape[]{Block.box(4.0D, 1.0D, 0.0D, 12.0D, 15.0D, 14.0D)});
     public static final DirectionProperty FACING = BlockStateProperties.FACING_HOPPER;
     private static final BooleanProperty LIT = BlockStateProperties.LIT;
 

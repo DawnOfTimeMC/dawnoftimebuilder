@@ -65,6 +65,7 @@ public class PlasteredStoneCressetBlock extends WaterloggedBlock {
 
             if(DoTBUtils.useLighter(worldIn, pos, player, handIn)){
                 worldIn.setBlock(pos, state.setValue(LIT, true).setValue(HEAT, 4), 10);
+                return ActionResultType.SUCCESS;
             }
         }
         return ActionResultType.PASS;
