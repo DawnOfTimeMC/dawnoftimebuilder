@@ -1,6 +1,8 @@
 package org.dawnoftimebuilder.block;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.IWaterLoggable;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -13,6 +15,7 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.ForgeHooks;
+import net.minecraftforge.common.Tags;
 import org.dawnoftimebuilder.util.DoTBBlockStateProperties;
 import org.dawnoftimebuilder.util.DoTBUtils;
 import org.dawnoftimebuilder.DoTBConfig;
@@ -44,12 +47,12 @@ public interface IBlockClimbingPlant {
 				int age = stateIn.getValue(AGE_0_6);
 				if (ForgeHooks.onCropsGrowPre(worldIn, pos, stateIn, random.nextInt(DoTBConfig.CLIMBING_PLANT_GROWTH_CHANCE.get()) == 0)) {//Probability "can grow"
 					if(age < 2){
-						worldIn.setBlock(pos, stateIn.setValue(AGE_0_6, age + 1), 2);
+						this.placePlant(stateIn.setValue(AGE_0_6, age + 1), worldIn, pos, 2);
 						ForgeHooks.onCropsGrowPost(worldIn, pos, stateIn);
 						return;
 					}else{
 						if(stateIn.getValue(CLIMBING_PLANT).canGrow(worldIn, age)){
-							worldIn.setBlock(pos, stateIn.setValue(AGE_0_6, 2 + ((age - 1) % 5)), 2);
+							this.placePlant(stateIn.setValue(AGE_0_6, 2 + ((age - 1) % 5)), worldIn, pos, 2);
 							ForgeHooks.onCropsGrowPost(worldIn, pos, stateIn);
 							return;
 						}
@@ -68,7 +71,7 @@ public interface IBlockClimbingPlant {
 				if(newState.getBlock() instanceof IBlockClimbingPlant){
 					IBlockClimbingPlant newBlock = (IBlockClimbingPlant) newState.getBlock();
 					if(newBlock.canHavePlant(newState) && newState.getValue(CLIMBING_PLANT).hasNoPlant()){
-						worldIn.setBlock(positions[index], newState.setValue(CLIMBING_PLANT, stateIn.getValue(CLIMBING_PLANT)), 2);
+						this.placePlant(newState.setValue(CLIMBING_PLANT, stateIn.getValue(CLIMBING_PLANT)), worldIn, positions[index], 2);
 					}
 				}
 			}
@@ -94,11 +97,21 @@ public interface IBlockClimbingPlant {
 				if (!player.isCreative()) {
 					heldItemStack.shrink(1);
 				}
-				worldIn.setBlock(pos, stateIn, 10);
+				this.placePlant(stateIn, worldIn, pos, 10);
 				return true;
 			}
 		}
 		return false;
+	}
+
+	/**
+	 * Function used to replace the BlockState with the new one with updated plant.
+	 * @param state BlockState of the block with updated climbing plant state.
+	 * @param world World of the block.
+	 * @param pos Pos of the block.
+	 */
+	default void placePlant(BlockState state, World world, BlockPos pos, int option){
+		world.setBlock(pos, state, option);
 	}
 
 	/**
@@ -116,14 +129,14 @@ public interface IBlockClimbingPlant {
 		if(player.isCreative() && stateIn.getValue(PERSISTENT) && !stateIn.getValue(CLIMBING_PLANT).hasNoPlant()){
 			if(player.isCrouching()){
 				if(stateIn.getValue(AGE_0_6) > 0){
-					worldIn.setBlock(pos, stateIn.setValue(AGE_0_6, stateIn.getValue(AGE_0_6) - 1), 10);
+					this.placePlant(stateIn.setValue(AGE_0_6, stateIn.getValue(AGE_0_6) - 1), worldIn, pos, 10);
 				}else{
-					worldIn.setBlock(pos, stateIn.setValue(CLIMBING_PLANT, DoTBBlockStateProperties.ClimbingPlant.NONE).setValue(AGE_0_6, 0), 10);
+					this.placePlant(stateIn.setValue(CLIMBING_PLANT, DoTBBlockStateProperties.ClimbingPlant.NONE).setValue(AGE_0_6, 0), worldIn, pos, 10);
 				}
 				return ActionResultType.SUCCESS;
 			}else{
 				if(stateIn.getValue(AGE_0_6) < stateIn.getValue(CLIMBING_PLANT).maxAge()){
-					worldIn.setBlock(pos, stateIn.setValue(AGE_0_6, stateIn.getValue(AGE_0_6) + 1), 10);
+					this.placePlant(stateIn.setValue(AGE_0_6, stateIn.getValue(AGE_0_6) + 1), worldIn, pos, 10);
 					return ActionResultType.SUCCESS;
 				}
 				return ActionResultType.PASS;
@@ -132,7 +145,7 @@ public interface IBlockClimbingPlant {
 			if(stateIn.getValue(AGE_0_6) > 2){
 				if(this.dropPlant(stateIn, worldIn, pos, player.getItemInHand(handIn))){
 					stateIn = stateIn.setValue(AGE_0_6, 2);
-					worldIn.setBlock(pos, stateIn, 10);
+					this.placePlant(stateIn, worldIn, pos, 10);
 					worldIn.playSound(null, pos, SoundEvents.GRASS_BREAK, SoundCategory.BLOCKS, 1.0F, 1.0F);
 					return ActionResultType.SUCCESS;
 				}
@@ -155,7 +168,7 @@ public interface IBlockClimbingPlant {
 	default ActionResultType tryRemovingPlant(BlockState stateIn, World worldIn, BlockPos pos, ItemStack heldItemStack){
 		if(!stateIn.getValue(CLIMBING_PLANT).hasNoPlant()){
 			stateIn = this.removePlant(stateIn, worldIn, pos, heldItemStack);
-			worldIn.setBlock(pos, stateIn, 10);
+			this.placePlant(stateIn, worldIn, pos, 10);
 			return ActionResultType.SUCCESS;
 		}
 		return ActionResultType.PASS;
@@ -194,6 +207,7 @@ public interface IBlockClimbingPlant {
 	}
 
 	/**
+	 * States if this block can have a climbing Plant.
 	 * @param state Current state of the Block.
 	 * @return True if the state of the Block allows Climbing Plants.
 	 */
@@ -202,5 +216,15 @@ public interface IBlockClimbingPlant {
 			return !state.getValue(WATERLOGGED);
 		}
 		return true;
+	}
+
+	/**
+	 * States if the block below can sustain a climbing plant growing in the block above it.
+	 * @param stateUnder BlockState of the block under this block.
+	 * @return True if the block under can sustain climbing plants (dirt or grass).
+	 */
+	default boolean canSustainClimbingPlant(BlockState stateUnder) {
+		Block block = stateUnder.getBlock();
+		return block == Blocks.GRASS_BLOCK || Tags.Blocks.DIRT.contains(block);
 	}
 }
