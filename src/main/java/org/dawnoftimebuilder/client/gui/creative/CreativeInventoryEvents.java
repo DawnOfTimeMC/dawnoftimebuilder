@@ -4,6 +4,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.inventory.CreativeScreen;
 import net.minecraft.client.gui.widget.button.Button;
+import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Util;
@@ -15,6 +16,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import org.dawnoftimebuilder.client.gui.elements.buttons.CategoryButton;
 import org.dawnoftimebuilder.client.gui.elements.buttons.GroupButton;
 import org.dawnoftimebuilder.client.gui.elements.buttons.SocialsButton;
+import org.lwjgl.glfw.GLFW;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,10 +50,11 @@ public class CreativeInventoryEvents {
     public void onScreenInit(GuiScreenEvent.InitGuiEvent.Post event) {
         if (event.getGui() instanceof CreativeScreen) {
 
-            tabDoTBSelected = false;
+            //tabDoTBSelected = false;
             this.guiCenterX = ((CreativeScreen) event.getGui()).getGuiLeft();
             this.guiCenterY = ((CreativeScreen) event.getGui()).getGuiTop();
             this.buttons = new ArrayList<>();
+
 
             event.addWidget(this.btnScrollUp = new GroupButton(this.guiCenterX - 22, this.guiCenterY - 22, StringTextComponent.EMPTY, button -> {
                 if (page > 0) {
@@ -81,11 +84,14 @@ public class CreativeInventoryEvents {
                         selectedCategoryID = categoryButton.getCategoryID();
                         Screen screen = Minecraft.getInstance().screen;
                         if (screen instanceof CreativeScreen) {
-                            this.updateItems((CreativeScreen) screen);
+                            if (categoryButton.isSelected()) {
+                                this.updateItems((CreativeScreen) screen);
+                            }
                         }
                     }
                 }));
             }
+
             this.buttons.forEach(event::addWidget);
             this.updateCategoryButtons();
 
@@ -98,10 +104,8 @@ public class CreativeInventoryEvents {
                 this.patreon.visible = true;
                 this.github.visible = true;
                 tabDoTBSelected = true;
-                this.updateCategoryButtons();
                 this.buttons.forEach(button -> button.visible = true);
                 this.buttons.get(selectedCategoryID % 4).setSelected(true);
-                this.updateItems(screen);
             } else {
                 this.btnScrollUp.visible = false;
                 this.btnScrollDown.visible = false;
@@ -109,7 +113,29 @@ public class CreativeInventoryEvents {
                 this.curse.visible = false;
                 this.patreon.visible = false;
                 this.github.visible = false;
+                tabDoTBSelected = false;
+                this.buttons.forEach(button -> button.visible = false);
+            }
+        }
+    }
 
+    @SubscribeEvent
+    public void onScreenDrawPre(GuiScreenEvent.DrawScreenEvent.Pre event) {
+        if (event.getGui() instanceof CreativeScreen) {
+            CreativeScreen screen = (CreativeScreen) event.getGui();
+            if (screen.getSelectedTab() == DOTB_TAB.getId()) {
+                if (!tabDoTBSelected) {
+                    updateItems(screen);
+                    tabDoTBSelected = true;
+                }
+            } else {
+                tabDoTBSelected = false;
+                this.btnScrollUp.visible = false;
+                this.btnScrollDown.visible = false;
+                this.discord.visible = false;
+                this.curse.visible = false;
+                this.patreon.visible = false;
+                this.github.visible = false;
                 this.buttons.forEach(button -> button.visible = false);
             }
         }
@@ -126,13 +152,13 @@ public class CreativeInventoryEvents {
             this.guiCenterY = screen.getGuiTop();
 
             if (screen.getSelectedTab() == DOTB_TAB.getId()) {
-                tabDoTBSelected = true;
                 this.btnScrollUp.visible = true;
                 this.btnScrollDown.visible = true;
                 this.discord.visible = true;
                 this.curse.visible = true;
                 this.patreon.visible = true;
                 this.github.visible = true;
+                tabDoTBSelected = true;
 
                 this.buttons.forEach(button -> button.visible = true);
 
