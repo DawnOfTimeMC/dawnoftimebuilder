@@ -11,6 +11,7 @@ import net.minecraft.util.Util;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.client.event.GuiContainerEvent;
 import net.minecraftforge.client.event.GuiScreenEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import org.dawnoftimebuilder.client.gui.elements.buttons.CategoryButton;
@@ -50,11 +51,9 @@ public class CreativeInventoryEvents {
     public void onScreenInit(GuiScreenEvent.InitGuiEvent.Post event) {
         if (event.getGui() instanceof CreativeScreen) {
 
-            //tabDoTBSelected = false;
             this.guiCenterX = ((CreativeScreen) event.getGui()).getGuiLeft();
             this.guiCenterY = ((CreativeScreen) event.getGui()).getGuiTop();
             this.buttons = new ArrayList<>();
-
 
             event.addWidget(this.btnScrollUp = new GroupButton(this.guiCenterX - 22, this.guiCenterY - 22, StringTextComponent.EMPTY, button -> {
                 if (page > 0) {
@@ -84,9 +83,7 @@ public class CreativeInventoryEvents {
                         selectedCategoryID = categoryButton.getCategoryID();
                         Screen screen = Minecraft.getInstance().screen;
                         if (screen instanceof CreativeScreen) {
-                            if (categoryButton.isSelected()) {
-                                this.updateItems((CreativeScreen) screen);
-                            }
+                            this.updateItems((CreativeScreen) screen);
                         }
                     }
                 }));
@@ -115,6 +112,21 @@ public class CreativeInventoryEvents {
                 this.github.visible = false;
                 tabDoTBSelected = false;
                 this.buttons.forEach(button -> button.visible = false);
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public void onScreenClick(GuiScreenEvent.MouseClickedEvent.Pre event) {
+        if (event.getButton() != GLFW.GLFW_MOUSE_BUTTON_LEFT) return;
+        if (event.getGui() instanceof CreativeScreen) {
+            for (CategoryButton button : this.buttons) {
+                if (button.isMouseOver(event.getMouseX(), event.getMouseY())) {
+                    if (button.mouseReleased(event.getMouseX(), event.getMouseY(), event.getButton())) {
+                        updateItems(((CreativeScreen) event.getGui()));
+                        return;
+                    }
+                }
             }
         }
     }
@@ -176,12 +188,23 @@ public class CreativeInventoryEvents {
                 this.curse.visible = false;
                 this.patreon.visible = false;
                 this.github.visible = false;
+                tabDoTBSelected = false;
 
                 this.buttons.forEach(button -> button.visible = false);
-                tabDoTBSelected = false;
             }
         }
     }
+
+    @SubscribeEvent
+    public void onScreenDrawBackground(GuiContainerEvent.DrawBackground event) {
+        if (event.getGuiContainer() instanceof CreativeScreen) {
+            CreativeScreen screen = (CreativeScreen) event.getGuiContainer();
+            if (screen.getSelectedTab() == DOTB_TAB.getId()) {
+                updateItems(screen);
+            }
+        }
+    }
+
 
     private void updateCategoryButtons() {
         this.btnScrollUp.active = (page > 0);
