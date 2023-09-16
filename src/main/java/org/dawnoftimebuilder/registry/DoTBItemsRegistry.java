@@ -4,12 +4,7 @@ import static net.minecraft.inventory.EquipmentSlotType.CHEST;
 import static net.minecraft.inventory.EquipmentSlotType.FEET;
 import static net.minecraft.inventory.EquipmentSlotType.HEAD;
 import static net.minecraft.inventory.EquipmentSlotType.LEGS;
-import static org.dawnoftimebuilder.util.DoTBMaterials.ArmorMaterial.HOLY;
-import static org.dawnoftimebuilder.util.DoTBMaterials.ArmorMaterial.IRON_PLATE;
-import static org.dawnoftimebuilder.util.DoTBMaterials.ArmorMaterial.JAPANESE_LIGHT;
-import static org.dawnoftimebuilder.util.DoTBMaterials.ArmorMaterial.O_YOROI;
-import static org.dawnoftimebuilder.util.DoTBMaterials.ArmorMaterial.PHARAOH;
-import static org.dawnoftimebuilder.util.DoTBMaterials.ArmorMaterial.RAIJIN;
+import static org.dawnoftimebuilder.util.DoTBMaterials.ArmorMaterial.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -69,14 +64,14 @@ public class DoTBItemsRegistry {
 
 	// Armors
 	// TODO optimize, avoid to create several instance of armor model
-	public static final ArmorSetRegistryObject ANUBIS_ARMOR_SET = new ArmorSetRegistryObject("anubis_armor", RAIJIN, () -> AnubisModel::new);
-	public static final ArmorSetRegistryObject CENTURION_ARMOR_SET = new ArmorSetRegistryObject("centurion_armor", IRON_PLATE, () -> CenturionArmorModel::new);
+	public static final ArmorSetRegistryObject ANUBIS_ARMOR_SET = new ArmorSetRegistryObject("anubis_armor", ANUBIS, () -> AnubisArmorModel::new);
+	public static final ArmorSetRegistryObject CENTURION_ARMOR_SET = new ArmorSetRegistryObject("centurion_armor", CENTURION, () -> CenturionArmorModel::new);
 	public static final ArmorSetRegistryObject IRON_PLATE_ARMOR_SET = new ArmorSetRegistryObject("iron_plate_armor", IRON_PLATE, () -> IronPlateArmorModel::new);
 	public static final ArmorSetRegistryObject HOLY_ARMOR_SET = new ArmorSetRegistryObject("holy_armor", HOLY, () -> HolyArmorModel::new);
 	public static final ArmorSetRegistryObject PHARAOH_ARMOR_SET = new ArmorSetRegistryObject("pharaoh_armor", PHARAOH, () -> PharaohArmorModel::new);
 	public static final ArmorSetRegistryObject JAPANESE_LIGHT_ARMOR_SET = new ArmorSetRegistryObject("japanese_light_armor", JAPANESE_LIGHT, () -> JapaneseLightArmorModel::new);
 	public static final ArmorSetRegistryObject O_YOROI_ARMOR_SET = new ArmorSetRegistryObject("o_yoroi_armor", O_YOROI, () -> OYoroiArmorModel::new);
-	public static final ArmorSetRegistryObject QUETZALCOATL_ARMOR_SET = new ArmorSetRegistryObject("quetzalcoatl_armor", RAIJIN, () -> QuetzalcoatlModel::new);
+	public static final ArmorSetRegistryObject QUETZALCOATL_ARMOR_SET = new ArmorSetRegistryObject("quetzalcoatl_armor", QUETZALCOATL, () -> QuetzalcoatlModel::new);
 	public static final ArmorSetRegistryObject RAIJIN_ARMOR_SET = new ArmorSetRegistryObject("raijin_armor", RAIJIN, () -> RaijinArmorModel::new);
 
 	private static RegistryObject<Item> reg(final String name, final Item item) {

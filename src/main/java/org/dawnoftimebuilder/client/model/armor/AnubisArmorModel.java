@@ -5,7 +5,7 @@ import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 
-public class AnubisModel<T extends LivingEntity> extends CustomArmorModel<T> {
+public class AnubisArmorModel<T extends LivingEntity> extends CustomArmorModel<T> {
 
 	//Helmet
 	public ModelRenderer earRight;
@@ -23,7 +23,7 @@ public class AnubisModel<T extends LivingEntity> extends CustomArmorModel<T> {
 	//Leggings
 	public ModelRenderer ribbonLegs;
 
-	public AnubisModel(EquipmentSlotType slot, boolean isSteve, float scale) {
+	public AnubisArmorModel(EquipmentSlotType slot, boolean isSteve, float scale) {
 		super(slot, 128, 64, scale);
 
 		switch (slot) {

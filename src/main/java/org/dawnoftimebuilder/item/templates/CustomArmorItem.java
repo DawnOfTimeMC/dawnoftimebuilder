@@ -22,7 +22,6 @@ import net.minecraft.dispenser.IBlockSource;
 import net.minecraft.dispenser.IDispenseItemBehavior;
 import net.minecraft.enchantment.IArmorVanishable;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.IEquipable;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.ai.attributes.Attribute;
@@ -42,7 +41,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.extensions.IForgeItem;
 
 public abstract class CustomArmorItem extends ArmorItem implements IArmorVanishable {
 
@@ -102,8 +100,8 @@ public abstract class CustomArmorItem extends ArmorItem implements IArmorVanisha
 	public CustomArmorItem(String setNameIn, String pieceNameIn, IArmorMaterial materialIn, EquipmentSlotType slotIn) {
 		super(materialIn, slotIn, new Item.Properties().stacksTo(1).tab(DOTB_TAB)
 				.defaultDurability(materialIn.getDurabilityForSlot(slotIn)));
-		setName = setNameIn;
-		material = materialIn;
+		this.setName = setNameIn;
+		this.material = materialIn;
 		this.pieceName = pieceNameIn;
 		this.slot = slotIn;
 		DispenserBlock.registerBehavior(this, DISPENSE_ITEM_BEHAVIOR);
@@ -167,7 +165,7 @@ public abstract class CustomArmorItem extends ArmorItem implements IArmorVanisha
 	public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlotType slot, String type) {
 		if (entity instanceof AbstractClientPlayerEntity) {
 			if ("slim".equals(((AbstractClientPlayerEntity) entity).getModelName())) {
-				return MOD_ID + ":textures/models/armor/" + this.pieceName + "_slim.png";
+				return MOD_ID + ":textures/models/armor/" + this.setName + "_slim.png";
 			}
 		}
 		return MOD_ID + ":textures/models/armor/" + this.setName + ".png";
