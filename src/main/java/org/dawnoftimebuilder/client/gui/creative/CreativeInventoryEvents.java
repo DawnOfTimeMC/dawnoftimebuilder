@@ -94,6 +94,7 @@ public class CreativeInventoryEvents {
 
             CreativeScreen screen = (CreativeScreen) event.getGui();
             if (screen.getSelectedTab() == DOTB_TAB.getId()) {
+                this.updateItems(screen);
                 this.btnScrollUp.visible = true;
                 this.btnScrollDown.visible = true;
                 this.discord.visible = true;
@@ -112,21 +113,6 @@ public class CreativeInventoryEvents {
                 this.github.visible = false;
                 tabDoTBSelected = false;
                 this.buttons.forEach(button -> button.visible = false);
-            }
-        }
-    }
-
-    @SubscribeEvent
-    public void onScreenClick(GuiScreenEvent.MouseClickedEvent.Pre event) {
-        if (event.getButton() != GLFW.GLFW_MOUSE_BUTTON_LEFT) return;
-        if (event.getGui() instanceof CreativeScreen) {
-            for (CategoryButton button : this.buttons) {
-                if (button.isMouseOver(event.getMouseX(), event.getMouseY())) {
-                    if (button.mouseReleased(event.getMouseX(), event.getMouseY(), event.getButton())) {
-                        updateItems(((CreativeScreen) event.getGui()));
-                        return;
-                    }
-                }
             }
         }
     }
