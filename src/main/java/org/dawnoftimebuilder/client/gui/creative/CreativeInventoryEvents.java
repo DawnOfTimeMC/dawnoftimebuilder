@@ -200,7 +200,19 @@ public class CreativeInventoryEvents {
         if (event.getGuiContainer() instanceof CreativeScreen) {
             CreativeScreen screen = (CreativeScreen) event.getGuiContainer();
             if (screen.getSelectedTab() == DOTB_TAB.getId()) {
-                updateItems(screen);
+                if (!tabDoTBSelected) {
+                    updateItems(screen);
+                    tabDoTBSelected = true;
+                }
+            } else {
+                tabDoTBSelected = false;
+                this.btnScrollUp.visible = false;
+                this.btnScrollDown.visible = false;
+                this.discord.visible = false;
+                this.curse.visible = false;
+                this.patreon.visible = false;
+                this.github.visible = false;
+                this.buttons.forEach(button -> button.visible = false);
             }
         }
     }
