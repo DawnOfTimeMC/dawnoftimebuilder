@@ -1,0 +1,12 @@
+{
+    "variants": {
+        "axis=x,vertical_connection=under": { "model": "dawnoftimebuilder:block/french/limestone_chimney_top" },
+        "axis=x,vertical_connection=both": { "model": "dawnoftimebuilder:block/french/limestone_chimney_middle" },
+        "axis=x,vertical_connection=above": { "model": "dawnoftimebuilder:block/french/limestone_chimney_bottom" },
+        "axis=x,vertical_connection=none": { "model": "dawnoftimebuilder:block/french/limestone_chimney_top" },
+        "axis=z,vertical_connection=under": { "model": "dawnoftimebuilder:block/french/limestone_chimney_top", "y": 90 },
+        "axis=z,vertical_connection=both": { "model": "dawnoftimebuilder:block/french/limestone_chimney_middle" },
+        "axis=z,vertical_connection=above": { "model": "dawnoftimebuilder:block/french/limestone_chimney_bottom" },
+        "axis=z,vertical_connection=none": { "model": "dawnoftimebuilder:block/french/limestone_chimney_top", "y": 90 }
+    }
+}

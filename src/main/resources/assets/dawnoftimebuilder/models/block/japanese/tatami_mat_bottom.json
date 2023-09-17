@@ -1,0 +1,20 @@
+{
+	"render_type": "minecraft:cutout",
+	"textures": {
+		"texture": "dawnoftimebuilder:block/tatami_mat",
+		"particle": "dawnoftimebuilder:block/tatami_mat"
+	},
+	"elements": [
+		{
+			"from": [0, 0, 0],
+			"to": [16, 1, 16],
+			"faces": {
+				"north": {"uv": [0, 0, 16, 1], "texture": "#texture", "cullface": "north"},
+				"east": {"uv": [0, 0, 16, 1], "texture": "#texture", "cullface": "east"},
+				"west": {"uv": [0, 0, 16, 1], "texture": "#texture", "cullface": "west"},
+				"up": {"uv": [0, 0, 16, 16], "texture": "#texture"},
+				"down": {"uv": [0, 16, 16, 0], "texture": "#texture", "cullface": "down"}
+			}
+		}
+	]
+}

@@ -1,0 +1,46 @@
+{
+	"credit": "Made with Blockbench",
+	"textures": {
+		"particle": "dawnoftimebuilder:block/lattice_stone_bricks_window",
+		"texture": "dawnoftimebuilder:block/lattice_stone_bricks_window",
+		"tete": "dawnoftimebuilder:block/lattice_glass"
+	},
+	"elements": [
+		{
+			"from": [0, 0, 3],
+			"to": [16, 16, 5],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 8, 4]},
+			"faces": {
+				"north": {"uv": [0, 0, 16, 16], "texture": "#tete"},
+				"east": {"uv": [7, 0, 9, 16], "texture": "#tete", "cullface": "east"},
+				"south": {"uv": [0, 0, 16, 16], "texture": "#tete"},
+				"up": {"uv": [0, 7, 16, 9], "texture": "#tete", "cullface": "up"},
+				"down": {"uv": [0, 7, 16, 9], "texture": "#tete", "cullface": "down"}
+			}
+		},
+		{
+			"from": [-3, -0.01, 3.01],
+			"to": [3, 16.01, 7.02],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 8, 5]},
+			"faces": {
+				"north": {"uv": [0, 9, 16, 13], "rotation": 90, "texture": "#texture"},
+				"east": {"uv": [0, 14, 16, 10], "rotation": 270, "texture": "#texture"},
+				"south": {"uv": [0, 8, 16, 14], "rotation": 90, "texture": "#texture"},
+				"west": {"uv": [16, 8, 0, 12], "rotation": 90, "texture": "#texture"},
+				"up": {"uv": [0, 9, 6, 13], "texture": "#texture", "cullface": "up"},
+				"down": {"uv": [0, 9, 6, 13], "texture": "#texture", "cullface": "down"}
+			}
+		},
+		{
+			"from": [-2.17157, 0, 1],
+			"to": [2.07143, 16, 5.243],
+			"rotation": {"angle": 45, "axis": "y", "origin": [-0.17157, -0.01, 3]},
+			"faces": {
+				"north": {"uv": [0, 10, 16, 14], "rotation": 90, "texture": "#texture"},
+				"east": {"uv": [0, 8, 16, 12], "rotation": 90, "texture": "#texture"},
+				"up": {"uv": [0, 9, 4, 13], "texture": "#texture"},
+				"down": {"uv": [0, 9, 4, 13], "texture": "#texture"}
+			}
+		}
+	]
+}

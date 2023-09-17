@@ -1,0 +1,10 @@
+{
+    "variants": {
+        "": [
+            { "model": "dawnoftimebuilder:block/japanese/charred_spruce_foundation" },
+            { "model": "dawnoftimebuilder:block/japanese/charred_spruce_foundation", "y": 90 },
+            { "model": "dawnoftimebuilder:block/japanese/charred_spruce_foundation", "y": 180 },
+            { "model": "dawnoftimebuilder:block/japanese/charred_spruce_foundation", "y": 270 }
+        ]
+    }
+}

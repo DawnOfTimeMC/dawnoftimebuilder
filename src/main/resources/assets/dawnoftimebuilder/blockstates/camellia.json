@@ -1,0 +1,16 @@
+{
+    "variants": {
+        "age=0,cut=true": { "model": "dawnoftimebuilder:block/japanese/camellia_stage_0" },
+        "age=0,cut=false": { "model": "dawnoftimebuilder:block/japanese/camellia_stage_0" },
+        "age=1,cut=true": { "model": "dawnoftimebuilder:block/japanese/camellia_stage_1" },
+        "age=1,cut=false": { "model": "dawnoftimebuilder:block/japanese/camellia_stage_1" },
+        "age=2,cut=true": { "model": "dawnoftimebuilder:block/japanese/camellia_stage_2" },
+        "age=2,cut=false": { "model": "dawnoftimebuilder:block/japanese/camellia_stage_2" },
+        "age=3,cut=true": { "model": "dawnoftimebuilder:block/japanese/camellia_stage_3_cut" },
+        "age=3,cut=false": { "model": "dawnoftimebuilder:block/japanese/camellia_stage_3" },
+        "age=4,cut=true": { "model": "dawnoftimebuilder:block/japanese/camellia_stage_4_cut" },
+        "age=4,cut=false": { "model": "dawnoftimebuilder:block/japanese/camellia_stage_4" },
+        "age=5,cut=true": { "model": "dawnoftimebuilder:block/japanese/camellia_stage_5" },
+        "age=5,cut=false": { "model": "dawnoftimebuilder:block/japanese/camellia_stage_5" }
+    }
+}

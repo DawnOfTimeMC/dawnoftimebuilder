@@ -1,0 +1,16 @@
+{
+    "variants": {
+        "facing=north,multiblock=0": { "model": "dawnoftimebuilder:block/roman/marble_statue_mars_0", "y": 180 },
+        "facing=east,multiblock=0": { "model": "dawnoftimebuilder:block/roman/marble_statue_mars_0", "y": 270 },
+        "facing=south,multiblock=0": { "model": "dawnoftimebuilder:block/roman/marble_statue_mars_0" },
+        "facing=west,multiblock=0": { "model": "dawnoftimebuilder:block/roman/marble_statue_mars_0", "y": 90 },
+        "facing=north,multiblock=1": { "model": "dawnoftimebuilder:block/roman/marble_statue_mars_1", "y": 180 },
+        "facing=east,multiblock=1": { "model": "dawnoftimebuilder:block/roman/marble_statue_mars_1", "y": 270 },
+        "facing=south,multiblock=1": { "model": "dawnoftimebuilder:block/roman/marble_statue_mars_1" },
+        "facing=west,multiblock=1": { "model": "dawnoftimebuilder:block/roman/marble_statue_mars_1", "y": 90 },
+        "facing=north,multiblock=2": { "model": "dawnoftimebuilder:block/roman/marble_statue_mars_2", "y": 180 },
+        "facing=east,multiblock=2": { "model": "dawnoftimebuilder:block/roman/marble_statue_mars_2", "y": 270 },
+        "facing=south,multiblock=2": { "model": "dawnoftimebuilder:block/roman/marble_statue_mars_2" },
+        "facing=west,multiblock=2": { "model": "dawnoftimebuilder:block/roman/marble_statue_mars_2", "y": 90 }
+    }
+}

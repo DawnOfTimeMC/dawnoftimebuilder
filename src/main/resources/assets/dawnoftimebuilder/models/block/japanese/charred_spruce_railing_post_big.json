@@ -1,0 +1,21 @@
+{
+	"textures": {
+		"1": "dawnoftimebuilder:block/charred_spruce_wall_top",
+		"slab": "dawnoftimebuilder:block/charred_spruce_log_stripped",
+		"particle": "dawnoftimebuilder:block/charred_spruce_log_stripped"
+	},
+	"elements": [
+		{
+			"from": [4, -0.001, 4],
+			"to": [12, 16.001, 12],
+			"faces": {
+				"north": {"uv": [4, 0, 12, 16], "texture": "#slab"},
+				"east": {"uv": [4, 0, 12, 16], "texture": "#slab"},
+				"south": {"uv": [4, 0, 12, 16], "texture": "#slab"},
+				"west": {"uv": [4, 0, 12, 16], "texture": "#slab"},
+				"up": {"uv": [4, 4, 12, 12], "texture": "#1"},
+				"down": {"uv": [4, 4, 12, 12], "texture": "#1"}
+			}
+		}
+	]
+}

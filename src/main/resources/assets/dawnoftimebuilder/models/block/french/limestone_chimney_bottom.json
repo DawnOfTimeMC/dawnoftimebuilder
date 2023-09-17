@@ -1,0 +1,30 @@
+{
+	"textures": {
+		"1": "dawnoftimebuilder:block/limestone_bricks_wall_side",
+		"particle": "dawnoftimebuilder:block/limestone_bricks_slab"
+	},
+	"elements": [
+		{
+			"from": [0, 0, 0],
+			"to": [16, 8, 16],
+			"faces": {
+				"north": {"uv": [0, 8, 16, 16], "texture": "#particle"},
+				"east": {"uv": [0, 0, 16, 8], "texture": "#particle"},
+				"south": {"uv": [0, 8, 16, 16], "texture": "#particle"},
+				"west": {"uv": [0, 0, 16, 8], "texture": "#particle"},
+				"up": {"uv": [0, 0, 16, 16], "texture": "#particle"},
+				"down": {"uv": [0, 16, 16, 0], "texture": "#particle", "cullface": "down"}
+			}
+		},
+		{
+			"from": [2, 8, 2],
+			"to": [14, 16, 14],
+			"faces": {
+				"north": {"uv": [0, 0, 12, 8], "texture": "#1"},
+				"east": {"uv": [0, 0, 12, 8], "texture": "#1"},
+				"south": {"uv": [0, 0, 12, 8], "texture": "#1"},
+				"west": {"uv": [0, 0, 12, 8], "texture": "#1"}
+			}
+		}
+	]
+}

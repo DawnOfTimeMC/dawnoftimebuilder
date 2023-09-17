@@ -1,0 +1,54 @@
+{
+	"render_type": "minecraft:cutout",
+	"textures": {
+		"texture": "dawnoftimebuilder:block/serpent_scultped_column",
+		"particle": "dawnoftimebuilder:block/serpent_scultped_column"
+	},
+	"elements": [
+		{
+			"from": [5, 0, 10],
+			"to": [11, 10, 16],
+			"faces": {
+				"north": {"uv": [10, 7.75, 11.5, 10.25], "texture": "#texture"},
+				"east": {"uv": [14.5, 7.75, 16, 10.25], "texture": "#texture"},
+				"south": {"uv": [13, 7.75, 14.5, 10.25], "texture": "#texture", "cullface": "south"},
+				"west": {"uv": [11.5, 7.75, 13, 10.25], "texture": "#texture"},
+				"down": {"uv": [8.5, 7.25, 10, 8.75], "texture": "#texture", "cullface": "down"}
+			}
+		},
+		{
+			"from": [5, 10, 6],
+			"to": [11, 16, 16],
+			"faces": {
+				"north": {"uv": [2.5, 10, 4, 11.5], "texture": "#texture"},
+				"east": {"uv": [0, 10, 2.5, 11.5], "texture": "#texture"},
+				"south": {"uv": [7, 8.5, 8.5, 10], "texture": "#texture", "cullface": "south"},
+				"west": {"uv": [4, 10, 6.5, 11.5], "texture": "#texture"},
+				"up": {"uv": [0, 7.5, 1.5, 10], "texture": "#texture", "cullface": "up"},
+				"down": {"uv": [1.5, 7.5, 3, 10], "texture": "#texture"}
+			}
+		},
+		{
+			"from": [6, 11, 3],
+			"to": [10, 16, 6],
+			"faces": {
+				"north": {"uv": [3.75, 8.25, 4.75, 9.5], "texture": "#texture"},
+				"east": {"uv": [3, 8.25, 3.75, 9.5], "texture": "#texture"},
+				"west": {"uv": [4.75, 8.25, 5.5, 9.5], "texture": "#texture"},
+				"up": {"uv": [5.75, 9.25, 6.75, 10], "texture": "#texture", "cullface": "up"},
+				"down": {"uv": [6.5, 10, 7.5, 10.75], "texture": "#texture"}
+			}
+		},
+		{
+			"from": [7, 12, 1],
+			"to": [9, 15, 3],
+			"faces": {
+				"north": {"uv": [6, 8.5, 6.5, 9.25], "texture": "#texture"},
+				"east": {"uv": [5.5, 8.5, 6, 9.25], "texture": "#texture"},
+				"west": {"uv": [6.5, 8.5, 7, 9.25], "texture": "#texture"},
+				"up": {"uv": [5.25, 9.5, 5.75, 10], "texture": "#texture"},
+				"down": {"uv": [4.75, 9.5, 5.25, 10], "texture": "#texture"}
+			}
+		}
+	]
+}

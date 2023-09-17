@@ -1,0 +1,51 @@
+{
+	"textures": {
+		"texture": "dawnoftimebuilder:block/sandstone_column",
+		"particle": "dawnoftimebuilder:block/sandstone_column_top"
+	},
+	"elements": [ 	 
+		{	"from": [ 4, 0, 4 ],
+			"to": [ 12, 16, 12 ],
+			"faces": {
+				"down": { "uv": [ 10, 10, 14, 14 ], "texture": "#texture", "cullface": "down" },
+				"up": { "uv": [ 10, 10, 14, 14 ], "texture": "#texture", "cullface": "up" },
+				"north": { "uv": [ 2, 4, 6, 12 ], "texture": "#texture" },
+				"south": { "uv": [ 2, 4, 6, 12 ], "texture": "#texture" },
+				"west": { "uv": [ 2, 4, 6, 12 ], "texture": "#texture" },
+				"east": { "uv": [ 2, 4, 6, 12 ], "texture": "#texture" }
+			}
+		}
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"rotation":  [ 75, 45, 0 ],
+			"translation":  [ 0, 1.5, 0 ],
+			"scale":  [ 0.375, 0.375, 0.375 ]
+		},
+		"thirdperson_lefthand": {
+			"rotation":  [ 75, 45, 0 ],
+			"translation":  [ 0, 1.5, 0 ],
+			"scale":  [ 0.375, 0.375, 0.375 ]
+		},
+		"firstperson_righthand": {
+            "rotation": [ 0, 90, 0 ],
+            "scale": [ 0.40, 0.40, 0.40 ]
+		},
+		"firstperson_lefthand": {
+            "rotation": [ 0, 90, 0 ],
+            "scale": [ 0.40, 0.40, 0.40 ]
+		},
+		"gui": {
+			"rotation":  [ 30, 225, 0 ],
+			"scale":  [ 0.625, 0.625, 0.625 ]
+		},
+		"ground": {
+			"translation":  [ 0, 3, 0 ],
+			"scale":  [ 0.3, 0.3, 0.3 ]
+		},
+        "fixed": {
+            "translation": [ 0, 0, -1],
+            "scale":[ 0.5, 0.5, 0.5 ]
+        }
+	}
+}

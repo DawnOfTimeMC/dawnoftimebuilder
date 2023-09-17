@@ -1,0 +1,28 @@
+{
+	"variants": {
+		"age=0,cut=false,half=bottom": { "model": "dawnoftimebuilder:block/japanese/mulberry_stage_0" },
+		"age=0,cut=true,half=bottom": { "model": "dawnoftimebuilder:block/japanese/mulberry_stage_0" },
+		"age=0,cut=false,half=top": { "model": "block/air" },
+		"age=0,cut=true,half=top": { "model": "block/air" },
+		"age=1,cut=false,half=bottom": { "model": "dawnoftimebuilder:block/japanese/mulberry_stage_1" },
+		"age=1,cut=true,half=bottom": { "model": "dawnoftimebuilder:block/japanese/mulberry_stage_1" },
+		"age=1,cut=false,half=top": { "model": "block/air" },
+		"age=1,cut=true,half=top": { "model": "block/air" },
+		"age=2,cut=false,half=bottom": { "model": "dawnoftimebuilder:block/japanese/mulberry_stage_2_bottom" },
+		"age=2,cut=true,half=bottom": { "model": "dawnoftimebuilder:block/japanese/mulberry_stage_2_bottom" },
+		"age=2,cut=false,half=top": { "model": "dawnoftimebuilder:block/japanese/mulberry_stage_2_top" },
+		"age=2,cut=true,half=top": { "model": "dawnoftimebuilder:block/japanese/mulberry_stage_2_top" },
+		"age=3,cut=false,half=bottom": { "model": "dawnoftimebuilder:block/japanese/mulberry_stage_3_bottom" },
+		"age=3,cut=true,half=bottom": { "model": "dawnoftimebuilder:block/japanese/mulberry_stage_3_bottom_cut" },
+		"age=3,cut=false,half=top": { "model": "dawnoftimebuilder:block/japanese/mulberry_stage_3_top" },
+		"age=3,cut=true,half=top": { "model": "dawnoftimebuilder:block/japanese/mulberry_stage_3_top_cut" },
+		"age=4,cut=false,half=bottom": { "model": "dawnoftimebuilder:block/japanese/mulberry_stage_4_bottom" },
+		"age=4,cut=true,half=bottom": { "model": "dawnoftimebuilder:block/japanese/mulberry_stage_4_bottom" },
+		"age=4,cut=false,half=top": { "model": "dawnoftimebuilder:block/japanese/mulberry_stage_4_top" },
+		"age=4,cut=true,half=top": { "model": "dawnoftimebuilder:block/japanese/mulberry_stage_4_top" },
+		"age=5,cut=false,half=bottom": { "model": "dawnoftimebuilder:block/japanese/mulberry_stage_5_bottom" },
+		"age=5,cut=true,half=bottom": { "model": "dawnoftimebuilder:block/japanese/mulberry_stage_5_bottom" },
+		"age=5,cut=false,half=top": { "model": "dawnoftimebuilder:block/japanese/mulberry_stage_5_top" },
+		"age=5,cut=true,half=top": { "model": "dawnoftimebuilder:block/japanese/mulberry_stage_5_top" }
+	}
+}

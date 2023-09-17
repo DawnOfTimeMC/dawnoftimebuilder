@@ -1,0 +1,117 @@
+{
+	"credit": "Made with Blockbench",
+	"textures": {
+		"tete": "dawnoftimebuilder:block/lattice_glass",
+		"particle": "dawnoftimebuilder:block/lattice_stone_bricks_window",
+		"1_texture": "dawnoftimebuilder:block/lattice_stone_bricks_window"
+	},
+	"elements": [
+		{
+			"from": [-3, -0.01, 3.01],
+			"to": [3, 16.01, 7.02],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 8, 5]},
+			"faces": {
+				"north": {"uv": [0, 9, 16, 13], "rotation": 90, "texture": "#1_texture"},
+				"east": {"uv": [0, 14, 16, 10], "rotation": 270, "texture": "#1_texture"},
+				"south": {"uv": [0, 8, 16, 14], "rotation": 90, "texture": "#1_texture"},
+				"west": {"uv": [16, 8, 0, 12], "rotation": 90, "texture": "#1_texture"},
+				"up": {"uv": [0, 9, 6, 13], "texture": "#1_texture", "cullface": "up"},
+				"down": {"uv": [0, 9, 6, 13], "texture": "#1_texture", "cullface": "down"}
+			}
+		},
+		{
+			"from": [-2.17157, 0, 1],
+			"to": [2.07143, 16, 5.243],
+			"rotation": {"angle": 45, "axis": "y", "origin": [-0.17157, -0.01, 3]},
+			"faces": {
+				"north": {"uv": [0, 10, 16, 14], "rotation": 90, "texture": "#1_texture"},
+				"east": {"uv": [0, 8, 16, 12], "rotation": 90, "texture": "#1_texture"},
+				"up": {"uv": [0, 9, 4, 13], "texture": "#1_texture"},
+				"down": {"uv": [0, 9, 4, 13], "texture": "#1_texture"}
+			}
+		},
+		{
+			"from": [3, 0, 3],
+			"to": [16, 2, 5],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 8, 4]},
+			"faces": {
+				"north": {"uv": [0, 14, 13, 16], "texture": "#tete"},
+				"east": {"uv": [7, 14, 9, 16], "texture": "#tete", "cullface": "east"},
+				"south": {"uv": [3, 14, 16, 16], "texture": "#tete"},
+				"west": {"uv": [7, 14, 9, 16], "texture": "#tete", "cullface": "west"},
+				"down": {"uv": [3, 7, 16, 9], "texture": "#tete", "cullface": "down"}
+			}
+		},
+		{
+			"from": [3, 8, 3],
+			"to": [16, 16, 5],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 8, 4]},
+			"faces": {
+				"north": {"uv": [0, 0, 13, 8], "texture": "#1_texture"},
+				"east": {"uv": [10, 0, 12, 8], "texture": "#1_texture", "cullface": "east"},
+				"south": {"uv": [3, 0, 16, 8], "texture": "#1_texture"},
+				"west": {"uv": [4, 0, 6, 8], "texture": "#1_texture", "cullface": "west"},
+				"up": {"uv": [3, 5, 16, 7], "texture": "#1_texture", "cullface": "up"}
+			}
+		},
+		{
+			"from": [0.01, 2.12107, 2.94949],
+			"to": [15.99, 6.36407, 7.19249],
+			"rotation": {"angle": 45, "axis": "x", "origin": [8, 7.12107, 4.94949]},
+			"faces": {
+				"north": {"uv": [0, 12, 16, 8], "texture": "#1_texture"},
+				"east": {"uv": [10, 9, 16, 13], "rotation": 90, "texture": "#1_texture", "cullface": "east"},
+				"west": {"uv": [0, 9, 6, 13], "rotation": 90, "texture": "#1_texture", "cullface": "west"},
+				"down": {"uv": [0, 10, 16, 14], "texture": "#1_texture"}
+			}
+		},
+		{
+			"from": [0, 2, 3],
+			"to": [16, 8, 7],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 8, 5]},
+			"faces": {
+				"east": {"uv": [10, 9, 16, 13], "rotation": 90, "texture": "#1_texture", "cullface": "east"},
+				"south": {"uv": [0, 8, 16, 14], "texture": "#1_texture"},
+				"west": {"uv": [0, 9, 6, 13], "rotation": 90, "texture": "#1_texture", "cullface": "west"},
+				"up": {"uv": [0, 10, 16, 14], "texture": "#1_texture"},
+				"down": {"uv": [16, 8, 0, 12], "texture": "#1_texture"}
+			}
+		}
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [75, 45, 0],
+			"translation": [0, 2.5, 0],
+			"scale": [0.375, 0.375, 0.375]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [75, 45, 0],
+			"translation": [0, 2.5, 0],
+			"scale": [0.375, 0.375, 0.375]
+		},
+		"firstperson_righthand": {
+			"rotation": [0, 90, 0],
+			"scale": [0.4, 0.4, 0.4]
+		},
+		"firstperson_lefthand": {
+			"rotation": [0, 90, 0],
+			"scale": [0.4, 0.4, 0.4]
+		},
+		"ground": {
+			"translation": [0, 3, 0],
+			"scale": [0.3, 0.3, 0.3]
+		}
+	},
+	"groups": [
+		{
+			"name": "lattice_stone_bricks_window_side_bottom_side",
+			"origin": [8, 8, 8],
+			"children": [0, 1]
+		},
+		{
+			"name": "lattice_stone_bricks_window_side_top",
+			"origin": [8, 8, 8],
+			"children": [2, 3, 4, 5]
+		}
+	]
+}

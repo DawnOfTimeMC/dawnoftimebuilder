@@ -1,0 +1,29 @@
+{
+    "multipart": [
+        {   "apply": { "model": "block/spruce_planks", "uvlock" : true }},
+        {   "when": { "half": "top", "facing": "south" },
+            "apply": { "model": "dawnoftimebuilder:block/japanese/tatami_floor_top" }
+        },
+        {   "when": { "half": "top", "facing": "west" },
+            "apply": { "model": "dawnoftimebuilder:block/japanese/tatami_floor_top", "y": 90 }
+        },
+        {   "when": { "half": "top", "facing": "north" },
+            "apply": { "model": "dawnoftimebuilder:block/japanese/tatami_floor_top", "y": 180 }
+        },
+        {   "when": { "half": "top", "facing": "east" },
+            "apply": { "model": "dawnoftimebuilder:block/japanese/tatami_floor_top", "y": 270 }
+        },
+        {   "when": { "half": "bottom", "facing": "south" },
+            "apply": { "model": "dawnoftimebuilder:block/japanese/tatami_floor_bottom", "y": 180  }
+        },
+        {   "when": { "half": "bottom", "facing": "west" },
+            "apply": { "model": "dawnoftimebuilder:block/japanese/tatami_floor_bottom", "y": 270 }
+        },
+        {   "when": { "half": "bottom", "facing": "north" },
+            "apply": { "model": "dawnoftimebuilder:block/japanese/tatami_floor_bottom"}
+        },
+        {   "when": { "half": "bottom", "facing": "east" },
+            "apply": { "model": "dawnoftimebuilder:block/japanese/tatami_floor_bottom", "y": 90 }
+        }
+    ]
+}

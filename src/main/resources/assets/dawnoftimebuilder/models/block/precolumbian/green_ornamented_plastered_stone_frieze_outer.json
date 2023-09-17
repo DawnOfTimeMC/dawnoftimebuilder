@@ -1,0 +1,43 @@
+{
+	"textures": {
+		"frieze": "dawnoftimebuilder:block/green_ornamented_plastered_stone_frieze",
+		"particle": "dawnoftimebuilder:block/green_ornamented_plastered_stone_frieze",
+		"top": "dawnoftimebuilder:block/plastered_stone_corner"
+	},
+	"elements": [
+		{
+			"from": [0, 0, 8],
+			"to": [8, 4, 16],
+			"faces": {
+				"north": {"uv": [8, 12, 16, 16], "texture": "#frieze"},
+				"east": {"uv": [0, 12, 8, 16], "texture": "#frieze"},
+				"south": {"uv": [0, 12, 8, 16], "texture": "#frieze", "cullface": "south"},
+				"west": {"uv": [0, 12, 8, 16], "texture": "#frieze", "cullface": "west"},
+				"up": {"uv": [8, 8, 16, 16], "texture": "#top", "rotation": 270},
+				"down": {"uv": [8, 8, 16, 16], "texture": "#top", "cullface": "down"}
+			}
+		},
+		{
+			"from": [0, 4, 12],
+			"to": [4, 11, 16],
+			"faces": {
+				"north": {"uv": [12, 5, 16, 12], "texture": "#frieze"},
+				"east": {"uv": [8, 5, 12, 12], "texture": "#frieze"},
+				"south": {"uv": [4, 5, 8, 12], "texture": "#frieze", "cullface": "south"},
+				"west": {"uv": [0, 5, 4, 12], "texture": "#frieze", "cullface": "west"}
+			}
+		},
+		{
+			"from": [0, 11, 8],
+			"to": [8, 16, 16],
+			"faces": {
+				"north": {"uv": [8, 0, 16, 5], "texture": "#frieze"},
+				"east": {"uv": [0, 0, 8, 5], "texture": "#frieze"},
+				"south": {"uv": [0, 0, 8, 5], "texture": "#frieze", "cullface": "south"},
+				"west": {"uv": [8, 0, 16, 5], "texture": "#frieze", "cullface": "west"},
+				"up": {"uv": [8, 8, 16, 16], "texture": "#top", "rotation": 270, "cullface": "up"},
+				"down": {"uv": [8, 8, 16, 16], "texture": "#top"}
+			}
+		}
+	]
+}

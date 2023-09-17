@@ -1,0 +1,20 @@
+{
+    "variants": {
+        "facing=east,vertical_connection=under": { "model": "dawnoftimebuilder:block/roman/sandstone_sided_column_top", "y" : 90},
+        "facing=east,vertical_connection=both": { "model": "dawnoftimebuilder:block/roman/sandstone_sided_column_middle", "y" : 90},
+        "facing=east,vertical_connection=above": { "model": "dawnoftimebuilder:block/roman/sandstone_sided_column_bottom", "y" : 90},
+        "facing=east,vertical_connection=none": { "model": "dawnoftimebuilder:block/roman/sandstone_sided_column_middle", "y" : 90},
+        "facing=south,vertical_connection=under": { "model": "dawnoftimebuilder:block/roman/sandstone_sided_column_top", "y" : 180},
+        "facing=south,vertical_connection=both": { "model": "dawnoftimebuilder:block/roman/sandstone_sided_column_middle", "y" : 180},
+        "facing=south,vertical_connection=above": { "model": "dawnoftimebuilder:block/roman/sandstone_sided_column_bottom", "y" : 180},
+        "facing=south,vertical_connection=none": { "model": "dawnoftimebuilder:block/roman/sandstone_sided_column_middle", "y" : 180},
+        "facing=west,vertical_connection=under": { "model": "dawnoftimebuilder:block/roman/sandstone_sided_column_top", "y" : 270},
+        "facing=west,vertical_connection=both": { "model": "dawnoftimebuilder:block/roman/sandstone_sided_column_middle", "y" : 270},
+        "facing=west,vertical_connection=above": { "model": "dawnoftimebuilder:block/roman/sandstone_sided_column_bottom", "y" : 270},
+        "facing=west,vertical_connection=none": { "model": "dawnoftimebuilder:block/roman/sandstone_sided_column_middle", "y" : 270},
+        "facing=north,vertical_connection=under": { "model": "dawnoftimebuilder:block/roman/sandstone_sided_column_top"},
+        "facing=north,vertical_connection=both": { "model": "dawnoftimebuilder:block/roman/sandstone_sided_column_middle"},
+        "facing=north,vertical_connection=above": { "model": "dawnoftimebuilder:block/roman/sandstone_sided_column_bottom"},
+        "facing=north,vertical_connection=none": { "model": "dawnoftimebuilder:block/roman/sandstone_sided_column_middle"}
+    }
+}

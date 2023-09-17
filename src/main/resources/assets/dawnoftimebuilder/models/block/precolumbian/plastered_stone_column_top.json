@@ -1,0 +1,70 @@
+{
+	"textures": {
+		"end": "dawnoftimebuilder:block/plastered_stone_column_end",
+		"mid": "dawnoftimebuilder:block/plastered_stone_column_mid",
+		"particle": "dawnoftimebuilder:block/plastered_stone_column_mid"
+	},
+	"elements": [ 	 
+		{	"from": [ 6, 0, 3.1716 ],
+			"to": [ 10, 8, 12.8284 ],
+			"rotation": { "origin": [ 8, 0, 8 ], "axis": "y", "angle": -45 },
+			"faces": {
+				"north": { "uv": [ 0, 6, 2, 10 ], "texture": "#mid" },
+				"south": { "uv": [ 0, 6, 2, 10 ], "texture": "#mid" }
+			}
+		},
+		{	"from": [ 3.1716, 0, 5.9999 ],
+			"to": [ 12.8284, 8, 9.9999 ],
+			"faces": {
+				"west": { "uv": [ 6, 6, 8, 10 ], "texture": "#mid" },
+				"east": { "uv": [ 6, 6, 8, 10 ], "texture": "#mid" }
+			}
+		},
+		{	"from": [ 6, 0, 3.1716 ],
+			"to": [ 10, 8, 12.8284 ],
+			"faces": {
+				"north": { "uv": [ 2, 6, 4, 10 ], "texture": "#mid" },
+				"south": { "uv": [ 2, 6, 4, 10 ], "texture": "#mid" }
+			}
+		},
+		{	"from": [ 6, 0, 3.1716 ],
+			"to": [ 10, 8, 12.8284 ],
+			"rotation": { "origin": [ 8, 0, 8 ], "axis": "y", "angle": 45 },
+			"faces": {
+				"north": { "uv": [ 4, 6, 6, 10 ], "texture": "#mid" },
+				"south": { "uv": [ 4, 6, 6, 10 ], "texture": "#mid" }
+			}
+		},
+		{	"from": [ 1, 12, 1 ],
+			"to": [ 15, 16, 15 ],
+			"faces": {
+				"down": { "uv": [ 6, 9, 13, 16 ], "texture": "#end" },
+				"up": { "uv": [ 6, 9, 13, 16 ], "texture": "#end", "cullface": "up" },
+				"north": { "uv": [ 6, 7, 13, 9 ], "texture": "#end" },
+				"south": { "uv": [ 6, 7, 13, 9 ], "texture": "#end" },
+				"west": { "uv": [ 6, 7, 13, 9 ], "texture": "#end" },
+				"east": { "uv": [ 6, 7, 13, 9 ], "texture": "#end" }
+			}
+		},
+		{	"from": [ 2, 8, 2 ],
+			"to": [ 14, 10, 14 ],
+			"faces": {
+				"down": { "uv": [ 0, 10, 6, 16 ], "texture": "#end" },
+				"up": { "uv": [ 0, 10, 6, 16 ], "texture": "#end" },
+				"north": { "uv": [ 0, 7, 6, 8 ], "texture": "#end" },
+				"south": { "uv": [ 0, 7, 6, 8 ], "texture": "#end" },
+				"west": { "uv": [ 0, 7, 6, 8 ], "texture": "#end" },
+				"east": { "uv": [ 0, 7, 6, 8 ], "texture": "#end" }
+			}
+		},
+		{	"from": [ 3, 10, 3 ],
+			"to": [ 13, 12, 13 ],
+			"faces": {
+				"north": { "uv": [ 0, 6, 5, 7 ], "texture": "#end" },
+				"south": { "uv": [ 0, 6, 5, 7 ], "texture": "#end" },
+				"west": { "uv": [ 0, 6, 5, 7 ], "texture": "#end" },
+				"east": { "uv": [ 0, 6, 5, 7 ], "texture": "#end" }
+			}
+		}
+	]
+}

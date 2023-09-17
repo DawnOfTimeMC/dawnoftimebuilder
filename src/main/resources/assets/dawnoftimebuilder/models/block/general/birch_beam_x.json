@@ -1,0 +1,21 @@
+{
+	"render_type": "minecraft:cutout",
+	"textures": {
+		"1": "dawnoftimebuilder:block/birch_beam",
+		"particle": "dawnoftimebuilder:block/birch_beam"
+	},
+	"elements": [
+		{
+			"from": [0, 4, 4],
+			"to": [16, 12, 12],
+			"faces": {
+				"north": {"uv": [0, 4, 8, 8], "texture": "#1"},
+				"east": {"uv": [0, 0, 4, 4], "texture": "#1", "cullface": "east"},
+				"south": {"uv": [0, 4, 8, 8], "texture": "#1"},
+				"west": {"uv": [0, 0, 4, 4], "texture": "#1", "cullface": "west"},
+				"up": {"uv": [0, 4, 8, 8], "texture": "#1"},
+				"down": {"uv": [0, 4, 8, 8], "texture": "#1"}
+			}
+		}
+	]
+}

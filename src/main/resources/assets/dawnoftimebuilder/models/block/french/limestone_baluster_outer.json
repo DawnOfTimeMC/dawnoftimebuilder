@@ -1,0 +1,49 @@
+{
+	"textures": {
+		"particle": "dawnoftimebuilder:block/limestone_baluster",
+		"texture": "dawnoftimebuilder:block/limestone_baluster"
+	},
+	"elements": [ 	 
+		{	"from": [ 0, 0, 8 ],
+			"to": [ 8, 4, 16 ],
+			"faces": {
+				"down": { "uv": [ 12, 13, 16, 9 ], "texture": "#texture", "cullface": "down" },
+				"up": { "uv": [ 12, 13, 16, 9 ], "texture": "#texture", "rotation": 270 },
+				"north": { "uv": [ 0, 7, 4, 9 ], "texture": "#texture" },
+				"south": { "uv": [ 0, 7, 4, 9 ], "texture": "#texture", "cullface": "south" },
+				"west": { "uv": [ 8, 7, 12, 9 ], "texture": "#texture", "cullface": "west" },
+				"east": { "uv": [ 8, 7, 12, 9 ], "texture": "#texture" }
+			}
+		},
+		{	"from": [ 0, 14, 10 ],
+			"to": [ 6, 16, 16 ],
+			"faces": {
+				"down": { "uv": [ 11, 1, 14, 4 ], "texture": "#texture", "rotation": 90 },
+				"up": { "uv": [ 11, 1, 14, 4 ], "texture": "#texture", "cullface": "up" },
+				"north": { "uv": [ 0, 0, 3, 1 ], "texture": "#texture" },
+				"south": { "uv": [ 0, 0, 3, 1 ], "texture": "#texture", "cullface": "south" },
+				"west": { "uv": [ 8, 0, 11, 1 ], "texture": "#texture", "cullface": "west" },
+				"east": { "uv": [ 8, 0, 11, 1 ], "texture": "#texture" }
+			}
+		},
+		{	"from": [ 1, 10, 11 ],
+			"to": [ 5, 14, 15 ],
+			"faces": {
+				"north": { "uv": [ 0, 4, 2, 6 ], "texture": "#texture" },
+				"south": { "uv": [ 0, 4, 2, 6 ], "texture": "#texture" },
+				"west": { "uv": [ 0, 4, 2, 6 ], "texture": "#texture" },
+				"east": { "uv": [ 0, 4, 2, 6 ], "texture": "#texture" }
+			}
+		},
+		{	"from": [ 0, 4, 10 ],
+			"to": [ 6, 10, 16 ],
+			"faces": {
+				"up": { "uv": [ 5, 4, 8, 7 ], "texture": "#texture" },
+				"north": { "uv": [ 2, 4, 5, 7 ], "texture": "#texture" },
+				"south": { "uv": [ 2, 4, 5, 7 ], "texture": "#texture", "cullface": "south" },
+				"west": { "uv": [ 2, 4, 5, 7 ], "texture": "#texture", "cullface": "west" },
+				"east": { "uv": [ 2, 4, 5, 7 ], "texture": "#texture" }
+			}
+		}
+	]
+}

@@ -1,0 +1,8 @@
+{
+    "parent": "block/slab",
+    "textures": {
+        "bottom": "block/gravel",
+        "top": "dawnoftimebuilder:block/stepping_stones_top_4",
+        "side": "block/gravel"
+    }
+}

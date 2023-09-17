@@ -1,0 +1,10 @@
+{
+    "variants": {
+        "": [
+          { "model": "dawnoftimebuilder:block/japanese/cast_iron_teapot_gray" },
+          { "model": "dawnoftimebuilder:block/japanese/cast_iron_teapot_gray", "y": 90},
+          { "model": "dawnoftimebuilder:block/japanese/cast_iron_teapot_gray", "y": 180},
+          { "model": "dawnoftimebuilder:block/japanese/cast_iron_teapot_gray", "y": 270}
+        ]
+    }
+}

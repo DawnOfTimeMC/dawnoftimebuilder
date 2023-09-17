@@ -1,0 +1,28 @@
+{
+	"render_type": "minecraft:translucent",
+	"credit": "Made with Blockbench",
+	"textures": {
+		"5": "dawnoftimebuilder:block/water_jet_up",
+		"particle": "dawnoftimebuilder:block/transparent"
+	},
+	"elements": [
+		{
+			"from": [8, 0, 0],
+			"to": [8, 13, 16],
+			"rotation": {"angle": -45, "axis": "y", "origin": [8, 7.5, 8]},
+			"faces": {
+				"east": {"uv": [16, 0, 0, 13], "texture": "#5", "tintindex": 0},
+				"west": {"uv": [16, 0, 0, 13], "texture": "#5", "tintindex": 0}
+			}
+		},
+		{
+			"from": [8, 0, 0],
+			"to": [8, 13, 16],
+			"rotation": {"angle": 45, "axis": "y", "origin": [8, 7.5, 8]},
+			"faces": {
+				"east": {"uv": [16, 0, 0, 13], "texture": "#5", "tintindex": 0},
+				"west": {"uv": [16, 0, 0, 13], "texture": "#5", "tintindex": 0}
+			}
+		}
+	]
+}

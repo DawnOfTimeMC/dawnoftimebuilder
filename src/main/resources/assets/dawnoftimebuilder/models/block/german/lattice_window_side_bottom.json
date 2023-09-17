@@ -1,0 +1,23 @@
+{
+	"render_type": "minecraft:cutout",
+	"credit": "Made with Blockbench",
+	"textures": {
+		"particle": "dawnoftimebuilder:block/lattice_glass",
+		"tete": "dawnoftimebuilder:block/lattice_glass"
+	},
+	"elements": [
+		{
+			"from": [0, 0, 3],
+			"to": [16, 16, 5],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 8, 4]},
+			"faces": {
+				"north": {"uv": [0, 0, 16, 16], "texture": "#tete"},
+				"east": {"uv": [7, 0, 9, 16], "texture": "#tete", "cullface": "east"},
+				"south": {"uv": [0, 0, 16, 16], "texture": "#tete"},
+				"west": {"uv": [7, 0, 9, 16], "texture": "#tete", "cullface": "west"},
+				"up": {"uv": [0, 7, 16, 9], "texture": "#tete", "cullface": "up"},
+				"down": {"uv": [0, 7, 16, 9], "texture": "#tete", "cullface": "down"}
+			}
+		}
+	]
+}

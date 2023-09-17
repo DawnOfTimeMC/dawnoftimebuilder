@@ -1,0 +1,21 @@
+{
+	"render_type": "minecraft:cutout",
+	"credit": "Made with Blockbench",
+	"textures": {
+		"4_texture": "dawnoftimebuilder:block/stone_bricks_fireplace_x_x_1",
+		"particle": "block/stone_bricks"
+	},
+	"elements": [
+		{
+			"from": [9, 0, 10],
+			"to": [14, 16, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [6, 8, 8]},
+			"faces": {
+				"north": {"uv": [12, 10, 13.25, 14], "texture": "#4_texture"},
+				"east": {"uv": [13.25, 10.5, 14.75, 14.5], "texture": "#4_texture", "cullface": "west"},
+				"south": {"uv": [12, 10, 13.25, 14], "texture": "#4_texture", "cullface": "south"},
+				"west": {"uv": [13.25, 10.5, 14.75, 14.5], "texture": "#4_texture", "cullface": "west"}
+			}
+		}
+	]
+}

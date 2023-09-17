@@ -1,0 +1,7 @@
+{
+    "render_type": "minecraft:cutout",
+    "parent": "block/template_orientable_trapdoor_open",
+    "textures": {
+        "texture": "dawnoftimebuilder:block/waxed_oak_trapdoor"
+    }
+}

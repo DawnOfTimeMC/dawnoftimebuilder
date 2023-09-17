@@ -1,0 +1,63 @@
+{
+	"render_type": "minecraft:cutout",
+	"textures": {
+		"1": "dawnoftimebuilder:block/limestone_fireplace_x_x_2",
+		"4_texture": "dawnoftimebuilder:block/limestone_fireplace_x_x_1",
+		"particle": "dawnoftimebuilder:block/limestone_bricks"
+	},
+	"elements": [
+		{
+			"from": [0, 0, 4],
+			"to": [16, 2, 16],
+			"faces": {
+				"north": {"uv": [4, 15.5, 8, 16], "texture": "#4_texture", "cullface": "north"},
+				"east": {"uv": [0, 0, 0, 0], "texture": "#4_texture", "cullface": "east"},
+				"south": {"uv": [4, 15.5, 8, 16], "texture": "#4_texture", "cullface": "south"},
+				"west": {"uv": [0, 0, 0, 0], "texture": "#4_texture"},
+				"up": {"uv": [4, 0, 8, 3], "texture": "#1"},
+				"down": {"uv": [4, 4, 8, 1], "texture": "#4_texture", "cullface": "down"}
+			}
+		},
+		{
+			"from": [9, 4, 12],
+			"to": [23, 7, 15],
+			"faces": {
+				"north": {"uv": [0, 14, 3.5, 14.75], "texture": "#4_texture", "cullface": "north"},
+				"east": {"uv": [7, 14, 7.75, 14.75], "texture": "#4_texture"},
+				"south": {"uv": [0, 14, 3.5, 14.75], "texture": "#4_texture"},
+				"west": {"uv": [7, 14, 7.75, 14.75], "texture": "#4_texture"},
+				"up": {"uv": [0, 14, 3.5, 14.75], "texture": "#4_texture"},
+				"down": {"uv": [0, 14, 3.5, 14.75], "texture": "#4_texture"}
+			}
+		},
+		{
+			"from": [0, 2, 15.99],
+			"to": [16, 19, 15.99],
+			"faces": {
+				"north": {"uv": [1.5, 6, 5.5, 10.25], "texture": "#1"},
+				"south": {"uv": [1.5, 6, 5.5, 10.25], "texture": "#1"}
+			}
+		},
+		{
+			"from": [4, 4, 10],
+			"to": [12, 6, 12],
+			"faces": {
+				"north": {"uv": [5, 14, 7, 14.5], "texture": "#4_texture", "cullface": "north"},
+				"east": {"uv": [5, 14, 5.5, 14.5], "texture": "#4_texture", "cullface": "east"},
+				"south": {"uv": [5, 14, 7, 14.5], "texture": "#4_texture"},
+				"west": {"uv": [5, 14, 5.5, 14.5], "texture": "#4_texture"},
+				"up": {"uv": [5, 14, 7, 14.5], "texture": "#4_texture"},
+				"down": {"uv": [5, 14, 7, 14.5], "texture": "#4_texture"}
+			}
+		},
+		{
+			"from": [8.5, 2, 9.5],
+			"to": [23.5, 4, 15.5],
+			"faces": {
+				"north": {"uv": [5.75, 10.5, 9.5, 11], "texture": "#4_texture", "cullface": "north"},
+				"south": {"uv": [5.75, 10.5, 9.5, 11], "texture": "#4_texture"},
+				"up": {"uv": [5.75, 9, 9.5, 10.5], "texture": "#4_texture"}
+			}
+		}
+	]
+}

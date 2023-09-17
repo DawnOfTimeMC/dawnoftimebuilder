@@ -1,0 +1,20 @@
+{
+    "variants": {
+        "half=bottom,variant=spruce_foundation": { "model": "dawnoftimebuilder:block/japanese/spruce_foundation_slab_bottom" },
+        "half=top,variant=spruce_foundation": { "model": "dawnoftimebuilder:block/japanese/spruce_foundation_slab_top" },
+        "half=bottom,variant=grey_roof_tiles": { "model": "dawnoftimebuilder:block/japanese/grey_roof_tiles_slab_bottom" },
+        "half=top,variant=grey_roof_tiles": { "model": "dawnoftimebuilder:block/japanese/grey_roof_tiles_slab_top" },
+        "half=bottom,variant=flat_roof_tiles": { "model": "dawnoftimebuilder:block/german/flat_roof_tiles_slab_bottom" },
+        "half=top,variant=flat_roof_tiles": { "model": "dawnoftimebuilder:block/german/flat_roof_tiles_slab_top" },
+        "half=bottom,variant=thatch_wheat": { "model": "dawnoftimebuilder:block/general/thatch_wheat_slab_bottom" },
+        "half=top,variant=thatch_wheat": { "model": "dawnoftimebuilder:block/general/thatch_wheat_slab_top" },
+        "half=bottom,variant=plastered_stone": { "model": "dawnoftimebuilder:block/precolumbian/plastered_stone_slab_bottom" },
+        "half=top,variant=plastered_stone": { "model": "dawnoftimebuilder:block/precolumbian/plastered_stone_slab_top" },
+        "half=bottom,variant=limestone_brick": { "model": "dawnoftimebuilder:block/german/limestone_brick_slab_bottom" },
+        "half=top,variant=limestone_brick": { "model": "dawnoftimebuilder:block/german/limestone_brick_slab_top" },
+        "half=bottom,variant=red_plastered_stone": {"model": "dawnoftimebuilder:block/precolumbian/red_plastered_stone_slab_bottom" },
+        "half=top,variant=red_plastered_stone": {"model": "dawnoftimebuilder:block/precolumbian/red_plastered_stone_slab_top"},
+        "half=bottom,variant=thatch_bamboo": { "model": "dawnoftimebuilder:block/general/thatch_bamboo_slab_bottom" },
+        "half=top,variant=thatch_bamboo": { "model": "dawnoftimebuilder:block/general/thatch_bamboo_slab_top" }
+    }
+}

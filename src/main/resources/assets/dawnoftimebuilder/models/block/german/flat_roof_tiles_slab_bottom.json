@@ -1,0 +1,8 @@
+{
+    "parent": "block/slab",
+    "textures": {
+        "bottom": "dawnoftimebuilder:block/flat_roof_tiles",
+        "top": "dawnoftimebuilder:block/flat_roof_tiles",
+        "side": "dawnoftimebuilder:block/flat_roof_tiles"
+    }
+}

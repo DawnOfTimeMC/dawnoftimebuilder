@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=east": { "model": "dawnoftimebuilder:block/precolumbian/feathered_serpent_sculpture", "y" : 90},
+        "facing=south": { "model": "dawnoftimebuilder:block/precolumbian/feathered_serpent_sculpture", "y": 180 },
+        "facing=west": { "model": "dawnoftimebuilder:block/precolumbian/feathered_serpent_sculpture", "y": 270 },
+        "facing=north": { "model": "dawnoftimebuilder:block/precolumbian/feathered_serpent_sculpture"}
+    }
+}

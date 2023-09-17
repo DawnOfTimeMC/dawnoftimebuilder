@@ -1,0 +1,33 @@
+{
+	"render_type": "minecraft:cutout",
+	"textures": {
+		"texture": "dawnoftimebuilder:block/lattice_waxed_oak_window",
+		"tete": "dawnoftimebuilder:block/lattice_glass",
+		"particle": "dawnoftimebuilder:block/lattice_waxed_oak_window"
+	},
+	"elements": [
+		{
+			"from": [0, 0, 7],
+			"to": [16, 16, 9],
+			"faces": {
+				"north": {"uv": [0, 0, 16, 16], "texture": "#tete"},
+				"east": {"uv": [7, 0, 9, 16], "texture": "#tete", "cullface": "east"},
+				"south": {"uv": [0, 0, 16, 16], "texture": "#tete"},
+				"up": {"uv": [0, 7, 16, 9], "texture": "#tete", "cullface": "up"},
+				"down": {"uv": [0, 7, 16, 9], "texture": "#tete", "cullface": "down"}
+			}
+		},
+		{
+			"from": [-2, -0.01, 6.01],
+			"to": [2, 16.01, 9.99],
+			"faces": {
+				"north": {"uv": [0, 9, 16, 13], "rotation": 90, "texture": "#texture"},
+				"east": {"uv": [0, 9, 16, 13], "rotation": 90, "texture": "#texture"},
+				"south": {"uv": [0, 9, 16, 13], "rotation": 90, "texture": "#texture"},
+				"west": {"uv": [0, 9, 16, 13], "rotation": 90, "texture": "#texture"},
+				"up": {"uv": [0, 9, 4, 13], "texture": "#texture", "cullface": "up"},
+				"down": {"uv": [12, 9, 16, 13], "texture": "#texture", "cullface": "down"}
+			}
+		}
+	]
+}

@@ -1,0 +1,54 @@
+{
+	"forge_marker": 1,
+	"defaults": {
+		"model": "dawnoftimebuilder:block/bamboo_hat.obj"
+	},
+	"variants": {
+		"inventory": [
+			{
+				"transform": {
+					"thirdperson_lefthand": {
+						"rotation": [ { "x": 50 }, { "y": 0 }, { "z": 0 } ],
+						"translation": [ 0, 0, 0.1 ],
+						"scale": 0.3
+					},
+					"thirdperson_righthand": {
+						"rotation": [ { "x": 50 }, { "y": 0 }, { "z": 0 } ],
+						"translation": [ 0, 0, 0.1 ],
+						"scale": 0.3
+					},
+					"gui": {
+						"rotation": [ { "x": 45 }, { "y": 0 }, { "z": 0 } ],
+						"translation": [ 0.2, 0, 0 ],
+						"scale": 0.4
+					},
+					"firstperson_righthand": {
+						"rotation": [ { "x": 50 }, { "y": 0 }, { "z": 0 } ],
+						"translation": [ 0.5, 0.2, 0 ],
+						"scale": 0.3
+					},
+					"firstperson_lefthand": {
+						"rotation": [ { "x": 5 }, { "y": 180 }, { "z": 0 } ],
+						"translation": [ 0.1, 0, 0 ],
+						"scale": 1
+					},
+					"ground": {
+						"rotation": [ { "x": 0 }, { "y": 0 }, { "z": 0 } ],
+						"translation": [ 0.12, 0.1, 0.12 ],
+						"scale": 0.25
+					},
+					"head": {
+						"rotation": [ { "x": 10 }, { "y": 0 }, { "z": 0 } ],
+						"translation": [0.41, 0.50, 0.41],
+						"scale": 0.8
+					},
+					"fixed": {
+						"rotation": [ { "x": -90 }, { "y": 0 }, { "z": 0 } ],
+						"translation": [0.25, 0.25, -0.2],
+						"scale": 0.5
+					}
+				}
+			}
+		]
+	}
+}

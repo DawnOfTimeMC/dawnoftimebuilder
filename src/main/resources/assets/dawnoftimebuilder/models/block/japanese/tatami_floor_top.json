@@ -1,0 +1,18 @@
+{
+	"textures": {
+		"texture": "dawnoftimebuilder:block/tatami_mat",
+		"particle": "dawnoftimebuilder:block/tatami_mat"
+	},
+	"elements": [
+		{
+			"from": [0.001, 16, 0.001],
+			"to": [15.999, 16.999, 15.999],
+			"faces": {
+				"north": {"uv": [0, 0, 16, 1], "texture": "#texture", "cullface": "north"},
+				"east": {"uv": [0, 0, 16, 1], "texture": "#texture", "cullface": "east"},
+				"west": {"uv": [0, 0, 16, 1], "texture": "#texture", "cullface": "west"},
+				"up": {"uv": [0, 0, 16, 16], "texture": "#texture"}
+			}
+		}
+	]
+}

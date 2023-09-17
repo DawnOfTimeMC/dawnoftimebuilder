@@ -1,0 +1,21 @@
+{
+	"render_type": "minecraft:cutout",
+	"textures": {
+		"1": "dawnoftimebuilder:block/warped_beam",
+		"particle": "dawnoftimebuilder:block/warped_beam"
+	},
+	"elements": [
+		{
+			"from": [3, 0, 3],
+			"to": [13, 16, 13],
+			"faces": {
+				"north": {"uv": [8, 5, 16, 10], "rotation": 90, "texture": "#1"},
+				"east": {"uv": [8, 5, 16, 10], "rotation": 90, "texture": "#1"},
+				"south": {"uv": [8, 5, 16, 10], "rotation": 90, "texture": "#1"},
+				"west": {"uv": [8, 5, 16, 10], "rotation": 90, "texture": "#1"},
+				"up": {"uv": [8, 0, 13, 5], "texture": "#1", "cullface": "up"},
+				"down": {"uv": [8, 0, 13, 5], "texture": "#1", "cullface": "down"}
+			}
+		}
+	]
+}

@@ -1,0 +1,62 @@
+{
+	"textures": {
+		"texture": "dawnoftimebuilder:block/tatami_mat",
+		"particle": "dawnoftimebuilder:block/tatami_mat"
+	},
+	"elements": [
+		{
+			"from": [4, 0, 0],
+			"to": [12, 0.5, 8],
+			"faces": {
+				"north": {"uv": [0, 0, 16, 1], "texture": "#texture", "cullface": "north"},
+				"east": {"uv": [0, 0, 16, 1], "texture": "#texture", "cullface": "east"},
+				"west": {"uv": [0, 0, 16, 1], "texture": "#texture", "cullface": "west"},
+				"up": {"uv": [0, 0, 16, 16], "texture": "#texture"},
+				"down": {"uv": [0, 16, 16, 0], "texture": "#texture", "cullface": "down"}
+			}
+		},
+		{
+			"from": [4, 0, 8],
+			"to": [12, 0.5, 16],
+			"faces": {
+				"east": {"uv": [16, 0, 0, 1], "texture": "#texture", "cullface": "east"},
+				"south": {"uv": [16, 0, 0, 1], "texture": "#texture", "cullface": "north"},
+				"west": {"uv": [16, 0, 0, 1], "texture": "#texture", "cullface": "west"},
+				"up": {"uv": [0, 16, 16, 0], "texture": "#texture"},
+				"down": {"uv": [0, 0, 16, 16], "texture": "#texture", "cullface": "down"}
+			}
+		}
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"rotation":  [ 75, 45, 0 ],
+			"translation":  [ 0, 2.5, 0 ],
+			"scale":  [ 0.375, 0.375, 0.375 ]
+		},
+		"thirdperson_lefthand": {
+			"rotation":  [ 75, 45, 0 ],
+			"translation":  [ 0, 2.5, 0 ],
+			"scale":  [ 0.375, 0.375, 0.375 ]
+		},
+		"firstperson_righthand": {
+            "rotation": [ 0, 90, 0 ],
+            "scale": [ 0.40, 0.40, 0.40 ]
+		},
+		"firstperson_lefthand": {
+            "rotation": [ 0, 90, 0 ],
+            "scale": [ 0.40, 0.40, 0.40 ]
+		},
+		"gui": {
+			"rotation":  [ 30, 225, 0 ],
+			"scale":  [ 0.625, 0.625, 0.625 ]
+		},
+		"ground": {
+			"translation":  [ 0, 3, 0 ],
+			"scale":  [ 0.3, 0.3, 0.3 ]
+		},
+        "fixed": {
+            "translation": [ 0, 0, -3],
+            "scale":[ 0.5, 0.5, 0.5 ]
+        }
+	}
+}

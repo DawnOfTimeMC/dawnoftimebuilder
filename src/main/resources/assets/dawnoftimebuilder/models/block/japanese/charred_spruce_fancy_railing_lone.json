@@ -1,0 +1,24 @@
+{
+	"render_type": "minecraft:cutout",
+	"credit": "mr_ch0c0late",
+	"texture_size": [32, 32],
+	"textures": {
+		"0": "dawnoftimebuilder:block/charred_spruce_fancy_railing",
+		"particle": "dawnoftimebuilder:block/charred_spruce_fancy_railing"
+	},
+	"elements": [
+		{
+			"from": [7, 0, 7],
+			"to": [9, 15, 9],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 8.5, 8]},
+			"faces": {
+				"north": {"uv": [9, 8.5, 10, 16], "texture": "#0"},
+				"east": {"uv": [9, 8.5, 10, 16], "texture": "#0"},
+				"south": {"uv": [9, 8.5, 10, 16], "texture": "#0"},
+				"west": {"uv": [9, 8.5, 10, 16], "texture": "#0"},
+				"up": {"uv": [9, 15, 10, 16], "texture": "#0", "cullface": "up"},
+				"down": {"uv": [9, 15, 10, 16], "texture": "#0", "cullface": "down"}
+			}
+		}
+	]
+}

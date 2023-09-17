@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "type=bottom": { "model": "dawnoftimebuilder:block/precolumbian/plastered_stone_slab_bottom" },
+        "type=top": { "model": "dawnoftimebuilder:block/precolumbian/plastered_stone_slab_top" },
+        "type=double": { "model": "dawnoftimebuilder:block/precolumbian/plastered_stone_slab_double" }
+    }
+}

@@ -1,0 +1,8 @@
+{
+    "parent": "block/outer_stairs",
+    "textures": {
+        "bottom": "dawnoftimebuilder:block/thatch_wheat",
+        "top": "dawnoftimebuilder:block/thatch_wheat",
+        "side": "dawnoftimebuilder:block/thatch_wheat"
+    }
+}

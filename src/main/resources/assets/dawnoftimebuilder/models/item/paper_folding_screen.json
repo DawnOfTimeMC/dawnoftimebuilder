@@ -1,0 +1,55 @@
+{
+	"textures": {
+		"texture": "dawnoftimebuilder:block/paper_folding_screen_none"
+	},
+	"elements": [
+		{
+			"from": [6.77817, 0, -3.22183],
+			"to": [8.77817, 16, 19.40517],
+			"rotation": {"angle": 45, "axis": "y", "origin": [7.77817, 0, 7.77817]},
+			"faces": {
+				"north": {"uv": [11.5, 0, 12.5, 8], "texture": "#texture"},
+				"east": {"uv": [0, 0, 11.5, 8], "texture": "#texture"},
+				"south": {"uv": [11.5, 0, 12.5, 8], "texture": "#texture"},
+				"west": {"uv": [0, 0, 11.5, 8], "texture": "#texture"},
+				"up": {"uv": [0, 8, 11.5, 9], "rotation": 90, "texture": "#texture"},
+				"down": {"uv": [0, 8, 11.5, 9], "rotation": 90, "texture": "#texture"}
+			}
+		}
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"translation": [0, 2.5, 0],
+			"scale": [0.25, 0.25, 0.25]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [0, -90, 0],
+			"translation": [0, 2.5, 0],
+			"scale": [0.25, 0.25, 0.25]
+		},
+		"firstperson_righthand": {
+			"translation": [0, 2, 1],
+			"scale": [0.4, 0.4, 0.4]
+		},
+		"firstperson_lefthand": {
+			"rotation": [0, 90, 0],
+			"translation": [0, 2, 1],
+			"scale": [0.4, 0.4, 0.4]
+		},
+		"ground": {
+			"scale": [0.25, 0.25, 0.25]
+		},
+		"gui": {
+			"rotation": [30, 75, 0],
+			"scale": [0.7, 0.7, 0.7]
+		},
+		"head": {
+			"rotation": [0, 45, 0],
+			"translation": [0, 0, -6.5]
+		},
+		"fixed": {
+			"rotation": [0, 45, 0],
+			"scale": [0.8, 0.8, 0.8]
+		}
+	}
+}

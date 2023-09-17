@@ -1,0 +1,10 @@
+{
+    "variants": {
+        "": [
+            { "model": "dawnoftimebuilder:block/roman/mosaic_floor_rosette_1" },
+            { "model": "dawnoftimebuilder:block/roman/mosaic_floor_rosette_2" },
+            { "model": "dawnoftimebuilder:block/roman/mosaic_floor_rosette_3" },
+            { "model": "dawnoftimebuilder:block/roman/mosaic_floor_rosette_4" }
+        ]
+    }
+}

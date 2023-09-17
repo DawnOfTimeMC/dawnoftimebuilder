@@ -1,0 +1,6 @@
+{
+	"variants": {
+		"lit=true": { "model": "dawnoftimebuilder:block/japanese/irori_fireplace_on" },
+		"lit=false": { "model": "dawnoftimebuilder:block/japanese/irori_fireplace_off" }
+	}
+}

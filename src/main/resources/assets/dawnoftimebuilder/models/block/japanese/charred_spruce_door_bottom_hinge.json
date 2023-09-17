@@ -1,0 +1,8 @@
+{
+    "render_type": "minecraft:cutout",
+    "parent": "block/door_bottom_rh",
+    "textures": {
+        "bottom": "dawnoftimebuilder:block/charred_spruce_door_bottom",
+        "top": "dawnoftimebuilder:block/charred_spruce_door_top"
+    }
+}

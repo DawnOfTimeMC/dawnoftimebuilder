@@ -1,0 +1,12 @@
+{
+    "variants": {
+        "facing=south,open=false":  { "model": "dawnoftimebuilder:block/japanese/charred_spruce_shutters_closed" },
+        "facing=south,open=true":  { "model": "dawnoftimebuilder:block/japanese/charred_spruce_shutters_open" },
+        "facing=west,open=false":  { "model": "dawnoftimebuilder:block/japanese/charred_spruce_shutters_closed", "y": 90 },
+        "facing=west,open=true":  { "model": "dawnoftimebuilder:block/japanese/charred_spruce_shutters_open", "y": 90 },
+        "facing=north,open=false":  { "model": "dawnoftimebuilder:block/japanese/charred_spruce_shutters_closed", "y": 180 },
+        "facing=north,open=true":  { "model": "dawnoftimebuilder:block/japanese/charred_spruce_shutters_open", "y": 180 },
+        "facing=east,open=false":  { "model": "dawnoftimebuilder:block/japanese/charred_spruce_shutters_closed", "y": 270 },
+        "facing=east,open=true":  { "model": "dawnoftimebuilder:block/japanese/charred_spruce_shutters_open", "y": 270 }
+    }
+}

@@ -1,0 +1,10 @@
+{
+    "variants": {
+        "": [
+            { "model": "dawnoftimebuilder:block/japanese/stepping_stones_1" },
+            { "model": "dawnoftimebuilder:block/japanese/stepping_stones_2" },
+            { "model": "dawnoftimebuilder:block/japanese/stepping_stones_3" },
+            { "model": "dawnoftimebuilder:block/japanese/stepping_stones_4" }
+        ]
+    }
+}

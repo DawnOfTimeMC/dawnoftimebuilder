@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "type=bottom": { "model": "dawnoftimebuilder:block/german/stone_bricks_masonry_slab_bottom" },
+        "type=top": { "model": "dawnoftimebuilder:block/german/stone_bricks_masonry_slab_top" },
+        "type=double": { "model": "dawnoftimebuilder:block/german/stone_bricks_masonry" }
+    }
+}

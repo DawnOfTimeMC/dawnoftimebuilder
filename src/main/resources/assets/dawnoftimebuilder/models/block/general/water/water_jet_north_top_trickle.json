@@ -1,0 +1,55 @@
+{
+	"render_type": "minecraft:translucent",
+	"credit": "Made with Blockbench",
+	"textures": {
+		"6": "dawnoftimebuilder:block/water_jet_north_top",
+		"particle": "dawnoftimebuilder:block/transparent"
+	},
+	"elements": [
+		{
+			"from": [8, -5.99967, 4.64232],
+			"to": [8, 10.00033, 16.64232],
+			"rotation": {"angle": -22.5, "axis": "x", "origin": [3, 7.00033, -8.35768]},
+			"faces": {
+				"east": {"uv": [12, 0, 0, 16], "texture": "#6", "tintindex": 0},
+				"west": {"uv": [0, 0, 12, 16], "texture": "#6", "tintindex": 0}
+			}
+		},
+		{
+			"from": [6.5, 13.62862, 2.42897],
+			"to": [9.5, 13.62862, 5.42897],
+			"rotation": {"angle": -22.5, "axis": "x", "origin": [8, 15.12862, 3.42897]},
+			"faces": {
+				"up": {"uv": [13, 0, 16, 3], "texture": "#6", "tintindex": 0},
+				"down": {"uv": [13, 0, 16, 3], "texture": "#6", "tintindex": 0}
+			}
+		},
+		{
+			"from": [6.5, 14.50809, 5.85037],
+			"to": [9.5, 14.50809, 10.85037],
+			"rotation": {"angle": 0, "axis": "y", "origin": [7.5, 14.50809, 7.85037]},
+			"faces": {
+				"up": {"uv": [13, 3, 16, 8], "texture": "#6", "tintindex": 0},
+				"down": {"uv": [13, 3, 16, 8], "texture": "#6", "tintindex": 0}
+			}
+		},
+		{
+			"from": [6.5, 15.92259, 11.43545],
+			"to": [9.5, 15.92259, 16.43545],
+			"rotation": {"angle": 45, "axis": "x", "origin": [7.5, 15.92259, 9.43545]},
+			"faces": {
+				"up": {"uv": [13, 8, 16, 13], "texture": "#6", "tintindex": 0},
+				"down": {"uv": [13, 8, 16, 13], "texture": "#6", "tintindex": 0}
+			}
+		},
+		{
+			"from": [6.5, 7.97355, 14.3859],
+			"to": [9.5, 10.97355, 14.3859],
+			"rotation": {"angle": 0, "axis": "y", "origin": [7.5, 13.97355, 14.3859]},
+			"faces": {
+				"north": {"uv": [16, 13, 13, 16], "texture": "#6", "tintindex": 0},
+				"south": {"uv": [13, 13, 16, 16], "texture": "#6", "tintindex": 0}
+			}
+		}
+	]
+}

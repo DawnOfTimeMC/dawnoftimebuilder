@@ -1,0 +1,50 @@
+{
+	"textures": {
+		"end": "dawnoftimebuilder:block/plastered_stone_column_end",
+		"mid": "dawnoftimebuilder:block/plastered_stone_column_mid",
+		"particle": "dawnoftimebuilder:block/plastered_stone_column_mid"
+	},
+	"elements": [ 	 
+		{	"from": [ 2, 0, 2 ],
+			"to": [ 14, 4, 14 ],
+			"faces": {
+				"down": { "uv": [ 0, 10, 6, 16 ], "texture": "#end", "cullface": "down" },
+				"up": { "uv": [ 0, 10, 6, 16 ], "texture": "#end" },
+				"north": { "uv": [ 0, 8, 6, 10 ], "texture": "#end" },
+				"south": { "uv": [ 0, 8, 6, 10 ], "texture": "#end" },
+				"west": { "uv": [ 0, 8, 6, 10 ], "texture": "#end" },
+				"east": { "uv": [ 0, 8, 6, 10 ], "texture": "#end" }
+			}
+		},
+		{	"from": [ 6, 4, 3.1716 ],
+			"to": [ 10, 16, 12.8284 ],
+			"rotation": { "origin": [ 8, 4, 8 ], "axis": "y", "angle": -45 },
+			"faces": {
+				"north": { "uv": [ 0, 10, 2, 16 ], "texture": "#mid" },
+				"south": { "uv": [ 0, 10, 2, 16 ], "texture": "#mid" }
+			}
+		},
+		{	"from": [ 3.1716, 4, 5.9999 ],
+			"to": [ 12.8284, 16, 9.9999 ],
+			"faces": {
+				"west": { "uv": [ 6, 10, 8, 16 ], "texture": "#mid" },
+				"east": { "uv": [ 6, 10, 8, 16 ], "texture": "#mid" }
+			}
+		},
+		{	"from": [ 6, 4, 3.1716 ],
+			"to": [ 10, 16, 12.8284 ],
+			"faces": {
+				"north": { "uv": [ 2, 9.999999, 4, 16 ], "texture": "#mid" },
+				"south": { "uv": [ 2, 9.999999, 4, 16 ], "texture": "#mid" }
+			}
+		},
+		{	"from": [ 6, 4, 3.1716 ],
+			"to": [ 10, 16, 12.8284 ],
+			"rotation": { "origin": [ 8, 4, 8 ], "axis": "y", "angle": 45 },
+			"faces": {
+				"north": { "uv": [ 4, 10, 6, 16 ], "texture": "#mid" },
+				"south": { "uv": [ 4, 10, 6, 16 ], "texture": "#mid" }
+			}
+		}
+	]
+}

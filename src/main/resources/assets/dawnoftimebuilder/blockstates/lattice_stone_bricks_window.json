@@ -1,0 +1,28 @@
+{
+    "variants": {
+        "sided_window=axis_z,attached=false,up=false":  { "model": "dawnoftimebuilder:block/german/lattice_window_mid_bottom" },
+        "sided_window=axis_z,attached=true,up=false":  { "model": "dawnoftimebuilder:block/german/lattice_stone_bricks_window_mid_bottom_side" },
+        "sided_window=axis_z,attached=false,up=true":  { "model": "dawnoftimebuilder:block/german/lattice_stone_bricks_window_mid_top" },
+        "sided_window=axis_z,attached=true,up=true":  { "model": "dawnoftimebuilder:block/german/lattice_stone_bricks_window_mid_top_side" },
+        "sided_window=axis_x,attached=false,up=false":  { "model": "dawnoftimebuilder:block/german/lattice_window_mid_bottom", "y": 90 },
+        "sided_window=axis_x,attached=true,up=false":  { "model": "dawnoftimebuilder:block/german/lattice_stone_bricks_window_mid_bottom_side", "y": 90 },
+        "sided_window=axis_x,attached=false,up=true":  { "model": "dawnoftimebuilder:block/german/lattice_stone_bricks_window_mid_top", "y": 90 },
+        "sided_window=axis_x,attached=true,up=true":  { "model": "dawnoftimebuilder:block/german/lattice_stone_bricks_window_mid_top_side", "y": 90 },
+        "sided_window=north,attached=false,up=false":  { "model": "dawnoftimebuilder:block/german/lattice_window_side_bottom" },
+        "sided_window=north,attached=true,up=false":  { "model": "dawnoftimebuilder:block/german/lattice_stone_bricks_window_side_bottom_side" },
+        "sided_window=north,attached=false,up=true":  { "model": "dawnoftimebuilder:block/german/lattice_stone_bricks_window_side_top" },
+        "sided_window=north,attached=true,up=true":  { "model": "dawnoftimebuilder:block/german/lattice_stone_bricks_window_side_top_side" },
+        "sided_window=east,attached=false,up=false":  { "model": "dawnoftimebuilder:block/german/lattice_window_side_bottom", "y": 90 },
+        "sided_window=east,attached=true,up=false":  { "model": "dawnoftimebuilder:block/german/lattice_stone_bricks_window_side_bottom_side", "y": 90 },
+        "sided_window=east,attached=false,up=true":  { "model": "dawnoftimebuilder:block/german/lattice_stone_bricks_window_side_top", "y": 90 },
+        "sided_window=east,attached=true,up=true":  { "model": "dawnoftimebuilder:block/german/lattice_stone_bricks_window_side_top_side", "y": 90 },
+        "sided_window=south,attached=false,up=false":  { "model": "dawnoftimebuilder:block/german/lattice_window_side_bottom", "y": 180 },
+        "sided_window=south,attached=true,up=false":  { "model": "dawnoftimebuilder:block/german/lattice_stone_bricks_window_side_bottom_side", "y": 180 },
+        "sided_window=south,attached=false,up=true":  { "model": "dawnoftimebuilder:block/german/lattice_stone_bricks_window_side_top", "y": 180 },
+        "sided_window=south,attached=true,up=true":  { "model": "dawnoftimebuilder:block/german/lattice_stone_bricks_window_side_top_side", "y": 180 },
+        "sided_window=west,attached=false,up=false":  { "model": "dawnoftimebuilder:block/german/lattice_window_side_bottom", "y": 270 },
+        "sided_window=west,attached=true,up=false":  { "model": "dawnoftimebuilder:block/german/lattice_stone_bricks_window_side_bottom_side", "y": 270 },
+        "sided_window=west,attached=false,up=true":  { "model": "dawnoftimebuilder:block/german/lattice_stone_bricks_window_side_top", "y": 270 },
+        "sided_window=west,attached=true,up=true":  { "model": "dawnoftimebuilder:block/german/lattice_stone_bricks_window_side_top_side", "y": 270 }
+    }
+}

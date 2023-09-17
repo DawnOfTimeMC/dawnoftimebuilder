@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "axis=y":  { "model": "dawnoftimebuilder:block/japanese/charred_spruce_log_stripped" },
+        "axis=z":   { "model": "dawnoftimebuilder:block/japanese/charred_spruce_log_stripped", "x": 90 },
+        "axis=x":   { "model": "dawnoftimebuilder:block/japanese/charred_spruce_log_stripped", "x": 90, "y": 90 }
+    }
+}

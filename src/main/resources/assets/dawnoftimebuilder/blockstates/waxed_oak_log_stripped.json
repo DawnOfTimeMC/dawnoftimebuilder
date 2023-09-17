@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "axis=y":  { "model": "dawnoftimebuilder:block/german/waxed_oak_log_stripped" },
+        "axis=z":   { "model": "dawnoftimebuilder:block/german/waxed_oak_log_stripped", "x": 90 },
+        "axis=x":   { "model": "dawnoftimebuilder:block/german/waxed_oak_log_stripped", "x": 90, "y": 90 }
+    }
+}

@@ -1,0 +1,29 @@
+{
+    "multipart": [
+        {   "apply": { "model": "dawnoftimebuilder:block/german/lattice_glass_pane_post" }},
+        {   "when": { "north": true },
+            "apply": { "model": "dawnoftimebuilder:block/german/lattice_glass_pane_side" }
+        },
+        {   "when": { "east": true },
+            "apply": { "model": "dawnoftimebuilder:block/german/lattice_glass_pane_side", "y": 90 }
+        },
+        {   "when": { "south": true },
+            "apply": { "model": "dawnoftimebuilder:block/german/lattice_glass_pane_side", "y": 180 }
+        },
+        {   "when": { "west": true },
+            "apply": { "model": "dawnoftimebuilder:block/german/lattice_glass_pane_side", "y": 270 }
+        },
+        {   "when": { "north": false },
+            "apply": { "model": "dawnoftimebuilder:block/german/lattice_glass_pane_noside" }
+        },
+        {   "when": { "east": false },
+            "apply": { "model": "dawnoftimebuilder:block/german/lattice_glass_pane_noside", "y": 90 }
+        },
+        {   "when": { "south": false },
+            "apply": { "model": "dawnoftimebuilder:block/german/lattice_glass_pane_noside", "y": 180 }
+        },
+        {   "when": { "west": false },
+            "apply": { "model": "dawnoftimebuilder:block/german/lattice_glass_pane_noside", "y": 270 }
+        }
+    ]
+}

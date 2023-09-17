@@ -1,0 +1,21 @@
+{
+	"credit": "mr_ch0c0late",
+	"parent": "block/block",
+	"textures": {
+		"particle": "#frieze"
+	},
+	"elements": [
+		{
+			"from": [0, 0, 8],
+			"to": [8, 8, 16],
+			"faces": {
+				"north": {"uv": [8, 8, 16, 16], "texture": "#frieze"},
+				"east": {"uv": [0, 8, 8, 16], "texture": "#frieze"},
+				"south": {"uv": [8, 8, 16, 16], "texture": "#frieze", "cullface": "south"},
+				"west": {"uv": [0, 8, 8, 16], "texture": "#frieze", "cullface": "west"},
+				"up": {"uv": [0, 8, 8, 16], "texture": "#top"},
+				"down": {"uv": [8, 8, 16, 16], "texture": "#top", "cullface": "down"}
+			}
+		}
+	]
+}

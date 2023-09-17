@@ -1,0 +1,86 @@
+{
+	"credit": "mr_ch0c0late",
+	"texture_size": [32, 32],
+	"textures": {
+		"0": "dawnoftimebuilder:block/charred_spruce_fancy_railing",
+		"particle": "dawnoftimebuilder:block/charred_spruce_fancy_railing"
+	},
+	"elements": [
+		{
+			"from": [0, 15, 7],
+			"to": [16, 16, 9],
+			"faces": {
+				"north": {"uv": [8, 0, 16, 0.5], "texture": "#0"},
+				"south": {"uv": [8, 0.5, 16, 1], "texture": "#0"},
+				"up": {"uv": [8, 0, 16, 1], "texture": "#0"},
+				"down": {"uv": [8, 1, 16, 0], "texture": "#0"}
+			}
+		},
+		{
+			"from": [1, 0, 7],
+			"to": [2, 15, 9],
+			"faces": {
+				"north": {"uv": [0, 8.5, 0.5, 16], "texture": "#0"},
+				"east": {"uv": [0, 8.5, 1, 16], "texture": "#0"},
+				"south": {"uv": [0, 8.5, 0.5, 16], "texture": "#0"},
+				"west": {"uv": [0, 8.5, 1, 16], "texture": "#0"}
+			}
+		},
+		{
+			"from": [14, 0, 7],
+			"to": [15, 15, 9],
+			"faces": {
+				"north": {"uv": [0, 8.5, 0.5, 16], "texture": "#0"},
+				"east": {"uv": [0, 8.5, 1, 16], "texture": "#0"},
+				"south": {"uv": [0.5, 8.5, 1, 16], "texture": "#0"},
+				"west": {"uv": [0, 8.5, 1, 16], "texture": "#0"}
+			}
+		},
+		{
+			"from": [0, 1, 7],
+			"to": [16, 2, 9],
+			"faces": {
+				"north": {"uv": [8, 1, 16, 1.5], "texture": "#0"},
+				"south": {"uv": [8, 1.5, 16, 2], "texture": "#0"},
+				"up": {"uv": [8, 1, 16, 2], "texture": "#0"},
+				"down": {"uv": [8, 1, 16, 2], "texture": "#0"}
+			}
+		},
+		{
+			"from": [0, 0, 8],
+			"to": [16, 15, 8],
+			"faces": {
+				"north": {"uv": [0, 0.5, 8, 8], "texture": "#0"},
+				"south": {"uv": [0, 0.5, 8, 8], "texture": "#0"}
+			}
+		}
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [1, -35, 0],
+			"translation": [-2, 0, -1.5],
+			"scale": [0.4, 0.4, 0.4]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [1, -35, 0],
+			"translation": [-2, 0, -1.5],
+			"scale": [0.4, 0.4, 0.4]
+		},
+		"firstperson_righthand": {
+			"rotation": [0, -70, 0],
+			"translation": [0, 1.5, 1.5],
+			"scale": [0.6, 0.6, 0.6]
+		},
+		"firstperson_lefthand": {
+			"rotation": [0, -70, 0],
+			"translation": [0, 1.5, 1.5],
+			"scale": [0.6, 0.6, 0.6]
+		},
+		"ground": {
+			"scale": [0.3, 0.3, 0.3]
+		},
+		"head": {
+			"translation": [0, 0, -6.5]
+		}
+	}
+}

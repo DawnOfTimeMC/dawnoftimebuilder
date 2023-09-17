@@ -1,0 +1,54 @@
+{
+	"credit": "Made with Blockbench",
+	"textures": {
+		"1": "dawnoftimebuilder:block/marble_column_top",
+		"particle": "dawnoftimebuilder:block/marble_column",
+		"texture": "dawnoftimebuilder:block/marble_column"
+	},
+	"elements": [
+		{
+			"from": [4, 0, 12],
+			"to": [12, 16, 16],
+			"faces": {
+				"north": {"uv": [2, 4, 6, 12], "texture": "#texture"},
+				"east": {"uv": [4, 4, 6, 12], "texture": "#texture"},
+				"south": {"uv": [0, 0, 8, 16], "texture": "#1", "cullface": "south"},
+				"west": {"uv": [2, 4, 4, 12], "texture": "#texture"},
+				"up": {"uv": [10, 10, 14, 14], "texture": "#texture", "cullface": "up"},
+				"down": {"uv": [10, 10, 14, 14], "texture": "#texture", "cullface": "down"}
+			}
+		}
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [75, 45, 0],
+			"translation": [0, 1.5, 0],
+			"scale": [0.375, 0.375, 0.375]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [75, 45, 0],
+			"translation": [0, 1.5, 0],
+			"scale": [0.375, 0.375, 0.375]
+		},
+		"firstperson_righthand": {
+			"rotation": [0, 90, 0],
+			"scale": [0.4, 0.4, 0.4]
+		},
+		"firstperson_lefthand": {
+			"rotation": [0, 90, 0],
+			"scale": [0.4, 0.4, 0.4]
+		},
+		"ground": {
+			"translation": [0, 3, 0],
+			"scale": [0.3, 0.3, 0.3]
+		},
+		"gui": {
+			"rotation": [30, 225, 0],
+			"scale": [0.625, 0.625, 0.625]
+		},
+		"fixed": {
+			"translation": [0, 0, -1],
+			"scale": [0.5, 0.5, 0.5]
+		}
+	}
+}

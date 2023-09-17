@@ -1,0 +1,28 @@
+{
+    "variants": {
+        "attached=false,rolled=false,axis=x,stack=1":  { "model": "dawnoftimebuilder:block/japanese/small_tatami_mat", "y": 90  },
+        "attached=false,rolled=false,axis=x,stack=2":  { "model": "dawnoftimebuilder:block/japanese/small_tatami_mat", "y": 90  },
+        "attached=false,rolled=false,axis=x,stack=3":  { "model": "dawnoftimebuilder:block/japanese/small_tatami_mat", "y": 90  },
+        "attached=false,rolled=false,axis=z,stack=1":  { "model": "dawnoftimebuilder:block/japanese/small_tatami_mat" },
+        "attached=false,rolled=false,axis=z,stack=2":  { "model": "dawnoftimebuilder:block/japanese/small_tatami_mat" },
+        "attached=false,rolled=false,axis=z,stack=3":  { "model": "dawnoftimebuilder:block/japanese/small_tatami_mat" },
+        "attached=false,rolled=true,axis=x,stack=1":  { "model": "dawnoftimebuilder:block/japanese/small_tatami_mat_rolled", "y": 90 },
+        "attached=false,rolled=true,axis=x,stack=2":  { "model": "dawnoftimebuilder:block/japanese/small_tatami_mat_rolled_2", "y": 90 },
+        "attached=false,rolled=true,axis=x,stack=3":  { "model": "dawnoftimebuilder:block/japanese/small_tatami_mat_rolled_3", "y": 90 },
+        "attached=false,rolled=true,axis=z,stack=1":  { "model": "dawnoftimebuilder:block/japanese/small_tatami_mat_rolled" },
+        "attached=false,rolled=true,axis=z,stack=2":  { "model": "dawnoftimebuilder:block/japanese/small_tatami_mat_rolled_2" },
+        "attached=false,rolled=true,axis=z,stack=3":  { "model": "dawnoftimebuilder:block/japanese/small_tatami_mat_rolled_3" },
+        "attached=true,rolled=false,axis=x,stack=1":  { "model": "dawnoftimebuilder:block/japanese/small_tatami_mat_attached", "y": 180 },
+        "attached=true,rolled=false,axis=x,stack=2":  { "model": "dawnoftimebuilder:block/japanese/small_tatami_mat_attached", "y": 180 },
+        "attached=true,rolled=false,axis=x,stack=3":  { "model": "dawnoftimebuilder:block/japanese/small_tatami_mat_attached", "y": 180 },
+        "attached=true,rolled=false,axis=z,stack=1":  { "model": "dawnoftimebuilder:block/japanese/small_tatami_mat_attached" },
+        "attached=true,rolled=false,axis=z,stack=2":  { "model": "dawnoftimebuilder:block/japanese/small_tatami_mat_attached" },
+        "attached=true,rolled=false,axis=z,stack=3":  { "model": "dawnoftimebuilder:block/japanese/small_tatami_mat_attached" },
+        "attached=true,rolled=true,axis=x,stack=1":  { "model": "dawnoftimebuilder:block/japanese/small_tatami_mat_attached", "y": 180 },
+        "attached=true,rolled=true,axis=x,stack=2":  { "model": "dawnoftimebuilder:block/japanese/small_tatami_mat_attached", "y": 180 },
+        "attached=true,rolled=true,axis=x,stack=3":  { "model": "dawnoftimebuilder:block/japanese/small_tatami_mat_attached", "y": 180 },
+        "attached=true,rolled=true,axis=z,stack=1":  { "model": "dawnoftimebuilder:block/japanese/small_tatami_mat_attached" },
+        "attached=true,rolled=true,axis=z,stack=2":  { "model": "dawnoftimebuilder:block/japanese/small_tatami_mat_attached" },
+        "attached=true,rolled=true,axis=z,stack=3":  { "model": "dawnoftimebuilder:block/japanese/small_tatami_mat_attached" }
+    }
+}

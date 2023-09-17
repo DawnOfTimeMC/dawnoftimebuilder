@@ -1,0 +1,6 @@
+{
+    "parent": "dawnoftimebuilder:block/general/template_dot_pane_noside",
+    "textures": {
+        "pane": "dawnoftimebuilder:block/paper_wall_window"
+    }
+}

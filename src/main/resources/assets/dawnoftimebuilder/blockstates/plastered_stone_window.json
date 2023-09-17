@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "axis=x": { "model": "dawnoftimebuilder:block/precolumbian/plastered_stone_window" },
+        "axis=z": { "model": "dawnoftimebuilder:block/precolumbian/plastered_stone_window", "y": 90 }
+    }
+}

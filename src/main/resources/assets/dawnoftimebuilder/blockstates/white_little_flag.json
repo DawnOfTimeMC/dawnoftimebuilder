@@ -1,0 +1,22 @@
+{
+    "multipart": [
+        {   "when": { "axis_y": false },
+            "apply": { "model": "dawnoftimebuilder:block/japanese/white_little_flag_center" }
+        },
+        {   "when": { "axis_y": true },
+            "apply": { "model": "dawnoftimebuilder:block/japanese/charred_spruce_fence_post" }
+        },
+        {   "when": { "north": true },
+            "apply": { "model": "dawnoftimebuilder:block/japanese/white_little_flag" }
+        },
+        {   "when": { "east": true },
+            "apply": { "model": "dawnoftimebuilder:block/japanese/white_little_flag", "y": 90 }
+        },
+        {   "when": { "south": true },
+            "apply": { "model": "dawnoftimebuilder:block/japanese/white_little_flag", "y": 180 }
+        },
+        {   "when": { "west": true },
+            "apply": { "model": "dawnoftimebuilder:block/japanese/white_little_flag", "y": 270 }
+        }
+    ]
+}

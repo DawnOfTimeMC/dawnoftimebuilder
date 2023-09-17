@@ -1,0 +1,106 @@
+{
+	"multipart": [
+		{
+			"when": {"OR": [
+				{ "north_trickle": "true", "water_end": "straight|splash" },
+				{ "north": "true", "water_end": "straight|splash" }
+			]},
+			"apply": { "model": "dawnoftimebuilder:block/general/water/water_trickle_north_tail" }
+		},
+		{
+			"when": {"OR": [
+				{ "north_trickle": "true", "water_end": "fade" },
+				{ "north": "true", "water_end": "fade" }
+			]},
+			"apply": { "model": "dawnoftimebuilder:block/general/water/water_trickle_north_tail_fade" }
+		},
+		{
+			"when": { "north_trickle": "true" },
+			"apply": { "model": "dawnoftimebuilder:block/general/water/water_trickle_north_head" }
+		},
+		{
+			"when": { "north": "true" },
+			"apply": { "model": "dawnoftimebuilder:block/general/water/water_trickle_north_angle" }
+		},
+		{
+			"when": {"OR": [
+				{ "east_trickle": "true", "water_end": "straight|splash" },
+				{ "east": "true", "water_end": "straight|splash" }
+			]},
+			"apply": { "model": "dawnoftimebuilder:block/general/water/water_trickle_north_tail", "y": 90 }
+		},
+		{
+			"when": {"OR": [
+				{ "east_trickle": "true", "water_end": "fade" },
+				{ "east": "true", "water_end": "fade" }
+			]},
+			"apply": { "model": "dawnoftimebuilder:block/general/water/water_trickle_north_tail_fade", "y": 90 }
+		},
+		{
+			"when": { "east_trickle": "true" },
+			"apply": { "model": "dawnoftimebuilder:block/general/water/water_trickle_north_head", "y": 90 }
+		},
+		{
+			"when": { "east": "true" },
+			"apply": { "model": "dawnoftimebuilder:block/general/water/water_trickle_north_angle", "y": 90 }
+		},
+		{
+			"when": {"OR": [
+				{ "south_trickle": "true", "water_end": "straight|splash" },
+				{ "south": "true", "water_end": "straight|splash" }
+			]},
+			"apply": { "model": "dawnoftimebuilder:block/general/water/water_trickle_north_tail", "y": 180 }
+		},
+		{
+			"when": {"OR": [
+				{ "south_trickle": "true", "water_end": "fade" },
+				{ "south": "true", "water_end": "fade" }
+			]},
+			"apply": { "model": "dawnoftimebuilder:block/general/water/water_trickle_north_tail_fade", "y": 180 }
+		},
+		{
+			"when": { "south_trickle": "true" },
+			"apply": { "model": "dawnoftimebuilder:block/general/water/water_trickle_north_head", "y": 180 }
+		},
+		{
+			"when": { "south": "true" },
+			"apply": { "model": "dawnoftimebuilder:block/general/water/water_trickle_north_angle", "y": 180 }
+		},
+		{
+			"when": {"OR": [
+				{ "west_trickle": "true", "water_end": "straight|splash" },
+				{ "west": "true", "water_end": "straight|splash" }
+			]},
+			"apply": { "model": "dawnoftimebuilder:block/general/water/water_trickle_north_tail", "y": 270 }
+		},
+		{
+			"when": {"OR": [
+				{ "west_trickle": "true", "water_end": "fade" },
+				{ "west": "true", "water_end": "fade" }
+			]},
+			"apply": { "model": "dawnoftimebuilder:block/general/water/water_trickle_north_tail_fade", "y": 270 }
+		},
+		{
+			"when": { "west_trickle": "true" },
+			"apply": { "model": "dawnoftimebuilder:block/general/water/water_trickle_north_head", "y": 270 }
+		},
+		{
+			"when": { "west": "true" },
+			"apply": { "model": "dawnoftimebuilder:block/general/water/water_trickle_north_angle", "y": 270 }
+		},
+		{
+			"when": {"OR": [
+				{ "center_trickle": "true", "water_end": "straight|splash" },
+				{ "center": "true", "water_end": "straight|splash" }
+			]},
+			"apply": { "model": "dawnoftimebuilder:block/general/water/water_trickle_center" }
+		},
+		{
+			"when": {"OR": [
+				{ "center_trickle": "true", "water_end": "fade" },
+				{ "center": "true", "water_end": "fade" }
+			]},
+			"apply": { "model": "dawnoftimebuilder:block/general/water/water_trickle_center_fade" }
+		}
+	]
+}

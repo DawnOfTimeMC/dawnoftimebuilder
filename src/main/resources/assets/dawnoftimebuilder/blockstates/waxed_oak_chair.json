@@ -1,0 +1,12 @@
+{
+    "variants": {
+        "facing=north,half=bottom": { "model": "dawnoftimebuilder:block/german/waxed_oak_chair_bottom" },
+        "facing=east,half=bottom": { "model": "dawnoftimebuilder:block/german/waxed_oak_chair_bottom", "y": 90 },
+        "facing=south,half=bottom": { "model": "dawnoftimebuilder:block/german/waxed_oak_chair_bottom", "y": 180 },
+        "facing=west,half=bottom": { "model": "dawnoftimebuilder:block/german/waxed_oak_chair_bottom", "y": 270 },
+        "facing=north,half=top": { "model": "dawnoftimebuilder:block/german/waxed_oak_chair_top" },
+        "facing=east,half=top": { "model": "dawnoftimebuilder:block/german/waxed_oak_chair_top", "y": 90 },
+        "facing=south,half=top": { "model": "dawnoftimebuilder:block/german/waxed_oak_chair_top", "y": 180 },
+        "facing=west,half=top": { "model": "dawnoftimebuilder:block/german/waxed_oak_chair_top", "y": 270 }
+    }
+}

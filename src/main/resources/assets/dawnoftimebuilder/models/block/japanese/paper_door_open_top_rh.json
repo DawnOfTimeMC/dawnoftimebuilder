@@ -1,0 +1,22 @@
+{
+	"credit": "Made with Blockbench",
+	"ambientocclusion": false,
+	"textures": {
+		"side": "dawnoftimebuilder:block/paper_wall",
+		"particle": "dawnoftimebuilder:block/paper_door_upper",
+		"texture": "dawnoftimebuilder:block/paper_door_upper"
+	},
+	"elements": [
+		{
+			"from": [12, 0, 6.99],
+			"to": [28, 16, 9.01],
+			"faces": {
+				"north": {"uv": [16, 0, 0, 16], "texture": "#texture"},
+				"east": {"uv": [7, 0, 9, 16], "texture": "#side"},
+				"south": {"uv": [0, 0, 16, 16], "texture": "#texture"},
+				"west": {"uv": [7, 0, 9, 16], "texture": "#side"},
+				"up": {"uv": [7, 0, 9, 16], "rotation": 90, "texture": "#side"}
+			}
+		}
+	]
+}

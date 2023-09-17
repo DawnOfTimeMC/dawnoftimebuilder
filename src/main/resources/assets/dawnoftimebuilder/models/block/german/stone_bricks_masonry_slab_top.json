@@ -1,0 +1,8 @@
+{
+    "parent": "block/slab_top",
+    "textures": {
+        "bottom": "dawnoftimebuilder:block/stone_bricks_masonry",
+        "top": "dawnoftimebuilder:block/stone_bricks_masonry",
+        "side": "dawnoftimebuilder:block/stone_bricks_masonry"
+    }
+}

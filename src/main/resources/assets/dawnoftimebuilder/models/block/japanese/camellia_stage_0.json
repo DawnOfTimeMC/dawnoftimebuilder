@@ -1,0 +1,25 @@
+{
+	"render_type": "minecraft:cutout",
+	"textures": {
+		"0": "dawnoftimebuilder:block/camellia_1",
+		"particle": "dawnoftimebuilder:block/camellia_1"
+	},
+	"elements": [
+		{
+			"from": [4.5, 0, 8],
+			"to": [11.5, 6, 8],
+			"faces": {
+				"north": {"uv": [0, 0, 3.5, 3], "texture": "#0"},
+				"south": {"uv": [0, 0, 3.5, 3], "texture": "#0"}
+			}
+		},
+		{
+			"from": [8, 0, 4.5],
+			"to": [8, 6, 11.5],
+			"faces": {
+				"east": {"uv": [0, 0, 3.5, 3], "texture": "#0"},
+				"west": {"uv": [0, 0, 3.5, 3], "texture": "#0"}
+			}
+		}
+	]
+}

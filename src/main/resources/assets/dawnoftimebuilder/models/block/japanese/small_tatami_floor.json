@@ -1,0 +1,31 @@
+{
+	"textures": {
+		"1": "block/spruce_planks",
+		"texture": "dawnoftimebuilder:block/small_tatami_mat",
+		"particle": "dawnoftimebuilder:block/small_tatami_mat"
+	},
+	"elements": [
+		{
+			"from": [0.001, 16, 0.001],
+			"to": [15.999, 16.999, 15.999],
+			"faces": {
+				"north": {"uv": [0, 0, 16, 1], "texture": "#texture"},
+				"east": {"uv": [0, 0, 16, 1], "texture": "#texture"},
+				"south": {"uv": [0, 0, 16, 1], "texture": "#texture"},
+				"west": {"uv": [0, 0, 16, 1], "texture": "#texture"},
+				"up": {"uv": [16, 0, 0, 16], "texture": "#texture"}
+			}
+		},
+		{
+			"from": [0, 0, 0],
+			"to": [16, 16, 16],
+			"faces": {
+				"north": {"uv": [0, 0, 16, 16], "texture": "#1", "cullface": "north"},
+				"east": {"uv": [0, 0, 16, 16], "texture": "#1", "cullface": "east"},
+				"south": {"uv": [0, 0, 16, 16], "texture": "#1", "cullface": "south"},
+				"west": {"uv": [0, 0, 16, 16], "texture": "#1", "cullface": "west"},
+				"down": {"uv": [0, 0, 16, 16], "texture": "#1", "cullface": "down"}
+			}
+		}
+	]
+}

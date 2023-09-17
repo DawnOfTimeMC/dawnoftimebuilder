@@ -1,0 +1,8 @@
+{
+	"variants": {
+		"facing=north": { "model": "dawnoftimebuilder:block/german/stone_bricks_arrowslit"},
+		"facing=east": { "model": "dawnoftimebuilder:block/german/stone_bricks_arrowslit", "y" : 90},
+		"facing=south": { "model": "dawnoftimebuilder:block/german/stone_bricks_arrowslit", "y" : 180},
+		"facing=west": { "model": "dawnoftimebuilder:block/german/stone_bricks_arrowslit", "y" : 270}
+	}
+}

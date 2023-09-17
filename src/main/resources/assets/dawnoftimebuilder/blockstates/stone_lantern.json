@@ -1,0 +1,10 @@
+{
+    "variants": {
+        "facing=down":  { "model": "dawnoftimebuilder:block/japanese/stone_lantern_up" },
+        "facing=up":  { "model": "dawnoftimebuilder:block/japanese/stone_lantern_down" },
+        "facing=west":  { "model": "dawnoftimebuilder:block/japanese/stone_lantern_side" },
+        "facing=north":  { "model": "dawnoftimebuilder:block/japanese/stone_lantern_side", "y": 90 },
+        "facing=south":  { "model": "dawnoftimebuilder:block/japanese/stone_lantern_side", "y": 270 },
+        "facing=east":  { "model": "dawnoftimebuilder:block/japanese/stone_lantern_side", "y" : 180 }
+    }
+}

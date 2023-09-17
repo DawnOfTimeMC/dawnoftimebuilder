@@ -1,0 +1,54 @@
+{
+	"textures": {
+		"texture": "dawnoftimebuilder:block/lattice_stone_bricks_window",
+		"particle": "dawnoftimebuilder:block/lattice_stone_bricks_window",
+		"tete": "dawnoftimebuilder:block/lattice_glass"
+	},
+	"elements": [
+		{
+			"from": [3, 0, 7],
+			"to": [16, 16, 9],
+			"faces": {
+				"north": {"uv": [0, 0, 13, 16], "texture": "#tete"},
+				"east": {"uv": [7, 0, 9, 16], "texture": "#tete", "cullface": "east"},
+				"south": {"uv": [3, 0, 16, 16], "texture": "#tete"},
+				"up": {"uv": [3, 7, 16, 9], "texture": "#tete", "cullface": "up"},
+				"down": {"uv": [3, 7, 16, 9], "texture": "#tete", "cullface": "down"}
+			}
+		},
+		{
+			"from": [-3, -0.01, 6],
+			"to": [3, 16.01, 10],
+			"faces": {
+				"north": {"uv": [0, 9, 16, 13], "rotation": 90, "texture": "#texture"},
+				"east": {"uv": [0, 13, 16, 9], "rotation": 270, "texture": "#texture"},
+				"south": {"uv": [0, 8, 16, 14], "rotation": 90, "texture": "#texture"},
+				"west": {"uv": [16, 9, 0, 13], "rotation": 90, "texture": "#texture"},
+				"up": {"uv": [0, 9, 6, 13], "texture": "#texture", "cullface": "up"},
+				"down": {"uv": [0, 9, 6, 13], "texture": "#texture", "cullface": "down"}
+			}
+		},
+		{
+			"from": [-2.17157, 0, 4],
+			"to": [2.07143, 16, 8.243],
+			"rotation": {"angle": 45, "axis": "y", "origin": [-0.17157, -0.01, 6]},
+			"faces": {
+				"north": {"uv": [0, 10, 16, 14], "rotation": 90, "texture": "#texture"},
+				"east": {"uv": [0, 8, 16, 12], "rotation": 90, "texture": "#texture"},
+				"up": {"uv": [0, 9, 4, 13], "texture": "#texture"},
+				"down": {"uv": [0, 9, 4, 13], "texture": "#texture"}
+			}
+		},
+		{
+			"from": [-2.07092, 0, 7.757],
+			"to": [2.17208, 16, 12],
+			"rotation": {"angle": 45, "axis": "y", "origin": [0.17208, 0, 10]},
+			"faces": {
+				"south": {"uv": [0, 10, 16, 14], "rotation": 90, "texture": "#texture"},
+				"west": {"uv": [0, 8, 16, 12], "rotation": 90, "texture": "#texture"},
+				"up": {"uv": [0, 9, 4, 13], "texture": "#texture"},
+				"down": {"uv": [0, 9, 4, 13], "texture": "#texture"}
+			}
+		}
+	]
+}

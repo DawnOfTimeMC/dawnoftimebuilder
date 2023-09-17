@@ -1,0 +1,55 @@
+{
+	"multipart": [
+		{
+			"apply": { "model": "dawnoftimebuilder:block/german/stone_bricks_small_pool_floor"}
+		},
+		{
+			"when": { "north": "false" },
+			"apply": { "model": "dawnoftimebuilder:block/german/stone_bricks_small_pool_side", "y": 180 }
+		},
+		{
+			"when": { "east": "false" },
+			"apply": { "model": "dawnoftimebuilder:block/german/stone_bricks_small_pool_side", "y": 270 }
+		},
+		{
+			"when": { "south": "false" },
+			"apply": { "model": "dawnoftimebuilder:block/german/stone_bricks_small_pool_side"}
+		},
+		{
+			"when": { "west": "false" },
+			"apply": { "model": "dawnoftimebuilder:block/german/stone_bricks_small_pool_side", "y": 90 }
+		},
+		{
+			"when": { "has_pillar": "true" },
+			"apply": { "model": "dawnoftimebuilder:block/german/stone_bricks_small_pool_pillar" }
+		},
+		{
+			"when": { "bottom": "true" },
+			"apply": { "model": "dawnoftimebuilder:block/german/stone_bricks_small_pool_bottom" }
+		},
+		{
+			"when": { "level": "1" },
+			"apply": { "model": "dawnoftimebuilder:block/general/water/pool_water_11px" }
+		},
+		{
+			"when": { "level": "2" },
+			"apply": { "model": "dawnoftimebuilder:block/general/water/pool_water_12px" }
+		},
+		{
+			"when": { "level": "3" },
+			"apply": { "model": "dawnoftimebuilder:block/general/water/pool_water_13px" }
+		},
+		{
+			"when": { "level": "4" },
+			"apply": { "model": "dawnoftimebuilder:block/general/water/pool_water_14px" }
+		},
+		{
+			"when": { "level": "5" },
+			"apply": { "model": "dawnoftimebuilder:block/general/water/pool_water_15px" }
+		},
+		{
+			"when": { "level": "6" },
+			"apply": { "model": "dawnoftimebuilder:block/general/water/pool_water_16px" }
+		}
+	]
+}

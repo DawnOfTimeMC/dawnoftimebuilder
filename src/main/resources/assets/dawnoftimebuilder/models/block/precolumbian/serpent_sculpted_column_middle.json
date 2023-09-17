@@ -1,0 +1,21 @@
+{
+	"render_type": "minecraft:cutout",
+	"textures": {
+		"texture": "dawnoftimebuilder:block/serpent_scultped_column",
+		"particle": "dawnoftimebuilder:block/serpent_scultped_column"
+	},
+	"elements": [
+		{
+			"from": [5, 0, 10],
+			"to": [11, 16, 16],
+			"faces": {
+				"north": {"uv": [10, 6.25, 11.5, 10.25], "texture": "#texture"},
+				"east": {"uv": [14.5, 6.25, 16, 10.25], "texture": "#texture"},
+				"south": {"uv": [13, 6.25, 14.5, 10.25], "texture": "#texture", "cullface": "south"},
+				"west": {"uv": [11.5, 6.25, 13, 10.25], "texture": "#texture"},
+				"up": {"uv": [8.5, 7.25, 10, 8.75], "texture": "#texture", "cullface": "up"},
+				"down": {"uv": [8.5, 7.25, 10, 8.75], "texture": "#texture", "cullface": "down"}
+			}
+		}
+	]
+}

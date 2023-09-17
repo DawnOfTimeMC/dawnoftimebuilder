@@ -1,0 +1,20 @@
+{
+	"variants": {
+		"axis=x,lit=false,horizontal_connection=none": { "model": "dawnoftimebuilder:block/general/fireplace_none_off"},
+		"axis=x,lit=true,horizontal_connection=none": { "model": "dawnoftimebuilder:block/general/fireplace_none_on"},
+		"axis=x,lit=false,horizontal_connection=left": { "model": "dawnoftimebuilder:block/general/fireplace_left_off"},
+		"axis=x,lit=true,horizontal_connection=left": { "model": "dawnoftimebuilder:block/general/fireplace_left_on"},
+		"axis=x,lit=false,horizontal_connection=right": { "model": "dawnoftimebuilder:block/general/fireplace_right_off"},
+		"axis=x,lit=true,horizontal_connection=right": { "model": "dawnoftimebuilder:block/general/fireplace_right_on"},
+		"axis=x,lit=false,horizontal_connection=both": { "model": "dawnoftimebuilder:block/general/fireplace_left_off"},
+		"axis=x,lit=true,horizontal_connection=both": { "model": "dawnoftimebuilder:block/general/fireplace_left_on"},
+		"axis=z,lit=false,horizontal_connection=none": { "model": "dawnoftimebuilder:block/general/fireplace_none_off", "y" : 90},
+		"axis=z,lit=true,horizontal_connection=none": { "model": "dawnoftimebuilder:block/general/fireplace_none_on", "y" : 90},
+		"axis=z,lit=false,horizontal_connection=left": { "model": "dawnoftimebuilder:block/general/fireplace_left_off", "y" : 90},
+		"axis=z,lit=true,horizontal_connection=left": { "model": "dawnoftimebuilder:block/general/fireplace_left_on", "y" : 90},
+		"axis=z,lit=false,horizontal_connection=right": { "model": "dawnoftimebuilder:block/general/fireplace_right_off", "y" : 90},
+		"axis=z,lit=true,horizontal_connection=right": { "model": "dawnoftimebuilder:block/general/fireplace_right_on", "y" : 90},
+		"axis=z,lit=false,horizontal_connection=both": { "model": "dawnoftimebuilder:block/general/fireplace_left_off", "y" : 90},
+		"axis=z,lit=true,horizontal_connection=both": { "model": "dawnoftimebuilder:block/general/fireplace_left_on", "y" : 90}
+	}
+}

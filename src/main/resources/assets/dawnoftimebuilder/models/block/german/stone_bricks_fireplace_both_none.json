@@ -1,0 +1,42 @@
+{
+	"render_type": "minecraft:cutout",
+	"credit": "Made with Blockbench",
+	"textures": {
+		"texture": "dawnoftimebuilder:block/stone_bricks_fireplace_x_none",
+		"particle": "block/stone_bricks"
+	},
+	"elements": [
+		{
+			"from": [1, 0, 10],
+			"to": [4, 16, 16],
+			"faces": {
+				"north": {"uv": [8, 10, 8.75, 14], "texture": "#texture"},
+				"east": {"uv": [8.75, 10, 10.25, 14], "texture": "#texture"},
+				"south": {"uv": [8, 10, 8.75, 14], "texture": "#texture", "cullface": "south"},
+				"west": {"uv": [8.75, 10, 10.25, 14], "texture": "#texture"}
+			}
+		},
+		{
+			"from": [5, 0, 15.99],
+			"to": [11, 16, 15.99],
+			"faces": {
+				"north": {"uv": [4, 5.5, 5.5, 9.5], "texture": "#texture"},
+				"east": {"uv": [0, 0, 0, 0], "texture": "#texture"},
+				"south": {"uv": [4, 5.5, 5.5, 9.5], "texture": "#texture", "cullface": "south"},
+				"west": {"uv": [0, 0, 0, 0], "texture": "#texture"},
+				"up": {"uv": [0, 0, 0, 0], "texture": "#texture"},
+				"down": {"uv": [0, 0, 0, 0], "texture": "#texture"}
+			}
+		},
+		{
+			"from": [12, 0, 10],
+			"to": [15, 16, 16],
+			"faces": {
+				"north": {"uv": [8, 10, 8.75, 14], "texture": "#texture"},
+				"east": {"uv": [8.75, 10, 10.25, 14], "texture": "#texture"},
+				"south": {"uv": [8, 10, 8.75, 14], "texture": "#texture", "cullface": "south"},
+				"west": {"uv": [8.75, 10, 10.25, 14], "texture": "#texture"}
+			}
+		}
+	]
+}

@@ -1,0 +1,8 @@
+{
+	"variants": {
+		"facing=north": { "model": "dawnoftimebuilder:block/roman/birch_footstool", "y": 90 },
+		"facing=west": { "model": "dawnoftimebuilder:block/roman/birch_footstool" },
+		"facing=south": { "model": "dawnoftimebuilder:block/roman/birch_footstool", "y": 270 },
+		"facing=east": { "model": "dawnoftimebuilder:block/roman/birch_footstool", "y": 180 }
+	}
+}

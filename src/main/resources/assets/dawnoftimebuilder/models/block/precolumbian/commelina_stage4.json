@@ -1,0 +1,7 @@
+{
+    "render_type": "minecraft:cutout",
+    "parent": "block/crop",
+    "textures": {
+        "crop": "dawnoftimebuilder:block/commelina_stage_4"
+    }
+}

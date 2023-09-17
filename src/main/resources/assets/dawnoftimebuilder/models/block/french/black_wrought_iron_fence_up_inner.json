@@ -1,0 +1,39 @@
+{
+	"render_type": "minecraft:cutout",
+	"credit": "Made with Blockbench",
+	"texture_size": [32, 32],
+	"textures": {
+		"0": "dawnoftimebuilder:block/black_wrought_iron_fence",
+		"particle": "dawnoftimebuilder:block/black_wrought_iron_fence"
+	},
+	"elements": [
+		{
+			"from": [0, 0, 13],
+			"to": [3, 10, 16],
+			"faces": {
+				"north": {"uv": [8, 8, 9.5, 13], "texture": "#0"},
+				"east": {"uv": [8, 8, 9.5, 13], "texture": "#0"},
+				"south": {"uv": [8, 8, 9.5, 13], "texture": "#0"},
+				"west": {"uv": [8, 8, 9.5, 13], "texture": "#0"},
+				"up": {"uv": [9.5, 14.5, 11, 16], "texture": "#0"},
+				"down": {"uv": [9.5, 14.5, 11, 16], "texture": "#0", "cullface": "down"}
+			}
+		},
+		{
+			"from": [3, 0, 14.5],
+			"to": [16, 8, 14.5],
+			"faces": {
+				"north": {"uv": [0, 4, 6.5, 8], "texture": "#0"},
+				"south": {"uv": [6.5, 4, 0, 8], "texture": "#0"}
+			}
+		},
+		{
+			"from": [1.5, 0, 0],
+			"to": [1.5, 8, 13],
+			"faces": {
+				"east": {"uv": [1.5, 4, 8, 8], "texture": "#0"},
+				"west": {"uv": [0, 4, 6.5, 8], "texture": "#0"}
+			}
+		}
+	]
+}

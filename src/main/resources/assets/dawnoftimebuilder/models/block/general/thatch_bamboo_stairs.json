@@ -1,0 +1,8 @@
+{
+    "parent": "block/stairs",
+    "textures": {
+        "bottom": "dawnoftimebuilder:block/thatch_bamboo",
+        "top": "dawnoftimebuilder:block/thatch_bamboo",
+        "side": "dawnoftimebuilder:block/thatch_bamboo"
+    }
+}

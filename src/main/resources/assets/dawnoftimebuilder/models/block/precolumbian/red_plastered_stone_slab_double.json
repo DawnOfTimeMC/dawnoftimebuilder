@@ -1,0 +1,7 @@
+{
+    "parent": "block/cube_column",
+    "textures": {
+        "end": "dawnoftimebuilder:block/red_plastered_stone",
+        "side": "dawnoftimebuilder:block/red_plastered_stone_slab"
+    }
+}

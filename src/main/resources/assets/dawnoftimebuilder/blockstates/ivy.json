@@ -1,0 +1,82 @@
+{
+	"multipart": [
+		{
+			"when": { "age": "0", "north": "true"},
+			"apply": [
+				{ "model": "dawnoftimebuilder:block/general/ivy/ivy_wild_stage_0"}
+			]
+		},
+		{
+			"when": { "age": "0", "east": "true"},
+			"apply": [
+				{ "model": "dawnoftimebuilder:block/general/ivy/ivy_wild_stage_0", "y": 90}
+			]
+		},
+		{
+			"when": { "age": "0", "south": "true"},
+			"apply": [
+				{ "model": "dawnoftimebuilder:block/general/ivy/ivy_wild_stage_0", "y": 180}
+			]
+		},
+		{
+			"when": { "age": "0", "west": "true"},
+			"apply": [
+				{ "model": "dawnoftimebuilder:block/general/ivy/ivy_wild_stage_0", "y": 270}
+			]
+		},
+		{
+			"when": { "age": "1", "north": "true"},
+			"apply": [
+				{ "model": "dawnoftimebuilder:block/general/ivy/ivy_wild_stage_1"}
+			]
+		},
+		{
+			"when": { "age": "1", "east": "true"},
+			"apply": [
+				{ "model": "dawnoftimebuilder:block/general/ivy/ivy_wild_stage_1", "y": 90}
+			]
+		},
+		{
+			"when": { "age": "1", "south": "true"},
+			"apply": [
+				{ "model": "dawnoftimebuilder:block/general/ivy/ivy_wild_stage_1", "y": 180}
+			]
+		},
+		{
+			"when": { "age": "1", "west": "true"},
+			"apply": [
+				{ "model": "dawnoftimebuilder:block/general/ivy/ivy_wild_stage_1", "y": 270}
+			]
+		},
+		{
+			"when": { "age": "2", "north": "true"},
+			"apply": [
+				{ "model": "dawnoftimebuilder:block/general/ivy/ivy_wild_stage_2"}
+			]
+		},
+		{
+			"when": { "age": "2", "east": "true"},
+			"apply": [
+				{ "model": "dawnoftimebuilder:block/general/ivy/ivy_wild_stage_2", "y": 90}
+			]
+		},
+		{
+			"when": { "age": "2", "south": "true"},
+			"apply": [
+				{ "model": "dawnoftimebuilder:block/general/ivy/ivy_wild_stage_2", "y": 180}
+			]
+		},
+		{
+			"when": { "age": "2", "west": "true"},
+			"apply": [
+				{ "model": "dawnoftimebuilder:block/general/ivy/ivy_wild_stage_2", "y": 270}
+			]
+		},
+		{
+			"when": { "north": "false", "west": "false", "south": "false", "east": "false"},
+			"apply": [
+				{ "model": "minecraft:block/diamond_block"}
+			]
+		}
+	]
+}

@@ -1,0 +1,31 @@
+{
+	"credit": "Made with Blockbench",
+	"textures": {
+		"texture": "dawnoftimebuilder:block/sandstone_column",
+		"particle": "dawnoftimebuilder:block/sandstone_column_top"
+	},
+	"elements": [
+		{
+			"from": [2, 0, 10],
+			"to": [14, 8, 16],
+			"faces": {
+				"north": {"uv": [1, 12, 7, 16], "texture": "#texture"},
+				"east": {"uv": [4, 12, 7, 16], "texture": "#texture"},
+				"south": {"uv": [2, 8, 14, 16], "texture": "#particle", "cullface": "south"},
+				"west": {"uv": [1, 12, 4, 16], "texture": "#texture"},
+				"up": {"uv": [9, 9, 15, 12], "texture": "#texture"},
+				"down": {"uv": [9, 4, 15, 7], "texture": "#texture", "cullface": "down"}
+			}
+		},
+		{
+			"from": [4, 8, 12],
+			"to": [12, 16, 16],
+			"faces": {
+				"north": {"uv": [2, 8, 6, 12], "texture": "#texture"},
+				"east": {"uv": [4, 8, 6, 12], "texture": "#texture"},
+				"south": {"uv": [4, 0, 12, 8], "texture": "#particle", "cullface": "south"},
+				"west": {"uv": [2, 8, 4, 12], "texture": "#texture"}
+			}
+		}
+	]
+}

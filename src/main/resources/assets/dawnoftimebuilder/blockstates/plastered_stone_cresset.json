@@ -1,0 +1,9 @@
+{
+    "variants": {
+        "heat=4":  { "model": "dawnoftimebuilder:block/precolumbian/plastered_stone_cresset_on" },
+        "heat=3":  { "model": "dawnoftimebuilder:block/precolumbian/plastered_stone_cresset_off" },
+        "heat=2":  { "model": "dawnoftimebuilder:block/precolumbian/plastered_stone_cresset_off" },
+        "heat=1":  { "model": "dawnoftimebuilder:block/precolumbian/plastered_stone_cresset_off" },
+        "heat=0":  { "model": "dawnoftimebuilder:block/precolumbian/plastered_stone_cresset_off" }
+    }
+}

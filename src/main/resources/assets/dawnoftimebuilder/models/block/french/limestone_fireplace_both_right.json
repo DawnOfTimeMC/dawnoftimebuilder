@@ -1,0 +1,38 @@
+{
+	"render_type": "minecraft:cutout",
+	"textures": {
+		"4_texture": "dawnoftimebuilder:block/limestone_fireplace_x_x_1",
+		"particle": "dawnoftimebuilder:block/limestone_bricks"
+	},
+	"elements": [
+		{
+			"from": [2, 0, 10],
+			"to": [5, 16, 16],
+			"faces": {
+				"north": {"uv": [15.5, 9.5, 14.75, 13.5], "texture": "#4_texture", "cullface": "north"},
+				"east": {"uv": [14.5, 1.5, 16, 5.5], "texture": "#4_texture"},
+				"south": {"uv": [15.5, 9.5, 14.75, 13.5], "texture": "#4_texture"},
+				"west": {"uv": [16, 1.5, 14.5, 5.5], "texture": "#4_texture", "cullface": "west"}
+			}
+		},
+		{
+			"from": [2.5, 0, 7.5],
+			"to": [4.5, 16, 9.5],
+			"faces": {
+				"north": {"uv": [16, 9.5, 15.5, 13.5], "texture": "#4_texture", "cullface": "north"},
+				"east": {"uv": [16, 9.5, 15.5, 13.5], "texture": "#4_texture", "cullface": "north"},
+				"south": {"uv": [16, 9.5, 15.5, 13.5], "texture": "#4_texture", "cullface": "north"},
+				"west": {"uv": [16, 9.5, 15.5, 13.5], "texture": "#4_texture", "cullface": "west"}
+			}
+		},
+		{
+			"from": [5, 0, 11],
+			"to": [7, 16, 16],
+			"faces": {
+				"north": {"uv": [0.5, 9, 0, 13], "texture": "#4_texture"},
+				"east": {"uv": [0.5, 9, 1.75, 13], "texture": "#4_texture"},
+				"south": {"uv": [2.25, 9, 1.75, 13], "texture": "#4_texture", "cullface": "south"}
+			}
+		}
+	]
+}

@@ -1,0 +1,8 @@
+{
+    "render_type": "minecraft:cutout",
+    "parent": "block/carpet",
+    "textures": {
+        "particle": "dawnoftimebuilder:block/small_tatami_mat",
+        "wool": "dawnoftimebuilder:block/small_tatami_mat"
+    }
+}

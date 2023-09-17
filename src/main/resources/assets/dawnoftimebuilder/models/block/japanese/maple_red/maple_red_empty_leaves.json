@@ -1,0 +1,8 @@
+{
+	"render_type": "minecraft:cutout",
+	"credit": "Made with Blockbench",
+	"ambientocclusion": false,
+	"textures": {
+		"particle": "dawnoftimebuilder:block/transparent"
+	}
+}

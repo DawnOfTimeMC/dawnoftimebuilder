@@ -1,0 +1,141 @@
+{
+	"render_type": "minecraft:cutout",
+	"credit": "Made with Blockbench",
+	"texture_size": [32, 32],
+	"textures": {
+		"0": "dawnoftimebuilder:block/black_wrought_iron_baluster",
+		"particle": "dawnoftimebuilder:block/black_wrought_iron_baluster"
+	},
+	"elements": [
+		{
+			"from": [0, 0, 14],
+			"to": [16, 3, 14],
+			"rotation": {"angle": 0, "axis": "y", "origin": [9, 4, 4.5]},
+			"faces": {
+				"north": {"uv": [8, 11.5, 0, 13], "texture": "#0"},
+				"south": {"uv": [0, 11.5, 8, 13], "texture": "#0"}
+			}
+		},
+		{
+			"from": [0, 12.8, 14],
+			"to": [16, 15.05, 14],
+			"rotation": {"angle": 0, "axis": "y", "origin": [9, 4, 4.5]},
+			"faces": {
+				"north": {"uv": [8, 1.5, 0, 2.5], "texture": "#0"},
+				"south": {"uv": [0, 1.5, 8, 2.5], "texture": "#0"}
+			}
+		},
+		{
+			"from": [0, 6.76537, 15.84676],
+			"to": [16, 12.76537, 15.84676],
+			"rotation": {"angle": -22.5, "axis": "x", "origin": [8, 6.76537, 15.84676]},
+			"faces": {
+				"north": {"uv": [8, 4, 0, 7], "texture": "#0"},
+				"south": {"uv": [0, 4, 8, 7], "texture": "#0"}
+			}
+		},
+		{
+			"from": [0, 12.30903, 13.55058],
+			"to": [16, 13.30903, 13.55058],
+			"rotation": {"angle": 45, "axis": "x", "origin": [8, 12.30903, 13.55058]},
+			"faces": {
+				"north": {"uv": [8, 3.5, 0, 4], "texture": "#0"},
+				"south": {"uv": [0, 3.5, 8, 4], "texture": "#0"}
+			}
+		},
+		{
+			"from": [0, 12.01543, 14.2574],
+			"to": [16, 13.01543, 14.2574],
+			"rotation": {"angle": -45, "axis": "x", "origin": [8, 13.01543, 14.2574]},
+			"faces": {
+				"north": {"uv": [0, 3, 8, 3.5], "rotation": 180, "texture": "#0"},
+				"south": {"uv": [8, 3, 0, 3.5], "rotation": 180, "texture": "#0"}
+			}
+		},
+		{
+			"from": [0, 3.76537, 15.84676],
+			"to": [16, 6.76537, 15.84676],
+			"rotation": {"angle": 0, "axis": "y", "origin": [9, 3.76537, 4.34676]},
+			"faces": {
+				"north": {"uv": [8, 7, 0, 8.5], "texture": "#0"},
+				"south": {"uv": [0, 7, 8, 8.5], "texture": "#0"}
+			}
+		},
+		{
+			"from": [0, 3, 14],
+			"to": [16, 3, 16],
+			"rotation": {"angle": -22.5, "axis": "x", "origin": [8, 3, 14]},
+			"faces": {
+				"up": {"uv": [8, 8.5, 0, 9.5], "rotation": 180, "texture": "#0"},
+				"down": {"uv": [0, 8.5, 8, 9.5], "texture": "#0"}
+			}
+		},
+		{
+			"from": [0, 3, 12],
+			"to": [16, 3, 14],
+			"rotation": {"angle": 22.5, "axis": "x", "origin": [8, 3, 14]},
+			"faces": {
+				"up": {"uv": [0, 9.5, 8, 10.5], "texture": "#0"},
+				"down": {"uv": [8, 9.5, 0, 10.5], "rotation": 180, "texture": "#0"}
+			}
+		},
+		{
+			"from": [0, 3.76629, 12.15162],
+			"to": [16, 4.76629, 12.15162],
+			"rotation": {"angle": 0, "axis": "x", "origin": [8, 3.76629, 12.15162]},
+			"faces": {
+				"north": {"uv": [8, 10.5, 0, 11], "texture": "#0"},
+				"south": {"uv": [0, 10.5, 8, 11], "texture": "#0"}
+			}
+		},
+		{
+			"from": [0, 15, 13],
+			"to": [16, 16, 15],
+			"faces": {
+				"north": {"uv": [0, 1, 8, 1.5], "texture": "#0"},
+				"east": {"uv": [7, 1, 8, 1.5], "texture": "#0", "cullface": "east"},
+				"south": {"uv": [0, 1, 8, 1.5], "texture": "#0"},
+				"west": {"uv": [0, 1, 1, 1.5], "texture": "#0", "cullface": "west"},
+				"up": {"uv": [0, 0, 8, 1], "texture": "#0"},
+				"down": {"uv": [0, 0, 8, 1], "texture": "#0"}
+			}
+		}
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [75, 45, 0],
+			"translation": [0, 2.5, 0],
+			"scale": [0.375, 0.375, 0.375]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [75, 45, 0],
+			"translation": [0, 2.5, 0],
+			"scale": [0.375, 0.375, 0.375]
+		},
+		"firstperson_righthand": {
+			"rotation": [0, 90, 0],
+			"scale": [0.4, 0.4, 0.4]
+		},
+		"firstperson_lefthand": {
+			"rotation": [0, 90, 0],
+			"scale": [0.4, 0.4, 0.4]
+		},
+		"ground": {
+			"translation": [0, 2, -2],
+			"scale": [0.3, 0.3, 0.3]
+		},
+		"gui": {
+			"rotation": [30, 225, 0],
+			"translation": [3.25, -1.5, 0],
+			"scale": [0.7, 0.7, 0.7]
+		},
+		"head": {
+			"rotation": [0, 180, 0],
+			"translation": [0, 0, -1]
+		},
+		"fixed": {
+			"rotation": [0, 180, 0],
+			"translation": [0, 0, 6.5]
+		}
+	}
+}

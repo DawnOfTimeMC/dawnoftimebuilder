@@ -1,0 +1,7 @@
+{
+    "render_type": "minecraft:cutout",
+    "parent": "block/template_glass_pane_noside",
+    "textures": {
+        "pane": "dawnoftimebuilder:block/lattice_glass"
+    }
+}

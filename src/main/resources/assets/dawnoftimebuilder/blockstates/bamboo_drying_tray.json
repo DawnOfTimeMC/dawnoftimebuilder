@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "size=0": { "model": "dawnoftimebuilder:block/japanese/bamboo_drying_tray_simple"},
+        "size=1": { "model": "dawnoftimebuilder:block/japanese/bamboo_drying_tray_double"},
+        "size=2": { "model": "dawnoftimebuilder:block/japanese/bamboo_drying_tray_connected"}
+    }
+}

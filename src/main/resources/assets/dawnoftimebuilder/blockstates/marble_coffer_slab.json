@@ -1,0 +1,8 @@
+
+{
+    "variants": {
+        "type=bottom": { "model": "dawnoftimebuilder:block/roman/marble_coffer_slab_bottom" },
+        "type=top": { "model": "dawnoftimebuilder:block/roman/marble_coffer_slab_top" },
+        "type=double": { "model": "dawnoftimebuilder:block/roman/marble_coffer" }
+    }
+}

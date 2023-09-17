@@ -1,0 +1,40 @@
+{
+    "multipart": [
+        {   "apply": { "model": "dawnoftimebuilder:block/japanese/paper_wall_post" }},
+        {   "when": { "north": true },
+            "apply": { "model": "dawnoftimebuilder:block/japanese/paper_wall_flowery_side" }
+        },
+        {   "when": { "east": true },
+            "apply": { "model": "dawnoftimebuilder:block/japanese/paper_wall_flowery_side", "y": 90 }
+        },
+        {   "when": { "south": true },
+            "apply": { "model": "dawnoftimebuilder:block/japanese/paper_wall_flowery_side", "y": 180 }
+        },
+        {   "when": { "west": true },
+            "apply": { "model": "dawnoftimebuilder:block/japanese/paper_wall_flowery_side", "y": 270 }
+        },
+        {   "when": { "north": false },
+            "apply": { "model": "dawnoftimebuilder:block/japanese/paper_wall_flowery_noside" }
+        },
+        {   "when": { "east": false },
+            "apply": { "model": "dawnoftimebuilder:block/japanese/paper_wall_flowery_noside", "y": 90 }
+        },
+        {   "when": { "south": false },
+            "apply": { "model": "dawnoftimebuilder:block/japanese/paper_wall_flowery_noside", "y": 180 }
+        },
+        {   "when": { "west": false },
+            "apply": { "model": "dawnoftimebuilder:block/japanese/paper_wall_flowery_noside", "y": 270 }
+        },
+        {
+            "when": {"OR": [
+                { "north": true, "east": true },
+                { "east": true, "south": true },
+                { "south": true, "west": true },
+                { "west": true, "north": true }
+            ]},
+            "apply": [
+                { "model": "dawnoftimebuilder:block/japanese/charred_spruce_paper_wall_pillar"}
+            ]
+        }
+    ]
+}

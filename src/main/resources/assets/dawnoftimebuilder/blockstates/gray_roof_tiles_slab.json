@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "type=bottom": { "model": "dawnoftimebuilder:block/japanese/gray_roof_tiles_slab_bottom" },
+        "type=top": { "model": "dawnoftimebuilder:block/japanese/gray_roof_tiles_slab_top" },
+        "type=double": { "model": "dawnoftimebuilder:block/japanese/gray_roof_tiles" }
+    }
+}

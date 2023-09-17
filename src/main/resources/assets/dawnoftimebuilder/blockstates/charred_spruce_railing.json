@@ -1,0 +1,28 @@
+{
+    "multipart": [
+        {   "when": { "fence_pillar": "none" },
+            "apply": { "model": "dawnoftimebuilder:block/japanese/charred_spruce_railing_post_none" }
+        },
+        {   "when": { "fence_pillar": "pillar_small" },
+            "apply": { "model": "dawnoftimebuilder:block/japanese/charred_spruce_railing_post_small" }
+        },
+        {   "when": { "fence_pillar": "pillar_big" },
+            "apply": { "model": "dawnoftimebuilder:block/japanese/charred_spruce_railing_post_big" }
+        },
+        {   "when": { "fence_pillar": "cap_pillar_big" },
+            "apply": { "model": "dawnoftimebuilder:block/japanese/charred_spruce_railing_post_cap_big" }
+        },
+        {   "when": { "north": "true" },
+            "apply": { "model": "dawnoftimebuilder:block/japanese/charred_spruce_railing_side"}
+        },
+        {   "when": { "east": "true" },
+            "apply": { "model": "dawnoftimebuilder:block/japanese/charred_spruce_railing_side", "y": 90}
+        },
+        {   "when": { "south": "true" },
+            "apply": { "model": "dawnoftimebuilder:block/japanese/charred_spruce_railing_side", "y": 180}
+        },
+        {   "when": { "west": "true" },
+            "apply": { "model": "dawnoftimebuilder:block/japanese/charred_spruce_railing_side", "y": 270}
+        }
+    ]
+}

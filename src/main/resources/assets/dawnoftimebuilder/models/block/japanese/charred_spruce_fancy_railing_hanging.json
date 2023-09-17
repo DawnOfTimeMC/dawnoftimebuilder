@@ -1,0 +1,58 @@
+{
+	"render_type": "minecraft:cutout",
+	"credit": "mr_ch0c0late",
+	"texture_size": [32, 32],
+	"textures": {
+		"0": "dawnoftimebuilder:block/charred_spruce_fancy_railing",
+		"particle": "dawnoftimebuilder:block/charred_spruce_fancy_railing"
+	},
+	"elements": [
+		{
+			"from": [7, 15, 0],
+			"to": [9, 16, 8],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 8.5, 8]},
+			"faces": {
+				"north": {"uv": [11.5, 1.5, 12.5, 2], "texture": "#0", "cullface": "north"},
+				"east": {"uv": [12, 0.5, 16, 1], "texture": "#0"},
+				"south": {"uv": [11.5, 1.5, 12.5, 2], "texture": "#0"},
+				"west": {"uv": [8, 0, 12, 0.5], "texture": "#0"},
+				"up": {"uv": [8.5, 0, 12.5, 1], "rotation": 270, "texture": "#0", "cullface": "up"},
+				"down": {"uv": [12, 1, 16, 0], "rotation": 90, "texture": "#0"}
+			}
+		},
+		{
+			"from": [7, 6, 1],
+			"to": [9, 15, 2],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 8.5, 8]},
+			"faces": {
+				"north": {"uv": [0, 8.5, 1, 13], "texture": "#0"},
+				"east": {"uv": [0.5, 8.5, 1, 13], "texture": "#0"},
+				"south": {"uv": [0, 8.5, 1, 13], "texture": "#0"},
+				"west": {"uv": [0, 8.5, 0.5, 13], "texture": "#0"},
+				"down": {"uv": [0, 13, 1, 13.5], "rotation": 180, "texture": "#0"}
+			}
+		},
+		{
+			"from": [7, 7, 0],
+			"to": [9, 8, 3],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 8.5, 8]},
+			"faces": {
+				"north": {"uv": [11.5, 0.5, 12.5, 1], "texture": "#0", "cullface": "north"},
+				"east": {"uv": [14.5, 1.5, 16, 2], "texture": "#0"},
+				"south": {"uv": [11.5, 0.5, 12.5, 1], "texture": "#0"},
+				"west": {"uv": [8, 1, 9.5, 1.5], "texture": "#0"},
+				"up": {"uv": [14.5, 1, 16, 2], "rotation": 270, "texture": "#0"},
+				"down": {"uv": [14.5, 1, 16, 2], "rotation": 90, "texture": "#0"}
+			}
+		},
+		{
+			"from": [8, 0, 0],
+			"to": [8, 15, 8],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 8.5, 8]},
+			"faces": {
+				"east": {"uv": [5, 8.5, 9, 16], "texture": "#0"},
+				"west": {"uv": [1, 8.5, 5, 16], "texture": "#0"}
+			}
+		}
+	]
+}

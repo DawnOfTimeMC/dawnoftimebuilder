@@ -1,0 +1,12 @@
+{
+    "variants": {
+        "vertical_connection=under,axis_x=true": { "model": "dawnoftimebuilder:block/roman/marble_column_top" },
+        "vertical_connection=under,axis_x=false": { "model": "dawnoftimebuilder:block/roman/marble_column_top", "y": 90 },
+        "vertical_connection=both,axis_x=true": { "model": "dawnoftimebuilder:block/roman/marble_column_middle" },
+        "vertical_connection=both,axis_x=false": { "model": "dawnoftimebuilder:block/roman/marble_column_middle" },
+        "vertical_connection=above,axis_x=true": { "model": "dawnoftimebuilder:block/roman/marble_column_bottom" },
+        "vertical_connection=above,axis_x=false": { "model": "dawnoftimebuilder:block/roman/marble_column_bottom" },
+        "vertical_connection=none,axis_x=true": { "model": "dawnoftimebuilder:block/roman/marble_column_middle" },
+        "vertical_connection=none,axis_x=false": { "model": "dawnoftimebuilder:block/roman/marble_column_middle" }
+    }
+}

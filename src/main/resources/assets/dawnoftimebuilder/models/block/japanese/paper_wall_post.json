@@ -1,0 +1,7 @@
+{
+    "parent": "block/template_glass_pane_post",
+    "textures": {
+        "edge": "dawnoftimebuilder:block/paper_wall",
+        "pane": "dawnoftimebuilder:block/paper_wall"
+    }
+}

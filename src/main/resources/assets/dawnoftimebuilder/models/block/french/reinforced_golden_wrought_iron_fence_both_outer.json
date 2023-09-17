@@ -1,0 +1,42 @@
+{
+	"render_type": "minecraft:cutout",
+	"credit": "Made with Blockbench",
+	"texture_size": [64, 64],
+	"textures": {
+		"0": "dawnoftimebuilder:block/reinforced_golden_iron_fence",
+		"particle": "dawnoftimebuilder:block/reinforced_golden_iron_fence"
+	},
+	"elements": [
+		{
+			"from": [0, 0, 11],
+			"to": [1, 16, 11],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 8, 11]},
+			"faces": {
+				"north": {"uv": [6.375, 4, 6.625, 8], "texture": "#0"},
+				"south": {"uv": [5.625, 4, 5.875, 8], "texture": "#0"}
+			}
+		},
+		{
+			"from": [1, 0, 7],
+			"to": [9, 16, 15],
+			"rotation": {"angle": 0, "axis": "y", "origin": [54, 0, 0]},
+			"faces": {
+				"north": {"uv": [10.5, 12, 12.5, 16], "texture": "#0"},
+				"east": {"uv": [10.5, 12, 12.5, 16], "texture": "#0"},
+				"south": {"uv": [10.5, 12, 12.5, 16], "texture": "#0"},
+				"west": {"uv": [10.5, 12, 12.5, 16], "texture": "#0"},
+				"up": {"uv": [8.5, 8.75, 10.5, 10.75], "texture": "#0", "cullface": "up"},
+				"down": {"uv": [8.5, 8.75, 10.5, 10.75], "texture": "#0", "cullface": "down"}
+			}
+		},
+		{
+			"from": [5, 0, 15],
+			"to": [5, 16, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [3.5, 24, 11]},
+			"faces": {
+				"east": {"uv": [5.625, 4, 5.875, 8], "texture": "#0"},
+				"west": {"uv": [6.375, 4, 6.625, 8], "texture": "#0"}
+			}
+		}
+	]
+}

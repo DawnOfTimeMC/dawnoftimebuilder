@@ -1,0 +1,45 @@
+{
+	"render_type": "minecraft:cutout",
+	"textures": {
+		"1": "dawnoftimebuilder:block/jungle_beam",
+		"particle": "dawnoftimebuilder:block/jungle_beam"
+	},
+	"elements": [
+		{
+			"from": [0, 4, 4],
+			"to": [16, 12, 12],
+			"faces": {
+				"north": {"uv": [0, 4, 8, 8], "texture": "#1"},
+				"east": {"uv": [0, 0, 4, 4], "texture": "#1", "cullface": "east"},
+				"south": {"uv": [0, 4, 8, 8], "texture": "#1"},
+				"west": {"uv": [0, 0, 4, 4], "texture": "#1", "cullface": "west"},
+				"up": {"uv": [8, 10, 16, 14], "texture": "#1"},
+				"down": {"uv": [8, 10, 16, 14], "texture": "#1"}
+			}
+		},
+		{
+			"from": [4, 4, 12],
+			"to": [12, 12, 16],
+			"faces": {
+				"north": {"uv": [0, 0, 4, 4], "texture": "#1"},
+				"east": {"uv": [0, 4, 2, 8], "texture": "#1"},
+				"south": {"uv": [0, 0, 4, 4], "texture": "#1", "cullface": "south"},
+				"west": {"uv": [6, 4, 8, 8], "texture": "#1"},
+				"up": {"uv": [14, 10, 16, 14], "rotation": 90, "texture": "#1"},
+				"down": {"uv": [14, 10, 16, 14], "rotation": 270, "texture": "#1"}
+			}
+		},
+		{
+			"from": [4, 4, 0],
+			"to": [12, 12, 4],
+			"faces": {
+				"north": {"uv": [0, 0, 4, 4], "texture": "#1", "cullface": "north"},
+				"east": {"uv": [6, 4, 8, 8], "texture": "#1"},
+				"south": {"uv": [0, 0, 4, 4], "texture": "#1"},
+				"west": {"uv": [0, 4, 2, 8], "texture": "#1"},
+				"up": {"uv": [8, 10, 10, 14], "rotation": 90, "texture": "#1"},
+				"down": {"uv": [8, 10, 10, 14], "rotation": 270, "texture": "#1"}
+			}
+		}
+	]
+}

@@ -1,0 +1,10 @@
+{
+	"variants": {
+		"": [
+			{"model": "dawnoftimebuilder:block/japanese/sake_bottle"},
+			{"model": "dawnoftimebuilder:block/japanese/sake_bottle", "y": 90},
+			{"model": "dawnoftimebuilder:block/japanese/sake_bottle", "y": 180},
+			{"model": "dawnoftimebuilder:block/japanese/sake_bottle", "y": 270}
+		]
+	}
+}
