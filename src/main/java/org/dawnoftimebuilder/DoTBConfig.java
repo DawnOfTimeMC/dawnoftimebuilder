@@ -101,6 +101,9 @@ public class DoTBConfig {
             builderIn.pop();
 
             builderIn.comment("----------------------------------------|| Armor settings ||---------------------------------------").push(ARMOR_MATERIAL_CATEGORY);
+            // IRON :                                                                           durability: 15, helmetDef: 2, chestDef: 6, legsDef: 5, feetDef: 2, enchantability: 9, toughness: 0.0D
+            // DIAMOND :                                                                        durability: 33, helmetDef: 3, chestDef: 8, legsDef: 6, feetDef: 3, enchantability: 10, toughness: 2.0D
+            // NETHERITE :                                                                      durability: 37, helmetDef: 3, chestDef: 8, legsDef: 6, feetDef: 3, enchantability: 15, toughness: 3.0D
             IRON_PLATE_ARMOR_CONFIG = new ArmorConfig(builderIn, "iron_plate",          25, 3, 9, 7, 3,  6, 0.0D); // DIAMOND
             HOLY_ARMOR_CONFIG = new ArmorConfig(builderIn, "holy",                      40, 4,10, 8, 4,  4, 2.0D); // NETHERITE
             JAPANESE_LIGHT_ARMOR_CONFIG = new ArmorConfig(builderIn, "japanese_light",  12, 2, 7, 6, 2, 10, 0.0D); // IRON

@@ -383,7 +383,7 @@ public class DoTBBlocksRegistry {
     public static final RegistryObject<Block> STICK_BUNDLE = DoTBBlocksRegistry.reg("stick_bundle", new StickBundleBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(2.0F, 3.0F).sound(SoundType.GRASS).noOcclusion()).setBurnable());
     public static final RegistryObject<Block> MAPLE_RED_TRUNK = DoTBBlocksRegistry.reg("maple_red_trunk", new MapleTrunkBlock(AbstractBlock.Properties.copy(Blocks.SPRUCE_LEAVES)));
     public static final RegistryObject<Block> MAPLE_RED_LEAVES = DoTBBlocksRegistry.reg("maple_red_leaves", new MapleLeavesBlock(AbstractBlock.Properties.copy(Blocks.SPRUCE_LEAVES)));
-    public static final RegistryObject<Block> MAPLE_RED_SAPLING = DoTBBlocksRegistry.reg("maple_red_sapling", new MapleSaplingBlock(AbstractBlock.Properties.copy(Blocks.SPRUCE_LEAVES)));
+    public static final RegistryObject<Block> MAPLE_RED_SAPLING = DoTBBlocksRegistry.reg("maple_red_sapling", new MapleSaplingBlock(AbstractBlock.Properties.copy(Blocks.SPRUCE_LEAVES).noCollission()));
     public static final RegistryObject<Block> PAUSED_MAPLE_RED_SAPLING = DoTBBlocksRegistry.reg("paused_maple_red_sapling", new PausedMapleSaplingBlock(AbstractBlock.Properties.copy(Blocks.SPRUCE_LEAVES)));
 
     // Persian

@@ -136,10 +136,7 @@ public class CreativeInventoryEvents {
         if (event.getGui() instanceof CreativeScreen) {
             CreativeScreen screen = (CreativeScreen) event.getGui();
             if (screen.getSelectedTab() == DOTB_TAB.getId()) {
-                if (!tabDoTBSelected) {
-                    updateItems(screen);
-                    tabDoTBSelected = true;
-                }
+                updateItems(screen);
             } else {
                 tabDoTBSelected = false;
                 this.btnScrollUp.visible = false;
