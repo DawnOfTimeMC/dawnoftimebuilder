@@ -1,14 +1,9 @@
 package org.dawnoftimebuilder.client.model.armor;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
-import com.mojang.blaze3d.vertex.IVertexBuilder;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 
-@OnlyIn(Dist.CLIENT)
 public class IronPlateArmorModel<T extends LivingEntity> extends CustomArmorModel<T> {
 	
 	//Helmet
@@ -65,7 +60,7 @@ public class IronPlateArmorModel<T extends LivingEntity> extends CustomArmorMode
 				this.earMiddle = new ModelRenderer(this, 57, 49);
 				this.earMiddle.setPos(0.0F, -4.0F, 0.4F);
 				this.earMiddle.addBox(-5.5F, -1.0F, -1.0F, 11, 2, 2, 0.0F);
-				setRotateAngle(earMiddle, -0.31869712141416456F, 0.0F, 0.0F);
+				setRotationAngle(earMiddle, -0.31869712141416456F, 0.0F, 0.0F);
 				this.leftEarBottom = new ModelRenderer(this, 0, 34);
 				this.leftEarBottom.mirror = true;
 				this.leftEarBottom.setPos(0.0F, 0.0F, 0.0F);
@@ -73,30 +68,30 @@ public class IronPlateArmorModel<T extends LivingEntity> extends CustomArmorMode
 				this.leftHead = new ModelRenderer(this, 52, 31);
 				this.leftHead.setPos(0.0F, 0.0F, 0.0F);
 				this.leftHead.addBox(-2.0F, -9.1F, -4.5F, 4, 1, 9, 0.0F);
-				setRotateAngle(leftHead, 0.0F, 0.0F, 0.27314402793711257F);
+				setRotationAngle(leftHead, 0.0F, 0.0F, 0.27314402793711257F);
 				this.middleBottom = new ModelRenderer(this, 0, 30);
 				this.middleBottom.setPos(0.0F, 0.0F, 0.0F);
 				this.middleBottom.addBox(-4.0F, -7.5F, -1.5F, 8, 1, 3, 0.0F);
-				setRotateAngle(middleBottom, 1.5707963267948966F, 0.0F, 0.0F);
+				setRotationAngle(middleBottom, 1.5707963267948966F, 0.0F, 0.0F);
 				this.middleCraneC = new ModelRenderer(this, 45, 28);
 				this.middleCraneC.setPos(0.0F, 0.0F, 0.0F);
 				this.middleCraneC.addBox(-1.0F, -10.6F, -2.0F, 2, 2, 4, 0.0F);
-				setRotateAngle(middleCraneC, -0.41887902047863906F, 0.0F, 0.0F);
+				setRotationAngle(middleCraneC, -0.41887902047863906F, 0.0F, 0.0F);
 				this.middleHeadA = new ModelRenderer(this, 45, 28);
 				this.middleHeadA.setPos(0.0F, 0.0F, 0.0F);
 				this.middleHeadA.addBox(-1.0F, -10.6F, -2.0F, 2, 2, 4, 0.0F);
-				setRotateAngle(middleHeadA, 0.41887902047863906F, 0.0F, 0.0F);
+				setRotationAngle(middleHeadA, 0.41887902047863906F, 0.0F, 0.0F);
 				this.middleHeadB = new ModelRenderer(this, 44, 19);
 				this.middleHeadB.setPos(0.0F, 0.0F, 0.0F);
 				this.middleHeadB.addBox(-1.0F, -10.5F, -2.5F, 2, 2, 5, 0.0F);
 				this.middleFeatherA = new ModelRenderer(this, 89, -8);
 				this.middleFeatherA.setPos(0.0F, -8.0F, 5.0F);
 				this.middleFeatherA.addBox(-2.0F, -4.5F, -1.5F, 4, 9, 9, -2.0F);
-				setRotateAngle(middleFeatherA, -0.19052597169560997F, 0.0F, 0.0F);
+				setRotationAngle(middleFeatherA, -0.19052597169560997F, 0.0F, 0.0F);
 				this.middleFeatherB = new ModelRenderer(this, 89, 2);
 				this.middleFeatherB.setPos(0.0F, 0.0F, 4.5F);
 				this.middleFeatherB.addBox(-2.0F, -4.5F, -2.0F, 4, 9, 9, -2.0F);
-				setRotateAngle(middleFeatherB, -0.1187509959883641F, 0.0F, 0.0F);
+				setRotationAngle(middleFeatherB, -0.1187509959883641F, 0.0F, 0.0F);
 				this.rightEarBottom = new ModelRenderer(this, 0, 34);
 				this.rightEarBottom.setPos(0.0F, 0.0F, 0.0F);
 				this.rightEarBottom.addBox(-5.0F, -1.5F, -7.5F, 1, 3, 9, 0.0F);
@@ -104,7 +99,7 @@ public class IronPlateArmorModel<T extends LivingEntity> extends CustomArmorMode
 				this.rightHead.mirror = true;
 				this.rightHead.setPos(0.0F, 0.0F, 0.0F);
 				this.rightHead.addBox(-2.0F, -9.1F, -4.5F, 4, 1, 9, 0.0F);
-				setRotateAngle(rightHead, 0.0F, 0.0F, -0.27314402793711257F);
+				setRotationAngle(rightHead, 0.0F, 0.0F, -0.27314402793711257F);
 				this.topHead = new ModelRenderer(this, 28, 5);
 				this.topHead.setPos(0.0F, 0.0F, 0.0F);
 				this.topHead.addBox(-5.0F, -8.2F, -5.0F, 10, 3, 10, -0.3F);
@@ -128,41 +123,41 @@ public class IronPlateArmorModel<T extends LivingEntity> extends CustomArmorMode
 				this.backLeftBody = new ModelRenderer(this, 32, 27);
 				this.backLeftBody.setPos(0.0F, 0.0F, 0.0F);
 				this.backLeftBody.addBox(-1.45F, 1.0F, 3.4F, 5, 8, 1, 0.0F);
-				setRotateAngle(backLeftBody, 0.0F, 0.31869712141416456F, 0.0F);
+				setRotationAngle(backLeftBody, 0.0F, 0.31869712141416456F, 0.0F);
 				this.backRightBody = new ModelRenderer(this, 32, 27);
 				this.backRightBody.mirror = true;
 				this.backRightBody.setPos(0.0F, 0.0F, 0.0F);
 				this.backRightBody.addBox(-3.55F, 1.0F, 3.4F, 5, 8, 1, 0.0F);
-				setRotateAngle(backRightBody, 0.0F, -0.31869712141416456F, 0.0F);
+				setRotationAngle(backRightBody, 0.0F, -0.31869712141416456F, 0.0F);
 				this.bodyBase = new ModelRenderer(this, 0, 4);
 				this.bodyBase.setPos(0.0F, 0.0F, 0.0F);
 				this.bodyBase.addBox(-4.5F, -0.1F, -2.5F, 9, 13, 5, 0.0F);
 				this.leftShoulderC = new ModelRenderer(this, 0, 22);
 				this.leftShoulderC.setPos(0.0F, 0.0F, 0.0F);
 				this.leftShoulderC.addBox(-0.5F, -1.3F, -3.0F, 2, 2, 6, 0.0F);
-				setRotateAngle(leftShoulderC, 0.0F, 0.0F, -0.13962634015954636F);
+				setRotationAngle(leftShoulderC, 0.0F, 0.0F, -0.13962634015954636F);
 				this.rightShoulderC = new ModelRenderer(this, 0, 22);
 				this.rightShoulderC.mirror = true;
 				this.rightShoulderC.setPos(0.0F, 0.0F, 0.0F);
 				this.rightShoulderC.addBox(-1.5F, -1.3F, -3.0F, 2, 2, 6, 0.0F);
-				setRotateAngle(rightShoulderC, 0.0F, 0.0F, 0.13962634015954636F);
+				setRotationAngle(rightShoulderC, 0.0F, 0.0F, 0.13962634015954636F);
 				this.leftTopBody = new ModelRenderer(this, 33, 18);
 				this.leftTopBody.setPos(0.0F, 0.0F, 0.0F);
 				this.leftTopBody.addBox(-2.9F, 0.1F, -5.3F, 4, 8, 1, 0.0F);
-				setRotateAngle(leftTopBody, 0.36425021489121656F, -0.4553564018453205F, -0.36425021489121656F);
+				setRotationAngle(leftTopBody, 0.36425021489121656F, -0.4553564018453205F, -0.36425021489121656F);
 				this.middleTopBody = new ModelRenderer(this, 54, 57);
 				this.middleTopBody.setPos(-1.5F, 9.2F, -2.4F);
 				this.middleTopBody.addBox(0.0F, -7.0F, 0.0F, 3, 7, 0, 0.0F);
-				setRotateAngle(middleTopBody, 0.3490658503988659F, 0.0F, 0.0F);
+				setRotationAngle(middleTopBody, 0.3490658503988659F, 0.0F, 0.0F);
 				this.rightTopBody = new ModelRenderer(this, 33, 18);
 				this.rightTopBody.mirror = true;
 				this.rightTopBody.setPos(0.0F, 0.0F, 0.0F);
 				this.rightTopBody.addBox(-1.1F, 0.1F, -5.3F, 4, 8, 1, 0.0F);
-				setRotateAngle(rightTopBody, 0.36425021489121656F, 0.4553564018453205F, 0.36425021489121656F);
+				setRotationAngle(rightTopBody, 0.36425021489121656F, 0.4553564018453205F, 0.36425021489121656F);
 				this.miscA = new ModelRenderer(this, 85, 35);
 				this.miscA.setPos(0.0F, 8.6F, 3.3F);
 				this.miscA.addBox(-3.5F, 0.2F, 0.0F, 7, 12, 0, 0.0F);
-				setRotateAngle(miscA, 0.045553093477052F, 0.0F, 0.0F);
+				setRotationAngle(miscA, 0.045553093477052F, 0.0F, 0.0F);
 
 				if(isSteve){
 					this.leftHand = new ModelRenderer(this, 112, 48);
@@ -174,7 +169,7 @@ public class IronPlateArmorModel<T extends LivingEntity> extends CustomArmorMode
 					this.leftShoulderB = new ModelRenderer(this, 0, 46);
 					this.leftShoulderB.setPos(0.0F, 0.0F, 0.0F);
 					this.leftShoulderB.addBox(-0.4F, -1.3F, -2.5F, 6, 3, 5, 0.2F);
-					setRotateAngle(leftShoulderB, 0.0F, 0.0F, 0.39269908169872414F);
+					setRotationAngle(leftShoulderB, 0.0F, 0.0F, 0.39269908169872414F);
 					this.rightHand = new ModelRenderer(this, 112, 48);
 					this.rightHand.mirror = true;
 					this.rightHand.setPos(-5.0F, 2.0F, 0.0F);
@@ -197,7 +192,7 @@ public class IronPlateArmorModel<T extends LivingEntity> extends CustomArmorMode
 					this.leftShoulderB = new ModelRenderer(this, 0, 46);
 					this.leftShoulderB.setPos(0.0F, 0.0F, 0.0F);
 					this.leftShoulderB.addBox(-0.4F, -1.3F, -2.5F, 5, 3, 5, 0.2F);
-					setRotateAngle(leftShoulderB, 0.0F, 0.0F, 0.39269908169872414F);
+					setRotationAngle(leftShoulderB, 0.0F, 0.0F, 0.39269908169872414F);
 					this.rightHand = new ModelRenderer(this, 112, 48);
 					this.rightHand.mirror = true;
 					this.rightHand.setPos(-5.0F, 2.5F, 0.0F);
@@ -211,7 +206,7 @@ public class IronPlateArmorModel<T extends LivingEntity> extends CustomArmorMode
 					this.rightShoulderB.setPos(0.0F, 0.0F, 0.0F);
 					this.rightShoulderB.addBox(-4.8F, -1.4F, -2.5F, 5, 3, 5, 0.2F);
 				}
-				setRotateAngle(rightShoulderB, 0.0F, 0.0F, -0.39269908169872414F);
+				setRotationAngle(rightShoulderB, 0.0F, 0.0F, -0.39269908169872414F);
 
 				this.body = bodyBase;
 				this.body.addChild(this.backLeftBody);
@@ -246,18 +241,18 @@ public class IronPlateArmorModel<T extends LivingEntity> extends CustomArmorMode
 				this.leftLegging = new ModelRenderer(this, 32, 36);
 				this.leftLegging.setPos(0.0F, 0.0F, 0.0F);
 				this.leftLegging.addBox(-0.3F, -0.2F, -3.0F, 3, 6, 6, 0.1F);
-				setRotateAngle(leftLegging, 0.0F, 0.0F, -0.136659280431156F);
+				setRotationAngle(leftLegging, 0.0F, 0.0F, -0.136659280431156F);
 				this.miscB = new ModelRenderer(this, 50, 44);
 				this.miscB.setPos(0.0F, 12.1F, -3.0F);
 				this.miscB.addBox(-1.5F, -0.1F, 0.2F, 3, 8, 0, 0.0F);
-				setRotateAngle(miscB, -0.045553093477052F, 0.0F, 0.0F);
+				setRotationAngle(miscB, -0.045553093477052F, 0.0F, 0.0F);
 				this.armorRightLeg = new ModelRenderer(this, 0, 0);
 				this.armorRightLeg.setPos(-1.9F, 12.0F, 0.0F);
 				this.rightLegging = new ModelRenderer(this, 32, 36);
 				this.rightLegging.mirror = true;
 				this.rightLegging.setPos(0.0F, 0.0F, 0.0F);
 				this.rightLegging.addBox(-2.7F, -0.2F, -3.0F, 3, 6, 6, 0.1F);
-				setRotateAngle(rightLegging, 0.0F, 0.0F, 0.136659280431156F);
+				setRotationAngle(rightLegging, 0.0F, 0.0F, 0.136659280431156F);
 
 				this.body = bodyBase;
 				this.body.addChild(this.miscB);
@@ -291,40 +286,7 @@ public class IronPlateArmorModel<T extends LivingEntity> extends CustomArmorMode
 	}
 
 	@Override
-	public void renderToBuffer(MatrixStack matrixStack, IVertexBuilder bufferIn, int packedLightIn, int packedOverlayIn, float red, float green, float blue, float alpha){
-		this.setAllVisible(false);
-
-		switch (this.slot) {
-			case HEAD:
-				head.visible = true;
-				break;
-
-			case CHEST:
-				body.visible = true;
-				leftArm.visible = true;
-				rightArm.visible = true;
-				break;
-
-			case LEGS:
-				body.visible = true;
-				leftLeg.visible = true;
-				rightLeg.visible = true;
-				break;
-
-			case FEET:
-				leftLeg.visible = true;
-				rightLeg.visible = true;
-				break;
-
-			default:
-				break;
-		}
-		super.renderToBuffer(matrixStack, bufferIn, packedLightIn, packedOverlayIn, red, green, blue, alpha);
-	}
-
-	@Override
 	public void setupArmorAnim(T entityIn, float ageInTicks) {
-		super.setupArmorAnim(entityIn, ageInTicks);
 
 		float f = Math.abs(this.rightLeg.xRot);
 		switch (this.slot) {

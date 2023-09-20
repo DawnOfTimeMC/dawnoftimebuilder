@@ -18,7 +18,7 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import org.dawnoftimebuilder.block.templates.WaterloggedBlock;
 import org.dawnoftimebuilder.util.DoTBBlockStateProperties;
-import org.dawnoftimebuilder.util.DoTBBlockUtils;
+import org.dawnoftimebuilder.util.DoTBUtils;
 
 import javax.annotation.Nonnull;
 
@@ -29,7 +29,7 @@ public class StoneBricksMachicolationBlock extends WaterloggedBlock {
 
 	public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 	public static final EnumProperty<DoTBBlockStateProperties.HorizontalConnection> HORIZONTAL_CONNECTION = DoTBBlockStateProperties.HORIZONTAL_CONNECTION;
-	private static final VoxelShape[] SHAPES = DoTBBlockUtils.GenerateHorizontalShapes(makeShapes());
+	private static final VoxelShape[] SHAPES = DoTBUtils.GenerateHorizontalShapes(makeShapes());
 
 	public StoneBricksMachicolationBlock(Properties properties) {
 		super(properties);

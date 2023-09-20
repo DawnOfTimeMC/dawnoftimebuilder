@@ -1,0 +1,16 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"I",
+		"I"
+	],
+	"key": {
+		"I": {
+			"item": "dawnoftimebuilder:boxwood_small_hedge"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:boxwood_tall_hedge",
+		"count": 1
+	}
+}

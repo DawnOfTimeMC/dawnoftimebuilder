@@ -8,7 +8,6 @@ import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.state.properties.Half;
-import net.minecraft.state.properties.StairsShape;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.Rotation;
@@ -16,14 +15,14 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
-import org.dawnoftimebuilder.util.DoTBBlockUtils;
+import org.dawnoftimebuilder.util.DoTBUtils;
 
 public class PlanterBlock extends Block {
 
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final EnumProperty<Half> HALF = BlockStateProperties.HALF;
-    private static final VoxelShape[] SHAPES_TOP = DoTBBlockUtils.GenerateHorizontalShapes(new VoxelShape[]{Block.box(0.0D, 8.0D, 8.0D, 16.0D, 16.0D, 16.0D)});
-    private static final VoxelShape[] SHAPES_BOTTOM = DoTBBlockUtils.GenerateHorizontalShapes(new VoxelShape[]{Block.box(0.0D, 0.0D, 8.0D, 16.0D, 8.0D, 16.0D)});
+    private static final VoxelShape[] SHAPES_TOP = DoTBUtils.GenerateHorizontalShapes(new VoxelShape[]{Block.box(0.0D, 8.0D, 8.0D, 16.0D, 16.0D, 16.0D)});
+    private static final VoxelShape[] SHAPES_BOTTOM = DoTBUtils.GenerateHorizontalShapes(new VoxelShape[]{Block.box(0.0D, 0.0D, 8.0D, 16.0D, 8.0D, 16.0D)});
 
     public PlanterBlock(Properties properties) {
         super(properties);

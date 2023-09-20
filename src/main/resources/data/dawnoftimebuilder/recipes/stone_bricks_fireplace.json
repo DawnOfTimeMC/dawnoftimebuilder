@@ -1,19 +1,16 @@
 {
 	"type": "minecraft:crafting_shaped",
 	"pattern": [
-		"III",
+		" I ",
 		"IoI",
-		"IiI"
+		" I "
 	],
 	"key": {
 		"I": {
 			"item": "minecraft:stone_bricks"
 		},
-		"i": {
-			"item": "minecraft:oak_log"
-		},
 		"o": {
-			"item": "minecraft:coal"
+			"item": "dawnoftimebuilder:fireplace"
 		}
 	},
 	"result": {

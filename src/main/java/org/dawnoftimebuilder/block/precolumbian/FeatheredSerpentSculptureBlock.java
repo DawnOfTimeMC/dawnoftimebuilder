@@ -14,14 +14,14 @@ import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import org.dawnoftimebuilder.block.templates.WaterloggedBlock;
-import org.dawnoftimebuilder.util.DoTBBlockUtils;
+import org.dawnoftimebuilder.util.DoTBUtils;
 
 import javax.annotation.Nonnull;
 
 public class FeatheredSerpentSculptureBlock extends WaterloggedBlock {
 
 	public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
-	private static final VoxelShape[] SHAPES = DoTBBlockUtils.GenerateHorizontalShapes(new VoxelShape[]{
+	private static final VoxelShape[] SHAPES = DoTBUtils.GenerateHorizontalShapes(new VoxelShape[]{
 			Block.box(4.0D, 4.0D, 0.0D, 12.0D, 12.0D, 14.0D)
 	});
 

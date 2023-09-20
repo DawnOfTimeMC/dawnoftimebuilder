@@ -19,30 +19,37 @@ import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 
-public class EdgeBlock extends WaterloggedBlock {
+public class EdgeBlock extends WaterloggedBlock
+{
 
-	public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
-	public static final EnumProperty<Half> HALF = BlockStateProperties.HALF;
-	public static final EnumProperty<StairsShape> SHAPE = BlockStateProperties.STAIRS_SHAPE;
-	private static final VoxelShape[] SHAPES_TOP = makeShapes(false);
-	private static final VoxelShape[] SHAPES_BOTTOM = makeShapes(true);
+	public static final DirectionProperty			FACING			= BlockStateProperties.HORIZONTAL_FACING;
+	public static final EnumProperty<Half>			HALF			= BlockStateProperties.HALF;
+	public static final EnumProperty<StairsShape>	SHAPE			= BlockStateProperties.STAIRS_SHAPE;
+	private static final VoxelShape[]				SHAPES_TOP		= EdgeBlock.makeShapes(false);
+	private static final VoxelShape[]				SHAPES_BOTTOM	= EdgeBlock.makeShapes(true);
 
-	public EdgeBlock(Properties properties) {
+	public EdgeBlock(final Properties properties)
+	{
 		super(properties);
-		this.registerDefaultState(this.defaultBlockState().setValue(FACING, Direction.NORTH).setValue(HALF, Half.BOTTOM).setValue(SHAPE, StairsShape.STRAIGHT));
+		this.registerDefaultState(this.defaultBlockState().setValue(EdgeBlock.FACING, Direction.NORTH)
+				.setValue(EdgeBlock.HALF, Half.BOTTOM).setValue(EdgeBlock.SHAPE, StairsShape.STRAIGHT));
 	}
 
 	@Override
-	protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
+	protected void createBlockStateDefinition(final StateContainer.Builder<Block, BlockState> builder)
+	{
 		super.createBlockStateDefinition(builder);
-		builder.add(FACING, HALF, SHAPE);
+		builder.add(EdgeBlock.FACING, EdgeBlock.HALF, EdgeBlock.SHAPE);
 	}
 
 	@Override
-	public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-		int index = (state.getValue(FACING).get2DDataValue() + 2) % 4;
+	public VoxelShape getShape(final BlockState state, final IBlockReader worldIn, final BlockPos pos,
+			final ISelectionContext context)
+	{
+		int index = (state.getValue(EdgeBlock.FACING).get2DDataValue() + 2) % 4;
 		index *= 3;
-		switch (state.getValue(SHAPE)) {
+		switch (state.getValue(EdgeBlock.SHAPE))
+		{
 			default:
 			case OUTER_LEFT:
 				break;
@@ -60,7 +67,8 @@ public class EdgeBlock extends WaterloggedBlock {
 				break;
 		}
 		index %= 12;
-		return state.getValue(HALF) == Half.BOTTOM ? SHAPES_BOTTOM[index] : SHAPES_TOP[index];
+		return state.getValue(EdgeBlock.HALF) == Half.BOTTOM ? EdgeBlock.SHAPES_BOTTOM[index]
+				: EdgeBlock.SHAPES_TOP[index];
 	}
 
 	/**
@@ -78,126 +86,166 @@ public class EdgeBlock extends WaterloggedBlock {
 	 * 10 : SW Default <p/>
 	 * 11 : SW Inner <p/>
 	 */
-	private static VoxelShape[] makeShapes(boolean bottom) {
-		VoxelShape vs_north_flat = net.minecraft.block.Block.box(0.0D, 0.0D, 0.0D, 16.0D, 8.0D, 8.0D);
-		VoxelShape vs_east_flat = net.minecraft.block.Block.box(8.0D, 0.0D, 0.0D, 16.0D, 8.0D, 16.0D);
-		VoxelShape vs_south_flat = net.minecraft.block.Block.box(0.0D, 0.0D, 8.0D, 16.0D, 8.0D, 16.0D);
-		VoxelShape vs_west_flat = net.minecraft.block.Block.box(0.0D, 0.0D, 0.0D, 8.0D, 8.0D, 16.0D);
-		VoxelShape vs_nw_corner = net.minecraft.block.Block.box(0.0D, 0.0D, 0.0D, 8.0D, 8.0D, 8.0D);
-		VoxelShape vs_ne_corner = net.minecraft.block.Block.box(8.0D, 0.0D, 0.0D, 16.0D, 8.0D, 8.0D);
-		VoxelShape vs_se_corner = net.minecraft.block.Block.box(8.0D, 0.0D, 8.0D, 16.0D, 8.0D, 16.0D);
-		VoxelShape vs_sw_corner = net.minecraft.block.Block.box(0.0D, 0.0D, 8.0D, 8.0D, 8.0D, 16.0D);
-		VoxelShape[] vss = new VoxelShape[]{
-				vs_nw_corner,
-				vs_north_flat,
-				VoxelShapes.or(vs_north_flat, vs_sw_corner),
-				vs_ne_corner,
-				vs_east_flat,
-				VoxelShapes.or(vs_east_flat, vs_nw_corner),
-				vs_se_corner,
-				vs_south_flat,
-				VoxelShapes.or(vs_south_flat, vs_ne_corner),
-				vs_sw_corner,
-				vs_west_flat,
+	private static VoxelShape[] makeShapes(final boolean bottom)
+	{
+		final VoxelShape	vs_north_flat	= net.minecraft.block.Block.box(0.0D, 0.0D, 0.0D, 16.0D, 8.0D, 8.0D);
+		final VoxelShape	vs_east_flat	= net.minecraft.block.Block.box(8.0D, 0.0D, 0.0D, 16.0D, 8.0D, 16.0D);
+		final VoxelShape	vs_south_flat	= net.minecraft.block.Block.box(0.0D, 0.0D, 8.0D, 16.0D, 8.0D, 16.0D);
+		final VoxelShape	vs_west_flat	= net.minecraft.block.Block.box(0.0D, 0.0D, 0.0D, 8.0D, 8.0D, 16.0D);
+		final VoxelShape	vs_nw_corner	= net.minecraft.block.Block.box(0.0D, 0.0D, 0.0D, 8.0D, 8.0D, 8.0D);
+		final VoxelShape	vs_ne_corner	= net.minecraft.block.Block.box(8.0D, 0.0D, 0.0D, 16.0D, 8.0D, 8.0D);
+		final VoxelShape	vs_se_corner	= net.minecraft.block.Block.box(8.0D, 0.0D, 8.0D, 16.0D, 8.0D, 16.0D);
+		final VoxelShape	vs_sw_corner	= net.minecraft.block.Block.box(0.0D, 0.0D, 8.0D, 8.0D, 8.0D, 16.0D);
+		final VoxelShape[]	vss				=
+		{
+				vs_nw_corner, vs_north_flat, VoxelShapes.or(vs_north_flat, vs_sw_corner), vs_ne_corner, vs_east_flat,
+				VoxelShapes.or(vs_east_flat, vs_nw_corner), vs_se_corner, vs_south_flat,
+				VoxelShapes.or(vs_south_flat, vs_ne_corner), vs_sw_corner, vs_west_flat,
 				VoxelShapes.or(vs_west_flat, vs_se_corner),
 		};
-		if(bottom) return vss;
-		for(int i = 0; i < vss.length; i++) {
+		if (bottom)
+		{
+			return vss;
+		}
+		for (int i = 0; i < vss.length; i++)
+		{
 			vss[i] = vss[i].move(0.0D, 0.5D, 0.0D);
 		}
 		return vss;
 	}
 
 	@Override
-	public BlockState getStateForPlacement(BlockItemUseContext context) {
-		BlockState state = super.getStateForPlacement(context);
-		Direction direction = context.getClickedFace();
-		BlockPos pos = context.getClickedPos();
-		state = state.setValue(FACING, context.getHorizontalDirection()).setValue(HALF, direction != Direction.DOWN && (direction == Direction.UP || !(context.getClickLocation().y - (double)pos.getY() > 0.5D)) ? Half.BOTTOM : Half.TOP);
-		return state.setValue(SHAPE, getShapeProperty(state, context.getLevel(), pos));
+	public BlockState getStateForPlacement(final BlockItemUseContext context)
+	{
+		BlockState		state		= super.getStateForPlacement(context);
+		final Direction	direction	= context.getClickedFace();
+		final BlockPos	pos			= context.getClickedPos();
+		state = state.setValue(EdgeBlock.FACING, context.getHorizontalDirection()).setValue(EdgeBlock.HALF,
+				direction != Direction.DOWN
+						&& (direction == Direction.UP || (context.getClickLocation().y - pos.getY() <= 0.5D))
+								? Half.BOTTOM
+								: Half.TOP);
+		return state.setValue(EdgeBlock.SHAPE, EdgeBlock.getShapeProperty(state, context.getLevel(), pos));
 	}
 
 	@Override
-	public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
+	public BlockState updateShape(BlockState stateIn, final Direction facing, final BlockState facingState,
+			final IWorld worldIn, final BlockPos currentPos, final BlockPos facingPos)
+	{
 		stateIn = super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
-		return facing.getAxis().isHorizontal() ? stateIn.setValue(SHAPE, getShapeProperty(stateIn, worldIn, currentPos)) : super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+		return facing.getAxis().isHorizontal()
+				? stateIn.setValue(EdgeBlock.SHAPE, EdgeBlock.getShapeProperty(stateIn, worldIn, currentPos))
+				: super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
 	}
 
 	/**
 	 * Returns a stair shape property based on the surrounding stairs from the given blockstate and position
 	 */
-	private static StairsShape getShapeProperty(BlockState state, IBlockReader worldIn, BlockPos pos) {
-		Direction direction = state.getValue(FACING);
+	private static StairsShape getShapeProperty(final BlockState state, final IBlockReader worldIn, final BlockPos pos)
+	{
+		final Direction	direction		= state.getValue(EdgeBlock.FACING);
 
-		BlockState adjacentState = worldIn.getBlockState(pos.relative(direction));
-		if (isBlockEdge(adjacentState) && state.getValue(HALF) == adjacentState.getValue(HALF)) {
-			Direction adjacentDirection = adjacentState.getValue(FACING);
-			if (adjacentDirection.getAxis() != state.getValue(FACING).getAxis() && isDifferentEdge(state, worldIn, pos, adjacentDirection.getOpposite())) {
-				return (adjacentDirection == direction.getCounterClockWise()) ? StairsShape.OUTER_LEFT : StairsShape.OUTER_RIGHT;
+		BlockState		adjacentState	= worldIn.getBlockState(pos.relative(direction));
+		if (EdgeBlock.isBlockEdge(adjacentState)
+				&& state.getValue(EdgeBlock.HALF) == adjacentState.getValue(EdgeBlock.HALF))
+		{
+			final Direction adjacentDirection = adjacentState.getValue(EdgeBlock.FACING);
+			if (adjacentDirection.getAxis() != state.getValue(EdgeBlock.FACING).getAxis()
+					&& EdgeBlock.isDifferentEdge(state, worldIn, pos, adjacentDirection.getOpposite()))
+			{
+				return adjacentDirection == direction.getCounterClockWise() ? StairsShape.OUTER_LEFT
+						: StairsShape.OUTER_RIGHT;
 			}
 		}
 
 		adjacentState = worldIn.getBlockState(pos.relative(direction.getOpposite()));
-		if (isBlockEdge(adjacentState) && state.getValue(HALF) == adjacentState.getValue(HALF)) {
-			Direction adjacentDirection = adjacentState.getValue(FACING);
-			if (adjacentDirection.getAxis() != state.getValue(FACING).getAxis() && isDifferentEdge(state, worldIn, pos, adjacentDirection)) {
-				return (adjacentDirection == direction.getCounterClockWise()) ? StairsShape.INNER_LEFT : StairsShape.INNER_RIGHT;
+		if (EdgeBlock.isBlockEdge(adjacentState)
+				&& state.getValue(EdgeBlock.HALF) == adjacentState.getValue(EdgeBlock.HALF))
+		{
+			final Direction adjacentDirection = adjacentState.getValue(EdgeBlock.FACING);
+			if (adjacentDirection.getAxis() != state.getValue(EdgeBlock.FACING).getAxis()
+					&& EdgeBlock.isDifferentEdge(state, worldIn, pos, adjacentDirection))
+			{
+				return adjacentDirection == direction.getCounterClockWise() ? StairsShape.INNER_LEFT
+						: StairsShape.INNER_RIGHT;
 			}
 		}
 
 		return StairsShape.STRAIGHT;
 	}
 
-	private static boolean isDifferentEdge(BlockState state, IBlockReader worldIn, BlockPos pos, Direction face) {
-		BlockState adjacentState = worldIn.getBlockState(pos.relative(face));
-		return !isBlockEdge(adjacentState) || adjacentState.getValue(FACING) != state.getValue(FACING) || adjacentState.getValue(HALF) != state.getValue(HALF);
+	private static boolean isDifferentEdge(final BlockState state, final IBlockReader worldIn, final BlockPos pos,
+			final Direction face)
+	{
+		final BlockState adjacentState = worldIn.getBlockState(pos.relative(face));
+		return !EdgeBlock.isBlockEdge(adjacentState)
+				|| adjacentState.getValue(EdgeBlock.FACING) != state.getValue(EdgeBlock.FACING)
+				|| adjacentState.getValue(EdgeBlock.HALF) != state.getValue(EdgeBlock.HALF);
 	}
 
-	public static boolean isBlockEdge(BlockState state) {
+	public static boolean isBlockEdge(final BlockState state)
+	{
 		return state.getBlock() instanceof EdgeBlock;
 	}
 
 	@Override
-	public BlockState rotate(BlockState state, Rotation rot) {
-		return state.setValue(FACING, rot.rotate(state.getValue(FACING)));
+	public BlockState rotate(final BlockState state, final Rotation rot)
+	{
+		return state.setValue(EdgeBlock.FACING, rot.rotate(state.getValue(EdgeBlock.FACING)));
 	}
 
 	@Override
-	public BlockState mirror(BlockState state, Mirror mirrorIn) {
-		Direction direction = state.getValue(FACING);
-		StairsShape stairsshape = state.getValue(SHAPE);
-		switch(mirrorIn) {
+	public BlockState mirror(final BlockState state, final Mirror mirrorIn)
+	{
+		final Direction		direction	= state.getValue(EdgeBlock.FACING);
+		final StairsShape	stairsshape	= state.getValue(EdgeBlock.SHAPE);
+		switch (mirrorIn)
+		{
 			case LEFT_RIGHT:
-				if (direction.getAxis() == Direction.Axis.Z) {
-					switch(stairsshape) {
+				if (direction.getAxis() == Direction.Axis.Z)
+				{
+					switch (stairsshape)
+					{
 						case INNER_LEFT:
-							return state.rotate(Rotation.CLOCKWISE_180).setValue(SHAPE, StairsShape.INNER_RIGHT);
+							return state.rotate(Rotation.CLOCKWISE_180).setValue(EdgeBlock.SHAPE,
+									StairsShape.INNER_RIGHT);
 						case INNER_RIGHT:
-							return state.rotate(Rotation.CLOCKWISE_180).setValue(SHAPE, StairsShape.INNER_LEFT);
+							return state.rotate(Rotation.CLOCKWISE_180).setValue(EdgeBlock.SHAPE,
+									StairsShape.INNER_LEFT);
 						case OUTER_LEFT:
-							return state.rotate(Rotation.CLOCKWISE_180).setValue(SHAPE, StairsShape.OUTER_RIGHT);
+							return state.rotate(Rotation.CLOCKWISE_180).setValue(EdgeBlock.SHAPE,
+									StairsShape.OUTER_RIGHT);
 						case OUTER_RIGHT:
-							return state.rotate(Rotation.CLOCKWISE_180).setValue(SHAPE, StairsShape.OUTER_LEFT);
+							return state.rotate(Rotation.CLOCKWISE_180).setValue(EdgeBlock.SHAPE,
+									StairsShape.OUTER_LEFT);
 						default:
 							return state.rotate(Rotation.CLOCKWISE_180);
 					}
 				}
 				break;
 			case FRONT_BACK:
-				if (direction.getAxis() == Direction.Axis.X) {
-					switch(stairsshape) {
+				if (direction.getAxis() == Direction.Axis.X)
+				{
+					switch (stairsshape)
+					{
 						case INNER_LEFT:
-							return state.rotate(Rotation.CLOCKWISE_180).setValue(SHAPE, StairsShape.INNER_LEFT);
+							return state.rotate(Rotation.CLOCKWISE_180).setValue(EdgeBlock.SHAPE,
+									StairsShape.INNER_LEFT);
 						case INNER_RIGHT:
-							return state.rotate(Rotation.CLOCKWISE_180).setValue(SHAPE, StairsShape.INNER_RIGHT);
+							return state.rotate(Rotation.CLOCKWISE_180).setValue(EdgeBlock.SHAPE,
+									StairsShape.INNER_RIGHT);
 						case OUTER_LEFT:
-							return state.rotate(Rotation.CLOCKWISE_180).setValue(SHAPE, StairsShape.OUTER_RIGHT);
+							return state.rotate(Rotation.CLOCKWISE_180).setValue(EdgeBlock.SHAPE,
+									StairsShape.OUTER_RIGHT);
 						case OUTER_RIGHT:
-							return state.rotate(Rotation.CLOCKWISE_180).setValue(SHAPE, StairsShape.OUTER_LEFT);
+							return state.rotate(Rotation.CLOCKWISE_180).setValue(EdgeBlock.SHAPE,
+									StairsShape.OUTER_LEFT);
 						case STRAIGHT:
 							return state.rotate(Rotation.CLOCKWISE_180);
 					}
 				}
+			default:
+				break;
 		}
 
 		return super.mirror(state, mirrorIn);

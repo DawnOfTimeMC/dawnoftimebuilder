@@ -1,0 +1,84 @@
+{
+	"multipart": [
+		{
+			"when": { "up": "true" },
+			"apply": { "model": "dawnoftimebuilder:block/german/stone_bricks_water_jet_up" }
+		},
+		{
+			"when": { "up": "true", "activated": "true" },
+			"apply": { "model": "dawnoftimebuilder:block/general/water/water_jet_up_trickle"}
+		},
+		{
+			"when": { "down": "true" },
+			"apply": { "model": "dawnoftimebuilder:block/german/stone_bricks_water_jet_down" }
+		},
+		{
+			"when": { "down": "true", "activated": "true" },
+			"apply": { "model": "dawnoftimebuilder:block/general/water/water_jet_down_trickle"}
+		},
+		{
+			"when": { "north_state": "bottom" },
+			"apply": { "model": "dawnoftimebuilder:block/german/stone_bricks_water_jet_north_bottom" }
+		},
+		{
+			"when": { "north_state": "bottom", "activated": "true" },
+			"apply": { "model": "dawnoftimebuilder:block/general/water/water_jet_north_bottom_trickle"}
+		},
+		{
+			"when": { "north_state": "top" },
+			"apply": { "model": "dawnoftimebuilder:block/german/stone_bricks_water_jet_north_top" }
+		},
+		{
+			"when": { "north_state": "top", "activated": "true" },
+			"apply": { "model": "dawnoftimebuilder:block/general/water/water_jet_north_top_trickle"}
+		},
+		{
+			"when": { "east_state": "bottom" },
+			"apply": { "model": "dawnoftimebuilder:block/german/stone_bricks_water_jet_north_bottom", "y": 90 }
+		},
+		{
+			"when": { "east_state": "bottom", "activated": "true" },
+			"apply": { "model": "dawnoftimebuilder:block/general/water/water_jet_north_bottom_trickle", "y": 90}
+		},
+		{
+			"when": { "east_state": "top" },
+			"apply": { "model": "dawnoftimebuilder:block/german/stone_bricks_water_jet_north_top", "y": 90 }
+		},
+		{
+			"when": { "east_state": "top", "activated": "true" },
+			"apply": { "model": "dawnoftimebuilder:block/general/water/water_jet_north_top_trickle", "y": 90}
+		},
+		{
+			"when": { "south_state": "bottom" },
+			"apply": { "model": "dawnoftimebuilder:block/german/stone_bricks_water_jet_north_bottom", "y": 180 }
+		},
+		{
+			"when": { "south_state": "bottom", "activated": "true" },
+			"apply": { "model": "dawnoftimebuilder:block/general/water/water_jet_north_bottom_trickle", "y": 180}
+		},
+		{
+			"when": { "south_state": "top" },
+			"apply": { "model": "dawnoftimebuilder:block/german/stone_bricks_water_jet_north_top", "y": 180 }
+		},
+		{
+			"when": { "south_state": "top", "activated": "true" },
+			"apply": { "model": "dawnoftimebuilder:block/general/water/water_jet_north_top_trickle", "y": 180}
+		},
+		{
+			"when": { "west_state": "bottom" },
+			"apply": { "model": "dawnoftimebuilder:block/german/stone_bricks_water_jet_north_bottom", "y": 270 }
+		},
+		{
+			"when": { "west_state": "bottom", "activated": "true" },
+			"apply": { "model": "dawnoftimebuilder:block/general/water/water_jet_north_bottom_trickle", "y": 270}
+		},
+		{
+			"when": { "west_state": "top" },
+			"apply": { "model": "dawnoftimebuilder:block/german/stone_bricks_water_jet_north_top", "y": 270 }
+		},
+		{
+			"when": { "west_state": "top", "activated": "true" },
+			"apply": { "model": "dawnoftimebuilder:block/general/water/water_jet_north_top_trickle", "y": 270}
+		}
+	]
+}

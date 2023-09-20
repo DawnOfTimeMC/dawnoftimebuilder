@@ -1,7 +1,6 @@
 package org.dawnoftimebuilder.block.templates;
 
 import net.minecraft.block.*;
-import net.minecraft.block.material.Material;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;

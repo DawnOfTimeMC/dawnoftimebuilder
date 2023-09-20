@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=east": { "model": "dawnoftimebuilder:block/japanese/curved_raked_gravel", "y" : 90},
+        "facing=south": { "model": "dawnoftimebuilder:block/japanese/curved_raked_gravel", "y": 180 },
+        "facing=west": { "model": "dawnoftimebuilder:block/japanese/curved_raked_gravel", "y": 270 },
+        "facing=north": { "model": "dawnoftimebuilder:block/japanese/curved_raked_gravel"}
+    }
+}

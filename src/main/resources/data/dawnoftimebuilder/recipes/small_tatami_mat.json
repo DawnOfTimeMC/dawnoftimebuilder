@@ -1,11 +1,14 @@
 {
 	"type": "minecraft:crafting_shaped",
 	"pattern": [
-		"II"
+		"xIx"
 	],
 	"key": {
 		"I": {
-			"item": "dawnoftimebuilder:thatch_bamboo"
+			"item": "dawnoftimebuilder:thatch_bamboo_slab"
+		},
+		"x": {
+			"item": "minecraft:string"
 		}
 	},
 	"result": {

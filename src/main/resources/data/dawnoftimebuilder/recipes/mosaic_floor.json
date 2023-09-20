@@ -10,13 +10,13 @@
 			"item": "minecraft:sandstone"
 		},
 		"I":{
-			"item": "minecraft:red_dye"
+			"tag": "forge:dyes/red"
 		},
 		"i": {
-			"item": "minecraft:orange_dye"
+			"tag": "forge:dyes/orange"
 		},
 		"x": {
-			"item": "minecraft:black_dye"
+			"tag": "forge:dyes/black"
 		}
 	},
 	"result": {

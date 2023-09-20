@@ -1,15 +1,18 @@
 {
 	"type": "minecraft:crafting_shaped",
 	"pattern": [
-		" i ",
-		"III"
+		" I ",
+		"oxo"
 	],
 	"key": {
 		"I": {
-			"item": "minecraft:oak_log"
+			"tag": "minecraft:logs_that_burn"
 		},
-		"i": {
-			"item": "minecraft:coal"
+		"x": {
+			"tag": "minecraft:coals"
+		},
+		"o": {
+			"tag": "forge:nuggets/iron"
 		}
 	},
 	"result": {

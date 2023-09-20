@@ -14,7 +14,7 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import org.dawnoftimebuilder.block.templates.WaterloggedBlock;
-import org.dawnoftimebuilder.util.DoTBBlockUtils;
+import org.dawnoftimebuilder.util.DoTBUtils;
 
 import javax.annotation.Nonnull;
 
@@ -23,7 +23,7 @@ import static net.minecraft.util.Direction.NORTH;
 public class StoneBricksArrowslitBlock extends WaterloggedBlock {
 
 	public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
-	private static final VoxelShape[] SHAPES = DoTBBlockUtils.GenerateHorizontalShapes(new VoxelShape[]{
+	private static final VoxelShape[] SHAPES = DoTBUtils.GenerateHorizontalShapes(new VoxelShape[]{
 			VoxelShapes.or(
 					Block.box(0.0D, 0.0D, 14.0D, 7.0D, 16.0D, 16.0D),
 					Block.box(9.0D, 0.0D, 14.0D, 16.0D, 16.0D, 16.0D),

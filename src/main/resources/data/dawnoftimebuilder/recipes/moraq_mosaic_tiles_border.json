@@ -13,11 +13,11 @@
 			"item": "minecraft:lapis_lazuli"
 		},
 		"o": {
-			"item": "minecraft:blue_dye"
+			"tag": "forge:dyes/blue"
 		}
 	},
 	"result": {
-		"item": "dawnoftimebuilder:moraq_mosaic_tiles_delicate",
+		"item": "dawnoftimebuilder:moraq_mosaic_tiles_border",
 		"count": 16
 	}
 }

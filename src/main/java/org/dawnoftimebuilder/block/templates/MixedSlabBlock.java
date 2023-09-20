@@ -19,7 +19,7 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.World;
-import org.dawnoftimebuilder.block.IBlockCustomItem;
+import org.dawnoftimebuilder.block.ICustomBlockItem;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -27,7 +27,7 @@ import java.util.function.Supplier;
 
 import static org.dawnoftimebuilder.DawnOfTimeBuilder.DOTB_TAB;
 
-public class MixedSlabBlock extends SlabBlockDoTB implements IBlockCustomItem {
+public class MixedSlabBlock extends SlabBlockDoTB implements ICustomBlockItem {
 
 	private final ArrayList<MixedBlockRecipe> listRecipes = new ArrayList<>();
 
@@ -88,7 +88,7 @@ public class MixedSlabBlock extends SlabBlockDoTB implements IBlockCustomItem {
 
 	@Nullable
 	@Override
-	public Item getCustomItemBlock() {
+	public Item getCustomBlockItem() {
 		return new BlockItem(this, new Item.Properties().tab(DOTB_TAB)){
 			@Override
 			public ActionResultType place(BlockItemUseContext context) {

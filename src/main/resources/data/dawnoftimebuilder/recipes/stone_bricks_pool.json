@@ -1,0 +1,17 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"I I",
+		"I I",
+		"III"
+	],
+	"key": {
+		"I": {
+			"item": "minecraft:stone_bricks"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:stone_bricks_pool",
+		"count": 6
+	}
+}

@@ -1,0 +1,7 @@
+{
+	"parent": "dawnoftimebuilder:block/general/small_plate_outer",
+	"textures": {
+		"top": "dawnoftimebuilder:block/boxwood_hedge",
+		"frieze": "dawnoftimebuilder:block/boxwood_hedge"
+	}
+}

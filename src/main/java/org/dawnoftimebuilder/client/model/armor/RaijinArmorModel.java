@@ -5,10 +5,7 @@ import com.mojang.blaze3d.vertex.IVertexBuilder;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 
-@OnlyIn(Dist.CLIENT)
 public class RaijinArmorModel<T extends LivingEntity> extends CustomArmorModel<T> {
 
 	//Helmet
@@ -22,21 +19,17 @@ public class RaijinArmorModel<T extends LivingEntity> extends CustomArmorModel<T
 	public ModelRenderer headHornRightC;
 	public ModelRenderer headHornRightD;
 
-	//Set
-	public ModelRenderer bodyArmor;
+	//Chest
 	public ModelRenderer flyA;
 	public ModelRenderer flyB;
 	public ModelRenderer flyC;
 	public ModelRenderer flyD;
 	public ModelRenderer flyE;
 	public ModelRenderer flyF;
-
-	//Chest
 	public ModelRenderer armRingLeftA;
 	public ModelRenderer armRingLeftB;
 	public ModelRenderer armRingRightB;
 	public ModelRenderer armRingRightA;
-	public ModelRenderer chestNecklace;
 	public ModelRenderer bodyBreast;
 	public ModelRenderer bodyBreastNecklace;
 	public ModelRenderer chestScarfTop;
@@ -84,35 +77,35 @@ public class RaijinArmorModel<T extends LivingEntity> extends CustomArmorModel<T
 				this.headHornLeftA = new ModelRenderer(this, 0, 0);
 				this.headHornLeftA.setPos(2.5F, -6.5F, -5.0F);
 				this.headHornLeftA.addBox(-0.5F, -3.0F, 0.0F, 1, 3, 1, 0.2F);
-				setRotateAngle(headHornLeftA, -0.2617993877991494F, 0.0F, 0.17453292519943295F);
+				setRotationAngle(headHornLeftA, -0.2617993877991494F, 0.0F, 0.17453292519943295F);
 				this.headHornLeftB = new ModelRenderer(this, 15, 0);
 				this.headHornLeftB.setPos(0.0F, 0.0F, 0.0F);
 				this.headHornLeftB.addBox(-0.5F, -5.0F, -3.0F, 1, 4, 1, 0.0F);
-				setRotateAngle(headHornLeftB, -1.2217304763960306F, 0.0F, 0.0F);
+				setRotationAngle(headHornLeftB, -1.2217304763960306F, 0.0F, 0.0F);
 				this.headHornLeftC = new ModelRenderer(this, 30, 0);
 				this.headHornLeftC.setPos(0.0F, 0.0F, 0.0F);
 				this.headHornLeftC.addBox(-0.5F, -3.0F, 2.0F, 1, 2, 1, -0.1F);
-				setRotateAngle(headHornLeftC, 1.0471975511965976F, 0.0F, 0.0F);
+				setRotationAngle(headHornLeftC, 1.0471975511965976F, 0.0F, 0.0F);
 				this.headHornLeftD = new ModelRenderer(this, 0, 0);
 				this.headHornLeftD.setPos(0.0F, 0.0F, 0.0F);
 				this.headHornLeftD.addBox(-0.5F, -8.0F, 0.8F, 1, 3, 1, -0.1F);
-				setRotateAngle(headHornLeftD, -0.5235987755982988F, 0.0F, 0.0F);
+				setRotationAngle(headHornLeftD, -0.5235987755982988F, 0.0F, 0.0F);
 				this.headHornRightA = new ModelRenderer(this, 0, 0);
 				this.headHornRightA.setPos(-2.5F, -6.5F, -5.0F);
 				this.headHornRightA.addBox(-0.5F, -3.0F, 0.0F, 1, 3, 1, 0.2F);
-				setRotateAngle(headHornRightA, -0.2617993877991494F, 0.0F, -0.17453292519943295F);
+				setRotationAngle(headHornRightA, -0.2617993877991494F, 0.0F, -0.17453292519943295F);
 				this.headHornRightB = new ModelRenderer(this, 15, 0);
 				this.headHornRightB.setPos(0.0F, 0.0F, 0.0F);
 				this.headHornRightB.addBox(-0.5F, -5.0F, -3.0F, 1, 4, 1, 0.0F);
-				setRotateAngle(headHornRightB, -1.2217304763960306F, 0.0F, 0.0F);
+				setRotationAngle(headHornRightB, -1.2217304763960306F, 0.0F, 0.0F);
 				this.headHornRightC = new ModelRenderer(this, 30, 0);
 				this.headHornRightC.setPos(0.0F, 0.0F, 0.0F);
 				this.headHornRightC.addBox(-0.5F, -3.0F, 2.0F, 1, 2, 1, -0.1F);
-				setRotateAngle(headHornRightC, 1.0471975511965976F, 0.0F, 0.0F);
+				setRotationAngle(headHornRightC, 1.0471975511965976F, 0.0F, 0.0F);
 				this.headHornRightD = new ModelRenderer(this, 0, 0);
 				this.headHornRightD.setPos(0.0F, 0.0F, 0.0F);
 				this.headHornRightD.addBox(-0.5F, -8.0F, 0.8F, 1, 3, 1, -0.1F);
-				setRotateAngle(headHornRightD, -0.5235987755982988F, 0.0F, 0.0F);
+				setRotationAngle(headHornRightD, -0.5235987755982988F, 0.0F, 0.0F);
 
 				this.head = headArmor;
 				this.head.addChild(headHornLeftA);
@@ -123,9 +116,94 @@ public class RaijinArmorModel<T extends LivingEntity> extends CustomArmorModel<T
 				this.headHornRightA.addChild(this.headHornRightB);
 				this.headHornRightA.addChild(this.headHornRightC);
 				this.headHornRightA.addChild(this.headHornRightD);
+				break;
 
-				this.bodyArmor = new ModelRenderer(this, 0, 0);
-				this.bodyArmor.setPos(0.0F, 0.0F, 0.0F);
+			case CHEST:
+				if(isSteve){
+					this.armRingLeftA = new ModelRenderer(this, 0, 0);
+					this.armRingLeftA.setPos(5.0F, 2.0F, 0.0F);
+					this.armRingLeftA.addBox(-1.5F, 7.0F, -2.5F, 5, 1, 5, 0.0F);
+					this.armRingLeftB = new ModelRenderer(this, 15, 1);
+					this.armRingLeftB.setPos(0.0F, 0.0F, 0.0F);
+					this.armRingLeftB.addBox(-1.5F, 5.5F, -2.5F, 5, 1, 5, 0.0F);
+					this.armRingRightA = new ModelRenderer(this, 30, 0);
+					this.armRingRightA.setPos(-5.0F, 2.0F, 0.0F);
+					this.armRingRightA.addBox(-3.5F, 7.0F, -2.5F, 5, 1, 5, 0.0F);
+					this.armRingRightB = new ModelRenderer(this, 0, 0);
+					this.armRingRightB.setPos(0.0F, 0.0F, 0.0F);
+					this.armRingRightB.addBox(-3.5F, 5.5F, -2.5F, 5, 1, 5, 0.0F);
+					this.body = new ModelRenderer(this, 0, 7);
+					this.body.setPos(0.0F, 0.0F, 0.0F);
+					this.body.addBox(-4.0F, 0.0F, -2.0F, 8, 5, 4, 0.3F);
+				}else{
+					this.armRingLeftA = new ModelRenderer(this, 0, 33);
+					this.armRingLeftA.setPos(5.0F, 2.5F, 0.0F);
+					this.armRingLeftA.addBox(-1.5F, 7.0F, -2.5F, 4, 1, 5, 0.0F);
+					this.armRingLeftB = new ModelRenderer(this, 13, 34);
+					this.armRingLeftB.setPos(0.0F, 0.0F, 0.0F);
+					this.armRingLeftB.addBox(-1.5F, 5.5F, -2.5F, 4, 1, 5, 0.0F);
+					this.armRingRightA = new ModelRenderer(this, 21, 28);
+					this.armRingRightA.setPos(-5.0F, 2.5F, 0.0F);
+					this.armRingRightA.addBox(-2.5F, 7.0F, -2.5F, 4, 1, 5, 0.0F);
+					this.armRingRightB = new ModelRenderer(this, 0, 33);
+					this.armRingRightB.setPos(0.0F, 0.0F, 0.0F);
+					this.armRingRightB.addBox(-2.5F, 5.5F, -2.5F, 4, 1, 5, 0.0F);
+					this.bodyBreast = new ModelRenderer(this, 26, 34);
+					this.bodyBreast.setPos(0.0F, 0.9F, -2.1F);
+					this.bodyBreast.addBox(-3.5F, 0.0F, -3.65F, 7, 2, 3, 0.2F);
+					setRotationAngle(bodyBreast, 0.9948376736367678F, 0.0F, 0.0F);
+					this.body = new ModelRenderer(this, 0, 7);
+					this.body.setPos(0.0F, 0.0F, 0.0F);
+					this.body.addBox(-4.0F, 0.0F, -2.0F, 8, 5, 4, 0.2F);
+					this.bodyBreastNecklace = new ModelRenderer(this, 39, 23);
+					this.bodyBreastNecklace.setPos(0.0F, -0.2F, -2.2F);
+					this.bodyBreastNecklace.addBox(-4.0F, 0.2F, -5.2F, 8, 0, 5, 0.2F);
+					setRotationAngle(bodyBreastNecklace, 1.0097597431827485F, 0.0F, 0.0F);
+				}
+				this.chestScarfTop = new ModelRenderer(this, 0, 29);
+				this.chestScarfTop.setPos(0.0F, -4.5F, 6.5F);
+				this.chestScarfTop.addBox(-5.0F, -0.5F, -1.5F, 10, 1, 3, 0.0F);
+				setRotationAngle(chestScarfTop, -1.1344640137963142F, 0.0F, 0.0F);
+				this.chestScarfTopLeftA = new ModelRenderer(this, 35, 18);
+				this.chestScarfTopLeftA.setPos(5.0F, 0.0F, 0.0F);
+				this.chestScarfTopLeftA.addBox(-6.0F, -0.5F, -1.0F, 6, 1, 2, 0.0F);
+				setRotationAngle(chestScarfTopLeftA, 0.0F, 0.0F, -2.0943951023931953F);
+				this.chestScarfTopLeftB = new ModelRenderer(this, 40, 21);
+				this.chestScarfTopLeftB.setPos(-6.0F, 0.0F, 0.0F);
+				this.chestScarfTopLeftB.addBox(-6.0F, -0.5F, -0.5F, 6, 1, 1, 0.0F);
+				setRotationAngle(chestScarfTopLeftB, 0.0F, 0.0F, 1.0471975511965976F);
+				this.chestScarfTopRightA = new ModelRenderer(this, 35, 18);
+				this.chestScarfTopRightA.setPos(-5.0F, 0.0F, 0.0F);
+				this.chestScarfTopRightA.addBox(-6.0F, -0.5F, -1.0F, 6, 1, 2, 0.0F);
+				setRotationAngle(chestScarfTopRightA, 0.0F, 0.0F, -1.0471975511965976F);
+				this.chestScarfTopRightB = new ModelRenderer(this, 40, 21);
+				this.chestScarfTopRightB.setPos(-6.0F, 0.0F, 0.0F);
+				this.chestScarfTopRightB.addBox(-6.0F, -0.5F, -0.5F, 6, 1, 1, 0.0F);
+				setRotationAngle(chestScarfTopRightB, 0.0F, 0.0F, -1.0471975511965976F);
+				this.chestScarfLeftA = new ModelRenderer(this, 50, 6);
+				this.chestScarfLeftA.setPos(5.0F, 0.0F, -3.0F);
+				this.chestScarfLeftA.addBox(-0.5F, 0.0F, -0.5F, 1, 5, 1, 0.0F);
+				setRotationAngle(chestScarfLeftA, 0.0F, 0.3490658503988659F, 0.17453292519943295F);
+				this.chestScarfLeftB = new ModelRenderer(this, 58, 3);
+				this.chestScarfLeftB.setPos(0.0F, 5.0F, 0.0F);
+				this.chestScarfLeftB.addBox(-0.5F, 0.0F, -0.5F, 1, 8, 1, -0.1F);
+				setRotationAngle(chestScarfLeftB, 1.0471975511965976F, -0.17453292519943295F, 0.0F);
+				this.chestScarfLeftC = new ModelRenderer(this, 54, 5);
+				this.chestScarfLeftC.setPos(0.0F, 8.0F, 0.0F);
+				this.chestScarfLeftC.addBox(-1.0F, 0.0F, -0.5F, 2, 6, 1, 0.0F);
+				setRotationAngle(chestScarfLeftC, -0.8726646259971648F, -0.8726646259971648F, 0.0F);
+				this.chestScarfRightA = new ModelRenderer(this, 50, 6);
+				this.chestScarfRightA.setPos(-5.0F, 0.0F, -3.0F);
+				this.chestScarfRightA.addBox(-0.5F, 0.0F, -0.5F, 1, 5, 1, 0.0F);
+				setRotationAngle(chestScarfRightA, 0.0F, -0.3490658503988659F, -0.17453292519943295F);
+				this.chestScarfRightB = new ModelRenderer(this, 58, 3);
+				this.chestScarfRightB.setPos(0.0F, 5.0F, 0.0F);
+				this.chestScarfRightB.addBox(-0.5F, 0.0F, -0.5F, 1, 8, 1, -0.1F);
+				setRotationAngle(chestScarfRightB, 1.0471975511965976F, 0.17453292519943295F, 0.0F);
+				this.chestScarfRightC = new ModelRenderer(this, 54, 5);
+				this.chestScarfRightC.setPos(0.0F, 8.0F, 0.0F);
+				this.chestScarfRightC.addBox(-1.0F, 0.0F, -0.5F, 2, 6, 1, 0.0F);
+				setRotationAngle(chestScarfRightC, -0.8726646259971648F, 0.8726646259971648F, 0.0F);
 
 				this.flyA = new ModelRenderer(this, 45, 0);
 				this.flyA.addBox(-1.5F, -1.5F, 0.0F, 3, 3, 2, 0.0F);
@@ -155,107 +233,16 @@ public class RaijinArmorModel<T extends LivingEntity> extends CustomArmorModel<T
 					this.flyF.setPos(8.0F, 2.0F, 3.0F);
 				}
 
-				this.body = bodyArmor;
+				if(!isSteve){
+					this.body.addChild(bodyBreast);
+					this.body.addChild(bodyBreastNecklace);
+				}
 				this.body.addChild(this.flyA);
 				this.body.addChild(this.flyB);
 				this.body.addChild(this.flyC);
 				this.body.addChild(this.flyD);
 				this.body.addChild(this.flyE);
 				this.body.addChild(this.flyF);
-				break;
-
-			case CHEST:
-				if(isSteve){
-					this.armRingLeftA = new ModelRenderer(this, 0, 0);
-					this.armRingLeftA.setPos(5.0F, 2.0F, 0.0F);
-					this.armRingLeftA.addBox(-1.5F, 7.0F, -2.5F, 5, 1, 5, 0.0F);
-					this.armRingLeftB = new ModelRenderer(this, 15, 1);
-					this.armRingLeftB.setPos(0.0F, 0.0F, 0.0F);
-					this.armRingLeftB.addBox(-1.5F, 5.5F, -2.5F, 5, 1, 5, 0.0F);
-					this.armRingRightA = new ModelRenderer(this, 30, 0);
-					this.armRingRightA.setPos(-5.0F, 2.0F, 0.0F);
-					this.armRingRightA.addBox(-3.5F, 7.0F, -2.5F, 5, 1, 5, 0.0F);
-					this.armRingRightB = new ModelRenderer(this, 0, 0);
-					this.armRingRightB.setPos(0.0F, 0.0F, 0.0F);
-					this.armRingRightB.addBox(-3.5F, 5.5F, -2.5F, 5, 1, 5, 0.0F);
-					this.chestNecklace = new ModelRenderer(this, 0, 7);
-					this.chestNecklace.setPos(0.0F, 0.0F, 0.0F);
-					this.chestNecklace.addBox(-4.0F, 0.0F, -2.0F, 8, 5, 4, 0.3F);
-				}else{
-					this.armRingLeftA = new ModelRenderer(this, 0, 33);
-					this.armRingLeftA.setPos(5.0F, 2.5F, 0.0F);
-					this.armRingLeftA.addBox(-1.5F, 7.0F, -2.5F, 4, 1, 5, 0.0F);
-					this.armRingLeftB = new ModelRenderer(this, 13, 34);
-					this.armRingLeftB.setPos(0.0F, 0.0F, 0.0F);
-					this.armRingLeftB.addBox(-1.5F, 5.5F, -2.5F, 4, 1, 5, 0.0F);
-					this.armRingRightA = new ModelRenderer(this, 21, 28);
-					this.armRingRightA.setPos(-5.0F, 2.5F, 0.0F);
-					this.armRingRightA.addBox(-2.5F, 7.0F, -2.5F, 4, 1, 5, 0.0F);
-					this.armRingRightB = new ModelRenderer(this, 0, 33);
-					this.armRingRightB.setPos(0.0F, 0.0F, 0.0F);
-					this.armRingRightB.addBox(-2.5F, 5.5F, -2.5F, 4, 1, 5, 0.0F);
-					this.bodyBreast = new ModelRenderer(this, 26, 34);
-					this.bodyBreast.setPos(0.0F, 0.9F, -2.1F);
-					this.bodyBreast.addBox(-3.5F, 0.0F, -3.65F, 7, 2, 3, 0.2F);
-					setRotateAngle(bodyBreast, 0.9948376736367678F, 0.0F, 0.0F);
-					this.chestNecklace = new ModelRenderer(this, 0, 7);
-					this.chestNecklace.setPos(0.0F, 0.0F, 0.0F);
-					this.chestNecklace.addBox(-4.0F, 0.0F, -2.0F, 8, 5, 4, 0.2F);
-					this.bodyBreastNecklace = new ModelRenderer(this, 39, 23);
-					this.bodyBreastNecklace.setPos(0.0F, -0.2F, -2.2F);
-					this.bodyBreastNecklace.addBox(-4.0F, 0.2F, -5.2F, 8, 0, 5, 0.2F);
-					setRotateAngle(bodyBreastNecklace, 1.0097597431827485F, 0.0F, 0.0F);
-				}
-				this.chestScarfTop = new ModelRenderer(this, 0, 29);
-				this.chestScarfTop.setPos(0.0F, -4.5F, 6.5F);
-				this.chestScarfTop.addBox(-5.0F, -0.5F, -1.5F, 10, 1, 3, 0.0F);
-				setRotateAngle(chestScarfTop, -1.1344640137963142F, 0.0F, 0.0F);
-				this.chestScarfTopLeftA = new ModelRenderer(this, 35, 18);
-				this.chestScarfTopLeftA.setPos(5.0F, 0.0F, 0.0F);
-				this.chestScarfTopLeftA.addBox(-6.0F, -0.5F, -1.0F, 6, 1, 2, 0.0F);
-				setRotateAngle(chestScarfTopLeftA, 0.0F, 0.0F, -2.0943951023931953F);
-				this.chestScarfTopLeftB = new ModelRenderer(this, 40, 21);
-				this.chestScarfTopLeftB.setPos(-6.0F, 0.0F, 0.0F);
-				this.chestScarfTopLeftB.addBox(-6.0F, -0.5F, -0.5F, 6, 1, 1, 0.0F);
-				setRotateAngle(chestScarfTopLeftB, 0.0F, 0.0F, 1.0471975511965976F);
-				this.chestScarfTopRightA = new ModelRenderer(this, 35, 18);
-				this.chestScarfTopRightA.setPos(-5.0F, 0.0F, 0.0F);
-				this.chestScarfTopRightA.addBox(-6.0F, -0.5F, -1.0F, 6, 1, 2, 0.0F);
-				setRotateAngle(chestScarfTopRightA, 0.0F, 0.0F, -1.0471975511965976F);
-				this.chestScarfTopRightB = new ModelRenderer(this, 40, 21);
-				this.chestScarfTopRightB.setPos(-6.0F, 0.0F, 0.0F);
-				this.chestScarfTopRightB.addBox(-6.0F, -0.5F, -0.5F, 6, 1, 1, 0.0F);
-				setRotateAngle(chestScarfTopRightB, 0.0F, 0.0F, -1.0471975511965976F);
-				this.chestScarfLeftA = new ModelRenderer(this, 50, 6);
-				this.chestScarfLeftA.setPos(5.0F, 0.0F, -3.0F);
-				this.chestScarfLeftA.addBox(-0.5F, 0.0F, -0.5F, 1, 5, 1, 0.0F);
-				setRotateAngle(chestScarfLeftA, 0.0F, 0.3490658503988659F, 0.17453292519943295F);
-				this.chestScarfLeftB = new ModelRenderer(this, 58, 3);
-				this.chestScarfLeftB.setPos(0.0F, 5.0F, 0.0F);
-				this.chestScarfLeftB.addBox(-0.5F, 0.0F, -0.5F, 1, 8, 1, -0.1F);
-				setRotateAngle(chestScarfLeftB, 1.0471975511965976F, -0.17453292519943295F, 0.0F);
-				this.chestScarfLeftC = new ModelRenderer(this, 54, 5);
-				this.chestScarfLeftC.setPos(0.0F, 8.0F, 0.0F);
-				this.chestScarfLeftC.addBox(-1.0F, 0.0F, -0.5F, 2, 6, 1, 0.0F);
-				setRotateAngle(chestScarfLeftC, -0.8726646259971648F, -0.8726646259971648F, 0.0F);
-				this.chestScarfRightA = new ModelRenderer(this, 50, 6);
-				this.chestScarfRightA.setPos(-5.0F, 0.0F, -3.0F);
-				this.chestScarfRightA.addBox(-0.5F, 0.0F, -0.5F, 1, 5, 1, 0.0F);
-				setRotateAngle(chestScarfRightA, 0.0F, -0.3490658503988659F, -0.17453292519943295F);
-				this.chestScarfRightB = new ModelRenderer(this, 58, 3);
-				this.chestScarfRightB.setPos(0.0F, 5.0F, 0.0F);
-				this.chestScarfRightB.addBox(-0.5F, 0.0F, -0.5F, 1, 8, 1, -0.1F);
-				setRotateAngle(chestScarfRightB, 1.0471975511965976F, 0.17453292519943295F, 0.0F);
-				this.chestScarfRightC = new ModelRenderer(this, 54, 5);
-				this.chestScarfRightC.setPos(0.0F, 8.0F, 0.0F);
-				this.chestScarfRightC.addBox(-1.0F, 0.0F, -0.5F, 2, 6, 1, 0.0F);
-				setRotateAngle(chestScarfRightC, -0.8726646259971648F, 0.8726646259971648F, 0.0F);
-
-				this.body = chestNecklace;
-				if(!isSteve){
-					this.body.addChild(bodyBreast);
-					this.body.addChild(bodyBreastNecklace);
-				}
 				this.body.addChild(this.chestScarfTop);
 				this.chestScarfTop.addChild(this.chestScarfTopLeftA);
 				this.chestScarfTopLeftA.addChild(this.chestScarfTopLeftB);
@@ -294,27 +281,27 @@ public class RaijinArmorModel<T extends LivingEntity> extends CustomArmorModel<T
 				this.chestPantLeftFront = new ModelRenderer(this, 23, 18);
 				this.chestPantLeftFront.setPos(0.0F, 9.0F, 2.0F);
 				this.chestPantLeftFront.addBox(0.4F, -2.0F, -0.5F, 4, 2, 1, 0.0F);
-				setRotateAngle(chestPantLeftFront, -0.5235987755982988F, 0.0F, 0.0F);
+				setRotationAngle(chestPantLeftFront, -0.5235987755982988F, 0.0F, 0.0F);
 				this.chestPantRightFront = new ModelRenderer(this, 23, 18);
 				this.chestPantRightFront.setPos(0.0F, 9.0F, 2.0F);
 				this.chestPantRightFront.addBox(-4.4F, -2.0F, -0.5F, 4, 2, 1, 0.0F);
-				setRotateAngle(chestPantRightFront, -0.5235987755982988F, 0.0F, 0.0F);
+				setRotationAngle(chestPantRightFront, -0.5235987755982988F, 0.0F, 0.0F);
 				this.chestPantLeft = new ModelRenderer(this, 28, 16);
 				this.chestPantLeft.setPos(4.0F, 9.0F, -2.5F);
 				this.chestPantLeft.addBox(-0.5F, -2.0F, 0.0F, 1, 2, 5, 0.0F);
-				setRotateAngle(chestPantLeft, 0.0F, 0.0F, 0.5235987755982988F);
+				setRotationAngle(chestPantLeft, 0.0F, 0.0F, 0.5235987755982988F);
 				this.chestPantRight = new ModelRenderer(this, 28, 16);
 				this.chestPantRight.setPos(-4.0F, 9.0F, -2.5F);
 				this.chestPantRight.addBox(-0.5F, -2.0F, 0.0F, 1, 2, 5, 0.0F);
-				setRotateAngle(chestPantRight, 0.0F, 0.0F, -0.5235987755982988F);
+				setRotationAngle(chestPantRight, 0.0F, 0.0F, -0.5235987755982988F);
 				this.chestPantLeftBack = new ModelRenderer(this, 23, 18);
 				this.chestPantLeftBack.setPos(0.0F, 9.0F, -2.0F);
 				this.chestPantLeftBack.addBox(0.4F, -2.0F, -0.5F, 4, 2, 1, 0.0F);
-				setRotateAngle(chestPantLeftBack, 0.5235987755982988F, 0.0F, 0.0F);
+				setRotationAngle(chestPantLeftBack, 0.5235987755982988F, 0.0F, 0.0F);
 				this.chestPantRightBack = new ModelRenderer(this, 23, 18);
 				this.chestPantRightBack.setPos(0.0F, 9.0F, -2.0F);
 				this.chestPantRightBack.addBox(-4.4F, -2.0F, -0.5F, 4, 2, 1, 0.0F);
-				setRotateAngle(chestPantRightBack, 0.5235987755982988F, 0.0F, 0.0F);
+				setRotationAngle(chestPantRightBack, 0.5235987755982988F, 0.0F, 0.0F);
 
 				this.legLeftPantBot = new ModelRenderer(this, 24, 7);
 				this.legLeftPantBot.setPos(1.9F, 12.0F, 0.0F);
@@ -383,46 +370,12 @@ public class RaijinArmorModel<T extends LivingEntity> extends CustomArmorModel<T
 	}
 
 	@Override
-	public void renderToBuffer(MatrixStack matrixStack, IVertexBuilder bufferIn, int packedLightIn, int packedOverlayIn, float red, float green, float blue, float alpha){
-		this.setAllVisible(false);
-
-		switch (this.slot) {
-			case HEAD:
-				head.visible = true;
-				body.visible = true;
-				break;
-
-			case CHEST:
-				body.visible = true;
-				leftArm.visible = true;
-				rightArm.visible = true;
-				break;
-
-			case LEGS:
-				body.visible = true;
-				leftLeg.visible = true;
-				rightLeg.visible = true;
-				break;
-
-			case FEET:
-				leftLeg.visible = true;
-				rightLeg.visible = true;
-				break;
-
-			default:
-				break;
-		}
-		super.renderToBuffer(matrixStack, bufferIn, packedLightIn, packedOverlayIn, red, green, blue, alpha);
-	}
-
-	@Override
 	public void setupArmorAnim(T entityIn, float ageInTicks) {
-		super.setupArmorAnim(entityIn, ageInTicks);
 
 		float f;
 		float d = ageInTicks / 60.0F;
 		switch (this.slot) {
-			case HEAD:
+			case CHEST:
 				f = d % (2.0F * (float)Math.PI);
 				this.flyA.y = -15.0F + sinPI(d + 1.0F);
 				this.flyA.zRot = f;
@@ -436,9 +389,7 @@ public class RaijinArmorModel<T extends LivingEntity> extends CustomArmorModel<T
 				this.flyE.zRot = f + 0.83F;
 				this.flyF.y = 2.0F + sinPI(d + 0.667F);
 				this.flyF.zRot = f + 0.5F;
-				break;
 
-			case CHEST:
 				f = 0.03F * sinPI(2 * d);
 				d = (0.866F - sinPI(0.333F - f)) * 4.0F;
 				this.chestScarfTop.y = -4.5F + -d * 0.75F;

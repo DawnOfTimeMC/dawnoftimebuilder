@@ -1,0 +1,22 @@
+{
+	"credit": "Made with Blockbench",
+	"texture_size": [32, 32],
+	"textures": {
+		"0": "dawnoftimebuilder:block/stone_bricks_pool",
+		"particle": "dawnoftimebuilder:block/stone_bricks_pool"
+	},
+	"elements": [
+		{
+			"from": [0, 2, 14],
+			"to": [16, 16, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 2, 8]},
+			"faces": {
+				"north": {"uv": [8, 8, 16, 15], "texture": "#0"},
+				"east": {"uv": [0, 8, 1, 15], "texture": "#0", "cullface": "east"},
+				"south": {"uv": [0, 8, 8, 15], "texture": "#0", "cullface": "south"},
+				"west": {"uv": [7, 8, 8, 15], "texture": "#0", "cullface": "west"},
+				"up": {"uv": [8, 15, 16, 16], "texture": "#0", "cullface": "up"}
+			}
+		}
+	]
+}

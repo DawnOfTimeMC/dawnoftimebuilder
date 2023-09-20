@@ -1,10 +1,12 @@
 {
 	"type": "minecraft:crafting_shaped",
 	"pattern": [
-		"iI"
+		"III",
+		"IxI",
+		"III"
 	],
 	"key": {
-		"i": {
+		"x": {
 			"item": "minecraft:honeycomb"
 		},
 		"I": {
@@ -13,6 +15,6 @@
 	},
 	"result": {
 		"item": "dawnoftimebuilder:waxed_oak_planks",
-		"count": 6
+		"count": 8
 	}
 }

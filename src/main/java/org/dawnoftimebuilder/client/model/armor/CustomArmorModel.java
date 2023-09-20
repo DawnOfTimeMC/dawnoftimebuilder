@@ -6,10 +6,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.item.ArmorStandEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.util.math.MathHelper;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 
-@OnlyIn(Dist.CLIENT)
 public abstract class CustomArmorModel<T extends LivingEntity> extends BipedModel<T> {
 
 	public final EquipmentSlotType slot;
@@ -20,7 +17,9 @@ public abstract class CustomArmorModel<T extends LivingEntity> extends BipedMode
 		this.hat = new ModelRenderer(this, 0, 0);
 	}
 
-	public void setupArmorAnim(T entityIn, float ageInTicks) {
+	protected abstract void setupArmorAnim(T entityIn, float ageInTicks);
+
+	public void setupAnim(T entityIn, float ageInTicks)  {
 		//Fix the "breathing" and wrong head rotation on ArmorStands
 		if (entityIn instanceof ArmorStandEntity) {
 			ArmorStandEntity entityAS = (ArmorStandEntity) entityIn;
@@ -46,11 +45,12 @@ public abstract class CustomArmorModel<T extends LivingEntity> extends BipedMode
 			this.rightLeg.yRot = f * entityAS.getRightLegPose().getY();
 			this.rightLeg.zRot = f * entityAS.getRightLegPose().getZ();
 			this.rightLeg.setPos(-1.9F, 11.0F, 0.0F);
-			return;
+		}else{
+			this.setupArmorAnim(entityIn, ageInTicks);
 		}
 	}
 
-	public static void setRotateAngle(ModelRenderer renderer, float x, float y, float z) {
+	public static void setRotationAngle(ModelRenderer renderer, float x, float y, float z) {
 		renderer.xRot = x;
 		renderer.yRot = y;
 		renderer.zRot = z;
@@ -58,5 +58,9 @@ public abstract class CustomArmorModel<T extends LivingEntity> extends BipedMode
 
 	public static float sinPI(float f) {
 		return MathHelper.sin(f * (float)Math.PI);
+	}
+
+	public static float cosPI(float f) {
+		return MathHelper.cos(f * (float)Math.PI);
 	}
 }

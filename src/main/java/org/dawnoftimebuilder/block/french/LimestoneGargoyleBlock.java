@@ -29,7 +29,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.dawnoftimebuilder.block.templates.WaterloggedBlock;
 import org.dawnoftimebuilder.util.DoTBBlockStateProperties;
-import org.dawnoftimebuilder.util.DoTBBlockUtils;
+import org.dawnoftimebuilder.util.DoTBUtils;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -41,7 +41,7 @@ public class LimestoneGargoyleBlock extends WaterloggedBlock {
 	private static final IntegerProperty HUMIDITY = DoTBBlockStateProperties.HUMIDITY_0_8;
 	public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 	public static final BooleanProperty PERSISTENT = BlockStateProperties.PERSISTENT;
-	private static final VoxelShape[] SHAPES = DoTBBlockUtils.GenerateHorizontalShapes(new VoxelShape[]{
+	private static final VoxelShape[] SHAPES = DoTBUtils.GenerateHorizontalShapes(new VoxelShape[]{
 			Block.box(4.0D, 7.0D, 0.0D, 12.0D, 14.0D, 16.0D)
 	});
 
@@ -93,7 +93,7 @@ public class LimestoneGargoyleBlock extends WaterloggedBlock {
 					}
 				}
 			}else{
-				if(DoTBBlockUtils.useLighter(worldIn, pos, player, handIn)){
+				if(DoTBUtils.useLighter(worldIn, pos, player, handIn)){
 					Random rand = new Random();
 					for(int i = 0; i < 5; i++){
 						worldIn.addAlwaysVisibleParticle(ParticleTypes.SMOKE, (double)pos.getX() + rand.nextDouble(), (double)pos.getY() + 0.5D + rand.nextDouble() / 2, (double)pos.getZ() + rand.nextDouble(), 0.0D, 0.07D, 0.0D);
@@ -169,6 +169,6 @@ public class LimestoneGargoyleBlock extends WaterloggedBlock {
 	@Override
 	public void appendHoverText(ItemStack stack, @Nullable IBlockReader worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
 		super.appendHoverText(stack, worldIn, tooltip, flagIn);
-		DoTBBlockUtils.addTooltip(tooltip, this);
+		DoTBUtils.addTooltip(tooltip, this);
 	}
 }

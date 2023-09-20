@@ -1,0 +1,28 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"oBo",
+		"xix",
+		"oOo"
+	],
+	"key": {
+		"i": {
+			"item": "minecraft:diamond_chestplate"
+		},
+		"x": {
+			"tag": "forge:ingots/gold"
+		},
+		"o": {
+			"item": "minecraft:feather"
+		},
+		"O": {
+			"item": "minecraft:egg"
+		},
+		"B": {
+			"item": "minecraft:bone_block"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:quetzalcoatl_armor_chest"
+	}
+}

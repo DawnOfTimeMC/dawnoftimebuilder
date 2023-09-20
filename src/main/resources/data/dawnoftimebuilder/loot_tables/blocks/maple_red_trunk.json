@@ -1,0 +1,57 @@
+{
+    "type": "minecraft:block",
+    "pools":
+    [
+        {
+        	"rolls": 1,
+	        "entries":
+	        [
+		        {
+		        	"type": "minecraft:item",
+		            "conditions":
+		            [
+			            {
+			            	"condition": "minecraft:block_state_property",
+			            	"block": "dawnoftimebuilder:maple_red_trunk"
+			            }
+		            ],
+		            "name": "dawnoftimebuilder:maple_red_sapling"
+		        }
+	        ],
+	        "conditions":
+	        [
+	        	{
+	            	"condition": "minecraft:survives_explosion"
+	        	}
+	        ]
+        },
+        {
+        	"rolls": 1,
+	        "entries":
+	        [
+		        {
+		        	"type": "minecraft:item",
+		        	"weight": 40,
+		            "conditions":
+		            [
+			            {
+			            	"condition": "minecraft:block_state_property",
+			            	"block": "dawnoftimebuilder:maple_red_trunk"
+			            }
+		            ],
+		            "name": "dawnoftimebuilder:maple_red_sapling"
+		        },
+		   		{
+                    "type": "empty",
+		        	"weight": 60
+		        }
+	        ],
+	        "conditions":
+	        [
+	        	{
+	            	"condition": "minecraft:survives_explosion"
+	        	}
+	        ]
+        }
+    ]
+}

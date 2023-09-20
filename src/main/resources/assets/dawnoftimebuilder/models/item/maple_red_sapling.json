@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "dawnoftimebuilder:block/maple_red_sapling"
+  }
+}

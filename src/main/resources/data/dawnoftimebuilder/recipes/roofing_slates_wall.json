@@ -1,0 +1,16 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"III",
+		"III"
+	],
+	"key": {
+		"I": {
+			"item": "dawnoftimebuilder:roofing_slates"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:roofing_slates_wall",
+		"count": 9
+	}
+}

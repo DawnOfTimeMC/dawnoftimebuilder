@@ -6,7 +6,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.gen.blockplacer.BlockPlacer;
 import net.minecraft.world.gen.blockplacer.BlockPlacerType;
-import net.minecraft.world.gen.blockplacer.SimpleBlockPlacer;
 import org.dawnoftimebuilder.block.IBlockGeneration;
 import org.dawnoftimebuilder.registry.DoTBBlockPlacerRegistry;
 

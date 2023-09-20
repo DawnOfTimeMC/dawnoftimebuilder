@@ -1,0 +1,22 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"iIi",
+		"x x",
+		"x x"
+	],
+	"key": {
+		"x": {
+			"item": "minecraft:gold_block"
+		},
+		"i": {
+			"item": "minecraft:lapis_block"
+		},
+		"I": {
+			"item": "minecraft:diamond_leggings"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:anubis_armor_legs"
+	}
+}

@@ -9,10 +9,10 @@
 			"item": "dawnoftimebuilder:plastered_stone"
 		},
 		"o": {
-			"item": "minecraft:gold_nugget"
+			"tag": "forge:nuggets/gold"
 		},
 		"i": {
-			"item": "minecraft:green_dye"
+			"tag": "forge:dyes/green"
 		}
 	},
 	"result": {

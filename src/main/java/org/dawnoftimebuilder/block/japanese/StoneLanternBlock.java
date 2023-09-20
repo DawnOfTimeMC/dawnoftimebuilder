@@ -16,14 +16,14 @@ import net.minecraft.world.IBlockReader;
 import org.dawnoftimebuilder.block.IBlockChain;
 import org.dawnoftimebuilder.block.IBlockSpecialDisplay;
 import org.dawnoftimebuilder.block.templates.WaterloggedBlock;
-import org.dawnoftimebuilder.util.DoTBBlockUtils;
+import org.dawnoftimebuilder.util.DoTBUtils;
 
 import javax.annotation.Nonnull;
 
 public class StoneLanternBlock extends WaterloggedBlock implements IBlockChain, IBlockSpecialDisplay {
 
     private static final VoxelShape VS_CENTER = Block.box(2.0D, 0.0D, 2.0D, 14.0D, 16.0D, 14.0D);
-    private static final VoxelShape[] VS_SIDE = DoTBBlockUtils.GenerateHorizontalShapes(new VoxelShape[]{Block.box(2.0D, 0.0D, 0.0D, 14.0D, 16.0D, 14.0D)});
+    private static final VoxelShape[] VS_SIDE = DoTBUtils.GenerateHorizontalShapes(new VoxelShape[]{Block.box(2.0D, 0.0D, 0.0D, 14.0D, 16.0D, 14.0D)});
     public static final DirectionProperty FACING = BlockStateProperties.FACING;
 
     public StoneLanternBlock(Properties properties) {

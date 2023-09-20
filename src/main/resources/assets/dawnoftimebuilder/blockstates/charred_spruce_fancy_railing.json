@@ -1,0 +1,34 @@
+{
+    "multipart": [
+        {   "when": { "north": "false", "east": "false", "south": "false", "west": "false", "hanging": "false" },
+            "apply": { "model": "dawnoftimebuilder:block/japanese/charred_spruce_fancy_railing_lone"}
+        },
+        {   "when": { "north": "true", "hanging": "false" },
+            "apply": { "model": "dawnoftimebuilder:block/japanese/charred_spruce_fancy_railing_side"}
+        },
+        {   "when": { "east": "true", "hanging": "false" },
+            "apply": { "model": "dawnoftimebuilder:block/japanese/charred_spruce_fancy_railing_side", "y": 90}
+        },
+        {   "when": { "south": "true", "hanging": "false" },
+            "apply": { "model": "dawnoftimebuilder:block/japanese/charred_spruce_fancy_railing_side", "y": 180}
+        },
+        {   "when": { "west": "true", "hanging": "false" },
+            "apply": { "model": "dawnoftimebuilder:block/japanese/charred_spruce_fancy_railing_side", "y": 270}
+        },
+        {   "when": { "north": "false", "east": "false", "south": "false", "west": "false", "hanging": "true" },
+            "apply": { "model": "dawnoftimebuilder:block/japanese/charred_spruce_fancy_railing_lone"}
+        },
+        {   "when": { "north": "true", "hanging": "true" },
+            "apply": { "model": "dawnoftimebuilder:block/japanese/charred_spruce_fancy_railing_hanging"}
+        },
+        {   "when": { "east": "true", "hanging": "true" },
+            "apply": { "model": "dawnoftimebuilder:block/japanese/charred_spruce_fancy_railing_hanging", "y": 90}
+        },
+        {   "when": { "south": "true", "hanging": "true" },
+            "apply": { "model": "dawnoftimebuilder:block/japanese/charred_spruce_fancy_railing_hanging", "y": 180}
+        },
+        {   "when": { "west": "true", "hanging": "true" },
+            "apply": { "model": "dawnoftimebuilder:block/japanese/charred_spruce_fancy_railing_hanging", "y": 270}
+        }
+    ]
+}

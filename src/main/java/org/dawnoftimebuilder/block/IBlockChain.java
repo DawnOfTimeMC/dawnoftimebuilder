@@ -26,7 +26,7 @@ public interface IBlockChain extends IBlockPillar{
 
 	/**
 	 * @param state Current state of this block.
-	 * @return True if this block can connect to a chain above it.  Default : true.
+	 * @return True if this block can connect to a chain above it. Default : true.
 	 */
 	default boolean canConnectToChainAbove(BlockState state){
 		return true;

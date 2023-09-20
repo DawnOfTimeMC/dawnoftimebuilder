@@ -7,8 +7,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
 import net.minecraftforge.fml.RegistryObject;
 
-import java.util.function.Supplier;
-
 public class StairsBlockDoTB extends StairsBlock {
 
     private int fireSpreadSpeed = 0;

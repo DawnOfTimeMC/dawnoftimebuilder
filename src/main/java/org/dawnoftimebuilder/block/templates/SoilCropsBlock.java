@@ -29,19 +29,19 @@ import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.PlantType;
 import net.minecraftforge.common.Tags;
-import org.dawnoftimebuilder.block.IBlockCustomItem;
+import org.dawnoftimebuilder.block.ICustomBlockItem;
 import org.dawnoftimebuilder.block.IBlockGeneration;
 import org.dawnoftimebuilder.item.templates.SoilSeedsItem;
-import org.dawnoftimebuilder.util.DoTBBlockUtils;
+import org.dawnoftimebuilder.util.DoTBUtils;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Random;
 
-import static org.dawnoftimebuilder.util.DoTBBlockUtils.TOOLTIP_CROP;
+import static org.dawnoftimebuilder.util.DoTBUtils.TOOLTIP_CROP;
 
-public class SoilCropsBlock extends CropsBlock implements IBlockCustomItem, IBlockGeneration {
+public class SoilCropsBlock extends CropsBlock implements ICustomBlockItem, IBlockGeneration {
 
 	private final SoilSeedsItem seed;
 	private final String seedName;
@@ -52,12 +52,16 @@ public class SoilCropsBlock extends CropsBlock implements IBlockCustomItem, IBlo
 		super(BlockDoTB.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.CROP));
 		this.plantType = plantType;
 		this.seedName = seedName;
-		this.seed = new SoilSeedsItem(this, food);
+		this.seed = makeSeed(food);
 		this.registerDefaultState(this.stateDefinition.any().setValue(this.getAgeProperty(),0).setValue(PERSISTENT, false));
 	}
 
 	public SoilCropsBlock(String seedName, PlantType plantType){
 		this(seedName, plantType, null);
+	}
+
+	public SoilSeedsItem makeSeed(Food food){
+		return new SoilSeedsItem(this, food);
 	}
 
 	@Override
@@ -168,7 +172,7 @@ public class SoilCropsBlock extends CropsBlock implements IBlockCustomItem, IBlo
 				}
 			}
 		}else{
-			if(DoTBBlockUtils.useLighter(worldIn, pos, player, handIn)){
+			if(DoTBUtils.useLighter(worldIn, pos, player, handIn)){
 				Random rand = new Random();
 				for(int i = 0; i < 5; i++){
 					worldIn.addAlwaysVisibleParticle(ParticleTypes.SMOKE, (double)pos.getX() + rand.nextDouble(), (double)pos.getY() + 0.5D + rand.nextDouble() / 2, (double)pos.getZ() + rand.nextDouble(), 0.0D, 0.07D, 0.0D);
@@ -190,7 +194,7 @@ public class SoilCropsBlock extends CropsBlock implements IBlockCustomItem, IBlo
 	}
 
 	@Override
-	public Item getCustomItemBlock() {
+	public Item getCustomBlockItem() {
 		return this.seed;
 	}
 
@@ -208,7 +212,7 @@ public class SoilCropsBlock extends CropsBlock implements IBlockCustomItem, IBlo
 	@Override
 	public void appendHoverText(ItemStack stack, @Nullable IBlockReader worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
 		super.appendHoverText(stack, worldIn, tooltip, flagIn);
-		DoTBBlockUtils.addTooltip(tooltip, TOOLTIP_CROP);
+		DoTBUtils.addTooltip(tooltip, TOOLTIP_CROP);
 	}
 
 	@Override

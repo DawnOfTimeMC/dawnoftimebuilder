@@ -3,8 +3,6 @@ package org.dawnoftimebuilder.block.roman;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
 import net.minecraft.block.material.PushReaction;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -24,13 +22,13 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import org.dawnoftimebuilder.block.templates.ChairBlock;
 import org.dawnoftimebuilder.entity.ChairEntity;
-import org.dawnoftimebuilder.util.DoTBBlockUtils;
+import org.dawnoftimebuilder.util.DoTBUtils;
 
 import javax.annotation.Nullable;
 
 public class BirchCouchBlock extends ChairBlock {
 
-    private static final VoxelShape[] SHAPES = DoTBBlockUtils.GenerateHorizontalShapes(new VoxelShape[]{
+    private static final VoxelShape[] SHAPES = DoTBUtils.GenerateHorizontalShapes(new VoxelShape[]{
             VoxelShapes.or(
                     Block.box(1.0D, 0.0D, 2.0D, 15.0D, 8.0D, 6.0D),
                     Block.box(0.0D, 8.0D, 0.0D, 16.0D, 13.0D, 16.0D),

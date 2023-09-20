@@ -28,7 +28,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.dawnoftimebuilder.block.templates.WaterloggedBlock;
 import org.dawnoftimebuilder.util.DoTBBlockStateProperties;
-import org.dawnoftimebuilder.util.DoTBBlockUtils;
+import org.dawnoftimebuilder.util.DoTBUtils;
 
 import java.util.Random;
 
@@ -63,8 +63,9 @@ public class PlasteredStoneCressetBlock extends WaterloggedBlock {
         } else {
             if(state.getValue(WATERLOGGED)) return ActionResultType.PASS;
 
-            if(DoTBBlockUtils.useLighter(worldIn, pos, player, handIn)){
+            if(DoTBUtils.useLighter(worldIn, pos, player, handIn)){
                 worldIn.setBlock(pos, state.setValue(LIT, true).setValue(HEAT, 4), 10);
+                return ActionResultType.SUCCESS;
             }
         }
         return ActionResultType.PASS;

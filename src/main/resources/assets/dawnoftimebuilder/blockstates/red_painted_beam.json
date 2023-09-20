@@ -190,6 +190,51 @@
             "apply": [
                 { "model": "dawnoftimebuilder:block/general/vine/vine_x_z_stage_2"}
             ]
+        },
+        {
+            "when": { "climbing_plant": "ivy", "age": "0", "axis_y" : "true"},
+            "apply": [
+                { "model": "dawnoftimebuilder:block/general/ivy/ivy_y_stage_0"}
+            ]
+        },
+        {
+            "when": { "climbing_plant": "ivy", "age": "1", "axis_y" : "true"},
+            "apply": [
+                { "model": "dawnoftimebuilder:block/general/ivy/ivy_y_stage_1"}
+            ]
+        },
+        {
+            "when": { "climbing_plant": "ivy", "age": "2", "axis_y" : "true"},
+            "apply": [
+                { "model": "dawnoftimebuilder:block/general/ivy/ivy_y_stage_2"}
+            ]
+        },
+        {
+            "when": {"OR": [
+                { "climbing_plant": "ivy", "age": "0", "axis_x" : "true" },
+                { "climbing_plant": "ivy", "age": "0", "axis_z" : "true" }
+            ]},
+            "apply": [
+                { "model": "dawnoftimebuilder:block/general/ivy/ivy_x_z_stage_0"}
+            ]
+        },
+        {
+            "when": {"OR": [
+                { "climbing_plant": "ivy", "age": "1", "axis_x" : "true" },
+                { "climbing_plant": "ivy", "age": "1", "axis_z" : "true" }
+            ]},
+            "apply": [
+                { "model": "dawnoftimebuilder:block/general/ivy/ivy_x_z_stage_1"}
+            ]
+        },
+        {
+            "when": {"OR": [
+                { "climbing_plant": "ivy", "age": "2", "axis_x" : "true" },
+                { "climbing_plant": "ivy", "age": "2", "axis_z" : "true" }
+            ]},
+            "apply": [
+                { "model": "dawnoftimebuilder:block/general/ivy/ivy_x_z_stage_2"}
+            ]
         }
     ]
 }

@@ -25,19 +25,19 @@ import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import org.dawnoftimebuilder.block.templates.WaterloggedBlock;
 import org.dawnoftimebuilder.util.DoTBBlockStateProperties;
-import org.dawnoftimebuilder.util.DoTBBlockUtils;
+import org.dawnoftimebuilder.util.DoTBUtils;
 
 import javax.annotation.Nullable;
 import java.util.List;
 
 import static net.minecraft.block.Blocks.SPRUCE_PLANKS;
 import static org.dawnoftimebuilder.registry.DoTBBlocksRegistry.TATAMI_FLOOR;
-import static org.dawnoftimebuilder.util.DoTBBlockUtils.COVERED_BLOCKS;
+import static org.dawnoftimebuilder.util.DoTBUtils.COVERED_BLOCKS;
 
 public class TatamiMatBlock extends WaterloggedBlock {
 
     private static final VoxelShape VS = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 1.0D, 16.0D);
-    private static final VoxelShape[] SHAPES = DoTBBlockUtils.GenerateHorizontalShapes(makeShapes());
+    private static final VoxelShape[] SHAPES = DoTBUtils.GenerateHorizontalShapes(makeShapes());
     public static final EnumProperty<Half> HALF = BlockStateProperties.HALF;
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final BooleanProperty ROLLED = DoTBBlockStateProperties.ROLLED;
@@ -222,6 +222,6 @@ public class TatamiMatBlock extends WaterloggedBlock {
     @Override
     public void appendHoverText(ItemStack stack, @Nullable IBlockReader worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
         super.appendHoverText(stack, worldIn, tooltip, flagIn);
-        DoTBBlockUtils.addTooltip(tooltip, this);
+        DoTBUtils.addTooltip(tooltip, this);
     }
 }

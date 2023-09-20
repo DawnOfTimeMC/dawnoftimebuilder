@@ -1,0 +1,20 @@
+{
+    "replace": false,
+    "values": [
+        "minecraft:mushroom_stew",
+        "minecraft:bread",
+        "minecraft:cooked_porkchop",
+        "minecraft:cooked_cod",
+        "minecraft:cooked_salmon",
+        "minecraft:cake",
+        "minecraft:cookie",
+        "minecraft:cooked_beef",
+        "minecraft:cooked_chicken",
+        "minecraft:baked_potato",
+        "minecraft:pumpkin_pie",
+        "minecraft:cooked_rabbit",
+        "minecraft:rabbit_stew",
+        "minecraft:cooked_mutton",
+        "minecraft:beetroot_soup"
+    ]
+}

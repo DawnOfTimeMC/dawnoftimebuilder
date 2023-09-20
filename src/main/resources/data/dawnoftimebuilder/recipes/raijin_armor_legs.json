@@ -7,7 +7,7 @@
 	],
 	"key": {
 		"x": {
-			"item": "minecraft:red_dye"
+			"tag": "forge:dyes/red"
 		},
 		"I": {
 			"item": "dawnoftimebuilder:silk"

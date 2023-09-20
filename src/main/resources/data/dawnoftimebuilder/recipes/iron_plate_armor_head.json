@@ -13,7 +13,7 @@
 			"item": "minecraft:iron_helmet"
 		},
 		"o": {
-			"item": "minecraft:red_dye"
+			"tag": "forge:dyes/red"
 		},
 		"O": {
 			"item": "minecraft:feather"

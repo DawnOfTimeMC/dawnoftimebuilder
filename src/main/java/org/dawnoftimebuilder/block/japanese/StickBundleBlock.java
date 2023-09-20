@@ -26,7 +26,7 @@ import net.minecraft.world.server.ServerWorld;
 import org.dawnoftimebuilder.DoTBConfig;
 import org.dawnoftimebuilder.block.IBlockChain;
 import org.dawnoftimebuilder.block.templates.BlockDoTB;
-import org.dawnoftimebuilder.util.DoTBBlockUtils;
+import org.dawnoftimebuilder.util.DoTBUtils;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -121,8 +121,8 @@ public class StickBundleBlock extends BlockDoTB implements IBlockChain {
 
 			//The StickBundle has fully grown worms, it's time to harvest !
 			if(state.getValue(AGE) == 3){
-				List<ItemStack> drops = DoTBBlockUtils.getLootList((ServerWorld)worldIn, state, player.getItemInHand(handIn), Objects.requireNonNull(this.getRegistryName()).getPath() + "_harvest");
-				DoTBBlockUtils.dropLootFromList(worldIn, pos, drops, 1.0F);
+				List<ItemStack> drops = DoTBUtils.getLootList((ServerWorld)worldIn, state, player.getItemInHand(handIn), Objects.requireNonNull(this.getRegistryName()).getPath() + "_harvest");
+				DoTBUtils.dropLootFromList(worldIn, pos, drops, 1.0F);
 				worldIn.setBlock(pos, state.setValue(AGE, 0), 10);
 				worldIn.playSound(null, pos, SoundEvents.GRASS_BREAK, SoundCategory.BLOCKS, 1.0F, 1.0F);
 				if(state.getValue(HALF) == Half.TOP){
