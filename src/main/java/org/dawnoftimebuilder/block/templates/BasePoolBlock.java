@@ -32,7 +32,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-public abstract class BasePoolBlock extends BlockDoTB {
+public abstract class BasePoolBlock extends WaterloggedBlock {
     /**
      * Method used to execute removeWaterAround(final Map<BlockPos, BlockState> testedPositionsIn, BlockState blockStateIn, final BlockPos blockPosIn, final World worldIn, final float prohibitedXIn, final float
      * prohibitedZIn)
@@ -219,7 +219,7 @@ public abstract class BasePoolBlock extends BlockDoTB {
         this.maxLevel = maxLevelIn;
         this.faucetLevel = faucetLevelIn;
     }
-    
+
     @Override
     protected void createBlockStateDefinition(final StateDefinition.Builder<Block, BlockState> builder) {
         super.createBlockStateDefinition(builder);

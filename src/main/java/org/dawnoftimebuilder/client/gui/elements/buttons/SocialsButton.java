@@ -3,6 +3,7 @@ package org.dawnoftimebuilder.client.gui.elements.buttons;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiComponent;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -20,16 +21,24 @@ public class SocialsButton extends Button {
     }
 
     @Override
-    public void render(PoseStack matrixStack, int mouseX, int mouseY, float partialTicks) {
+    public void render(PoseStack ps, int mouseX, int mouseY, float partialTicks) {
         if (this.active) {
-            Minecraft mc = Minecraft.getInstance();
-            mc.getTextureManager().getTexture(socialIcons);
+            ps.pushPose();
+            RenderSystem.setShaderTexture(0, socialIcons);
             RenderSystem.clearColor(1.0F, 1.0F, 1.0F, this.alpha);
             RenderSystem.enableBlend();
-            this.blit(matrixStack, this.getX() - 1, this.getY(), 0, (this.isHovered()) ? 28 : 0, 28, 28);
+            blit(ps, this.getX() - 1, this.getY(), 0, (this.isHovered()) ? 28 : 0, 28, 28);
+            RenderSystem.disableBlend();
+            ps.popPose();
 
-            mc.getTextureManager().getTexture(buttonIcons);
-            blit(matrixStack, this.getX() + 3, this.getY() + 4, 0, 0, 0, 20, 20, 20, 20);
+            ps.pushPose();
+            RenderSystem.setShaderTexture(0, buttonIcons);
+            RenderSystem.clearColor(1.0F, 1.0F, 1.0F, this.alpha);
+            RenderSystem.enableBlend();
+            blit(ps, this.getX() + 3, this.getY() + 4, 0, 0, 0, 20, 20, 20, 20);
+            RenderSystem.disableBlend();
+            ps.popPose();
         }
+        super.render(ps, mouseX, mouseY, partialTicks);
     }
 }

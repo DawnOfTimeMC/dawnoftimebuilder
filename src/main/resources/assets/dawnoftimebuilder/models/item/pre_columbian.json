@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "dawnoftimebuilder:gui/logo_pre_columbian"
+        "layer0": "dawnoftimebuilder:item/logo_pre_columbian"
     }
 }

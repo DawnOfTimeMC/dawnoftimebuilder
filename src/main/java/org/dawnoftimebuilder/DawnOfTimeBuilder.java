@@ -25,12 +25,16 @@ public class DawnOfTimeBuilder {
         DoTBEntitiesRegistry.register(modEventBus);
 
         modEventBus.addListener(HandlerCommon::commonSetup);
-        modEventBus.addListener(HandlerCommon::registerCreativeModeTabs);
         modEventBus.addListener(HandlerClient::clientSetup);
-        modEventBus.addListener(this::buildContents);
+
+        modEventBus.addListener(HandlerCommon::registerCreativeModeTabs);
+        modEventBus.addListener(HandlerCommon::setDotTab);
+        modEventBus.addListener(HandlerClient::entityRenderers);
+
+        modEventBus.addListener(this::createCreativeTab);
     }
 
-    public void buildContents(CreativeModeTabEvent.BuildContents event) {
+    public void createCreativeTab(CreativeModeTabEvent.BuildContents event) {
         if (event.getTab() == HandlerCommon.DOT_TAB) {
             ForgeRegistries.ITEMS.getEntries().stream().filter(entry -> entry.getKey().location().getNamespace()
                     .equalsIgnoreCase(MOD_ID)).map(Map.Entry::getValue)
