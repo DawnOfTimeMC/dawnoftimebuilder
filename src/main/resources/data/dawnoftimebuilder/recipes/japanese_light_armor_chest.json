@@ -1,0 +1,22 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"o o",
+		"oio",
+		"III"
+	],
+	"key": {
+		"o": {
+			"item": "dawnoftimebuilder:silk"
+		},
+		"I": {
+			"tag": "forge:leather"
+		},
+		"i": {
+			"item": "minecraft:leather_chestplate"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:japanese_light_armor_chest"
+	}
+}

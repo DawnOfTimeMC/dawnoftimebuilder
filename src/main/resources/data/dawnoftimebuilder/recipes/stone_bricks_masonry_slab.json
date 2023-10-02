@@ -1,0 +1,15 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"III"
+	],
+	"key": {
+		"I": {
+			"item": "dawnoftimebuilder:stone_bricks_masonry"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:stone_bricks_masonry_slab",
+		"count": 6
+	}
+}

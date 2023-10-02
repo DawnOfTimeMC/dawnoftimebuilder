@@ -1,0 +1,25 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"xxx",
+		"xox",
+		"ivi"
+	],
+	"key": {
+		"x": {
+			"item": "minecraft:feather"
+		},
+		"i": {
+			"tag": "forge:ingots/gold"
+		},
+		"o": {
+			"item": "minecraft:diamond_helmet"
+		},
+		"v": {
+			"item": "minecraft:skeleton_skull"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:quetzalcoatl_armor_head"
+	}
+}

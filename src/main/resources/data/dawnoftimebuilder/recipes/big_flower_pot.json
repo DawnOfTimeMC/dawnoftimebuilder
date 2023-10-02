@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "I I",
+    "IxI",
+    " I "
+  ],
+  "key": {
+    "I": {
+      "item": "minecraft:brick"
+    },
+    "x": {
+      "item": "minecraft:dirt"
+    }
+  },
+  "result": {
+    "item": "dawnoftimebuilder:big_flower_pot",
+    "count": 2
+  }
+}

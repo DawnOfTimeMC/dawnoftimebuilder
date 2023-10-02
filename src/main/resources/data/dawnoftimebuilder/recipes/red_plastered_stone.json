@@ -1,0 +1,19 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"iI",
+		"Ii"
+	],
+	"key": {
+		"I": {
+			"item": "minecraft:stone"
+		},
+		"i": {
+			"tag": "forge:dyes/red"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:red_plastered_stone",
+		"count": 6
+	}
+}

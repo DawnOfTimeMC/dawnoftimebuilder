@@ -1,0 +1,19 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"IiI",
+		"IiI"
+	],
+	"key": {
+		"I": {
+			"item": "dawnoftimebuilder:charred_spruce_planks"
+		},
+		"i": {
+			"item": "dawnoftimebuilder:charred_spruce_log_stripped"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:charred_spruce_wall",
+		"count": 6
+	}
+}

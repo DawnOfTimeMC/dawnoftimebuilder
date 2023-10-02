@@ -1,0 +1,19 @@
+{
+  "replace": false,
+  "values": [
+    "dawnoftimebuilder:limestone_bricks_wall",
+    "dawnoftimebuilder:gray_roof_tiles_wall",
+    "dawnoftimebuilder:oak_wall",
+    "dawnoftimebuilder:acacia_wall",
+    "dawnoftimebuilder:dark_oak_wall",
+    "dawnoftimebuilder:birch_wall",
+    "dawnoftimebuilder:spruce_wall",
+    "dawnoftimebuilder:jungle_wall",
+    "dawnoftimebuilder:warped_wall",
+    "dawnoftimebuilder:crimson_wall",
+    "dawnoftimebuilder:ochre_roof_tiles_wall",
+    "dawnoftimebuilder:covered_sandstone_wall",
+    "dawnoftimebuilder:charred_spruce_wall",
+    "dawnoftimebuilder:terracotta_wall"
+  ]
+}

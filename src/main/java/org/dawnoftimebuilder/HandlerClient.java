@@ -2,12 +2,14 @@ package org.dawnoftimebuilder;
 
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
-import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.dawnoftimebuilder.client.gui.creative.CreativeInventoryEvents;
-import org.dawnoftimebuilder.client.renderer.ChairRenderer;
+import org.dawnoftimebuilder.client.renderer.entity.ChairRenderer;
+import org.dawnoftimebuilder.registry.DoTBBlockAndItemColorsRegistry;
 import org.dawnoftimebuilder.registry.DoTBEntitiesRegistry;
 
 
@@ -18,7 +20,10 @@ public class HandlerClient {
 
     @SubscribeEvent
     public static void clientSetup(FMLClientSetupEvent event) {
-       // MinecraftForge.EVENT_BUS.register(events = new CreativeInventoryEvents());
+        // MinecraftForge.EVENT_BUS.register(events = new CreativeInventoryEvents());
+        final IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
+        eventBus.addListener(DoTBBlockAndItemColorsRegistry::registerBlockColors);
+        eventBus.addListener(DoTBBlockAndItemColorsRegistry::registerItemsColors);
     }
 
     @SubscribeEvent

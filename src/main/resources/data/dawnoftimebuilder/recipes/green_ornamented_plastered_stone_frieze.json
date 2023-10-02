@@ -1,0 +1,22 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"IiI",
+		"IoI"
+	],
+	"key": {
+		"I": {
+			"item": "dawnoftimebuilder:plastered_stone"
+		},
+		"o": {
+			"tag": "forge:nuggets/gold"
+		},
+		"i": {
+			"tag": "forge:dyes/green"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:green_ornamented_plastered_stone_frieze",
+		"count": 6
+	}
+}

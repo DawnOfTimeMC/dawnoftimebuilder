@@ -1,0 +1,17 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"III",
+		" I ",
+		"III"
+	],
+	"key": {
+		"I": {
+			"item": "minecraft:sandstone"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:sandstone_column",
+		"count": 8
+	}
+}

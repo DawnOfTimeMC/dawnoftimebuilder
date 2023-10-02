@@ -1,0 +1,19 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"I",
+		"i"
+	],
+	"key": {
+		"I": {
+			"item": "minecraft:stripped_oak_log"
+		},
+		"i": {
+			"item": "dawnoftimebuilder:limestone_bricks"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:oak_beam",
+		"count": 4
+	}
+}

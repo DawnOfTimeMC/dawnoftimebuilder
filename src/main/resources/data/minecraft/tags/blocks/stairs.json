@@ -1,0 +1,17 @@
+{
+  "replace": false,
+  "values": [
+    "dawnoftimebuilder:thatch_wheat_stairs",
+    "dawnoftimebuilder:thatch_bamboo_stairs",
+    "dawnoftimebuilder:limestone_bricks_stairs",
+    "dawnoftimebuilder:flat_roof_tiles_stairs",
+    "dawnoftimebuilder:waxed_oak_planks_stairs",
+    "dawnoftimebuilder:charred_spruce_planks_stairs",
+    "dawnoftimebuilder:gray_roof_tiles_stairs",
+    "dawnoftimebuilder:plastered_stone_stairs",
+    "dawnoftimebuilder:red_plastered_stone_stairs",
+    "dawnoftimebuilder:ochre_roof_tiles_stairs",
+    "dawnoftimebuilder:cut_sandstone_stairs",
+    "dawnoftimebuilder:roofing_slates_stairs"
+  ]
+}

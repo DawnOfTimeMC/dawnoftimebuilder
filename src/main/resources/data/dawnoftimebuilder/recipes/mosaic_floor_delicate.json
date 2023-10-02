@@ -1,0 +1,26 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"oio",
+		"IxI",
+		"oio"
+	],
+	"key": {
+		"o": {
+			"item": "minecraft:sandstone"
+		},
+		"I":{
+			"tag": "forge:dyes/red"
+		},
+		"i": {
+			"tag": "forge:dyes/orange"
+		},
+		"x": {
+			"tag": "forge:dyes/black"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:mosaic_floor_delicate",
+		"count": 16
+	}
+}

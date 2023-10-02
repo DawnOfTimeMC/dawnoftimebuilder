@@ -1,0 +1,21 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		" I ",
+		"oxo"
+	],
+	"key": {
+		"I": {
+			"tag": "minecraft:logs_that_burn"
+		},
+		"x": {
+			"tag": "minecraft:coals"
+		},
+		"o": {
+			"tag": "forge:nuggets/iron"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:fireplace"
+	}
+}

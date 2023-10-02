@@ -1,0 +1,13 @@
+{
+    "replace": false,
+    "values": [
+        "#minecraft:buttons",
+        "#minecraft:pressure_plates",
+        "minecraft:lever",
+        "minecraft:redstone_torch",
+        "minecraft:tripwire_hook",
+        "minecraft:trapped_chest",
+        "minecraft:daylight_detector",
+        "minecraft:redstone_block"
+    ]
+}

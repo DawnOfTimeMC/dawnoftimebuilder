@@ -1,0 +1,19 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"IiI",
+		"IiI"
+	],
+	"key": {
+		"i": {
+			"item": "minecraft:oak_log"
+		},
+		"I": {
+			"item": "minecraft:oak_planks"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:oak_wall",
+		"count": 9
+	}
+}

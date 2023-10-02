@@ -1,0 +1,19 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		" i ",
+		"III"
+	],
+	"key": {
+		"i": {
+			"item": "minecraft:stone"
+		},
+		"I": {
+			"item": "minecraft:gravel"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:stepping_stones_slab",
+		"count": 16
+	}
+}

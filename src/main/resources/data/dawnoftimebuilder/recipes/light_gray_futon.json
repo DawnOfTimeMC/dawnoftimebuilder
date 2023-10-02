@@ -1,0 +1,18 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"iii",
+		"III"
+	],
+	"key": {
+		"i": {
+			"item": "dawnoftimebuilder:silk"
+		},
+		"I": {
+			"item": "dawnoftimebuilder:thatch_bamboo"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:light_gray_futon"
+	}
+}

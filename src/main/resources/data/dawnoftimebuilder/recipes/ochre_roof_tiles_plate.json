@@ -1,0 +1,17 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"I",
+		"I",
+		"I"
+	],
+	"key": {
+		"I": {
+			"item": "dawnoftimebuilder:ochre_roof_tiles"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:ochre_roof_tiles_plate",
+		"count": 6
+	}
+}

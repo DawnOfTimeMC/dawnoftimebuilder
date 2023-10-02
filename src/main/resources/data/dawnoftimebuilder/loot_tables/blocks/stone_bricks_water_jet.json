@@ -1,0 +1,131 @@
+{
+    "type": "minecraft:block",
+    "pools": [
+        {
+            "rolls": 1,
+            "entries": [
+                {
+                    "type": "minecraft:item",
+                    "name": "dawnoftimebuilder:stone_bricks_water_jet"
+                }
+            ],
+            "conditions": [
+                {
+                    "condition": "minecraft:block_state_property",
+                    "block": "dawnoftimebuilder:stone_bricks_water_jet",
+                    "properties": {
+                        "north_state": "top|bottom"
+                    }
+                },
+                {
+                    "condition": "minecraft:survives_explosion"
+                }
+            ]
+        },
+        {
+            "rolls": 1,
+            "entries": [
+                {
+                    "type": "minecraft:item",
+                    "name": "dawnoftimebuilder:stone_bricks_water_jet"
+                }
+            ],
+            "conditions": [
+                {
+                    "condition": "minecraft:block_state_property",
+                    "block": "dawnoftimebuilder:stone_bricks_water_jet",
+                    "properties": {
+                        "west_state": "top|bottom"
+                    }
+                },
+                {
+                    "condition": "minecraft:survives_explosion"
+                }
+            ]
+        },
+        {
+            "rolls": 1,
+            "entries": [
+                {
+                    "type": "minecraft:item",
+                    "name": "dawnoftimebuilder:stone_bricks_water_jet"
+                }
+            ],
+            "conditions": [
+                {
+                    "condition": "minecraft:block_state_property",
+                    "block": "dawnoftimebuilder:stone_bricks_water_jet",
+                    "properties": {
+                        "south_state": "top|bottom"
+                    }
+                },
+                {
+                    "condition": "minecraft:survives_explosion"
+                }
+            ]
+        },
+        {
+            "rolls": 1,
+            "entries": [
+                {
+                    "type": "minecraft:item",
+                    "name": "dawnoftimebuilder:stone_bricks_water_jet"
+                }
+            ],
+            "conditions": [
+                {
+                    "condition": "minecraft:block_state_property",
+                    "block": "dawnoftimebuilder:stone_bricks_water_jet",
+                    "properties": {
+                        "east_state": "top|bottom"
+                    }
+                },
+                {
+                    "condition": "minecraft:survives_explosion"
+                }
+            ]
+        },
+        {
+            "rolls": 1,
+            "entries": [
+                {
+                    "type": "minecraft:item",
+                    "name": "dawnoftimebuilder:stone_bricks_water_jet"
+                }
+            ],
+            "conditions": [
+                {
+                    "condition": "minecraft:block_state_property",
+                    "block": "dawnoftimebuilder:stone_bricks_water_jet",
+                    "properties": {
+                        "up": "true"
+                    }
+                },
+                {
+                    "condition": "minecraft:survives_explosion"
+                }
+            ]
+        },
+        {
+            "rolls": 1,
+            "entries": [
+                {
+                    "type": "minecraft:item",
+                    "name": "dawnoftimebuilder:stone_bricks_water_jet"
+                }
+            ],
+            "conditions": [
+                {
+                    "condition": "minecraft:block_state_property",
+                    "block": "dawnoftimebuilder:stone_bricks_water_jet",
+                    "properties": {
+                        "down": "true"
+                    }
+                },
+                {
+                    "condition": "minecraft:survives_explosion"
+                }
+            ]
+        }
+    ]
+}

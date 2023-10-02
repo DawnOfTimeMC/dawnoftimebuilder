@@ -1,0 +1,22 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		" I ",
+		" i ",
+		" o "
+	],
+	"key": {
+		"I": {
+			"item": "minecraft:honeycomb"
+		},
+		"i": {
+			"item": "minecraft:torch"
+		},
+		"o": {
+			"tag": "forge:ingots/iron"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:candlestick"
+	}
+}

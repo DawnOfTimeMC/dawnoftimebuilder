@@ -1,0 +1,28 @@
+{
+    "type": "minecraft:block",
+    "pools": [
+        {
+            "rolls": 1,
+            "entries": [
+                {
+                    "type": "minecraft:item",
+                    "conditions": [
+                        {
+                            "condition": "minecraft:block_state_property",
+                            "block": "dawnoftimebuilder:light_gray_futon",
+                            "properties": {
+                                "part": "head"
+                            }
+                        }
+                    ],
+                    "name": "dawnoftimebuilder:light_gray_futon"
+                }
+            ],
+            "conditions": [
+                {
+                    "condition": "minecraft:survives_explosion"
+                }
+            ]
+        }
+    ]
+}

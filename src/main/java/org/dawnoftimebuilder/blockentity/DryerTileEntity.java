@@ -4,31 +4,42 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.Connection;
+import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.entity.TickingBlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.ItemStackHandler;
 import org.dawnoftimebuilder.DoTBConfig;
+import org.dawnoftimebuilder.recipe.DryerRecipe;
+import org.dawnoftimebuilder.registry.DoTBTileEntitiesRegistry;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Random;
 
-public class DryerTileEntity /*extends BlockEntity implements TickingBlockEntity*/ {
+public class DryerTileEntity extends BlockEntity {
+    public DryerTileEntity(BlockEntityType<?> pType, BlockPos pPos, BlockState pBlockState) {
+        super(pType, pPos, pBlockState);
+    }
 
     /*private final ItemStackHandler itemHandler = new ItemStackHandler(2);
     private final int[] remainingTicks = new int[2];
     private boolean isInOperation;
 
-    public DryerTileEntity() {
-        super(DoTBTileEntitiesRegistry.DRYER_TE.get());
+    public DryerTileEntity(BlockPos pPos, BlockState pBlockState) {
+        super(DoTBTileEntitiesRegistry.DRYER_TE.get(), pPos, pBlockState);
     }
 
     @Override
@@ -45,7 +56,7 @@ public class DryerTileEntity /*extends BlockEntity implements TickingBlockEntity
                     final DryerRecipe recipe = this.getDryerRecipe(new Inventory(this.itemHandler.getStackInSlot(i)));
 
                     if (recipe != null) {
-                        this.itemHandler.setStackInSlot(i, recipe.getResultItem().copy());
+                        this.itemHandler.setStackInSlot(i, recipe.getResultItem(this.getLevel().registryAccess()).copy());
                         success = true;
                     }
                     finish++;
@@ -53,7 +64,7 @@ public class DryerTileEntity /*extends BlockEntity implements TickingBlockEntity
             }
 
             if (success) {
-                this.getLevel().sendBlockUpdated(this.worldPosition, this.getBlockState(), this.getBlockState(), Constants.BlockFlags.BLOCK_UPDATE + Constants.BlockFlags.NOTIFY_NEIGHBORS);
+                this.getLevel().sendBlockUpdated(this.worldPosition, this.getBlockState(), this.getBlockState(), 3 + 2);
             }
 
             if (finish >= 2) {
@@ -62,45 +73,50 @@ public class DryerTileEntity /*extends BlockEntity implements TickingBlockEntity
         }
     }
 
-    public ActionResultType tryInsertItemStack(final ItemStack itemStack, final boolean simple, final Level worldIn, final BlockPos pos, final Player player) {
+    @Override
+    public BlockPos getPos() {
+        return null;
+    }
+
+    public InteractionResult tryInsertItemStack(final ItemStack itemStack, final boolean simple, final Level worldIn, final BlockPos pos, final Player player) {
 
         //Try to put the itemStack in an empty dryer
         if (this.putItemStackInFreeSpace(itemStack, simple, player)) {
-            return ActionResultType.SUCCESS;
+            return InteractionResult.SUCCESS;
         }
         //No empty dryer, let's see if we could replace a dried item with ours
         if (simple) {
             if (this.itemIsDried(0)) {
                 this.dropItemIndex(0, worldIn, pos);
                 this.putItemStackInIndex(0, itemStack, player);
-                return ActionResultType.SUCCESS;
+                return InteractionResult.SUCCESS;
             }
-            return ActionResultType.PASS;
+            return InteractionResult.PASS;
         }
         final int index = this.dropOneDriedItem(worldIn, pos);
         if (index < 0) {
-            return ActionResultType.PASS;
+            return InteractionResult.PASS;
         }
         this.putItemStackInIndex(index, itemStack, player);
-        return ActionResultType.SUCCESS;
+        return InteractionResult.SUCCESS;
     }
 
-    public ActionResultType dropOneItem(final World worldIn, final BlockPos pos) {
+    public InteractionResult dropOneItem(final Level worldIn, final BlockPos pos) {
         if (this.dropOneDriedItem(worldIn, pos) > -1) {
-            return ActionResultType.SUCCESS;
+            return InteractionResult.SUCCESS;
         }
         if (!this.itemHandler.getStackInSlot(0).isEmpty()) {
             this.dropItemIndex(0, worldIn, pos);
-            return ActionResultType.SUCCESS;
+            return InteractionResult.SUCCESS;
         }
         if (!this.itemHandler.getStackInSlot(1).isEmpty()) {
             this.dropItemIndex(1, worldIn, pos);
-            return ActionResultType.SUCCESS;
+            return InteractionResult.SUCCESS;
         }
-        return ActionResultType.PASS;
+        return InteractionResult.PASS;
     }
 
-    public int dropOneDriedItem(final World worldIn, final BlockPos pos) {
+    public int dropOneDriedItem(final Level worldIn, final BlockPos pos) {
         if (this.itemIsDried(0)) {
             this.dropItemIndex(0, worldIn, pos);
             return 0;
@@ -119,7 +135,7 @@ public class DryerTileEntity /*extends BlockEntity implements TickingBlockEntity
         return this.remainingTicks[index] <= 0;
     }
 
-    private boolean putItemStackInFreeSpace(final ItemStack itemStack, final boolean simple, final PlayerEntity player) {
+    private boolean putItemStackInFreeSpace(final ItemStack itemStack, final boolean simple, final Player player) {
 
         if (this.itemHandler.getStackInSlot(0).isEmpty() && this.putItemStackInIndex(0, itemStack, player)) {
             this.isInOperation = true;
@@ -133,17 +149,17 @@ public class DryerTileEntity /*extends BlockEntity implements TickingBlockEntity
     }
 
     @Nullable
-    private DryerRecipe getDryerRecipe(final IInventory ingredientInventory) {
+    private DryerRecipe getDryerRecipe(final Inventory ingredientInventory) {
         if (this.getLevel() != null && !this.getLevel().isClientSide) {
             return this.getLevel().getRecipeManager().getRecipeFor(DryerRecipe.DRYING, ingredientInventory, this.getLevel()).orElse(null);
         }
         return null;
     }
 
-    private boolean putItemStackInIndex(final int index, final ItemStack itemStack, final PlayerEntity player) {
+    private boolean putItemStackInIndex(final int index, final ItemStack itemStack, final Player player) {
         //Tries to put the itemStack in a dryer : first we check if there is a corresponding recipe, then we set the variables.
         if (this.getLevel() != null) {
-            final IInventory invInHand = new Inventory(itemStack);
+            final Inventory invInHand = new Inventory(player);
             final DryerRecipe recipe = this.getDryerRecipe(invInHand);
             if (recipe != null && recipe.matches(invInHand, this.getLevel())) {
                 this.itemHandler.setStackInSlot(index, recipe.getIngredients().get(0).getItems()[0].copy());
@@ -153,7 +169,7 @@ public class DryerTileEntity /*extends BlockEntity implements TickingBlockEntity
                 final float timeVariation = new Random().nextFloat() * 2.0F - 1.0F;
                 final int range = timeVariation >= 0 ? DoTBConfig.DRYING_TIME_VARIATION.get() : 10000 / (100 + DoTBConfig.DRYING_TIME_VARIATION.get());
                 this.remainingTicks[index] = (int) (recipe.getDryingTime() * (100 + timeVariation * range) / 100);
-                this.getLevel().sendBlockUpdated(this.worldPosition, this.getBlockState(), this.getBlockState(), Constants.BlockFlags.BLOCK_UPDATE + Constants.BlockFlags.NOTIFY_NEIGHBORS);
+                this.getLevel().sendBlockUpdated(this.worldPosition, this.getBlockState(), this.getBlockState(), 3 + 2);
 
                 return true;
             }
@@ -161,7 +177,7 @@ public class DryerTileEntity /*extends BlockEntity implements TickingBlockEntity
         return false;
     }
 
-    private void dropItemIndex(final int index, final World worldIn, final BlockPos pos) {
+    private void dropItemIndex(final int index, final Level worldIn, final BlockPos pos) {
         Block.popResource(worldIn, pos, this.itemHandler.extractItem(index, 64, false));
         this.remainingTicks[index] = 0;
         if (this.getLevel() != null) {
@@ -181,10 +197,10 @@ public class DryerTileEntity /*extends BlockEntity implements TickingBlockEntity
 
     @Nullable
     @Override
-    public SUpdateTileEntityPacket getUpdatePacket() {
+    public Packet<ClientGamePacketListener> getUpdatePacket() {
         final CompoundTag tag = super.getUpdateTag();
         tag.put("inv", this.itemHandler.serializeNBT());
-        return new SUpdateTileEntityPacket(this.worldPosition, 1, tag);
+        return super.getUpdatePacket();
     }
     
     @Override
@@ -192,7 +208,7 @@ public class DryerTileEntity /*extends BlockEntity implements TickingBlockEntity
         final CompoundTag tag = pkt.getTag();
         if (tag.contains("inv") && this.getLevel() != null) {
             this.itemHandler.deserializeNBT(tag.getCompound("inv"));
-            this.getLevel().sendBlockUpdated(this.worldPosition, this.getBlockState(), this.getBlockState(), Constants.BlockFla.BLOCK_UPDATE + Constants.BlockFlags.NOTIFY_NEIGHBORS);
+            this.getLevel().sendBlockUpdated(this.worldPosition, this.getBlockState(), this.getBlockState(), 3 + 2);
         }
     }
 

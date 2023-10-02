@@ -1,0 +1,23 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"ioi",
+		"oIo",
+		"ioi"
+	],
+	"key": {
+		"i": {
+			"item": "minecraft:stone"
+		},
+		"I":{
+			"item": "minecraft:lapis_lazuli"
+		},
+		"o": {
+			"tag": "forge:dyes/blue"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:moraq_mosaic_tiles_delicate",
+		"count": 16
+	}
+}

@@ -1,0 +1,59 @@
+{
+    "type": "minecraft:block",
+    "pools": [
+        {
+            "rolls": 1,
+            "entries": [
+                {
+                    "type": "minecraft:alternatives",
+                    "children": [
+                        {
+                            "type": "minecraft:item",
+                            "name": "dawnoftimebuilder:wild_grape",
+                            "conditions": [
+                                {
+                                    "condition": "minecraft:match_tool",
+                                    "predicate": {
+                                        "item": "minecraft:shears"
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "type": "minecraft:item",
+                            "name": "dawnoftimebuilder:grape",
+                            "conditions": [
+                                {
+                                    "condition": "minecraft:survives_explosion"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "rolls": 1,
+            "entries": [
+                {
+                    "type": "minecraft:item",
+                    "name": "dawnoftimebuilder:grape_seeds",
+                    "conditions": [
+                        {
+                            "condition": "minecraft:inverted",
+                            "term": {
+                                "condition": "minecraft:match_tool",
+                                "predicate": {
+                                    "item": "minecraft:shears"
+                                }
+                            }
+                        },
+                        {
+                            "condition": "minecraft:survives_explosion"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,25 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"xhx",
+		"ioi",
+		"i i"
+	],
+	"key": {
+		"x": {
+			"item": "minecraft:feather"
+		},
+		"i": {
+			"tag": "forge:ingots/gold"
+		},
+		"o": {
+			"item": "minecraft:leather_helmet"
+		},
+		"h": {
+			"tag": "forge:dyes/red"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:centurion_armor_head"
+	}
+}

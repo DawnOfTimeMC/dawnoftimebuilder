@@ -1,0 +1,18 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"IiI",
+		"  I"
+	],
+	"key": {
+		"I": {
+			"item": "dawnoftimebuilder:silk"
+		},
+		"i": {
+			"item": "minecraft:leather_helmet"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:japanese_light_armor_head"
+	}
+}

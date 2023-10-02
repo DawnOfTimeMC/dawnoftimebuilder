@@ -1,0 +1,19 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"iii",
+		"III"
+	],
+	"key": {
+		"I": {
+			"item": "minecraft:stripped_spruce_log"
+		},
+		"i": {
+			"item": "dawnoftimebuilder:spruce_support_slab"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:spruce_support_beam",
+		"count": 8
+	}
+}

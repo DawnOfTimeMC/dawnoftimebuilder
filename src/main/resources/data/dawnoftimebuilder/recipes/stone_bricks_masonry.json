@@ -1,0 +1,20 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"IiI",
+		"iIi",
+		"IiI"
+	],
+	"key": {
+		"I": {
+			"item": "minecraft:stone_bricks"
+		},
+		"i": {
+			"item": "minecraft:cobblestone"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:stone_bricks_masonry",
+		"count": 9
+	}
+}

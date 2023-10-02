@@ -1,0 +1,17 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"I",
+		"I",
+		"I"
+	],
+	"key": {
+		"I": {
+			"item": "minecraft:spruce_planks"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:spruce_planks_plate",
+		"count": 6
+	}
+}

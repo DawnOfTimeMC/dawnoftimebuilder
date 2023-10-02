@@ -1,0 +1,19 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"IiI",
+		"IiI"
+	],
+	"key": {
+		"i": {
+			"item": "minecraft:warped_stem"
+		},
+		"I": {
+			"item": "minecraft:warped_planks"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:warped_wall",
+		"count": 9
+	}
+}

@@ -1,0 +1,28 @@
+{
+    "type": "minecraft:block",
+    "pools": [
+        {
+            "rolls": 1,
+            "entries": [
+                {
+                    "type": "minecraft:item",
+                    "conditions": [
+                        {
+                            "condition": "minecraft:block_state_property",
+                            "block": "dawnoftimebuilder:marble_statue_mars",
+                            "properties": {
+                                "multiblock": "0"
+                            }
+                        }
+                    ],
+                    "name": "dawnoftimebuilder:marble_statue_mars"
+                }
+            ],
+            "conditions": [
+                {
+                    "condition": "minecraft:survives_explosion"
+                }
+            ]
+        }
+    ]
+}

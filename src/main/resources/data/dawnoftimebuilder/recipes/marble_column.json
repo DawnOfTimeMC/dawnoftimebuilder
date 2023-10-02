@@ -1,0 +1,17 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"III",
+		" I ",
+		"III"
+	],
+	"key": {
+		"I": {
+			"item": "minecraft:quartz_pillar"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:marble_column",
+		"count": 8
+	}
+}

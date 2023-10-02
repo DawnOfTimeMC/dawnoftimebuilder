@@ -1,0 +1,9 @@
+{
+	"type": "minecraft:smoking",
+	"ingredient": {
+		"item": "minecraft:stripped_spruce_log"
+	},
+	"result": "dawnoftimebuilder:charred_spruce_log_stripped",
+	"experience": 0.35,
+	"cookingtime": 100
+}

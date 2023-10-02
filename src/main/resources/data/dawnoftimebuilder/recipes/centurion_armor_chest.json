@@ -1,0 +1,22 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"o o",
+		"IiI",
+		"ooo"
+	],
+	"key": {
+		"i": {
+			"item": "minecraft:leather_chestplate"
+		},
+		"I": {
+			"tag": "forge:dyes/red"
+		},
+		"o": {
+			"tag": "forge:ingots/gold"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:centurion_armor_chest"
+	}
+}

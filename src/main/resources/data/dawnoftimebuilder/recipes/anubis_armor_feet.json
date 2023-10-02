@@ -1,0 +1,21 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"IxI",
+		"i i"
+	],
+	"key": {
+		"I": {
+			"item": "minecraft:gold_block"
+		},
+		"i": {
+			"item": "minecraft:lapis_block"
+		},
+		"x": {
+			"item": "minecraft:diamond_boots"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:anubis_armor_feet"
+	}
+}

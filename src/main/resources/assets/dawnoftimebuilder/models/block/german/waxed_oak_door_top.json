@@ -1,6 +1,6 @@
 {
     "render_type": "minecraft:cutout",
-    "parent": "block/door_top",
+    "parent": "minecraft:block/door_top_left",
     "textures": {
         "bottom": "dawnoftimebuilder:block/waxed_oak_door_bottom",
         "top": "dawnoftimebuilder:block/waxed_oak_door_top"

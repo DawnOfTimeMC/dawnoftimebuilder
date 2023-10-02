@@ -1,0 +1,20 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"IiI",
+		"IiI",
+		"IiI"
+	],
+	"key": {
+		"I": {
+			"item": "minecraft:paper"
+		},
+		"i": {
+			"tag": "forge:rods/wooden"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:paper_wall",
+		"count": 4
+	}
+}

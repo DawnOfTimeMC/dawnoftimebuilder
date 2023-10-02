@@ -1,0 +1,23 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"oIo",
+		"oOo",
+		"o o"
+	],
+	"key": {
+		"o": {
+			"tag": "forge:rods/wooden"
+		},
+		"O": {
+			"item": "minecraft:torch"
+		},
+		"I": {
+			"item": "minecraft:paper"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:paper_lamp",
+		"count": 6
+	}
+}

@@ -1,0 +1,18 @@
+{
+  "replace": false,
+  "values": [
+    "dawnoftimebuilder:thatch_wheat_slab",
+    "dawnoftimebuilder:thatch_bamboo_slab",
+    "dawnoftimebuilder:limestone_bricks_slab",
+    "dawnoftimebuilder:flat_roof_tiles_slab",
+    "dawnoftimebuilder:waxed_oak_planks_slab",
+    "dawnoftimebuilder:charred_spruce_planks_slab",
+    "dawnoftimebuilder:charred_spruce_foundation_slab",
+    "dawnoftimebuilder:gray_roof_tiles_slab",
+    "dawnoftimebuilder:stepping_stones_slab",
+    "dawnoftimebuilder:plastered_stone_slab",
+    "dawnoftimebuilder:red_plastered_stone_slab",
+    "dawnoftimebuilder:ochre_roof_tiles_slab",
+    "dawnoftimebuilder:roofing_slates_slab"
+  ]
+}

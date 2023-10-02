@@ -1,0 +1,15 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"III"
+	],
+	"key": {
+		"I": {
+			"item": "minecraft:acacia_slab"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:acacia_support_slab",
+		"count": 6
+	}
+}

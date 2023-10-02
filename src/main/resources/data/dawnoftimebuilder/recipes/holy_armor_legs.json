@@ -1,0 +1,22 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"IiI",
+		"I I",
+		"o o"
+	],
+	"key": {
+		"i": {
+			"item": "minecraft:diamond_leggings"
+		},
+		"I": {
+			"item": "minecraft:iron_block"
+		},
+		"o": {
+			"item": "minecraft:gold_block"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:holy_armor_legs"
+	}
+}

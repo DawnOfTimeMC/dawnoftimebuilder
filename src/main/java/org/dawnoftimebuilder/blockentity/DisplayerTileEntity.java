@@ -1,5 +1,6 @@
 package org.dawnoftimebuilder.blockentity;
 
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
@@ -8,7 +9,9 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
@@ -18,7 +21,10 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 
-public class DisplayerTileEntity /*extends RandomizableContainerBlockEntity*/ {
+public class DisplayerTileEntity extends BlockEntity {
+    public DisplayerTileEntity(BlockEntityType<?> pType, BlockPos pPos, BlockState pBlockState) {
+        super(pType, pPos, pBlockState);
+    }
 
 	/*private final ItemStackHandler itemHandler = createHandler();
 

@@ -1,0 +1,16 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"III",
+		"III"
+	],
+	"key": {
+		"I": {
+			"item": "dawnoftimebuilder:lattice_glass"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:lattice_glass_pane",
+		"count": 16
+	}
+}

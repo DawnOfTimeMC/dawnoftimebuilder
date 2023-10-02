@@ -1,0 +1,28 @@
+{
+    "type": "minecraft:block",
+    "pools": [
+        {
+            "rolls": 1,
+            "entries": [
+                {
+                    "type": "minecraft:item",
+                    "name": "dawnoftimebuilder:charred_spruce_tall_shutters",
+                    "conditions": [
+                        {
+                            "condition": "minecraft:block_state_property",
+                            "block": "dawnoftimebuilder:charred_spruce_tall_shutters",
+                            "properties": {
+                                "corner": "top_left"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "conditions": [
+                {
+                    "condition": "minecraft:survives_explosion"
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,22 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		" o ",
+		"XiX"
+	],
+	"key": {
+		"X": {
+			"item": "minecraft:red_wool"
+		},
+		"o": {
+			"item": "minecraft:light_blue_wool"
+		},
+		"i": {
+			"item": "minecraft:yellow_wool"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:persian_carpet_delicate_red",
+		"count": 6
+	}
+}
