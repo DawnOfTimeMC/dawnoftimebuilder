@@ -1,33 +1,21 @@
-buildscript {
-    dependencies {
-        classpath "org.spongepowered:mixingradle:0.7.+"
-        //classpath 'com.github.johnrengelman:shadow:6.1.0'
-    }
-}
 
 plugins {
     id 'eclipse'
     id 'idea'
     id 'net.minecraftforge.gradle' version '[6.0,6.2)'
-    //id 'com.github.johnrengelman.shadow' version '8.1.1'
-    id 'java'
 }
 
-apply plugin: "org.spongepowered.mixin"
-//apply plugin: 'com.github.johnrengelman.shadow'
-apply plugin: 'java'
 
-group = mod_version
-version = mod_group_id
+group = ${mod_group_id}
+version = ${mod_version}
 
 base {
-    archivesName = mod_id
+    archivesName = ${mod_id}
 }
 
 java {
     toolchain.languageVersion = JavaLanguageVersion.of(17)
 }
-
 
 minecraft {
     // The mappings can be changed at any time and must be in the following format.
@@ -43,7 +31,7 @@ minecraft {
     //
     // Use non-default mappings at your own risk. They may not always work.
     // Simply re-run your setup task after changing the mappings to update your workspace.
-    mappings channel: mapping_channelOld, version: mapping_versionOld
+    mappings channel: mapping_channel, version: mapping_version
 
     // When true, this property will have all Eclipse/IntelliJ IDEA run configurations run the "prepareX" task for the given run configuration before launching the game.
     // enableEclipsePrepareRuns = true
@@ -65,7 +53,7 @@ minecraft {
     // However, it must be at "META-INF/accesstransformer.cfg" in the final mod jar to be loaded by Forge.
     // This default location is a best practice to automatically put the file in the right place in the final jar.
     // See https://docs.minecraftforge.net/en/latest/advanced/accesstransformers/ for more information.
-    accessTransformer = file('src/main/resources/META-INF/dot_at.cfg')
+    // accessTransformer = file('src/main/resources/META-INF/dot_at.cfg')
 
     // Default run configurations.
     // These can be tweaked, removed, or duplicated as needed.
@@ -133,24 +121,6 @@ repositories {
     // flatDir {
     //     dir 'libs'
     // }
-    exclusiveContent {
-        forRepository {
-            maven {
-                name = "Modrinth"
-                url = "https://api.modrinth.com/maven"
-            }
-        }
-        forRepositories(fg.repository) // Only add this if you're using ForgeGradle, otherwise remove this line
-        filter {
-            includeGroup "maven.modrinth"
-        }
-    }
-
-}
-
-configurations {
-    shade
-    implementation.extendsFrom shade
 }
 
 dependencies {
@@ -160,10 +130,6 @@ dependencies {
     // If the group id is "net.minecraft" and the artifact id is one of ["client", "server", "joined"],
     // then special handling is done to allow a setup of a vanilla dependency without the use of an external repository.
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
-
-    /*implementation 'maven.modrinth:fusion-connected-textures:1.0.6-forge-mc1.19.4'
-    shade 'maven.modrinth:fusion-connected-textures:1.0.6-forge-mc1.19.4'
-    minecraftLibrary 'maven.modrinth:fusion-connected-textures:1.0.6-forge-mc1.19.4'*/
 
     // Example mod dependency with JEI - using fg.deobf() ensures the dependency is remapped to your development mappings
     // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime
@@ -176,40 +142,10 @@ dependencies {
     // The group id is ignored when searching -- in this case, it is "blank"
     // implementation fg.deobf("blank:coolmod-${mc_version}:${coolmod_version}")
 
-    // Apply Mixin AP
-    //annotationProcessor "org.spongepowered:mixin:${mixin_version}:processor"
-
     // For more info:
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
 }
-
-/*jar {
-    archiveClassifier = 'slim'
-    manifest {
-        attributes([
-                "Specification-Title": mod_id,
-                "Specification-Vendor": mod_authors,
-                "Specification-Version": "1", // We are version 1 of ourselves
-                "Implementation-Title": project.name,
-                "Implementation-Version": project.jar.archiveVersion,
-                "Implementation-Vendor": mod_authors,
-                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
-        ])
-    }
-}
-
-shadowJar {
-    archiveClassifier = ''
-    configurations = [project.configurations.shade]
-    finalizedBy 'reobfShadowJar'
-}
-
-assemble.dependsOn shadowJar
-
-reobf {
-    shadowJar {}
-}*/
 
 // This block of code expands all declared replace properties in the specified resource targets.
 // A missing property will result in an error. Properties are expanded using ${} Groovy notation.
@@ -234,7 +170,7 @@ tasks.named('processResources', ProcessResources).configure {
 tasks.named('jar', Jar).configure {
     manifest {
         attributes([
-                "Specification-Title": mod_id,
+                "Specification-Title": ${mod_d},
                 "Specification-Vendor": mod_authors,
                 "Specification-Version": "1", // We are version 1 of ourselves
                 "Implementation-Title": project.name,
