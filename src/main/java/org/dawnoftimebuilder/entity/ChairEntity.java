@@ -61,9 +61,9 @@ public class ChairEntity extends Entity {
 		if (this.pos == null) {
 			this.pos = this.blockPosition();
 		}
-		if (!this.level.isClientSide() && (this.getPassengers().isEmpty() || this.level.isEmptyBlock(this.pos))) {
+		if (!this.level().isClientSide() && (this.getPassengers().isEmpty() || this.level().isEmptyBlock(this.pos))) {
 			this.remove(RemovalReason.KILLED);
-			this.level.updateNeighbourForOutputSignal(this.blockPosition(), this.level.getBlockState(this.blockPosition()).getBlock());
+			this.level().updateNeighbourForOutputSignal(this.blockPosition(), this.level().getBlockState(this.blockPosition()).getBlock());
 		}
 	}
 

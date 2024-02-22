@@ -17,13 +17,11 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SimpleWaterloggedBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraftforge.common.ForgeHooks;
 import org.dawnoftimebuilder.DoTBConfig;
 import org.dawnoftimebuilder.util.DoTBBlockStateProperties;
 import org.dawnoftimebuilder.util.DoTBUtils;
 
 import java.util.List;
-import java.util.Random;
 
 import static net.minecraft.world.level.block.LeavesBlock.PERSISTENT;
 import static org.dawnoftimebuilder.util.DoTBBlockStateProperties.AGE_0_6;
@@ -226,6 +224,6 @@ public interface IBlockClimbingPlant {
 	 */
 	default boolean canSustainClimbingPlant(BlockState stateUnder) {
 		Block block = stateUnder.getBlock();
-		return block == Blocks.GRASS_BLOCK || BlockTags.DIRT.equals(block);
+		return block == Blocks.GRASS_BLOCK || stateUnder.is(BlockTags.DIRT);
 	}
 }

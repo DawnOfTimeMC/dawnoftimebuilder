@@ -18,14 +18,13 @@ public class DawnOfTimeBuilder {
     public DawnOfTimeBuilder() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
+        HandlerCommon.register(modEventBus);
         DoTBItemsRegistry.register(modEventBus);
         DoTBBlocksRegistry.register(modEventBus);
         DoTBEntitiesRegistry.register(modEventBus);
 
-        modEventBus.addListener(HandlerCommon::commonSetup);
         modEventBus.addListener(HandlerClient::clientSetup);
 
-        modEventBus.addListener(HandlerCommon::registerCreativeModeTabs);
         modEventBus.addListener(HandlerCommon::setDotTab);
         modEventBus.addListener(HandlerClient::entityRenderers);
 
@@ -33,7 +32,7 @@ public class DawnOfTimeBuilder {
     }
 
     public void createCreativeTab(BuildCreativeModeTabContentsEvent event) {
-        if (event.getTab() == HandlerCommon.DOT_TAB) {
+        if (event.getTab() == HandlerCommon.DOT_TAB.get()) {
             ForgeRegistries.ITEMS.getEntries().stream().filter(entry -> entry.getKey().location().getNamespace()
                     .equalsIgnoreCase(MOD_ID)).map(Map.Entry::getValue)
                     .forEachOrdered(event::accept);

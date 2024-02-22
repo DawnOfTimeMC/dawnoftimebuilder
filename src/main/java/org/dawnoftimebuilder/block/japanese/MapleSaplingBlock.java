@@ -39,13 +39,13 @@ public class MapleSaplingBlock extends BushBlockDoT implements IBlockGeneration,
         final BlockPos floorCenter = bottomCenterIn.below();
         BlockState state = worldIn.getBlockState(floorCenter);
 
-        if (!BlockTags.DIRT.equals(state.getBlock())) {
+        if (!state.is(BlockTags.DIRT)) {
             return false;
         }
 
         state = worldIn.getBlockState(bottomCenterIn);
 
-        if (!state.getMaterial().isReplaceable() || !isSaplingCallIn) {
+        if (!state.canBeReplaced() || !isSaplingCallIn) {
             return true;
         }
 

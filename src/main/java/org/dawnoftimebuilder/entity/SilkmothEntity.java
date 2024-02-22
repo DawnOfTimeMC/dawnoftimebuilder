@@ -17,13 +17,11 @@ import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import org.dawnoftimebuilder.DoTBConfig;
-import org.dawnoftimebuilder.block.templates.DoubleGrowingBushBlock;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-//import static org.dawnoftimebuilder.registry.DoTBBlocksRegistry.MULBERRY;
 import static org.dawnoftimebuilder.registry.DoTBEntitiesRegistry.SILKMOTH_ENTITY;
 
 public class SilkmothEntity extends AmbientCreature {
@@ -91,7 +89,7 @@ public class SilkmothEntity extends AmbientCreature {
 		int horizontalRange = 5;
 		int verticalRange = 2;
 
-		int x = (int) this.level.getDayTime() % 23999;
+		int x = (int) this.level().getDayTime() % 23999;
 		boolean isNight = x > 12000 && x < 23000;
 		x = (int) Math.floor(this.getX()) - horizontalRange;
 		int y = (int) Math.floor(this.getY()) - verticalRange;
@@ -106,7 +104,7 @@ public class SilkmothEntity extends AmbientCreature {
 				for(int searchY = 0; searchY < 2 * verticalRange + 1; searchY++){
 
 					BlockPos pos = new BlockPos(x + searchX, y + searchY, z + searchZ);
-					state = this.level.getBlockState(pos);
+					state = this.level().getBlockState(pos);
 
 					/*if(state.getBlock() == MULBERRY.get()){
 						if(!((DoubleGrowingBushBlock) state.getBlock()).isBottomCrop(state)) listMulberry.add(pos);

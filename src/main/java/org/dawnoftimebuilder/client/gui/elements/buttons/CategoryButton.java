@@ -1,10 +1,8 @@
 package org.dawnoftimebuilder.client.gui.elements.buttons;
 
-import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiComponent;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -42,25 +40,25 @@ public class CategoryButton extends Button {
     }
 
     @Override
-    public void render(PoseStack ps, int mouseX, int mouseY, float partialTicks) {
+    public void render(GuiGraphics pGuiGraphics, int pMouseX, int pMouseY, float pPartialTick) {
         if(this.active){
+            PoseStack ps = pGuiGraphics.pose();
+
             ps.pushPose();
-            RenderSystem.setShaderTexture(0, CREATIVE_ICONS);
             RenderSystem.clearColor(1.0F, 1.0F, 1.0F, this.alpha);
             RenderSystem.enableBlend();
-            blit(ps, this.getX() - 1, this.getY(), 0, (this.selected) ? 0 : 28, 31, 28);
+            pGuiGraphics.blit(CREATIVE_ICONS, this.getX() - 1, this.getY(), 0, (this.selected) ? 0 : 28, 31, 28);
             RenderSystem.disableBlend();
             ps.popPose();
 
             ps.pushPose();
-            RenderSystem.setShaderTexture(0, BUTTON_ICONS[this.getCategoryID()]);
             RenderSystem.clearColor(1.0F, 1.0F, 1.0F, this.alpha);
             RenderSystem.enableBlend();
-            blit(ps, this.getX() + ((this.selected) ? 6 : 9), this.getY() + 6, 0, 0, 0, 16, 16, 16, 16);
+            pGuiGraphics.blit(BUTTON_ICONS[this.getCategoryID()], this.getX() + ((this.selected) ? 6 : 9), this.getY() + 6, 0, 0, 0, 16, 16, 16, 16);
             RenderSystem.disableBlend();
             ps.popPose();
         }
-        super.render(ps, mouseX, mouseY, partialTicks);
+        super.render(pGuiGraphics, pMouseX, pMouseY, pPartialTick);
     }
 
     private static ResourceLocation[] fillButtonIcons(){

@@ -17,7 +17,6 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.block.state.properties.Half;
-import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -94,7 +93,7 @@ public class WildMaizeBlock extends WildPlantBlock implements IBlockGeneration {
 
 	@Override
 	public void generateOnPos(LevelAccessor world, BlockPos pos, BlockState state, RandomSource random) {
-		if(world.getBlockState(pos.above()).getMaterial() != Material.AIR)
+		if(!world.getBlockState(pos.above()).isAir())
 			return;
 		world.setBlock(pos, state, 2);
 		world.setBlock(pos.above(), state.setValue(HALF, Half.TOP), 2);

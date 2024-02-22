@@ -3,6 +3,7 @@ package org.dawnoftimebuilder.util;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.SectionPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -22,17 +23,18 @@ import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.storage.loot.LootContext;
+import net.minecraft.world.level.chunk.ChunkAccess;
+import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.common.Tags;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.dawnoftimebuilder.DawnOfTimeBuilder;
 import org.dawnoftimebuilder.block.templates.WaterloggedBlock;
+
 import javax.annotation.Nonnull;
 import java.util.List;
 
@@ -98,10 +100,10 @@ public class DoTBUtils {
      * @return the List of ItemStack found in the corresponding LootTable.
      */
     public static List<ItemStack> getLootList(final ServerLevel serverWorld, final BlockState stateIn, final ItemStack itemStackHand, final String name) {
-        final LootTable table = serverWorld.getServer().getLootTables().get(new ResourceLocation(DawnOfTimeBuilder.MOD_ID + ":blocks/" + name));
-        final LootContext.Builder builder = new LootContext.Builder(serverWorld).withRandom(serverWorld.random).withParameter(LootContextParams.BLOCK_STATE, stateIn).withParameter(LootContextParams.TOOL, itemStackHand).withParameter(LootContextParams.ORIGIN, new Vec3(0, 0, 0));
-        final LootContext lootcontext = builder.create(LootContextParamSets.BLOCK);
-        return table.getRandomItems(lootcontext);
+        final LootTable table = serverWorld.getServer().getLootData().getLootTable(new ResourceLocation(DawnOfTimeBuilder.MOD_ID + ":blocks/" + name));
+        final LootParams.Builder builder = new LootParams.Builder(serverWorld).withParameter(LootContextParams.BLOCK_STATE, stateIn).withParameter(LootContextParams.TOOL, itemStackHand).withParameter(LootContextParams.ORIGIN, new Vec3(0, 0, 0));
+        final LootParams lootParams = builder.create(LootContextParamSets.BLOCK);
+        return table.getRandomItems(lootParams);
     }
 
     /**
@@ -279,5 +281,10 @@ public class DoTBUtils {
         } else {
             tooltip.add(DoTBUtils.TOOLTIP_HOLD_SHIFT);
         }
+    }
+
+    public static int getHighestSectionPosition(ChunkAccess chunkAccess) {
+        int i = chunkAccess.getHighestFilledSectionIndex();
+        return i == -1 ? chunkAccess.getMinBuildHeight() : SectionPos.sectionToBlockCoord(chunkAccess.getSectionYFromSectionIndex(i));
     }
 }

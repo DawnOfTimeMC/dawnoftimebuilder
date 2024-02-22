@@ -1,37 +1,30 @@
 package org.dawnoftimebuilder;
 
+import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
-import net.minecraftforge.event.CreativeModeTabEvent;
+import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
+import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import org.dawnoftimebuilder.registry.DoTBBlocksRegistry;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.RegistryObject;
 import org.dawnoftimebuilder.registry.DoTBItemsRegistry;
 
-@Mod.EventBusSubscriber(modid = DawnOfTimeBuilder.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class HandlerCommon {
-
-    public static CreativeModeTab DOT_TAB;
+    public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, DawnOfTimeBuilder.MOD_ID);
+    public static RegistryObject<CreativeModeTab> DOT_TAB = CREATIVE_MODE_TABS.register("dot_tab", () ->
+            CreativeModeTab.builder().icon(() -> new ItemStack(DoTBItemsRegistry.GENERAL.get()))
+                    .title(Component.translatable("item_group." + DawnOfTimeBuilder.MOD_ID + ".dottab")).withSearchBar().build());
     public static boolean DOT_SELECTED = false;
 
-    @SubscribeEvent
-    public static void commonSetup(final FMLCommonSetupEvent event) {
+    public static void register(IEventBus eventBus) {
+        CREATIVE_MODE_TABS.register(eventBus);
     }
 
     @SubscribeEvent
-    public static void registerCreativeModeTabs(CreativeModeTabEvent.Register event) {
-        DOT_TAB = event.registerCreativeModeTab(new ResourceLocation(DawnOfTimeBuilder.MOD_ID, "dot_tab"),
-                builder -> builder.icon(() -> new ItemStack(DoTBItemsRegistry.GENERAL.get()))
-                        .title(Component.translatable("item_group." + DawnOfTimeBuilder.MOD_ID + ".dottab")).withSearchBar().build());
-    }
-
-    @SubscribeEvent
-    public static void setDotTab(CreativeModeTabEvent.BuildContents event) {
-        DOT_SELECTED = event.getTab() == DOT_TAB;
+    public static void setDotTab(BuildCreativeModeTabContentsEvent event) {
+        DOT_SELECTED = event.getTab() == DOT_TAB.get();
     }
 
     public static boolean isDotSelected() {

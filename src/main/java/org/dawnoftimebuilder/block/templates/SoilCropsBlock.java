@@ -25,7 +25,6 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
-import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.PlantType;
@@ -49,7 +48,7 @@ public class SoilCropsBlock extends CropBlock implements ICustomBlockItem, IBloc
 	public static final BooleanProperty PERSISTENT = BlockStateProperties.PERSISTENT;
 
 	public SoilCropsBlock(String seedName, PlantType plantType, FoodProperties food){
-		super(BlockDoTB.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.CROP));
+		super(BlockDoTB.Properties.copy(Blocks.SUNFLOWER).randomTicks().sound(SoundType.CROP));
 		this.plantType = plantType;
 		this.seedName = seedName;
 		this.seed = makeSeed(food);

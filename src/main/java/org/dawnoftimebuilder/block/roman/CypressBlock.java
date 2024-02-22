@@ -22,14 +22,12 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
-import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.Tags;
 import org.dawnoftimebuilder.block.IBlockGeneration;
 import org.dawnoftimebuilder.block.ICustomBlockItem;
 import org.dawnoftimebuilder.block.templates.BlockDoTB;
@@ -39,7 +37,6 @@ import org.dawnoftimebuilder.util.DoTBUtils;
 
 import javax.annotation.Nullable;
 import java.util.List;
-import java.util.Random;
 
 public class CypressBlock extends BlockDoTB implements IBlockGeneration, ICustomBlockItem {
 
@@ -192,13 +189,13 @@ public class CypressBlock extends BlockDoTB implements IBlockGeneration, ICustom
     public void generateOnPos(final LevelAccessor world, final BlockPos pos, final BlockState state, final RandomSource random) {
         final BlockState groundState = world.getBlockState(pos.below());
 
-        if (!BlockTags.DIRT.equals(groundState.getBlock())) {
+        if (!groundState.is(BlockTags.DIRT)) {
             return;
         }
 
         final int maxSize = 2 + random.nextInt(5);
         for (int i = 0; i < maxSize; i++) {
-            if (world.getBlockState(pos.above(i)).getMaterial() != Material.AIR) {
+            if (!world.getBlockState(pos.above(i)).isAir()) {
                 return;
             }
         }
