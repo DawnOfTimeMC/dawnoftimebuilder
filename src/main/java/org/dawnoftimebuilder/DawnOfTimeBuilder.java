@@ -1,7 +1,6 @@
 package org.dawnoftimebuilder;
 
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.CreativeModeTabEvent;
+import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -14,7 +13,6 @@ import java.util.Map;
 
 @Mod(DawnOfTimeBuilder.MOD_ID)
 public class DawnOfTimeBuilder {
-
     public static final String MOD_ID = "dawnoftimebuilder";
 
     public DawnOfTimeBuilder() {
@@ -34,7 +32,7 @@ public class DawnOfTimeBuilder {
         modEventBus.addListener(this::createCreativeTab);
     }
 
-    public void createCreativeTab(CreativeModeTabEvent.BuildContents event) {
+    public void createCreativeTab(BuildCreativeModeTabContentsEvent event) {
         if (event.getTab() == HandlerCommon.DOT_TAB) {
             ForgeRegistries.ITEMS.getEntries().stream().filter(entry -> entry.getKey().location().getNamespace()
                     .equalsIgnoreCase(MOD_ID)).map(Map.Entry::getValue)
