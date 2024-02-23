@@ -6,6 +6,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import org.dawnoftimebuilder.DawnOfTimeBuilder;
+import org.dawnoftimebuilder.item.IconItem;
 import org.dawnoftimebuilder.item.templates.ItemDoTB;
 import org.dawnoftimebuilder.item.templates.PotItem;
 
@@ -13,14 +14,16 @@ import java.util.function.Supplier;
 
 public class DoTBItemsRegistry {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, DawnOfTimeBuilder.MOD_ID);
-    public static final RegistryObject<Item> GENERAL = DoTBItemsRegistry.reg("general", () -> new ItemDoTB(true));
-    public static final RegistryObject<Item> EGYPTIAN = DoTBItemsRegistry.reg("egyptian", () -> new ItemDoTB(true));
-    public static final RegistryObject<Item> FRENCH = DoTBItemsRegistry.reg("french", () -> new ItemDoTB(true));
-    public static final RegistryObject<Item> GERMAN = DoTBItemsRegistry.reg("german", () -> new ItemDoTB(true));
-    public static final RegistryObject<Item> PERSIAN = DoTBItemsRegistry.reg("persian", () -> new ItemDoTB(true));
-    public static final RegistryObject<Item> JAPANESE = DoTBItemsRegistry.reg("japanese", () -> new ItemDoTB(true));
-    public static final RegistryObject<Item> PRE_COLUMBIAN = DoTBItemsRegistry.reg("pre_columbian", () -> new ItemDoTB(true));
-    public static final RegistryObject<Item> ROMAN = DoTBItemsRegistry.reg("roman", () -> new ItemDoTB(true));
+
+    public static final RegistryObject<Item> GENERAL = DoTBItemsRegistry.reg("general", IconItem::new);
+    public static final RegistryObject<Item> EGYPTIAN = DoTBItemsRegistry.reg("egyptian", IconItem::new);
+    public static final RegistryObject<Item> FRENCH = DoTBItemsRegistry.reg("french", IconItem::new);
+    public static final RegistryObject<Item> GERMAN = DoTBItemsRegistry.reg("german", IconItem::new);
+    public static final RegistryObject<Item> PERSIAN = DoTBItemsRegistry.reg("persian", IconItem::new);
+    public static final RegistryObject<Item> JAPANESE = DoTBItemsRegistry.reg("japanese", IconItem::new);
+    public static final RegistryObject<Item> PRE_COLUMBIAN = DoTBItemsRegistry.reg("pre_columbian", IconItem::new);
+    public static final RegistryObject<Item> ROMAN = DoTBItemsRegistry.reg("roman", IconItem::new);
+
     // General
     public static final RegistryObject<Item> SILK_WORMS = DoTBItemsRegistry.reg("silk_worms", () -> new ItemDoTB(true));
     public static final RegistryObject<Item> SILK_WORMS_HATCHERY = DoTBItemsRegistry.reg("silk_worm_hatchery", () -> new ItemDoTB(true));

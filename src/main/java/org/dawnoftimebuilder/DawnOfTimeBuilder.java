@@ -5,6 +5,7 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.ForgeRegistries;
+import org.dawnoftimebuilder.item.IconItem;
 import org.dawnoftimebuilder.registry.*;
 
 import java.util.Map;
@@ -31,8 +32,10 @@ public class DawnOfTimeBuilder {
 
     public void createCreativeTab(BuildCreativeModeTabContentsEvent event) {
         if(event.getTab() == DoTBCreativeModeTabsRegistry.DOT_TAB.get()) {
-            ForgeRegistries.ITEMS.getEntries().stream().filter(entry -> entry.getKey().location().getNamespace()
-                            .equalsIgnoreCase(MOD_ID)).map(Map.Entry::getValue)
+            ForgeRegistries.ITEMS.getEntries().stream().filter(entry ->
+                            entry.getKey().location().getNamespace().equalsIgnoreCase(MOD_ID) &&
+                            !(entry.getValue() instanceof IconItem))
+                    .map(Map.Entry::getValue)
                     .forEachOrdered(event::accept);
         }
     }
