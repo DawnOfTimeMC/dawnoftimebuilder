@@ -12,10 +12,7 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -25,12 +22,10 @@ import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.registries.RegistryObject;
-import org.dawnoftimebuilder.block.ICustomBlockItem;
 
-import javax.annotation.Nullable;
 import java.util.function.Supplier;
 
-public class MixedRoofSupportBlock extends SlabBlockDoTB implements ICustomBlockItem {
+public class MixedRoofSupportBlock extends SlabBlockDoTB {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final EnumProperty<StairsShape> SHAPE = BlockStateProperties.STAIRS_SHAPE;
     private final Supplier<Block> roofSlabBlockSupplier;
@@ -98,10 +93,8 @@ public class MixedRoofSupportBlock extends SlabBlockDoTB implements ICustomBlock
         return super.use(state, worldIn, pos, player, handIn, hit);
     }
 
-    @Nullable
-    @Override
-    public Item getCustomBlockItem() {
-        return new BlockItem(this, new Item.Properties()) {
+    public static Item getBlockItem(MixedRoofSupportBlock block) {
+        return new BlockItem(block, new Item.Properties()) {
             @Override
             public InteractionResult place(final BlockPlaceContext context) {
                 final Direction facing = context.getClickedFace();

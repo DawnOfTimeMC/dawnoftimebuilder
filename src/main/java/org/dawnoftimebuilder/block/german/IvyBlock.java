@@ -10,7 +10,6 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -29,9 +28,7 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.common.ForgeHooks;
 import org.dawnoftimebuilder.DoTBConfig;
-import org.dawnoftimebuilder.block.ICustomBlockItem;
 import org.dawnoftimebuilder.block.templates.BlockDoTB;
-import org.dawnoftimebuilder.item.templates.PotAndBlockItem;
 import org.dawnoftimebuilder.util.DoTBUtils;
 
 import javax.annotation.Nullable;
@@ -44,7 +41,7 @@ import static net.minecraft.tags.BlockTags.SAND;
 import static net.minecraftforge.common.Tags.Blocks.GRAVEL;
 import static org.dawnoftimebuilder.util.DoTBUtils.TOOLTIP_CROP;
 
-public class IvyBlock extends BlockDoTB implements ICustomBlockItem {
+public class IvyBlock extends BlockDoTB {
     public static final BooleanProperty NORTH = BlockStateProperties.NORTH;
     public static final BooleanProperty EAST = BlockStateProperties.EAST;
     public static final BooleanProperty SOUTH = BlockStateProperties.SOUTH;
@@ -328,12 +325,6 @@ public class IvyBlock extends BlockDoTB implements ICustomBlockItem {
     @Override
     public boolean isLadder(BlockState state, LevelReader Level, BlockPos pos, LivingEntity entity) {
         return true;
-    }
-
-    @Nullable
-    @Override
-    public Item getCustomBlockItem() {
-        return new PotAndBlockItem(this, new Item.Properties());
     }
 
     @Override

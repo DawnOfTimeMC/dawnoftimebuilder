@@ -19,13 +19,11 @@ import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.SlabType;
 import net.minecraft.world.phys.BlockHitResult;
-import org.dawnoftimebuilder.block.ICustomBlockItem;
 
-import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.function.Supplier;
 
-public class MixedSlabBlock extends SlabBlockDoTB implements ICustomBlockItem {
+public class MixedSlabBlock extends SlabBlockDoTB {
     private final ArrayList<MixedBlockRecipe> listRecipes = new ArrayList<>();
 
     public MixedSlabBlock(Properties properties) {
@@ -86,10 +84,8 @@ public class MixedSlabBlock extends SlabBlockDoTB implements ICustomBlockItem {
         return super.use(state, worldIn, pos, player, handIn, hit);
     }
 
-    @Nullable
-    @Override
-    public Item getCustomBlockItem() {
-        return new BlockItem(this, new Item.Properties()) {
+    public static Item getBlockItem(MixedSlabBlock block) {
+        return new BlockItem(block, new Item.Properties()) {
             @Override
             public InteractionResult place(BlockPlaceContext context) {
                 Direction facing = context.getClickedFace();
@@ -109,7 +105,7 @@ public class MixedSlabBlock extends SlabBlockDoTB implements ICustomBlockItem {
 
                 if(!itemStack.isEmpty()) {
                     BlockState state = worldIn.getBlockState(pos);
-                    for(MixedBlockRecipe recipe : listRecipes) {
+                    for(MixedBlockRecipe recipe : block.listRecipes) {
                         if(facing == recipe.getFacingForMerging(true)) {
                             if(recipe.isConnectibleSecondSlab(state)) {
                                 BlockState madeState = recipe.getMixedBlock().getStateForPlacement(context);

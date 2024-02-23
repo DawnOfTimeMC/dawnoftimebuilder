@@ -21,6 +21,7 @@ import org.dawnoftimebuilder.block.japanese.*;
 import org.dawnoftimebuilder.block.precolumbian.*;
 import org.dawnoftimebuilder.block.roman.*;
 import org.dawnoftimebuilder.block.templates.*;
+import org.dawnoftimebuilder.item.templates.PotAndBlockItem;
 
 import javax.annotation.Nullable;
 import java.util.HashMap;
@@ -189,7 +190,7 @@ public class DoTBBlocksRegistry {
     public static final RegistryObject<Block> WAXED_OAK_CHANDELIER = DoTBBlocksRegistry.reg("waxed_oak_chandelier", () -> new WaxedOakChandelierBlock(Block.Properties.copy(Blocks.OAK_WOOD).strength(3.0F, 5.0F).noOcclusion().lightLevel(DoTBBlocksRegistry.litBlockEmission(15))));
     public static final RegistryObject<Block> WAXED_OAK_CHAIR = DoTBBlocksRegistry.reg("waxed_oak_chair", () -> new WaxedOakChairBlock(Block.Properties.copy(Blocks.OAK_WOOD).strength(3.0F, 5.0F).noOcclusion(), 11.0F));
     public static final RegistryObject<Block> WAXED_OAK_TABLE = DoTBBlocksRegistry.reg("waxed_oak_table", () -> new WaxedOakTableBlock(Block.Properties.copy(Blocks.OAK_WOOD).strength(3.0F, 5.0F).noOcclusion()));
-    public static final RegistryObject<Block> IVY = DoTBBlocksRegistry.reg("ivy", () -> new IvyBlock(Block.Properties.copy(Blocks.GRASS).randomTicks().strength(0.2F).sound(SoundType.VINE)));
+    public static final RegistryObject<Block> IVY = DoTBBlocksRegistry.regWithItem("ivy", () -> new IvyBlock(Block.Properties.copy(Blocks.GRASS).randomTicks().strength(0.2F).sound(SoundType.VINE)), (block) -> new PotAndBlockItem(block, new Item.Properties()));
     public static final RegistryObject<Block> GERANIUM_PINK = DoTBBlocksRegistry.reg("geranium_pink", () -> new GeraniumBlock(Block.Properties.copy(Blocks.SUNFLOWER).instabreak().sound(SoundType.GRASS)));
     public static final RegistryObject<Block> PLANTER_GERANIUM_PINK = DoTBBlocksRegistry.reg("planter_geranium_pink", () -> new PlanterBlock(Block.Properties.copy(Blocks.CLAY).strength(0.6F).noOcclusion()));
     public static final RegistryObject<Block> STONE_BRICKS_POOL = DoTBBlocksRegistry.reg("stone_bricks_pool", () -> new PoolBlock(Block.Properties.copy(Blocks.STONE)));
@@ -229,7 +230,7 @@ public class DoTBBlocksRegistry {
     public static final RegistryObject<Block> GRAY_ROOF_TILES_SLAB = DoTBBlocksRegistry.reg("gray_roof_tiles_slab", () -> new SlabBlockDoTB(Block.Properties.copy(Blocks.STONE_BRICKS)));
     public static final RegistryObject<Block> GRAY_ROOF_TILES_EDGE = DoTBBlocksRegistry.reg("gray_roof_tiles_edge", () -> new EdgeBlock(Block.Properties.copy(Blocks.STONE_BRICKS)));
     public static final RegistryObject<Block> GRAY_ROOF_TILES_WALL = DoTBBlocksRegistry.reg("gray_roof_tiles_wall", () -> new WallBlock(Block.Properties.copy(Blocks.STONE_BRICKS)));
-    public static final RegistryObject<Block> CHARRED_SPRUCE_ROOF_SUPPORT = DoTBBlocksRegistry.reg("charred_spruce_roof_support", () -> new MixedRoofSupportBlock(DoTBBlocksRegistry.GRAY_ROOF_TILES_SLAB, Block.Properties.copy(Blocks.STONE_BRICKS).noOcclusion()));
+    public static final RegistryObject<Block> CHARRED_SPRUCE_ROOF_SUPPORT = DoTBBlocksRegistry.regWithItem("charred_spruce_roof_support", () -> new MixedRoofSupportBlock(DoTBBlocksRegistry.GRAY_ROOF_TILES_SLAB, Block.Properties.copy(Blocks.STONE_BRICKS).noOcclusion()), MixedRoofSupportBlock::getBlockItem);
     public static final RegistryObject<Block> STEPPING_STONES = DoTBBlocksRegistry.reg("stepping_stones", () -> new BlockDoTB(Block.Properties.copy(Blocks.SAND).mapColor(MapColor.STONE).strength(1.2F).sound(SoundType.GRAVEL)));
     public static final RegistryObject<Block> STEPPING_STONES_SLAB = DoTBBlocksRegistry.reg("stepping_stones_slab", () -> new SlabBlockDoTB(Block.Properties.copy(Blocks.SAND).mapColor(MapColor.STONE).strength(1.2F).sound(SoundType.GRAVEL)));
     public static final RegistryObject<Block> CURVED_RAKED_GRAVEL = DoTBBlocksRegistry.reg("curved_raked_gravel", () -> new HorizontalBlockDoTB(Block.Properties.copy(Blocks.SAND).mapColor(MapColor.STONE).strength(1.0F).sound(SoundType.GRAVEL)));
@@ -355,20 +356,21 @@ public class DoTBBlocksRegistry {
     public static final RegistryObject<Block> MARBLE_COFFER = DoTBBlocksRegistry.reg("marble_coffer", () -> new BlockDoTB(Block.Properties.copy(Blocks.STONE)));
     public static final RegistryObject<Block> MARBLE_COFFER_SLAB = DoTBBlocksRegistry.reg("marble_coffer_slab", () -> new SlabBlockDoTB(Block.Properties.copy(Blocks.STONE)));
 
-    private static <T extends Block> RegistryObject<T> reg(String name, Supplier<T> block) {
-        return regWithItem(name, block, (blockObject) -> new BlockItem(blockObject.get(), new Item.Properties()));
+    private static <T extends Block> RegistryObject<Block> reg(String name, Supplier<T> block) {
+        return regWithItem(name, block, (blockObject) -> new BlockItem(blockObject, new Item.Properties()));
     }
 
-    private static <T extends Block, U extends Item> RegistryObject<T> regWithItem(String name, Supplier<T> block, @Nullable Function<RegistryObject<T>, U> item) {
+    private static <T extends Block, U extends Item> RegistryObject<Block> regWithItem(String name, Supplier<T> block, @Nullable Function<T, U> item) {
         return regWithItem(name, block, name, item);
     }
 
-    private static <T extends Block, U extends Item> RegistryObject<T> regWithItem(String name, Supplier<T> block, String itemName, @Nullable Function<RegistryObject<T>, U> item) {
+    @SuppressWarnings("unchecked")
+    private static <T extends Block, U extends Item> RegistryObject<Block> regWithItem(String name, Supplier<T> block, String itemName, @Nullable Function<T, U> item) {
         RegistryObject<T> toReturn = BLOCKS.register(name, block);
         if(item != null) {
-            DoTBItemsRegistry.ITEMS.register(itemName, () -> item.apply(toReturn));
+            DoTBItemsRegistry.ITEMS.register(itemName, () -> item.apply(toReturn.get()));
         }
-        return toReturn;
+        return (RegistryObject<Block>) toReturn;
     }
 
     public static void register(IEventBus eventBus) {
