@@ -55,7 +55,11 @@ public class DoTBItemsRegistry {
 
         RegistryObject<T> toReturn = DoTBItemsRegistry.ITEMS.register(name, () -> {
             T item = itemSupplier.get();
-            item.setPotBlock(potBlockObject.get());
+            FlowerPotBlockDoTB potBlock = potBlockObject.get();
+
+            item.setPotBlock(potBlock);
+            potBlock.setItemInPot(item);
+
             return item;
         });
 
