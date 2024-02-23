@@ -23,6 +23,7 @@ import org.dawnoftimebuilder.block.roman.*;
 import org.dawnoftimebuilder.block.templates.*;
 
 import java.util.HashMap;
+import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.function.ToIntFunction;
 
@@ -326,10 +327,10 @@ public class DoTBBlocksRegistry {
     public static final RegistryObject<Block> SANDSTONE_BOT_OCHRE_ROOF_TILES_TOP = DoTBBlocksRegistry.reg("sandstone_bot_ochre_roof_tiles_top", () -> new NoItemBlock(Block.Properties.copy(Blocks.BRICKS)));
     public static final RegistryObject<Block> CUT_SANDSTONE_BOT_OCHRE_ROOF_TILES_TOP = DoTBBlocksRegistry.reg("cut_sandstone_bot_ochre_roof_tiles_top", () -> new NoItemBlock(Block.Properties.copy(Blocks.BRICKS)));
     public static final RegistryObject<Block> SMOOTH_SANDSTONE_BOT_OCHRE_ROOF_TILES_TOP = DoTBBlocksRegistry.reg("smooth_sandstone_bot_ochre_roof_tiles_top", () -> new NoItemBlock(Block.Properties.copy(Blocks.BRICKS)));
-    /* public static final RegistryObject<Block> OCHRE_ROOF_TILES_SLAB = DoTBBlocksRegistry.reg("ochre_roof_tiles_slab", () -> new MixedSlabBlock(Block.Properties.copy(Blocks.BRICKS))
+    public static final RegistryObject<Block> OCHRE_ROOF_TILES_SLAB = DoTBBlocksRegistry.reg("ochre_roof_tiles_slab", () -> new MixedSlabBlock(Block.Properties.copy(Blocks.BRICKS))
              .addMixedBlockRecipe(Blocks.SANDSTONE_SLAB, DoTBBlocksRegistry.SANDSTONE_BOT_OCHRE_ROOF_TILES_TOP, false)
              .addMixedBlockRecipe(Blocks.CUT_SANDSTONE_SLAB, DoTBBlocksRegistry.CUT_SANDSTONE_BOT_OCHRE_ROOF_TILES_TOP, false)
-             .addMixedBlockRecipe(Blocks.SMOOTH_SANDSTONE_SLAB, DoTBBlocksRegistry.SMOOTH_SANDSTONE_BOT_OCHRE_ROOF_TILES_TOP, false));*/
+             .addMixedBlockRecipe(Blocks.SMOOTH_SANDSTONE_SLAB, DoTBBlocksRegistry.SMOOTH_SANDSTONE_BOT_OCHRE_ROOF_TILES_TOP, false));
     public static final RegistryObject<Block> SANDSTONE_COLUMN = DoTBBlocksRegistry.reg("sandstone_column", () -> new SandstoneColumnBlock(Block.Properties.copy(Blocks.SANDSTONE)));
     public static final RegistryObject<Block> SANDSTONE_SIDED_COLUMN = DoTBBlocksRegistry.reg("sandstone_sided_column", () -> new SandstoneSidedColumnBlock(Block.Properties.copy(Blocks.SANDSTONE)));
     public static final RegistryObject<Block> COVERED_SANDSTONE_WALL = DoTBBlocksRegistry.reg("covered_sandstone_wall", () -> new CappedWallBlock(Block.Properties.copy(Blocks.SANDSTONE)));
@@ -354,13 +355,17 @@ public class DoTBBlocksRegistry {
     public static final RegistryObject<Block> MARBLE_COFFER_SLAB = DoTBBlocksRegistry.reg("marble_coffer_slab", () -> new SlabBlockDoTB(Block.Properties.copy(Blocks.STONE)));
 
     private static <T extends Block> RegistryObject<T> reg(String name, Supplier<T> block) {
-        RegistryObject<T> toReturn = BLOCKS.register(name, block);
-        registerBlockItem(name, toReturn);
-        return toReturn;
+        return regWithItem(name, block, (blockObject) -> new BlockItem(blockObject.get(), new Item.Properties()));
     }
 
-    private static <T extends Block> RegistryObject<Item> registerBlockItem(String name, RegistryObject<T> block) {
-        return DoTBItemsRegistry.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
+    private static <T extends Block, U extends Item> RegistryObject<T> regWithItem(String name, Supplier<T> block, Function<RegistryObject<T>, U> item) {
+        return regWithItem(name, block, name, item);
+    }
+
+    private static <T extends Block, U extends Item> RegistryObject<T> regWithItem(String name, Supplier<T> block, String itemName, Function<RegistryObject<T>, U> item) {
+        RegistryObject<T> toReturn = BLOCKS.register(name, block);
+        DoTBItemsRegistry.ITEMS.register(itemName, () -> item.apply(toReturn));
+        return toReturn;
     }
 
     public static void register(IEventBus eventBus) {

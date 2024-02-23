@@ -16,10 +16,10 @@ public class DawnOfTimeBuilder {
     public DawnOfTimeBuilder() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
-        DoTBCreativeModeTabsRegistry.register(modEventBus);
         DoTBItemsRegistry.register(modEventBus);
         DoTBBlocksRegistry.register(modEventBus);
         DoTBEntitiesRegistry.register(modEventBus);
+        DoTBCreativeModeTabsRegistry.register(modEventBus);
 
         modEventBus.addListener(HandlerClient::clientSetup);
 

@@ -35,8 +35,8 @@ public class DoTBItemsRegistry {
     //    public static final RegistryObject<Item> GRAPE = DoTBItemsRegistry.reg("grape", () -> new ItemDoTB(new Item.Properties().food(DoTBFoods.GRAPE)));
     public static final RegistryObject<Item> GRAPE_SEEDS = DoTBItemsRegistry.reg("grape_seeds", PotItem::new);
 
-    private static <T extends Item> RegistryObject<T> reg(String name, Supplier<T> item) {
-        return ITEMS.register(name, item);
+    private static <T extends Item> RegistryObject<T> reg(final String name, final Supplier<T> itemSupplier) {
+        return DoTBItemsRegistry.ITEMS.register(name, itemSupplier);
     }
 
     public static void register(IEventBus eventBus) {
