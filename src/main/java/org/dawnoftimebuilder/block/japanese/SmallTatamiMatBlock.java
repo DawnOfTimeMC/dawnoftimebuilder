@@ -13,19 +13,13 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.state.properties.BooleanProperty;
-import net.minecraft.world.level.block.state.properties.EnumProperty;
-import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -42,7 +36,6 @@ import static org.dawnoftimebuilder.registry.DoTBBlocksRegistry.SMALL_TATAMI_FLO
 import static org.dawnoftimebuilder.util.DoTBUtils.COVERED_BLOCKS;
 
 public class SmallTatamiMatBlock extends WaterloggedBlock implements IBlockChain {
-
     private static final VoxelShape VS = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 1.0D, 16.0D);
     private static final VoxelShape X_ROLLED_VS = Block.box(5.5D, 0.0D, 0.0D, 10.5D, 5.0D, 16.0D);
     private static final VoxelShape X_ROLLED_VS_2 = Block.box(1.5D, 0.0D, 0.0D, 14.5D, 5.0D, 16.0D);
@@ -69,10 +62,11 @@ public class SmallTatamiMatBlock extends WaterloggedBlock implements IBlockChain
 
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
-        if(state.getValue(ATTACHED)) return ATTACHED_VS;
-        if(state.getValue(ROLLED)){
+        if(state.getValue(ATTACHED))
+            return ATTACHED_VS;
+        if(state.getValue(ROLLED)) {
             boolean isAxisX = state.getValue(HORIZONTAL_AXIS) == Direction.Axis.X;
-            switch (state.getValue(STACK)){
+            switch(state.getValue(STACK)) {
                 default:
                 case 1:
                     return isAxisX ? X_ROLLED_VS : Z_ROLLED_VS;
@@ -90,9 +84,9 @@ public class SmallTatamiMatBlock extends WaterloggedBlock implements IBlockChain
         Level world = context.getLevel();
         BlockPos pos = context.getClickedPos();
         BlockState oldState = world.getBlockState(pos);
-        if(oldState.getBlock() == this){
+        if(oldState.getBlock() == this) {
             int stack = oldState.getValue(STACK);
-            if(oldState.getValue(ROLLED) && !oldState.getValue(ATTACHED) && stack < 3){
+            if(oldState.getValue(ROLLED) && !oldState.getValue(ATTACHED) && stack < 3) {
                 return oldState.setValue(STACK, stack + 1);
             }
         }
@@ -103,11 +97,13 @@ public class SmallTatamiMatBlock extends WaterloggedBlock implements IBlockChain
 
     @Override
     public boolean canSurvive(BlockState state, LevelReader worldIn, BlockPos pos) {
-        if(state.getValue(ATTACHED)){
+        if(state.getValue(ATTACHED)) {
             BlockState stateUp = worldIn.getBlockState(pos.above());
             Block blockUp = stateUp.getBlock();
-            if(stateUp.is(BlockTags.FENCES) || worldIn.getBlockState(pos.below()).is(BlockTags.FENCES)) return true;
-            if(IBlockChain.canBeChained(stateUp, true)) return true;
+            if(stateUp.is(BlockTags.FENCES) || worldIn.getBlockState(pos.below()).is(BlockTags.FENCES))
+                return true;
+            if(IBlockChain.canBeChained(stateUp, true))
+                return true;
         }
         return !worldIn.isEmptyBlock(pos.below());
     }
@@ -115,9 +111,9 @@ public class SmallTatamiMatBlock extends WaterloggedBlock implements IBlockChain
     @Override
     public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, LevelAccessor worldIn, BlockPos currentPos, BlockPos facingPos) {
         stateIn = super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
-        if(facing.getAxis().isVertical()){
+        if(facing.getAxis().isVertical()) {
             stateIn = stateIn.setValue(ATTACHED, false);
-            if(stateIn.getValue(ROLLED) && stateIn.getValue(STACK) == 1){
+            if(stateIn.getValue(ROLLED) && stateIn.getValue(STACK) == 1) {
                 BlockState stateUp = worldIn.getBlockState(currentPos.above());
                 if(stateUp.is(BlockTags.FENCES)
                         || worldIn.getBlockState(currentPos.below()).is(BlockTags.FENCES)
@@ -132,13 +128,15 @@ public class SmallTatamiMatBlock extends WaterloggedBlock implements IBlockChain
     @Override
     public void setPlacedBy(Level worldIn, BlockPos pos, BlockState state, LivingEntity placer, ItemStack stack) {
         BlockState newState = this.tryMergingWithSprucePlanks(state, worldIn, pos);
-        if(newState.getBlock() == Blocks.AIR) worldIn.setBlock(pos, newState, 10);
+        if(newState.getBlock() == Blocks.AIR)
+            worldIn.setBlock(pos, newState, 10);
     }
 
-    private BlockState tryMergingWithSprucePlanks(BlockState state, LevelAccessor worldIn, BlockPos pos){
-        if(state.getValue(ROLLED)) return state;
+    private BlockState tryMergingWithSprucePlanks(BlockState state, LevelAccessor worldIn, BlockPos pos) {
+        if(state.getValue(ROLLED))
+            return state;
         Block blockDown = worldIn.getBlockState(pos.below()).getBlock();
-        if(blockDown == SPRUCE_PLANKS){
+        if(blockDown == SPRUCE_PLANKS) {
             worldIn.setBlock(pos.below(), SMALL_TATAMI_FLOOR.get().defaultBlockState(), 10);
             return Blocks.AIR.defaultBlockState();
         }
@@ -147,16 +145,16 @@ public class SmallTatamiMatBlock extends WaterloggedBlock implements IBlockChain
 
     @Override
     public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
-        if(player.isCrouching()){
+        if(player.isCrouching()) {
             int stack = state.getValue(STACK);
             boolean isRolled = state.getValue(ROLLED);
             if(isRolled && stack == 1)
                 if(worldIn.getBlockState(pos.below()).is(COVERED_BLOCKS))
                     return InteractionResult.PASS;
-            if(state.getValue(STACK) > 1){
+            if(state.getValue(STACK) > 1) {
                 state = state.setValue(STACK, stack - 1);
                 Containers.dropItemStack(worldIn, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(this.asItem()));
-            }else
+            } else
                 state = state.setValue(ROLLED, !isRolled);
             state = this.updateShape(state, Direction.DOWN, worldIn.getBlockState(pos.below()), worldIn, pos, pos.below());
             worldIn.setBlock(pos, state, 10);
@@ -170,7 +168,8 @@ public class SmallTatamiMatBlock extends WaterloggedBlock implements IBlockChain
     public boolean canBeReplaced(BlockState state, BlockPlaceContext useContext) {
         ItemStack itemstack = useContext.getItemInHand();
         if(itemstack.getItem() == this.asItem()) {
-            if(!state.getValue(ROLLED) || state.getValue(ATTACHED) || state.getValue(STACK) == 3) return false;
+            if(!state.getValue(ROLLED) || state.getValue(ATTACHED) || state.getValue(STACK) == 3)
+                return false;
             return useContext.replacingClickedOnBlock();
         }
         return false;

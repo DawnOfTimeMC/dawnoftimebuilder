@@ -23,45 +23,45 @@ import javax.annotation.Nullable;
 import java.util.List;
 
 public abstract class SidedPlaneConnectibleBlock extends SidedColumnConnectibleBlock {
+    public static final EnumProperty<DoTBBlockStateProperties.HorizontalConnection> HORIZONTAL_CONNECTION = DoTBBlockStateProperties.HORIZONTAL_CONNECTION;
 
-	public static final EnumProperty<DoTBBlockStateProperties.HorizontalConnection> HORIZONTAL_CONNECTION = DoTBBlockStateProperties.HORIZONTAL_CONNECTION;
+    public SidedPlaneConnectibleBlock(Properties properties) {
+        super(properties);
+        this.registerDefaultState(this.defaultBlockState().setValue(HORIZONTAL_CONNECTION, DoTBBlockStateProperties.HorizontalConnection.NONE));
+    }
 
-	public SidedPlaneConnectibleBlock(Properties properties) {
-		super(properties);
-		this.registerDefaultState(this.defaultBlockState().setValue(HORIZONTAL_CONNECTION, DoTBBlockStateProperties.HorizontalConnection.NONE));
-	}
+    @Override
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+        super.createBlockStateDefinition(builder);
+        builder.add(HORIZONTAL_CONNECTION);
+    }
 
-	@Override
-	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-		super.createBlockStateDefinition(builder);
-		builder.add(HORIZONTAL_CONNECTION);
-	}
+    @Override
+    public BlockState getStateForPlacement(BlockPlaceContext context) {
+        return super.getStateForPlacement(context).setValue(FACING, context.getHorizontalDirection().getOpposite());
+    }
 
-	@Override
-	public BlockState getStateForPlacement(BlockPlaceContext context) {
-		return super.getStateForPlacement(context).setValue(FACING, context.getHorizontalDirection().getOpposite());
-	}
+    @Override
+    public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, LevelAccessor worldIn, BlockPos currentPos, BlockPos facingPos) {
+        stateIn = super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+        return (facing.getAxis() == stateIn.getValue(FACING).getClockWise().getAxis()) ? stateIn.setValue(HORIZONTAL_CONNECTION, this.getLineState(worldIn, currentPos, stateIn)) : stateIn;
+    }
 
-	@Override
-	public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, LevelAccessor worldIn, BlockPos currentPos, BlockPos facingPos) {
-		stateIn = super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
-		return (facing.getAxis() == stateIn.getValue(FACING).getClockWise().getAxis()) ? stateIn.setValue(HORIZONTAL_CONNECTION, this.getLineState(worldIn, currentPos, stateIn)) : stateIn;
-	}
+    public DoTBBlockStateProperties.HorizontalConnection getLineState(LevelAccessor worldIn, BlockPos pos, BlockState stateIn) {
+        Direction direction = stateIn.getValue(FACING).getClockWise();
+        if(isConnectible(stateIn, worldIn, pos.relative(direction, -1), direction)) {
+            return (isConnectible(stateIn, worldIn, pos.relative(direction), direction)) ? DoTBBlockStateProperties.HorizontalConnection.BOTH : DoTBBlockStateProperties.HorizontalConnection.LEFT;
+        } else {
+            return (isConnectible(stateIn, worldIn, pos.relative(direction), direction)) ? DoTBBlockStateProperties.HorizontalConnection.RIGHT : DoTBBlockStateProperties.HorizontalConnection.NONE;
+        }
+    }
 
-	public DoTBBlockStateProperties.HorizontalConnection getLineState(LevelAccessor worldIn, BlockPos pos, BlockState stateIn){
-		Direction direction = stateIn.getValue(FACING).getClockWise();
-		if(isConnectible(stateIn, worldIn, pos.relative(direction, -1), direction)){
-			return (isConnectible(stateIn, worldIn, pos.relative(direction), direction)) ? DoTBBlockStateProperties.HorizontalConnection.BOTH : DoTBBlockStateProperties.HorizontalConnection.LEFT;
-		}else{
-			return (isConnectible(stateIn, worldIn, pos.relative(direction), direction)) ? DoTBBlockStateProperties.HorizontalConnection.RIGHT : DoTBBlockStateProperties.HorizontalConnection.NONE;
-		}
-	}
+    @Override
+    public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
+        return InteractionResult.PASS;
+    }
 
-	@Override
-	public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
-		return InteractionResult.PASS;
-	}
-
-	@Override
-	public void appendHoverText(ItemStack stack, @Nullable BlockGetter worldIn, List<Component> tooltip, TooltipFlag flagIn) {}
+    @Override
+    public void appendHoverText(ItemStack stack, @Nullable BlockGetter worldIn, List<Component> tooltip, TooltipFlag flagIn) {
+    }
 }

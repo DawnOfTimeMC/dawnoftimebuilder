@@ -25,17 +25,16 @@ import org.dawnoftimebuilder.block.templates.WaterloggedBlock;
 import org.dawnoftimebuilder.util.DoTBUtils;
 
 public class CharredSpruceShuttersBlock extends WaterloggedBlock {
-
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
     public static final BooleanProperty OPEN = BlockStateProperties.OPEN;
-    private static final VoxelShape[] SHAPES = DoTBUtils.GenerateHorizontalShapes(new VoxelShape[]{
+    private static final VoxelShape[] SHAPES = DoTBUtils.GenerateHorizontalShapes(new VoxelShape[] {
             Block.box(0.0D, 0.0D, 14.0D, 16.0D, 16.0D, 16.0D),
             Shapes.or(
                     Block.box(0.0D, 12.0D, 12.0D, 16.0D, 16.0D, 16.0D),
                     Block.box(0.0D, 9.0D, 9.0D, 16.0D, 13.0D, 13.0D),
                     Block.box(0.0D, 6.0D, 6.0D, 16.0D, 10.0D, 10.0D),
-                    Block.box(0.0D, 3.0D, 3.0D, 16.0D, 7.0D, 7.0D))});
+                    Block.box(0.0D, 3.0D, 3.0D, 16.0D, 7.0D, 7.0D)) });
 
     public CharredSpruceShuttersBlock(Properties properties) {
         super(properties);
@@ -76,7 +75,7 @@ public class CharredSpruceShuttersBlock extends WaterloggedBlock {
         state = state.setValue(OPEN, !state.getValue(OPEN));
         worldIn.setBlock(pos, state, 10);
         worldIn.levelEvent(player, state.getValue(OPEN) ? this.getOpenSound() : this.getCloseSound(), pos, 0);
-        if (state.getValue(WATERLOGGED))
+        if(state.getValue(WATERLOGGED))
             worldIn.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(worldIn));
         return InteractionResult.SUCCESS;
     }
@@ -84,8 +83,9 @@ public class CharredSpruceShuttersBlock extends WaterloggedBlock {
     @Override
     public void neighborChanged(BlockState state, Level worldIn, BlockPos pos, Block blockIn, BlockPos fromPos, boolean isMoving) {
         boolean isPowered = worldIn.hasNeighborSignal(pos);
-        if (blockIn != this && isPowered != state.getValue(POWERED)) {
-            if (isPowered != state.getValue(OPEN)) this.playSound(worldIn, pos, isPowered);
+        if(blockIn != this && isPowered != state.getValue(POWERED)) {
+            if(isPowered != state.getValue(OPEN))
+                this.playSound(worldIn, pos, isPowered);
             worldIn.setBlock(pos, state.setValue(POWERED, isPowered).setValue(OPEN, isPowered), 2);
         }
     }

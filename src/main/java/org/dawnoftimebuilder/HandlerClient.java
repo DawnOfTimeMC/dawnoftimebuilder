@@ -12,10 +12,8 @@ import org.dawnoftimebuilder.client.renderer.entity.ChairRenderer;
 import org.dawnoftimebuilder.registry.DoTBBlockAndItemColorsRegistry;
 import org.dawnoftimebuilder.registry.DoTBEntitiesRegistry;
 
-
 @Mod.EventBusSubscriber(modid = DawnOfTimeBuilder.MOD_ID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class HandlerClient {
-
     public static CreativeInventoryEvents events;
 
     @SubscribeEvent

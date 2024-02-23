@@ -18,10 +18,7 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.Rotation;
@@ -46,11 +43,9 @@ import javax.annotation.Nullable;
 import java.util.List;
 
 public class FireplaceBlock extends WaterloggedBlock {
-
     public static final EnumProperty<Direction.Axis> HORIZONTAL_AXIS = BlockStateProperties.HORIZONTAL_AXIS;
     public static final BooleanProperty LIT = BlockStateProperties.LIT;
     public static final EnumProperty<DoTBBlockStateProperties.HorizontalConnection> HORIZONTAL_CONNECTION = DoTBBlockStateProperties.HORIZONTAL_CONNECTION;
-
     private static final VoxelShape ON_X_SHAPE = Block.box(0.0D, 0.0D, 2.0D, 16.0D, 14.0D, 14.0D);
     private static final VoxelShape OFF_X_SHAPE = Block.box(0.0D, 0.0D, 2.0D, 16.0D, 5.0D, 14.0D);
     private static final VoxelShape ON_Z_SHAPE = Block.box(2.0D, 0.0D, 0.0D, 14.0D, 14.0D, 16.0D);
@@ -74,7 +69,7 @@ public class FireplaceBlock extends WaterloggedBlock {
 
     @Override
     public VoxelShape getShape(final BlockState state, final BlockGetter worldIn, final BlockPos pos, final CollisionContext context) {
-        if (state.getValue(FireplaceBlock.HORIZONTAL_AXIS) == Direction.Axis.X) {
+        if(state.getValue(FireplaceBlock.HORIZONTAL_AXIS) == Direction.Axis.X) {
             return state.getValue(FireplaceBlock.LIT) ? FireplaceBlock.ON_X_SHAPE : FireplaceBlock.OFF_X_SHAPE;
         }
         return state.getValue(FireplaceBlock.LIT) ? FireplaceBlock.ON_Z_SHAPE : FireplaceBlock.OFF_Z_SHAPE;
@@ -100,22 +95,22 @@ public class FireplaceBlock extends WaterloggedBlock {
     public void onProjectileHit(final Level worldIn, final BlockState state, final BlockHitResult hit, final Projectile projectile) {
         int activation = -1;
 
-        if (!state.getValue(WaterloggedBlock.WATERLOGGED) && !state.getValue(FireplaceBlock.LIT) && (projectile instanceof AbstractArrow && projectile.isOnFire() || projectile instanceof Fireball)) {
+        if(!state.getValue(WaterloggedBlock.WATERLOGGED) && !state.getValue(FireplaceBlock.LIT) && (projectile instanceof AbstractArrow && projectile.isOnFire() || projectile instanceof Fireball)) {
             activation = 1;
-        } else if (state.getValue(FireplaceBlock.LIT) && (projectile instanceof Snowball || projectile instanceof ThrownPotion && PotionUtils.getPotion(((ThrownPotion) projectile).getItem()).getEffects().size() <= 0)) {
+        } else if(state.getValue(FireplaceBlock.LIT) && (projectile instanceof Snowball || projectile instanceof ThrownPotion && PotionUtils.getPotion(((ThrownPotion) projectile).getItem()).getEffects().size() <= 0)) {
             activation = 0;
         }
 
-        if (activation >= 0) {
+        if(activation >= 0) {
 
             final BlockPos pos = hit.getBlockPos();
             final boolean isActivated = activation == 1;
 
-            if (!worldIn.isClientSide()) {
+            if(!worldIn.isClientSide()) {
                 worldIn.setBlock(pos, state.setValue(FireplaceBlock.LIT, isActivated), 10);
                 worldIn.playSound(null, pos, isActivated ? SoundEvents.FIRE_AMBIENT : SoundEvents.FIRE_EXTINGUISH, SoundSource.BLOCKS, 1.0F, 1.0F);
-            } else if (!isActivated && worldIn.isClientSide()) {
-                for (int i = 0; i < worldIn.random.nextInt(1) + 1; ++i) {
+            } else if(!isActivated && worldIn.isClientSide()) {
+                for(int i = 0; i < worldIn.random.nextInt(1) + 1; ++i) {
                     worldIn.addParticle(ParticleTypes.CLOUD, pos.getX() + 0.5F, pos.getY() + 0.5F, pos.getZ() + 0.5F, worldIn.random.nextFloat() / 4.0F, 2.5E-5D, worldIn.random.nextFloat() / 4.0F);
                 }
             }
@@ -124,7 +119,7 @@ public class FireplaceBlock extends WaterloggedBlock {
 
     @Override
     public void entityInside(final BlockState state, final Level world, final BlockPos pos, final Entity entityIn) {
-        if (!entityIn.fireImmune() && state.getValue(FireplaceBlock.LIT) && entityIn instanceof LivingEntity && !EnchantmentHelper.hasFrostWalker((LivingEntity) entityIn)) {
+        if(!entityIn.fireImmune() && state.getValue(FireplaceBlock.LIT) && entityIn instanceof LivingEntity && !EnchantmentHelper.hasFrostWalker((LivingEntity) entityIn)) {
             entityIn.hurt(entityIn.damageSources().inFire(), 1.0F);
         }
         super.entityInside(state, world, pos, entityIn);
@@ -140,21 +135,21 @@ public class FireplaceBlock extends WaterloggedBlock {
     @Override
     public void neighborChanged(BlockState state, final Level worldIn, final BlockPos pos, final Block blockIn, final BlockPos fromPos, final boolean isMoving) {
         super.neighborChanged(state, worldIn, pos, blockIn, fromPos, isMoving);
-        if (pos.getY() == fromPos.getY()) {
+        if(pos.getY() == fromPos.getY()) {
             final Direction.Axis axis = state.getValue(FireplaceBlock.HORIZONTAL_AXIS);
-            if (axis == Direction.Axis.X) {
-                if (pos.getX() == fromPos.getX()) {
+            if(axis == Direction.Axis.X) {
+                if(pos.getX() == fromPos.getX()) {
                     return;
                 }
-            } else if (pos.getZ() == fromPos.getZ()) {
+            } else if(pos.getZ() == fromPos.getZ()) {
                 return;
             }
 
             state = state.setValue(FireplaceBlock.HORIZONTAL_CONNECTION, this.getHorizontalShape(worldIn, pos, axis));
 
             final BlockState newState = worldIn.getBlockState(fromPos);
-            if (newState.getBlock() instanceof FireplaceBlock && newState.getValue(FireplaceBlock.HORIZONTAL_AXIS) == axis && newState.getValue(FireplaceBlock.LIT) != state.getValue(FireplaceBlock.LIT)) {
-                if (newState.getValue(FireplaceBlock.LIT) && state.getValue(WaterloggedBlock.WATERLOGGED)) {
+            if(newState.getBlock() instanceof FireplaceBlock && newState.getValue(FireplaceBlock.HORIZONTAL_AXIS) == axis && newState.getValue(FireplaceBlock.LIT) != state.getValue(FireplaceBlock.LIT)) {
+                if(newState.getValue(FireplaceBlock.LIT) && state.getValue(WaterloggedBlock.WATERLOGGED)) {
                     return;
                 }
                 worldIn.setBlock(pos, state.setValue(FireplaceBlock.LIT, newState.getValue(FireplaceBlock.LIT)), 10);
@@ -172,16 +167,16 @@ public class FireplaceBlock extends WaterloggedBlock {
         final BlockState right = worldIn.getBlockState(pos.relative(axis == Direction.Axis.X ? Direction.EAST : Direction.SOUTH, -1));
 
         boolean blockLeft = left.getBlock() instanceof FireplaceBlock;
-        if (blockLeft) {
+        if(blockLeft) {
             blockLeft = left.getValue(FireplaceBlock.HORIZONTAL_AXIS) == axis;
         }
 
         boolean blockRight = right.getBlock() instanceof FireplaceBlock;
-        if (blockRight) {
+        if(blockRight) {
             blockRight = right.getValue(FireplaceBlock.HORIZONTAL_AXIS) == axis;
         }
 
-        if (blockLeft) {
+        if(blockLeft) {
             return blockRight ? DoTBBlockStateProperties.HorizontalConnection.BOTH : DoTBBlockStateProperties.HorizontalConnection.LEFT;
         }
         return blockRight ? DoTBBlockStateProperties.HorizontalConnection.RIGHT : DoTBBlockStateProperties.HorizontalConnection.NONE;
@@ -189,10 +184,10 @@ public class FireplaceBlock extends WaterloggedBlock {
 
     @Override
     public boolean placeLiquid(final LevelAccessor world, final BlockPos pos, final BlockState state, final FluidState fluid) {
-        if (state.getValue(BlockStateProperties.WATERLOGGED) || fluid.getType() != Fluids.WATER) {
+        if(state.getValue(BlockStateProperties.WATERLOGGED) || fluid.getType() != Fluids.WATER) {
             return false;
         }
-        if (state.getValue(FireplaceBlock.LIT)) {
+        if(state.getValue(FireplaceBlock.LIT)) {
             world.playSound(null, pos, SoundEvents.FIRE_EXTINGUISH, SoundSource.BLOCKS, 1.0F, 1.0F);
         }
         world.setBlock(pos, state.setValue(WaterloggedBlock.WATERLOGGED, true).setValue(FireplaceBlock.LIT, false), 10);
@@ -203,13 +198,13 @@ public class FireplaceBlock extends WaterloggedBlock {
     @OnlyIn(Dist.CLIENT)
     @Override
     public void animateTick(final BlockState stateIn, final Level worldIn, final BlockPos pos, final RandomSource rand) {
-        if (stateIn.getValue(FireplaceBlock.LIT)) {
-            if (rand.nextInt(10) == 0) {
+        if(stateIn.getValue(FireplaceBlock.LIT)) {
+            if(rand.nextInt(10) == 0) {
                 worldIn.playLocalSound(pos.getX() + 0.5F, pos.getY() + 0.5F, pos.getZ() + 0.5F, SoundEvents.CAMPFIRE_CRACKLE, SoundSource.BLOCKS, 0.5F + rand.nextFloat(), rand.nextFloat() * 0.7F + 0.6F, false);
             }
 
-            if (rand.nextInt(10) == 0) {
-                for (int i = 0; i < rand.nextInt(1) + 1; ++i) {
+            if(rand.nextInt(10) == 0) {
+                for(int i = 0; i < rand.nextInt(1) + 1; ++i) {
                     worldIn.addParticle(ParticleTypes.LAVA, pos.getX() + 0.5F, pos.getY() + 0.5F, pos.getZ() + 0.5F, rand.nextFloat() / 4.0F, 2.5E-5D, rand.nextFloat() / 4.0F);
                 }
             }

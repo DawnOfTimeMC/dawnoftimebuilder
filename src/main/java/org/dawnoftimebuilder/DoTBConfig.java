@@ -15,7 +15,6 @@ public class DoTBConfig {
     public final static String ENTITY_CATEGORY = "entity_properties";
     public final static Config COMMON_CONFIG;
     final static ForgeConfigSpec COMMON_SPEC;
-
     // Plants
     public static ForgeConfigSpec.IntValue GRAPE_HUNGER;
     public static ForgeConfigSpec.DoubleValue GRAPE_SATURATION;
@@ -23,7 +22,6 @@ public class DoTBConfig {
     public static ForgeConfigSpec.DoubleValue MAIZE_SATURATION;
     public static ForgeConfigSpec.IntValue MULBERRY_HUNGER;
     public static ForgeConfigSpec.DoubleValue MULBERRY_SATURATION;
-
     // Armors
     public static ArmorConfig IRON_PLATE_ARMOR_CONFIG;
     public static ArmorConfig HOLY_ARMOR_CONFIG;
@@ -34,13 +32,11 @@ public class DoTBConfig {
     public static ArmorConfig ANUBIS_ARMOR_CONFIG;
     public static ArmorConfig CENTURION_ARMOR_CONFIG;
     public static ArmorConfig QUETZALCOATL_ARMOR_CONFIG;
-
     // General
     public static ForgeConfigSpec.IntValue DRYING_TIME_VARIATION;
     public static ForgeConfigSpec.IntValue CLIMBING_PLANT_GROWTH_CHANCE;
     public static ForgeConfigSpec.IntValue CLIMBING_PLANT_SPREAD_CHANCE;
     public static ForgeConfigSpec.IntValue STICK_BUNDLE_GROWTH_CHANCE;
-
     // Plants generation
     public static ForgeConfigSpec.ConfigValue<List<? extends String>> CAMELLIA_GENERATION;
     public static ForgeConfigSpec.IntValue CAMELLIA_ROLLS;
@@ -96,15 +92,15 @@ public class DoTBConfig {
             builderIn.pop();
 
             builderIn.comment("----------------------------------------|| Armor settings ||---------------------------------------").push(ARMOR_MATERIAL_CATEGORY);
-            IRON_PLATE_ARMOR_CONFIG = new ArmorConfig(builderIn, "iron_plate",          25, 3, 9, 7, 3,  6, 0.0D); // DIAMOND
-            HOLY_ARMOR_CONFIG = new ArmorConfig(builderIn, "holy",                      40, 4,10, 8, 4,  4, 2.0D); // NETHERITE
-            JAPANESE_LIGHT_ARMOR_CONFIG = new ArmorConfig(builderIn, "japanese_light",  12, 2, 7, 6, 2, 10, 0.0D); // IRON
-            O_YOROI_ARMOR_CONFIG = new ArmorConfig(builderIn, "o_yoroi",                20, 3, 8, 6, 3, 16, 2.0D); // DIAMOND
-            RAIJIN_ARMOR_CONFIG = new ArmorConfig(builderIn, "raijin",                  35, 3, 9, 7, 3, 26, 2.0D); // NETHERITE
-            CENTURION_ARMOR_CONFIG = new ArmorConfig(builderIn, "centurion",            22, 3, 7, 5, 3, 10, 3.0D); // DIAMOND
-            PHARAOH_ARMOR_CONFIG = new ArmorConfig(builderIn, "pharaoh",                10, 3, 8, 6, 3, 37, 2.0D); // DIAMOND
-            ANUBIS_ARMOR_CONFIG = new ArmorConfig(builderIn, "anubis",                  25, 3, 8, 6, 3, 52, 3.0D); // NETHERITE
-            QUETZALCOATL_ARMOR_CONFIG = new ArmorConfig(builderIn, "quetzalcoatl",      25, 2, 6, 5, 2, 20, 6.0D); // NETHERITE
+            IRON_PLATE_ARMOR_CONFIG = new ArmorConfig(builderIn, "iron_plate", 25, 3, 9, 7, 3, 6, 0.0D); // DIAMOND
+            HOLY_ARMOR_CONFIG = new ArmorConfig(builderIn, "holy", 40, 4, 10, 8, 4, 4, 2.0D); // NETHERITE
+            JAPANESE_LIGHT_ARMOR_CONFIG = new ArmorConfig(builderIn, "japanese_light", 12, 2, 7, 6, 2, 10, 0.0D); // IRON
+            O_YOROI_ARMOR_CONFIG = new ArmorConfig(builderIn, "o_yoroi", 20, 3, 8, 6, 3, 16, 2.0D); // DIAMOND
+            RAIJIN_ARMOR_CONFIG = new ArmorConfig(builderIn, "raijin", 35, 3, 9, 7, 3, 26, 2.0D); // NETHERITE
+            CENTURION_ARMOR_CONFIG = new ArmorConfig(builderIn, "centurion", 22, 3, 7, 5, 3, 10, 3.0D); // DIAMOND
+            PHARAOH_ARMOR_CONFIG = new ArmorConfig(builderIn, "pharaoh", 10, 3, 8, 6, 3, 37, 2.0D); // DIAMOND
+            ANUBIS_ARMOR_CONFIG = new ArmorConfig(builderIn, "anubis", 25, 3, 8, 6, 3, 52, 3.0D); // NETHERITE
+            QUETZALCOATL_ARMOR_CONFIG = new ArmorConfig(builderIn, "quetzalcoatl", 25, 2, 6, 5, 2, 20, 6.0D); // NETHERITE
             builderIn.pop();
 
             builderIn.comment("---------------------------------------|| Entity settings ||---------------------------------------").push(ENTITY_CATEGORY);
@@ -179,8 +175,8 @@ public class DoTBConfig {
             builderIn.pop();
         }
     }
-    
-    public static class ArmorConfig{
+
+    public static class ArmorConfig {
         private final ForgeConfigSpec.IntValue durability;
         private final ForgeConfigSpec.IntValue helmetDef;
         private final ForgeConfigSpec.IntValue chestDef;
@@ -188,8 +184,8 @@ public class DoTBConfig {
         private final ForgeConfigSpec.IntValue feetDef;
         private final ForgeConfigSpec.IntValue enchantability;
         private final ForgeConfigSpec.DoubleValue toughness;
-        
-        private ArmorConfig(final ForgeConfigSpec.Builder builderIn, String armorSet, int durability, int helmetDef, int chestDef,int legsDef, int feetDef, int enchantability, double toughness) {
+
+        private ArmorConfig(final ForgeConfigSpec.Builder builderIn, String armorSet, int durability, int helmetDef, int chestDef, int legsDef, int feetDef, int enchantability, double toughness) {
             builderIn.push(armorSet);
             this.durability = builderIn.comment("DurabilityFactor is multiplied with a value that depends on the armor part (between 11 and 16) to get the total durability :").defineInRange(armorSet + "_durability_factor", durability, 1, 1000);
             this.helmetDef = builderIn.comment("Helmet damage reduction :").defineInRange(armorSet + "_defense_helmet", helmetDef, 1, 100);
@@ -201,31 +197,31 @@ public class DoTBConfig {
             builderIn.pop();
         }
 
-        public Supplier<Integer> durabilitySupplier(){
+        public Supplier<Integer> durabilitySupplier() {
             return this.durability::get;
         }
 
-        public Supplier<Integer> helmetDefSupplier(){
+        public Supplier<Integer> helmetDefSupplier() {
             return this.helmetDef::get;
         }
 
-        public Supplier<Integer> chestDefSupplier(){
+        public Supplier<Integer> chestDefSupplier() {
             return this.chestDef::get;
         }
 
-        public Supplier<Integer> legsDefSupplier(){
+        public Supplier<Integer> legsDefSupplier() {
             return this.legsDef::get;
         }
 
-        public Supplier<Integer> feetDefSupplier(){
+        public Supplier<Integer> feetDefSupplier() {
             return this.feetDef::get;
         }
 
-        public Supplier<Integer> enchantabilitySupplier(){
+        public Supplier<Integer> enchantabilitySupplier() {
             return this.enchantability::get;
         }
 
-        public Supplier<Float> toughnessSupplier(){
+        public Supplier<Float> toughnessSupplier() {
             return () -> this.toughness.get().floatValue();
         }
     }

@@ -10,7 +10,6 @@ import net.minecraft.resources.ResourceLocation;
 import static org.dawnoftimebuilder.DawnOfTimeBuilder.MOD_ID;
 
 public class SocialsButton extends Button {
-
     private final ResourceLocation buttonIcons, socialIcons;
 
     public SocialsButton(int x, int y, String buttonName, OnPress pressable) {
@@ -21,7 +20,7 @@ public class SocialsButton extends Button {
 
     @Override
     public void render(GuiGraphics pGuiGraphics, int pMouseX, int pMouseY, float pPartialTick) {
-        if (this.active) {
+        if(this.active) {
             PoseStack ps = pGuiGraphics.pose();
             ps.pushPose();
             RenderSystem.clearColor(1.0F, 1.0F, 1.0F, this.alpha);

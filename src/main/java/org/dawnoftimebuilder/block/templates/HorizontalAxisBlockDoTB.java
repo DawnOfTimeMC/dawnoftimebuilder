@@ -12,7 +12,6 @@ import net.minecraft.world.level.block.state.properties.EnumProperty;
 import javax.annotation.Nullable;
 
 public class HorizontalAxisBlockDoTB extends BlockDoTB {
-
     private static final EnumProperty<Direction.Axis> HORIZONTAL_AXIS = BlockStateProperties.HORIZONTAL_AXIS;
 
     public HorizontalAxisBlockDoTB(Properties properties) {
@@ -30,7 +29,7 @@ public class HorizontalAxisBlockDoTB extends BlockDoTB {
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
         Direction.Axis clicked = context.getClickedFace().getAxis();
-        if(clicked.isHorizontal()){
+        if(clicked.isHorizontal()) {
             return this.defaultBlockState().setValue(HORIZONTAL_AXIS, clicked);
         }
         return this.defaultBlockState().setValue(HORIZONTAL_AXIS, context.getHorizontalDirection().getAxis());
@@ -38,7 +37,7 @@ public class HorizontalAxisBlockDoTB extends BlockDoTB {
 
     @Override
     public BlockState rotate(BlockState state, Rotation rot) {
-        if(rot == Rotation.CLOCKWISE_90 || rot == Rotation.COUNTERCLOCKWISE_90){
+        if(rot == Rotation.CLOCKWISE_90 || rot == Rotation.COUNTERCLOCKWISE_90) {
             return state.setValue(HORIZONTAL_AXIS, (state.getValue(HORIZONTAL_AXIS) == Direction.Axis.X) ? Direction.Axis.Z : Direction.Axis.X);
         }
         return super.rotate(state, rot);

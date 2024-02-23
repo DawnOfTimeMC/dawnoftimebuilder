@@ -12,16 +12,12 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.state.properties.DoorHingeSide;
-import net.minecraft.world.level.block.state.properties.EnumProperty;
-import net.minecraft.world.level.block.state.properties.Half;
+import net.minecraft.world.level.block.state.properties.*;
 import org.dawnoftimebuilder.util.DoTBBlockStateProperties;
 
 import javax.annotation.Nullable;
 
 public class ShutterBlock extends SmallShutterBlock {
-
     public static final EnumProperty<Half> HALF = BlockStateProperties.HALF;
 
     public ShutterBlock(final Properties properties) {
@@ -41,7 +37,7 @@ public class ShutterBlock extends SmallShutterBlock {
         final Level world = context.getLevel();
         final Direction direction = context.getHorizontalDirection();
         final BlockPos pos = context.getClickedPos();
-        if (!world.getBlockState(pos.above()).canBeReplaced(context)) {
+        if(!world.getBlockState(pos.above()).canBeReplaced(context)) {
             return null;
         }
         final int x = direction.getStepX();
@@ -55,11 +51,11 @@ public class ShutterBlock extends SmallShutterBlock {
 
     @Override
     public boolean canSurvive(final BlockState state, final LevelReader worldIn, final BlockPos pos) {
-        if (state.getValue(ShutterBlock.HALF) != Half.TOP) {
+        if(state.getValue(ShutterBlock.HALF) != Half.TOP) {
             return true;
         }
         final BlockState bottomState = worldIn.getBlockState(pos.below());
-        if (bottomState.getBlock() == this) {
+        if(bottomState.getBlock() == this) {
             return bottomState.getValue(ShutterBlock.HALF) == Half.BOTTOM && bottomState.getValue(SmallShutterBlock.FACING) == state.getValue(SmallShutterBlock.FACING)
                     && bottomState.getValue(SmallShutterBlock.HINGE) == state.getValue(SmallShutterBlock.HINGE);
         }
@@ -74,8 +70,8 @@ public class ShutterBlock extends SmallShutterBlock {
     @Override
     public BlockState updateShape(BlockState stateIn, final Direction facing, final BlockState facingState, final LevelAccessor worldIn, final BlockPos currentPos, final BlockPos facingPos) {
         final Direction halfDirection = stateIn.getValue(ShutterBlock.HALF) == Half.TOP ? Direction.DOWN : Direction.UP;
-        if (facing == halfDirection) {
-            if (facingState.getBlock() != this || facingState.getValue(ShutterBlock.HALF) == stateIn.getValue(ShutterBlock.HALF) || facingState.getValue(SmallShutterBlock.FACING) != stateIn.getValue(SmallShutterBlock.FACING)
+        if(facing == halfDirection) {
+            if(facingState.getBlock() != this || facingState.getValue(ShutterBlock.HALF) == stateIn.getValue(ShutterBlock.HALF) || facingState.getValue(SmallShutterBlock.FACING) != stateIn.getValue(SmallShutterBlock.FACING)
                     || facingState.getValue(SmallShutterBlock.HINGE) != stateIn.getValue(SmallShutterBlock.HINGE)) {
                 return Blocks.AIR.defaultBlockState();
             }
@@ -87,7 +83,7 @@ public class ShutterBlock extends SmallShutterBlock {
     @Override
     protected DoTBBlockStateProperties.OpenPosition getOpenState(final BlockState stateIn, final LevelAccessor worldIn, final BlockPos pos) {
         final BlockPos secondPos = pos.relative(stateIn.getValue(ShutterBlock.HALF) == Half.TOP ? Direction.DOWN : Direction.UP);
-        if (!worldIn.getBlockState(secondPos).getCollisionShape(worldIn, pos).isEmpty() || !worldIn.getBlockState(pos).getCollisionShape(worldIn, pos).isEmpty()) {
+        if(!worldIn.getBlockState(secondPos).getCollisionShape(worldIn, pos).isEmpty() || !worldIn.getBlockState(pos).getCollisionShape(worldIn, pos).isEmpty()) {
             return DoTBBlockStateProperties.OpenPosition.HALF;
         }
         return DoTBBlockStateProperties.OpenPosition.FULL;

@@ -23,7 +23,7 @@ public class WaterFlowingTrickleBlock extends WaterTrickleBlock implements ICust
     @Override
     public BlockState updateWaterTrickle(Level world, BlockState currentState, BlockPos bottomPos, BlockState bottomState, BlockState aboveState) {
         currentState = super.updateWaterTrickle(world, currentState, bottomPos, bottomState, aboveState);
-        BooleanProperty[] properties = new BooleanProperty[]{
+        BooleanProperty[] properties = new BooleanProperty[] {
                 DoTBBlockStateProperties.NORTH_TRICKLE,
                 DoTBBlockStateProperties.EAST_TRICKLE,
                 DoTBBlockStateProperties.SOUTH_TRICKLE,
@@ -32,17 +32,17 @@ public class WaterFlowingTrickleBlock extends WaterTrickleBlock implements ICust
         };
         // If one of the bool properties is True, it means this flowing water trickle is not empty. It disappears otherwise.
         boolean hasTickle = false;
-        for(BooleanProperty prop : properties){
-            if(currentState.getValue(prop)){
+        for(BooleanProperty prop : properties) {
+            if(currentState.getValue(prop)) {
                 hasTickle = true;
                 break;
             }
         }
-        if(!hasTickle){
+        if(!hasTickle) {
             return Blocks.AIR.defaultBlockState();
         }
         // If the block under has a full face, we create a Water Block;
-        if(Block.isFaceFull(bottomState.getCollisionShape(world, bottomPos), Direction.UP)){
+        if(Block.isFaceFull(bottomState.getCollisionShape(world, bottomPos), Direction.UP)) {
             return Blocks.WATER.defaultBlockState();
         }
         return currentState;
@@ -50,8 +50,8 @@ public class WaterFlowingTrickleBlock extends WaterTrickleBlock implements ICust
 
     @Override
     public BlockState updateShape(BlockState stateIn, Direction directionIn, BlockState facingStateIn, LevelAccessor worldIn, BlockPos currentPosIn, BlockPos facingPosIn) {
-        if(directionIn == Direction.UP){
-            if(!(facingStateIn.getBlock() instanceof WaterTrickleBlock)){
+        if(directionIn == Direction.UP) {
+            if(!(facingStateIn.getBlock() instanceof WaterTrickleBlock)) {
                 return Blocks.AIR.defaultBlockState();
             }
         }

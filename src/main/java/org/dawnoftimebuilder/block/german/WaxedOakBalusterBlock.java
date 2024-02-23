@@ -11,7 +11,6 @@ import org.dawnoftimebuilder.block.templates.PlateBlock;
 import org.dawnoftimebuilder.util.DoTBUtils;
 
 public class WaxedOakBalusterBlock extends PlateBlock {
-
     private static final VoxelShape[] SHAPES = DoTBUtils.GenerateHorizontalShapes(makeShapes());
 
     public WaxedOakBalusterBlock(Properties properties) {
@@ -22,7 +21,7 @@ public class WaxedOakBalusterBlock extends PlateBlock {
     public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
         int index = (state.getValue(FACING).get2DDataValue() + 2) % 4;
         index *= 3;
-        switch (state.getValue(SHAPE)) {
+        switch(state.getValue(SHAPE)) {
             default:
             case OUTER_LEFT:
                 break;
@@ -67,7 +66,7 @@ public class WaxedOakBalusterBlock extends PlateBlock {
         VoxelShape vs_ne_corner = Block.box(12.0D, 0.0D, 0.0D, 16.0D, 16.0D, 4.0D);
         VoxelShape vs_se_corner = Block.box(12.0D, 0.0D, 12.0D, 16.0D, 16.0D, 16.0D);
         VoxelShape vs_sw_corner = Block.box(0.0D, 0.0D, 12.0D, 4.0D, 16.0D, 16.0D);
-        return new VoxelShape[]{
+        return new VoxelShape[] {
                 vs_nw_corner,
                 vs_north_flat,
                 Shapes.or(vs_north_flat, vs_west_flat),

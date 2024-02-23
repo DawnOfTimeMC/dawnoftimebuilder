@@ -15,7 +15,6 @@ import org.dawnoftimebuilder.block.IBlockChain;
 import org.dawnoftimebuilder.block.templates.CandleLampBlock;
 
 public class WaxedOakChandelierBlock extends CandleLampBlock implements IBlockChain {
-
     private static final VoxelShape VS = Shapes.or(
             Block.box(0.0D, 0.0D, 0.0D, 16.0D, 8.0D, 16.0D),
             Block.box(6.0D, 8.0D, 6.0D, 10.0D, 16.0D, 10.0D));

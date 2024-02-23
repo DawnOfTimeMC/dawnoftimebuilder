@@ -25,7 +25,6 @@ import java.util.Map;
 import static net.minecraft.world.phys.shapes.BooleanOp.ONLY_FIRST;
 
 public class CappedWallBlock extends Block implements SimpleWaterloggedBlock {
-
     public static final EnumProperty<WallSide> PILLAR = DoTBBlockStateProperties.PILLAR_WALL;
     public static final EnumProperty<WallSide> EAST_WALL = BlockStateProperties.EAST_WALL;
     public static final EnumProperty<WallSide> NORTH_WALL = BlockStateProperties.NORTH_WALL;
@@ -48,7 +47,7 @@ public class CappedWallBlock extends Block implements SimpleWaterloggedBlock {
     }
 
     private static VoxelShape applyWallShape(VoxelShape mainShape, WallSide height, VoxelShape newShape, VoxelShape p_235631_3_) {
-        if (height == WallSide.TALL) {
+        if(height == WallSide.TALL) {
             return Shapes.or(mainShape, p_235631_3_);
         } else {
             return height == WallSide.LOW ? Shapes.or(mainShape, newShape) : mainShape;
@@ -71,17 +70,17 @@ public class CappedWallBlock extends Block implements SimpleWaterloggedBlock {
         VoxelShape voxelshape8 = Block.box(sizeWallStart, 0.0D, sizeWallStart, 16.0D, sizePillarVertical, sizeWallEnd);
         ImmutableMap.Builder<BlockState, VoxelShape> builder = ImmutableMap.builder();
 
-        for (WallSide pillarStates : PILLAR.getPossibleValues()) {
-            for (WallSide eastState : EAST_WALL.getPossibleValues()) {
-                for (WallSide northState : NORTH_WALL.getPossibleValues()) {
-                    for (WallSide westState : WEST_WALL.getPossibleValues()) {
-                        for (WallSide southState : SOUTH_WALL.getPossibleValues()) {
+        for(WallSide pillarStates : PILLAR.getPossibleValues()) {
+            for(WallSide eastState : EAST_WALL.getPossibleValues()) {
+                for(WallSide northState : NORTH_WALL.getPossibleValues()) {
+                    for(WallSide westState : WEST_WALL.getPossibleValues()) {
+                        for(WallSide southState : SOUTH_WALL.getPossibleValues()) {
                             VoxelShape mainShape = Shapes.empty();
                             mainShape = applyWallShape(mainShape, eastState, voxelshape4, voxelshape8);
                             mainShape = applyWallShape(mainShape, westState, voxelshape3, voxelshape7);
                             mainShape = applyWallShape(mainShape, northState, voxelshape1, voxelshape5);
                             mainShape = applyWallShape(mainShape, southState, voxelshape2, voxelshape6);
-                            if (pillarStates != WallSide.NONE) {
+                            if(pillarStates != WallSide.NONE) {
                                 mainShape = Shapes.or(mainShape, voxelshape);
                             }
 
@@ -137,11 +136,11 @@ public class CappedWallBlock extends Block implements SimpleWaterloggedBlock {
     }
 
     public BlockState updateShape(BlockState state, Direction direction, BlockState p_196271_3_, LevelAccessor world, BlockPos pos, BlockPos p_196271_6_) {
-        if (state.getValue(WATERLOGGED)) {
+        if(state.getValue(WATERLOGGED)) {
             world.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(world));
         }
 
-        if (direction == Direction.DOWN) {
+        if(direction == Direction.DOWN) {
             return super.updateShape(state, direction, p_196271_3_, world, pos, p_196271_6_);
         } else {
             return direction == Direction.UP ? this.topUpdate(world, state, p_196271_6_, p_196271_3_) : this.sideUpdate(world, pos, state, p_196271_6_, p_196271_3_, direction);
@@ -183,7 +182,7 @@ public class CappedWallBlock extends Block implements SimpleWaterloggedBlock {
 
     private WallSide shouldRaisePost(BlockState state, BlockState stateTop, VoxelShape shape) {
         boolean flag = stateTop.getBlock() instanceof WallBlock && stateTop.getValue(WallBlock.UP);
-        if (flag) {
+        if(flag) {
             return this.getPillarState(stateTop);
         } else {
             WallSide WallSide = state.getValue(NORTH_WALL);
@@ -195,11 +194,11 @@ public class CappedWallBlock extends Block implements SimpleWaterloggedBlock {
             boolean flag3 = WallSide2 == WallSide.NONE;
             boolean flag4 = WallSide == WallSide.NONE;
             boolean flag5 = flag4 && flag1 && flag2 && flag3 || flag4 != flag1 || flag2 != flag3;
-            if (flag5) {
+            if(flag5) {
                 return this.getPillarState(stateTop);
             } else {
                 boolean flag6 = WallSide == WallSide.TALL && WallSide1 == WallSide.TALL || WallSide2 == WallSide.TALL && WallSide3 == WallSide.TALL;
-                if (flag6) {
+                if(flag6) {
                     return WallSide.NONE;
                 } else {
                     return stateTop.is(BlockTags.WALL_POST_OVERRIDE) || isCovered(shape, POST_TEST) ? this.getPillarState(stateTop) : WallSide.NONE;
@@ -217,7 +216,7 @@ public class CappedWallBlock extends Block implements SimpleWaterloggedBlock {
     }
 
     private WallSide makeWallState(boolean p_235633_1_, VoxelShape shape, VoxelShape p_235633_3_) {
-        if (p_235633_1_) {
+        if(p_235633_1_) {
             return isCovered(shape, p_235633_3_) ? WallSide.TALL : WallSide.LOW;
         } else {
             return WallSide.NONE;
@@ -237,7 +236,7 @@ public class CappedWallBlock extends Block implements SimpleWaterloggedBlock {
     }
 
     public BlockState rotate(BlockState p_185499_1_, Rotation p_185499_2_) {
-        switch (p_185499_2_) {
+        switch(p_185499_2_) {
             case CLOCKWISE_180:
                 return p_185499_1_.setValue(NORTH_WALL, p_185499_1_.getValue(SOUTH_WALL)).setValue(EAST_WALL, p_185499_1_.getValue(WEST_WALL)).setValue(SOUTH_WALL, p_185499_1_.getValue(NORTH_WALL)).setValue(WEST_WALL, p_185499_1_.getValue(EAST_WALL));
             case COUNTERCLOCKWISE_90:
@@ -250,7 +249,7 @@ public class CappedWallBlock extends Block implements SimpleWaterloggedBlock {
     }
 
     public BlockState mirror(BlockState p_185471_1_, Mirror p_185471_2_) {
-        switch (p_185471_2_) {
+        switch(p_185471_2_) {
             case LEFT_RIGHT:
                 return p_185471_1_.setValue(NORTH_WALL, p_185471_1_.getValue(SOUTH_WALL)).setValue(SOUTH_WALL, p_185471_1_.getValue(NORTH_WALL));
             case FRONT_BACK:

@@ -25,7 +25,6 @@ import org.dawnoftimebuilder.block.IBlockSpecialDisplay;
 import org.dawnoftimebuilder.util.DoTBUtils;
 
 public abstract class CandleLampBlock extends WaterloggedBlock implements IBlockSpecialDisplay {
-
     public static final BooleanProperty LIT = BlockStateProperties.LIT;
 
     public CandleLampBlock(final Properties properties) {
@@ -41,7 +40,7 @@ public abstract class CandleLampBlock extends WaterloggedBlock implements IBlock
 
     @OnlyIn(Dist.CLIENT)
     public void animateLitCandle(final BlockState stateIn, final Level worldIn, final BlockPos pos, final double x, final double y, final double z) {
-        if (stateIn.getValue(CandleLampBlock.LIT)) {
+        if(stateIn.getValue(CandleLampBlock.LIT)) {
             final double d0 = pos.getX() + x;
             final double d1 = pos.getY() + y;
             final double d2 = pos.getZ() + z;
@@ -60,22 +59,22 @@ public abstract class CandleLampBlock extends WaterloggedBlock implements IBlock
 
         int activation = -1;
 
-        if (!state.getValue(WaterloggedBlock.WATERLOGGED) && !state.getValue(CandleLampBlock.LIT) && (projectile instanceof AbstractArrow && ((AbstractArrow) projectile).isOnFire() || projectile instanceof Fireball)) {
+        if(!state.getValue(WaterloggedBlock.WATERLOGGED) && !state.getValue(CandleLampBlock.LIT) && (projectile instanceof AbstractArrow && ((AbstractArrow) projectile).isOnFire() || projectile instanceof Fireball)) {
             activation = 1;
-        } else if (state.getValue(CandleLampBlock.LIT) && (projectile instanceof Snowball || projectile instanceof ThrowableProjectile && PotionUtils.getPotion(((ThrowableItemProjectile) projectile).getItem()).getEffects().size() <= 0)) {
+        } else if(state.getValue(CandleLampBlock.LIT) && (projectile instanceof Snowball || projectile instanceof ThrowableProjectile && PotionUtils.getPotion(((ThrowableItemProjectile) projectile).getItem()).getEffects().size() <= 0)) {
             activation = 0;
         }
 
-        if (activation >= 0) {
+        if(activation >= 0) {
 
             final BlockPos pos = hit.getBlockPos();
             final boolean isActivated = activation == 1;
 
-            if (!worldIn.isClientSide()) {
+            if(!worldIn.isClientSide()) {
                 worldIn.setBlock(pos, state.setValue(CandleLampBlock.LIT, isActivated), 10);
                 worldIn.playSound(null, pos, isActivated ? SoundEvents.FIRE_AMBIENT : SoundEvents.FIRE_EXTINGUISH, SoundSource.BLOCKS, 1.0F, 1.0F);
-            } else if (!isActivated && worldIn.isClientSide()) {
-                for (int i = 0; i < worldIn.random.nextInt(1) + 1; ++i) {
+            } else if(!isActivated && worldIn.isClientSide()) {
+                for(int i = 0; i < worldIn.random.nextInt(1) + 1; ++i) {
                     worldIn.addParticle(ParticleTypes.CLOUD, pos.getX() + 0.5F, pos.getY() + 0.5F, pos.getZ() + 0.5F, worldIn.random.nextFloat() / 4.0F, 2.5E-5D, worldIn.random.nextFloat() / 4.0F);
                 }
             }
@@ -84,10 +83,10 @@ public abstract class CandleLampBlock extends WaterloggedBlock implements IBlock
 
     @Override
     public boolean placeLiquid(final LevelAccessor world, final BlockPos pos, final BlockState state, final FluidState fluid) {
-        if (state.getValue(WaterloggedBlock.WATERLOGGED) || fluid.getType() != Fluids.WATER) {
+        if(state.getValue(WaterloggedBlock.WATERLOGGED) || fluid.getType() != Fluids.WATER) {
             return false;
         }
-        if (state.getValue(CandleLampBlock.LIT)) {
+        if(state.getValue(CandleLampBlock.LIT)) {
             world.playSound(null, pos, SoundEvents.GENERIC_EXTINGUISH_FIRE, SoundSource.BLOCKS, 1.0F, 1.0F);
         }
         world.setBlock(pos, state.setValue(WaterloggedBlock.WATERLOGGED, true).setValue(CandleLampBlock.LIT, false), 10);

@@ -16,12 +16,10 @@ import org.dawnoftimebuilder.block.IBlockPillar;
 import org.dawnoftimebuilder.util.DoTBBlockStateProperties;
 
 public class SupportSlabBlock extends WaterloggedBlock {
-
     private static final VoxelShape VS = Block.box(0.0D, 12.0D, 0.0D, 16.0D, 16.0D, 16.0D);
     private static final VoxelShape VS_FOUR_PX = Shapes.or(VS, Block.box(6.0D, 0.0D, 6.0D, 10.0D, 16.0D, 10.0D));
     private static final VoxelShape VS_EIGHT_PX = Shapes.or(VS, Block.box(4.0D, 0.0D, 4.0D, 12.0D, 16.0D, 12.0D));
     private static final VoxelShape VS_TEN_PX = Shapes.or(VS, Block.box(3.0D, 0.0D, 3.0D, 13.0D, 16.0D, 13.0D));
-
     private static final EnumProperty<DoTBBlockStateProperties.PillarConnection> PILLAR_CONNECTION = DoTBBlockStateProperties.PILLAR_CONNECTION;
 
     public SupportSlabBlock(Properties properties) {
@@ -37,7 +35,7 @@ public class SupportSlabBlock extends WaterloggedBlock {
 
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
-        switch (state.getValue(PILLAR_CONNECTION)) {
+        switch(state.getValue(PILLAR_CONNECTION)) {
             case FOUR_PX:
                 return VS_FOUR_PX;
             case EIGHT_PX:

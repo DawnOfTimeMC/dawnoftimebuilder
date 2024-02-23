@@ -10,11 +10,9 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.BushBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraftforge.common.Tags;
 import org.dawnoftimebuilder.block.IBlockGeneration;
 
 public class BushBlockDoT extends BushBlock implements IBlockGeneration {
-
     private int fireSpreadSpeed = 0;
     private int fireDestructionSpeed = 0;
 
@@ -36,6 +34,7 @@ public class BushBlockDoT extends BushBlock implements IBlockGeneration {
      *
      * @param fireSpreadSpeed      Increases the probability to catch fire
      * @param fireDestructionSpeed Decreases burning duration
+     *
      * @return this
      */
     public Block setBurnable(final int fireSpreadSpeed, final int fireDestructionSpeed) {
@@ -58,7 +57,7 @@ public class BushBlockDoT extends BushBlock implements IBlockGeneration {
     public void generateOnPos(final LevelAccessor worldIn, final BlockPos posIn, final BlockState stateIn, final RandomSource randomIn) {
         final BlockState groundState = worldIn.getBlockState(posIn.below());
 
-        if (!BlockTags.DIRT.equals(groundState.getBlock())) {
+        if(!BlockTags.DIRT.equals(groundState.getBlock())) {
             return;
         }
         worldIn.setBlock(posIn, stateIn, 2);

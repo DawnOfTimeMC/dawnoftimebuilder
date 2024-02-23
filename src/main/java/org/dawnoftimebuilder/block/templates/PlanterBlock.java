@@ -9,20 +9,16 @@ import net.minecraft.world.level.block.Mirror;
 import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.state.properties.DirectionProperty;
-import net.minecraft.world.level.block.state.properties.EnumProperty;
-import net.minecraft.world.level.block.state.properties.Half;
+import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.dawnoftimebuilder.util.DoTBUtils;
 
 public class PlanterBlock extends Block {
-
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final EnumProperty<Half> HALF = BlockStateProperties.HALF;
-    private static final VoxelShape[] SHAPES_TOP = DoTBUtils.GenerateHorizontalShapes(new VoxelShape[]{Block.box(0.0D, 8.0D, 8.0D, 16.0D, 16.0D, 16.0D)});
-    private static final VoxelShape[] SHAPES_BOTTOM = DoTBUtils.GenerateHorizontalShapes(new VoxelShape[]{Block.box(0.0D, 0.0D, 8.0D, 16.0D, 8.0D, 16.0D)});
+    private static final VoxelShape[] SHAPES_TOP = DoTBUtils.GenerateHorizontalShapes(new VoxelShape[] { Block.box(0.0D, 8.0D, 8.0D, 16.0D, 16.0D, 16.0D) });
+    private static final VoxelShape[] SHAPES_BOTTOM = DoTBUtils.GenerateHorizontalShapes(new VoxelShape[] { Block.box(0.0D, 0.0D, 8.0D, 16.0D, 8.0D, 16.0D) });
 
     public PlanterBlock(Properties properties) {
         super(properties);
@@ -45,7 +41,7 @@ public class PlanterBlock extends Block {
         BlockState state = super.getStateForPlacement(context);
         Direction direction = context.getClickedFace();
         BlockPos pos = context.getClickedPos();
-        if (state != null) {
+        if(state != null) {
             return state.setValue(FACING, context.getHorizontalDirection()).setValue(HALF, direction != Direction.DOWN && (direction == Direction.UP || !(context.getClickLocation().y - (double) pos.getY() > 0.5D)) ? Half.BOTTOM : Half.TOP);
         }
         return null;

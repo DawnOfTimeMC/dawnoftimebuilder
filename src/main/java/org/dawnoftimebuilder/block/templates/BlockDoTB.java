@@ -8,7 +8,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 
 public class BlockDoTB extends Block {
-
     private int fireSpreadSpeed = 0;
     private int fireDestructionSpeed = 0;
 
@@ -18,6 +17,7 @@ public class BlockDoTB extends Block {
 
     /**
      * Set Encouragement to 5 and Flammability to 20
+     *
      * @return this
      */
     public Block setBurnable() {
@@ -26,8 +26,10 @@ public class BlockDoTB extends Block {
 
     /**
      * Set burning parameters (default 5 / 20)
-     * @param fireSpreadSpeed Increases the probability to catch fire
+     *
+     * @param fireSpreadSpeed      Increases the probability to catch fire
      * @param fireDestructionSpeed Decreases burning duration
+     *
      * @return this
      */
     public Block setBurnable(int fireSpreadSpeed, int fireDestructionSpeed) {
@@ -40,7 +42,6 @@ public class BlockDoTB extends Block {
     public int getFireSpreadSpeed(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
         return state.hasProperty(BlockStateProperties.WATERLOGGED) && state.getValue(BlockStateProperties.WATERLOGGED) ? 0 : this.fireSpreadSpeed;
     }
-
 
     @Override
     public int getFlammability(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {

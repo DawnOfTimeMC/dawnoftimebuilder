@@ -16,18 +16,17 @@ import static org.dawnoftimebuilder.client.gui.creative.CreativeInventoryEvents.
 
 @OnlyIn(Dist.CLIENT)
 public class CategoryButton extends Button {
-
     private boolean selected;
     private static final ResourceLocation[] BUTTON_ICONS = fillButtonIcons();
     private final int index;
 
-    public CategoryButton(int x, int y, int index, OnPress pressable){
+    public CategoryButton(int x, int y, int index, OnPress pressable) {
         super(x, y, 32, 28, Component.empty(), pressable, DEFAULT_NARRATION);
         this.selected = false;
         this.index = index;
     }
 
-    public void setSelected(boolean selected){
+    public void setSelected(boolean selected) {
         this.selected = selected;
     }
 
@@ -35,13 +34,13 @@ public class CategoryButton extends Button {
         return this.selected;
     }
 
-    public int getCategoryID(){
+    public int getCategoryID() {
         return CreativeInventoryEvents.page * 4 + this.index;
     }
 
     @Override
     public void render(GuiGraphics pGuiGraphics, int pMouseX, int pMouseY, float pPartialTick) {
-        if(this.active){
+        if(this.active) {
             PoseStack ps = pGuiGraphics.pose();
 
             ps.pushPose();
@@ -61,13 +60,12 @@ public class CategoryButton extends Button {
         super.render(pGuiGraphics, pMouseX, pMouseY, pPartialTick);
     }
 
-    private static ResourceLocation[] fillButtonIcons(){
+    private static ResourceLocation[] fillButtonIcons() {
         int number = CreativeInventoryCategories.values().length;
         ResourceLocation[] table = new ResourceLocation[number];
-        for(int i = 0; i < number; i++){
+        for(int i = 0; i < number; i++) {
             table[i] = new ResourceLocation(MOD_ID, "textures/item/logo_" + CreativeInventoryCategories.values()[i].getName() + ".png");
         }
         return table;
     }
-
 }

@@ -14,22 +14,21 @@ import org.dawnoftimebuilder.block.templates.FlowerPotBlockDoTB;
 import org.dawnoftimebuilder.item.IHasFlowerPot;
 
 public class PotAndBlockItem extends BlockItem implements IHasFlowerPot {
-
     private FlowerPotBlockDoTB potBlock;
 
-    public PotAndBlockItem(Block block , Properties properties) {
+    public PotAndBlockItem(Block block, Properties properties) {
         super(block, properties);
     }
 
     @Override
     public InteractionResult onItemUseFirst(ItemStack stack, UseOnContext context) {
         Level world = context.getLevel();
-        if(!world.isClientSide() && this.getPotBlock() != null){
+        if(!world.isClientSide() && this.getPotBlock() != null) {
             BlockPos pos = context.getClickedPos();
             BlockState state = world.getBlockState(pos);
-            if(state.getBlock() instanceof FlowerPotBlock){
+            if(state.getBlock() instanceof FlowerPotBlock) {
                 FlowerPotBlock pot = (FlowerPotBlock) state.getBlock();
-                if(pot.getEmptyPot().getContent() == Blocks.AIR){
+                if(pot.getEmptyPot().getContent() == Blocks.AIR) {
                     world.setBlock(pos, this.getPotBlock().getRandomState(), 2);
                     return InteractionResult.SUCCESS;
                 }

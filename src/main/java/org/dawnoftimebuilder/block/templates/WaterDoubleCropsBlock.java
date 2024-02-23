@@ -21,7 +21,6 @@ import net.minecraftforge.common.PlantType;
 import org.dawnoftimebuilder.item.templates.SoilSeedsItem;
 
 public class WaterDoubleCropsBlock extends DoubleCropsBlock implements SimpleWaterloggedBlock {
-
     private static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
     public WaterDoubleCropsBlock(String seedName, int growingAge) {
@@ -57,7 +56,7 @@ public class WaterDoubleCropsBlock extends DoubleCropsBlock implements SimpleWat
      */
     @Override
     public VoxelShape[] makeShapes() {
-        return new VoxelShape[]{
+        return new VoxelShape[] {
                 Block.box(0.0D, 0.0D, 0.0D, 16.0D, 8.0D, 16.0D),
                 Block.box(0.0D, 0.0D, 0.0D, 16.0D, 12.0D, 16.0D),
                 Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D),
@@ -90,7 +89,7 @@ public class WaterDoubleCropsBlock extends DoubleCropsBlock implements SimpleWat
 
     @Override
     public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, LevelAccessor worldIn, BlockPos currentPos, BlockPos facingPos) {
-        if (stateIn.getValue(WATERLOGGED))
+        if(stateIn.getValue(WATERLOGGED))
             worldIn.scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(worldIn));
         return super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
     }
@@ -102,14 +101,15 @@ public class WaterDoubleCropsBlock extends DoubleCropsBlock implements SimpleWat
 
     @Override
     public void setPlantWithAge(BlockState currentState, LevelAccessor worldIn, BlockPos pos, int newAge) {
-        if (currentState.getValue(HALF) == Half.TOP) pos = pos.below();
-        if (newAge >= this.getAgeReachingTopBlock()) {
+        if(currentState.getValue(HALF) == Half.TOP)
+            pos = pos.below();
+        if(newAge >= this.getAgeReachingTopBlock()) {
             BlockPos posUp = pos.above();
-            if (worldIn.getBlockState(posUp).getBlock() == this || worldIn.isEmptyBlock(posUp)) {
+            if(worldIn.getBlockState(posUp).getBlock() == this || worldIn.isEmptyBlock(posUp)) {
                 worldIn.setBlock(posUp, currentState.setValue(this.getAgeProperty(), newAge).setValue(HALF, Half.TOP).setValue(WATERLOGGED, false), 10);
             }
         }
-        if (newAge < this.getAgeReachingTopBlock() && this.getAge(currentState) == this.getAgeReachingTopBlock()) {
+        if(newAge < this.getAgeReachingTopBlock() && this.getAge(currentState) == this.getAgeReachingTopBlock()) {
             worldIn.setBlock(pos.above(), Blocks.AIR.defaultBlockState(), 10);
         }
         worldIn.setBlock(pos, currentState.setValue(this.getAgeProperty(), newAge).setValue(HALF, Half.BOTTOM).setValue(WATERLOGGED, true), 8);

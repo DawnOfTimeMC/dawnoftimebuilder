@@ -14,14 +14,8 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import org.dawnoftimebuilder.DawnOfTimeBuilder;
-import org.dawnoftimebuilder.block.french.LimestoneChimneyBlock;
-import org.dawnoftimebuilder.block.french.LimestoneGargoyleBlock;
-import org.dawnoftimebuilder.block.french.LimestoneSidedColumnBlock;
-import org.dawnoftimebuilder.block.french.ReinforcedIronFenceBlock;
-import org.dawnoftimebuilder.block.general.FireplaceBlock;
-import org.dawnoftimebuilder.block.general.IronFenceBlock;
-import org.dawnoftimebuilder.block.general.WaterFlowingTrickleBlock;
-import org.dawnoftimebuilder.block.general.WaterSourceTrickleBlock;
+import org.dawnoftimebuilder.block.french.*;
+import org.dawnoftimebuilder.block.general.*;
 import org.dawnoftimebuilder.block.german.*;
 import org.dawnoftimebuilder.block.japanese.*;
 import org.dawnoftimebuilder.block.precolumbian.*;
@@ -33,11 +27,8 @@ import java.util.function.Supplier;
 import java.util.function.ToIntFunction;
 
 public class DoTBBlocksRegistry {
-
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, DawnOfTimeBuilder.MOD_ID);
     public static final HashMap<String, Block> POT_BLOCKS = new HashMap<>();
-
-    
     public static final RegistryObject<Block> ACACIA_PLANKS_EDGE = DoTBBlocksRegistry.reg("acacia_planks_edge", () -> new EdgeBlock(Block.Properties.copy(Blocks.ACACIA_PLANKS)).setBurnable());
     public static final RegistryObject<Block> ACACIA_PLANKS_PLATE = DoTBBlocksRegistry.reg("acacia_planks_plate", () -> new PlateBlock(Block.Properties.copy(Blocks.ACACIA_PLANKS)).setBurnable());
     public static final RegistryObject<Block> ACACIA_PERGOLA = DoTBBlocksRegistry.reg("acacia_pergola", () -> new PergolaBlock(Block.Properties.copy(Blocks.ACACIA_PLANKS)).setBurnable());
@@ -119,7 +110,6 @@ public class DoTBBlocksRegistry {
     public static final RegistryObject<Block> WROUGHT_IRON_FENCE = DoTBBlocksRegistry.reg("wrought_iron_fence", () -> new IronFenceBlock(Block.Properties.copy(Blocks.IRON_BARS)));
     public static final RegistryObject<Block> WATER_FLOWING_TRICKLE = DoTBBlocksRegistry.reg("water_flowing_trickle", () -> new WaterFlowingTrickleBlock(Block.Properties.copy(Blocks.WATER).randomTicks()));
     public static final RegistryObject<Block> WATER_SOURCE_TRICKLE = DoTBBlocksRegistry.reg("water_source_trickle", () -> new WaterSourceTrickleBlock(Block.Properties.copy(Blocks.SEAGRASS).randomTicks()));
-
     // French
     public static final RegistryObject<Block> COBBLED_LIMESTONE = DoTBBlocksRegistry.reg("cobbled_limestone", () -> new BlockDoTB(Block.Properties.copy(Blocks.STONE_BRICKS)));
     public static final RegistryObject<Block> LIMESTONE_BRICKS = DoTBBlocksRegistry.reg("limestone_bricks", () -> new BlockDoTB(Block.Properties.copy(Blocks.STONE_BRICKS)));
@@ -146,7 +136,6 @@ public class DoTBBlocksRegistry {
     public static final RegistryObject<Block> BOXWOOD_BUSH = DoTBBlocksRegistry.reg("boxwood_bush", () -> new BushBlockDoT(Block.Properties.copy(Blocks.SPRUCE_LEAVES)));
     public static final RegistryObject<Block> BOXWOOD_TALL_HEDGE = DoTBBlocksRegistry.reg("boxwood_tall_hedge", () -> new PlateBlock(Block.Properties.copy(Blocks.SPRUCE_LEAVES)));
     public static final RegistryObject<Block> BOXWOOD_SMALL_HEDGE = DoTBBlocksRegistry.reg("boxwood_small_hedge", () -> new EdgeBlock(Block.Properties.copy(Blocks.SPRUCE_LEAVES)));
-
     // German
     public static final RegistryObject<Block> FLAT_ROOF_TILES = DoTBBlocksRegistry.reg("flat_roof_tiles", () -> new BlockDoTB(Block.Properties.copy(Blocks.STONE_BRICKS)));
     public static final RegistryObject<Block> FLAT_ROOF_TILES_STAIRS = DoTBBlocksRegistry.reg("flat_roof_tiles_stairs", () -> new StairsBlockDoTB(DoTBBlocksRegistry.FLAT_ROOF_TILES, Block.Properties.copy(Blocks.STONE_BRICKS)));
@@ -205,7 +194,6 @@ public class DoTBBlocksRegistry {
     public static final RegistryObject<Block> STONE_BRICKS_SMALL_POOL = DoTBBlocksRegistry.reg("stone_bricks_small_pool", () -> new SmallPoolBlock(Block.Properties.copy(Blocks.STONE)));
     public static final RegistryObject<Block> STONE_BRICKS_FAUCET = DoTBBlocksRegistry.reg("stone_bricks_faucet", () -> new FaucetBlock(Block.Properties.copy(Blocks.STONE).noOcclusion().noCollission().randomTicks()));
     public static final RegistryObject<Block> STONE_BRICKS_WATER_JET = DoTBBlocksRegistry.reg("stone_bricks_water_jet", () -> new WaterJetBlock(Block.Properties.copy(Blocks.STONE).noOcclusion().noCollission()));
-
     // Japanese
     public static final RegistryObject<Block> CHARRED_SPRUCE_PLANKS = DoTBBlocksRegistry.reg("charred_spruce_planks", () -> new BlockDoTB(Block.Properties.copy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_BLACK).strength(2.0F, 6.0F)).setBurnable(2, 3));
     public static final RegistryObject<Block> CHARRED_SPRUCE_LOG_STRIPPED = DoTBBlocksRegistry.reg("charred_spruce_log_stripped", () -> new RotatedPillarBlockDoTB(Block.Properties.copy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_BLACK).strength(2.0F, 6.0F)).setBurnable(2, 3));
@@ -252,7 +240,7 @@ public class DoTBBlocksRegistry {
     public static final RegistryObject<Block> CAST_IRON_TEACUP_DECORATED = DoTBBlocksRegistry.reg("cast_iron_teacup_decorated", () -> new CastIronTeacupBlock(Block.Properties.copy(Blocks.IRON_BLOCK).strength(1.0F).noOcclusion()));
     public static final RegistryObject<Block> BAMBOO_DRYING_TRAY = DoTBBlocksRegistry.reg("bamboo_drying_tray", () -> new DryerBlock(Block.Properties.copy(Blocks.OAK_PLANKS).noOcclusion()));
     //public static final RegistryObject<Block> CAMELLIA = DoTBBlocksRegistry.reg("camellia", () -> new GrowingBushBlock("camellia_seeds", PlantType.PLAINS, 3));
-//    public static final RegistryObject<Block> MULBERRY = DoTBBlocksRegistry.reg("mulberry", () -> new MulberryBlock("mulberry", PlantType.PLAINS, 3, 2, DoTBFoods.MULBERRY));
+    //    public static final RegistryObject<Block> MULBERRY = DoTBBlocksRegistry.reg("mulberry", () -> new MulberryBlock("mulberry", PlantType.PLAINS, 3, 2, DoTBFoods.MULBERRY));
     //public static final RegistryObject<Block> IKEBANA_FLOWER_POT = DoTBBlocksRegistry.reg("ikebana_flower_pot", () -> new SidedFlowerPotBlock(null));
     public static final RegistryObject<Block> SPRUCE_LOW_TABLE = DoTBBlocksRegistry.reg("spruce_low_table", () -> new SpruceLowTableBlock(Block.Properties.copy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_BLACK).strength(2.0F, 6.0F).noOcclusion().lightLevel(DoTBBlocksRegistry.litBlockEmission(14))));
     public static final RegistryObject<Block> SPRUCE_LEGLESS_CHAIR = DoTBBlocksRegistry.reg("spruce_legless_chair", () -> new SpruceLeglessChairBlock(Block.Properties.copy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_BLACK).strength(2.0F, 6.0F).noOcclusion(), 3.0F));
@@ -280,7 +268,6 @@ public class DoTBBlocksRegistry {
     public static final RegistryObject<Block> MAPLE_RED_LEAVES = DoTBBlocksRegistry.reg("maple_red_leaves", () -> new MapleLeavesBlock(Block.Properties.copy(Blocks.SPRUCE_LEAVES)));
     public static final RegistryObject<Block> MAPLE_RED_SAPLING = DoTBBlocksRegistry.reg("maple_red_sapling", () -> new MapleSaplingBlock(Block.Properties.copy(Blocks.SPRUCE_LEAVES)));
     public static final RegistryObject<Block> PAUSED_MAPLE_RED_SAPLING = DoTBBlocksRegistry.reg("paused_maple_red_sapling", () -> new PausedMapleSaplingBlock(Block.Properties.copy(Blocks.SPRUCE_LEAVES)));
-
     // Persian
     public static final RegistryObject<Block> PERSIAN_CARPET_RED = DoTBBlocksRegistry.reg("persian_carpet_red", () -> new CarpetBlockDoTB(Block.Properties.copy(Blocks.RED_WOOL)));
     public static final RegistryObject<Block> PERSIAN_CARPET_DELICATE_RED = DoTBBlocksRegistry.reg("persian_carpet_delicate_red", () -> new CarpetBlockDoTB(Block.Properties.copy(Blocks.RED_WOOL)));
@@ -288,7 +275,6 @@ public class DoTBBlocksRegistry {
     public static final RegistryObject<Block> MORAQ_MOSAIC_TILES_TRADITIONAL = DoTBBlocksRegistry.reg("moraq_mosaic_tiles_traditional", () -> new BlockDoTB(Block.Properties.copy(Blocks.BRICKS)));
     public static final RegistryObject<Block> MORAQ_MOSAIC_TILES_BORDER = DoTBBlocksRegistry.reg("moraq_mosaic_tiles_border", () -> new BlockDoTB(Block.Properties.copy(Blocks.BRICKS)));
     public static final RegistryObject<Block> MORAQ_MOSAIC_RECESS = DoTBBlocksRegistry.reg("moraq_mosaic_recess", () -> new StairsBlockDoTB(DoTBBlocksRegistry.MORAQ_MOSAIC_TILES_DELICATE, Block.Properties.copy(Blocks.BRICKS)));
-
     // Pre_columbian
     //public static final RegistryObject<Block> COMMELINA = DoTBBlocksRegistry.reg("commelina", () -> new SoilCropsBlock("commelina", PlantType.PLAINS));
     public static final RegistryObject<Block> PLASTERED_STONE = DoTBBlocksRegistry.reg("plastered_stone", () -> new BlockDoTB(Block.Properties.copy(Blocks.STONE_BRICKS)));
@@ -324,7 +310,6 @@ public class DoTBBlocksRegistry {
     public static final RegistryObject<Block> PLASTERED_STONE_CRESSET = DoTBBlocksRegistry.reg("plastered_stone_cresset", () -> new PlasteredStoneCressetBlock(Block.Properties.copy(Blocks.STONE_BRICKS).noOcclusion().lightLevel(DoTBBlocksRegistry.litBlockEmission(15))));
     public static final RegistryObject<Block> FEATHERED_SERPENT_SCULPTURE = DoTBBlocksRegistry.reg("feathered_serpent_sculpture", () -> new FeatheredSerpentSculptureBlock(Block.Properties.copy(Blocks.STONE_BRICKS).noOcclusion()));
     public static final RegistryObject<Block> SERPENT_SCULPTED_COLUMN = DoTBBlocksRegistry.reg("serpent_sculpted_column", () -> new SerpentSculptedColumnBlock(Block.Properties.copy(Blocks.STONE_BRICKS)));
-
     // Roman
     public static final RegistryObject<Block> SANDSTONE_PLATE = DoTBBlocksRegistry.reg("sandstone_plate", () -> new PlateBlock(Block.Properties.copy(Blocks.SANDSTONE)));
     public static final RegistryObject<Block> SANDSTONE_EDGE = DoTBBlocksRegistry.reg("sandstone_edge", () -> new EdgeBlock(Block.Properties.copy(Blocks.SANDSTONE)));
@@ -341,10 +326,10 @@ public class DoTBBlocksRegistry {
     public static final RegistryObject<Block> SANDSTONE_BOT_OCHRE_ROOF_TILES_TOP = DoTBBlocksRegistry.reg("sandstone_bot_ochre_roof_tiles_top", () -> new NoItemBlock(Block.Properties.copy(Blocks.BRICKS)));
     public static final RegistryObject<Block> CUT_SANDSTONE_BOT_OCHRE_ROOF_TILES_TOP = DoTBBlocksRegistry.reg("cut_sandstone_bot_ochre_roof_tiles_top", () -> new NoItemBlock(Block.Properties.copy(Blocks.BRICKS)));
     public static final RegistryObject<Block> SMOOTH_SANDSTONE_BOT_OCHRE_ROOF_TILES_TOP = DoTBBlocksRegistry.reg("smooth_sandstone_bot_ochre_roof_tiles_top", () -> new NoItemBlock(Block.Properties.copy(Blocks.BRICKS)));
-   /* public static final RegistryObject<Block> OCHRE_ROOF_TILES_SLAB = DoTBBlocksRegistry.reg("ochre_roof_tiles_slab", () -> new MixedSlabBlock(Block.Properties.copy(Blocks.BRICKS))
-            .addMixedBlockRecipe(Blocks.SANDSTONE_SLAB, DoTBBlocksRegistry.SANDSTONE_BOT_OCHRE_ROOF_TILES_TOP, false)
-            .addMixedBlockRecipe(Blocks.CUT_SANDSTONE_SLAB, DoTBBlocksRegistry.CUT_SANDSTONE_BOT_OCHRE_ROOF_TILES_TOP, false)
-            .addMixedBlockRecipe(Blocks.SMOOTH_SANDSTONE_SLAB, DoTBBlocksRegistry.SMOOTH_SANDSTONE_BOT_OCHRE_ROOF_TILES_TOP, false));*/
+    /* public static final RegistryObject<Block> OCHRE_ROOF_TILES_SLAB = DoTBBlocksRegistry.reg("ochre_roof_tiles_slab", () -> new MixedSlabBlock(Block.Properties.copy(Blocks.BRICKS))
+             .addMixedBlockRecipe(Blocks.SANDSTONE_SLAB, DoTBBlocksRegistry.SANDSTONE_BOT_OCHRE_ROOF_TILES_TOP, false)
+             .addMixedBlockRecipe(Blocks.CUT_SANDSTONE_SLAB, DoTBBlocksRegistry.CUT_SANDSTONE_BOT_OCHRE_ROOF_TILES_TOP, false)
+             .addMixedBlockRecipe(Blocks.SMOOTH_SANDSTONE_SLAB, DoTBBlocksRegistry.SMOOTH_SANDSTONE_BOT_OCHRE_ROOF_TILES_TOP, false));*/
     public static final RegistryObject<Block> SANDSTONE_COLUMN = DoTBBlocksRegistry.reg("sandstone_column", () -> new SandstoneColumnBlock(Block.Properties.copy(Blocks.SANDSTONE)));
     public static final RegistryObject<Block> SANDSTONE_SIDED_COLUMN = DoTBBlocksRegistry.reg("sandstone_sided_column", () -> new SandstoneSidedColumnBlock(Block.Properties.copy(Blocks.SANDSTONE)));
     public static final RegistryObject<Block> COVERED_SANDSTONE_WALL = DoTBBlocksRegistry.reg("covered_sandstone_wall", () -> new CappedWallBlock(Block.Properties.copy(Blocks.SANDSTONE)));
@@ -368,19 +353,17 @@ public class DoTBBlocksRegistry {
     public static final RegistryObject<Block> MARBLE_COFFER = DoTBBlocksRegistry.reg("marble_coffer", () -> new BlockDoTB(Block.Properties.copy(Blocks.STONE)));
     public static final RegistryObject<Block> MARBLE_COFFER_SLAB = DoTBBlocksRegistry.reg("marble_coffer_slab", () -> new SlabBlockDoTB(Block.Properties.copy(Blocks.STONE)));
 
-
-
-    private static <T extends Block>RegistryObject<T> reg(String name, Supplier<T> block) {
+    private static <T extends Block> RegistryObject<T> reg(String name, Supplier<T> block) {
         RegistryObject<T> toReturn = BLOCKS.register(name, block);
         registerBlockItem(name, toReturn);
         return toReturn;
     }
 
-    private static <T extends Block>RegistryObject<Item> registerBlockItem(String name, RegistryObject<T> block) {
+    private static <T extends Block> RegistryObject<Item> registerBlockItem(String name, RegistryObject<T> block) {
         return DoTBItemsRegistry.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
     }
 
-    public static void register (IEventBus eventBus) {
+    public static void register(IEventBus eventBus) {
         BLOCKS.register(eventBus);
     }
 

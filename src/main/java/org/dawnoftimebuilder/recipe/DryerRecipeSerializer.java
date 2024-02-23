@@ -14,17 +14,20 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public class DryerRecipeSerializer implements RecipeSerializer<DryerRecipe> {
-
     public static final DryerRecipeSerializer INSTANCE = new DryerRecipeSerializer();
 
     @Override
     @Nonnull
     public DryerRecipe fromJson(@Nonnull ResourceLocation recipeId, @Nonnull JsonObject json) {
 
-        if (!json.has("ingredient")) throw new JsonSyntaxException("The object 'ingredient' is missing.");
-        if(!json.get("ingredient").isJsonObject()) throw new JsonSyntaxException("'ingredient' is expected to be an object.");
-        if (!json.has("result")) throw new JsonSyntaxException("The object 'result' is missing.");
-        if(!json.get("result").isJsonObject()) throw new JsonSyntaxException("'result' is expected to be an object.");
+        if(!json.has("ingredient"))
+            throw new JsonSyntaxException("The object 'ingredient' is missing.");
+        if(!json.get("ingredient").isJsonObject())
+            throw new JsonSyntaxException("'ingredient' is expected to be an object.");
+        if(!json.has("result"))
+            throw new JsonSyntaxException("The object 'result' is missing.");
+        if(!json.get("result").isJsonObject())
+            throw new JsonSyntaxException("'result' is expected to be an object.");
 
         String group = GsonHelper.getAsString(json, "group", "");
         Ingredient ingredient = Ingredient.fromJson(json.get("ingredient"));

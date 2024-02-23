@@ -13,7 +13,6 @@ import org.dawnoftimebuilder.block.templates.ChairBlock;
 import javax.annotation.Nonnull;
 
 public class BirchFootstoolBlock extends ChairBlock {
-
     private static final VoxelShape X_AXIS_VS = Shapes.or(
             Block.box(4.0F, 0.0F, 2.0F, 12.0F, 3.0F, 14.0F),
             Block.box(2.0F, 3.0F, 0.0F, 14.0F, 9.0F, 16.0F));

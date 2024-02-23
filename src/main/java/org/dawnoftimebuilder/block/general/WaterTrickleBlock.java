@@ -34,7 +34,6 @@ import org.dawnoftimebuilder.util.DoTBBlockStateProperties.WaterTrickleEnd;
 import static net.minecraft.world.InteractionHand.MAIN_HAND;
 
 public abstract class WaterTrickleBlock extends BlockDoTB {
-
     public WaterTrickleBlock(final Properties propertiesIn) {
         super(propertiesIn);
         this.registerDefaultState(this.defaultBlockState().setValue(DoTBBlockStateProperties.NORTH_TRICKLE, false).setValue(DoTBBlockStateProperties.EAST_TRICKLE, false).setValue(DoTBBlockStateProperties.SOUTH_TRICKLE, false)
@@ -53,7 +52,7 @@ public abstract class WaterTrickleBlock extends BlockDoTB {
     public void setPlacedBy(final Level p_180633_1_, final BlockPos p_180633_2_, final BlockState p_180633_3_, final LivingEntity p_180633_4_, final ItemStack p_180633_5_) {
         super.setPlacedBy(p_180633_1_, p_180633_2_, p_180633_3_, p_180633_4_, p_180633_5_);
 
-        if (!p_180633_1_.isClientSide() && p_180633_3_.getValue(BlockStateProperties.UNSTABLE)) {
+        if(!p_180633_1_.isClientSide() && p_180633_3_.getValue(BlockStateProperties.UNSTABLE)) {
             p_180633_1_.scheduleTick(p_180633_2_, this, 5);
         }
     }
@@ -61,14 +60,14 @@ public abstract class WaterTrickleBlock extends BlockDoTB {
     @Override
     public BlockState updateShape(final BlockState stateIn, final Direction directionIn, final BlockState facingStateIn, final LevelAccessor worldIn, final BlockPos currentPosIn, final BlockPos facingPosIn) {
         // If a block above or under changed, the water trickle is set UNSTABLE. Unstable water trickles are updated on the next randomTick.
-        if (directionIn == Direction.UP && facingStateIn.getBlock() instanceof WaterTrickleBlock) {
-            if (!worldIn.isClientSide()) {
+        if(directionIn == Direction.UP && facingStateIn.getBlock() instanceof WaterTrickleBlock) {
+            if(!worldIn.isClientSide()) {
                 (worldIn).scheduleTick(currentPosIn, this, 5);
             }
             return stateIn.setValue(BlockStateProperties.UNSTABLE, true);
         }
-        if (directionIn == Direction.DOWN && worldIn instanceof Level) {
-            if (!worldIn.isClientSide()) {
+        if(directionIn == Direction.DOWN && worldIn instanceof Level) {
+            if(!worldIn.isClientSide()) {
                 (worldIn).scheduleTick(currentPosIn, this, 5);
             }
             return stateIn.setValue(DoTBBlockStateProperties.WATER_TRICKLE_END, this.getWaterTrickleEnd((Level) worldIn, facingPosIn, facingStateIn)).setValue(BlockStateProperties.UNSTABLE, true);
@@ -80,12 +79,13 @@ public abstract class WaterTrickleBlock extends BlockDoTB {
      * Creates an array used to get the list of the water trickles produced by this block.
      *
      * @param currentState BlockState of the WaterTrickle.
+     *
      * @return A boolean array that contains 5 booleans {north, east, south, west center}. Each true value correspond to a water trickle at the corresponding position.
      */
     public boolean[] getWaterTrickleOutPut(final BlockState currentState) {
-        return new boolean[]{
+        return new boolean[] {
                 currentState.getValue(DoTBBlockStateProperties.NORTH_TRICKLE), currentState.getValue(DoTBBlockStateProperties.EAST_TRICKLE), currentState.getValue(DoTBBlockStateProperties.SOUTH_TRICKLE),
-                currentState.getValue(DoTBBlockStateProperties.WEST_TRICKLE), currentState.getValue(DoTBBlockStateProperties.CENTER_TRICKLE)};
+                currentState.getValue(DoTBBlockStateProperties.WEST_TRICKLE), currentState.getValue(DoTBBlockStateProperties.CENTER_TRICKLE) };
     }
 
     /**
@@ -93,16 +93,17 @@ public abstract class WaterTrickleBlock extends BlockDoTB {
      *
      * @param currentState Actual state of the block to synchronize.
      * @param aboveState   BlockState of the block above.
+     *
      * @return An updated BlockState with the updated trickles. Can be AIR blockstate if the block should disappear.
      */
     public BlockState inheritWaterTrickles(final BlockState currentState, final BlockState aboveState) {
         final boolean[] trickles = ((WaterTrickleBlock) aboveState.getBlock()).getWaterTrickleOutPut(aboveState);
         final BooleanProperty[] properties = {
-                DoTBBlockStateProperties.NORTH_TRICKLE, DoTBBlockStateProperties.EAST_TRICKLE, DoTBBlockStateProperties.SOUTH_TRICKLE, DoTBBlockStateProperties.WEST_TRICKLE, DoTBBlockStateProperties.CENTER_TRICKLE};
+                DoTBBlockStateProperties.NORTH_TRICKLE, DoTBBlockStateProperties.EAST_TRICKLE, DoTBBlockStateProperties.SOUTH_TRICKLE, DoTBBlockStateProperties.WEST_TRICKLE, DoTBBlockStateProperties.CENTER_TRICKLE };
         int i = 0;
         BlockState updatedState = currentState;
-        for (final BooleanProperty property : properties) {
-            if (currentState.getValue(property) != trickles[i]) {
+        for(final BooleanProperty property : properties) {
+            if(currentState.getValue(property) != trickles[i]) {
                 updatedState = updatedState.setValue(property, trickles[i]).setValue(BlockStateProperties.UNSTABLE, true);
             }
             i++;
@@ -121,16 +122,16 @@ public abstract class WaterTrickleBlock extends BlockDoTB {
         final BlockState aboveState = world.getBlockState(abovePos);
 
         // First we check if the block under has trickles. If yes, we check if there is some difference, and make it unstable if yes.
-        if (bottomState.getBlock() instanceof WaterTrickleBlock) {
+        if(bottomState.getBlock() instanceof WaterTrickleBlock) {
             final BlockState updatedState = this.inheritWaterTrickles(bottomState, state);
-            if (updatedState.getValue(BlockStateProperties.UNSTABLE)) {
+            if(updatedState.getValue(BlockStateProperties.UNSTABLE)) {
                 world.setBlock(bottomPos, bottomState.setValue(BlockStateProperties.UNSTABLE, true), 10);
             }
             // If the block under is not a water trickle and can be replaced and is not liquid, we put an unstable Flowing Water Trickle.
-        } else if (bottomState.canBeReplaced(this.generateContext(world, bottomPos)) && world.getFluidState(bottomPos).getType().equals(Fluids.EMPTY)) {
+        } else if(bottomState.canBeReplaced(this.generateContext(world, bottomPos)) && world.getFluidState(bottomPos).getType().equals(Fluids.EMPTY)) {
             bottomState = this.createFlowingTrickle(bottomState, this.getWaterTrickleOutPut(state), world, bottomPos);
             // If the block can contain fluid, we fill it with water.
-        } else if (bottomState.getBlock() instanceof LiquidBlockContainer && ((LiquidBlockContainer) bottomState.getBlock()).canPlaceLiquid(world, bottomPos, bottomState, Fluids.WATER)) {
+        } else if(bottomState.getBlock() instanceof LiquidBlockContainer && ((LiquidBlockContainer) bottomState.getBlock()).canPlaceLiquid(world, bottomPos, bottomState, Fluids.WATER)) {
             ((LiquidBlockContainer) bottomState.getBlock()).placeLiquid(world, bottomPos, bottomState, Fluids.WATER.getSource(false));
         }
 
@@ -144,7 +145,7 @@ public abstract class WaterTrickleBlock extends BlockDoTB {
         currentState = currentState.setValue(DoTBBlockStateProperties.WATER_TRICKLE_END, lowerEnd);
 
         // Finally, we synchronize this water trickle with the block above. If it changes, this block stays unstable.
-        if (aboveState.getBlock() instanceof WaterTrickleBlock) {
+        if(aboveState.getBlock() instanceof WaterTrickleBlock) {
             currentState = this.inheritWaterTrickles(currentState, aboveState);
         } else {
             currentState = this.inheritWaterTrickles(currentState, this.defaultBlockState());
@@ -160,24 +161,25 @@ public abstract class WaterTrickleBlock extends BlockDoTB {
      * @param trickles        Array of booleans that correspond to each of the 5 trickles.
      * @param world           Level in which the Water Trickle must be set.
      * @param waterTricklePos BlockPos where the Trickle must be placed.
+     *
      * @return The new BlockState of the block (either a trickle or the old state).
      */
     public BlockState createFlowingTrickle(final BlockState currentState, final boolean[] trickles, final Level world, final BlockPos waterTricklePos) {
         final BooleanProperty[] properties = {
-                DoTBBlockStateProperties.NORTH_TRICKLE, DoTBBlockStateProperties.EAST_TRICKLE, DoTBBlockStateProperties.SOUTH_TRICKLE, DoTBBlockStateProperties.WEST_TRICKLE, DoTBBlockStateProperties.CENTER_TRICKLE};
+                DoTBBlockStateProperties.NORTH_TRICKLE, DoTBBlockStateProperties.EAST_TRICKLE, DoTBBlockStateProperties.SOUTH_TRICKLE, DoTBBlockStateProperties.WEST_TRICKLE, DoTBBlockStateProperties.CENTER_TRICKLE };
         int i = 0;
         int numberOfTrickle = 0;
         BlockState waterTrickleState = DoTBBlocksRegistry.WATER_FLOWING_TRICKLE.get().defaultBlockState();
         // Creates the BlockState of the trickle based on the source block.
-        for (final BooleanProperty property : properties) {
+        for(final BooleanProperty property : properties) {
             waterTrickleState = waterTrickleState.setValue(property, trickles[i]);
-            if (trickles[i]) {
+            if(trickles[i]) {
                 numberOfTrickle++;
             }
             i++;
         }
         // If the number of trickle is still null, then we don't create anything.
-        if (numberOfTrickle > 0) {
+        if(numberOfTrickle > 0) {
             world.setBlock(waterTricklePos, waterTrickleState, 10);
             return waterTrickleState;
         }
@@ -188,7 +190,7 @@ public abstract class WaterTrickleBlock extends BlockDoTB {
     public void animateTick(final BlockState state, final Level worldIn, final BlockPos pos, final RandomSource rand) {
         super.animateTick(state, worldIn, pos, rand);
         final boolean[] trickles = this.getWaterTrickleOutPut(state);
-        if (state.getValue(DoTBBlockStateProperties.WATER_TRICKLE_END) == WaterTrickleEnd.SPLASH) {
+        if(state.getValue(DoTBBlockStateProperties.WATER_TRICKLE_END) == WaterTrickleEnd.SPLASH) {
             this.spawnFullParticles(worldIn, pos, trickles[0], rand, 0.5D, 0.4D);
             this.spawnFullParticles(worldIn, pos, trickles[1], rand, 0.6D, 0.5D);
             this.spawnFullParticles(worldIn, pos, trickles[2], rand, 0.5D, 0.6D);
@@ -200,7 +202,7 @@ public abstract class WaterTrickleBlock extends BlockDoTB {
 
         final BlockState belowState = worldIn.getBlockState(pos.below());
 
-        if (belowState.getBlock() instanceof BasePoolBlock && belowState.getValue(DoTBBlockStateProperties.LEVEL) > ((BasePoolBlock) belowState.getBlock()).faucetLevel) {
+        if(belowState.getBlock() instanceof BasePoolBlock && belowState.getValue(DoTBBlockStateProperties.LEVEL) > ((BasePoolBlock) belowState.getBlock()).faucetLevel) {
             this.spawnLimitedParticles(worldIn, pos, trickles[0], rand, 0.5D, 0.4D);
             this.spawnLimitedParticles(worldIn, pos, trickles[1], rand, 0.6D, 0.5D);
             this.spawnLimitedParticles(worldIn, pos, trickles[2], rand, 0.5D, 0.6D);
@@ -210,7 +212,7 @@ public abstract class WaterTrickleBlock extends BlockDoTB {
     }
 
     private void spawnLimitedParticles(final Level worldIn, final BlockPos pos, final boolean isOn, final RandomSource rand, final double xOffset, final double zOffset) {
-        if (isOn) {
+        if(isOn) {
             double offset = 0.75D;
             worldIn.addParticle(ParticleTypes.BUBBLE_POP, true, pos.getX() + xOffset + (rand.nextDouble() * offset - offset / 2.0D), pos.getY() + 0.1D, pos.getZ() + zOffset + (rand.nextDouble() * offset - offset / 2.0D), 0.0125D, 0.075D,
                     0.0125D);
@@ -222,9 +224,9 @@ public abstract class WaterTrickleBlock extends BlockDoTB {
     }
 
     private void spawnFullParticles(final Level worldIn, final BlockPos pos, final boolean isOn, final RandomSource rand, final double xOffset, final double zOffset) {
-        if (isOn) {
+        if(isOn) {
             double offset;
-            for (int i = 0; i < 4; i++) {
+            for(int i = 0; i < 4; i++) {
                 offset = 0.75D;
                 worldIn.addParticle(ParticleTypes.BUBBLE_POP, true, pos.getX() + xOffset + (rand.nextDouble() * offset - offset / 2.0D), pos.getY() + 0.1D, pos.getZ() + zOffset + (rand.nextDouble() * offset - offset / 2.0D), 0.0125D,
                         0.075D, 0.0125D);
@@ -237,11 +239,11 @@ public abstract class WaterTrickleBlock extends BlockDoTB {
     }
 
     protected WaterTrickleEnd getWaterTrickleEnd(final Level level, final BlockPos bottomPos, final BlockState bottomState) {
-        if (bottomState.getBlock() instanceof WaterTrickleBlock) {
+        if(bottomState.getBlock() instanceof WaterTrickleBlock) {
             return WaterTrickleEnd.STRAIGHT;
         }
         // If the face under the water trickle is full or if there is a fluid, there is a splash effect.
-        if (!level.getFluidState(bottomPos).getType().equals(Fluids.EMPTY)) {
+        if(!level.getFluidState(bottomPos).getType().equals(Fluids.EMPTY)) {
             return WaterTrickleEnd.SPLASH;
         }
         return WaterTrickleEnd.FADE;
@@ -253,7 +255,7 @@ public abstract class WaterTrickleBlock extends BlockDoTB {
     }
 
     protected static BooleanProperty getPropertyFromDirection(final Direction facing) {
-        switch (facing) {
+        switch(facing) {
             default:
                 return DoTBBlockStateProperties.CENTER;
             case NORTH:

@@ -15,12 +15,11 @@ import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 
 public class FenceGateBlockDoTB extends FenceGateBlock {
-
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
     public FenceGateBlockDoTB(Properties properties, WoodType woodType) {
         super(properties, woodType);
-        this.registerDefaultState(this.defaultBlockState().setValue(WATERLOGGED,false));
+        this.registerDefaultState(this.defaultBlockState().setValue(WATERLOGGED, false));
     }
 
     @Override
@@ -45,7 +44,7 @@ public class FenceGateBlockDoTB extends FenceGateBlock {
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
         BlockState state = super.getStateForPlacement(context);
-        if(state != null){
+        if(state != null) {
             return state.setValue(WATERLOGGED, context.getLevel().getFluidState(context.getClickedPos()).getType() == Fluids.WATER);
         }
         return null;

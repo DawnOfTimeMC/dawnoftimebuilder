@@ -26,7 +26,6 @@ import static org.dawnoftimebuilder.HandlerCommon.isDotSelected;
 
 @OnlyIn(Dist.CLIENT)
 public class CreativeInventoryEvents {
-
     public static final ResourceLocation CREATIVE_ICONS = new ResourceLocation(MOD_ID, "textures/gui/creative_icons.png");
     public static final ResourceLocation SOCIAL_ICONS = new ResourceLocation(MOD_ID, "textures/gui/social_icons.png");
     private List<CategoryButton> buttons;
@@ -48,21 +47,21 @@ public class CreativeInventoryEvents {
      */
     @SubscribeEvent
     public void onScreenInit(ScreenEvent.Init.Post event) {
-        if (event.getScreen() instanceof CreativeModeInventoryScreen) {
+        if(event.getScreen() instanceof CreativeModeInventoryScreen) {
 
             this.guiCenterX = ((CreativeModeInventoryScreen) event.getScreen()).getGuiLeft();
             this.guiCenterY = ((CreativeModeInventoryScreen) event.getScreen()).getGuiTop();
             this.buttons = new ArrayList<>();
 
             event.addListener(this.btnScrollUp = new GroupButton(this.guiCenterX - 22, this.guiCenterY - 22, Component.empty(), button -> {
-                if (page > 0) {
+                if(page > 0) {
                     page--;
                     this.updateCategoryButtons();
                 }
             }, CREATIVE_ICONS, 0, 56));
 
             event.addListener(this.btnScrollDown = new GroupButton(this.guiCenterX - 22, this.guiCenterY + 120, Component.empty(), button -> {
-                if (page < MAX_PAGE) {
+                if(page < MAX_PAGE) {
                     page++;
                     this.updateCategoryButtons();
                 }
@@ -73,15 +72,15 @@ public class CreativeInventoryEvents {
             event.addListener(this.patreon = new SocialsButton(this.guiCenterX + 200, this.guiCenterY + 70, "patreon", button -> openLink("https://www.patreon.com/dawnoftimemod")));
             event.addListener(this.github = new SocialsButton(this.guiCenterX + 200, this.guiCenterY + 105, "github", button -> openLink("https://github.com/PierreChag/dawnoftimebuilder")));
 
-            for (int i = 0; i < 4; i++) {
+            for(int i = 0; i < 4; i++) {
                 this.buttons.add(new CategoryButton(this.guiCenterX - 27, this.guiCenterY + 30 * i, i, button -> {
                     CategoryButton categoryButton = (CategoryButton) button;
-                    if (!categoryButton.isSelected()) {
+                    if(!categoryButton.isSelected()) {
                         buttons.get(selectedCategoryID % 4).setSelected(false);
                         categoryButton.setSelected(true);
                         selectedCategoryID = categoryButton.getCategoryID();
                         Screen screen = Minecraft.getInstance().screen;
-                        if (screen instanceof CreativeModeInventoryScreen) {
+                        if(screen instanceof CreativeModeInventoryScreen) {
                             this.updateItems((CreativeModeInventoryScreen) screen);
                         }
                     }
@@ -92,7 +91,7 @@ public class CreativeInventoryEvents {
             this.updateCategoryButtons();
 
             CreativeModeInventoryScreen screen = (CreativeModeInventoryScreen) event.getScreen();
-            if (!DoTBCreativeModeTabsRegistry.DOT_TAB.get().shouldDisplay()) {
+            if(!DoTBCreativeModeTabsRegistry.DOT_TAB.get().shouldDisplay()) {
                 System.out.println("je suce ton geuzgué");
                 this.btnScrollUp.visible = true;
                 this.btnScrollDown.visible = true;
@@ -118,18 +117,19 @@ public class CreativeInventoryEvents {
 
     @SuppressWarnings("unused") // Gets called by coremod // TODO call by mixin xd
     public void onCreativeTabChange(CreativeModeInventoryScreen screen, CreativeModeTab tab) {
-        if (!DoTBCreativeModeTabsRegistry.DOT_TAB.get().shouldDisplay()) {
+        if(!DoTBCreativeModeTabsRegistry.DOT_TAB.get().shouldDisplay()) {
             tabDoTBSelected = true;
             this.updateItems(screen);
-        } else tabDoTBSelected = false;
-       // this.updateCategoryButtons();
+        } else
+            tabDoTBSelected = false;
+        // this.updateCategoryButtons();
     }
 
     @SubscribeEvent
     public void onScreenDrawPre(ScreenEvent.Render.Pre event) {
-        if (event.getScreen() instanceof CreativeModeInventoryScreen screen) {
-            if (isDotSelected()) {
-                if (!tabDoTBSelected) {
+        if(event.getScreen() instanceof CreativeModeInventoryScreen screen) {
+            if(isDotSelected()) {
+                if(!tabDoTBSelected) {
                     updateItems(screen);
                     tabDoTBSelected = true;
                 }
@@ -151,11 +151,11 @@ public class CreativeInventoryEvents {
      */
     @SubscribeEvent
     public void onScreenDrawPost(ScreenEvent.Render.Post event) {
-        if (event.getScreen() instanceof CreativeModeInventoryScreen screen) {
+        if(event.getScreen() instanceof CreativeModeInventoryScreen screen) {
             this.guiCenterX = screen.getGuiLeft();
             this.guiCenterY = screen.getGuiTop();
 
-            if (isDotSelected()) {
+            if(isDotSelected()) {
                 this.btnScrollUp.visible = true;
                 this.btnScrollDown.visible = true;
                 this.discord.visible = true;
@@ -168,13 +168,12 @@ public class CreativeInventoryEvents {
 
                 // Render tooltips after so it renders above buttons
                 this.buttons.forEach(button -> {
-                    if (button.isMouseOver(event.getMouseX(), event.getMouseY())) {
+                    if(button.isMouseOver(event.getMouseX(), event.getMouseY())) {
                         //TODO: Fix
                         //screen.renderTooltip(event.getPoseStack(), CreativeInventoryCategories.values()[button.getCategoryID()].getTranslation(), event.getMouseX(), event.getMouseY());
                     }
                 });
-
-            } else if (tabDoTBSelected) {
+            } else if(tabDoTBSelected) {
                 this.btnScrollUp.visible = false;
                 this.btnScrollDown.visible = false;
                 this.discord.visible = false;
@@ -190,9 +189,9 @@ public class CreativeInventoryEvents {
 
     @SubscribeEvent
     public void onScreenDrawBackground(ScreenEvent.BackgroundRendered event) {
-        if (event.getScreen() instanceof CreativeModeInventoryScreen screen) {
-            if (isDotSelected()) {
-                if (!tabDoTBSelected) {
+        if(event.getScreen() instanceof CreativeModeInventoryScreen screen) {
+            if(isDotSelected()) {
+                if(!tabDoTBSelected) {
                     updateItems(screen);
                     tabDoTBSelected = true;
                 }
@@ -208,7 +207,6 @@ public class CreativeInventoryEvents {
             }
         }
     }
-
 
     private void updateCategoryButtons() {
         this.btnScrollUp.active = (page > 0);
@@ -228,10 +226,9 @@ public class CreativeInventoryEvents {
         Util.getPlatform().openUri(link);
     }
 
-
     @SubscribeEvent
     public void onMouseScroll(ScreenEvent.MouseScrolled.Pre event) {
-        if (event.getScreen() instanceof CreativeModeInventoryScreen CreativeModeInventoryScreen) {
+        if(event.getScreen() instanceof CreativeModeInventoryScreen CreativeModeInventoryScreen) {
             int guiLeft = CreativeModeInventoryScreen.getGuiLeft();
             int guiTop = CreativeModeInventoryScreen.getGuiTop();
             int startX = guiLeft - 32;
@@ -239,8 +236,8 @@ public class CreativeInventoryEvents {
             //noinspection UnnecessaryLocalVariable
             int endX = guiLeft;
             int endY = startY + 28 * 4 + 3;
-            if (event.getMouseX() >= startX && event.getMouseX() < endX && event.getMouseY() >= startY && event.getMouseY() < endY) {
-                if (event.getScrollDelta() > 0) {
+            if(event.getMouseX() >= startX && event.getMouseX() < endX && event.getMouseY() >= startY && event.getMouseY() < endY) {
+                if(event.getScrollDelta() > 0) {
                     this.scrollUp();
                 } else {
                     this.scrollDown();
@@ -252,8 +249,8 @@ public class CreativeInventoryEvents {
 
     private void scrollUp() {
         Screen screen = Minecraft.getInstance().screen;
-        if (screen instanceof CreativeModeInventoryScreen) {
-            if (page > 0) {
+        if(screen instanceof CreativeModeInventoryScreen) {
+            if(page > 0) {
                 page--;
                 this.updateCategoryButtons();
             }
@@ -262,8 +259,8 @@ public class CreativeInventoryEvents {
 
     private void scrollDown() {
         Screen screen = Minecraft.getInstance().screen;
-        if (screen instanceof CreativeModeInventoryScreen) {
-            if (page < MAX_PAGE) {
+        if(screen instanceof CreativeModeInventoryScreen) {
+            if(page < MAX_PAGE) {
                 page++;
                 this.updateCategoryButtons();
             }

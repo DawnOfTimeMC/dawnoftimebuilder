@@ -31,22 +31,19 @@ public class LimestoneChimneyBlock extends BaseChimneyDoTB {
         builder.add(LimestoneChimneyBlock.HORIZONTAL_AXIS);
     }
 
-
     @Override
     public VoxelShape getShape(final BlockState state, final BlockGetter worldIn, final BlockPos pos, final CollisionContext context) {
-        if (state.getValue(ColumnConnectibleBlock.VERTICAL_CONNECTION) == DoTBBlockStateProperties.VerticalConnection.NONE) {
+        if(state.getValue(ColumnConnectibleBlock.VERTICAL_CONNECTION) == DoTBBlockStateProperties.VerticalConnection.NONE) {
             return LimestoneChimneyBlock.SHAPES[0];
         }
         return LimestoneChimneyBlock.SHAPES[state.getValue(ColumnConnectibleBlock.VERTICAL_CONNECTION).getIndex() - 1];
     }
-
 
     @Override
     public BlockState getStateForPlacement(final BlockPlaceContext context) {
         final BlockState state = super.getStateForPlacement(context);
         return state.setValue(LimestoneChimneyBlock.HORIZONTAL_AXIS, context.getHorizontalDirection().getAxis() == Direction.Axis.X ? Direction.Axis.Z : Direction.Axis.X);
     }
-
 
     /**
      * @return Stores VoxelShape with index : <p/>
@@ -55,7 +52,7 @@ public class LimestoneChimneyBlock extends BaseChimneyDoTB {
      * 2 : Both
      */
     private static VoxelShape[] makeShapes() {
-        return new VoxelShape[]{
+        return new VoxelShape[] {
                 Shapes.or(
                         Block.box(2.0D, 0.0D, 2.0D, 14.0D, 8.0D, 14.0D),
                         Block.box(4.0D, 8.0D, 4.0D, 12.0D, 16.0D, 12.0D)

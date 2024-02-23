@@ -16,7 +16,6 @@ import static org.dawnoftimebuilder.registry.DoTBItemsRegistry.*;
 
 @OnlyIn(Dist.CLIENT)
 public enum CreativeInventoryCategories {
-
     GENERAL("general",
             RAMMED_DIRT.get().asItem(),
             THATCH_WHEAT.get().asItem(),
@@ -171,7 +170,6 @@ public enum CreativeInventoryCategories {
             FIREPLACE.get().asItem(),
             FLINT_AND_STEEL
     ),
-
     FRENCH("french",
             THATCH_WHEAT.get().asItem(),
             THATCH_WHEAT_STAIRS.get().asItem(),
@@ -210,7 +208,6 @@ public enum CreativeInventoryCategories {
             BOXWOOD_TALL_HEDGE.get().asItem(),
             FLINT_AND_STEEL
     ),
-
     GERMAN("german",
             THATCH_WHEAT.get().asItem(),
             THATCH_WHEAT_STAIRS.get().asItem(),
@@ -285,7 +282,6 @@ public enum CreativeInventoryCategories {
             IVY.get().asItem(),
             FLINT_AND_STEEL
     ),
-
     JAPANESE("japanese",
             GRAVEL.asItem(),
             STRAIGHT_RAKED_GRAVEL.get().asItem(),
@@ -376,7 +372,6 @@ public enum CreativeInventoryCategories {
             BAMBOO_HAT.get(),*/
             FLINT_AND_STEEL
     ),
-
     PRE_COLOMBIAN("pre_columbian",
             THATCH_WHEAT.get().asItem(),
             THATCH_WHEAT_STAIRS.get().asItem(),
@@ -420,7 +415,6 @@ public enum CreativeInventoryCategories {
             MAIZE.get().asItem(),*/
             FLINT_AND_STEEL
     ),
-
     ROMAN("roman",
             SANDSTONE.asItem(),
             SANDSTONE_STAIRS.asItem(),
@@ -485,7 +479,6 @@ public enum CreativeInventoryCategories {
             //GRAPE.get(),
             GRAPE_SEEDS.get()
     ),
-
     // Temporary position until this tab is done.
     PERSIAN("persian",
             PERSIAN_CARPET_RED.get().asItem(),
@@ -507,7 +500,6 @@ public enum CreativeInventoryCategories {
             ANUBIS_ARMOR_SET.legs.get(),
             ANUBIS_ARMOR_SET.feet.get()
     );*/
-
     private final String name;
     private final Component translation;
     private final ArrayList<Item> items = new ArrayList<>();
@@ -526,7 +518,7 @@ public enum CreativeInventoryCategories {
         return this.translation;
     }
 
-    public ArrayList<Item> getItems(){
+    public ArrayList<Item> getItems() {
         return this.items;
     }
 }

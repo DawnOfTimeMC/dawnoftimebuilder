@@ -30,9 +30,9 @@ public class DawnOfTimeBuilder {
     }
 
     public void createCreativeTab(BuildCreativeModeTabContentsEvent event) {
-        if (event.getTab() == DoTBCreativeModeTabsRegistry.DOT_TAB.get()) {
+        if(event.getTab() == DoTBCreativeModeTabsRegistry.DOT_TAB.get()) {
             ForgeRegistries.ITEMS.getEntries().stream().filter(entry -> entry.getKey().location().getNamespace()
-                    .equalsIgnoreCase(MOD_ID)).map(Map.Entry::getValue)
+                            .equalsIgnoreCase(MOD_ID)).map(Map.Entry::getValue)
                     .forEachOrdered(event::accept);
         }
     }

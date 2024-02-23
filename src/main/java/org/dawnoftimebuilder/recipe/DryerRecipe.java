@@ -5,10 +5,7 @@ import net.minecraft.core.RegistryAccess;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.crafting.Recipe;
-import net.minecraft.world.item.crafting.RecipeSerializer;
-import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
 
 import javax.annotation.Nonnull;
@@ -18,9 +15,7 @@ import static org.dawnoftimebuilder.registry.DoTBBlocksRegistry.BAMBOO_DRYING_TR
 import static org.dawnoftimebuilder.registry.DoTBRecipesRegistry.DRYER_RECIPE;
 
 public class DryerRecipe implements Recipe<Inventory> {
-
     public static final RecipeType<DryerRecipe> DRYING = RecipeType.register(new ResourceLocation(MOD_ID, "drying").toString());
-
     private final ResourceLocation id;
     final String group;
     final Ingredient ingredient;
@@ -97,7 +92,7 @@ public class DryerRecipe implements Recipe<Inventory> {
     }
 
     @Override
-    public boolean isSpecial(){
+    public boolean isSpecial() {
         return true;
     }
 }

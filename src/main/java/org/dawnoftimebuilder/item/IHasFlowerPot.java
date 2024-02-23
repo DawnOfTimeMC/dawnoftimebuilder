@@ -7,7 +7,6 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public interface IHasFlowerPot {
-
     /**
      * Function called at registration and used to decide whether a FlowerPotBlock must be registered for this Item.
      *
@@ -21,6 +20,7 @@ public interface IHasFlowerPot {
      * Function called in registration to get the PotBlock instance associated to this block. Only called if hasFlowerPot() is true.
      *
      * @param itemInPot is this item instance.
+     *
      * @return the new instance of PotBlock.
      */
     @Nonnull

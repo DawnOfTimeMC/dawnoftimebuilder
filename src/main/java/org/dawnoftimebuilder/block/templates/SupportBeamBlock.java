@@ -19,7 +19,6 @@ import org.dawnoftimebuilder.block.IBlockPillar;
 import org.dawnoftimebuilder.util.DoTBBlockStateProperties;
 
 public class SupportBeamBlock extends WaterloggedBlock {
-
     private static final EnumProperty<DoTBBlockStateProperties.PillarConnection> PILLAR_CONNECTION = DoTBBlockStateProperties.PILLAR_CONNECTION;
     public static final EnumProperty<Direction.Axis> HORIZONTAL_AXIS = BlockStateProperties.HORIZONTAL_AXIS;
     private static final BooleanProperty SUBAXIS = DoTBBlockStateProperties.SUBAXIS;
@@ -29,17 +28,17 @@ public class SupportBeamBlock extends WaterloggedBlock {
         super(properties);
         this.registerDefaultState(this.defaultBlockState().setValue(HORIZONTAL_AXIS, Direction.Axis.X).setValue(SUBAXIS, false).setValue(PILLAR_CONNECTION, DoTBBlockStateProperties.PillarConnection.NOTHING));
     }
-    
+
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         super.createBlockStateDefinition(builder);
         builder.add(PILLAR_CONNECTION, HORIZONTAL_AXIS, SUBAXIS);
     }
-    
+
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
         int index = 0;
-        switch (state.getValue(PILLAR_CONNECTION)) {
+        switch(state.getValue(PILLAR_CONNECTION)) {
             case FOUR_PX:
                 index = 3;
                 break;
@@ -51,8 +50,10 @@ public class SupportBeamBlock extends WaterloggedBlock {
                 break;
             default:
         }
-        if (state.getValue(SUBAXIS)) index += 2;
-        else if (state.getValue(HORIZONTAL_AXIS) == Direction.Axis.Z) index++;
+        if(state.getValue(SUBAXIS))
+            index += 2;
+        else if(state.getValue(HORIZONTAL_AXIS) == Direction.Axis.Z)
+            index++;
         return SHAPES[index];
     }
 
@@ -79,7 +80,7 @@ public class SupportBeamBlock extends WaterloggedBlock {
         VoxelShape vs_axis_4px = Block.box(6.0D, 0.0D, 6.0D, 10.0D, 16.0D, 10.0D);
         VoxelShape vs_axis_8px = Block.box(4.0D, 0.0D, 4.0D, 12.0D, 16.0D, 12.0D);
         VoxelShape vs_axis_10px = Block.box(3.0D, 0.0D, 3.0D, 13.0D, 16.0D, 13.0D);
-        return new VoxelShape[]{
+        return new VoxelShape[] {
                 vs_axis_x,
                 vs_axis_z,
                 vs_axis_x_z,
@@ -108,11 +109,11 @@ public class SupportBeamBlock extends WaterloggedBlock {
     }
 
     private BlockState getCurrentState(BlockState stateIn, LevelAccessor worldIn, BlockPos currentPos) {
-        if (stateIn.getValue(HORIZONTAL_AXIS) == Direction.Axis.X) {
-            if (canConnect(worldIn, currentPos, Direction.NORTH) || canConnect(worldIn, currentPos, Direction.SOUTH))
+        if(stateIn.getValue(HORIZONTAL_AXIS) == Direction.Axis.X) {
+            if(canConnect(worldIn, currentPos, Direction.NORTH) || canConnect(worldIn, currentPos, Direction.SOUTH))
                 stateIn = stateIn.setValue(SUBAXIS, true);
         } else {
-            if (canConnect(worldIn, currentPos, Direction.EAST) || canConnect(worldIn, currentPos, Direction.WEST))
+            if(canConnect(worldIn, currentPos, Direction.EAST) || canConnect(worldIn, currentPos, Direction.WEST))
                 stateIn = stateIn.setValue(SUBAXIS, true);
         }
         return stateIn.setValue(PILLAR_CONNECTION, IBlockPillar.getPillarConnectionAbove(worldIn, currentPos.below()));
@@ -124,21 +125,24 @@ public class SupportBeamBlock extends WaterloggedBlock {
     }
 
     private boolean isConnectibleBeam(BlockState state, Direction direction) {
-        if (state.getBlock() instanceof BeamBlock)
+        if(state.getBlock() instanceof BeamBlock)
             return (direction.getAxis() == Direction.Axis.X) ? state.getValue(BeamBlock.AXIS_X) : state.getValue(BeamBlock.AXIS_Z);
-        else return false;
+        else
+            return false;
     }
 
     private boolean isConnectibleSupportBeam(BlockState state, Direction direction) {
-        if (state.getBlock() instanceof SupportBeamBlock)
+        if(state.getBlock() instanceof SupportBeamBlock)
             return state.getValue(SupportBeamBlock.HORIZONTAL_AXIS) == direction.getAxis();
-        else return false;
+        else
+            return false;
     }
 
     @Override
     public BlockState rotate(BlockState state, Rotation rot) {
-        if (rot == Rotation.CLOCKWISE_90 || rot == Rotation.COUNTERCLOCKWISE_90)
+        if(rot == Rotation.CLOCKWISE_90 || rot == Rotation.COUNTERCLOCKWISE_90)
             return state.setValue(HORIZONTAL_AXIS, (state.getValue(HORIZONTAL_AXIS) == Direction.Axis.X) ? Direction.Axis.Z : Direction.Axis.X);
-        else return super.rotate(state, rot);
+        else
+            return super.rotate(state, rot);
     }
 }

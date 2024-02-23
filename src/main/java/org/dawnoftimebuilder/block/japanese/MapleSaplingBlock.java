@@ -10,10 +10,7 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.FlintAndSteelItem;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.AirBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.BonemealableBlock;
@@ -39,22 +36,22 @@ public class MapleSaplingBlock extends BushBlockDoT implements IBlockGeneration,
         final BlockPos floorCenter = bottomCenterIn.below();
         BlockState state = worldIn.getBlockState(floorCenter);
 
-        if (!state.is(BlockTags.DIRT)) {
+        if(!state.is(BlockTags.DIRT)) {
             return false;
         }
 
         state = worldIn.getBlockState(bottomCenterIn);
 
-        if (!state.canBeReplaced() || !isSaplingCallIn) {
+        if(!state.canBeReplaced() || !isSaplingCallIn) {
             return true;
         }
 
-        for (int x = -1; x <= 1; x++) {
-            for (int y = 0; y <= 1; y++) {
-                for (int z = -1; z <= 1; z++) {
+        for(int x = -1; x <= 1; x++) {
+            for(int y = 0; y <= 1; y++) {
+                for(int z = -1; z <= 1; z++) {
                     state = worldIn.getBlockState(bottomCenterIn.offset(x, y + 1, z));
 
-                    if (state != null && !(state.getBlock() instanceof AirBlock)) {
+                    if(state != null && !(state.getBlock() instanceof AirBlock)) {
                         return false;
                     }
                 }
@@ -65,13 +62,13 @@ public class MapleSaplingBlock extends BushBlockDoT implements IBlockGeneration,
     }
 
     public static void placeFinalTreeIfPossible(final LevelAccessor worldIn, final BlockPos centerPosIn) {
-        if (MapleSaplingBlock.isValidForPlacement(worldIn, centerPosIn, true)) {
+        if(MapleSaplingBlock.isValidForPlacement(worldIn, centerPosIn, true)) {
             final Direction direction = Direction.Plane.HORIZONTAL.getRandomDirection(worldIn.getRandom());
             worldIn.setBlock(centerPosIn, DoTBBlocksRegistry.MAPLE_RED_TRUNK.get().defaultBlockState().setValue(MapleTrunkBlock.FACING, direction), 10);
 
-            for (int x = -1; x <= 1; x++) {
-                for (int y = 0; y <= 1; y++) {
-                    for (int z = -1; z <= 1; z++) {
+            for(int x = -1; x <= 1; x++) {
+                for(int y = 0; y <= 1; y++) {
+                    for(int z = -1; z <= 1; z++) {
                         final BlockPos newBlockPosition = new BlockPos(centerPosIn.getX() + x, centerPosIn.getY() + y + 1, centerPosIn.getZ() + z);
 
                         worldIn.setBlock(newBlockPosition, DoTBBlocksRegistry.MAPLE_RED_LEAVES.get().defaultBlockState().setValue(MapleTrunkBlock.FACING, direction).setValue(MapleLeavesBlock.MULTIBLOCK_X, x + 1).setValue(MapleLeavesBlock.MULTIBLOCK_Y, y).setValue(MapleLeavesBlock.MULTIBLOCK_Z, z + 1), 10);
@@ -92,8 +89,8 @@ public class MapleSaplingBlock extends BushBlockDoT implements IBlockGeneration,
     @Override
     public InteractionResult use(final BlockState p_225533_1_In, final Level p_225533_2_In, final BlockPos p_225533_3_In, final Player p_225533_4_In, final InteractionHand p_225533_5_In, final BlockHitResult p_225533_6_In) {
         final Item mainItem = p_225533_4_In.getMainHandItem().getItem();
-        if (mainItem instanceof FlintAndSteelItem) {
-            if (!p_225533_2_In.isClientSide) {
+        if(mainItem instanceof FlintAndSteelItem) {
+            if(!p_225533_2_In.isClientSide) {
                 p_225533_2_In.setBlock(p_225533_3_In, DoTBBlocksRegistry.PAUSED_MAPLE_RED_SAPLING.get().defaultBlockState(), 35);
                 p_225533_2_In.levelEvent(p_225533_4_In, 2001, p_225533_3_In, Block.getId(p_225533_1_In));
             }
@@ -120,7 +117,6 @@ public class MapleSaplingBlock extends BushBlockDoT implements IBlockGeneration,
         return new PotAndBlockItem(this, new Item.Properties());
     }
 
-
     @Override
     protected void createBlockStateDefinition(final StateDefinition.Builder<Block, BlockState> p_206840_1_) {
         p_206840_1_.add(MapleSaplingBlock.STAGE);
@@ -129,7 +125,6 @@ public class MapleSaplingBlock extends BushBlockDoT implements IBlockGeneration,
     /**
      * Growable code
      */
-
     @Override
     public boolean isRandomlyTicking(final BlockState blockstateIn) {
         return true;
@@ -137,8 +132,8 @@ public class MapleSaplingBlock extends BushBlockDoT implements IBlockGeneration,
 
     @Override
     public void tick(final BlockState p_225542_1_, final ServerLevel p_225542_2_, final BlockPos p_225542_3_, final RandomSource p_225542_4_) {
-        if (p_225542_2_.getMaxLocalRawBrightness(p_225542_3_.above()) >= 9 && p_225542_4_.nextInt(7) == 0) {
-            if (!p_225542_2_.isAreaLoaded(p_225542_3_, 1)) {
+        if(p_225542_2_.getMaxLocalRawBrightness(p_225542_3_.above()) >= 9 && p_225542_4_.nextInt(7) == 0) {
+            if(!p_225542_2_.isAreaLoaded(p_225542_3_, 1)) {
                 return; // Forge: prevent loading unloaded chunks when checking neighbor's light
             }
             this.advanceTree(p_225542_2_, p_225542_3_, p_225542_1_, p_225542_4_);
@@ -146,9 +141,9 @@ public class MapleSaplingBlock extends BushBlockDoT implements IBlockGeneration,
     }
 
     public void advanceTree(final ServerLevel p_226942_1_, final BlockPos p_226942_2_, final BlockState p_226942_3_, final RandomSource p_226942_4_) {
-        if (p_226942_3_.getValue(MapleSaplingBlock.STAGE) == 0) {
+        if(p_226942_3_.getValue(MapleSaplingBlock.STAGE) == 0) {
             p_226942_1_.setBlock(p_226942_2_, p_226942_3_.cycle(MapleSaplingBlock.STAGE), 4);
-        } else if (MapleSaplingBlock.isValidForPlacement(p_226942_1_, p_226942_2_, true)) {
+        } else if(MapleSaplingBlock.isValidForPlacement(p_226942_1_, p_226942_2_, true)) {
             MapleSaplingBlock.placeFinalTreeIfPossible(p_226942_1_, p_226942_2_);
         }
     }
@@ -171,7 +166,6 @@ public class MapleSaplingBlock extends BushBlockDoT implements IBlockGeneration,
     /**
      * Lights methods
      */
-
     @Override
     public boolean useShapeForLightOcclusion(final BlockState p_220074_1_In) {
         return false;

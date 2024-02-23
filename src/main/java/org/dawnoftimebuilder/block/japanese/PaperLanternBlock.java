@@ -11,8 +11,7 @@ import org.dawnoftimebuilder.block.templates.WaterloggedBlock;
 
 import javax.annotation.Nonnull;
 
-public class PaperLanternBlock extends WaterloggedBlock implements IBlockSpecialDisplay{
-
+public class PaperLanternBlock extends WaterloggedBlock implements IBlockSpecialDisplay {
     private static final VoxelShape VS = Block.box(4.0D, 0.0D, 4.0D, 12.0D, 15.0D, 12.0D);
 
     public PaperLanternBlock(Properties properties) {

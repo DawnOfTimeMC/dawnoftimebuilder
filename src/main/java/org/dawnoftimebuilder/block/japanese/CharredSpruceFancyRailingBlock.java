@@ -16,7 +16,6 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import org.dawnoftimebuilder.block.templates.PaneBlockDoTB;
 
 public class CharredSpruceFancyRailingBlock extends PaneBlockDoTB {
-
     private static final BooleanProperty HANGING = BlockStateProperties.HANGING;
     private static final VoxelShape[] VS_HANGING = makeHangingShapes();
 
@@ -43,7 +42,7 @@ public class CharredSpruceFancyRailingBlock extends PaneBlockDoTB {
         VoxelShape voxelShape4 = Block.box(7.0D, 6.0D, 7.0D, 16.0D, 16.0D, 9.0D);
         VoxelShape voxelShape5 = Shapes.or(voxelShape1, voxelShape4);
         VoxelShape voxelShape6 = Shapes.or(voxelShape2, voxelShape3);
-        VoxelShape[] allVoxelShape = new VoxelShape[]{Shapes.empty(), voxelShape2, voxelShape3, voxelShape6, voxelShape1, Shapes.or(voxelShape2, voxelShape1), Shapes.or(voxelShape3, voxelShape1), Shapes.or(voxelShape6, voxelShape1), voxelShape4, Shapes.or(voxelShape2, voxelShape4), Shapes.or(voxelShape3, voxelShape4), Shapes.or(voxelShape6, voxelShape4), voxelShape5, Shapes.or(voxelShape2, voxelShape5), Shapes.or(voxelShape3, voxelShape5), Shapes.or(voxelShape6, voxelShape5)};
+        VoxelShape[] allVoxelShape = new VoxelShape[] { Shapes.empty(), voxelShape2, voxelShape3, voxelShape6, voxelShape1, Shapes.or(voxelShape2, voxelShape1), Shapes.or(voxelShape3, voxelShape1), Shapes.or(voxelShape6, voxelShape1), voxelShape4, Shapes.or(voxelShape2, voxelShape4), Shapes.or(voxelShape3, voxelShape4), Shapes.or(voxelShape6, voxelShape4), voxelShape5, Shapes.or(voxelShape2, voxelShape5), Shapes.or(voxelShape3, voxelShape5), Shapes.or(voxelShape6, voxelShape5) };
 
         for(int i = 0; i < 16; ++i) {
             allVoxelShape[i] = Shapes.or(voxelShape, allVoxelShape[i]);
@@ -57,7 +56,8 @@ public class CharredSpruceFancyRailingBlock extends PaneBlockDoTB {
         Direction clickedFace = context.getClickedFace();
         BlockPos pos = context.getClickedPos();
         BlockState state = super.getStateForPlacement(context);
-        if(state == null) state = this.defaultBlockState();
+        if(state == null)
+            state = this.defaultBlockState();
         return state.setValue(HANGING, clickedFace == Direction.DOWN || (clickedFace != Direction.UP && context.getClickLocation().y - pos.getY() > 0.5D));
     }
 

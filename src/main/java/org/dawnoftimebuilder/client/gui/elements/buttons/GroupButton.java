@@ -11,12 +11,11 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class GroupButton extends Button {
-
     private final ResourceLocation iconResource;
     private final int iconU;
     private final int iconV;
 
-    public GroupButton(int x, int y, Component message, OnPress pressable, ResourceLocation iconResource, int iconU, int iconV){
+    public GroupButton(int x, int y, Component message, OnPress pressable, ResourceLocation iconResource, int iconU, int iconV) {
         super(x, y, 20, 20, message, pressable, DEFAULT_NARRATION);
         this.iconResource = iconResource;
         this.iconU = iconU;
@@ -44,5 +43,4 @@ public class GroupButton extends Button {
         ps.popPose();
         super.render(pGuiGraphics, pMouseX, pMouseY, pPartialTick);
     }
-
 }

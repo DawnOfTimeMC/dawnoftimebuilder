@@ -26,7 +26,6 @@ import org.dawnoftimebuilder.util.DoTBBlockStateProperties;
 import javax.annotation.Nullable;
 
 public class MarbleStatueBlock extends WaterloggedBlock {
-
     private static final VoxelShape VS = Block.box(2.0D, 0.0D, 2.0D, 14.0D, 16.0D, 14.0D);
     private static final VoxelShape VS_TOP = Block.box(2.0D, 0.0D, 2.0D, 14.0D, 12.0D, 14.0D);
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
@@ -46,10 +45,10 @@ public class MarbleStatueBlock extends WaterloggedBlock {
     @Override
     public void playerWillDestroy(final Level worldIn, final BlockPos blockPosIn, final BlockState blockStateIn, final Player playerEntityIn) {
 
-        if (playerEntityIn.isCreative() && playerEntityIn.isCreative()) {
+        if(playerEntityIn.isCreative() && playerEntityIn.isCreative()) {
             BlockPos blockPos = blockPosIn;
             System.out.println(blockStateIn.getValue(MarbleStatueBlock.MULTIBLOCK));
-            if (blockStateIn.getValue(MarbleStatueBlock.MULTIBLOCK) > 0) {
+            if(blockStateIn.getValue(MarbleStatueBlock.MULTIBLOCK) > 0) {
                 blockPos = blockPosIn.below(blockStateIn.getValue(MarbleStatueBlock.MULTIBLOCK));
             }
 
@@ -71,7 +70,7 @@ public class MarbleStatueBlock extends WaterloggedBlock {
     public BlockState getStateForPlacement(final BlockPlaceContext context) {
         final BlockPos pos = context.getClickedPos();
         final Level level = context.getLevel();
-        if (!level.getBlockState(pos.above()).canBeReplaced(context) || !level.getBlockState(pos.above(2)).canBeReplaced(context)) {
+        if(!level.getBlockState(pos.above()).canBeReplaced(context) || !level.getBlockState(pos.above(2)).canBeReplaced(context)) {
             return null;
         }
         return super.getStateForPlacement(context).setValue(MarbleStatueBlock.FACING, context.getHorizontalDirection().getOpposite());
@@ -87,19 +86,19 @@ public class MarbleStatueBlock extends WaterloggedBlock {
 
     @Override
     public BlockState updateShape(final BlockState stateIn, final Direction facing, final BlockState facingState, final LevelAccessor worldIn, final BlockPos currentPos, final BlockPos facingPos) {
-        if (facing.getAxis().isHorizontal()) {
+        if(facing.getAxis().isHorizontal()) {
             return stateIn;
         }
         final int multipart = stateIn.getValue(MarbleStatueBlock.MULTIBLOCK);
 
-        if (facing == Direction.UP && multipart < 2 && facingState.getBlock() == this) {
-            if (facingState.getValue(MarbleStatueBlock.FACING) == stateIn.getValue(MarbleStatueBlock.FACING) && facingState.getValue(MarbleStatueBlock.MULTIBLOCK) == multipart + 1) {
+        if(facing == Direction.UP && multipart < 2 && facingState.getBlock() == this) {
+            if(facingState.getValue(MarbleStatueBlock.FACING) == stateIn.getValue(MarbleStatueBlock.FACING) && facingState.getValue(MarbleStatueBlock.MULTIBLOCK) == multipart + 1) {
                 return stateIn;
             }
         }
 
-        if (facing == Direction.DOWN && multipart > 0 && facingState.getBlock() == this) {
-            if (facingState.getValue(MarbleStatueBlock.FACING) == stateIn.getValue(MarbleStatueBlock.FACING) && facingState.getValue(MarbleStatueBlock.MULTIBLOCK) == multipart - 1) {
+        if(facing == Direction.DOWN && multipart > 0 && facingState.getBlock() == this) {
+            if(facingState.getValue(MarbleStatueBlock.FACING) == stateIn.getValue(MarbleStatueBlock.FACING) && facingState.getValue(MarbleStatueBlock.MULTIBLOCK) == multipart - 1) {
                 return stateIn;
             }
         }

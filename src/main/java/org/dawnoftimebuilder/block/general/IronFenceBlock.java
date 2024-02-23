@@ -30,7 +30,6 @@ import javax.annotation.Nullable;
 import java.util.List;
 
 public class IronFenceBlock extends PlateBlock {
-
     private static final BooleanProperty UP = BlockStateProperties.UP;
     private static final VoxelShape[] SHAPES_UP = DoTBUtils.GenerateHorizontalShapes(makeShapes(true));
     private static final VoxelShape[] SHAPES_FULL = DoTBUtils.GenerateHorizontalShapes(makeShapes(false));
@@ -48,7 +47,7 @@ public class IronFenceBlock extends PlateBlock {
     public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
         int index = (state.getValue(FACING).get2DDataValue() + 2) % 4;
         index *= 3;
-        switch (state.getValue(SHAPE)) {
+        switch(state.getValue(SHAPE)) {
             default:
             case OUTER_LEFT:
                 break;
@@ -95,7 +94,7 @@ public class IronFenceBlock extends PlateBlock {
         VoxelShape vs_ne_corner = Block.box(13.0D, 0.0D, 0.0D, 16.0D, size_corner, 3.0D);
         VoxelShape vs_se_corner = Block.box(13.0D, 0.0D, 13.0D, 16.0D, size_corner, 16.0D);
         VoxelShape vs_sw_corner = Block.box(0.0D, 0.0D, 13.0D, 3.0D, size_corner, 16.0D);
-        return new VoxelShape[]{
+        return new VoxelShape[] {
                 vs_nw_corner,
                 vs_north_flat,
                 Shapes.or(vs_north_flat, vs_west_flat, vs_nw_corner),
@@ -124,7 +123,7 @@ public class IronFenceBlock extends PlateBlock {
 
     @Override
     public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, LevelAccessor worldIn, BlockPos currentPos, BlockPos facingPos) {
-        if(facing == Direction.UP){
+        if(facing == Direction.UP) {
             stateIn = stateIn.setValue(UP, !facingState.is(this));
         }
         return super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
@@ -133,29 +132,28 @@ public class IronFenceBlock extends PlateBlock {
     @Override
     public InteractionResult use(final BlockState state, final Level worldIn, final BlockPos pos, final Player player, final InteractionHand handIn, final BlockHitResult hit) {
         final ItemStack heldItemStack = player.getItemInHand(handIn);
-        if (player.isCrouching()) {
+        if(player.isCrouching()) {
             //We remove the highest Block
-            if (state.getValue(UP)) {
+            if(state.getValue(UP)) {
                 return super.use(state, worldIn, pos, player, handIn, hit);
             }
             final BlockPos topPos = this.getHighestColumnPos(worldIn, pos);
-            if (topPos != pos) {
-                if (!worldIn.isClientSide()) {
+            if(topPos != pos) {
+                if(!worldIn.isClientSide()) {
                     worldIn.setBlock(topPos, Blocks.AIR.defaultBlockState(), 35);
-                    if (!player.isCreative()) {
+                    if(!player.isCreative()) {
                         Block.dropResources(state, worldIn, pos, null, player, heldItemStack);
                     }
                 }
                 return InteractionResult.SUCCESS;
             }
-        }
-        else if (!heldItemStack.isEmpty() && heldItemStack.getItem() == this.asItem()) {
+        } else if(!heldItemStack.isEmpty() && heldItemStack.getItem() == this.asItem()) {
             //We put a ColumnBlock on top of the column
             final BlockPos topPos = this.getHighestColumnPos(worldIn, pos).above();
-            if (topPos.getY() <= DoTBUtils.HIGHEST_Y) {
-                if (!worldIn.isClientSide() && worldIn.getBlockState(topPos).isAir()) {
+            if(topPos.getY() <= DoTBUtils.HIGHEST_Y) {
+                if(!worldIn.isClientSide() && worldIn.getBlockState(topPos).isAir()) {
                     worldIn.setBlock(topPos, state, 11);
-                    if (!player.isCreative()) {
+                    if(!player.isCreative()) {
                         heldItemStack.shrink(1);
                     }
                 }
@@ -167,8 +165,8 @@ public class IronFenceBlock extends PlateBlock {
 
     private BlockPos getHighestColumnPos(final Level worldIn, final BlockPos pos) {
         int yOffset;
-        for (yOffset = 0; yOffset + pos.getY() <= DoTBUtils.HIGHEST_Y; yOffset++) {
-            if (worldIn.getBlockState(pos.above(yOffset)).getBlock() != this) {
+        for(yOffset = 0; yOffset + pos.getY() <= DoTBUtils.HIGHEST_Y; yOffset++) {
+            if(worldIn.getBlockState(pos.above(yOffset)).getBlock() != this) {
                 break;
             }
         }

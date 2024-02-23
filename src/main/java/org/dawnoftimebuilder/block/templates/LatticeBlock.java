@@ -19,10 +19,7 @@ import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.state.properties.BooleanProperty;
-import net.minecraft.world.level.block.state.properties.EnumProperty;
-import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
@@ -39,7 +36,6 @@ import static net.minecraft.tags.BlockTags.DIRT;
 import static org.dawnoftimebuilder.util.DoTBUtils.TOOLTIP_CLIMBING_PLANT;
 
 public class LatticeBlock extends WaterloggedBlock implements IBlockClimbingPlant {
-
     public static final BooleanProperty NORTH = BlockStateProperties.NORTH;
     public static final BooleanProperty EAST = BlockStateProperties.EAST;
     public static final BooleanProperty SOUTH = BlockStateProperties.SOUTH;
@@ -63,11 +59,16 @@ public class LatticeBlock extends WaterloggedBlock implements IBlockClimbingPlan
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
         int index = 0;
-        if (state.getValue(SOUTH)) index += 1;
-        if (state.getValue(WEST)) index += 2;
-        if (state.getValue(NORTH)) index += 4;
-        if (state.getValue(EAST)) index += 8;
-        if (index > 14) index = 0;
+        if(state.getValue(SOUTH))
+            index += 1;
+        if(state.getValue(WEST))
+            index += 2;
+        if(state.getValue(NORTH))
+            index += 4;
+        if(state.getValue(EAST))
+            index += 8;
+        if(index > 14)
+            index = 0;
         return SHAPES[index];
     }
 
@@ -99,7 +100,7 @@ public class LatticeBlock extends WaterloggedBlock implements IBlockClimbingPlan
         VoxelShape vs_wn = Shapes.or(vs_west, vs_north);
         VoxelShape vs_ne = Shapes.or(vs_north, vs_east);
         VoxelShape vs_se = Shapes.or(vs_east, vs_south);
-        return new VoxelShape[]{
+        return new VoxelShape[] {
                 Shapes.or(vs_sw, vs_ne),
                 vs_south,
                 vs_west,
@@ -121,9 +122,9 @@ public class LatticeBlock extends WaterloggedBlock implements IBlockClimbingPlan
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
         BlockState state = context.getLevel().getBlockState(context.getClickedPos());
-        if (state.getBlock() != this)
+        if(state.getBlock() != this)
             state = super.getStateForPlacement(context);
-        switch (context.getHorizontalDirection()) {
+        switch(context.getHorizontalDirection()) {
             default:
             case SOUTH:
                 return state.setValue(SOUTH, true);
@@ -139,10 +140,11 @@ public class LatticeBlock extends WaterloggedBlock implements IBlockClimbingPlan
     @Override
     public boolean canBeReplaced(BlockState state, BlockPlaceContext useContext) {
         ItemStack itemstack = useContext.getItemInHand();
-        if (useContext.getPlayer() != null && useContext.getPlayer().isCrouching()) return false;
-        if (itemstack.getItem() == this.asItem()) {
+        if(useContext.getPlayer() != null && useContext.getPlayer().isCrouching())
+            return false;
+        if(itemstack.getItem() == this.asItem()) {
             Direction newDirection = useContext.getHorizontalDirection();
-            switch (newDirection) {
+            switch(newDirection) {
                 default:
                 case SOUTH:
                     return !state.getValue(SOUTH);
@@ -161,7 +163,7 @@ public class LatticeBlock extends WaterloggedBlock implements IBlockClimbingPlan
     public boolean isRandomlyTicking(BlockState state) {
         return !state.getValue(CLIMBING_PLANT).hasNoPlant();
     }
-    
+
     @Override
     public void spawnAfterBreak(BlockState state, ServerLevel worldIn, BlockPos pos, ItemStack stack, boolean p_222953_) {
         super.spawnAfterBreak(state, worldIn, pos, stack, p_222953_);
@@ -176,21 +178,23 @@ public class LatticeBlock extends WaterloggedBlock implements IBlockClimbingPlan
 
     @Override
     public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
-        if (!state.getValue(PERSISTENT)) {
-            if (DoTBUtils.useLighter(worldIn, pos, player, handIn)) {
+        if(!state.getValue(PERSISTENT)) {
+            if(DoTBUtils.useLighter(worldIn, pos, player, handIn)) {
                 Random rand = new Random();
-                for (int i = 0; i < 5; i++) {
+                for(int i = 0; i < 5; i++) {
                     worldIn.addParticle(ParticleTypes.SMOKE, (double) pos.getX() + rand.nextDouble(), (double) pos.getY() + 0.5D + rand.nextDouble() / 2, (double) pos.getZ() + rand.nextDouble(), 0.0D, 0.07D, 0.0D);
                 }
                 worldIn.setBlock(pos, state.setValue(PERSISTENT, true), 10);
                 return InteractionResult.SUCCESS;
             }
         }
-        if (player.isCreative()) {
-            if (this.tryPlacingPlant(state, worldIn, pos, player, handIn)) return InteractionResult.SUCCESS;
+        if(player.isCreative()) {
+            if(this.tryPlacingPlant(state, worldIn, pos, player, handIn))
+                return InteractionResult.SUCCESS;
         } else {
-            if (worldIn.getBlockState(pos.below()).is(DIRT)) {
-                if (this.tryPlacingPlant(state, worldIn, pos, player, handIn)) return InteractionResult.SUCCESS;
+            if(worldIn.getBlockState(pos.below()).is(DIRT)) {
+                if(this.tryPlacingPlant(state, worldIn, pos, player, handIn))
+                    return InteractionResult.SUCCESS;
             }
         }
         return this.harvestPlant(state, worldIn, pos, player, handIn);

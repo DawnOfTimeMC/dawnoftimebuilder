@@ -18,7 +18,6 @@ import org.dawnoftimebuilder.item.templates.PotAndBlockItem;
 import javax.annotation.Nullable;
 
 public class GeraniumBlock extends BlockDoTB implements ICustomBlockItem {
-
     private static final VoxelShape VS = Block.box(-2.0D, -7.0D, -2.0D, 17.0D, 15.0D, 17.0D);
 
     public GeraniumBlock(Properties properties) {
