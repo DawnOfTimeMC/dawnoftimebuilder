@@ -11,7 +11,6 @@ import net.minecraft.world.level.Level;
 import javax.annotation.Nonnull;
 
 import static org.dawnoftimebuilder.DawnOfTimeBuilder.MOD_ID;
-import static org.dawnoftimebuilder.registry.DoTBBlocksRegistry.BAMBOO_DRYING_TRAY;
 import static org.dawnoftimebuilder.registry.DoTBRecipesRegistry.DRYER_RECIPE;
 
 public class DryerRecipe implements Recipe<Inventory> {
@@ -88,7 +87,8 @@ public class DryerRecipe implements Recipe<Inventory> {
 
     @Override
     public ItemStack getToastSymbol() {
-        return new ItemStack(BAMBOO_DRYING_TRAY.get());
+        return null;
+        //return new ItemStack(BAMBOO_DRYING_TRAY.get());
     }
 
     @Override
