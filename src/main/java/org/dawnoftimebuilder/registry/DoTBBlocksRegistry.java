@@ -22,6 +22,7 @@ import org.dawnoftimebuilder.block.precolumbian.*;
 import org.dawnoftimebuilder.block.roman.*;
 import org.dawnoftimebuilder.block.templates.*;
 
+import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -358,13 +359,15 @@ public class DoTBBlocksRegistry {
         return regWithItem(name, block, (blockObject) -> new BlockItem(blockObject.get(), new Item.Properties()));
     }
 
-    private static <T extends Block, U extends Item> RegistryObject<T> regWithItem(String name, Supplier<T> block, Function<RegistryObject<T>, U> item) {
+    private static <T extends Block, U extends Item> RegistryObject<T> regWithItem(String name, Supplier<T> block, @Nullable Function<RegistryObject<T>, U> item) {
         return regWithItem(name, block, name, item);
     }
 
-    private static <T extends Block, U extends Item> RegistryObject<T> regWithItem(String name, Supplier<T> block, String itemName, Function<RegistryObject<T>, U> item) {
+    private static <T extends Block, U extends Item> RegistryObject<T> regWithItem(String name, Supplier<T> block, String itemName, @Nullable Function<RegistryObject<T>, U> item) {
         RegistryObject<T> toReturn = BLOCKS.register(name, block);
-        DoTBItemsRegistry.ITEMS.register(itemName, () -> item.apply(toReturn));
+        if(item != null) {
+            DoTBItemsRegistry.ITEMS.register(itemName, () -> item.apply(toReturn));
+        }
         return toReturn;
     }
 
