@@ -1,6 +1,7 @@
 package org.dawnoftimebuilder.block.german;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelReader;
@@ -29,8 +30,8 @@ public class GeraniumBlock extends BlockDoTB {
 
     @Override
     public boolean canSurvive(BlockState state, LevelReader worldIn, BlockPos pos) {
-        Block blockDown = worldIn.getBlockState(pos.below()).getBlock();
-        return blockDown == Blocks.GRASS_BLOCK || blockDown == Blocks.FARMLAND;
+        BlockState blockDown = worldIn.getBlockState(pos.below());
+        return blockDown.getBlock() == Blocks.GRASS_BLOCK || blockDown.is(BlockTags.DIRT) || blockDown.getBlock() == Blocks.FARMLAND;
     }
 
     @Override
