@@ -5,9 +5,7 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.ForgeRegistries;
-import org.dawnoftimebuilder.registry.DoTBBlocksRegistry;
-import org.dawnoftimebuilder.registry.DoTBEntitiesRegistry;
-import org.dawnoftimebuilder.registry.DoTBItemsRegistry;
+import org.dawnoftimebuilder.registry.*;
 
 import java.util.Map;
 
@@ -18,7 +16,7 @@ public class DawnOfTimeBuilder {
     public DawnOfTimeBuilder() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
-        HandlerCommon.register(modEventBus);
+        DoTBCreativeModeTabsRegistry.register(modEventBus);
         DoTBItemsRegistry.register(modEventBus);
         DoTBBlocksRegistry.register(modEventBus);
         DoTBEntitiesRegistry.register(modEventBus);
@@ -32,7 +30,7 @@ public class DawnOfTimeBuilder {
     }
 
     public void createCreativeTab(BuildCreativeModeTabContentsEvent event) {
-        if (event.getTab() == HandlerCommon.DOT_TAB.get()) {
+        if (event.getTab() == DoTBCreativeModeTabsRegistry.DOT_TAB.get()) {
             ForgeRegistries.ITEMS.getEntries().stream().filter(entry -> entry.getKey().location().getNamespace()
                     .equalsIgnoreCase(MOD_ID)).map(Map.Entry::getValue)
                     .forEachOrdered(event::accept);

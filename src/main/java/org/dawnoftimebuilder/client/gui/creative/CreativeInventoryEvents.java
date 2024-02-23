@@ -16,12 +16,12 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import org.dawnoftimebuilder.client.gui.elements.buttons.CategoryButton;
 import org.dawnoftimebuilder.client.gui.elements.buttons.GroupButton;
 import org.dawnoftimebuilder.client.gui.elements.buttons.SocialsButton;
+import org.dawnoftimebuilder.registry.DoTBCreativeModeTabsRegistry;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.dawnoftimebuilder.DawnOfTimeBuilder.MOD_ID;
-import static org.dawnoftimebuilder.HandlerCommon.DOT_TAB;
 import static org.dawnoftimebuilder.HandlerCommon.isDotSelected;
 
 @OnlyIn(Dist.CLIENT)
@@ -92,7 +92,7 @@ public class CreativeInventoryEvents {
             this.updateCategoryButtons();
 
             CreativeModeInventoryScreen screen = (CreativeModeInventoryScreen) event.getScreen();
-            if (!DOT_TAB.get().shouldDisplay()) {
+            if (!DoTBCreativeModeTabsRegistry.DOT_TAB.get().shouldDisplay()) {
                 System.out.println("je suce ton geuzgué");
                 this.btnScrollUp.visible = true;
                 this.btnScrollDown.visible = true;
@@ -118,7 +118,7 @@ public class CreativeInventoryEvents {
 
     @SuppressWarnings("unused") // Gets called by coremod // TODO call by mixin xd
     public void onCreativeTabChange(CreativeModeInventoryScreen screen, CreativeModeTab tab) {
-        if (!DOT_TAB.get().shouldDisplay()) {
+        if (!DoTBCreativeModeTabsRegistry.DOT_TAB.get().shouldDisplay()) {
             tabDoTBSelected = true;
             this.updateItems(screen);
         } else tabDoTBSelected = false;
