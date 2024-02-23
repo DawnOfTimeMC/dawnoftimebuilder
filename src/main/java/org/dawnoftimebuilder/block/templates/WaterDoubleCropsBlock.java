@@ -2,7 +2,6 @@ package org.dawnoftimebuilder.block.templates;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
@@ -17,7 +16,6 @@ import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.common.PlantType;
-import org.dawnoftimebuilder.item.templates.SoilSeedsItem;
 
 public class WaterDoubleCropsBlock extends DoubleCropsBlock implements SimpleWaterloggedBlock {
     private static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
@@ -25,16 +23,6 @@ public class WaterDoubleCropsBlock extends DoubleCropsBlock implements SimpleWat
     public WaterDoubleCropsBlock(int growingAge) {
         super(PlantType.WATER, growingAge);
         this.registerDefaultState(this.defaultBlockState().setValue(WATERLOGGED, true));
-    }
-
-    @Override
-    public SoilSeedsItem makeSeed(FoodProperties food) {
-        return new SoilSeedsItem(this, food) {
-            @Override
-            public boolean hasFlowerPot() {
-                return false;
-            }
-        };
     }
 
     /**
