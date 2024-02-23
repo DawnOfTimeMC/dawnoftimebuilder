@@ -9,7 +9,6 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -26,16 +25,14 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.dawnoftimebuilder.block.IBlockGeneration;
-import org.dawnoftimebuilder.block.ICustomBlockItem;
 import org.dawnoftimebuilder.block.templates.BlockDoTB;
-import org.dawnoftimebuilder.item.templates.PotAndBlockItem;
 import org.dawnoftimebuilder.util.DoTBBlockStateProperties;
 import org.dawnoftimebuilder.util.DoTBUtils;
 
 import javax.annotation.Nullable;
 import java.util.List;
 
-public class CypressBlock extends BlockDoTB implements IBlockGeneration, ICustomBlockItem {
+public class CypressBlock extends BlockDoTB implements IBlockGeneration {
     private static final IntegerProperty SIZE = DoTBBlockStateProperties.SIZE_0_5;
     private static final VoxelShape VS_0 = Block.box(6.0D, 0.0D, 6.0D, 10.0D, 16.0D, 10.0D);
     private static final VoxelShape VS_1 = Block.box(6.0D, 0.0D, 6.0D, 10.0D, 8.0D, 10.0D);
@@ -203,11 +200,5 @@ public class CypressBlock extends BlockDoTB implements IBlockGeneration, ICustom
                 size++;
             }
         }
-    }
-
-    @Nullable
-    @Override
-    public Item getCustomBlockItem() {
-        return new PotAndBlockItem(this, new Item.Properties());
     }
 }

@@ -3,7 +3,6 @@ package org.dawnoftimebuilder.block.japanese;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.Half;
@@ -15,8 +14,8 @@ import static net.minecraft.world.entity.MobSpawnType.SPAWNER;
 import static org.dawnoftimebuilder.registry.DoTBEntitiesRegistry.SILKMOTH_ENTITY;
 
 public class MulberryBlock extends DoubleGrowingBushBlock {
-    public MulberryBlock(String seedName, PlantType plantType, int cutAge, int growingAge, FoodProperties food) {
-        super(seedName, plantType, cutAge, growingAge, food);
+    public MulberryBlock(PlantType plantType, int cutAge, int growingAge) {
+        super(plantType, cutAge, growingAge);
     }
 
     @Override

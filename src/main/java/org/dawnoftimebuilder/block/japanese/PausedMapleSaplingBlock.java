@@ -5,7 +5,6 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.FlintAndSteelItem;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -17,11 +16,10 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import org.dawnoftimebuilder.block.ICustomBlockItem;
 import org.dawnoftimebuilder.block.templates.BushBlockDoT;
 import org.dawnoftimebuilder.registry.DoTBBlocksRegistry;
 
-public class PausedMapleSaplingBlock extends BushBlockDoT implements ICustomBlockItem {
+public class PausedMapleSaplingBlock extends BushBlockDoT {
     protected static final VoxelShape SHAPE = Block.box(2.0D, 0.0D, 2.0D, 14.0D, 12.0D, 14.0D);
 
     public PausedMapleSaplingBlock(final Properties properties) {
@@ -31,11 +29,6 @@ public class PausedMapleSaplingBlock extends BushBlockDoT implements ICustomBloc
     @Override
     public VoxelShape getShape(final BlockState p_220053_1_In, final BlockGetter p_220053_2_In, final BlockPos p_220053_3_In, final CollisionContext p_220053_4_In) {
         return PausedMapleSaplingBlock.SHAPE;
-    }
-
-    @Override
-    public Item getCustomBlockItem() {
-        return null;
     }
 
     @Override

@@ -10,8 +10,6 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.food.FoodProperties;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.*;
@@ -26,37 +24,22 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.PlantType;
 import org.dawnoftimebuilder.block.IBlockGeneration;
-import org.dawnoftimebuilder.block.ICustomBlockItem;
-import org.dawnoftimebuilder.item.templates.SoilSeedsItem;
 import org.dawnoftimebuilder.util.DoTBUtils;
 
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Random;
 
 import static org.dawnoftimebuilder.util.DoTBUtils.TOOLTIP_CROP;
 
-public class SoilCropsBlock extends CropBlock implements ICustomBlockItem, IBlockGeneration {
-    private final SoilSeedsItem seed;
-    private final String seedName;
+public class SoilCropsBlock extends CropBlock implements IBlockGeneration {
     private final PlantType plantType;
     public static final BooleanProperty PERSISTENT = BlockStateProperties.PERSISTENT;
 
-    public SoilCropsBlock(String seedName, PlantType plantType, FoodProperties food) {
+    public SoilCropsBlock(PlantType plantType) {
         super(BlockDoTB.Properties.copy(Blocks.SUNFLOWER).randomTicks().sound(SoundType.CROP));
         this.plantType = plantType;
-        this.seedName = seedName;
-        this.seed = makeSeed(food);
         this.registerDefaultState(this.stateDefinition.any().setValue(this.getAgeProperty(), 0).setValue(PERSISTENT, false));
-    }
-
-    public SoilCropsBlock(String seedName, PlantType plantType) {
-        this(seedName, plantType, null);
-    }
-
-    public SoilSeedsItem makeSeed(FoodProperties food) {
-        return new SoilSeedsItem(this, food);
     }
 
     @Override
@@ -184,17 +167,6 @@ public class SoilCropsBlock extends CropBlock implements ICustomBlockItem, IBloc
     @Override
     public PlantType getPlantType(BlockGetter world, BlockPos pos) {
         return this.plantType;
-    }
-
-    @Override
-    public Item getCustomBlockItem() {
-        return this.seed;
-    }
-
-    @Nonnull
-    @Override
-    public String getCustomItemName() {
-        return this.seedName;
     }
 
 	/*@Override

@@ -4,7 +4,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -22,11 +21,10 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import org.dawnoftimebuilder.block.ICustomBlockItem;
 import org.dawnoftimebuilder.block.templates.BlockDoTB;
 import org.dawnoftimebuilder.registry.DoTBBlocksRegistry;
 
-public class MapleTrunkBlock extends BlockDoTB implements ICustomBlockItem {
+public class MapleTrunkBlock extends BlockDoTB {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 
     public MapleTrunkBlock(final Properties properties) {
@@ -101,11 +99,6 @@ public class MapleTrunkBlock extends BlockDoTB implements ICustomBlockItem {
     @Override
     public PushReaction getPistonPushReaction(final BlockState state) {
         return PushReaction.DESTROY;
-    }
-
-    @Override
-    public Item getCustomBlockItem() {
-        return null;
     }
 
     @Override

@@ -24,14 +24,10 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.dawnoftimebuilder.block.IBlockGeneration;
-import org.dawnoftimebuilder.block.ICustomBlockItem;
 import org.dawnoftimebuilder.block.templates.BushBlockDoT;
-import org.dawnoftimebuilder.item.templates.PotAndBlockItem;
 import org.dawnoftimebuilder.registry.DoTBBlocksRegistry;
 
-import javax.annotation.Nullable;
-
-public class MapleSaplingBlock extends BushBlockDoT implements IBlockGeneration, ICustomBlockItem, BonemealableBlock {
+public class MapleSaplingBlock extends BushBlockDoT implements IBlockGeneration, BonemealableBlock {
     public final static boolean isValidForPlacement(final LevelAccessor worldIn, final BlockPos bottomCenterIn, final boolean isSaplingCallIn) {
         final BlockPos floorCenter = bottomCenterIn.below();
         BlockState state = worldIn.getBlockState(floorCenter);
@@ -109,12 +105,6 @@ public class MapleSaplingBlock extends BushBlockDoT implements IBlockGeneration,
     @Override
     public void generateOnPos(final LevelAccessor world, final BlockPos centerPosIn, final BlockState state, final RandomSource random) {
         MapleSaplingBlock.placeFinalTreeIfPossible(world, centerPosIn);
-    }
-
-    @Nullable
-    @Override
-    public Item getCustomBlockItem() {
-        return new PotAndBlockItem(this, new Item.Properties());
     }
 
     @Override

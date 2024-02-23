@@ -5,13 +5,8 @@ import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.food.FoodProperties;
-import net.minecraft.world.food.Foods;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -34,12 +29,8 @@ public class DoubleGrowingBushBlock extends GrowingBushBlock {
     public final VoxelShape[] TOP_SHAPES;
     public static final EnumProperty<Half> HALF = BlockStateProperties.HALF;
 
-    public DoubleGrowingBushBlock(String seedName, PlantType plantType, int cutAge, int growingAge) {
-        this(seedName, plantType, growingAge, cutAge, null);
-    }
-
-    public DoubleGrowingBushBlock(String seedName, PlantType plantType, int cutAge, int growingAge, FoodProperties food) {
-        super(seedName, plantType, cutAge, food);
+    public DoubleGrowingBushBlock(PlantType plantType, int cutAge, int growingAge) {
+        super(plantType, cutAge);
         this.growingAge = growingAge;
         this.TOP_SHAPES = this.makeTopShapes();
         this.registerDefaultState(this.defaultBlockState().setValue(HALF, Half.BOTTOM));

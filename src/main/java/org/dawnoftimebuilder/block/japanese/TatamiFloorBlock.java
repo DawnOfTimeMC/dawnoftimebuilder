@@ -18,12 +18,12 @@ import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import org.dawnoftimebuilder.block.templates.NoItemBlock;
+import org.dawnoftimebuilder.block.templates.BlockDoTB;
 
 import static net.minecraft.world.level.block.Blocks.SPRUCE_PLANKS;
 import static org.dawnoftimebuilder.registry.DoTBBlocksRegistry.TATAMI_MAT;
 
-public class TatamiFloorBlock extends NoItemBlock {
+public class TatamiFloorBlock extends BlockDoTB {
     private static final VoxelShape VS = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 17.0D, 16.0D);
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final EnumProperty<Half> HALF = BlockStateProperties.HALF;

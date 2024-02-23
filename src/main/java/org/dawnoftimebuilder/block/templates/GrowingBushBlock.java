@@ -8,8 +8,6 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.food.FoodProperties;
-import net.minecraft.world.food.Foods;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -38,12 +36,8 @@ public class GrowingBushBlock extends SoilCropsBlock {
     private static final IntegerProperty AGE = BlockStateProperties.AGE_5;
     private static final BooleanProperty CUT = DoTBBlockStateProperties.CUT;
 
-    public GrowingBushBlock(String seedName, PlantType plantType, int cutAge) {
-        this(seedName, plantType, cutAge, null);
-    }
-
-    public GrowingBushBlock(String seedName, PlantType plantType, int cutAge, FoodProperties food) {
-        super(seedName, plantType, food);
+    public GrowingBushBlock(PlantType plantType, int cutAge) {
+        super(plantType);
         this.cutAge = cutAge;
         this.registerDefaultState(this.stateDefinition.any().setValue(AGE, 0).setValue(CUT, false).setValue(PERSISTENT, false));
         this.SHAPES = this.makeShapes();

@@ -5,13 +5,8 @@ import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.food.FoodProperties;
-import net.minecraft.world.food.Foods;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -33,15 +28,11 @@ public class DoubleCropsBlock extends SoilCropsBlock {
     public final VoxelShape[] SHAPES;
     public static final EnumProperty<Half> HALF = BlockStateProperties.HALF;
 
-    public DoubleCropsBlock(String seedName, PlantType plantType, int growingAge, FoodProperties food) {
-        super(seedName, plantType, food);
+    public DoubleCropsBlock(PlantType plantType, int growingAge) {
+        super(plantType);
         this.growingAge = growingAge;
         this.SHAPES = this.makeShapes();
         this.registerDefaultState(this.defaultBlockState().setValue(HALF, Half.BOTTOM).setValue(this.getAgeProperty(), 0).setValue(PERSISTENT, false));
-    }
-
-    public DoubleCropsBlock(String seedName, PlantType plantType, int growingAge) {
-        this(seedName, plantType, growingAge, null);
     }
 
     @Override

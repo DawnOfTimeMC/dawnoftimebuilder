@@ -3,7 +3,6 @@ package org.dawnoftimebuilder.block.templates;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.food.FoodProperties;
-import net.minecraft.world.food.Foods;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
@@ -23,12 +22,8 @@ import org.dawnoftimebuilder.item.templates.SoilSeedsItem;
 public class WaterDoubleCropsBlock extends DoubleCropsBlock implements SimpleWaterloggedBlock {
     private static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
-    public WaterDoubleCropsBlock(String seedName, int growingAge) {
-        this(seedName, growingAge, null);
-    }
-
-    public WaterDoubleCropsBlock(String seedName, int growingAge, FoodProperties food) {
-        super(seedName, PlantType.WATER, growingAge, food);
+    public WaterDoubleCropsBlock(int growingAge) {
+        super(PlantType.WATER, growingAge);
         this.registerDefaultState(this.defaultBlockState().setValue(WATERLOGGED, true));
     }
 

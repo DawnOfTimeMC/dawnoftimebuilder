@@ -2,7 +2,6 @@ package org.dawnoftimebuilder.block.general;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
@@ -10,12 +9,9 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
-import org.dawnoftimebuilder.block.ICustomBlockItem;
 import org.dawnoftimebuilder.util.DoTBBlockStateProperties;
 
-import javax.annotation.Nullable;
-
-public class WaterFlowingTrickleBlock extends WaterTrickleBlock implements ICustomBlockItem {
+public class WaterFlowingTrickleBlock extends WaterTrickleBlock {
     public WaterFlowingTrickleBlock(Properties propertiesIn) {
         super(propertiesIn);
     }
@@ -61,11 +57,5 @@ public class WaterFlowingTrickleBlock extends WaterTrickleBlock implements ICust
     @Override
     public boolean canBeReplaced(BlockState p_196253_1_, BlockPlaceContext p_196253_2_) {
         return true;
-    }
-
-    @Nullable
-    @Override
-    public Item getCustomBlockItem() {
-        return null;
     }
 }
