@@ -30,6 +30,7 @@ import org.dawnoftimebuilder.block.templates.BlockDoTB;
 import org.dawnoftimebuilder.registry.DoTBBlocksRegistry;
 import org.dawnoftimebuilder.util.DoTBBlockStateProperties;
 import org.dawnoftimebuilder.util.DoTBBlockStateProperties.WaterTrickleEnd;
+import org.jetbrains.annotations.Nullable;
 
 import static net.minecraft.world.InteractionHand.MAIN_HAND;
 
@@ -49,11 +50,11 @@ public abstract class WaterTrickleBlock extends BlockDoTB {
     }
 
     @Override
-    public void setPlacedBy(final Level p_180633_1_, final BlockPos p_180633_2_, final BlockState p_180633_3_, final LivingEntity p_180633_4_, final ItemStack p_180633_5_) {
-        super.setPlacedBy(p_180633_1_, p_180633_2_, p_180633_3_, p_180633_4_, p_180633_5_);
+    public void setPlacedBy(final Level pLevel, final BlockPos pPos, final BlockState pState, @Nullable LivingEntity pPlacer, ItemStack pStack) {
+        super.setPlacedBy(pLevel, pPos, pState, pPlacer, pStack);
 
-        if(!p_180633_1_.isClientSide() && p_180633_3_.getValue(BlockStateProperties.UNSTABLE)) {
-            p_180633_1_.scheduleTick(p_180633_2_, this, 5);
+        if(!pLevel.isClientSide() && pState.getValue(BlockStateProperties.UNSTABLE)) {
+            pLevel.scheduleTick(pPos, this, 5);
         }
     }
 

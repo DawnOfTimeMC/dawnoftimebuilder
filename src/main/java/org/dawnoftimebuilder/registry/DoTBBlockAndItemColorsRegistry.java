@@ -1,9 +1,15 @@
 package org.dawnoftimebuilder.registry;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.color.block.BlockColor;
 import net.minecraft.client.color.item.ItemColor;
+import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.BiomeColors;
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -25,10 +31,27 @@ public class DoTBBlockAndItemColorsRegistry {
     private final static Map<ItemColor, List<Supplier<Item>>> ITEMS_COLOR_REGISTRY = new HashMap<>();
     // Register colors
     public final static BlockColor WATER_BLOCK_COLOR = DoTBBlockAndItemColorsRegistry.register((blockStateIn, blockDisplayReaderIn, blockPosIn, tintIndexIn) -> BiomeColors.getAverageWaterColor(blockDisplayReaderIn, blockPosIn),
-            () -> DoTBBlocksRegistry.STONE_BRICKS_FAUCET.get(), () -> DoTBBlocksRegistry.STONE_BRICKS_POOL.get(), () -> DoTBBlocksRegistry.STONE_BRICKS_SMALL_POOL.get(), () -> DoTBBlocksRegistry.WATER_FLOWING_TRICKLE.get(),
-            () -> DoTBBlocksRegistry.WATER_SOURCE_TRICKLE.get(), () -> DoTBBlocksRegistry.STONE_BRICKS_WATER_JET.get());
-    public final static ItemColor WATER_ITEM_COLOR = DoTBBlockAndItemColorsRegistry.register((p_getColor_1_, p_getColor_2_) -> 0,
-            () -> DoTBBlocksRegistry.STONE_BRICKS_FAUCET.get().asItem(), () -> DoTBBlocksRegistry.WATER_SOURCE_TRICKLE.get().asItem(), () -> DoTBBlocksRegistry.STONE_BRICKS_WATER_JET.get().asItem());
+            DoTBBlocksRegistry.STONE_BRICKS_FAUCET, DoTBBlocksRegistry.STONE_BRICKS_POOL, DoTBBlocksRegistry.STONE_BRICKS_SMALL_POOL, DoTBBlocksRegistry.WATER_FLOWING_TRICKLE,
+            DoTBBlocksRegistry.WATER_SOURCE_TRICKLE, DoTBBlocksRegistry.STONE_BRICKS_WATER_JET);
+    public final static ItemColor WATER_ITEM_COLOR = DoTBBlockAndItemColorsRegistry.register(
+            (itemStackIn, i) -> {
+                ClientLevel clientLevel = Minecraft.getInstance().level;
+                if(clientLevel == null) {
+                    return 0;
+                }
+
+                Optional<Registry<Biome>> registryOptional = clientLevel.registryAccess().registry(Registries.BIOME);
+                if(registryOptional.isEmpty()) {
+                    return 0;
+                }
+
+                Biome oceanBiome = registryOptional.get().get(Biomes.OCEAN);
+                if(oceanBiome == null) {
+                    return 0;
+                }
+
+                return oceanBiome.getWaterColor();
+            }, () -> DoTBBlocksRegistry.STONE_BRICKS_FAUCET.get().asItem(), () -> DoTBBlocksRegistry.WATER_SOURCE_TRICKLE.get().asItem(), () -> DoTBBlocksRegistry.STONE_BRICKS_WATER_JET.get().asItem());
 
     // Items
     @SafeVarargs
