@@ -6,6 +6,8 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import org.dawnoftimebuilder.DawnOfTimeBuilder;
+import org.dawnoftimebuilder.block.templates.FlowerPotBlockDoTB;
+import org.dawnoftimebuilder.item.IHasFlowerPot;
 import org.dawnoftimebuilder.item.IconItem;
 import org.dawnoftimebuilder.item.templates.ItemDoTB;
 import org.dawnoftimebuilder.item.templates.PotItem;
@@ -36,10 +38,28 @@ public class DoTBItemsRegistry {
     public static final RegistryObject<Item> GRAY_CLAY_TILE = DoTBItemsRegistry.reg("gray_clay_tile", ItemDoTB::new);
     public static final RegistryObject<Item> MULBERRY_LEAVES = DoTBItemsRegistry.reg("mulberry_leaves", ItemDoTB::new);
     //    public static final RegistryObject<Item> GRAPE = DoTBItemsRegistry.reg("grape", () -> new ItemDoTB(new Item.Properties().food(DoTBFoods.GRAPE)));
-    public static final RegistryObject<Item> GRAPE_SEEDS = DoTBItemsRegistry.reg("grape_seeds", PotItem::new);
+    public static final RegistryObject<Item> GRAPE_SEEDS = DoTBItemsRegistry.regWithFlowerPot("grape_seeds", PotItem::new);
 
-    private static <T extends Item> RegistryObject<T> reg(final String name, final Supplier<T> itemSupplier) {
+    public static <T extends Item> RegistryObject<Item> reg(final String name, final Supplier<T> itemSupplier) {
         return DoTBItemsRegistry.ITEMS.register(name, itemSupplier);
+    }
+
+    @SuppressWarnings("unchecked")
+    public static <T extends Item & IHasFlowerPot> RegistryObject<Item> regWithFlowerPot(final String name, final Supplier<T> itemSupplier) {
+        final String potName = name + "_flower_pot";
+        RegistryObject<FlowerPotBlockDoTB> potBlockObject = (RegistryObject<FlowerPotBlockDoTB>) (Object) DoTBBlocksRegistry.reg(potName, () -> {
+            final FlowerPotBlockDoTB potBlock = new FlowerPotBlockDoTB(null);
+            DoTBBlocksRegistry.POT_BLOCKS.put(potName, potBlock);
+            return potBlock;
+        });
+
+        RegistryObject<T> toReturn = DoTBItemsRegistry.ITEMS.register(name, () -> {
+            T item = itemSupplier.get();
+            item.setPotBlock(potBlockObject.get());
+            return item;
+        });
+
+        return (RegistryObject<Item>) (Object) toReturn;
     }
 
     public static void register(IEventBus eventBus) {

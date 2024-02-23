@@ -22,11 +22,15 @@ import javax.annotation.Nullable;
 import static net.minecraft.world.level.block.Blocks.FLOWER_POT;
 
 public class FlowerPotBlockDoTB extends BlockDoTB implements IBlockSpecialDisplay {
-    private final Item itemInPot;
+    private Item itemInPot;
     private static final VoxelShape VS = Block.box(5.0D, 0.0D, 5.0D, 11.0D, 4.0D, 11.0D);
 
     public FlowerPotBlockDoTB(@Nullable Item itemInPot) {
         super(Block.Properties.copy(FLOWER_POT));
+        this.itemInPot = itemInPot;
+    }
+
+    public void setItemInPot(@Nullable Item itemInPot) {
         this.itemInPot = itemInPot;
     }
 

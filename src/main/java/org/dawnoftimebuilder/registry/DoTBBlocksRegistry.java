@@ -21,6 +21,7 @@ import org.dawnoftimebuilder.block.japanese.*;
 import org.dawnoftimebuilder.block.precolumbian.*;
 import org.dawnoftimebuilder.block.roman.*;
 import org.dawnoftimebuilder.block.templates.*;
+import org.dawnoftimebuilder.item.IHasFlowerPot;
 import org.dawnoftimebuilder.item.templates.PotAndBlockItem;
 
 import javax.annotation.Nullable;
@@ -190,8 +191,8 @@ public class DoTBBlocksRegistry {
     public static final RegistryObject<Block> WAXED_OAK_CHANDELIER = DoTBBlocksRegistry.reg("waxed_oak_chandelier", () -> new WaxedOakChandelierBlock(Block.Properties.copy(Blocks.OAK_WOOD).strength(3.0F, 5.0F).noOcclusion().lightLevel(DoTBBlocksRegistry.litBlockEmission(15))));
     public static final RegistryObject<Block> WAXED_OAK_CHAIR = DoTBBlocksRegistry.reg("waxed_oak_chair", () -> new WaxedOakChairBlock(Block.Properties.copy(Blocks.OAK_WOOD).strength(3.0F, 5.0F).noOcclusion(), 11.0F));
     public static final RegistryObject<Block> WAXED_OAK_TABLE = DoTBBlocksRegistry.reg("waxed_oak_table", () -> new WaxedOakTableBlock(Block.Properties.copy(Blocks.OAK_WOOD).strength(3.0F, 5.0F).noOcclusion()));
-    public static final RegistryObject<Block> IVY = DoTBBlocksRegistry.regWithItem("ivy", () -> new IvyBlock(Block.Properties.copy(Blocks.GRASS).randomTicks().strength(0.2F).sound(SoundType.VINE)), (block) -> new PotAndBlockItem(block, new Item.Properties()));
-    public static final RegistryObject<Block> GERANIUM_PINK = DoTBBlocksRegistry.regWithItem("geranium_pink", () -> new GeraniumBlock(Block.Properties.copy(Blocks.SUNFLOWER).instabreak().sound(SoundType.GRASS)), (block) -> new PotAndBlockItem(block, new Item.Properties()));
+    public static final RegistryObject<Block> IVY = DoTBBlocksRegistry.regWithFlowerPotItem("ivy", () -> new IvyBlock(Block.Properties.copy(Blocks.GRASS).randomTicks().strength(0.2F).sound(SoundType.VINE)), (block) -> new PotAndBlockItem(block, new Item.Properties()));
+    public static final RegistryObject<Block> GERANIUM_PINK = DoTBBlocksRegistry.regWithFlowerPotItem("geranium_pink", () -> new GeraniumBlock(Block.Properties.copy(Blocks.SUNFLOWER).instabreak().sound(SoundType.GRASS)), (block) -> new PotAndBlockItem(block, new Item.Properties()));
     public static final RegistryObject<Block> PLANTER_GERANIUM_PINK = DoTBBlocksRegistry.reg("planter_geranium_pink", () -> new PlanterBlock(Block.Properties.copy(Blocks.CLAY).strength(0.6F).noOcclusion()));
     public static final RegistryObject<Block> STONE_BRICKS_POOL = DoTBBlocksRegistry.reg("stone_bricks_pool", () -> new PoolBlock(Block.Properties.copy(Blocks.STONE)));
     public static final RegistryObject<Block> STONE_BRICKS_SMALL_POOL = DoTBBlocksRegistry.reg("stone_bricks_small_pool", () -> new SmallPoolBlock(Block.Properties.copy(Blocks.STONE)));
@@ -242,9 +243,9 @@ public class DoTBBlocksRegistry {
     public static final RegistryObject<Block> CAST_IRON_TEACUP_GREEN = DoTBBlocksRegistry.reg("cast_iron_teacup_green", () -> new CastIronTeacupBlock(Block.Properties.copy(Blocks.IRON_BLOCK).strength(1.0F).noOcclusion()));
     public static final RegistryObject<Block> CAST_IRON_TEACUP_DECORATED = DoTBBlocksRegistry.reg("cast_iron_teacup_decorated", () -> new CastIronTeacupBlock(Block.Properties.copy(Blocks.IRON_BLOCK).strength(1.0F).noOcclusion()));
     public static final RegistryObject<Block> BAMBOO_DRYING_TRAY = DoTBBlocksRegistry.reg("bamboo_drying_tray", () -> new DryerBlock(Block.Properties.copy(Blocks.OAK_PLANKS).noOcclusion()));
-    //public static final RegistryObject<Block> CAMELLIA = DoTBBlocksRegistry.regWithItem("camellia", () -> new GrowingBushBlock(PlantType.PLAINS, 3), "camellia_seeds", (block) -> new SoilSeedsItem(block, null));
-    //public static final RegistryObject<Block> MULBERRY = DoTBBlocksRegistry.regWithItem("mulberry", () -> new MulberryBlock(PlantType.PLAINS, 3, 2), (block) -> new SoilSeedsItem(block, DoTBFoods.MULBERRY));
-    //public static final RegistryObject<Block> IKEBANA_FLOWER_POT = DoTBBlocksRegistry.reg("ikebana_flower_pot", () -> new SidedFlowerPotBlock(null));
+    //public static final RegistryObject<Block> CAMELLIA = DoTBBlocksRegistry.regWithFlowerPotItem("camellia", () -> new GrowingBushBlock(PlantType.PLAINS, 3), "camellia_seeds", (block) -> new SoilSeedsItem(block, null));
+    //public static final RegistryObject<Block> MULBERRY = DoTBBlocksRegistry.regWithFlowerPotItem("mulberry", () -> new MulberryBlock(PlantType.PLAINS, 3, 2), (block) -> new SoilSeedsItem(block, DoTBFoods.MULBERRY));
+    public static final RegistryObject<Block> IKEBANA_FLOWER_POT = DoTBBlocksRegistry.reg("ikebana_flower_pot", () -> new SidedFlowerPotBlock(null));
     public static final RegistryObject<Block> SPRUCE_LOW_TABLE = DoTBBlocksRegistry.reg("spruce_low_table", () -> new SpruceLowTableBlock(Block.Properties.copy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_BLACK).strength(2.0F, 6.0F).noOcclusion().lightLevel(DoTBBlocksRegistry.litBlockEmission(14))));
     public static final RegistryObject<Block> SPRUCE_LEGLESS_CHAIR = DoTBBlocksRegistry.reg("spruce_legless_chair", () -> new SpruceLeglessChairBlock(Block.Properties.copy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_BLACK).strength(2.0F, 6.0F).noOcclusion(), 3.0F));
     public static final RegistryObject<Block> WHITE_LITTLE_FLAG = DoTBBlocksRegistry.reg("white_little_flag", () -> new LittleFlagBlock(DyeColor.WHITE, Block.Properties.copy(Blocks.WHITE_WOOL)));
@@ -257,12 +258,7 @@ public class DoTBBlocksRegistry {
     public static final RegistryObject<Block> RED_PAPER_LANTERN = DoTBBlocksRegistry.reg("red_paper_lantern", () -> new PaperLanternBlock(Block.Properties.copy(Blocks.RED_WOOL).noOcclusion().noCollission().lightLevel(state -> 12)));
     public static final RegistryObject<Block> PAPER_LAMP = DoTBBlocksRegistry.reg("paper_lamp", () -> new PaperLampBlock(Block.Properties.copy(Blocks.WHITE_WOOL).noOcclusion().lightLevel(state -> 14)));
     public static final RegistryObject<Block> STONE_LANTERN = DoTBBlocksRegistry.reg("stone_lantern", () -> new StoneLanternBlock(Block.Properties.copy(Blocks.STONE_BRICKS).noOcclusion().lightLevel(state -> 15)));
-    /*public static final RegistryObject<Block> RICE = DoTBBlocksRegistry.regWithItem("rice", () -> new WaterDoubleCropsBlock(2), (block) -> new SoilSeedsItem(block, null) {
-        @Override
-        public boolean hasFlowerPot() {
-            return false;
-        }
-    });*/
+    //public static final RegistryObject<Block> RICE = DoTBBlocksRegistry.regWithItem("rice", () -> new WaterDoubleCropsBlock(2), (block) -> new SoilSeedsItem(block, null));
     public static final RegistryObject<Block> SMALL_TATAMI_MAT = DoTBBlocksRegistry.reg("small_tatami_mat", () -> new SmallTatamiMatBlock(Block.Properties.copy(Blocks.WHITE_CARPET)));
     public static final RegistryObject<Block> SMALL_TATAMI_FLOOR = DoTBBlocksRegistry.regWithItem("small_tatami_floor", () -> new SmallTatamiFloorBlock(Block.Properties.copy(Blocks.WHITE_CARPET)), null);
     public static final RegistryObject<Block> TATAMI_MAT = DoTBBlocksRegistry.reg("tatami_mat", () -> new TatamiMatBlock(Block.Properties.copy(Blocks.WHITE_CARPET)));
@@ -274,7 +270,7 @@ public class DoTBBlocksRegistry {
     public static final RegistryObject<Block> STICK_BUNDLE = DoTBBlocksRegistry.reg("stick_bundle", () -> new StickBundleBlock(Block.Properties.copy(Blocks.OAK_WOOD).strength(2.0F, 3.0F).sound(SoundType.GRASS).noOcclusion()).setBurnable());
     public static final RegistryObject<Block> MAPLE_RED_TRUNK = DoTBBlocksRegistry.regWithItem("maple_red_trunk", () -> new MapleTrunkBlock(Block.Properties.copy(Blocks.SPRUCE_LEAVES)), null);
     public static final RegistryObject<Block> MAPLE_RED_LEAVES = DoTBBlocksRegistry.regWithItem("maple_red_leaves", () -> new MapleLeavesBlock(Block.Properties.copy(Blocks.SPRUCE_LEAVES)), null);
-    public static final RegistryObject<Block> MAPLE_RED_SAPLING = DoTBBlocksRegistry.regWithItem("maple_red_sapling", () -> new MapleSaplingBlock(Block.Properties.copy(Blocks.SPRUCE_LEAVES)), (block) -> new PotAndBlockItem(block, new Item.Properties()));
+    public static final RegistryObject<Block> MAPLE_RED_SAPLING = DoTBBlocksRegistry.regWithFlowerPotItem("maple_red_sapling", () -> new MapleSaplingBlock(Block.Properties.copy(Blocks.SPRUCE_LEAVES)), (block) -> new PotAndBlockItem(block, new Item.Properties()));
     public static final RegistryObject<Block> PAUSED_MAPLE_RED_SAPLING = DoTBBlocksRegistry.regWithItem("paused_maple_red_sapling", () -> new PausedMapleSaplingBlock(Block.Properties.copy(Blocks.SPRUCE_LEAVES)), null);
     // Persian
     public static final RegistryObject<Block> PERSIAN_CARPET_RED = DoTBBlocksRegistry.reg("persian_carpet_red", () -> new CarpetBlockDoTB(Block.Properties.copy(Blocks.RED_WOOL)));
@@ -312,7 +308,7 @@ public class DoTBBlocksRegistry {
     public static final RegistryObject<Block> GREEN_SCULPTED_PLASTERED_STONE_FRIEZE = DoTBBlocksRegistry.reg("green_sculpted_plastered_stone_frieze", () -> new GreenSculptedPlasteredStoneFriezeBlock(Block.Properties.copy(Blocks.STONE_BRICKS)));
     public static final RegistryObject<Block> GREEN_SMALL_PLASTERED_STONE_FRIEZE = DoTBBlocksRegistry.reg("green_small_plastered_stone_frieze", () -> new EdgeBlock(Block.Properties.copy(Blocks.STONE_BRICKS)));
     //public static final RegistryObject<Block> WILD_MAIZE = DoTBBlocksRegistry.reg("wild_maize", () -> new WildMaizeBlock(Block.Properties.copy(Blocks.DANDELION)));
-    //public static final RegistryObject<Block> MAIZE = DoTBBlocksRegistry.regWithItem("maize", () -> new DoubleCropsBlock(PlantType.CROP, 4), (block) -> new SoilSeedsItem(block, DoTBFoods.MAIZE));
+    //public static final RegistryObject<Block> MAIZE = DoTBBlocksRegistry.regWithFlowerPotItem("maize", () -> new DoubleCropsBlock(PlantType.CROP, 4), (block) -> new SoilSeedsItem(block, DoTBFoods.MAIZE));
     public static final RegistryObject<Block> RED_ORNAMENTED_PLASTERED_STONE = DoTBBlocksRegistry.reg("red_ornamented_plastered_stone", () -> new BlockDoTB(Block.Properties.copy(Blocks.STONE_BRICKS)));
     public static final RegistryObject<Block> PLASTERED_STONE_COLUMN = DoTBBlocksRegistry.reg("plastered_stone_column", () -> new PlasteredStoneColumnBlock(Block.Properties.copy(Blocks.STONE_BRICKS)));
     public static final RegistryObject<Block> PLASTERED_STONE_CRESSET = DoTBBlocksRegistry.reg("plastered_stone_cresset", () -> new PlasteredStoneCressetBlock(Block.Properties.copy(Blocks.STONE_BRICKS).noOcclusion().lightLevel(DoTBBlocksRegistry.litBlockEmission(15))));
@@ -352,7 +348,7 @@ public class DoTBBlocksRegistry {
     public static final RegistryObject<Block> BIRCH_COUCH = DoTBBlocksRegistry.reg("birch_couch", () -> new BirchCouchBlock(Block.Properties.copy(Blocks.BIRCH_PLANKS), 13.0F));
     public static final RegistryObject<Block> MARBLE_STATUE_MARS = DoTBBlocksRegistry.reg("marble_statue_mars", () -> new MarbleStatueBlock(Block.Properties.copy(Blocks.BRICKS).noOcclusion()));
     //public static final RegistryObject<Block> WILD_GRAPE = DoTBBlocksRegistry.reg("wild_grape", () -> new WildPlantBlock(Block.Properties.copy(Blocks.DANDELION)));
-    //public static final RegistryObject<Block> CYPRESS = DoTBBlocksRegistry.regWithItem("cypress", () -> new CypressBlock(Block.Properties.copy(Blocks.SPRUCE_LEAVES)).setBurnable(), (block) -> new PotAndBlockItem(block, new Item.Properties()));
+    //public static final RegistryObject<Block> CYPRESS = DoTBBlocksRegistry.regWithFlowerPotItem("cypress", () -> new CypressBlock(Block.Properties.copy(Blocks.SPRUCE_LEAVES)).setBurnable(), (block) -> new PotAndBlockItem(block, new Item.Properties()));
     public static final RegistryObject<Block> BIG_FLOWER_POT = DoTBBlocksRegistry.reg("big_flower_pot", () -> new BigFlowerPotBlock(Block.Properties.copy(Blocks.CLAY)));
     public static final RegistryObject<Block> MARBLE_BIG_FLOWER_POT = DoTBBlocksRegistry.reg("marble_big_flower_pot", () -> new MarbleBigFlowerPotBlock(Block.Properties.copy(Blocks.STONE)));
     public static final RegistryObject<Block> MARBLE_FANCY_FENCE = DoTBBlocksRegistry.reg("marble_fancy_fence", () -> new BalusterBlock(Block.Properties.copy(Blocks.STONE).strength(3.0F, 5.0F).noOcclusion()));
@@ -361,20 +357,37 @@ public class DoTBBlocksRegistry {
     public static final RegistryObject<Block> MARBLE_COFFER = DoTBBlocksRegistry.reg("marble_coffer", () -> new BlockDoTB(Block.Properties.copy(Blocks.STONE)));
     public static final RegistryObject<Block> MARBLE_COFFER_SLAB = DoTBBlocksRegistry.reg("marble_coffer_slab", () -> new SlabBlockDoTB(Block.Properties.copy(Blocks.STONE)));
 
-    private static <T extends Block> RegistryObject<Block> reg(String name, Supplier<T> block) {
+    public static <T extends Block> RegistryObject<Block> reg(String name, Supplier<T> block) {
         return regWithItem(name, block, (blockObject) -> new BlockItem(blockObject, new Item.Properties()));
     }
 
-    private static <T extends Block, U extends Item> RegistryObject<Block> regWithItem(String name, Supplier<T> block, @Nullable Function<T, U> item) {
+    public static <T extends Block, U extends Item> RegistryObject<Block> regWithItem(String name, Supplier<T> block, @Nullable Function<T, U> item) {
         return regWithItem(name, block, name, item);
     }
 
     @SuppressWarnings("unchecked")
-    private static <T extends Block, U extends Item> RegistryObject<Block> regWithItem(String name, Supplier<T> block, String itemName, @Nullable Function<T, U> item) {
-        RegistryObject<T> toReturn = BLOCKS.register(name, block);
+    public static <T extends Block, U extends Item> RegistryObject<Block> regWithItem(String name, Supplier<T> block, String itemName, @Nullable Function<T, U> item) {
+        RegistryObject<T> toReturn = DoTBBlocksRegistry.BLOCKS.register(name, block);
+
         if(item != null) {
-            DoTBItemsRegistry.ITEMS.register(itemName, () -> item.apply(toReturn.get()));
+            DoTBItemsRegistry.reg(itemName, () -> item.apply(toReturn.get()));
         }
+
+        return (RegistryObject<Block>) toReturn;
+    }
+
+    public static <T extends Block, U extends Item & IHasFlowerPot> RegistryObject<Block> regWithFlowerPotItem(String name, Supplier<T> block, @Nullable Function<T, U> item) {
+        return regWithFlowerPotItem(name, block, name, item);
+    }
+
+    @SuppressWarnings("unchecked")
+    public static <T extends Block, U extends Item & IHasFlowerPot> RegistryObject<Block> regWithFlowerPotItem(String name, Supplier<T> block, String itemName, @Nullable Function<T, U> item) {
+        RegistryObject<T> toReturn = DoTBBlocksRegistry.BLOCKS.register(name, block);
+
+        if(item != null) {
+            DoTBItemsRegistry.regWithFlowerPot(itemName, () -> item.apply(toReturn.get()));
+        }
+
         return (RegistryObject<Block>) toReturn;
     }
 
