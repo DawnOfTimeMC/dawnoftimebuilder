@@ -73,15 +73,20 @@ public class PergolaBlock extends BeamBlock {
     public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, LevelAccessor worldIn, BlockPos currentPos, BlockPos facingPos) {
         stateIn = super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
         if(facing == Direction.DOWN) {
-            return stateIn.setValue(BOTTOM, this.isBeamBottom(stateIn, facingState) && !stateIn.getValue(CLIMBING_PLANT).hasNoPlant() && !this.canSustainClimbingPlant(facingState));
+            return stateIn.setValue(BOTTOM, this.isBeamBottom(stateIn, facingState) && stateIn.getValue(AXIS_Y) &&
+                    !stateIn.getValue(CLIMBING_PLANT).hasNoPlant() && !this.canSustainClimbingPlant(facingState) &&
+                    Block.canSupportCenter(worldIn, facingPos, Direction.UP));
         }
         return stateIn;
     }
 
     @Override
     public void placePlant(BlockState state, Level world, BlockPos pos, int option) {
-        BlockState stateUnder = world.getBlockState(pos.below());
-        super.placePlant(state.setValue(BOTTOM, this.isBeamBottom(state, stateUnder) && !state.getValue(CLIMBING_PLANT).hasNoPlant() && !this.canSustainClimbingPlant(stateUnder)), world, pos, option);
+        BlockPos posUnder = pos.below();
+        BlockState stateUnder = world.getBlockState(posUnder);
+        super.placePlant(state.setValue(BOTTOM, this.isBeamBottom(state, stateUnder) && state.getValue(AXIS_Y) &&
+                !state.getValue(CLIMBING_PLANT).hasNoPlant() && !this.canSustainClimbingPlant(stateUnder) &&
+                Block.canSupportCenter(world, posUnder, Direction.UP)), world, pos, option);
     }
 
     @Override
