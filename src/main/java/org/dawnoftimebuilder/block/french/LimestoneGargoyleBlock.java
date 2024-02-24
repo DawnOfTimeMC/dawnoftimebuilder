@@ -26,8 +26,6 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import org.dawnoftimebuilder.block.templates.WaterloggedBlock;
 import org.dawnoftimebuilder.util.DoTBBlockStateProperties;
 import org.dawnoftimebuilder.util.DoTBUtils;
@@ -113,8 +111,8 @@ public class LimestoneGargoyleBlock extends WaterloggedBlock {
         return this.rotate(state, Rotation.CLOCKWISE_180);
     }
 
-    @OnlyIn(Dist.CLIENT)
-    public void animateTick(BlockState state, Level world, BlockPos pos, Random rand) {
+    @Override
+    public void animateTick(final BlockState state, final Level world, final BlockPos pos, final RandomSource rand) {
         int humidity = state.getValue(HUMIDITY);
         if(humidity > 0) {
             if(humidity == this.getMaxHumidity()) {
