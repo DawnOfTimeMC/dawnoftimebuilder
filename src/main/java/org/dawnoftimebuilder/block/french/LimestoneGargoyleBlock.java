@@ -90,17 +90,17 @@ public class LimestoneGargoyleBlock extends WaterloggedBlock {
                         return InteractionResult.SUCCESS;
                     }
                 }
-            } else {
-                if(DoTBUtils.useLighter(worldIn, pos, player, handIn)) {
-                    Random rand = new Random();
-                    for(int i = 0; i < 5; i++) {
-                        worldIn.addAlwaysVisibleParticle(ParticleTypes.SMOKE, (double) pos.getX() +
-                                        rand.nextDouble(), (double) pos.getY() + 0.5D + rand.nextDouble() / 2,
-                                (double) pos.getZ() + rand.nextDouble(), 0.0D, 0.07D, 0.0D);
-                    }
-                    worldIn.setBlock(pos, state.setValue(PERSISTENT, true), 10);
-                    return InteractionResult.SUCCESS;
+            }
+        } else {
+            if(DoTBUtils.useLighter(worldIn, pos, player, handIn)) {
+                Random rand = new Random();
+                for(int i = 0; i < 5; i++) {
+                    worldIn.addAlwaysVisibleParticle(ParticleTypes.SMOKE, (double) pos.getX() +
+                                    rand.nextDouble(), (double) pos.getY() + 0.5D + rand.nextDouble() / 2,
+                            (double) pos.getZ() + rand.nextDouble(), 0.0D, 0.07D, 0.0D);
                 }
+                worldIn.setBlock(pos, state.setValue(PERSISTENT, true), 10);
+                return InteractionResult.SUCCESS;
             }
         }
         return super.use(state, worldIn, pos, player, handIn, hit);
