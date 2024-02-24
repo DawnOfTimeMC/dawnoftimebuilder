@@ -2,7 +2,9 @@ package org.dawnoftimebuilder;
 
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.dawnoftimebuilder.item.IconItem;
@@ -16,6 +18,8 @@ public class DawnOfTimeBuilder {
 
     public DawnOfTimeBuilder() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, DoTBConfig.COMMON_SPEC);
 
         DoTBItemsRegistry.register(modEventBus);
         DoTBBlocksRegistry.register(modEventBus);

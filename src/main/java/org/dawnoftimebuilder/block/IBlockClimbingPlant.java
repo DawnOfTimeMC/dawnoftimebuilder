@@ -17,6 +17,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SimpleWaterloggedBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraftforge.common.ForgeHooks;
 import org.dawnoftimebuilder.DoTBConfig;
 import org.dawnoftimebuilder.util.DoTBBlockStateProperties;
 import org.dawnoftimebuilder.util.DoTBUtils;
@@ -46,7 +47,7 @@ public interface IBlockClimbingPlant {
 
             if(worldIn.getRawBrightness(pos, 0) >= 8) {
                 int age = stateIn.getValue(AGE_0_6);
-				/*if (ForgeHooks.onCropsGrowPre(worldIn, pos, stateIn, random.nextInt(DoTBConfig.CLIMBING_PLANT_GROWTH_CHANCE.get()) == 0)) {//Probability "can grow"
+				if (ForgeHooks.onCropsGrowPre(worldIn, pos, stateIn, random.nextInt(DoTBConfig.CLIMBING_PLANT_GROWTH_CHANCE.get()) == 0)) {//Probability "can grow"
 					if(age < 2){
 						this.placePlant(stateIn.setValue(AGE_0_6, age + 1), worldIn, pos, 2);
 						ForgeHooks.onCropsGrowPost(worldIn, pos, stateIn);
@@ -58,7 +59,7 @@ public interface IBlockClimbingPlant {
 							return;
 						}
 					}
-				}*/
+				}
                 if(age < 2 || random.nextInt(DoTBConfig.CLIMBING_PLANT_SPREAD_CHANCE.get()) != 0)
                     return;//Probability "can spread"
                 BlockPos[] positions = new BlockPos[] {
