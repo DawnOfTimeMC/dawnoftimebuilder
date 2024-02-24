@@ -1,4 +1,5 @@
 {
+	"render_type": "minecraft:cutout",
 	"textures": {
 		"2": "dawnoftimebuilder:block/vine_y_stage_2",
 		"particle": "dawnoftimebuilder:block/vine_y_stage_2"
