@@ -368,8 +368,8 @@ public enum CreativeInventoryCategories {
             SILK_WORMS.get(),
             SILK_COCOONS.get(),
             SILK.get(),
-            /*RICE.get().asItem(),
-            BAMBOO_HAT.get(),*/
+            RICE.get().asItem(),
+            //BAMBOO_HAT.get(),
             FLINT_AND_STEEL
     ),
     PRE_COLOMBIAN("pre_columbian",
@@ -441,7 +441,7 @@ public enum CreativeInventoryCategories {
             OCHRE_ROOF_TILES.get().asItem(),
             OCHRE_ROOF_TILES_STAIRS.get().asItem(),
             OCHRE_ROOF_TILES_PLATE.get().asItem(),
-            //OCHRE_ROOF_TILES_SLAB.get().asItem(),
+            OCHRE_ROOF_TILES_SLAB.get().asItem(),
             OCHRE_ROOF_TILES_EDGE.get().asItem(),
             OCHRE_ROOF_TILES_WALL.get().asItem(),
             MARBLE_COLUMN.get().asItem(),
