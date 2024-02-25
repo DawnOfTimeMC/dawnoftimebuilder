@@ -1,0 +1,11 @@
+{
+  "type": "forge:add_features",
+  "biomes": [
+    "minecraft:flower_forest",
+    "minecraft:jungle",
+    "minecraft:bamboo_jungle",
+    "minecraft:sparse_jungle"
+  ],
+  "features": "dawnoftimebuilder:camellia_placed",
+  "step": "vegetal_decoration"
+}

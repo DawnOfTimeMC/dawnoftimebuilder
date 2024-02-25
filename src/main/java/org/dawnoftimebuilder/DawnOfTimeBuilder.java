@@ -1,5 +1,6 @@
 package org.dawnoftimebuilder;
 
+import net.minecraft.data.DataGenerator;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.ModLoadingContext;
@@ -32,6 +33,7 @@ public class DawnOfTimeBuilder {
 
         modEventBus.register(HandlerCommon.class);
         modEventBus.register(HandlerClient.class);
+        modEventBus.register(DataGenerator.class);
 
         modEventBus.addListener(this::createCreativeTab);
     }
