@@ -11,6 +11,7 @@ import org.dawnoftimebuilder.item.IHasFlowerPot;
 import org.dawnoftimebuilder.item.IconItem;
 import org.dawnoftimebuilder.item.templates.ItemDoTB;
 import org.dawnoftimebuilder.item.templates.PotItem;
+import org.dawnoftimebuilder.util.DoTBFoods;
 
 import java.util.function.Supplier;
 
@@ -37,7 +38,7 @@ public class DoTBItemsRegistry {
     public static final RegistryObject<Item> GRAY_TILE = DoTBItemsRegistry.reg("gray_tile", ItemDoTB::new);
     public static final RegistryObject<Item> GRAY_CLAY_TILE = DoTBItemsRegistry.reg("gray_clay_tile", ItemDoTB::new);
     public static final RegistryObject<Item> MULBERRY_LEAVES = DoTBItemsRegistry.reg("mulberry_leaves", ItemDoTB::new);
-    //    public static final RegistryObject<Item> GRAPE = DoTBItemsRegistry.reg("grape", () -> new ItemDoTB(new Item.Properties().food(DoTBFoods.GRAPE)));
+    public static final RegistryObject<Item> GRAPE = DoTBItemsRegistry.reg("grape", () -> new ItemDoTB(new Item.Properties().food(DoTBFoods.GRAPE)));
     public static final RegistryObject<Item> GRAPE_SEEDS = DoTBItemsRegistry.regWithFlowerPot("grape_seeds", PotItem::new);
 
     public static <T extends Item> RegistryObject<Item> reg(final String name, final Supplier<T> itemSupplier) {

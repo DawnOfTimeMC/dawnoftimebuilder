@@ -14,6 +14,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -37,7 +38,7 @@ public class SoilCropsBlock extends CropBlock implements IBlockGeneration {
     public static final BooleanProperty PERSISTENT = BlockStateProperties.PERSISTENT;
 
     public SoilCropsBlock(PlantType plantType) {
-        super(BlockDoTB.Properties.copy(Blocks.SUNFLOWER).randomTicks().sound(SoundType.CROP));
+        super(BlockDoTB.Properties.copy(Blocks.SUNFLOWER).offsetType(BlockBehaviour.OffsetType.NONE).randomTicks().sound(SoundType.CROP));
         this.plantType = plantType;
         this.registerDefaultState(this.stateDefinition.any().setValue(this.getAgeProperty(), 0).setValue(PERSISTENT, false));
     }

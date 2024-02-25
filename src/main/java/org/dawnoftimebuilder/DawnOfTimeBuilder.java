@@ -26,10 +26,8 @@ public class DawnOfTimeBuilder {
         DoTBEntitiesRegistry.register(modEventBus);
         DoTBCreativeModeTabsRegistry.register(modEventBus);
 
-        modEventBus.addListener(HandlerClient::clientSetup);
-
-        modEventBus.addListener(HandlerCommon::setDotTab);
-        modEventBus.addListener(HandlerClient::entityRenderers);
+        modEventBus.register(HandlerCommon.class);
+        modEventBus.register(HandlerClient.class);
 
         modEventBus.addListener(this::createCreativeTab);
     }

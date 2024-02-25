@@ -8,22 +8,14 @@ import java.util.List;
 import java.util.function.Supplier;
 
 public class DoTBConfig {
-    public final static String FOOD_CATEGORY = "food_properties";
-    public final static String ARMOR_MATERIAL_CATEGORY = "armor_properties";
+    //public final static String ARMOR_MATERIAL_CATEGORY = "armor_properties";
     public final static String BLOCK_CATEGORY = "block_properties";
     public final static String WORLD_GENERATION_CATEGORY = "world_generation";
     public final static String ENTITY_CATEGORY = "entity_properties";
     public final static Config COMMON_CONFIG;
     final static ForgeConfigSpec COMMON_SPEC;
-    // Plants
-    public static ForgeConfigSpec.IntValue GRAPE_HUNGER;
-    public static ForgeConfigSpec.DoubleValue GRAPE_SATURATION;
-    public static ForgeConfigSpec.IntValue MAIZE_HUNGER;
-    public static ForgeConfigSpec.DoubleValue MAIZE_SATURATION;
-    public static ForgeConfigSpec.IntValue MULBERRY_HUNGER;
-    public static ForgeConfigSpec.DoubleValue MULBERRY_SATURATION;
     // Armors
-    public static ArmorConfig IRON_PLATE_ARMOR_CONFIG;
+    /*public static ArmorConfig IRON_PLATE_ARMOR_CONFIG;
     public static ArmorConfig HOLY_ARMOR_CONFIG;
     public static ArmorConfig JAPANESE_LIGHT_ARMOR_CONFIG;
     public static ArmorConfig O_YOROI_ARMOR_CONFIG;
@@ -31,7 +23,7 @@ public class DoTBConfig {
     public static ArmorConfig PHARAOH_ARMOR_CONFIG;
     public static ArmorConfig ANUBIS_ARMOR_CONFIG;
     public static ArmorConfig CENTURION_ARMOR_CONFIG;
-    public static ArmorConfig QUETZALCOATL_ARMOR_CONFIG;
+    public static ArmorConfig QUETZALCOATL_ARMOR_CONFIG;*/
     // General
     public static ForgeConfigSpec.IntValue DRYING_TIME_VARIATION;
     public static ForgeConfigSpec.IntValue CLIMBING_PLANT_GROWTH_CHANCE;
@@ -76,22 +68,7 @@ public class DoTBConfig {
     public final static class Config {
         Config(final ForgeConfigSpec.Builder builderIn) {
 
-            builderIn.comment("----------------------------------------|| Food settings ||----------------------------------------").push(FOOD_CATEGORY);
-            builderIn.push("grape");
-            GRAPE_HUNGER = builderIn.defineInRange("grape_hunger", 4, 1, 20);
-            GRAPE_SATURATION = builderIn.defineInRange("grape_saturation", 0.2, 0.1, 3.0);
-            builderIn.pop();
-            builderIn.push("maize");
-            MAIZE_HUNGER = builderIn.defineInRange("maize_hunger", 6, 1, 20);
-            MAIZE_SATURATION = builderIn.defineInRange("maize_saturation", 1.0, 0.1, 3.0);
-            builderIn.pop();
-            builderIn.push("mulberry");
-            MULBERRY_HUNGER = builderIn.defineInRange("mulberry_hunger", 1, 1, 20);
-            MULBERRY_SATURATION = builderIn.defineInRange("mulberry_saturation", 0.5, 0.1, 3.0);
-            builderIn.pop();
-            builderIn.pop();
-
-            builderIn.comment("----------------------------------------|| Armor settings ||---------------------------------------").push(ARMOR_MATERIAL_CATEGORY);
+            /*builderIn.comment("----------------------------------------|| Armor settings ||---------------------------------------").push(ARMOR_MATERIAL_CATEGORY);
             IRON_PLATE_ARMOR_CONFIG = new ArmorConfig(builderIn, "iron_plate", 25, 3, 9, 7, 3, 6, 0.0D); // DIAMOND
             HOLY_ARMOR_CONFIG = new ArmorConfig(builderIn, "holy", 40, 4, 10, 8, 4, 4, 2.0D); // NETHERITE
             JAPANESE_LIGHT_ARMOR_CONFIG = new ArmorConfig(builderIn, "japanese_light", 12, 2, 7, 6, 2, 10, 0.0D); // IRON
@@ -101,7 +78,7 @@ public class DoTBConfig {
             PHARAOH_ARMOR_CONFIG = new ArmorConfig(builderIn, "pharaoh", 10, 3, 8, 6, 3, 37, 2.0D); // DIAMOND
             ANUBIS_ARMOR_CONFIG = new ArmorConfig(builderIn, "anubis", 25, 3, 8, 6, 3, 52, 3.0D); // NETHERITE
             QUETZALCOATL_ARMOR_CONFIG = new ArmorConfig(builderIn, "quetzalcoatl", 25, 2, 6, 5, 2, 20, 6.0D); // NETHERITE
-            builderIn.pop();
+            builderIn.pop();*/
 
             builderIn.comment("---------------------------------------|| Entity settings ||---------------------------------------").push(ENTITY_CATEGORY);
             builderIn.push("silkmoth");
