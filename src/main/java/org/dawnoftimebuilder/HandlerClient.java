@@ -8,8 +8,10 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.dawnoftimebuilder.client.gui.creative.CreativeInventoryEvents;
+import org.dawnoftimebuilder.client.renderer.blockentity.DryerBERenderer;
 import org.dawnoftimebuilder.client.renderer.entity.ChairRenderer;
 import org.dawnoftimebuilder.registry.DoTBBlockAndItemColorsRegistry;
+import org.dawnoftimebuilder.registry.DoTBBlockEntitiesRegistry;
 import org.dawnoftimebuilder.registry.DoTBEntitiesRegistry;
 
 @Mod.EventBusSubscriber(modid = DawnOfTimeBuilder.MOD_ID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.FORGE)
@@ -27,5 +29,7 @@ public class HandlerClient {
     @SubscribeEvent
     public static void entityRenderers(EntityRenderersEvent.RegisterRenderers event) {
         event.registerEntityRenderer(DoTBEntitiesRegistry.CHAIR_ENTITY.get(), ChairRenderer::new);
+
+        event.registerBlockEntityRenderer(DoTBBlockEntitiesRegistry.DRYER.get(), DryerBERenderer::new);
     }
 }

@@ -3,18 +3,18 @@ package org.dawnoftimebuilder.recipe;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
+import org.dawnoftimebuilder.registry.DoTBBlocksRegistry;
+import org.dawnoftimebuilder.registry.DoTBRecipeTypesRegistry;
 
 import javax.annotation.Nonnull;
 
-import static org.dawnoftimebuilder.DawnOfTimeBuilder.MOD_ID;
-import static org.dawnoftimebuilder.registry.DoTBRecipesRegistry.DRYER_RECIPE;
+import static org.dawnoftimebuilder.registry.DoTBRecipeSerializersRegistry.DRYER;
 
-public class DryerRecipe implements Recipe<Inventory> {
-    public static final RecipeType<DryerRecipe> DRYING = RecipeType.register(new ResourceLocation(MOD_ID, "drying").toString());
+public class DryerRecipe implements Recipe<SimpleContainer> {
     private final ResourceLocation id;
     final String group;
     final Ingredient ingredient;
@@ -41,7 +41,7 @@ public class DryerRecipe implements Recipe<Inventory> {
     }
 
     @Override
-    public boolean matches(Inventory inv, Level worldIn) {
+    public boolean matches(SimpleContainer inv, Level worldIn) {
         return this.ingredient.test(inv.getItem(0)) && inv.getItem(0).getCount() >= this.ingredient.getItems()[0].getCount();
     }
 
@@ -51,7 +51,7 @@ public class DryerRecipe implements Recipe<Inventory> {
     }
 
     @Override
-    public ItemStack assemble(Inventory pContainer, RegistryAccess pRegistryAccess) {
+    public ItemStack assemble(SimpleContainer pContainer, RegistryAccess pRegistryAccess) {
         return this.result.copy();
     }
 
@@ -68,13 +68,13 @@ public class DryerRecipe implements Recipe<Inventory> {
 
     @Override
     public RecipeSerializer<?> getSerializer() {
-        return DRYER_RECIPE.get();
+        return DRYER.get();
     }
 
     @Override
     @Nonnull
     public RecipeType<?> getType() {
-        return DRYING;
+        return DoTBRecipeTypesRegistry.DRYING.get();
     }
 
     @Override
@@ -87,8 +87,7 @@ public class DryerRecipe implements Recipe<Inventory> {
 
     @Override
     public ItemStack getToastSymbol() {
-        return null;
-        //return new ItemStack(BAMBOO_DRYING_TRAY.get());
+        return new ItemStack(DoTBBlocksRegistry.BAMBOO_DRYING_TRAY.get());
     }
 
     @Override

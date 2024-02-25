@@ -12,6 +12,8 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
@@ -19,8 +21,8 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import org.dawnoftimebuilder.blockentity.DryerTileEntity;
-import org.dawnoftimebuilder.registry.DoTBTileEntitiesRegistry;
+import org.dawnoftimebuilder.blockentity.DryerBlockEntity;
+import org.dawnoftimebuilder.registry.DoTBBlockEntitiesRegistry;
 import org.dawnoftimebuilder.util.DoTBBlockStateProperties;
 
 import javax.annotation.Nullable;
@@ -37,6 +39,12 @@ public class DryerBlock extends WaterloggedBlock implements EntityBlock {
     public DryerBlock(final Properties properties) {
         super(properties);
         this.registerDefaultState(this.defaultBlockState().setValue(DryerBlock.SIZE, 0));
+    }
+
+    @Nullable
+    @Override
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, BlockState pState, BlockEntityType<T> pBlockEntityType) {
+        return !pLevel.isClientSide() ? (pLevel1, pPos, pState1, pBlockEntity) -> ((DryerBlockEntity)pBlockEntity).tick() : null;
     }
 
     @Override
@@ -82,7 +90,7 @@ public class DryerBlock extends WaterloggedBlock implements EntityBlock {
     public void onRemove(final BlockState oldState, final Level worldIn, final BlockPos pos, final BlockState newState, final boolean isMoving) {
         if(oldState.getBlock() != newState.getBlock()) {
             final BlockEntity tileEntity = worldIn.getBlockEntity(pos);
-            if(tileEntity instanceof DryerTileEntity) {
+            if(tileEntity instanceof DryerBlockEntity) {
                 tileEntity.getCapability(ITEM_HANDLER).ifPresent(h -> {
                     dropItemStack(worldIn, pos.getX(), pos.getY(), pos.getZ(), h.getStackInSlot(0));
                     dropItemStack(worldIn, pos.getX(), pos.getY(), pos.getZ(), h.getStackInSlot(1));
@@ -114,24 +122,25 @@ public class DryerBlock extends WaterloggedBlock implements EntityBlock {
         return stateIn;
     }
 
-    @org.jetbrains.annotations.Nullable
+    @Nullable
     @Override
     public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
-        return DoTBTileEntitiesRegistry.DRYER_TE.get().create(pPos, pState);
+        return DoTBBlockEntitiesRegistry.DRYER.get().create(pPos, pState);
     }
 
     @Override
     public InteractionResult use(final BlockState state, final Level worldIn, final BlockPos pos, final Player player, final InteractionHand handIn, final BlockHitResult hit) {
-        if(!worldIn.isClientSide() && handIn == InteractionHand.MAIN_HAND && worldIn.getBlockEntity(pos) instanceof DryerTileEntity) {
-            final DryerTileEntity tileEntity = (DryerTileEntity) worldIn.getBlockEntity(pos);
+        if(!worldIn.isClientSide() && handIn == InteractionHand.MAIN_HAND && worldIn.getBlockEntity(pos) instanceof DryerBlockEntity) {
+            final DryerBlockEntity tileEntity = (DryerBlockEntity) worldIn.getBlockEntity(pos);
             if(tileEntity == null) {
                 return InteractionResult.PASS;
             }
 
             if(player.isCrouching()) {
-                //return tileEntity.dropOneItem(worldIn, pos);
+                return tileEntity.dropOneItem(worldIn, pos);
             }
-            //return tileEntity.tryInsertItemStack(player.getItemInHand(handIn), state.getValue(DryerBlock.SIZE) == 0, worldIn, pos, player);
+            ItemStack handStack = player.getItemInHand(handIn);
+            return tileEntity.tryInsertItemStack(handStack, state.getValue(DryerBlock.SIZE) == 0, worldIn, pos, player);
         }
         return InteractionResult.FAIL;
     }

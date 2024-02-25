@@ -14,8 +14,6 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public class DryerRecipeSerializer implements RecipeSerializer<DryerRecipe> {
-    public static final DryerRecipeSerializer INSTANCE = new DryerRecipeSerializer();
-
     @Override
     @Nonnull
     public DryerRecipe fromJson(@Nonnull ResourceLocation recipeId, @Nonnull JsonObject json) {

@@ -246,7 +246,7 @@ public class DoTBBlocksRegistry {
     public static final RegistryObject<Block> CAST_IRON_TEACUP_GRAY = DoTBBlocksRegistry.reg("cast_iron_teacup_gray", () -> new CastIronTeacupBlock(Block.Properties.copy(Blocks.IRON_BLOCK).strength(1.0F).noOcclusion()));
     public static final RegistryObject<Block> CAST_IRON_TEACUP_GREEN = DoTBBlocksRegistry.reg("cast_iron_teacup_green", () -> new CastIronTeacupBlock(Block.Properties.copy(Blocks.IRON_BLOCK).strength(1.0F).noOcclusion()));
     public static final RegistryObject<Block> CAST_IRON_TEACUP_DECORATED = DoTBBlocksRegistry.reg("cast_iron_teacup_decorated", () -> new CastIronTeacupBlock(Block.Properties.copy(Blocks.IRON_BLOCK).strength(1.0F).noOcclusion()));
-    //public static final RegistryObject<Block> BAMBOO_DRYING_TRAY = DoTBBlocksRegistry.reg("bamboo_drying_tray", () -> new DryerBlock(Block.Properties.copy(Blocks.OAK_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> BAMBOO_DRYING_TRAY = DoTBBlocksRegistry.reg("bamboo_drying_tray", () -> new DryerBlock(Block.Properties.copy(Blocks.OAK_PLANKS).noOcclusion()));
     public static final RegistryObject<Block> CAMELLIA = DoTBBlocksRegistry.regWithItem("camellia", () -> new GrowingBushBlock(PlantType.PLAINS, 3), "camellia_seeds", (block) -> new SoilSeedsItem(block, null));
     public static final RegistryObject<Block> MULBERRY = DoTBBlocksRegistry.regWithFlowerPotItem("mulberry", () -> new MulberryBlock(PlantType.PLAINS, 3, 2), (block) -> new SoilSeedsItem(block, DoTBFoods.MULBERRY));
     public static final RegistryObject<Block> IKEBANA_FLOWER_POT = DoTBBlocksRegistry.reg("ikebana_flower_pot", () -> new SidedFlowerPotBlock(null));

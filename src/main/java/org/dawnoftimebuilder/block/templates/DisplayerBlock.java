@@ -20,7 +20,7 @@ import org.dawnoftimebuilder.blockentity.DisplayerTileEntity;
 
 import static net.minecraft.world.Containers.dropItemStack;
 import static net.minecraftforge.common.capabilities.ForgeCapabilities.ITEM_HANDLER;
-import static org.dawnoftimebuilder.registry.DoTBTileEntitiesRegistry.DISPLAYER_TE;
+import static org.dawnoftimebuilder.registry.DoTBBlockEntitiesRegistry.DISPLAYER_TE;
 
 public abstract class DisplayerBlock extends WaterloggedBlock implements EntityBlock {
     public static final BooleanProperty LIT = BlockStateProperties.LIT;
