@@ -21,7 +21,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 import javax.annotation.Nullable;
 
-import static org.dawnoftimebuilder.registry.DoTBBlockEntitiesRegistry.DISPLAYER_TE;
+import static org.dawnoftimebuilder.registry.DoTBBlockEntitiesRegistry.DISPLAYER;
 
 public abstract class MultiblockTableBlock extends DisplayerBlock {
     public static final BooleanProperty NORTH = BlockStateProperties.NORTH;
@@ -96,7 +96,7 @@ public abstract class MultiblockTableBlock extends DisplayerBlock {
 
     @Override
     public @org.jetbrains.annotations.Nullable BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
-        return pState.getValue(HALF) == Half.TOP ? DISPLAYER_TE.get().create(pPos, pState) : null;
+        return pState.getValue(HALF) == Half.TOP ? DISPLAYER.get().create(pPos, pState) : null;
     }
 
     @Override

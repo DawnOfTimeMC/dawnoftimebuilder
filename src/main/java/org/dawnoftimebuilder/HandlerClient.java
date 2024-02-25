@@ -1,5 +1,6 @@
 package org.dawnoftimebuilder;
 
+import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -8,11 +9,11 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.dawnoftimebuilder.client.gui.creative.CreativeInventoryEvents;
+import org.dawnoftimebuilder.client.gui.screen.DisplayerScreen;
+import org.dawnoftimebuilder.client.renderer.blockentity.DisplayerBERenderer;
 import org.dawnoftimebuilder.client.renderer.blockentity.DryerBERenderer;
 import org.dawnoftimebuilder.client.renderer.entity.ChairRenderer;
-import org.dawnoftimebuilder.registry.DoTBBlockAndItemColorsRegistry;
-import org.dawnoftimebuilder.registry.DoTBBlockEntitiesRegistry;
-import org.dawnoftimebuilder.registry.DoTBEntitiesRegistry;
+import org.dawnoftimebuilder.registry.*;
 
 @Mod.EventBusSubscriber(modid = DawnOfTimeBuilder.MOD_ID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class HandlerClient {
@@ -24,6 +25,8 @@ public class HandlerClient {
         final IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
         eventBus.addListener(DoTBBlockAndItemColorsRegistry::registerBlockColors);
         eventBus.addListener(DoTBBlockAndItemColorsRegistry::registerItemsColors);
+
+        MenuScreens.register(DoTBMenuTypesRegistry.DISPLAYER.get(), DisplayerScreen::new);
     }
 
     @SubscribeEvent
@@ -31,5 +34,6 @@ public class HandlerClient {
         event.registerEntityRenderer(DoTBEntitiesRegistry.CHAIR_ENTITY.get(), ChairRenderer::new);
 
         event.registerBlockEntityRenderer(DoTBBlockEntitiesRegistry.DRYER.get(), DryerBERenderer::new);
+        event.registerBlockEntityRenderer(DoTBBlockEntitiesRegistry.DISPLAYER.get(), DisplayerBERenderer::new);
     }
 }

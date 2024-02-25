@@ -10,6 +10,7 @@ import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
@@ -33,8 +34,10 @@ public class DryerBERenderer implements BlockEntityRenderer<DryerBlockEntity> {
 	public void renderItemModel(DryerBlockEntity dryerBlockEntity, PoseStack poseStack, ItemStack itemStack, MultiBufferSource buffer, int pPackedLight, int pPackedOverlay) {
 	    if(itemStack.isEmpty())
             return;
+
         ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
         boolean isBlockItem = itemStack.getItem() instanceof BlockItem;
+        Level level = dryerBlockEntity.getLevel();
 
         int j = (int) dryerBlockEntity.getBlockPos().asLong();
 
@@ -46,11 +49,11 @@ public class DryerBERenderer implements BlockEntityRenderer<DryerBlockEntity> {
             if (isBlockItem) {
                 poseStack.scale(0.2F, 0.2F, 0.2F);
                 poseStack.translate(0.0F, 0.4F, 0.0F);
-                itemRenderer.renderStatic(itemStack, ItemDisplayContext.NONE, pPackedLight, pPackedOverlay, poseStack, buffer, dryerBlockEntity.getLevel(), i + j);
+                itemRenderer.renderStatic(itemStack, ItemDisplayContext.NONE, pPackedLight, pPackedOverlay, poseStack, buffer, level, i + j);
             } else {
                 poseStack.mulPose(Axis.XN.rotationDegrees(90.0F));
                 poseStack.scale(0.3F, 0.3F, 0.3F);
-                itemRenderer.renderStatic(itemStack, ItemDisplayContext.FIXED, pPackedLight, pPackedOverlay, poseStack, buffer, dryerBlockEntity.getLevel(), i + j);
+                itemRenderer.renderStatic(itemStack, ItemDisplayContext.FIXED, pPackedLight, pPackedOverlay, poseStack, buffer, level, i + j);
             }
             poseStack.popPose();
         }

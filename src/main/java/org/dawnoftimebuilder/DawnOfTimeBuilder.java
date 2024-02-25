@@ -27,6 +27,7 @@ public class DawnOfTimeBuilder {
         DoTBRecipeSerializersRegistry.register(modEventBus);
         DoTBRecipeTypesRegistry.register(modEventBus);
         DoTBBlockEntitiesRegistry.register(modEventBus);
+        DoTBMenuTypesRegistry.register(modEventBus);
         DoTBCreativeModeTabsRegistry.register(modEventBus);
 
         modEventBus.register(HandlerCommon.class);

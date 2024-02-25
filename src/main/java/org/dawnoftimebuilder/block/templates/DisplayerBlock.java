@@ -16,11 +16,11 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.network.NetworkHooks;
-import org.dawnoftimebuilder.blockentity.DisplayerTileEntity;
+import org.dawnoftimebuilder.blockentity.DisplayerBlockEntity;
 
 import static net.minecraft.world.Containers.dropItemStack;
 import static net.minecraftforge.common.capabilities.ForgeCapabilities.ITEM_HANDLER;
-import static org.dawnoftimebuilder.registry.DoTBBlockEntitiesRegistry.DISPLAYER_TE;
+import static org.dawnoftimebuilder.registry.DoTBBlockEntitiesRegistry.DISPLAYER;
 
 public abstract class DisplayerBlock extends WaterloggedBlock implements EntityBlock {
     public static final BooleanProperty LIT = BlockStateProperties.LIT;
@@ -39,7 +39,7 @@ public abstract class DisplayerBlock extends WaterloggedBlock implements EntityB
     @org.jetbrains.annotations.Nullable
     @Override
     public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
-        return DISPLAYER_TE.get().create(pPos, pState);
+        return DISPLAYER.get().create(pPos, pState);
     }
 
     @Override
@@ -57,7 +57,7 @@ public abstract class DisplayerBlock extends WaterloggedBlock implements EntityB
     public void onRemove(BlockState oldState, Level worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
         if(oldState.getBlock() != newState.getBlock()) {
             BlockEntity tileEntity = worldIn.getBlockEntity(pos);
-            if(tileEntity instanceof DisplayerTileEntity) {
+            if(tileEntity instanceof DisplayerBlockEntity) {
                 tileEntity.getCapability(ITEM_HANDLER).ifPresent(h -> {
                     for(int index = 0; index < 9; index++) {
                         dropItemStack(worldIn, pos.getX(), pos.getY(), pos.getZ(), h.getStackInSlot(index));

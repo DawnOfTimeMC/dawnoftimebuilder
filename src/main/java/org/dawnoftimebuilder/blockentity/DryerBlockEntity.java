@@ -14,7 +14,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
@@ -30,10 +29,6 @@ import javax.annotation.Nullable;
 import java.util.Random;
 
 public class DryerBlockEntity extends BlockEntity {
-    public DryerBlockEntity(BlockEntityType<?> pType, BlockPos pPos, BlockState pBlockState) {
-        super(pType, pPos, pBlockState);
-    }
-
     private final ItemStackHandler itemHandler = new ItemStackHandler(2);
     private final int[] remainingTicks = new int[2];
     private boolean isInOperation;
