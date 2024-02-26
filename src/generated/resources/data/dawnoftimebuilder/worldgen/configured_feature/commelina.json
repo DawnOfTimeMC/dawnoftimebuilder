@@ -8,10 +8,9 @@
           "to_place": {
             "type": "minecraft:simple_state_provider",
             "state": {
-              "Name": "dawnoftimebuilder:camellia",
+              "Name": "dawnoftimebuilder:commelina",
               "Properties": {
-                "age": "5",
-                "cut": "false",
+                "age": "7",
                 "persistent": "false"
               }
             }

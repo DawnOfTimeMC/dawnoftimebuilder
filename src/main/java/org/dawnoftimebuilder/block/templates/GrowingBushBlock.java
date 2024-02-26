@@ -33,7 +33,7 @@ import static net.minecraftforge.common.Tags.Items.SHEARS;
 public class GrowingBushBlock extends SoilCropsBlock {
     public final VoxelShape[] SHAPES;
     public final int cutAge;
-    private static final IntegerProperty AGE = BlockStateProperties.AGE_5;
+    public static final IntegerProperty AGE = BlockStateProperties.AGE_5;
     private static final BooleanProperty CUT = DoTBBlockStateProperties.CUT;
 
     public GrowingBushBlock(PlantType plantType, int cutAge) {

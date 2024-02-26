@@ -5,6 +5,7 @@ import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
@@ -12,17 +13,27 @@ import net.minecraft.world.level.levelgen.feature.configurations.RandomPatchConf
 import net.minecraft.world.level.levelgen.feature.configurations.SimpleBlockConfiguration;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 import org.dawnoftimebuilder.DawnOfTimeBuilder;
+import org.dawnoftimebuilder.block.templates.GrowingBushBlock;
 import org.dawnoftimebuilder.registry.DoTBBlocksRegistry;
 
 public class DoTBConfiguredFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> CAMELLIA_KEY = registerKey("camellia");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> COMMELINA_KEY = registerKey("commelina");
 
     public static void bootstrap(BootstapContext<ConfiguredFeature<?, ?>> context) {
-        register(context, CAMELLIA_KEY, Feature.RANDOM_PATCH,
-                new RandomPatchConfiguration(15, 5, 3,
+        register(context, CAMELLIA_KEY, Feature.FLOWER,
+                new RandomPatchConfiguration(64, 5, 2,
                         PlacementUtils.onlyWhenEmpty(Feature.SIMPLE_BLOCK,
                             new SimpleBlockConfiguration(
-                                    BlockStateProvider.simple(DoTBBlocksRegistry.CAMELLIA.get())))));
+                                    BlockStateProvider.simple(DoTBBlocksRegistry.CAMELLIA.get()
+                                            .defaultBlockState().setValue(GrowingBushBlock.AGE, 5))))));
+
+        register(context, COMMELINA_KEY, Feature.FLOWER,
+                new RandomPatchConfiguration(64, 5, 2,
+                        PlacementUtils.onlyWhenEmpty(Feature.SIMPLE_BLOCK,
+                                new SimpleBlockConfiguration(
+                                        BlockStateProvider.simple(DoTBBlocksRegistry.COMMELINA.get()
+                                                .defaultBlockState().setValue(CropBlock.AGE, CropBlock.MAX_AGE))))));
     }
 
 
