@@ -4,7 +4,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -24,7 +23,6 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import org.dawnoftimebuilder.block.IBlockGeneration;
 import org.dawnoftimebuilder.block.templates.BlockDoTB;
 import org.dawnoftimebuilder.util.DoTBBlockStateProperties;
 import org.dawnoftimebuilder.util.DoTBUtils;
@@ -32,7 +30,7 @@ import org.dawnoftimebuilder.util.DoTBUtils;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public class CypressBlock extends BlockDoTB implements IBlockGeneration {
+public class CypressBlock extends BlockDoTB {
     private static final IntegerProperty SIZE = DoTBBlockStateProperties.SIZE_0_5;
     private static final VoxelShape VS_0 = Block.box(6.0D, 0.0D, 6.0D, 10.0D, 16.0D, 10.0D);
     private static final VoxelShape VS_1 = Block.box(6.0D, 0.0D, 6.0D, 10.0D, 8.0D, 10.0D);
@@ -176,29 +174,5 @@ public class CypressBlock extends BlockDoTB implements IBlockGeneration {
                                 final List<Component> tooltip, final TooltipFlag flagIn) {
         super.appendHoverText(stack, worldIn, tooltip, flagIn);
         DoTBUtils.addTooltip(tooltip, DoTBUtils.TOOLTIP_COLUMN);
-    }
-
-    @Override
-    public void generateOnPos(final LevelAccessor world, final BlockPos pos, final BlockState state, final RandomSource random) {
-        final BlockState groundState = world.getBlockState(pos.below());
-
-        if(!groundState.is(BlockTags.DIRT)) {
-            return;
-        }
-
-        final int maxSize = 2 + random.nextInt(5);
-        for(int i = 0; i < maxSize; i++) {
-            if(!world.getBlockState(pos.above(i)).isAir()) {
-                return;
-            }
-        }
-        world.setBlock(pos, state.setValue(CypressBlock.SIZE, 0), 2);
-        int size = 1;
-        for(int i = maxSize; i > 0; i--) {
-            world.setBlock(pos.above(i), state.setValue(CypressBlock.SIZE, size), 2);
-            if(size < 5) {
-                size++;
-            }
-        }
     }
 }

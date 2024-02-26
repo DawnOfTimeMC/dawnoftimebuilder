@@ -2,17 +2,13 @@ package org.dawnoftimebuilder.block.templates;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.tags.BlockTags;
-import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.BushBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import org.dawnoftimebuilder.block.IBlockGeneration;
 
-public class BushBlockDoT extends BushBlock implements IBlockGeneration {
+public class BushBlockDoT extends BushBlock {
     private int fireSpreadSpeed = 0;
     private int fireDestructionSpeed = 0;
 
@@ -51,15 +47,5 @@ public class BushBlockDoT extends BushBlock implements IBlockGeneration {
     @Override
     public int getFlammability(final BlockState state, final BlockGetter world, final BlockPos pos, final Direction face) {
         return state.hasProperty(BlockStateProperties.WATERLOGGED) && state.getValue(BlockStateProperties.WATERLOGGED) ? 0 : this.fireDestructionSpeed;
-    }
-
-    @Override
-    public void generateOnPos(final LevelAccessor worldIn, final BlockPos posIn, final BlockState stateIn, final RandomSource randomIn) {
-        final BlockState groundState = worldIn.getBlockState(posIn.below());
-
-        if(!BlockTags.DIRT.equals(groundState.getBlock())) {
-            return;
-        }
-        worldIn.setBlock(posIn, stateIn, 2);
     }
 }

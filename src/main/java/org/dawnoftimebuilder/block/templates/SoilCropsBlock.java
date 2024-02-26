@@ -24,7 +24,6 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.PlantType;
-import org.dawnoftimebuilder.block.IBlockGeneration;
 import org.dawnoftimebuilder.util.DoTBUtils;
 
 import javax.annotation.Nullable;
@@ -33,7 +32,7 @@ import java.util.Random;
 
 import static org.dawnoftimebuilder.util.DoTBUtils.TOOLTIP_CROP;
 
-public class SoilCropsBlock extends CropBlock implements IBlockGeneration {
+public class SoilCropsBlock extends CropBlock {
     private final PlantType plantType;
     public static final BooleanProperty PERSISTENT = BlockStateProperties.PERSISTENT;
 
@@ -179,10 +178,5 @@ public class SoilCropsBlock extends CropBlock implements IBlockGeneration {
     public void appendHoverText(ItemStack stack, @Nullable BlockGetter worldIn, List<Component> tooltip, TooltipFlag flagIn) {
         super.appendHoverText(stack, worldIn, tooltip, flagIn);
         DoTBUtils.addTooltip(tooltip, TOOLTIP_CROP);
-    }
-
-    @Override
-    public void generateOnPos(LevelAccessor world, BlockPos pos, BlockState state, RandomSource random) {
-        this.setPlantWithAge(state, world, pos, random.nextInt(this.getMaxAge() + 1));
     }
 }
