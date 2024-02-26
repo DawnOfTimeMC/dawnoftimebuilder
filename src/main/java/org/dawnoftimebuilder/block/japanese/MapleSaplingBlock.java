@@ -26,7 +26,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import org.dawnoftimebuilder.block.templates.BushBlockDoT;
 import org.dawnoftimebuilder.registry.DoTBBlocksRegistry;
 
-public class MapleSaplingBlock extends BushBlockDoT implements IBlockGeneration, BonemealableBlock {
+public class MapleSaplingBlock extends BushBlockDoT implements BonemealableBlock {
     public final static boolean isValidForPlacement(final LevelAccessor worldIn, final BlockPos bottomCenterIn, final boolean isSaplingCallIn) {
         final BlockPos floorCenter = bottomCenterIn.below();
         BlockState state = worldIn.getBlockState(floorCenter);
@@ -99,11 +99,6 @@ public class MapleSaplingBlock extends BushBlockDoT implements IBlockGeneration,
     @Override
     public VoxelShape getShape(final BlockState p_220053_1_In, final BlockGetter p_220053_2_In, final BlockPos p_220053_3_In, final CollisionContext p_220053_4_In) {
         return MapleSaplingBlock.SHAPE;
-    }
-
-    @Override
-    public void generateOnPos(final LevelAccessor world, final BlockPos centerPosIn, final BlockState state, final RandomSource random) {
-        MapleSaplingBlock.placeFinalTreeIfPossible(world, centerPosIn);
     }
 
     @Override
