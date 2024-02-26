@@ -15,6 +15,7 @@ import org.dawnoftimebuilder.DawnOfTimeBuilder;
 public class DoTBBiomeModifiers {
     public static final ResourceKey<BiomeModifier> ADD_CAMELLIA = registerKey("add_camellia");
     public static final ResourceKey<BiomeModifier> ADD_COMMELINA = registerKey("add_commelina");
+    public static final ResourceKey<BiomeModifier> ADD_CYPRESS = registerKey("add_cypress");
 
     public static void bootstrap(BootstapContext<BiomeModifier> context) {
         var placedFeatures = context.lookup(Registries.PLACED_FEATURE);
@@ -28,6 +29,11 @@ public class DoTBBiomeModifiers {
         context.register(ADD_COMMELINA, new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
                 HolderSet.direct(biomes.get(Biomes.SWAMP).get(), biomes.get(Biomes.MANGROVE_SWAMP).get()),
                 HolderSet.direct(placedFeatures.getOrThrow(DoTBPlacedFeatures.COMMELINA_PLACED_KEY)),
+                GenerationStep.Decoration.VEGETAL_DECORATION));
+
+        context.register(ADD_CYPRESS, new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
+                HolderSet.direct(biomes.get(Biomes.TAIGA).get()),
+                HolderSet.direct(placedFeatures.getOrThrow(DoTBPlacedFeatures.CYPRESS_PLACED_KEY)),
                 GenerationStep.Decoration.VEGETAL_DECORATION));
     }
 

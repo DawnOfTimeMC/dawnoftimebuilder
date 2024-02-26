@@ -8,10 +8,9 @@
           "to_place": {
             "type": "minecraft:simple_state_provider",
             "state": {
-              "Name": "dawnoftimebuilder:commelina",
+              "Name": "dawnoftimebuilder:cypress",
               "Properties": {
-                "age": "7",
-                "persistent": "false"
+                "size": "2"
               }
             }
           }
@@ -27,7 +26,7 @@
         }
       ]
     },
-    "tries": 48,
+    "tries": 64,
     "xz_spread": 5,
     "y_spread": 2
   }

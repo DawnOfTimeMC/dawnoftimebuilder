@@ -31,7 +31,7 @@ import javax.annotation.Nullable;
 import java.util.List;
 
 public class CypressBlock extends BlockDoTB {
-    private static final IntegerProperty SIZE = DoTBBlockStateProperties.SIZE_0_5;
+    public static final IntegerProperty SIZE = DoTBBlockStateProperties.SIZE_0_5;
     private static final VoxelShape VS_0 = Block.box(6.0D, 0.0D, 6.0D, 10.0D, 16.0D, 10.0D);
     private static final VoxelShape VS_1 = Block.box(6.0D, 0.0D, 6.0D, 10.0D, 8.0D, 10.0D);
     private static final VoxelShape VS_2 = Block.box(4.0D, 0.0D, 4.0D, 12.0D, 16.0D, 12.0D);

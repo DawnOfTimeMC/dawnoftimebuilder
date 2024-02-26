@@ -16,6 +16,7 @@ import java.util.List;
 public class DoTBPlacedFeatures {
     public static final ResourceKey<PlacedFeature> CAMELLIA_PLACED_KEY = registerKey("camellia_placed");
     public static final ResourceKey<PlacedFeature> COMMELINA_PLACED_KEY = registerKey("commelina_placed");
+    public static final ResourceKey<PlacedFeature> CYPRESS_PLACED_KEY = registerKey("cypress_placed");
 
     public static void bootstrap(BootstapContext<PlacedFeature> context) {
         HolderGetter<ConfiguredFeature<?, ?>> configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
@@ -25,6 +26,10 @@ public class DoTBPlacedFeatures {
                         InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome()));
 
         register(context, COMMELINA_PLACED_KEY, configuredFeatures.getOrThrow(DoTBConfiguredFeatures.COMMELINA_KEY),
+                List.of(RarityFilter.onAverageOnceEvery(2),
+                        InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome()));
+
+        register(context, CYPRESS_PLACED_KEY, configuredFeatures.getOrThrow(DoTBConfiguredFeatures.CYPRESS_KEY),
                 List.of(RarityFilter.onAverageOnceEvery(2),
                         InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome()));
     }
