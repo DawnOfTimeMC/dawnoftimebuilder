@@ -8,10 +8,7 @@
           "to_place": {
             "type": "minecraft:simple_state_provider",
             "state": {
-              "Name": "dawnoftimebuilder:cypress",
-              "Properties": {
-                "size": "2"
-              }
+              "Name": "dawnoftimebuilder:wild_grape"
             }
           }
         }

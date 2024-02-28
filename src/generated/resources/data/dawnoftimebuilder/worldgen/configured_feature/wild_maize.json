@@ -8,9 +8,9 @@
           "to_place": {
             "type": "minecraft:simple_state_provider",
             "state": {
-              "Name": "dawnoftimebuilder:cypress",
+              "Name": "dawnoftimebuilder:wild_maize",
               "Properties": {
-                "size": "2"
+                "half": "bottom"
               }
             }
           }

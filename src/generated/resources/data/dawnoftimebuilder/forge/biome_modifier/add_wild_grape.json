@@ -1,6 +1,6 @@
 {
   "type": "forge:add_features",
   "biomes": "minecraft:flower_forest",
-  "features": "dawnoftimebuilder:camellia_placed",
+  "features": "dawnoftimebuilder:wild_grape_placed",
   "step": "vegetal_decoration"
 }

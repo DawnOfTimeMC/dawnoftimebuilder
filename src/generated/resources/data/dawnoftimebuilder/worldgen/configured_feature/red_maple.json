@@ -8,9 +8,9 @@
           "to_place": {
             "type": "minecraft:simple_state_provider",
             "state": {
-              "Name": "dawnoftimebuilder:cypress",
+              "Name": "dawnoftimebuilder:maple_red_sapling",
               "Properties": {
-                "size": "2"
+                "stage": "0"
               }
             }
           }
@@ -27,7 +27,7 @@
       ]
     },
     "tries": 32,
-    "xz_spread": 5,
+    "xz_spread": 3,
     "y_spread": 2
   }
 }

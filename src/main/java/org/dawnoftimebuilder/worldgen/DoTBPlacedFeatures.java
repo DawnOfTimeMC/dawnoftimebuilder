@@ -17,21 +17,96 @@ public class DoTBPlacedFeatures {
     public static final ResourceKey<PlacedFeature> CAMELLIA_PLACED_KEY = registerKey("camellia_placed");
     public static final ResourceKey<PlacedFeature> COMMELINA_PLACED_KEY = registerKey("commelina_placed");
     public static final ResourceKey<PlacedFeature> CYPRESS_PLACED_KEY = registerKey("cypress_placed");
+    public static final ResourceKey<PlacedFeature> RED_MAPLE_PLACED_KEY = registerKey("red_maple_placed");
+    public static final ResourceKey<PlacedFeature> BOXWOOD_BUSH_PLACED_KEY = registerKey("boxwood_bush_placed");
+    public static final ResourceKey<PlacedFeature> MULBERRY_PLACED_KEY = registerKey("mulberry_placed");
+    public static final ResourceKey<PlacedFeature> RICE_PLACED_KEY = registerKey("rice_placed");
+    public static final ResourceKey<PlacedFeature> WILD_GRAPE_PLACED_KEY = registerKey("wild_grape_placed");
+    public static final ResourceKey<PlacedFeature> WILD_MAIZE_PLACED_KEY = registerKey("wild_maize_placed");
+    public static final ResourceKey<PlacedFeature> GERANIUM_PINK_PLACED_KEY = registerKey("geranium_pink_placed");
 
     public static void bootstrap(BootstapContext<PlacedFeature> context) {
         HolderGetter<ConfiguredFeature<?, ?>> configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
 
-        register(context, CAMELLIA_PLACED_KEY, configuredFeatures.getOrThrow(DoTBConfiguredFeatures.CAMELLIA_KEY),
-                List.of(RarityFilter.onAverageOnceEvery(2),
-                        InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome()));
+        register(context, CAMELLIA_PLACED_KEY,
+            configuredFeatures.getOrThrow(DoTBConfiguredFeatures.CAMELLIA_KEY),
+            List.of(
+                RarityFilter.onAverageOnceEvery(2),
+                InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome()
+            )
+        );
 
-        register(context, COMMELINA_PLACED_KEY, configuredFeatures.getOrThrow(DoTBConfiguredFeatures.COMMELINA_KEY),
-                List.of(RarityFilter.onAverageOnceEvery(2),
-                        InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome()));
+        register(context, COMMELINA_PLACED_KEY,
+            configuredFeatures.getOrThrow(DoTBConfiguredFeatures.COMMELINA_KEY),
+            List.of(
+                RarityFilter.onAverageOnceEvery(2),
+                InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome()
+            )
+        );
 
-        register(context, CYPRESS_PLACED_KEY, configuredFeatures.getOrThrow(DoTBConfiguredFeatures.CYPRESS_KEY),
-                List.of(RarityFilter.onAverageOnceEvery(2),
-                        InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome()));
+        register(context, CYPRESS_PLACED_KEY,
+            configuredFeatures.getOrThrow(DoTBConfiguredFeatures.CYPRESS_KEY),
+            List.of(
+                RarityFilter.onAverageOnceEvery(2),
+                InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome()
+            )
+        );
+
+        register(context, RED_MAPLE_PLACED_KEY,
+            configuredFeatures.getOrThrow(DoTBConfiguredFeatures.RED_MAPLE_KEY),
+            List.of(
+                RarityFilter.onAverageOnceEvery(2),
+                InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome()
+            )
+        );
+
+        register(context, BOXWOOD_BUSH_PLACED_KEY,
+            configuredFeatures.getOrThrow(DoTBConfiguredFeatures.BOXWOOD_BUSH_KEY),
+            List.of(
+                RarityFilter.onAverageOnceEvery(4),
+                InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome()
+            )
+        );
+
+        register(context, MULBERRY_PLACED_KEY,
+            configuredFeatures.getOrThrow(DoTBConfiguredFeatures.MULBERRY_KEY),
+            List.of(
+                RarityFilter.onAverageOnceEvery(2),
+                InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome()
+            )
+        );
+
+        register(context, RICE_PLACED_KEY,
+            configuredFeatures.getOrThrow(DoTBConfiguredFeatures.RICE_KEY),
+            List.of(
+                RarityFilter.onAverageOnceEvery(2),
+                InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome()
+            )
+        );
+
+        register(context, WILD_GRAPE_PLACED_KEY,
+            configuredFeatures.getOrThrow(DoTBConfiguredFeatures.WILD_GRAPE_KEY),
+            List.of(
+                RarityFilter.onAverageOnceEvery(2),
+                InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome()
+            )
+        );
+
+        register(context, WILD_MAIZE_PLACED_KEY,
+            configuredFeatures.getOrThrow(DoTBConfiguredFeatures.WILD_MAIZE_KEY),
+            List.of(
+                RarityFilter.onAverageOnceEvery(2),
+                InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome()
+            )
+        );
+
+        register(context, GERANIUM_PINK_PLACED_KEY,
+            configuredFeatures.getOrThrow(DoTBConfiguredFeatures.GERANIUM_PINK_KEY),
+            List.of(
+                RarityFilter.onAverageOnceEvery(2),
+                InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome()
+            )
+        );
     }
 
     private static ResourceKey<PlacedFeature> registerKey(String name) {

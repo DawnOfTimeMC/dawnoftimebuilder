@@ -8,9 +8,12 @@
           "to_place": {
             "type": "minecraft:simple_state_provider",
             "state": {
-              "Name": "dawnoftimebuilder:cypress",
+              "Name": "dawnoftimebuilder:rice",
               "Properties": {
-                "size": "2"
+                "age": "7",
+                "half": "bottom",
+                "persistent": "false",
+                "waterlogged": "true"
               }
             }
           }
