@@ -7,22 +7,20 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.inventory.CreativeModeInventoryScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.ScreenEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import org.dawnoftimebuilder.HandlerClient;
 import org.dawnoftimebuilder.client.gui.elements.buttons.CategoryButton;
 import org.dawnoftimebuilder.client.gui.elements.buttons.GroupButton;
 import org.dawnoftimebuilder.client.gui.elements.buttons.SocialsButton;
-import org.dawnoftimebuilder.registry.DoTBCreativeModeTabsRegistry;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.dawnoftimebuilder.DawnOfTimeBuilder.MOD_ID;
-import static org.dawnoftimebuilder.HandlerCommon.isDotSelected;
 
 @OnlyIn(Dist.CLIENT)
 public class CreativeInventoryEvents {
@@ -91,8 +89,8 @@ public class CreativeInventoryEvents {
             this.updateCategoryButtons();
 
             CreativeModeInventoryScreen screen = (CreativeModeInventoryScreen) event.getScreen();
-            if(!DoTBCreativeModeTabsRegistry.DOT_TAB.get().shouldDisplay()) {
-                System.out.println("je suce ton geuzgué");
+            if(HandlerClient.isDotSelected()) {
+                this.updateItems(screen);
                 this.btnScrollUp.visible = true;
                 this.btnScrollDown.visible = true;
                 this.discord.visible = true;
@@ -115,24 +113,11 @@ public class CreativeInventoryEvents {
         }
     }
 
-    @SuppressWarnings("unused") // Gets called by coremod // TODO call by mixin xd
-    public void onCreativeTabChange(CreativeModeInventoryScreen screen, CreativeModeTab tab) {
-        if(!DoTBCreativeModeTabsRegistry.DOT_TAB.get().shouldDisplay()) {
-            tabDoTBSelected = true;
-            this.updateItems(screen);
-        } else
-            tabDoTBSelected = false;
-        // this.updateCategoryButtons();
-    }
-
     @SubscribeEvent
     public void onScreenDrawPre(ScreenEvent.Render.Pre event) {
         if(event.getScreen() instanceof CreativeModeInventoryScreen screen) {
-            if(isDotSelected()) {
-                if(!tabDoTBSelected) {
-                    updateItems(screen);
-                    tabDoTBSelected = true;
-                }
+            if(HandlerClient.isDotSelected()) {
+                updateItems(screen);
             } else {
                 tabDoTBSelected = false;
                 this.btnScrollUp.visible = false;
@@ -155,7 +140,7 @@ public class CreativeInventoryEvents {
             this.guiCenterX = screen.getGuiLeft();
             this.guiCenterY = screen.getGuiTop();
 
-            if(isDotSelected()) {
+            if(HandlerClient.isDotSelected()) {
                 this.btnScrollUp.visible = true;
                 this.btnScrollDown.visible = true;
                 this.discord.visible = true;
@@ -170,7 +155,7 @@ public class CreativeInventoryEvents {
                 this.buttons.forEach(button -> {
                     if(button.isMouseOver(event.getMouseX(), event.getMouseY())) {
                         //TODO: Fix
-                        //screen.renderTooltip(event.getPoseStack(), CreativeInventoryCategories.values()[button.getCategoryID()].getTranslation(), event.getMouseX(), event.getMouseY());
+                        //screen.renderTooltip(event.getMatrixStack(), CreativeInventoryCategories.values()[button.getCategoryID()].getTranslation(), event.getMouseX(), event.getMouseY());
                     }
                 });
             } else if(tabDoTBSelected) {
@@ -190,7 +175,7 @@ public class CreativeInventoryEvents {
     @SubscribeEvent
     public void onScreenDrawBackground(ScreenEvent.BackgroundRendered event) {
         if(event.getScreen() instanceof CreativeModeInventoryScreen screen) {
-            if(isDotSelected()) {
+            if(HandlerClient.isDotSelected()) {
                 if(!tabDoTBSelected) {
                     updateItems(screen);
                     tabDoTBSelected = true;
@@ -228,9 +213,9 @@ public class CreativeInventoryEvents {
 
     @SubscribeEvent
     public void onMouseScroll(ScreenEvent.MouseScrolled.Pre event) {
-        if(event.getScreen() instanceof CreativeModeInventoryScreen CreativeModeInventoryScreen) {
-            int guiLeft = CreativeModeInventoryScreen.getGuiLeft();
-            int guiTop = CreativeModeInventoryScreen.getGuiTop();
+        if(event.getScreen() instanceof CreativeModeInventoryScreen screen) {
+            int guiLeft = screen.getGuiLeft();
+            int guiTop = screen.getGuiTop();
             int startX = guiLeft - 32;
             int startY = guiTop + 10;
             //noinspection UnnecessaryLocalVariable
