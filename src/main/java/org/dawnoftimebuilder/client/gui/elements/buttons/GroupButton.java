@@ -24,23 +24,39 @@ public class GroupButton extends Button {
 
     @Override
     public void render(GuiGraphics pGuiGraphics, int pMouseX, int pMouseY, float pPartialTick) {
+        if(!this.visible)
+            return;
+
+        this.isHovered = pMouseX >= this.getX() && pMouseY >= this.getY() && pMouseX < this.getX() + this.width && pMouseY < this.getY() + this.height;
+
+        int offset = this.getTextureY();
         PoseStack ps = pGuiGraphics.pose();
         ps.pushPose();
         RenderSystem.clearColor(1.0F, 1.0F, 1.0F, this.alpha);
         RenderSystem.enableBlend();
-        pGuiGraphics.blit(WIDGETS_LOCATION, this.getX(), this.getY(), 0, 46 + 2 * 20, this.width / 2, this.height);
-        pGuiGraphics.blit(WIDGETS_LOCATION, this.getX() + this.width / 2, this.getY(), 200 - this.width / 2, 46 + 2 * 20, this.width / 2, this.height);
+        pGuiGraphics.blit(WIDGETS_LOCATION, this.getX(), this.getY(), 0, 46 + offset * 20, this.width / 2, this.height);
+        pGuiGraphics.blit(WIDGETS_LOCATION, this.getX() + this.width / 2, this.getY(), 200 - this.width / 2, 46 + offset * 20, this.width / 2, this.height);
         RenderSystem.disableBlend();
         ps.popPose();
 
         ps.pushPose();
         if(!this.active)
-            RenderSystem.clearColor(0.5F, 0.5F, 0.5F, 1.0F);
-        RenderSystem.clearColor(1.0F, 1.0F, 1.0F, this.alpha);
+            pGuiGraphics.setColor(0.5F, 0.5F, 0.5F, 1.0F);
         RenderSystem.enableBlend();
         pGuiGraphics.blit(iconResource, this.getX() + 2, this.getY() + 2, this.iconU, this.iconV, 16, 16);
         RenderSystem.disableBlend();
+        pGuiGraphics.setColor(1.0F, 1.0F, 1.0F, 1.0F);
         ps.popPose();
-        super.render(pGuiGraphics, pMouseX, pMouseY, pPartialTick);
+    }
+
+    private int getTextureY() {
+        int i = 1;
+        if (!this.active) {
+            i = 0;
+        } else if (this.isHoveredOrFocused()) {
+            i = 2;
+        }
+
+        return i;
     }
 }

@@ -20,22 +20,27 @@ public class SocialsButton extends Button {
 
     @Override
     public void render(GuiGraphics pGuiGraphics, int pMouseX, int pMouseY, float pPartialTick) {
-        if(this.active) {
+        if(this.active && this.visible) {
             PoseStack ps = pGuiGraphics.pose();
+
+            this.isHovered = pMouseX >= this.getX() && pMouseY >= this.getY() && pMouseX < this.getX() + this.width && pMouseY < this.getY() + this.height;
+
+            if(this.isHovered())
+                pGuiGraphics.setColor(0.7F, 0.7F, 0.7F, 1.0F);
+
             ps.pushPose();
-            RenderSystem.clearColor(1.0F, 1.0F, 1.0F, this.alpha);
             RenderSystem.enableBlend();
-            pGuiGraphics.blit(socialIcons, this.getX() - 1, this.getY(), 0, (this.isHovered()) ? 28 : 0, 28, 28);
+            pGuiGraphics.blit(socialIcons, this.getX() - 1, this.getY(), 0, 0, 28, 28);
             RenderSystem.disableBlend();
             ps.popPose();
 
             ps.pushPose();
-            RenderSystem.clearColor(1.0F, 1.0F, 1.0F, this.alpha);
             RenderSystem.enableBlend();
             pGuiGraphics.blit(buttonIcons, this.getX() + 3, this.getY() + 4, 0, 0, 0, 20, 20, 20, 20);
             RenderSystem.disableBlend();
             ps.popPose();
+
+            pGuiGraphics.setColor(1.0F, 1.0F, 1.0F, 1.0F);
         }
-        super.render(pGuiGraphics, pMouseX, pMouseY, pPartialTick);
     }
 }

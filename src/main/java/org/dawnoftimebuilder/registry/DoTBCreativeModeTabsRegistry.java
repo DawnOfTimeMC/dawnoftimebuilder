@@ -11,7 +11,7 @@ import org.dawnoftimebuilder.DawnOfTimeBuilder;
 
 public class DoTBCreativeModeTabsRegistry {
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, DawnOfTimeBuilder.MOD_ID);
-    public static RegistryObject<CreativeModeTab> DOT_TAB = CREATIVE_MODE_TABS.register("dot_tab", () -> CreativeModeTab.builder().icon(() -> new ItemStack(DoTBItemsRegistry.GENERAL.get())).title(Component.translatable("itemGroup." + DawnOfTimeBuilder.MOD_ID + ".dottab")).build());
+    public static RegistryObject<CreativeModeTab> DOT_TAB = CREATIVE_MODE_TABS.register("dot_tab", () -> CreativeModeTab.builder().icon(() -> new ItemStack(DoTBBlocksRegistry.COMMELINA.get())).title(Component.translatable("itemGroup." + DawnOfTimeBuilder.MOD_ID + ".dottab")).build());
 
     public static void register(IEventBus eventBus) {
         CREATIVE_MODE_TABS.register(eventBus);

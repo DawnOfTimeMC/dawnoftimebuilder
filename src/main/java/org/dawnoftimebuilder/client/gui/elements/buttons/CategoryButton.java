@@ -40,7 +40,7 @@ public class CategoryButton extends Button {
 
     @Override
     public void render(GuiGraphics pGuiGraphics, int pMouseX, int pMouseY, float pPartialTick) {
-        if(this.active) {
+        if(this.active && this.visible) {
             PoseStack ps = pGuiGraphics.pose();
 
             ps.pushPose();
@@ -57,7 +57,6 @@ public class CategoryButton extends Button {
             RenderSystem.disableBlend();
             ps.popPose();
         }
-        super.render(pGuiGraphics, pMouseX, pMouseY, pPartialTick);
     }
 
     private static ResourceLocation[] fillButtonIcons() {

@@ -154,8 +154,7 @@ public class CreativeInventoryEvents {
                 // Render tooltips after so it renders above buttons
                 this.buttons.forEach(button -> {
                     if(button.isMouseOver(event.getMouseX(), event.getMouseY())) {
-                        //TODO: Fix
-                        //screen.renderTooltip(event.getMatrixStack(), CreativeInventoryCategories.values()[button.getCategoryID()].getTranslation(), event.getMouseX(), event.getMouseY());
+                        event.getGuiGraphics().renderTooltip(Minecraft.getInstance().font, CreativeInventoryCategories.values()[button.getCategoryID()].getTranslation(), event.getMouseX(), event.getMouseY());
                     }
                 });
             } else if(tabDoTBSelected) {
