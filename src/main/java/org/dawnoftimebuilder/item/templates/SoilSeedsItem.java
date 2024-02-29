@@ -35,8 +35,7 @@ public class SoilSeedsItem extends BlockItem implements IHasFlowerPot {
         if(!world.isClientSide() && this.getPotBlock() != null) {
             BlockPos pos = context.getClickedPos();
             BlockState state = world.getBlockState(pos);
-            if(state.getBlock() instanceof FlowerPotBlock) {
-                FlowerPotBlock pot = (FlowerPotBlock) state.getBlock();
+            if(state.getBlock() instanceof FlowerPotBlock pot) {
                 if(pot.getEmptyPot().getContent() == Blocks.AIR) {
                     world.setBlock(pos, this.getPotBlock().getRandomState(), 2);
                     return InteractionResult.SUCCESS;

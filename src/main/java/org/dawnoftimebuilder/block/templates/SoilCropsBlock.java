@@ -26,6 +26,7 @@ import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.PlantType;
 import org.dawnoftimebuilder.util.DoTBUtils;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Random;
@@ -169,10 +170,11 @@ public class SoilCropsBlock extends CropBlock {
         return this.plantType;
     }
 
-	/*@Override
-	protected IItemProvider getBaseSeedId() {
-		return this.seed;
-	}*/
+	@Override
+    @Nonnull
+	protected ItemLike getBaseSeedId() {
+		return this.asItem();
+	}
 
     @Override
     public void appendHoverText(ItemStack stack, @Nullable BlockGetter worldIn, List<Component> tooltip, TooltipFlag flagIn) {
