@@ -117,7 +117,9 @@ public class CreativeInventoryEvents {
     public void onScreenDrawPre(ScreenEvent.Render.Pre event) {
         if(event.getScreen() instanceof CreativeModeInventoryScreen screen) {
             if(HandlerClient.isDotSelected()) {
-                updateItems(screen);
+                if(!tabDoTBSelected) {
+                    updateItems(screen);
+                }
             } else {
                 tabDoTBSelected = false;
                 this.btnScrollUp.visible = false;
@@ -200,10 +202,10 @@ public class CreativeInventoryEvents {
     }
 
     private void updateItems(CreativeModeInventoryScreen screen) {
+        screen.mouseScrolled(0, 0, Float.MAX_VALUE);
         CreativeModeInventoryScreen.ItemPickerMenu container = screen.getMenu();
         container.items.clear();
         CreativeInventoryCategories.values()[selectedCategoryID].getItems().forEach(item -> container.items.add(new ItemStack(item)));
-        container.scrollTo(0);
     }
 
     private void openLink(String link) {
