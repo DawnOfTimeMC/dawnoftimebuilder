@@ -1,9 +1,9 @@
 {
-  "type": "minecraft:flower",
+  "type": "dawnoftimebuilder:default_crops",
   "config": {
     "feature": {
       "feature": {
-        "type": "minecraft:simple_block",
+        "type": "dawnoftimebuilder:dot_feature",
         "config": {
           "to_place": {
             "type": "minecraft:simple_state_provider",

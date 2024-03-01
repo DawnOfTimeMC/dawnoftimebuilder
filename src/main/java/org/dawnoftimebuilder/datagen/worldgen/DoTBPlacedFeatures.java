@@ -1,4 +1,4 @@
-package org.dawnoftimebuilder.worldgen;
+package org.dawnoftimebuilder.datagen.worldgen;
 
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderGetter;

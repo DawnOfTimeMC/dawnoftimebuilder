@@ -1,11 +1,11 @@
-package org.dawnoftimebuilder.worldgen;
+package org.dawnoftimebuilder.datagen.worldgen;
 
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.block.CropBlock;
+import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
@@ -13,9 +13,8 @@ import net.minecraft.world.level.levelgen.feature.configurations.RandomPatchConf
 import net.minecraft.world.level.levelgen.feature.configurations.SimpleBlockConfiguration;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 import org.dawnoftimebuilder.DawnOfTimeBuilder;
-import org.dawnoftimebuilder.block.roman.CypressBlock;
-import org.dawnoftimebuilder.block.templates.GrowingBushBlock;
 import org.dawnoftimebuilder.registry.DoTBBlocksRegistry;
+import org.dawnoftimebuilder.registry.DoTBFeaturesRegistry;
 
 public class DoTBConfiguredFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> CAMELLIA_KEY = registerKey("camellia");
@@ -30,45 +29,39 @@ public class DoTBConfiguredFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> GERANIUM_PINK_KEY = registerKey("geranium_pink");
 
     public static void bootstrap(BootstapContext<ConfiguredFeature<?, ?>> context) {
-        register(context, CAMELLIA_KEY, Feature.FLOWER,
+        register(context, CAMELLIA_KEY, Feature.RANDOM_PATCH,
             new RandomPatchConfiguration(48, 5, 2,
-                PlacementUtils.onlyWhenEmpty(Feature.SIMPLE_BLOCK,
+                PlacementUtils.onlyWhenEmpty(DoTBFeaturesRegistry.DOT_FEATURE.get(),
                     new SimpleBlockConfiguration(
-                        BlockStateProvider.simple(DoTBBlocksRegistry.CAMELLIA.get()
-                                .defaultBlockState().setValue(GrowingBushBlock.AGE, 5)
-                        )
+                        BlockStateProvider.simple(DoTBBlocksRegistry.CAMELLIA.get())
                     )
                 )
             )
         );
 
-        register(context, COMMELINA_KEY, Feature.FLOWER,
+        register(context, COMMELINA_KEY, DoTBFeaturesRegistry.DEFAULT_CROPS.get(),
             new RandomPatchConfiguration(48, 5, 2,
-                PlacementUtils.onlyWhenEmpty(Feature.SIMPLE_BLOCK,
+                PlacementUtils.onlyWhenEmpty(DoTBFeaturesRegistry.DOT_FEATURE.get(),
                     new SimpleBlockConfiguration(
-                        BlockStateProvider.simple(DoTBBlocksRegistry.COMMELINA.get()
-                                .defaultBlockState().setValue(CropBlock.AGE, CropBlock.MAX_AGE)
-                        )
+                        BlockStateProvider.simple(DoTBBlocksRegistry.COMMELINA.get())
                     )
                 )
             )
         );
 
-        register(context, CYPRESS_KEY, Feature.FLOWER,
+        register(context, CYPRESS_KEY, Feature.RANDOM_PATCH,
             new RandomPatchConfiguration(32, 5, 2,
-                PlacementUtils.onlyWhenEmpty(Feature.SIMPLE_BLOCK,
+                PlacementUtils.onlyWhenEmpty(DoTBFeaturesRegistry.DOT_FEATURE.get(),
                     new SimpleBlockConfiguration(
-                        BlockStateProvider.simple(DoTBBlocksRegistry.CYPRESS.get()
-                                .defaultBlockState().setValue(CypressBlock.SIZE, 2)
-                        )
+                        BlockStateProvider.simple(DoTBBlocksRegistry.CYPRESS.get())
                     )
                 )
             )
         );
 
-        register(context, RED_MAPLE_KEY, Feature.FLOWER,
+        register(context, RED_MAPLE_KEY, Feature.RANDOM_PATCH,
             new RandomPatchConfiguration(32, 3, 2,
-                PlacementUtils.onlyWhenEmpty(Feature.SIMPLE_BLOCK,
+                PlacementUtils.onlyWhenEmpty(DoTBFeaturesRegistry.DOT_FEATURE.get(),
                     new SimpleBlockConfiguration(
                         BlockStateProvider.simple(DoTBBlocksRegistry.MAPLE_RED_SAPLING.get())
                     )
@@ -76,9 +69,9 @@ public class DoTBConfiguredFeatures {
             )
         );
 
-        register(context, BOXWOOD_BUSH_KEY, Feature.FLOWER,
+        register(context, BOXWOOD_BUSH_KEY, Feature.RANDOM_PATCH,
             new RandomPatchConfiguration(32, 5, 2,
-                PlacementUtils.onlyWhenEmpty(Feature.SIMPLE_BLOCK,
+                PlacementUtils.onlyWhenEmpty(DoTBFeaturesRegistry.DOT_FEATURE.get(),
                     new SimpleBlockConfiguration(
                         BlockStateProvider.simple(DoTBBlocksRegistry.BOXWOOD_BUSH.get())
                     )
@@ -86,9 +79,9 @@ public class DoTBConfiguredFeatures {
             )
         );
 
-        register(context, MULBERRY_KEY, Feature.FLOWER,
+        register(context, MULBERRY_KEY, DoTBFeaturesRegistry.DEFAULT_CROPS.get(),
             new RandomPatchConfiguration(32, 5, 2,
-                PlacementUtils.onlyWhenEmpty(Feature.SIMPLE_BLOCK,
+                PlacementUtils.onlyWhenEmpty(DoTBFeaturesRegistry.DOT_FEATURE.get(),
                     new SimpleBlockConfiguration(
                         BlockStateProvider.simple(DoTBBlocksRegistry.MULBERRY.get())
                     )
@@ -96,21 +89,20 @@ public class DoTBConfiguredFeatures {
             )
         );
 
-        register(context, RICE_KEY, Feature.FLOWER,
-            new RandomPatchConfiguration(32, 5, 2,
-                PlacementUtils.onlyWhenEmpty(Feature.SIMPLE_BLOCK,
+        register(context, RICE_KEY, DoTBFeaturesRegistry.DEFAULT_CROPS.get(),
+            new RandomPatchConfiguration(64, 5, 2,
+                PlacementUtils.filtered(DoTBFeaturesRegistry.DOT_FEATURE.get(),
                     new SimpleBlockConfiguration(
-                        BlockStateProvider.simple(DoTBBlocksRegistry.RICE.get()
-                                .defaultBlockState().setValue(CropBlock.AGE, CropBlock.MAX_AGE)
-                        )
-                    )
+                        BlockStateProvider.simple(DoTBBlocksRegistry.RICE.get())
+                    ),
+                    BlockPredicate.ONLY_IN_AIR_OR_WATER_PREDICATE
                 )
             )
         );
 
-        register(context, WILD_GRAPE_KEY, Feature.FLOWER,
+        register(context, WILD_GRAPE_KEY, DoTBFeaturesRegistry.DEFAULT_CROPS.get(),
             new RandomPatchConfiguration(32, 5, 2,
-                PlacementUtils.onlyWhenEmpty(Feature.SIMPLE_BLOCK,
+                PlacementUtils.onlyWhenEmpty(DoTBFeaturesRegistry.DOT_FEATURE.get(),
                     new SimpleBlockConfiguration(
                         BlockStateProvider.simple(DoTBBlocksRegistry.WILD_GRAPE.get())
                     )
@@ -118,9 +110,9 @@ public class DoTBConfiguredFeatures {
             )
         );
 
-        register(context, WILD_MAIZE_KEY, Feature.FLOWER,
+        register(context, WILD_MAIZE_KEY, DoTBFeaturesRegistry.DEFAULT_CROPS.get(),
             new RandomPatchConfiguration(32, 5, 2,
-                PlacementUtils.onlyWhenEmpty(Feature.SIMPLE_BLOCK,
+                PlacementUtils.onlyWhenEmpty(DoTBFeaturesRegistry.DOT_FEATURE.get(),
                     new SimpleBlockConfiguration(
                             BlockStateProvider.simple(DoTBBlocksRegistry.WILD_MAIZE.get())
                     )
@@ -128,9 +120,9 @@ public class DoTBConfiguredFeatures {
             )
         );
 
-        register(context, GERANIUM_PINK_KEY, Feature.FLOWER,
+        register(context, GERANIUM_PINK_KEY, DoTBFeaturesRegistry.DEFAULT_CROPS.get(),
             new RandomPatchConfiguration(32, 5, 2,
-                PlacementUtils.onlyWhenEmpty(Feature.SIMPLE_BLOCK,
+                PlacementUtils.onlyWhenEmpty(DoTBFeaturesRegistry.DOT_FEATURE.get(),
                     new SimpleBlockConfiguration(
                         BlockStateProvider.simple(DoTBBlocksRegistry.GERANIUM_PINK.get())
                     )

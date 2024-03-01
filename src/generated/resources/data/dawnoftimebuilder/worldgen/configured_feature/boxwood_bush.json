@@ -1,9 +1,9 @@
 {
-  "type": "minecraft:flower",
+  "type": "minecraft:random_patch",
   "config": {
     "feature": {
       "feature": {
-        "type": "minecraft:simple_block",
+        "type": "dawnoftimebuilder:dot_feature",
         "config": {
           "to_place": {
             "type": "minecraft:simple_state_provider",

@@ -56,7 +56,7 @@ public class MapleSaplingBlock extends BushBlockDoT implements BonemealableBlock
         return true;
     }
 
-    public static void placeFinalTreeIfPossible(final LevelAccessor worldIn, final BlockPos centerPosIn) {
+    public static boolean placeFinalTreeIfPossible(final LevelAccessor worldIn, final BlockPos centerPosIn) {
         if(MapleSaplingBlock.isValidForPlacement(worldIn, centerPosIn, true)) {
             final Direction direction = Direction.Plane.HORIZONTAL.getRandomDirection(worldIn.getRandom());
             worldIn.setBlock(centerPosIn, DoTBBlocksRegistry.MAPLE_RED_TRUNK.get().defaultBlockState().setValue(MapleTrunkBlock.FACING, direction), 10);
@@ -70,7 +70,9 @@ public class MapleSaplingBlock extends BushBlockDoT implements BonemealableBlock
                     }
                 }
             }
+            return true;
         }
+        return false;
     }
 
     public static final IntegerProperty STAGE = BlockStateProperties.STAGE;
@@ -164,5 +166,10 @@ public class MapleSaplingBlock extends BushBlockDoT implements BonemealableBlock
     @Override
     public boolean propagatesSkylightDown(final BlockState p_200123_1_, final BlockGetter p_200123_2_, final BlockPos p_200123_3_) {
         return true;
+    }
+
+    @Override
+    public boolean generateOnPos(WorldGenLevel world, BlockPos pos, BlockState state, RandomSource random) {
+        return MapleSaplingBlock.placeFinalTreeIfPossible(world, pos);
     }
 }

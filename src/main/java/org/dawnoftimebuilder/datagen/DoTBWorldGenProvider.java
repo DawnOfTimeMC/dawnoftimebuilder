@@ -7,9 +7,9 @@ import net.minecraft.data.PackOutput;
 import net.minecraftforge.common.data.DatapackBuiltinEntriesProvider;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.dawnoftimebuilder.DawnOfTimeBuilder;
-import org.dawnoftimebuilder.worldgen.DoTBBiomeModifiers;
-import org.dawnoftimebuilder.worldgen.DoTBConfiguredFeatures;
-import org.dawnoftimebuilder.worldgen.DoTBPlacedFeatures;
+import org.dawnoftimebuilder.datagen.worldgen.DoTBBiomeModifiers;
+import org.dawnoftimebuilder.datagen.worldgen.DoTBConfiguredFeatures;
+import org.dawnoftimebuilder.datagen.worldgen.DoTBPlacedFeatures;
 
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;

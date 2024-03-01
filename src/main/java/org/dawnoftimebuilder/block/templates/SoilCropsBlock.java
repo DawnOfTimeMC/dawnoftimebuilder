@@ -5,6 +5,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
@@ -24,6 +25,7 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.PlantType;
+import org.dawnoftimebuilder.block.IBlockGeneration;
 import org.dawnoftimebuilder.util.DoTBUtils;
 
 import javax.annotation.Nonnull;
@@ -33,7 +35,7 @@ import java.util.Random;
 
 import static org.dawnoftimebuilder.util.DoTBUtils.TOOLTIP_CROP;
 
-public class SoilCropsBlock extends CropBlock {
+public class SoilCropsBlock extends CropBlock implements IBlockGeneration {
     private final PlantType plantType;
     public static final BooleanProperty PERSISTENT = BlockStateProperties.PERSISTENT;
 
@@ -180,5 +182,17 @@ public class SoilCropsBlock extends CropBlock {
     public void appendHoverText(ItemStack stack, @Nullable BlockGetter worldIn, List<Component> tooltip, TooltipFlag flagIn) {
         super.appendHoverText(stack, worldIn, tooltip, flagIn);
         DoTBUtils.addTooltip(tooltip, TOOLTIP_CROP);
+    }
+
+    @Override
+    public boolean generateOnPos(WorldGenLevel world, BlockPos pos, BlockState state, RandomSource random) {
+        final BlockState groundState = world.getBlockState(pos.below());
+
+        if(!groundState.is(BlockTags.DIRT)) {
+            return false;
+        }
+
+        this.setPlantWithAge(state, world, pos, random.nextInt(this.getMaxAge() + 1));
+        return true;
     }
 }

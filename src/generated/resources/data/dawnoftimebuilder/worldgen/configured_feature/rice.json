@@ -1,16 +1,16 @@
 {
-  "type": "minecraft:flower",
+  "type": "dawnoftimebuilder:default_crops",
   "config": {
     "feature": {
       "feature": {
-        "type": "minecraft:simple_block",
+        "type": "dawnoftimebuilder:dot_feature",
         "config": {
           "to_place": {
             "type": "minecraft:simple_state_provider",
             "state": {
               "Name": "dawnoftimebuilder:rice",
               "Properties": {
-                "age": "7",
+                "age": "0",
                 "half": "bottom",
                 "persistent": "false",
                 "waterlogged": "true"
@@ -24,7 +24,10 @@
           "type": "minecraft:block_predicate_filter",
           "predicate": {
             "type": "minecraft:matching_blocks",
-            "blocks": "minecraft:air"
+            "blocks": [
+              "minecraft:air",
+              "minecraft:water"
+            ]
           }
         }
       ]

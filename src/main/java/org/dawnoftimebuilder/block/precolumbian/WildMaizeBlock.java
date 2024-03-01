@@ -2,6 +2,7 @@ package org.dawnoftimebuilder.block.precolumbian;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -16,11 +17,12 @@ import net.minecraft.world.level.block.state.properties.Half;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.dawnoftimebuilder.block.IBlockGeneration;
 import org.dawnoftimebuilder.block.templates.WildPlantBlock;
 
 import javax.annotation.Nullable;
 
-public class WildMaizeBlock extends WildPlantBlock {
+public class WildMaizeBlock extends WildPlantBlock implements IBlockGeneration {
     private static final VoxelShape VS = Block.box(5.0D, 0.0D, 5.0D, 11.0D, 16.0D, 11.0D);
     public static final EnumProperty<Half> HALF = BlockStateProperties.HALF;
 
@@ -87,5 +89,14 @@ public class WildMaizeBlock extends WildPlantBlock {
         }
 
         return stateIn;
+    }
+
+    @Override
+    public boolean generateOnPos(WorldGenLevel world, BlockPos pos, BlockState state, RandomSource random) {
+        if(!world.getBlockState(pos.above()).isAir())
+            return false;
+        world.setBlock(pos, state, 2);
+        world.setBlock(pos.above(), state.setValue(HALF, Half.TOP), 2);
+        return true;
     }
 }
