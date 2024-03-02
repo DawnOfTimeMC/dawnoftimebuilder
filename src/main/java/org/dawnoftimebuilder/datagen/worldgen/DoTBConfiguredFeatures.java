@@ -102,7 +102,7 @@ public class DoTBConfiguredFeatures {
 
         register(context, WILD_GRAPE_KEY, DoTBFeaturesRegistry.DEFAULT_CROPS.get(),
             new RandomPatchConfiguration(32, 5, 2,
-                PlacementUtils.onlyWhenEmpty(DoTBFeaturesRegistry.DOT_FEATURE.get(),
+                PlacementUtils.onlyWhenEmpty(Feature.SIMPLE_BLOCK,
                     new SimpleBlockConfiguration(
                         BlockStateProvider.simple(DoTBBlocksRegistry.WILD_GRAPE.get())
                     )
@@ -122,7 +122,7 @@ public class DoTBConfiguredFeatures {
 
         register(context, GERANIUM_PINK_KEY, DoTBFeaturesRegistry.DEFAULT_CROPS.get(),
             new RandomPatchConfiguration(32, 5, 2,
-                PlacementUtils.onlyWhenEmpty(DoTBFeaturesRegistry.DOT_FEATURE.get(),
+                PlacementUtils.onlyWhenEmpty(Feature.SIMPLE_BLOCK,
                     new SimpleBlockConfiguration(
                         BlockStateProvider.simple(DoTBBlocksRegistry.GERANIUM_PINK.get())
                     )
