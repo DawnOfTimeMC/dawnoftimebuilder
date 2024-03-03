@@ -4,6 +4,7 @@ import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.gui.screens.inventory.CreativeModeInventoryScreen;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -20,7 +21,6 @@ import org.dawnoftimebuilder.registry.*;
 
 @Mod.EventBusSubscriber(modid = DawnOfTimeBuilder.MOD_ID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class HandlerClient {
-    public static CreativeInventoryEvents creativeInventoryEvents;
     private static boolean DOT_SELECTED = false;
 
     @SubscribeEvent
@@ -31,7 +31,7 @@ public class HandlerClient {
 
         MenuScreens.register(DoTBMenuTypesRegistry.DISPLAYER.get(), DisplayerScreen::new);
 
-        MinecraftForge.EVENT_BUS.register(creativeInventoryEvents = new CreativeInventoryEvents());
+        MinecraftForge.EVENT_BUS.register(new CreativeInventoryEvents());
     }
 
     @SubscribeEvent
@@ -42,6 +42,7 @@ public class HandlerClient {
         event.registerBlockEntityRenderer(DoTBBlockEntitiesRegistry.DISPLAYER.get(), DisplayerBERenderer::new);
     }
 
+    @OnlyIn(Dist.CLIENT)
     public static void onCreativeTabChange(CreativeModeInventoryScreen screen, CreativeModeTab tab) {
         DOT_SELECTED = tab == DoTBCreativeModeTabsRegistry.DOT_TAB.get();
     }
