@@ -79,7 +79,7 @@ public class DoTBPlacedFeatures {
         register(context, RICE_PLACED_KEY,
             configuredFeatures.getOrThrow(DoTBConfiguredFeatures.RICE_KEY),
             List.of(
-                RarityFilter.onAverageOnceEvery(2),
+                RarityFilter.onAverageOnceEvery(1),
                 InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_OCEAN_FLOOR, BiomeFilter.biome()
             )
         );
