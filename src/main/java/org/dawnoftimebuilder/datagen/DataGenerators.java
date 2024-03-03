@@ -21,5 +21,6 @@ public class DataGenerators {
         CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
 
         generator.addProvider(event.includeServer(), new DoTBWorldGenProvider(packOutput, lookupProvider));
+        generator.addProvider(event.includeServer(), new DoTBBlockTagGenerator(packOutput, lookupProvider, existingFileHelper));
     }
 }
