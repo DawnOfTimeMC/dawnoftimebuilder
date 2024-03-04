@@ -206,6 +206,7 @@ public class CreativeInventoryEvents {
         CreativeModeInventoryScreen.ItemPickerMenu container = screen.getMenu();
         container.items.clear();
         CreativeInventoryCategories.values()[selectedCategoryID].getItems().forEach(item -> container.items.add(new ItemStack(item)));
+        container.scrollTo(0);
     }
 
     private void openLink(String link) {
