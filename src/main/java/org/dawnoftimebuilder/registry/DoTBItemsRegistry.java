@@ -1,6 +1,7 @@
 package org.dawnoftimebuilder.registry;
 
 import net.minecraft.world.item.Item;
+import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -40,6 +41,7 @@ public class DoTBItemsRegistry {
     public static final RegistryObject<Item> MULBERRY_LEAVES = DoTBItemsRegistry.reg("mulberry_leaves", ItemDoTB::new);
     public static final RegistryObject<Item> GRAPE = DoTBItemsRegistry.reg("grape", () -> new ItemDoTB(new Item.Properties().food(DoTBFoods.GRAPE)));
     public static final RegistryObject<Item> GRAPE_SEEDS = DoTBItemsRegistry.regWithFlowerPot("grape_seeds", PotItem::new);
+    public static final RegistryObject<Item> SILKMOTH_SPAWN_EGG = DoTBItemsRegistry.reg("silkmoth_spawn_egg", () -> new ForgeSpawnEggItem(DoTBEntitiesRegistry.SILKMOTH_ENTITY, 0xDBD8BD, 0xFEFEFC, new Item.Properties()));
 
     public static <T extends Item> RegistryObject<Item> reg(final String name, final Supplier<T> itemSupplier) {
         return DoTBItemsRegistry.ITEMS.register(name, itemSupplier);

@@ -11,18 +11,22 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ambient.AmbientCreature;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import org.dawnoftimebuilder.DoTBConfig;
+import org.dawnoftimebuilder.block.templates.DoubleGrowingBushBlock;
+import org.dawnoftimebuilder.registry.DoTBEntitiesRegistry;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.dawnoftimebuilder.registry.DoTBEntitiesRegistry.SILKMOTH_ENTITY;
+import static org.dawnoftimebuilder.registry.DoTBBlocksRegistry.MULBERRY;
 
 public class SilkmothEntity extends AmbientCreature {
     private static final EntityDataAccessor<BlockPos> ROTATION_POS = SynchedEntityData.defineId(SilkmothEntity.class, EntityDataSerializers.BLOCK_POS);
@@ -30,7 +34,11 @@ public class SilkmothEntity extends AmbientCreature {
     private static final EntityDataAccessor<Float> DISTANCE = SynchedEntityData.defineId(SilkmothEntity.class, EntityDataSerializers.FLOAT);
 
     public SilkmothEntity(Level worldIn) {
-        super(SILKMOTH_ENTITY.get(), worldIn);
+        super(DoTBEntitiesRegistry.SILKMOTH_ENTITY.get(), worldIn);
+    }
+
+    public static AttributeSupplier.Builder createAttributes() {
+        return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 3.0D);
     }
 
     private float getNewRotationDistance() {
@@ -54,13 +62,13 @@ public class SilkmothEntity extends AmbientCreature {
     protected void customServerAiStep() {
         super.customServerAiStep();
 
-        if(this.tickCount >= 24000) {
+        if(this.tickCount >= 24000){
             //The silkmoth dies from oldness.
             if(!this.hasCustomName() && DoTBConfig.SILKMOTH_MUST_DIE.get())
-                this.hurt(damageSources().starve(), 20.0F);
+                this.hurt(this.damageSources().starve(), 20.0F);
         }
 
-        if(this.random.nextInt(DoTBConfig.SILKMOTH_ROTATION_CHANGE.get()) == 0) {
+        if(this.random.nextInt(DoTBConfig.SILKMOTH_ROTATION_CHANGE.get()) == 0){
             //Randomly changes the rotation pos.
             this.changeRotationPos();
         }
@@ -73,21 +81,21 @@ public class SilkmothEntity extends AmbientCreature {
         double alpha;
         if(z == 0)
             alpha = (x > 0) ? 0 : Math.PI;
-        else {
+        else{
             alpha = Math.atan(z / x);
             if(x > 0)
                 alpha += Math.PI;
         }
         double d = Math.sqrt(x * x + z * z);
-        d = -distance * 2 / (d + distance) + 1;
+        d = - distance * 2 / (d + distance) + 1;
         alpha += (this.getEntityData().get(CLOCKWISE) ? d - 1 : 1 - d) * Math.PI / 2;
 
         Vec3 motionVector = this.getDeltaMovement();
         this.setDeltaMovement(motionVector.x * 0.5D + Math.cos(alpha) * 0.15D, Math.sin(this.tickCount / 20.0D) * 0.05D, motionVector.z * 0.5D + Math.sin(alpha) * 0.15D);
-        this.yRotO = (float) Mth.wrapDegrees(180.0D * alpha / Math.PI - 90.0D);
+        this.setYHeadRot((float) Mth.wrapDegrees(180.0D * alpha / Math.PI - 90.0D));
     }
 
-    private void changeRotationPos() {
+    private void changeRotationPos(){
         int horizontalRange = 5;
         int verticalRange = 2;
 
@@ -101,29 +109,28 @@ public class SilkmothEntity extends AmbientCreature {
         List<BlockPos> listLight = new ArrayList<>();
         BlockState state;
 
-        for(int searchX = 0; searchX < 2 * horizontalRange + 1; searchX++) {
-            for(int searchZ = 0; searchZ < 2 * horizontalRange + 1; searchZ++) {
-                for(int searchY = 0; searchY < 2 * verticalRange + 1; searchY++) {
+        for(int searchX = 0; searchX < 2 * horizontalRange + 1; searchX++){
+            for(int searchZ = 0; searchZ < 2 * horizontalRange + 1; searchZ++){
+                for(int searchY = 0; searchY < 2 * verticalRange + 1; searchY++){
 
                     BlockPos pos = new BlockPos(x + searchX, y + searchY, z + searchZ);
                     state = this.level().getBlockState(pos);
 
-					/*if(state.getBlock() == MULBERRY.get()){
-						if(!((DoubleGrowingBushBlock) state.getBlock()).isBottomCrop(state)) listMulberry.add(pos);
-					}else if(isNight){
-						if(state.getLightEmission(this.level, pos) >= 14) listLight.add(pos);
-					}*/
+                    if(state.getBlock() == MULBERRY.get()){
+                        if(!((DoubleGrowingBushBlock) state.getBlock()).isBottomCrop(state)) listMulberry.add(pos);
+                    }else if(isNight){
+                        if(state.getLightEmission(this.level(), pos) >= 14) listLight.add(pos);
+                    }
 
                 }
             }
         }
 
-        if(!listLight.isEmpty()) {
+        if(!listLight.isEmpty()){
             this.getEntityData().set(ROTATION_POS, listLight.get(random.nextInt(listLight.size())));
-        } else if(!listMulberry.isEmpty()) {
+        }else if(!listMulberry.isEmpty()){
             this.getEntityData().set(ROTATION_POS, listMulberry.get(random.nextInt(listMulberry.size())));
-        } else
-            this.getEntityData().set(ROTATION_POS, new BlockPos(x + this.random.nextInt(2 * horizontalRange + 1), y + this.random.nextInt(2 * verticalRange + 1), z + this.random.nextInt(2 * horizontalRange + 1)));
+        }else this.getEntityData().set(ROTATION_POS, new BlockPos(x + this.random.nextInt(2 * horizontalRange + 1), y + this.random.nextInt(2 * verticalRange + 1), z + this.random.nextInt(2 * horizontalRange + 1)));
 
         this.getEntityData().set(DISTANCE, 0.5F + 2 * this.random.nextFloat());
     }

@@ -14,9 +14,11 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.dawnoftimebuilder.client.gui.creative.CreativeInventoryEvents;
 import org.dawnoftimebuilder.client.gui.screen.DisplayerScreen;
+import org.dawnoftimebuilder.client.model.entity.SilkmothModel;
 import org.dawnoftimebuilder.client.renderer.blockentity.DisplayerBERenderer;
 import org.dawnoftimebuilder.client.renderer.blockentity.DryerBERenderer;
 import org.dawnoftimebuilder.client.renderer.entity.ChairRenderer;
+import org.dawnoftimebuilder.client.renderer.entity.SilkmothRenderer;
 import org.dawnoftimebuilder.registry.*;
 
 @Mod.EventBusSubscriber(modid = DawnOfTimeBuilder.MOD_ID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.FORGE)
@@ -35,11 +37,17 @@ public class HandlerClient {
     }
 
     @SubscribeEvent
-    public static void entityRenderers(EntityRenderersEvent.RegisterRenderers event) {
+    public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
+        event.registerEntityRenderer(DoTBEntitiesRegistry.SILKMOTH_ENTITY.get(), SilkmothRenderer::new);
         event.registerEntityRenderer(DoTBEntitiesRegistry.CHAIR_ENTITY.get(), ChairRenderer::new);
 
         event.registerBlockEntityRenderer(DoTBBlockEntitiesRegistry.DRYER.get(), DryerBERenderer::new);
         event.registerBlockEntityRenderer(DoTBBlockEntitiesRegistry.DISPLAYER.get(), DisplayerBERenderer::new);
+    }
+
+    @SubscribeEvent
+    public static void registerLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
+        event.registerLayerDefinition(SilkmothModel.LAYER_LOCATION, SilkmothModel::createBodyLayer);
     }
 
     @OnlyIn(Dist.CLIENT)
