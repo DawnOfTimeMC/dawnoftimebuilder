@@ -16,7 +16,6 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import javax.annotation.Nonnull;
 
 public class FoldingScreenBlock extends ColumnConnectibleBlock {
-
     public static final BooleanProperty INVERTED = BlockStateProperties.INVERTED;
 
     public FoldingScreenBlock(Properties properties) {
@@ -44,7 +43,7 @@ public class FoldingScreenBlock extends ColumnConnectibleBlock {
 
     public boolean isConnectible(LevelAccessor worldIn, BlockPos pos, BlockState stateIn) {
         BlockState state = worldIn.getBlockState(pos);
-        if (state.getBlock() == this) {
+        if(state.getBlock() == this) {
             return state.getValue(INVERTED) == stateIn.getValue(INVERTED);
         }
         return false;

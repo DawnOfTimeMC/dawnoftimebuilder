@@ -1,0 +1,36 @@
+{
+  "type": "dawnoftimebuilder:default_crops",
+  "config": {
+    "feature": {
+      "feature": {
+        "type": "dawnoftimebuilder:dot_feature",
+        "config": {
+          "to_place": {
+            "type": "minecraft:simple_state_provider",
+            "state": {
+              "Name": "dawnoftimebuilder:mulberry",
+              "Properties": {
+                "age": "0",
+                "cut": "false",
+                "half": "bottom",
+                "persistent": "false"
+              }
+            }
+          }
+        }
+      },
+      "placement": [
+        {
+          "type": "minecraft:block_predicate_filter",
+          "predicate": {
+            "type": "minecraft:matching_blocks",
+            "blocks": "minecraft:air"
+          }
+        }
+      ]
+    },
+    "tries": 32,
+    "xz_spread": 5,
+    "y_spread": 2
+  }
+}

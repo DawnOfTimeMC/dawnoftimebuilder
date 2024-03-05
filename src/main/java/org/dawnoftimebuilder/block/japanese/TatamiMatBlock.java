@@ -12,14 +12,8 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.Mirror;
-import net.minecraft.world.level.block.Rotation;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.*;
@@ -39,7 +33,6 @@ import static org.dawnoftimebuilder.registry.DoTBBlocksRegistry.TATAMI_FLOOR;
 import static org.dawnoftimebuilder.util.DoTBUtils.COVERED_BLOCKS;
 
 public class TatamiMatBlock extends WaterloggedBlock {
-
     private static final VoxelShape VS = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 1.0D, 16.0D);
     private static final VoxelShape[] SHAPES = DoTBUtils.GenerateHorizontalShapes(makeShapes());
     public static final EnumProperty<Half> HALF = BlockStateProperties.HALF;
@@ -60,7 +53,8 @@ public class TatamiMatBlock extends WaterloggedBlock {
 
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
-        if(!state.getValue(ROLLED)) return VS;
+        if(!state.getValue(ROLLED))
+            return VS;
         return SHAPES[state.getValue(STACK) - 1 + state.getValue(FACING).get2DDataValue() * 3];
     }
 
@@ -71,7 +65,7 @@ public class TatamiMatBlock extends WaterloggedBlock {
      * 2 : S Rolled stack 3 <p/>
      */
     private static VoxelShape[] makeShapes() {
-        return new VoxelShape[]{
+        return new VoxelShape[] {
                 Block.box(0.0D, 0.0D, 8.5D, 16.0D, 7.0D, 15.5D),
                 Block.box(0.0D, 0.0D, 0.5D, 16.0D, 7.0D, 15.5D),
                 Block.box(0.0D, 0.0D, 0.5D, 16.0D, 14.0D, 15.5D)
@@ -84,7 +78,7 @@ public class TatamiMatBlock extends WaterloggedBlock {
         Level world = context.getLevel();
         BlockPos pos = context.getClickedPos();
         BlockState oldState = world.getBlockState(pos);
-        if(oldState.getBlock() == this){
+        if(oldState.getBlock() == this) {
             int stack = oldState.getValue(STACK);
             if(oldState.getValue(ROLLED) && stack < 3)
                 return oldState.setValue(STACK, stack + 1);
@@ -99,13 +93,14 @@ public class TatamiMatBlock extends WaterloggedBlock {
 
     @Override
     public boolean canSurvive(BlockState state, LevelReader worldIn, BlockPos pos) {
-        if(state.getValue(HALF) == Half.BOTTOM){
+        if(state.getValue(HALF) == Half.BOTTOM) {
             BlockState topState = worldIn.getBlockState(pos.relative(state.getValue(FACING).getOpposite()));
-            if(topState.getBlock() == this){
+            if(topState.getBlock() == this) {
                 if(topState.getValue(HALF) == Half.TOP && topState.getValue(FACING) == state.getValue(FACING))
                     return !worldIn.isEmptyBlock(pos.below());
             }
-        }else return !worldIn.isEmptyBlock(pos.below());
+        } else
+            return !worldIn.isEmptyBlock(pos.below());
         return false;
     }
 
@@ -121,29 +116,29 @@ public class TatamiMatBlock extends WaterloggedBlock {
     @Override
     public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, LevelAccessor worldIn, BlockPos currentPos, BlockPos facingPos) {
         stateIn = super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
-        if(facing.getAxis().isVertical()){
+        if(facing.getAxis().isVertical()) {
             return !stateIn.canSurvive(worldIn, currentPos) ? Blocks.AIR.defaultBlockState() : this.tryMergingWithSprucePlanks(stateIn, worldIn, currentPos);
-        }else{
+        } else {
             boolean mustDisappear = false;
             if(stateIn.getValue(ROLLED))
                 return stateIn;
             Direction direction = stateIn.getValue(FACING);
-            if(stateIn.getValue(HALF) == Half.TOP){
-                if(direction == facing){ //If block is TOP, then BOTTOM half is toward "direction"
-                    if(facingState.getBlock() == this){ //Update comes from the other half
+            if(stateIn.getValue(HALF) == Half.TOP) {
+                if(direction == facing) { //If block is TOP, then BOTTOM half is toward "direction"
+                    if(facingState.getBlock() == this) { //Update comes from the other half
                         if(facingState.getValue(FACING) != facing || facingState.getValue(HALF) != Half.BOTTOM || facingState.getValue(ROLLED))
                             mustDisappear = true;
-                    }else
+                    } else
                         mustDisappear = true;
                 }
-            }else if(direction == facing.getOpposite()){ //If block is BOTTOM, then Top half is toward the opposite of "direction"
-                if(facingState.getBlock() == this){ //Update comes from the other half
+            } else if(direction == facing.getOpposite()) { //If block is BOTTOM, then Top half is toward the opposite of "direction"
+                if(facingState.getBlock() == this) { //Update comes from the other half
                     if(facingState.getValue(FACING) != direction || facingState.getValue(HALF) != Half.TOP || facingState.getValue(ROLLED))
                         mustDisappear = true;
-                }else
+                } else
                     mustDisappear = true;
             }
-            if(mustDisappear){
+            if(mustDisappear) {
                 stateIn = Blocks.AIR.defaultBlockState();
                 worldIn.setBlock(currentPos, stateIn, 2); //Avoid the breaking particles
             }
@@ -151,12 +146,13 @@ public class TatamiMatBlock extends WaterloggedBlock {
         return stateIn;
     }
 
-    private BlockState tryMergingWithSprucePlanks(BlockState state, LevelAccessor worldIn, BlockPos pos){
-        if(state.getValue(ROLLED)) return state;
+    private BlockState tryMergingWithSprucePlanks(BlockState state, LevelAccessor worldIn, BlockPos pos) {
+        if(state.getValue(ROLLED))
+            return state;
         Direction facing = state.getValue(FACING);
         Block blockDown = worldIn.getBlockState(pos.below()).getBlock();
         Block blockDownAdjacent = worldIn.getBlockState(pos.relative(facing).below()).getBlock();
-        if(blockDown == SPRUCE_PLANKS && blockDownAdjacent == SPRUCE_PLANKS){
+        if(blockDown == SPRUCE_PLANKS && blockDownAdjacent == SPRUCE_PLANKS) {
             worldIn.setBlock(pos.below(), TATAMI_FLOOR.get().defaultBlockState().setValue(TatamiFloorBlock.FACING, facing).setValue(TatamiFloorBlock.HALF, state.getValue(HALF)), 10);
             worldIn.setBlock(pos.relative(facing).below(), TATAMI_FLOOR.get().defaultBlockState().setValue(TatamiFloorBlock.FACING, facing).setValue(TatamiFloorBlock.HALF, state.getValue(HALF) == Half.TOP ? Half.BOTTOM : Half.TOP), 10);
             return Blocks.AIR.defaultBlockState();
@@ -166,26 +162,26 @@ public class TatamiMatBlock extends WaterloggedBlock {
 
     @Override
     public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
-        if(player.isCrouching()){
+        if(player.isCrouching()) {
             int stack = state.getValue(STACK);
             boolean isRolled = state.getValue(ROLLED);
             if(isRolled && stack == 1) {
-                if (worldIn.getBlockState(pos.below()).is(COVERED_BLOCKS))
+                if(worldIn.getBlockState(pos.below()).is(COVERED_BLOCKS))
                     return InteractionResult.PASS;
             }
-            if(state.getValue(STACK) > 1){
+            if(state.getValue(STACK) > 1) {
                 state = state.setValue(STACK, stack - 1);
                 Containers.dropItemStack(worldIn, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(this.asItem()));
-            }else{
+            } else {
                 state = state.setValue(ROLLED, !isRolled);
                 Direction facing = state.getValue(FACING);
-                if(isRolled){
+                if(isRolled) {
                     if(!worldIn.isEmptyBlock(pos.relative(facing)) //Check if the position for the Bottom half is free
                             || worldIn.isEmptyBlock(pos.relative(facing).below()) //Check if this position can't support tatami
                             || worldIn.getBlockState(pos.below().relative(facing)).is(COVERED_BLOCKS)) //Check if this position is not supported by a covered block
                         return InteractionResult.PASS;
                     worldIn.setBlock(pos.relative(facing), state.setValue(HALF, Half.BOTTOM), 2);
-                }else if(state.getValue(HALF) == Half.BOTTOM){
+                } else if(state.getValue(HALF) == Half.BOTTOM) {
                     state = state.setValue(HALF, Half.TOP).setValue(FACING, facing.getOpposite());
                 }
             }

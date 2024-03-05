@@ -17,7 +17,6 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class EdgeBlock extends WaterloggedBlock {
-
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final EnumProperty<Half> HALF = BlockStateProperties.HALF;
     public static final EnumProperty<StairsShape> SHAPE = BlockStateProperties.STAIRS_SHAPE;
@@ -41,7 +40,7 @@ public class EdgeBlock extends WaterloggedBlock {
                                final CollisionContext context) {
         int index = (state.getValue(EdgeBlock.FACING).get2DDataValue() + 2) % 4;
         index *= 3;
-        switch (state.getValue(EdgeBlock.SHAPE)) {
+        switch(state.getValue(EdgeBlock.SHAPE)) {
             default:
             case OUTER_LEFT:
                 break;
@@ -94,10 +93,10 @@ public class EdgeBlock extends WaterloggedBlock {
                         Shapes.or(vs_south_flat, vs_ne_corner), vs_sw_corner, vs_west_flat,
                         Shapes.or(vs_west_flat, vs_se_corner),
                 };
-        if (bottom) {
+        if(bottom) {
             return vss;
         }
-        for (int i = 0; i < vss.length; i++) {
+        for(int i = 0; i < vss.length; i++) {
             vss[i] = vss[i].move(0.0D, 0.5D, 0.0D);
         }
         return vss;
@@ -132,10 +131,10 @@ public class EdgeBlock extends WaterloggedBlock {
         final Direction direction = state.getValue(EdgeBlock.FACING);
 
         BlockState adjacentState = worldIn.getBlockState(pos.relative(direction));
-        if (EdgeBlock.isBlockEdge(adjacentState)
+        if(EdgeBlock.isBlockEdge(adjacentState)
                 && state.getValue(EdgeBlock.HALF) == adjacentState.getValue(EdgeBlock.HALF)) {
             final Direction adjacentDirection = adjacentState.getValue(EdgeBlock.FACING);
-            if (adjacentDirection.getAxis() != state.getValue(EdgeBlock.FACING).getAxis()
+            if(adjacentDirection.getAxis() != state.getValue(EdgeBlock.FACING).getAxis()
                     && EdgeBlock.isDifferentEdge(state, worldIn, pos, adjacentDirection.getOpposite())) {
                 return adjacentDirection == direction.getCounterClockWise() ? StairsShape.OUTER_LEFT
                         : StairsShape.OUTER_RIGHT;
@@ -143,10 +142,10 @@ public class EdgeBlock extends WaterloggedBlock {
         }
 
         adjacentState = worldIn.getBlockState(pos.relative(direction.getOpposite()));
-        if (EdgeBlock.isBlockEdge(adjacentState)
+        if(EdgeBlock.isBlockEdge(adjacentState)
                 && state.getValue(EdgeBlock.HALF) == adjacentState.getValue(EdgeBlock.HALF)) {
             final Direction adjacentDirection = adjacentState.getValue(EdgeBlock.FACING);
-            if (adjacentDirection.getAxis() != state.getValue(EdgeBlock.FACING).getAxis()
+            if(adjacentDirection.getAxis() != state.getValue(EdgeBlock.FACING).getAxis()
                     && EdgeBlock.isDifferentEdge(state, worldIn, pos, adjacentDirection)) {
                 return adjacentDirection == direction.getCounterClockWise() ? StairsShape.INNER_LEFT
                         : StairsShape.INNER_RIGHT;
@@ -177,10 +176,10 @@ public class EdgeBlock extends WaterloggedBlock {
     public BlockState mirror(final BlockState state, final Mirror mirrorIn) {
         final Direction direction = state.getValue(EdgeBlock.FACING);
         final StairsShape stairsshape = state.getValue(EdgeBlock.SHAPE);
-        switch (mirrorIn) {
+        switch(mirrorIn) {
             case LEFT_RIGHT:
-                if (direction.getAxis() == Direction.Axis.Z) {
-                    switch (stairsshape) {
+                if(direction.getAxis() == Direction.Axis.Z) {
+                    switch(stairsshape) {
                         case INNER_LEFT:
                             return state.rotate(Rotation.CLOCKWISE_180).setValue(EdgeBlock.SHAPE,
                                     StairsShape.INNER_RIGHT);
@@ -199,8 +198,8 @@ public class EdgeBlock extends WaterloggedBlock {
                 }
                 break;
             case FRONT_BACK:
-                if (direction.getAxis() == Direction.Axis.X) {
-                    switch (stairsshape) {
+                if(direction.getAxis() == Direction.Axis.X) {
+                    switch(stairsshape) {
                         case INNER_LEFT:
                             return state.rotate(Rotation.CLOCKWISE_180).setValue(EdgeBlock.SHAPE,
                                     StairsShape.INNER_LEFT);

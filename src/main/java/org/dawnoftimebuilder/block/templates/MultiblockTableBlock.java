@@ -8,29 +8,22 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.state.properties.BooleanProperty;
-import net.minecraft.world.level.block.state.properties.EnumProperty;
-import net.minecraft.world.level.block.state.properties.Half;
+import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 import javax.annotation.Nullable;
 
-import static org.dawnoftimebuilder.registry.DoTBTileEntitiesRegistry.DISPLAYER_TE;
+import static org.dawnoftimebuilder.registry.DoTBBlockEntitiesRegistry.DISPLAYER;
 
 public abstract class MultiblockTableBlock extends DisplayerBlock {
-
     public static final BooleanProperty NORTH = BlockStateProperties.NORTH;
     public static final BooleanProperty EAST = BlockStateProperties.EAST;
     public static final BooleanProperty SOUTH = BlockStateProperties.SOUTH;
@@ -43,24 +36,25 @@ public abstract class MultiblockTableBlock extends DisplayerBlock {
     }
 
     /**
-     * @param top if this state is Top, false otherwise.
+     * @param top   if this state is Top, false otherwise.
      * @param index is a value that depends on the state : <p/>
-     * 0 : Full connection <p/>
-     * 1 : S <p/>
-     * 2 : W <p/>
-     * 3 : S-W + Pillar SW <p/>
-     * 4 : N <p/>
-     * 5 : S + N <p/>
-     * 6 : W-N + Pillar WN <p/>
-     * 7 : S-W-N + Pillar SW-WN <p/>
-     * 8 : E <p/>
-     * 9 : S-E + Pillar ES <p/>
-     * 10 : W-E <p/>
-     * 11 : S-W-E + Pillar SW-ES <p/>
-     * 12 : N-E + Pillar NE <p/>
-     * 13 : S-N-E + Pillar NE-ES <p/>
-     * 14 : W-N-E + Pillar WN-NE <p/>
-     * 15 : S-W-N-E + Pillar SW-WN-NE-ES <p/>
+     *              0 : Full connection <p/>
+     *              1 : S <p/>
+     *              2 : W <p/>
+     *              3 : S-W + Pillar SW <p/>
+     *              4 : N <p/>
+     *              5 : S + N <p/>
+     *              6 : W-N + Pillar WN <p/>
+     *              7 : S-W-N + Pillar SW-WN <p/>
+     *              8 : E <p/>
+     *              9 : S-E + Pillar ES <p/>
+     *              10 : W-E <p/>
+     *              11 : S-W-E + Pillar SW-ES <p/>
+     *              12 : N-E + Pillar NE <p/>
+     *              13 : S-N-E + Pillar NE-ES <p/>
+     *              14 : W-N-E + Pillar WN-NE <p/>
+     *              15 : S-W-N-E + Pillar SW-WN-NE-ES <p/>
+     *
      * @return the corresponding shape
      */
     public abstract VoxelShape getShapeByIndex(int index, boolean top);
@@ -77,7 +71,8 @@ public abstract class MultiblockTableBlock extends DisplayerBlock {
     @Nullable
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
-        if(!context.getLevel().getBlockState(context.getClickedPos().above()).canBeReplaced(context)) return null;
+        if(!context.getLevel().getBlockState(context.getClickedPos().above()).canBeReplaced(context))
+            return null;
         BlockState state = super.getStateForPlacement(context);
         Level world = context.getLevel();
         BlockPos pos = context.getClickedPos();
@@ -101,7 +96,7 @@ public abstract class MultiblockTableBlock extends DisplayerBlock {
 
     @Override
     public @org.jetbrains.annotations.Nullable BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
-        return pState.getValue(HALF) == Half.TOP ? DISPLAYER_TE.get().create(pPos, pState) : null;
+        return pState.getValue(HALF) == Half.TOP ? DISPLAYER.get().create(pPos, pState) : null;
     }
 
     @Override
@@ -111,10 +106,10 @@ public abstract class MultiblockTableBlock extends DisplayerBlock {
 
     @Override
     public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, LevelAccessor worldIn, BlockPos currentPos, BlockPos facingPos) {
-        if(facing.getAxis().isHorizontal()){
+        if(facing.getAxis().isHorizontal()) {
             BlockState state = super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
             boolean canConnect = facingState.getBlock().equals(this);
-            switch(facing){
+            switch(facing) {
                 default:
                 case NORTH:
                     return state.setValue(NORTH, canConnect);
@@ -125,10 +120,11 @@ public abstract class MultiblockTableBlock extends DisplayerBlock {
                 case EAST:
                     return state.setValue(EAST, canConnect);
             }
-        }else{
+        } else {
             Direction halfDirection = (stateIn.getValue(HALF) == Half.TOP) ? Direction.DOWN : Direction.UP;
-            if(facing == halfDirection){
-                if(facingState.getBlock() != this) return Blocks.AIR.defaultBlockState();
+            if(facing == halfDirection) {
+                if(facingState.getBlock() != this)
+                    return Blocks.AIR.defaultBlockState();
             }
             return super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
         }
@@ -136,12 +132,13 @@ public abstract class MultiblockTableBlock extends DisplayerBlock {
 
     @Override
     public boolean canSurvive(BlockState state, LevelReader worldIn, BlockPos pos) {
-        if(state.getValue(HALF) == Half.TOP){
+        if(state.getValue(HALF) == Half.TOP) {
             BlockState bottomState = worldIn.getBlockState(pos.below());
-            if(bottomState.getBlock() == this){
+            if(bottomState.getBlock() == this) {
                 return bottomState.getValue(HALF) == Half.BOTTOM;
             }
-        }else return true;
+        } else
+            return true;
         return false;
     }
 }

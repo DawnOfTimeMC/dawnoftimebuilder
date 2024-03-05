@@ -1,6 +1,5 @@
 {
 	"render_type": "minecraft:cutout",
-	"render_type": "minecraft:cutout",
 	"textures": {
 		"0": "dawnoftimebuilder:block/acacia_pergola",
 		"particle": "dawnoftimebuilder:block/acacia_pergola"

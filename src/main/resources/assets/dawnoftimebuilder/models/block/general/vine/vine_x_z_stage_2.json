@@ -1,4 +1,5 @@
 {
+	"render_type": "minecraft:cutout",
 	"credit": "Made with Blockbench",
 	"textures": {
 		"2": "dawnoftimebuilder:block/vine_x_z_stage_2",

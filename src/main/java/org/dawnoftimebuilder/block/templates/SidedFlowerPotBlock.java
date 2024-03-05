@@ -14,10 +14,9 @@ import javax.annotation.Nullable;
 import java.util.Random;
 
 public class SidedFlowerPotBlock extends FlowerPotBlockDoTB {
-
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 
-	public SidedFlowerPotBlock(@Nullable Item itemInPot) {
+    public SidedFlowerPotBlock(@Nullable Item itemInPot) {
         super(itemInPot);
         this.registerDefaultState(this.defaultBlockState().setValue(FACING, Direction.NORTH));
     }

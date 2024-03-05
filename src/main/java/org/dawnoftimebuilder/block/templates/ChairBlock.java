@@ -20,7 +20,6 @@ import org.dawnoftimebuilder.entity.ChairEntity;
 import javax.annotation.Nonnull;
 
 public class ChairBlock extends WaterloggedBlock {
-
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     public final float pixelsYOffset;
 

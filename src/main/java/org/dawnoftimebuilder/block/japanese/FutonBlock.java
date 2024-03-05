@@ -14,26 +14,24 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import javax.annotation.Nullable;
 
 public class FutonBlock extends BedBlock {
+    private static final VoxelShape VS = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 4.0D, 16.0D);
 
-	private static final VoxelShape VS = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 4.0D, 16.0D);
+    public FutonBlock(DyeColor colorIn, Properties properties) {
+        super(colorIn, properties);
+    }
 
-	public FutonBlock(DyeColor colorIn, Properties properties) {
-		super(colorIn, properties);
-	}
+    @Override
+    public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
+        return VS;
+    }
 
-	@Override
-	public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
-		return VS;
-	}
+    @Override
+    public boolean isBed(BlockState state, BlockGetter world, BlockPos pos, @Nullable Entity player) {
+        return true;
+    }
 
-	@Override
-	public boolean isBed(BlockState state, BlockGetter world, BlockPos pos, @Nullable Entity player) {
-		return true;
-	}
-
-	@Override
-	public RenderShape getRenderShape(BlockState p_149645_1_) {
-		return RenderShape.MODEL;
-	}
-
+    @Override
+    public RenderShape getRenderShape(BlockState p_149645_1_) {
+        return RenderShape.MODEL;
+    }
 }

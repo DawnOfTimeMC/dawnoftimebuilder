@@ -4,7 +4,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -22,12 +21,10 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.Tags;
-import org.dawnoftimebuilder.block.ICustomBlockItem;
 import org.dawnoftimebuilder.block.templates.BlockDoTB;
 import org.dawnoftimebuilder.registry.DoTBBlocksRegistry;
 
-public class MapleTrunkBlock extends BlockDoTB implements ICustomBlockItem {
+public class MapleTrunkBlock extends BlockDoTB {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 
     public MapleTrunkBlock(final Properties properties) {
@@ -44,17 +41,17 @@ public class MapleTrunkBlock extends BlockDoTB implements ICustomBlockItem {
 
     @Override
     public void playerWillDestroy(final Level worldIn, final BlockPos blockPosIn, final BlockState blockStateIn, final Player playerEntityIn) {
-        if (!worldIn.isClientSide) {
-            if (playerEntityIn.isCreative()) {
+        if(!worldIn.isClientSide) {
+            if(playerEntityIn.isCreative()) {
                 final BlockPos trunkBlockPos = new BlockPos(blockPosIn.getX(), blockPosIn.getY(), blockPosIn.getZ());
                 final BlockState state = worldIn.getBlockState(trunkBlockPos);
                 worldIn.setBlock(trunkBlockPos, Blocks.AIR.defaultBlockState(), 35);
                 worldIn.levelEvent(playerEntityIn, 2001, blockPosIn, Block.getId(state));
             }
 
-            for (int x = -1; x <= 1; x++) {
-                for (int y = 1; y <= 2; y++) {
-                    for (int z = -1; z <= 1; z++) {
+            for(int x = -1; x <= 1; x++) {
+                for(int y = 1; y <= 2; y++) {
+                    for(int z = -1; z <= 1; z++) {
                         final BlockPos baseBlock = new BlockPos(blockPosIn.getX() + x, blockPosIn.getY() + y, blockPosIn.getZ() + z);
                         final BlockState state = worldIn.getBlockState(baseBlock);
                         worldIn.setBlock(baseBlock, Blocks.AIR.defaultBlockState(), 35);
@@ -79,19 +76,19 @@ public class MapleTrunkBlock extends BlockDoTB implements ICustomBlockItem {
 
     @Override
     public BlockState updateShape(final BlockState stateIn, final Direction facing, final BlockState facingState, final LevelAccessor worldIn, final BlockPos currentPos, final BlockPos facingPos) {
-        if (Direction.DOWN.equals(facing)) {
+        if(Direction.DOWN.equals(facing)) {
             final BlockState state = worldIn.getBlockState(currentPos.below());
-            if (!BlockTags.DIRT.equals(state.getBlock())) {
+            if(!BlockTags.DIRT.equals(state.getBlock())) {
                 return Blocks.AIR.defaultBlockState();
             }
-        } else if (Direction.UP.equals(facing)) {
+        } else if(Direction.UP.equals(facing)) {
             final BlockState state = worldIn.getBlockState(currentPos.above());
-            if (!(state.getBlock() instanceof MapleLeavesBlock)) {
+            if(!(state.getBlock() instanceof MapleLeavesBlock)) {
                 return Blocks.AIR.defaultBlockState();
             }
 
             final Direction currentFacing = stateIn.getValue(MapleTrunkBlock.FACING);
-            if (currentFacing == null || !currentFacing.equals(state.getValue(MapleTrunkBlock.FACING))) {
+            if(currentFacing == null || !currentFacing.equals(state.getValue(MapleTrunkBlock.FACING))) {
                 return Blocks.AIR.defaultBlockState();
             }
         }
@@ -105,11 +102,6 @@ public class MapleTrunkBlock extends BlockDoTB implements ICustomBlockItem {
     }
 
     @Override
-    public Item getCustomBlockItem() {
-        return null;
-    }
-
-    @Override
     public ItemStack getCloneItemStack(final BlockState stateIn, final HitResult targetIn, final BlockGetter worldIn, final BlockPos posIn, final Player playerIn) {
         return new ItemStack(DoTBBlocksRegistry.MAPLE_RED_SAPLING.get().asItem());
     }
@@ -117,7 +109,6 @@ public class MapleTrunkBlock extends BlockDoTB implements ICustomBlockItem {
     /**
      * Lights methods
      */
-
     @Override
     public boolean useShapeForLightOcclusion(final BlockState p_220074_1_In) {
         return false;

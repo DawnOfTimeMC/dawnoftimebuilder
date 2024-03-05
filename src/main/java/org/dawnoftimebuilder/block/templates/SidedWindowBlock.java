@@ -27,7 +27,6 @@ import java.util.List;
 import static org.dawnoftimebuilder.util.DoTBUtils.TOOLTIP_SIDED_WINDOW;
 
 public class SidedWindowBlock extends BlockDoTB {
-
     public static final EnumProperty<SidedWindow> SIDED_WINDOW = DoTBBlockStateProperties.SIDED_WINDOW;
     private static final BooleanProperty UP = BlockStateProperties.UP;
     private static final BooleanProperty ATTACHED = BlockStateProperties.ATTACHED;
@@ -50,7 +49,7 @@ public class SidedWindowBlock extends BlockDoTB {
 
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
-        switch (state.getValue(SIDED_WINDOW)) {
+        switch(state.getValue(SIDED_WINDOW)) {
             default:
             case NORTH:
                 return NORTH_VS;
@@ -81,14 +80,16 @@ public class SidedWindowBlock extends BlockDoTB {
         boolean changeTOP = canConnectVertical(state, worldIn, pos);
         boolean changeSIDE = canConnectHorizontal(state, worldIn, pos);
         BlockState newState = state;
-        if (changeTOP != state.getValue(UP)) newState = newState.setValue(UP, changeTOP);
-        if (changeSIDE != state.getValue(ATTACHED)) newState = newState.setValue(ATTACHED, changeSIDE);
-        if (changeTOP != state.getValue(UP) || changeSIDE != state.getValue(ATTACHED))
+        if(changeTOP != state.getValue(UP))
+            newState = newState.setValue(UP, changeTOP);
+        if(changeSIDE != state.getValue(ATTACHED))
+            newState = newState.setValue(ATTACHED, changeSIDE);
+        if(changeTOP != state.getValue(UP) || changeSIDE != state.getValue(ATTACHED))
             worldIn.setBlock(pos, newState, 10);
     }
 
     private boolean canConnectVertical(BlockState state, Level worldIn, BlockPos pos) {
-        if (isSameWindowAndSide(state, worldIn, pos.below())) {
+        if(isSameWindowAndSide(state, worldIn, pos.below())) {
             return !isSameWindowAndSide(state, worldIn, pos.above());
         }
         return false;
@@ -100,15 +101,16 @@ public class SidedWindowBlock extends BlockDoTB {
 
     private boolean isSameWindowAndSide(BlockState state, Level worldIn, BlockPos pos) {
         BlockState otherState = worldIn.getBlockState(pos);
-        if (otherState.getBlock() == this) {
+        if(otherState.getBlock() == this) {
             return otherState.getValue(SIDED_WINDOW) == state.getValue(SIDED_WINDOW);
-        } else return false;
+        } else
+            return false;
     }
 
     @Override
     public BlockState rotate(BlockState state, Rotation rot) {
         SidedWindow side = state.getValue(SIDED_WINDOW);
-        if (side == SidedWindow.AXIS_X || side == SidedWindow.AXIS_Z) {
+        if(side == SidedWindow.AXIS_X || side == SidedWindow.AXIS_Z) {
             return (rot == Rotation.CLOCKWISE_90 || rot == Rotation.COUNTERCLOCKWISE_90) ? state.setValue(SIDED_WINDOW, (side == SidedWindow.AXIS_X) ? SidedWindow.AXIS_Z : SidedWindow.AXIS_X) : state;
         } else {
             return state.setValue(SIDED_WINDOW, SidedWindow.getSide(rot.rotate(side.getDirection()), false));
@@ -118,7 +120,8 @@ public class SidedWindowBlock extends BlockDoTB {
     @Override
     public BlockState mirror(BlockState state, Mirror mirrorIn) {
         SidedWindow side = state.getValue(SIDED_WINDOW);
-        if (side == SidedWindow.AXIS_X || side == SidedWindow.AXIS_Z) return state;
+        if(side == SidedWindow.AXIS_X || side == SidedWindow.AXIS_Z)
+            return state;
         return rotate(state, Rotation.CLOCKWISE_180);
     }
 

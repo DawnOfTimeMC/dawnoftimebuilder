@@ -21,9 +21,8 @@ import org.dawnoftimebuilder.util.DoTBUtils;
 import javax.annotation.Nonnull;
 
 public class StoneLanternBlock extends WaterloggedBlock implements IBlockChain, IBlockSpecialDisplay {
-
     private static final VoxelShape VS_CENTER = Block.box(2.0D, 0.0D, 2.0D, 14.0D, 16.0D, 14.0D);
-    private static final VoxelShape[] VS_SIDE = DoTBUtils.GenerateHorizontalShapes(new VoxelShape[]{Block.box(2.0D, 0.0D, 0.0D, 14.0D, 16.0D, 14.0D)});
+    private static final VoxelShape[] VS_SIDE = DoTBUtils.GenerateHorizontalShapes(new VoxelShape[] { Block.box(2.0D, 0.0D, 0.0D, 14.0D, 16.0D, 14.0D) });
     public static final DirectionProperty FACING = BlockStateProperties.FACING;
 
     public StoneLanternBlock(Properties properties) {
@@ -46,9 +45,10 @@ public class StoneLanternBlock extends WaterloggedBlock implements IBlockChain, 
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
         Direction facing = state.getValue(FACING);
-        if(facing.getAxis() == Direction.Axis.Y){
+        if(facing.getAxis() == Direction.Axis.Y) {
             return VS_CENTER;
-        }else return VS_SIDE[facing.get2DDataValue()];
+        } else
+            return VS_SIDE[facing.get2DDataValue()];
     }
 
     @Override

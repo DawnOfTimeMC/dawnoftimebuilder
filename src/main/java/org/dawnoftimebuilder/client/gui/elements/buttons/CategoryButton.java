@@ -1,10 +1,8 @@
 package org.dawnoftimebuilder.client.gui.elements.buttons;
 
-import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiComponent;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -18,18 +16,17 @@ import static org.dawnoftimebuilder.client.gui.creative.CreativeInventoryEvents.
 
 @OnlyIn(Dist.CLIENT)
 public class CategoryButton extends Button {
-
     private boolean selected;
     private static final ResourceLocation[] BUTTON_ICONS = fillButtonIcons();
     private final int index;
 
-    public CategoryButton(int x, int y, int index, OnPress pressable){
+    public CategoryButton(int x, int y, int index, OnPress pressable) {
         super(x, y, 32, 28, Component.empty(), pressable, DEFAULT_NARRATION);
         this.selected = false;
         this.index = index;
     }
 
-    public void setSelected(boolean selected){
+    public void setSelected(boolean selected) {
         this.selected = selected;
     }
 
@@ -37,39 +34,37 @@ public class CategoryButton extends Button {
         return this.selected;
     }
 
-    public int getCategoryID(){
+    public int getCategoryID() {
         return CreativeInventoryEvents.page * 4 + this.index;
     }
 
     @Override
-    public void render(PoseStack ps, int mouseX, int mouseY, float partialTicks) {
-        if(this.active){
+    public void render(GuiGraphics pGuiGraphics, int pMouseX, int pMouseY, float pPartialTick) {
+        if(this.active && this.visible) {
+            PoseStack ps = pGuiGraphics.pose();
+
             ps.pushPose();
-            RenderSystem.setShaderTexture(0, CREATIVE_ICONS);
             RenderSystem.clearColor(1.0F, 1.0F, 1.0F, this.alpha);
             RenderSystem.enableBlend();
-            blit(ps, this.getX() - 1, this.getY(), 0, (this.selected) ? 0 : 28, 31, 28);
+            pGuiGraphics.blit(CREATIVE_ICONS, this.getX() - 1, this.getY(), 0, (this.selected) ? 0 : 28, 31, 28);
             RenderSystem.disableBlend();
             ps.popPose();
 
             ps.pushPose();
-            RenderSystem.setShaderTexture(0, BUTTON_ICONS[this.getCategoryID()]);
             RenderSystem.clearColor(1.0F, 1.0F, 1.0F, this.alpha);
             RenderSystem.enableBlend();
-            blit(ps, this.getX() + ((this.selected) ? 6 : 9), this.getY() + 6, 0, 0, 0, 16, 16, 16, 16);
+            pGuiGraphics.blit(BUTTON_ICONS[this.getCategoryID()], this.getX() + ((this.selected) ? 6 : 9), this.getY() + 6, 0, 0, 0, 16, 16, 16, 16);
             RenderSystem.disableBlend();
             ps.popPose();
         }
-        super.render(ps, mouseX, mouseY, partialTicks);
     }
 
-    private static ResourceLocation[] fillButtonIcons(){
+    private static ResourceLocation[] fillButtonIcons() {
         int number = CreativeInventoryCategories.values().length;
         ResourceLocation[] table = new ResourceLocation[number];
-        for(int i = 0; i < number; i++){
+        for(int i = 0; i < number; i++) {
             table[i] = new ResourceLocation(MOD_ID, "textures/item/logo_" + CreativeInventoryCategories.values()[i].getName() + ".png");
         }
         return table;
     }
-
 }

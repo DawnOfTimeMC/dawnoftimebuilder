@@ -1,6 +1,7 @@
 package org.dawnoftimebuilder.block.templates;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelReader;
@@ -15,10 +16,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 import javax.annotation.Nullable;
 
-import static net.minecraft.tags.BlockTags.DIRT;
-
 public class WildPlantBlock extends BlockDoTB {
-
     private final VoxelShape VS = Block.box(2.0D, 0.0D, 2.0D, 14.0D, 14.0D, 14.0D);
 
     public WildPlantBlock(Properties properties) {
@@ -44,8 +42,8 @@ public class WildPlantBlock extends BlockDoTB {
 
     @Override
     public boolean canSurvive(BlockState state, LevelReader worldIn, BlockPos pos) {
-        Block blockDown = worldIn.getBlockState(pos.below()).getBlock();
-        return blockDown == Blocks.GRASS_BLOCK || state.is(DIRT) || blockDown == Blocks.FARMLAND;
+        BlockState blockDown = worldIn.getBlockState(pos.below());
+        return blockDown.getBlock() == Blocks.GRASS_BLOCK || blockDown.is(BlockTags.DIRT) || blockDown.getBlock() == Blocks.FARMLAND;
     }
 
     @Override

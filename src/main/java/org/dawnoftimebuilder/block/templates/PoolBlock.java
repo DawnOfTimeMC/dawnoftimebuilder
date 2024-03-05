@@ -23,19 +23,19 @@ public class PoolBlock extends BasePoolBlock {
     @Override
     public VoxelShape getShape(final BlockState state, final BlockGetter worldIn, final BlockPos pos, final CollisionContext context) {
         int index = 0;
-        if (state.getValue(BlockStateProperties.NORTH)) {
+        if(state.getValue(BlockStateProperties.NORTH)) {
             index += 1;
         }
-        if (state.getValue(BlockStateProperties.EAST)) {
+        if(state.getValue(BlockStateProperties.EAST)) {
             index += 2;
         }
-        if (state.getValue(BlockStateProperties.SOUTH)) {
+        if(state.getValue(BlockStateProperties.SOUTH)) {
             index += 4;
         }
-        if (state.getValue(BlockStateProperties.WEST)) {
+        if(state.getValue(BlockStateProperties.WEST)) {
             index += 8;
         }
-        if (state.getValue(DoTBBlockStateProperties.HAS_PILLAR)) {
+        if(state.getValue(DoTBBlockStateProperties.HAS_PILLAR)) {
             index += 16;
         }
         return PoolBlock.SHAPES[index];
@@ -49,21 +49,21 @@ public class PoolBlock extends BasePoolBlock {
         final VoxelShape vs_west = Block.box(0.0D, 2.0D, 0.0D, 2.0D, 16.0D, 16.0D);
         final VoxelShape vs_pillar = Block.box(4.0D, 2.0D, 4.0D, 12.0D, 16.0D, 12.0D);
         final VoxelShape[] shapes = new VoxelShape[32];
-        for (int i = 0; i < 32; i++) {
+        for(int i = 0; i < 32; i++) {
             VoxelShape temp = vs_floor;
-            if ((i & 1) == 0) { // Check first bit : 0 -> North true
+            if((i & 1) == 0) { // Check first bit : 0 -> North true
                 temp = Shapes.or(temp, vs_north);
             }
-            if ((i >> 1 & 1) == 0) { // Check second bit : 0 -> East true
+            if((i >> 1 & 1) == 0) { // Check second bit : 0 -> East true
                 temp = Shapes.or(temp, vs_east);
             }
-            if ((i >> 2 & 1) == 0) { // Check third bit : 0 -> South true
+            if((i >> 2 & 1) == 0) { // Check third bit : 0 -> South true
                 temp = Shapes.or(temp, vs_south);
             }
-            if ((i >> 3 & 1) == 0) { // Check fourth bit : 0 -> West true
+            if((i >> 3 & 1) == 0) { // Check fourth bit : 0 -> West true
                 temp = Shapes.or(temp, vs_west);
             }
-            if ((i >> 4 & 1) == 1) { // Check fifth bit : 1 -> Pillar true
+            if((i >> 4 & 1) == 1) { // Check fifth bit : 1 -> Pillar true
                 temp = Shapes.or(temp, vs_pillar);
             }
             shapes[i] = temp;

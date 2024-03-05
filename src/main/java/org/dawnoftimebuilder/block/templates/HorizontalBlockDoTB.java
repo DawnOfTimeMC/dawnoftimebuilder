@@ -19,7 +19,7 @@ public class HorizontalBlockDoTB extends HorizontalDirectionalBlock {
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
         Direction clicked = context.getClickedFace();
-        if(clicked.getAxis().isHorizontal()){
+        if(clicked.getAxis().isHorizontal()) {
             return this.defaultBlockState().setValue(FACING, clicked);
         }
         return this.defaultBlockState().setValue(FACING, context.getHorizontalDirection());

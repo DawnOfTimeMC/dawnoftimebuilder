@@ -10,16 +10,12 @@ import net.minecraft.world.level.block.Mirror;
 import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.state.properties.DirectionProperty;
-import net.minecraft.world.level.block.state.properties.EnumProperty;
-import net.minecraft.world.level.block.state.properties.StairsShape;
+import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class PlateBlock extends WaterloggedBlock {
-
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final EnumProperty<StairsShape> SHAPE = BlockStateProperties.STAIRS_SHAPE;
     private static final VoxelShape[] SHAPES = PlateBlock.makeShapes();
@@ -34,12 +30,12 @@ public class PlateBlock extends WaterloggedBlock {
         super.createBlockStateDefinition(builder);
         builder.add(PlateBlock.FACING, PlateBlock.SHAPE);
     }
-    
+
     @Override
     public VoxelShape getShape(final BlockState state, final BlockGetter worldIn, final BlockPos pos, final CollisionContext context) {
         int index = (state.getValue(PlateBlock.FACING).get2DDataValue() + 2) % 4;
         index *= 3;
-        switch (state.getValue(PlateBlock.SHAPE)) {
+        switch(state.getValue(PlateBlock.SHAPE)) {
             default:
             case OUTER_LEFT:
                 break;
@@ -59,7 +55,7 @@ public class PlateBlock extends WaterloggedBlock {
         index %= 12;
         return PlateBlock.SHAPES[index];
     }
-    
+
     /**
      * @return Stores VoxelShape with index : <p/>
      * 0 : NW Outer <p/>
@@ -84,7 +80,7 @@ public class PlateBlock extends WaterloggedBlock {
         final VoxelShape vs_ne_corner = Block.box(8.0D, 0.0D, 0.0D, 16.0D, 16.0D, 8.0D);
         final VoxelShape vs_se_corner = Block.box(8.0D, 0.0D, 8.0D, 16.0D, 16.0D, 16.0D);
         final VoxelShape vs_sw_corner = Block.box(0.0D, 0.0D, 8.0D, 8.0D, 16.0D, 16.0D);
-        return new VoxelShape[]{vs_nw_corner, vs_north_flat, Shapes.or(vs_north_flat, vs_sw_corner), vs_ne_corner, vs_east_flat, Shapes.or(vs_east_flat, vs_nw_corner), vs_se_corner, vs_south_flat, Shapes.or(vs_south_flat, vs_ne_corner), vs_sw_corner, vs_west_flat, Shapes.or(vs_west_flat, vs_se_corner),};
+        return new VoxelShape[] { vs_nw_corner, vs_north_flat, Shapes.or(vs_north_flat, vs_sw_corner), vs_ne_corner, vs_east_flat, Shapes.or(vs_east_flat, vs_nw_corner), vs_se_corner, vs_south_flat, Shapes.or(vs_south_flat, vs_ne_corner), vs_sw_corner, vs_west_flat, Shapes.or(vs_west_flat, vs_se_corner), };
     }
 
     @Override
@@ -106,17 +102,17 @@ public class PlateBlock extends WaterloggedBlock {
         final Direction direction = state.getValue(PlateBlock.FACING);
 
         BlockState adjacentState = worldIn.getBlockState(pos.relative(direction));
-        if (PlateBlock.isBlockPlate(adjacentState)) {
+        if(PlateBlock.isBlockPlate(adjacentState)) {
             final Direction adjacentDirection = adjacentState.getValue(PlateBlock.FACING);
-            if (adjacentDirection.getAxis() != state.getValue(PlateBlock.FACING).getAxis() && PlateBlock.isDifferentPlate(state, worldIn, pos, adjacentDirection.getOpposite())) {
+            if(adjacentDirection.getAxis() != state.getValue(PlateBlock.FACING).getAxis() && PlateBlock.isDifferentPlate(state, worldIn, pos, adjacentDirection.getOpposite())) {
                 return adjacentDirection == direction.getCounterClockWise() ? StairsShape.OUTER_LEFT : StairsShape.OUTER_RIGHT;
             }
         }
 
         adjacentState = worldIn.getBlockState(pos.relative(direction.getOpposite()));
-        if (PlateBlock.isBlockPlate(adjacentState)) {
+        if(PlateBlock.isBlockPlate(adjacentState)) {
             final Direction adjacentDirection = adjacentState.getValue(PlateBlock.FACING);
-            if (adjacentDirection.getAxis() != state.getValue(PlateBlock.FACING).getAxis() && PlateBlock.isDifferentPlate(state, worldIn, pos, adjacentDirection)) {
+            if(adjacentDirection.getAxis() != state.getValue(PlateBlock.FACING).getAxis() && PlateBlock.isDifferentPlate(state, worldIn, pos, adjacentDirection)) {
                 return adjacentDirection == direction.getCounterClockWise() ? StairsShape.INNER_LEFT : StairsShape.INNER_RIGHT;
             }
         }
@@ -142,10 +138,10 @@ public class PlateBlock extends WaterloggedBlock {
     public BlockState mirror(final BlockState state, final Mirror mirrorIn) {
         final Direction direction = state.getValue(PlateBlock.FACING);
         final StairsShape stairsshape = state.getValue(PlateBlock.SHAPE);
-        switch (mirrorIn) {
+        switch(mirrorIn) {
             case LEFT_RIGHT:
-                if (direction.getAxis() == Direction.Axis.Z) {
-                    switch (stairsshape) {
+                if(direction.getAxis() == Direction.Axis.Z) {
+                    switch(stairsshape) {
                         case INNER_LEFT:
                             return state.rotate(Rotation.CLOCKWISE_180).setValue(PlateBlock.SHAPE, StairsShape.INNER_RIGHT);
                         case INNER_RIGHT:
@@ -160,8 +156,8 @@ public class PlateBlock extends WaterloggedBlock {
                 }
                 break;
             case FRONT_BACK:
-                if (direction.getAxis() == Direction.Axis.X) {
-                    switch (stairsshape) {
+                if(direction.getAxis() == Direction.Axis.X) {
+                    switch(stairsshape) {
                         case INNER_LEFT:
                             return state.rotate(Rotation.CLOCKWISE_180).setValue(PlateBlock.SHAPE, StairsShape.INNER_LEFT);
                         case INNER_RIGHT:

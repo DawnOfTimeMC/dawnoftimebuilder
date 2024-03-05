@@ -1,15 +1,14 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "org.dawnoftimebuilder.mixin",
+  "package": "org.dawnoftimebuilder.mixin.impl",
+  "refmap": "mixins.dotb.refmap.json",
   "compatibilityLevel": "JAVA_17",
-  "mixins": [
-  ],
+  "mixins": [],
   "client": [
     "client.CreativeInventoryMixin"
   ],
-  "server": [
-  ],
+  "server": [],
   "injectors": {
     "defaultRequire": 1
   }

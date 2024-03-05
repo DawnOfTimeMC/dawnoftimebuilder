@@ -11,7 +11,6 @@ import org.dawnoftimebuilder.block.templates.SidedColumnConnectibleBlock;
 import org.dawnoftimebuilder.util.DoTBUtils;
 
 public class SandstoneSidedColumnBlock extends SidedColumnConnectibleBlock {
-
     private static final VoxelShape[] SHAPES = DoTBUtils.GenerateHorizontalShapes(makeShapes());
 
     public SandstoneSidedColumnBlock(Properties properties) {
@@ -33,7 +32,7 @@ public class SandstoneSidedColumnBlock extends SidedColumnConnectibleBlock {
      */
     private static VoxelShape[] makeShapes() {
         VoxelShape vs_column = Block.box(4.0D, 0.0D, 0.0D, 12.0D, 16.0D, 4.0D);
-        return new VoxelShape[]{
+        return new VoxelShape[] {
                 vs_column,
                 Shapes.or(
                         Block.box(4.0D, 0.0D, 0.0D, 12.0D, 8.0D, 4.0D),

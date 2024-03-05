@@ -16,7 +16,6 @@ import static org.dawnoftimebuilder.registry.DoTBItemsRegistry.*;
 
 @OnlyIn(Dist.CLIENT)
 public enum CreativeInventoryCategories {
-
     GENERAL("general",
             RAMMED_DIRT.get().asItem(),
             THATCH_WHEAT.get().asItem(),
@@ -171,7 +170,6 @@ public enum CreativeInventoryCategories {
             FIREPLACE.get().asItem(),
             FLINT_AND_STEEL
     ),
-
     FRENCH("french",
             THATCH_WHEAT.get().asItem(),
             THATCH_WHEAT_STAIRS.get().asItem(),
@@ -203,14 +201,13 @@ public enum CreativeInventoryCategories {
             BLACK_WROUGHT_IRON_FENCE.get().asItem(),
             REINFORCED_BLACK_WROUGHT_IRON_FENCE.get().asItem(),
             REINFORCED_GOLDEN_WROUGHT_IRON_FENCE.get().asItem(),
-            //GRAPE.get(),
+            GRAPE.get(),
             GRAPE_SEEDS.get(),
             BOXWOOD_BUSH.get().asItem(),
             BOXWOOD_SMALL_HEDGE.get().asItem(),
             BOXWOOD_TALL_HEDGE.get().asItem(),
             FLINT_AND_STEEL
     ),
-
     GERMAN("german",
             THATCH_WHEAT.get().asItem(),
             THATCH_WHEAT_STAIRS.get().asItem(),
@@ -271,7 +268,7 @@ public enum CreativeInventoryCategories {
             STONE_BRICKS_CHIMNEY.get().asItem(),
             CANDLESTICK.get().asItem(),
             WAXED_OAK_CHANDELIER.get().asItem(),
-            //WAXED_OAK_TABLE.get().asItem(),
+            WAXED_OAK_TABLE.get().asItem(),
             WAXED_OAK_CHAIR.get().asItem(),
             IRON_PORTCULLIS.get().asItem(),
             WROUGHT_IRON_FENCE.get().asItem(),
@@ -285,7 +282,6 @@ public enum CreativeInventoryCategories {
             IVY.get().asItem(),
             FLINT_AND_STEEL
     ),
-
     JAPANESE("japanese",
             GRAVEL.asItem(),
             STRAIGHT_RAKED_GRAVEL.get().asItem(),
@@ -348,9 +344,9 @@ public enum CreativeInventoryCategories {
             SMALL_TATAMI_MAT.get().asItem(),
             TATAMI_MAT.get().asItem(),
             LIGHT_GRAY_FUTON.get().asItem(),
-            //SPRUCE_LOW_TABLE.get().asItem(),
+            SPRUCE_LOW_TABLE.get().asItem(),
             SPRUCE_LEGLESS_CHAIR.get().asItem(),
-            //IKEBANA_FLOWER_POT.get().asItem(),
+            IKEBANA_FLOWER_POT.get().asItem(),
             SAKE_BOTTLE.get().asItem(),
             SAKE_CUP.get().asItem(),
             CAST_IRON_TEAPOT_GRAY.get().asItem(),
@@ -360,23 +356,22 @@ public enum CreativeInventoryCategories {
             CAST_IRON_TEAPOT_DECORATED.get().asItem(),
             CAST_IRON_TEACUP_DECORATED.get().asItem(),
             MAPLE_RED_SAPLING.get().asItem(),
-            //BAMBOO_DRYING_TRAY.get().asItem(),
-            //CAMELLIA.get().asItem(),
+            BAMBOO_DRYING_TRAY.get().asItem(),
+            CAMELLIA.get().asItem(),
             CAMELLIA_LEAVES.get(),
             TEA_LEAVES.get(),
             STICK_BUNDLE.get().asItem(),
-            //MULBERRY.get().asItem(),
+            MULBERRY.get().asItem(),
             MULBERRY_LEAVES.get(),
             SILK_WORM_EGGS.get(),
             SILK_WORMS_HATCHERY.get(),
             SILK_WORMS.get(),
             SILK_COCOONS.get(),
             SILK.get(),
-            /*RICE.get().asItem(),
-            BAMBOO_HAT.get(),*/
+            RICE.get().asItem(),
+            //BAMBOO_HAT.get(),
             FLINT_AND_STEEL
     ),
-
     PRE_COLOMBIAN("pre_columbian",
             THATCH_WHEAT.get().asItem(),
             THATCH_WHEAT_STAIRS.get().asItem(),
@@ -415,12 +410,11 @@ public enum CreativeInventoryCategories {
             PLASTERED_STONE_CRESSET.get().asItem(),
             FEATHERED_SERPENT_SCULPTURE.get().asItem(),
             SERPENT_SCULPTED_COLUMN.get().asItem(),
-            /*COMMELINA.get().asItem(),
+            COMMELINA.get().asItem(),
             WILD_MAIZE.get().asItem(),
-            MAIZE.get().asItem(),*/
+            MAIZE.get().asItem(),
             FLINT_AND_STEEL
     ),
-
     ROMAN("roman",
             SANDSTONE.asItem(),
             SANDSTONE_STAIRS.asItem(),
@@ -447,7 +441,7 @@ public enum CreativeInventoryCategories {
             OCHRE_ROOF_TILES.get().asItem(),
             OCHRE_ROOF_TILES_STAIRS.get().asItem(),
             OCHRE_ROOF_TILES_PLATE.get().asItem(),
-            //OCHRE_ROOF_TILES_SLAB.get().asItem(),
+            OCHRE_ROOF_TILES_SLAB.get().asItem(),
             OCHRE_ROOF_TILES_EDGE.get().asItem(),
             OCHRE_ROOF_TILES_WALL.get().asItem(),
             MARBLE_COLUMN.get().asItem(),
@@ -480,12 +474,11 @@ public enum CreativeInventoryCategories {
             MARBLE_BIG_FLOWER_POT.get().asItem(),
             GERANIUM_PINK.get().asItem(),
             PLANTER_GERANIUM_PINK.get().asItem(),
-            //CYPRESS.get().asItem(),
-            //WILD_GRAPE.get().asItem(),
-            //GRAPE.get(),
+            CYPRESS.get().asItem(),
+            WILD_GRAPE.get().asItem(),
+            GRAPE.get(),
             GRAPE_SEEDS.get()
     ),
-
     // Temporary position until this tab is done.
     PERSIAN("persian",
             PERSIAN_CARPET_RED.get().asItem(),
@@ -507,7 +500,6 @@ public enum CreativeInventoryCategories {
             ANUBIS_ARMOR_SET.legs.get(),
             ANUBIS_ARMOR_SET.feet.get()
     );*/
-
     private final String name;
     private final Component translation;
     private final ArrayList<Item> items = new ArrayList<>();
@@ -526,7 +518,7 @@ public enum CreativeInventoryCategories {
         return this.translation;
     }
 
-    public ArrayList<Item> getItems(){
+    public ArrayList<Item> getItems() {
         return this.items;
     }
 }

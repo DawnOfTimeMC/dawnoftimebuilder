@@ -14,10 +14,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.FlowerPotBlock;
-import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import org.dawnoftimebuilder.block.templates.FlowerPotBlockDoTB;
 import org.dawnoftimebuilder.block.templates.SoilCropsBlock;
@@ -26,7 +23,6 @@ import org.dawnoftimebuilder.item.IHasFlowerPot;
 import javax.annotation.Nullable;
 
 public class SoilSeedsItem extends BlockItem implements IHasFlowerPot {
-
     private FlowerPotBlockDoTB potBlock;
 
     public SoilSeedsItem(SoilCropsBlock crops, @Nullable FoodProperties food) {
@@ -36,12 +32,11 @@ public class SoilSeedsItem extends BlockItem implements IHasFlowerPot {
     @Override
     public InteractionResult onItemUseFirst(ItemStack stack, UseOnContext context) {
         Level world = context.getLevel();
-        if (!world.isClientSide() && this.getPotBlock() != null) {
+        if(!world.isClientSide() && this.getPotBlock() != null) {
             BlockPos pos = context.getClickedPos();
             BlockState state = world.getBlockState(pos);
-            if (state.getBlock() instanceof FlowerPotBlock) {
-                FlowerPotBlock pot = (FlowerPotBlock) state.getBlock();
-                if (pot.getEmptyPot().getContent() == Blocks.AIR) {
+            if(state.getBlock() instanceof FlowerPotBlock pot) {
+                if(pot.getEmptyPot().getContent() == Blocks.AIR) {
                     world.setBlock(pos, this.getPotBlock().getRandomState(), 2);
                     return InteractionResult.SUCCESS;
                 }
@@ -52,31 +47,34 @@ public class SoilSeedsItem extends BlockItem implements IHasFlowerPot {
 
     @Override
     public InteractionResult place(BlockPlaceContext context) {
-        if (context.getClickedFace() != Direction.UP) return InteractionResult.FAIL;
+        if(context.getClickedFace() != Direction.UP)
+            return InteractionResult.FAIL;
 
         Level world = context.getLevel();
         BlockPos pos = context.getClickedPos();
 
-        if (!this.getBlock().canSurvive(this.getBlock().defaultBlockState(), world, pos)) return InteractionResult.FAIL;
-        if (!world.getBlockState(pos).canBeReplaced(context)) return InteractionResult.FAIL;
+        if(!this.getBlock().canSurvive(this.getBlock().defaultBlockState(), world, pos))
+            return InteractionResult.FAIL;
+        if(!world.getBlockState(pos).canBeReplaced(context))
+            return InteractionResult.FAIL;
         BlockPlaceContext blockitemusecontext = this.updatePlacementContext(context);
-        if (blockitemusecontext == null) {
+        if(blockitemusecontext == null) {
             return InteractionResult.FAIL;
         } else {
             BlockState madeState = this.getPlacementState(blockitemusecontext);
-            if (madeState == null) {
+            if(madeState == null) {
                 return InteractionResult.FAIL;
-            } else if (!world.setBlock(pos, madeState, 11)) {
+            } else if(!world.setBlock(pos, madeState, 11)) {
                 return InteractionResult.FAIL;
             } else {
                 Player playerentity = blockitemusecontext.getPlayer();
                 ItemStack itemstack = blockitemusecontext.getItemInHand();
                 BlockState newState = world.getBlockState(pos);
                 Block block = newState.getBlock();
-                if (block == madeState.getBlock()) {
+                if(block == madeState.getBlock()) {
                     this.updateCustomBlockEntityTag(pos, world, playerentity, itemstack, newState);
                     block.setPlacedBy(world, pos, newState, playerentity, itemstack);
-                    if (playerentity instanceof ServerPlayer) {
+                    if(playerentity instanceof ServerPlayer) {
                         CriteriaTriggers.PLACED_BLOCK.trigger((ServerPlayer) playerentity, pos, itemstack);
                     }
                 }

@@ -10,7 +10,6 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import org.dawnoftimebuilder.block.templates.WaterloggedBlock;
 
 public class MarbleBigFlowerPotBlock extends WaterloggedBlock {
-
     private static final VoxelShape VS = Shapes.or(
             Block.box(-0.5F, 15.0F, -0.5F, 16.5F, 17.0F, 16.5F),
             Block.box(1.5F, 5.0F, 1.5F, 14.5F, 15.0F, 14.5F),

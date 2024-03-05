@@ -27,7 +27,6 @@ import org.dawnoftimebuilder.util.DoTBBlockStateProperties;
 import org.dawnoftimebuilder.util.DoTBUtils;
 
 public class SmallShutterBlock extends WaterloggedBlock {
-
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
     public static final EnumProperty<DoTBBlockStateProperties.OpenPosition> OPEN_POSITION = DoTBBlockStateProperties.OPEN_POSITION;
@@ -51,20 +50,19 @@ public class SmallShutterBlock extends WaterloggedBlock {
         int index = 0;
         int horizontalIndex = 0;
         final boolean hinge = state.getValue(SmallShutterBlock.HINGE) == DoorHingeSide.RIGHT;
-        switch (state.getValue(SmallShutterBlock.OPEN_POSITION)) {
+        switch(state.getValue(SmallShutterBlock.OPEN_POSITION)) {
             case FULL:
                 index = hinge ? 1 : 2;
             case CLOSED:
                 horizontalIndex = state.getValue(SmallShutterBlock.FACING).get2DDataValue();
                 break;
             case HALF:
-                if (hinge) {
+                if(hinge) {
                     horizontalIndex = state.getValue(SmallShutterBlock.FACING).getClockWise().get2DDataValue();
                 } else {
                     horizontalIndex = state.getValue(SmallShutterBlock.FACING).getCounterClockWise().get2DDataValue();
                 }
                 break;
-
         }
         return SmallShutterBlock.SHAPES[index + horizontalIndex * 3];
     }
@@ -79,7 +77,7 @@ public class SmallShutterBlock extends WaterloggedBlock {
      * 2 : S Fully opened to the left
      */
     private static VoxelShape[] makeShapes() {
-        return new VoxelShape[]{Block.box(0.0D, 0.0D, 13.0D, 16.0D, 16.0D, 16.0D), Block.box(-13.0D, 0.0D, 13.0D, 3.0D, 16.0D, 16.0D), Block.box(13.0D, 0.0D, 13.0D, 29.0D, 16.0D, 16.0D)};
+        return new VoxelShape[] { Block.box(0.0D, 0.0D, 13.0D, 16.0D, 16.0D, 16.0D), Block.box(-13.0D, 0.0D, 13.0D, 3.0D, 16.0D, 16.0D), Block.box(13.0D, 0.0D, 13.0D, 29.0D, 16.0D, 16.0D) };
     }
 
     @Override
@@ -107,7 +105,7 @@ public class SmallShutterBlock extends WaterloggedBlock {
     public BlockState updateShape(BlockState stateIn, final Direction facing, final BlockState facingState, final LevelAccessor worldIn, final BlockPos currentPos, final BlockPos facingPos) {
         final Direction direction = stateIn.getValue(SmallShutterBlock.FACING);
         final Direction hingeDirection = stateIn.getValue(SmallShutterBlock.HINGE) == DoorHingeSide.LEFT ? direction.getCounterClockWise() : direction.getClockWise();
-        if (facing == hingeDirection) {
+        if(facing == hingeDirection) {
             stateIn = super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
             return stateIn.getValue(SmallShutterBlock.OPEN_POSITION) == DoTBBlockStateProperties.OpenPosition.CLOSED ? stateIn : stateIn.setValue(SmallShutterBlock.OPEN_POSITION, this.getOpenState(stateIn, worldIn, facingPos));
         }
@@ -116,7 +114,7 @@ public class SmallShutterBlock extends WaterloggedBlock {
 
     @Override
     public InteractionResult use(BlockState state, final Level worldIn, final BlockPos pos, final Player player, final InteractionHand handIn, final BlockHitResult hit) {
-        if (state.getValue(SmallShutterBlock.OPEN_POSITION).isOpen()) {
+        if(state.getValue(SmallShutterBlock.OPEN_POSITION).isOpen()) {
             state = state.setValue(SmallShutterBlock.OPEN_POSITION, DoTBBlockStateProperties.OpenPosition.CLOSED);
         } else {
             final Direction hingeDirection = state.getValue(SmallShutterBlock.HINGE) == DoorHingeSide.LEFT ? state.getValue(SmallShutterBlock.FACING).getCounterClockWise() : state.getValue(SmallShutterBlock.FACING).getClockWise();
@@ -124,7 +122,7 @@ public class SmallShutterBlock extends WaterloggedBlock {
         }
         worldIn.setBlock(pos, state, 10);
         worldIn.levelEvent(player, state.getValue(SmallShutterBlock.OPEN_POSITION).isOpen() ? this.getOpenSound() : this.getCloseSound(), pos, 0);
-        if (state.getValue(WaterloggedBlock.WATERLOGGED)) {
+        if(state.getValue(WaterloggedBlock.WATERLOGGED)) {
             worldIn.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(worldIn));
         }
         return InteractionResult.SUCCESS;
@@ -133,11 +131,11 @@ public class SmallShutterBlock extends WaterloggedBlock {
     @Override
     public void neighborChanged(BlockState state, final Level worldIn, final BlockPos pos, final Block blockIn, final BlockPos fromPos, final boolean isMoving) {
         final boolean isPowered = worldIn.hasNeighborSignal(pos);
-        if (blockIn != this && isPowered != state.getValue(SmallShutterBlock.POWERED)) {
-            if (isPowered != state.getValue(SmallShutterBlock.OPEN_POSITION).isOpen()) {
+        if(blockIn != this && isPowered != state.getValue(SmallShutterBlock.POWERED)) {
+            if(isPowered != state.getValue(SmallShutterBlock.OPEN_POSITION).isOpen()) {
                 this.playSound(worldIn, pos, isPowered);
             }
-            if (isPowered) {
+            if(isPowered) {
                 final Direction hingeDirection = state.getValue(SmallShutterBlock.HINGE) == DoorHingeSide.LEFT ? state.getValue(SmallShutterBlock.FACING).getCounterClockWise() : state.getValue(SmallShutterBlock.FACING).getClockWise();
                 state = state.setValue(SmallShutterBlock.OPEN_POSITION, this.getOpenState(state, worldIn, pos.relative(hingeDirection)));
             } else {
@@ -170,7 +168,7 @@ public class SmallShutterBlock extends WaterloggedBlock {
 
     @Override
     public BlockState mirror(BlockState state, final Mirror mirrorIn) {
-        switch (mirrorIn) {
+        switch(mirrorIn) {
             default:
             case NONE:
                 return state;

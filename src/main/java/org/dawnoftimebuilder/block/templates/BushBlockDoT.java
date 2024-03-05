@@ -5,16 +5,14 @@ import net.minecraft.core.Direction;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.BushBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraftforge.common.Tags;
 import org.dawnoftimebuilder.block.IBlockGeneration;
 
 public class BushBlockDoT extends BushBlock implements IBlockGeneration {
-
     private int fireSpreadSpeed = 0;
     private int fireDestructionSpeed = 0;
 
@@ -36,6 +34,7 @@ public class BushBlockDoT extends BushBlock implements IBlockGeneration {
      *
      * @param fireSpreadSpeed      Increases the probability to catch fire
      * @param fireDestructionSpeed Decreases burning duration
+     *
      * @return this
      */
     public Block setBurnable(final int fireSpreadSpeed, final int fireDestructionSpeed) {
@@ -55,12 +54,14 @@ public class BushBlockDoT extends BushBlock implements IBlockGeneration {
     }
 
     @Override
-    public void generateOnPos(final LevelAccessor worldIn, final BlockPos posIn, final BlockState stateIn, final RandomSource randomIn) {
-        final BlockState groundState = worldIn.getBlockState(posIn.below());
+    public boolean generateOnPos(WorldGenLevel world, BlockPos pos, BlockState state, RandomSource random) {
+        final BlockState groundState = world.getBlockState(pos.below());
 
-        if (!BlockTags.DIRT.equals(groundState.getBlock())) {
-            return;
+        if (!groundState.is(BlockTags.DIRT)) {
+            return false;
         }
-        worldIn.setBlock(posIn, stateIn, 2);
+        world.setBlock(pos, state, 2);
+
+        return true;
     }
 }

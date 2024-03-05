@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "minecraft:taiga",
+  "features": "dawnoftimebuilder:red_maple_placed",
+  "step": "vegetal_decoration"
+}

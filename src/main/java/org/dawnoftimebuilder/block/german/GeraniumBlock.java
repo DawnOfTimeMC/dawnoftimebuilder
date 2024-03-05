@@ -1,7 +1,7 @@
 package org.dawnoftimebuilder.block.german;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.item.Item;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelReader;
@@ -11,14 +11,11 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import org.dawnoftimebuilder.block.ICustomBlockItem;
 import org.dawnoftimebuilder.block.templates.BlockDoTB;
-import org.dawnoftimebuilder.item.templates.PotAndBlockItem;
 
 import javax.annotation.Nullable;
 
-public class GeraniumBlock extends BlockDoTB implements ICustomBlockItem {
-
+public class GeraniumBlock extends BlockDoTB {
     private static final VoxelShape VS = Block.box(-2.0D, -7.0D, -2.0D, 17.0D, 15.0D, 17.0D);
 
     public GeraniumBlock(Properties properties) {
@@ -33,8 +30,8 @@ public class GeraniumBlock extends BlockDoTB implements ICustomBlockItem {
 
     @Override
     public boolean canSurvive(BlockState state, LevelReader worldIn, BlockPos pos) {
-        Block blockDown = worldIn.getBlockState(pos.below()).getBlock();
-        return blockDown == Blocks.GRASS_BLOCK || blockDown == Blocks.FARMLAND;
+        BlockState blockDown = worldIn.getBlockState(pos.below());
+        return blockDown.getBlock() == Blocks.GRASS_BLOCK || blockDown.is(BlockTags.DIRT) || blockDown.getBlock() == Blocks.FARMLAND;
     }
 
     @Override
@@ -45,11 +42,5 @@ public class GeraniumBlock extends BlockDoTB implements ICustomBlockItem {
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
         return VS;
-    }
-
-    @Nullable
-    @Override
-    public Item getCustomBlockItem() {
-        return new PotAndBlockItem(this, new Item.Properties());
     }
 }

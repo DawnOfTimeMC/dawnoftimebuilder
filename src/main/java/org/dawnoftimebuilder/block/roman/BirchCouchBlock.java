@@ -27,13 +27,12 @@ import org.dawnoftimebuilder.util.DoTBUtils;
 import javax.annotation.Nullable;
 
 public class BirchCouchBlock extends ChairBlock {
-
-    private static final VoxelShape[] SHAPES = DoTBUtils.GenerateHorizontalShapes(new VoxelShape[]{
+    private static final VoxelShape[] SHAPES = DoTBUtils.GenerateHorizontalShapes(new VoxelShape[] {
             Shapes.or(
                     Block.box(1.0D, 0.0D, 2.0D, 15.0D, 8.0D, 6.0D),
                     Block.box(0.0D, 8.0D, 0.0D, 16.0D, 13.0D, 16.0D),
                     Block.box(0.0D, 13.0D, 0.0D, 16.0D, 19.0D, 8.0D)
-            )});
+            ) });
 
     public BirchCouchBlock(Properties properties, float pixelsYOffset) {
         super(properties, pixelsYOffset);
@@ -48,7 +47,7 @@ public class BirchCouchBlock extends ChairBlock {
     public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
         float x = 8.0F;
         float z = 8.0F;
-        switch (state.getValue(FACING)) {
+        switch(state.getValue(FACING)) {
             default:
             case NORTH:
                 z = 2.0F;
@@ -70,7 +69,8 @@ public class BirchCouchBlock extends ChairBlock {
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
         Direction direction = context.getHorizontalDirection();
-        if(context.getLevel().getBlockState(context.getClickedPos().relative(direction)).canBeReplaced(context)) return super.getStateForPlacement(context).setValue(FACING, direction);
+        if(context.getLevel().getBlockState(context.getClickedPos().relative(direction)).canBeReplaced(context))
+            return super.getStateForPlacement(context).setValue(FACING, direction);
         return null;
     }
 
@@ -83,19 +83,20 @@ public class BirchCouchBlock extends ChairBlock {
     @Override
     public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, LevelAccessor worldIn, BlockPos currentPos, BlockPos facingPos) {
         Direction blockFacing = stateIn.getValue(FACING);
-        if(facing == blockFacing){
-            if(facingState.getBlock() == this){
-                if(facingState.getValue(FACING).getOpposite() == blockFacing) return super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+        if(facing == blockFacing) {
+            if(facingState.getBlock() == this) {
+                if(facingState.getValue(FACING).getOpposite() == blockFacing)
+                    return super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
             }
             return Blocks.AIR.defaultBlockState();
-        }else return super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+        } else
+            return super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
     }
 
     @Override
     public PushReaction getPistonPushReaction(BlockState state) {
         return PushReaction.DESTROY;
     }
-
 
     @Override
     public void playerDestroy(Level worldIn, Player player, BlockPos pos, BlockState state, @Nullable BlockEntity te, ItemStack stack) {

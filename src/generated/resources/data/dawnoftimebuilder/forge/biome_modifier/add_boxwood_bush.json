@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "minecraft:flower_forest",
+  "features": "dawnoftimebuilder:boxwood_bush_placed",
+  "step": "vegetal_decoration"
+}

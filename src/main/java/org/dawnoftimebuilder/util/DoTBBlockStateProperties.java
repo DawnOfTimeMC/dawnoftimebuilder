@@ -5,15 +5,11 @@ import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.state.properties.BooleanProperty;
-import net.minecraft.world.level.block.state.properties.EnumProperty;
-import net.minecraft.world.level.block.state.properties.IntegerProperty;
-import net.minecraft.world.level.block.state.properties.WallSide;
+import net.minecraft.world.level.block.state.properties.*;
 import org.dawnoftimebuilder.registry.DoTBBlocksRegistry;
 import org.dawnoftimebuilder.registry.DoTBItemsRegistry;
 
 public class DoTBBlockStateProperties {
-
     public static final BooleanProperty CUT = BooleanProperty.create("cut");
     public static final BooleanProperty ROLLED = BooleanProperty.create("rolled");
     public static final BooleanProperty AXIS_X = BooleanProperty.create("axis_x");
@@ -28,7 +24,6 @@ public class DoTBBlockStateProperties {
     public static final BooleanProperty WEST_TRICKLE = BooleanProperty.create("west_trickle");
     public static final BooleanProperty CENTER_TRICKLE = BooleanProperty.create("center_trickle");
     public static final BooleanProperty ACTIVATED = BooleanProperty.create("activated");
-
     public static final IntegerProperty MULTIBLOCK_0_2 = IntegerProperty.create("multiblock", 0, 2);
     public static final IntegerProperty MULTIBLOCK_3X = IntegerProperty.create("multiblock_3x", 0, 2);
     public static final IntegerProperty MULTIBLOCK_2Y = IntegerProperty.create("multiblock_2y", 0, 1);
@@ -40,7 +35,6 @@ public class DoTBBlockStateProperties {
     public static final IntegerProperty SIZE_0_5 = IntegerProperty.create("size", 0, 5);
     public static final IntegerProperty STACK = IntegerProperty.create("stack", 1, 3);
     public static final IntegerProperty LEVEL = IntegerProperty.create("level", 0, 16);
-
     public static final EnumProperty<ClimbingPlant> CLIMBING_PLANT = EnumProperty.create("climbing_plant", ClimbingPlant.class);
     public static final EnumProperty<FencePillar> FENCE_PILLAR = EnumProperty.create("fence_pillar", FencePillar.class);
     public static final EnumProperty<HorizontalConnection> HORIZONTAL_CONNECTION = EnumProperty.create("horizontal_connection", HorizontalConnection.class);
@@ -60,7 +54,6 @@ public class DoTBBlockStateProperties {
         NONE("none", 0),
         BOTTOM("bottom", 1),
         TOP("top", 2);
-
         private final String name;
         private final int index;
 
@@ -95,7 +88,6 @@ public class DoTBBlockStateProperties {
         LEFT("left", 1),
         RIGHT("right", 2),
         BOTH("both", 3);
-
         private final String name;
         private final int index;
 
@@ -124,7 +116,6 @@ public class DoTBBlockStateProperties {
         UNDER("under", 1),
         ABOVE("above", 2),
         BOTH("both", 3);
-
         private final String name;
         private final int index;
 
@@ -160,7 +151,6 @@ public class DoTBBlockStateProperties {
         SIX_PX("6_pixels"),
         EIGHT_PX("8_pixels"),
         TEN_PX("10_pixels");
-
         private final String name;
 
         PillarConnection(final String name) {
@@ -183,7 +173,6 @@ public class DoTBBlockStateProperties {
         PILLAR_BIG("pillar_big"),
         PILLAR_SMALL("pillar_small"),
         CAP_PILLAR_BIG("cap_pillar_big");
-
         private final String name;
 
         FencePillar(final String name) {
@@ -206,7 +195,6 @@ public class DoTBBlockStateProperties {
         TOP_RIGHT("top_right", 1, 1),
         BOTTOM_RIGHT("bottom_right", 1, -1),
         BOTTOM_LEFT("bottom_left", -1, -1);
-
         private final String name;
         private final int horizontal_offset;
         private final int vertical_offset;
@@ -229,6 +217,7 @@ public class DoTBBlockStateProperties {
 
         /**
          * @param referenceCorner Corner used as reference
+         *
          * @return the offset to apply to the BlockPos horizontally to get the pos of the studied corner.
          */
         public int getHorizontalOffset(final SquareCorners referenceCorner) {
@@ -237,6 +226,7 @@ public class DoTBBlockStateProperties {
 
         /**
          * @param referenceCorner Corner used as reference
+         *
          * @return the offset to apply to the BlockPos vertically to get the pos of the studied corner.
          */
         public int getVerticalOffset(final SquareCorners referenceCorner) {
@@ -249,10 +239,11 @@ public class DoTBBlockStateProperties {
 
         /**
          * @param vertically must be true if the adjacent corner must be above or under.
+         *
          * @return the adjacent SquareCorner vertically or horizontally.
          */
         public SquareCorners getAdjacentCorner(final boolean vertically) {
-            switch (this) {
+            switch(this) {
                 default:
                 case TOP_LEFT:
                     return vertically ? BOTTOM_LEFT : TOP_RIGHT;
@@ -270,7 +261,6 @@ public class DoTBBlockStateProperties {
         CLOSED("closed"),
         HALF("half"),
         FULL("full");
-
         private final String name;
 
         OpenPosition(final String name) {
@@ -299,7 +289,6 @@ public class DoTBBlockStateProperties {
         WEST("west", Direction.WEST),
         AXIS_X("axis_x", Direction.EAST),
         AXIS_Z("axis_z", Direction.NORTH);
-
         private final String name;
         private final Direction direction;
 
@@ -327,10 +316,10 @@ public class DoTBBlockStateProperties {
         }
 
         public static SidedWindow getSide(final Direction facing, final boolean isSneaking) {
-            if (isSneaking) {
+            if(isSneaking) {
                 return facing.getAxis() == Direction.Axis.X ? AXIS_X : AXIS_Z;
             }
-            switch (facing) {
+            switch(facing) {
                 default:
                 case NORTH:
                     return NORTH;
@@ -348,7 +337,6 @@ public class DoTBBlockStateProperties {
         STRAIGHT("straight"),
         FADE("fade"),
         SPLASH("splash");
-
         private final String name;
 
         WaterTrickleEnd(final String name) {
@@ -372,7 +360,6 @@ public class DoTBBlockStateProperties {
         IVY("ivy"),
         GRAPE("grape", true, 4, 6, 0, 2, 2);
         //CLEMATIS("clematis", true, 4, 5, 1, 2, 2);
-
         private final String name;
         private final boolean cycle;
         private final int[] moonPhasePerAge;
@@ -395,7 +382,7 @@ public class DoTBBlockStateProperties {
         ClimbingPlant(final String name, final boolean cycle, final int age2, final int age3, final int age4, final int age5, final int age6) {
             this.name = name;
             this.cycle = cycle;
-            this.moonPhasePerAge = new int[]{
+            this.moonPhasePerAge = new int[] {
                     age2, age3, age4, age5, age6
             };
         }
@@ -419,7 +406,7 @@ public class DoTBBlockStateProperties {
         }
 
         public boolean canGrow(final Level worldIn, int currentAge) {
-            if (!this.cycle || currentAge < 2 || currentAge > 6) {
+            if(!this.cycle || currentAge < 2 || currentAge > 6) {
                 return false;
             }
             currentAge -= 2;
@@ -432,14 +419,14 @@ public class DoTBBlockStateProperties {
         }
 
         public static ClimbingPlant getFromItem(final Item item) {
-            if (item == DoTBItemsRegistry.GRAPE_SEEDS.get()) {
+            if(item == DoTBItemsRegistry.GRAPE_SEEDS.get()) {
                 return GRAPE;
             }
             //if(item == CLEMATIS_SEEDS.get()) return CLEMATIS;
-            if (item == Blocks.VINE.asItem()) {
+            if(item == Blocks.VINE.asItem()) {
                 return VINE;
             }
-            if (item == DoTBBlocksRegistry.IVY.get().asItem()) {
+            if(item == DoTBBlocksRegistry.IVY.get().asItem()) {
                 return IVY;
             }
             return NONE;

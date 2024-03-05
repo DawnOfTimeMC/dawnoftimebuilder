@@ -10,10 +10,7 @@ import net.minecraft.world.level.block.Mirror;
 import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.state.properties.DirectionProperty;
-import net.minecraft.world.level.block.state.properties.EnumProperty;
-import net.minecraft.world.level.block.state.properties.StairsShape;
+import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -25,7 +22,6 @@ import org.dawnoftimebuilder.util.DoTBBlockStateProperties.VerticalConnection;
 import static net.minecraft.world.level.block.state.properties.StairsShape.OUTER_LEFT;
 
 public class ReinforcedIronFenceBlock extends ColumnConnectibleBlock {
-
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final EnumProperty<StairsShape> SHAPE = BlockStateProperties.STAIRS_SHAPE;
     private static final VoxelShape[] SHAPES_BOTTOM = makeBottomShapes();
@@ -46,7 +42,7 @@ public class ReinforcedIronFenceBlock extends ColumnConnectibleBlock {
     public VoxelShape getShape(final BlockState state, final BlockGetter worldIn, final BlockPos pos, final CollisionContext context) {
         int index = (state.getValue(PlateBlock.FACING).get2DDataValue() + 2) % 4;
         index *= 3;
-        switch (state.getValue(PlateBlock.SHAPE)) {
+        switch(state.getValue(PlateBlock.SHAPE)) {
             default:
             case OUTER_LEFT:
                 break;
@@ -91,7 +87,7 @@ public class ReinforcedIronFenceBlock extends ColumnConnectibleBlock {
         VoxelShape vs_ne_corner = Block.box(6.0D, 0.0D, 0.0D, 16.0D, 16.0D, 10.0D);
         VoxelShape vs_se_corner = Block.box(6.0D, 0.0D, 6.0D, 16.0D, 16.0D, 16.0D);
         VoxelShape vs_sw_corner = Block.box(0.0D, 0.0D, 6.0D, 10.0D, 16.0D, 16.0D);
-        return new VoxelShape[]{
+        return new VoxelShape[] {
                 vs_nw_corner,
                 vs_north_flat,
                 Shapes.or(vs_north_flat, vs_west_flat, vs_nw_corner),
@@ -103,7 +99,7 @@ public class ReinforcedIronFenceBlock extends ColumnConnectibleBlock {
                 Shapes.or(vs_south_flat, vs_east_flat, vs_se_corner),
                 vs_sw_corner,
                 vs_west_flat,
-                Shapes.or(vs_west_flat, vs_south_flat, vs_sw_corner)};
+                Shapes.or(vs_west_flat, vs_south_flat, vs_sw_corner) };
     }
 
     /**
@@ -130,7 +126,7 @@ public class ReinforcedIronFenceBlock extends ColumnConnectibleBlock {
         VoxelShape vs_ne_corner = Block.box(6.0D, 0.0D, 0.0D, 16.0D, 16.0D, 10.0D);
         VoxelShape vs_se_corner = Block.box(6.0D, 0.0D, 6.0D, 16.0D, 16.0D, 16.0D);
         VoxelShape vs_sw_corner = Block.box(0.0D, 0.0D, 6.0D, 10.0D, 16.0D, 16.0D);
-        return new VoxelShape[]{
+        return new VoxelShape[] {
                 vs_nw_corner,
                 vs_north_flat,
                 Shapes.or(vs_north_flat, vs_west_flat, vs_nw_corner),
@@ -142,7 +138,7 @@ public class ReinforcedIronFenceBlock extends ColumnConnectibleBlock {
                 Shapes.or(vs_south_flat, vs_east_flat, vs_se_corner),
                 vs_sw_corner,
                 vs_west_flat,
-                Shapes.or(vs_west_flat, vs_south_flat, vs_sw_corner)};
+                Shapes.or(vs_west_flat, vs_south_flat, vs_sw_corner) };
     }
 
     @Override
@@ -164,17 +160,17 @@ public class ReinforcedIronFenceBlock extends ColumnConnectibleBlock {
         final Direction direction = state.getValue(PlateBlock.FACING);
 
         BlockState adjacentState = worldIn.getBlockState(pos.relative(direction));
-        if (adjacentState.getBlock() instanceof ReinforcedIronFenceBlock) {
+        if(adjacentState.getBlock() instanceof ReinforcedIronFenceBlock) {
             final Direction adjacentDirection = adjacentState.getValue(PlateBlock.FACING);
-            if (adjacentDirection.getAxis() != state.getValue(PlateBlock.FACING).getAxis()) {
+            if(adjacentDirection.getAxis() != state.getValue(PlateBlock.FACING).getAxis()) {
                 return adjacentDirection == direction.getCounterClockWise() ? OUTER_LEFT : StairsShape.OUTER_RIGHT;
             }
         }
 
         adjacentState = worldIn.getBlockState(pos.relative(direction.getOpposite()));
-        if (adjacentState.getBlock() instanceof ReinforcedIronFenceBlock) {
+        if(adjacentState.getBlock() instanceof ReinforcedIronFenceBlock) {
             final Direction adjacentDirection = adjacentState.getValue(PlateBlock.FACING);
-            if (adjacentDirection.getAxis() != state.getValue(PlateBlock.FACING).getAxis()) {
+            if(adjacentDirection.getAxis() != state.getValue(PlateBlock.FACING).getAxis()) {
                 return adjacentDirection == direction.getCounterClockWise() ? StairsShape.INNER_LEFT : StairsShape.INNER_RIGHT;
             }
         }
@@ -191,10 +187,10 @@ public class ReinforcedIronFenceBlock extends ColumnConnectibleBlock {
     public BlockState mirror(final BlockState state, final Mirror mirrorIn) {
         final Direction direction = state.getValue(PlateBlock.FACING);
         final StairsShape stairsshape = state.getValue(PlateBlock.SHAPE);
-        switch (mirrorIn) {
+        switch(mirrorIn) {
             case LEFT_RIGHT:
-                if (direction.getAxis() == Direction.Axis.Z) {
-                    switch (stairsshape) {
+                if(direction.getAxis() == Direction.Axis.Z) {
+                    switch(stairsshape) {
                         case INNER_LEFT:
                             return state.rotate(Rotation.CLOCKWISE_180).setValue(PlateBlock.SHAPE, StairsShape.INNER_RIGHT);
                         case INNER_RIGHT:
@@ -209,8 +205,8 @@ public class ReinforcedIronFenceBlock extends ColumnConnectibleBlock {
                 }
                 break;
             case FRONT_BACK:
-                if (direction.getAxis() == Direction.Axis.X) {
-                    switch (stairsshape) {
+                if(direction.getAxis() == Direction.Axis.X) {
+                    switch(stairsshape) {
                         case INNER_LEFT:
                             return state.rotate(Rotation.CLOCKWISE_180).setValue(PlateBlock.SHAPE, StairsShape.INNER_LEFT);
                         case INNER_RIGHT:

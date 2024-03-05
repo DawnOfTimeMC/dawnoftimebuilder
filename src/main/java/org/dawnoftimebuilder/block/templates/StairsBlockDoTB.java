@@ -10,7 +10,6 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraftforge.registries.RegistryObject;
 
 public class StairsBlockDoTB extends StairBlock {
-
     private int fireSpreadSpeed = 0;
     private int fireDestructionSpeed = 0;
 
@@ -20,6 +19,7 @@ public class StairsBlockDoTB extends StairBlock {
 
     /**
      * Set Encouragement to 5 and Flammability to 20
+     *
      * @return this
      */
     public Block setBurnable() {
@@ -28,8 +28,10 @@ public class StairsBlockDoTB extends StairBlock {
 
     /**
      * Set burning parameters (default 5 / 20)
-     * @param fireSpreadSpeed Increases the probability to catch fire
+     *
+     * @param fireSpreadSpeed      Increases the probability to catch fire
      * @param fireDestructionSpeed Decreases burning duration
+     *
      * @return this
      */
     public Block setBurnable(int fireSpreadSpeed, int fireDestructionSpeed) {

@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "minecraft:taiga",
+  "features": "dawnoftimebuilder:cypress_placed",
+  "step": "vegetal_decoration"
+}

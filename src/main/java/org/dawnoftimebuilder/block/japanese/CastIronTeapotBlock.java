@@ -10,15 +10,14 @@ import org.dawnoftimebuilder.block.IBlockSpecialDisplay;
 import org.dawnoftimebuilder.block.templates.WaterloggedBlock;
 
 public class CastIronTeapotBlock extends WaterloggedBlock implements IBlockSpecialDisplay {
+    private static final VoxelShape VS = Block.box(4.8D, 0.0D, 4.8D, 11.2D, 6.4D, 11.2D);
 
-	private static final VoxelShape VS = Block.box(4.8D, 0.0D, 4.8D, 11.2D, 6.4D, 11.2D);
+    public CastIronTeapotBlock(Properties properties) {
+        super(properties);
+    }
 
-	public CastIronTeapotBlock(Properties properties) {
-		super(properties);
-	}
-
-	@Override
-	public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
-		return VS;
-	}
+    @Override
+    public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
+        return VS;
+    }
 }

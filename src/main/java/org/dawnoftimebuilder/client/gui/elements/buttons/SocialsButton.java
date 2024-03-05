@@ -2,8 +2,7 @@ package org.dawnoftimebuilder.client.gui.elements.buttons;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiComponent;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -11,7 +10,6 @@ import net.minecraft.resources.ResourceLocation;
 import static org.dawnoftimebuilder.DawnOfTimeBuilder.MOD_ID;
 
 public class SocialsButton extends Button {
-
     private final ResourceLocation buttonIcons, socialIcons;
 
     public SocialsButton(int x, int y, String buttonName, OnPress pressable) {
@@ -21,24 +19,28 @@ public class SocialsButton extends Button {
     }
 
     @Override
-    public void render(PoseStack ps, int mouseX, int mouseY, float partialTicks) {
-        if (this.active) {
+    public void render(GuiGraphics pGuiGraphics, int pMouseX, int pMouseY, float pPartialTick) {
+        if(this.active && this.visible) {
+            PoseStack ps = pGuiGraphics.pose();
+
+            this.isHovered = pMouseX >= this.getX() && pMouseY >= this.getY() && pMouseX < this.getX() + this.width && pMouseY < this.getY() + this.height;
+
+            if(this.isHovered())
+                pGuiGraphics.setColor(0.7F, 0.7F, 0.7F, 1.0F);
+
             ps.pushPose();
-            RenderSystem.setShaderTexture(0, socialIcons);
-            RenderSystem.clearColor(1.0F, 1.0F, 1.0F, this.alpha);
             RenderSystem.enableBlend();
-            blit(ps, this.getX() - 1, this.getY(), 0, (this.isHovered()) ? 28 : 0, 28, 28);
+            pGuiGraphics.blit(socialIcons, this.getX() - 1, this.getY(), 0, 0, 28, 28);
             RenderSystem.disableBlend();
             ps.popPose();
 
             ps.pushPose();
-            RenderSystem.setShaderTexture(0, buttonIcons);
-            RenderSystem.clearColor(1.0F, 1.0F, 1.0F, this.alpha);
             RenderSystem.enableBlend();
-            blit(ps, this.getX() + 3, this.getY() + 4, 0, 0, 0, 20, 20, 20, 20);
+            pGuiGraphics.blit(buttonIcons, this.getX() + 3, this.getY() + 4, 0, 0, 0, 20, 20, 20, 20);
             RenderSystem.disableBlend();
             ps.popPose();
+
+            pGuiGraphics.setColor(1.0F, 1.0F, 1.0F, 1.0F);
         }
-        super.render(ps, mouseX, mouseY, partialTicks);
     }
 }
