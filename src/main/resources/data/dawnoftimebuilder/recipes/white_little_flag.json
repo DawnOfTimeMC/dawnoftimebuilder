@@ -6,7 +6,7 @@
 	],
 	"key": {
 		"I": {
-			"item": "minecraft:string"
+			"item": "dawnoftimebuilder:silk"
 		},
 		"i": {
 			"tag": "forge:rods/wooden"
