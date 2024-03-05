@@ -92,7 +92,9 @@ public class SilkmothEntity extends AmbientCreature {
 
         Vec3 motionVector = this.getDeltaMovement();
         this.setDeltaMovement(motionVector.x * 0.5D + Math.cos(alpha) * 0.15D, Math.sin(this.tickCount / 20.0D) * 0.05D, motionVector.z * 0.5D + Math.sin(alpha) * 0.15D);
-        this.setYHeadRot((float) Mth.wrapDegrees(180.0D * alpha / Math.PI - 90.0D));
+        float rot = (float) Mth.wrapDegrees(180.0D * alpha / Math.PI - 90.0D);
+        this.setYHeadRot(rot);
+        this.setYRot(rot);
     }
 
     private void changeRotationPos(){
@@ -132,7 +134,7 @@ public class SilkmothEntity extends AmbientCreature {
             this.getEntityData().set(ROTATION_POS, listMulberry.get(random.nextInt(listMulberry.size())));
         }else this.getEntityData().set(ROTATION_POS, new BlockPos(x + this.random.nextInt(2 * horizontalRange + 1), y + this.random.nextInt(2 * verticalRange + 1), z + this.random.nextInt(2 * horizontalRange + 1)));
 
-        this.getEntityData().set(DISTANCE, 0.5F + 2 * this.random.nextFloat());
+        this.getEntityData().set(DISTANCE, this.getNewRotationDistance());
     }
 
     @Override
