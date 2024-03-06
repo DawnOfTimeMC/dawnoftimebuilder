@@ -3,6 +3,7 @@ package org.dawnoftimebuilder.datagen;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.data.BlockTagsProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import org.dawnoftimebuilder.DawnOfTimeBuilder;
@@ -20,6 +21,7 @@ public class DoTBBlockTagGenerator extends BlockTagsProvider {
     @Override
     protected void addTags(HolderLookup.Provider pProvider) {
         this.tag(BlockTags.MINEABLE_WITH_PICKAXE)
+                .add(POT_BLOCKS.values().toArray(new Block[] { }))
                 .add(
                         RED_PLASTERED_STONE.get(),
                         RED_PLASTERED_STONE_EDGE.get(),
