@@ -37,6 +37,10 @@ public class SoilSeedsItem extends BlockItem implements IHasFlowerPot {
             BlockState state = world.getBlockState(pos);
             if(state.getBlock() instanceof FlowerPotBlock pot) {
                 if(pot.getEmptyPot().getContent() == Blocks.AIR) {
+                    Player player = context.getPlayer();
+                    if(player == null || !player.getAbilities().instabuild) {
+                        stack.shrink(1);
+                    }
                     world.setBlock(pos, this.getPotBlock().getRandomState(), 2);
                     return InteractionResult.SUCCESS;
                 }
