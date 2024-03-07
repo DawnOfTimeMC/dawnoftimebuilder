@@ -2,6 +2,7 @@ package org.dawnoftimebuilder.item.templates;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
@@ -28,6 +29,10 @@ public class PotAndBlockItem extends BlockItem implements IHasFlowerPot {
             BlockState state = world.getBlockState(pos);
             if(state.getBlock() instanceof FlowerPotBlock pot) {
                 if(pot.getEmptyPot().getContent() == Blocks.AIR) {
+                    Player player = context.getPlayer();
+                    if(player == null || !player.getAbilities().instabuild) {
+                        stack.shrink(1);
+                    }
                     world.setBlock(pos, this.getPotBlock().getRandomState(), 2);
                     return InteractionResult.SUCCESS;
                 }
