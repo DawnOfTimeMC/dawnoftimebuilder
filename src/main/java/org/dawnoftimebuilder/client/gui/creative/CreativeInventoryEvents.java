@@ -25,7 +25,6 @@ import static org.dawnoftimebuilder.DawnOfTimeBuilder.MOD_ID;
 @OnlyIn(Dist.CLIENT)
 public class CreativeInventoryEvents {
     public static final ResourceLocation CREATIVE_ICONS = new ResourceLocation(MOD_ID, "textures/gui/creative_icons.png");
-    public static final ResourceLocation SOCIAL_ICONS = new ResourceLocation(MOD_ID, "textures/gui/social_icons.png");
     private List<CategoryButton> buttons;
     private Button btnScrollUp;
     private Button btnScrollDown;

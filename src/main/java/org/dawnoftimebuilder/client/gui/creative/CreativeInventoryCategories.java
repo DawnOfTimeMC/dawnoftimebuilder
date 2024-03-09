@@ -468,9 +468,11 @@ public enum CreativeInventoryCategories {
             BIRCH_LATTICE.get().asItem(),
             BIRCH_DOOR.asItem(),
             BIRCH_TRAPDOOR.asItem(),
+            BIRCH_FANCY_FENCE.get().asItem(),
             BIRCH_FOOTSTOOL.get().asItem(),
             BIRCH_COUCH.get().asItem(),
             BIG_FLOWER_POT.get().asItem(),
+            MARBLE_FANCY_FENCE.get().asItem(),
             MARBLE_BIG_FLOWER_POT.get().asItem(),
             GERANIUM_PINK.get().asItem(),
             PLANTER_GERANIUM_PINK.get().asItem(),
@@ -479,7 +481,6 @@ public enum CreativeInventoryCategories {
             GRAPE.get(),
             GRAPE_SEEDS.get()
     ),
-    // Temporary position until this tab is done.
     PERSIAN("persian",
             PERSIAN_CARPET_RED.get().asItem(),
             PERSIAN_CARPET_DELICATE_RED.get().asItem(),
@@ -489,17 +490,6 @@ public enum CreativeInventoryCategories {
             MORAQ_MOSAIC_RECESS.get().asItem()
     );
 
-    // Temporary position until this tab is done.
-    /*EGYPTIAN("egyptian",
-            PHARAOH_ARMOR_SET.head.get(),
-            PHARAOH_ARMOR_SET.chest.get(),
-            PHARAOH_ARMOR_SET.legs.get(),
-            PHARAOH_ARMOR_SET.feet.get(),
-            ANUBIS_ARMOR_SET.head.get(),
-            ANUBIS_ARMOR_SET.chest.get(),
-            ANUBIS_ARMOR_SET.legs.get(),
-            ANUBIS_ARMOR_SET.feet.get()
-    );*/
     private final String name;
     private final Component translation;
     private final ArrayList<Item> items = new ArrayList<>();
