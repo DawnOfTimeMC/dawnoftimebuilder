@@ -24,6 +24,7 @@ public class DoTBPlacedFeatures {
     public static final ResourceKey<PlacedFeature> WILD_GRAPE_PLACED_KEY = registerKey("wild_grape_placed");
     public static final ResourceKey<PlacedFeature> WILD_MAIZE_PLACED_KEY = registerKey("wild_maize_placed");
     public static final ResourceKey<PlacedFeature> GERANIUM_PINK_PLACED_KEY = registerKey("geranium_pink_placed");
+    public static final ResourceKey<PlacedFeature> IVY_PLACED_KEY = registerKey("ivy_placed");
 
     public static void bootstrap(BootstapContext<PlacedFeature> context) {
         HolderGetter<ConfiguredFeature<?, ?>> configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
@@ -106,6 +107,14 @@ public class DoTBPlacedFeatures {
                 RarityFilter.onAverageOnceEvery(2),
                 InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome()
             )
+        );
+
+        register(context, IVY_PLACED_KEY,
+                configuredFeatures.getOrThrow(DoTBConfiguredFeatures.IVY_KEY),
+                List.of(
+                    RarityFilter.onAverageOnceEvery(2),
+                    InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome()
+                )
         );
     }
 

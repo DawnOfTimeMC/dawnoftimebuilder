@@ -5,6 +5,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -28,8 +29,10 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.common.ForgeHooks;
 import org.dawnoftimebuilder.DoTBConfig;
+import org.dawnoftimebuilder.block.IBlockGeneration;
 import org.dawnoftimebuilder.block.templates.BlockDoTB;
 import org.dawnoftimebuilder.util.DoTBUtils;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -41,7 +44,7 @@ import static net.minecraft.tags.BlockTags.SAND;
 import static net.minecraftforge.common.Tags.Blocks.GRAVEL;
 import static org.dawnoftimebuilder.util.DoTBUtils.TOOLTIP_CROP;
 
-public class IvyBlock extends BlockDoTB {
+public class IvyBlock extends BlockDoTB implements IBlockGeneration {
     public static final BooleanProperty NORTH = BlockStateProperties.NORTH;
     public static final BooleanProperty EAST = BlockStateProperties.EAST;
     public static final BooleanProperty SOUTH = BlockStateProperties.SOUTH;
@@ -56,13 +59,13 @@ public class IvyBlock extends BlockDoTB {
     }
 
     @Override
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateDefinition.@NotNull Builder<Block, BlockState> builder) {
         super.createBlockStateDefinition(builder);
         builder.add(NORTH, EAST, SOUTH, WEST, AGE, PERSISTENT);
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, BlockGetter LevelIn, BlockPos pos, CollisionContext context) {
+    public @NotNull VoxelShape getShape(BlockState state, @NotNull BlockGetter LevelIn, @NotNull BlockPos pos, @NotNull CollisionContext context) {
         int index = 0;
         if(state.getValue(SOUTH))
             index += 1;
@@ -141,24 +144,19 @@ public class IvyBlock extends BlockDoTB {
     }
 
     @Override
-    public boolean canBeReplaced(BlockState state, BlockPlaceContext useContext) {
+    public boolean canBeReplaced(@NotNull BlockState state, BlockPlaceContext useContext) {
         ItemStack itemstack = useContext.getItemInHand();
         if(useContext.getPlayer() != null && useContext.getPlayer().isCrouching()) {
             return false;
         }
         if(itemstack.getItem() == this.asItem()) {
             Direction newDirection = useContext.getHorizontalDirection();
-            switch(newDirection) {
-                default:
-                case SOUTH:
-                    return !state.getValue(SOUTH);
-                case WEST:
-                    return !state.getValue(WEST);
-                case NORTH:
-                    return !state.getValue(NORTH);
-                case EAST:
-                    return !state.getValue(EAST);
-            }
+            return switch (newDirection) {
+                default -> !state.getValue(SOUTH);
+                case WEST -> !state.getValue(WEST);
+                case NORTH -> !state.getValue(NORTH);
+                case EAST -> !state.getValue(EAST);
+            };
         }
         return false;
     }
@@ -169,7 +167,7 @@ public class IvyBlock extends BlockDoTB {
     }
 
     @Override
-    public void tick(BlockState state, ServerLevel LevelIn, BlockPos pos, RandomSource random) {
+    public void tick(@NotNull BlockState state, ServerLevel LevelIn, @NotNull BlockPos pos, @NotNull RandomSource random) {
         if(!LevelIn.isClientSide()) {
             if(!LevelIn.isAreaLoaded(pos, 2))
                 return; // Forge: prevent loading unloaded chunks when checking neighbor's light
@@ -233,7 +231,7 @@ public class IvyBlock extends BlockDoTB {
     }
 
     @Override
-    public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, LevelAccessor LevelIn, BlockPos currentPos, BlockPos facingPos) {
+    public @NotNull BlockState updateShape(@NotNull BlockState stateIn, Direction facing, @NotNull BlockState facingState, @NotNull LevelAccessor LevelIn, @NotNull BlockPos currentPos, @NotNull BlockPos facingPos) {
         if(facing.getAxis().isHorizontal()) {
             if(facing == Direction.NORTH && stateIn.getValue(NORTH) && !hasFullFace(facingState, LevelIn, facingPos, facing)) {
                 stateIn = stateIn.setValue(NORTH, false);
@@ -267,17 +265,12 @@ public class IvyBlock extends BlockDoTB {
     }
 
     private static BooleanProperty getProperty(Direction direction) {
-        switch(direction) {
-            default:
-            case NORTH:
-                return NORTH;
-            case SOUTH:
-                return SOUTH;
-            case WEST:
-                return WEST;
-            case EAST:
-                return EAST;
-        }
+        return switch (direction) {
+            default -> NORTH;
+            case SOUTH -> SOUTH;
+            case WEST -> WEST;
+            case EAST -> EAST;
+        };
     }
 
     private static boolean hasFullFace(LevelReader Level, BlockPos currentPos, Direction face) {
@@ -293,7 +286,7 @@ public class IvyBlock extends BlockDoTB {
     }
 
     @Override
-    public InteractionResult use(BlockState state, Level LevelIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
+    public @NotNull InteractionResult use(BlockState state, @NotNull Level LevelIn, @NotNull BlockPos pos, @NotNull Player player, @NotNull InteractionHand handIn, @NotNull BlockHitResult hit) {
         if(state.getValue(PERSISTENT)) {
             if(player.isCreative()) {
                 int age = state.getValue(AGE);
@@ -333,8 +326,74 @@ public class IvyBlock extends BlockDoTB {
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, @Nullable BlockGetter LevelIn, List<Component> tooltip, TooltipFlag flagIn) {
+    public void appendHoverText(@NotNull ItemStack stack, @Nullable BlockGetter LevelIn,@NotNull List<Component> tooltip,@NotNull TooltipFlag flagIn) {
         super.appendHoverText(stack, LevelIn, tooltip, flagIn);
         DoTBUtils.addTooltip(tooltip, TOOLTIP_CROP);
+    }
+
+    @Override
+    public boolean generateOnPos(WorldGenLevel world, BlockPos pos, BlockState state, RandomSource random) {
+        if(!world.getBlockState(pos).is(BlockTags.LOGS)){
+            if(world.getBlockState(pos.north()).is(BlockTags.LOGS)){
+                pos = pos.north();
+            }else if(world.getBlockState(pos.east()).is(BlockTags.LOGS)){
+                pos = pos.east();
+            }else if(world.getBlockState(pos.south()).is(BlockTags.LOGS)){
+                pos = pos.south();
+            }else if(world.getBlockState(pos.north()).is(BlockTags.LOGS)){
+                pos = pos.west();
+            }else{
+                return false;
+            }
+        }
+        BlockPos.MutableBlockPos mutPos = pos.mutable().move(Direction.DOWN);
+        for(int yDown = 0; yDown < 20; yDown++){
+            if(world.getBlockState(mutPos).is(BlockTags.LOGS)){
+                mutPos.move(Direction.DOWN);
+            }else{
+                mutPos.move(Direction.UP);
+                break;
+            }
+        }
+        int trunkSize = 0;
+        while(trunkSize <= 20){
+            if(world.getBlockState(mutPos).is(BlockTags.LOGS)){
+                trunkSize++;
+            }else{
+                break;
+            }
+            mutPos.move(Direction.UP);
+        }
+        if(trunkSize > 0){
+            return tryPlaceOnTrunk(world, pos.north(), state.setValue(SOUTH, true), random, trunkSize)
+                    && tryPlaceOnTrunk(world, pos.east(), state.setValue(WEST, true), random, trunkSize)
+                    && tryPlaceOnTrunk(world, pos.south(), state.setValue(NORTH, true), random, trunkSize)
+                    && tryPlaceOnTrunk(world, pos.west(), state.setValue(EAST, true), random, trunkSize);
+        }
+        return false;
+    }
+
+    private boolean tryPlaceOnTrunk(WorldGenLevel world, BlockPos pos, BlockState state, RandomSource random, int trunkSize){
+        BlockPos.MutableBlockPos mutPos = pos.mutable();
+        int sideSize = 0;
+        while(sideSize < trunkSize){
+            if(world.getBlockState(mutPos).isAir()){
+                sideSize++;
+            }else{
+                break;
+            }
+            mutPos.move(Direction.UP);
+        }
+        mutPos = pos.mutable();
+        if(sideSize > 0){
+            sideSize = random.nextInt(1, sideSize + 1);
+            for(int yOffset = 0; yOffset < sideSize; yOffset++){
+                int age = (yOffset + 1 == sideSize) ? random.nextInt(3) : 2;
+                world.setBlock(mutPos, state.setValue(AGE, age), 2);
+                mutPos.move(Direction.UP);
+            }
+            return true;
+        }
+        return false;
     }
 }

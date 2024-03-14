@@ -2,9 +2,9 @@
   "type": "forge:add_features",
   "biomes": [
     "minecraft:flower_forest",
-    "minecraft:jungle",
-    "minecraft:sparse_jungle"
+    "minecraft:birch_forest",
+    "minecraft:old_growth_birch_forest"
   ],
-  "features": "dawnoftimebuilder:camellia_placed",
+  "features": "dawnoftimebuilder:ivy_placed",
   "step": "vegetal_decoration"
 }

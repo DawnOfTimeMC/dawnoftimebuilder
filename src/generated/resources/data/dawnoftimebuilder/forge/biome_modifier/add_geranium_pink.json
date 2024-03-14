@@ -1,6 +1,10 @@
 {
   "type": "forge:add_features",
-  "biomes": "minecraft:flower_forest",
+  "biomes": [
+    "minecraft:flower_forest",
+    "minecraft:birch_forest",
+    "minecraft:old_growth_birch_forest"
+  ],
   "features": "dawnoftimebuilder:geranium_pink_placed",
   "step": "vegetal_decoration"
 }

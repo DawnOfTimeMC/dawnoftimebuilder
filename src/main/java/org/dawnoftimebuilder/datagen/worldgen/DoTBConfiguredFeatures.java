@@ -27,6 +27,7 @@ public class DoTBConfiguredFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> WILD_GRAPE_KEY = registerKey("wild_grape");
     public static final ResourceKey<ConfiguredFeature<?, ?>> WILD_MAIZE_KEY = registerKey("wild_maize");
     public static final ResourceKey<ConfiguredFeature<?, ?>> GERANIUM_PINK_KEY = registerKey("geranium_pink");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> IVY_KEY = registerKey("ivy");
 
     public static void bootstrap(BootstapContext<ConfiguredFeature<?, ?>> context) {
         register(context, CAMELLIA_KEY, Feature.RANDOM_PATCH,
@@ -114,7 +115,7 @@ public class DoTBConfiguredFeatures {
             new RandomPatchConfiguration(32, 5, 2,
                 PlacementUtils.onlyWhenEmpty(DoTBFeaturesRegistry.DOT_FEATURE.get(),
                     new SimpleBlockConfiguration(
-                            BlockStateProvider.simple(DoTBBlocksRegistry.WILD_MAIZE.get())
+                        BlockStateProvider.simple(DoTBBlocksRegistry.WILD_MAIZE.get())
                     )
                 )
             )
@@ -125,6 +126,16 @@ public class DoTBConfiguredFeatures {
                 PlacementUtils.onlyWhenEmpty(Feature.SIMPLE_BLOCK,
                     new SimpleBlockConfiguration(
                         BlockStateProvider.simple(DoTBBlocksRegistry.GERANIUM_PINK.get())
+                    )
+                )
+            )
+        );
+
+        register(context, IVY_KEY, Feature.RANDOM_PATCH,
+            new RandomPatchConfiguration(32, 5, 2,
+                PlacementUtils.onlyWhenEmpty(DoTBFeaturesRegistry.DOT_FEATURE.get(),
+                    new SimpleBlockConfiguration(
+                        BlockStateProvider.simple(DoTBBlocksRegistry.IVY.get())
                     )
                 )
             )

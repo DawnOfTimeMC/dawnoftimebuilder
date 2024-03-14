@@ -1,6 +1,11 @@
 {
   "type": "forge:add_features",
-  "biomes": "minecraft:flower_forest",
+  "biomes": [
+    "minecraft:savanna",
+    "minecraft:savanna_plateau",
+    "minecraft:windswept_savanna",
+    "minecraft:flower_forest"
+  ],
   "features": "dawnoftimebuilder:wild_maize_placed",
   "step": "vegetal_decoration"
 }
