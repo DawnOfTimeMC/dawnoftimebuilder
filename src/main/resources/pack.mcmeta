@@ -3,5 +3,8 @@
     "description": "dawnoftimebuilder resources",
     "pack_format": 12,
     "forge:server_data_pack_format": 12
+  },
+  "fusion": {
+    "overrides_folder": "fusion-overrides"
   }
 }

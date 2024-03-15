@@ -1,16 +1,12 @@
 {
 	"type": "minecraft:crafting_shaped",
 	"pattern": [
-		" I ",
 		" i ",
 		" o "
 	],
 	"key": {
-		"I": {
-			"item": "minecraft:honeycomb"
-		},
 		"i": {
-			"item": "minecraft:torch"
+			"item": "minecraft:candle"
 		},
 		"o": {
 			"tag": "forge:ingots/iron"

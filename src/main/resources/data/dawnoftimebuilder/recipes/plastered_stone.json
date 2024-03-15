@@ -1,8 +1,9 @@
 {
 	"type": "minecraft:crafting_shaped",
 	"pattern": [
-		"iI",
-		"Ii"
+		"III",
+		"IiI",
+		"III"
 	],
 	"key": {
 		"I": {
@@ -14,6 +15,6 @@
 	},
 	"result": {
 		"item": "dawnoftimebuilder:plastered_stone",
-		"count": 6
+		"count": 8
 	}
 }
