@@ -2,5 +2,28 @@
     "parent": "block/cube_all",
     "textures": {
         "all": "dawnoftimebuilder:block/waxed_oak_timber_frame"
-    }
+    },
+    "loader": "fusion:model",
+    "type": "connecting",
+    "connections": [
+        {
+            "type": "is_same_block"
+        },
+        {
+            "type": "match_block",
+            "block": "dawnoftimebuilder:waxed_oak_timber_frame_corner"
+        },
+        {
+            "type": "match_block",
+            "block": "dawnoftimebuilder:waxed_oak_timber_frame_crossed"
+        },
+        {
+            "type": "match_block",
+            "block": "dawnoftimebuilder:waxed_oak_timber_frame_pillar"
+        },
+        {
+            "type": "match_block",
+            "block": "dawnoftimebuilder:waxed_oak_timber_frame_squared"
+        }
+    ]
 }

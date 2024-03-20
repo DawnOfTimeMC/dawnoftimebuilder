@@ -169,6 +169,7 @@ public class DoTBBlocksRegistry {
     public static final RegistryObject<Block> STONE_BRICKS_MASONRY_PLATE = DoTBBlocksRegistry.reg("stone_bricks_masonry_plate", () -> new PlateBlock(Block.Properties.copy(Blocks.STONE_BRICKS)));
     public static final RegistryObject<Block> STONE_BRICKS_MASONRY_SLAB = DoTBBlocksRegistry.reg("stone_bricks_masonry_slab", () -> new SlabBlockDoTB(Block.Properties.copy(Blocks.STONE_BRICKS)));
     public static final RegistryObject<Block> STONE_BRICKS_MASONRY_EDGE = DoTBBlocksRegistry.reg("stone_bricks_masonry_edge", () -> new EdgeBlock(Block.Properties.copy(Blocks.STONE_BRICKS)));
+    public static final RegistryObject<Block> STONE_BRICKS_MASONRY_WALL = DoTBBlocksRegistry.reg("stone_bricks_masonry_wall", () -> new WallBlock(Block.Properties.copy(Blocks.STONE_BRICKS)));
     public static final RegistryObject<Block> WAXED_OAK_FRAMED_RAMMED_DIRT = DoTBBlocksRegistry.reg("waxed_oak_framed_rammed_dirt", () -> new BlockDoTB(Block.Properties.copy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_BROWN).strength(2.0F, 3.0F)), BlockTags.MINEABLE_WITH_AXE);
     public static final RegistryObject<Block> WAXED_OAK_FRAMED_RAMMED_DIRT_PILLAR = DoTBBlocksRegistry.reg("waxed_oak_framed_rammed_dirt_pillar", () -> new RotatedPillarBlockDoTB(Block.Properties.copy(Blocks.OAK_WOOD).strength(3.0F, 5.0F)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
     public static final RegistryObject<Block> WAXED_OAK_PLANKS = DoTBBlocksRegistry.reg("waxed_oak_planks", () -> new BlockDoTB(Block.Properties.copy(Blocks.OAK_WOOD).strength(3.0F, 5.0F)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
@@ -418,10 +419,10 @@ public class DoTBBlocksRegistry {
     }
 
     @SuppressWarnings("unchecked")
-    public static <T extends Block, U extends Item & IHasFlowerPot> RegistryObject<Block> regWithFlowerPotItem(String name, Supplier<T> block, String itemName, @Nullable Function<T, U> item) {
-        RegistryObject<T> toReturn = DoTBBlocksRegistry.BLOCKS.register(name, block);
+    public static <T extends Block, U extends Item & IHasFlowerPot> RegistryObject<Block> regWithFlowerPotItem(String plantName, Supplier<T> block, String seedName, @Nullable Function<T, U> item) {
+        RegistryObject<T> toReturn = DoTBBlocksRegistry.BLOCKS.register(plantName, block);
         if(item != null) {
-            DoTBItemsRegistry.regWithFlowerPot(itemName, () -> item.apply(toReturn.get()));
+            DoTBItemsRegistry.regWithFlowerPot(plantName, seedName, () -> item.apply(toReturn.get()));
         }
         RegistryObject<Block> regBlock = (RegistryObject<Block>) toReturn;
         // Flower can be broken with sword, and in the ItemRegistry, pot can be broken with Pickaxe.

@@ -182,17 +182,17 @@ public class SilkmothEntity extends AmbientCreature {
     @Nullable
     @Override
     public SoundEvent getAmbientSound() {
-        return !DoTBConfig.SILKMOTH_MUTE.get() && this.random.nextInt(4) == 0 ? SoundEvents.BAT_AMBIENT : null;
+        return !DoTBConfig.SILKMOTH_MUTE.get() && this.random.nextInt(4) == 0 ? SoundEvents.PARROT_FLY : null;
     }
 
     @Override
     protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-        return SoundEvents.BAT_HURT;
+        return SoundEvents.PARROT_FLY;
     }
 
     @Override
     protected SoundEvent getDeathSound() {
-        return SoundEvents.BAT_DEATH;
+        return SoundEvents.PARROT_FLY;
     }
 
     @Override

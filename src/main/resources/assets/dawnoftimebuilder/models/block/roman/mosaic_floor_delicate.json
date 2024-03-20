@@ -2,5 +2,16 @@
     "parent": "block/cube_all",
     "textures": {
         "all": "dawnoftimebuilder:block/mosaic_floor_delicate"
-    }
+    },
+    "loader": "fusion:model",
+    "type": "connecting",
+    "connections": [
+        {
+            "type": "is_same_block"
+        },
+        {
+            "type": "match_block",
+            "block": "dawnoftimebuilder:mosaic_floor"
+        }
+    ]
 }

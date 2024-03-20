@@ -246,6 +246,7 @@ public enum CreativeInventoryCategories {
             STONE_BRICKS_MASONRY_PLATE.get().asItem(),
             STONE_BRICKS_MASONRY_SLAB.get().asItem(),
             STONE_BRICKS_MASONRY_EDGE.get().asItem(),
+            STONE_BRICKS_MASONRY_WALL.get().asItem(),
             STONE_BRICKS.asItem(),
             STONE_BRICK_STAIRS.asItem(),
             STONE_BRICKS_PLATE.get().asItem(),

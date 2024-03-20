@@ -2,5 +2,24 @@
     "parent": "block/cube_all",
     "textures": {
         "all": "dawnoftimebuilder:block/stone_bricks_masonry"
-    }
+    },
+    "loader": "fusion:model",
+    "type": "connecting",
+    "connections": [
+        {
+            "type": "is_same_block"
+        },
+        {
+            "type": "match_block",
+            "block": "dawnoftimebuilder:stone_bricks_masonry_plate"
+        },
+        {
+            "type": "match_block",
+            "block": "dawnoftimebuilder:stone_bricks_masonry_wall"
+        },
+        {
+            "type": "match_block",
+            "block": "dawnoftimebuilder:stone_bricks_masonry_slab"
+        }
+    ]
 }

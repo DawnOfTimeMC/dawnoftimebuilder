@@ -18,11 +18,12 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import org.dawnoftimebuilder.block.IBlockSpecialDisplay;
 import org.dawnoftimebuilder.util.DoTBUtils;
 
 import javax.annotation.Nonnull;
 
-public class CandlestickBlock extends CandleLampBlock {
+public class CandlestickBlock extends CandleLampBlock implements IBlockSpecialDisplay {
     private static final VoxelShape VS_BOTTOM = Block.box(5.0D, 0.0D, 5.0D, 11.0D, 15.0D, 11.0D);
     private static final VoxelShape[] VS_SIDE = DoTBUtils.GenerateHorizontalShapes(new VoxelShape[] { Block.box(4.0D, 1.0D, 0.0D, 12.0D, 15.0D, 14.0D) });
     public static final DirectionProperty FACING = BlockStateProperties.FACING_HOPPER;
@@ -66,5 +67,10 @@ public class CandlestickBlock extends CandleLampBlock {
     @Override
     public BlockState mirror(BlockState state, Mirror mirrorIn) {
         return rotate(state, Rotation.CLOCKWISE_180);
+    }
+
+    @Override
+    public float getDisplayScale() {
+        return 0.6F;
     }
 }

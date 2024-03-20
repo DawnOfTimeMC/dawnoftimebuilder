@@ -3,5 +3,24 @@
 	"textures": {
 		"top": "dawnoftimebuilder:block/stone_bricks_masonry",
 		"frieze": "dawnoftimebuilder:block/stone_bricks_masonry"
-	}
+	},
+	"loader": "fusion:model",
+	"type": "connecting",
+	"connections": [
+		{
+			"type": "is_same_block"
+		},
+		{
+			"type": "match_block",
+			"block": "dawnoftimebuilder:stone_bricks_masonry"
+		},
+		{
+			"type": "match_block",
+			"block": "dawnoftimebuilder:stone_bricks_masonry_slab"
+		},
+		{
+			"type": "match_block",
+			"block": "dawnoftimebuilder:stone_bricks_masonry_wall"
+		}
+	]
 }

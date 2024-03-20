@@ -3,5 +3,12 @@
     "textures": {
         "end": "dawnoftimebuilder:block/roman_fresco_black_top",
         "side": "dawnoftimebuilder:block/roman_fresco_black"
-    }
+    },
+    "loader": "fusion:model",
+    "type": "connecting",
+    "connections": [
+        {
+            "type": "is_same_block"
+        }
+    ]
 }
