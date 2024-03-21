@@ -148,6 +148,12 @@
     "dawnoftimebuilder:serpent_sculpted_column",
     "dawnoftimebuilder:marble_statue_mars",
     "dawnoftimebuilder:planter_geranium_pink",
-    "dawnoftimebuilder:red_ornamented_plastered_stone"
+    "dawnoftimebuilder:red_ornamented_plastered_stone",
+    "dawnoftimebuilder:sandstone_bricks",
+    "dawnoftimebuilder:sandstone_bricks_slab",
+    "dawnoftimebuilder:sandstone_bricks_plate",
+    "dawnoftimebuilder:sandstone_bricks_edge",
+    "dawnoftimebuilder:sandstone_bricks_stairs",
+    "dawnoftimebuilder:sandstone_bricks_wall"
   ]
 }

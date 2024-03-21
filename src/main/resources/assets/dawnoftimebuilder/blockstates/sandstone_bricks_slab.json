@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "type=bottom": { "model": "dawnoftimebuilder:block/persian/sandstone_bricks_slab_bottom" },
+        "type=top": { "model": "dawnoftimebuilder:block/persian/sandstone_bricks_slab_top" },
+        "type=double": { "model": "dawnoftimebuilder:block/persian/sandstone_bricks" }
+    }
+}

@@ -370,8 +370,21 @@ public enum CreativeInventoryCategories {
             SILK_COCOONS.get(),
             SILK.get(),
             RICE.get().asItem(),
-            //BAMBOO_HAT.get(),
             FLINT_AND_STEEL
+    ),
+    PERSIAN("persian",
+            SANDSTONE_BRICKS.get().asItem(),
+            SANDSTONE_BRICKS_STAIRS.get().asItem(),
+            SANDSTONE_BRICKS_PLATE.get().asItem(),
+            SANDSTONE_BRICKS_SLAB.get().asItem(),
+            SANDSTONE_BRICKS_EDGE.get().asItem(),
+            SANDSTONE_BRICKS_WALL.get().asItem(),
+            MORAQ_MOSAIC_TILES_DELICATE.get().asItem(),
+            MORAQ_MOSAIC_TILES_TRADITIONAL.get().asItem(),
+            MORAQ_MOSAIC_TILES_BORDER.get().asItem(),
+            MORAQ_MOSAIC_RECESS.get().asItem(),
+            PERSIAN_CARPET_RED.get().asItem(),
+            PERSIAN_CARPET_DELICATE_RED.get().asItem()
     ),
     PRE_COLOMBIAN("pre_columbian",
             THATCH_WHEAT.get().asItem(),
@@ -481,14 +494,6 @@ public enum CreativeInventoryCategories {
             WILD_GRAPE.get().asItem(),
             GRAPE.get(),
             GRAPE_SEEDS.get()
-    ),
-    PERSIAN("persian",
-            PERSIAN_CARPET_RED.get().asItem(),
-            PERSIAN_CARPET_DELICATE_RED.get().asItem(),
-            MORAQ_MOSAIC_TILES_DELICATE.get().asItem(),
-            MORAQ_MOSAIC_TILES_TRADITIONAL.get().asItem(),
-            MORAQ_MOSAIC_TILES_BORDER.get().asItem(),
-            MORAQ_MOSAIC_RECESS.get().asItem()
     );
 
     private final String name;
