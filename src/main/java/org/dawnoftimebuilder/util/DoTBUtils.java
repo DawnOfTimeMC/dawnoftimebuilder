@@ -3,6 +3,7 @@ package org.dawnoftimebuilder.util;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.SectionPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
@@ -128,6 +129,21 @@ public class DoTBUtils {
     }
 
     /**
+     * Function that checks if the clickLocation is located on the lef half of a block.
+     * @param clickedPos of the target block.
+     * @param dir Direction of the player.
+     * @param clickLocation Vec3 of the clickLocation.
+     * @return True if the clickLocation is on the left, false otherwise.
+     */
+    public static boolean clickedOnLeftHalf(BlockPos clickedPos, Direction dir, Vec3 clickLocation) {
+        int dirStepX = dir.getStepX();
+        int dirStepZ = dir.getStepZ();
+        double diffX = clickLocation.x - (double) clickedPos.getX();
+        double diffZ = clickLocation.z - (double) clickedPos.getZ();
+        return (dirStepX >= 0 || !(diffZ < 0.5D)) && (dirStepX <= 0 || !(diffZ > 0.5D)) && (dirStepZ >= 0 || !(diffX > 0.5D)) && (dirStepZ <= 0 || !(diffX < 0.5D));
+    }
+
+    /**
      * Checks if the player can light the block. If yes, damages the item used and display the sound.
      *
      * @param worldIn World of the Block.
@@ -142,27 +158,6 @@ public class DoTBUtils {
         if(!itemInHand.isEmpty() && itemInHand.is(DoTBUtils.LIGHTERS)) {
             worldIn.playSound(null, pos, SoundEvents.FLINTANDSTEEL_USE, SoundSource.BLOCKS, 1.0F, 1.0F);
             itemInHand.hurtAndBreak(1, player, p -> p.broadcastBreakEvent(handIn));
-            return true;
-        }
-        return false;
-    }
-
-    /**
-     * Checks if the player can light the block. If yes, damages the item is player is not in creative mod used and display the sound.
-     *
-     * @param worldIn World of the Block.
-     * @param pos     Position of the Block.
-     * @param player  Player that clicks on the Block.
-     * @param handIn  Player's hand.
-     *
-     * @return True if the block is now in fire. False otherwise.
-     */
-    public static boolean useLighterAndDamageItemIfPlayerIsNotCreative(final Level worldIn, final BlockPos pos, final Player player, final InteractionHand handIn) {
-        final ItemStack itemInHand = player.getItemInHand(handIn);
-        if(!itemInHand.isEmpty() && itemInHand.is(DoTBUtils.LIGHTERS)) {
-            worldIn.playSound(null, pos, SoundEvents.FLINTANDSTEEL_USE, SoundSource.BLOCKS, 1.0F, 1.0F);
-            if(!player.isCreative())
-                itemInHand.hurtAndBreak(1, player, p -> p.broadcastBreakEvent(handIn));
             return true;
         }
         return false;

@@ -1,9 +1,10 @@
 {
+	"credit": "Made with Blockbench",
+	"render_type": "minecraft:cutout",
 	"textures": {
 		"0": "dawnoftimebuilder:block/sandstone_crenelation",
 		"particle": "dawnoftimebuilder:block/sandstone_crenelation"
 	},
-	"render_type": "minecraft:cutout",
 	"elements": [
 		{
 			"from": [0, 0, 8],
@@ -18,8 +19,8 @@
 			}
 		},
 		{
-			"from": [4, 2, 8.01],
-			"to": [12, 12, 15.99],
+			"from": [4, 2, 8],
+			"to": [12, 12, 16],
 			"faces": {
 				"north": {"uv": [2, 6, 6, 11], "texture": "#0"},
 				"east": {"uv": [12, 11, 16, 16], "texture": "#0"},
@@ -28,8 +29,8 @@
 			}
 		},
 		{
-			"from": [5.24264, 9, 8],
-			"to": [10.89964, 14.657, 16],
+			"from": [5.24264, 9, 7.99],
+			"to": [10.89964, 14.657, 16.01],
 			"rotation": {"angle": -45, "axis": "z", "origin": [8.24264, 12, 12]},
 			"faces": {
 				"north": {"uv": [2.5, 2.5, 5.5, 5.5], "texture": "#0"},
@@ -41,34 +42,34 @@
 	],
 	"display": {
 		"thirdperson_righthand": {
-			"rotation":  [ 75, 45, 0 ],
-			"translation":  [ 0, 2.5, 0 ],
-			"scale":  [ 0.375, 0.375, 0.375 ]
+			"rotation": [75, 45, 0],
+			"translation": [0, 2.5, 0],
+			"scale": [0.375, 0.375, 0.375]
 		},
 		"thirdperson_lefthand": {
-			"rotation":  [ 75, 45, 0 ],
-			"translation":  [ 0, 2.5, 0 ],
-			"scale":  [ 0.375, 0.375, 0.375 ]
+			"rotation": [75, 45, 0],
+			"translation": [0, 2.5, 0],
+			"scale": [0.375, 0.375, 0.375]
 		},
 		"firstperson_righthand": {
-			"rotation": [ 0, 90, 0 ],
-			"scale": [ 0.40, 0.40, 0.40 ]
+			"rotation": [0, 90, 0],
+			"scale": [0.4, 0.4, 0.4]
 		},
 		"firstperson_lefthand": {
-			"rotation": [ 0, 90, 0 ],
-			"scale": [ 0.40, 0.40, 0.40 ]
-		},
-		"gui": {
-			"rotation":  [ 30, 225, 0 ],
-			"scale":  [ 0.625, 0.625, 0.625 ]
+			"rotation": [0, 90, 0],
+			"scale": [0.4, 0.4, 0.4]
 		},
 		"ground": {
-			"translation":  [ 0, 3, 0 ],
-			"scale":  [ 0.3, 0.3, 0.3 ]
+			"translation": [0, 3, 0],
+			"scale": [0.3, 0.3, 0.3]
+		},
+		"gui": {
+			"rotation": [30, 225, 0],
+			"scale": [0.625, 0.625, 0.625]
 		},
 		"fixed": {
-			"translation": [ 0, 0, -3],
-			"scale":[ 0.5, 0.5, 0.5 ]
+			"translation": [0, 0, -3],
+			"scale": [0.5, 0.5, 0.5]
 		}
 	}
 }

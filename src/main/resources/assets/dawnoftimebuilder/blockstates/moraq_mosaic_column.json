@@ -1,8 +1,12 @@
 {
     "variants": {
-        "vertical_connection=under": { "model": "dawnoftimebuilder:block/persian/moraq_mosaic_column_top" },
-        "vertical_connection=both": { "model": "dawnoftimebuilder:block/persian/moraq_mosaic_column_middle" },
-        "vertical_connection=above": { "model": "dawnoftimebuilder:block/persian/moraq_mosaic_column_bottom" },
-        "vertical_connection=none": { "model": "dawnoftimebuilder:block/persian/moraq_mosaic_column_lone" }
+        "inverted=false,vertical_connection=under": { "model": "dawnoftimebuilder:block/persian/moraq_mosaic_column_top" },
+        "inverted=false,vertical_connection=both": { "model": "dawnoftimebuilder:block/persian/moraq_mosaic_column_middle" },
+        "inverted=false,vertical_connection=above": { "model": "dawnoftimebuilder:block/persian/moraq_mosaic_column_bottom" },
+        "inverted=false,vertical_connection=none": { "model": "dawnoftimebuilder:block/persian/moraq_mosaic_column_lone" },
+        "inverted=true,vertical_connection=under": { "model": "dawnoftimebuilder:block/persian/moraq_mosaic_column_top_inv" },
+        "inverted=true,vertical_connection=both": { "model": "dawnoftimebuilder:block/persian/moraq_mosaic_column_middle_inv" },
+        "inverted=true,vertical_connection=above": { "model": "dawnoftimebuilder:block/persian/moraq_mosaic_column_bottom_inv" },
+        "inverted=true,vertical_connection=none": { "model": "dawnoftimebuilder:block/persian/moraq_mosaic_column_lone" }
     }
 }
