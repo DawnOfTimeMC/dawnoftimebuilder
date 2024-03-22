@@ -36,6 +36,8 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.function.ToIntFunction;
 
+import static org.dawnoftimebuilder.DawnOfTimeBuilder.DOTB_TAB;
+
 public class DoTBBlocksRegistry {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, DawnOfTimeBuilder.MOD_ID);
     public static Map<TagKey<Block>, Set<RegistryObject<Block>>> blockTagsMap = new HashMap<>();
@@ -287,14 +289,14 @@ public class DoTBBlocksRegistry {
     public static final RegistryObject<Block> MORAQ_MOSAIC_TILES_TRADITIONAL = DoTBBlocksRegistry.reg("moraq_mosaic_tiles_traditional", () -> new BlockDoTB(Block.Properties.copy(Blocks.BRICKS)));
     public static final RegistryObject<Block> MORAQ_MOSAIC_TILES_BORDER = DoTBBlocksRegistry.reg("moraq_mosaic_tiles_border", () -> new BlockDoTB(Block.Properties.copy(Blocks.BRICKS)));
     public static final RegistryObject<Block> MORAQ_MOSAIC_RECESS = DoTBBlocksRegistry.reg("moraq_mosaic_recess", () -> new StairsBlockDoTB(DoTBBlocksRegistry.MORAQ_MOSAIC_TILES_DELICATE, Block.Properties.copy(Blocks.BRICKS)));
-    public static final RegistryObject<Block> MORAQ_MOSAIC_COLUMN = DoTBBlocksRegistry.reg("moraq_mosaic_column", () -> new MoraqMosaicColumnBlock(Block.Properties.copy(Blocks.BRICKS)));
-    public static final RegistryObject<Block> SANDSTONE_BRICKS = DoTBBlocksRegistry.reg("sandstone_bricks", () -> new BlockDoTB(Block.Properties.copy(Blocks.CUT_SANDSTONE)));
-    public static final RegistryObject<Block> SANDSTONE_BRICKS_STAIRS = DoTBBlocksRegistry.reg("sandstone_bricks_stairs", () -> new StairsBlockDoTB(DoTBBlocksRegistry.SANDSTONE_BRICKS, Block.Properties.copy(Blocks.CUT_SANDSTONE)));
-    public static final RegistryObject<Block> SANDSTONE_BRICKS_PLATE = DoTBBlocksRegistry.reg("sandstone_bricks_plate", () -> new PlateBlock(Block.Properties.copy(Blocks.CUT_SANDSTONE)));
-    public static final RegistryObject<Block> SANDSTONE_BRICKS_SLAB = DoTBBlocksRegistry.reg("sandstone_bricks_slab", () -> new SlabBlockDoTB(Block.Properties.copy(Blocks.CUT_SANDSTONE)));
-    public static final RegistryObject<Block> SANDSTONE_BRICKS_EDGE = DoTBBlocksRegistry.reg("sandstone_bricks_edge", () -> new EdgeBlock(Block.Properties.copy(Blocks.CUT_SANDSTONE)));
-    public static final RegistryObject<Block> SANDSTONE_BRICKS_WALL = DoTBBlocksRegistry.reg("sandstone_bricks_wall", () -> new WallBlock(Block.Properties.copy(Blocks.CUT_SANDSTONE)));
-    public static final RegistryObject<Block> SANDSTONE_CRENELATION = DoTBBlocksRegistry.reg("sandstone_crenelation", () -> new SandstoneCrenelationBlock(Block.Properties.copy(Blocks.CUT_SANDSTONE)));
+    //public static final RegistryObject<Block> MORAQ_MOSAIC_COLUMN = DoTBBlocksRegistry.reg("moraq_mosaic_column", () -> new MoraqMosaicColumnBlock(Block.Properties.copy(Blocks.BRICKS)));
+    //public static final RegistryObject<Block> SANDSTONE_BRICKS = DoTBBlocksRegistry.reg("sandstone_bricks", () -> new BlockDoTB(Block.Properties.copy(Blocks.CUT_SANDSTONE)));
+    //public static final RegistryObject<Block> SANDSTONE_BRICKS_STAIRS = DoTBBlocksRegistry.reg("sandstone_bricks_stairs", () -> new StairsBlockDoTB(DoTBBlocksRegistry.SANDSTONE_BRICKS, Block.Properties.copy(Blocks.CUT_SANDSTONE)));
+    //public static final RegistryObject<Block> SANDSTONE_BRICKS_PLATE = DoTBBlocksRegistry.reg("sandstone_bricks_plate", () -> new PlateBlock(Block.Properties.copy(Blocks.CUT_SANDSTONE)));
+    //public static final RegistryObject<Block> SANDSTONE_BRICKS_SLAB = DoTBBlocksRegistry.reg("sandstone_bricks_slab", () -> new SlabBlockDoTB(Block.Properties.copy(Blocks.CUT_SANDSTONE)));
+    //public static final RegistryObject<Block> SANDSTONE_BRICKS_EDGE = DoTBBlocksRegistry.reg("sandstone_bricks_edge", () -> new EdgeBlock(Block.Properties.copy(Blocks.CUT_SANDSTONE)));
+    //public static final RegistryObject<Block> SANDSTONE_BRICKS_WALL = DoTBBlocksRegistry.reg("sandstone_bricks_wall", () -> new WallBlock(Block.Properties.copy(Blocks.CUT_SANDSTONE)));
+    //public static final RegistryObject<Block> SANDSTONE_CRENELATION = DoTBBlocksRegistry.reg("sandstone_crenelation", () -> new SandstoneCrenelationBlock(Block.Properties.copy(Blocks.CUT_SANDSTONE)));
     // Pre_columbian
     public static final RegistryObject<Block> COMMELINA = DoTBBlocksRegistry.regWithFlowerPotItem("commelina", () -> new SoilCropsBlock(PlantType.PLAINS), (block) -> new SoilSeedsItem(block, null));
     public static final RegistryObject<Block> PLASTERED_STONE = DoTBBlocksRegistry.reg("plastered_stone", () -> new BlockDoTB(Block.Properties.copy(Blocks.STONE_BRICKS)));
@@ -375,7 +377,7 @@ public class DoTBBlocksRegistry {
 
 
     public static <T extends Block> RegistryObject<Block> reg(String name, Supplier<T> block) {
-        return regWithItem(name, block, (blockObject) -> new BlockItem(blockObject, new Item.Properties()));
+        return regWithItem(name, block, (blockObject) -> new BlockItem(blockObject, new Item.Properties().tab(DOTB_TAB)));
     }
     
     public static <T extends Block, U extends Item> RegistryObject<Block> regWithItem(String name, Supplier<T> block, @Nullable Function<T, U> item) {

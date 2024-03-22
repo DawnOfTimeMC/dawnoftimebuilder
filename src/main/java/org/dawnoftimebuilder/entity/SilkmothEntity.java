@@ -38,7 +38,7 @@ public class SilkmothEntity extends AmbientCreature {
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 3.0D);
+        return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 1.0D);
     }
 
     private float getNewRotationDistance() {

@@ -20,6 +20,10 @@ public class SocialsButton extends Button {
     @Override
     public void render(PoseStack ps, int mouseX, int mouseY, float partialTicks) {
         if (this.active && this.visible) {
+            this.isHovered = mouseX >= this.x && mouseY >= this.y && mouseX < this.x + this.width && mouseY < this.y + this.height;
+            if(this.isHovered)
+                RenderSystem.clearColor(0.7F, 0.7F, 0.7F, 1.0F);
+
             ps.pushPose();
             RenderSystem.setShaderTexture(0, socialIcons);
             RenderSystem.clearColor(1.0F, 1.0F, 1.0F, this.alpha);

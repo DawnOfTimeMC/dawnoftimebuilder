@@ -1,5 +1,5 @@
 {
-    "itemGroup.dawnoftimebuilder.dottab": "Dawn of Time : Builder Edition",
+    "itemGroup.dawnoftimebuilder": "Dawn of Time : Builder Edition",
     "gui.dawnoftimebuilder.general": "General",
     "gui.dawnoftimebuilder.egyptian": "Egyptian",
     "gui.dawnoftimebuilder.french": "French",
@@ -432,5 +432,5 @@
     "tooltip.dawnoftimebuilder.silk_worm_eggs": "The worms in these Silk moth's eggs would need some mulberry leaves when they hatch...",
     "tooltip.dawnoftimebuilder.silk_worm_hatchery": "These eggs will hatch when placed on a tray.",
     "tooltip.dawnoftimebuilder.silk_worms": "After eating so many Mulberry Leaves on the tray, these worms are ready to weave their cocoon into a stick bundle.",
-    "tooltip.dawnoftimebuilder.silk_cocoons": "The silk worms created delicate cocoons in the stick bundle. They can be combine to create silk."
+    "tooltip.dawnoftimebuilder.silk_cocoons": "The silk worms created delicate cocoons in the stick bundle. They can be combined to create silk."
 }

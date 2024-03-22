@@ -10,6 +10,8 @@ import org.dawnoftimebuilder.util.DoTBUtils;
 import javax.annotation.Nullable;
 import java.util.List;
 
+import static org.dawnoftimebuilder.DawnOfTimeBuilder.DOTB_TAB;
+
 public class ItemDoTB extends Item {
     private final boolean hasTooltip;
 
@@ -18,7 +20,7 @@ public class ItemDoTB extends Item {
     }
 
     public ItemDoTB(boolean hasTooltip) {
-        this(new Properties(), hasTooltip);
+        this(new Properties().tab(DOTB_TAB), hasTooltip);
     }
 
     public ItemDoTB(Properties properties) {
