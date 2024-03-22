@@ -17,8 +17,8 @@ import net.minecraft.world.level.material.Fluids;
 public class FenceGateBlockDoTB extends FenceGateBlock {
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
-    public FenceGateBlockDoTB(Properties properties, WoodType woodType) {
-        super(properties, woodType);
+    public FenceGateBlockDoTB(Properties properties) {
+        super(properties);
         this.registerDefaultState(this.defaultBlockState().setValue(WATERLOGGED, false));
     }
 

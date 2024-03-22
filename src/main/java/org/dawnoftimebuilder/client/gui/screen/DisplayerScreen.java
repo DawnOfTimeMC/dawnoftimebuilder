@@ -1,6 +1,7 @@
 package org.dawnoftimebuilder.client.gui.screen;
 
-import net.minecraft.client.gui.GuiGraphics;
+import com.mojang.blaze3d.systems.RenderSystem;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -8,6 +9,7 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.dawnoftimebuilder.container.DisplayerMenu;
+import org.jetbrains.annotations.NotNull;
 
 import static org.dawnoftimebuilder.DawnOfTimeBuilder.MOD_ID;
 
@@ -25,9 +27,11 @@ public class DisplayerScreen extends AbstractContainerScreen<DisplayerMenu> {
     }
 
     @Override
-    protected void renderBg(GuiGraphics pGuiGraphics, float pPartialTick, int pMouseX, int pMouseY) {
+    protected void renderBg(@NotNull PoseStack poseStack, float pPartialTick, int pMouseX, int pMouseY) {
+        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
+        RenderSystem.setShaderTexture(0, GUI_TEXTURE);
         int widthPosition = (this.width - this.imageWidth) / 2;
         int heightPosition = (this.height - this.imageHeight) / 2;
-        pGuiGraphics.blit(GUI_TEXTURE, widthPosition, heightPosition, 0, 0, this.imageWidth, this.imageHeight);
+        this.blit(poseStack, widthPosition, heightPosition, 0, 0, this.imageWidth, this.imageHeight);
     }
 }

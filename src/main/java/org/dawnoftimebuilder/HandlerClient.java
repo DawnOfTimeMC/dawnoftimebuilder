@@ -52,7 +52,7 @@ public class HandlerClient {
 
     @OnlyIn(Dist.CLIENT)
     public static void onCreativeTabChange(CreativeModeInventoryScreen screen, CreativeModeTab tab) {
-        DOT_SELECTED = tab == DoTBCreativeModeTabsRegistry.DOT_TAB.get();
+        DOT_SELECTED = tab == DawnOfTimeBuilder.DOTB_TAB;
     }
 
     public static boolean isDotSelected() {

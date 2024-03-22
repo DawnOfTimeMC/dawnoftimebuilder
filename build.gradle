@@ -134,9 +134,9 @@ dependencies {
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 
     // Both numbers comes from Curse. The first number is the project_id (on the right) and the second one is the file_id (in the URL)
-    runtimeOnly fg.deobf("curse.maven:jei-238222:5101366") // JEI (Just Enough Items)
+    runtimeOnly fg.deobf("curse.maven:jei-238222:5106178") // JEI (Just Enough Items)
     //runtimeOnly fg.deobf("curse.maven:ctm-267602:3137659") // CTM (Connected Texture Mod)
-    runtimeOnly fg.deobf("curse.maven:ctm-854949:5129294") // Fusion (Connected Textures)
+    runtimeOnly fg.deobf("curse.maven:ctm-854949:5129280") // Fusion (Connected Textures)
 
     // Example mod dependency with JEI - using fg.deobf() ensures the dependency is remapped to your development mappings
     // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime

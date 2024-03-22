@@ -50,7 +50,7 @@ public class DryerBlockEntity extends BlockEntity {
                     final DryerRecipe recipe = this.getDryerRecipe(new SimpleContainer(this.itemHandler.getStackInSlot(i)));
 
                     if (recipe != null) {
-                        this.itemHandler.setStackInSlot(i, recipe.getResultItem(this.getLevel().registryAccess()).copy());
+                        this.itemHandler.setStackInSlot(i, recipe.getResultItem().copy());
                         success = true;
                     }
                     finish++;

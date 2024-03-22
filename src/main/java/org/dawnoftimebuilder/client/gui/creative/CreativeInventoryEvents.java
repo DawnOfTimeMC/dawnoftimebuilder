@@ -73,7 +73,7 @@ public class CreativeInventoryEvents {
                 this.buttons.add(new CategoryButton(this.guiCenterX - 27, this.guiCenterY + 30 * i, i, button -> {
                     CategoryButton categoryButton = (CategoryButton) button;
                     if(!categoryButton.isSelected()) {
-                        buttons.get(selectedCategoryID % 4).setSelected(false);
+                        this.buttons.get(selectedCategoryID % 4).setSelected(false);
                         categoryButton.setSelected(true);
                         selectedCategoryID = categoryButton.getCategoryID();
                         Screen screen = Minecraft.getInstance().screen;
@@ -155,7 +155,7 @@ public class CreativeInventoryEvents {
                 // Render tooltips after so it renders above buttons
                 this.buttons.forEach(button -> {
                     if(button.isMouseOver(event.getMouseX(), event.getMouseY())) {
-                        event.getGuiGraphics().renderTooltip(Minecraft.getInstance().font, CreativeInventoryCategories.values()[button.getCategoryID()].getTranslation(), event.getMouseX(), event.getMouseY());
+                        screen.renderTooltip(event.getPoseStack(), CreativeInventoryCategories.values()[button.getCategoryID()].getTranslation(), event.getMouseX(), event.getMouseY());
                     }
                 });
             } else if(tabDoTBSelected) {

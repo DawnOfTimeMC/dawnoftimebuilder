@@ -1,5 +1,6 @@
 package org.dawnoftimebuilder.util;
 
+import com.mojang.math.Vector3d;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
@@ -25,7 +26,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.chunk.ChunkAccess;
-import net.minecraft.world.level.storage.loot.LootParams;
+import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
@@ -99,10 +100,10 @@ public class DoTBUtils {
      * @return the List of ItemStack found in the corresponding LootTable.
      */
     public static List<ItemStack> getLootList(final ServerLevel serverWorld, final BlockState stateIn, final ItemStack itemStackHand, final String name) {
-        final LootTable table = serverWorld.getServer().getLootData().getLootTable(new ResourceLocation(DawnOfTimeBuilder.MOD_ID + ":blocks/" + name));
-        final LootParams.Builder builder = new LootParams.Builder(serverWorld).withParameter(LootContextParams.BLOCK_STATE, stateIn).withParameter(LootContextParams.TOOL, itemStackHand).withParameter(LootContextParams.ORIGIN, new Vec3(0, 0, 0));
-        final LootParams lootParams = builder.create(LootContextParamSets.BLOCK);
-        return table.getRandomItems(lootParams);
+        final LootTable	table = serverWorld.getServer().getLootTables().get(new ResourceLocation(DawnOfTimeBuilder.MOD_ID + ":blocks/" + name));
+        final LootContext.Builder builder = new LootContext.Builder(serverWorld).withRandom(serverWorld.random).withParameter(LootContextParams.BLOCK_STATE, stateIn).withParameter(LootContextParams.TOOL, itemStackHand).withParameter(LootContextParams.ORIGIN, new Vec3(0, 0, 0));
+        final LootContext lootcontext = builder.create(LootContextParamSets.BLOCK);
+        return table.getRandomItems(lootcontext);
     }
 
     /**
@@ -280,7 +281,7 @@ public class DoTBUtils {
     }
 
     public static int getHighestSectionPosition(ChunkAccess chunkAccess) {
-        int i = chunkAccess.getHighestFilledSectionIndex();
+        int i = chunkAccess.getHighestSectionPosition();
         return i == -1 ? chunkAccess.getMinBuildHeight() : SectionPos.sectionToBlockCoord(chunkAccess.getSectionYFromSectionIndex(i));
     }
 }

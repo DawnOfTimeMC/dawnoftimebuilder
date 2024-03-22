@@ -25,7 +25,7 @@ public class DisplayerMenu extends AbstractContainerMenu {
 
 	//Client constructor
 	public DisplayerMenu(int windowId, Inventory playerInventory, FriendlyByteBuf additionalData) {
-		this(windowId, playerInventory, playerInventory.player.level().getBlockEntity(additionalData.readBlockPos()));
+		this(windowId, playerInventory, playerInventory.player.level.getBlockEntity(additionalData.readBlockPos()));
 	}
 
 	//Server constructor

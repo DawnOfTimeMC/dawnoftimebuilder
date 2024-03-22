@@ -46,12 +46,12 @@ public class DryerRecipe implements Recipe<SimpleContainer> {
     }
 
     @Override
-    public ItemStack getResultItem(RegistryAccess pRegistryAccess) {
+    public ItemStack getResultItem() {
         return this.result;
     }
 
     @Override
-    public ItemStack assemble(SimpleContainer pContainer, RegistryAccess pRegistryAccess) {
+    public ItemStack assemble(SimpleContainer container) {
         return this.result.copy();
     }
 

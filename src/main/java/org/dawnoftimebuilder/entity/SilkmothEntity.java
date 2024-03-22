@@ -65,7 +65,7 @@ public class SilkmothEntity extends AmbientCreature {
         if(this.tickCount >= 24000){
             //The silkmoth dies from oldness.
             if(!this.hasCustomName() && DoTBConfig.SILKMOTH_MUST_DIE.get())
-                this.hurt(this.damageSources().starve(), 20.0F);
+                this.hurt(DamageSource.STARVE, 20.0F);
         }
 
         if(this.random.nextInt(DoTBConfig.SILKMOTH_ROTATION_CHANGE.get()) == 0){
@@ -101,7 +101,7 @@ public class SilkmothEntity extends AmbientCreature {
         int horizontalRange = 5;
         int verticalRange = 2;
 
-        int x = (int) this.level().getDayTime() % 23999;
+        int x = (int) this.level.getDayTime() % 23999;
         boolean isNight = x > 12000 && x < 23000;
         x = (int) Math.floor(this.getX()) - horizontalRange;
         int y = (int) Math.floor(this.getY()) - verticalRange;
@@ -116,12 +116,12 @@ public class SilkmothEntity extends AmbientCreature {
                 for(int searchY = 0; searchY < 2 * verticalRange + 1; searchY++){
 
                     BlockPos pos = new BlockPos(x + searchX, y + searchY, z + searchZ);
-                    state = this.level().getBlockState(pos);
+                    state = this.level.getBlockState(pos);
 
                     if(state.getBlock() == MULBERRY.get()){
                         if(!((DoubleGrowingBushBlock) state.getBlock()).isBottomCrop(state)) listMulberry.add(pos);
                     }else if(isNight){
-                        if(state.getLightEmission(this.level(), pos) >= 14) listLight.add(pos);
+                        if(state.getLightEmission(this.level, pos) >= 14) listLight.add(pos);
                     }
 
                 }

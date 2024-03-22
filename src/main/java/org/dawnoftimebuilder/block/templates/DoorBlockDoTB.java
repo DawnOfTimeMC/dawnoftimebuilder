@@ -15,8 +15,8 @@ import net.minecraft.world.level.material.Fluids;
 public class DoorBlockDoTB extends DoorBlock implements SimpleWaterloggedBlock {
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
-    public DoorBlockDoTB(Properties properties, BlockSetType blockSetType) {
-        super(properties, blockSetType);
+    public DoorBlockDoTB(Properties properties) {
+        super(properties);
         this.registerDefaultState(this.defaultBlockState().setValue(WATERLOGGED, false));
     }
 

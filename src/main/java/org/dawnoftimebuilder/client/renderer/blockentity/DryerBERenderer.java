@@ -1,14 +1,14 @@
 package org.dawnoftimebuilder.client.renderer.blockentity;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.math.Axis;
+import com.mojang.math.Vector3f;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.block.model.ItemTransforms;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
@@ -45,15 +45,15 @@ public class DryerBERenderer implements BlockEntityRenderer<DryerBlockEntity> {
             poseStack.pushPose();
             poseStack.translate(0.35D, 0, 0.35D);
             poseStack.translate((i == 1 || i == 2) ? 0.3D : 0, 0.1D, i >= 2 ? 0.3D : 0);
-            poseStack.mulPose(Axis.YN.rotationDegrees(90.0F * i));
+            poseStack.mulPose(Vector3f.YN.rotationDegrees(90.0F * i));
             if (isBlockItem) {
                 poseStack.scale(0.2F, 0.2F, 0.2F);
                 poseStack.translate(0.0F, 0.4F, 0.0F);
-                itemRenderer.renderStatic(itemStack, ItemDisplayContext.NONE, pPackedLight, pPackedOverlay, poseStack, buffer, level, i + j);
+                itemRenderer.renderStatic(itemStack, ItemTransforms.TransformType.NONE, pPackedLight, pPackedOverlay, poseStack, buffer, i + j);
             } else {
-                poseStack.mulPose(Axis.XN.rotationDegrees(90.0F));
+                poseStack.mulPose(Vector3f.XN.rotationDegrees(90.0F));
                 poseStack.scale(0.3F, 0.3F, 0.3F);
-                itemRenderer.renderStatic(itemStack, ItemDisplayContext.FIXED, pPackedLight, pPackedOverlay, poseStack, buffer, level, i + j);
+                itemRenderer.renderStatic(itemStack, ItemTransforms.TransformType.FIXED, pPackedLight, pPackedOverlay, poseStack, buffer, i + j);
             }
             poseStack.popPose();
         }

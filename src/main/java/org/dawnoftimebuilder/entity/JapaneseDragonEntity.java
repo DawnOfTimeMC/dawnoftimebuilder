@@ -217,7 +217,7 @@ public class JapaneseDragonEntity extends AmbientCreature {
             if(this.dragon.getRandom().nextInt(200) != 0)
                 return false;
             BlockPos pos = new BlockPos(this.dragon.blockPosition().getX(), this.dragon.blockPosition().getY(), this.dragon.blockPosition().getZ());
-            return this.dragon.level().canSeeSky(pos);
+            return this.dragon.level.canSeeSky(pos);
         }
 
         @Override
@@ -244,14 +244,14 @@ public class JapaneseDragonEntity extends AmbientCreature {
                 return false;
 
             BlockPos pos = new BlockPos(this.dragon.blockPosition().getX(), (int) 90.0D, this.dragon.blockPosition().getZ());
-            net.minecraft.world.level.Level world = this.dragon.level();
-            if(world.getBlockState(pos).getCollisionShape(world, pos) == Shapes.empty() && !world.getBlockState(pos).liquid())
+            Level world = this.dragon.level;
+            if(world.getBlockState(pos).getCollisionShape(world, pos) == Shapes.empty() && !world.getBlockState(pos).getMaterial().isLiquid())
                 return false;
             ChunkAccess chunkAccess = world.getChunk(new BlockPos(this.dragon.blockPosition().getX(), this.dragon.blockPosition().getY(), this.dragon.blockPosition().getZ()));
             int newY = DoTBUtils.getHighestSectionPosition(chunkAccess);
             for(int y = newY + 16; y >= newY; y--) {
                 pos = new BlockPos(this.dragon.blockPosition().getX(), y, this.dragon.blockPosition().getZ());
-                if(world.getBlockState(pos).getCollisionShape(world, pos) != Shapes.empty() || world.getBlockState(pos).liquid()) {
+                if(world.getBlockState(pos).getCollisionShape(world, pos) != Shapes.empty() || world.getBlockState(pos).getMaterial().isLiquid()) {
                     break;
                 }
             }
@@ -301,12 +301,12 @@ public class JapaneseDragonEntity extends AmbientCreature {
             double newX = this.dragon.blockPosition().getX() + (double) ((random.nextFloat() * 2.0F - 1.0F) * 16.0F);
             double newZ = this.dragon.blockPosition().getZ() + (double) ((random.nextFloat() * 2.0F - 1.0F) * 16.0F);
 
-            Level world = this.dragon.level();
+            Level world = this.dragon.level;
             BlockPos pos;
             this.dragon.setAnimDuration(10.0F);
             for(double newY = this.dragon.blockPosition().getY() - 16.0D; newY <= this.dragon.blockPosition().getY() + 16.0D; newY++) {
                 pos = new BlockPos((int) newX, (int) newY, (int) newZ);
-                if(world.getBlockState(pos).getCollisionShape(world, pos) == Shapes.empty() && !world.getBlockState(pos).liquid()) {
+                if(world.getBlockState(pos).getCollisionShape(world, pos) == Shapes.empty() && !world.getBlockState(pos).getMaterial().isLiquid()) {
                     this.dragon.getMoveControl().setWantedPosition(newX, newY + this.dragon.getDragonSize(), newZ, this.dragon.getDragonSpeed());
                     return;
                 }
@@ -327,7 +327,7 @@ public class JapaneseDragonEntity extends AmbientCreature {
             if(this.dragon.blockPosition().getY() < 100.0D)
                 return false;
             BlockPos pos = new BlockPos(this.dragon.blockPosition().getX(), this.dragon.blockPosition().getY(), this.dragon.blockPosition().getZ());
-            return this.dragon.level().canSeeSky(pos);
+            return this.dragon.level.canSeeSky(pos);
         }
 
         @Override

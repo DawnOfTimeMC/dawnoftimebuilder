@@ -9,6 +9,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -120,7 +121,7 @@ public class FireplaceBlock extends WaterloggedBlock {
     @Override
     public void entityInside(final BlockState state, final Level world, final BlockPos pos, final Entity entityIn) {
         if(!entityIn.fireImmune() && state.getValue(FireplaceBlock.LIT) && entityIn instanceof LivingEntity && !EnchantmentHelper.hasFrostWalker((LivingEntity) entityIn)) {
-            entityIn.hurt(entityIn.damageSources().inFire(), 1.0F);
+            entityIn.hurt(DamageSource.IN_FIRE, 1.0F);
         }
         super.entityInside(state, world, pos, entityIn);
     }

@@ -2,7 +2,6 @@ package org.dawnoftimebuilder.client.gui.elements.buttons;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -21,7 +20,7 @@ public class CategoryButton extends Button {
     private final int index;
 
     public CategoryButton(int x, int y, int index, OnPress pressable) {
-        super(x, y, 32, 28, Component.empty(), pressable, DEFAULT_NARRATION);
+        super(x, y, 32, 28, Component.empty(), pressable);
         this.selected = false;
         this.index = index;
     }
@@ -39,21 +38,21 @@ public class CategoryButton extends Button {
     }
 
     @Override
-    public void render(GuiGraphics pGuiGraphics, int pMouseX, int pMouseY, float pPartialTick) {
+    public void render(PoseStack ps, int mouseX, int mouseY, float partialTick) {
         if(this.active && this.visible) {
-            PoseStack ps = pGuiGraphics.pose();
-
             ps.pushPose();
+            RenderSystem.setShaderTexture(0, CREATIVE_ICONS);
             RenderSystem.clearColor(1.0F, 1.0F, 1.0F, this.alpha);
             RenderSystem.enableBlend();
-            pGuiGraphics.blit(CREATIVE_ICONS, this.getX() - 1, this.getY(), 0, (this.selected) ? 0 : 28, 31, 28);
+            this.blit(ps, this.x - 1, this.y, 0, (this.selected) ? 0 : 28, 31, 28);
             RenderSystem.disableBlend();
             ps.popPose();
 
             ps.pushPose();
+            RenderSystem.setShaderTexture(0, BUTTON_ICONS[this.getCategoryID()]);
             RenderSystem.clearColor(1.0F, 1.0F, 1.0F, this.alpha);
             RenderSystem.enableBlend();
-            pGuiGraphics.blit(BUTTON_ICONS[this.getCategoryID()], this.getX() + ((this.selected) ? 6 : 9), this.getY() + 6, 0, 0, 0, 16, 16, 16, 16);
+            blit(ps, this.x + ((this.selected) ? 6 : 9), this.y + 6, 0, 0, 0, 16, 16, 16, 16);
             RenderSystem.disableBlend();
             ps.popPose();
         }

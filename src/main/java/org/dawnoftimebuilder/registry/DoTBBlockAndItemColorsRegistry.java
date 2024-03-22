@@ -6,7 +6,6 @@ import net.minecraft.client.color.item.ItemColor;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.core.Registry;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Biomes;
@@ -16,6 +15,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.RegisterColorHandlersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.registries.ForgeRegistries;
 import org.dawnoftimebuilder.DawnOfTimeBuilder;
 
 import java.util.*;
@@ -39,17 +39,14 @@ public class DoTBBlockAndItemColorsRegistry {
                 if(clientLevel == null) {
                     return 0;
                 }
-
-                Optional<Registry<Biome>> registryOptional = clientLevel.registryAccess().registry(Registries.BIOME);
+                Optional<? extends Registry<Biome>> registryOptional = clientLevel.registryAccess().registry(Registry.BIOME_REGISTRY);
                 if(registryOptional.isEmpty()) {
                     return 0;
                 }
-
                 Biome oceanBiome = registryOptional.get().get(Biomes.OCEAN);
                 if(oceanBiome == null) {
                     return 0;
                 }
-
                 return oceanBiome.getWaterColor();
             }, () -> DoTBBlocksRegistry.STONE_BRICKS_FAUCET.get().asItem(), () -> DoTBBlocksRegistry.WATER_SOURCE_TRICKLE.get().asItem(), () -> DoTBBlocksRegistry.STONE_BRICKS_WATER_JET.get().asItem());
 

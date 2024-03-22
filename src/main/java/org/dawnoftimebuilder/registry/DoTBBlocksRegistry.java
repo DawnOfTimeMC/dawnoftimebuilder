@@ -1,6 +1,5 @@
 package org.dawnoftimebuilder.registry;
 
-import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.DyeColor;
@@ -8,10 +7,9 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.WoodType;
-import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.material.MaterialColor;
 import net.minecraftforge.common.PlantType;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -42,82 +40,82 @@ public class DoTBBlocksRegistry {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, DawnOfTimeBuilder.MOD_ID);
     public static Map<TagKey<Block>, Set<RegistryObject<Block>>> blockTagsMap = new HashMap<>();
     public static final HashMap<String, Block> POT_BLOCKS = new HashMap<>();
-    public static final RegistryObject<Block> ACACIA_PLANKS_EDGE = DoTBBlocksRegistry.reg("acacia_planks_edge", () -> new EdgeBlock(Block.Properties.copy(Blocks.ACACIA_PLANKS)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> ACACIA_PLANKS_PLATE = DoTBBlocksRegistry.reg("acacia_planks_plate", () -> new PlateBlock(Block.Properties.copy(Blocks.ACACIA_PLANKS)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> ACACIA_PERGOLA = DoTBBlocksRegistry.reg("acacia_pergola", () -> new PergolaBlock(Block.Properties.copy(Blocks.ACACIA_PLANKS)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> ACACIA_LATTICE = DoTBBlocksRegistry.reg("acacia_lattice", () -> new LatticeBlock(Block.Properties.copy(Blocks.ACACIA_PLANKS).noOcclusion()).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> ACACIA_BEAM = DoTBBlocksRegistry.reg("acacia_beam", () -> new BeamBlock(Block.Properties.copy(Blocks.ACACIA_PLANKS)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> ACACIA_WALL = DoTBBlocksRegistry.reg("acacia_wall", () -> new WallBlock(Block.Properties.copy(Blocks.ACACIA_PLANKS)), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> ACACIA_SUPPORT_BEAM = DoTBBlocksRegistry.reg("acacia_support_beam", () -> new SupportBeamBlock(Block.Properties.copy(Blocks.ACACIA_PLANKS)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> ACACIA_SUPPORT_SLAB = DoTBBlocksRegistry.reg("acacia_support_slab", () -> new SupportSlabBlock(Block.Properties.copy(Blocks.ACACIA_PLANKS)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> BIRCH_PLANKS_EDGE = DoTBBlocksRegistry.reg("birch_planks_edge", () -> new EdgeBlock(Block.Properties.copy(Blocks.BIRCH_PLANKS)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> BIRCH_PLANKS_PLATE = DoTBBlocksRegistry.reg("birch_planks_plate", () -> new PlateBlock(Block.Properties.copy(Blocks.BIRCH_PLANKS)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> BIRCH_PERGOLA = DoTBBlocksRegistry.reg("birch_pergola", () -> new PergolaBlock(Block.Properties.copy(Blocks.BIRCH_PLANKS)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> BIRCH_LATTICE = DoTBBlocksRegistry.reg("birch_lattice", () -> new LatticeBlock(Block.Properties.copy(Blocks.BIRCH_PLANKS).noOcclusion()).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> BIRCH_BEAM = DoTBBlocksRegistry.reg("birch_beam", () -> new BeamBlock(Block.Properties.copy(Blocks.BIRCH_PLANKS)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> BIRCH_WALL = DoTBBlocksRegistry.reg("birch_wall", () -> new WallBlock(Block.Properties.copy(Blocks.BIRCH_PLANKS)), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> BIRCH_SUPPORT_BEAM = DoTBBlocksRegistry.reg("birch_support_beam", () -> new SupportBeamBlock(Block.Properties.copy(Blocks.BIRCH_PLANKS)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> BIRCH_SUPPORT_SLAB = DoTBBlocksRegistry.reg("birch_support_slab", () -> new SupportSlabBlock(Block.Properties.copy(Blocks.BIRCH_PLANKS)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
+    public static final RegistryObject<Block> ACACIA_PLANKS_EDGE = DoTBBlocksRegistry.reg("acacia_planks_edge", () -> new EdgeBlock(Block.Properties.copy(Blocks.ACACIA_PLANKS)).setBurnable());
+    public static final RegistryObject<Block> ACACIA_PLANKS_PLATE = DoTBBlocksRegistry.reg("acacia_planks_plate", () -> new PlateBlock(Block.Properties.copy(Blocks.ACACIA_PLANKS)).setBurnable());
+    public static final RegistryObject<Block> ACACIA_PERGOLA = DoTBBlocksRegistry.reg("acacia_pergola", () -> new PergolaBlock(Block.Properties.copy(Blocks.ACACIA_PLANKS)).setBurnable());
+    public static final RegistryObject<Block> ACACIA_LATTICE = DoTBBlocksRegistry.reg("acacia_lattice", () -> new LatticeBlock(Block.Properties.copy(Blocks.ACACIA_PLANKS).noOcclusion()).setBurnable());
+    public static final RegistryObject<Block> ACACIA_BEAM = DoTBBlocksRegistry.reg("acacia_beam", () -> new BeamBlock(Block.Properties.copy(Blocks.ACACIA_PLANKS)).setBurnable());
+    public static final RegistryObject<Block> ACACIA_WALL = DoTBBlocksRegistry.reg("acacia_wall", () -> new WallBlock(Block.Properties.copy(Blocks.ACACIA_PLANKS)));
+    public static final RegistryObject<Block> ACACIA_SUPPORT_BEAM = DoTBBlocksRegistry.reg("acacia_support_beam", () -> new SupportBeamBlock(Block.Properties.copy(Blocks.ACACIA_PLANKS)).setBurnable());
+    public static final RegistryObject<Block> ACACIA_SUPPORT_SLAB = DoTBBlocksRegistry.reg("acacia_support_slab", () -> new SupportSlabBlock(Block.Properties.copy(Blocks.ACACIA_PLANKS)).setBurnable());
+    public static final RegistryObject<Block> BIRCH_PLANKS_EDGE = DoTBBlocksRegistry.reg("birch_planks_edge", () -> new EdgeBlock(Block.Properties.copy(Blocks.BIRCH_PLANKS)).setBurnable());
+    public static final RegistryObject<Block> BIRCH_PLANKS_PLATE = DoTBBlocksRegistry.reg("birch_planks_plate", () -> new PlateBlock(Block.Properties.copy(Blocks.BIRCH_PLANKS)).setBurnable());
+    public static final RegistryObject<Block> BIRCH_PERGOLA = DoTBBlocksRegistry.reg("birch_pergola", () -> new PergolaBlock(Block.Properties.copy(Blocks.BIRCH_PLANKS)).setBurnable());
+    public static final RegistryObject<Block> BIRCH_LATTICE = DoTBBlocksRegistry.reg("birch_lattice", () -> new LatticeBlock(Block.Properties.copy(Blocks.BIRCH_PLANKS).noOcclusion()).setBurnable());
+    public static final RegistryObject<Block> BIRCH_BEAM = DoTBBlocksRegistry.reg("birch_beam", () -> new BeamBlock(Block.Properties.copy(Blocks.BIRCH_PLANKS)).setBurnable());
+    public static final RegistryObject<Block> BIRCH_WALL = DoTBBlocksRegistry.reg("birch_wall", () -> new WallBlock(Block.Properties.copy(Blocks.BIRCH_PLANKS)));
+    public static final RegistryObject<Block> BIRCH_SUPPORT_BEAM = DoTBBlocksRegistry.reg("birch_support_beam", () -> new SupportBeamBlock(Block.Properties.copy(Blocks.BIRCH_PLANKS)).setBurnable());
+    public static final RegistryObject<Block> BIRCH_SUPPORT_SLAB = DoTBBlocksRegistry.reg("birch_support_slab", () -> new SupportSlabBlock(Block.Properties.copy(Blocks.BIRCH_PLANKS)).setBurnable());
     public static final RegistryObject<Block> CANDLESTICK = DoTBBlocksRegistry.reg("candlestick", () -> new CandlestickBlock(Block.Properties.copy(Blocks.CAULDRON).lightLevel(DoTBBlocksRegistry.litBlockEmission(10))));
-    public static final RegistryObject<Block> CRIMSON_PLANKS_EDGE = DoTBBlocksRegistry.reg("crimson_planks_edge", () -> new EdgeBlock(Block.Properties.copy(Blocks.CRIMSON_PLANKS)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> CRIMSON_PLANKS_PLATE = DoTBBlocksRegistry.reg("crimson_planks_plate", () -> new PlateBlock(Block.Properties.copy(Blocks.CRIMSON_PLANKS)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> CRIMSON_PERGOLA = DoTBBlocksRegistry.reg("crimson_pergola", () -> new PergolaBlock(Block.Properties.copy(Blocks.CRIMSON_PLANKS)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> CRIMSON_SUPPORT_SLAB = DoTBBlocksRegistry.reg("crimson_support_slab", () -> new SupportSlabBlock(Block.Properties.copy(Blocks.CRIMSON_PLANKS)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> CRIMSON_LATTICE = DoTBBlocksRegistry.reg("crimson_lattice", () -> new LatticeBlock(Block.Properties.copy(Blocks.CRIMSON_PLANKS).noOcclusion()).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> CRIMSON_BEAM = DoTBBlocksRegistry.reg("crimson_beam", () -> new BeamBlock(Block.Properties.copy(Blocks.CRIMSON_PLANKS)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> CRIMSON_SUPPORT_BEAM = DoTBBlocksRegistry.reg("crimson_support_beam", () -> new SupportBeamBlock(Block.Properties.copy(Blocks.CRIMSON_PLANKS)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> CRIMSON_WALL = DoTBBlocksRegistry.reg("crimson_wall", () -> new WallBlock(Block.Properties.copy(Blocks.CRIMSON_PLANKS)), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> DARK_OAK_PLANKS_EDGE = DoTBBlocksRegistry.reg("dark_oak_planks_edge", () -> new EdgeBlock(Block.Properties.copy(Blocks.DARK_OAK_PLANKS)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> DARK_OAK_PLANKS_PLATE = DoTBBlocksRegistry.reg("dark_oak_planks_plate", () -> new PlateBlock(Block.Properties.copy(Blocks.DARK_OAK_PLANKS)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> DARK_OAK_PERGOLA = DoTBBlocksRegistry.reg("dark_oak_pergola", () -> new PergolaBlock(Block.Properties.copy(Blocks.DARK_OAK_PLANKS)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> DARK_OAK_LATTICE = DoTBBlocksRegistry.reg("dark_oak_lattice", () -> new LatticeBlock(Block.Properties.copy(Blocks.DARK_OAK_PLANKS).noOcclusion()).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> DARK_OAK_BEAM = DoTBBlocksRegistry.reg("dark_oak_beam", () -> new BeamBlock(Block.Properties.copy(Blocks.DARK_OAK_PLANKS)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> DARK_OAK_WALL = DoTBBlocksRegistry.reg("dark_oak_wall", () -> new WallBlock(Block.Properties.copy(Blocks.DARK_OAK_PLANKS)), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> DARK_OAK_SUPPORT_BEAM = DoTBBlocksRegistry.reg("dark_oak_support_beam", () -> new SupportBeamBlock(Block.Properties.copy(Blocks.DARK_OAK_PLANKS)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> DARK_OAK_SUPPORT_SLAB = DoTBBlocksRegistry.reg("dark_oak_support_slab", () -> new SupportSlabBlock(Block.Properties.copy(Blocks.DARK_OAK_PLANKS)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> JUNGLE_PLANKS_EDGE = DoTBBlocksRegistry.reg("jungle_planks_edge", () -> new EdgeBlock(Block.Properties.copy(Blocks.JUNGLE_PLANKS)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> JUNGLE_PLANKS_PLATE = DoTBBlocksRegistry.reg("jungle_planks_plate", () -> new PlateBlock(Block.Properties.copy(Blocks.JUNGLE_PLANKS)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> JUNGLE_PERGOLA = DoTBBlocksRegistry.reg("jungle_pergola", () -> new PergolaBlock(Block.Properties.copy(Blocks.JUNGLE_PLANKS)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> JUNGLE_LATTICE = DoTBBlocksRegistry.reg("jungle_lattice", () -> new LatticeBlock(Block.Properties.copy(Blocks.JUNGLE_PLANKS).noOcclusion()).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> JUNGLE_BEAM = DoTBBlocksRegistry.reg("jungle_beam", () -> new BeamBlock(Block.Properties.copy(Blocks.JUNGLE_PLANKS)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> JUNGLE_WALL = DoTBBlocksRegistry.reg("jungle_wall", () -> new WallBlock(Block.Properties.copy(Blocks.JUNGLE_PLANKS)), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> JUNGLE_SUPPORT_BEAM = DoTBBlocksRegistry.reg("jungle_support_beam", () -> new SupportBeamBlock(Block.Properties.copy(Blocks.JUNGLE_PLANKS)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> JUNGLE_SUPPORT_SLAB = DoTBBlocksRegistry.reg("jungle_support_slab", () -> new SupportSlabBlock(Block.Properties.copy(Blocks.JUNGLE_PLANKS)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> OAK_PLANKS_PLATE = DoTBBlocksRegistry.reg("oak_planks_plate", () -> new PlateBlock(Block.Properties.copy(Blocks.OAK_PLANKS)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> OAK_PLANKS_EDGE = DoTBBlocksRegistry.reg("oak_planks_edge", () -> new EdgeBlock(Block.Properties.copy(Blocks.OAK_PLANKS)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> OAK_PERGOLA = DoTBBlocksRegistry.reg("oak_pergola", () -> new PergolaBlock(Block.Properties.copy(Blocks.OAK_PLANKS)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> OAK_LATTICE = DoTBBlocksRegistry.reg("oak_lattice", () -> new LatticeBlock(Block.Properties.copy(Blocks.OAK_PLANKS).noOcclusion()).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> OAK_BEAM = DoTBBlocksRegistry.reg("oak_beam", () -> new BeamBlock(Block.Properties.copy(Blocks.OAK_PLANKS)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> OAK_WALL = DoTBBlocksRegistry.reg("oak_wall", () -> new WallBlock(Block.Properties.copy(Blocks.OAK_PLANKS)), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> OAK_SUPPORT_BEAM = DoTBBlocksRegistry.reg("oak_support_beam", () -> new SupportBeamBlock(Block.Properties.copy(Blocks.OAK_PLANKS)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> OAK_SUPPORT_SLAB = DoTBBlocksRegistry.reg("oak_support_slab", () -> new SupportSlabBlock(Block.Properties.copy(Blocks.OAK_PLANKS)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> RAMMED_DIRT = DoTBBlocksRegistry.reg("rammed_dirt", () -> new BlockDoTB(Block.Properties.copy(Blocks.TERRACOTTA)), BlockTags.MINEABLE_WITH_SHOVEL);
-    public static final RegistryObject<Block> SPRUCE_PLANKS_EDGE = DoTBBlocksRegistry.reg("spruce_planks_edge", () -> new EdgeBlock(Block.Properties.copy(Blocks.SPRUCE_PLANKS)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> SPRUCE_PLANKS_PLATE = DoTBBlocksRegistry.reg("spruce_planks_plate", () -> new PlateBlock(Block.Properties.copy(Blocks.SPRUCE_PLANKS)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> SPRUCE_PERGOLA = DoTBBlocksRegistry.reg("spruce_pergola", () -> new PergolaBlock(Block.Properties.copy(Blocks.SPRUCE_PLANKS)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> SPRUCE_LATTICE = DoTBBlocksRegistry.reg("spruce_lattice", () -> new LatticeBlock(Block.Properties.copy(Blocks.SPRUCE_PLANKS).noOcclusion()).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> SPRUCE_BEAM = DoTBBlocksRegistry.reg("spruce_beam", () -> new BeamBlock(Block.Properties.copy(Blocks.SPRUCE_PLANKS)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> SPRUCE_WALL = DoTBBlocksRegistry.reg("spruce_wall", () -> new WallBlock(Block.Properties.copy(Blocks.SPRUCE_PLANKS)), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> SPRUCE_SUPPORT_BEAM = DoTBBlocksRegistry.reg("spruce_support_beam", () -> new SupportBeamBlock(Block.Properties.copy(Blocks.SPRUCE_PLANKS)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> SPRUCE_SUPPORT_SLAB = DoTBBlocksRegistry.reg("spruce_support_slab", () -> new SupportSlabBlock(Block.Properties.copy(Blocks.SPRUCE_PLANKS)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> THATCH_WHEAT = DoTBBlocksRegistry.reg("thatch_wheat", () -> new BlockDoTB(Block.Properties.copy(Blocks.GRASS_BLOCK).mapColor(MapColor.COLOR_YELLOW).strength(1.0F).sound(SoundType.GRASS)).setBurnable(80, 30), BlockTags.MINEABLE_WITH_HOE);
-    public static final RegistryObject<Block> THATCH_WHEAT_EDGE = DoTBBlocksRegistry.reg("thatch_wheat_edge", () -> new EdgeBlock(Block.Properties.copy(Blocks.GRASS_BLOCK).mapColor(MapColor.COLOR_YELLOW).strength(1.0F).sound(SoundType.GRASS)).setBurnable(80, 30), BlockTags.MINEABLE_WITH_HOE);
-    public static final RegistryObject<Block> THATCH_WHEAT_PLATE = DoTBBlocksRegistry.reg("thatch_wheat_plate", () -> new PlateBlock(Block.Properties.copy(Blocks.GRASS_BLOCK).mapColor(MapColor.COLOR_YELLOW).strength(1.0F).sound(SoundType.GRASS)).setBurnable(80, 30), BlockTags.MINEABLE_WITH_HOE);
-    public static final RegistryObject<Block> THATCH_WHEAT_SLAB = DoTBBlocksRegistry.reg("thatch_wheat_slab", () -> new SlabBlockDoTB(Block.Properties.copy(Blocks.GRASS_BLOCK).mapColor(MapColor.COLOR_YELLOW).strength(1.0F).sound(SoundType.GRASS)).setBurnable(80, 30), BlockTags.MINEABLE_WITH_HOE);
-    public static final RegistryObject<Block> THATCH_WHEAT_STAIRS = DoTBBlocksRegistry.reg("thatch_wheat_stairs", () -> new StairsBlockDoTB(DoTBBlocksRegistry.THATCH_WHEAT, Block.Properties.copy(Blocks.GRASS_BLOCK).mapColor(MapColor.COLOR_YELLOW).strength(1.0F).sound(SoundType.GRASS)).setBurnable(80, 30), BlockTags.MINEABLE_WITH_HOE);
-    public static final RegistryObject<Block> THATCH_BAMBOO = DoTBBlocksRegistry.reg("thatch_bamboo", () -> new BlockDoTB(Block.Properties.copy(Blocks.GRASS_BLOCK).mapColor(MapColor.COLOR_YELLOW).strength(1.0F).sound(SoundType.GRASS)).setBurnable(40, 30), BlockTags.MINEABLE_WITH_HOE);
-    public static final RegistryObject<Block> THATCH_BAMBOO_EDGE = DoTBBlocksRegistry.reg("thatch_bamboo_edge", () -> new EdgeBlock(Block.Properties.copy(Blocks.GRASS_BLOCK).mapColor(MapColor.COLOR_YELLOW).strength(1.0F).sound(SoundType.GRASS)).setBurnable(40, 30), BlockTags.MINEABLE_WITH_HOE);
-    public static final RegistryObject<Block> THATCH_BAMBOO_PLATE = DoTBBlocksRegistry.reg("thatch_bamboo_plate", () -> new PlateBlock(Block.Properties.copy(Blocks.GRASS_BLOCK).mapColor(MapColor.COLOR_YELLOW).strength(1.0F).sound(SoundType.GRASS)).setBurnable(40, 30), BlockTags.MINEABLE_WITH_HOE);
-    public static final RegistryObject<Block> THATCH_BAMBOO_SLAB = DoTBBlocksRegistry.reg("thatch_bamboo_slab", () -> new SlabBlockDoTB(Block.Properties.copy(Blocks.GRASS_BLOCK).mapColor(MapColor.COLOR_YELLOW).strength(1.0F).sound(SoundType.GRASS)).setBurnable(40, 30), BlockTags.MINEABLE_WITH_HOE);
-    public static final RegistryObject<Block> THATCH_BAMBOO_STAIRS = DoTBBlocksRegistry.reg("thatch_bamboo_stairs", () -> new StairsBlockDoTB(DoTBBlocksRegistry.THATCH_BAMBOO, Block.Properties.copy(Blocks.GRASS_BLOCK).mapColor(MapColor.COLOR_YELLOW).strength(1.0F).sound(SoundType.GRASS)).setBurnable(40, 30), BlockTags.MINEABLE_WITH_HOE);
-    public static final RegistryObject<Block> WARPED_PLANKS_EDGE = DoTBBlocksRegistry.reg("warped_planks_edge", () -> new EdgeBlock(Block.Properties.copy(Blocks.WARPED_PLANKS)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> WARPED_PLANKS_PLATE = DoTBBlocksRegistry.reg("warped_planks_plate", () -> new PlateBlock(Block.Properties.copy(Blocks.WARPED_PLANKS)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> WARPED_SUPPORT_SLAB = DoTBBlocksRegistry.reg("warped_support_slab", () -> new SupportSlabBlock(Block.Properties.copy(Blocks.WARPED_PLANKS)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> WARPED_PERGOLA = DoTBBlocksRegistry.reg("warped_pergola", () -> new PergolaBlock(Block.Properties.copy(Blocks.WARPED_PLANKS)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> WARPED_LATTICE = DoTBBlocksRegistry.reg("warped_lattice", () -> new LatticeBlock(Block.Properties.copy(Blocks.WARPED_PLANKS).noOcclusion()).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> WARPED_BEAM = DoTBBlocksRegistry.reg("warped_beam", () -> new BeamBlock(Block.Properties.copy(Blocks.WARPED_PLANKS)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> WARPED_SUPPORT_BEAM = DoTBBlocksRegistry.reg("warped_support_beam", () -> new SupportBeamBlock(Block.Properties.copy(Blocks.WARPED_PLANKS)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> WARPED_WALL = DoTBBlocksRegistry.reg("warped_wall", () -> new WallBlock(Block.Properties.copy(Blocks.WARPED_PLANKS)), BlockTags.MINEABLE_WITH_AXE);
+    public static final RegistryObject<Block> CRIMSON_PLANKS_EDGE = DoTBBlocksRegistry.reg("crimson_planks_edge", () -> new EdgeBlock(Block.Properties.copy(Blocks.CRIMSON_PLANKS)).setBurnable());
+    public static final RegistryObject<Block> CRIMSON_PLANKS_PLATE = DoTBBlocksRegistry.reg("crimson_planks_plate", () -> new PlateBlock(Block.Properties.copy(Blocks.CRIMSON_PLANKS)).setBurnable());
+    public static final RegistryObject<Block> CRIMSON_PERGOLA = DoTBBlocksRegistry.reg("crimson_pergola", () -> new PergolaBlock(Block.Properties.copy(Blocks.CRIMSON_PLANKS)).setBurnable());
+    public static final RegistryObject<Block> CRIMSON_SUPPORT_SLAB = DoTBBlocksRegistry.reg("crimson_support_slab", () -> new SupportSlabBlock(Block.Properties.copy(Blocks.CRIMSON_PLANKS)).setBurnable());
+    public static final RegistryObject<Block> CRIMSON_LATTICE = DoTBBlocksRegistry.reg("crimson_lattice", () -> new LatticeBlock(Block.Properties.copy(Blocks.CRIMSON_PLANKS).noOcclusion()).setBurnable());
+    public static final RegistryObject<Block> CRIMSON_BEAM = DoTBBlocksRegistry.reg("crimson_beam", () -> new BeamBlock(Block.Properties.copy(Blocks.CRIMSON_PLANKS)).setBurnable());
+    public static final RegistryObject<Block> CRIMSON_SUPPORT_BEAM = DoTBBlocksRegistry.reg("crimson_support_beam", () -> new SupportBeamBlock(Block.Properties.copy(Blocks.CRIMSON_PLANKS)).setBurnable());
+    public static final RegistryObject<Block> CRIMSON_WALL = DoTBBlocksRegistry.reg("crimson_wall", () -> new WallBlock(Block.Properties.copy(Blocks.CRIMSON_PLANKS)));
+    public static final RegistryObject<Block> DARK_OAK_PLANKS_EDGE = DoTBBlocksRegistry.reg("dark_oak_planks_edge", () -> new EdgeBlock(Block.Properties.copy(Blocks.DARK_OAK_PLANKS)).setBurnable());
+    public static final RegistryObject<Block> DARK_OAK_PLANKS_PLATE = DoTBBlocksRegistry.reg("dark_oak_planks_plate", () -> new PlateBlock(Block.Properties.copy(Blocks.DARK_OAK_PLANKS)).setBurnable());
+    public static final RegistryObject<Block> DARK_OAK_PERGOLA = DoTBBlocksRegistry.reg("dark_oak_pergola", () -> new PergolaBlock(Block.Properties.copy(Blocks.DARK_OAK_PLANKS)).setBurnable());
+    public static final RegistryObject<Block> DARK_OAK_LATTICE = DoTBBlocksRegistry.reg("dark_oak_lattice", () -> new LatticeBlock(Block.Properties.copy(Blocks.DARK_OAK_PLANKS).noOcclusion()).setBurnable());
+    public static final RegistryObject<Block> DARK_OAK_BEAM = DoTBBlocksRegistry.reg("dark_oak_beam", () -> new BeamBlock(Block.Properties.copy(Blocks.DARK_OAK_PLANKS)).setBurnable());
+    public static final RegistryObject<Block> DARK_OAK_WALL = DoTBBlocksRegistry.reg("dark_oak_wall", () -> new WallBlock(Block.Properties.copy(Blocks.DARK_OAK_PLANKS)));
+    public static final RegistryObject<Block> DARK_OAK_SUPPORT_BEAM = DoTBBlocksRegistry.reg("dark_oak_support_beam", () -> new SupportBeamBlock(Block.Properties.copy(Blocks.DARK_OAK_PLANKS)).setBurnable());
+    public static final RegistryObject<Block> DARK_OAK_SUPPORT_SLAB = DoTBBlocksRegistry.reg("dark_oak_support_slab", () -> new SupportSlabBlock(Block.Properties.copy(Blocks.DARK_OAK_PLANKS)).setBurnable());
+    public static final RegistryObject<Block> JUNGLE_PLANKS_EDGE = DoTBBlocksRegistry.reg("jungle_planks_edge", () -> new EdgeBlock(Block.Properties.copy(Blocks.JUNGLE_PLANKS)).setBurnable());
+    public static final RegistryObject<Block> JUNGLE_PLANKS_PLATE = DoTBBlocksRegistry.reg("jungle_planks_plate", () -> new PlateBlock(Block.Properties.copy(Blocks.JUNGLE_PLANKS)).setBurnable());
+    public static final RegistryObject<Block> JUNGLE_PERGOLA = DoTBBlocksRegistry.reg("jungle_pergola", () -> new PergolaBlock(Block.Properties.copy(Blocks.JUNGLE_PLANKS)).setBurnable());
+    public static final RegistryObject<Block> JUNGLE_LATTICE = DoTBBlocksRegistry.reg("jungle_lattice", () -> new LatticeBlock(Block.Properties.copy(Blocks.JUNGLE_PLANKS).noOcclusion()).setBurnable());
+    public static final RegistryObject<Block> JUNGLE_BEAM = DoTBBlocksRegistry.reg("jungle_beam", () -> new BeamBlock(Block.Properties.copy(Blocks.JUNGLE_PLANKS)).setBurnable());
+    public static final RegistryObject<Block> JUNGLE_WALL = DoTBBlocksRegistry.reg("jungle_wall", () -> new WallBlock(Block.Properties.copy(Blocks.JUNGLE_PLANKS)));
+    public static final RegistryObject<Block> JUNGLE_SUPPORT_BEAM = DoTBBlocksRegistry.reg("jungle_support_beam", () -> new SupportBeamBlock(Block.Properties.copy(Blocks.JUNGLE_PLANKS)).setBurnable());
+    public static final RegistryObject<Block> JUNGLE_SUPPORT_SLAB = DoTBBlocksRegistry.reg("jungle_support_slab", () -> new SupportSlabBlock(Block.Properties.copy(Blocks.JUNGLE_PLANKS)).setBurnable());
+    public static final RegistryObject<Block> OAK_PLANKS_PLATE = DoTBBlocksRegistry.reg("oak_planks_plate", () -> new PlateBlock(Block.Properties.copy(Blocks.OAK_PLANKS)).setBurnable());
+    public static final RegistryObject<Block> OAK_PLANKS_EDGE = DoTBBlocksRegistry.reg("oak_planks_edge", () -> new EdgeBlock(Block.Properties.copy(Blocks.OAK_PLANKS)).setBurnable());
+    public static final RegistryObject<Block> OAK_PERGOLA = DoTBBlocksRegistry.reg("oak_pergola", () -> new PergolaBlock(Block.Properties.copy(Blocks.OAK_PLANKS)).setBurnable());
+    public static final RegistryObject<Block> OAK_LATTICE = DoTBBlocksRegistry.reg("oak_lattice", () -> new LatticeBlock(Block.Properties.copy(Blocks.OAK_PLANKS).noOcclusion()).setBurnable());
+    public static final RegistryObject<Block> OAK_BEAM = DoTBBlocksRegistry.reg("oak_beam", () -> new BeamBlock(Block.Properties.copy(Blocks.OAK_PLANKS)).setBurnable());
+    public static final RegistryObject<Block> OAK_WALL = DoTBBlocksRegistry.reg("oak_wall", () -> new WallBlock(Block.Properties.copy(Blocks.OAK_PLANKS)));
+    public static final RegistryObject<Block> OAK_SUPPORT_BEAM = DoTBBlocksRegistry.reg("oak_support_beam", () -> new SupportBeamBlock(Block.Properties.copy(Blocks.OAK_PLANKS)).setBurnable());
+    public static final RegistryObject<Block> OAK_SUPPORT_SLAB = DoTBBlocksRegistry.reg("oak_support_slab", () -> new SupportSlabBlock(Block.Properties.copy(Blocks.OAK_PLANKS)).setBurnable());
+    public static final RegistryObject<Block> RAMMED_DIRT = DoTBBlocksRegistry.reg("rammed_dirt", () -> new BlockDoTB(Block.Properties.copy(Blocks.TERRACOTTA)));
+    public static final RegistryObject<Block> SPRUCE_PLANKS_EDGE = DoTBBlocksRegistry.reg("spruce_planks_edge", () -> new EdgeBlock(Block.Properties.copy(Blocks.SPRUCE_PLANKS)).setBurnable());
+    public static final RegistryObject<Block> SPRUCE_PLANKS_PLATE = DoTBBlocksRegistry.reg("spruce_planks_plate", () -> new PlateBlock(Block.Properties.copy(Blocks.SPRUCE_PLANKS)).setBurnable());
+    public static final RegistryObject<Block> SPRUCE_PERGOLA = DoTBBlocksRegistry.reg("spruce_pergola", () -> new PergolaBlock(Block.Properties.copy(Blocks.SPRUCE_PLANKS)).setBurnable());
+    public static final RegistryObject<Block> SPRUCE_LATTICE = DoTBBlocksRegistry.reg("spruce_lattice", () -> new LatticeBlock(Block.Properties.copy(Blocks.SPRUCE_PLANKS).noOcclusion()).setBurnable());
+    public static final RegistryObject<Block> SPRUCE_BEAM = DoTBBlocksRegistry.reg("spruce_beam", () -> new BeamBlock(Block.Properties.copy(Blocks.SPRUCE_PLANKS)).setBurnable());
+    public static final RegistryObject<Block> SPRUCE_WALL = DoTBBlocksRegistry.reg("spruce_wall", () -> new WallBlock(Block.Properties.copy(Blocks.SPRUCE_PLANKS)));
+    public static final RegistryObject<Block> SPRUCE_SUPPORT_BEAM = DoTBBlocksRegistry.reg("spruce_support_beam", () -> new SupportBeamBlock(Block.Properties.copy(Blocks.SPRUCE_PLANKS)).setBurnable());
+    public static final RegistryObject<Block> SPRUCE_SUPPORT_SLAB = DoTBBlocksRegistry.reg("spruce_support_slab", () -> new SupportSlabBlock(Block.Properties.copy(Blocks.SPRUCE_PLANKS)).setBurnable());
+    public static final RegistryObject<Block> THATCH_WHEAT = DoTBBlocksRegistry.reg("thatch_wheat", () -> new BlockDoTB(Block.Properties.copy(Blocks.GRASS_BLOCK).color(MaterialColor.COLOR_YELLOW).strength(1.0F).sound(SoundType.GRASS)).setBurnable(80, 30));
+    public static final RegistryObject<Block> THATCH_WHEAT_EDGE = DoTBBlocksRegistry.reg("thatch_wheat_edge", () -> new EdgeBlock(Block.Properties.copy(Blocks.GRASS_BLOCK).color(MaterialColor.COLOR_YELLOW).strength(1.0F).sound(SoundType.GRASS)).setBurnable(80, 30));
+    public static final RegistryObject<Block> THATCH_WHEAT_PLATE = DoTBBlocksRegistry.reg("thatch_wheat_plate", () -> new PlateBlock(Block.Properties.copy(Blocks.GRASS_BLOCK).color(MaterialColor.COLOR_YELLOW).strength(1.0F).sound(SoundType.GRASS)).setBurnable(80, 30));
+    public static final RegistryObject<Block> THATCH_WHEAT_SLAB = DoTBBlocksRegistry.reg("thatch_wheat_slab", () -> new SlabBlockDoTB(Block.Properties.copy(Blocks.GRASS_BLOCK).color(MaterialColor.COLOR_YELLOW).strength(1.0F).sound(SoundType.GRASS)).setBurnable(80, 30));
+    public static final RegistryObject<Block> THATCH_WHEAT_STAIRS = DoTBBlocksRegistry.reg("thatch_wheat_stairs", () -> new StairsBlockDoTB(DoTBBlocksRegistry.THATCH_WHEAT, Block.Properties.copy(Blocks.GRASS_BLOCK).color(MaterialColor.COLOR_YELLOW).strength(1.0F).sound(SoundType.GRASS)).setBurnable(80, 30));
+    public static final RegistryObject<Block> THATCH_BAMBOO = DoTBBlocksRegistry.reg("thatch_bamboo", () -> new BlockDoTB(Block.Properties.copy(Blocks.GRASS_BLOCK).color(MaterialColor.COLOR_YELLOW).strength(1.0F).sound(SoundType.GRASS)).setBurnable(40, 30));
+    public static final RegistryObject<Block> THATCH_BAMBOO_EDGE = DoTBBlocksRegistry.reg("thatch_bamboo_edge", () -> new EdgeBlock(Block.Properties.copy(Blocks.GRASS_BLOCK).color(MaterialColor.COLOR_YELLOW).strength(1.0F).sound(SoundType.GRASS)).setBurnable(40, 30));
+    public static final RegistryObject<Block> THATCH_BAMBOO_PLATE = DoTBBlocksRegistry.reg("thatch_bamboo_plate", () -> new PlateBlock(Block.Properties.copy(Blocks.GRASS_BLOCK).color(MaterialColor.COLOR_YELLOW).strength(1.0F).sound(SoundType.GRASS)).setBurnable(40, 30));
+    public static final RegistryObject<Block> THATCH_BAMBOO_SLAB = DoTBBlocksRegistry.reg("thatch_bamboo_slab", () -> new SlabBlockDoTB(Block.Properties.copy(Blocks.GRASS_BLOCK).color(MaterialColor.COLOR_YELLOW).strength(1.0F).sound(SoundType.GRASS)).setBurnable(40, 30));
+    public static final RegistryObject<Block> THATCH_BAMBOO_STAIRS = DoTBBlocksRegistry.reg("thatch_bamboo_stairs", () -> new StairsBlockDoTB(DoTBBlocksRegistry.THATCH_BAMBOO, Block.Properties.copy(Blocks.GRASS_BLOCK).color(MaterialColor.COLOR_YELLOW).strength(1.0F).sound(SoundType.GRASS)).setBurnable(40, 30));
+    public static final RegistryObject<Block> WARPED_PLANKS_EDGE = DoTBBlocksRegistry.reg("warped_planks_edge", () -> new EdgeBlock(Block.Properties.copy(Blocks.WARPED_PLANKS)).setBurnable());
+    public static final RegistryObject<Block> WARPED_PLANKS_PLATE = DoTBBlocksRegistry.reg("warped_planks_plate", () -> new PlateBlock(Block.Properties.copy(Blocks.WARPED_PLANKS)).setBurnable());
+    public static final RegistryObject<Block> WARPED_SUPPORT_SLAB = DoTBBlocksRegistry.reg("warped_support_slab", () -> new SupportSlabBlock(Block.Properties.copy(Blocks.WARPED_PLANKS)).setBurnable());
+    public static final RegistryObject<Block> WARPED_PERGOLA = DoTBBlocksRegistry.reg("warped_pergola", () -> new PergolaBlock(Block.Properties.copy(Blocks.WARPED_PLANKS)).setBurnable());
+    public static final RegistryObject<Block> WARPED_LATTICE = DoTBBlocksRegistry.reg("warped_lattice", () -> new LatticeBlock(Block.Properties.copy(Blocks.WARPED_PLANKS).noOcclusion()).setBurnable());
+    public static final RegistryObject<Block> WARPED_BEAM = DoTBBlocksRegistry.reg("warped_beam", () -> new BeamBlock(Block.Properties.copy(Blocks.WARPED_PLANKS)).setBurnable());
+    public static final RegistryObject<Block> WARPED_SUPPORT_BEAM = DoTBBlocksRegistry.reg("warped_support_beam", () -> new SupportBeamBlock(Block.Properties.copy(Blocks.WARPED_PLANKS)).setBurnable());
+    public static final RegistryObject<Block> WARPED_WALL = DoTBBlocksRegistry.reg("warped_wall", () -> new WallBlock(Block.Properties.copy(Blocks.WARPED_PLANKS)));
     public static final RegistryObject<Block> FIREPLACE = DoTBBlocksRegistry.reg("fireplace", () -> new FireplaceBlock(Block.Properties.copy(Blocks.STONE).strength(1.5F, 6.0F).lightLevel(DoTBBlocksRegistry.litBlockEmission(15))));
     public static final RegistryObject<Block> IRON_PORTCULLIS = DoTBBlocksRegistry.reg("iron_portcullis", () -> new PortcullisBlock(Block.Properties.copy(Blocks.IRON_DOOR)));
     public static final RegistryObject<Block> WROUGHT_IRON_FENCE = DoTBBlocksRegistry.reg("wrought_iron_fence", () -> new IronFenceBlock(Block.Properties.copy(Blocks.IRON_BARS)));
@@ -146,9 +144,9 @@ public class DoTBBlocksRegistry {
     public static final RegistryObject<Block> BLACK_WROUGHT_IRON_FENCE = DoTBBlocksRegistry.reg("black_wrought_iron_fence", () -> new IronFenceBlock(Block.Properties.copy(Blocks.IRON_BARS)));
     public static final RegistryObject<Block> REINFORCED_BLACK_WROUGHT_IRON_FENCE = DoTBBlocksRegistry.reg("reinforced_black_wrought_iron_fence", () -> new ReinforcedIronFenceBlock(Block.Properties.copy(Blocks.IRON_BARS)));
     public static final RegistryObject<Block> REINFORCED_GOLDEN_WROUGHT_IRON_FENCE = DoTBBlocksRegistry.reg("reinforced_golden_wrought_iron_fence", () -> new ReinforcedIronFenceBlock(Block.Properties.copy(Blocks.IRON_BARS)));
-    public static final RegistryObject<Block> BOXWOOD_BUSH = DoTBBlocksRegistry.reg("boxwood_bush", () -> new BushBlockDoT(Block.Properties.copy(Blocks.SPRUCE_LEAVES)), BlockTags.SWORD_EFFICIENT);
-    public static final RegistryObject<Block> BOXWOOD_TALL_HEDGE = DoTBBlocksRegistry.reg("boxwood_tall_hedge", () -> new PlateBlock(Block.Properties.copy(Blocks.SPRUCE_LEAVES)), BlockTags.SWORD_EFFICIENT);
-    public static final RegistryObject<Block> BOXWOOD_SMALL_HEDGE = DoTBBlocksRegistry.reg("boxwood_small_hedge", () -> new EdgeBlock(Block.Properties.copy(Blocks.SPRUCE_LEAVES)), BlockTags.SWORD_EFFICIENT);
+    public static final RegistryObject<Block> BOXWOOD_BUSH = DoTBBlocksRegistry.reg("boxwood_bush", () -> new BushBlockDoT(Block.Properties.copy(Blocks.SPRUCE_LEAVES)));
+    public static final RegistryObject<Block> BOXWOOD_TALL_HEDGE = DoTBBlocksRegistry.reg("boxwood_tall_hedge", () -> new PlateBlock(Block.Properties.copy(Blocks.SPRUCE_LEAVES)));
+    public static final RegistryObject<Block> BOXWOOD_SMALL_HEDGE = DoTBBlocksRegistry.reg("boxwood_small_hedge", () -> new EdgeBlock(Block.Properties.copy(Blocks.SPRUCE_LEAVES)));
     // German
     public static final RegistryObject<Block> FLAT_ROOF_TILES = DoTBBlocksRegistry.reg("flat_roof_tiles", () -> new BlockDoTB(Block.Properties.copy(Blocks.STONE_BRICKS)));
     public static final RegistryObject<Block> FLAT_ROOF_TILES_STAIRS = DoTBBlocksRegistry.reg("flat_roof_tiles_stairs", () -> new StairsBlockDoTB(DoTBBlocksRegistry.FLAT_ROOF_TILES, Block.Properties.copy(Blocks.STONE_BRICKS)));
@@ -158,7 +156,7 @@ public class DoTBBlocksRegistry {
     public static final RegistryObject<Block> FLAT_ROOF_TILES_WALL = DoTBBlocksRegistry.reg("flat_roof_tiles_wall", () -> new WallBlock(Block.Properties.copy(Blocks.STONE_BRICKS)));
     public static final RegistryObject<Block> LATTICE_GLASS = DoTBBlocksRegistry.reg("lattice_glass", () -> new GlassBlock(Block.Properties.copy(Blocks.GLASS)));
     public static final RegistryObject<Block> LATTICE_GLASS_PANE = DoTBBlocksRegistry.reg("lattice_glass_pane", () -> new PaneBlockDoTB(DyeColor.BLACK, Block.Properties.copy(Blocks.GLASS)));
-    public static final RegistryObject<Block> LATTICE_WAXED_OAK_WINDOW = DoTBBlocksRegistry.reg("lattice_waxed_oak_window", () -> new SidedWindowBlock(Block.Properties.copy(Blocks.GLASS)), BlockTags.MINEABLE_WITH_AXE);
+    public static final RegistryObject<Block> LATTICE_WAXED_OAK_WINDOW = DoTBBlocksRegistry.reg("lattice_waxed_oak_window", () -> new SidedWindowBlock(Block.Properties.copy(Blocks.GLASS)));
     public static final RegistryObject<Block> LATTICE_STONE_BRICKS_WINDOW = DoTBBlocksRegistry.reg("lattice_stone_bricks_window", () -> new LatticeStoneBricksWindowBlock(Block.Properties.copy(Blocks.GLASS)));
     public static final RegistryObject<Block> STONE_BRICKS_ARROWSLIT = DoTBBlocksRegistry.reg("stone_bricks_arrowslit", () -> new StoneBricksArrowslitBlock(Block.Properties.copy(Blocks.STONE_BRICKS).noOcclusion()));
     public static final RegistryObject<Block> STONE_BRICKS_CHIMNEY = DoTBBlocksRegistry.reg("stone_bricks_chimney", () -> new BaseChimneyDoTB(Block.Properties.copy(Blocks.STONE_BRICKS)));
@@ -172,35 +170,35 @@ public class DoTBBlocksRegistry {
     public static final RegistryObject<Block> STONE_BRICKS_MASONRY_SLAB = DoTBBlocksRegistry.reg("stone_bricks_masonry_slab", () -> new SlabBlockDoTB(Block.Properties.copy(Blocks.STONE_BRICKS)));
     public static final RegistryObject<Block> STONE_BRICKS_MASONRY_EDGE = DoTBBlocksRegistry.reg("stone_bricks_masonry_edge", () -> new EdgeBlock(Block.Properties.copy(Blocks.STONE_BRICKS)));
     public static final RegistryObject<Block> STONE_BRICKS_MASONRY_WALL = DoTBBlocksRegistry.reg("stone_bricks_masonry_wall", () -> new WallBlock(Block.Properties.copy(Blocks.STONE_BRICKS)));
-    public static final RegistryObject<Block> WAXED_OAK_FRAMED_RAMMED_DIRT = DoTBBlocksRegistry.reg("waxed_oak_framed_rammed_dirt", () -> new BlockDoTB(Block.Properties.copy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_BROWN).strength(2.0F, 3.0F)), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> WAXED_OAK_FRAMED_RAMMED_DIRT_PILLAR = DoTBBlocksRegistry.reg("waxed_oak_framed_rammed_dirt_pillar", () -> new RotatedPillarBlockDoTB(Block.Properties.copy(Blocks.OAK_WOOD).strength(3.0F, 5.0F)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> WAXED_OAK_PLANKS = DoTBBlocksRegistry.reg("waxed_oak_planks", () -> new BlockDoTB(Block.Properties.copy(Blocks.OAK_WOOD).strength(3.0F, 5.0F)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> WAXED_OAK_DOOR = DoTBBlocksRegistry.reg("waxed_oak_door", () -> new DoorBlockDoTB(Block.Properties.copy(Blocks.OAK_WOOD).strength(3.0F, 5.0F).noOcclusion(), BlockSetType.ACACIA), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> WAXED_OAK_TRAPDOOR = DoTBBlocksRegistry.reg("waxed_oak_trapdoor", () -> new TrapDoorBlock(Block.Properties.copy(Blocks.OAK_WOOD).strength(3.0F, 5.0F).noOcclusion(), BlockSetType.ACACIA), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> WAXED_OAK_SHUTTER = DoTBBlocksRegistry.reg("waxed_oak_shutters", () -> new ShutterBlock(Block.Properties.copy(Blocks.OAK_WOOD).strength(3.0F, 5.0F)), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> WAXED_OAK_LOG_STRIPPED = DoTBBlocksRegistry.reg("waxed_oak_log_stripped", () -> new RotatedPillarBlockDoTB(Block.Properties.copy(Blocks.OAK_WOOD).strength(3.0F, 5.0F)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> WAXED_OAK_BALUSTER = DoTBBlocksRegistry.reg("waxed_oak_baluster", () -> new BalusterBlock(Block.Properties.copy(Blocks.OAK_WOOD).strength(3.0F, 5.0F).noOcclusion()), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> WAXED_OAK_BEAM = DoTBBlocksRegistry.reg("waxed_oak_beam", () -> new BeamBlock(Block.Properties.copy(Blocks.OAK_WOOD).strength(3.0F, 5.0F)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> WAXED_OAK_SUPPORT_BEAM = DoTBBlocksRegistry.reg("waxed_oak_support_beam", () -> new SupportBeamBlock(Block.Properties.copy(Blocks.OAK_WOOD).strength(3.0F, 5.0F)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> WAXED_OAK_SUPPORT_SLAB = DoTBBlocksRegistry.reg("waxed_oak_support_slab", () -> new SupportSlabBlock(Block.Properties.copy(Blocks.OAK_WOOD).strength(3.0F, 5.0F)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> WAXED_OAK_SMALL_SHUTTER = DoTBBlocksRegistry.reg("waxed_oak_small_shutters", () -> new SmallShutterBlock(Block.Properties.copy(Blocks.OAK_WOOD).strength(3.0F, 5.0F)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> WAXED_OAK_TIMBER_FRAME = DoTBBlocksRegistry.reg("waxed_oak_timber_frame", () -> new BlockDoTB(Block.Properties.copy(Blocks.OAK_WOOD).strength(3.0F, 5.0F)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> WAXED_OAK_TIMBER_FRAME_CORNER = DoTBBlocksRegistry.reg("waxed_oak_timber_frame_corner", () -> new WaxedOakTimberFrameCornerBlock(Block.Properties.copy(Blocks.OAK_WOOD).strength(3.0F, 5.0F)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> WAXED_OAK_TIMBER_FRAME_CROSSED = DoTBBlocksRegistry.reg("waxed_oak_timber_frame_crossed", () -> new BlockDoTB(Block.Properties.copy(Blocks.OAK_WOOD).strength(3.0F, 5.0F)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> WAXED_OAK_TIMBER_FRAME_PILLAR = DoTBBlocksRegistry.reg("waxed_oak_timber_frame_pillar", () -> new RotatedPillarBlockDoTB(Block.Properties.copy(Blocks.OAK_WOOD).strength(3.0F, 5.0F)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> WAXED_OAK_TIMBER_FRAME_SQUARED = DoTBBlocksRegistry.reg("waxed_oak_timber_frame_squared", () -> new BlockDoTB(Block.Properties.copy(Blocks.OAK_WOOD).strength(3.0F, 5.0F)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> WAXED_OAK_FENCE = DoTBBlocksRegistry.reg("waxed_oak_fence", () -> new FenceBlock(Block.Properties.copy(Blocks.OAK_WOOD).strength(3.0F, 5.0F)), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> WAXED_OAK_FENCE_GATE = DoTBBlocksRegistry.reg("waxed_oak_fence_gate", () -> new FenceGateBlockDoTB(Block.Properties.copy(Blocks.OAK_WOOD).strength(3.0F, 5.0F), WoodType.OAK), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> WAXED_OAK_WALL = DoTBBlocksRegistry.reg("waxed_oak_wall", () -> new WallBlock(Block.Properties.copy(Blocks.OAK_WOOD).strength(3.0F, 5.0F)), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> WAXED_OAK_PERGOLA = DoTBBlocksRegistry.reg("waxed_oak_pergola", () -> new PergolaBlock(Block.Properties.copy(Blocks.OAK_WOOD).strength(3.0F, 5.0F)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> WAXED_OAK_LATTICE = DoTBBlocksRegistry.reg("waxed_oak_lattice", () -> new LatticeBlock(Block.Properties.copy(Blocks.OAK_WOOD).strength(3.0F, 5.0F).noOcclusion()).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> WAXED_OAK_PLANKS_EDGE = DoTBBlocksRegistry.reg("waxed_oak_planks_edge", () -> new EdgeBlock(Block.Properties.copy(Blocks.OAK_WOOD).strength(3.0F, 5.0F)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> WAXED_OAK_PLANKS_PLATE = DoTBBlocksRegistry.reg("waxed_oak_planks_plate", () -> new PlateBlock(Block.Properties.copy(Blocks.OAK_WOOD).strength(3.0F, 5.0F)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> WAXED_OAK_PLANKS_SLAB = DoTBBlocksRegistry.reg("waxed_oak_planks_slab", () -> new SlabBlockDoTB(Block.Properties.copy(Blocks.OAK_WOOD).strength(3.0F, 5.0F)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> WAXED_OAK_PLANKS_STAIRS = DoTBBlocksRegistry.reg("waxed_oak_planks_stairs", () -> new StairsBlockDoTB(DoTBBlocksRegistry.WAXED_OAK_PLANKS, Block.Properties.copy(Blocks.OAK_WOOD).strength(3.0F, 5.0F)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> WAXED_OAK_CHANDELIER = DoTBBlocksRegistry.reg("waxed_oak_chandelier", () -> new WaxedOakChandelierBlock(Block.Properties.copy(Blocks.OAK_WOOD).strength(3.0F, 5.0F).noOcclusion().lightLevel(DoTBBlocksRegistry.litBlockEmission(15))), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> WAXED_OAK_CHAIR = DoTBBlocksRegistry.reg("waxed_oak_chair", () -> new WaxedOakChairBlock(Block.Properties.copy(Blocks.OAK_WOOD).strength(3.0F, 5.0F).noOcclusion(), 11.0F), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> WAXED_OAK_TABLE = DoTBBlocksRegistry.reg("waxed_oak_table", () -> new WaxedOakTableBlock(Block.Properties.copy(Blocks.OAK_WOOD).strength(3.0F, 5.0F).noOcclusion()), BlockTags.MINEABLE_WITH_AXE);
+    public static final RegistryObject<Block> WAXED_OAK_FRAMED_RAMMED_DIRT = DoTBBlocksRegistry.reg("waxed_oak_framed_rammed_dirt", () -> new BlockDoTB(Block.Properties.copy(Blocks.OAK_WOOD).color(MaterialColor.COLOR_BROWN).strength(2.0F, 3.0F)));
+    public static final RegistryObject<Block> WAXED_OAK_FRAMED_RAMMED_DIRT_PILLAR = DoTBBlocksRegistry.reg("waxed_oak_framed_rammed_dirt_pillar", () -> new RotatedPillarBlockDoTB(Block.Properties.copy(Blocks.OAK_WOOD).strength(3.0F, 5.0F)).setBurnable());
+    public static final RegistryObject<Block> WAXED_OAK_PLANKS = DoTBBlocksRegistry.reg("waxed_oak_planks", () -> new BlockDoTB(Block.Properties.copy(Blocks.OAK_WOOD).strength(3.0F, 5.0F)).setBurnable());
+    public static final RegistryObject<Block> WAXED_OAK_DOOR = DoTBBlocksRegistry.reg("waxed_oak_door", () -> new DoorBlockDoTB(Block.Properties.copy(Blocks.OAK_WOOD).strength(3.0F, 5.0F).noOcclusion()));
+    public static final RegistryObject<Block> WAXED_OAK_TRAPDOOR = DoTBBlocksRegistry.reg("waxed_oak_trapdoor", () -> new TrapDoorBlock(Block.Properties.copy(Blocks.OAK_WOOD).strength(3.0F, 5.0F).noOcclusion()));
+    public static final RegistryObject<Block> WAXED_OAK_SHUTTER = DoTBBlocksRegistry.reg("waxed_oak_shutters", () -> new ShutterBlock(Block.Properties.copy(Blocks.OAK_WOOD).strength(3.0F, 5.0F)));
+    public static final RegistryObject<Block> WAXED_OAK_LOG_STRIPPED = DoTBBlocksRegistry.reg("waxed_oak_log_stripped", () -> new RotatedPillarBlockDoTB(Block.Properties.copy(Blocks.OAK_WOOD).strength(3.0F, 5.0F)).setBurnable());
+    public static final RegistryObject<Block> WAXED_OAK_BALUSTER = DoTBBlocksRegistry.reg("waxed_oak_baluster", () -> new BalusterBlock(Block.Properties.copy(Blocks.OAK_WOOD).strength(3.0F, 5.0F).noOcclusion()));
+    public static final RegistryObject<Block> WAXED_OAK_BEAM = DoTBBlocksRegistry.reg("waxed_oak_beam", () -> new BeamBlock(Block.Properties.copy(Blocks.OAK_WOOD).strength(3.0F, 5.0F)).setBurnable());
+    public static final RegistryObject<Block> WAXED_OAK_SUPPORT_BEAM = DoTBBlocksRegistry.reg("waxed_oak_support_beam", () -> new SupportBeamBlock(Block.Properties.copy(Blocks.OAK_WOOD).strength(3.0F, 5.0F)).setBurnable());
+    public static final RegistryObject<Block> WAXED_OAK_SUPPORT_SLAB = DoTBBlocksRegistry.reg("waxed_oak_support_slab", () -> new SupportSlabBlock(Block.Properties.copy(Blocks.OAK_WOOD).strength(3.0F, 5.0F)).setBurnable());
+    public static final RegistryObject<Block> WAXED_OAK_SMALL_SHUTTER = DoTBBlocksRegistry.reg("waxed_oak_small_shutters", () -> new SmallShutterBlock(Block.Properties.copy(Blocks.OAK_WOOD).strength(3.0F, 5.0F)).setBurnable());
+    public static final RegistryObject<Block> WAXED_OAK_TIMBER_FRAME = DoTBBlocksRegistry.reg("waxed_oak_timber_frame", () -> new BlockDoTB(Block.Properties.copy(Blocks.OAK_WOOD).strength(3.0F, 5.0F)).setBurnable());
+    public static final RegistryObject<Block> WAXED_OAK_TIMBER_FRAME_CORNER = DoTBBlocksRegistry.reg("waxed_oak_timber_frame_corner", () -> new WaxedOakTimberFrameCornerBlock(Block.Properties.copy(Blocks.OAK_WOOD).strength(3.0F, 5.0F)).setBurnable());
+    public static final RegistryObject<Block> WAXED_OAK_TIMBER_FRAME_CROSSED = DoTBBlocksRegistry.reg("waxed_oak_timber_frame_crossed", () -> new BlockDoTB(Block.Properties.copy(Blocks.OAK_WOOD).strength(3.0F, 5.0F)).setBurnable());
+    public static final RegistryObject<Block> WAXED_OAK_TIMBER_FRAME_PILLAR = DoTBBlocksRegistry.reg("waxed_oak_timber_frame_pillar", () -> new RotatedPillarBlockDoTB(Block.Properties.copy(Blocks.OAK_WOOD).strength(3.0F, 5.0F)).setBurnable());
+    public static final RegistryObject<Block> WAXED_OAK_TIMBER_FRAME_SQUARED = DoTBBlocksRegistry.reg("waxed_oak_timber_frame_squared", () -> new BlockDoTB(Block.Properties.copy(Blocks.OAK_WOOD).strength(3.0F, 5.0F)).setBurnable());
+    public static final RegistryObject<Block> WAXED_OAK_FENCE = DoTBBlocksRegistry.reg("waxed_oak_fence", () -> new FenceBlock(Block.Properties.copy(Blocks.OAK_WOOD).strength(3.0F, 5.0F)));
+    public static final RegistryObject<Block> WAXED_OAK_FENCE_GATE = DoTBBlocksRegistry.reg("waxed_oak_fence_gate", () -> new FenceGateBlockDoTB(Block.Properties.copy(Blocks.OAK_WOOD).strength(3.0F, 5.0F)));
+    public static final RegistryObject<Block> WAXED_OAK_WALL = DoTBBlocksRegistry.reg("waxed_oak_wall", () -> new WallBlock(Block.Properties.copy(Blocks.OAK_WOOD).strength(3.0F, 5.0F)));
+    public static final RegistryObject<Block> WAXED_OAK_PERGOLA = DoTBBlocksRegistry.reg("waxed_oak_pergola", () -> new PergolaBlock(Block.Properties.copy(Blocks.OAK_WOOD).strength(3.0F, 5.0F)).setBurnable());
+    public static final RegistryObject<Block> WAXED_OAK_LATTICE = DoTBBlocksRegistry.reg("waxed_oak_lattice", () -> new LatticeBlock(Block.Properties.copy(Blocks.OAK_WOOD).strength(3.0F, 5.0F).noOcclusion()).setBurnable());
+    public static final RegistryObject<Block> WAXED_OAK_PLANKS_EDGE = DoTBBlocksRegistry.reg("waxed_oak_planks_edge", () -> new EdgeBlock(Block.Properties.copy(Blocks.OAK_WOOD).strength(3.0F, 5.0F)).setBurnable());
+    public static final RegistryObject<Block> WAXED_OAK_PLANKS_PLATE = DoTBBlocksRegistry.reg("waxed_oak_planks_plate", () -> new PlateBlock(Block.Properties.copy(Blocks.OAK_WOOD).strength(3.0F, 5.0F)).setBurnable());
+    public static final RegistryObject<Block> WAXED_OAK_PLANKS_SLAB = DoTBBlocksRegistry.reg("waxed_oak_planks_slab", () -> new SlabBlockDoTB(Block.Properties.copy(Blocks.OAK_WOOD).strength(3.0F, 5.0F)).setBurnable());
+    public static final RegistryObject<Block> WAXED_OAK_PLANKS_STAIRS = DoTBBlocksRegistry.reg("waxed_oak_planks_stairs", () -> new StairsBlockDoTB(DoTBBlocksRegistry.WAXED_OAK_PLANKS, Block.Properties.copy(Blocks.OAK_WOOD).strength(3.0F, 5.0F)).setBurnable());
+    public static final RegistryObject<Block> WAXED_OAK_CHANDELIER = DoTBBlocksRegistry.reg("waxed_oak_chandelier", () -> new WaxedOakChandelierBlock(Block.Properties.copy(Blocks.OAK_WOOD).strength(3.0F, 5.0F).noOcclusion().lightLevel(DoTBBlocksRegistry.litBlockEmission(15))));
+    public static final RegistryObject<Block> WAXED_OAK_CHAIR = DoTBBlocksRegistry.reg("waxed_oak_chair", () -> new WaxedOakChairBlock(Block.Properties.copy(Blocks.OAK_WOOD).strength(3.0F, 5.0F).noOcclusion(), 11.0F));
+    public static final RegistryObject<Block> WAXED_OAK_TABLE = DoTBBlocksRegistry.reg("waxed_oak_table", () -> new WaxedOakTableBlock(Block.Properties.copy(Blocks.OAK_WOOD).strength(3.0F, 5.0F).noOcclusion()));
     public static final RegistryObject<Block> IVY = DoTBBlocksRegistry.regWithFlowerPotItem("ivy", () -> new IvyBlock(Block.Properties.copy(Blocks.VINE).randomTicks().strength(0.2F).sound(SoundType.VINE)), (block) -> new PotAndBlockItem(block, new Item.Properties()));
     public static final RegistryObject<Block> GERANIUM_PINK = DoTBBlocksRegistry.regWithFlowerPotItem("geranium_pink", () -> new GeraniumBlock(Block.Properties.copy(Blocks.SUNFLOWER).offsetType(BlockBehaviour.OffsetType.NONE).instabreak().sound(SoundType.GRASS)), (block) -> new PotAndBlockItem(block, new Item.Properties()));
     public static final RegistryObject<Block> PLANTER_GERANIUM_PINK = DoTBBlocksRegistry.reg("planter_geranium_pink", () -> new PlanterBlock(Block.Properties.copy(Blocks.CLAY).strength(0.6F).noOcclusion()));
@@ -209,82 +207,82 @@ public class DoTBBlocksRegistry {
     public static final RegistryObject<Block> STONE_BRICKS_FAUCET = DoTBBlocksRegistry.reg("stone_bricks_faucet", () -> new FaucetBlock(Block.Properties.copy(Blocks.STONE).noOcclusion().noCollission().randomTicks()));
     public static final RegistryObject<Block> STONE_BRICKS_WATER_JET = DoTBBlocksRegistry.reg("stone_bricks_water_jet", () -> new WaterJetBlock(Block.Properties.copy(Blocks.STONE).noOcclusion().noCollission()));
     // Japanese
-    public static final RegistryObject<Block> CHARRED_SPRUCE_PLANKS = DoTBBlocksRegistry.reg("charred_spruce_planks", () -> new BlockDoTB(Block.Properties.copy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_BLACK).strength(2.0F, 6.0F)).setBurnable(2, 3), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> CHARRED_SPRUCE_LOG_STRIPPED = DoTBBlocksRegistry.reg("charred_spruce_log_stripped", () -> new RotatedPillarBlockDoTB(Block.Properties.copy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_BLACK).strength(2.0F, 6.0F)).setBurnable(2, 3), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> CHARRED_SPRUCE_PLANKS_EDGE = DoTBBlocksRegistry.reg("charred_spruce_planks_edge", () -> new EdgeBlock(Block.Properties.copy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_BLACK).strength(2.0F, 6.0F)).setBurnable(2, 3), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> CHARRED_SPRUCE_PLANKS_PLATE = DoTBBlocksRegistry.reg("charred_spruce_planks_plate", () -> new PlateBlock(Block.Properties.copy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_BLACK).strength(2.0F, 6.0F)).setBurnable(2, 3), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> CHARRED_SPRUCE_PLANKS_SLAB = DoTBBlocksRegistry.reg("charred_spruce_planks_slab", () -> new SlabBlockDoTB(Block.Properties.copy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_BLACK).strength(2.0F, 6.0F)).setBurnable(2, 3), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> CHARRED_SPRUCE_PLANKS_STAIRS = DoTBBlocksRegistry.reg("charred_spruce_planks_stairs", () -> new StairsBlockDoTB(DoTBBlocksRegistry.CHARRED_SPRUCE_PLANKS, Block.Properties.copy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_BLACK).strength(2.0F, 6.0F)).setBurnable(2, 3), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> CHARRED_SPRUCE_BOARDS = DoTBBlocksRegistry.reg("charred_spruce_boards", () -> new BlockDoTB(Block.Properties.copy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_BLACK).strength(2.0F, 6.0F)).setBurnable(2, 3), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> CHARRED_SPRUCE_DOOR = DoTBBlocksRegistry.reg("charred_spruce_door", () -> new DoorBlockDoTB(Block.Properties.copy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_BLACK).strength(2.0F, 6.0F).noOcclusion(), BlockSetType.SPRUCE), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> CHARRED_SPRUCE_TRAPDOOR = DoTBBlocksRegistry.reg("charred_spruce_trapdoor", () -> new TrapDoorBlock(Block.Properties.copy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_BLACK).strength(2.0F, 6.0F).noOcclusion(), BlockSetType.SPRUCE), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> CHARRED_SPRUCE_SHUTTERS = DoTBBlocksRegistry.reg("charred_spruce_shutters", () -> new CharredSpruceShuttersBlock(Block.Properties.copy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_BLACK).strength(2.0F, 6.0F).noOcclusion()), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> CHARRED_SPRUCE_TALL_SHUTTERS = DoTBBlocksRegistry.reg("charred_spruce_tall_shutters", () -> new CharredSpruceTallShuttersBlock(Block.Properties.copy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_BLACK).strength(2.0F, 6.0F).noOcclusion()), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> CHARRED_SPRUCE_FOUNDATION = DoTBBlocksRegistry.reg("charred_spruce_foundation", () -> new BlockDoTB(Block.Properties.copy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_BLACK).strength(2.0F, 6.0F)).setBurnable(2, 3), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> CHARRED_SPRUCE_FOUNDATION_SLAB = DoTBBlocksRegistry.reg("charred_spruce_foundation_slab", () -> new SlabBlockDoTB(Block.Properties.copy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_BLACK).strength(2.0F, 6.0F)).setBurnable(2, 3), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> CHARRED_SPRUCE_WALL = DoTBBlocksRegistry.reg("charred_spruce_wall", () -> new WallBlock(Block.Properties.copy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_BLACK).strength(2.0F, 6.0F)), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> CHARRED_SPRUCE_FENCE = DoTBBlocksRegistry.reg("charred_spruce_fence", () -> new FenceBlock(Block.Properties.copy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_BLACK).strength(2.0F, 6.0F)), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> CHARRED_SPRUCE_FENCE_GATE = DoTBBlocksRegistry.reg("charred_spruce_fence_gate", () -> new FenceGateBlockDoTB(Block.Properties.copy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_BLACK).strength(2.0F, 6.0F), WoodType.SPRUCE), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> CHARRED_SPRUCE_RAILING = DoTBBlocksRegistry.reg("charred_spruce_railing", () -> new CharredSpruceRailingBlock(Block.Properties.copy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_BLACK).strength(2.0F, 6.0F).noOcclusion()), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> CHARRED_SPRUCE_FANCY_RAILING = DoTBBlocksRegistry.reg("charred_spruce_fancy_railing", () -> new CharredSpruceFancyRailingBlock(DyeColor.BLACK, Block.Properties.copy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_BLACK).strength(2.0F, 6.0F).noOcclusion()), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> CHARRED_SPRUCE_PERGOLA = DoTBBlocksRegistry.reg("charred_spruce_pergola", () -> new PergolaBlock(Block.Properties.copy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_BLACK).strength(2.0F, 6.0F)).setBurnable(2, 3), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> CHARRED_SPRUCE_LATTICE = DoTBBlocksRegistry.reg("charred_spruce_lattice", () -> new LatticeBlock(Block.Properties.copy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_BLACK).strength(2.0F, 6.0F).noOcclusion()).setBurnable(2, 3), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> CHARRED_SPRUCE_SUPPORT_SLAB = DoTBBlocksRegistry.reg("charred_spruce_support_slab", () -> new SupportSlabBlock(Block.Properties.copy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_BLACK).strength(2.0F, 6.0F)).setBurnable(2, 3), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> CHARRED_SPRUCE_SUPPORT_BEAM = DoTBBlocksRegistry.reg("charred_spruce_support_beam", () -> new SupportBeamBlock(Block.Properties.copy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_BLACK).strength(2.0F, 6.0F)).setBurnable(2, 3), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> CHARRED_SPRUCE_BEAM = DoTBBlocksRegistry.reg("charred_spruce_beam", () -> new BeamBlock(Block.Properties.copy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_BLACK).strength(2.0F, 6.0F)).setBurnable(2, 3), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> CHARRED_SPRUCE_TIMBER_FRAME = DoTBBlocksRegistry.reg("charred_spruce_timber_frame", () -> new BlockDoTB(Block.Properties.copy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_BLACK).strength(2.0F, 6.0F)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> CHARRED_SPRUCE_TIMBER_FRAME_PILLAR = DoTBBlocksRegistry.reg("charred_spruce_timber_frame_pillar", () -> new RotatedPillarBlockDoTB(Block.Properties.copy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_BLACK).strength(2.0F, 6.0F)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> RED_PAINTED_BEAM = DoTBBlocksRegistry.reg("red_painted_beam", () -> new BeamBlock(Block.Properties.copy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_BLACK).strength(2.0F, 6.0F)).setBurnable(2, 3), BlockTags.MINEABLE_WITH_AXE);
+    public static final RegistryObject<Block> CHARRED_SPRUCE_PLANKS = DoTBBlocksRegistry.reg("charred_spruce_planks", () -> new BlockDoTB(Block.Properties.copy(Blocks.OAK_WOOD).color(MaterialColor.COLOR_BLACK).strength(2.0F, 6.0F)).setBurnable(2, 3));
+    public static final RegistryObject<Block> CHARRED_SPRUCE_LOG_STRIPPED = DoTBBlocksRegistry.reg("charred_spruce_log_stripped", () -> new RotatedPillarBlockDoTB(Block.Properties.copy(Blocks.OAK_WOOD).color(MaterialColor.COLOR_BLACK).strength(2.0F, 6.0F)).setBurnable(2, 3));
+    public static final RegistryObject<Block> CHARRED_SPRUCE_PLANKS_EDGE = DoTBBlocksRegistry.reg("charred_spruce_planks_edge", () -> new EdgeBlock(Block.Properties.copy(Blocks.OAK_WOOD).color(MaterialColor.COLOR_BLACK).strength(2.0F, 6.0F)).setBurnable(2, 3));
+    public static final RegistryObject<Block> CHARRED_SPRUCE_PLANKS_PLATE = DoTBBlocksRegistry.reg("charred_spruce_planks_plate", () -> new PlateBlock(Block.Properties.copy(Blocks.OAK_WOOD).color(MaterialColor.COLOR_BLACK).strength(2.0F, 6.0F)).setBurnable(2, 3));
+    public static final RegistryObject<Block> CHARRED_SPRUCE_PLANKS_SLAB = DoTBBlocksRegistry.reg("charred_spruce_planks_slab", () -> new SlabBlockDoTB(Block.Properties.copy(Blocks.OAK_WOOD).color(MaterialColor.COLOR_BLACK).strength(2.0F, 6.0F)).setBurnable(2, 3));
+    public static final RegistryObject<Block> CHARRED_SPRUCE_PLANKS_STAIRS = DoTBBlocksRegistry.reg("charred_spruce_planks_stairs", () -> new StairsBlockDoTB(DoTBBlocksRegistry.CHARRED_SPRUCE_PLANKS, Block.Properties.copy(Blocks.OAK_WOOD).color(MaterialColor.COLOR_BLACK).strength(2.0F, 6.0F)).setBurnable(2, 3));
+    public static final RegistryObject<Block> CHARRED_SPRUCE_BOARDS = DoTBBlocksRegistry.reg("charred_spruce_boards", () -> new BlockDoTB(Block.Properties.copy(Blocks.OAK_WOOD).color(MaterialColor.COLOR_BLACK).strength(2.0F, 6.0F)).setBurnable(2, 3));
+    public static final RegistryObject<Block> CHARRED_SPRUCE_DOOR = DoTBBlocksRegistry.reg("charred_spruce_door", () -> new DoorBlockDoTB(Block.Properties.copy(Blocks.OAK_WOOD).color(MaterialColor.COLOR_BLACK).strength(2.0F, 6.0F).noOcclusion()));
+    public static final RegistryObject<Block> CHARRED_SPRUCE_TRAPDOOR = DoTBBlocksRegistry.reg("charred_spruce_trapdoor", () -> new TrapDoorBlock(Block.Properties.copy(Blocks.OAK_WOOD).color(MaterialColor.COLOR_BLACK).strength(2.0F, 6.0F).noOcclusion()));
+    public static final RegistryObject<Block> CHARRED_SPRUCE_SHUTTERS = DoTBBlocksRegistry.reg("charred_spruce_shutters", () -> new CharredSpruceShuttersBlock(Block.Properties.copy(Blocks.OAK_WOOD).color(MaterialColor.COLOR_BLACK).strength(2.0F, 6.0F).noOcclusion()));
+    public static final RegistryObject<Block> CHARRED_SPRUCE_TALL_SHUTTERS = DoTBBlocksRegistry.reg("charred_spruce_tall_shutters", () -> new CharredSpruceTallShuttersBlock(Block.Properties.copy(Blocks.OAK_WOOD).color(MaterialColor.COLOR_BLACK).strength(2.0F, 6.0F).noOcclusion()));
+    public static final RegistryObject<Block> CHARRED_SPRUCE_FOUNDATION = DoTBBlocksRegistry.reg("charred_spruce_foundation", () -> new BlockDoTB(Block.Properties.copy(Blocks.OAK_WOOD).color(MaterialColor.COLOR_BLACK).strength(2.0F, 6.0F)).setBurnable(2, 3));
+    public static final RegistryObject<Block> CHARRED_SPRUCE_FOUNDATION_SLAB = DoTBBlocksRegistry.reg("charred_spruce_foundation_slab", () -> new SlabBlockDoTB(Block.Properties.copy(Blocks.OAK_WOOD).color(MaterialColor.COLOR_BLACK).strength(2.0F, 6.0F)).setBurnable(2, 3));
+    public static final RegistryObject<Block> CHARRED_SPRUCE_WALL = DoTBBlocksRegistry.reg("charred_spruce_wall", () -> new WallBlock(Block.Properties.copy(Blocks.OAK_WOOD).color(MaterialColor.COLOR_BLACK).strength(2.0F, 6.0F)));
+    public static final RegistryObject<Block> CHARRED_SPRUCE_FENCE = DoTBBlocksRegistry.reg("charred_spruce_fence", () -> new FenceBlock(Block.Properties.copy(Blocks.OAK_WOOD).color(MaterialColor.COLOR_BLACK).strength(2.0F, 6.0F)));
+    public static final RegistryObject<Block> CHARRED_SPRUCE_FENCE_GATE = DoTBBlocksRegistry.reg("charred_spruce_fence_gate", () -> new FenceGateBlockDoTB(Block.Properties.copy(Blocks.OAK_WOOD).color(MaterialColor.COLOR_BLACK).strength(2.0F, 6.0F)));
+    public static final RegistryObject<Block> CHARRED_SPRUCE_RAILING = DoTBBlocksRegistry.reg("charred_spruce_railing", () -> new CharredSpruceRailingBlock(Block.Properties.copy(Blocks.OAK_WOOD).color(MaterialColor.COLOR_BLACK).strength(2.0F, 6.0F).noOcclusion()));
+    public static final RegistryObject<Block> CHARRED_SPRUCE_FANCY_RAILING = DoTBBlocksRegistry.reg("charred_spruce_fancy_railing", () -> new CharredSpruceFancyRailingBlock(DyeColor.BLACK, Block.Properties.copy(Blocks.OAK_WOOD).color(MaterialColor.COLOR_BLACK).strength(2.0F, 6.0F).noOcclusion()));
+    public static final RegistryObject<Block> CHARRED_SPRUCE_PERGOLA = DoTBBlocksRegistry.reg("charred_spruce_pergola", () -> new PergolaBlock(Block.Properties.copy(Blocks.OAK_WOOD).color(MaterialColor.COLOR_BLACK).strength(2.0F, 6.0F)).setBurnable(2, 3));
+    public static final RegistryObject<Block> CHARRED_SPRUCE_LATTICE = DoTBBlocksRegistry.reg("charred_spruce_lattice", () -> new LatticeBlock(Block.Properties.copy(Blocks.OAK_WOOD).color(MaterialColor.COLOR_BLACK).strength(2.0F, 6.0F).noOcclusion()).setBurnable(2, 3));
+    public static final RegistryObject<Block> CHARRED_SPRUCE_SUPPORT_SLAB = DoTBBlocksRegistry.reg("charred_spruce_support_slab", () -> new SupportSlabBlock(Block.Properties.copy(Blocks.OAK_WOOD).color(MaterialColor.COLOR_BLACK).strength(2.0F, 6.0F)).setBurnable(2, 3));
+    public static final RegistryObject<Block> CHARRED_SPRUCE_SUPPORT_BEAM = DoTBBlocksRegistry.reg("charred_spruce_support_beam", () -> new SupportBeamBlock(Block.Properties.copy(Blocks.OAK_WOOD).color(MaterialColor.COLOR_BLACK).strength(2.0F, 6.0F)).setBurnable(2, 3));
+    public static final RegistryObject<Block> CHARRED_SPRUCE_BEAM = DoTBBlocksRegistry.reg("charred_spruce_beam", () -> new BeamBlock(Block.Properties.copy(Blocks.OAK_WOOD).color(MaterialColor.COLOR_BLACK).strength(2.0F, 6.0F)).setBurnable(2, 3));
+    public static final RegistryObject<Block> CHARRED_SPRUCE_TIMBER_FRAME = DoTBBlocksRegistry.reg("charred_spruce_timber_frame", () -> new BlockDoTB(Block.Properties.copy(Blocks.OAK_WOOD).color(MaterialColor.COLOR_BLACK).strength(2.0F, 6.0F)).setBurnable());
+    public static final RegistryObject<Block> CHARRED_SPRUCE_TIMBER_FRAME_PILLAR = DoTBBlocksRegistry.reg("charred_spruce_timber_frame_pillar", () -> new RotatedPillarBlockDoTB(Block.Properties.copy(Blocks.OAK_WOOD).color(MaterialColor.COLOR_BLACK).strength(2.0F, 6.0F)).setBurnable());
+    public static final RegistryObject<Block> RED_PAINTED_BEAM = DoTBBlocksRegistry.reg("red_painted_beam", () -> new BeamBlock(Block.Properties.copy(Blocks.OAK_WOOD).color(MaterialColor.COLOR_BLACK).strength(2.0F, 6.0F)).setBurnable(2, 3));
     public static final RegistryObject<Block> GRAY_ROOF_TILES = DoTBBlocksRegistry.reg("gray_roof_tiles", () -> new BlockDoTB(Block.Properties.copy(Blocks.STONE_BRICKS)));
     public static final RegistryObject<Block> GRAY_ROOF_TILES_STAIRS = DoTBBlocksRegistry.reg("gray_roof_tiles_stairs", () -> new StairsBlockDoTB(DoTBBlocksRegistry.GRAY_ROOF_TILES, Block.Properties.copy(Blocks.STONE_BRICKS)));
     public static final RegistryObject<Block> GRAY_ROOF_TILES_PLATE = DoTBBlocksRegistry.reg("gray_roof_tiles_plate", () -> new PlateBlock(Block.Properties.copy(Blocks.STONE_BRICKS)));
     public static final RegistryObject<Block> GRAY_ROOF_TILES_SLAB = DoTBBlocksRegistry.reg("gray_roof_tiles_slab", () -> new SlabBlockDoTB(Block.Properties.copy(Blocks.STONE_BRICKS)));
     public static final RegistryObject<Block> GRAY_ROOF_TILES_EDGE = DoTBBlocksRegistry.reg("gray_roof_tiles_edge", () -> new EdgeBlock(Block.Properties.copy(Blocks.STONE_BRICKS)));
     public static final RegistryObject<Block> GRAY_ROOF_TILES_WALL = DoTBBlocksRegistry.reg("gray_roof_tiles_wall", () -> new WallBlock(Block.Properties.copy(Blocks.STONE_BRICKS)));
-    public static final RegistryObject<Block> CHARRED_SPRUCE_ROOF_SUPPORT = DoTBBlocksRegistry.regWithItem("charred_spruce_roof_support", () -> new MixedRoofSupportBlock(DoTBBlocksRegistry.GRAY_ROOF_TILES_SLAB, Block.Properties.copy(Blocks.STONE_BRICKS).noOcclusion()), MixedRoofSupportBlock::getBlockItem, BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> STEPPING_STONES = DoTBBlocksRegistry.reg("stepping_stones", () -> new BlockDoTB(Block.Properties.copy(Blocks.SAND).mapColor(MapColor.STONE).strength(1.2F).sound(SoundType.GRAVEL)), BlockTags.MINEABLE_WITH_SHOVEL);
-    public static final RegistryObject<Block> STEPPING_STONES_SLAB = DoTBBlocksRegistry.reg("stepping_stones_slab", () -> new SlabBlockDoTB(Block.Properties.copy(Blocks.SAND).mapColor(MapColor.STONE).strength(1.2F).sound(SoundType.GRAVEL)), BlockTags.MINEABLE_WITH_SHOVEL);
-    public static final RegistryObject<Block> CURVED_RAKED_GRAVEL = DoTBBlocksRegistry.reg("curved_raked_gravel", () -> new HorizontalBlockDoTB(Block.Properties.copy(Blocks.SAND).mapColor(MapColor.STONE).strength(1.0F).sound(SoundType.GRAVEL)), BlockTags.MINEABLE_WITH_SHOVEL);
-    public static final RegistryObject<Block> STRAIGHT_RAKED_GRAVEL = DoTBBlocksRegistry.reg("straight_raked_gravel", () -> new HorizontalAxisBlockDoTB(Block.Properties.copy(Blocks.SAND).mapColor(MapColor.STONE).strength(1.0F).sound(SoundType.GRAVEL)), BlockTags.MINEABLE_WITH_SHOVEL);
+    public static final RegistryObject<Block> CHARRED_SPRUCE_ROOF_SUPPORT = DoTBBlocksRegistry.regWithItem("charred_spruce_roof_support", () -> new MixedRoofSupportBlock(DoTBBlocksRegistry.GRAY_ROOF_TILES_SLAB, Block.Properties.copy(Blocks.STONE_BRICKS).noOcclusion()), MixedRoofSupportBlock::getBlockItem);
+    public static final RegistryObject<Block> STEPPING_STONES = DoTBBlocksRegistry.reg("stepping_stones", () -> new BlockDoTB(Block.Properties.copy(Blocks.SAND).color(MaterialColor.STONE).strength(1.2F).sound(SoundType.GRAVEL)));
+    public static final RegistryObject<Block> STEPPING_STONES_SLAB = DoTBBlocksRegistry.reg("stepping_stones_slab", () -> new SlabBlockDoTB(Block.Properties.copy(Blocks.SAND).color(MaterialColor.STONE).strength(1.2F).sound(SoundType.GRAVEL)));
+    public static final RegistryObject<Block> CURVED_RAKED_GRAVEL = DoTBBlocksRegistry.reg("curved_raked_gravel", () -> new HorizontalBlockDoTB(Block.Properties.copy(Blocks.SAND).color(MaterialColor.STONE).strength(1.0F).sound(SoundType.GRAVEL)));
+    public static final RegistryObject<Block> STRAIGHT_RAKED_GRAVEL = DoTBBlocksRegistry.reg("straight_raked_gravel", () -> new HorizontalAxisBlockDoTB(Block.Properties.copy(Blocks.SAND).color(MaterialColor.STONE).strength(1.0F).sound(SoundType.GRAVEL)));
     public static final RegistryObject<Block> CAST_IRON_TEAPOT_GRAY = DoTBBlocksRegistry.reg("cast_iron_teapot_gray", () -> new CastIronTeapotBlock(Block.Properties.copy(Blocks.IRON_BLOCK).strength(1.0F).noOcclusion()));
     public static final RegistryObject<Block> CAST_IRON_TEAPOT_GREEN = DoTBBlocksRegistry.reg("cast_iron_teapot_green", () -> new CastIronTeapotBlock(Block.Properties.copy(Blocks.IRON_BLOCK).strength(1.0F).noOcclusion()));
     public static final RegistryObject<Block> CAST_IRON_TEAPOT_DECORATED = DoTBBlocksRegistry.reg("cast_iron_teapot_decorated", () -> new CastIronTeapotBlock(Block.Properties.copy(Blocks.IRON_BLOCK).strength(1.0F).noOcclusion()));
     public static final RegistryObject<Block> CAST_IRON_TEACUP_GRAY = DoTBBlocksRegistry.reg("cast_iron_teacup_gray", () -> new CastIronTeacupBlock(Block.Properties.copy(Blocks.IRON_BLOCK).strength(1.0F).noOcclusion()));
     public static final RegistryObject<Block> CAST_IRON_TEACUP_GREEN = DoTBBlocksRegistry.reg("cast_iron_teacup_green", () -> new CastIronTeacupBlock(Block.Properties.copy(Blocks.IRON_BLOCK).strength(1.0F).noOcclusion()));
     public static final RegistryObject<Block> CAST_IRON_TEACUP_DECORATED = DoTBBlocksRegistry.reg("cast_iron_teacup_decorated", () -> new CastIronTeacupBlock(Block.Properties.copy(Blocks.IRON_BLOCK).strength(1.0F).noOcclusion()));
-    public static final RegistryObject<Block> BAMBOO_DRYING_TRAY = DoTBBlocksRegistry.reg("bamboo_drying_tray", () -> new DryerBlock(Block.Properties.copy(Blocks.OAK_PLANKS).noOcclusion()), BlockTags.MINEABLE_WITH_AXE);
+    public static final RegistryObject<Block> BAMBOO_DRYING_TRAY = DoTBBlocksRegistry.reg("bamboo_drying_tray", () -> new DryerBlock(Block.Properties.copy(Blocks.OAK_PLANKS).noOcclusion()));
     public static final RegistryObject<Block> CAMELLIA = DoTBBlocksRegistry.regWithFlowerPotItem("camellia", () -> new GrowingBushBlock(PlantType.PLAINS, 3), "camellia_seeds", (block) -> new SoilSeedsItem(block, null));
     public static final RegistryObject<Block> MULBERRY = DoTBBlocksRegistry.regWithFlowerPotItem("mulberry", () -> new MulberryBlock(PlantType.PLAINS, 3, 2), (block) -> new SoilSeedsItem(block, DoTBFoods.MULBERRY));
     public static final RegistryObject<Block> IKEBANA_FLOWER_POT = DoTBBlocksRegistry.reg("ikebana_flower_pot", () -> new SidedFlowerPotBlock(null));
-    public static final RegistryObject<Block> SPRUCE_LOW_TABLE = DoTBBlocksRegistry.reg("spruce_low_table", () -> new SpruceLowTableBlock(Block.Properties.copy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_BLACK).strength(2.0F, 6.0F).noOcclusion().lightLevel(DoTBBlocksRegistry.litBlockEmission(14))), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> SPRUCE_LEGLESS_CHAIR = DoTBBlocksRegistry.reg("spruce_legless_chair", () -> new SpruceLeglessChairBlock(Block.Properties.copy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_BLACK).strength(2.0F, 6.0F).noOcclusion(), 3.0F), BlockTags.MINEABLE_WITH_AXE);
+    public static final RegistryObject<Block> SPRUCE_LOW_TABLE = DoTBBlocksRegistry.reg("spruce_low_table", () -> new SpruceLowTableBlock(Block.Properties.copy(Blocks.OAK_WOOD).color(MaterialColor.COLOR_BLACK).strength(2.0F, 6.0F).noOcclusion().lightLevel(DoTBBlocksRegistry.litBlockEmission(14))));
+    public static final RegistryObject<Block> SPRUCE_LEGLESS_CHAIR = DoTBBlocksRegistry.reg("spruce_legless_chair", () -> new SpruceLeglessChairBlock(Block.Properties.copy(Blocks.OAK_WOOD).color(MaterialColor.COLOR_BLACK).strength(2.0F, 6.0F).noOcclusion(), 3.0F));
     public static final RegistryObject<Block> WHITE_LITTLE_FLAG = DoTBBlocksRegistry.reg("white_little_flag", () -> new LittleFlagBlock(DyeColor.WHITE, Block.Properties.copy(Blocks.WHITE_WOOL)));
-    public static final RegistryObject<Block> PAPER_DOOR = DoTBBlocksRegistry.reg("paper_door", () -> new PaperDoorBlock(Block.Properties.copy(Blocks.WHITE_WOOL).strength(1.5F, 1.5F), BlockSetType.BAMBOO), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> PAPER_WALL = DoTBBlocksRegistry.reg("paper_wall", () -> new BottomPaneBlockDoTB(DyeColor.WHITE, Block.Properties.copy(Blocks.WHITE_WOOL).strength(1.5F, 1.5F)), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> PAPER_WALL_FLAT = DoTBBlocksRegistry.reg("paper_wall_flat", () -> new PillarPaneBlock(DyeColor.WHITE, Block.Properties.copy(Blocks.WHITE_WOOL).strength(1.5F, 1.5F)), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> PAPER_WALL_WINDOWS = DoTBBlocksRegistry.reg("paper_wall_window", () -> new PillarPaneBlock(DyeColor.WHITE, Block.Properties.copy(Blocks.WHITE_WOOL).strength(1.5F, 1.5F)), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> PAPER_WALL_FLOWERY = DoTBBlocksRegistry.reg("paper_wall_flowery", () -> new PillarPaneBlock(DyeColor.WHITE, Block.Properties.copy(Blocks.WHITE_WOOL).strength(1.5F, 1.5F)), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> PAPER_FOLDING_SCREEN = DoTBBlocksRegistry.reg("paper_folding_screen", () -> new FoldingScreenBlock(Block.Properties.copy(Blocks.WHITE_WOOL).strength(1.5F, 1.5F).noOcclusion()), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> RED_PAPER_LANTERN = DoTBBlocksRegistry.reg("red_paper_lantern", () -> new PaperLanternBlock(Block.Properties.copy(Blocks.RED_WOOL).noOcclusion().noCollission().lightLevel(state -> 12)), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> PAPER_LAMP = DoTBBlocksRegistry.reg("paper_lamp", () -> new PaperLampBlock(Block.Properties.copy(Blocks.WHITE_WOOL).noOcclusion().lightLevel(state -> 14)), BlockTags.MINEABLE_WITH_AXE);
+    public static final RegistryObject<Block> PAPER_DOOR = DoTBBlocksRegistry.reg("paper_door", () -> new PaperDoorBlock(Block.Properties.copy(Blocks.WHITE_WOOL).strength(1.5F, 1.5F)));
+    public static final RegistryObject<Block> PAPER_WALL = DoTBBlocksRegistry.reg("paper_wall", () -> new BottomPaneBlockDoTB(DyeColor.WHITE, Block.Properties.copy(Blocks.WHITE_WOOL).strength(1.5F, 1.5F)));
+    public static final RegistryObject<Block> PAPER_WALL_FLAT = DoTBBlocksRegistry.reg("paper_wall_flat", () -> new PillarPaneBlock(DyeColor.WHITE, Block.Properties.copy(Blocks.WHITE_WOOL).strength(1.5F, 1.5F)));
+    public static final RegistryObject<Block> PAPER_WALL_WINDOWS = DoTBBlocksRegistry.reg("paper_wall_window", () -> new PillarPaneBlock(DyeColor.WHITE, Block.Properties.copy(Blocks.WHITE_WOOL).strength(1.5F, 1.5F)));
+    public static final RegistryObject<Block> PAPER_WALL_FLOWERY = DoTBBlocksRegistry.reg("paper_wall_flowery", () -> new PillarPaneBlock(DyeColor.WHITE, Block.Properties.copy(Blocks.WHITE_WOOL).strength(1.5F, 1.5F)));
+    public static final RegistryObject<Block> PAPER_FOLDING_SCREEN = DoTBBlocksRegistry.reg("paper_folding_screen", () -> new FoldingScreenBlock(Block.Properties.copy(Blocks.WHITE_WOOL).strength(1.5F, 1.5F).noOcclusion()));
+    public static final RegistryObject<Block> RED_PAPER_LANTERN = DoTBBlocksRegistry.reg("red_paper_lantern", () -> new PaperLanternBlock(Block.Properties.copy(Blocks.RED_WOOL).noOcclusion().noCollission().lightLevel(state -> 12)));
+    public static final RegistryObject<Block> PAPER_LAMP = DoTBBlocksRegistry.reg("paper_lamp", () -> new PaperLampBlock(Block.Properties.copy(Blocks.WHITE_WOOL).noOcclusion().lightLevel(state -> 14)));
     public static final RegistryObject<Block> STONE_LANTERN = DoTBBlocksRegistry.reg("stone_lantern", () -> new StoneLanternBlock(Block.Properties.copy(Blocks.STONE_BRICKS).noOcclusion().lightLevel(state -> 15)));
-    public static final RegistryObject<Block> RICE = DoTBBlocksRegistry.regWithItem("rice", () -> new WaterDoubleCropsBlock(2), (block) -> new SoilSeedsItem(block, null), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> SMALL_TATAMI_MAT = DoTBBlocksRegistry.reg("small_tatami_mat", () -> new SmallTatamiMatBlock(Block.Properties.copy(Blocks.WHITE_CARPET)), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> SMALL_TATAMI_FLOOR = DoTBBlocksRegistry.regWithItem("small_tatami_floor", () -> new SmallTatamiFloorBlock(Block.Properties.copy(Blocks.WHITE_CARPET)), null, BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> TATAMI_MAT = DoTBBlocksRegistry.reg("tatami_mat", () -> new TatamiMatBlock(Block.Properties.copy(Blocks.WHITE_CARPET)), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> TATAMI_FLOOR = DoTBBlocksRegistry.regWithItem("tatami_floor", () -> new TatamiFloorBlock(Block.Properties.copy(Blocks.WHITE_CARPET)), null, BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> LIGHT_GRAY_FUTON = DoTBBlocksRegistry.reg("light_gray_futon", () -> new FutonBlock(DyeColor.LIGHT_GRAY, Block.Properties.copy(Blocks.LIGHT_GRAY_BED)), BlockTags.MINEABLE_WITH_AXE);
+    public static final RegistryObject<Block> RICE = DoTBBlocksRegistry.regWithItem("rice", () -> new WaterDoubleCropsBlock(2), (block) -> new SoilSeedsItem(block, null));
+    public static final RegistryObject<Block> SMALL_TATAMI_MAT = DoTBBlocksRegistry.reg("small_tatami_mat", () -> new SmallTatamiMatBlock(Block.Properties.copy(Blocks.WHITE_CARPET)));
+    public static final RegistryObject<Block> SMALL_TATAMI_FLOOR = DoTBBlocksRegistry.regWithItem("small_tatami_floor", () -> new SmallTatamiFloorBlock(Block.Properties.copy(Blocks.WHITE_CARPET)), null);
+    public static final RegistryObject<Block> TATAMI_MAT = DoTBBlocksRegistry.reg("tatami_mat", () -> new TatamiMatBlock(Block.Properties.copy(Blocks.WHITE_CARPET)));
+    public static final RegistryObject<Block> TATAMI_FLOOR = DoTBBlocksRegistry.regWithItem("tatami_floor", () -> new TatamiFloorBlock(Block.Properties.copy(Blocks.WHITE_CARPET)), null);
+    public static final RegistryObject<Block> LIGHT_GRAY_FUTON = DoTBBlocksRegistry.reg("light_gray_futon", () -> new FutonBlock(DyeColor.LIGHT_GRAY, Block.Properties.copy(Blocks.LIGHT_GRAY_BED)));
     public static final RegistryObject<Block> IRORI_FIREPLACE = DoTBBlocksRegistry.reg("irori_fireplace", () -> new IroriFireplaceBlock(Block.Properties.copy(Blocks.SPRUCE_PLANKS).noOcclusion().lightLevel(DoTBBlocksRegistry.litBlockEmission(15))));
     public static final RegistryObject<Block> SAKE_BOTTLE = DoTBBlocksRegistry.reg("sake_bottle", () -> new SakeBottleBlock(Block.Properties.copy(Blocks.FLOWER_POT)));
     public static final RegistryObject<Block> SAKE_CUP = DoTBBlocksRegistry.reg("sake_cup", () -> new SakeCupBlock(Block.Properties.copy(Blocks.FLOWER_POT)));
-    public static final RegistryObject<Block> STICK_BUNDLE = DoTBBlocksRegistry.reg("stick_bundle", () -> new StickBundleBlock(Block.Properties.copy(Blocks.OAK_WOOD).strength(2.0F, 3.0F).sound(SoundType.GRASS).noOcclusion()).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> MAPLE_RED_TRUNK = DoTBBlocksRegistry.regWithItem("maple_red_trunk", () -> new MapleTrunkBlock(Block.Properties.copy(Blocks.SPRUCE_LEAVES)), null, BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> MAPLE_RED_LEAVES = DoTBBlocksRegistry.regWithItem("maple_red_leaves", () -> new MapleLeavesBlock(Block.Properties.copy(Blocks.SPRUCE_LEAVES)), null, BlockTags.MINEABLE_WITH_AXE);
+    public static final RegistryObject<Block> STICK_BUNDLE = DoTBBlocksRegistry.reg("stick_bundle", () -> new StickBundleBlock(Block.Properties.copy(Blocks.OAK_WOOD).strength(2.0F, 3.0F).sound(SoundType.GRASS).noOcclusion()).setBurnable());
+    public static final RegistryObject<Block> MAPLE_RED_TRUNK = DoTBBlocksRegistry.regWithItem("maple_red_trunk", () -> new MapleTrunkBlock(Block.Properties.copy(Blocks.SPRUCE_LEAVES)), null);
+    public static final RegistryObject<Block> MAPLE_RED_LEAVES = DoTBBlocksRegistry.regWithItem("maple_red_leaves", () -> new MapleLeavesBlock(Block.Properties.copy(Blocks.SPRUCE_LEAVES)), null);
     public static final RegistryObject<Block> MAPLE_RED_SAPLING = DoTBBlocksRegistry.regWithFlowerPotItem("maple_red_sapling", () -> new MapleSaplingBlock(Block.Properties.copy(Blocks.SPRUCE_LEAVES)), (block) -> new PotAndBlockItem(block, new Item.Properties()));
-    public static final RegistryObject<Block> PAUSED_MAPLE_RED_SAPLING = DoTBBlocksRegistry.regWithItem("paused_maple_red_sapling", () -> new PausedMapleSaplingBlock(Block.Properties.copy(Blocks.SPRUCE_LEAVES)), null, BlockTags.MINEABLE_WITH_AXE);
+    public static final RegistryObject<Block> PAUSED_MAPLE_RED_SAPLING = DoTBBlocksRegistry.regWithItem("paused_maple_red_sapling", () -> new PausedMapleSaplingBlock(Block.Properties.copy(Blocks.SPRUCE_LEAVES)), null);
     // Persian
-    public static final RegistryObject<Block> PERSIAN_CARPET_RED = DoTBBlocksRegistry.reg("persian_carpet_red", () -> new CarpetBlockDoTB(Block.Properties.copy(Blocks.RED_WOOL)), BlockTags.SWORD_EFFICIENT);
-    public static final RegistryObject<Block> PERSIAN_CARPET_DELICATE_RED = DoTBBlocksRegistry.reg("persian_carpet_delicate_red", () -> new CarpetBlockDoTB(Block.Properties.copy(Blocks.RED_WOOL)), BlockTags.SWORD_EFFICIENT);
+    public static final RegistryObject<Block> PERSIAN_CARPET_RED = DoTBBlocksRegistry.reg("persian_carpet_red", () -> new CarpetBlockDoTB(Block.Properties.copy(Blocks.RED_WOOL)));
+    public static final RegistryObject<Block> PERSIAN_CARPET_DELICATE_RED = DoTBBlocksRegistry.reg("persian_carpet_delicate_red", () -> new CarpetBlockDoTB(Block.Properties.copy(Blocks.RED_WOOL)));
     public static final RegistryObject<Block> MORAQ_MOSAIC_TILES_DELICATE = DoTBBlocksRegistry.reg("moraq_mosaic_tiles_delicate", () -> new BlockDoTB(Block.Properties.copy(Blocks.BRICKS)));
     public static final RegistryObject<Block> MORAQ_MOSAIC_TILES_TRADITIONAL = DoTBBlocksRegistry.reg("moraq_mosaic_tiles_traditional", () -> new BlockDoTB(Block.Properties.copy(Blocks.BRICKS)));
     public static final RegistryObject<Block> MORAQ_MOSAIC_TILES_BORDER = DoTBBlocksRegistry.reg("moraq_mosaic_tiles_border", () -> new BlockDoTB(Block.Properties.copy(Blocks.BRICKS)));
@@ -325,7 +323,7 @@ public class DoTBBlocksRegistry {
     public static final RegistryObject<Block> GREEN_PLASTERED_STONE_FRIEZE = DoTBBlocksRegistry.reg("green_plastered_stone_frieze", () -> new PlateBlock(Block.Properties.copy(Blocks.STONE_BRICKS).noOcclusion()));
     public static final RegistryObject<Block> GREEN_SCULPTED_PLASTERED_STONE_FRIEZE = DoTBBlocksRegistry.reg("green_sculpted_plastered_stone_frieze", () -> new GreenSculptedPlasteredStoneFriezeBlock(Block.Properties.copy(Blocks.STONE_BRICKS)));
     public static final RegistryObject<Block> GREEN_SMALL_PLASTERED_STONE_FRIEZE = DoTBBlocksRegistry.reg("green_small_plastered_stone_frieze", () -> new EdgeBlock(Block.Properties.copy(Blocks.STONE_BRICKS)));
-    public static final RegistryObject<Block> WILD_MAIZE = DoTBBlocksRegistry.reg("wild_maize", () -> new WildMaizeBlock(Block.Properties.copy(Blocks.DANDELION)), BlockTags.SWORD_EFFICIENT);
+    public static final RegistryObject<Block> WILD_MAIZE = DoTBBlocksRegistry.reg("wild_maize", () -> new WildMaizeBlock(Block.Properties.copy(Blocks.DANDELION)));
     public static final RegistryObject<Block> MAIZE = DoTBBlocksRegistry.regWithFlowerPotItem("maize", () -> new DoubleCropsBlock(PlantType.CROP, 4), (block) -> new SoilSeedsItem(block, DoTBFoods.MAIZE));
     public static final RegistryObject<Block> RED_ORNAMENTED_PLASTERED_STONE = DoTBBlocksRegistry.reg("red_ornamented_plastered_stone", () -> new BlockDoTB(Block.Properties.copy(Blocks.STONE_BRICKS)));
     public static final RegistryObject<Block> PLASTERED_STONE_COLUMN = DoTBBlocksRegistry.reg("plastered_stone_column", () -> new PlasteredStoneColumnBlock(Block.Properties.copy(Blocks.STONE_BRICKS)));
@@ -361,11 +359,11 @@ public class DoTBBlocksRegistry {
     public static final RegistryObject<Block> MOSAIC_FLOOR = DoTBBlocksRegistry.reg("mosaic_floor", () -> new BlockDoTB(Block.Properties.copy(Blocks.SANDSTONE)));
     public static final RegistryObject<Block> MOSAIC_FLOOR_DELICATE = DoTBBlocksRegistry.reg("mosaic_floor_delicate", () -> new BlockDoTB(Block.Properties.copy(Blocks.SANDSTONE)));
     public static final RegistryObject<Block> MOSAIC_FLOOR_ROSETTE = DoTBBlocksRegistry.reg("mosaic_floor_rosette", () -> new BlockDoTB(Block.Properties.copy(Blocks.SANDSTONE)));
-    public static final RegistryObject<Block> BIRCH_FANCY_FENCE = DoTBBlocksRegistry.reg("birch_fancy_fence", () -> new BalusterBlock(Block.Properties.copy(Blocks.OAK_WOOD).strength(3.0F, 5.0F).noOcclusion()), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> BIRCH_FOOTSTOOL = DoTBBlocksRegistry.reg("birch_footstool", () -> new BirchFootstoolBlock(Block.Properties.copy(Blocks.BIRCH_PLANKS), 9.0F), BlockTags.MINEABLE_WITH_AXE);
-    public static final RegistryObject<Block> BIRCH_COUCH = DoTBBlocksRegistry.reg("birch_couch", () -> new BirchCouchBlock(Block.Properties.copy(Blocks.BIRCH_PLANKS), 13.0F), BlockTags.MINEABLE_WITH_AXE);
+    public static final RegistryObject<Block> BIRCH_FANCY_FENCE = DoTBBlocksRegistry.reg("birch_fancy_fence", () -> new BalusterBlock(Block.Properties.copy(Blocks.OAK_WOOD).strength(3.0F, 5.0F).noOcclusion()));
+    public static final RegistryObject<Block> BIRCH_FOOTSTOOL = DoTBBlocksRegistry.reg("birch_footstool", () -> new BirchFootstoolBlock(Block.Properties.copy(Blocks.BIRCH_PLANKS), 9.0F));
+    public static final RegistryObject<Block> BIRCH_COUCH = DoTBBlocksRegistry.reg("birch_couch", () -> new BirchCouchBlock(Block.Properties.copy(Blocks.BIRCH_PLANKS), 13.0F));
     public static final RegistryObject<Block> MARBLE_STATUE_MARS = DoTBBlocksRegistry.reg("marble_statue_mars", () -> new MarbleStatueBlock(Block.Properties.copy(Blocks.BRICKS).noOcclusion()));
-    public static final RegistryObject<Block> WILD_GRAPE = DoTBBlocksRegistry.reg("wild_grape", () -> new WildPlantBlock(Block.Properties.copy(Blocks.DANDELION)), BlockTags.SWORD_EFFICIENT);
+    public static final RegistryObject<Block> WILD_GRAPE = DoTBBlocksRegistry.reg("wild_grape", () -> new WildPlantBlock(Block.Properties.copy(Blocks.DANDELION)));
     public static final RegistryObject<Block> CYPRESS = DoTBBlocksRegistry.regWithFlowerPotItem("cypress", () -> new CypressBlock(Block.Properties.copy(Blocks.SPRUCE_LEAVES)).setBurnable(), (block) -> new PotAndBlockItem(block, new Item.Properties()));
     public static final RegistryObject<Block> BIG_FLOWER_POT = DoTBBlocksRegistry.reg("big_flower_pot", () -> new BigFlowerPotBlock(Block.Properties.copy(Blocks.CLAY)));
     public static final RegistryObject<Block> MARBLE_BIG_FLOWER_POT = DoTBBlocksRegistry.reg("marble_big_flower_pot", () -> new MarbleBigFlowerPotBlock(Block.Properties.copy(Blocks.STONE)));
@@ -375,14 +373,13 @@ public class DoTBBlocksRegistry {
     public static final RegistryObject<Block> MARBLE_COFFER = DoTBBlocksRegistry.reg("marble_coffer", () -> new BlockDoTB(Block.Properties.copy(Blocks.STONE)));
     public static final RegistryObject<Block> MARBLE_COFFER_SLAB = DoTBBlocksRegistry.reg("marble_coffer_slab", () -> new SlabBlockDoTB(Block.Properties.copy(Blocks.STONE)));
 
-    @SafeVarargs
-    public static <T extends Block> RegistryObject<Block> reg(String name, Supplier<T> block, TagKey<Block>... tags) {
-        return regWithItem(name, block, (blockObject) -> new BlockItem(blockObject, new Item.Properties()), tags);
-    }
 
-    @SafeVarargs
-    public static <T extends Block, U extends Item> RegistryObject<Block> regWithItem(String name, Supplier<T> block, @Nullable Function<T, U> item, TagKey<Block>... tags) {
-        return regWithItem(name, block, name, item, tags);
+    public static <T extends Block> RegistryObject<Block> reg(String name, Supplier<T> block) {
+        return regWithItem(name, block, (blockObject) -> new BlockItem(blockObject, new Item.Properties()));
+    }
+    
+    public static <T extends Block, U extends Item> RegistryObject<Block> regWithItem(String name, Supplier<T> block, @Nullable Function<T, U> item) {
+        return regWithItem(name, block, name, item);
     }
 
     /**
@@ -391,37 +388,15 @@ public class DoTBBlocksRegistry {
      * @param block Supplier of a block instance.
      * @param itemName ID of the BlockItem.
      * @param item Supplier function that uses the Block instance to return the BlockItem instance.
-     * @param tags BlockTags of the Block registered. If no tag is provided, the BlockTags.MINEABLE_WITH_PICKAXE will be associated by default.
      * @return The created RegistryObject that contains the instance of the Block.
      */
-    @SafeVarargs
     @SuppressWarnings("unchecked")
-    public static <T extends Block, U extends Item> RegistryObject<Block> regWithItem(String name, Supplier<T> block, String itemName, @Nullable Function<T, U> item, TagKey<Block>... tags) {
+    public static <T extends Block, U extends Item> RegistryObject<Block> regWithItem(String name, Supplier<T> block, String itemName, @Nullable Function<T, U> item) {
         RegistryObject<T> toReturn = DoTBBlocksRegistry.BLOCKS.register(name, block);
         if(item != null) {
             DoTBItemsRegistry.reg(itemName, () -> item.apply(toReturn.get()));
         }
-        RegistryObject<Block> regBlock = (RegistryObject<Block>) toReturn;
-        if(tags.length == 0){
-            addBlockTag(regBlock, BlockTags.MINEABLE_WITH_PICKAXE);
-        }else{
-            for (TagKey<Block> tag : tags) {
-                addBlockTag(regBlock, tag);
-            }
-        }
-        return regBlock;
-    }
-
-    /**
-     * Add a RegistryObject<Block> to the list associated to the given Tag. If the tag doesn't exist, create a new empty list, and put the block inside.
-     * @param block Block that needs the tag.
-     * @param tag BlockTags added.
-     */
-    private static void addBlockTag(RegistryObject<Block> block, TagKey<Block> tag){
-        if(!blockTagsMap.containsKey(tag)){
-            blockTagsMap.put(tag, new HashSet<>());
-        }
-        blockTagsMap.get(tag).add(block);
+        return (RegistryObject<Block>) toReturn;
     }
 
     public static <T extends Block, U extends Item & IHasFlowerPot> RegistryObject<Block> regWithFlowerPotItem(String name, Supplier<T> block, @Nullable Function<T, U> item) {
@@ -434,10 +409,7 @@ public class DoTBBlocksRegistry {
         if(item != null) {
             DoTBItemsRegistry.regWithFlowerPot(plantName, seedName, () -> item.apply(toReturn.get()));
         }
-        RegistryObject<Block> regBlock = (RegistryObject<Block>) toReturn;
-        // Flower can be broken with sword, and in the ItemRegistry, pot can be broken with Pickaxe.
-        addBlockTag(regBlock, BlockTags.SWORD_EFFICIENT);
-        return regBlock;
+        return (RegistryObject<Block>) toReturn;
     }
 
     public static void register(IEventBus eventBus) {

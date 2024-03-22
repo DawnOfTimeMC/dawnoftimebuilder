@@ -49,7 +49,7 @@ public class DoTBItemsRegistry {
             final FlowerPotBlockDoTB potBlock = new FlowerPotBlockDoTB(null);
             DoTBBlocksRegistry.POT_BLOCKS.put(potName, potBlock);
             return potBlock;
-        }, BlockTags.MINEABLE_WITH_PICKAXE);
+        });
 
         RegistryObject<T> toReturn = DoTBItemsRegistry.ITEMS.register(seedName, () -> {
             T item = itemSupplier.get();

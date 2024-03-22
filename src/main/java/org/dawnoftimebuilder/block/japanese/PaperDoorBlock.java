@@ -4,7 +4,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.DoorHingeSide;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -16,8 +15,8 @@ public class PaperDoorBlock extends DoorBlockDoTB {
     private static final VoxelShape[] VS_NORTH = DoTBUtils.GenerateHorizontalShapes(new VoxelShape[] { Block.box(0.0D, 0.0D, 6.99D, 16.0D, 16.0D, 8.01D) });
     private static final VoxelShape[] VS_NORTH_OPEN = DoTBUtils.GenerateHorizontalShapes(new VoxelShape[] { Block.box(-12.0D, 0.0D, 6.99D, 4.0D, 16.0D, 8.01) });
 
-    public PaperDoorBlock(Properties properties, BlockSetType blockSetType) {
-        super(properties, blockSetType);
+    public PaperDoorBlock(Properties properties) {
+        super(properties);
     }
 
     @Override
