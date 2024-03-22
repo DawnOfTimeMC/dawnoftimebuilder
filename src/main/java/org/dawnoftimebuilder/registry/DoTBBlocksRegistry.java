@@ -22,6 +22,8 @@ import org.dawnoftimebuilder.block.french.*;
 import org.dawnoftimebuilder.block.general.*;
 import org.dawnoftimebuilder.block.german.*;
 import org.dawnoftimebuilder.block.japanese.*;
+import org.dawnoftimebuilder.block.persian.MoraqMosaicColumnBlock;
+import org.dawnoftimebuilder.block.persian.SandstoneCrenelationBlock;
 import org.dawnoftimebuilder.block.precolumbian.*;
 import org.dawnoftimebuilder.block.roman.*;
 import org.dawnoftimebuilder.block.templates.*;
@@ -287,12 +289,14 @@ public class DoTBBlocksRegistry {
     public static final RegistryObject<Block> MORAQ_MOSAIC_TILES_TRADITIONAL = DoTBBlocksRegistry.reg("moraq_mosaic_tiles_traditional", () -> new BlockDoTB(Block.Properties.copy(Blocks.BRICKS)));
     public static final RegistryObject<Block> MORAQ_MOSAIC_TILES_BORDER = DoTBBlocksRegistry.reg("moraq_mosaic_tiles_border", () -> new BlockDoTB(Block.Properties.copy(Blocks.BRICKS)));
     public static final RegistryObject<Block> MORAQ_MOSAIC_RECESS = DoTBBlocksRegistry.reg("moraq_mosaic_recess", () -> new StairsBlockDoTB(DoTBBlocksRegistry.MORAQ_MOSAIC_TILES_DELICATE, Block.Properties.copy(Blocks.BRICKS)));
+    public static final RegistryObject<Block> MORAQ_MOSAIC_COLUMN = DoTBBlocksRegistry.reg("moraq_mosaic_column", () -> new MoraqMosaicColumnBlock(Block.Properties.copy(Blocks.BRICKS)));
     public static final RegistryObject<Block> SANDSTONE_BRICKS = DoTBBlocksRegistry.reg("sandstone_bricks", () -> new BlockDoTB(Block.Properties.copy(Blocks.CUT_SANDSTONE)));
     public static final RegistryObject<Block> SANDSTONE_BRICKS_STAIRS = DoTBBlocksRegistry.reg("sandstone_bricks_stairs", () -> new StairsBlockDoTB(DoTBBlocksRegistry.SANDSTONE_BRICKS, Block.Properties.copy(Blocks.CUT_SANDSTONE)));
     public static final RegistryObject<Block> SANDSTONE_BRICKS_PLATE = DoTBBlocksRegistry.reg("sandstone_bricks_plate", () -> new PlateBlock(Block.Properties.copy(Blocks.CUT_SANDSTONE)));
     public static final RegistryObject<Block> SANDSTONE_BRICKS_SLAB = DoTBBlocksRegistry.reg("sandstone_bricks_slab", () -> new SlabBlockDoTB(Block.Properties.copy(Blocks.CUT_SANDSTONE)));
     public static final RegistryObject<Block> SANDSTONE_BRICKS_EDGE = DoTBBlocksRegistry.reg("sandstone_bricks_edge", () -> new EdgeBlock(Block.Properties.copy(Blocks.CUT_SANDSTONE)));
     public static final RegistryObject<Block> SANDSTONE_BRICKS_WALL = DoTBBlocksRegistry.reg("sandstone_bricks_wall", () -> new WallBlock(Block.Properties.copy(Blocks.CUT_SANDSTONE)));
+    public static final RegistryObject<Block> SANDSTONE_CRENELATION = DoTBBlocksRegistry.reg("sandstone_crenelation", () -> new SandstoneCrenelationBlock(Block.Properties.copy(Blocks.CUT_SANDSTONE)));
     // Pre_columbian
     public static final RegistryObject<Block> COMMELINA = DoTBBlocksRegistry.regWithFlowerPotItem("commelina", () -> new SoilCropsBlock(PlantType.PLAINS), (block) -> new SoilSeedsItem(block, null));
     public static final RegistryObject<Block> PLASTERED_STONE = DoTBBlocksRegistry.reg("plastered_stone", () -> new BlockDoTB(Block.Properties.copy(Blocks.STONE_BRICKS)));

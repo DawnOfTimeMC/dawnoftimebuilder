@@ -1,0 +1,74 @@
+{
+	"textures": {
+		"0": "dawnoftimebuilder:block/sandstone_crenelation",
+		"particle": "dawnoftimebuilder:block/sandstone_crenelation"
+	},
+	"render_type": "minecraft:cutout",
+	"elements": [
+		{
+			"from": [0, 0, 8],
+			"to": [16, 2, 16],
+			"faces": {
+				"north": {"uv": [0, 11, 8, 12], "texture": "#0"},
+				"east": {"uv": [8, 15, 12, 16], "texture": "#0", "cullface": "east"},
+				"south": {"uv": [0, 11, 8, 12], "texture": "#0", "cullface": "south"},
+				"west": {"uv": [8, 15, 12, 16], "texture": "#0", "cullface": "west"},
+				"up": {"uv": [8, 16, 0, 12], "texture": "#0"},
+				"down": {"uv": [8, 12, 0, 16], "texture": "#0", "cullface": "down"}
+			}
+		},
+		{
+			"from": [4, 2, 8.01],
+			"to": [12, 12, 15.99],
+			"faces": {
+				"north": {"uv": [2, 6, 6, 11], "texture": "#0"},
+				"east": {"uv": [12, 11, 16, 16], "texture": "#0"},
+				"south": {"uv": [2, 6, 6, 11], "texture": "#0", "cullface": "south"},
+				"west": {"uv": [12, 11, 16, 16], "texture": "#0"}
+			}
+		},
+		{
+			"from": [5.24264, 9, 8],
+			"to": [10.89964, 14.657, 16],
+			"rotation": {"angle": -45, "axis": "z", "origin": [8.24264, 12, 12]},
+			"faces": {
+				"north": {"uv": [2.5, 2.5, 5.5, 5.5], "texture": "#0"},
+				"south": {"uv": [2.5, 2.5, 5.5, 5.5], "rotation": 270, "texture": "#0", "cullface": "south"},
+				"west": {"uv": [12.01, 8, 16, 11], "texture": "#0"},
+				"up": {"uv": [16, 11, 12.01, 8], "rotation": 90, "texture": "#0"}
+			}
+		}
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"rotation":  [ 75, 45, 0 ],
+			"translation":  [ 0, 2.5, 0 ],
+			"scale":  [ 0.375, 0.375, 0.375 ]
+		},
+		"thirdperson_lefthand": {
+			"rotation":  [ 75, 45, 0 ],
+			"translation":  [ 0, 2.5, 0 ],
+			"scale":  [ 0.375, 0.375, 0.375 ]
+		},
+		"firstperson_righthand": {
+			"rotation": [ 0, 90, 0 ],
+			"scale": [ 0.40, 0.40, 0.40 ]
+		},
+		"firstperson_lefthand": {
+			"rotation": [ 0, 90, 0 ],
+			"scale": [ 0.40, 0.40, 0.40 ]
+		},
+		"gui": {
+			"rotation":  [ 30, 225, 0 ],
+			"scale":  [ 0.625, 0.625, 0.625 ]
+		},
+		"ground": {
+			"translation":  [ 0, 3, 0 ],
+			"scale":  [ 0.3, 0.3, 0.3 ]
+		},
+		"fixed": {
+			"translation": [ 0, 0, -3],
+			"scale":[ 0.5, 0.5, 0.5 ]
+		}
+	}
+}

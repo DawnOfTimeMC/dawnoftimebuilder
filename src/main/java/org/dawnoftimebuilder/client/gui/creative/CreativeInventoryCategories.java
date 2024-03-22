@@ -379,10 +379,12 @@ public enum CreativeInventoryCategories {
             SANDSTONE_BRICKS_SLAB.get().asItem(),
             SANDSTONE_BRICKS_EDGE.get().asItem(),
             SANDSTONE_BRICKS_WALL.get().asItem(),
+            SANDSTONE_CRENELATION.get().asItem(),
             MORAQ_MOSAIC_TILES_DELICATE.get().asItem(),
             MORAQ_MOSAIC_TILES_TRADITIONAL.get().asItem(),
             MORAQ_MOSAIC_TILES_BORDER.get().asItem(),
             MORAQ_MOSAIC_RECESS.get().asItem(),
+            MORAQ_MOSAIC_COLUMN.get().asItem(),
             PERSIAN_CARPET_RED.get().asItem(),
             PERSIAN_CARPET_DELICATE_RED.get().asItem()
     ),

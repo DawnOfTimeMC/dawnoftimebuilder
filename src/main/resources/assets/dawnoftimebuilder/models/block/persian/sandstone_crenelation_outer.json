@@ -1,0 +1,21 @@
+{
+	"textures": {
+		"0": "dawnoftimebuilder:block/sandstone_crenelation",
+		"particle": "dawnoftimebuilder:block/sandstone_crenelation"
+	},
+	"render_type": "minecraft:cutout",
+	"elements": [
+		{
+			"from": [0, 0, 8],
+			"to": [8, 2, 16],
+			"faces": {
+				"north": {"uv": [8, 15, 12, 16], "texture": "#0"},
+				"east": {"uv": [8, 15, 12, 16], "texture": "#0"},
+				"south": {"uv": [8, 15, 12, 16], "texture": "#0", "cullface": "south"},
+				"west": {"uv": [8, 15, 12, 16], "texture": "#0", "cullface": "west"},
+				"up": {"uv": [12, 15, 8, 11], "texture": "#0"},
+				"down": {"uv": [12, 15, 8, 11], "rotation": 90, "texture": "#0", "cullface": "down"}
+			}
+		}
+	]
+}

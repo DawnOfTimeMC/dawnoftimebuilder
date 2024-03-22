@@ -35,22 +35,12 @@ public class PlateBlock extends WaterloggedBlock {
     public VoxelShape getShape(final BlockState state, final BlockGetter worldIn, final BlockPos pos, final CollisionContext context) {
         int index = (state.getValue(PlateBlock.FACING).get2DDataValue() + 2) % 4;
         index *= 3;
-        switch(state.getValue(PlateBlock.SHAPE)) {
-            default:
-            case OUTER_LEFT:
-                break;
-            case OUTER_RIGHT:
-                index += 3;
-                break;
-            case STRAIGHT:
-                index += 1;
-                break;
-            case INNER_LEFT:
-                index += 2;
-                break;
-            case INNER_RIGHT:
-                index += 5;
-                break;
+        switch (state.getValue(PlateBlock.SHAPE)) {
+            default -> {}
+            case OUTER_RIGHT -> index += 3;
+            case STRAIGHT -> index += 1;
+            case INNER_LEFT -> index += 2;
+            case INNER_RIGHT -> index += 5;
         }
         index %= 12;
         return PlateBlock.SHAPES[index];
@@ -141,34 +131,24 @@ public class PlateBlock extends WaterloggedBlock {
         switch(mirrorIn) {
             case LEFT_RIGHT:
                 if(direction.getAxis() == Direction.Axis.Z) {
-                    switch(stairsshape) {
-                        case INNER_LEFT:
-                            return state.rotate(Rotation.CLOCKWISE_180).setValue(PlateBlock.SHAPE, StairsShape.INNER_RIGHT);
-                        case INNER_RIGHT:
-                            return state.rotate(Rotation.CLOCKWISE_180).setValue(PlateBlock.SHAPE, StairsShape.INNER_LEFT);
-                        case OUTER_LEFT:
-                            return state.rotate(Rotation.CLOCKWISE_180).setValue(PlateBlock.SHAPE, StairsShape.OUTER_RIGHT);
-                        case OUTER_RIGHT:
-                            return state.rotate(Rotation.CLOCKWISE_180).setValue(PlateBlock.SHAPE, StairsShape.OUTER_LEFT);
-                        default:
-                            return state.rotate(Rotation.CLOCKWISE_180);
-                    }
+                    return switch (stairsshape) {
+                        case INNER_LEFT -> state.rotate(Rotation.CLOCKWISE_180).setValue(PlateBlock.SHAPE, StairsShape.INNER_RIGHT);
+                        case INNER_RIGHT -> state.rotate(Rotation.CLOCKWISE_180).setValue(PlateBlock.SHAPE, StairsShape.INNER_LEFT);
+                        case OUTER_LEFT -> state.rotate(Rotation.CLOCKWISE_180).setValue(PlateBlock.SHAPE, StairsShape.OUTER_RIGHT);
+                        case OUTER_RIGHT -> state.rotate(Rotation.CLOCKWISE_180).setValue(PlateBlock.SHAPE, StairsShape.OUTER_LEFT);
+                        default -> state.rotate(Rotation.CLOCKWISE_180);
+                    };
                 }
                 break;
             case FRONT_BACK:
                 if(direction.getAxis() == Direction.Axis.X) {
-                    switch(stairsshape) {
-                        case INNER_LEFT:
-                            return state.rotate(Rotation.CLOCKWISE_180).setValue(PlateBlock.SHAPE, StairsShape.INNER_LEFT);
-                        case INNER_RIGHT:
-                            return state.rotate(Rotation.CLOCKWISE_180).setValue(PlateBlock.SHAPE, StairsShape.INNER_RIGHT);
-                        case OUTER_LEFT:
-                            return state.rotate(Rotation.CLOCKWISE_180).setValue(PlateBlock.SHAPE, StairsShape.OUTER_RIGHT);
-                        case OUTER_RIGHT:
-                            return state.rotate(Rotation.CLOCKWISE_180).setValue(PlateBlock.SHAPE, StairsShape.OUTER_LEFT);
-                        case STRAIGHT:
-                            return state.rotate(Rotation.CLOCKWISE_180);
-                    }
+                    return switch (stairsshape) {
+                        case INNER_LEFT -> state.rotate(Rotation.CLOCKWISE_180).setValue(PlateBlock.SHAPE, StairsShape.INNER_LEFT);
+                        case INNER_RIGHT -> state.rotate(Rotation.CLOCKWISE_180).setValue(PlateBlock.SHAPE, StairsShape.INNER_RIGHT);
+                        case OUTER_LEFT -> state.rotate(Rotation.CLOCKWISE_180).setValue(PlateBlock.SHAPE, StairsShape.OUTER_RIGHT);
+                        case OUTER_RIGHT -> state.rotate(Rotation.CLOCKWISE_180).setValue(PlateBlock.SHAPE, StairsShape.OUTER_LEFT);
+                        case STRAIGHT -> state.rotate(Rotation.CLOCKWISE_180);
+                    };
                 }
             default:
                 break;

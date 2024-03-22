@@ -1,0 +1,29 @@
+{
+	"textures": {
+		"0": "dawnoftimebuilder:block/moraq_mosaic_column",
+		"particle": "dawnoftimebuilder:block/moraq_mosaic_column"
+	},
+	"elements": [
+		{
+			"from": [4, 0, 4],
+			"to": [12, 16, 12],
+			"faces": {
+				"north": {"uv": [4, 0, 8, 8], "texture": "#0"},
+				"east": {"uv": [4, 0, 8, 8], "texture": "#0"},
+				"south": {"uv": [4, 0, 8, 8], "texture": "#0"},
+				"west": {"uv": [4, 0, 8, 8], "texture": "#0"}
+			}
+		},
+		{
+			"from": [4, 0, 4],
+			"to": [12, 16, 12],
+			"rotation": {"angle": -45, "axis": "y", "origin": [8, 8, 8]},
+			"faces": {
+				"north": {"uv": [0, 0, 4, 8], "texture": "#0"},
+				"east": {"uv": [0, 0, 4, 8], "texture": "#0"},
+				"south": {"uv": [0, 0, 4, 8], "texture": "#0"},
+				"west": {"uv": [0, 0, 4, 8], "texture": "#0"}
+			}
+		}
+	]
+}

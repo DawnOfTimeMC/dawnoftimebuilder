@@ -5,6 +5,7 @@
 		"particle": "dawnoftimebuilder:block/lattice_stone_bricks_window",
 		"1_texture": "dawnoftimebuilder:block/lattice_stone_bricks_window"
 	},
+	"render_type": "minecraft:cutout",
 	"elements": [
 		{
 			"from": [-3, -0.01, 3.01],
