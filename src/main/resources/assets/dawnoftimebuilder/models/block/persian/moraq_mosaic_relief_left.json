@@ -1,0 +1,7 @@
+{
+	"parent": "dawnoftimebuilder:block/general/relief_left",
+	"textures": {
+		"side": "dawnoftimebuilder:block/moraq_mosaic_relief_side",
+		"face": "dawnoftimebuilder:block/moraq_mosaic_relief_face"
+	}
+}

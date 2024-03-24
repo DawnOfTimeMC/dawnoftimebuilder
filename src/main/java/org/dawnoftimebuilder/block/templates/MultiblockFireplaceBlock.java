@@ -39,81 +39,6 @@ import javax.annotation.Nullable;
 import java.util.List;
 
 public class MultiblockFireplaceBlock extends SidedPlaneConnectibleBlock {
-    public final static void updateChimneys(final boolean isActivatedIn, final BlockState blockStateIn, final BlockPos posIn, final Level worldIn) {
-        BlockPos pos = posIn;
-
-        BlockState blockState = null;
-        while((blockState = worldIn.getBlockState(pos)) != null && blockState.getBlock() instanceof MultiblockFireplaceBlock) {
-            pos = pos.above();
-        }
-        pos = pos.below();
-
-        // UP
-
-        MultiblockFireplaceBlock.updateChimneyConductsAtSide(isActivatedIn, pos.above(), worldIn);
-
-        // Sides
-
-        MultiblockFireplaceBlock.updateRightChimneys(isActivatedIn, blockStateIn, pos, worldIn);
-        MultiblockFireplaceBlock.updateLeftChimneys(isActivatedIn, blockStateIn, pos, worldIn);
-    }
-
-    public final static void updateLeftChimneys(final boolean isActivatedIn, final BlockState blockStateIn, final BlockPos posIn, final Level worldIn) {
-
-        MultiblockFireplaceBlock.updateChimneyConductsAtSide(isActivatedIn, posIn.above(), worldIn);
-
-        final Direction facing = blockStateIn.getValue(SidedColumnConnectibleBlock.FACING);
-        if(facing != null) {
-            final HorizontalConnection horizontalConnection = blockStateIn.getValue(SidedPlaneConnectibleBlock.HORIZONTAL_CONNECTION);
-            if(horizontalConnection != null && (HorizontalConnection.RIGHT.equals(horizontalConnection) || HorizontalConnection.BOTH.equals(horizontalConnection))) {
-
-                BlockPos rightBlockPos = null;
-                if(Direction.NORTH.equals(facing) || Direction.SOUTH.equals(facing)) {
-                    rightBlockPos = posIn.offset(-1, 0, 0);
-                } else if(Direction.EAST.equals(facing) || Direction.WEST.equals(facing)) {
-                    rightBlockPos = posIn.offset(0, 0, -1);
-                }
-
-                final BlockState leftBlockState = worldIn.getBlockState(rightBlockPos);
-
-                if(leftBlockState != null && leftBlockState.getBlock() instanceof MultiblockFireplaceBlock) {
-                    MultiblockFireplaceBlock.updateLeftChimneys(isActivatedIn, blockStateIn, rightBlockPos, worldIn);
-                }
-            }
-        }
-    }
-
-    public final static void updateRightChimneys(final boolean isActivatedIn, final BlockState blockStateIn, final BlockPos posIn, final Level worldIn) {
-        MultiblockFireplaceBlock.updateChimneyConductsAtSide(isActivatedIn, posIn.above(), worldIn);
-
-        final Direction facing = blockStateIn.getValue(SidedColumnConnectibleBlock.FACING);
-        if(facing != null) {
-            final HorizontalConnection horizontalConnection = blockStateIn.getValue(SidedPlaneConnectibleBlock.HORIZONTAL_CONNECTION);
-            if(horizontalConnection != null && (HorizontalConnection.LEFT.equals(horizontalConnection) || HorizontalConnection.BOTH.equals(horizontalConnection))) {
-
-                BlockPos rightBlockPos = null;
-                if(Direction.NORTH.equals(facing) || Direction.SOUTH.equals(facing)) {
-                    rightBlockPos = posIn.offset(1, 0, 0);
-                } else if(Direction.EAST.equals(facing) || Direction.WEST.equals(facing)) {
-                    rightBlockPos = posIn.offset(0, 0, 1);
-                }
-
-                final BlockState rightBlockState = worldIn.getBlockState(rightBlockPos);
-
-                if(rightBlockState != null && rightBlockState.getBlock() instanceof MultiblockFireplaceBlock) {
-                    MultiblockFireplaceBlock.updateRightChimneys(isActivatedIn, blockStateIn, rightBlockPos, worldIn);
-                }
-            }
-        }
-    }
-
-    public final static void updateChimneyConductsAtSide(final boolean isActivatedIn, final BlockPos blockPosIn, final Level worldIn) {
-        final BlockState blockState = worldIn.getBlockState(blockPosIn);
-
-        if(blockState != null && blockState.getBlock() instanceof BaseChimneyDoTB) {
-            BaseChimneyDoTB.updateAllChimneyConductParts(isActivatedIn, blockState, blockPosIn, worldIn);
-        }
-    }
 
     public static final BooleanProperty LIT = BlockStateProperties.LIT;
     private static final VoxelShape[] SHAPES = DoTBUtils.GenerateHorizontalShapes(MultiblockFireplaceBlock.makeShapes());
@@ -229,6 +154,70 @@ public class MultiblockFireplaceBlock extends SidedPlaneConnectibleBlock {
                     }
                 }
             }
+        }
+    }
+
+    public static void updateChimneys(final boolean isActivatedIn, final BlockState blockStateIn, final BlockPos posIn, final Level worldIn) {
+        BlockPos pos = posIn;
+        BlockState blockState = null;
+        while((blockState = worldIn.getBlockState(pos)) != null && blockState.getBlock() instanceof MultiblockFireplaceBlock) {
+            pos = pos.above();
+        }
+        pos = pos.below();
+        // UP
+        MultiblockFireplaceBlock.updateChimneyConductsAtSide(isActivatedIn, pos.above(), worldIn);
+        // Sides
+        MultiblockFireplaceBlock.updateRightChimneys(isActivatedIn, blockStateIn, pos, worldIn);
+        MultiblockFireplaceBlock.updateLeftChimneys(isActivatedIn, blockStateIn, pos, worldIn);
+    }
+
+    public static void updateLeftChimneys(final boolean isActivatedIn, final BlockState blockStateIn, final BlockPos posIn, final Level worldIn) {
+        MultiblockFireplaceBlock.updateChimneyConductsAtSide(isActivatedIn, posIn.above(), worldIn);
+        final Direction facing = blockStateIn.getValue(SidedColumnConnectibleBlock.FACING);
+        final HorizontalConnection horizontalConnection = blockStateIn.getValue(SidedPlaneConnectibleBlock.HORIZONTAL_CONNECTION);
+        if((HorizontalConnection.RIGHT.equals(horizontalConnection) || HorizontalConnection.BOTH.equals(horizontalConnection))) {
+
+            BlockPos rightBlockPos = null;
+            if(Direction.NORTH.equals(facing) || Direction.SOUTH.equals(facing)) {
+                rightBlockPos = posIn.offset(-1, 0, 0);
+            } else if(Direction.EAST.equals(facing) || Direction.WEST.equals(facing)) {
+                rightBlockPos = posIn.offset(0, 0, -1);
+            }
+
+            final BlockState leftBlockState = worldIn.getBlockState(rightBlockPos);
+
+            if(leftBlockState.getBlock() instanceof MultiblockFireplaceBlock) {
+                MultiblockFireplaceBlock.updateLeftChimneys(isActivatedIn, blockStateIn, rightBlockPos, worldIn);
+            }
+        }
+    }
+
+    public static void updateRightChimneys(final boolean isActivatedIn, final BlockState blockStateIn, final BlockPos posIn, final Level worldIn) {
+        MultiblockFireplaceBlock.updateChimneyConductsAtSide(isActivatedIn, posIn.above(), worldIn);
+
+        final Direction facing = blockStateIn.getValue(SidedColumnConnectibleBlock.FACING);
+        final HorizontalConnection horizontalConnection = blockStateIn.getValue(SidedPlaneConnectibleBlock.HORIZONTAL_CONNECTION);
+        if((HorizontalConnection.LEFT.equals(horizontalConnection) || HorizontalConnection.BOTH.equals(horizontalConnection))) {
+
+            BlockPos rightBlockPos = null;
+            if(Direction.NORTH.equals(facing) || Direction.SOUTH.equals(facing)) {
+                rightBlockPos = posIn.offset(1, 0, 0);
+            } else if(Direction.EAST.equals(facing) || Direction.WEST.equals(facing)) {
+                rightBlockPos = posIn.offset(0, 0, 1);
+            }
+
+            final BlockState rightBlockState = worldIn.getBlockState(rightBlockPos);
+
+            if(rightBlockState.getBlock() instanceof MultiblockFireplaceBlock) {
+                MultiblockFireplaceBlock.updateRightChimneys(isActivatedIn, blockStateIn, rightBlockPos, worldIn);
+            }
+        }
+    }
+
+    public static void updateChimneyConductsAtSide(final boolean isActivatedIn, final BlockPos blockPosIn, final Level worldIn) {
+        final BlockState blockState = worldIn.getBlockState(blockPosIn);
+        if(blockState.getBlock() instanceof BaseChimneyDoTB) {
+            BaseChimneyDoTB.updateAllChimneyConductParts(isActivatedIn, blockState, blockPosIn, worldIn);
         }
     }
 

@@ -81,13 +81,15 @@ public abstract class ColumnConnectibleBlock extends WaterloggedBlock {
             //We put a ColumnBlock on top of the column
             final BlockPos topPos = this.getHighestColumnPos(worldIn, pos).above();
             if(topPos.getY() <= DoTBUtils.HIGHEST_Y) {
-                if(!worldIn.isClientSide() && worldIn.getBlockState(topPos).isAir()) {
-                    worldIn.setBlock(topPos, state, 11);
-                    if(!player.isCreative()) {
-                        heldItemStack.shrink(1);
+                if(worldIn.getBlockState(topPos).isAir()) {
+                    if (!worldIn.isClientSide()) {
+                        worldIn.setBlock(topPos, state, 11);
+                        if (!player.isCreative()) {
+                            heldItemStack.shrink(1);
+                        }
                     }
+                    return InteractionResult.SUCCESS;
                 }
-                return InteractionResult.SUCCESS;
             }
         }
         return super.use(state, worldIn, pos, player, handIn, hit);

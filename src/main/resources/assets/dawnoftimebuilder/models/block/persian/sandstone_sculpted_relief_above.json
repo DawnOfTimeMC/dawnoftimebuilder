@@ -1,5 +1,5 @@
 {
-	"parent": "dawnoftimebuilder:block/general/relief_lone",
+	"parent": "dawnoftimebuilder:block/general/relief_above",
 	"textures": {
 		"side": "dawnoftimebuilder:block/sandstone_sculpted_relief_side",
 		"face": "dawnoftimebuilder:block/sandstone_sculpted_relief_face"

@@ -8,6 +8,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.properties.*;
 import org.dawnoftimebuilder.registry.DoTBBlocksRegistry;
 import org.dawnoftimebuilder.registry.DoTBItemsRegistry;
+import org.jetbrains.annotations.NotNull;
 
 public class DoTBBlockStateProperties {
     public static final BooleanProperty CUT = BooleanProperty.create("cut");
@@ -243,17 +244,12 @@ public class DoTBBlockStateProperties {
          * @return the adjacent SquareCorner vertically or horizontally.
          */
         public SquareCorners getAdjacentCorner(final boolean vertically) {
-            switch(this) {
-                default:
-                case TOP_LEFT:
-                    return vertically ? BOTTOM_LEFT : TOP_RIGHT;
-                case TOP_RIGHT:
-                    return vertically ? BOTTOM_RIGHT : TOP_LEFT;
-                case BOTTOM_RIGHT:
-                    return vertically ? TOP_RIGHT : BOTTOM_LEFT;
-                case BOTTOM_LEFT:
-                    return vertically ? TOP_LEFT : BOTTOM_RIGHT;
-            }
+            return switch (this) {
+                default -> vertically ? BOTTOM_LEFT : TOP_RIGHT;
+                case TOP_RIGHT -> vertically ? BOTTOM_RIGHT : TOP_LEFT;
+                case BOTTOM_RIGHT -> vertically ? TOP_RIGHT : BOTTOM_LEFT;
+                case BOTTOM_LEFT -> vertically ? TOP_LEFT : BOTTOM_RIGHT;
+            };
         }
     }
 
@@ -319,17 +315,12 @@ public class DoTBBlockStateProperties {
             if(isSneaking) {
                 return facing.getAxis() == Direction.Axis.X ? AXIS_X : AXIS_Z;
             }
-            switch(facing) {
-                default:
-                case NORTH:
-                    return NORTH;
-                case EAST:
-                    return EAST;
-                case SOUTH:
-                    return SOUTH;
-                case WEST:
-                    return WEST;
-            }
+            return switch (facing) {
+                default -> NORTH;
+                case EAST -> EAST;
+                case SOUTH -> SOUTH;
+                case WEST -> WEST;
+            };
         }
     }
 

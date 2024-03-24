@@ -1,0 +1,100 @@
+{
+    "multipart": [
+        {   "when": {"OR": [
+                { "facing": "north", "vertical_connection": "none", "horizontal_connection": "none" },
+                { "facing": "north", "vertical_connection": "under|above|both", "horizontal_connection": "left|right|both" }
+            ]},
+            "apply": { "model": "dawnoftimebuilder:block/persian/moraq_mosaic_relief_lone" }
+        },
+        {   "when": { "facing": "north", "vertical_connection": "none", "horizontal_connection": "left|right|both"},
+            "apply": { "model": "dawnoftimebuilder:block/persian/moraq_mosaic_relief_horizontal"}
+        },
+        {   "when": { "facing": "north", "vertical_connection": "under|above|both", "horizontal_connection": "none"},
+            "apply": { "model": "dawnoftimebuilder:block/persian/moraq_mosaic_relief_vertical"}
+        },
+        {   "when": { "facing": "north", "vertical_connection": "under|above|both", "horizontal_connection": "left|both"},
+            "apply": { "model": "dawnoftimebuilder:block/persian/moraq_mosaic_relief_left"}
+        },
+        {   "when": { "facing": "north", "vertical_connection": "under|above|both", "horizontal_connection": "right|both"},
+            "apply": { "model": "dawnoftimebuilder:block/persian/moraq_mosaic_relief_right"}
+        },
+        {   "when": { "facing": "north", "vertical_connection": "under|both", "horizontal_connection": "left|right|both"},
+            "apply": { "model": "dawnoftimebuilder:block/persian/moraq_mosaic_relief_under"}
+        },
+        {   "when": { "facing": "north", "vertical_connection": "above|both", "horizontal_connection": "left|right|both"},
+            "apply": { "model": "dawnoftimebuilder:block/persian/moraq_mosaic_relief_above"}
+        },
+        {   "when": {"OR": [
+            { "facing": "east", "vertical_connection": "none", "horizontal_connection": "none" },
+            { "facing": "east", "vertical_connection": "under|above|both", "horizontal_connection": "left|right|both" }
+        ]},
+            "apply": { "model": "dawnoftimebuilder:block/persian/moraq_mosaic_relief_lone", "y": 90 }
+        },
+        {   "when": { "facing": "east", "vertical_connection": "none", "horizontal_connection": "left|right|both"},
+            "apply": { "model": "dawnoftimebuilder:block/persian/moraq_mosaic_relief_horizontal", "y": 90}
+        },
+        {   "when": { "facing": "east", "vertical_connection": "under|above|both", "horizontal_connection": "none"},
+            "apply": { "model": "dawnoftimebuilder:block/persian/moraq_mosaic_relief_vertical", "y": 90}
+        },
+        {   "when": { "facing": "east", "vertical_connection": "under|above|both", "horizontal_connection": "left|both"},
+            "apply": { "model": "dawnoftimebuilder:block/persian/moraq_mosaic_relief_left", "y": 90}
+        },
+        {   "when": { "facing": "east", "vertical_connection": "under|above|both", "horizontal_connection": "right|both"},
+            "apply": { "model": "dawnoftimebuilder:block/persian/moraq_mosaic_relief_right", "y": 90}
+        },
+        {   "when": { "facing": "east", "vertical_connection": "under|both", "horizontal_connection": "left|right|both"},
+            "apply": { "model": "dawnoftimebuilder:block/persian/moraq_mosaic_relief_under", "y": 90}
+        },
+        {   "when": { "facing": "east", "vertical_connection": "above|both", "horizontal_connection": "left|right|both"},
+            "apply": { "model": "dawnoftimebuilder:block/persian/moraq_mosaic_relief_above", "y": 90}
+        },
+        {   "when": {"OR": [
+            { "facing": "south", "vertical_connection": "none", "horizontal_connection": "none" },
+            { "facing": "south", "vertical_connection": "under|above|both", "horizontal_connection": "left|right|both" }
+        ]},
+            "apply": { "model": "dawnoftimebuilder:block/persian/moraq_mosaic_relief_lone", "y": 180}
+        },
+        {   "when": { "facing": "south", "vertical_connection": "none", "horizontal_connection": "left|right|both"},
+            "apply": { "model": "dawnoftimebuilder:block/persian/moraq_mosaic_relief_horizontal", "y": 180}
+        },
+        {   "when": { "facing": "south", "vertical_connection": "under|above|both", "horizontal_connection": "none"},
+            "apply": { "model": "dawnoftimebuilder:block/persian/moraq_mosaic_relief_vertical", "y": 180}
+        },
+        {   "when": { "facing": "south", "vertical_connection": "under|above|both", "horizontal_connection": "left|both"},
+            "apply": { "model": "dawnoftimebuilder:block/persian/moraq_mosaic_relief_left", "y": 180}
+        },
+        {   "when": { "facing": "south", "vertical_connection": "under|above|both", "horizontal_connection": "right|both"},
+            "apply": { "model": "dawnoftimebuilder:block/persian/moraq_mosaic_relief_right", "y": 180}
+        },
+        {   "when": { "facing": "south", "vertical_connection": "under|both", "horizontal_connection": "left|right|both"},
+            "apply": { "model": "dawnoftimebuilder:block/persian/moraq_mosaic_relief_under", "y": 180}
+        },
+        {   "when": { "facing": "south", "vertical_connection": "above|both", "horizontal_connection": "left|right|both"},
+            "apply": { "model": "dawnoftimebuilder:block/persian/moraq_mosaic_relief_above", "y": 180}
+        },
+        {   "when": {"OR": [
+            { "facing": "west", "vertical_connection": "none", "horizontal_connection": "none" },
+            { "facing": "west", "vertical_connection": "under|above|both", "horizontal_connection": "left|right|both" }
+        ]},
+            "apply": { "model": "dawnoftimebuilder:block/persian/moraq_mosaic_relief_lone", "y": 270 }
+        },
+        {   "when": { "facing": "west", "vertical_connection": "none", "horizontal_connection": "left|right|both"},
+            "apply": { "model": "dawnoftimebuilder:block/persian/moraq_mosaic_relief_horizontal", "y": 270}
+        },
+        {   "when": { "facing": "west", "vertical_connection": "under|above|both", "horizontal_connection": "none"},
+            "apply": { "model": "dawnoftimebuilder:block/persian/moraq_mosaic_relief_vertical", "y": 270}
+        },
+        {   "when": { "facing": "west", "vertical_connection": "under|above|both", "horizontal_connection": "left|both"},
+            "apply": { "model": "dawnoftimebuilder:block/persian/moraq_mosaic_relief_left", "y": 270}
+        },
+        {   "when": { "facing": "west", "vertical_connection": "under|above|both", "horizontal_connection": "right|both"},
+            "apply": { "model": "dawnoftimebuilder:block/persian/moraq_mosaic_relief_right", "y": 270}
+        },
+        {   "when": { "facing": "west", "vertical_connection": "under|both", "horizontal_connection": "left|right|both"},
+            "apply": { "model": "dawnoftimebuilder:block/persian/moraq_mosaic_relief_under", "y": 270}
+        },
+        {   "when": { "facing": "west", "vertical_connection": "above|both", "horizontal_connection": "left|right|both"},
+            "apply": { "model": "dawnoftimebuilder:block/persian/moraq_mosaic_relief_above", "y": 270}
+        }
+    ]
+}

@@ -134,7 +134,7 @@ public class FireplaceBlock extends WaterloggedBlock {
 
     @Override
     public void neighborChanged(BlockState state, final Level worldIn, final BlockPos pos, final Block blockIn, final BlockPos fromPos, final boolean isMoving) {
-        super.neighborChanged(state, worldIn, pos, blockIn, fromPos, isMoving);
+        //TODO Debug : it seems the block is not updated when an adjacent fireplace is lit.
         if(pos.getY() == fromPos.getY()) {
             final Direction.Axis axis = state.getValue(FireplaceBlock.HORIZONTAL_AXIS);
             if(axis == Direction.Axis.X) {
@@ -159,6 +159,7 @@ public class FireplaceBlock extends WaterloggedBlock {
             }
             worldIn.setBlock(pos, state, 10);
         }
+        super.neighborChanged(state, worldIn, pos, blockIn, fromPos, isMoving);
     }
 
     private DoTBBlockStateProperties.HorizontalConnection getHorizontalShape(final Level worldIn, final BlockPos pos, final Direction.Axis axis) {

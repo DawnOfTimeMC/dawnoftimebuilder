@@ -138,14 +138,11 @@ public class BeamBlock extends WaterloggedBlock implements IBlockPillar, IBlockC
             return false;
         if(itemstack.getItem() == this.asItem()) {
             if(useContext.replacingClickedOnBlock()) {
-                switch(useContext.getClickedFace().getAxis()) {
-                    case X:
-                        return !state.getValue(AXIS_X);
-                    case Y:
-                        return !state.getValue(AXIS_Y);
-                    case Z:
-                        return !state.getValue(AXIS_Z);
-                }
+                return switch (useContext.getClickedFace().getAxis()) {
+                    case X -> !state.getValue(AXIS_X);
+                    case Y -> !state.getValue(AXIS_Y);
+                    case Z -> !state.getValue(AXIS_Z);
+                };
             }
         }
         return false;
