@@ -384,6 +384,8 @@ public enum CreativeInventoryCategories {
             MORAQ_MOSAIC_TILES_DELICATE.get().asItem(),
             MORAQ_MOSAIC_TILES_TRADITIONAL.get().asItem(),
             MORAQ_MOSAIC_TILES_BORDER.get().asItem(),
+            MORAQ_MOSAIC_PATTERN.get().asItem(),
+            MORAQ_MOSAIC_GEOMETRIC.get().asItem(),
             MORAQ_MOSAIC_RECESS.get().asItem(),
             MORAQ_MOSAIC_RELIEF.get().asItem(),
             MORAQ_MOSAIC_COLUMN.get().asItem(),

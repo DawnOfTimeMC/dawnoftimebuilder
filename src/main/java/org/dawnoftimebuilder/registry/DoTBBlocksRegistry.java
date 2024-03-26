@@ -290,6 +290,8 @@ public class DoTBBlocksRegistry {
     public static final RegistryObject<Block> MORAQ_MOSAIC_TILES_BORDER = DoTBBlocksRegistry.reg("moraq_mosaic_tiles_border", () -> new BlockDoTB(Block.Properties.copy(Blocks.BRICKS)));
     public static final RegistryObject<Block> MORAQ_MOSAIC_RECESS = DoTBBlocksRegistry.reg("moraq_mosaic_recess", () -> new StairsBlockDoTB(DoTBBlocksRegistry.MORAQ_MOSAIC_TILES_DELICATE, Block.Properties.copy(Blocks.BRICKS)));
     public static final RegistryObject<Block> MORAQ_MOSAIC_RELIEF = DoTBBlocksRegistry.reg("moraq_mosaic_relief", () -> new ReliefBlock(Block.Properties.copy(Blocks.BRICKS)));
+    public static final RegistryObject<Block> MORAQ_MOSAIC_GEOMETRIC = DoTBBlocksRegistry.reg("moraq_mosaic_geometric", () -> new BlockDoTB(Block.Properties.copy(Blocks.BRICKS)));
+    public static final RegistryObject<Block> MORAQ_MOSAIC_PATTERN = DoTBBlocksRegistry.reg("moraq_mosaic_pattern", () -> new BlockDoTB(Block.Properties.copy(Blocks.BRICKS)));
     public static final RegistryObject<Block> MORAQ_MOSAIC_COLUMN = DoTBBlocksRegistry.reg("moraq_mosaic_column", () -> new MoraqMosaicColumnBlock(Block.Properties.copy(Blocks.BRICKS)));
     public static final RegistryObject<Block> SANDSTONE_BRICKS = DoTBBlocksRegistry.reg("sandstone_bricks", () -> new BlockDoTB(Block.Properties.copy(Blocks.CUT_SANDSTONE)));
     public static final RegistryObject<Block> SANDSTONE_BRICKS_STAIRS = DoTBBlocksRegistry.reg("sandstone_bricks_stairs", () -> new StairsBlockDoTB(DoTBBlocksRegistry.SANDSTONE_BRICKS, Block.Properties.copy(Blocks.CUT_SANDSTONE)));
