@@ -106,7 +106,7 @@ public class DryerBlock extends WaterloggedBlock implements EntityBlock {
         if(facing == Direction.DOWN && !this.canSurvive(stateIn, worldIn, currentPos)) {
             return Blocks.AIR.defaultBlockState();
         }
-        if(facing == Direction.UP && facingState.getBlock() == this) {
+        if(facing == Direction.UP) {
             return stateIn.setValue(DryerBlock.SIZE, stateIn.getValue(DryerBlock.SIZE) != 0 && facingState.getBlock() == this ? 2 : 1);
         }
         return stateIn;
