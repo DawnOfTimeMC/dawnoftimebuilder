@@ -171,6 +171,7 @@ public class DryerBlockEntity extends BlockEntity {
         this.remainingTicks[index] = 0;
         if (this.getLevel() != null) {
             final BlockState state = this.getLevel().getBlockState(pos);
+            this.setChanged();
             this.getLevel().sendBlockUpdated(this.worldPosition, state, state, Block.UPDATE_CLIENTS);
         }
     }
@@ -190,6 +191,7 @@ public class DryerBlockEntity extends BlockEntity {
         if (!itemHandler.getItem(1).isEmpty()) {
             tag.put("slot_1", itemHandler.getItem(1).save(new CompoundTag()));
         }
+        tag.putBoolean("isInOperation", this.isInOperation);
         return tag;
     }
 
