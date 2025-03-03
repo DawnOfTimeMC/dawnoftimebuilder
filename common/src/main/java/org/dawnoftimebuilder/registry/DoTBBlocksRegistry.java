@@ -437,7 +437,7 @@ public abstract class DoTBBlocksRegistry {
         MORAQ_MOSAIC_RECESS = register("moraq_mosaic_recess", () -> new StairsBlockAA(this.MORAQ_MOSAIC_DELICATE, Block.Properties.copy(Blocks.BRICKS)));
         SANDSTONE_BRICKS_STAIRS = register("sandstone_bricks_stairs", () -> new StairsBlockAA(this.SANDSTONE_BRICKS, Block.Properties.copy(Blocks.CUT_SANDSTONE)));
         SANDSTONE_BRICKS_TURQUOISE_PATTERN_STAIRS = register("sandstone_bricks_turquoise_pattern_stairs", () -> new StairsBlockAA(this.SANDSTONE_BRICKS_TURQUOISE_PATTERN, Block.Properties.copy(Blocks.CUT_SANDSTONE)));
-        CYPRESS = registerWithFlowerPotItem("cypress", () -> new CypressBlock(Block.Properties.copy(Blocks.SPRUCE_LEAVES)).setBurnable(), (block) -> new PotAndBlockItem(block, new Item.Properties()));
+        CYPRESS = registerWithFlowerPotItem("cypress", () -> new CypressBlock(Block.Properties.copy(Blocks.SPRUCE_LEAVES).randomTicks()).setBurnable(), (block) -> new PotAndBlockItem(block, new Item.Properties()));
         MAIZE = registerWithFlowerPotItem("maize", () -> new DoubleCropsBlock(SoilCropsBlock.PlantType.CROP, 4), (block) -> new SoilSeedsItem(block, Foods.MAIZE));
         COMMELINA = registerWithFlowerPotItem("commelina", () -> new SoilCropsBlock(SoilCropsBlock.PlantType.PLAINS), (block) -> new SoilSeedsItem(block, null));
         MAPLE_RED_SAPLING = registerWithFlowerPotItem("maple_red_sapling", () -> new MapleSaplingBlock(Block.Properties.copy(Blocks.SPRUCE_LEAVES)), (block) -> new PotAndBlockItem(block, new Item.Properties()));

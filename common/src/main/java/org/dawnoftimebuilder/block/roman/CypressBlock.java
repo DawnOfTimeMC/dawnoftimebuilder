@@ -4,6 +4,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
@@ -50,12 +51,12 @@ public class CypressBlock extends BlockAA implements IBlockGeneration {
     }
 
     @Override
-    public boolean canSurvive(final BlockState state, final LevelReader worldIn, final BlockPos pos) {
+    public boolean canSurvive(final @NotNull BlockState state, final @NotNull LevelReader worldIn, final BlockPos pos) {
         return Block.canSupportCenter(worldIn, pos.below(), Direction.UP) || worldIn.getBlockState(pos.below()).getBlock() == this;
     }
 
     @Override
-    public InteractionResult use(final BlockState state, final Level worldIn, final BlockPos pos, final Player player, final InteractionHand handIn, final BlockHitResult hit) {
+    public @NotNull InteractionResult use(final @NotNull BlockState state, final @NotNull Level worldIn, final @NotNull BlockPos pos, final Player player, final InteractionHand handIn, final BlockHitResult hit) {
         final ItemStack heldItemStack = player.getItemInHand(handIn);
         if (player.isCrouching()) {
             //We remove the highest CypressBlock
@@ -132,7 +133,6 @@ public class CypressBlock extends BlockAA implements IBlockGeneration {
     }
 
     @Override
-
     public void animateTick(final BlockState stateIn, final Level worldIn, final BlockPos pos, final RandomSource rand) {
         if (worldIn.isRainingAt(pos.above()) && rand.nextInt(15) == 1) {
             final BlockPos posDown = pos.below();
@@ -147,8 +147,21 @@ public class CypressBlock extends BlockAA implements IBlockGeneration {
     }
 
     @Override
-    public void appendHoverText(final ItemStack stack, @Nullable final BlockGetter worldIn,
-                                final List<Component> tooltip, final TooltipFlag flagIn) {
+    public void randomTick(@NotNull BlockState state, @NotNull ServerLevel level, @NotNull BlockPos pos, @NotNull RandomSource source) {
+        if (state.getValue(SIZE) == 1) {
+            BlockPos abovePos = pos.above();
+            if (level.getBlockState(pos.below(5)).getBlock() != this) {
+                if (level.isEmptyBlock(abovePos)) {
+                    if (source.nextInt(16) == 0) {
+                        level.setBlock(abovePos, this.defaultBlockState(), 2);
+                    }
+                }
+            }
+        }
+    }
+
+    @Override
+    public void appendHoverText(final ItemStack stack, @Nullable final BlockGetter worldIn, final List<Component> tooltip, final TooltipFlag flagIn) {
         super.appendHoverText(stack, worldIn, tooltip, flagIn);
         Utils.addTooltip(tooltip, Utils.TOOLTIP_COLUMN);
     }
