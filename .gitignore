@@ -5,15 +5,12 @@ bin
 .metadata
 .classpath
 .project
-node_modules
-package-lock.json
 
 # idea
 out
 *.ipr
 *.iws
 *.iml
-.idea
 .idea/*
 !.idea/scopes
 
@@ -24,3 +21,4 @@ build
 # other
 eclipse
 run
+runs
