@@ -4,6 +4,7 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -29,20 +30,20 @@ public class DryerRecipeSerializer implements RecipeSerializer<DryerRecipe> {
     }
 
     public @NotNull DryerRecipe fromNetwork(RegistryFriendlyByteBuf buffer) {
-        String group = buffer.readUtf(32767);
+        String group = ByteBufCodecs.STRING_UTF8.decode(buffer);
         Ingredient ingredient = Ingredient.CONTENTS_STREAM_CODEC.decode(buffer);
         ItemStack itemStackResult = ItemStack.STREAM_CODEC.decode(buffer);
-        float experience = buffer.readFloat();
-        int dryingTime = buffer.readVarInt();
+        float experience = ByteBufCodecs.FLOAT.decode(buffer);
+        int dryingTime = ByteBufCodecs.VAR_INT.decode(buffer);
         return factory.create(group, ingredient, itemStackResult, experience, dryingTime);
     }
 
     public void toNetwork(RegistryFriendlyByteBuf buffer, DryerRecipe recipe) {
-        buffer.writeUtf(recipe.group);
+        ByteBufCodecs.STRING_UTF8.encode(buffer, recipe.group);
         Ingredient.CONTENTS_STREAM_CODEC.encode(buffer, recipe.ingredient);
         ItemStack.STREAM_CODEC.encode(buffer, recipe.result);
-        buffer.writeFloat(recipe.experience);
-        buffer.writeVarInt(recipe.dryingTime);
+        ByteBufCodecs.FLOAT.encode(buffer, recipe.experience);
+        ByteBufCodecs.VAR_INT.encode(buffer, recipe.dryingTime);
     }
 
     @Override
