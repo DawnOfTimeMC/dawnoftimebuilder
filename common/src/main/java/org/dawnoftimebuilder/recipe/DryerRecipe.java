@@ -1,9 +1,7 @@
 package org.dawnoftimebuilder.recipe;
 
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
-import net.minecraft.core.RegistryAccess;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
@@ -12,18 +10,15 @@ import org.dawnoftimebuilder.registry.DoTBRecipeSerializersRegistry;
 import org.dawnoftimebuilder.registry.DoTBRecipeTypesRegistry;
 import org.jetbrains.annotations.NotNull;
 
-import javax.annotation.Nonnull;
 
-public class DryerRecipe implements Recipe<SimpleContainer> {
-    private final ResourceLocation id;
-    final String group;
-    final Ingredient ingredient;
-    final ItemStack result;
-    final float experience;
-    final int dryingTime;
+public class DryerRecipe implements Recipe<SingleRecipeInput> {
+    protected final String group;
+    protected final Ingredient ingredient;
+    protected final ItemStack result;
+    protected final float experience;
+    protected final int dryingTime;
 
-    public DryerRecipe(ResourceLocation resourceLocation, String group, Ingredient ingredient, ItemStack result, float experience, int dryingTime) {
-        this.id = resourceLocation;
+    public DryerRecipe(String group, Ingredient ingredient, ItemStack result, float experience, int dryingTime) {
         this.group = group;
         this.ingredient = ingredient;
         this.result = result;
@@ -41,18 +36,18 @@ public class DryerRecipe implements Recipe<SimpleContainer> {
     }
 
     @Override
-    public boolean matches(SimpleContainer inv, @NotNull Level worldIn) {
-        return this.ingredient.test(inv.getItem(0)) && inv.getItem(0).getCount() >= this.ingredient.getItems()[0].getCount();
+    public boolean matches(@NotNull SingleRecipeInput input, @NotNull Level level) {
+        return this.ingredient.test(input.getItem(0)) && input.getItem(0).getCount() >= this.ingredient.getItems()[0].getCount();
     }
 
     @Override
-    public @NotNull ItemStack getResultItem(@NotNull RegistryAccess pRegistryAccess) {
+    public @NotNull ItemStack assemble(@NotNull SingleRecipeInput input, HolderLookup.@NotNull Provider registries) {
+        return result.copy();
+    }
+
+    @Override
+    public @NotNull ItemStack getResultItem(HolderLookup.@NotNull Provider registries) {
         return this.result;
-    }
-
-    @Override
-    public @NotNull ItemStack assemble(@NotNull SimpleContainer pContainer, @NotNull RegistryAccess pRegistryAccess) {
-        return this.result.copy();
     }
 
     @Override
@@ -60,11 +55,11 @@ public class DryerRecipe implements Recipe<SimpleContainer> {
         return true;
     }
 
-    @Override
-    @Nonnull
-    public ResourceLocation getId() {
-        return this.id;
-    }
+//    @Override
+//    @Nonnull
+//    public ResourceLocation getId() {
+//        return this.id;
+//    }
 
     @Override
     public @NotNull RecipeSerializer<?> getSerializer() {
@@ -72,13 +67,13 @@ public class DryerRecipe implements Recipe<SimpleContainer> {
     }
 
     @Override
-    @Nonnull
+    @NotNull
     public RecipeType<?> getType() {
         return DoTBRecipeTypesRegistry.INSTANCE.DRYING.get();
     }
 
     @Override
-    @Nonnull
+    @NotNull
     public NonNullList<Ingredient> getIngredients() {
         NonNullList<Ingredient> list = NonNullList.create();
         list.add(this.ingredient);

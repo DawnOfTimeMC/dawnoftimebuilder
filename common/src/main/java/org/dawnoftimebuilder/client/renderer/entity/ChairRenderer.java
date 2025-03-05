@@ -12,7 +12,7 @@ public class ChairRenderer extends EntityRenderer<ChairEntity> {
     }
 
     @Override
-    public ResourceLocation getTextureLocation(@NotNull ChairEntity p_114482_) {
+    public @NotNull ResourceLocation getTextureLocation(@NotNull ChairEntity p_114482_) {
         return null;
     }
 }

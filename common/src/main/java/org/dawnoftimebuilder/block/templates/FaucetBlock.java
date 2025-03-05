@@ -2,7 +2,6 @@ package org.dawnoftimebuilder.block.templates;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -17,6 +16,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import org.dawnoftimebuilder.block.general.WaterSourceTrickleBlock;
 import org.dawnoftimebuilder.block.general.WaterTrickleBlock;
 import org.dawnoftimebuilder.util.BlockStatePropertiesAA;
+import org.jetbrains.annotations.NotNull;
 
 public class FaucetBlock extends WaterSourceTrickleBlock {
     public FaucetBlock(final Properties propertiesIn) {
@@ -57,7 +57,7 @@ public class FaucetBlock extends WaterSourceTrickleBlock {
     }
 
     @Override
-    public InteractionResult use(BlockState blockStateIn, final Level worldIn, final BlockPos blockPosIn, final Player playerEntityIn, final InteractionHand handIn, final BlockHitResult blockRaytraceResultIn) {
+    public @NotNull InteractionResult useWithoutItem(BlockState blockStateIn, final Level worldIn, final BlockPos blockPosIn, final Player playerEntityIn, final BlockHitResult blockRaytraceResultIn) {
         final ItemStack mainHandItemStack = playerEntityIn.getMainHandItem();
         if(!mainHandItemStack.isEmpty() && mainHandItemStack.getItem() == this.asItem()) {
             return InteractionResult.PASS;

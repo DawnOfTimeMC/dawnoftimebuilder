@@ -1,17 +1,14 @@
 package org.dawnoftimebuilder.block.japanese;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.FlintAndSteelItem;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.phys.HitResult;
 import org.dawnoftimebuilder.block.templates.BushBlockDoT;
 import org.dawnoftimebuilder.registry.DoTBBlocksRegistry;
 
@@ -29,7 +26,7 @@ public class PausedMapleSaplingBlock extends BushBlockDoT {
 //    }
 
     @Override
-    public InteractionResult use(final BlockState p_225533_1_In, final Level p_225533_2_In, final BlockPos p_225533_3_In, final Player p_225533_4_In, final InteractionHand p_225533_5_In, final BlockHitResult p_225533_6_In) {
+    public InteractionResult useWithoutItem(final BlockState p_225533_1_In, final Level p_225533_2_In, final BlockPos p_225533_3_In, final Player p_225533_4_In, final BlockHitResult p_225533_6_In) {
         if(p_225533_4_In.getMainHandItem().getItem() instanceof FlintAndSteelItem) {
             p_225533_2_In.setBlock(p_225533_3_In, DoTBBlocksRegistry.INSTANCE.MAPLE_RED_SAPLING.get().defaultBlockState(), 35);
             p_225533_2_In.levelEvent(p_225533_4_In, 2001, p_225533_3_In, Block.getId(p_225533_1_In));

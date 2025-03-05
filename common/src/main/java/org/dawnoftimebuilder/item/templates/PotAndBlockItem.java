@@ -27,7 +27,7 @@ public class PotAndBlockItem extends BlockItem implements IHasFlowerPot {
         if (!world.isClientSide() && this.getPotBlock() != null) {
             BlockPos pos = context.getClickedPos();
             BlockState state = world.getBlockState(pos);
-            if (state.getBlock() instanceof FlowerPotBlock pot && ((FlowerPotBlock) pot.defaultBlockState().getBlock()).getContent() == Blocks.AIR) {
+            if (state.getBlock() instanceof FlowerPotBlock pot && ((FlowerPotBlock) pot.defaultBlockState().getBlock()).getPotted() == Blocks.AIR) {
                 Player player = context.getPlayer();
                 if (player == null || !player.getAbilities().instabuild) {
                     stack.shrink(1);

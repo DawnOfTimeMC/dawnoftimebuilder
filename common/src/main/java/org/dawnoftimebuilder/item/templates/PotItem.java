@@ -27,7 +27,7 @@ public class PotItem extends ItemDoTB implements IHasFlowerPot {
             BlockPos pos = context.getClickedPos();
             BlockState state = world.getBlockState(pos);
             if (state.getBlock() instanceof FlowerPotBlock pot) {
-                if (((FlowerPotBlock) pot.defaultBlockState().getBlock()).getContent() == Blocks.AIR) {
+                if (((FlowerPotBlock) pot.defaultBlockState().getBlock()).getPotted() == Blocks.AIR) {
                     Player player = context.getPlayer();
                     if (player == null || !player.getAbilities().instabuild) {
                         stack.shrink(1);

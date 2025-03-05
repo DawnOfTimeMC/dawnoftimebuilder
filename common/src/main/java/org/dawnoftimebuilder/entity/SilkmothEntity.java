@@ -10,7 +10,10 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ambient.AmbientCreature;
@@ -18,11 +21,11 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
-import org.dawnoftimebuilder.DoTBConfig;
 import org.dawnoftimebuilder.block.templates.DoubleGrowingBushBlock;
 import org.dawnoftimebuilder.platform.Services;
 import org.dawnoftimebuilder.registry.DoTBBlocksRegistry;
 import org.dawnoftimebuilder.registry.DoTBEntitiesRegistry;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -53,9 +56,9 @@ public class SilkmothEntity extends AmbientCreature {
 
     @Nullable
     @Override
-    public SpawnGroupData finalizeSpawn(ServerLevelAccessor world, DifficultyInstance difficultyInstance, MobSpawnType spawnReason, @Nullable SpawnGroupData data, @Nullable CompoundTag nbt) {
+    public SpawnGroupData finalizeSpawn(ServerLevelAccessor world, DifficultyInstance difficultyInstance, MobSpawnType spawnReason, @Nullable SpawnGroupData data) {
         this.getEntityData().set(ROTATION_POS, this.blockPosition());
-        return super.finalizeSpawn(world, difficultyInstance, spawnReason, data, nbt);
+        return super.finalizeSpawn(world, difficultyInstance, spawnReason, data);
     }
 
     @Override
@@ -138,8 +141,8 @@ public class SilkmothEntity extends AmbientCreature {
     }
 
     @Override
-    protected float getStandingEyeHeight(Pose poseIn, EntityDimensions sizeIn) {
-        return sizeIn.height / 2.0F;
+    public double getEyeY() {
+        return this.getDimensions(this.getPose()).height() / 2.0F;
     }
 
     @Override
@@ -196,11 +199,11 @@ public class SilkmothEntity extends AmbientCreature {
     }
 
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.getEntityData().define(ROTATION_POS, new BlockPos(this.blockPosition()));
-        this.getEntityData().define(CLOCKWISE, this.random.nextBoolean());
-        this.getEntityData().define(DISTANCE, this.getNewRotationDistance());
+    protected void defineSynchedData(SynchedEntityData.@NotNull Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(ROTATION_POS, new BlockPos(this.blockPosition()));
+        builder.define(CLOCKWISE, this.random.nextBoolean());
+        builder.define(DISTANCE, this.getNewRotationDistance());
     }
 
     @Override

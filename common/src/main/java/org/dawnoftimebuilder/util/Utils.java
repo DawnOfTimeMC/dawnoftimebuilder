@@ -6,7 +6,10 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.SectionPos;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
@@ -15,7 +18,6 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.alchemy.Potion;
-import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
@@ -33,6 +35,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import org.dawnoftimebuilder.DoTBCommon;
 import org.dawnoftimebuilder.block.templates.WaterloggedBlock;
 import org.dawnoftimebuilder.registry.DoTBTags;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 import java.util.List;
@@ -98,7 +101,7 @@ public class Utils {
      * @return the List of ItemStack found in the corresponding LootTable.
      */
     public static List<ItemStack> getLootList(final ServerLevel serverWorld, final BlockState stateIn, final ItemStack itemStackHand, final String name) {
-        final LootTable table = serverWorld.getServer().getLootData().getLootTable(new ResourceLocation(DoTBCommon.MOD_ID + ":blocks/" + name));
+        final LootTable table = serverWorld.getServer().reloadableRegistries().getLootTable(ResourceKey.create(Registries.LOOT_TABLE, ResourceLocation.tryParse(DoTBCommon.MOD_ID + ":blocks/" + name)));
         final LootParams.Builder builder = new LootParams.Builder(serverWorld).withParameter(LootContextParams.BLOCK_STATE, stateIn).withParameter(LootContextParams.TOOL, itemStackHand).withParameter(LootContextParams.ORIGIN, new Vec3(0, 0, 0));
         final LootParams lootParams = builder.create(LootContextParamSets.BLOCK);
         return table.getRandomItems(lootParams);
@@ -155,7 +158,7 @@ public class Utils {
         final ItemStack itemInHand = player.getItemInHand(handIn);
         if (!itemInHand.isEmpty() && itemInHand.is(DoTBTags.INSTANCE.LIGHTERS)) {
             worldIn.playSound(null, pos, SoundEvents.FLINTANDSTEEL_USE, SoundSource.BLOCKS, 1.0F, 1.0F);
-            itemInHand.hurtAndBreak(1, player, p -> p.broadcastBreakEvent(handIn));
+            itemInHand.hurtAndBreak(1, player, player.getEquipmentSlotForItem(itemInHand));
             return true;
         }
         return false;
@@ -177,7 +180,7 @@ public class Utils {
             } else if (itemStackInHand.is(DoTBTags.INSTANCE.LIGHTERS)) {
                 worldIn.playSound(null, pos, SoundEvents.FLINTANDSTEEL_USE, SoundSource.BLOCKS, 1.0F, 1.0F);
                 if (!player.isCreative()) {
-                    itemStackInHand.hurtAndBreak(1, player, p -> p.broadcastBreakEvent(handIn));
+                    itemStackInHand.hurtAndBreak(1, player, player.getEquipmentSlotForItem(itemStackInHand));
                 }
                 return true;
             }
@@ -196,12 +199,12 @@ public class Utils {
         if (mainItemStack.is(DoTBTags.INSTANCE.LIGHTERS)) {
             worldIn.playSound(null, pos, SoundEvents.FLINTANDSTEEL_USE, SoundSource.BLOCKS, 1.0F, 1.0F);
             if (!player.isCreative()) {
-                mainItemStack.hurtAndBreak(1, player, p -> p.broadcastBreakEvent(handIn));
+                mainItemStack.hurtAndBreak(1, player, player.getEquipmentSlotForItem(mainItemStack));
             }
             return true;
         }
         if (mainItemStack.getItem() instanceof PotionItem && !(mainItemStack.getItem() instanceof SplashPotionItem)) {
-            final Potion potion = PotionUtils.getPotion(mainItemStack);
+            final Potion potion = getPotionByName(getItemKeyAsString(mainItemStack.getItem()));
 
             if (potion != null && potion.getEffects().size() <= 0) {
                 player.getMainHandItem().shrink(1);
@@ -216,6 +219,14 @@ public class Utils {
         }
 
         return false;
+    }
+
+    public static Potion getPotionByName(String name) {
+        return BuiltInRegistries.POTION.get(ResourceLocation.tryParse(name));
+    }
+
+    public static @NotNull String getItemKeyAsString(Item item) {
+        return BuiltInRegistries.ITEM.getKey(item).toString();
     }
 
     public static int changeBlockLitStateWithItemOrCreativePlayer(final BlockState stateIn, final Level worldIn, final BlockPos pos, final Player player, final InteractionHand handIn) {

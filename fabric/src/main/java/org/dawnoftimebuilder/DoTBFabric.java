@@ -9,7 +9,7 @@ import net.minecraft.resources.ResourceLocation;
 
 public class DoTBFabric implements ModInitializer, ClientModInitializer {
     public static final ConfigClassHandler<DoTBConfig> HANDLER = ConfigClassHandler.createBuilder(DoTBConfig.class)
-            .id(new ResourceLocation(DoTBCommon.MOD_ID, "config"))
+            .id(ResourceLocation.fromNamespaceAndPath(DoTBCommon.MOD_ID, "config"))
             .serializer(config -> GsonConfigSerializerBuilder.create(config)
                     .setPath(YACLPlatform.getConfigDir().resolve("dawnoftimebuilder-config.json5"))
                     .setJson5(true)

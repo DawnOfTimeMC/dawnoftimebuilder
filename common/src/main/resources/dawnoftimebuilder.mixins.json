@@ -9,6 +9,7 @@
     "MixinStateDefinitionBuilder"
   ],
   "client": [
+    "AbstractButtonAccessor",
     "client.CreativeInventoryMixin"
   ],
   "server": [

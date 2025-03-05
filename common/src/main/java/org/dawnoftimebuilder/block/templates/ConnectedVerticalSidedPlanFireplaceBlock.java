@@ -7,14 +7,13 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.*;
 import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
@@ -27,15 +26,12 @@ import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
-
-
 import org.dawnoftimebuilder.block.general.FireplaceBlock;
 import org.dawnoftimebuilder.util.BlockStatePropertiesAA;
 import org.dawnoftimebuilder.util.BlockStatePropertiesAA.HorizontalConnection;
 import org.dawnoftimebuilder.util.Utils;
 import org.jetbrains.annotations.NotNull;
 
-import javax.annotation.Nullable;
 import java.util.List;
 
 import static org.dawnoftimebuilder.util.VoxelShapes.MULTIBLOCK_FIREPLACE_SHAPES;
@@ -62,17 +58,17 @@ public class ConnectedVerticalSidedPlanFireplaceBlock extends ConnectedVerticalS
     }
 
     @Override
-    public InteractionResult use(final BlockState stateIn, final Level worldIn, final BlockPos pos, final Player player, final InteractionHand handIn, final BlockHitResult hit) {
+    public InteractionResult useWithoutItem(final BlockState stateIn, final Level worldIn, final BlockPos pos, final Player player, final BlockHitResult hit) {
         if(player.getMainHandItem() != null && player.getMainHandItem().getItem() instanceof BlockItem &&
                 ((BlockItem) player.getMainHandItem().getItem()).getBlock() instanceof ConnectedVerticalSidedPlanFireplaceBlock) {
             return InteractionResult.PASS;
         }
         if(stateIn.getValue(ConnectedVerticalBlock.VERTICAL_CONNECTION) != BlockStatePropertiesAA.VerticalConnection.BOTH && stateIn.getValue(ConnectedVerticalBlock.VERTICAL_CONNECTION) != BlockStatePropertiesAA.VerticalConnection.UNDER) {
-            final int activation = Utils.changeBlockLitStateWithItemOrCreativePlayer(stateIn, worldIn, pos, player, handIn);
+            final int activation = Utils.changeBlockLitStateWithItemOrCreativePlayer(stateIn, worldIn, pos, player, player.getUsedItemHand());
             if(activation >= 0) {
                 final Direction direction = stateIn.getValue(ConnectedVerticalSidedBlock.FACING);
-                worldIn.getBlockState(pos.relative(direction.getCounterClockWise())).neighborChanged(worldIn, pos.relative(direction.getCounterClockWise()), this, pos, false);
-                worldIn.getBlockState(pos.relative(direction.getClockWise())).neighborChanged(worldIn, pos.relative(direction.getClockWise()), stateIn.getBlock(), pos, false);
+                worldIn.getBlockState(pos.relative(direction.getCounterClockWise())).handleNeighborChanged(worldIn, pos.relative(direction.getCounterClockWise()), this, pos, false);
+                worldIn.getBlockState(pos.relative(direction.getClockWise())).handleNeighborChanged(worldIn, pos.relative(direction.getClockWise()), stateIn.getBlock(), pos, false);
 
                 ConnectedVerticalSidedPlanFireplaceBlock.updateChimneys(activation == 1, stateIn, pos, worldIn);
 
@@ -93,7 +89,7 @@ public class ConnectedVerticalSidedPlanFireplaceBlock extends ConnectedVerticalS
             if(projectile instanceof AbstractArrow) {
                 activation = 1;
             }
-        } else if(state.getValue(FireplaceBlock.LIT) && (projectile instanceof Snowball || projectile instanceof ThrowableProjectile && PotionUtils.getPotion(((ThrowableItemProjectile) projectile).getItem()).getEffects().size() <= 0)) {
+        } else if(state.getValue(FireplaceBlock.LIT) && (projectile instanceof Snowball || projectile instanceof ThrowableProjectile && Utils.getPotionByName(Utils.getItemKeyAsString(((ThrowableItemProjectile) projectile).getItem().getItem())).getEffects().size() <= 0)) {
             activation = 0;
         }
 
@@ -114,8 +110,8 @@ public class ConnectedVerticalSidedPlanFireplaceBlock extends ConnectedVerticalS
             ConnectedVerticalSidedPlanFireplaceBlock.updateChimneys(isActivated, state, pos, worldIn);
 
             final Direction direction = state.getValue(ConnectedVerticalSidedBlock.FACING);
-            worldIn.getBlockState(pos.relative(direction.getClockWise())).neighborChanged(worldIn, pos.relative(direction.getClockWise()), this, pos, false);
-            worldIn.getBlockState(pos.relative(direction.getCounterClockWise())).neighborChanged(worldIn, pos.relative(direction.getCounterClockWise()), this, pos, false);
+            worldIn.getBlockState(pos.relative(direction.getClockWise())).handleNeighborChanged(worldIn, pos.relative(direction.getClockWise()), this, pos, false);
+            worldIn.getBlockState(pos.relative(direction.getCounterClockWise())).handleNeighborChanged(worldIn, pos.relative(direction.getCounterClockWise()), this, pos, false);
         }
     }
 
@@ -138,7 +134,7 @@ public class ConnectedVerticalSidedPlanFireplaceBlock extends ConnectedVerticalS
                         }
                         worldIn.setBlock(pos, state.setValue(ConnectedVerticalSidedPlanFireplaceBlock.LIT, burning), 10);
                         final BlockPos newPos = pos.relative(facing.getClockWise()).equals(fromPos) ? pos.relative(facing.getCounterClockWise()) : pos.relative(facing.getClockWise());
-                        worldIn.getBlockState(newPos).neighborChanged(worldIn, newPos, this, pos, false);
+                        worldIn.getBlockState(newPos).handleNeighborChanged(worldIn, newPos, this, pos, false);
                     }
                 }
             }
@@ -236,8 +232,8 @@ public class ConnectedVerticalSidedPlanFireplaceBlock extends ConnectedVerticalS
     }
 
     @Override
-    public void appendHoverText(final ItemStack stack, @Nullable final BlockGetter worldIn, final List<Component> tooltip, final TooltipFlag flagIn) {
-        super.appendHoverText(stack, worldIn, tooltip, flagIn);
+    public void appendHoverText(@NotNull ItemStack stack, Item.@NotNull TooltipContext context, final List<Component> tooltip, final TooltipFlag flagIn) {
+        super.appendHoverText(stack, context, tooltip, flagIn);
         Utils.addTooltip(tooltip, Utils.TOOLTIP_FIREPLACE);
     }
 }

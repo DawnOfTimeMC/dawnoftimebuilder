@@ -3,9 +3,9 @@ package org.dawnoftimebuilder.block.general;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -24,8 +24,10 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import org.dawnoftimebuilder.block.templates.PlateBlock;
 import org.dawnoftimebuilder.util.Utils;
 import org.jetbrains.annotations.NotNull;
+
 import javax.annotation.Nullable;
 import java.util.List;
+
 import static org.dawnoftimebuilder.util.VoxelShapes.IRON_FENCE_SHAPES;
 
 public class IronFenceBlock extends PlateBlock {
@@ -77,12 +79,12 @@ public class IronFenceBlock extends PlateBlock {
     }
 
     @Override
-    public InteractionResult use(final BlockState state, final Level worldIn, final BlockPos pos, final Player player, final InteractionHand handIn, final BlockHitResult hit) {
-        final ItemStack heldItemStack = player.getItemInHand(handIn);
+    public InteractionResult useWithoutItem(final BlockState state, final Level worldIn, final BlockPos pos, final Player player, final BlockHitResult hit) {
+        final ItemStack heldItemStack = player.getItemInHand(player.getUsedItemHand());
         if (player.isCrouching()) {
             //We remove the highest Block
             if (state.getValue(UP)) {
-                return super.use(state, worldIn, pos, player, handIn, hit);
+                return super.useWithoutItem(state, worldIn, pos, player, hit);
             }
             final BlockPos topPos = this.getHighestColumnPos(worldIn, pos);
             if (topPos != pos) {
@@ -107,7 +109,7 @@ public class IronFenceBlock extends PlateBlock {
                 return InteractionResult.SUCCESS;
             }
         }
-        return super.use(state, worldIn, pos, player, handIn, hit);
+        return super.useWithoutItem(state, worldIn, pos, player, hit);
     }
 
     private BlockPos getHighestColumnPos(final Level worldIn, final BlockPos pos) {
@@ -121,8 +123,8 @@ public class IronFenceBlock extends PlateBlock {
     }
 
     @Override
-    public void appendHoverText(final ItemStack stack, @Nullable final BlockGetter worldIn, final List<Component> tooltip, final TooltipFlag flagIn) {
-        super.appendHoverText(stack, worldIn, tooltip, flagIn);
+    public void appendHoverText(@NotNull ItemStack stack, Item.@NotNull TooltipContext context, final List<Component> tooltip, final TooltipFlag flagIn) {
+        super.appendHoverText(stack, context, tooltip, flagIn);
         Utils.addTooltip(tooltip, Utils.TOOLTIP_COLUMN);
     }
 }

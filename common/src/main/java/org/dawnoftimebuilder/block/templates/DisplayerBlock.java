@@ -1,7 +1,6 @@
 package org.dawnoftimebuilder.block.templates;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Player;
@@ -16,6 +15,7 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.dawnoftimebuilder.blockentity.DisplayerBlockEntity;
+import org.dawnoftimebuilder.container.DisplayerMenu;
 import org.dawnoftimebuilder.platform.Services;
 import org.dawnoftimebuilder.registry.DoTBBlockEntitiesRegistry;
 
@@ -42,11 +42,11 @@ public abstract class DisplayerBlock extends WaterloggedBlock implements EntityB
     }
 
     @Override
-    public InteractionResult use(BlockState blockState, Level world, BlockPos pos, Player playerEntity, InteractionHand hand, BlockHitResult rayTraceResult) {
+    public InteractionResult useWithoutItem(BlockState blockState, Level world, BlockPos pos, Player playerEntity, BlockHitResult rayTraceResult) {
         if(!world.isClientSide()) {
             BlockEntity tileEntity = world.getBlockEntity(pos);
             if(tileEntity instanceof MenuProvider provider) {
-                Services.PLATFORM.openScreenHandler(playerEntity, provider, (player, buf) -> buf.writeBlockPos(pos));
+                Services.PLATFORM.openScreenHandler(playerEntity, provider, player -> new DisplayerMenu.DisplayerMenuData(pos));
             }
         }
         return InteractionResult.SUCCESS;

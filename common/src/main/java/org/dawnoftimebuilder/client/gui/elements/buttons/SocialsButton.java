@@ -6,6 +6,7 @@ import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import org.jetbrains.annotations.NotNull;
 
 import static org.dawnoftimebuilder.DoTBCommon.MOD_ID;
 
@@ -14,12 +15,13 @@ public class SocialsButton extends Button {
 
     public SocialsButton(int x, int y, String buttonName, OnPress pressable) {
         super(x, y, 32, 28, Component.empty(), pressable, DEFAULT_NARRATION);
-        this.buttonIcons = new ResourceLocation(MOD_ID, "textures/gui/social_" + buttonName + ".png");
-        this.socialIcons = new ResourceLocation(MOD_ID, "textures/gui/social_icons.png");
+        this.buttonIcons = ResourceLocation.fromNamespaceAndPath(MOD_ID, "textures/gui/social_" + buttonName + ".png");
+        this.socialIcons = ResourceLocation.fromNamespaceAndPath(MOD_ID, "textures/gui/social_icons.png");
     }
 
+
     @Override
-    public void render(GuiGraphics pGuiGraphics, int pMouseX, int pMouseY, float pPartialTick) {
+    public void renderWidget(@NotNull GuiGraphics pGuiGraphics, int pMouseX, int pMouseY, float pPartialTick) {
         if(this.active && this.visible) {
             PoseStack ps = pGuiGraphics.pose();
 

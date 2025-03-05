@@ -65,7 +65,7 @@ public class WildMaizeBlock extends WildPlantBlock implements IBlockGeneration {
     }
 
     @Override
-    public void playerWillDestroy(Level level, @NotNull BlockPos pos, @NotNull BlockState state, @NotNull Player player) {
+    public BlockState playerWillDestroy(Level level, @NotNull BlockPos pos, @NotNull BlockState state, @NotNull Player player) {
         // Prevents item from dropping in creative by removing the part that gives the item with a setBlock.
         if (!level.isClientSide() && player.isCreative()) {
             if (state.getValue(HALF) == Half.TOP) {
@@ -78,7 +78,7 @@ public class WildMaizeBlock extends WildPlantBlock implements IBlockGeneration {
                 }
             }
         }
-        super.playerWillDestroy(level, pos, state, player);
+        return super.playerWillDestroy(level, pos, state, player);
     }
 
     @Override

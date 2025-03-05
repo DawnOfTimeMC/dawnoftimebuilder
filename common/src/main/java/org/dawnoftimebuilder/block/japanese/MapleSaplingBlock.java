@@ -5,7 +5,6 @@ import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.FlintAndSteelItem;
@@ -19,8 +18,6 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.BlockHitResult;
-
-
 import org.dawnoftimebuilder.block.templates.BushBlockDoT;
 import org.dawnoftimebuilder.registry.DoTBBlocksRegistry;
 
@@ -36,7 +33,7 @@ public class MapleSaplingBlock extends BushBlockDoT implements BonemealableBlock
     }
 
     @Override
-    public InteractionResult use(final BlockState p_225533_1_In, final Level p_225533_2_In, final BlockPos p_225533_3_In, final Player p_225533_4_In, final InteractionHand p_225533_5_In, final BlockHitResult p_225533_6_In) {
+    public InteractionResult useWithoutItem(final BlockState p_225533_1_In, final Level p_225533_2_In, final BlockPos p_225533_3_In, final Player p_225533_4_In, final BlockHitResult p_225533_6_In) {
         final Item mainItem = p_225533_4_In.getMainHandItem().getItem();
         if(mainItem instanceof FlintAndSteelItem) {
             if(!p_225533_2_In.isClientSide) {
@@ -83,7 +80,7 @@ public class MapleSaplingBlock extends BushBlockDoT implements BonemealableBlock
     }
 
     @Override
-    public boolean isValidBonemealTarget(final LevelReader p_176473_1_, final BlockPos p_176473_2_, final BlockState p_176473_3_, final boolean p_176473_4_) {
+    public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos blockPos, BlockState blockState) {
         return true;
     }
 

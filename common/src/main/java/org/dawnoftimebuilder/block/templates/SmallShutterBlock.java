@@ -2,7 +2,6 @@ package org.dawnoftimebuilder.block.templates;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -21,10 +20,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-
-
 import org.dawnoftimebuilder.util.BlockStatePropertiesAA;
-import org.dawnoftimebuilder.util.Utils;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
@@ -88,7 +84,7 @@ public class SmallShutterBlock extends WaterloggedBlock {
     }
 
     @Override
-    public InteractionResult use(BlockState state, final Level worldIn, final BlockPos pos, final Player player, final InteractionHand handIn, final BlockHitResult hit) {
+    public @NotNull InteractionResult useWithoutItem(BlockState state, final Level worldIn, final BlockPos pos, final Player player, final BlockHitResult hit) {
         if(state.getValue(SmallShutterBlock.OPEN_POSITION).isOpen()) {
             state = state.setValue(SmallShutterBlock.OPEN_POSITION, BlockStatePropertiesAA.OpenPosition.CLOSED);
         } else {

@@ -16,14 +16,9 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-
-
-import org.apache.commons.lang3.ArrayUtils;
 import org.dawnoftimebuilder.block.IBlockSpecialDisplay;
-import org.dawnoftimebuilder.util.Utils;
 import org.jetbrains.annotations.NotNull;
 
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public class CandlestickBlock extends CandleLampBlock implements IBlockSpecialDisplay {
@@ -61,12 +56,12 @@ public class CandlestickBlock extends CandleLampBlock implements IBlockSpecialDi
     }
 
     @Override
-    public BlockState rotate(BlockState state, Rotation rot) {
+    public @NotNull BlockState rotate(BlockState state, Rotation rot) {
         return state.setValue(FACING, rot.rotate(state.getValue(FACING)));
     }
 
     @Override
-    public BlockState mirror(BlockState state, Mirror mirrorIn) {
+    public @NotNull BlockState mirror(@NotNull BlockState state, @NotNull Mirror mirrorIn) {
         return rotate(state, Rotation.CLOCKWISE_180);
     }
 

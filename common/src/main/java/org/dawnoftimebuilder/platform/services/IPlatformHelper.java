@@ -1,13 +1,11 @@
 package org.dawnoftimebuilder.platform.services;
 
-import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import org.dawnoftimebuilder.DoTBConfig;
 
-import java.util.function.BiConsumer;
+import java.util.function.Function;
 
 public interface IPlatformHelper {
 
@@ -44,5 +42,5 @@ public interface IPlatformHelper {
 
     DoTBConfig getConfig();
 
-    void openScreenHandler(Player playerEntity, MenuProvider provider, BiConsumer<ServerPlayer, FriendlyByteBuf> dataWriter);
+    <D> void openScreenHandler(Player playerEntity, MenuProvider provider, Function<ServerPlayer, D> dataWriter);
 }

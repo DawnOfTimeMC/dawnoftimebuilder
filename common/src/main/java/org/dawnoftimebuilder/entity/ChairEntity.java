@@ -5,7 +5,8 @@ import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
-import net.minecraft.network.protocol.game.ClientboundAddEntityPacket;
+import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.server.level.ServerEntity;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
@@ -58,9 +59,7 @@ public class ChairEntity extends Entity {
     }
 
     @Override
-    protected void defineSynchedData() {
-
-    }
+    protected void defineSynchedData(SynchedEntityData.@NotNull Builder builder) {}
 
     @Override
     public void tick() {
@@ -85,8 +84,8 @@ public class ChairEntity extends Entity {
     }
 
     @Override
-    public @NotNull Packet<ClientGamePacketListener> getAddEntityPacket() {
-        return new ClientboundAddEntityPacket(this);
+    public Packet<ClientGamePacketListener> getAddEntityPacket(ServerEntity entity) {
+        return super.getAddEntityPacket(entity);
     }
 
     protected void clampRotation(Entity player) {
@@ -101,11 +100,6 @@ public class ChairEntity extends Entity {
     @Override
     public void onPassengerTurned(Entity pEntityToUpdate) {
         this.clampRotation(pEntityToUpdate);
-    }
-
-    @Override
-    public double getPassengersRidingOffset() {
-        return 0.0D;
     }
 
     @Override

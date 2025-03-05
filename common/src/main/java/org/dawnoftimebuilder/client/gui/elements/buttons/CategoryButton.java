@@ -8,6 +8,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import org.dawnoftimebuilder.client.gui.creative.CreativeInventoryCategories;
 import org.dawnoftimebuilder.mixin.api.CreativeScreen;
+import org.jetbrains.annotations.NotNull;
 
 import static org.dawnoftimebuilder.DoTBCommon.CREATIVE_ICONS;
 import static org.dawnoftimebuilder.DoTBCommon.MOD_ID;
@@ -38,7 +39,7 @@ public class CategoryButton extends Button {
     }
 
     @Override
-    public void render(GuiGraphics pGuiGraphics, int pMouseX, int pMouseY, float pPartialTick) {
+    public void renderWidget(@NotNull GuiGraphics pGuiGraphics, int pMouseX, int pMouseY, float pPartialTick) {
         if(this.active && this.visible) {
             PoseStack ps = pGuiGraphics.pose();
 
@@ -62,7 +63,7 @@ public class CategoryButton extends Button {
         int number = CreativeInventoryCategories.values().length;
         ResourceLocation[] table = new ResourceLocation[number];
         for(int i = 0; i < number; i++) {
-            table[i] = new ResourceLocation(MOD_ID, "textures/item/logo_" + CreativeInventoryCategories.values()[i].getName() + ".png");
+            table[i] = ResourceLocation.fromNamespaceAndPath(MOD_ID, "textures/item/logo_" + CreativeInventoryCategories.values()[i].getName() + ".png");
         }
         return table;
     }

@@ -4,11 +4,9 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.level.Level;
 import org.dawnoftimebuilder.util.Utils;
 import org.jetbrains.annotations.NotNull;
 
-import javax.annotation.Nullable;
 import java.util.List;
 
 public class ItemDoTB extends Item {
@@ -32,8 +30,8 @@ public class ItemDoTB extends Item {
     }
 
     @Override
-    public void appendHoverText(@NotNull ItemStack stack, @Nullable Level world, @NotNull List<Component> tooltips, @NotNull TooltipFlag flagIn) {
-        super.appendHoverText(stack, world, tooltips, flagIn);
+    public void appendHoverText(@NotNull ItemStack stack, @NotNull TooltipContext context, @NotNull List<Component> tooltips, @NotNull TooltipFlag flagsIn) {
+        super.appendHoverText(stack, context, tooltips, flagsIn);
         if (this.hasTooltip) {
             Utils.addTooltip(tooltips, this);
         }

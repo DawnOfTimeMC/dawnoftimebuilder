@@ -7,9 +7,9 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -28,8 +28,10 @@ import org.dawnoftimebuilder.block.templates.BlockAA;
 import org.dawnoftimebuilder.util.BlockStatePropertiesAA;
 import org.dawnoftimebuilder.util.Utils;
 import org.jetbrains.annotations.NotNull;
+
 import javax.annotation.Nullable;
 import java.util.List;
+
 import static org.dawnoftimebuilder.util.VoxelShapes.CYPRESS_SHAPES;
 
 public class CypressBlock extends BlockAA implements IBlockGeneration {
@@ -56,8 +58,8 @@ public class CypressBlock extends BlockAA implements IBlockGeneration {
     }
 
     @Override
-    public @NotNull InteractionResult use(final @NotNull BlockState state, final @NotNull Level worldIn, final @NotNull BlockPos pos, final Player player, final InteractionHand handIn, final BlockHitResult hit) {
-        final ItemStack heldItemStack = player.getItemInHand(handIn);
+    public @NotNull InteractionResult useWithoutItem(final @NotNull BlockState state, final @NotNull Level worldIn, final @NotNull BlockPos pos, final Player player, final BlockHitResult hit) {
+        final ItemStack heldItemStack = player.getItemInHand(player.getUsedItemHand());
         if (player.isCrouching()) {
             //We remove the highest CypressBlock
             final BlockPos topPos = this.getHighestCypressPos(worldIn, pos);
@@ -83,7 +85,7 @@ public class CypressBlock extends BlockAA implements IBlockGeneration {
                 return InteractionResult.SUCCESS;
             }
         }
-        return super.use(state, worldIn, pos, player, handIn, hit);
+        return super.useWithoutItem(state, worldIn, pos, player, hit);
     }
 
     private BlockPos getHighestCypressPos(final Level worldIn, final BlockPos pos) {
@@ -161,8 +163,8 @@ public class CypressBlock extends BlockAA implements IBlockGeneration {
     }
 
     @Override
-    public void appendHoverText(final ItemStack stack, @Nullable final BlockGetter worldIn, final List<Component> tooltip, final TooltipFlag flagIn) {
-        super.appendHoverText(stack, worldIn, tooltip, flagIn);
+    public void appendHoverText(ItemStack stack, Item.TooltipContext context, final List<Component> tooltip, final TooltipFlag flagIn) {
+        super.appendHoverText(stack, context, tooltip, flagIn);
         Utils.addTooltip(tooltip, Utils.TOOLTIP_COLUMN);
     }
 

@@ -6,7 +6,10 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.*;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -15,9 +18,10 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.block.state.properties.Half;
-import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.NotNull;
+
 import javax.annotation.Nullable;
 
 public class DoubleCropsBlock extends SoilCropsBlock {
@@ -115,7 +119,7 @@ public class DoubleCropsBlock extends SoilCropsBlock {
     }
 
     @Override
-    public void playerWillDestroy(Level worldIn, BlockPos pos, BlockState state, Player player) {
+    public @NotNull BlockState playerWillDestroy(Level worldIn, BlockPos pos, BlockState state, Player player) {
         Half half = state.getValue(HALF);
         BlockPos otherPos = (half == Half.BOTTOM) ? pos.above() : pos.below();
         BlockState otherState = worldIn.getBlockState(otherPos);
@@ -129,7 +133,7 @@ public class DoubleCropsBlock extends SoilCropsBlock {
             }
         }
 
-        super.playerWillDestroy(worldIn, pos, state, player);
+        return super.playerWillDestroy(worldIn, pos, state, player);
     }
 
     public BlockState getRemovedState(BlockState state){

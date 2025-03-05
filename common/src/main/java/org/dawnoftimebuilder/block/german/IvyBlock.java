@@ -7,14 +7,12 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
-
-
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -32,10 +30,11 @@ import org.dawnoftimebuilder.platform.Services;
 import org.dawnoftimebuilder.registry.DoTBTags;
 import org.dawnoftimebuilder.util.Utils;
 import org.jetbrains.annotations.NotNull;
-import javax.annotation.Nullable;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
 import static net.minecraft.tags.BlockTags.DIRT;
 import static net.minecraft.tags.BlockTags.SAND;
 import static org.dawnoftimebuilder.util.Utils.TOOLTIP_CROP;
@@ -234,7 +233,7 @@ public class IvyBlock extends BlockAA implements IBlockGeneration {
     }
 
     @Override
-    public @NotNull InteractionResult use(BlockState state, @NotNull Level levelIn, @NotNull BlockPos pos, @NotNull Player player, @NotNull InteractionHand handIn, @NotNull BlockHitResult hit) {
+    public @NotNull InteractionResult useWithoutItem(BlockState state, @NotNull Level levelIn, @NotNull BlockPos pos, @NotNull Player player, @NotNull BlockHitResult hit) {
         if (state.getValue(PERSISTENT)) {
             if (player.isCreative()) {
                 int age = state.getValue(AGE);
@@ -251,7 +250,7 @@ public class IvyBlock extends BlockAA implements IBlockGeneration {
                 }
             }
         } else {
-            if (Utils.useLighter(levelIn, pos, player, handIn)) {
+            if (Utils.useLighter(levelIn, pos, player, player.getUsedItemHand())) {
                 Random rand = new Random();
                 for (int i = 0; i < 5; i++) {
                     levelIn.addAlwaysVisibleParticle(ParticleTypes.SMOKE, (double) pos.getX() + rand.nextDouble(), (double) pos.getY() + 0.5D + rand.nextDouble() / 2, (double) pos.getZ() + rand.nextDouble(), 0.0D, 0.07D, 0.0D);
@@ -264,8 +263,8 @@ public class IvyBlock extends BlockAA implements IBlockGeneration {
     }
 
     @Override
-    public void appendHoverText(@NotNull ItemStack stack, @Nullable BlockGetter levelIn, @NotNull List<Component> tooltip, @NotNull TooltipFlag flagIn) {
-        super.appendHoverText(stack, levelIn, tooltip, flagIn);
+    public void appendHoverText(@NotNull ItemStack stack, Item.@NotNull TooltipContext context, @NotNull List<Component> tooltip, @NotNull TooltipFlag flagIn) {
+        super.appendHoverText(stack, context, tooltip, flagIn);
         Utils.addTooltip(tooltip, TOOLTIP_CROP);
     }
 

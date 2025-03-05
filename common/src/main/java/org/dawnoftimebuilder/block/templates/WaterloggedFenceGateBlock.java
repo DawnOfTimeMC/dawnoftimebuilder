@@ -18,7 +18,7 @@ public class WaterloggedFenceGateBlock extends FenceGateBlock {
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
     public WaterloggedFenceGateBlock(Properties properties, WoodType woodType) {
-        super(properties, woodType);
+        super(woodType, properties);
         this.registerDefaultState(this.defaultBlockState().setValue(WATERLOGGED, false));
     }
 

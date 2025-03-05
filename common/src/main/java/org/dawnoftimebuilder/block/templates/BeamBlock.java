@@ -5,23 +5,23 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.*;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
-import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.dawnoftimebuilder.block.IBlockClimbingPlant;
 import org.dawnoftimebuilder.block.IBlockPillar;
@@ -136,10 +136,10 @@ public class BeamBlock extends WaterloggedBlock implements IBlockPillar, IBlockC
     }
 
     @Override
-    public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
+    public InteractionResult useWithoutItem(BlockState state, Level worldIn, BlockPos pos, Player player, BlockHitResult hit) {
         // If the block is not PERSISTENT, we change it to persistent state to prevent plant growth.
         if(!state.getValue(PERSISTENT)) {
-            if(Utils.useLighter(worldIn, pos, player, handIn)) {
+            if(Utils.useLighter(worldIn, pos, player, player.getUsedItemHand())) {
                 Random rand = new Random();
                 for(int i = 0; i < 5; i++) {
                     worldIn.addAlwaysVisibleParticle(ParticleTypes.SMOKE, (double) pos.getX() + rand.nextDouble(), (double) pos.getY() + 0.5D + rand.nextDouble() / 2, (double) pos.getZ() + rand.nextDouble(), 0.0D, 0.07D, 0.0D);
@@ -151,12 +151,12 @@ public class BeamBlock extends WaterloggedBlock implements IBlockPillar, IBlockC
         // If the player is in creative or if he right-clicked the most bottom block, we try to put plant on it.
         BlockState stateUnder = worldIn.getBlockState(pos.below());
         if((this.isBeamBottom(state, stateUnder) && this.canSustainClimbingPlant(stateUnder)) || player.isCreative()) {
-            if(this.tryPlacingPlant(state, worldIn, pos, player, handIn)) {
+            if(this.tryPlacingPlant(state, worldIn, pos, player, player.getUsedItemHand())) {
                 return InteractionResult.SUCCESS;
             }
         }
         // If there is a plant that can be harvested, we harvest it.
-        if(this.harvestPlant(state, worldIn, pos, player, handIn) == InteractionResult.SUCCESS) {
+        if(this.harvestPlant(state, worldIn, pos, player, player.getUsedItemHand()) == InteractionResult.SUCCESS) {
             return InteractionResult.SUCCESS;
         }
         if(player.isCrouching()) {
@@ -188,8 +188,8 @@ public class BeamBlock extends WaterloggedBlock implements IBlockPillar, IBlockC
 //    }
 
     @Override
-    public void appendHoverText(ItemStack stack, @Nullable BlockGetter worldIn, List<Component> tooltip, TooltipFlag flagIn) {
-        super.appendHoverText(stack, worldIn, tooltip, flagIn);
+    public void appendHoverText(@NotNull ItemStack stack, Item.@NotNull TooltipContext context, @NotNull List<Component> tooltip, @NotNull TooltipFlag flagIn) {
+        super.appendHoverText(stack, context, tooltip, flagIn);
         Utils.addTooltip(tooltip, TOOLTIP_BEAM, TOOLTIP_CLIMBING_PLANT);
     }
 

@@ -1,7 +1,8 @@
 package org.dawnoftimebuilder.container;
 
-import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.world.SimpleContainer;
+import net.minecraft.core.BlockPos;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -15,6 +16,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import org.dawnoftimebuilder.block.IBlockSpecialDisplay;
 import org.dawnoftimebuilder.blockentity.DisplayerBlockEntity;
 import org.dawnoftimebuilder.registry.DoTBMenuTypesRegistry;
+import org.jetbrains.annotations.NotNull;
 
 import static org.dawnoftimebuilder.block.templates.DisplayerBlock.LIT;
 
@@ -23,8 +25,8 @@ public class DisplayerMenu extends AbstractContainerMenu {
 	private final ContainerLevelAccess levelAccess;
 
 	//Client constructor
-	public DisplayerMenu(int windowId, Inventory playerInventory, FriendlyByteBuf additionalData) {
-		this(windowId, playerInventory, playerInventory.player.level().getBlockEntity(additionalData.readBlockPos()));
+	public <D extends DisplayerMenuData> DisplayerMenu(int windowId, Inventory playerInventory, D additionalData) {
+		this(windowId, playerInventory, playerInventory.player.level().getBlockEntity(additionalData.blockPos()));
 	}
 
 	//Server constructor
@@ -78,7 +80,7 @@ public class DisplayerMenu extends AbstractContainerMenu {
 							if (block instanceof IBlockSpecialDisplay) {
 								lit = ((IBlockSpecialDisplay) block).emitsLight();
 							} else {
-								lit = block.getLightBlock(block.defaultBlockState(), this.blockEntity.getLevel(), this.blockEntity.getBlockPos()) > 0;
+								lit = block.defaultBlockState().getLightBlock(this.blockEntity.getLevel(), this.blockEntity.getBlockPos()) > 0;
 							}
 						}
 					}
@@ -107,5 +109,20 @@ public class DisplayerMenu extends AbstractContainerMenu {
 			else slot.setChanged();
 		}
 		return itemStack;
+	}
+
+	public record DisplayerMenuData(BlockPos blockPos) {
+		public static final StreamCodec<RegistryFriendlyByteBuf, DisplayerMenuData> CODEC = new StreamCodec<>() {
+
+            @Override
+            public @NotNull DisplayerMenu.DisplayerMenuData decode(@NotNull RegistryFriendlyByteBuf buffer) {
+                return new DisplayerMenuData(buffer.readBlockPos());
+            }
+
+            @Override
+            public void encode(@NotNull RegistryFriendlyByteBuf buffer, @NotNull DisplayerMenu.DisplayerMenuData value) {
+                buffer.writeBlockPos(value.blockPos);
+            }
+        };
 	}
 }

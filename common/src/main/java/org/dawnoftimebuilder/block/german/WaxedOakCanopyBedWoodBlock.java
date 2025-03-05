@@ -34,7 +34,7 @@ public class WaxedOakCanopyBedWoodBlock extends HorizontalBlockAA {
     }
 
     @Override
-    public void playerWillDestroy(final Level worldIn, final BlockPos blockPosIn, final BlockState blockStateIn, final Player playerEntityIn) {
+    public BlockState playerWillDestroy(final Level worldIn, final BlockPos blockPosIn, final BlockState blockStateIn, final Player playerEntityIn) {
         // Breaks the bed center to trigger the destruction of the multiblock, with the correct tag to drop the item or not.
         // TODO Below
         if(!worldIn.isClientSide() && playerEntityIn.isCreative()) {
@@ -48,7 +48,7 @@ public class WaxedOakCanopyBedWoodBlock extends HorizontalBlockAA {
                 worldIn.levelEvent(playerEntityIn, 2001, blockPos, Block.getId(blockState));
             }
         }
-        super.playerWillDestroy(worldIn, blockPosIn, blockStateIn, playerEntityIn);
+        return super.playerWillDestroy(worldIn, blockPosIn, blockStateIn, playerEntityIn);
     }
 
     @Override

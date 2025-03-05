@@ -8,9 +8,9 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.*;
@@ -26,7 +26,6 @@ import org.dawnoftimebuilder.block.IBlockGeneration;
 import org.dawnoftimebuilder.util.Utils;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Random;
 
@@ -42,7 +41,7 @@ public class SoilCropsBlock extends CropBlock implements IBlockGeneration {
     public static final BooleanProperty PERSISTENT = BlockStateProperties.PERSISTENT;
 
     public SoilCropsBlock(PlantType type) {
-        super(Properties.copy(Blocks.SUNFLOWER).offsetType(OffsetType.NONE).randomTicks().sound(SoundType.CROP));
+        super(Properties.ofFullCopy(Blocks.SUNFLOWER).offsetType(OffsetType.NONE).randomTicks().sound(SoundType.CROP));
         this.plantType = type;
         this.registerDefaultState(this.stateDefinition.any().setValue(this.getAgeProperty(), 0).setValue(PERSISTENT, false));
     }
@@ -139,7 +138,7 @@ public class SoilCropsBlock extends CropBlock implements IBlockGeneration {
     }
 
     @Override
-    public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
+    public InteractionResult useWithoutItem(BlockState state, Level worldIn, BlockPos pos, Player player, BlockHitResult hit) {
         if(state.getValue(PERSISTENT)) {
             if(player.isCreative()) {
                 int age = this.getAge(state);
@@ -156,7 +155,7 @@ public class SoilCropsBlock extends CropBlock implements IBlockGeneration {
                 }
             }
         } else {
-            if(Utils.useLighter(worldIn, pos, player, handIn)) {
+            if(Utils.useLighter(worldIn, pos, player, player.getUsedItemHand())) {
                 Random rand = new Random();
                 for(int i = 0; i < 5; i++) {
                     worldIn.addAlwaysVisibleParticle(ParticleTypes.SMOKE, (double) pos.getX() + rand.nextDouble(), (double) pos.getY() + 0.5D + rand.nextDouble() / 2, (double) pos.getZ() + rand.nextDouble(), 0.0D, 0.07D, 0.0D);
@@ -165,7 +164,7 @@ public class SoilCropsBlock extends CropBlock implements IBlockGeneration {
                 return InteractionResult.SUCCESS;
             }
         }
-        return super.use(state, worldIn, pos, player, handIn, hit);
+        return super.useWithoutItem(state, worldIn, pos, player, hit);
     }
 
     public void setPlantWithAge(BlockState currentState, LevelAccessor worldIn, BlockPos pos, int newAge) {
@@ -179,8 +178,8 @@ public class SoilCropsBlock extends CropBlock implements IBlockGeneration {
 	}
 
     @Override
-    public void appendHoverText(ItemStack stack, @Nullable BlockGetter worldIn, List<Component> tooltip, TooltipFlag flagIn) {
-        super.appendHoverText(stack, worldIn, tooltip, flagIn);
+    public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltip, TooltipFlag flagIn) {
+        super.appendHoverText(stack, context, tooltip, flagIn);
         Utils.addTooltip(tooltip, TOOLTIP_CROP);
     }
 
