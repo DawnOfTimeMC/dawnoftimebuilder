@@ -141,11 +141,6 @@ public class SilkmothEntity extends AmbientCreature {
     }
 
     @Override
-    public double getEyeY() {
-        return this.getDimensions(this.getPose()).height() / 2.0F;
-    }
-
-    @Override
     public boolean causeFallDamage(float p_225503_1_, float p_225503_2_, DamageSource damageSource) {
         return false;
     }

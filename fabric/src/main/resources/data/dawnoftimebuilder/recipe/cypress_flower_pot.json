@@ -1,0 +1,15 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "minecraft:flower_pot"
+        },
+        {
+            "item": "dawnoftimebuilder:cypress"
+        }
+    ],
+    "result": {
+        "count": 1,
+        "id": "dawnoftimebuilder:cypress_flower_pot"
+    }
+}

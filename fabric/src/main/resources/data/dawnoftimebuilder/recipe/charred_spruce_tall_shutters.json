@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "iii",
+        "III",
+        "III"
+    ],
+    "key": {
+        "I": {
+            "item": "dawnoftimebuilder:charred_spruce_planks"
+        },
+        "i": {
+            "item": "minecraft:iron_ingot"
+        }
+    },
+    "result": {
+        "count": 6,
+        "id": "dawnoftimebuilder:charred_spruce_tall_shutters"
+    }
+}

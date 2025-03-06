@@ -1,0 +1,19 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "IiI",
+        "IiI"
+    ],
+    "key": {
+        "I": {
+            "item": "dawnoftimebuilder:lattice_glass_pane"
+        },
+        "i": {
+            "item": "dawnoftimebuilder:waxed_oak_planks"
+        }
+    },
+    "result": {
+        "count": 16,
+        "id": "dawnoftimebuilder:lattice_waxed_oak_window"
+    }
+}

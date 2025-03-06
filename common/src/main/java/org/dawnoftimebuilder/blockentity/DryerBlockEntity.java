@@ -10,6 +10,7 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.SingleRecipeInput;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -138,7 +139,8 @@ public class DryerBlockEntity extends BlockEntity {
     @Nullable
     private DryerRecipe getDryerRecipe(final SingleRecipeInput ingredientInventory) {
         if (this.getLevel() != null && !this.getLevel().isClientSide) {
-            return this.getLevel().getRecipeManager().getRecipeFor(DoTBRecipeTypesRegistry.INSTANCE.DRYING.get(), ingredientInventory, this.getLevel()).orElse(null).value();
+            RecipeHolder<DryerRecipe> recipeHolder = this.getLevel().getRecipeManager().getRecipeFor(DoTBRecipeTypesRegistry.INSTANCE.DRYING.get(), ingredientInventory, this.getLevel()).orElse(null);
+            return recipeHolder != null ? recipeHolder.value() : null;
         }
         return null;
     }

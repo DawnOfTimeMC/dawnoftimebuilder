@@ -1,0 +1,17 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " i ",
+        "iii",
+        " i "
+    ],
+    "key": {
+        "i": {
+            "item": "minecraft:stripped_warped_stem"
+        }
+    },
+    "result": {
+        "count": 6,
+        "id": "dawnoftimebuilder:warped_pergola"
+    }
+}

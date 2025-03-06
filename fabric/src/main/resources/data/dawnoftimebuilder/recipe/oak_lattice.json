@@ -1,0 +1,17 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "i i",
+        " i ",
+        "i i"
+    ],
+    "key": {
+        "i": {
+            "item": "minecraft:oak_planks"
+        }
+    },
+    "result": {
+        "count": 6,
+        "id": "dawnoftimebuilder:oak_lattice"
+    }
+}

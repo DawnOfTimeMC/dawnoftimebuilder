@@ -1,0 +1,23 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "ixi",
+        "XxX",
+        "xix"
+    ],
+    "key": {
+        "x": {
+            "item": "minecraft:stone"
+        },
+        "i": {
+            "item": "minecraft:blue_dye"
+        },
+        "X": {
+            "item": "minecraft:lapis_lazuli"
+        }
+    },
+    "result": {
+        "count": 16,
+        "id": "dawnoftimebuilder:moraq_mosaic_recess"
+    }
+}

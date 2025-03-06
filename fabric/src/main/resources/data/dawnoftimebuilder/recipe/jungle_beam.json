@@ -1,0 +1,19 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "I",
+        "i"
+    ],
+    "key": {
+        "I": {
+            "item": "minecraft:stripped_jungle_log"
+        },
+        "i": {
+            "item": "dawnoftimebuilder:plastered_stone"
+        }
+    },
+    "result": {
+        "count": 4,
+        "id": "dawnoftimebuilder:jungle_beam"
+    }
+}

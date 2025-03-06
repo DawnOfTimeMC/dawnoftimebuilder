@@ -1,0 +1,22 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "IiI",
+        "IoI"
+    ],
+    "key": {
+        "I": {
+            "item": "dawnoftimebuilder:plastered_stone"
+        },
+        "o": {
+            "item": "minecraft:gold_nugget"
+        },
+        "i": {
+            "item": "minecraft:red_dye"
+        }
+    },
+    "result": {
+        "count": 6,
+        "id": "dawnoftimebuilder:red_ornamented_plastered_stone_frieze"
+    }
+}

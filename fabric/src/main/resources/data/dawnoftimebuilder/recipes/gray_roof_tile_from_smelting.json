@@ -1,9 +1,0 @@
-{
-	"type": "minecraft:smelting",
-	"ingredient": {
-		"item": "dawnoftimebuilder:unfired_clay_roof_tile"
-	},
-	"result": "dawnoftimebuilder:gray_clay_roof_tile",
-	"experience": 0.1,
-	"cookingtime": 200
-}

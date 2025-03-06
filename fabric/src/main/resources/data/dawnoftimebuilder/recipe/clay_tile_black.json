@@ -1,0 +1,36 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "dawnoftimebuilder:clay_tile"
+        },
+        {
+            "item": "dawnoftimebuilder:clay_tile"
+        },
+        {
+            "item": "dawnoftimebuilder:clay_tile"
+        },
+        {
+            "item": "dawnoftimebuilder:clay_tile"
+        },
+        {
+            "item": "dawnoftimebuilder:clay_tile"
+        },
+        {
+            "item": "dawnoftimebuilder:clay_tile"
+        },
+        {
+            "item": "dawnoftimebuilder:clay_tile"
+        },
+        {
+            "item": "dawnoftimebuilder:clay_tile"
+        },
+        {
+            "item": "minecraft:black_dye"
+        }
+    ],
+    "result": {
+        "count": 8,
+        "id": "dawnoftimebuilder:clay_tile_black"
+    }
+}
