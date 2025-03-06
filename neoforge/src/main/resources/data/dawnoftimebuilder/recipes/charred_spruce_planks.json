@@ -1,0 +1,12 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+		{
+			"item": "dawnoftimebuilder:charred_spruce_log_stripped"
+		}
+	],
+	"result": {
+		"item": "dawnoftimebuilder:charred_spruce_planks",
+		"count": 6
+	}
+}

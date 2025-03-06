@@ -1,0 +1,17 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		" i ",
+		"iii",
+		" i "
+	],
+	"key": {
+		"i": {
+			"item": "minecraft:stripped_oak_log"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:oak_pergola",
+		"count": 6
+	}
+}

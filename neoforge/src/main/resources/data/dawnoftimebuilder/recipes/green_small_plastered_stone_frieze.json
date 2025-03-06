@@ -1,0 +1,18 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"IiI"
+	],
+	"key": {
+		"I": {
+			"item": "dawnoftimebuilder:plastered_stone"
+		},
+		"i": {
+			"tag": "forge:dyes/green"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:green_small_plastered_stone_frieze",
+		"count": 6
+	}
+}

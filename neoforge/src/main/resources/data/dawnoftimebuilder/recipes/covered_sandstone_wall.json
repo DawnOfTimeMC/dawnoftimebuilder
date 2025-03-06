@@ -1,0 +1,20 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"III",
+		"IiI",
+		"III"
+	],
+	"key": {
+		"i": {
+			"item": "dawnoftimebuilder:ochre_roof_tiles"
+		},
+		"I": {
+			"item": "minecraft:sandstone_wall"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:covered_sandstone_wall",
+		"count": 8
+	}
+}

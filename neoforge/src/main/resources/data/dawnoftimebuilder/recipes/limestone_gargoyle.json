@@ -1,0 +1,21 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"Iio"
+	],
+	"key": {
+		"I": {
+			"item": "dawnoftimebuilder:limestone_bricks"
+		},
+		"i": {
+			"item": "dawnoftimebuilder:limestone_bricks_slab"
+		},
+		"o": {
+			"item": "dawnoftimebuilder:limestone_bricks_edge"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:limestone_gargoyle",
+		"count": 1
+	}
+}

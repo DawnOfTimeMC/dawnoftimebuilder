@@ -1,0 +1,15 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+		{
+			"item": "minecraft:flower_pot"
+		},
+		{
+			"item": "dawnoftimebuilder:commelina"
+		}
+	],
+	"result": {
+		"item": "dawnoftimebuilder:commelina_flower_pot",
+		"count": 1
+	}
+}

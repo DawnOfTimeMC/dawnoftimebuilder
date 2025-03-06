@@ -1,0 +1,19 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"iii",
+		"I I"
+	],
+	"key": {
+		"I": {
+			"item": "minecraft:stone_bricks"
+		},
+		"i": {
+			"item": "minecraft:stone_brick_stairs"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:stone_bricks_machicolation",
+		"count": 4
+	}
+}

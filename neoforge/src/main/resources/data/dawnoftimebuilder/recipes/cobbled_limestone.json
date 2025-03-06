@@ -1,0 +1,16 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"ii",
+		"ii"
+	],
+	"key": {
+		"i": {
+			"item": "minecraft:dripstone_block"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:cobbled_limestone",
+		"count": 4
+	}
+}

@@ -1,0 +1,17 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"i i",
+		" i ",
+		"i i"
+	],
+	"key": {
+		"i": {
+			"item": "minecraft:crimson_planks"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:crimson_lattice",
+		"count": 6
+	}
+}

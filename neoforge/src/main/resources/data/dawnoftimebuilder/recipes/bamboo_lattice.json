@@ -1,0 +1,17 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"i i",
+		" i ",
+		"i i"
+	],
+	"key": {
+		"i": {
+			"item": "minecraft:bamboo_planks"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:bamboo_lattice",
+		"count": 6
+	}
+}

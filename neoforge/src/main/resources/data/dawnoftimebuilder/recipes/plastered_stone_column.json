@@ -1,0 +1,17 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"III",
+		" I ",
+		"III"
+	],
+	"key": {
+		"I": {
+			"item": "dawnoftimebuilder:plastered_stone"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:plastered_stone_column",
+		"count": 8
+	}
+}

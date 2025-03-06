@@ -1,0 +1,19 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"IiI",
+		"IiI"
+	],
+	"key": {
+		"i": {
+			"item": "minecraft:acacia_log"
+		},
+		"I": {
+			"item": "minecraft:acacia_planks"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:acacia_wall",
+		"count": 9
+	}
+}

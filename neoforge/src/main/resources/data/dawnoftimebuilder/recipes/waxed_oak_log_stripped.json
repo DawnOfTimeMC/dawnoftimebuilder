@@ -1,0 +1,36 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:honeycomb"
+    },
+    {
+      "item": "minecraft:stripped_oak_log"
+    },
+    {
+      "item": "minecraft:stripped_oak_log"
+    },
+    {
+      "item": "minecraft:stripped_oak_log"
+    },
+    {
+      "item": "minecraft:stripped_oak_log"
+    },
+    {
+      "item": "minecraft:stripped_oak_log"
+    },
+    {
+      "item": "minecraft:stripped_oak_log"
+    },
+    {
+      "item": "minecraft:stripped_oak_log"
+    },
+    {
+      "item": "minecraft:stripped_oak_log"
+    }
+  ],
+  "result": {
+    "item": "dawnoftimebuilder:waxed_oak_log_stripped",
+    "count": 8
+  }
+}

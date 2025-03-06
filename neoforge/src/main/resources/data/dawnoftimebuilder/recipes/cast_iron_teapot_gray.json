@@ -1,0 +1,19 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		" I ",
+		"III",
+		"IiI"
+	],
+	"key": {
+		"I": {
+			"tag": "forge:ingots/iron"
+		},
+		"i": {
+			"tag": "forge:dyes/gray"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:cast_iron_teapot_gray"
+	}
+}

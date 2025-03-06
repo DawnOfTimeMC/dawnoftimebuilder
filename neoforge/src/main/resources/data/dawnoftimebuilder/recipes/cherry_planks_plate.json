@@ -1,0 +1,17 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"I",
+		"I",
+		"I"
+	],
+	"key": {
+		"I": {
+			"item": "minecraft:cherry_planks"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:cherry_planks_plate",
+		"count": 6
+	}
+}

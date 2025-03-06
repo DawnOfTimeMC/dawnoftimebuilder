@@ -1,0 +1,19 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"ii",
+		"II"
+	],
+	"key": {
+		"I": {
+			"item": "dawnoftimebuilder:silk"
+		},
+		"i": {
+			"tag": "forge:rods/wooden"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:white_little_flag",
+		"count": 4
+	}
+}

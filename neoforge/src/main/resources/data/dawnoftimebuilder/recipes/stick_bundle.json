@@ -1,0 +1,19 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"IiI",
+		"i i",
+		" i "
+	],
+	"key": {
+		"i": {
+			"tag": "forge:rods/wooden"
+		},
+		"I": {
+			"item": "minecraft:string"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:stick_bundle"
+	}
+}

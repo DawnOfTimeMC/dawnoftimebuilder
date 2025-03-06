@@ -1,0 +1,9 @@
+{
+	"type": "minecraft:blasting",
+	"ingredient": {
+		"item": "minecraft:stripped_spruce_log"
+	},
+	"result": "dawnoftimebuilder:charred_spruce_log_stripped",
+	"experience": 0.1,
+	"cookingtime": 100
+}

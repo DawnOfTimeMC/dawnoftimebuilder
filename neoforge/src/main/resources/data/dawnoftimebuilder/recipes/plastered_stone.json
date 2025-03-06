@@ -1,0 +1,20 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"III",
+		"IiI",
+		"III"
+	],
+	"key": {
+		"I": {
+			"item": "minecraft:stone"
+		},
+		"i": {
+			"item": "minecraft:bone_meal"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:plastered_stone",
+		"count": 8
+	}
+}

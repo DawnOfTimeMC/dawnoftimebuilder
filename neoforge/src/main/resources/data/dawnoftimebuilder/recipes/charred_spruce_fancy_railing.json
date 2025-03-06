@@ -1,0 +1,19 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"IiI",
+		"iIi"
+	],
+	"key": {
+		"I": {
+			"item": "dawnoftimebuilder:charred_spruce_log_stripped"
+		},
+		"i": {
+			"tag": "forge:rods/wooden"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:charred_spruce_fancy_railing",
+		"count": 6
+	}
+}

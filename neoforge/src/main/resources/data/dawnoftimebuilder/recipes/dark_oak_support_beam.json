@@ -1,0 +1,19 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"iii",
+		"III"
+	],
+	"key": {
+		"I": {
+			"item": "minecraft:stripped_dark_oak_log"
+		},
+		"i": {
+			"item": "dawnoftimebuilder:dark_oak_support_slab"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:dark_oak_support_beam",
+		"count": 8
+	}
+}

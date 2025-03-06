@@ -1,0 +1,19 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"IiI",
+		"IiI"
+	],
+	"key": {
+		"i": {
+			"item": "minecraft:dark_oak_log"
+		},
+		"I": {
+			"item": "minecraft:dark_oak_planks"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:dark_oak_wall",
+		"count": 9
+	}
+}

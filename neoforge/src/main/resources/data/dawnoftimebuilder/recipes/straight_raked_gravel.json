@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "iii"
+
+  ],
+  "key": {
+    "i": {
+      "item": "minecraft:gravel"
+    }
+  },
+  "result": {
+    "item": "dawnoftimebuilder:straight_raked_gravel",
+    "count": 3
+  }
+}

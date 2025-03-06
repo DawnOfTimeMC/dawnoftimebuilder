@@ -1,0 +1,19 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"IiI",
+		"IiI"
+	],
+	"key": {
+		"i": {
+			"item": "minecraft:cherry_log"
+		},
+		"I": {
+			"item": "minecraft:cherry_planks"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:cherry_wall",
+		"count": 9
+	}
+}

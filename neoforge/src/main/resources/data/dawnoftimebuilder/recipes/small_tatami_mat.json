@@ -1,0 +1,18 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"xIx"
+	],
+	"key": {
+		"I": {
+			"item": "dawnoftimebuilder:thatch_bamboo_slab"
+		},
+		"x": {
+			"item": "dawnoftimebuilder:silk"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:small_tatami_mat",
+		"count": 2
+	}
+}

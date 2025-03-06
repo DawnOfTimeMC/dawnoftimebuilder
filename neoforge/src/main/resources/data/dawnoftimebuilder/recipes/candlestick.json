@@ -1,0 +1,18 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		" i ",
+		" o "
+	],
+	"key": {
+		"i": {
+			"item": "minecraft:candle"
+		},
+		"o": {
+			"tag": "forge:ingots/iron"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:candlestick"
+	}
+}

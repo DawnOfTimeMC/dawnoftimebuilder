@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "I",
+    "I",
+    "I"
+  ],
+  "key": {
+    "I": {
+      "item": "minecraft:crimson_planks"
+    }
+  },
+  "result": {
+    "item": "dawnoftimebuilder:crimson_planks_plate",
+    "count": 6
+  }
+}

@@ -1,0 +1,23 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"IiI",
+		"IoI",
+		"IoI"
+	],
+	"key": {
+		"i": {
+			"item": "minecraft:paper"
+		},
+		"I": {
+			"tag": "forge:rods/wooden"
+		},
+		"o": {
+			"item": "minecraft:ink_sac"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:paper_folding_screen",
+		"count": 4
+	}
+}

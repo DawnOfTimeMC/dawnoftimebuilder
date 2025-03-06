@@ -1,0 +1,17 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"I",
+		"I",
+		"I"
+	],
+	"key": {
+		"I": {
+			"item": "minecraft:jungle_planks"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:jungle_planks_plate",
+		"count": 6
+	}
+}

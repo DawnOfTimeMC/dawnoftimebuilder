@@ -1,0 +1,16 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"III",
+		"III"
+	],
+	"key": {
+		"I": {
+			"item": "dawnoftimebuilder:waxed_oak_planks"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:waxed_oak_trapdoor",
+		"count": 2
+	}
+}

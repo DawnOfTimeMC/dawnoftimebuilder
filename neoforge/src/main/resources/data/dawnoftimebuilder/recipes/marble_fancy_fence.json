@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ixi",
+    "xix"
+  ],
+  "key": {
+    "x": {
+      "item": "minecraft:stick"
+    },
+    "i": {
+      "item": "minecraft:calcite"
+    }
+  },
+  "result": {
+    "item": "dawnoftimebuilder:marble_fancy_fence",
+    "count": 6
+  }
+}

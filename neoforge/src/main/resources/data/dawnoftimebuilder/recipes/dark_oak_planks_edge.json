@@ -1,0 +1,15 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"II"
+	],
+	"key": {
+		"I": {
+			"item": "minecraft:dark_oak_slab"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:dark_oak_planks_edge",
+		"count": 6
+	}
+}

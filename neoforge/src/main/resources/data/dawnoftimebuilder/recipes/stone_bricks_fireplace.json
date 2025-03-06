@@ -1,0 +1,19 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		" I ",
+		"IoI",
+		" I "
+	],
+	"key": {
+		"I": {
+			"item": "minecraft:stone_bricks"
+		},
+		"o": {
+			"item": "dawnoftimebuilder:fireplace"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:stone_bricks_fireplace"
+	}
+}

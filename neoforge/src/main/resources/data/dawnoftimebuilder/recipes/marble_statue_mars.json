@@ -1,0 +1,29 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		" c ",
+		"soS",
+		" i "
+	],
+	"key": {
+		"c": {
+			"item": "minecraft:golden_helmet"
+		},
+		"o": {
+			"item": "minecraft:calcite"
+		},
+		"s": {
+			"item": "minecraft:golden_sword"
+		},
+		"S": {
+			"item": "minecraft:shield"
+		},
+		"i": {
+			"item": "minecraft:cut_sandstone_slab"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:marble_statue_mars",
+		"count": 1
+	}
+}

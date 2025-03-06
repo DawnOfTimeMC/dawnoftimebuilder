@@ -1,0 +1,15 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"III"
+	],
+	"key": {
+		"I": {
+			"item": "dawnoftimebuilder:gold_plated_smooth_block"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:gold_plated_smooth_slab",
+		"count": 6
+	}
+}

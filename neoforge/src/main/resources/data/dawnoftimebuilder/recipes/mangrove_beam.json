@@ -1,0 +1,19 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"I",
+		"i"
+	],
+	"key": {
+		"I": {
+			"item": "minecraft:stripped_mangrove_log"
+		},
+		"i": {
+			"item": "minecraft:mud_bricks"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:mangrove_beam",
+		"count": 4
+	}
+}

@@ -1,0 +1,15 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"III"
+	],
+	"key": {
+		"I": {
+			"item": "minecraft:bamboo_slab"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:bamboo_support_slab",
+		"count": 6
+	}
+}

@@ -1,0 +1,16 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"III",
+		"III"
+	],
+	"key": {
+		"I": {
+			"item": "dawnoftimebuilder:limestone_bricks"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:limestone_bricks_wall",
+		"count": 9
+	}
+}
