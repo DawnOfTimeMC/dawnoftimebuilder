@@ -1,8 +1,8 @@
 {
   "replace": false,
   "values": [
-    "#forge:crops/commelina",
-    "#forge:crops/rice",
-    "#forge:crops/maize"
+    "#neoforge:crops/commelina",
+    "#neoforge:crops/rice",
+    "#neoforge:crops/maize"
   ]
 }

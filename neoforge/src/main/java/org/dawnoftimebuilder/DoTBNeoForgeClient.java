@@ -3,6 +3,7 @@ package org.dawnoftimebuilder;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.api.distmarker.Dist;
+import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModLoadingContext;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -24,7 +25,7 @@ import org.dawnoftimebuilder.registry.DoTBMenuTypesRegistry;
 
 import java.util.function.Supplier;
 
-@EventBusSubscriber(modid = DoTBCommon.MOD_ID, value = Dist.CLIENT, bus = EventBusSubscriber.Bus.GAME)
+@EventBusSubscriber(modid = DoTBCommon.MOD_ID, value = Dist.CLIENT, bus = EventBusSubscriber.Bus.MOD)
 public class DoTBNeoForgeClient {
 
     @SubscribeEvent
@@ -39,6 +40,15 @@ public class DoTBNeoForgeClient {
 
     @SubscribeEvent
     public static void clientSetup(FMLClientSetupEvent event) {
+        final IEventBus eventBus = ModLoadingContext.get().getActiveContainer().getEventBus();
+
+        if (eventBus != null) {
+            eventBus.addListener(DoTBNeoForgeClient::setupBlockColors);
+            eventBus.addListener(DoTBNeoForgeClient::setupItemColors);
+            eventBus.addListener(DoTBNeoForgeClient::registerLayerDefinitions);
+            eventBus.addListener(DoTBNeoForgeClient::registerRenderers);
+        }
+
         ModLoadingContext.get().registerExtensionPoint(
                 IConfigScreenFactory.class,
                 () -> (modContainer, screen) -> DoTBNeoForge.HANDLER.generateGui().generateScreen(screen)
