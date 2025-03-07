@@ -20,6 +20,7 @@ import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.block.state.properties.Half;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.dawnoftimebuilder.platform.Services;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
@@ -166,7 +167,7 @@ public class DoubleCropsBlock extends SoilCropsBlock {
             if(worldIn.getRawBrightness(pos, 0) >= 9) {
                 int i = this.getAge(state);
                 if(i < this.getMaxAge()) {
-                    float f = getGrowthSpeed(this, worldIn, pos);
+                    float f = Services.PLATFORM.getGrowthSpeed(this, worldIn, pos);
                     BlockPos topPos = pos.above();
                     if(worldIn.getBlockState(topPos).getBlock() == this || worldIn.isEmptyBlock(topPos)) {
                         if(random.nextInt((int) (25.0F / f) + 1) == 0) {

@@ -23,6 +23,7 @@ import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
 import org.dawnoftimebuilder.block.IBlockGeneration;
+import org.dawnoftimebuilder.platform.Services;
 import org.dawnoftimebuilder.util.Utils;
 
 import javax.annotation.Nonnull;
@@ -61,7 +62,7 @@ public class SoilCropsBlock extends CropBlock implements IBlockGeneration {
         if(worldIn.getRawBrightness(pos, 0) >= 9) {
             int age = this.getAge(state);
             if(age < this.getMaxAge()) {
-                float f = getGrowthSpeed(this, worldIn, pos);
+                float f = Services.PLATFORM.getGrowthSpeed(this, worldIn, pos);
                 if(random.nextInt((int) (25.0F / f) + 1) == 0) {
                     this.setPlantWithAge(state, worldIn, pos, age + 1);
                 }

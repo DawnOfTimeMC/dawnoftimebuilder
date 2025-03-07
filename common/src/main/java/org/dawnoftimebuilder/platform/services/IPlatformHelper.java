@@ -1,8 +1,11 @@
 package org.dawnoftimebuilder.platform.services;
 
+import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.block.Block;
 import org.dawnoftimebuilder.DoTBConfig;
 
 import java.util.function.Function;
@@ -43,4 +46,6 @@ public interface IPlatformHelper {
     DoTBConfig getConfig();
 
     <D> void openScreenHandler(Player playerEntity, MenuProvider provider, Function<ServerPlayer, D> dataWriter);
+
+    float getGrowthSpeed(Block block, BlockGetter level, BlockPos pos);
 }
