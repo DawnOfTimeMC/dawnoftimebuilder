@@ -34,6 +34,9 @@ public class RenderLayers {
         BlockRenderLayerMap.INSTANCE.putBlock(DoTBBlocksRegistry.INSTANCE.STICK_BUNDLE.get(), RenderType.cutout());
         BlockRenderLayerMap.INSTANCE.putBlock(DoTBBlocksRegistry.INSTANCE.SPRUCE_SUPPORT_BEAM.get(), RenderType.cutout());
         BlockRenderLayerMap.INSTANCE.putBlock(DoTBBlocksRegistry.INSTANCE.SPRUCE_PERGOLA.get(), RenderType.cutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(DoTBBlocksRegistry.INSTANCE.CHERRY_PERGOLA.get(), RenderType.cutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(DoTBBlocksRegistry.INSTANCE.MANGROVE_PERGOLA.get(), RenderType.cutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(DoTBBlocksRegistry.INSTANCE.BAMBOO_PERGOLA.get(), RenderType.cutout());
         BlockRenderLayerMap.INSTANCE.putBlock(DoTBBlocksRegistry.INSTANCE.SPRUCE_LATTICE.get(), RenderType.cutout());
         BlockRenderLayerMap.INSTANCE.putBlock(DoTBBlocksRegistry.INSTANCE.SPRUCE_BEAM.get(), RenderType.cutout());
         BlockRenderLayerMap.INSTANCE.putBlock(DoTBBlocksRegistry.INSTANCE.SMALL_TATAMI_MAT.get(), RenderType.cutout());
