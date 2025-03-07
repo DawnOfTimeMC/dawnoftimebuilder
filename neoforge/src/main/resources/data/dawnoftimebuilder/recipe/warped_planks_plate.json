@@ -1,17 +1,17 @@
 {
-	"type": "minecraft:crafting_shaped",
-	"pattern": [
-		"I",
-		"I",
-		"I"
-	],
-	"key": {
-		"I": {
-			"item": "minecraft:warped_planks"
-		}
-	},
-	"result": {
-		"item": "dawnoftimebuilder:warped_planks_plate",
-		"count": 6
-	}
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "I",
+        "I",
+        "I"
+    ],
+    "key": {
+        "I": {
+            "item": "minecraft:warped_planks"
+        }
+    },
+    "result": {
+        "count": 6,
+        "id": "dawnoftimebuilder:warped_planks_plate"
+    }
 }

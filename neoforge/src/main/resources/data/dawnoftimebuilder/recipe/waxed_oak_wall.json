@@ -1,19 +1,19 @@
 {
-	"type": "minecraft:crafting_shaped",
-	"pattern": [
-		"IiI",
-		"IiI"
-	],
-	"key": {
-		"I": {
-			"item": "dawnoftimebuilder:waxed_oak_planks"
-		},
-		"i": {
-			"item": "minecraft:oak_log"
-		}
-	},
-	"result": {
-		"item": "dawnoftimebuilder:waxed_oak_wall",
-		"count": 9
-	}
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "IiI",
+        "IiI"
+    ],
+    "key": {
+        "I": {
+            "item": "dawnoftimebuilder:waxed_oak_planks"
+        },
+        "i": {
+            "item": "minecraft:oak_log"
+        }
+    },
+    "result": {
+        "count": 9,
+        "id": "dawnoftimebuilder:waxed_oak_wall"
+    }
 }

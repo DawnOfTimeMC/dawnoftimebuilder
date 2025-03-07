@@ -1,21 +1,21 @@
 {
-	"type": "minecraft:crafting_shaped",
-	"pattern": [
-		"oio",
-		"III"
-	],
-	"key": {
-		"I": {
-			"item": "minecraft:spruce_planks"
-		},
-		"i": {
-			"item": "minecraft:spruce_log"
-		},
-		"o": {
-			"tag": "forge:ingots/iron"
-		}
-	},
-	"result": {
-		"item": "dawnoftimebuilder:irori_fireplace"
-	}
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "oio",
+        "III"
+    ],
+    "key": {
+        "I": {
+            "item": "minecraft:spruce_planks"
+        },
+        "i": {
+            "item": "minecraft:spruce_log"
+        },
+        "o": {
+            "tag": "forge:ingots/iron"
+        }
+    },
+    "result": {
+        "id": "dawnoftimebuilder:irori_fireplace"
+    }
 }

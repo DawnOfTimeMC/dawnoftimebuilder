@@ -1,17 +1,17 @@
 {
-	"type": "minecraft:crafting_shaped",
-	"pattern": [
-		"I  ",
-		"II ",
-		"III"
-	],
-	"key": {
-		"I": {
-			"item": "minecraft:cut_sandstone"
-		}
-	},
-	"result": {
-		"item": "dawnoftimebuilder:cut_sandstone_stairs",
-		"count": 6
-	}
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "I  ",
+        "II ",
+        "III"
+    ],
+    "key": {
+        "I": {
+            "item": "minecraft:cut_sandstone"
+        }
+    },
+    "result": {
+        "count": 6,
+        "id": "dawnoftimebuilder:cut_sandstone_stairs"
+    }
 }

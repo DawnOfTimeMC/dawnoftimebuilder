@@ -25,8 +25,8 @@ public class DisplayerMenu extends AbstractContainerMenu {
 	private final ContainerLevelAccess levelAccess;
 
 	//Client constructor
-	public <D extends DisplayerMenuData> DisplayerMenu(int windowId, Inventory playerInventory, D additionalData) {
-		this(windowId, playerInventory, playerInventory.player.level().getBlockEntity(additionalData.blockPos()));
+	public <D extends DisplayerMenuData> DisplayerMenu(int windowId, Inventory playerInventory, D additionalData, RegistryFriendlyByteBuf buf) {
+		this(windowId, playerInventory, playerInventory.player.level().getBlockEntity(additionalData != null ? additionalData.blockPos() : buf.readBlockPos()));
 	}
 
 	//Server constructor

@@ -180,7 +180,7 @@ public class RegistryImpls {
 
         @Override
         public <T extends AbstractContainerMenu, D> Supplier<MenuType<T>> register(String name, MenuTypeFactory<T, D> factory, StreamCodec<? super RegistryFriendlyByteBuf, D> packetCodec) {
-            ExtendedScreenHandlerType<T, D> type = Registry.register(BuiltInRegistries.MENU, ResourceLocation.fromNamespaceAndPath(DoTBCommon.MOD_ID, name), new ExtendedScreenHandlerType<>(factory::create, packetCodec));
+            ExtendedScreenHandlerType<T, D> type = Registry.register(BuiltInRegistries.MENU, ResourceLocation.fromNamespaceAndPath(DoTBCommon.MOD_ID, name), new ExtendedScreenHandlerType<>((syncId, inventory, data) -> factory.create(syncId, inventory, data, null), packetCodec));
             return () -> (MenuType<T>) type;
         }
     }

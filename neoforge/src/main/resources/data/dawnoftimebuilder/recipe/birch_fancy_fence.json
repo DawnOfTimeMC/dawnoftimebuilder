@@ -1,19 +1,19 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "ixi",
-    "xix"
-  ],
-  "key": {
-    "x": {
-      "item": "minecraft:stick"
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "ixi",
+        "xix"
+    ],
+    "key": {
+        "x": {
+            "item": "minecraft:stick"
+        },
+        "i": {
+            "item": "minecraft:birch_planks"
+        }
     },
-    "i": {
-      "item": "minecraft:birch_planks"
+    "result": {
+        "count": 6,
+        "id": "dawnoftimebuilder:birch_fancy_fence"
     }
-  },
-  "result": {
-    "item": "dawnoftimebuilder:birch_fancy_fence",
-    "count": 6
-  }
 }

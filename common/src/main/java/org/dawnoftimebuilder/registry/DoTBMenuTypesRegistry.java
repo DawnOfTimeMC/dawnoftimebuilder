@@ -6,6 +6,7 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.MenuType;
 import org.dawnoftimebuilder.container.DisplayerMenu;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.function.Supplier;
 
@@ -18,6 +19,6 @@ public abstract class DoTBMenuTypesRegistry {
 
 	@FunctionalInterface
 	public interface MenuTypeFactory<T extends AbstractContainerMenu, D> {
-		T create(int syncId, Inventory inventory, D data);
+		T create(int syncId, Inventory inventory, @Nullable D data, @Nullable RegistryFriendlyByteBuf buf);
 	}
 }

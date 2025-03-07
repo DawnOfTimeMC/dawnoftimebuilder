@@ -1,12 +1,12 @@
 {
-  "type": "minecraft:crafting_shapeless",
-  "group": "pink_dye",
-  "ingredients": [
-    {
-      "item": "dawnoftimebuilder:geranium_pink"
+    "type": "minecraft:crafting_shapeless",
+    "group": "pink_dye",
+    "ingredients": [
+        {
+            "item": "dawnoftimebuilder:geranium_pink"
+        }
+    ],
+    "result": {
+        "id": "minecraft:pink_dye"
     }
-  ],
-  "result": {
-    "item": "minecraft:pink_dye"
-  }
 }

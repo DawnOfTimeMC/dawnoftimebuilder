@@ -1,19 +1,19 @@
 {
-	"type": "minecraft:crafting_shaped",
-	"pattern": [
-		"IiI",
-		"IiI"
-	],
-	"key": {
-		"i": {
-			"item": "minecraft:mangrove_log"
-		},
-		"I": {
-			"item": "minecraft:mangrove_planks"
-		}
-	},
-	"result": {
-		"item": "dawnoftimebuilder:mangrove_wall",
-		"count": 9
-	}
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "IiI",
+        "IiI"
+    ],
+    "key": {
+        "i": {
+            "item": "minecraft:mangrove_log"
+        },
+        "I": {
+            "item": "minecraft:mangrove_planks"
+        }
+    },
+    "result": {
+        "count": 9,
+        "id": "dawnoftimebuilder:mangrove_wall"
+    }
 }

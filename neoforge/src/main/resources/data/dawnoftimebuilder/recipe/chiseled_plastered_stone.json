@@ -1,16 +1,16 @@
 {
-	"type": "minecraft:crafting_shaped",
-	"pattern": [
-		"II",
-		"II"
-	],
-	"key": {
-		"I": {
-			"item": "dawnoftimebuilder:plastered_stone"
-		}
-	},
-	"result": {
-		"item": "dawnoftimebuilder:chiseled_plastered_stone",
-		"count": 4
-	}
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "II",
+        "II"
+    ],
+    "key": {
+        "I": {
+            "item": "dawnoftimebuilder:plastered_stone"
+        }
+    },
+    "result": {
+        "count": 4,
+        "id": "dawnoftimebuilder:chiseled_plastered_stone"
+    }
 }

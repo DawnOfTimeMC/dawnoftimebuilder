@@ -1,17 +1,17 @@
 {
-	"type": "minecraft:crafting_shaped",
-	"pattern": [
-		"I",
-		"I",
-		"I"
-	],
-	"key": {
-		"I": {
-			"item": "minecraft:oak_planks"
-		}
-	},
-	"result": {
-		"item": "dawnoftimebuilder:oak_planks_plate",
-		"count": 6
-	}
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "I",
+        "I",
+        "I"
+    ],
+    "key": {
+        "I": {
+            "item": "minecraft:oak_planks"
+        }
+    },
+    "result": {
+        "count": 6,
+        "id": "dawnoftimebuilder:oak_planks_plate"
+    }
 }

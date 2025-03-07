@@ -17,7 +17,6 @@ import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.SpawnEggItem;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
@@ -34,13 +33,11 @@ import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import org.dawnoftimebuilder.block.templates.FlowerPotBlockAA;
-import org.dawnoftimebuilder.container.DisplayerMenu;
 import org.dawnoftimebuilder.entity.SilkmothEntity;
 import org.dawnoftimebuilder.item.IHasFlowerPot;
 import org.dawnoftimebuilder.item.IconItem;
 import org.dawnoftimebuilder.registry.*;
 
-import java.util.Map;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -168,7 +165,7 @@ public class RegistryImpls {
 
         @Override
         public <T extends AbstractContainerMenu, D> Supplier<MenuType<T>> register(String name, MenuTypeFactory<T, D> factory, StreamCodec<? super RegistryFriendlyByteBuf, D> packetCodec) {
-            return MENU_TYPES_REGISTRY.register(name, () -> IMenuTypeExtension.create((i, inventory, registryFriendlyByteBuf) -> factory.create(i, inventory)));
+            return MENU_TYPES_REGISTRY.register(name, () -> IMenuTypeExtension.create((i, inventory, registryFriendlyByteBuf) -> factory.create(i, inventory, null, registryFriendlyByteBuf)));
         }
     }
 
