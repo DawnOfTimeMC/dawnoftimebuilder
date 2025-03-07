@@ -116,7 +116,7 @@ public class LatticeBlock extends WaterloggedBlock implements IBlockClimbingPlan
     }
 
     @Override
-    public void tick(BlockState state, ServerLevel worldIn, BlockPos pos, RandomSource random) {
+    public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, RandomSource random) {
         this.tickPlant(state, worldIn, pos, random);
     }
 

@@ -139,12 +139,7 @@ public class StickBundleBlock extends BlockAA implements IBlockChain {
     }
 
     @Override
-    public boolean isRandomlyTicking(BlockState state) {
-        return state.getValue(AGE) > 0 && state.getValue(AGE) < 3 && state.getValue(HALF) == Half.TOP;
-    }
-
-    @Override
-    public void tick(BlockState state, ServerLevel worldIn, BlockPos pos, RandomSource random) {
+    protected void randomTick(BlockState state, @NotNull ServerLevel worldIn, @NotNull BlockPos pos, @NotNull RandomSource random) {
         int growth = state.getValue(AGE);
         if(growth > 0 && growth < 3) {
             if(random.nextInt(Services.PLATFORM.getConfig().stickBundleGrowthChance) == 0) {
@@ -152,6 +147,11 @@ public class StickBundleBlock extends BlockAA implements IBlockChain {
                 worldIn.setBlock(pos.below(), worldIn.getBlockState(pos.below()).setValue(AGE, growth + 1), 10);
             }
         }
+    }
+
+    @Override
+    public boolean isRandomlyTicking(BlockState state) {
+        return state.getValue(AGE) > 0 && state.getValue(AGE) < 3 && state.getValue(HALF) == Half.TOP;
     }
 
     @Override

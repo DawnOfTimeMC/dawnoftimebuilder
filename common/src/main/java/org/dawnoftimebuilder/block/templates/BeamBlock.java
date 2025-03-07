@@ -131,7 +131,7 @@ public class BeamBlock extends WaterloggedBlock implements IBlockPillar, IBlockC
     }
 
     @Override
-    public void tick(BlockState state, ServerLevel worldIn, BlockPos pos, RandomSource random) {
+    public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, RandomSource random) {
         this.tickPlant(state, worldIn, pos, random);
     }
 
