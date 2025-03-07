@@ -7,7 +7,7 @@
     ],
     "key": {
         "#": {
-            "tag": "forge:rods/wooden"
+            "tag": "c:rods/wooden"
         },
         "W": {
             "item": "dawnoftimebuilder:charred_spruce_planks"

@@ -12,7 +12,7 @@
             "tag": "minecraft:coals"
         },
         "o": {
-            "tag": "forge:nuggets/iron"
+            "tag": "c:nuggets/iron"
         }
     },
     "result": {

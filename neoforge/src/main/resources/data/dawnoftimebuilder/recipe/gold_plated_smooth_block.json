@@ -18,7 +18,7 @@
             }
         ],
         "o": {
-            "tag": "forge:nuggets/gold"
+            "tag": "c:nuggets/gold"
         }
     },
     "result": {

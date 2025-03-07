@@ -9,7 +9,7 @@
             "item": "minecraft:candle"
         },
         "o": {
-            "tag": "forge:ingots/iron"
+            "tag": "c:ingots/iron"
         }
     },
     "result": {

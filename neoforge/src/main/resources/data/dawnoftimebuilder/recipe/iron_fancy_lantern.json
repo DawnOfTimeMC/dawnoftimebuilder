@@ -7,13 +7,13 @@
     ],
     "key": {
         "I": {
-            "tag": "forge:ingots/iron"
+            "tag": "c:ingots/iron"
         },
         "x": {
             "item": "minecraft:torch"
         },
         "o": {
-            "tag": "forge:nuggets/iron"
+            "tag": "c:nuggets/iron"
         }
     },
     "result": {

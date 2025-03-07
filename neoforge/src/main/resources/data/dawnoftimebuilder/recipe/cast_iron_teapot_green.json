@@ -7,10 +7,10 @@
     ],
     "key": {
         "I": {
-            "tag": "forge:ingots/iron"
+            "tag": "c:ingots/iron"
         },
         "i": {
-            "tag": "forge:dyes/green"
+            "tag": "c:dyes/green"
         }
     },
     "result": {
