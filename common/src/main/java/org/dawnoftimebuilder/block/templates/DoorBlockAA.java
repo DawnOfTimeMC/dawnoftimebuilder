@@ -11,26 +11,16 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.level.material.Fluids;
+import org.dawnoftimebuilder.platform.Services;
 import org.jetbrains.annotations.NotNull;
 
-public class DoorBlockAA extends DoorBlock implements SimpleWaterloggedBlock {
-    public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
-
+public class DoorBlockAA extends DoorBlock {
     public DoorBlockAA(Properties properties, BlockSetType blockSetType) {
         super(properties, blockSetType);
-        this.registerDefaultState(this.defaultBlockState().setValue(WATERLOGGED, false));
-    }
-
-    @Override
-    protected void createBlockStateDefinition(StateDefinition.@NotNull Builder<Block, BlockState> builder) {
-        super.createBlockStateDefinition(builder);
-        builder.add(WATERLOGGED);
     }
 
     @Override
     public @NotNull BlockState updateShape(BlockState stateIn, @NotNull Direction facing, @NotNull BlockState facingState, @NotNull LevelAccessor worldIn, @NotNull BlockPos currentPos, @NotNull BlockPos facingPos) {
-        if(stateIn.getValue(WATERLOGGED))
-            worldIn.scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(worldIn));
         Direction dirOtherDoor = (stateIn.getValue(HINGE) == DoorHingeSide.LEFT) ? stateIn.getValue(FACING).getClockWise() : stateIn.getValue(FACING).getCounterClockWise();
         if(facing == dirOtherDoor) {
             if(facingState.getBlock() instanceof DoorBlock) {
@@ -39,11 +29,5 @@ public class DoorBlockAA extends DoorBlock implements SimpleWaterloggedBlock {
             }
         }
         return super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
-    }
-
-    @Override
-    public BlockState getStateForPlacement(@NotNull BlockPlaceContext context) {
-        BlockState state = super.getStateForPlacement(context);
-        return (state != null) ? state.setValue(WATERLOGGED, context.getLevel().getFluidState(context.getClickedPos()).getType() == Fluids.WATER) : null;
     }
 }
