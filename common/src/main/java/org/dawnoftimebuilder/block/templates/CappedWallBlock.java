@@ -109,8 +109,8 @@ public class CappedWallBlock extends Block implements SimpleWaterloggedBlock {
 
     private boolean connectsTo(BlockState state, boolean p_220113_2_, Direction direction) {
         Block block = state.getBlock();
-        boolean flag = block instanceof WaterloggedFenceGateBlock && WaterloggedFenceGateBlock.connectsToDirection(state, direction);
-        return state.is(BlockTags.WALLS) || !isExceptionForConnection(state) && p_220113_2_ || block instanceof StainedGlassPaneBlock || flag;
+        boolean flag = block instanceof FenceGateBlock && FenceGateBlock.connectsToDirection(state, direction);
+        return state.is(BlockTags.WALLS) || !isExceptionForConnection(state) && p_220113_2_ || block instanceof IronBarsBlock || flag;
     }
 
     public BlockState getStateForPlacement(BlockPlaceContext context) {
