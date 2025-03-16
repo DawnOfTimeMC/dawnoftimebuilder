@@ -105,7 +105,19 @@ jarJar.enable()
 dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
     compileOnly project(":common")
+
     implementation fg.deobf("dev.isxander:yet-another-config-lib:${project.yacl_version}-forge")
+
+    // Mod compatibility
+
+    runtimeOnly fg.deobf("maven.modrinth:rei:IoS2AjPk")
+    runtimeOnly fg.deobf("maven.modrinth:cloth-config:t8TXrZvZ")
+    runtimeOnly fg.deobf("maven.modrinth:architectury-api:1MKTLiiG")
+    runtimeOnly fg.deobf("maven.modrinth:geckolib:LwI6czff")
+
+    runtimeOnly fg.deobf("maven.modrinth:lets-do-vinery:YpD6ue8A")
+    runtimeOnly fg.deobf("maven.modrinth:farmers-delight:NcRp00OO")
+    runtimeOnly fg.deobf("maven.modrinth:critters-and-companions:acDDSIG3")
     runtimeOnly fg.deobf("maven.modrinth:fusion-connected-textures:1.1.1-forge-mc1.20.1")
 
     annotationProcessor("org.spongepowered:mixin:0.8.5-SNAPSHOT:processor")
