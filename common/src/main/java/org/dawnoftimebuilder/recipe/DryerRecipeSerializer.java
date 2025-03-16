@@ -1,58 +1,63 @@
 package org.dawnoftimebuilder.recipe;
 
-import com.google.gson.JsonObject;
-import com.google.gson.JsonSyntaxException;
-import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.GsonHelper;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.ByteBufCodecs;
+import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
-import net.minecraft.world.item.crafting.ShapedRecipe;
 import org.jetbrains.annotations.NotNull;
 
-import javax.annotation.Nonnull;
-
 public class DryerRecipeSerializer implements RecipeSerializer<DryerRecipe> {
-    @Override
-    @Nonnull
-    public DryerRecipe fromJson(@Nonnull ResourceLocation recipeId, @Nonnull JsonObject json) {
+    private final Factory<DryerRecipe> factory;
+    private final MapCodec<DryerRecipe> codec;
+    private final StreamCodec<RegistryFriendlyByteBuf, DryerRecipe> streamCodec;
 
-        if(!json.has("ingredient"))
-            throw new JsonSyntaxException("The object 'ingredient' is missing.");
-        if(!json.get("ingredient").isJsonObject())
-            throw new JsonSyntaxException("'ingredient' is expected to be an object.");
-        if(!json.has("result"))
-            throw new JsonSyntaxException("The object 'result' is missing.");
-        if(!json.get("result").isJsonObject())
-            throw new JsonSyntaxException("'result' is expected to be an object.");
+    public DryerRecipeSerializer(Factory<DryerRecipe> factory) {
+        this.factory = factory;
+        this.codec = RecordCodecBuilder.mapCodec(
+                instance -> instance.group(
+                        Codec.STRING.optionalFieldOf("group", "").forGetter(o -> o.group),
+                        Ingredient.CODEC.fieldOf("ingredient").forGetter(o -> o.ingredient),
+                        ItemStack.CODEC.fieldOf("result").forGetter(o -> o.result),
+                        Codec.FLOAT.optionalFieldOf("experience", 0.0F).forGetter(o -> o.experience),
+                        Codec.INT.optionalFieldOf("dryingTime", 1200).forGetter(o -> o.dryingTime)
+                ).apply(instance, factory::create));
+        this.streamCodec = StreamCodec.of(this::toNetwork, this::fromNetwork);
+    }
 
-        String group = GsonHelper.getAsString(json, "group", "");
-        Ingredient ingredient = Ingredient.fromJson(json.get("ingredient"));
-        ingredient.getItems()[0].setCount(GsonHelper.getAsInt(GsonHelper.getAsJsonObject(json, "ingredient"), "count", 1));
-        ItemStack itemStackResult = ShapedRecipe.itemFromJson(GsonHelper.getAsJsonObject(json, "result")).getDefaultInstance();
-        float experience = GsonHelper.getAsFloat(json, "experience", 0.0F);
-        int dryingTime = GsonHelper.getAsInt(json, "dryingTime", 1200);
+    public @NotNull DryerRecipe fromNetwork(RegistryFriendlyByteBuf buffer) {
+        String group = ByteBufCodecs.STRING_UTF8.decode(buffer);
+        Ingredient ingredient = Ingredient.CONTENTS_STREAM_CODEC.decode(buffer);
+        ItemStack itemStackResult = ItemStack.STREAM_CODEC.decode(buffer);
+        float experience = ByteBufCodecs.FLOAT.decode(buffer);
+        int dryingTime = ByteBufCodecs.VAR_INT.decode(buffer);
+        return factory.create(group, ingredient, itemStackResult, experience, dryingTime);
+    }
 
-        return new DryerRecipe(recipeId, group, ingredient, itemStackResult, experience, dryingTime);
+    public void toNetwork(RegistryFriendlyByteBuf buffer, DryerRecipe recipe) {
+        ByteBufCodecs.STRING_UTF8.encode(buffer, recipe.group);
+        Ingredient.CONTENTS_STREAM_CODEC.encode(buffer, recipe.ingredient);
+        ItemStack.STREAM_CODEC.encode(buffer, recipe.result);
+        ByteBufCodecs.FLOAT.encode(buffer, recipe.experience);
+        ByteBufCodecs.VAR_INT.encode(buffer, recipe.dryingTime);
     }
 
     @Override
-    public @NotNull DryerRecipe fromNetwork(@Nonnull ResourceLocation recipeId, FriendlyByteBuf buffer) {
-        String group = buffer.readUtf(32767);
-        Ingredient ingredient = Ingredient.fromNetwork(buffer);
-        ItemStack itemStackResult = buffer.readItem();
-        float experience = buffer.readFloat();
-        int dryingTime = buffer.readVarInt();
-        return new DryerRecipe(recipeId, group, ingredient, itemStackResult, experience, dryingTime);
+    public @NotNull MapCodec<DryerRecipe> codec() {
+        return codec;
     }
 
     @Override
-    public void toNetwork(FriendlyByteBuf buffer, DryerRecipe recipe) {
-        buffer.writeUtf(recipe.group);
-        recipe.ingredient.toNetwork(buffer);
-        buffer.writeItem(recipe.result);
-        buffer.writeFloat(recipe.experience);
-        buffer.writeVarInt(recipe.dryingTime);
+    public @NotNull StreamCodec<RegistryFriendlyByteBuf, DryerRecipe> streamCodec() {
+        return streamCodec;
+    }
+
+    @FunctionalInterface
+    public interface Factory<T extends DryerRecipe> {
+        T create(String group, Ingredient ingredient, ItemStack result, float experience, int dryingTime);
     }
 }

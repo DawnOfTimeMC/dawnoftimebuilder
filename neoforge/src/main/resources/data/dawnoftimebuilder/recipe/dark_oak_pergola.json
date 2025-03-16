@@ -1,0 +1,17 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " i ",
+        "iii",
+        " i "
+    ],
+    "key": {
+        "i": {
+            "item": "minecraft:stripped_dark_oak_log"
+        }
+    },
+    "result": {
+        "count": 6,
+        "id": "dawnoftimebuilder:dark_oak_pergola"
+    }
+}

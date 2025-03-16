@@ -41,7 +41,7 @@ public class MarbleStatueBlock extends WaterloggedBlock {
     }
 
     @Override
-    public void playerWillDestroy(final Level worldIn, final BlockPos blockPosIn, final BlockState blockStateIn, final Player playerEntityIn) {
+    public BlockState playerWillDestroy(final Level worldIn, final BlockPos blockPosIn, final BlockState blockStateIn, final Player playerEntityIn) {
         // Prevents item from dropping in creative by removing the part that gives the item with a setBlock.
         if (!worldIn.isClientSide() && playerEntityIn.isCreative()) {
             BlockPos blockPos;
@@ -54,7 +54,7 @@ public class MarbleStatueBlock extends WaterloggedBlock {
                 worldIn.levelEvent(playerEntityIn, 2001, blockPos, Block.getId(blockState));
             }
         }
-        super.playerWillDestroy(worldIn, blockPosIn, blockStateIn, playerEntityIn);
+        return super.playerWillDestroy(worldIn, blockPosIn, blockStateIn, playerEntityIn);
     }
 
     @Override

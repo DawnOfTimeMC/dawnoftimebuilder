@@ -1,0 +1,17 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "I",
+        "I",
+        "I"
+    ],
+    "key": {
+        "I": {
+            "item": "minecraft:cut_sandstone"
+        }
+    },
+    "result": {
+        "count": 6,
+        "id": "dawnoftimebuilder:cut_sandstone_plate"
+    }
+}

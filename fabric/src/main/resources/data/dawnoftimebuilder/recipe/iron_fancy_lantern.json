@@ -1,0 +1,22 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "oIo",
+        "oxo",
+        "ooo"
+    ],
+    "key": {
+        "I": {
+            "item": "minecraft:iron_ingot"
+        },
+        "x": {
+            "item": "minecraft:torch"
+        },
+        "o": {
+            "item": "minecraft:iron_nugget"
+        }
+    },
+    "result": {
+        "id": "dawnoftimebuilder:iron_fancy_lantern"
+    }
+}

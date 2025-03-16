@@ -2,19 +2,24 @@ package org.dawnoftimebuilder.block.templates;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.level.*;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.*;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.level.block.state.properties.Half;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -70,8 +75,8 @@ public class ConnectedHorizontalPlanDoubleTableBlock extends DisplayerBlock {
     }
 
     @Override
-    public InteractionResult use(BlockState blockState, Level world, BlockPos pos, Player playerEntity, InteractionHand hand, BlockHitResult rayTraceResult) {
-        return blockState.getValue(HALF) == Half.TOP ? super.use(blockState, world, pos, playerEntity, hand, rayTraceResult) : InteractionResult.PASS;
+    public InteractionResult useWithoutItem(BlockState blockState, Level world, BlockPos pos, Player playerEntity, BlockHitResult rayTraceResult) {
+        return blockState.getValue(HALF) == Half.TOP ? super.useWithoutItem(blockState, world, pos, playerEntity, rayTraceResult) : InteractionResult.PASS;
     }
 
     @Override
@@ -118,7 +123,7 @@ public class ConnectedHorizontalPlanDoubleTableBlock extends DisplayerBlock {
     }
 
     @Override
-    public void playerWillDestroy(Level level, @NotNull BlockPos pos, @NotNull BlockState state, @NotNull Player player) {
+    public BlockState playerWillDestroy(Level level, @NotNull BlockPos pos, @NotNull BlockState state, @NotNull Player player) {
         // Prevents item from dropping in creative by removing the part that gives the item with a setBlock.
         if (!level.isClientSide() && player.isCreative()) {
             if (state.getValue(HALF) == Half.TOP) {
@@ -131,7 +136,7 @@ public class ConnectedHorizontalPlanDoubleTableBlock extends DisplayerBlock {
                 }
             }
         }
-        super.playerWillDestroy(level, pos, state, player);
+        return super.playerWillDestroy(level, pos, state, player);
     }
 
     @Override

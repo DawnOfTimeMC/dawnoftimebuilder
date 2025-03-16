@@ -1,0 +1,17 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "o",
+        "o",
+        "o"
+    ],
+    "key": {
+        "o": {
+            "tag": "c:ingots/iron"
+        }
+    },
+    "result": {
+        "count": 3,
+        "id": "dawnoftimebuilder:iron_column"
+    }
+}

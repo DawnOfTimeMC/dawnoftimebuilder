@@ -6,9 +6,9 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -17,7 +17,10 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.*;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import org.dawnoftimebuilder.block.IBlockClimbingPlant;
@@ -113,14 +116,14 @@ public class LatticeBlock extends WaterloggedBlock implements IBlockClimbingPlan
     }
 
     @Override
-    public void tick(BlockState state, ServerLevel worldIn, BlockPos pos, RandomSource random) {
+    public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, RandomSource random) {
         this.tickPlant(state, worldIn, pos, random);
     }
 
     @Override
-    public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
+    public InteractionResult useWithoutItem(BlockState state, Level worldIn, BlockPos pos, Player player, BlockHitResult hit) {
         if(!state.getValue(PERSISTENT)) {
-            if(Utils.useLighter(worldIn, pos, player, handIn)) {
+            if(Utils.useLighter(worldIn, pos, player, player.getUsedItemHand())) {
                 Random rand = new Random();
                 for(int i = 0; i < 5; i++) {
                     worldIn.addParticle(ParticleTypes.SMOKE, (double) pos.getX() + rand.nextDouble(), (double) pos.getY() + 0.5D + rand.nextDouble() / 2, (double) pos.getZ() + rand.nextDouble(), 0.0D, 0.07D, 0.0D);
@@ -130,20 +133,20 @@ public class LatticeBlock extends WaterloggedBlock implements IBlockClimbingPlan
             }
         }
         if(player.isCreative()) {
-            if(this.tryPlacingPlant(state, worldIn, pos, player, handIn))
+            if(this.tryPlacingPlant(state, worldIn, pos, player, player.getUsedItemHand()))
                 return InteractionResult.SUCCESS;
         } else {
             if(worldIn.getBlockState(pos.below()).is(DIRT)) {
-                if(this.tryPlacingPlant(state, worldIn, pos, player, handIn))
+                if(this.tryPlacingPlant(state, worldIn, pos, player, player.getUsedItemHand()))
                     return InteractionResult.SUCCESS;
             }
         }
-        return this.harvestPlant(state, worldIn, pos, player, handIn);
+        return this.harvestPlant(state, worldIn, pos, player, player.getUsedItemHand());
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, @Nullable BlockGetter worldIn, List<Component> tooltip, TooltipFlag flagIn) {
-        super.appendHoverText(stack, worldIn, tooltip, flagIn);
+    public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltip, TooltipFlag flagIn) {
+        super.appendHoverText(stack, context, tooltip, flagIn);
         Utils.addTooltip(tooltip, TOOLTIP_CLIMBING_PLANT);
     }
 }

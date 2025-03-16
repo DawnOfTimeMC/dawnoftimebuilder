@@ -7,7 +7,10 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.level.*;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.EntityBlock;
@@ -19,7 +22,6 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
-import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.dawnoftimebuilder.blockentity.DryerBlockEntity;
 import org.dawnoftimebuilder.registry.DoTBBlockEntitiesRegistry;
@@ -119,12 +121,12 @@ public class DryerBlock extends WaterloggedBlock implements EntityBlock {
     }
 
     @Override
-    public InteractionResult use(final BlockState state, final Level worldIn, final BlockPos pos, final Player player, final InteractionHand handIn, final BlockHitResult hit) {
-        if(!worldIn.isClientSide() && handIn == InteractionHand.MAIN_HAND && worldIn.getBlockEntity(pos) instanceof DryerBlockEntity dryerEntity) {
+    public @NotNull InteractionResult useWithoutItem(final BlockState state, final Level worldIn, final BlockPos pos, final Player player, final BlockHitResult hit) {
+        if(!worldIn.isClientSide() && player.getUsedItemHand() == InteractionHand.MAIN_HAND && worldIn.getBlockEntity(pos) instanceof DryerBlockEntity dryerEntity) {
             if(player.isCrouching()) {
                 return dryerEntity.dropOneItem(worldIn, pos);
             }
-            ItemStack handStack = player.getItemInHand(handIn);
+            ItemStack handStack = player.getItemInHand(player.getUsedItemHand());
             return dryerEntity.tryInsertItemStack(handStack, state.getValue(DryerBlock.SIZE) == 0, worldIn, pos, player);
         }
         return InteractionResult.FAIL;

@@ -13,7 +13,7 @@ import static org.dawnoftimebuilder.DoTBCommon.MOD_ID;
 
 
 public class DisplayerScreen extends AbstractContainerScreen<DisplayerMenu> {
-    private static final ResourceLocation GUI_TEXTURE = new ResourceLocation(MOD_ID + ":textures/gui/displayer_gui.png");
+    private static final ResourceLocation GUI_TEXTURE = ResourceLocation.tryParse(MOD_ID + ":textures/gui/displayer_gui.png");
 
     public DisplayerScreen(DisplayerMenu menu, Inventory playerInventory, Component title) {
         super(menu, playerInventory, title);

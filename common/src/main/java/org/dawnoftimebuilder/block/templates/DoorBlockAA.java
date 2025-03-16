@@ -17,7 +17,7 @@ public class DoorBlockAA extends DoorBlock implements SimpleWaterloggedBlock {
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
     public DoorBlockAA(Properties properties, BlockSetType blockSetType) {
-        super(properties, blockSetType);
+        super(blockSetType, properties);
         this.registerDefaultState(this.defaultBlockState().setValue(WATERLOGGED, false));
     }
 

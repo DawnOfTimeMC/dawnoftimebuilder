@@ -2,6 +2,7 @@ package org.dawnoftimebuilder.block.templates;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -22,7 +23,6 @@ import org.dawnoftimebuilder.util.BlockStatePropertiesAA.SidedWindow;
 import org.dawnoftimebuilder.util.Utils;
 import org.jetbrains.annotations.NotNull;
 
-import javax.annotation.Nullable;
 import java.util.List;
 
 import static org.dawnoftimebuilder.util.Utils.TOOLTIP_SIDED_WINDOW;
@@ -117,8 +117,8 @@ public class SidedWindowBlock extends BlockAA {
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, @Nullable BlockGetter worldIn, List<Component> tooltip, TooltipFlag flagIn) {
-        super.appendHoverText(stack, worldIn, tooltip, flagIn);
+    public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltip, TooltipFlag flagIn) {
+        super.appendHoverText(stack, context, tooltip, flagIn);
         Utils.addTooltip(tooltip, TOOLTIP_SIDED_WINDOW);
     }
 }

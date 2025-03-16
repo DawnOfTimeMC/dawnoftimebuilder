@@ -2,7 +2,6 @@ package org.dawnoftimebuilder.block.roman;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -38,7 +37,7 @@ public class BirchCouchBlock extends ChairBlock {
     }
 
     @Override
-    public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
+    public @NotNull InteractionResult useWithoutItem(BlockState state, Level worldIn, BlockPos pos, Player player, BlockHitResult hit) {
         float x = 8.0F;
         float z = 8.0F;
         switch (state.getValue(FACING)) {
@@ -80,7 +79,7 @@ public class BirchCouchBlock extends ChairBlock {
     }
 
     @Override
-    public void playerWillDestroy(Level level, @NotNull BlockPos pos, @NotNull BlockState state, @NotNull Player player) {
+    public @NotNull BlockState playerWillDestroy(Level level, @NotNull BlockPos pos, @NotNull BlockState state, @NotNull Player player) {
         // Prevents item from dropping in creative by removing the part that gives the item with a setBlock.
         if (!level.isClientSide() && player.isCreative()) {
             if (!state.getValue(BlockStateProperties.PERSISTENT)) {
@@ -94,6 +93,6 @@ public class BirchCouchBlock extends ChairBlock {
                 }
             }
         }
-        super.playerWillDestroy(level, pos, state, player);
+        return super.playerWillDestroy(level, pos, state, player);
     }
 }

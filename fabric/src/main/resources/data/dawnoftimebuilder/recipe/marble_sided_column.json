@@ -1,0 +1,12 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "dawnoftimebuilder:marble_column"
+        }
+    ],
+    "result": {
+        "count": 2,
+        "id": "dawnoftimebuilder:marble_sided_column"
+    }
+}

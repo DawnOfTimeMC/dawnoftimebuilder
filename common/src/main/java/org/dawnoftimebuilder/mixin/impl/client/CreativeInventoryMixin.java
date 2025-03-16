@@ -35,7 +35,7 @@ import static org.dawnoftimebuilder.DoTBCommon.CREATIVE_ICONS;
 @Debug(print = true)
 @Mixin(CreativeModeInventoryScreen.class)
 public abstract class CreativeInventoryMixin extends EffectRenderingInventoryScreen<CreativeModeInventoryScreen.ItemPickerMenu> implements CreativeScreen {
-    @Shadow public abstract boolean mouseScrolled(double p_98527_, double p_98528_, double p_98529_);
+    @Shadow public abstract boolean mouseScrolled(double p_98527_, double p_98528_, double p_98529_, double d);
 
     @Unique
     private List<CategoryButton> dOTBuilder$buttons;
@@ -154,14 +154,14 @@ public abstract class CreativeInventoryMixin extends EffectRenderingInventoryScr
     }
 
     @Inject(method = "mouseScrolled", at = @At(value = "HEAD"), cancellable = true)
-    public void dawnoftimebuilder$mouseScrolled(double mouseX, double mouseY, double delta, CallbackInfoReturnable<Boolean> cir) {
+    public void dawnoftimebuilder$mouseScrolled(double mouseX, double mouseY, double scrollX, double scrollY, CallbackInfoReturnable<Boolean> cir) {
         int guiLeft = this.leftPos;
         int guiTop = this.topPos;
         int startX = guiLeft - 32;
         int startY = guiTop + 10;
         int endY = startY + 28 * 4 + 3;
         if(mouseX >= startX && mouseX < guiLeft && mouseY >= startY && mouseY < endY) {
-            if(delta > 0) {
+            if(scrollY > 0) {
                 this.dOTBuilder$scrollUp();
             } else {
                 this.dOTBuilder$scrollDown();
@@ -180,7 +180,7 @@ public abstract class CreativeInventoryMixin extends EffectRenderingInventoryScr
 
     @Unique
     private void dOTBuilder$updateItems(CreativeModeInventoryScreen screen) {
-        this.mouseScrolled(0, 0, Float.MAX_VALUE);
+        this.mouseScrolled(0, 0, Float.MAX_VALUE, Float.MIN_VALUE);
         CreativeModeInventoryScreen.ItemPickerMenu container = screen.getMenu();
         container.items.clear();
         CreativeInventoryCategories.values()[dOTBuilder$selectedCategoryID].getItems().forEach(item -> container.items.add(new ItemStack(item)));

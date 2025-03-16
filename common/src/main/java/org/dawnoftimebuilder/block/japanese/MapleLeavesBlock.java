@@ -3,7 +3,6 @@ package org.dawnoftimebuilder.block.japanese;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
@@ -13,12 +12,10 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.material.PushReaction;
-import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.dawnoftimebuilder.block.templates.BlockAA;
-import org.dawnoftimebuilder.registry.DoTBBlocksRegistry;
 import org.dawnoftimebuilder.util.BlockStatePropertiesAA;
 import org.jetbrains.annotations.NotNull;
 
@@ -33,7 +30,7 @@ public class MapleLeavesBlock extends BlockAA {
     }
 
     @Override
-    public void playerWillDestroy(final Level worldIn, final BlockPos blockPosIn, final BlockState blockStateIn, final Player playerEntityIn) {
+    public BlockState playerWillDestroy(final Level worldIn, final BlockPos blockPosIn, final BlockState blockStateIn, final Player playerEntityIn) {
         if(!worldIn.isClientSide) {
             final float currentX = -blockStateIn.getValue(MapleLeavesBlock.MULTIBLOCK_X);
             final float currentY = -blockStateIn.getValue(MapleLeavesBlock.MULTIBLOCK_Y);
@@ -60,7 +57,7 @@ public class MapleLeavesBlock extends BlockAA {
             }
         }
 
-        super.playerWillDestroy(worldIn, blockPosIn, blockStateIn, playerEntityIn);
+        return super.playerWillDestroy(worldIn, blockPosIn, blockStateIn, playerEntityIn);
     }
 
     @Override

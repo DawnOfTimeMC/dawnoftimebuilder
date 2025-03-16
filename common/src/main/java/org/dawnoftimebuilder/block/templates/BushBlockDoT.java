@@ -1,5 +1,6 @@
 package org.dawnoftimebuilder.block.templates;
 
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.tags.BlockTags;
@@ -14,6 +15,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.dawnoftimebuilder.block.IBlockGeneration;
 import org.dawnoftimebuilder.block.IFlammable;
+import org.jetbrains.annotations.NotNull;
 
 import static org.dawnoftimebuilder.util.VoxelShapes.FULL_SHAPE;
 
@@ -21,9 +23,15 @@ public class BushBlockDoT extends BushBlock implements IBlockGeneration, IFlamma
     private int fireSpreadSpeed = 0;
     private int fireDestructionSpeed = 0;
     private final VoxelShape[] shapes;
+    public static final MapCodec<BushBlock> CODEC = simpleCodec(BushBlockDoT::new);
 
     public BushBlockDoT(final Properties properties) {
         this(properties, FULL_SHAPE);
+    }
+
+    @Override
+    protected @NotNull MapCodec<? extends BushBlock> codec() {
+        return CODEC;
     }
 
     public BushBlockDoT(final Properties properties, VoxelShape[] shapes) {

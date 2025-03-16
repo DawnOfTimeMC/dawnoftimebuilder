@@ -36,7 +36,7 @@ public abstract class DoTBFeaturesRegistry {
             () -> new DefaultCropsFeature(RandomPatchConfiguration.CODEC));
 
     public static ResourceKey<PlacedFeature> registerKey(String name) {
-                return ResourceKey.create(Registries.PLACED_FEATURE, new ResourceLocation(DoTBCommon.MOD_ID, name));
+                return ResourceKey.create(Registries.PLACED_FEATURE, ResourceLocation.fromNamespaceAndPath(DoTBCommon.MOD_ID, name));
             }
 
     public abstract <Y extends FeatureConfiguration, T extends Feature<Y>> Supplier<T> register(final String name, final Supplier<T> featureSupplier);

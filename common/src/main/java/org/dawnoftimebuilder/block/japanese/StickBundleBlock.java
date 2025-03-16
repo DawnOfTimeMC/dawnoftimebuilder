@@ -6,22 +6,26 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.level.*;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.*;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.level.block.state.properties.Half;
+import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
-import org.dawnoftimebuilder.DoTBConfig;
 import org.dawnoftimebuilder.block.IBlockChain;
 import org.dawnoftimebuilder.block.templates.BlockAA;
 import org.dawnoftimebuilder.platform.Services;
@@ -100,11 +104,11 @@ public class StickBundleBlock extends BlockAA implements IBlockChain {
     }
 
     @Override
-    public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
+    public InteractionResult useWithoutItem(BlockState state, Level worldIn, BlockPos pos, Player player, BlockHitResult hit) {
         if(!worldIn.isClientSide()) {
             //The StickBundle is empty, we try to put worms on it.
             if(state.getValue(AGE) == 0) {
-                ItemStack itemstack = player.getItemInHand(handIn);
+                ItemStack itemstack = player.getItemInHand(player.getUsedItemHand());
                 if(itemstack.getItem() == DoTBItemsRegistry.INSTANCE.SILK_WORMS.get() && !itemstack.isEmpty()) {
                     itemstack.shrink(1);
                     worldIn.setBlock(pos, state.setValue(AGE, 1), 10);
@@ -119,7 +123,7 @@ public class StickBundleBlock extends BlockAA implements IBlockChain {
 
             //The StickBundle has fully grown worms, it's time to harvest !
             if(state.getValue(AGE) == 3) {
-                List<ItemStack> drops = Utils.getLootList((ServerLevel) worldIn, state, player.getItemInHand(handIn), Objects.requireNonNull(this.builtInRegistryHolder().key()).location().getPath() + "_harvest");
+                List<ItemStack> drops = Utils.getLootList((ServerLevel) worldIn, state, player.getItemInHand(player.getUsedItemHand()), Objects.requireNonNull(this.builtInRegistryHolder().key()).location().getPath() + "_harvest");
                 Utils.dropLootFromList(worldIn, pos, drops, 1.0F);
                 worldIn.setBlock(pos, state.setValue(AGE, 0), 10);
                 worldIn.playSound(null, pos, SoundEvents.GRASS_BREAK, SoundSource.BLOCKS, 1.0F, 1.0F);
@@ -135,12 +139,7 @@ public class StickBundleBlock extends BlockAA implements IBlockChain {
     }
 
     @Override
-    public boolean isRandomlyTicking(BlockState state) {
-        return state.getValue(AGE) > 0 && state.getValue(AGE) < 3 && state.getValue(HALF) == Half.TOP;
-    }
-
-    @Override
-    public void tick(BlockState state, ServerLevel worldIn, BlockPos pos, RandomSource random) {
+    protected void randomTick(BlockState state, @NotNull ServerLevel worldIn, @NotNull BlockPos pos, @NotNull RandomSource random) {
         int growth = state.getValue(AGE);
         if(growth > 0 && growth < 3) {
             if(random.nextInt(Services.PLATFORM.getConfig().stickBundleGrowthChance) == 0) {
@@ -151,12 +150,17 @@ public class StickBundleBlock extends BlockAA implements IBlockChain {
     }
 
     @Override
+    public boolean isRandomlyTicking(BlockState state) {
+        return state.getValue(AGE) > 0 && state.getValue(AGE) < 3 && state.getValue(HALF) == Half.TOP;
+    }
+
+    @Override
     public boolean canConnectToChainUnder(BlockState state) {
         return false;
     }
 
     @Override
-    public void playerWillDestroy(Level level, @NotNull BlockPos pos, @NotNull BlockState state, @NotNull Player player) {
+    public BlockState playerWillDestroy(Level level, @NotNull BlockPos pos, @NotNull BlockState state, @NotNull Player player) {
         // Prevents item from dropping in creative by removing the part that gives the item with a setBlock.
         if (!level.isClientSide() && player.isCreative()) {
             if (state.getValue(HALF) == Half.TOP) {
@@ -169,6 +173,6 @@ public class StickBundleBlock extends BlockAA implements IBlockChain {
                 }
             }
         }
-        super.playerWillDestroy(level, pos, state, player);
+       return super.playerWillDestroy(level, pos, state, player);
     }
 }

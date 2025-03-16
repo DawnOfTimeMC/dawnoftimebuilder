@@ -1,0 +1,19 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "I",
+        "i"
+    ],
+    "key": {
+        "I": {
+            "item": "minecraft:stripped_birch_log"
+        },
+        "i": {
+            "item": "minecraft:cut_sandstone"
+        }
+    },
+    "result": {
+        "count": 4,
+        "id": "dawnoftimebuilder:birch_beam"
+    }
+}

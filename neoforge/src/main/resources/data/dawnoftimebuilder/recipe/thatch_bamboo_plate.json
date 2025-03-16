@@ -1,0 +1,17 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "I",
+        "I",
+        "I"
+    ],
+    "key": {
+        "I": {
+            "item": "dawnoftimebuilder:thatch_bamboo"
+        }
+    },
+    "result": {
+        "count": 6,
+        "id": "dawnoftimebuilder:thatch_bamboo_plate"
+    }
+}

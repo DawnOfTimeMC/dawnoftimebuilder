@@ -15,6 +15,10 @@ repositories {
             includeGroup "maven.modrinth"
         }
     }
+    maven {
+        name = "Terraformers"
+        url = "https://maven.terraformersmc.com/"
+    }
 }
 
 dependencies {
@@ -27,6 +31,8 @@ dependencies {
     modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
     modImplementation include('maven.modrinth:yacl:3.6.3+1.21.1-fabric')
     modImplementation include("maven.modrinth:fusion-connected-textures:1.2.4-fabric-mc1.21")
+    modImplementation("com.terraformersmc:modmenu:11.0.3")
+    compileOnly "com.google.code.findbugs:jsr305:3.0.2" // Add this so I don't need to remove "javax.annotation.Nullable;"
 }
 
 loom {

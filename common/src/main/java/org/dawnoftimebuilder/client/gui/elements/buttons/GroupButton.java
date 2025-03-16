@@ -6,8 +6,8 @@ import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
-
-
+import org.dawnoftimebuilder.mixin.impl.AbstractButtonAccessor;
+import org.jetbrains.annotations.NotNull;
 
 
 public class GroupButton extends Button {
@@ -23,22 +23,21 @@ public class GroupButton extends Button {
     }
 
     @Override
-    public void render(GuiGraphics pGuiGraphics, int pMouseX, int pMouseY, float pPartialTick) {
+    public void renderWidget(@NotNull GuiGraphics pGuiGraphics, int pMouseX, int pMouseY, float pPartialTick) {
         if(!this.visible)
             return;
 
         this.isHovered = pMouseX >= this.getX() && pMouseY >= this.getY() && pMouseX < this.getX() + this.width && pMouseY < this.getY() + this.height;
 
-        int offset = this.getTextureY();
         PoseStack ps = pGuiGraphics.pose();
         ps.pushPose();
         RenderSystem.clearColor(1.0F, 1.0F, 1.0F, this.alpha);
         RenderSystem.enableBlend();
-        pGuiGraphics.blit(WIDGETS_LOCATION, this.getX(), this.getY(), 0, 46 + offset * 20, this.width / 2, this.height);
-        pGuiGraphics.blit(WIDGETS_LOCATION, this.getX() + this.width / 2, this.getY(), 200 - this.width / 2, 46 + offset * 20, this.width / 2, this.height);
+
+        pGuiGraphics.blitSprite(((AbstractButtonAccessor) this).getSprites().get(this.active, this.isHoveredOrFocused()), this.getX(), this.getY(), this.getWidth(), this.getHeight());
+        pGuiGraphics.blitSprite(((AbstractButtonAccessor) this).getSprites().get(this.active, this.isHoveredOrFocused()), this.getX(), this.getY(), this.getWidth(), this.getHeight());
         RenderSystem.disableBlend();
         ps.popPose();
-
         ps.pushPose();
         if(!this.active)
             pGuiGraphics.setColor(0.5F, 0.5F, 0.5F, 1.0F);

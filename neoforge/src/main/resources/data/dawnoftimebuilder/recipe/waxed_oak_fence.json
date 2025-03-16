@@ -1,0 +1,19 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "IiI",
+        "IiI"
+    ],
+    "key": {
+        "I": {
+            "item": "dawnoftimebuilder:waxed_oak_planks"
+        },
+        "i": {
+            "tag": "c:rods/wooden"
+        }
+    },
+    "result": {
+        "count": 6,
+        "id": "dawnoftimebuilder:waxed_oak_fence"
+    }
+}

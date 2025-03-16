@@ -5,10 +5,12 @@
   "refmap": "${mod_id}.refmap.json",
   "compatibilityLevel": "JAVA_18",
   "mixins": [
+    "BlockEntityMixin",
     "BucketItemAccessor",
     "MixinStateDefinitionBuilder"
   ],
   "client": [
+    "AbstractButtonAccessor",
     "client.CreativeInventoryMixin"
   ],
   "server": [

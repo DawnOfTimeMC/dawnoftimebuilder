@@ -5,7 +5,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -91,15 +90,15 @@ public class GrowingBushBlock extends SoilCropsBlock {
     }
 
     @Override
-    public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player playerIn, InteractionHand hand, BlockHitResult ray) {
-        if(super.use(state, worldIn, pos, playerIn, hand, ray) == InteractionResult.SUCCESS)
+    public InteractionResult useWithoutItem(BlockState state, Level worldIn, BlockPos pos, Player playerIn, BlockHitResult ray) {
+        if(super.useWithoutItem(state, worldIn, pos, playerIn, ray) == InteractionResult.SUCCESS)
             return InteractionResult.SUCCESS;
         if(this.isMaxAge(state) && !playerIn.isCreative()) {
             if(!worldIn.isClientSide()) {
-                ItemStack itemStackHand = playerIn.getItemInHand(hand);
+                ItemStack itemStackHand = playerIn.getItemInHand(playerIn.getUsedItemHand());
                 boolean holdShears = itemStackHand.is(Items.SHEARS);
                 if(holdShears)
-                    itemStackHand.hurtAndBreak(1, playerIn, (p) -> p.broadcastBreakEvent(hand));
+                    itemStackHand.hurtAndBreak(1, playerIn, playerIn.getEquipmentSlotForItem(itemStackHand));
 
                 ResourceLocation resourceLocation = this.builtInRegistryHolder().key().location();
                 this.harvestWithoutBreaking(state, worldIn, pos, itemStackHand, resourceLocation.getPath(), holdShears ? 1.5F : 1.0F);

@@ -1,0 +1,23 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "IoI",
+        "iii",
+        "IoI"
+    ],
+    "key": {
+        "I": {
+            "item": "dawnoftimebuilder:plastered_stone"
+        },
+        "i": {
+            "tag": "c:dyes/green"
+        },
+        "o": {
+            "tag": "c:nuggets/gold"
+        }
+    },
+    "result": {
+        "count": 6,
+        "id": "dawnoftimebuilder:green_ornamented_chiseled_plastered_stone"
+    }
+}

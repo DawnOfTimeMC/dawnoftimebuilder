@@ -121,3 +121,8 @@ publishing {
         }
     }
 }
+
+//tasks.withType(Javadoc).configureEach {
+//    // Disables the doclint feature in Java 8+ so invalid HTML won't fail the build
+//    options.addBooleanOption('Xdoclint:none', true)
+//}

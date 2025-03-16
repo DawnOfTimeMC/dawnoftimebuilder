@@ -3,11 +3,11 @@ package org.dawnoftimebuilder.block.general;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
@@ -18,8 +18,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
-
-
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
@@ -42,8 +41,10 @@ import org.dawnoftimebuilder.util.BlockStatePropertiesAA;
 import org.dawnoftimebuilder.util.BlockStatePropertiesAA.HorizontalConnection;
 import org.dawnoftimebuilder.util.Utils;
 import org.jetbrains.annotations.NotNull;
+
 import javax.annotation.Nullable;
 import java.util.List;
+
 import static org.dawnoftimebuilder.util.VoxelShapes.FIREPLACE_SHAPES;
 
 public class FireplaceBlock extends WaterloggedBlock {
@@ -96,8 +97,8 @@ public class FireplaceBlock extends WaterloggedBlock {
     }
 
     @Override
-    public InteractionResult use(final BlockState state, final Level worldIn, final BlockPos pos, final Player player, final InteractionHand handIn, final BlockHitResult hit) {
-        return Utils.changeBlockLitStateWithItemOrCreativePlayer(state, worldIn, pos, player, handIn) >= 0 ? InteractionResult.SUCCESS : InteractionResult.PASS;
+    public InteractionResult useWithoutItem(final BlockState state, final Level worldIn, final BlockPos pos, final Player player, final BlockHitResult hit) {
+        return Utils.changeBlockLitStateWithItemOrCreativePlayer(state, worldIn, pos, player, player.getUsedItemHand()) >= 0 ? InteractionResult.SUCCESS : InteractionResult.PASS;
     }
 
     @Override
@@ -106,7 +107,7 @@ public class FireplaceBlock extends WaterloggedBlock {
 
         if (!state.getValue(WaterloggedBlock.WATERLOGGED) && !state.getValue(FireplaceBlock.LIT) && (projectile instanceof AbstractArrow && projectile.isOnFire() || projectile instanceof Fireball)) {
             activation = 1;
-        } else if (state.getValue(FireplaceBlock.LIT) && (projectile instanceof Snowball || projectile instanceof ThrownPotion && PotionUtils.getPotion(((ThrownPotion) projectile).getItem()).getEffects().size() <= 0)) {
+        } else if (state.getValue(FireplaceBlock.LIT) && (projectile instanceof Snowball || projectile instanceof ThrownPotion && Utils.getPotionByName(Utils.getItemKeyAsString(((ThrownPotion) projectile).getItem().getItem())).getEffects().size() <= 0)) {
             activation = 0;
         }
 
@@ -128,7 +129,7 @@ public class FireplaceBlock extends WaterloggedBlock {
 
     @Override
     public void entityInside(final BlockState state, final Level world, final BlockPos pos, final Entity entityIn) {
-        if (!entityIn.fireImmune() && state.getValue(FireplaceBlock.LIT) && entityIn instanceof LivingEntity && !EnchantmentHelper.hasFrostWalker((LivingEntity) entityIn)) {
+        if (!entityIn.fireImmune() && state.getValue(FireplaceBlock.LIT) && entityIn instanceof LivingEntity && !(EnchantmentHelper.getEnchantmentLevel(entityIn.level().registryAccess().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.FROST_WALKER), (LivingEntity) entityIn) > 0)) {
             entityIn.hurt(entityIn.damageSources().inFire(), 1.0F);
         }
         super.entityInside(state, world, pos, entityIn);

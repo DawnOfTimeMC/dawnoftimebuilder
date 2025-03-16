@@ -1,0 +1,19 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "IiI",
+        "IiI"
+    ],
+    "key": {
+        "I": {
+            "item": "dawnoftimebuilder:lattice_glass_pane"
+        },
+        "i": {
+            "item": "minecraft:stone_bricks"
+        }
+    },
+    "result": {
+        "count": 16,
+        "id": "dawnoftimebuilder:lattice_stone_bricks_window"
+    }
+}

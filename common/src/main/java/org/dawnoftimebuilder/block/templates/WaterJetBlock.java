@@ -2,7 +2,6 @@ package org.dawnoftimebuilder.block.templates;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -79,7 +78,7 @@ public class WaterJetBlock extends BlockAA {
     }
 
     @Override
-    public InteractionResult use(BlockState blockStateIn, final Level worldIn, final BlockPos blockPosIn, final Player playerEntityIn, final InteractionHand handIn, final BlockHitResult blockRaytraceResultIn) {
+    public InteractionResult useWithoutItem(BlockState blockStateIn, final Level worldIn, final BlockPos blockPosIn, final Player playerEntityIn, final BlockHitResult blockRaytraceResultIn) {
 
         final ItemStack mainHandItemStack = playerEntityIn.getMainHandItem();
         if(!mainHandItemStack.isEmpty() && mainHandItemStack.getItem() == this.asItem()) {

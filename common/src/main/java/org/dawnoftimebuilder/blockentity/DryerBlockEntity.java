@@ -1,6 +1,7 @@
 package org.dawnoftimebuilder.blockentity;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
@@ -8,8 +9,9 @@ import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeHolder;
+import net.minecraft.world.item.crafting.SingleRecipeInput;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -19,8 +21,8 @@ import org.dawnoftimebuilder.recipe.DryerRecipe;
 import org.dawnoftimebuilder.registry.DoTBBlockEntitiesRegistry;
 import org.dawnoftimebuilder.registry.DoTBRecipeTypesRegistry;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
-import javax.annotation.Nullable;
 import java.util.Random;
 
 public class DryerBlockEntity extends BlockEntity {
@@ -42,7 +44,7 @@ public class DryerBlockEntity extends BlockEntity {
                 if (this.remainingTicks[slotIndex] <= 0) {
                     this.remainingTicks[slotIndex] = 0;
                     // Item dried, we replace it with the recipe result, and clear the recipe cached.
-                    final DryerRecipe recipe = this.getDryerRecipe(new SimpleContainer(this.itemHandler.getItem(slotIndex)));
+                    final DryerRecipe recipe = this.getDryerRecipe(new SingleRecipeInput(this.itemHandler.getItem(slotIndex)));
 
                     if (recipe != null) {
                         this.itemHandler.setItem(slotIndex, recipe.getResultItem(this.getLevel().registryAccess()).copy());
@@ -135,9 +137,10 @@ public class DryerBlockEntity extends BlockEntity {
     }
 
     @Nullable
-    private DryerRecipe getDryerRecipe(final SimpleContainer ingredientInventory) {
+    private DryerRecipe getDryerRecipe(final SingleRecipeInput ingredientInventory) {
         if (this.getLevel() != null && !this.getLevel().isClientSide) {
-            return this.getLevel().getRecipeManager().getRecipeFor(DoTBRecipeTypesRegistry.INSTANCE.DRYING.get(), ingredientInventory, this.getLevel()).orElse(null);
+            RecipeHolder<DryerRecipe> recipeHolder = this.getLevel().getRecipeManager().getRecipeFor(DoTBRecipeTypesRegistry.INSTANCE.DRYING.get(), ingredientInventory, this.getLevel()).orElse(null);
+            return recipeHolder != null ? recipeHolder.value() : null;
         }
         return null;
     }
@@ -145,7 +148,7 @@ public class DryerBlockEntity extends BlockEntity {
     private boolean putItemStackInIndex(final int index, final ItemStack itemStack, final Player player) {
         //Tries to put the itemStack in a dryer : first we check if there is a corresponding recipe, then we set the variables.
         if (this.getLevel() != null) {
-            final SimpleContainer invInHand = new SimpleContainer(itemStack);
+            final SingleRecipeInput invInHand = new SingleRecipeInput(itemStack);
             final DryerRecipe recipe = this.getDryerRecipe(invInHand);
             if (recipe != null && recipe.matches(invInHand, this.getLevel())) {
                 this.itemHandler.setItem(index, recipe.getIngredients().get(0).getItems()[0].copy());
@@ -183,42 +186,42 @@ public class DryerBlockEntity extends BlockEntity {
     }
 
     @Override
-    public @NotNull CompoundTag getUpdateTag() {
-        CompoundTag tag = super.getUpdateTag();
+    public @NotNull CompoundTag getUpdateTag(HolderLookup.@NotNull Provider registries) {
+        CompoundTag tag = super.getUpdateTag(registries);
         if (!itemHandler.getItem(0).isEmpty()) {
-            tag.put("slot_0", itemHandler.getItem(0).save(new CompoundTag()));
+            tag.put("slot_0", itemHandler.getItem(0).save(registries));
         }
         if (!itemHandler.getItem(1).isEmpty()) {
-            tag.put("slot_1", itemHandler.getItem(1).save(new CompoundTag()));
+            tag.put("slot_1", itemHandler.getItem(1).save(registries));
         }
         tag.putBoolean("isInOperation", this.isInOperation);
         return tag;
     }
 
     @Override
-    public void saveAdditional(final @NotNull CompoundTag tag) {
+    public void saveAdditional(final @NotNull CompoundTag tag, HolderLookup.@NotNull Provider registries) {
         if (!itemHandler.getItem(0).isEmpty()) {
-            tag.put("slot_0", itemHandler.getItem(0).save(new CompoundTag()));
+            tag.put("slot_0", itemHandler.getItem(0).save(registries));
         }
         if (!itemHandler.getItem(1).isEmpty()) {
-            tag.put("slot_1", itemHandler.getItem(1).save(new CompoundTag()));
+            tag.put("slot_1", itemHandler.getItem(1).save(registries));
         }
         for (int index = 0; index < 2; index++) {
             tag.putInt("remainingTime" + index, this.remainingTicks[index]);
         }
         tag.putBoolean("isInOperation", this.isInOperation);
 
-        super.saveAdditional(tag);
+        super.saveAdditional(tag, registries);
     }
 
     @Override
-    public void load(final @NotNull CompoundTag tag) {
+    protected void loadAdditional(@NotNull CompoundTag tag, HolderLookup.@NotNull Provider registries) {
         itemHandler.clearContent();
-        ItemStack stack = ItemStack.of(tag.getCompound("slot_0"));
+        ItemStack stack = ItemStack.parseOptional(registries, tag.getCompound("slot_0"));
         if (!stack.isEmpty()) {
             itemHandler.setItem(0, stack);
         }
-        stack = ItemStack.of(tag.getCompound("slot_1"));
+        stack = ItemStack.parseOptional(registries, tag.getCompound("slot_1"));
         if (!stack.isEmpty()) {
             itemHandler.setItem(1, stack);
         }
@@ -227,6 +230,6 @@ public class DryerBlockEntity extends BlockEntity {
         }
         this.isInOperation = tag.getBoolean("isInOperation");
 
-        super.load(tag);
+        super.loadAdditional(tag, registries);
     }
 }

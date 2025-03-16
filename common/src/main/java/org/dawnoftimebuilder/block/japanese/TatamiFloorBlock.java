@@ -3,16 +3,21 @@ package org.dawnoftimebuilder.block.japanese;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.Containers;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.Mirror;
+import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.*;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.level.block.state.properties.Half;
 import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.phys.BlockHitResult;
 import org.dawnoftimebuilder.block.templates.BlockAA;
@@ -55,7 +60,7 @@ public class TatamiFloorBlock extends BlockAA {
     }
 
     @Override
-    public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
+    public InteractionResult useWithoutItem(BlockState state, Level worldIn, BlockPos pos, Player player, BlockHitResult hit) {
         if(!worldIn.isClientSide) {
             if(player.isCrouching()) {
                 boolean isTop = state.getValue(HALF) == Half.TOP;
@@ -75,11 +80,12 @@ public class TatamiFloorBlock extends BlockAA {
     }
 
     @Override
-    public void playerWillDestroy(Level worldIn, BlockPos pos, BlockState state, Player player) {
+    public BlockState playerWillDestroy(Level worldIn, BlockPos pos, BlockState state, Player player) {
         super.playerWillDestroy(worldIn, pos, state, player);
         BlockPos otherPos = (state.getValue(HALF) == Half.TOP) ? pos.relative(state.getValue(FACING)) : pos.relative(state.getValue(FACING).getOpposite());
         worldIn.setBlock(pos, Blocks.SPRUCE_PLANKS.defaultBlockState(), 10);
         worldIn.setBlock(otherPos, Blocks.SPRUCE_PLANKS.defaultBlockState(), 10);
+        return state;
     }
 
     @Override
