@@ -23,7 +23,7 @@ public class MixinStateDefinitionBuilder<O, S extends StateHolder<O, S>> {
     @Shadow
     private Map<String, Property<?>> properties;
 
-    // TODO Remove this in 1.21 (mixin that fixes the incompatibility with DramaticDoors)
+    // (mixin that fixes the incompatibility with DramaticDoors)
     @Inject(method = "add", at = @At("HEAD"))
     private void injectCheckDuplicate(Property<?>[] newProperties, CallbackInfoReturnable<StateDefinition.Builder<O, S>> cir) {
         for (Property<?> property : newProperties) {
