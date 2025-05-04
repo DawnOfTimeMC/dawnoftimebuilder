@@ -60,62 +60,62 @@ public class DoTBConfig {
     public int stickBundleGrowthChance = 25;
 
     @SerialEntry
-    @AutoGen(category = "loot")
+    @AutoGen(category = "loot", group = "chest_loot")
     @Boolean(colored = true, formatter = Boolean.Formatter.TRUE_FALSE)
     public boolean generateChestLoot = true;
 
     @SerialEntry
-    @AutoGen(category = "loot")
+    @AutoGen(category = "loot", group = "chest_loot")
     @Boolean(colored = true, formatter = Boolean.Formatter.TRUE_FALSE)
     public boolean generateSilk = true;
 
     @SerialEntry
-    @AutoGen(category = "loot")
+    @AutoGen(category = "loot", group = "chest_loot")
     @Boolean(colored = true, formatter = Boolean.Formatter.TRUE_FALSE)
     public boolean generateGrapes = true;
 
     @SerialEntry
-    @AutoGen(category = "loot")
+    @AutoGen(category = "loot", group = "chest_loot")
     @Boolean(colored = true, formatter = Boolean.Formatter.TRUE_FALSE)
     public boolean generateMaize = true;
 
     @SerialEntry
-    @AutoGen(category = "loot")
+    @AutoGen(category = "loot", group = "chest_loot")
     @Boolean(colored = true, formatter = Boolean.Formatter.TRUE_FALSE)
     public boolean generateRice = true;
 
     @SerialEntry
-    @AutoGen(category = "loot")
+    @AutoGen(category = "loot", group = "chest_loot")
     @Boolean(colored = true, formatter = Boolean.Formatter.TRUE_FALSE)
     public boolean generateMulberry = true;
 
     @SerialEntry
-    @AutoGen(category = "loot")
+    @AutoGen(category = "loot", group = "chest_loot")
     @Boolean(colored = true, formatter = Boolean.Formatter.TRUE_FALSE)
     public boolean generateBlackClayTile = true;
 
     @SerialEntry
-    @AutoGen(category = "loot")
+    @AutoGen(category = "loot", group = "chest_loot")
     @Boolean(colored = true, formatter = Boolean.Formatter.TRUE_FALSE)
     public boolean generateBlueClayTile = true;
 
     @SerialEntry
-    @AutoGen(category = "loot")
+    @AutoGen(category = "loot", group = "chest_loot")
     @Boolean(colored = true, formatter = Boolean.Formatter.TRUE_FALSE)
     public boolean generateCyanClayTile = true;
 
     @SerialEntry
-    @AutoGen(category = "loot")
+    @AutoGen(category = "loot", group = "chest_loot")
     @Boolean(colored = true, formatter = Boolean.Formatter.TRUE_FALSE)
     public boolean generateOrangeClayTile = true;
 
     @SerialEntry
-    @AutoGen(category = "loot")
+    @AutoGen(category = "loot", group = "chest_loot")
     @Boolean(colored = true, formatter = Boolean.Formatter.TRUE_FALSE)
     public boolean generateWhiteClayTile = true;
 
     @SerialEntry
-    @AutoGen(category = "loot")
+    @AutoGen(category = "loot", group = "chest_loot")
     @Boolean(colored = true, formatter = Boolean.Formatter.TRUE_FALSE)
     public boolean generateGrayClayRoofTile = true;
 }
