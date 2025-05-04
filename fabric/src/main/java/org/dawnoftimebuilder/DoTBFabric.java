@@ -6,6 +6,7 @@ import dev.isxander.yacl3.platform.YACLPlatform;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.resources.ResourceLocation;
+import org.dawnoftimebuilder.loot.DoTBFabricLootModifier;
 
 public class DoTBFabric implements ModInitializer, ClientModInitializer {
     public static final ConfigClassHandler<DoTBConfig> HANDLER = ConfigClassHandler.createBuilder(DoTBConfig.class)
@@ -23,6 +24,8 @@ public class DoTBFabric implements ModInitializer, ClientModInitializer {
         DoTBCommon.init();
         RegistryImpls.init();
         BiomeModifiers.init();
+
+        DoTBFabricLootModifier.modifyLootTables();
     }
 
     @Override

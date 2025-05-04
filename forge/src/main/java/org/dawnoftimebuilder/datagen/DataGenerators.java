@@ -23,5 +23,7 @@ public class DataGenerators {
         generator.addProvider(event.includeServer(), new DoTBWorldGenProvider(packOutput, lookupProvider));
         DoTBBlockTagGenerator blockTagGenerator = generator.addProvider(event.includeServer(), new DoTBBlockTagGenerator(packOutput, lookupProvider, existingFileHelper));
         generator.addProvider(event.includeServer(), new DoTBItemTagGenerator(packOutput, lookupProvider, blockTagGenerator.contentsGetter(), existingFileHelper));
+
+        generator.addProvider(event.includeServer(), new DoTBLootModifierProvider(packOutput));
     }
 }

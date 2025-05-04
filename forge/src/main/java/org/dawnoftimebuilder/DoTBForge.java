@@ -8,8 +8,8 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLEnvironment;
-import net.minecraftforge.items.ItemStackHandler;
 import org.dawnoftimebuilder.datagen.DataGenerators;
+import org.dawnoftimebuilder.loot.LootModifiers;
 
 @Mod(DoTBCommon.MOD_ID)
 public class DoTBForge {
@@ -27,6 +27,7 @@ public class DoTBForge {
         DoTBCommon.init();
 
         RegistryImpls.init(modEventBus);
+        LootModifiers.register(modEventBus);
 
         if (FMLEnvironment.dist.isClient()) {
             modEventBus.register(DoTBForgeClient.class);
