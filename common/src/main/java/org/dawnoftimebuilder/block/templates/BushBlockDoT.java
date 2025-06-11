@@ -2,11 +2,17 @@ package org.dawnoftimebuilder.block.templates;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.BushBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -14,10 +20,13 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.dawnoftimebuilder.block.IBlockGeneration;
 import org.dawnoftimebuilder.block.IFlammable;
+import org.dawnoftimebuilder.util.Utils;
+
+import java.util.List;
 
 import static org.dawnoftimebuilder.util.VoxelShapes.FULL_SHAPE;
 
-public class BushBlockDoT extends BushBlock implements IBlockGeneration, IFlammable {
+public class BushBlockDoT extends BushBlock implements IBlockGeneration, IFlammable, BonemealableBlock {
     private int fireSpreadSpeed = 0;
     private int fireDestructionSpeed = 0;
     private final VoxelShape[] shapes;
@@ -79,5 +88,21 @@ public class BushBlockDoT extends BushBlock implements IBlockGeneration, IFlamma
         world.setBlock(pos, state, 2);
 
         return true;
+    }
+
+    @Override
+    public boolean isValidBonemealTarget(LevelReader var1, BlockPos var2, BlockState var3, boolean var4) {
+        return true;
+    }
+
+    @Override
+    public boolean isBonemealSuccess(Level var1, RandomSource var2, BlockPos var3, BlockState var4) {
+        return true;
+    }
+
+    @Override
+    public void performBonemeal(ServerLevel worldIn, RandomSource rand, BlockPos pos, BlockState state) {
+        List<ItemStack> drops = Utils.getLootList(worldIn, state, Items.BONE_MEAL.getDefaultInstance(), this.builtInRegistryHolder().key().location().getPath() + "_bone_meal");
+        Utils.dropLootFromList(worldIn, pos, drops, 1);
     }
 }
