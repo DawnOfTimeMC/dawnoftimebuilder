@@ -1,0 +1,14 @@
+{
+  "type": "dawnoftimebuilder:add_item",
+  "conditions": [
+    {
+      "condition": "forge:loot_table_id",
+      "loot_table_id": "minecraft:chests/shipwreck_supply"
+    },
+    {
+      "chance": 0.1,
+      "condition": "minecraft:random_chance"
+    }
+  ],
+  "item": "dawnoftimebuilder:gray_roof_tiles"
+}
