@@ -6,6 +6,7 @@ import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import org.jetbrains.annotations.NotNull;
 
 import static org.dawnoftimebuilder.DoTBCommon.MOD_ID;
 
@@ -19,11 +20,9 @@ public class SocialsButton extends Button {
     }
 
     @Override
-    public void render(GuiGraphics pGuiGraphics, int pMouseX, int pMouseY, float pPartialTick) {
-        if(this.active && this.visible) {
+    protected void renderWidget(@NotNull GuiGraphics pGuiGraphics, int pMouseX, int pMouseY, float pPartialTick) {
+        if(this.active) {
             PoseStack ps = pGuiGraphics.pose();
-
-            this.isHovered = pMouseX >= this.getX() && pMouseY >= this.getY() && pMouseX < this.getX() + this.width && pMouseY < this.getY() + this.height;
 
             if(this.isHovered())
                 pGuiGraphics.setColor(0.7F, 0.7F, 0.7F, 1.0F);

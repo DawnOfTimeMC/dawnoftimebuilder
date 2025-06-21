@@ -4,6 +4,7 @@ import net.minecraft.Util;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
+import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.inventory.CreativeModeInventoryScreen;
 import net.minecraft.client.gui.screens.inventory.EffectRenderingInventoryScreen;
@@ -88,9 +89,13 @@ public abstract class CreativeInventoryMixin extends EffectRenderingInventoryScr
         }, CREATIVE_ICONS, 16, 56));
 
         this.addRenderableWidget(this.dOTBuilder$discord = new SocialsButton(this.leftPos + 200, this.topPos, "discord", button -> dOTBuilder$openLink("https://discord.gg/cteCdn9Hnf")));
+        this.dOTBuilder$discord.setTooltip(Tooltip.create(Component.literal("Discord")));
         this.addRenderableWidget(this.dOTBuilder$curse = new SocialsButton(this.leftPos + 200, this.topPos + 35, "curse", button -> dOTBuilder$openLink("https://www.curseforge.com/minecraft/mc-mods/dawn-of-time")));
+        this.dOTBuilder$curse.setTooltip(Tooltip.create(Component.literal("Curse Forge")));
         this.addRenderableWidget(this.dOTBuilder$patreon = new SocialsButton(this.leftPos + 200, this.topPos + 70, "patreon", button -> dOTBuilder$openLink("https://www.patreon.com/dawnoftimemod")));
+        this.dOTBuilder$patreon.setTooltip(Tooltip.create(Component.literal("Patreon")));
         this.addRenderableWidget(this.dOTBuilder$github = new SocialsButton(this.leftPos + 200, this.topPos + 105, "github", button -> dOTBuilder$openLink("https://github.com/PierreChag/dawnoftimebuilder")));
+        this.dOTBuilder$github.setTooltip(Tooltip.create(Component.literal("Github")));
 
         for(int i = 0; i < 4; i++) {
             this.dOTBuilder$buttons.add(new CategoryButton(this.leftPos - 27, this.topPos + 30 * i, i, button -> {
@@ -174,7 +179,13 @@ public abstract class CreativeInventoryMixin extends EffectRenderingInventoryScr
     private void dOTBuilder$updateCategoryButtons() {
         this.dOTBuilder$btnScrollUp.active = (dOTBuilder$page > 0);
         this.dOTBuilder$btnScrollDown.active = (dOTBuilder$page < MAX_PAGE);
-        this.dOTBuilder$buttons.forEach(button -> button.active = (button.getCategoryID() < CreativeInventoryCategories.values().length));
+        this.dOTBuilder$buttons.forEach(button -> {
+            button.active = (button.getCategoryID() < CreativeInventoryCategories.values().length);
+            Tooltip tt = button.getTooltipForCategory();
+            if (tt != null) {
+                button.setTooltip(tt);
+            }
+        });
         this.dOTBuilder$buttons.get(dOTBuilder$selectedCategoryID % 4).setSelected(dOTBuilder$selectedCategoryID - dOTBuilder$page * 4 >= 0 && dOTBuilder$selectedCategoryID - dOTBuilder$page * 4 < 4);
     }
 
