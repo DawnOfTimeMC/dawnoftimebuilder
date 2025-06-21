@@ -17,13 +17,13 @@
     "accessWidener": "${mod_id}.accesswidener",
     "entrypoints": {
         "main": [
-            "org.dawnoftimebuilder.DoTBFabric"
+            "org.dawnoftime.dawnoftime.DoTBFabric"
         ],
         "client": [
-            "org.dawnoftimebuilder.DoTBFabric"
+            "org.dawnoftime.dawnoftime.DoTBFabric"
         ],
         "modmenu": [
-            "org.dawnoftimebuilder.compat.ModMenuEntrypoint"
+            "org.dawnoftime.dawnoftime.compat.ModMenuEntrypoint"
         ]
     },
     "mixins": [
