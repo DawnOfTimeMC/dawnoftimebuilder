@@ -15,6 +15,8 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Mirror;
+import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.*;
@@ -142,8 +144,35 @@ public class LatticeBlock extends WaterloggedBlock implements IBlockClimbingPlan
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, @Nullable BlockGetter worldIn, List<Component> tooltip, TooltipFlag flagIn) {
+    public void appendHoverText(@NotNull ItemStack stack, @Nullable BlockGetter worldIn, @NotNull List<Component> tooltip, @NotNull TooltipFlag flagIn) {
         super.appendHoverText(stack, worldIn, tooltip, flagIn);
         Utils.addTooltip(tooltip, TOOLTIP_CLIMBING_PLANT);
+    }
+
+    @Override
+    public @NotNull BlockState rotate(@NotNull BlockState state, @NotNull Rotation rotation) {
+        if (rotation == Rotation.NONE) {
+            return state;
+        }
+        BooleanProperty[] rotationOrder = new BooleanProperty[]{NORTH, EAST, SOUTH, WEST};
+        BooleanProperty[] targetOrder = switch (rotation) {
+            case CLOCKWISE_180 -> new BooleanProperty[]{SOUTH, WEST, NORTH, EAST};
+            case COUNTERCLOCKWISE_90 -> new BooleanProperty[]{WEST, SOUTH, EAST, NORTH};
+            default -> new BooleanProperty[]{EAST, SOUTH, WEST, NORTH};
+        };
+        BlockState newState = state;
+        for (int i= 0; i < 4; i++) {
+            newState = newState.setValue(rotationOrder[i], state.getValue(targetOrder[i]));
+        }
+        return newState;
+    }
+
+    @Override
+    public @NotNull BlockState mirror(@NotNull BlockState state, @NotNull Mirror mirror) {
+        return switch (mirror) {
+            case LEFT_RIGHT -> state.setValue(EAST, state.getValue(WEST)).setValue(WEST, state.getValue(EAST));
+            case FRONT_BACK -> state.setValue(NORTH, state.getValue(SOUTH)).setValue(SOUTH, state.getValue(NORTH));
+            default -> state;
+        };
     }
 }
