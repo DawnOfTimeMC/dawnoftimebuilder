@@ -49,7 +49,7 @@ public class WaterloggedHorizontalBlock extends WaterloggedBlock {
     }
 
     @Override
-    public @NotNull BlockState mirror(@NotNull BlockState state, @NotNull Mirror mirrorIn) {
-        return this.rotate(state, Rotation.CLOCKWISE_180);
+    public @NotNull BlockState mirror(BlockState state, @NotNull Mirror mirrorIn) {
+        return state.rotate(mirrorIn.getRotation(state.getValue(FACING)));
     }
 }

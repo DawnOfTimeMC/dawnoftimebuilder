@@ -108,8 +108,8 @@ public class LimestoneGargoyleBlock extends WaterloggedBlock {
     }
 
     @Override
-    public BlockState mirror(BlockState state, Mirror mirrorIn) {
-        return this.rotate(state, Rotation.CLOCKWISE_180);
+    public @NotNull BlockState mirror(BlockState state, @NotNull Mirror mirrorIn) {
+        return state.rotate(mirrorIn.getRotation(state.getValue(FACING)));
     }
 
     @Override

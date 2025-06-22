@@ -52,12 +52,12 @@ public class ConnectedVerticalSidedBlock extends ConnectedVerticalBlock {
     }
 
     @Override
-    public BlockState rotate(BlockState state, Rotation rot) {
+    public @NotNull BlockState rotate(BlockState state, Rotation rot) {
         return state.setValue(FACING, rot.rotate(state.getValue(FACING)));
     }
 
     @Override
-    public BlockState mirror(BlockState state, Mirror mirrorIn) {
-        return state.rotate(Rotation.CLOCKWISE_180);
+    public @NotNull BlockState mirror(BlockState state, @NotNull Mirror mirrorIn) {
+        return state.rotate(mirrorIn.getRotation(state.getValue(FACING)));
     }
 }

@@ -1,6 +1,7 @@
 package org.dawnoftime.dawnoftime.block.templates;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -51,12 +52,12 @@ public class SidedWindowBlock extends BlockAA {
     @Override
     public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter world, @NotNull BlockPos pos, @NotNull CollisionContext context) {
         return switch (state.getValue(SIDED_WINDOW)) {
-            default -> NORTH_VS;
             case EAST -> EAST_VS;
             case SOUTH -> SOUTH_VS;
             case WEST -> WEST_VS;
             case AXIS_X -> X_VS;
             case AXIS_Z -> Z_VS;
+            default -> NORTH_VS;
         };
     }
 
@@ -112,8 +113,9 @@ public class SidedWindowBlock extends BlockAA {
     }
 
     @Override
-    public @NotNull BlockState mirror(@NotNull BlockState state, @NotNull Mirror mirrorIn) {
-        return this.rotate(state, Rotation.CLOCKWISE_180);
+    public @NotNull BlockState mirror(BlockState state, @NotNull Mirror mirrorIn) {
+        Direction facing = state.getValue(SIDED_WINDOW).getDirection();
+        return state.rotate(mirrorIn.getRotation(facing));
     }
 
     @Override
