@@ -23,6 +23,7 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 
+import net.minecraft.world.phys.shapes.Shapes;
 public class ConnectedHorizontalPlanDoubleTableBlock extends DisplayerBlock {
     public static final BooleanProperty NORTH = BlockStateProperties.NORTH;
     public static final BooleanProperty EAST = BlockStateProperties.EAST;
@@ -148,4 +149,14 @@ public class ConnectedHorizontalPlanDoubleTableBlock extends DisplayerBlock {
     public double getDisplayerZ(BlockState state) {
         return 0.1875D;
     }
+
+    @Override
+    public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+        if (state.getValue(HALF) == Half.TOP) {
+            return Shapes.box(0.0D, 0.0D, 0.0D, 1.0D, 0.125D, 1.0D);
+        }
+        return Shapes.block();
+    }
+
+
 }
