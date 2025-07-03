@@ -24,7 +24,7 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.dawnoftime.dawnoftime.block.templates.PoolBlock;
-import org.dawnoftime.dawnoftime.block.templates.BlockAA;
+import org.dawnoftime.dawnoftime.block.templates.BlockDoT;
 import org.dawnoftime.dawnoftime.registry.DoTBBlocksRegistry;
 import org.dawnoftime.dawnoftime.util.BlockStatePropertiesAA;
 import org.dawnoftime.dawnoftime.util.BlockStatePropertiesAA.WaterTrickleEnd;
@@ -33,7 +33,7 @@ import org.jetbrains.annotations.Nullable;
 
 import static net.minecraft.world.InteractionHand.MAIN_HAND;
 
-public abstract class WaterTrickleBlock extends BlockAA {
+public abstract class WaterTrickleBlock extends BlockDoT {
     public WaterTrickleBlock(final Properties propertiesIn) {
         super(propertiesIn.pushReaction(PushReaction.DESTROY).lightLevel((state) -> 1));
         this.registerDefaultState(this.defaultBlockState().setValue(BlockStatePropertiesAA.NORTH_TRICKLE, false).setValue(BlockStatePropertiesAA.EAST_TRICKLE, false).setValue(BlockStatePropertiesAA.SOUTH_TRICKLE, false)

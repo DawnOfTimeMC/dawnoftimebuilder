@@ -14,7 +14,7 @@ import javax.annotation.Nullable;
 
 import static org.dawnoftime.dawnoftime.util.VoxelShapes.FULL_SHAPE;
 
-public class HorizontalAxisBlock extends BlockAA {
+public class HorizontalAxisBlock extends BlockDoT {
     private static final EnumProperty<Direction.Axis> HORIZONTAL_AXIS = BlockStateProperties.HORIZONTAL_AXIS;
 
     public HorizontalAxisBlock(Properties properties, VoxelShape[] shapes) {

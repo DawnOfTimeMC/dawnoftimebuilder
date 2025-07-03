@@ -28,7 +28,7 @@ import java.util.List;
 
 import static org.dawnoftime.dawnoftime.util.Utils.TOOLTIP_SIDED_WINDOW;
 
-public class SidedWindowBlock extends BlockAA {
+public class SidedWindowBlock extends BlockDoT {
     public static final EnumProperty<SidedWindow> SIDED_WINDOW = BlockStatePropertiesAA.SIDED_WINDOW;
     private static final BooleanProperty UP = BlockStateProperties.UP;
     private static final BooleanProperty ATTACHED = BlockStateProperties.ATTACHED;

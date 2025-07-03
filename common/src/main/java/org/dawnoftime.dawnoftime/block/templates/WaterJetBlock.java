@@ -17,7 +17,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import org.dawnoftime.dawnoftime.util.BlockStatePropertiesAA;
 import org.dawnoftime.dawnoftime.util.BlockStatePropertiesAA.VerticalLimitedConnection;
 
-public class WaterJetBlock extends BlockAA {
+public class WaterJetBlock extends BlockDoT {
     public WaterJetBlock(final Properties propertiesIn) {
         super(propertiesIn);
         this.registerDefaultState(this.defaultBlockState().setValue(BlockStateProperties.UP, false).setValue(BlockStateProperties.DOWN, false).setValue(BlockStatePropertiesAA.NORTH_STATE, VerticalLimitedConnection.NONE).setValue(BlockStatePropertiesAA.EAST_STATE, VerticalLimitedConnection.NONE).setValue(BlockStatePropertiesAA.SOUTH_STATE, VerticalLimitedConnection.NONE)

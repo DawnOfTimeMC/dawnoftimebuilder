@@ -72,28 +72,4 @@ public class PergolaBlock extends BeamBlock {
             default -> state.setValue(AXIS_Y, true);
         };
     }
-
-    @Override
-    public BlockState rotate(BlockState state, Rotation rotation) {
-        boolean x = state.getValue(AXIS_X);
-        boolean z = state.getValue(AXIS_Z);
-
-        return switch (rotation) {
-            case CLOCKWISE_90, COUNTERCLOCKWISE_90 -> state.setValue(AXIS_X, z).setValue(AXIS_Z, x);
-            case CLOCKWISE_180 -> state;
-            default -> state;
-        };
-    }
-
-    @Override
-    public BlockState mirror(BlockState state, Mirror mirror) {
-        boolean x = state.getValue(AXIS_X);
-        boolean z = state.getValue(AXIS_Z);
-
-        return switch (mirror) {
-            case FRONT_BACK -> state.setValue(AXIS_Z, z);
-            case LEFT_RIGHT -> state.setValue(AXIS_X, x);
-            default -> state;
-        };
-    }
 }

@@ -27,7 +27,7 @@ import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import org.dawnoftime.dawnoftime.block.IBlockGeneration;
-import org.dawnoftime.dawnoftime.block.templates.BlockAA;
+import org.dawnoftime.dawnoftime.block.templates.BlockDoT;
 import org.dawnoftime.dawnoftime.platform.Services;
 import org.dawnoftime.dawnoftime.registry.DoTBTags;
 import org.dawnoftime.dawnoftime.util.Utils;
@@ -41,7 +41,7 @@ import static net.minecraft.tags.BlockTags.SAND;
 import static org.dawnoftime.dawnoftime.util.Utils.TOOLTIP_CROP;
 import static org.dawnoftime.dawnoftime.util.VoxelShapes.IVY_SHAPES;
 
-public class IvyBlock extends BlockAA implements IBlockGeneration {
+public class IvyBlock extends BlockDoT implements IBlockGeneration {
     public static final BooleanProperty NORTH = BlockStateProperties.NORTH;
     public static final BooleanProperty EAST = BlockStateProperties.EAST;
     public static final BooleanProperty SOUTH = BlockStateProperties.SOUTH;

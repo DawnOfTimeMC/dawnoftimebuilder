@@ -13,7 +13,7 @@ import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import javax.annotation.Nullable;
 import java.util.Random;
 
-public class SidedFlowerPotBlock extends FlowerPotBlockAA {
+public class SidedFlowerPotBlock extends FlowerPotBlockDoT {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 
     public SidedFlowerPotBlock(@Nullable Item itemInPot) {

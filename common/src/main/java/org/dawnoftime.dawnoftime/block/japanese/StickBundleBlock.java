@@ -21,9 +21,8 @@ import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
-import org.dawnoftime.dawnoftime.DoTBConfig;
 import org.dawnoftime.dawnoftime.block.IBlockChain;
-import org.dawnoftime.dawnoftime.block.templates.BlockAA;
+import org.dawnoftime.dawnoftime.block.templates.BlockDoT;
 import org.dawnoftime.dawnoftime.platform.Services;
 import org.dawnoftime.dawnoftime.registry.DoTBItemsRegistry;
 import org.dawnoftime.dawnoftime.util.Utils;
@@ -35,7 +34,7 @@ import java.util.Objects;
 
 import static org.dawnoftime.dawnoftime.util.VoxelShapes.STICK_BUNDLE_SHAPES;
 
-public class StickBundleBlock extends BlockAA implements IBlockChain {
+public class StickBundleBlock extends BlockDoT implements IBlockChain {
     public static final EnumProperty<Half> HALF = BlockStateProperties.HALF;
     private static final IntegerProperty AGE = BlockStateProperties.AGE_3;
 

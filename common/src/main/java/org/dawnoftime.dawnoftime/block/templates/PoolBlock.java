@@ -36,7 +36,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-public class PoolBlock extends BlockAA {
+public class PoolBlock extends BlockDoT {
 
     public final int maxLevel;
     public final int faucetLevel;

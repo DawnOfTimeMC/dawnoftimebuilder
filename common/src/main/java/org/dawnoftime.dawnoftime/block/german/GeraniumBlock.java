@@ -7,11 +7,11 @@ import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.PushReaction;
-import org.dawnoftime.dawnoftime.block.templates.BlockAA;
+import org.dawnoftime.dawnoftime.block.templates.BlockDoT;
 import javax.annotation.Nullable;
 import static org.dawnoftime.dawnoftime.util.VoxelShapes.GERANIUM_SHAPE;
 
-public class GeraniumBlock extends BlockAA {
+public class GeraniumBlock extends BlockDoT {
 
     public GeraniumBlock(Properties properties) {
         super(properties.pushReaction(PushReaction.DESTROY), GERANIUM_SHAPE);

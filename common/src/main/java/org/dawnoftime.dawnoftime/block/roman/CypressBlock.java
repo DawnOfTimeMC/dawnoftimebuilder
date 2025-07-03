@@ -24,7 +24,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.dawnoftime.dawnoftime.block.IBlockGeneration;
-import org.dawnoftime.dawnoftime.block.templates.BlockAA;
+import org.dawnoftime.dawnoftime.block.templates.BlockDoT;
 import org.dawnoftime.dawnoftime.util.BlockStatePropertiesAA;
 import org.dawnoftime.dawnoftime.util.Utils;
 import org.jetbrains.annotations.NotNull;
@@ -32,7 +32,7 @@ import javax.annotation.Nullable;
 import java.util.List;
 import static org.dawnoftime.dawnoftime.util.VoxelShapes.CYPRESS_SHAPES;
 
-public class CypressBlock extends BlockAA implements IBlockGeneration {
+public class CypressBlock extends BlockDoT implements IBlockGeneration {
     public static final IntegerProperty SIZE = BlockStatePropertiesAA.SIZE_0_5;
 
     public CypressBlock(final Properties properties) {

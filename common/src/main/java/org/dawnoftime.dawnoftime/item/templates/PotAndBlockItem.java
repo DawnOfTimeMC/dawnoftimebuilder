@@ -10,11 +10,11 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import org.dawnoftime.dawnoftime.block.templates.FlowerPotBlockAA;
+import org.dawnoftime.dawnoftime.block.templates.FlowerPotBlockDoT;
 import org.dawnoftime.dawnoftime.item.IHasFlowerPot;
 
 public class PotAndBlockItem extends BlockItem implements IHasFlowerPot {
-    private FlowerPotBlockAA potBlock;
+    private FlowerPotBlockDoT potBlock;
 
     public PotAndBlockItem(Block block, Properties properties) {
         super(block, properties);
@@ -40,12 +40,12 @@ public class PotAndBlockItem extends BlockItem implements IHasFlowerPot {
     }
 
     @Override
-    public FlowerPotBlockAA getPotBlock() {
+    public FlowerPotBlockDoT getPotBlock() {
         return this.potBlock;
     }
 
     @Override
-    public void setPotBlock(FlowerPotBlockAA pot) {
+    public void setPotBlock(FlowerPotBlockDoT pot) {
         this.potBlock = pot;
     }
 }

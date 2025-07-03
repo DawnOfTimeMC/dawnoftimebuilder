@@ -19,14 +19,14 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
-import org.dawnoftime.dawnoftime.block.templates.FlowerPotBlockAA;
+import org.dawnoftime.dawnoftime.block.templates.FlowerPotBlockDoT;
 import org.dawnoftime.dawnoftime.block.templates.SoilCropsBlock;
 import org.dawnoftime.dawnoftime.item.IHasFlowerPot;
 import org.jetbrains.annotations.NotNull;
 import javax.annotation.Nullable;
 
 public class SoilSeedsItem extends BlockItem implements IHasFlowerPot {
-    private FlowerPotBlockAA potBlock;
+    private FlowerPotBlockDoT potBlock;
 
     public <T extends SoilCropsBlock> SoilSeedsItem(T crops, @Nullable FoodProperties food) {
         super(crops, food != null ? new Properties().food(food) : new Properties());
@@ -93,12 +93,12 @@ public class SoilSeedsItem extends BlockItem implements IHasFlowerPot {
     }
 
     @Override
-    public FlowerPotBlockAA getPotBlock() {
+    public FlowerPotBlockDoT getPotBlock() {
         return this.potBlock;
     }
 
     @Override
-    public void setPotBlock(FlowerPotBlockAA pot) {
+    public void setPotBlock(FlowerPotBlockDoT pot) {
         this.potBlock = pot;
     }
 }

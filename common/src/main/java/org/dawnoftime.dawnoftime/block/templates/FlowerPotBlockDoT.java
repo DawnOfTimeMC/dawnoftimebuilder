@@ -8,7 +8,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
@@ -19,10 +18,10 @@ import javax.annotation.Nullable;
 import static net.minecraft.world.level.block.Blocks.FLOWER_POT;
 import static org.dawnoftime.dawnoftime.util.VoxelShapes.FLOWER_POT_SHAPE;
 
-public class FlowerPotBlockAA extends BlockAA implements IBlockSpecialDisplay {
+public class FlowerPotBlockDoT extends BlockDoT implements IBlockSpecialDisplay {
     private Item itemInPot;
 
-    public FlowerPotBlockAA(@Nullable Item itemInPot) {
+    public FlowerPotBlockDoT(@Nullable Item itemInPot) {
         super(Properties.copy(FLOWER_POT), FLOWER_POT_SHAPE);
         this.itemInPot = itemInPot;
     }

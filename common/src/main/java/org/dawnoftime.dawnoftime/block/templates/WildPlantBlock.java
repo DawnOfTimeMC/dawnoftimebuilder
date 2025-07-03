@@ -18,7 +18,7 @@ import javax.annotation.Nullable;
 
 import static org.dawnoftime.dawnoftime.util.VoxelShapes.WILD_PLANT_SHAPES;
 
-public class WildPlantBlock extends BlockAA {
+public class WildPlantBlock extends BlockDoT {
 
     public WildPlantBlock(Properties properties, VoxelShape[] shapes) {
         super(properties.pushReaction(PushReaction.DESTROY), shapes);

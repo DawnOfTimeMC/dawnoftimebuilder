@@ -15,12 +15,12 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 
-public class AxisChimneyBlock extends ChimneyBlockAA {
+public class AxisChimneyBlock extends ChimneyBlockDoT {
     public static final EnumProperty<Direction.Axis> HORIZONTAL_AXIS = BlockStateProperties.HORIZONTAL_AXIS;
 
     public AxisChimneyBlock(final Properties properties, VoxelShape[] shapes) {
         super(properties, shapes);
-        this.registerDefaultState(this.defaultBlockState().setValue(AxisChimneyBlock.HORIZONTAL_AXIS, Direction.Axis.X).setValue(ChimneyBlockAA.LIT, true));
+        this.registerDefaultState(this.defaultBlockState().setValue(AxisChimneyBlock.HORIZONTAL_AXIS, Direction.Axis.X).setValue(ChimneyBlockDoT.LIT, true));
     }
 
     @Override

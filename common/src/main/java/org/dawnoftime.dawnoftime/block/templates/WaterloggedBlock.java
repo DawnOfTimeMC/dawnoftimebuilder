@@ -15,10 +15,9 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class WaterloggedBlock extends BlockAA implements SimpleWaterloggedBlock {
+public class WaterloggedBlock extends BlockDoT implements SimpleWaterloggedBlock {
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
     public WaterloggedBlock(Properties properties, VoxelShape[] shapes) {

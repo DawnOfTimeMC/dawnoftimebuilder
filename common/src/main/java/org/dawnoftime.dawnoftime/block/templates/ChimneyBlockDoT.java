@@ -28,7 +28,6 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 
 import org.dawnoftime.dawnoftime.block.general.FireplaceBlock;
-import org.dawnoftime.dawnoftime.util.BlockStatePropertiesAA;
 import org.dawnoftime.dawnoftime.util.BlockStatePropertiesAA.VerticalConnection;
 import org.dawnoftime.dawnoftime.util.Utils;
 import org.jetbrains.annotations.NotNull;
@@ -36,10 +35,10 @@ import org.jetbrains.annotations.NotNull;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public class ChimneyBlockAA extends ConnectedVerticalBlock {
+public class ChimneyBlockDoT extends ConnectedVerticalBlock {
     public static final BooleanProperty LIT = BlockStateProperties.LIT;
 
-    public ChimneyBlockAA(final Properties properties, VoxelShape[] shapes) {
+    public ChimneyBlockDoT(final Properties properties, VoxelShape[] shapes) {
         super(properties, shapes);
         this.registerDefaultState(this.defaultBlockState().setValue(BlockStateProperties.LIT, true));
     }
@@ -58,7 +57,7 @@ public class ChimneyBlockAA extends ConnectedVerticalBlock {
         BlockPos belowBlockPos = context.getClickedPos().below();
         BlockState blockState = world.getBlockState(belowBlockPos);
 
-        if(blockState.getBlock() instanceof ChimneyBlockAA) {
+        if(blockState.getBlock() instanceof ChimneyBlockDoT) {
             return state.setValue(BlockStateProperties.LIT, blockState.getValue(BlockStateProperties.LIT));
         }
 
@@ -83,8 +82,8 @@ public class ChimneyBlockAA extends ConnectedVerticalBlock {
         if(activation >= 0) {
             final boolean isActivated = activation == 1;
 
-            ChimneyBlockAA.updateAllChimneyConductParts(isActivated, blockStateIn, blockPosIn, worldIn);
-            ChimneyBlockAA.updateFireplace(isActivated, blockPosIn, worldIn);
+            ChimneyBlockDoT.updateAllChimneyConductParts(isActivated, blockStateIn, blockPosIn, worldIn);
+            ChimneyBlockDoT.updateFireplace(isActivated, blockPosIn, worldIn);
 
             return InteractionResult.SUCCESS;
         }
@@ -108,7 +107,7 @@ public class ChimneyBlockAA extends ConnectedVerticalBlock {
             final boolean isActivated = activation == 1;
 
             if(!worldIn.isClientSide()) {
-                ChimneyBlockAA.updateAllChimneyConductParts(isActivated, state, pos, worldIn);
+                ChimneyBlockDoT.updateAllChimneyConductParts(isActivated, state, pos, worldIn);
                 worldIn.playSound(null, pos, isActivated ? SoundEvents.FIRE_AMBIENT : SoundEvents.FIRE_EXTINGUISH, SoundSource.BLOCKS, 1.0F, 1.0F);
             } else if(!isActivated && worldIn.isClientSide()) {
                 for(int i = 0; i < worldIn.random.nextInt(1) + 1; ++i) {
@@ -132,7 +131,7 @@ public class ChimneyBlockAA extends ConnectedVerticalBlock {
 
     @Override
     public @NotNull BlockState updateShape(BlockState stateIn, @NotNull Direction facing, @NotNull BlockState facingState, @NotNull LevelAccessor worldIn, @NotNull BlockPos currentPos, @NotNull BlockPos facingPos) {
-        if(facingState.getBlock() instanceof ChimneyBlockAA || facingState.getBlock() instanceof ConnectedVerticalSidedPlanFireplaceBlock) {
+        if(facingState.getBlock() instanceof ChimneyBlockDoT || facingState.getBlock() instanceof ConnectedVerticalSidedPlanFireplaceBlock) {
             stateIn.setValue(LIT, facingState.getValue(LIT));
         }
 
@@ -148,14 +147,14 @@ public class ChimneyBlockAA extends ConnectedVerticalBlock {
     public static void updateAllChimneyConductParts(final boolean isActivatedIn, BlockState stateIn, final BlockPos blockPosIn, final Level worldIn) {
         stateIn = stateIn.setValue(BlockStateProperties.LIT, isActivatedIn);
         worldIn.setBlock(blockPosIn, stateIn, 10);
-        ChimneyBlockAA.updateIsActivatedInAllPartsOfBottom(isActivatedIn, stateIn, blockPosIn, worldIn);
-        ChimneyBlockAA.updateIsActivatedInAllPartsOfTop(isActivatedIn, stateIn, blockPosIn, worldIn);
+        ChimneyBlockDoT.updateIsActivatedInAllPartsOfBottom(isActivatedIn, stateIn, blockPosIn, worldIn);
+        ChimneyBlockDoT.updateIsActivatedInAllPartsOfTop(isActivatedIn, stateIn, blockPosIn, worldIn);
     }
 
     public static void updateIsActivatedInAllPartsOfBottom(final boolean isActivatedIn, final BlockState stateIn, final BlockPos blockPosIn, final Level worldIn) {
         BlockState blockState = null;
         BlockPos blockPos = blockPosIn;
-        while((blockState = worldIn.getBlockState(blockPos = blockPos.below())) != null && blockState.getBlock() instanceof ChimneyBlockAA) {
+        while((blockState = worldIn.getBlockState(blockPos = blockPos.below())) != null && blockState.getBlock() instanceof ChimneyBlockDoT) {
             blockState = blockState.setValue(BlockStateProperties.LIT, isActivatedIn);
             worldIn.setBlock(blockPos, blockState, 10);
         }
@@ -164,7 +163,7 @@ public class ChimneyBlockAA extends ConnectedVerticalBlock {
     public static void updateIsActivatedInAllPartsOfTop(final boolean isActivatedIn, final BlockState stateIn, final BlockPos blockPosIn, final Level worldIn) {
         BlockState blockState = null;
         BlockPos blockPos = blockPosIn;
-        while((blockState = worldIn.getBlockState(blockPos = blockPos.above())) != null && blockState.getBlock() instanceof ChimneyBlockAA) {
+        while((blockState = worldIn.getBlockState(blockPos = blockPos.above())) != null && blockState.getBlock() instanceof ChimneyBlockDoT) {
             blockState = blockState.setValue(BlockStateProperties.LIT, isActivatedIn);
             worldIn.setBlock(blockPos, blockState, 10);
         }
@@ -173,7 +172,7 @@ public class ChimneyBlockAA extends ConnectedVerticalBlock {
     public static void updateFireplace(final boolean isActivatedIn, final BlockPos blockPosIn, final Level worldIn) {
         BlockState blockState = null;
         BlockPos blockPos = blockPosIn;
-        while((blockState = worldIn.getBlockState(blockPos = blockPos.below())) != null && blockState.getBlock() instanceof ChimneyBlockAA) {
+        while((blockState = worldIn.getBlockState(blockPos = blockPos.below())) != null && blockState.getBlock() instanceof ChimneyBlockDoT) {
         }
 
         while((blockState = worldIn.getBlockState(blockPos = blockPos.below())) != null && blockState.getBlock() instanceof ConnectedVerticalSidedPlanFireplaceBlock) {

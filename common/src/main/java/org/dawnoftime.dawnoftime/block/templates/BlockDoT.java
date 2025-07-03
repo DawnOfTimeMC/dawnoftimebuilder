@@ -15,17 +15,17 @@ import org.jetbrains.annotations.NotNull;
 import static org.dawnoftime.dawnoftime.DoTBCommon.MOD_ID;
 import static org.dawnoftime.dawnoftime.util.VoxelShapes.FULL_SHAPE;
 
-public class BlockAA extends Block implements IFlammable {
+public class BlockDoT extends Block implements IFlammable {
     private int fireSpreadSpeed = 0;
     private int fireDestructionSpeed = 0;
     private final VoxelShape[] shapes;
 
-    public BlockAA(Properties properties, VoxelShape[] shapes) {
+    public BlockDoT(Properties properties, VoxelShape[] shapes) {
         super(properties);
         this.shapes = shapes;
     }
 
-    public BlockAA(Properties properties){
+    public BlockDoT(Properties properties){
         this(properties, FULL_SHAPE);
     }
 
@@ -35,7 +35,7 @@ public class BlockAA extends Block implements IFlammable {
      * @param level World where the block is placed.
      * @param pos Current BlockPos of the block studied.
      * @param context Context of the collision.
-     * @return The VoxelShape that correspond to the current hit-box based on the index returned by {@link BlockAA#getShapeIndex(BlockState, BlockGetter, BlockPos, CollisionContext)}.
+     * @return The VoxelShape that correspond to the current hit-box based on the index returned by {@link BlockDoT#getShapeIndex(BlockState, BlockGetter, BlockPos, CollisionContext)}.
      */
     @Override
     public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull CollisionContext context) {

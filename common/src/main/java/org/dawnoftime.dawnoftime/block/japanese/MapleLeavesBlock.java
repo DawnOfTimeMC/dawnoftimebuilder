@@ -3,7 +3,6 @@ package org.dawnoftime.dawnoftime.block.japanese;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
@@ -13,16 +12,14 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.material.PushReaction;
-import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import org.dawnoftime.dawnoftime.block.templates.BlockAA;
-import org.dawnoftime.dawnoftime.registry.DoTBBlocksRegistry;
+import org.dawnoftime.dawnoftime.block.templates.BlockDoT;
 import org.dawnoftime.dawnoftime.util.BlockStatePropertiesAA;
 import org.jetbrains.annotations.NotNull;
 
-public class MapleLeavesBlock extends BlockAA {
+public class MapleLeavesBlock extends BlockDoT {
     public static final IntegerProperty MULTIBLOCK_X = BlockStatePropertiesAA.MULTIBLOCK_3X;
     public static final IntegerProperty MULTIBLOCK_Y = BlockStatePropertiesAA.MULTIBLOCK_2Y;
     public static final IntegerProperty MULTIBLOCK_Z = BlockStatePropertiesAA.MULTIBLOCK_3Z;

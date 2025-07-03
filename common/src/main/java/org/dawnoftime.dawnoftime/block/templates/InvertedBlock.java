@@ -7,9 +7,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
-import org.dawnoftime.dawnoftime.block.templates.BlockAA;
 
-public class InvertedBlock extends BlockAA {
+public class InvertedBlock extends BlockDoT {
     public static final BooleanProperty INVERTED = BlockStateProperties.INVERTED;
 
     public InvertedBlock(Properties properties) {

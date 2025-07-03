@@ -204,8 +204,8 @@ public class ConnectedVerticalSidedPlanFireplaceBlock extends ConnectedVerticalS
 
     public static void updateChimneyConductsAtSide(final boolean isActivatedIn, final BlockPos blockPosIn, final Level worldIn) {
         final BlockState blockState = worldIn.getBlockState(blockPosIn);
-        if(blockState.getBlock() instanceof ChimneyBlockAA) {
-            ChimneyBlockAA.updateAllChimneyConductParts(isActivatedIn, blockState, blockPosIn, worldIn);
+        if(blockState.getBlock() instanceof ChimneyBlockDoT) {
+            ChimneyBlockDoT.updateAllChimneyConductParts(isActivatedIn, blockState, blockPosIn, worldIn);
         }
     }
 
