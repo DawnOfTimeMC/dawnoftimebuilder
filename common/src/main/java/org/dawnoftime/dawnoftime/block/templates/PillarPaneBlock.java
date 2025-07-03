@@ -9,7 +9,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class PillarPaneBlock extends PaneBlockAA {
+public class PillarPaneBlock extends PaneBlockDoT {
     private static final VoxelShape[] SHAPES_PILLAR = makeShapesPillar(true);
     private static final VoxelShape[] SHAPES_NO_PILLAR = makeShapesPillar(false);
 

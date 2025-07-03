@@ -4,19 +4,17 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.StairBlock;
+import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import org.dawnoftime.dawnoftime.block.IFlammable;
 
-import java.util.function.Supplier;
-
-public class StairsBlockAA extends StairBlock implements IFlammable {
+public class RotatedPillarBlockDoT extends RotatedPillarBlock implements IFlammable {
     private int fireSpreadSpeed = 0;
     private int fireDestructionSpeed = 0;
 
-    public StairsBlockAA(Supplier<Block> regBlock, Properties properties) {
-        super(regBlock.get().defaultBlockState(), properties);
+    public RotatedPillarBlockDoT(Properties properties) {
+        super(properties);
     }
 
     /**

@@ -9,8 +9,8 @@ import net.minecraft.world.level.block.state.StateDefinition;
 
 import javax.annotation.Nullable;
 
-public class HorizontalBlockAA extends HorizontalDirectionalBlock {
-    public HorizontalBlockAA(Properties properties) {
+public class HorizontalBlockDoT extends HorizontalDirectionalBlock {
+    public HorizontalBlockDoT(Properties properties) {
         super(properties);
         this.registerDefaultState(this.defaultBlockState().setValue(FACING, Direction.NORTH));
     }

@@ -23,7 +23,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import java.util.ArrayList;
 import java.util.function.Supplier;
 
-public class MixedSlabBlock extends SlabBlockAA {
+public class MixedSlabBlock extends SlabBlockDoT {
     private final ArrayList<MixedBlockRecipe> listRecipes = new ArrayList<>();
 
     public MixedSlabBlock(Properties properties) {

@@ -49,15 +49,15 @@ public abstract class DoTBItemsRegistry {
 //        @SuppressWarnings("unchecked")
 //    public static <T extends Item & IHasFlowerPot> Supplier<Item> regWithFlowerPot(final String plantName, final String seedName, final Supplier<T> itemSupplier) {
 //        final String potName = plantName + "_flower_pot";
-//        Supplier<FlowerPotBlockAA> potBlockObject = (Supplier<FlowerPotBlockAA>) (Object) DoTBBlocksRegistry.reg(potName, () -> {
-//            final FlowerPotBlockAA potBlock = new FlowerPotBlockAA(null);
+//        Supplier<FlowerPotBlockDoT> potBlockObject = (Supplier<FlowerPotBlockDoT>) (Object) DoTBBlocksRegistry.reg(potName, () -> {
+//            final FlowerPotBlockDoT potBlock = new FlowerPotBlockDoT(null);
 //            DoTBBlocksRegistry.POT_BLOCKS.put(potName, potBlock);
 //            return potBlock;
 //        }, BlockTags.MINEABLE_WITH_PICKAXE);
 //
 //        Supplier<T> toReturn = DoTBItemsRegistry.ITEMS.register(seedName, () -> {
 //            T item = itemSupplier.get();
-//            FlowerPotBlockAA potBlock = potBlockObject.get();
+//            FlowerPotBlockDoT potBlock = potBlockObject.get();
 //
 //            item.setPotBlock(potBlock);
 //            potBlock.setItemInPot(item);

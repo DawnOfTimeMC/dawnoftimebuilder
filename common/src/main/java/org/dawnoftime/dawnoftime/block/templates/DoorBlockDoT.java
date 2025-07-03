@@ -8,8 +8,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.*;
 import org.jetbrains.annotations.NotNull;
 
-public class DoorBlockAA extends DoorBlock {
-    public DoorBlockAA(Properties properties, BlockSetType blockSetType) {
+public class DoorBlockDoT extends DoorBlock {
+    public DoorBlockDoT(Properties properties, BlockSetType blockSetType) {
         super(properties, blockSetType);
     }
 

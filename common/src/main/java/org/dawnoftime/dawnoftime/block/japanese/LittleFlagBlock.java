@@ -14,11 +14,11 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import org.dawnoftime.dawnoftime.block.templates.PaneBlockAA;
+import org.dawnoftime.dawnoftime.block.templates.PaneBlockDoT;
 import org.dawnoftime.dawnoftime.util.BlockStatePropertiesAA;
 import org.jetbrains.annotations.NotNull;
 
-public class LittleFlagBlock extends PaneBlockAA {
+public class LittleFlagBlock extends PaneBlockDoT {
     public static final BooleanProperty AXIS_Y = BlockStatePropertiesAA.AXIS_Y;
     private final VoxelShape[] VS_PILLAR = this.makePillarShapes(this.shapeByIndex);
 

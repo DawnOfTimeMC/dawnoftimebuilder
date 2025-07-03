@@ -24,7 +24,7 @@ import net.minecraft.world.phys.BlockHitResult;
 
 import java.util.function.Supplier;
 
-public class MixedRoofSupportBlock extends SlabBlockAA {
+public class MixedRoofSupportBlock extends SlabBlockDoT {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final EnumProperty<StairsShape> SHAPE = BlockStateProperties.STAIRS_SHAPE;
     private final Supplier<Block> roofSlabBlockSupplier;

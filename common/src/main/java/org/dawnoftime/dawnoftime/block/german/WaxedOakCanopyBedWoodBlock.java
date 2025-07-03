@@ -11,10 +11,10 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import org.dawnoftime.dawnoftime.block.roman.MarbleStatueBlock;
-import org.dawnoftime.dawnoftime.block.templates.HorizontalBlockAA;
+import org.dawnoftime.dawnoftime.block.templates.HorizontalBlockDoT;
 import org.dawnoftime.dawnoftime.util.BlockStatePropertiesAA;
 
-public class WaxedOakCanopyBedWoodBlock extends HorizontalBlockAA {
+public class WaxedOakCanopyBedWoodBlock extends HorizontalBlockDoT {
     public static final IntegerProperty MULTIBLOCK_X = BlockStatePropertiesAA.MULTIBLOCK_3X;
     public static final IntegerProperty MULTIBLOCK_Y = BlockStatePropertiesAA.MULTIBLOCK_2Y;
     public static final IntegerProperty MULTIBLOCK_Z = BlockStatePropertiesAA.MULTIBLOCK_3Z;

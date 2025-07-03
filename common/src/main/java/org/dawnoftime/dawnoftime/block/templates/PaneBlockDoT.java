@@ -14,8 +14,8 @@ import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.Fluids;
 import org.jetbrains.annotations.NotNull;
 
-public class PaneBlockAA extends IronBarsBlock {
-    public PaneBlockAA(Properties properties) {
+public class PaneBlockDoT extends IronBarsBlock {
+    public PaneBlockDoT(Properties properties) {
         super(properties);
     }
 

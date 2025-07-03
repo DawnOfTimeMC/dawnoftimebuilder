@@ -11,11 +11,11 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import org.dawnoftime.dawnoftime.block.templates.PaneBlockAA;
+import org.dawnoftime.dawnoftime.block.templates.PaneBlockDoT;
 
 import static org.dawnoftime.dawnoftime.util.VoxelShapes.CHARRED_SPRUCE_FANCY_RAILING_SHAPES;
 
-public class CharredSpruceFancyRailingBlock extends PaneBlockAA {
+public class CharredSpruceFancyRailingBlock extends PaneBlockDoT {
     private static final BooleanProperty HANGING = BlockStateProperties.HANGING;
 
     public CharredSpruceFancyRailingBlock(Properties properties) {

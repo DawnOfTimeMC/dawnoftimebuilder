@@ -4,16 +4,16 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.RotatedPillarBlock;
+import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import org.dawnoftime.dawnoftime.block.IFlammable;
 
-public class RotatedPillarBlockAA extends RotatedPillarBlock implements IFlammable {
+public class SlabBlockDoT extends SlabBlock implements IFlammable {
     private int fireSpreadSpeed = 0;
     private int fireDestructionSpeed = 0;
 
-    public RotatedPillarBlockAA(Properties properties) {
+    public SlabBlockDoT(Properties properties) {
         super(properties);
     }
 
