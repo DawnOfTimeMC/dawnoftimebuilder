@@ -1,11 +1,7 @@
 {
   "type": "forge:add_features",
   "biomes": [
-    "minecraft:flower_forest",
-    "minecraft:taiga",
-    "minecraft:snowy_taiga",
-    "minecraft:old_growth_pine_taiga",
-    "minecraft:old_growth_spruce_taiga"
+    "minecraft:dark_forest"
   ],
   "features": "dawnoftimebuilder:red_maple_placed",
   "step": "vegetal_decoration"

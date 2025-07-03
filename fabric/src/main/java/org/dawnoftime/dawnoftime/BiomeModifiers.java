@@ -14,7 +14,7 @@ public class BiomeModifiers {
         addFeatureToBiomes(DoTBFeaturesRegistry.CAMELLIA_PLACED_KEY, GenerationStep.Decoration.VEGETAL_DECORATION, Biomes.FLOWER_FOREST, Biomes.JUNGLE, Biomes.SPARSE_JUNGLE);
         addFeatureToBiomes(DoTBFeaturesRegistry.COMMELINA_PLACED_KEY, GenerationStep.Decoration.VEGETAL_DECORATION, Biomes.SWAMP, Biomes.MANGROVE_SWAMP);
         addFeatureToBiomes(DoTBFeaturesRegistry.CYPRESS_PLACED_KEY, GenerationStep.Decoration.VEGETAL_DECORATION, Biomes.FLOWER_FOREST, Biomes.TAIGA, Biomes.SNOWY_TAIGA, Biomes.OLD_GROWTH_PINE_TAIGA, Biomes.OLD_GROWTH_SPRUCE_TAIGA);
-        addFeatureToBiomes(DoTBFeaturesRegistry.RED_MAPLE_PLACED_KEY, GenerationStep.Decoration.VEGETAL_DECORATION, Biomes.FLOWER_FOREST, Biomes.TAIGA, Biomes.SNOWY_TAIGA, Biomes.OLD_GROWTH_PINE_TAIGA, Biomes.OLD_GROWTH_SPRUCE_TAIGA);
+        addFeatureToBiomes(DoTBFeaturesRegistry.RED_MAPLE_PLACED_KEY, GenerationStep.Decoration.VEGETAL_DECORATION, Biomes.DARK_FOREST);
         addFeatureToBiomes(DoTBFeaturesRegistry.BOXWOOD_BUSH_PLACED_KEY, GenerationStep.Decoration.VEGETAL_DECORATION, Biomes.FLOWER_FOREST, Biomes.FOREST, Biomes.WINDSWEPT_FOREST);
         addFeatureToBiomes(DoTBFeaturesRegistry.MULBERRY_PLACED_KEY, GenerationStep.Decoration.VEGETAL_DECORATION, Biomes.FLOWER_FOREST, Biomes.TAIGA, Biomes.SNOWY_TAIGA, Biomes.OLD_GROWTH_PINE_TAIGA, Biomes.OLD_GROWTH_SPRUCE_TAIGA);
         addFeatureToBiomes(DoTBFeaturesRegistry.RICE_PLACED_KEY, GenerationStep.Decoration.VEGETAL_DECORATION, Biomes.SWAMP, Biomes.MANGROVE_SWAMP);
