@@ -37,7 +37,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
 import org.dawnoftime.dawnoftime.block.IFlammable;
-import org.dawnoftime.dawnoftime.block.templates.FlowerPotBlockAA;
+import org.dawnoftime.dawnoftime.block.templates.FlowerPotBlockDoT;
 import org.dawnoftime.dawnoftime.client.gui.screen.DisplayerScreen;
 import org.dawnoftime.dawnoftime.client.model.entity.SilkmothModel;
 import org.dawnoftime.dawnoftime.client.renderer.blockentity.DisplayerBERenderer;
@@ -98,14 +98,14 @@ public class RegistryImpls {
             if(item != null) {
                 final String potName = blockID + "_flower_pot";
 
-                Supplier<FlowerPotBlockAA> potBlockObject = this.register(potName, () -> {
-                    final FlowerPotBlockAA potBlock = new FlowerPotBlockAA(null);
+                Supplier<FlowerPotBlockDoT> potBlockObject = this.register(potName, () -> {
+                    final FlowerPotBlockDoT potBlock = new FlowerPotBlockDoT(null);
                     POT_BLOCKS.put(potName, potBlock);
                     return potBlock;
                 }, BlockTags.MINEABLE_WITH_PICKAXE);
 
                 Y item1 = item.apply(toReturn);
-                FlowerPotBlockAA potBlock = potBlockObject.get();
+                FlowerPotBlockDoT potBlock = potBlockObject.get();
 
                 item1.setPotBlock(potBlock);
                 potBlock.setItemInPot(item1);
@@ -156,15 +156,15 @@ public class RegistryImpls {
         public <T extends Item & IHasFlowerPot> Supplier<Item> registerWithFlowerPot(String plantName, String seedName, Supplier<T> itemSupplier) {
             final String potName = plantName + "_flower_pot";
 
-            Supplier<FlowerPotBlockAA> potBlockObject = DoTBBlocksRegistry.INSTANCE.register(potName, () -> {
-                final FlowerPotBlockAA potBlock = new FlowerPotBlockAA(null);
+            Supplier<FlowerPotBlockDoT> potBlockObject = DoTBBlocksRegistry.INSTANCE.register(potName, () -> {
+                final FlowerPotBlockDoT potBlock = new FlowerPotBlockDoT(null);
                 DoTBBlocksRegistry.POT_BLOCKS.put(potName, potBlock);
                 return potBlock;
             }, BlockTags.MINEABLE_WITH_PICKAXE);
 
             return this.register(seedName, () -> {
                 T item = itemSupplier.get();
-                FlowerPotBlockAA potBlock = potBlockObject.get();
+                FlowerPotBlockDoT potBlock = potBlockObject.get();
 
                 item.setPotBlock(potBlock);
                 potBlock.setItemInPot(item);
