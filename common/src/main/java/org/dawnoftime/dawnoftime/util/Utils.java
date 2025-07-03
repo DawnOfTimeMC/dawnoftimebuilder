@@ -49,7 +49,6 @@ public class Utils {
     public static final String TOOLTIP_CLIMBING_PLANT = "climbing_plant";
     public static final String TOOLTIP_BEAM = "beam";
     public static final String TOOLTIP_CROP = "crop";
-    public static final String TOOLTIP_SIDED_WINDOW = "sided_window";
     public static final String TOOLTIP_FIREPLACE = "fireplace";
     public static final String TOOLTIP_ADD_COLUMN = "add_column";
 

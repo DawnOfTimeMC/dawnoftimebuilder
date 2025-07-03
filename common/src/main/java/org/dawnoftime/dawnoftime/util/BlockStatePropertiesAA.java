@@ -1,6 +1,5 @@
 package org.dawnoftime.dawnoftime.util;
 
-import net.minecraft.core.Direction;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
@@ -47,7 +46,6 @@ public class BlockStatePropertiesAA {
     public static final EnumProperty<HorizontalConnection> HORIZONTAL_CONNECTION = EnumProperty.create("horizontal_connection", HorizontalConnection.class);
     public static final EnumProperty<OpenPosition> OPEN_POSITION = EnumProperty.create("open_position", OpenPosition.class);
     public static final EnumProperty<PillarConnection> PILLAR_CONNECTION = EnumProperty.create("pillar_connection", PillarConnection.class);
-    public static final EnumProperty<SidedWindow> SIDED_WINDOW = EnumProperty.create("sided_window", SidedWindow.class);
     public static final EnumProperty<VerticalConnection> VERTICAL_CONNECTION = EnumProperty.create("vertical_connection", VerticalConnection.class);
     public static final EnumProperty<SquareCorners> CORNER = EnumProperty.create("corner", SquareCorners.class);
     public static final EnumProperty<WallSide> PILLAR_WALL = EnumProperty.create("pillar", WallSide.class);
@@ -278,63 +276,6 @@ public class BlockStatePropertiesAA {
 
         public boolean isOpen() {
             return this != CLOSED;
-        }
-    }
-
-    public enum SidedWindow implements StringRepresentable {
-        NORTH("north", Direction.NORTH),
-        EAST("east", Direction.EAST),
-        SOUTH("south", Direction.SOUTH),
-        WEST("west", Direction.WEST),
-        AXIS_X("axis_x", Direction.EAST),
-        AXIS_Z("axis_z", Direction.NORTH);
-        private final String name;
-        private final Direction direction;
-
-        SidedWindow(final String name, final Direction offset) {
-            this.name = name;
-            this.direction = offset;
-        }
-
-        public static SidedWindow getSide(final Direction facing, final boolean isSneaking) {
-            if (isSneaking) {
-                return facing.getAxis() == Direction.Axis.X ? AXIS_X : AXIS_Z;
-            }
-            return switch (facing) {
-                case EAST -> EAST;
-                case SOUTH -> SOUTH;
-                case WEST -> WEST;
-                default -> NORTH;
-            };
-        }
-
-        @Override
-        public String toString() {
-            return this.name;
-        }
-
-        @Override
-        public @NotNull String getSerializedName() {
-            return this.name;
-        }
-
-        public Direction getDirection() {
-            return this.direction;
-        }
-
-        public Direction getOffset() {
-            return this.direction.getCounterClockWise();
-        }
-
-        public SidedWindow rotate(boolean clockWise) {
-            return switch (this) {
-                case NORTH -> clockWise ? EAST : WEST;
-                case EAST  -> clockWise ? SOUTH : NORTH;
-                case SOUTH -> clockWise ? WEST : EAST;
-                case WEST  -> clockWise ? NORTH : SOUTH;
-                case AXIS_X -> AXIS_Z;
-                case AXIS_Z -> AXIS_X;
-            };
         }
     }
 

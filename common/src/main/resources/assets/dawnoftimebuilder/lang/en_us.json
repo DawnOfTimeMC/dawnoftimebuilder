@@ -478,7 +478,6 @@
     "entity.dawnoftimebuilder.japanese_dragon": "Japanese Dragon",
     "tooltip.dawnoftimebuilder.hold_key": "For more info, hold ",
     "tooltip.dawnoftimebuilder.shift": "SHIFT",
-    "tooltip.dawnoftimebuilder.sided_window": "Use SHIFT to center the window in the middle of a block. The window will be against a side otherwise.",
     "tooltip.dawnoftimebuilder.iron_portcullis": "Use a redstone impulse on a portcullis block to open it, and all adjacent portcullis blocks.",
     "tooltip.dawnoftimebuilder.charred_spruce_railing": "Use RIGHT-CLICK on this block to add a column. Use SHIFT remove it.",
     "tooltip.dawnoftimebuilder.beam": "Use SHIFT + RIGHT-CLICK on this block to remove its base if it has one.",

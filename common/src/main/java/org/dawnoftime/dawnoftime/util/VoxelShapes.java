@@ -123,6 +123,9 @@ public class VoxelShapes {
     public static final VoxelShape[] SANDSTONE_SIDED_COLUMN_SHAPES = makeSandstoneSidedColumnShapes();
     public static final VoxelShape[] SAPLING_SHAPES = new VoxelShape[]{Block.box(2.0D, 0.0D, 2.0D, 14.0D, 12.0D, 14.0D)};
     public static final VoxelShape[] SERPENT_SCULPTED_COLUMN_SHAPES = makeSerpentSculptedColumnShapes();
+    public static final VoxelShape[] SIDED_WINDOW_SHAPES = Utils.generateHorizontalShapes(new VoxelShape[]{
+            Block.box(0.0D, 0.0D, 10.0D, 16.0D, 16.0D, 16.0D)
+    });
     public static final VoxelShape[] SMALL_POOL_COLLISION_SHAPES = makeSmallPoolCollisionShapes();
     public static final VoxelShape[] SMALL_POOL_SHAPES = makeSmallPoolShapes();
     public static final VoxelShape[] SMALL_TATAMI_FLOOR_SHAPES = new VoxelShape[]{Block.box(0.0D, 0.0D, 0.0D, 16.0D, 17.0D, 16.0D)};
