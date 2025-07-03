@@ -19,6 +19,7 @@ import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.chunk.ChunkAccess;
@@ -88,6 +89,29 @@ public class Utils {
             i++;
         }
         return newShapes;
+    }
+
+    /**
+     * First, keeps only the part of the testedShape that is on the tested face of the block (within faceShape).
+     * Then, compares this shapeOnFace to inShape : if the shapeOnFace has a part outside the inShape, return false.
+     *
+     * @param testedShape Shape that will be tested.
+     * @param faceShape   Shape that correspond the full face of the block tested for the direction.
+     * @param inShape     Shape to which the testedShape will be compared.
+     * @return False is the testedShape has a part that is not within the inShape, true otherwise.
+     */
+    public static boolean isShapeIncludedInShape(VoxelShape testedShape, VoxelShape faceShape, VoxelShape inShape) {
+        VoxelShape shapeOnFace = Shapes.join(testedShape, faceShape, BooleanOp.AND);
+        return !Shapes.joinIsNotEmpty(shapeOnFace, inShape, BooleanOp.ONLY_FIRST);
+    }
+
+    public static Rotation invertCounterClockWise(Rotation rot) {
+        return switch (rot) {
+            case NONE -> Rotation.NONE;
+            case CLOCKWISE_90 -> Rotation.COUNTERCLOCKWISE_90;
+            case CLOCKWISE_180 -> Rotation.CLOCKWISE_180;
+            case COUNTERCLOCKWISE_90 -> Rotation.CLOCKWISE_90;
+        };
     }
 
     /**
@@ -275,24 +299,5 @@ public class Utils {
         } else {
             tooltip.add(Utils.TOOLTIP_HOLD_SHIFT);
         }
-    }
-
-    public static int getHighestSectionPosition(ChunkAccess chunkAccess) {
-        int i = chunkAccess.getHighestFilledSectionIndex();
-        return i == -1 ? chunkAccess.getMinBuildHeight() : SectionPos.sectionToBlockCoord(chunkAccess.getSectionYFromSectionIndex(i));
-    }
-
-    /**
-     * First, keeps only the part of the testedShape that is on the tested face of the block (within faceShape).
-     * Then, compares this shapeOnFace to inShape : if the shapeOnFace has a part outside the inShape, return false.
-     *
-     * @param testedShape Shape that will be tested.
-     * @param faceShape   Shape that correspond the full face of the block tested for the direction.
-     * @param inShape     Shape to which the testedShape will be compared.
-     * @return False is the testedShape has a part that is not within the inShape, true otherwise.
-     */
-    public static boolean isShapeIncludedInShape(VoxelShape testedShape, VoxelShape faceShape, VoxelShape inShape) {
-        VoxelShape shapeOnFace = Shapes.join(testedShape, faceShape, BooleanOp.AND);
-        return !Shapes.joinIsNotEmpty(shapeOnFace, inShape, BooleanOp.ONLY_FIRST);
     }
 }

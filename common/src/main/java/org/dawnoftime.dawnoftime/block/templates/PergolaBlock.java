@@ -10,6 +10,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.dawnoftime.dawnoftime.util.BlockStatePropertiesAA;
+import net.minecraft.world.level.block.Rotation;
+import net.minecraft.world.level.block.Mirror;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
@@ -66,8 +68,32 @@ public class PergolaBlock extends BeamBlock {
             state = this.defaultBlockState().setValue(WATERLOGGED, context.getLevel().getFluidState(context.getClickedPos()).getType() == Fluids.WATER);
         return switch (context.getClickedFace().getAxis()) {
             case X -> state.setValue(AXIS_X, true);
-            default -> state.setValue(AXIS_Y, true);
             case Z -> state.setValue(AXIS_Z, true);
+            default -> state.setValue(AXIS_Y, true);
+        };
+    }
+
+    @Override
+    public BlockState rotate(BlockState state, Rotation rotation) {
+        boolean x = state.getValue(AXIS_X);
+        boolean z = state.getValue(AXIS_Z);
+
+        return switch (rotation) {
+            case CLOCKWISE_90, COUNTERCLOCKWISE_90 -> state.setValue(AXIS_X, z).setValue(AXIS_Z, x);
+            case CLOCKWISE_180 -> state;
+            default -> state;
+        };
+    }
+
+    @Override
+    public BlockState mirror(BlockState state, Mirror mirror) {
+        boolean x = state.getValue(AXIS_X);
+        boolean z = state.getValue(AXIS_Z);
+
+        return switch (mirror) {
+            case FRONT_BACK -> state.setValue(AXIS_Z, z);
+            case LEFT_RIGHT -> state.setValue(AXIS_X, x);
+            default -> state;
         };
     }
 }

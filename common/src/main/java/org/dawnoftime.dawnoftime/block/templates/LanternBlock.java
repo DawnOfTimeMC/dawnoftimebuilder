@@ -14,12 +14,9 @@ import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.dawnoftime.dawnoftime.block.IBlockChain;
-import org.dawnoftime.dawnoftime.block.templates.SpecialDisplayBlock;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
-
-import static org.dawnoftime.dawnoftime.util.VoxelShapes.STONE_LANTERN_SHAPES;
 
 public class LanternBlock extends SpecialDisplayBlock implements IBlockChain {
 
@@ -33,7 +30,11 @@ public class LanternBlock extends SpecialDisplayBlock implements IBlockChain {
     @Nullable
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
-        return super.getStateForPlacement(context).setValue(FACING, context.getClickedFace());
+        BlockState state = super.getStateForPlacement(context);
+        if (state != null) {
+            return state.setValue(FACING, context.getClickedFace());
+        }
+        return null;
     }
 
     @Override
@@ -45,21 +46,21 @@ public class LanternBlock extends SpecialDisplayBlock implements IBlockChain {
     @Override
     public int getShapeIndex(@NotNull BlockState state, @NotNull BlockGetter worldIn, @NotNull BlockPos pos, @NotNull CollisionContext context) {
         Direction facing = state.getValue(FACING);
-        return switch (facing){
-            default -> facing.get2DDataValue();
+        return switch (facing) {
             case DOWN -> 4;
             case UP -> 5;
+            default -> facing.get2DDataValue();
         };
     }
 
     @Override
-    public BlockState rotate(BlockState state, Rotation rot) {
+    public @NotNull BlockState rotate(BlockState state, Rotation rot) {
         return state.setValue(FACING, rot.rotate(state.getValue(FACING)));
     }
 
     @Override
-    public BlockState mirror(BlockState state, Mirror mirrorIn) {
-        return rotate(state, Rotation.CLOCKWISE_180);
+    public @NotNull BlockState mirror(BlockState state, Mirror mirror) {
+        return state.setValue(FACING, mirror.mirror(state.getValue(FACING)));
     }
 
     @Override

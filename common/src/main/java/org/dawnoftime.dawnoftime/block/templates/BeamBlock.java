@@ -102,7 +102,7 @@ public class BeamBlock extends WaterloggedBlock implements IBlockPillar, IBlockC
     }
 
     @Override
-    public boolean canBeReplaced(BlockState state, BlockPlaceContext useContext) {
+    public boolean canBeReplaced(@NotNull BlockState state, BlockPlaceContext useContext) {
         ItemStack itemstack = useContext.getItemInHand();
         if(useContext.getPlayer() != null && useContext.getPlayer().isCrouching())
             return false;

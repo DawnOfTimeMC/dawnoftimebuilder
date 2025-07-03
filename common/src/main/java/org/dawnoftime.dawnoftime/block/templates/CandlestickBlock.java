@@ -17,14 +17,8 @@ import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-
-import org.apache.commons.lang3.ArrayUtils;
 import org.dawnoftime.dawnoftime.block.IBlockSpecialDisplay;
-import org.dawnoftime.dawnoftime.util.Utils;
 import org.jetbrains.annotations.NotNull;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 public class CandlestickBlock extends CandleLampBlock implements IBlockSpecialDisplay {
     public static final DirectionProperty FACING = BlockStateProperties.FACING_HOPPER;
@@ -35,11 +29,9 @@ public class CandlestickBlock extends CandleLampBlock implements IBlockSpecialDi
         this.registerDefaultState(this.defaultBlockState().setValue(WATERLOGGED, false).setValue(FACING, Direction.DOWN).setValue(LIT, false));
     }
 
-    @Nullable
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
-        Direction facing = context.getClickedFace();
-        return super.getStateForPlacement(context).setValue(FACING, facing == Direction.UP ? Direction.DOWN : facing);
+        return this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
     }
 
     @Override
@@ -48,9 +40,9 @@ public class CandlestickBlock extends CandleLampBlock implements IBlockSpecialDi
         builder.add(FACING);
     }
 
-    
+
     @Override
-    public void animateTick(BlockState stateIn, Level worldIn, BlockPos pos, RandomSource rand) {
+    public void animateTick(@NotNull BlockState stateIn, @NotNull Level worldIn, @NotNull BlockPos pos, @NotNull RandomSource rand) {
         this.animateLitCandle(stateIn, worldIn, pos, 0.5D, 1.0D, 0.5D);
     }
 
@@ -61,13 +53,13 @@ public class CandlestickBlock extends CandleLampBlock implements IBlockSpecialDi
     }
 
     @Override
-    public BlockState rotate(BlockState state, Rotation rot) {
+    public @NotNull BlockState rotate(BlockState state, Rotation rot) {
         return state.setValue(FACING, rot.rotate(state.getValue(FACING)));
     }
 
     @Override
-    public BlockState mirror(BlockState state, Mirror mirrorIn) {
-        return rotate(state, Rotation.CLOCKWISE_180);
+    public @NotNull BlockState mirror(BlockState state, Mirror mirror) {
+        return state.setValue(FACING, mirror.mirror(state.getValue(FACING)));
     }
 
     @Override

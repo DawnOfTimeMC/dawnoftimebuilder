@@ -328,10 +328,10 @@ public class BlockStatePropertiesAA {
 
         public SidedWindow rotate(boolean clockWise) {
             return switch (this) {
-                case NORTH -> clockWise ? EAST : WEST;
-                case EAST -> clockWise ? SOUTH : NORTH;
-                case SOUTH -> clockWise ? WEST : EAST;
-                case WEST -> clockWise ? NORTH : SOUTH;
+                case NORTH -> clockWise ? WEST : EAST;
+                case EAST  -> clockWise ? NORTH : SOUTH;
+                case SOUTH -> clockWise ? EAST : WEST;
+                case WEST  -> clockWise ? SOUTH : NORTH;
                 case AXIS_X -> AXIS_Z;
                 case AXIS_Z -> AXIS_X;
             };

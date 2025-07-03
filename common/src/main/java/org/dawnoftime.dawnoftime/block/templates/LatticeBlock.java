@@ -77,11 +77,14 @@ public class LatticeBlock extends WaterloggedBlock implements IBlockClimbingPlan
         BlockState state = context.getLevel().getBlockState(context.getClickedPos());
         if(state.getBlock() != this)
             state = super.getStateForPlacement(context);
+        if (state == null) {
+            return null;
+        }
         return switch (context.getHorizontalDirection()) {
-            default -> state.setValue(SOUTH, true);
             case WEST -> state.setValue(WEST, true);
             case NORTH -> state.setValue(NORTH, true);
             case EAST -> state.setValue(EAST, true);
+            default -> state.setValue(SOUTH, true);
         };
     }
 
@@ -93,10 +96,10 @@ public class LatticeBlock extends WaterloggedBlock implements IBlockClimbingPlan
         if(itemstack.getItem() == this.asItem()) {
             Direction newDirection = useContext.getHorizontalDirection();
             return switch (newDirection) {
-                default -> !state.getValue(SOUTH);
                 case WEST -> !state.getValue(WEST);
                 case NORTH -> !state.getValue(NORTH);
                 case EAST -> !state.getValue(EAST);
+                default -> !state.getValue(SOUTH);
             };
         }
         return false;
@@ -108,19 +111,19 @@ public class LatticeBlock extends WaterloggedBlock implements IBlockClimbingPlan
     }
 
     @Override
-    public void spawnAfterBreak(BlockState state, ServerLevel worldIn, BlockPos pos, ItemStack stack, boolean p_222953_) {
+    public void spawnAfterBreak(@NotNull BlockState state, @NotNull ServerLevel worldIn, @NotNull BlockPos pos, @NotNull ItemStack stack, boolean p_222953_) {
         super.spawnAfterBreak(state, worldIn, pos, stack, p_222953_);
         //Be careful, climbing plants are not dropping from block's loot_table, but from their own loot_table
         this.dropPlant(state, worldIn, pos, stack, p_222953_);
     }
 
     @Override
-    public void tick(BlockState state, ServerLevel worldIn, BlockPos pos, RandomSource random) {
+    public void tick(@NotNull BlockState state, @NotNull ServerLevel worldIn, @NotNull BlockPos pos, @NotNull RandomSource random) {
         this.tickPlant(state, worldIn, pos, random);
     }
 
     @Override
-    public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
+    public @NotNull InteractionResult use(BlockState state, @NotNull Level worldIn, @NotNull BlockPos pos, @NotNull Player player, @NotNull InteractionHand handIn, @NotNull BlockHitResult hit) {
         if(!state.getValue(PERSISTENT)) {
             if(Utils.useLighter(worldIn, pos, player, handIn)) {
                 Random rand = new Random();
@@ -150,28 +153,30 @@ public class LatticeBlock extends WaterloggedBlock implements IBlockClimbingPlan
     }
 
     @Override
-    public @NotNull BlockState rotate(@NotNull BlockState state, @NotNull Rotation rotation) {
-        if (rotation == Rotation.NONE) {
-            return state;
-        }
-        BooleanProperty[] rotationOrder = new BooleanProperty[]{NORTH, EAST, SOUTH, WEST};
-        BooleanProperty[] targetOrder = switch (rotation) {
-            case CLOCKWISE_180 -> new BooleanProperty[]{SOUTH, WEST, NORTH, EAST};
-            case COUNTERCLOCKWISE_90 -> new BooleanProperty[]{WEST, SOUTH, EAST, NORTH};
-            default -> new BooleanProperty[]{EAST, SOUTH, WEST, NORTH};
+    public @NotNull BlockState rotate(BlockState state, Rotation rotation) {
+        boolean n = state.getValue(NORTH);
+        boolean e = state.getValue(EAST);
+        boolean s = state.getValue(SOUTH);
+        boolean w = state.getValue(WEST);
+
+        return switch (rotation) {
+            case CLOCKWISE_90 -> state.setValue(NORTH, w).setValue(EAST, n).setValue(SOUTH, e).setValue(WEST, s);
+            case CLOCKWISE_180 -> state.setValue(NORTH, s).setValue(EAST, w).setValue(SOUTH, n).setValue(WEST, e);
+            case COUNTERCLOCKWISE_90 -> state.setValue(NORTH, e).setValue(EAST, s).setValue(SOUTH, w).setValue(WEST, n);
+            default -> state;
         };
-        BlockState newState = state;
-        for (int i= 0; i < 4; i++) {
-            newState = newState.setValue(rotationOrder[i], state.getValue(targetOrder[i]));
-        }
-        return newState;
     }
 
     @Override
-    public @NotNull BlockState mirror(@NotNull BlockState state, @NotNull Mirror mirror) {
+    public @NotNull BlockState mirror(BlockState state, Mirror mirror) {
+        boolean n = state.getValue(NORTH);
+        boolean e = state.getValue(EAST);
+        boolean s = state.getValue(SOUTH);
+        boolean w = state.getValue(WEST);
+
         return switch (mirror) {
-            case LEFT_RIGHT -> state.setValue(EAST, state.getValue(WEST)).setValue(WEST, state.getValue(EAST));
-            case FRONT_BACK -> state.setValue(NORTH, state.getValue(SOUTH)).setValue(SOUTH, state.getValue(NORTH));
+            case LEFT_RIGHT -> state.setValue(NORTH, s).setValue(SOUTH, n).setValue(EAST, e).setValue(WEST, w);
+            case FRONT_BACK -> state.setValue(EAST, w).setValue(WEST, e).setValue(NORTH, n).setValue(SOUTH, s);
             default -> state;
         };
     }
