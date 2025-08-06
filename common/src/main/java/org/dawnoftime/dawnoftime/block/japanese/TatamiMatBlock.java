@@ -136,7 +136,6 @@ public class TatamiMatBlock extends WaterloggedBlock {
         Block blockDown = worldIn.getBlockState(pos.below()).getBlock();
         Block blockDownAdjacent = worldIn.getBlockState(pos.relative(facing).below()).getBlock();
         if(blockDown == SPRUCE_PLANKS && blockDownAdjacent == SPRUCE_PLANKS) {
-
             worldIn.setBlock(pos.below(), DoTBBlocksRegistry.INSTANCE.TATAMI_FLOOR.get().defaultBlockState().setValue(TatamiFloorBlock.FACING, facing).setValue(TatamiFloorBlock.HALF, state.getValue(HALF)), 10);
             worldIn.setBlock(pos.relative(facing).below(), DoTBBlocksRegistry.INSTANCE.TATAMI_FLOOR.get().defaultBlockState().setValue(TatamiFloorBlock.FACING, facing).setValue(TatamiFloorBlock.HALF, state.getValue(HALF) == Half.TOP ? Half.BOTTOM : Half.TOP), 10);
             return Blocks.AIR.defaultBlockState();
@@ -195,7 +194,14 @@ public class TatamiMatBlock extends WaterloggedBlock {
 
     @Override
     public BlockState mirror(BlockState state, Mirror mirrorIn) {
-        return rotate(state, Rotation.CLOCKWISE_180);
+        switch (mirrorIn) {
+            case LEFT_RIGHT:
+                return state.setValue(FACING, state.getValue(FACING).getOpposite()).setValue(HALF, (state.getValue(HALF) == Half.TOP) ? Half.BOTTOM : Half.TOP);
+            case FRONT_BACK:
+                return state.setValue(FACING, state.getValue(FACING).getOpposite());
+            default:
+                return super.mirror(state, mirrorIn);
+        }
     }
 
     @Override

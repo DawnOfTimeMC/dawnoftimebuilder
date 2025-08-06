@@ -7,17 +7,23 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.level.material.PushReaction;
+import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.phys.BlockHitResult;
 import org.dawnoftime.dawnoftime.block.templates.BlockDoT;
 import org.dawnoftime.dawnoftime.registry.DoTBBlocksRegistry;
 import org.dawnoftime.dawnoftime.util.VoxelShapes;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 public class TatamiFloorBlock extends BlockDoT {
 
@@ -26,31 +32,52 @@ public class TatamiFloorBlock extends BlockDoT {
 
     public TatamiFloorBlock(Properties properties) {
         super(properties.pushReaction(PushReaction.DESTROY), VoxelShapes.TATAMI_FLOOR_SHAPES);
+        this.registerDefaultState(this.stateDefinition.any()
+                .setValue(FACING, Direction.NORTH)
+                .setValue(HALF, Half.TOP));
     }
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+        super.createBlockStateDefinition(builder);
         builder.add(HALF, FACING);
     }
 
     @Override
+    public @Nullable BlockState getStateForPlacement(BlockPlaceContext contextIn) {
+        final Level level = contextIn.getLevel();
+        final BlockPos pos = contextIn.getClickedPos();
+        final BlockState currentState = level.getBlockState(pos);
+        return currentState.is(this) ? currentState : this.defaultBlockState();
+    }
+
+    @Override
     public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, LevelAccessor worldIn, BlockPos currentPos, BlockPos facingPos) {
-        Direction directionOtherHalf = (stateIn.getValue(HALF) == Half.TOP) ? stateIn.getValue(FACING) : stateIn.getValue(FACING).getOpposite();
-        if(facing == Direction.UP && worldIn instanceof Level) {
+        /*Direction directionOtherHalf = (stateIn.getValue(HALF) == Half.TOP) ? stateIn.getValue(FACING) : stateIn.getValue(FACING).getOpposite();
+
+        if (facing == Direction.UP && worldIn instanceof Level level) {
             BlockState stateAbove = worldIn.getBlockState(facingPos);
-            if(isFaceFull(stateAbove.getShape(worldIn, facingPos), Direction.DOWN) && stateAbove.canOcclude()) {
-                Containers.dropItemStack((Level) worldIn, currentPos.getX(), currentPos.getY(), currentPos.getZ(), new ItemStack(DoTBBlocksRegistry.INSTANCE.TATAMI_MAT.get().asItem()));
-                new ItemStack(DoTBBlocksRegistry.INSTANCE.TATAMI_MAT.get().asItem());
-                worldIn.setBlock(currentPos.relative(directionOtherHalf), Blocks.SPRUCE_PLANKS.defaultBlockState(), 10);
+            if (isFaceFull(stateAbove.getShape(worldIn, facingPos), Direction.DOWN) && stateAbove.canOcclude()) {
+                Containers.dropItemStack(level, currentPos.getX(), currentPos.getY(), currentPos.getZ(),
+                        new ItemStack(DoTBBlocksRegistry.INSTANCE.TATAMI_MAT.get()));
+                BlockPos otherHalfPos = currentPos.relative(directionOtherHalf);
+                BlockState otherState = worldIn.getBlockState(otherHalfPos);
+                if (otherState.getBlock() == this)
+                    worldIn.setBlock(otherHalfPos, Blocks.SPRUCE_PLANKS.defaultBlockState(), 10);
                 return Blocks.SPRUCE_PLANKS.defaultBlockState();
             }
         }
-        if(facing == directionOtherHalf) {
-            if(facingState.getBlock() != this)
+
+        if (facing == directionOtherHalf) {
+            if (facingState.getBlock() != this)
                 return Blocks.AIR.defaultBlockState();
-            else if(facingState.getValue(FACING) != stateIn.getValue(FACING) || facingState.getValue(HALF) == stateIn.getValue(HALF))
+
+            if (facingState.getValue(FACING) != stateIn.getValue(FACING)
+                    || facingState.getValue(HALF) == stateIn.getValue(HALF)) {
                 return Blocks.AIR.defaultBlockState();
-        }
+            }
+        }*/
+
         return stateIn;
     }
 
@@ -75,11 +102,17 @@ public class TatamiFloorBlock extends BlockDoT {
     }
 
     @Override
-    public void playerWillDestroy(Level worldIn, BlockPos pos, BlockState state, Player player) {
-        super.playerWillDestroy(worldIn, pos, state, player);
-        BlockPos otherPos = (state.getValue(HALF) == Half.TOP) ? pos.relative(state.getValue(FACING)) : pos.relative(state.getValue(FACING).getOpposite());
-        worldIn.setBlock(pos, Blocks.SPRUCE_PLANKS.defaultBlockState(), 10);
-        worldIn.setBlock(otherPos, Blocks.SPRUCE_PLANKS.defaultBlockState(), 10);
+    public void onRemove(BlockState state, Level world, BlockPos pos, BlockState newState, boolean isMoving) {
+        Direction facing = state.getValue(FACING);
+        Half half = state.getValue(HALF);
+        BlockPos otherPos = (half == Half.TOP) ? pos.relative(facing) : pos.relative(facing.getOpposite());
+        if(half.equals(Half.TOP)) {
+            Containers.dropItemStack(world, pos.getX(), pos.getY() + 1, pos.getZ(),
+                    new ItemStack(DoTBBlocksRegistry.INSTANCE.TATAMI_MAT.get().asItem(), 1));
+        }
+
+        world.setBlock(otherPos, Blocks.SPRUCE_PLANKS.defaultBlockState(), 10);
+        world.setBlock(pos, Blocks.SPRUCE_PLANKS.defaultBlockState(), 10);
     }
 
     @Override
@@ -89,6 +122,13 @@ public class TatamiFloorBlock extends BlockDoT {
 
     @Override
     public BlockState mirror(BlockState state, Mirror mirrorIn) {
-        return rotate(state, Rotation.CLOCKWISE_180);
+        switch (mirrorIn) {
+            case LEFT_RIGHT:
+                return state.setValue(FACING, state.getValue(FACING).getOpposite()).setValue(HALF, (state.getValue(HALF) == Half.TOP) ? Half.BOTTOM : Half.TOP);
+            case FRONT_BACK:
+                return state.setValue(FACING, state.getValue(FACING).getOpposite());
+            default:
+                return super.mirror(state, mirrorIn);
+        }
     }
 }

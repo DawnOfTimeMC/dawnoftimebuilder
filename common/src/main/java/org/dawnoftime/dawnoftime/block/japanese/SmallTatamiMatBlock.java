@@ -110,7 +110,10 @@ public class SmallTatamiMatBlock extends WaterloggedBlock implements IBlockChain
                         || IBlockChain.canBeChained(stateUp, true))
                     stateIn = stateIn.setValue(ATTACHED, true);
             }
-            return !stateIn.canSurvive(worldIn, currentPos) ? Blocks.AIR.defaultBlockState() : this.tryMergingWithSprucePlanks(stateIn, worldIn, currentPos);
+
+            if (!stateIn.canSurvive(worldIn, currentPos)) {
+                return Blocks.AIR.defaultBlockState();
+            }
         }
         return stateIn;
     }
@@ -123,13 +126,20 @@ public class SmallTatamiMatBlock extends WaterloggedBlock implements IBlockChain
     }
 
     private BlockState tryMergingWithSprucePlanks(BlockState state, LevelAccessor worldIn, BlockPos pos) {
-        if(state.getValue(ROLLED))
+        if (state.getValue(ROLLED))
             return state;
+
         Block blockDown = worldIn.getBlockState(pos.below()).getBlock();
-        if(blockDown == SPRUCE_PLANKS) {
-            worldIn.setBlock(pos.below(), DoTBBlocksRegistry.INSTANCE.SMALL_TATAMI_FLOOR.get().defaultBlockState(), 10);
+        if (blockDown == SPRUCE_PLANKS) {
+            Direction.Axis axis = state.getValue(HORIZONTAL_AXIS);
+            BlockState floorState = DoTBBlocksRegistry.INSTANCE.SMALL_TATAMI_FLOOR.get()
+                    .defaultBlockState()
+                    .setValue(SmallTatamiFloorBlock.HORIZONTAL_AXIS, axis);
+
+            worldIn.setBlock(pos.below(), floorState, 10);
             return Blocks.AIR.defaultBlockState();
         }
+
         return state.setValue(ATTACHED, false);
     }
 
