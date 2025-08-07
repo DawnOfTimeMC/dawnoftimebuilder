@@ -15,20 +15,16 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.Mirror;
 import net.minecraft.world.level.block.Rotation;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
-import net.minecraft.world.level.block.state.properties.Half;
-import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.phys.BlockHitResult;
 import org.dawnoftime.dawnoftime.block.templates.BlockDoT;
 import org.dawnoftime.dawnoftime.registry.DoTBBlocksRegistry;
 import org.dawnoftime.dawnoftime.util.VoxelShapes;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
-import java.util.List;
 
 public class SmallTatamiFloorBlock extends BlockDoT {
     public static final EnumProperty<Direction.Axis> HORIZONTAL_AXIS = BlockStateProperties.HORIZONTAL_AXIS;
@@ -39,7 +35,7 @@ public class SmallTatamiFloorBlock extends BlockDoT {
     }
 
     @Override
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateDefinition.@NotNull Builder<Block, BlockState> builder) {
         super.createBlockStateDefinition(builder);
         builder.add(HORIZONTAL_AXIS);
     }
@@ -50,19 +46,6 @@ public class SmallTatamiFloorBlock extends BlockDoT {
         final BlockPos pos = contextIn.getClickedPos();
         final BlockState currentState = level.getBlockState(pos);
         return currentState.is(this) ? currentState : this.defaultBlockState();
-    }
-
-    @Override
-    public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, LevelAccessor worldIn, BlockPos currentPos, BlockPos facingPos) {
-        /*if(!facingState.isAir() && facing == Direction.UP) {
-            BlockState stateAbove = worldIn.getBlockState(facingPos);
-
-            if(isFaceFull(stateAbove.getShape(worldIn, facingPos), Direction.DOWN) && stateAbove.canOcclude()) {
-                Containers.dropItemStack((Level) worldIn, currentPos.getX(), currentPos.getY(), currentPos.getZ(), new ItemStack(DoTBBlocksRegistry.INSTANCE.SMALL_TATAMI_MAT.get().asItem(), 1));
-                return Blocks.SPRUCE_PLANKS.defaultBlockState();
-            }
-        }*/
-        return stateIn;
     }
 
     @Override
@@ -84,21 +67,20 @@ public class SmallTatamiFloorBlock extends BlockDoT {
     }
 
     @Override
-    public BlockState mirror(BlockState state, Mirror mirrorIn) {
-        switch (mirrorIn) {
-            case LEFT_RIGHT:
-                return state.setValue(HORIZONTAL_AXIS, state.getValue(HORIZONTAL_AXIS) == Direction.Axis.X ? Direction.Axis.Z : Direction.Axis.X);
-            case FRONT_BACK:
-                return state.setValue(HORIZONTAL_AXIS, state.getValue(HORIZONTAL_AXIS) == Direction.Axis.Z ? Direction.Axis.X : Direction.Axis.Z);
-            default:
-                return state;
-        }
+    public @NotNull BlockState mirror(@NotNull BlockState state, Mirror mirrorIn) {
+        return switch (mirrorIn) {
+            case LEFT_RIGHT ->
+                    state.setValue(HORIZONTAL_AXIS, state.getValue(HORIZONTAL_AXIS) == Direction.Axis.X ? Direction.Axis.Z : Direction.Axis.X);
+            case FRONT_BACK ->
+                    state.setValue(HORIZONTAL_AXIS, state.getValue(HORIZONTAL_AXIS) == Direction.Axis.Z ? Direction.Axis.X : Direction.Axis.Z);
+            default -> state;
+        };
     }
 
     @Override
-    public void onRemove(BlockState state, Level world, BlockPos pos, BlockState newState, boolean isMoving) {
+    public void onRemove(@NotNull BlockState state, Level world, @NotNull BlockPos pos, @NotNull BlockState newState, boolean isMoving) {
         world.setBlock(pos, Blocks.SPRUCE_PLANKS.defaultBlockState(), 10);
-        Containers.dropItemStack(world, pos.getX(), pos.getY()+1, pos.getZ(),
+        Containers.dropItemStack(world, pos.getX(), pos.getY() + 1, pos.getZ(),
                 new ItemStack(DoTBBlocksRegistry.INSTANCE.SMALL_TATAMI_MAT.get().asItem(), 1));
     }
 }

@@ -52,36 +52,6 @@ public class TatamiFloorBlock extends BlockDoT {
     }
 
     @Override
-    public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, LevelAccessor worldIn, BlockPos currentPos, BlockPos facingPos) {
-        /*Direction directionOtherHalf = (stateIn.getValue(HALF) == Half.TOP) ? stateIn.getValue(FACING) : stateIn.getValue(FACING).getOpposite();
-
-        if (facing == Direction.UP && worldIn instanceof Level level) {
-            BlockState stateAbove = worldIn.getBlockState(facingPos);
-            if (isFaceFull(stateAbove.getShape(worldIn, facingPos), Direction.DOWN) && stateAbove.canOcclude()) {
-                Containers.dropItemStack(level, currentPos.getX(), currentPos.getY(), currentPos.getZ(),
-                        new ItemStack(DoTBBlocksRegistry.INSTANCE.TATAMI_MAT.get()));
-                BlockPos otherHalfPos = currentPos.relative(directionOtherHalf);
-                BlockState otherState = worldIn.getBlockState(otherHalfPos);
-                if (otherState.getBlock() == this)
-                    worldIn.setBlock(otherHalfPos, Blocks.SPRUCE_PLANKS.defaultBlockState(), 10);
-                return Blocks.SPRUCE_PLANKS.defaultBlockState();
-            }
-        }
-
-        if (facing == directionOtherHalf) {
-            if (facingState.getBlock() != this)
-                return Blocks.AIR.defaultBlockState();
-
-            if (facingState.getValue(FACING) != stateIn.getValue(FACING)
-                    || facingState.getValue(HALF) == stateIn.getValue(HALF)) {
-                return Blocks.AIR.defaultBlockState();
-            }
-        }*/
-
-        return stateIn;
-    }
-
-    @Override
     public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
         if(!worldIn.isClientSide) {
             if(player.isCrouching()) {

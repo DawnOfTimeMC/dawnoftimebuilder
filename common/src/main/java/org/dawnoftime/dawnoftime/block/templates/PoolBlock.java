@@ -164,6 +164,7 @@ public class PoolBlock extends BlockDoT {
 
                 return InteractionResult.SUCCESS;
             }
+        } else {
             if(itemStack.isEmpty()) {
                 blockStateIn = blockStateIn.setValue(BlockStatePropertiesAA.HAS_PILLAR, !blockStateIn.getValue(BlockStatePropertiesAA.HAS_PILLAR));
                 worldIn.setBlock(blockPosIn, blockStateIn, 10);
@@ -172,10 +173,7 @@ public class PoolBlock extends BlockDoT {
         }
         return InteractionResult.PASS;
     }
-
-    /*
-     * Seynax : allows the player to prevent the appearance of a pole in the basin below, under sneak conditions
-     */
+    
     @Override
     public void setPlacedBy(final Level worldIn, final BlockPos blockPosIn, final BlockState blockStateIn, final LivingEntity entityIn, final ItemStack itemStackIn) {
         if(entityIn instanceof Player && !entityIn.isShiftKeyDown()) {

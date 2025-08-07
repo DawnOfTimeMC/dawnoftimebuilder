@@ -2,16 +2,11 @@ package org.dawnoftime.dawnoftime.block.templates;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
-import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
@@ -20,25 +15,12 @@ import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.phys.shapes.CollisionContext;
-import net.minecraft.world.phys.shapes.Shapes;
-import net.minecraft.world.phys.shapes.VoxelShape;
 import org.dawnoftime.dawnoftime.block.general.WaterSourceTrickleBlock;
 import org.dawnoftime.dawnoftime.block.general.WaterTrickleBlock;
 import org.dawnoftime.dawnoftime.util.BlockStatePropertiesAA;
-import org.jetbrains.annotations.Nullable;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class FaucetBlock extends WaterSourceTrickleBlock {
-    private static final VoxelShape SHAPE_NORTH = Block.box(6, 10, 0, 10, 14, 6);
-    private static final VoxelShape SHAPE_SOUTH = Block.box(6, 10, 10, 10, 14, 16);
-    private static final VoxelShape SHAPE_EAST = Block.box(10, 10, 6, 16, 14, 10);
-    private static final VoxelShape SHAPE_WEST = Block.box(0, 10, 6, 6, 14, 10);
-
     public FaucetBlock(final Properties propertiesIn) {
         super(propertiesIn);
         this.registerDefaultState(this.defaultBlockState().setValue(BlockStatePropertiesAA.ACTIVATED, false));
@@ -77,68 +59,7 @@ public class FaucetBlock extends WaterSourceTrickleBlock {
     }
 
     @Override
-    public void attack(BlockState state, Level level, BlockPos pos, Player player) {
-        if (level.isClientSide()) return;
-
-        if (player.isShiftKeyDown()) {
-            // Shift: casser tout le bloc
-            level.destroyBlock(pos, true);
-        } else {
-            // Détermine quel robinet casser selon la direction regardée
-            Direction targetDirection = getTargetedFaucet(state, pos, player);
-            if (targetDirection != null) {
-                BooleanProperty property = getPropertyFromDirection(targetDirection);
-                if (state.getValue(property)) {
-                    BlockState newState = state.setValue(property, false);
-
-                    // Vérifie s'il reste des robinets
-                    if (!newState.getValue(BlockStateProperties.NORTH) &&
-                            !newState.getValue(BlockStateProperties.SOUTH) &&
-                            !newState.getValue(BlockStateProperties.EAST) &&
-                            !newState.getValue(BlockStateProperties.WEST)) {
-                        // Plus de robinets, détruit complètement
-                        level.destroyBlock(pos, true);
-                    } else {
-                        // Met à jour avec le nouvel état
-                        level.setBlock(pos, newState, 3);
-                        // Drop un item
-                        popResource(level, pos, new ItemStack(this.asItem()));
-                    }
-                }
-            }
-        }
-    }
-
-    private Direction getTargetedFaucet(BlockState state, BlockPos pos, Player player) {
-        double playerX = player.getX() - pos.getX() - 0.5;
-        double playerZ = player.getZ() - pos.getZ() - 0.5;
-
-        // Détermine la direction basée sur la position du joueur
-        if (Math.abs(playerX) > Math.abs(playerZ)) {
-            if (playerX > 0 && state.getValue(BlockStateProperties.EAST)) return Direction.EAST;
-            if (playerX < 0 && state.getValue(BlockStateProperties.WEST)) return Direction.WEST;
-        } else {
-            if (playerZ > 0 && state.getValue(BlockStateProperties.SOUTH)) return Direction.SOUTH;
-            if (playerZ < 0 && state.getValue(BlockStateProperties.NORTH)) return Direction.NORTH;
-        }
-
-        // Fallback: trouve le premier robinet disponible
-        if (state.getValue(BlockStateProperties.NORTH)) return Direction.NORTH;
-        if (state.getValue(BlockStateProperties.EAST)) return Direction.EAST;
-        if (state.getValue(BlockStateProperties.SOUTH)) return Direction.SOUTH;
-        if (state.getValue(BlockStateProperties.WEST)) return Direction.WEST;
-
-        return null;
-    }
-
-    @Override
-    public InteractionResult use(BlockState blockStateIn, Level worldIn, BlockPos blockPosIn, Player playerEntityIn, InteractionHand handIn, BlockHitResult hitIn) {
-        if (worldIn.isClientSide) {
-            // On joue un son de clic type levier + eau de minecraft vanilla
-            worldIn.playSound(playerEntityIn, blockPosIn, SoundEvents.LEVER_CLICK, SoundSource.BLOCKS, 0.3F, 0.6F);
-            worldIn.playSound(playerEntityIn, blockPosIn, SoundEvents.WATER_AMBIENT, SoundSource.BLOCKS, 0.3F, 1.0F);
-        }
-
+    public InteractionResult use(BlockState blockStateIn, final Level worldIn, final BlockPos blockPosIn, final Player playerEntityIn, final InteractionHand handIn, final BlockHitResult blockRaytraceResultIn) {
         final ItemStack mainHandItemStack = playerEntityIn.getMainHandItem();
         if(!mainHandItemStack.isEmpty() && mainHandItemStack.getItem() == this.asItem()) {
             return InteractionResult.PASS;
@@ -149,18 +70,11 @@ public class FaucetBlock extends WaterSourceTrickleBlock {
         if(activated) {
             blockStateIn = blockStateIn.setValue(BlockStateProperties.UNSTABLE, true);
         }
+        if(!worldIn.isClientSide()) {
+            worldIn.scheduleTick(blockPosIn, this, 5);
+        }
 
         worldIn.setBlock(blockPosIn, blockStateIn, 10);
-
-        // Si le joueur n'est pas en créatif, on consomme l'item
-        if (!playerEntityIn.isCreative()) {
-            ItemStack itemStack = playerEntityIn.getItemInHand(handIn);
-            if (itemStack.getCount() > 1) {
-                itemStack.shrink(1);
-            } else {
-                playerEntityIn.setItemInHand(handIn, ItemStack.EMPTY);
-            }
-        }
 
         return InteractionResult.SUCCESS;
     }
@@ -206,34 +120,12 @@ public class FaucetBlock extends WaterSourceTrickleBlock {
             }
         }
 
-        // Si passe de non activé à activé et côté client, on execute un son
-        if (worldIn.isClientSide() && state.getValue(BlockStatePropertiesAA.ACTIVATED) && !lastActivation) {
-            worldIn.playSound(null, currentPosIn, SoundEvents.LEVER_CLICK, SoundSource.BLOCKS, 0.3F, 0.6F);
-            worldIn.playSound(null, currentPosIn, SoundEvents.WATER_AMBIENT, SoundSource.BLOCKS, 0.3F, 1.0F);
-        }
 
         if(!worldIn.isClientSide() && state.getValue(BlockStatePropertiesAA.ACTIVATED) != lastActivation) {
             (worldIn).scheduleTick(currentPosIn, this, 5);
         }
 
         return state;
-    }
-
-    @Override
-    public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
-        List<VoxelShape> shapes = new ArrayList<>();
-        if (state.getValue(BlockStateProperties.NORTH)) shapes.add(SHAPE_NORTH);
-        if (state.getValue(BlockStateProperties.SOUTH)) shapes.add(SHAPE_SOUTH);
-        if (state.getValue(BlockStateProperties.EAST)) shapes.add(SHAPE_EAST);
-        if (state.getValue(BlockStateProperties.WEST)) shapes.add(SHAPE_WEST);
-
-        if (shapes.isEmpty()) return Shapes.block();
-
-        VoxelShape result = shapes.get(0);
-        for (int i = 1; i < shapes.size(); i++) {
-            result = Shapes.or(result, shapes.get(i));
-        }
-        return result;
     }
 
     @Override
@@ -283,81 +175,6 @@ public class FaucetBlock extends WaterSourceTrickleBlock {
             default -> {
                 return state;
             }
-        }
-    }
-
-    @Override
-    public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random) {
-        super.animateTick(state, level, pos, random);
-
-        if (!state.getValue(BlockStatePropertiesAA.ACTIVATED)) return;
-
-        // Son occasionnel
-        if (random.nextFloat() < 0.04f) {
-            level.playLocalSound(
-                    pos.getX() + 0.5,
-                    pos.getY() + 0.5,
-                    pos.getZ() + 0.5,
-                    SoundEvents.WATER_AMBIENT,
-                    SoundSource.BLOCKS,
-                    0.15f + random.nextFloat() * 0.075f,
-                    0.9f + random.nextFloat() * 0.2f,
-                    false
-            );
-        }
-
-        // Génère particules pour chaque direction activée
-        if (state.getValue(BlockStateProperties.NORTH)) {
-            spawnParticlesAt(level, pos, random, Direction.NORTH);
-        }
-        if (state.getValue(BlockStateProperties.SOUTH)) {
-            spawnParticlesAt(level, pos, random, Direction.SOUTH);
-        }
-        if (state.getValue(BlockStateProperties.EAST)) {
-            spawnParticlesAt(level, pos, random, Direction.EAST);
-        }
-        if (state.getValue(BlockStateProperties.WEST)) {
-            spawnParticlesAt(level, pos, random, Direction.WEST);
-        }
-        if (state.getValue(BlockStatePropertiesAA.CENTER)) {
-            spawnParticlesAt(level, pos, random, null); // center = null direction
-        }
-    }
-
-    private void spawnParticlesAt(Level level, BlockPos pos, RandomSource random, @Nullable Direction dir) {
-        double x = pos.getX() + 0.5;
-        double y = pos.getY() + 0.5;
-        double z = pos.getZ() + 0.5;
-
-        double offset = 0.3;
-
-        if (dir != null) {
-            switch (dir) {
-                case NORTH -> z -= offset;
-                case SOUTH -> z += offset;
-                case EAST  -> x += offset;
-                case WEST  -> x -= offset;
-            }
-        }
-
-        // DRIPPING_WATER
-        if (random.nextFloat() < 0.1f) {
-            level.addParticle(ParticleTypes.DRIPPING_WATER,
-                    x + random.nextGaussian() * 0.02,
-                    y - 0.3,
-                    z + random.nextGaussian() * 0.02,
-                    0, 0, 0
-            );
-        }
-
-        // CLOUD / vapeur
-        if (random.nextFloat() < 0.02f) {
-            level.addParticle(ParticleTypes.CLOUD,
-                    x,
-                    y - 0.2,
-                    z,
-                    0.0, 0.01, 0.0
-            );
         }
     }
 }
