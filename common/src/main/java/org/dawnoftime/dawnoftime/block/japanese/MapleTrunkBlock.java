@@ -11,19 +11,16 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 
-import org.dawnoftime.dawnoftime.block.templates.BlockDoT;
+import org.dawnoftime.dawnoftime.block.templates.HorizontalBlockDoT;
 import org.jetbrains.annotations.NotNull;
 
-public class MapleTrunkBlock extends BlockDoT {
-    public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
+public class MapleTrunkBlock extends HorizontalBlockDoT {
 
     public MapleTrunkBlock(final Properties properties) {
         super(properties.pushReaction(PushReaction.DESTROY));
@@ -92,11 +89,6 @@ public class MapleTrunkBlock extends BlockDoT {
 
         return stateIn;
     }
-
-//    @Override
-//    public ItemStack getCloneItemStack(final BlockState stateIn, final HitResult targetIn, final BlockGetter worldIn, final BlockPos posIn, final Player playerIn) {
-//        return new ItemStack(DoTBBlocksRegistry.INSTANCE.MAPLE_RED_SAPLING.get().asItem());
-//    }
 
     /**
      * Lights methods

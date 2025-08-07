@@ -81,9 +81,13 @@ public class SmallPoolBlock extends PoolBlock {
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
         BlockState state = super.getStateForPlacement(context);
+        BlockPos clickedPos = context.getClickedPos();
         if(state != null) {
+            if(context.getLevel().getBlockState(clickedPos).getBlock() instanceof PoolBlock) {
+                return state;
+            }
             if(!canSupportCenter(context.getLevel(), context.getClickedPos().below(), Direction.UP)) {
-                state = state.setValue(BlockStateProperties.BOTTOM, false);
+                return state.setValue(BlockStateProperties.BOTTOM, false);
             }
         }
         return state;

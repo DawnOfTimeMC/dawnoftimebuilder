@@ -10,6 +10,8 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Mirror;
+import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -134,5 +136,53 @@ public class WaterJetBlock extends BlockDoT {
         }
 
         return stateIn;
+    }
+
+    @Override
+    public BlockState rotate(BlockState state, Rotation rot) {
+        switch (rot) {
+            case CLOCKWISE_90 -> {
+                return state.setValue(BlockStateProperties.NORTH, state.getValue(BlockStateProperties.WEST))
+                        .setValue(BlockStateProperties.EAST, state.getValue(BlockStateProperties.NORTH))
+                        .setValue(BlockStateProperties.SOUTH, state.getValue(BlockStateProperties.EAST))
+                        .setValue(BlockStateProperties.WEST, state.getValue(BlockStateProperties.SOUTH));
+            }
+            case COUNTERCLOCKWISE_90 -> {
+                return state.setValue(BlockStateProperties.NORTH, state.getValue(BlockStateProperties.EAST))
+                        .setValue(BlockStateProperties.EAST, state.getValue(BlockStateProperties.SOUTH))
+                        .setValue(BlockStateProperties.SOUTH, state.getValue(BlockStateProperties.WEST))
+                        .setValue(BlockStateProperties.WEST, state.getValue(BlockStateProperties.NORTH));
+            }
+            case CLOCKWISE_180 -> {
+                return state.setValue(BlockStateProperties.NORTH, state.getValue(BlockStateProperties.SOUTH))
+                        .setValue(BlockStateProperties.EAST, state.getValue(BlockStateProperties.WEST))
+                        .setValue(BlockStateProperties.SOUTH, state.getValue(BlockStateProperties.NORTH))
+                        .setValue(BlockStateProperties.WEST, state.getValue(BlockStateProperties.EAST));
+            }
+            default -> {
+                return state;
+            }
+        }
+    }
+
+    @Override
+    public BlockState mirror(BlockState state, Mirror mirrorIn) {
+        switch (mirrorIn) {
+            case LEFT_RIGHT -> {
+                return state.setValue(BlockStateProperties.NORTH, state.getValue(BlockStateProperties.SOUTH))
+                        .setValue(BlockStateProperties.EAST, state.getValue(BlockStateProperties.WEST))
+                        .setValue(BlockStateProperties.SOUTH, state.getValue(BlockStateProperties.NORTH))
+                        .setValue(BlockStateProperties.WEST, state.getValue(BlockStateProperties.EAST));
+            }
+            case FRONT_BACK -> {
+                return state.setValue(BlockStateProperties.NORTH, state.getValue(BlockStateProperties.NORTH))
+                        .setValue(BlockStateProperties.EAST, state.getValue(BlockStateProperties.EAST))
+                        .setValue(BlockStateProperties.SOUTH, state.getValue(BlockStateProperties.SOUTH))
+                        .setValue(BlockStateProperties.WEST, state.getValue(BlockStateProperties.WEST));
+            }
+            default -> {
+                return state;
+            }
+        }
     }
 }

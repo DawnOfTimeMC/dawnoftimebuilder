@@ -48,6 +48,9 @@ public class VoxelShapes {
             Block.box(0.0D, 0.0D, 0.0D, 16.0D, 12.0D, 16.0D),
             Shapes.block()};
     public static final VoxelShape[] EDGE_SHAPES = makeEdgeShapes();
+    public static final VoxelShape[] FAUCET_SHAPES = Utils.generateHorizontalShapes(new VoxelShape[]{
+            Block.box(6, 10, 10, 10, 14, 16)
+    });
     public static final VoxelShape[] FEATHERED_SERPENT_SCULPTURE_SHAPES = Utils.generateHorizontalShapes(new VoxelShape[]{
             Block.box(4.0D, 4.0D, 0.0D, 12.0D, 12.0D, 14.0D)});
     public static final VoxelShape[] FIREPLACE_SHAPES = new VoxelShape[]{

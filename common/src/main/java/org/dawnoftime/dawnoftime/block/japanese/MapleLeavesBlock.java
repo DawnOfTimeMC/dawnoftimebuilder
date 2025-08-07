@@ -15,11 +15,11 @@ import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import org.dawnoftime.dawnoftime.block.templates.BlockDoT;
+import org.dawnoftime.dawnoftime.block.templates.HorizontalBlockDoT;
 import org.dawnoftime.dawnoftime.util.BlockStatePropertiesAA;
 import org.jetbrains.annotations.NotNull;
 
-public class MapleLeavesBlock extends BlockDoT {
+public class MapleLeavesBlock extends HorizontalBlockDoT {
     public static final IntegerProperty MULTIBLOCK_X = BlockStatePropertiesAA.MULTIBLOCK_3X;
     public static final IntegerProperty MULTIBLOCK_Y = BlockStatePropertiesAA.MULTIBLOCK_2Y;
     public static final IntegerProperty MULTIBLOCK_Z = BlockStatePropertiesAA.MULTIBLOCK_3Z;
@@ -63,7 +63,7 @@ public class MapleLeavesBlock extends BlockDoT {
     @Override
     protected void createBlockStateDefinition(final StateDefinition.Builder<Block, BlockState> builder) {
         super.createBlockStateDefinition(builder);
-        builder.add(MapleTrunkBlock.FACING, MapleLeavesBlock.MULTIBLOCK_X, MapleLeavesBlock.MULTIBLOCK_Y, MapleLeavesBlock.MULTIBLOCK_Z);
+        builder.add(MapleLeavesBlock.MULTIBLOCK_X, MapleLeavesBlock.MULTIBLOCK_Y, MapleLeavesBlock.MULTIBLOCK_Z);
     }
 
     @Override
@@ -125,11 +125,6 @@ public class MapleLeavesBlock extends BlockDoT {
 
         return stateIn;
     }
-
-//    @Override
-//    public ItemStack getCloneItemStack(final BlockState stateIn, final HitResult targetIn, final BlockGetter worldIn, final BlockPos posIn, final Player playerIn) {
-//        return new ItemStack(DoTBBlocksRegistry.MAPLE_RED_SAPLING.get().asItem());
-//    }
 
     @Override
     public VoxelShape getBlockSupportShape(final BlockState p_230335_1_, final BlockGetter p_230335_2_, final BlockPos p_230335_3_) {

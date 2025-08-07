@@ -1,8 +1,8 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"particle": "dawnoftimebuilder:block/stone_bricks_water_jet",
-		"1_0": "dawnoftimebuilder:block/stone_bricks_water_jet"
+		"1_0": "dawnoftimebuilder:block/stone_bricks_water_jet",
+		"particle": "dawnoftimebuilder:block/transparent"
 	},
 	"elements": [
 		{
