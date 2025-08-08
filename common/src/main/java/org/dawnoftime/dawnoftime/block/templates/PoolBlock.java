@@ -291,17 +291,10 @@ public class PoolBlock extends BlockDoT {
         return true;
     }
 
-    /**
-     * Method used to execute removeWaterAround(final Map<BlockPos, BlockState> testedPositionsIn, BlockState blockStateIn, final BlockPos blockPosIn, final World worldIn, final float prohibitedXIn, final float
-     * prohibitedZIn)
-     */
     public static boolean removeWaterAround(final BlockState blockStateIn, final BlockPos blockPosIn, final Level worldIn) {
         return PoolBlock.removeWaterAround(new LinkedHashMap<>(), blockStateIn, blockPosIn, worldIn, 0.0f, 0.0f);
     }
 
-    /**
-     * Seynax : binary method to remove water on all associated pool
-     */
     private static boolean removeWaterAround(final Map<BlockPos, BlockState> testedPositionsIn, BlockState blockStateIn, final BlockPos blockPosIn, final Level worldIn, final float prohibitedXIn, final float prohibitedZIn) {
         boolean success = blockStateIn.getValue(BlockStatePropertiesAA.LEVEL) > 0;
         blockStateIn = blockStateIn.setValue(BlockStatePropertiesAA.LEVEL, 0);
@@ -321,17 +314,6 @@ public class PoolBlock extends BlockDoT {
         return success;
     }
 
-    /**
-     * Used by removeWaterAround(final Map<BlockPos, BlockState> testedPositionsIn, BlockState blockStateIn, final BlockPos blockPosIn, final World worldIn, final float prohibitedXIn, final float prohibitedZIn)
-     *
-     * @param testedPositionsIn
-     * @param blockPosIn
-     * @param worldIn
-     * @param x
-     * @param z
-     *
-     * @return
-     */
     private static boolean removeWaterAroundOffset(final Map<BlockPos, BlockState> testedPositionsIn, final BlockPos blockPosIn, final Level worldIn, final int x, final int z) {
         final BlockPos pos = blockPosIn.offset(x, 0, z);
         if(!testedPositionsIn.containsKey(pos)) {
@@ -348,19 +330,10 @@ public class PoolBlock extends BlockDoT {
         return false;
     }
 
-    /**
-     * Method used to execute hasOneActivatedFaucetOrJet(final Map<BlockPos, BlockState> testedPositionsIn, final BlockPos blockPosIn, final LevelAccessor worldIn, final float prohibitedXIn, final float prohibitedZIn)
-     *
-     * @param blockPosIn
-     * @param worldIn
-     */
     public static EnumActivatorState hasOnePoolActivatorAround(final BlockPos blockPosIn, final LevelAccessor worldIn) {
         return PoolBlock.hasOnePoolActivatorAround(new LinkedHashMap<>(), blockPosIn, worldIn, 0.0f, 0.0f);
     }
 
-    /**
-     * You can use hasOnePoolActivatorAround(final BlockPos blockPosIn, final LevelAccessor worldIn) Seynax : binary method to remove water on all associated pool
-     */
     private static EnumActivatorState hasOnePoolActivatorAround(final Map<BlockPos, BlockState> testedPositionsIn, final BlockPos blockPosIn, final LevelAccessor worldIn, final float prohibitedXIn, final float prohibitedZIn) {
         if(testedPositionsIn.containsKey(blockPosIn)) {
             return EnumActivatorState.NO;
@@ -441,17 +414,6 @@ public class PoolBlock extends BlockDoT {
         return poolLevelAndSidesIn;
     }
 
-    /**
-     * Used by hasOnePoolActivatorAround(final BlockPos blockPosIn, final LevelAccessor worldIn)
-     *
-     * @param testedPositionsIn
-     * @param baseBlockPosIn
-     * @param worldIn
-     * @param xOffsetIn
-     * @param zOffsetIn
-     *
-     * @return
-     */
     private static int poolLevelAroundOffset(final Map<BlockPos, BlockState> testedPositionsIn, final PoolLevelAndSides poolLevelAndSidesIn, final BlockPos baseBlockPosIn, final LevelAccessor worldIn, final int xOffsetIn, final int zOffsetIn) {
         final BlockPos pos = baseBlockPosIn.offset(xOffsetIn, 0, zOffsetIn);
         if(testedPositionsIn.containsKey(pos)) {

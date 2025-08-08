@@ -24,18 +24,6 @@ public class WaterDoubleCropsBlock extends DoubleCropsBlock implements SimpleWat
         this.registerDefaultState(this.defaultBlockState().setValue(WATERLOGGED, true));
     }
 
-    /**
-     * @return Stores VoxelShape with index : <p/>
-     * 0 : AGE 0 (bot) : 8px <p/>
-     * 1 : AGE 1 (bot) : 12px <p/>
-     * 2 : AGE 2 (bot) : 16px <p/>
-     * 3 : AGE 2 (top) : 1px <p/>
-     * 4 : AGE 3 (top) : 5px <p/>
-     * 5 : AGE 4 (top) : 8px <p/>
-     * 6 : AGE 5 (top) : 11px <p/>
-     * 7 : AGE 6 (top) : 14px <p/>
-     * 8 : AGE 7 (top) : 16px <p/>
-     */
     @Override
     public VoxelShape[] makeShapes() {
         return new VoxelShape[] {

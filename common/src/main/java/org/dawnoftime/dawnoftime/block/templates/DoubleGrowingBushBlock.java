@@ -42,13 +42,7 @@ public class DoubleGrowingBushBlock extends GrowingBushBlock {
             return TOP_SHAPES[Math.min(state.getValue(this.getCutProperty()) ? this.getMaxAge() : this.getAge(state), TOP_SHAPES.length - 1)];
     }
 
-    /**
-     * @return Stores default VoxelShape (growingAge 2) with index : <p/>
-     * 0 : stage 0 bottom 6px <p/>
-     * 1 : stage 1 bottom 16px <p/>
-     * 2 : stage 2 bottom 16px <p/>
-     * 3 : stage 3+ bottom 16px <p/>
-     */
+
     @Override
     public VoxelShape[] makeShapes() {
         return new VoxelShape[] {
@@ -61,14 +55,6 @@ public class DoubleGrowingBushBlock extends GrowingBushBlock {
         };
     }
 
-    /**
-     * @return Stores default VoxelShape for Top half with index : <p/>
-     * 0 : stage 0 top empty <p/>
-     * 1 : stage 1 top empty <p/>
-     * 2 : stage 2 top 5px <p/>
-     * 3 : stage 3 top 10px <p/>
-     * 4 : stage 4+ OR Cut top 15px <p/>
-     */
     public VoxelShape[] makeTopShapes() {
         return new VoxelShape[] {
                 Shapes.empty(),

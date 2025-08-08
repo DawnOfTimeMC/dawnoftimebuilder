@@ -40,18 +40,6 @@ public class DoubleCropsBlock extends SoilCropsBlock {
         return SHAPES[index];
     }
 
-    /**
-     * @return Stores VoxelShape with index : <p/>
-     * 0 : stage 0 bottom 4px <p/>
-     * 1 : stage 1 bottom 8px <p/>
-     * 2 : stage 2 bottom 12px <p/>
-     * 3 : stage 3 bottom 16px <p/>
-     * 4 : stage 4-5-6-7 bottom 16px <p/>
-     * 5 : stage 4 top 4px <p/>
-     * 6 : stage 5 top 8px <p/>
-     * 7 : stage 6 top 12px <p/>
-     * 8 : stage 7 top 16px <p/>
-     */
     public VoxelShape[] makeShapes() {
         return new VoxelShape[] {
                 Block.box(0.0D, 0.0D, 0.0D, 16.0D, 4.0D, 16.0D),

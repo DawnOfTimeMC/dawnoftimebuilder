@@ -52,15 +52,6 @@ public class Utils {
     public static final String TOOLTIP_FIREPLACE = "fireplace";
     public static final String TOOLTIP_ADD_COLUMN = "add_column";
 
-    /**
-     * Fills a table with VS rotated in each horizontal directions following the horizontal index order :<p/>
-     * south - west - north - east
-     *
-     * @param shapes           Contains the VoxelShapes oriented toward south.
-     * @param nonRotatedShapes Facultative list of shapes that must no be rotated (will be at the end of the array, starting at index
-     *                         shapes#length * 4).
-     * @return A table filled with the previous VS and new ones rotated in each 3 horizontal directions.
-     */
     public static VoxelShape[] generateHorizontalShapes(final VoxelShape[] shapes, VoxelShape... nonRotatedShapes) {
         final VoxelShape[] newShape = {Shapes.empty()};
         final VoxelShape[] newShapes = new VoxelShape[shapes.length * 4 + nonRotatedShapes.length];

@@ -56,15 +56,6 @@ public class GrowingBushBlock extends SoilCropsBlock {
         return (state.getValue(AGE) == 0) ? Shapes.empty() : super.getShape(state, worldIn, pos, context);
     }
 
-    /**
-     * @return Stores VoxelShape with index : <p/>
-     * 0 : Stage 0 <p/>
-     * 1 : Stage 1 <p/>
-     * 2 : Stage 2 <p/>
-     * 3 : Stage 3 <p/>
-     * 4 : Stage 4 <p/>
-     * 5 : Stage 5 or cut <p/>
-     */
     public VoxelShape[] makeShapes() {
         return new VoxelShape[] {
                 Block.box(5.0D, 0.0D, 5.0D, 11.0D, 5.5D, 11.0D),

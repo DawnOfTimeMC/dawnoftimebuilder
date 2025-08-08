@@ -462,42 +462,7 @@ public abstract class DoTBBlocksRegistry {
     public <T extends Block, Y extends Item & IHasFlowerPot> Supplier<T> registerWithFlowerPotItem(String id, Supplier<T> block, Function<T, Y> item) {
         return this.registerWithFlowerPotItem(id, block, id, item);
     }
-    
-//    @SafeVarargs
-//    @SuppressWarnings("unchecked")
-//    public static <T extends Block, U extends Item> Supplier<Block> regWithItem(String name, Supplier<T> block, String itemName, @Nullable Function<T, U> item, TagKey<Block>... tags) {
-//        Supplier<T> toReturn = this.BLOCKS.register(name, block);
-//        if(item != null) {
-//            DoTBItemsRegistry.reg(itemName, () -> item.apply(toReturn.get()));
-//        }
-//        Supplier<Block> regBlock = (Supplier<Block>) toReturn;
-//        if(tags.length == 0){
-//            addBlockTag(regBlock, BlockTags.MINEABLE_WITH_PICKAXE);
-//        }else{
-//            for (TagKey<Block> tag : tags) {
-//                addBlockTag(regBlock, tag);
-//            }
-//        }
-//        return regBlock;
-//    }
 
-//    @SuppressWarnings("unchecked")
-//    public static <T extends Block, U extends Item & IHasFlowerPot> Supplier<Block> regWithFlowerPotItem(String plantName, Supplier<T> block, String seedName, @Nullable Function<T, U> item) {
-//        Supplier<T> toReturn = this.BLOCKS.register(plantName, block);
-//        if(item != null) {
-//            DoTBItemsRegistry.regWithFlowerPot(plantName, seedName, () -> item.apply(toReturn.get()));
-//        }
-//        Supplier<Block> regBlock = (Supplier<Block>) toReturn;
-//        // Flower can be broken with sword, and in the ItemRegistry, pot can be broken with Pickaxe.
-//        addBlockTag(regBlock, BlockTags.SWORD_EFFICIENT);
-//        return regBlock;
-//    }
-
-    /**
-     * Add a Supplier<Block> to the list associated to the given Tag. If the tag doesn't exist, create a new empty list, and put the block inside.
-     * @param block Block that needs the tag.
-     * @param tag BlockTags added.
-     */
     public <T extends Block> void addBlockTag(Supplier<T> block, TagKey<Block> tag){
         blockTagsMap.computeIfAbsent(tag, k -> new HashSet<>()).add((Supplier<Block>) block);
     }
