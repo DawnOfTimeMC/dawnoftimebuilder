@@ -6,7 +6,6 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import org.dawnoftime.dawnoftime.blockentity.DisplayerBlockEntity;
-import org.dawnoftime.dawnoftime.blockentity.DryerBlockEntity;
 
 import java.util.function.BiFunction;
 import java.util.function.Supplier;
@@ -15,8 +14,6 @@ public abstract class DoTBBlockEntitiesRegistry {
     public static DoTBBlockEntitiesRegistry INSTANCE;
 //    public static final DeferredRegister<BlockEntityType<?>> TILE_ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, MOD_ID);
 
-    public final Supplier<BlockEntityType<DryerBlockEntity>> DRYER = register("dryer",
-            DryerBlockEntity::new, () -> new Block[] { DoTBBlocksRegistry.INSTANCE.BAMBOO_DRYING_TRAY.get() });
     public final Supplier<BlockEntityType<DisplayerBlockEntity>> DISPLAYER = register("displayer",
             DisplayerBlockEntity::new, () -> new Block[] { DoTBBlocksRegistry.INSTANCE.SPRUCE_LOW_TABLE.get(), DoTBBlocksRegistry.INSTANCE.WAXED_OAK_TABLE.get() });
 

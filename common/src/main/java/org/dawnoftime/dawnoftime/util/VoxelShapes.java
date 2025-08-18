@@ -43,10 +43,6 @@ public class VoxelShapes {
             Block.box(2.0D, 0.0D, 2.0D, 14.0D, 16.0D, 14.0D),
             Block.box(2.0D, 0.0D, 2.0D, 14.0D, 16.0D, 14.0D),
             Shapes.block()};
-    public static final VoxelShape[] DRYER_SHAPES = new VoxelShape[]{
-            Block.box(0.0D, 0.0D, 0.0D, 16.0D, 4.0D, 16.0D),
-            Block.box(0.0D, 0.0D, 0.0D, 16.0D, 12.0D, 16.0D),
-            Shapes.block()};
     public static final VoxelShape[] EDGE_SHAPES = makeEdgeShapes();
     public static final VoxelShape[] FAUCET_SHAPES = Utils.generateHorizontalShapes(new VoxelShape[]{
             Block.box(6, 10, 10, 10, 14, 16)
@@ -142,9 +138,6 @@ public class VoxelShapes {
             Block.box(0.0D, 0.0D, 2.0D, 16.0D, 8.0D, 14.0D),
             Block.box(2.0D, 0.0D, 0.0D, 14.0D, 8.0D, 16.0D)};
 
-    public static final VoxelShape[] STICK_BUNDLE_SHAPES = new VoxelShape[]{
-            Block.box(4.0D, 0.0D, 4.0D, 12.0D, 16.0D, 12.0D),
-            Block.box(4.0D, 4.0D, 4.0D, 12.0D, 16.0D, 12.0D)};
     public static final VoxelShape[] STONE_BRICKS_ARROWSLIT_SHAPES = makeStoneBricksArrowslitShapes();
     public static final VoxelShape[] STONE_BRICKS_CHIMNEY_SHAPES = makeStoneBricksChimneyShapes();
     public static final VoxelShape[] STONE_BRICKS_MACHICOLATION_SHAPES = makeStoneBricksMachicolationShapes();

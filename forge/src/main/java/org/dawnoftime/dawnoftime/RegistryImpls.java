@@ -31,7 +31,6 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import org.dawnoftime.dawnoftime.block.templates.FlowerPotBlockDoT;
-import org.dawnoftime.dawnoftime.entity.SilkmothEntity;
 import org.dawnoftime.dawnoftime.item.IHasFlowerPot;
 import org.dawnoftime.dawnoftime.item.IconItem;
 import org.dawnoftime.dawnoftime.registry.*;
@@ -121,7 +120,6 @@ public class RegistryImpls {
     public static class ForgeItemsRegistry extends DoTBItemsRegistry {
         public static final DeferredRegister<Item> ITEMS_REGISTRY = DeferredRegister.create(ForgeRegistries.ITEMS, DoTBCommon.MOD_ID);
 
-        public final Supplier<Item> SILKMOTH_SPAWN_EGG = register("silkmoth_spawn_egg", () -> new ForgeSpawnEggItem(DoTBEntitiesRegistry.INSTANCE.SILKMOTH_ENTITY, 0xDBD8BD, 0xFEFEFC, new Item.Properties()));
 
         public ForgeItemsRegistry() {
             postRegister();
@@ -232,7 +230,6 @@ public class RegistryImpls {
         ForgeRecipeTypesRegistry.RECIPE_TYPES_REGISTRY.register(bus);
         ForgeCreativeModeTabsRegistry.CREATIVE_MODE_TABS_REGISTRY.register(bus);
 
-        bus.addListener((EntityAttributeCreationEvent event) -> event.put(DoTBEntitiesRegistry.INSTANCE.SILKMOTH_ENTITY.get(), SilkmothEntity.createAttributes().build()));
         bus.addListener((BuildCreativeModeTabContentsEvent event) -> {
             if(event.getTab() == DoTBCreativeModeTabsRegistry.INSTANCE.DOT_TAB.get()) {
                 ForgeRegistries.ITEMS.getEntries().stream().filter(entry ->

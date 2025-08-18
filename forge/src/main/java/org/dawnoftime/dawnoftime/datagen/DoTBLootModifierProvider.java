@@ -24,11 +24,6 @@ public class DoTBLootModifierProvider extends GlobalLootModifierProvider {
 
     @Override
     protected void start() {
-        add("silk_in_shipwreck_treasure",
-                buildLootTable(LootTablesToModify.SHIPWRECK_TREASURE,
-                        DoTBItemsRegistry.INSTANCE.SILK.get(),
-                        1.0f));
-
         add("grape_in_village_plains_house",
                 buildLootTable(LootTablesToModify.VILLAGE_PLAINS_HOUSE,
                         DoTBItemsRegistry.INSTANCE.GRAPE.get(),

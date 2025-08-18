@@ -19,7 +19,6 @@ public final class LootTablesToModify {
     private static final DoTBConfig config = Services.PLATFORM.getConfig();
 
     public static final Map<Item, Boolean> SHOULD_ADD_MAP = ImmutableMap.ofEntries(
-            Map.entry(DoTBItemsRegistry.INSTANCE.SILK.get(),             config.generateSilk),
             Map.entry(DoTBItemsRegistry.INSTANCE.GRAPE.get(),            config.generateGrapes),
             Map.entry(DoTBBlocksRegistry.INSTANCE.MAIZE.get().asItem(), config.generateMaize),
             Map.entry(DoTBBlocksRegistry.INSTANCE.RICE.get().asItem(),  config.generateRice),

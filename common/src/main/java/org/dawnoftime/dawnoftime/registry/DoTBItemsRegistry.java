@@ -14,11 +14,6 @@ public abstract class DoTBItemsRegistry {
 
     // General
     public final Supplier<Item> ANCIENTARCHI = register("ancientarchi", () -> new ItemDoTB(false));
-    public final Supplier<Item> SILK_WORMS = register("silk_worms", () -> new ItemDoTB(true));
-    public final Supplier<Item> SILK_WORMS_HATCHERY = register("silk_worm_hatchery", () -> new ItemDoTB(true));
-    public final Supplier<Item> SILK_WORM_EGGS = register("silk_worm_eggs", () -> new ItemDoTB(true));
-    public final Supplier<Item> SILK_COCOONS = register("silk_cocoons", () -> new ItemDoTB(true));
-    public final Supplier<Item> SILK = register("silk", ItemDoTB::new);
     public final Supplier<Item> TEA_LEAVES = register("tea_leaves", ItemDoTB::new);
     public final Supplier<Item> CAMELLIA_LEAVES = register("camellia_leaves", ItemDoTB::new);
     public final Supplier<Item> UNFIRED_CLAY_TILE = register("unfired_clay_tile", ItemDoTB::new);
