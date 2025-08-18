@@ -39,12 +39,8 @@ import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfigur
 import org.dawnoftime.dawnoftime.block.IFlammable;
 import org.dawnoftime.dawnoftime.block.templates.FlowerPotBlockDoT;
 import org.dawnoftime.dawnoftime.client.gui.screen.DisplayerScreen;
-import org.dawnoftime.dawnoftime.client.model.entity.SilkmothModel;
 import org.dawnoftime.dawnoftime.client.renderer.blockentity.DisplayerBERenderer;
-import org.dawnoftime.dawnoftime.client.renderer.blockentity.DryerBERenderer;
 import org.dawnoftime.dawnoftime.client.renderer.entity.ChairRenderer;
-import org.dawnoftime.dawnoftime.client.renderer.entity.SilkmothRenderer;
-import org.dawnoftime.dawnoftime.entity.SilkmothEntity;
 import org.dawnoftime.dawnoftime.item.IHasFlowerPot;
 import org.dawnoftime.dawnoftime.item.IconItem;
 import org.dawnoftime.dawnoftime.registry.*;
@@ -135,7 +131,6 @@ public class RegistryImpls {
     }
 
     public static class FabricItemsRegistry extends DoTBItemsRegistry {
-        public final Supplier<Item> SILKMOTH_SPAWN_EGG = register("silkmoth_spawn_egg", () -> new SpawnEggItem(DoTBEntitiesRegistry.INSTANCE.SILKMOTH_ENTITY.get(), 0xDBD8BD, 0xFEFEFC, new Item.Properties()));
 
         public FabricItemsRegistry() {
             postRegister();
@@ -227,11 +222,8 @@ public class RegistryImpls {
     }
 
     public static void initClient() {
-        EntityRendererRegistry.register(DoTBEntitiesRegistry.INSTANCE.SILKMOTH_ENTITY.get(), SilkmothRenderer::new);
         EntityRendererRegistry.register(DoTBEntitiesRegistry.INSTANCE.CHAIR_ENTITY.get(), ChairRenderer::new);
         BlockEntityRenderers.register(DoTBBlockEntitiesRegistry.INSTANCE.DISPLAYER.get(), DisplayerBERenderer::new);
-        BlockEntityRenderers.register(DoTBBlockEntitiesRegistry.INSTANCE.DRYER.get(), DryerBERenderer::new);
-        EntityModelLayerRegistry.registerModelLayer(SilkmothModel.LAYER_LOCATION, SilkmothModel::createBodyLayer);
         MenuScreens.register(DoTBMenuTypesRegistry.INSTANCE.DISPLAYER.get(), DisplayerScreen::new);
 
         DoTBColorsRegistry.initialize();
@@ -255,6 +247,5 @@ public class RegistryImpls {
         DoTBTags.INSTANCE = new FabricTagsRegistry();
         DoTBCreativeModeTabsRegistry.INSTANCE = new FabricCreativeModeTabsRegistry();
 
-        FabricDefaultAttributeRegistry.register(DoTBEntitiesRegistry.INSTANCE.SILKMOTH_ENTITY.get(), SilkmothEntity.createAttributes());
     }
 }

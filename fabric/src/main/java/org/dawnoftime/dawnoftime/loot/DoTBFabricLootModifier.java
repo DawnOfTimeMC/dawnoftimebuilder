@@ -19,7 +19,6 @@ public final class DoTBFabricLootModifier {
     public static void modifyLootTables() {
         LootTableEvents.MODIFY.register((resourceManager, lootManager, id, tableBuilder, source) -> {
             switch (id.toString()) {
-                case LootTablesToModify.SHIPWRECK_TREASURE -> buildLootTable(DoTBItemsRegistry.INSTANCE.SILK.get(), 1.0f, tableBuilder);
                 case LootTablesToModify.VILLAGE_PLAINS_HOUSE -> buildLootTable(DoTBItemsRegistry.INSTANCE.GRAPE.get(), 0.5f, tableBuilder);
                 case LootTablesToModify.VILLAGE_SAVANNA_HOUSE -> buildLootTable(DoTBBlocksRegistry.INSTANCE.MAIZE.get().asItem(), 0.5f, tableBuilder);
                 case LootTablesToModify.VILLAGE_TAIGA_HOUSE -> {
