@@ -24,36 +24,6 @@ public class DoTBLootModifierProvider extends GlobalLootModifierProvider {
 
     @Override
     protected void start() {
-        add("grape_in_village_plains_house",
-                buildLootTable(LootTablesToModify.VILLAGE_PLAINS_HOUSE,
-                        DoTBItemsRegistry.INSTANCE.GRAPE.get(),
-                        0.5f));
-
-        add("maize_in_village_savanna_house",
-                buildLootTable(LootTablesToModify.VILLAGE_SAVANNA_HOUSE,
-                        DoTBBlocksRegistry.INSTANCE.MAIZE.get().asItem(),
-                        0.5f));
-
-        add("rice_in_village_taiga_house",
-                buildLootTable(LootTablesToModify.VILLAGE_TAIGA_HOUSE,
-                        DoTBBlocksRegistry.INSTANCE.RICE.get().asItem(),
-                        0.5f));
-
-        add("grape_in_shipwreck_supply",
-                buildLootTable(LootTablesToModify.SHIPWRECK_SUPPLY,
-                        DoTBItemsRegistry.INSTANCE.GRAPE.get(),
-                        0.2f));
-
-        add("maize_in_shipwreck_supply",
-                buildLootTable(LootTablesToModify.SHIPWRECK_SUPPLY,
-                        DoTBBlocksRegistry.INSTANCE.MAIZE.get().asItem(),
-                        0.2f));
-
-        add("rice_in_shipwreck_supply",
-                buildLootTable(LootTablesToModify.SHIPWRECK_SUPPLY,
-                        DoTBBlocksRegistry.INSTANCE.RICE.get().asItem(),
-                        0.2f));
-
         add("black_clay_tile_in_shipwreck_supply",
                 buildLootTable(LootTablesToModify.SHIPWRECK_SUPPLY,
                         DoTBItemsRegistry.INSTANCE.CLAY_TILE_BLACK.get(),

@@ -11,7 +11,6 @@ import org.dawnoftime.dawnoftime.registry.DoTBFeaturesRegistry;
 
 public class BiomeModifiers {
     public static void init() {
-        addFeatureToBiomes(DoTBFeaturesRegistry.WILD_GRAPE_PLACED_KEY, GenerationStep.Decoration.VEGETAL_DECORATION, Biomes.FLOWER_FOREST, Biomes.BIRCH_FOREST, Biomes.OLD_GROWTH_BIRCH_FOREST);
         addFeatureToBiomes(DoTBFeaturesRegistry.IVY_PLACED_KEY, GenerationStep.Decoration.VEGETAL_DECORATION, Biomes.FLOWER_FOREST, Biomes.BIRCH_FOREST, Biomes.OLD_GROWTH_BIRCH_FOREST);
     }
 

@@ -15,14 +15,6 @@ import org.dawnoftime.dawnoftime.worldgen.feature.DoTFeature;
 import java.util.function.Supplier;
 
 public abstract class DoTBFeaturesRegistry {
-    public static final ResourceKey<PlacedFeature> CAMELLIA_PLACED_KEY = registerKey("camellia_placed");
-    public static final ResourceKey<PlacedFeature> COMMELINA_PLACED_KEY = registerKey("commelina_placed");
-    public static final ResourceKey<PlacedFeature> CYPRESS_PLACED_KEY = registerKey("cypress_placed");
-    public static final ResourceKey<PlacedFeature> BOXWOOD_BUSH_PLACED_KEY = registerKey("boxwood_bush_placed");
-    public static final ResourceKey<PlacedFeature> RICE_PLACED_KEY = registerKey("rice_placed");
-    public static final ResourceKey<PlacedFeature> WILD_GRAPE_PLACED_KEY = registerKey("wild_grape_placed");
-    public static final ResourceKey<PlacedFeature> WILD_MAIZE_PLACED_KEY = registerKey("wild_maize_placed");
-    public static final ResourceKey<PlacedFeature> GERANIUM_PINK_PLACED_KEY = registerKey("geranium_pink_placed");
     public static final ResourceKey<PlacedFeature> IVY_PLACED_KEY = registerKey("ivy_placed");
     public static DoTBFeaturesRegistry INSTANCE;
 

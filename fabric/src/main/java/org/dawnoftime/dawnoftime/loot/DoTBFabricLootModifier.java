@@ -19,16 +19,10 @@ public final class DoTBFabricLootModifier {
     public static void modifyLootTables() {
         LootTableEvents.MODIFY.register((resourceManager, lootManager, id, tableBuilder, source) -> {
             switch (id.toString()) {
-                case LootTablesToModify.VILLAGE_PLAINS_HOUSE -> buildLootTable(DoTBItemsRegistry.INSTANCE.GRAPE.get(), 0.5f, tableBuilder);
-                case LootTablesToModify.VILLAGE_SAVANNA_HOUSE -> buildLootTable(DoTBBlocksRegistry.INSTANCE.MAIZE.get().asItem(), 0.5f, tableBuilder);
                 case LootTablesToModify.VILLAGE_TAIGA_HOUSE -> {
-                    buildLootTable(DoTBBlocksRegistry.INSTANCE.RICE.get().asItem(), 0.5f, tableBuilder);
+                    buildLootTable(DoTBBlocksRegistry.INSTANCE.GRAY_ROOF_TILES.get().asItem(), 0.1f, tableBuilder);
                 }
                 case LootTablesToModify.SHIPWRECK_SUPPLY -> {
-                    buildLootTable(DoTBItemsRegistry.INSTANCE.GRAPE.get(),0.2f, tableBuilder);
-                    buildLootTable(DoTBBlocksRegistry.INSTANCE.MAIZE.get().asItem(), 0.2f, tableBuilder);
-                    buildLootTable(DoTBBlocksRegistry.INSTANCE.RICE.get().asItem(), 0.2f, tableBuilder);
-
                     buildLootTable(DoTBItemsRegistry.INSTANCE.CLAY_TILE_BLACK.get(), 0.1f, tableBuilder);
                     buildLootTable(DoTBItemsRegistry.INSTANCE.CLAY_TILE_BLUE.get(), 0.1f, tableBuilder);
                     buildLootTable(DoTBItemsRegistry.INSTANCE.CLAY_TILE_CYAN.get(), 0.1f, tableBuilder);
