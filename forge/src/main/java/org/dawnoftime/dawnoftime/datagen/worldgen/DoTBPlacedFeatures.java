@@ -40,26 +40,10 @@ public class DoTBPlacedFeatures {
             )
         );
 
-        register(context, DoTBFeaturesRegistry.RED_MAPLE_PLACED_KEY,
-            configuredFeatures.getOrThrow(DoTBConfiguredFeatures.RED_MAPLE_KEY),
-            List.of(
-                RarityFilter.onAverageOnceEvery(2),
-                InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome()
-            )
-        );
-
         register(context, DoTBFeaturesRegistry.BOXWOOD_BUSH_PLACED_KEY,
             configuredFeatures.getOrThrow(DoTBConfiguredFeatures.BOXWOOD_BUSH_KEY),
             List.of(
                 RarityFilter.onAverageOnceEvery(4),
-                InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome()
-            )
-        );
-
-        register(context, DoTBFeaturesRegistry.MULBERRY_PLACED_KEY,
-            configuredFeatures.getOrThrow(DoTBConfiguredFeatures.MULBERRY_KEY),
-            List.of(
-                RarityFilter.onAverageOnceEvery(2),
                 InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome()
             )
         );

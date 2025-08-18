@@ -64,19 +64,6 @@ public class DoTBBiomeModifiers {
             )
         );
 
-        context.register(ADD_RED_MAPLE,
-            new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
-                    HolderSet.direct(
-                            biomes.get(Biomes.FLOWER_FOREST).get(),
-                            biomes.get(Biomes.TAIGA).get(),
-                            biomes.get(Biomes.SNOWY_TAIGA).get(),
-                            biomes.get(Biomes.OLD_GROWTH_PINE_TAIGA).get(),
-                            biomes.get(Biomes.OLD_GROWTH_SPRUCE_TAIGA).get()),
-                HolderSet.direct(placedFeatures.getOrThrow(DoTBFeaturesRegistry.RED_MAPLE_PLACED_KEY)),
-                GenerationStep.Decoration.VEGETAL_DECORATION
-            )
-        );
-
         context.register(ADD_BOXWOOD_BUSH,
             new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
                 HolderSet.direct(
@@ -84,19 +71,6 @@ public class DoTBBiomeModifiers {
                         biomes.get(Biomes.FOREST).get(),
                         biomes.get(Biomes.WINDSWEPT_FOREST).get()),
                 HolderSet.direct(placedFeatures.getOrThrow(DoTBFeaturesRegistry.BOXWOOD_BUSH_PLACED_KEY)),
-                GenerationStep.Decoration.VEGETAL_DECORATION
-            )
-        );
-
-        context.register(ADD_MULBERRY,
-            new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
-                    HolderSet.direct(
-                            biomes.get(Biomes.FLOWER_FOREST).get(),
-                            biomes.get(Biomes.TAIGA).get(),
-                            biomes.get(Biomes.SNOWY_TAIGA).get(),
-                            biomes.get(Biomes.OLD_GROWTH_PINE_TAIGA).get(),
-                            biomes.get(Biomes.OLD_GROWTH_SPRUCE_TAIGA).get()),
-                HolderSet.direct(placedFeatures.getOrThrow(DoTBFeaturesRegistry.MULBERRY_PLACED_KEY)),
                 GenerationStep.Decoration.VEGETAL_DECORATION
             )
         );

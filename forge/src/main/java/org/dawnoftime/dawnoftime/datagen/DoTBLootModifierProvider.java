@@ -39,11 +39,6 @@ public class DoTBLootModifierProvider extends GlobalLootModifierProvider {
                         DoTBBlocksRegistry.INSTANCE.RICE.get().asItem(),
                         0.5f));
 
-        add("mulberry_in_village_taiga_house",
-                buildLootTable(LootTablesToModify.VILLAGE_TAIGA_HOUSE,
-                        DoTBBlocksRegistry.INSTANCE.MULBERRY.get().asItem(),
-                        0.5f));
-
         add("grape_in_shipwreck_supply",
                 buildLootTable(LootTablesToModify.SHIPWRECK_SUPPLY,
                         DoTBItemsRegistry.INSTANCE.GRAPE.get(),
@@ -57,11 +52,6 @@ public class DoTBLootModifierProvider extends GlobalLootModifierProvider {
         add("rice_in_shipwreck_supply",
                 buildLootTable(LootTablesToModify.SHIPWRECK_SUPPLY,
                         DoTBBlocksRegistry.INSTANCE.RICE.get().asItem(),
-                        0.2f));
-
-        add("mulberry_in_shipwreck_supply",
-                buildLootTable(LootTablesToModify.SHIPWRECK_SUPPLY,
-                        DoTBBlocksRegistry.INSTANCE.MULBERRY.get().asItem(),
                         0.2f));
 
         add("black_clay_tile_in_shipwreck_supply",

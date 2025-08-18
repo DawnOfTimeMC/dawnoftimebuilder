@@ -23,13 +23,11 @@ public final class DoTBFabricLootModifier {
                 case LootTablesToModify.VILLAGE_SAVANNA_HOUSE -> buildLootTable(DoTBBlocksRegistry.INSTANCE.MAIZE.get().asItem(), 0.5f, tableBuilder);
                 case LootTablesToModify.VILLAGE_TAIGA_HOUSE -> {
                     buildLootTable(DoTBBlocksRegistry.INSTANCE.RICE.get().asItem(), 0.5f, tableBuilder);
-                    buildLootTable(DoTBBlocksRegistry.INSTANCE.MULBERRY.get().asItem(), 0.5f, tableBuilder);
                 }
                 case LootTablesToModify.SHIPWRECK_SUPPLY -> {
                     buildLootTable(DoTBItemsRegistry.INSTANCE.GRAPE.get(),0.2f, tableBuilder);
                     buildLootTable(DoTBBlocksRegistry.INSTANCE.MAIZE.get().asItem(), 0.2f, tableBuilder);
                     buildLootTable(DoTBBlocksRegistry.INSTANCE.RICE.get().asItem(), 0.2f, tableBuilder);
-                    buildLootTable(DoTBBlocksRegistry.INSTANCE.MULBERRY.get().asItem(), 0.2f, tableBuilder);
 
                     buildLootTable(DoTBItemsRegistry.INSTANCE.CLAY_TILE_BLACK.get(), 0.1f, tableBuilder);
                     buildLootTable(DoTBItemsRegistry.INSTANCE.CLAY_TILE_BLUE.get(), 0.1f, tableBuilder);

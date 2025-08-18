@@ -20,9 +20,7 @@ public class DoTBConfiguredFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> CAMELLIA_KEY = registerKey("camellia");
     public static final ResourceKey<ConfiguredFeature<?, ?>> COMMELINA_KEY = registerKey("commelina");
     public static final ResourceKey<ConfiguredFeature<?, ?>> CYPRESS_KEY = registerKey("cypress");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> RED_MAPLE_KEY = registerKey("red_maple");
     public static final ResourceKey<ConfiguredFeature<?, ?>> BOXWOOD_BUSH_KEY = registerKey("boxwood_bush");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> MULBERRY_KEY = registerKey("mulberry");
     public static final ResourceKey<ConfiguredFeature<?, ?>> RICE_KEY = registerKey("rice");
     public static final ResourceKey<ConfiguredFeature<?, ?>> WILD_GRAPE_KEY = registerKey("wild_grape");
     public static final ResourceKey<ConfiguredFeature<?, ?>> WILD_MAIZE_KEY = registerKey("wild_maize");
@@ -60,31 +58,11 @@ public class DoTBConfiguredFeatures {
             )
         );
 
-        register(context, RED_MAPLE_KEY, Feature.RANDOM_PATCH,
-            new RandomPatchConfiguration(32, 3, 2,
-                PlacementUtils.onlyWhenEmpty(DoTBFeaturesRegistry.INSTANCE.DOT_FEATURE.get(),
-                    new SimpleBlockConfiguration(
-                        BlockStateProvider.simple(DoTBBlocksRegistry.INSTANCE.MAPLE_RED_SAPLING.get())
-                    )
-                )
-            )
-        );
-
         register(context, BOXWOOD_BUSH_KEY, Feature.RANDOM_PATCH,
             new RandomPatchConfiguration(32, 5, 2,
                 PlacementUtils.onlyWhenEmpty(DoTBFeaturesRegistry.INSTANCE.DOT_FEATURE.get(),
                     new SimpleBlockConfiguration(
                         BlockStateProvider.simple(DoTBBlocksRegistry.INSTANCE.BOXWOOD_BUSH.get())
-                    )
-                )
-            )
-        );
-
-        register(context, MULBERRY_KEY, DoTBFeaturesRegistry.INSTANCE.DEFAULT_CROPS.get(),
-            new RandomPatchConfiguration(32, 5, 2,
-                PlacementUtils.onlyWhenEmpty(DoTBFeaturesRegistry.INSTANCE.DOT_FEATURE.get(),
-                    new SimpleBlockConfiguration(
-                        BlockStateProvider.simple(DoTBBlocksRegistry.INSTANCE.MULBERRY.get())
                     )
                 )
             )

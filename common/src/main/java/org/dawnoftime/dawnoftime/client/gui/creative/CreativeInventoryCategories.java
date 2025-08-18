@@ -412,12 +412,7 @@ public enum CreativeInventoryCategories {
             DoTBBlocksRegistry.INSTANCE.CAST_IRON_TEACUP_GREEN.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.CAST_IRON_TEAPOT_DECORATED.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.CAST_IRON_TEACUP_DECORATED.get().asItem(),
-            DoTBBlocksRegistry.INSTANCE.MAPLE_RED_SAPLING.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.CAMELLIA.get().asItem(),
-            DoTBItemsRegistry.INSTANCE.CAMELLIA_LEAVES.get(),
-            DoTBItemsRegistry.INSTANCE.TEA_LEAVES.get(),
-            DoTBBlocksRegistry.INSTANCE.MULBERRY.get().asItem(),
-            DoTBItemsRegistry.INSTANCE.MULBERRY_LEAVES.get(),
             DoTBBlocksRegistry.INSTANCE.RICE.get().asItem(),
             Items.FLINT_AND_STEEL
     ),
