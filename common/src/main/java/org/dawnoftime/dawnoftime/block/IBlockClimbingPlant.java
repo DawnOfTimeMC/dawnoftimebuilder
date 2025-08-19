@@ -17,7 +17,6 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SimpleWaterloggedBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import org.dawnoftime.dawnoftime.DoTBConfig;
 import org.dawnoftime.dawnoftime.platform.Services;
 import org.dawnoftime.dawnoftime.util.BlockStatePropertiesAA;
 import org.dawnoftime.dawnoftime.util.Utils;

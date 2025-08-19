@@ -6,6 +6,26 @@ import dev.isxander.yacl3.config.v2.api.autogen.Boolean;
 import dev.isxander.yacl3.config.v2.api.autogen.IntField;
 
 public class DoTBConfig {
+    @AutoGen(category = "entities")
+    @SerialEntry(comment = "The probability to spawn a Silkmoth on a Mulberry each random tick is equal to 1/x, where x is the config value.")
+    @IntField(min = 10, max = 10000)
+    public int silkmothSpawnChance = 400;
+    @SerialEntry
+    @AutoGen(category = "entities")
+    @IntField(min = 0, max = 10)
+    public int silkmothRotationMaxRange = 2;
+    @SerialEntry
+    @AutoGen(category = "entities")
+    @Boolean(colored = true, formatter = Boolean.Formatter.YES_NO)
+    public boolean silkmothMustDie = true;
+    @SerialEntry(comment = "The probability to change the rotation point each tick is equal to 1/x, where x is the config value.")
+    @AutoGen(category = "entities")
+    @IntField(min = 10, max = 10000)
+    public int silkmothRotationChange = 400;
+    @SerialEntry
+    @AutoGen(category = "entities")
+    @Boolean(colored = true, formatter = Boolean.Formatter.YES_NO)
+    public boolean silkmothMute = false;
 
     // Block settings
     @SerialEntry(comment = "The drying time of an item is randomly set in an interval around the default time from the recipe. The following value defines the high bound of the interval in percents. IE, if you choose '20', the interval will be [ 83.3% , 120%]. If you chose '200', the interval will be [33.3% , 300%]")
@@ -29,6 +49,11 @@ public class DoTBConfig {
     @AutoGen(category = "loot", group = "chest_loot")
     @Boolean(colored = true, formatter = Boolean.Formatter.TRUE_FALSE)
     public boolean generateChestLoot = true;
+
+    @SerialEntry
+    @AutoGen(category = "loot", group = "chest_loot")
+    @Boolean(colored = true, formatter = Boolean.Formatter.TRUE_FALSE)
+    public boolean generateSilk = true;
 
     @SerialEntry
     @AutoGen(category = "loot", group = "chest_loot")

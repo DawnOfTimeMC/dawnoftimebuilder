@@ -20,7 +20,6 @@ import org.dawnoftime.dawnoftime.block.persian.MoraqMosaicColumnBlock;
 import org.dawnoftime.dawnoftime.block.precolumbian.*;
 import org.dawnoftime.dawnoftime.block.roman.*;
 import org.dawnoftime.dawnoftime.block.templates.*;
-import org.dawnoftime.dawnoftime.item.IHasFlowerPot;
 
 import java.util.*;
 import java.util.function.Function;
@@ -432,11 +431,6 @@ public abstract class DoTBBlocksRegistry {
     }
 
     public abstract <T extends Block, Y extends Item> Supplier<T> registerWithItem(String id, Supplier<T> block, Function<T, Y> item, TagKey<Block>... tags);
-    public abstract <T extends Block, Y extends Item & IHasFlowerPot> Supplier<T> registerWithFlowerPotItem(String blockID, Supplier<T> block, String itemID, Function<T, Y> item);
-
-    public <T extends Block, Y extends Item & IHasFlowerPot> Supplier<T> registerWithFlowerPotItem(String id, Supplier<T> block, Function<T, Y> item) {
-        return this.registerWithFlowerPotItem(id, block, id, item);
-    }
 
     public <T extends Block> void addBlockTag(Supplier<T> block, TagKey<Block> tag){
         blockTagsMap.computeIfAbsent(tag, k -> new HashSet<>()).add((Supplier<Block>) block);

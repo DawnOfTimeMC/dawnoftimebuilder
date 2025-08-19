@@ -1,11 +1,9 @@
 package org.dawnoftime.dawnoftime;
 
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
-import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
-import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerType;
 import net.minecraft.client.gui.screens.MenuScreens;
@@ -26,7 +24,6 @@ import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.SpawnEggItem;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
@@ -37,11 +34,9 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
 import org.dawnoftime.dawnoftime.block.IFlammable;
-import org.dawnoftime.dawnoftime.block.templates.FlowerPotBlockDoT;
 import org.dawnoftime.dawnoftime.client.gui.screen.DisplayerScreen;
 import org.dawnoftime.dawnoftime.client.renderer.blockentity.DisplayerBERenderer;
 import org.dawnoftime.dawnoftime.client.renderer.entity.ChairRenderer;
-import org.dawnoftime.dawnoftime.item.IHasFlowerPot;
 import org.dawnoftime.dawnoftime.item.IconItem;
 import org.dawnoftime.dawnoftime.registry.*;
 
@@ -87,31 +82,6 @@ public class RegistryImpls {
             }
             return () -> registryBlock;
         }
-
-        @Override
-        public <T extends Block, Y extends Item & IHasFlowerPot> Supplier<T> registerWithFlowerPotItem(String blockID, Supplier<T> block, String itemID, Function<T, Y> item) {
-            T toReturn = Registry.register(BuiltInRegistries.BLOCK, new ResourceLocation(DoTBCommon.MOD_ID, blockID), block.get());
-            if(item != null) {
-                final String potName = blockID + "_flower_pot";
-
-                Supplier<FlowerPotBlockDoT> potBlockObject = this.register(potName, () -> {
-                    final FlowerPotBlockDoT potBlock = new FlowerPotBlockDoT(null);
-                    POT_BLOCKS.put(potName, potBlock);
-                    return potBlock;
-                }, BlockTags.MINEABLE_WITH_PICKAXE);
-
-                Y item1 = item.apply(toReturn);
-                FlowerPotBlockDoT potBlock = potBlockObject.get();
-
-                item1.setPotBlock(potBlock);
-                potBlock.setItemInPot(item1);
-
-                Registry.register(BuiltInRegistries.ITEM, new ResourceLocation(DoTBCommon.MOD_ID, itemID), item1);
-            }
-            // Flower can be broken with sword, and in the ItemRegistry, pot can be broken with Pickaxe.
-            addBlockTag(() -> toReturn, BlockTags.SWORD_EFFICIENT);
-            return () -> toReturn;
-        }
     }
 
     public static class FabricEntitiesRegistry extends DoTBEntitiesRegistry {
@@ -127,45 +97,6 @@ public class RegistryImpls {
         public <Y extends FeatureConfiguration, T extends Feature<Y>> Supplier<T> register(String name, Supplier<T> featureSupplier) {
             var feature = Registry.register(BuiltInRegistries.FEATURE, new ResourceLocation(DoTBCommon.MOD_ID, name), featureSupplier.get());
             return () -> feature;
-        }
-    }
-
-    public static class FabricItemsRegistry extends DoTBItemsRegistry {
-
-        public FabricItemsRegistry() {
-            postRegister();
-        }
-
-        @Override
-        public <T extends Item> Supplier<Item> register(String name, Supplier<T> itemSupplier) {
-            T item = Registry.register(BuiltInRegistries.ITEM, new ResourceLocation(DoTBCommon.MOD_ID, name), itemSupplier.get());
-            return () -> item;
-        }
-
-        @Override
-        public <T extends Item & IHasFlowerPot> Supplier<Item> registerWithFlowerPot(String name, Supplier<T> itemSupplier) {
-            return registerWithFlowerPot(name, name, itemSupplier);
-        }
-
-        @Override
-        public <T extends Item & IHasFlowerPot> Supplier<Item> registerWithFlowerPot(String plantName, String seedName, Supplier<T> itemSupplier) {
-            final String potName = plantName + "_flower_pot";
-
-            Supplier<FlowerPotBlockDoT> potBlockObject = DoTBBlocksRegistry.INSTANCE.register(potName, () -> {
-                final FlowerPotBlockDoT potBlock = new FlowerPotBlockDoT(null);
-                DoTBBlocksRegistry.POT_BLOCKS.put(potName, potBlock);
-                return potBlock;
-            }, BlockTags.MINEABLE_WITH_PICKAXE);
-
-            return this.register(seedName, () -> {
-                T item = itemSupplier.get();
-                FlowerPotBlockDoT potBlock = potBlockObject.get();
-
-                item.setPotBlock(potBlock);
-                potBlock.setItemInPot(item);
-
-                return item;
-            });
         }
     }
 
@@ -238,7 +169,6 @@ public class RegistryImpls {
     public static void init() {
         DoTBEntitiesRegistry.INSTANCE = new FabricEntitiesRegistry();
         DoTBBlocksRegistry.INSTANCE = new FabricBlocksRegistry();
-        DoTBItemsRegistry.INSTANCE = new FabricItemsRegistry();
         DoTBBlockEntitiesRegistry.INSTANCE = new FabricBlockEntitiesRegistry();
         DoTBFeaturesRegistry.INSTANCE = new FabricFeaturesRegistry();
         DoTBMenuTypesRegistry.INSTANCE = new FabricMenuTypesRegistry();

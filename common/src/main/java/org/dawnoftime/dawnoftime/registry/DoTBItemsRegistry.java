@@ -1,7 +1,6 @@
 package org.dawnoftime.dawnoftime.registry;
 
 import net.minecraft.world.item.Item;
-import org.dawnoftime.dawnoftime.item.IHasFlowerPot;
 import org.dawnoftime.dawnoftime.item.templates.ItemDoTB;
 
 import java.util.function.Supplier;
@@ -24,7 +23,5 @@ public abstract class DoTBItemsRegistry {
     public Supplier<Item> GRAPE_SEEDS;
 
     public abstract <T extends Item> Supplier<Item> register(final String name, final Supplier<T> itemSupplier);
-    public abstract <T extends Item & IHasFlowerPot> Supplier<Item> registerWithFlowerPot(final String name, final Supplier<T> itemSupplier);
-    public abstract <T extends Item & IHasFlowerPot> Supplier<Item> registerWithFlowerPot(final String plantName, final String seedName, final Supplier<T> itemSupplier);
 
 }
