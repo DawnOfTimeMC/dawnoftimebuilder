@@ -148,12 +148,12 @@ public class VoxelShapesBuilder {
                 vsAxisZ,
                 vsAxisXZ,
                 vsAxisY,
-                vsAxisY_bottom,
                 Shapes.or(vsAxisY, vsAxisX),
-                Shapes.or(vsAxisY_bottom, vsAxisX),
                 Shapes.or(vsAxisY, vsAxisZ),
-                Shapes.or(vsAxisY_bottom, vsAxisZ),
                 Shapes.or(vsAxisY, vsAxisXZ),
+                vsAxisY_bottom,
+                Shapes.or(vsAxisY_bottom, vsAxisX),
+                Shapes.or(vsAxisY_bottom, vsAxisZ),
                 Shapes.or(vsAxisY_bottom, vsAxisXZ)
         };
     }
@@ -163,19 +163,14 @@ public class VoxelShapesBuilder {
         VoxelShape vsAxisZ = Block.box(6.0D, 5.0D, 0.0D, 10.0D, 11.0D, 16.0D);
         VoxelShape vsAxisXZ = Shapes.or(vsAxisX, vsAxisZ);
         VoxelShape vsAxisY = Block.box(5.0D, 0.0D, 5.0D, 11.0D, 16.0D, 11.0D);
-        VoxelShape vsAxisY_bottom = Shapes.or(vsAxisY, Block.box(2.0D, 0.0D, 2.0D, 14.0D, 2.0D, 14.0D));
         return new VoxelShape[]{
                 vsAxisX,
                 vsAxisZ,
                 vsAxisXZ,
                 vsAxisY,
-                vsAxisY_bottom,
                 Shapes.or(vsAxisY, vsAxisX),
-                Shapes.or(vsAxisY_bottom, vsAxisX),
                 Shapes.or(vsAxisY, vsAxisZ),
-                Shapes.or(vsAxisY_bottom, vsAxisZ),
                 Shapes.or(vsAxisY, vsAxisXZ),
-                Shapes.or(vsAxisY_bottom, vsAxisXZ)
         };
     }
 

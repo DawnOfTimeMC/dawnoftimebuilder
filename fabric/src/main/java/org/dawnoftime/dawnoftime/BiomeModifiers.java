@@ -7,7 +7,6 @@ import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
-import org.dawnoftime.dawnoftime.registry.DoTBFeaturesRegistry;
 
 public class BiomeModifiers {
     public static void init() {

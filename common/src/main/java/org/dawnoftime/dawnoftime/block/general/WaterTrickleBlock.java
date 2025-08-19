@@ -5,7 +5,9 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
@@ -28,7 +30,6 @@ import org.dawnoftime.dawnoftime.block.templates.BlockDoT;
 import org.dawnoftime.dawnoftime.registry.DoTBBlocksRegistry;
 import org.dawnoftime.dawnoftime.util.BlockStatePropertiesAA;
 import org.dawnoftime.dawnoftime.util.BlockStatePropertiesAA.WaterTrickleEnd;
-import org.dawnoftime.dawnoftime.util.CustomBlockPlaceContext;
 import org.jetbrains.annotations.Nullable;
 
 import static net.minecraft.world.InteractionHand.MAIN_HAND;
@@ -244,6 +245,12 @@ public abstract class WaterTrickleBlock extends BlockDoT {
             return WaterTrickleEnd.SPLASH;
         }
         return WaterTrickleEnd.FADE;
+    }
+
+    private static class CustomBlockPlaceContext extends BlockPlaceContext {
+        public CustomBlockPlaceContext(Level level, @Nullable Player player, InteractionHand hand, ItemStack itemStack, BlockHitResult hitResult) {
+            super(level, player, hand, itemStack, hitResult);
+        }
     }
 
     private BlockPlaceContext generateContext(final Level level, final BlockPos fromPos) {

@@ -12,7 +12,6 @@ public abstract class DoTBTags {
     public final TagKey<Item> LIGHTERS = registerItem(new ResourceLocation(DoTBCommon.MOD_ID, "lighters"));
     //Block tags
     public final TagKey<Block> COVERED_BLOCKS = registerBlock(new ResourceLocation(DoTBCommon.MOD_ID, "covered_blocks"));
-    public final TagKey<Block> GRAVEL = registerBlock(new ResourceLocation("c", "gravel"));
 
 
     public abstract TagKey<Block> registerBlock(ResourceLocation id);

@@ -8,7 +8,6 @@ import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
-import org.dawnoftime.dawnoftime.DoTBConfig;
 import org.dawnoftime.dawnoftime.DoTBFabric;
 import org.dawnoftime.dawnoftime.platform.services.IPlatformHelper;
 import net.fabricmc.loader.api.FabricLoader;

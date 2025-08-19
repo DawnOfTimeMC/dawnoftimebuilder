@@ -32,7 +32,6 @@ import static org.dawnoftime.dawnoftime.util.VoxelShapes.*;
 public abstract class DoTBBlocksRegistry {
     public static DoTBBlocksRegistry INSTANCE;
     public static Map<TagKey<Block>, Set<Supplier<Block>>> blockTagsMap = new HashMap<>();
-    public static final HashMap<String, Block> POT_BLOCKS = new HashMap<>();
     public final Supplier<Block> ACACIA_PLANKS_EDGE = register("acacia_planks_edge", () -> new EdgeBlock(Block.Properties.copy(Blocks.ACACIA_PLANKS)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
     public final Supplier<Block> ACACIA_PLANKS_PLATE = register("acacia_planks_plate", () -> new PlateBlock(Block.Properties.copy(Blocks.ACACIA_PLANKS)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
     public final Supplier<Block> ACACIA_PERGOLA = register("acacia_pergola", () -> new PergolaBlock(Block.Properties.copy(Blocks.ACACIA_PLANKS)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
@@ -225,7 +224,6 @@ public abstract class DoTBBlocksRegistry {
     public final Supplier<Block> WAXED_OAK_TABLE = register("waxed_oak_table", () -> new ConnectedHorizontalPlanDoubleTableBlock(Block.Properties.copy(Blocks.OAK_WOOD).strength(3.0F, 5.0F).noOcclusion(), WAXED_OAK_TABLE_SHAPES), BlockTags.MINEABLE_WITH_AXE);
     // public final Supplier<Block> WAXED_OAK_CANOPY_BED = register("waxed_oak_canopy_bed", () -> new WaxedOakCanopyBedBlock(DyeColor.RED, BlockBehaviour.Properties.copy(Blocks.WHITE_BED).noOcclusion()), BlockTags.MINEABLE_WITH_AXE);
     // public Supplier<Block> WAXED_OAK_CANOPY_BED_WOOD;
-    public Supplier<Block> IVY;
     public final Supplier<Block> STONE_BRICKS_POOL = register("stone_bricks_pool", () -> new PoolBlock(Block.Properties.copy(Blocks.STONE), 16, 14, POOL_SHAPES));
     public final Supplier<Block> STONE_BRICKS_SMALL_POOL = register("stone_bricks_small_pool", () -> new SmallPoolBlock(Block.Properties.copy(Blocks.STONE)));
     public final Supplier<Block> STONE_BRICKS_FAUCET = register("stone_bricks_faucet", () -> new FaucetBlock(Block.Properties.copy(Blocks.STONE).noOcclusion().noCollission().randomTicks()));

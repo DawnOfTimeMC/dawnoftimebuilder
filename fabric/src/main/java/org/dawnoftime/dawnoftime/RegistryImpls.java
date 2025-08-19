@@ -92,14 +92,6 @@ public class RegistryImpls {
         }
     }
 
-    public static class FabricFeaturesRegistry extends DoTBFeaturesRegistry {
-        @Override
-        public <Y extends FeatureConfiguration, T extends Feature<Y>> Supplier<T> register(String name, Supplier<T> featureSupplier) {
-            var feature = Registry.register(BuiltInRegistries.FEATURE, new ResourceLocation(DoTBCommon.MOD_ID, name), featureSupplier.get());
-            return () -> feature;
-        }
-    }
-
     public static class FabricMenuTypesRegistry extends DoTBMenuTypesRegistry {
         @Override
         public <T extends AbstractContainerMenu> Supplier<MenuType<T>> register(String name, MenuTypeFactory<T> factory) {
@@ -170,7 +162,6 @@ public class RegistryImpls {
         DoTBEntitiesRegistry.INSTANCE = new FabricEntitiesRegistry();
         DoTBBlocksRegistry.INSTANCE = new FabricBlocksRegistry();
         DoTBBlockEntitiesRegistry.INSTANCE = new FabricBlockEntitiesRegistry();
-        DoTBFeaturesRegistry.INSTANCE = new FabricFeaturesRegistry();
         DoTBMenuTypesRegistry.INSTANCE = new FabricMenuTypesRegistry();
         DoTBRecipeSerializersRegistry.INSTANCE = new FabricRecipeSerializersRegistry();
         DoTBRecipeTypesRegistry.INSTANCE = new FabricRecipeTypesRegistry();

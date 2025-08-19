@@ -20,8 +20,6 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.levelgen.feature.Feature;
-import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
 import net.minecraftforge.common.extensions.IForgeMenuType;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -57,12 +55,12 @@ public class RegistryImpls {
         @Override
         public final <T extends Block, Y extends Item> Supplier<T> registerWithItem(String id, Supplier<T> block, Function<T, Y> item, TagKey<Block>... tags) {
             RegistryObject<T> registryBlock = BLOCKS_REGISTRY.register(id, block);
-            if(item != null) {
+            if (item != null) {
                 BLOCK_ITEMS_REGISTRY.register(id, () -> item.apply(registryBlock.get()));
             }
-            if(tags.length == 0){
+            if (tags.length == 0) {
                 addBlockTag(registryBlock, BlockTags.MINEABLE_WITH_PICKAXE);
-            }else{
+            } else {
                 for (TagKey<Block> tag : tags) {
                     addBlockTag(registryBlock, tag);
                 }
@@ -79,12 +77,15 @@ public class RegistryImpls {
         }
     }
 
-    public static class ForgeFeaturesRegistry extends DoTBFeaturesRegistry {
-        public static final DeferredRegister<Feature<?>> FEATURES_REGISTRY = DeferredRegister.create(ForgeRegistries.FEATURES, DoTBCommon.MOD_ID);
+    public static class ForgeItemsRegistry extends DoTBItemsRegistry {
+        public static final DeferredRegister<Item> ITEMS_REGISTRY = DeferredRegister.create(ForgeRegistries.ITEMS, DoTBCommon.MOD_ID);
+
+        public ForgeItemsRegistry() {
+        }
 
         @Override
-        public <Y extends FeatureConfiguration, T extends Feature<Y>> Supplier<T> register(String name, Supplier<T> featureSupplier) {
-            return FEATURES_REGISTRY.register(name, featureSupplier);
+        public <T extends Item> Supplier<Item> register(String name, Supplier<T> itemSupplier) {
+            return ITEMS_REGISTRY.register(name, itemSupplier);
         }
     }
 
@@ -141,19 +142,19 @@ public class RegistryImpls {
         ForgeEntitiesRegistry.ENTITY_TYPES_REGISTRY.register(bus);
 
         DoTBBlocksRegistry.INSTANCE = new ForgeBlocksRegistry();
+        DoTBItemsRegistry.INSTANCE = new ForgeItemsRegistry();
         DoTBBlockEntitiesRegistry.INSTANCE = new ForgeBlockEntitiesRegistry();
-        DoTBFeaturesRegistry.INSTANCE = new ForgeFeaturesRegistry();
         DoTBMenuTypesRegistry.INSTANCE = new ForgeMenuTypesRegistry();
         DoTBRecipeSerializersRegistry.INSTANCE = new ForgeRecipeSerializersRegistry();
         DoTBRecipeTypesRegistry.INSTANCE = new ForgeRecipeTypesRegistry();
         DoTBTags.INSTANCE = new ForgeTagsRegistry();
         DoTBCreativeModeTabsRegistry.INSTANCE = new ForgeCreativeModeTabsRegistry();
 
-        // Register all deffered registries
+        // Register all deferred registries
         ForgeBlocksRegistry.BLOCKS_REGISTRY.register(bus);
         ForgeBlocksRegistry.BLOCK_ITEMS_REGISTRY.register(bus);
+        ForgeItemsRegistry.ITEMS_REGISTRY.register(bus);
         ForgeBlockEntitiesRegistry.BLOCK_ENTITY_TYPES_REGISTRY.register(bus);
-        ForgeFeaturesRegistry.FEATURES_REGISTRY.register(bus);
         ForgeMenuTypesRegistry.MENU_TYPES_REGISTRY.register(bus);
         ForgeRecipeSerializersRegistry.RECIPE_SERIALIZERS_REGISTRY.register(bus);
         ForgeRecipeTypesRegistry.RECIPE_TYPES_REGISTRY.register(bus);
