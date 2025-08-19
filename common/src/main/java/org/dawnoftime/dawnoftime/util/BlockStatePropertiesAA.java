@@ -15,7 +15,6 @@ import org.dawnoftime.dawnoftime.registry.DoTBItemsRegistry;
 import org.jetbrains.annotations.NotNull;
 
 public class BlockStatePropertiesAA {
-    public static final BooleanProperty CUT = BooleanProperty.create("cut");
     public static final BooleanProperty ROLLED = BooleanProperty.create("rolled");
     public static final BooleanProperty AXIS_X = BooleanProperty.create("axis_x");
     public static final BooleanProperty AXIS_Y = BooleanProperty.create("axis_y");
@@ -37,7 +36,6 @@ public class BlockStatePropertiesAA {
     public static final IntegerProperty HUMIDITY_0_8 = IntegerProperty.create("humidity", 0, 8);
     public static final IntegerProperty AGE_0_6 = IntegerProperty.create("age", 0, 6);
     public static final IntegerProperty HEAT_0_4 = IntegerProperty.create("heat", 0, 4);
-    public static final IntegerProperty SIZE_0_5 = IntegerProperty.create("size", 0, 5);
     public static final IntegerProperty STACK = IntegerProperty.create("stack", 1, 3);
     public static final IntegerProperty LEVEL = IntegerProperty.create("level", 0, 16);
     public static final EnumProperty<ClimbingPlant> CLIMBING_PLANT = EnumProperty.create("climbing_plant", ClimbingPlant.class);

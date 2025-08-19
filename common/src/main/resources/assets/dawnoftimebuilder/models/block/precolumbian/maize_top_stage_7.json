@@ -1,7 +1,0 @@
-{
-  "render_type": "minecraft:cutout",
-    "parent": "block/crop",
-    "textures": {
-    	"crop": "dawnoftimebuilder:block/maize_top_stage_7"
-    }
-}
