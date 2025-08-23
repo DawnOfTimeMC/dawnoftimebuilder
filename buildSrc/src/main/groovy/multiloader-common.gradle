@@ -46,10 +46,6 @@ repositories {
         name = 'Architectury API'
         url "https://maven.architectury.dev"
     }
-    maven {
-        url = "https://maven.isxander.dev/releases"
-        name = "Xander Maven"
-    }
 }
 
 // Declare capabilities on the outgoing configurations.

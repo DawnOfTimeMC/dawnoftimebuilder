@@ -54,8 +54,6 @@ repositories {
 dependencies {
     compileOnly project(":common")
 
-    modImplementation("maven.modrinth:yacl:${project.yacl_version}-forge")
-
     // Mod compatibility
 
     modRuntimeOnly("maven.modrinth:rei:IoS2AjPk")
