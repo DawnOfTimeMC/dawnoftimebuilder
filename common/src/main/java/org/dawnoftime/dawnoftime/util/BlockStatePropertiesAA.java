@@ -1,17 +1,11 @@
 package org.dawnoftime.dawnoftime.util;
 
 import net.minecraft.util.StringRepresentable;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Blocks;
-
 
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.block.state.properties.WallSide;
-import org.dawnoftime.dawnoftime.registry.DoTBBlocksRegistry;
-import org.dawnoftime.dawnoftime.registry.DoTBItemsRegistry;
 import org.jetbrains.annotations.NotNull;
 
 public class BlockStatePropertiesAA {
@@ -34,7 +28,6 @@ public class BlockStatePropertiesAA {
     public static final IntegerProperty MULTIBLOCK_2Y = IntegerProperty.create("multiblock_2y", 0, 1);
     public static final IntegerProperty MULTIBLOCK_3Z = IntegerProperty.create("multiblock_3z", 0, 2);
     public static final IntegerProperty HUMIDITY_0_8 = IntegerProperty.create("humidity", 0, 8);
-    public static final IntegerProperty AGE_0_6 = IntegerProperty.create("age", 0, 6);
     public static final IntegerProperty HEAT_0_4 = IntegerProperty.create("heat", 0, 4);
     public static final IntegerProperty STACK = IntegerProperty.create("stack", 1, 3);
     public static final IntegerProperty LEVEL = IntegerProperty.create("level", 0, 16);
