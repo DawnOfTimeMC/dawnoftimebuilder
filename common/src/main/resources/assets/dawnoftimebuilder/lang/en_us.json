@@ -360,6 +360,7 @@
     "item.dawnoftimebuilder.clay_tile_black": "Black Clay Tile",
     "item.dawnoftimebuilder.clay_tile_blue": "Blue Clay Tile",
     "item.dawnoftimebuilder.clay_tile_cyan": "Cyan Clay Tile",
+    "item.dawnoftimebuilder.dawn_of_time": "Dawn of Time",
     "tooltip.dawnoftimebuilder.hold_key": "For more info, hold ",
     "tooltip.dawnoftimebuilder.shift": "SHIFT",
     "tooltip.dawnoftimebuilder.iron_portcullis": "Use a redstone impulse on a portcullis block to open it, and all adjacent portcullis blocks.",

@@ -14,7 +14,7 @@ public class SocialsButton extends Button {
     private final ResourceLocation buttonIcons, socialIcons;
 
     public SocialsButton(int x, int y, String buttonName, OnPress pressable) {
-        super(x, y, 32, 28, Component.empty(), pressable, DEFAULT_NARRATION);
+        super(x, y, 28, 28, Component.empty(), pressable, DEFAULT_NARRATION);
         this.buttonIcons = new ResourceLocation(MOD_ID, "textures/gui/social_" + buttonName + ".png");
         this.socialIcons = new ResourceLocation(MOD_ID, "textures/gui/social_icons.png");
     }
