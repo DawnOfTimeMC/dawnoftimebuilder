@@ -46,11 +46,11 @@ public abstract class DisplayerBlock extends WaterloggedBlock implements EntityB
 
     @Override
     public @NotNull InteractionResult use(@NotNull BlockState blockState, Level world, @NotNull BlockPos pos, @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hit) {
-        if (world.isClientSide()) {
-            return InteractionResult.SUCCESS;
-        }
         if (hit.getDirection() != Direction.UP) {
             return InteractionResult.PASS;
+        }
+        if (world.isClientSide()) {
+            return InteractionResult.SUCCESS;
         }
 
         Vec3 hitVec = hit.getLocation();
@@ -71,11 +71,10 @@ public abstract class DisplayerBlock extends WaterloggedBlock implements EntityB
         ItemStack slotItem = displayer.getItem(slot);
         if (!held.isEmpty()) {
             if (slotItem.isEmpty()) {
-                displayer.setItem(slot, held.copy());
-                player.setItemInHand(hand, ItemStack.EMPTY);
-            } else {
-                displayer.setItem(slot, held.copy());
-                player.setItemInHand(hand, slotItem);
+                displayer.setItem(slot, held);
+            } else if (held.getItem() == slotItem.getItem() && held.getCount() < held.getMaxStackSize()) {
+                held.setCount(held.getCount() + 1);
+                displayer.setItem(slot, ItemStack.EMPTY);
             }
         } else if (!slotItem.isEmpty()) {
             player.setItemInHand(hand, slotItem);

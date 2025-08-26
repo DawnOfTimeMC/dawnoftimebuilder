@@ -64,6 +64,8 @@ public class DisplayerBlockEntity extends BlockEntity implements Container {
 		return this.items.get(slot);
 	}
 
+
+
 	@Override
 	public @NotNull ItemStack removeItem(int slot, int amount) {
 		ItemStack itemstack = ContainerHelper.removeItem(this.items, slot, amount);
@@ -81,9 +83,10 @@ public class DisplayerBlockEntity extends BlockEntity implements Container {
 
 	@Override
 	public void setItem(int slot, @NotNull ItemStack stack) {
-		this.items.set(slot, stack);
-		if (stack.getCount() > this.getMaxStackSize()) {
-			stack.setCount(this.getMaxStackSize());
+		int quantity = stack.getCount();
+		this.items.set(slot, new ItemStack(stack.getItem(), 1));
+		if (quantity > 0) {
+			stack.setCount(quantity - 1);
 		}
 		this.setChanged();
 		this.synchroniseWithClient();
