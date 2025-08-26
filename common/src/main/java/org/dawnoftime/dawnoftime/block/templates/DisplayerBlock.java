@@ -1,10 +1,12 @@
 package org.dawnoftime.dawnoftime.block.templates;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
@@ -14,10 +16,11 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.dawnoftime.dawnoftime.blockentity.DisplayerBlockEntity;
-import org.dawnoftime.dawnoftime.platform.Services;
 import org.dawnoftime.dawnoftime.registry.DoTBBlockEntitiesRegistry;
+import org.jetbrains.annotations.NotNull;
 
 import static net.minecraft.world.Containers.dropItemStack;
 
@@ -42,12 +45,41 @@ public abstract class DisplayerBlock extends WaterloggedBlock implements EntityB
     }
 
     @Override
-    public InteractionResult use(BlockState blockState, Level world, BlockPos pos, Player playerEntity, InteractionHand hand, BlockHitResult rayTraceResult) {
-        if(!world.isClientSide()) {
-            BlockEntity tileEntity = world.getBlockEntity(pos);
-            if(tileEntity instanceof MenuProvider provider) {
-                Services.PLATFORM.openScreenHandler(playerEntity, provider, (player, buf) -> buf.writeBlockPos(pos));
+    public @NotNull InteractionResult use(@NotNull BlockState blockState, Level world, @NotNull BlockPos pos, @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hit) {
+        if (world.isClientSide()) {
+            return InteractionResult.SUCCESS;
+        }
+        if (hit.getDirection() != Direction.UP) {
+            return InteractionResult.PASS;
+        }
+
+        Vec3 hitVec = hit.getLocation();
+        double localX = hitVec.x - pos.getX();
+        double localZ = hitVec.z - pos.getZ();
+        int gridX = (int) (localX * 3);
+        int gridZ = (int) (localZ * 3);
+        gridX = Mth.clamp(gridX, 0, 2);
+        gridZ = Mth.clamp(gridZ, 0, 2);
+        int slot = gridZ * 3 + gridX;
+
+        BlockEntity be = world.getBlockEntity(pos);
+        if (!(be instanceof DisplayerBlockEntity displayer)) {
+            return InteractionResult.PASS;
+        }
+
+        ItemStack held = player.getItemInHand(hand);
+        ItemStack slotItem = displayer.getItem(slot);
+        if (!held.isEmpty()) {
+            if (slotItem.isEmpty()) {
+                displayer.setItem(slot, held.copy());
+                player.setItemInHand(hand, ItemStack.EMPTY);
+            } else {
+                displayer.setItem(slot, held.copy());
+                player.setItemInHand(hand, slotItem);
             }
+        } else if (!slotItem.isEmpty()) {
+            player.setItemInHand(hand, slotItem);
+            displayer.setItem(slot, ItemStack.EMPTY);
         }
         return InteractionResult.SUCCESS;
     }
@@ -57,7 +89,7 @@ public abstract class DisplayerBlock extends WaterloggedBlock implements EntityB
         if(oldState.getBlock() != newState.getBlock()) {
             BlockEntity tileEntity = worldIn.getBlockEntity(pos);
             if(tileEntity instanceof DisplayerBlockEntity displayerEntity) {
-                displayerEntity.itemHandler.removeAllItems().forEach(itemStack -> dropItemStack(worldIn, pos.getX(), pos.getY(), pos.getZ(), itemStack));
+                displayerEntity.removeAllItems().forEach(itemStack -> dropItemStack(worldIn, pos.getX(), pos.getY(), pos.getZ(), itemStack));
             }
         }
         super.onRemove(oldState, worldIn, pos, newState, isMoving);

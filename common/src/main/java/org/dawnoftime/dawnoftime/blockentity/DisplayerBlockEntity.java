@@ -1,23 +1,26 @@
 package org.dawnoftime.dawnoftime.blockentity;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.Component;
-import net.minecraft.world.MenuProvider;
-import net.minecraft.world.SimpleContainer;
-import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.world.Container;
+import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import org.dawnoftime.dawnoftime.container.DisplayerMenu;
 import org.dawnoftime.dawnoftime.registry.DoTBBlockEntitiesRegistry;
 import org.jetbrains.annotations.NotNull;
 
-import javax.annotation.Nullable;
+import java.util.List;
+import java.util.stream.Collectors;
 
-public class DisplayerBlockEntity extends BlockEntity implements MenuProvider {
-	public final SimpleContainer itemHandler = new SimpleContainer(9);
+public class DisplayerBlockEntity extends BlockEntity implements Container {
+	private static final int SIZE = 9;
+
+	private NonNullList<ItemStack> items = NonNullList.withSize(SIZE, ItemStack.EMPTY);
 
 	public DisplayerBlockEntity(BlockPos pPos, BlockState pBlockState) {
 		super(DoTBBlockEntitiesRegistry.INSTANCE.DISPLAYER.get(), pPos, pBlockState);
@@ -26,33 +29,97 @@ public class DisplayerBlockEntity extends BlockEntity implements MenuProvider {
 	@Override
 	public @NotNull CompoundTag getUpdateTag() {
 		CompoundTag tag = super.getUpdateTag();
-		tag.put("inv", itemHandler.createTag());
+		ContainerHelper.saveAllItems(tag, this.items);
 		return tag;
 	}
 
 	@Override
-	public void saveAdditional(CompoundTag tag) {
-		tag.put("inv", itemHandler.createTag());
+	public void saveAdditional(@NotNull CompoundTag tag) {
 		super.saveAdditional(tag);
+		ContainerHelper.saveAllItems(tag, this.items);
 	}
 
 	@Override
-	public void load(CompoundTag tag) {
-		itemHandler.fromTag(tag.getList("inv", CompoundTag.TAG_COMPOUND));
+	public void load(@NotNull CompoundTag tag) {
 		super.load(tag);
+		this.items.clear();
+		ContainerHelper.loadAllItems(tag, this.items);
 	}
 
-	@NotNull
 	@Override
-	public Component getDisplayName() {
-		return Component.nullToEmpty(null);
+	public int getContainerSize() {
+		return SIZE;
 	}
 
-	@Nullable
 	@Override
-	public AbstractContainerMenu createMenu(int pContainerId, Inventory pPlayerInventory, Player pPlayer) {
-		if(this.getLevel() == null)
-			return null;
-		return new DisplayerMenu(pContainerId, pPlayerInventory, this);
+	public boolean isEmpty() {
+		return this.items.stream().allMatch(ItemStack::isEmpty);
+	}
+
+	@Override
+	public @NotNull ItemStack getItem(int slot) {
+		if (slot >= SIZE) {
+			return ItemStack.EMPTY;
+		}
+		return this.items.get(slot);
+	}
+
+	@Override
+	public @NotNull ItemStack removeItem(int slot, int amount) {
+		ItemStack itemstack = ContainerHelper.removeItem(this.items, slot, amount);
+		if (!itemstack.isEmpty()) {
+			this.setChanged();
+			this.synchroniseWithClient();
+		}
+		return itemstack;
+	}
+
+	@Override
+	public @NotNull ItemStack removeItemNoUpdate(int slot) {
+		return ContainerHelper.takeItem(this.items, slot);
+	}
+
+	@Override
+	public void setItem(int slot, @NotNull ItemStack stack) {
+		this.items.set(slot, stack);
+		if (stack.getCount() > this.getMaxStackSize()) {
+			stack.setCount(this.getMaxStackSize());
+		}
+		this.setChanged();
+		this.synchroniseWithClient();
+	}
+
+	@Override
+	public boolean stillValid(@NotNull Player player) {
+		return true;
+	}
+
+	@Override
+	public ClientboundBlockEntityDataPacket getUpdatePacket() {
+		return ClientboundBlockEntityDataPacket.create(this);
+	}
+
+	@Override
+	public void clearContent() {
+		this.items.clear();
+		this.setChanged();
+		this.synchroniseWithClient();
+	}
+
+	public List<ItemStack> removeAllItems() {
+		List<ItemStack> list = this.items.stream().filter((stack) -> !stack.isEmpty()).collect(Collectors.toList());
+		this.clearContent();
+		return list;
+	}
+
+	private void synchroniseWithClient() {
+		if (this.level != null && !this.level.isClientSide()) {
+			this.level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), Block.UPDATE_CLIENTS);
+		}
+	}
+
+	@Override
+	public int getMaxStackSize() {
+		return 1;
 	}
 }

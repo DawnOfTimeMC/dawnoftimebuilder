@@ -71,8 +71,8 @@ public class ConnectedHorizontalPlanDoubleTableBlock extends DisplayerBlock {
     }
 
     @Override
-    public InteractionResult use(BlockState blockState, Level world, BlockPos pos, Player playerEntity, InteractionHand hand, BlockHitResult rayTraceResult) {
-        return blockState.getValue(HALF) == Half.TOP ? super.use(blockState, world, pos, playerEntity, hand, rayTraceResult) : InteractionResult.PASS;
+    public @NotNull InteractionResult use(@NotNull BlockState blockState, Level world, @NotNull BlockPos pos, @NotNull Player playerEntity, @NotNull InteractionHand hand, @NotNull BlockHitResult hit) {
+        return blockState.getValue(HALF) == Half.TOP ? super.use(blockState, world, pos, playerEntity, hand, hit) : InteractionResult.PASS;
     }
 
     @Override
