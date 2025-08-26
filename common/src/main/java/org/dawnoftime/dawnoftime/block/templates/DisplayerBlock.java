@@ -80,6 +80,10 @@ public abstract class DisplayerBlock extends WaterloggedBlock implements EntityB
             player.setItemInHand(hand, slotItem);
             displayer.setItem(slot, ItemStack.EMPTY);
         }
+        boolean lit = displayer.isLit();
+        if (lit != blockState.getValue(LIT)) {
+            world.setBlock(pos, blockState.setValue(LIT, lit), 10);
+        }
         return InteractionResult.SUCCESS;
     }
 

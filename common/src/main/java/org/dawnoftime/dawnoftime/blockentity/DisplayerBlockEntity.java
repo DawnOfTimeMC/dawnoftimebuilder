@@ -7,20 +7,25 @@ import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.world.Container;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import org.dawnoftime.dawnoftime.block.IBlockSpecialDisplay;
 import org.dawnoftime.dawnoftime.registry.DoTBBlockEntitiesRegistry;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static org.dawnoftime.dawnoftime.block.templates.DisplayerBlock.LIT;
+
 public class DisplayerBlockEntity extends BlockEntity implements Container {
 	private static final int SIZE = 9;
 
-	private NonNullList<ItemStack> items = NonNullList.withSize(SIZE, ItemStack.EMPTY);
+	private final NonNullList<ItemStack> items = NonNullList.withSize(SIZE, ItemStack.EMPTY);
 
 	public DisplayerBlockEntity(BlockPos pPos, BlockState pBlockState) {
 		super(DoTBBlockEntitiesRegistry.INSTANCE.DISPLAYER.get(), pPos, pBlockState);
@@ -124,5 +129,29 @@ public class DisplayerBlockEntity extends BlockEntity implements Container {
 	@Override
 	public int getMaxStackSize() {
 		return 1;
+	}
+
+	public boolean isLit() {
+		if (this.getLevel() == null) {
+			return false;
+		}
+		for(int slot = 0; slot < 9; slot++) {
+			ItemStack itemstack = this.getItem(slot);
+			if (!itemstack.isEmpty()) {
+				if (itemstack.getItem() instanceof BlockItem blockItem) {
+					Block block = blockItem.getBlock();
+					if (block instanceof IBlockSpecialDisplay displayItem) {
+						if (displayItem.emitsLight()) {
+							return true;
+						}
+					} else {
+						if (block.getLightBlock(block.defaultBlockState(), this.getLevel(), this.getBlockPos()) > 0) {
+							return true;
+						}
+					}
+				}
+			}
+		}
+		return false;
 	}
 }
