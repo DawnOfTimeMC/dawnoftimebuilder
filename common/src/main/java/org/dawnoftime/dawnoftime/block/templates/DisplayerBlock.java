@@ -18,13 +18,14 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.dawnoftime.dawnoftime.block.IBlockSpecialDisplay;
 import org.dawnoftime.dawnoftime.blockentity.DisplayerBlockEntity;
 import org.dawnoftime.dawnoftime.registry.DoTBBlockEntitiesRegistry;
 import org.jetbrains.annotations.NotNull;
 
 import static net.minecraft.world.Containers.dropItemStack;
 
-public abstract class DisplayerBlock extends WaterloggedBlock implements EntityBlock {
+public abstract class DisplayerBlock extends WaterloggedBlock implements EntityBlock, IBlockSpecialDisplay {
     public static final BooleanProperty LIT = BlockStateProperties.LIT;
 
     protected DisplayerBlock(Properties properties, VoxelShape[] shapes) {
@@ -103,4 +104,9 @@ public abstract class DisplayerBlock extends WaterloggedBlock implements EntityB
     public abstract double getDisplayerY(BlockState state);
 
     public abstract double getDisplayerZ(BlockState state);
+
+    @Override
+    public float getDisplayScale() {
+        return 0.2F;
+    }
 }
