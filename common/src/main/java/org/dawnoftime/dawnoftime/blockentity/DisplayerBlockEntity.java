@@ -146,7 +146,7 @@ public class DisplayerBlockEntity extends BlockEntity implements Container {
 						}
 					} else {
 						BlockState defaultState = block.defaultBlockState();
-						if (defaultState.getLightEmission() > 0 || defaultState.hasProperty(LIT)) {
+						if (defaultState.getLightEmission() > 1) {
 							return true;
 						}
 					}
