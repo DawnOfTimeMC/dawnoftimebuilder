@@ -4,6 +4,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
@@ -12,6 +13,7 @@ import net.minecraft.world.level.block.IronBarsBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 
 public class PaneBlockDoT extends IronBarsBlock {
@@ -34,6 +36,12 @@ public class PaneBlockDoT extends IronBarsBlock {
                 .setValue(WEST, this.canAttachPane(world, posWest,  Direction.EAST, world.getBlockState(posWest)))
                 .setValue(EAST, this.canAttachPane(world, posEast,  Direction.WEST, world.getBlockState(posEast)))
                 .setValue(WATERLOGGED, fluid == Fluids.WATER);
+    }
+
+    @Override
+    public boolean skipRendering(BlockState state, BlockState adjacentBlockState, Direction side) {
+        if(adjacentBlockState.getBlock() instanceof PaneBlockDoT) return false;
+        return super.skipRendering(state, adjacentBlockState, side);
     }
 
     @Override
