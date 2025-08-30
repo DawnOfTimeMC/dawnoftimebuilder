@@ -2,57 +2,37 @@ package org.dawnoftime.dawnoftime.block.templates;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.network.chat.Component;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.util.RandomSource;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Mirror;
 import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.*;
-import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
-import org.dawnoftime.dawnoftime.block.IBlockClimbingPlant;
-import org.dawnoftime.dawnoftime.util.BlockStatePropertiesAA;
-import org.dawnoftime.dawnoftime.util.Utils;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
-import java.util.List;
-import java.util.Random;
 
-import static net.minecraft.tags.BlockTags.DIRT;
-import static org.dawnoftime.dawnoftime.util.Utils.TOOLTIP_CLIMBING_PLANT;
 import static org.dawnoftime.dawnoftime.util.VoxelShapes.LATTICE_SHAPES;
 
-public class LatticeBlock extends WaterloggedBlock implements IBlockClimbingPlant {
+public class LatticeBlock extends WaterloggedBlock {
     public static final BooleanProperty NORTH = BlockStateProperties.NORTH;
     public static final BooleanProperty EAST = BlockStateProperties.EAST;
     public static final BooleanProperty SOUTH = BlockStateProperties.SOUTH;
     public static final BooleanProperty WEST = BlockStateProperties.WEST;
-    public static final EnumProperty<BlockStatePropertiesAA.ClimbingPlant> CLIMBING_PLANT = BlockStatePropertiesAA.CLIMBING_PLANT;
-    private static final IntegerProperty AGE = BlockStatePropertiesAA.AGE_0_6;
-    public static final BooleanProperty PERSISTENT = BlockStateProperties.PERSISTENT;
 
     public LatticeBlock(Properties properties) {
         super(properties, LATTICE_SHAPES);
-        this.registerDefaultState(this.defaultBlockState().setValue(CLIMBING_PLANT, BlockStatePropertiesAA.ClimbingPlant.NONE).setValue(AGE, 0).setValue(WATERLOGGED, false).setValue(NORTH, false).setValue(EAST, false).setValue(SOUTH, false).setValue(WEST, false).setValue(PERSISTENT, false));
+        this.registerDefaultState(this.defaultBlockState().setValue(WATERLOGGED, false).setValue(NORTH, false).setValue(EAST, false).setValue(SOUTH, false).setValue(WEST, false));
     }
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         super.createBlockStateDefinition(builder);
-        builder.add(NORTH, EAST, SOUTH, WEST, CLIMBING_PLANT, AGE, PERSISTENT);
+        builder.add(NORTH, EAST, SOUTH, WEST);
     }
 
     @Override
@@ -103,53 +83,6 @@ public class LatticeBlock extends WaterloggedBlock implements IBlockClimbingPlan
             };
         }
         return false;
-    }
-
-    @Override
-    public boolean isRandomlyTicking(BlockState state) {
-        return !state.getValue(CLIMBING_PLANT).hasNoPlant();
-    }
-
-    @Override
-    public void spawnAfterBreak(@NotNull BlockState state, @NotNull ServerLevel worldIn, @NotNull BlockPos pos, @NotNull ItemStack stack, boolean p_222953_) {
-        super.spawnAfterBreak(state, worldIn, pos, stack, p_222953_);
-        //Be careful, climbing plants are not dropping from block's loot_table, but from their own loot_table
-        this.dropPlant(state, worldIn, pos, stack, p_222953_);
-    }
-
-    @Override
-    public void tick(@NotNull BlockState state, @NotNull ServerLevel worldIn, @NotNull BlockPos pos, @NotNull RandomSource random) {
-        this.tickPlant(state, worldIn, pos, random);
-    }
-
-    @Override
-    public @NotNull InteractionResult use(BlockState state, @NotNull Level worldIn, @NotNull BlockPos pos, @NotNull Player player, @NotNull InteractionHand handIn, @NotNull BlockHitResult hit) {
-        if(!state.getValue(PERSISTENT)) {
-            if(Utils.useLighter(worldIn, pos, player, handIn)) {
-                Random rand = new Random();
-                for(int i = 0; i < 5; i++) {
-                    worldIn.addParticle(ParticleTypes.SMOKE, (double) pos.getX() + rand.nextDouble(), (double) pos.getY() + 0.5D + rand.nextDouble() / 2, (double) pos.getZ() + rand.nextDouble(), 0.0D, 0.07D, 0.0D);
-                }
-                worldIn.setBlock(pos, state.setValue(PERSISTENT, true), 10);
-                return InteractionResult.SUCCESS;
-            }
-        }
-        if(player.isCreative()) {
-            if(this.tryPlacingPlant(state, worldIn, pos, player, handIn))
-                return InteractionResult.SUCCESS;
-        } else {
-            if(worldIn.getBlockState(pos.below()).is(DIRT)) {
-                if(this.tryPlacingPlant(state, worldIn, pos, player, handIn))
-                    return InteractionResult.SUCCESS;
-            }
-        }
-        return this.harvestPlant(state, worldIn, pos, player, handIn);
-    }
-
-    @Override
-    public void appendHoverText(@NotNull ItemStack stack, @Nullable BlockGetter worldIn, @NotNull List<Component> tooltip, @NotNull TooltipFlag flagIn) {
-        super.appendHoverText(stack, worldIn, tooltip, flagIn);
-        Utils.addTooltip(tooltip, TOOLTIP_CLIMBING_PLANT);
     }
 
     @Override

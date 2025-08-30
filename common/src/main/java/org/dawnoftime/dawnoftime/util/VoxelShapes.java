@@ -26,7 +26,6 @@ public class VoxelShapes {
                     Block.box(2.0F, 3.0F, 0.0F, 14.0F, 9.0F, 16.0F)),
             Shapes.or(Block.box(2.0F, 0.0F, 4.0F, 14.0F, 3.0F, 12.0F),
                     Block.box(0.0F, 3.0F, 2.0F, 16.0F, 9.0F, 14.0F))};
-    public static final VoxelShape[] BUSH_SHAPES = new VoxelShape[]{Block.box(3.0D, 0.0D, 3.0D, 11.0D, 13.0D, 11.0D)};
     public static final VoxelShape[] CANDLESTICK_SHAPES = Utils.generateHorizontalShapes(
             new VoxelShape[]{Block.box(4.0D, 1.0D, 0.0D, 12.0D, 15.0D, 14.0D)},
             Block.box(5.0D, 0.0D, 5.0D, 11.0D, 15.0D, 11.0D));
@@ -36,21 +35,7 @@ public class VoxelShapes {
     public static final VoxelShape[] CHARRED_SPRUCE_FANCY_RAILING_SHAPES = makeCharredSpruceFancyRailingShapes();
     public static final VoxelShape[] CHARRED_SPRUCE_SHUTTERS_SHAPES = makeCharredSpruceShuttersShapes();
     public static final VoxelShape[] CHARRED_SPRUCE_TALL_SHUTTERS_SHAPES = makeCharredSpruceTallShuttersShapes();
-    public static final VoxelShape[] CYPRESS_SHAPES = new VoxelShape[]{
-            Block.box(6.0D, 0.0D, 6.0D, 10.0D, 16.0D, 10.0D),
-            Block.box(6.0D, 0.0D, 6.0D, 10.0D, 8.0D, 10.0D),
-            Block.box(4.0D, 0.0D, 4.0D, 12.0D, 16.0D, 12.0D),
-            Block.box(2.0D, 0.0D, 2.0D, 14.0D, 16.0D, 14.0D),
-            Block.box(2.0D, 0.0D, 2.0D, 14.0D, 16.0D, 14.0D),
-            Shapes.block()};
-    public static final VoxelShape[] DRYER_SHAPES = new VoxelShape[]{
-            Block.box(0.0D, 0.0D, 0.0D, 16.0D, 4.0D, 16.0D),
-            Block.box(0.0D, 0.0D, 0.0D, 16.0D, 12.0D, 16.0D),
-            Shapes.block()};
     public static final VoxelShape[] EDGE_SHAPES = makeEdgeShapes();
-    public static final VoxelShape[] FAUCET_SHAPES = Utils.generateHorizontalShapes(new VoxelShape[]{
-            Block.box(6, 10, 10, 10, 14, 16)
-    });
     public static final VoxelShape[] FEATHERED_SERPENT_SCULPTURE_SHAPES = Utils.generateHorizontalShapes(new VoxelShape[]{
             Block.box(4.0D, 4.0D, 0.0D, 12.0D, 12.0D, 14.0D)});
     public static final VoxelShape[] FIREPLACE_SHAPES = new VoxelShape[]{
@@ -60,7 +45,6 @@ public class VoxelShapes {
             Block.box(2.0D, 0.0D, 0.0D, 14.0D, 5.0D, 16.0D)};
     public static final VoxelShape[] FLOWER_POT_SHAPE = new VoxelShape[]{Block.box(5.0D, 0.0D, 5.0D, 11.0D, 6.0D, 11.0D)};
     public static final VoxelShape[] GREEN_SCULPTED_PLASTERED_STONE_FRIEZE_SHAPES = makeGreenSculptedPlasteredStoneFriezeShapes();
-    public static final VoxelShape[] GERANIUM_SHAPE = new VoxelShape[]{Block.box(-2.0D, -7.0D, -2.0D, 17.0D, 15.0D, 17.0D)};
     public static final VoxelShape[] IRON_COLUMN_SHAPES = makeIronColumnShapes();
     public static final VoxelShape[] IRON_FANCY_LANTERN_SHAPES = makeIronFancyLanternShapes();
     public static final VoxelShape[] IRON_FENCE_SHAPES = makeIronFenceShapes();
@@ -124,7 +108,6 @@ public class VoxelShapes {
 
     public static final VoxelShape[] SANDSTONE_CRENELATION_SHAPES = makeSandstoneCrenelationShapes();
     public static final VoxelShape[] SANDSTONE_SIDED_COLUMN_SHAPES = makeSandstoneSidedColumnShapes();
-    public static final VoxelShape[] SAPLING_SHAPES = new VoxelShape[]{Block.box(2.0D, 0.0D, 2.0D, 14.0D, 12.0D, 14.0D)};
     public static final VoxelShape[] SERPENT_SCULPTED_COLUMN_SHAPES = makeSerpentSculptedColumnShapes();
     public static final VoxelShape[] SIDED_WINDOW_SHAPES = Utils.generateHorizontalShapes(new VoxelShape[]{
             Block.box(0.0D, 0.0D, 10.0D, 16.0D, 16.0D, 16.0D)
@@ -142,9 +125,6 @@ public class VoxelShapes {
             Block.box(0.0D, 0.0D, 2.0D, 16.0D, 8.0D, 14.0D),
             Block.box(2.0D, 0.0D, 0.0D, 14.0D, 8.0D, 16.0D)};
 
-    public static final VoxelShape[] STICK_BUNDLE_SHAPES = new VoxelShape[]{
-            Block.box(4.0D, 0.0D, 4.0D, 12.0D, 16.0D, 12.0D),
-            Block.box(4.0D, 4.0D, 4.0D, 12.0D, 16.0D, 12.0D)};
     public static final VoxelShape[] STONE_BRICKS_ARROWSLIT_SHAPES = makeStoneBricksArrowslitShapes();
     public static final VoxelShape[] STONE_BRICKS_CHIMNEY_SHAPES = makeStoneBricksChimneyShapes();
     public static final VoxelShape[] STONE_BRICKS_MACHICOLATION_SHAPES = makeStoneBricksMachicolationShapes();
@@ -166,5 +146,4 @@ public class VoxelShapes {
             Block.box(0.0D, 0.0D, 0.0D, 16.0D, 8.0D, 16.0D),
             Block.box(6.0D, 8.0D, 6.0D, 10.0D, 16.0D, 10.0D)))};
     public static final VoxelShape[] WAXED_OAK_TABLE_SHAPES = makeWaxedOakTableShapes();
-    public static final VoxelShape[] WILD_PLANT_SHAPES = new VoxelShape[]{Block.box(2.0D, 0.0D, 2.0D, 14.0D, 14.0D, 14.0D)};
 }

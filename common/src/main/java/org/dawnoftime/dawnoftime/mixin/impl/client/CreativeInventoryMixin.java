@@ -88,13 +88,13 @@ public abstract class CreativeInventoryMixin extends EffectRenderingInventoryScr
             }
         }, CREATIVE_ICONS, 16, 56));
 
-        this.addRenderableWidget(this.dOTBuilder$discord = new SocialsButton(this.leftPos + 200, this.topPos, "discord", button -> dOTBuilder$openLink("https://discord.gg/cteCdn9Hnf")));
+        this.addRenderableWidget(this.dOTBuilder$discord = new SocialsButton(this.leftPos - 68, this.topPos - 10, "discord", button -> dOTBuilder$openLink("https://discord.gg/cteCdn9Hnf")));
         this.dOTBuilder$discord.setTooltip(Tooltip.create(Component.literal("Discord")));
-        this.addRenderableWidget(this.dOTBuilder$curse = new SocialsButton(this.leftPos + 200, this.topPos + 35, "curse", button -> dOTBuilder$openLink("https://www.curseforge.com/minecraft/mc-mods/dawn-of-time")));
+        this.addRenderableWidget(this.dOTBuilder$curse = new SocialsButton(this.leftPos - 68, this.topPos + 27, "curse", button -> dOTBuilder$openLink("https://www.curseforge.com/minecraft/mc-mods/dawn-of-time")));
         this.dOTBuilder$curse.setTooltip(Tooltip.create(Component.literal("Curse Forge")));
-        this.addRenderableWidget(this.dOTBuilder$patreon = new SocialsButton(this.leftPos + 200, this.topPos + 70, "patreon", button -> dOTBuilder$openLink("https://www.patreon.com/dawnoftimemod")));
+        this.addRenderableWidget(this.dOTBuilder$patreon = new SocialsButton(this.leftPos - 68, this.topPos + 64, "patreon", button -> dOTBuilder$openLink("https://www.patreon.com/dawnoftimemod")));
         this.dOTBuilder$patreon.setTooltip(Tooltip.create(Component.literal("Patreon")));
-        this.addRenderableWidget(this.dOTBuilder$github = new SocialsButton(this.leftPos + 200, this.topPos + 105, "github", button -> dOTBuilder$openLink("https://github.com/PierreChag/dawnoftimebuilder")));
+        this.addRenderableWidget(this.dOTBuilder$github = new SocialsButton(this.leftPos - 68, this.topPos + 101, "github", button -> dOTBuilder$openLink("https://github.com/PierreChag/dawnoftimebuilder")));
         this.dOTBuilder$github.setTooltip(Tooltip.create(Component.literal("Github")));
 
         for(int i = 0; i < 4; i++) {

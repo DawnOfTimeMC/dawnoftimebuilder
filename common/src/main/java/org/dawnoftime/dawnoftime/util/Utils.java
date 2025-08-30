@@ -4,11 +4,9 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.SectionPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
@@ -17,16 +15,9 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.alchemy.Potion;
 import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.chunk.ChunkAccess;
-import net.minecraft.world.level.storage.loot.LootParams;
-import net.minecraft.world.level.storage.loot.LootTable;
-import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
-import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.Shapes;
@@ -46,9 +37,7 @@ public class Utils {
             DoTBCommon.MOD_ID + ".hold_key").withStyle(ChatFormatting.GRAY).append(Component.translatable("tooltip." +
             DoTBCommon.MOD_ID + ".shift").withStyle(ChatFormatting.AQUA));
     public static final String TOOLTIP_COLUMN = "column";
-    public static final String TOOLTIP_CLIMBING_PLANT = "climbing_plant";
     public static final String TOOLTIP_BEAM = "beam";
-    public static final String TOOLTIP_CROP = "crop";
     public static final String TOOLTIP_FIREPLACE = "fireplace";
     public static final String TOOLTIP_ADD_COLUMN = "add_column";
 
@@ -93,51 +82,6 @@ public class Utils {
     public static boolean isShapeIncludedInShape(VoxelShape testedShape, VoxelShape faceShape, VoxelShape inShape) {
         VoxelShape shapeOnFace = Shapes.join(testedShape, faceShape, BooleanOp.AND);
         return !Shapes.joinIsNotEmpty(shapeOnFace, inShape, BooleanOp.ONLY_FIRST);
-    }
-
-    public static Rotation invertCounterClockWise(Rotation rot) {
-        return switch (rot) {
-            case NONE -> Rotation.NONE;
-            case CLOCKWISE_90 -> Rotation.COUNTERCLOCKWISE_90;
-            case CLOCKWISE_180 -> Rotation.CLOCKWISE_180;
-            case COUNTERCLOCKWISE_90 -> Rotation.CLOCKWISE_90;
-        };
-    }
-
-    /**
-     * @param serverWorld   World can be cast to ServerWorld.
-     * @param stateIn       Current state of the Block.
-     * @param itemStackHand ItemStack in player's hand, allow tools conditions.
-     * @param name          Used to define the name of the LootTable.
-     * @return the List of ItemStack found in the corresponding LootTable.
-     */
-    public static List<ItemStack> getLootList(final ServerLevel serverWorld, final BlockState stateIn, final ItemStack itemStackHand, final String name) {
-        final LootTable table = serverWorld.getServer().getLootData().getLootTable(new ResourceLocation(DoTBCommon.MOD_ID + ":blocks/" + name));
-        final LootParams.Builder builder = new LootParams.Builder(serverWorld).withParameter(LootContextParams.BLOCK_STATE, stateIn).withParameter(LootContextParams.TOOL, itemStackHand).withParameter(LootContextParams.ORIGIN, new Vec3(0, 0, 0));
-        final LootParams lootParams = builder.create(LootContextParamSets.BLOCK);
-        return table.getRandomItems(lootParams);
-    }
-
-    /**
-     * Drops each item in the List of ItemStack one by one.
-     *
-     * @param worldIn    World of the Block.
-     * @param pos        Position of the Block.
-     * @param drops      ItemStack list that will be dropped.
-     * @param multiplier Multiply the quantity of item (round down) per ItemStack (use 1.0F to keep the same number).
-     * @return True if some items are dropped, False otherwise.
-     */
-    public static boolean dropLootFromList(final LevelAccessor worldIn, final BlockPos pos, final List<ItemStack> drops, final float multiplier) {
-        if (drops.isEmpty() || !(worldIn instanceof Level)) {
-            return false;
-        }
-        for (final ItemStack drop : drops) {
-            final int quantity = (int) Math.floor(drop.getCount() * multiplier);
-            for (int i = 0; i < quantity; i++) {
-                Block.popResource((Level) worldIn, pos, new ItemStack(drop.getItem(), 1));
-            }
-        }
-        return true;
     }
 
     /**

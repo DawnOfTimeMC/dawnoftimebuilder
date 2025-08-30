@@ -26,10 +26,6 @@ public class FlowerPotBlockDoT extends BlockDoT implements IBlockSpecialDisplay 
         this.itemInPot = itemInPot;
     }
 
-    public void setItemInPot(@Nullable Item itemInPot) {
-        this.itemInPot = itemInPot;
-    }
-
     @Override
     public InteractionResult use(BlockState state, Level world, BlockPos pos, Player entity, InteractionHand hand, BlockHitResult ray) {
         if(this.itemInPot != null && !world.isClientSide()) {
@@ -39,10 +35,6 @@ public class FlowerPotBlockDoT extends BlockDoT implements IBlockSpecialDisplay 
             }
         }
         return super.use(state, world, pos, entity, hand, ray);
-    }
-
-    public BlockState getRandomState() {
-        return this.defaultBlockState();
     }
 
     @Override

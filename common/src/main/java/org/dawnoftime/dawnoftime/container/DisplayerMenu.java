@@ -42,7 +42,7 @@ public class DisplayerMenu extends AbstractContainerMenu {
 
 		for(int i = 0; i < 3; i++) {
 			for(int j = 0; j < 3; j++) {
-				this.addSlot(new Slot(this.blockEntity.itemHandler, j + i * 3, 19 + j * 18, 168 + i * 18));
+				this.addSlot(new Slot(this.blockEntity, j + i * 3, 19 + j * 18, 168 + i * 18));
 			}
 		}
 
@@ -68,26 +68,23 @@ public class DisplayerMenu extends AbstractContainerMenu {
 		super.broadcastChanges();
 		//Update light level
 		if(this.blockEntity.getLevel() != null && !this.blockEntity.getLevel().isClientSide()){
-				boolean lit = false;
-				for(int index = 0; index < this.blockEntity.itemHandler.getContainerSize(); index++) {
-					ItemStack itemstack = this.blockEntity.itemHandler.getItem(index);
-					if (!itemstack.isEmpty()) {
-						Item item = itemstack.getItem();
-						if (item instanceof BlockItem) {
-							Block block = ((BlockItem) item).getBlock();
-							if (block instanceof IBlockSpecialDisplay) {
-								lit = ((IBlockSpecialDisplay) block).emitsLight();
-							} else {
-								lit = block.getLightBlock(block.defaultBlockState(), this.blockEntity.getLevel(), this.blockEntity.getBlockPos()) > 0;
-							}
+			boolean lit = false;
+			for(int index = 0; index < this.blockEntity.getContainerSize(); index++) {
+				ItemStack itemstack = this.blockEntity.getItem(index);
+				if (!itemstack.isEmpty()) {
+					Item item = itemstack.getItem();
+					if (item instanceof BlockItem) {
+						Block block = ((BlockItem) item).getBlock();
+						if (block instanceof IBlockSpecialDisplay) {
+							lit = ((IBlockSpecialDisplay) block).emitsLight();
+						} else {
+							lit = block.getLightBlock(block.defaultBlockState(), this.blockEntity.getLevel(), this.blockEntity.getBlockPos()) > 0;
 						}
 					}
-					if (lit)
-						break;
 				}
-				if(this.blockEntity.getBlockState().getValue(LIT) != lit){
-					this.blockEntity.getLevel().setBlock(this.blockEntity.getBlockPos(), this.blockEntity.getBlockState().setValue(LIT, lit), 10);
-				}
+				if (lit)
+					break;
+			}
 		}
 	}
 

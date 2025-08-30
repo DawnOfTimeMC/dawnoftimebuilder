@@ -22,10 +22,6 @@ public class ItemDoTB extends Item {
         this(new Properties(), hasTooltip);
     }
 
-    public ItemDoTB(Properties properties) {
-        this(properties, false);
-    }
-
     public ItemDoTB(Properties properties, boolean hasTooltip) {
         super(properties);
         this.hasTooltip = hasTooltip;

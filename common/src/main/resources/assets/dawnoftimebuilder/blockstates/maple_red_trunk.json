@@ -1,8 +1,0 @@
-{
-    "variants": {
-        "facing=north": { "model": "dawnoftimebuilder:block/japanese/maple_red/maple_red_trunk"},
-        "facing=east": { "model": "dawnoftimebuilder:block/japanese/maple_red/maple_red_trunk", "y" : 90},
-        "facing=south": { "model": "dawnoftimebuilder:block/japanese/maple_red/maple_red_trunk", "y": 180 },
-        "facing=west": { "model": "dawnoftimebuilder:block/japanese/maple_red/maple_red_trunk", "y": 270 }
-    }
-}

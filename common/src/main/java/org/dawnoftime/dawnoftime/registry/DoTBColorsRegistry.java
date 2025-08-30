@@ -16,9 +16,6 @@ import java.util.*;
 import java.util.Map.Entry;
 import java.util.function.Supplier;
 
-/**
- * @author Seynax
- */
 public class DoTBColorsRegistry {
     private static final Map<BlockColor, List<Supplier<Block>>> BLOCKS_COLOR_REGISTRY = new HashMap<>();
     public static final BlockColor WATER_BLOCK_COLOR = DoTBColorsRegistry.register((blockStateIn, blockDisplayReaderIn, blockPosIn, tintIndexIn) -> BiomeColors.getAverageWaterColor(blockDisplayReaderIn, blockPosIn),

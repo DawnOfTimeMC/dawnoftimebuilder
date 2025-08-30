@@ -8,7 +8,6 @@ import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceCondition;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
-import org.dawnoftime.dawnoftime.DoTBConfig;
 import org.dawnoftime.dawnoftime.platform.Services;
 import org.dawnoftime.dawnoftime.registry.DoTBBlocksRegistry;
 import org.dawnoftime.dawnoftime.registry.DoTBItemsRegistry;
@@ -19,19 +18,10 @@ public final class DoTBFabricLootModifier {
     public static void modifyLootTables() {
         LootTableEvents.MODIFY.register((resourceManager, lootManager, id, tableBuilder, source) -> {
             switch (id.toString()) {
-                case LootTablesToModify.SHIPWRECK_TREASURE -> buildLootTable(DoTBItemsRegistry.INSTANCE.SILK.get(), 1.0f, tableBuilder);
-                case LootTablesToModify.VILLAGE_PLAINS_HOUSE -> buildLootTable(DoTBItemsRegistry.INSTANCE.GRAPE.get(), 0.5f, tableBuilder);
-                case LootTablesToModify.VILLAGE_SAVANNA_HOUSE -> buildLootTable(DoTBBlocksRegistry.INSTANCE.MAIZE.get().asItem(), 0.5f, tableBuilder);
                 case LootTablesToModify.VILLAGE_TAIGA_HOUSE -> {
-                    buildLootTable(DoTBBlocksRegistry.INSTANCE.RICE.get().asItem(), 0.5f, tableBuilder);
-                    buildLootTable(DoTBBlocksRegistry.INSTANCE.MULBERRY.get().asItem(), 0.5f, tableBuilder);
+                    buildLootTable(DoTBBlocksRegistry.INSTANCE.GRAY_ROOF_TILES.get().asItem(), 0.1f, tableBuilder);
                 }
                 case LootTablesToModify.SHIPWRECK_SUPPLY -> {
-                    buildLootTable(DoTBItemsRegistry.INSTANCE.GRAPE.get(),0.2f, tableBuilder);
-                    buildLootTable(DoTBBlocksRegistry.INSTANCE.MAIZE.get().asItem(), 0.2f, tableBuilder);
-                    buildLootTable(DoTBBlocksRegistry.INSTANCE.RICE.get().asItem(), 0.2f, tableBuilder);
-                    buildLootTable(DoTBBlocksRegistry.INSTANCE.MULBERRY.get().asItem(), 0.2f, tableBuilder);
-
                     buildLootTable(DoTBItemsRegistry.INSTANCE.CLAY_TILE_BLACK.get(), 0.1f, tableBuilder);
                     buildLootTable(DoTBItemsRegistry.INSTANCE.CLAY_TILE_BLUE.get(), 0.1f, tableBuilder);
                     buildLootTable(DoTBItemsRegistry.INSTANCE.CLAY_TILE_CYAN.get(), 0.1f, tableBuilder);

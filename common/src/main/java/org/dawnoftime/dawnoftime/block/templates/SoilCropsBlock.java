@@ -33,8 +33,6 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Random;
 
-import static org.dawnoftime.dawnoftime.util.Utils.TOOLTIP_CROP;
-
 public class SoilCropsBlock extends CropBlock implements IBlockGeneration {
     private final PlantType plantType;
 
@@ -200,12 +198,6 @@ public class SoilCropsBlock extends CropBlock implements IBlockGeneration {
 	protected ItemLike getBaseSeedId() {
 		return this.asItem();
 	}
-
-    @Override
-    public void appendHoverText(ItemStack stack, @Nullable BlockGetter worldIn, List<Component> tooltip, TooltipFlag flagIn) {
-        super.appendHoverText(stack, worldIn, tooltip, flagIn);
-        Utils.addTooltip(tooltip, TOOLTIP_CROP);
-    }
 
     @Override
     public boolean generateOnPos(WorldGenLevel world, BlockPos pos, BlockState state, RandomSource random) {

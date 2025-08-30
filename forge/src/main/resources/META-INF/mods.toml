@@ -24,12 +24,6 @@ versionRange = "${minecraft_version_range}"
 ordering = "NONE"
 side = "BOTH"
 [[dependencies.${mod_id}]]
-modId = "yet_another_config_lib_v3"
-mandatory = true
-versionRange = "[3.0.0,4.0.0)"
-ordering = "NONE"
-side = "BOTH"
-[[dependencies.${mod_id}]]
 modId = "fusion"
 mandatory = false
 versionRange = "[1.0.0,2.0.0)"
