@@ -1,4 +1,4 @@
-package org.dawnoftimebuilder.block.templates;
+package org.dawnoftime.dawnoftime.block.templates;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
@@ -9,9 +9,9 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import org.dawnoftimebuilder.block.general.FireplaceBlock;
-import org.dawnoftimebuilder.platform.Services;
-import org.dawnoftimebuilder.registry.DoTBBlocksRegistry;
+import org.dawnoftime.dawnoftime.block.general.FireplaceBlock;
+import org.dawnoftime.dawnoftime.platform.Services;
+import org.dawnoftime.dawnoftime.registry.DoTBBlocksRegistry;
 
 public class TeapotSpecialDisplayBlock extends SpecialDisplayBlock {
 
