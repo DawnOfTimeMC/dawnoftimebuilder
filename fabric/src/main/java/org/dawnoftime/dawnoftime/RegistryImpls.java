@@ -84,6 +84,14 @@ public class RegistryImpls {
         }
     }
 
+    public static class FabricItemsRegistry extends DoTBItemsRegistry {
+        @Override
+        public <T extends Item> Supplier<Item> register(String name, Supplier<T> itemSupplier) {
+            T item = Registry.register(BuiltInRegistries.ITEM, new ResourceLocation(DoTBCommon.MOD_ID, name), itemSupplier.get());
+            return () -> item;
+        }
+    }
+
     public static class FabricEntitiesRegistry extends DoTBEntitiesRegistry {
         @Override
         public <T extends Entity> Supplier<EntityType<T>> register(String name, Supplier<EntityType.Builder<T>> builder) {
@@ -161,12 +169,12 @@ public class RegistryImpls {
     public static void init() {
         DoTBEntitiesRegistry.INSTANCE = new FabricEntitiesRegistry();
         DoTBBlocksRegistry.INSTANCE = new FabricBlocksRegistry();
+        FabricItemsRegistry.INSTANCE = new FabricItemsRegistry();
         DoTBBlockEntitiesRegistry.INSTANCE = new FabricBlockEntitiesRegistry();
         DoTBMenuTypesRegistry.INSTANCE = new FabricMenuTypesRegistry();
         DoTBRecipeSerializersRegistry.INSTANCE = new FabricRecipeSerializersRegistry();
         DoTBRecipeTypesRegistry.INSTANCE = new FabricRecipeTypesRegistry();
         DoTBTags.INSTANCE = new FabricTagsRegistry();
         DoTBCreativeModeTabsRegistry.INSTANCE = new FabricCreativeModeTabsRegistry();
-
     }
 }

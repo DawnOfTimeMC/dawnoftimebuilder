@@ -73,9 +73,14 @@ public abstract class DisplayerBlock extends WaterloggedBlock implements EntityB
         if (!held.isEmpty()) {
             if (slotItem.isEmpty()) {
                 displayer.setItem(slot, held);
-            } else if (held.getItem() == slotItem.getItem() && held.getCount() < held.getMaxStackSize()) {
-                held.setCount(held.getCount() + 1);
-                displayer.setItem(slot, ItemStack.EMPTY);
+            } else if (held.getItem() == slotItem.getItem()){
+                if (held.getCount() < held.getMaxStackSize()) {
+                    held.setCount(held.getCount() + 1);
+                    displayer.setItem(slot, ItemStack.EMPTY);
+                }
+            } else if (held.getCount() == 1) {
+                player.setItemInHand(hand, slotItem);
+                displayer.setItem(slot, held);
             }
         } else if (!slotItem.isEmpty()) {
             player.setItemInHand(hand, slotItem);
