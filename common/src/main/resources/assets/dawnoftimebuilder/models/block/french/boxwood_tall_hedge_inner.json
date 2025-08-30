@@ -1,9 +1,0 @@
-{
-	"render_type": "minecraft:cutout",
-	"parent": "dawnoftimebuilder:block/general/plate_inner",
-	"textures": {
-		"side": "dawnoftimebuilder:block/boxwood_hedge",
-		"top": "dawnoftimebuilder:block/boxwood_hedge",
-		"frieze": "dawnoftimebuilder:block/boxwood_hedge"
-	}
-}

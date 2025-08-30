@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "#minecraft:trapdoors"
+    "dawnoftimebuilder:waxed_oak_trapdoor",
+    "dawnoftimebuilder:charred_spruce_trapdoor"
   ]
 }

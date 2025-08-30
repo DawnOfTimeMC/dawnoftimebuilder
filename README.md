@@ -7,4 +7,4 @@
 <img alt="Discord" src="https://img.shields.io/discord/303974483591692289?color=informational&label=discord&logo=discord&style=flat-square&logoColor=white&labelColor=0d1117">
 </a>
 
-**Dawn of Time** is a mod made for Minecraft architect lover as much as beginner as expert. Since this mod have been created by two Minecraft builder everything is balanced to improve and make your building experience perfect : clean inventory and well organized, a lot of different skin for one block, connectivity between blocks, 3D armors, etc…Our mod add nearly 300 new blocks to your game !
+**Dawn of Time** is a mod made for Minecraft architect lover as much as beginner as expert. Since this mod have been created by two Minecraft builder everything is balanced to improve and make your building experience perfect : clean inventory and well organized, a lot of different skin for one block, connectivity between blocks, etc… Our mod add nearly 350 new blocks to your game !

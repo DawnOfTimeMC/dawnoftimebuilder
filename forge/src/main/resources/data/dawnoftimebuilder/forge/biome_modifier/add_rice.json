@@ -1,9 +1,0 @@
-{
-  "type": "forge:add_features",
-  "biomes": [
-    "minecraft:swamp",
-    "minecraft:mangrove_swamp"
-  ],
-  "features": "dawnoftimebuilder:rice_placed",
-  "step": "vegetal_decoration"
-}

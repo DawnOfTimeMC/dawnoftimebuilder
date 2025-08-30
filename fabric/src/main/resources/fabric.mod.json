@@ -17,13 +17,10 @@
     "accessWidener": "${mod_id}.accesswidener",
     "entrypoints": {
         "main": [
-            "org.dawnoftimebuilder.DoTBFabric"
+            "org.dawnoftime.dawnoftime.DoTBFabric"
         ],
         "client": [
-            "org.dawnoftimebuilder.DoTBFabric"
-        ],
-        "modmenu": [
-            "org.dawnoftimebuilder.compat.ModMenuEntrypoint"
+            "org.dawnoftime.dawnoftime.DoTBFabric"
         ]
     },
     "mixins": [
@@ -32,7 +29,6 @@
     "depends": {
         "fabricloader": ">=0.14",
         "fabric": "*",
-        "yet_another_config_lib_v3": "*",
         "minecraft": "${minecraft_version}",
         "java": ">=17"
     },
