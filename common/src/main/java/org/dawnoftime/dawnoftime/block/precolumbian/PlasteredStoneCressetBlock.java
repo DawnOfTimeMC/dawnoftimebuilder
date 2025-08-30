@@ -19,21 +19,18 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
-import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.dawnoftime.dawnoftime.block.templates.WaterloggedBlock;
-import org.dawnoftime.dawnoftime.util.BlockStatePropertiesAA;
 import org.dawnoftime.dawnoftime.util.Utils;
 import org.jetbrains.annotations.NotNull;
 
 import static org.dawnoftime.dawnoftime.util.VoxelShapes.PLASTERED_STONE_CRESSET_SHAPES;
 
 public class PlasteredStoneCressetBlock extends WaterloggedBlock {
-    private static final IntegerProperty HEAT = BlockStatePropertiesAA.HEAT_0_4;
     private static final BooleanProperty LIT = BlockStateProperties.LIT;
 
     public PlasteredStoneCressetBlock(Properties properties) {
@@ -41,33 +38,20 @@ public class PlasteredStoneCressetBlock extends WaterloggedBlock {
             if(state.getValue(WATERLOGGED) || !state.getValue(LIT)) {
                 return 0;
             }
-            return (state.getValue(HEAT) == 4) ? 15 : state.getValue(HEAT) * 2;
+            return 15;
         }), PLASTERED_STONE_CRESSET_SHAPES);
-        this.registerDefaultState(this.defaultBlockState().setValue(LIT, false).setValue(HEAT, 0).setValue(WATERLOGGED, false));
+        this.registerDefaultState(this.defaultBlockState().setValue(LIT, false).setValue(WATERLOGGED, false));
     }
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         super.createBlockStateDefinition(builder);
-        builder.add(LIT, HEAT);
+        builder.add(LIT);
     }
 
     @Override
     public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
-        if(state.getValue(LIT)) {
-            worldIn.setBlock(pos, state.setValue(HEAT, 3), 10);
-            worldIn.playSound(null, pos, SoundEvents.FIRE_EXTINGUISH, SoundSource.BLOCKS, 1.0F, 1.0F);
-            return InteractionResult.SUCCESS;
-        } else {
-            if(state.getValue(WATERLOGGED))
-                return InteractionResult.PASS;
-
-            if(Utils.useLighter(worldIn, pos, player, handIn)) {
-                worldIn.setBlock(pos, state.setValue(LIT, true).setValue(HEAT, 4), 10);
-                return InteractionResult.SUCCESS;
-            }
-        }
-        return InteractionResult.PASS;
+        return Utils.changeBlockLitStateWithItemOrCreativePlayer(state, worldIn, pos, player, handIn) >= 0 ? InteractionResult.SUCCESS : InteractionResult.PASS;
     }
 
     @Override
@@ -76,7 +60,7 @@ public class PlasteredStoneCressetBlock extends WaterloggedBlock {
             AbstractArrow abstractarrowentity = (AbstractArrow) projectile;
             if(abstractarrowentity.isOnFire() && !state.getValue(LIT) && !state.getValue(WATERLOGGED)) {
                 BlockPos pos = hit.getBlockPos();
-                worldIn.setBlock(pos, state.setValue(LIT, true).setValue(HEAT, 4), 10);
+                worldIn.setBlock(pos, state.setValue(LIT, true), 10);
                 worldIn.playSound(null, pos, SoundEvents.FIRE_AMBIENT, SoundSource.BLOCKS, 1.0F, 1.0F);
             }
         }
@@ -85,10 +69,10 @@ public class PlasteredStoneCressetBlock extends WaterloggedBlock {
     @Override
     public boolean placeLiquid(LevelAccessor world, BlockPos pos, BlockState state, FluidState fluid) {
         if(!state.getValue(WATERLOGGED) && fluid.getType() == Fluids.WATER) {
-            if(state.getValue(LIT) || state.getValue(HEAT) > 0) {
+            if(state.getValue(LIT)) {
                 world.playSound(null, pos, SoundEvents.GENERIC_EXTINGUISH_FIRE, SoundSource.BLOCKS, 1.0F, 1.0F);
             }
-            world.setBlock(pos, state.setValue(WATERLOGGED, true).setValue(LIT, false).setValue(HEAT, 0), 10);
+            world.setBlock(pos, state.setValue(WATERLOGGED, true).setValue(LIT, false), 10);
             world.scheduleTick(pos, fluid.getType(), fluid.getType().getTickDelay(world));
             return true;
         } else {
@@ -97,26 +81,8 @@ public class PlasteredStoneCressetBlock extends WaterloggedBlock {
     }
 
     @Override
-    public boolean isRandomlyTicking(BlockState state) {
-        return state.getValue(LIT) && state.getValue(HEAT) < 4;
-    }
-
-    @Override
-    public void tick(BlockState state, ServerLevel worldIn, BlockPos pos, RandomSource rand) {
-        super.tick(state, worldIn, pos, rand);
-        int heat = state.getValue(HEAT);
-        if(state.getValue(LIT) && heat < 4) {
-            if(rand.nextInt(10) == 0) {
-                heat = Math.max(heat - 1, 0);
-                worldIn.setBlock(pos, state.setValue(HEAT, heat).setValue(LIT, heat > 0), 2);
-            }
-        }
-    }
-
-    @Override
     public void animateTick(BlockState stateIn, Level worldIn, BlockPos pos, RandomSource rand) {
-        int currentHeat = stateIn.getValue(HEAT);
-        if(currentHeat == 4) {
+        if(stateIn.getValue(LIT)) {
             if(rand.nextInt(10) == 0) {
                 worldIn.playLocalSound((float) pos.getX() + 0.5F, (float) pos.getY() + 0.5F, (float) pos.getZ() + 0.5F, SoundEvents.CAMPFIRE_CRACKLE, SoundSource.BLOCKS, 0.5F + rand.nextFloat(), rand.nextFloat() * 0.7F + 0.6F, false);
             }
@@ -126,10 +92,6 @@ public class PlasteredStoneCressetBlock extends WaterloggedBlock {
                 }
             }
             if(rand.nextInt(2) == 0) {
-                worldIn.addParticle(ParticleTypes.CAMPFIRE_COSY_SMOKE, (double) pos.getX() + 0.5D + rand.nextDouble() / 4.0D * (double) (rand.nextBoolean() ? 1 : -1), (double) pos.getY() + 0.8D, (double) pos.getZ() + 0.5D + rand.nextDouble() / 4.0D * (double) (rand.nextBoolean() ? 1 : -1), 0.0D, 0.07D, 0.0D);
-            }
-        } else if(currentHeat > 0) {
-            if(rand.nextInt((4 - currentHeat) * 2) == 0) {
                 worldIn.addParticle(ParticleTypes.CAMPFIRE_COSY_SMOKE, (double) pos.getX() + 0.5D + rand.nextDouble() / 4.0D * (double) (rand.nextBoolean() ? 1 : -1), (double) pos.getY() + 0.8D, (double) pos.getZ() + 0.5D + rand.nextDouble() / 4.0D * (double) (rand.nextBoolean() ? 1 : -1), 0.0D, 0.07D, 0.0D);
             }
         }
