@@ -6,6 +6,12 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import org.dawnoftime.dawnoftime.util.BlockStatePropertiesAA.VerticalLimitedConnection;
 
 public class VoxelShapesBuilder {
+    /**
+     * Generates all orientations based
+     * @param shapes Array of Shapes for the South rotation.
+     * @param nonRotatedShapes Additional shapes that will be added at the end of the rotated Shapes.
+     * @return A list of shapes ordered as following : South, West, North, East.
+     */
     public static VoxelShape[] generateHorizontalShapes(final VoxelShape[] shapes, VoxelShape... nonRotatedShapes) {
         final VoxelShape[] newShape = {Shapes.empty()};
         final VoxelShape[] newShapes = new VoxelShape[shapes.length * 4 + nonRotatedShapes.length];
@@ -33,6 +39,42 @@ public class VoxelShapesBuilder {
             i++;
         }
         return newShapes;
+    }
+
+    /**
+     * Generates all the possible combination of the voxel shape passed in parameter for all horizontal rotations.
+     * @param vsSouth : VoxelShape for the SOUTH Direction.
+     * @return Array of VoxelShapes, with index : [0 and 15 → S+W+N+E, 1 → S, 2 → W, 3 → S+W, 4 → N, 5 → S+N, 6 → W+N, 7 → S+W+N,
+     * 8 → E, 9 → S+E, 10 → W+E, 11 → S+W+E, 12 → N+E, 13 → S+N+E, 14 → W+N+E
+     */
+    public static VoxelShape[] generateFourSidesShapes(VoxelShape vsSouth) {
+        VoxelShape[] horizontalShapes = generateHorizontalShapes(new VoxelShape[]{vsSouth});
+        VoxelShape vsWest = horizontalShapes[1];
+        VoxelShape vsNorth = horizontalShapes[2];
+        VoxelShape vsEast = horizontalShapes[3];
+        VoxelShape vsSW = Shapes.or(vsSouth, vsWest);
+        VoxelShape vsWN = Shapes.or(vsWest,  vsNorth);
+        VoxelShape vsNE = Shapes.or(vsNorth, vsEast);
+        VoxelShape vsES = Shapes.or(vsEast,  vsSouth);
+        VoxelShape all  = Shapes.or(vsSW, vsNE);
+
+        return new VoxelShape[]{
+                all,                          // 0
+                vsSouth,                      // 1
+                vsWest,                       // 2
+                vsSW,                         // 3
+                vsNorth,                      // 4
+                Shapes.or(vsSouth, vsNorth),  // 5
+                vsWN,                         // 6
+                Shapes.or(vsSW, vsNorth),     // 7
+                vsEast,                       // 8
+                vsES,                         // 9
+                Shapes.or(vsWest, vsEast),    // 10
+                Shapes.or(vsSW, vsEast),      // 11
+                vsNE,                         // 12
+                Shapes.or(vsSouth, vsNE),     // 13
+                Shapes.or(vsWN, vsEast)       // 14
+        };
     }
 
     protected static VoxelShape[] makePlateShapes() {
@@ -82,19 +124,19 @@ public class VoxelShapesBuilder {
         final VoxelShape[] shapes = new VoxelShape[32];
         for (int i = 0; i < 32; i++) {
             VoxelShape temp = vsFloor;
-            if ((i & 1) == 0) { // Check first bit : 0 -> North true
+            if ((i & 1) == 0) { // Check first bit : 0 → North true
                 temp = Shapes.or(temp, vsNorth);
             }
-            if ((i >> 1 & 1) == 0) { // Check second bit : 0 -> East true
+            if ((i >> 1 & 1) == 0) { // Check second bit : 0 → East true
                 temp = Shapes.or(temp, vsEast);
             }
-            if ((i >> 2 & 1) == 0) { // Check third bit : 0 -> South true
+            if ((i >> 2 & 1) == 0) { // Check third bit : 0 → South true
                 temp = Shapes.or(temp, vsSouth);
             }
-            if ((i >> 3 & 1) == 0) { // Check fourth bit : 0 -> West true
+            if ((i >> 3 & 1) == 0) { // Check fourth bit : 0 → West true
                 temp = Shapes.or(temp, vsWest);
             }
-            if ((i >> 4 & 1) == 1) { // Check fifth bit : 1 -> Pillar true
+            if ((i >> 4 & 1) == 1) { // Check fifth bit : 1 → Pillar true
                 temp = Shapes.or(temp, vsPillar);
             }
             shapes[i] = temp;
@@ -113,22 +155,22 @@ public class VoxelShapesBuilder {
         final VoxelShape[] shapes = new VoxelShape[64];
         for (int i = 0; i < 64; i++) {
             VoxelShape temp = vsFloor;
-            if ((i & 1) == 0) { // Check first bit : 0 -> North true
+            if ((i & 1) == 0) { // Check first bit : 0 → North true
                 temp = Shapes.or(temp, vsNorth);
             }
-            if ((i >> 1 & 1) == 0) { // Check second bit : 0 -> East true
+            if ((i >> 1 & 1) == 0) { // Check second bit : 0 → East true
                 temp = Shapes.or(temp, vsEast);
             }
-            if ((i >> 2 & 1) == 0) { // Check third bit : 0 -> South true
+            if ((i >> 2 & 1) == 0) { // Check third bit : 0 → South true
                 temp = Shapes.or(temp, vsSouth);
             }
-            if ((i >> 3 & 1) == 0) { // Check fourth bit : 0 -> West true
+            if ((i >> 3 & 1) == 0) { // Check fourth bit : 0 → West true
                 temp = Shapes.or(temp, vsWest);
             }
-            if ((i >> 4 & 1) == 1) { // Check fifth bit : 1 -> Pillar true
+            if ((i >> 4 & 1) == 1) { // Check fifth bit : 1 → Pillar true
                 temp = Shapes.or(temp, vsPillar);
             }
-            if ((i >> 5 & 1) == 1) { // Check fifth bit : 1 -> Bottom true
+            if ((i >> 5 & 1) == 1) { // Check fifth bit : 1 → Bottom true
                 temp = Shapes.or(temp, vsBottom);
             }
             shapes[i] = temp;
@@ -146,19 +188,19 @@ public class VoxelShapesBuilder {
         final VoxelShape[] shapes = new VoxelShape[32];
         for (int i = 0; i < 32; i++) {
             VoxelShape temp = vsFloor;
-            if ((i & 1) == 0) { // Check first bit : 0 -> North true
+            if ((i & 1) == 0) { // Check first bit : 0 → North true
                 temp = Shapes.or(temp, vsNorth);
             }
-            if ((i >> 1 & 1) == 0) { // Check second bit : 0 -> East true
+            if ((i >> 1 & 1) == 0) { // Check second bit : 0 → East true
                 temp = Shapes.or(temp, vsEast);
             }
-            if ((i >> 2 & 1) == 0) { // Check third bit : 0 -> South true
+            if ((i >> 2 & 1) == 0) { // Check third bit : 0 → South true
                 temp = Shapes.or(temp, vsSouth);
             }
-            if ((i >> 3 & 1) == 0) { // Check fourth bit : 0 -> West true
+            if ((i >> 3 & 1) == 0) { // Check fourth bit : 0 → West true
                 temp = Shapes.or(temp, vsWest);
             }
-            if ((i >> 4 & 1) == 1) { // Check fifth bit : 1 -> Pillar true
+            if ((i >> 4 & 1) == 1) { // Check fifth bit : 1 → Pillar true
                 temp = Shapes.or(temp, vsPillar);
             }
             shapes[i] = temp;
@@ -474,34 +516,6 @@ public class VoxelShapesBuilder {
                 vsSouthWestCornerUp,
                 vsWestFlatUp,
                 Shapes.or(vsWestFlatUp, vsSouthFlatUp, vsSouthWestCornerUp),
-        };
-    }
-
-    protected static VoxelShape[] makeIvyShapes() {
-        VoxelShape vsSouth = Block.box(0.0D, 0.0D, 12.0D, 16.0D, 16.0D, 16.0D);
-        VoxelShape vsWest = Block.box(0.0D, 0.0D, 0.0D, 4.0D, 16.0D, 16.0D);
-        VoxelShape vsNorth = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 4.0D);
-        VoxelShape vsEast = Block.box(12.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D);
-        VoxelShape vsSouthWest = Shapes.or(vsSouth, vsWest);
-        VoxelShape vsNorthWest = Shapes.or(vsWest, vsNorth);
-        VoxelShape vsNorthEst = Shapes.or(vsNorth, vsEast);
-        VoxelShape vsSouthEst = Shapes.or(vsEast, vsSouth);
-        return new VoxelShape[]{
-                Shapes.or(vsSouthWest, vsNorthEst),
-                vsSouth,
-                vsWest,
-                vsSouthWest,
-                vsNorth,
-                Shapes.or(vsSouth, vsNorth),
-                vsNorthWest,
-                Shapes.or(vsSouthWest, vsNorth),
-                vsEast,
-                vsSouthEst,
-                Shapes.or(vsWest, vsEast),
-                Shapes.or(vsSouthWest, vsEast),
-                vsNorthEst,
-                Shapes.or(vsSouth, vsNorthEst),
-                Shapes.or(vsNorthWest, vsEast),
         };
     }
 
@@ -875,55 +889,6 @@ public class VoxelShapesBuilder {
                         Block.box(6.0D, 11.0D, 6.0D, 10.0D, 12.0D, 10.0D),
                         Block.box(5.0D, 2.0D, 5.0D, 11.0D, 11.0D, 11.0D),
                         Block.box(6.5D, 0.0D, 6.5D, 9.5D, 2.0D, 9.5D)));
-    }
-
-    /**
-     * Construit le tableau 15 entrées pour 4 côtés horizontaux.
-     * Ordre attendu des paramètres: SOUTH, WEST, NORTH, EAST.
-     * L’indexation correspond à:
-     *  0  -> S+W+N+E
-     *  1  -> S
-     *  2  -> W
-     *  3  -> S+W
-     *  4  -> N
-     *  5  -> S+N
-     *  6  -> W+N
-     *  7  -> S+W+N
-     *  8  -> E
-     *  9  -> S+E
-     *  10 -> W+E
-     *  11 -> S+W+E
-     *  12 -> N+E
-     *  13 -> S+N+E
-     *  14 -> W+N+E
-     * (15 sera mappé vers 0 côté bloc)
-     */
-    public static VoxelShape[] generateFourSidesShapes(
-            VoxelShape vsSouth, VoxelShape vsWest, VoxelShape vsNorth, VoxelShape vsEast) {
-
-        VoxelShape vsSW = Shapes.or(vsSouth, vsWest);
-        VoxelShape vsWN = Shapes.or(vsWest,  vsNorth);
-        VoxelShape vsNE = Shapes.or(vsNorth, vsEast);
-        VoxelShape vsES = Shapes.or(vsEast,  vsSouth);
-        VoxelShape all  = Shapes.or(vsSW, vsNE);
-
-        return new VoxelShape[]{
-                all,                          // 0
-                vsSouth,                      // 1
-                vsWest,                       // 2
-                vsSW,                         // 3
-                vsNorth,                      // 4
-                Shapes.or(vsSouth, vsNorth),  // 5
-                vsWN,                         // 6
-                Shapes.or(vsSW, vsNorth),     // 7
-                vsEast,                       // 8
-                vsES,                         // 9
-                Shapes.or(vsWest, vsEast),    // 10
-                Shapes.or(vsSW, vsEast),      // 11
-                vsNE,                         // 12
-                Shapes.or(vsSouth, vsNE),     // 13
-                Shapes.or(vsWN, vsEast)       // 14
-        };
     }
 
     /**

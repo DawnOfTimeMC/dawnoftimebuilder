@@ -4,19 +4,19 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.phys.shapes.CollisionContext;
-import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import org.dawnoftime.dawnoftime.util.BlockStatePropertiesAA;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 
+import static org.dawnoftime.dawnoftime.util.BlockStatePropertiesAA.HAS_PILLAR;
 import static org.dawnoftime.dawnoftime.util.VoxelShapes.SMALL_POOL_COLLISION_SHAPES;
 import static org.dawnoftime.dawnoftime.util.VoxelShapes.SMALL_POOL_SHAPES;
 
@@ -27,7 +27,7 @@ public class SmallPoolBlock extends PoolBlock {
     }
 
     @Override
-    protected void createBlockStateDefinition(final StateDefinition.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(final @NotNull StateDefinition.Builder<Block, BlockState> builder) {
         super.createBlockStateDefinition(builder);
         builder.add(BlockStateProperties.BOTTOM);
     }
@@ -47,7 +47,7 @@ public class SmallPoolBlock extends PoolBlock {
         if(state.getValue(BlockStateProperties.WEST)) {
             index += 8;
         }
-        if(state.getValue(BlockStatePropertiesAA.HAS_PILLAR)) {
+        if(state.getValue(HAS_PILLAR)) {
             index += 16;
         }
         if(state.getValue(BlockStateProperties.BOTTOM)) {
@@ -71,7 +71,7 @@ public class SmallPoolBlock extends PoolBlock {
         if(state.getValue(BlockStateProperties.WEST)) {
             index += 8;
         }
-        if(state.getValue(BlockStatePropertiesAA.HAS_PILLAR)) {
+        if(state.getValue(HAS_PILLAR)) {
             index += 16;
         }
         return SMALL_POOL_COLLISION_SHAPES[index];
@@ -81,12 +81,14 @@ public class SmallPoolBlock extends PoolBlock {
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
         BlockState state = super.getStateForPlacement(context);
-        BlockPos clickedPos = context.getClickedPos();
+        BlockPos belowPos = context.getClickedPos().below();
         if(state != null) {
-            if(context.getLevel().getBlockState(clickedPos).getBlock() instanceof PoolBlock) {
+            if(context.getLevel().getBlockState(belowPos).getBlock() instanceof PoolBlock) {
+                Level world = context.getLevel();
+                world.setBlock(belowPos, world.getBlockState(belowPos).setValue(HAS_PILLAR, true), 2);
                 return state;
             }
-            if(!canSupportCenter(context.getLevel(), context.getClickedPos().below(), Direction.UP)) {
+            if(!canSupportCenter(context.getLevel(), belowPos, Direction.UP)) {
                 return state.setValue(BlockStateProperties.BOTTOM, false);
             }
         }

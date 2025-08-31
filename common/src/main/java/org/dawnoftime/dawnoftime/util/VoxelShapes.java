@@ -48,26 +48,8 @@ public class VoxelShapes {
     public static final VoxelShape[] IRON_COLUMN_SHAPES = makeIronColumnShapes();
     public static final VoxelShape[] IRON_FANCY_LANTERN_SHAPES = makeIronFancyLanternShapes();
     public static final VoxelShape[] IRON_FENCE_SHAPES = makeIronFenceShapes();
-    public static final VoxelShape[] IVY_SHAPES = makeIvyShapes();
-    // ===== LATTICE =====
-    private static final VoxelShape L_SOUTH = Block.box(0.0D, 0.0D, 14.0D, 16.0D, 16.0D, 16.0D);
-    private static final VoxelShape L_WEST  = Block.box(0.0D, 0.0D,  0.0D,  2.0D, 16.0D, 16.0D);
-    private static final VoxelShape L_NORTH = Block.box(0.0D, 0.0D,  0.0D, 16.0D, 16.0D,  2.0D);
-    private static final VoxelShape L_EAST  = Block.box(14.0D,0.0D,  0.0D, 16.0D, 16.0D, 16.0D);
-
-    public static final VoxelShape[] LATTICE_FOUR_SIDES =
-            VoxelShapesBuilder.generateFourSidesShapes(L_SOUTH, L_WEST, L_NORTH, L_EAST);
-    // =================
-
-    // ===== FAUCET =====
-    private static final VoxelShape F_SOUTH = Block.box(6, 10, 10, 10, 14, 16);
-    private static final VoxelShape F_WEST  = Block.box(0, 10,  6,  6, 14, 10);
-    private static final VoxelShape F_NORTH = Block.box(6, 10,  0, 10, 14,  6);
-    private static final VoxelShape F_EAST  = Block.box(10,10,  6, 16, 14, 10);
-
-    public static final VoxelShape[] FAUCET_FOUR_SIDES =
-            VoxelShapesBuilder.generateFourSidesShapes(F_SOUTH, F_WEST, F_NORTH, F_EAST);
-    // =================
+    public static final VoxelShape[] LATTICE_FOUR_SIDES = VoxelShapesBuilder.generateFourSidesShapes(Block.box(0.0D, 0.0D, 14.0D, 16.0D, 16.0D, 16.0D));
+    public static final VoxelShape[] FAUCET_FOUR_SIDES = VoxelShapesBuilder.generateFourSidesShapes(Block.box(6, 10, 10, 10, 14, 16));
 
     // === WaterJet base boxes (from your old code) ===
     private static final VoxelShape J_UP   = Block.box(6, 10, 6, 10, 16, 10);
@@ -91,7 +73,6 @@ public class VoxelShapes {
                     J_NORTH_TOP, J_NORTH_BOTTOM, // NORTH
                     J_EAST_TOP,  J_EAST_BOTTOM   // EAST
             );
-    // =================
 
     public static final VoxelShape[] LIMESTONE_CHIMNEY_SHAPES = makeLimestoneChimneyShapes();
     public static final VoxelShape[] LIMESTONE_GARGOYLE_SHAPES = generateHorizontalShapes(new VoxelShape[]{
