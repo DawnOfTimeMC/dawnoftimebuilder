@@ -12,11 +12,10 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.phys.shapes.CollisionContext;
+import org.dawnoftime.dawnoftime.util.VoxelShapes;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
-
-import static org.dawnoftime.dawnoftime.util.VoxelShapes.LATTICE_SHAPES;
 
 public class LatticeBlock extends WaterloggedBlock {
     public static final BooleanProperty NORTH = BlockStateProperties.NORTH;
@@ -25,7 +24,7 @@ public class LatticeBlock extends WaterloggedBlock {
     public static final BooleanProperty WEST = BlockStateProperties.WEST;
 
     public LatticeBlock(Properties properties) {
-        super(properties, LATTICE_SHAPES);
+        super(properties, VoxelShapes.LATTICE_FOUR_SIDES);
         this.registerDefaultState(this.defaultBlockState().setValue(WATERLOGGED, false).setValue(NORTH, false).setValue(EAST, false).setValue(SOUTH, false).setValue(WEST, false));
     }
 

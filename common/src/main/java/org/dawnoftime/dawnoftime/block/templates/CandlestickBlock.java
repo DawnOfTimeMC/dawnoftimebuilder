@@ -31,7 +31,8 @@ public class CandlestickBlock extends CandleLampBlock implements IBlockSpecialDi
 
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
-        return this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
+        Direction facing = context.getClickedFace();
+        return super.getStateForPlacement(context).setValue(FACING, facing == Direction.UP ? Direction.DOWN : facing);
     }
 
     @Override
