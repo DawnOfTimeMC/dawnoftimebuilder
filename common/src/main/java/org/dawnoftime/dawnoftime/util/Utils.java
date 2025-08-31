@@ -41,35 +41,6 @@ public class Utils {
     public static final String TOOLTIP_FIREPLACE = "fireplace";
     public static final String TOOLTIP_ADD_COLUMN = "add_column";
 
-    public static VoxelShape[] generateHorizontalShapes(final VoxelShape[] shapes, VoxelShape... nonRotatedShapes) {
-        final VoxelShape[] newShape = {Shapes.empty()};
-        final VoxelShape[] newShapes = new VoxelShape[shapes.length * 4 + nonRotatedShapes.length];
-        int i = 0;
-        // First we copy the provided array at the start of the new one.
-        for (final VoxelShape shape : shapes) {
-            newShapes[i] = shape;
-            i++;
-        }
-        // Then rotate the provided array in each direction, and add it the new array.
-        for (int rotation = 1; rotation < 4; rotation++) {
-            int j = 0;
-            for (final VoxelShape shape : shapes) {
-                shape.forAllBoxes((minX, minY, minZ, maxX, maxY, maxZ) -> newShape[0] = Shapes.or(newShape[0], Shapes.box(1 - maxZ, minY, minX, 1 - minZ, maxY, maxX)));
-                shapes[j] = newShape[0];
-                newShapes[i] = newShape[0];
-                newShape[0] = Shapes.empty();
-                i++;
-                j++;
-            }
-        }
-        // Lastly, we add the non-rotated shapes at the end of the array.
-        for (final VoxelShape shape : nonRotatedShapes) {
-            newShapes[i] = shape;
-            i++;
-        }
-        return newShapes;
-    }
-
     /**
      * First, keeps only the part of the testedShape that is on the tested face of the block (within faceShape).
      * Then, compares this shapeOnFace to inShape : if the shapeOnFace has a part outside the inShape, return false.

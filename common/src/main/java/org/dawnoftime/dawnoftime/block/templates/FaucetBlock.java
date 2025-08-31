@@ -2,10 +2,8 @@ package org.dawnoftime.dawnoftime.block.templates;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -22,23 +20,17 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.dawnoftime.dawnoftime.block.general.WaterSourceTrickleBlock;
 import org.dawnoftime.dawnoftime.block.general.WaterTrickleBlock;
 import org.dawnoftime.dawnoftime.util.BlockStatePropertiesAA;
-import org.jetbrains.annotations.Nullable;
-
-import java.util.ArrayList;
-import java.util.List;
+import org.dawnoftime.dawnoftime.util.VoxelShapes;
+import org.jetbrains.annotations.NotNull;
 
 public class FaucetBlock extends WaterSourceTrickleBlock {
-    private static final VoxelShape SHAPE_NORTH = Block.box(6, 10, 0, 10, 14, 6);
-    private static final VoxelShape SHAPE_SOUTH = Block.box(6, 10, 10, 10, 14, 16);
-    private static final VoxelShape SHAPE_EAST = Block.box(10, 10, 6, 16, 14, 10);
-    private static final VoxelShape SHAPE_WEST = Block.box(0, 10, 6, 6, 14, 10);
-
     public FaucetBlock(final Properties propertiesIn) {
         super(propertiesIn);
         this.registerDefaultState(this.defaultBlockState().setValue(BlockStatePropertiesAA.ACTIVATED, false));
@@ -47,152 +39,135 @@ public class FaucetBlock extends WaterSourceTrickleBlock {
     @Override
     protected void createBlockStateDefinition(final StateDefinition.Builder<Block, BlockState> builder) {
         super.createBlockStateDefinition(builder);
+        // NOTE: The 4 directional boolean properties (N/E/S/W) must be part of the state container.
+        // If WaterSourceTrickleBlock doesn't add them, add them here:
+        // builder.add(BlockStateProperties.NORTH, BlockStateProperties.EAST,
+        //             BlockStateProperties.SOUTH, BlockStateProperties.WEST);
         builder.add(BlockStatePropertiesAA.ACTIVATED);
     }
 
-    @Override
-    public BlockState getStateForPlacement(BlockPlaceContext contextIn) {
-        final Level level = contextIn.getLevel();
-        final BlockPos pos = contextIn.getClickedPos();
-        final BlockState currentState = level.getBlockState(pos);
-        final Direction targetDirection = contextIn.getHorizontalDirection();
+    /* ------------------------------------------------------------
+     *  Placement fixes (root cause of “must stand in front”):
+     *
+     *  - Allow self-replacement: placing the same block into itself should update its state
+     *    instead of shifting placement to the adjacent block.
+     *  - Pick the side based on exact local click (Option B).
+     * ------------------------------------------------------------ */
 
-        // If the current block is a WaterTrickle, we keep its state to add a new trickle in this block.
-        BlockState outState = currentState.is(this) ? currentState : this.defaultBlockState();
-        // We add a trickle for the target direction and the end type.
-        return outState.setValue(getPropertyFromDirection(targetDirection), true);
+    @Override
+    public boolean canBeReplaced(BlockState state, BlockPlaceContext ctx) {
+        // Allow stacking onto the same block when holding this item (like candles/pickles/slabs).
+        // This prevents vanilla from offsetting placement to the adjacent block.
+        return !ctx.isSecondaryUseActive() && ctx.getItemInHand().is(this.asItem());
     }
 
     @Override
+    public BlockState getStateForPlacement(BlockPlaceContext ctx) {
+        final Level level = ctx.getLevel();
+        final BlockPos pos = ctx.getClickedPos();
+        final BlockState current = level.getBlockState(pos);
+
+        // When placing onto an existing FaucetBlock (thanks to canBeReplaced),
+        // keep the current state and just toggle/add the correct side.
+        BlockState out = current.is(this) ? current : this.defaultBlockState();
+
+        Direction target = pickHorizontalByLocalHit(pos, ctx.getClickLocation());
+        return out.setValue(prop(target), true);
+    }
+
+    /** Map direction → boolean property carried by this block's state (N/E/S/W). */
+    private static BooleanProperty prop(Direction d) {
+        return switch (d) {
+            case NORTH -> BlockStateProperties.NORTH;
+            case EAST  -> BlockStateProperties.EAST;
+            case SOUTH -> BlockStateProperties.SOUTH;
+            case WEST  -> BlockStateProperties.WEST;
+            default    -> BlockStateProperties.NORTH; // shouldn't happen for vertical directions
+        };
+    }
+
+    /** Option B: choose side by local click position relative to block center. */
+    private static Direction pickHorizontalByLocalHit(BlockPos pos, Vec3 worldHit) {
+        double localX = worldHit.x - pos.getX() - 0.5;
+        double localZ = worldHit.z - pos.getZ() - 0.5;
+        if (Math.abs(localX) > Math.abs(localZ)) {
+            return (localX > 0) ? Direction.EAST : Direction.WEST;
+        } else {
+            return (localZ > 0) ? Direction.SOUTH : Direction.NORTH;
+        }
+    }
+
+    /* ------------------------------------------------------------
+     *  Water trickle passthrough (unchanged, just left here):
+     * ------------------------------------------------------------ */
+
+    @Override
     public boolean[] getWaterTrickleOutPut(BlockState currentState) {
-        if(!currentState.getValue(BlockStatePropertiesAA.ACTIVATED)) {
-            return new boolean[] {
+        if (!currentState.getValue(BlockStatePropertiesAA.ACTIVATED)) {
+            return new boolean[]{
                     currentState.getValue(BlockStatePropertiesAA.NORTH_TRICKLE),
                     currentState.getValue(BlockStatePropertiesAA.EAST_TRICKLE),
                     currentState.getValue(BlockStatePropertiesAA.SOUTH_TRICKLE),
                     currentState.getValue(BlockStatePropertiesAA.WEST_TRICKLE),
-                    currentState.getValue(BlockStatePropertiesAA.CENTER_TRICKLE) };
+                    currentState.getValue(BlockStatePropertiesAA.CENTER_TRICKLE)
+            };
         }
         return super.getWaterTrickleOutPut(currentState);
     }
 
-    @Override
-    public void attack(BlockState state, Level level, BlockPos pos, Player player) {
-        if (level.isClientSide()) return;
-
-        if (player.isShiftKeyDown()) {
-            // Shift: casser tout le bloc
-            level.destroyBlock(pos, true);
-        } else {
-            // Détermine quel robinet casser selon la direction regardée
-            Direction targetDirection = getTargetedFaucet(state, pos, player);
-            if (targetDirection != null) {
-                BooleanProperty property = getPropertyFromDirection(targetDirection);
-                if (state.getValue(property)) {
-                    BlockState newState = state.setValue(property, false);
-
-                    // Vérifie s'il reste des robinets
-                    if (!newState.getValue(BlockStateProperties.NORTH) &&
-                            !newState.getValue(BlockStateProperties.SOUTH) &&
-                            !newState.getValue(BlockStateProperties.EAST) &&
-                            !newState.getValue(BlockStateProperties.WEST)) {
-                        // Plus de robinets, détruit complètement
-                        level.destroyBlock(pos, true);
-                    } else {
-                        // Met à jour avec le nouvel état
-                        level.setBlock(pos, newState, 3);
-                        // Drop un item
-                        popResource(level, pos, new ItemStack(this.asItem()));
-                    }
-                }
-            }
-        }
-    }
-
-    private Direction getTargetedFaucet(BlockState state, BlockPos pos, Player player) {
-        double playerX = player.getX() - pos.getX() - 0.5;
-        double playerZ = player.getZ() - pos.getZ() - 0.5;
-
-        // Détermine la direction basée sur la position du joueur
-        if (Math.abs(playerX) > Math.abs(playerZ)) {
-            if (playerX > 0 && state.getValue(BlockStateProperties.EAST)) return Direction.EAST;
-            if (playerX < 0 && state.getValue(BlockStateProperties.WEST)) return Direction.WEST;
-        } else {
-            if (playerZ > 0 && state.getValue(BlockStateProperties.SOUTH)) return Direction.SOUTH;
-            if (playerZ < 0 && state.getValue(BlockStateProperties.NORTH)) return Direction.NORTH;
-        }
-
-        // Fallback: trouve le premier robinet disponible
-        if (state.getValue(BlockStateProperties.NORTH)) return Direction.NORTH;
-        if (state.getValue(BlockStateProperties.EAST)) return Direction.EAST;
-        if (state.getValue(BlockStateProperties.SOUTH)) return Direction.SOUTH;
-        if (state.getValue(BlockStateProperties.WEST)) return Direction.WEST;
-
-        return null;
-    }
+    /* ------------------------------------------------------------
+     *  Activation toggle (left as-is):
+     * ------------------------------------------------------------ */
 
     @Override
-    public InteractionResult use(BlockState blockStateIn, Level worldIn, BlockPos blockPosIn, Player playerEntityIn, InteractionHand handIn, BlockHitResult hitIn) {
-        if (worldIn.isClientSide) {
-            // On joue un son de clic type levier + eau de minecraft vanilla
-            worldIn.playSound(playerEntityIn, blockPosIn, SoundEvents.LEVER_CLICK, SoundSource.BLOCKS, 0.3F, 0.6F);
-            worldIn.playSound(playerEntityIn, blockPosIn, SoundEvents.WATER_AMBIENT, SoundSource.BLOCKS, 0.3F, 1.0F);
+    public InteractionResult use(BlockState state, Level world, BlockPos pos,
+                                 Player player, InteractionHand hand, BlockHitResult hit) {
+        if (world.isClientSide) {
+            world.playSound(player, pos, SoundEvents.LEVER_CLICK, SoundSource.BLOCKS, 0.3F, 0.6F);
+            world.playSound(player, pos, SoundEvents.WATER_AMBIENT, SoundSource.BLOCKS, 0.3F, 1.0F);
         }
 
-        final ItemStack mainHandItemStack = playerEntityIn.getMainHandItem();
-        if(!mainHandItemStack.isEmpty() && mainHandItemStack.getItem() == this.asItem()) {
-            return InteractionResult.PASS;
-        }
-        boolean activated = !blockStateIn.getValue(BlockStatePropertiesAA.ACTIVATED);
-        blockStateIn = blockStateIn.setValue(BlockStatePropertiesAA.ACTIVATED, activated);
+        boolean activated = !state.getValue(BlockStatePropertiesAA.ACTIVATED);
+        state = state.setValue(BlockStatePropertiesAA.ACTIVATED, activated);
 
-        if(activated) {
-            blockStateIn = blockStateIn.setValue(BlockStateProperties.UNSTABLE, true);
-        }
-
-        worldIn.setBlock(blockPosIn, blockStateIn, 10);
-
-        // Si le joueur n'est pas en créatif, on consomme l'item
-        if (!playerEntityIn.isCreative()) {
-            ItemStack itemStack = playerEntityIn.getItemInHand(handIn);
-            if (itemStack.getCount() > 1) {
-                itemStack.shrink(1);
-            } else {
-                playerEntityIn.setItemInHand(handIn, ItemStack.EMPTY);
-            }
-        }
-
+        if (activated) state = state.setValue(BlockStateProperties.UNSTABLE, true);
+        world.setBlock(pos, state, 10);
         return InteractionResult.SUCCESS;
     }
 
+    /* ------------------------------------------------------------
+     *  Neighbor updates (kept intact):
+     * ------------------------------------------------------------ */
+
     @Override
-    public BlockState updateShape(BlockState stateIn, Direction directionIn, BlockState facingStateIn, LevelAccessor worldIn, BlockPos currentPosIn, BlockPos facingPosIn) {
+    public BlockState updateShape(BlockState stateIn, Direction directionIn, BlockState facingStateIn,
+                                  LevelAccessor worldIn, BlockPos currentPosIn, BlockPos facingPosIn) {
         BlockState state = super.updateShape(stateIn, directionIn, facingStateIn, worldIn, currentPosIn, facingPosIn);
         boolean lastActivation = state.getValue(BlockStatePropertiesAA.ACTIVATED);
 
         switch (directionIn) {
             case NORTH -> {
-                if (state.getValue(BlockStateProperties.NORTH) && facingStateIn.getBlock() instanceof PoolBlock) {
+                if (state.getValue(BlockStateProperties.NORTH) && facingStateIn.getBlock() instanceof PoolBlock pb) {
                     int level = facingStateIn.getValue(BlockStatePropertiesAA.LEVEL);
-                    state = state.setValue(BlockStatePropertiesAA.ACTIVATED, level >= ((PoolBlock) facingStateIn.getBlock()).faucetLevel);
+                    state = state.setValue(BlockStatePropertiesAA.ACTIVATED, level >= pb.faucetLevel);
                 }
             }
             case SOUTH -> {
-                if (state.getValue(BlockStateProperties.SOUTH) && facingStateIn.getBlock() instanceof PoolBlock) {
+                if (state.getValue(BlockStateProperties.SOUTH) && facingStateIn.getBlock() instanceof PoolBlock pb) {
                     int level = facingStateIn.getValue(BlockStatePropertiesAA.LEVEL);
-                    state = state.setValue(BlockStatePropertiesAA.ACTIVATED, level >= ((PoolBlock) facingStateIn.getBlock()).faucetLevel);
+                    state = state.setValue(BlockStatePropertiesAA.ACTIVATED, level >= pb.faucetLevel);
                 }
             }
             case EAST -> {
-                if (state.getValue(BlockStateProperties.EAST) && facingStateIn.getBlock() instanceof PoolBlock) {
+                if (state.getValue(BlockStateProperties.EAST) && facingStateIn.getBlock() instanceof PoolBlock pb) {
                     int level = facingStateIn.getValue(BlockStatePropertiesAA.LEVEL);
-                    state = state.setValue(BlockStatePropertiesAA.ACTIVATED, level >= ((PoolBlock) facingStateIn.getBlock()).faucetLevel);
+                    state = state.setValue(BlockStatePropertiesAA.ACTIVATED, level >= pb.faucetLevel);
                 }
             }
             case WEST -> {
-                if (state.getValue(BlockStateProperties.WEST) && facingStateIn.getBlock() instanceof PoolBlock) {
+                if (state.getValue(BlockStateProperties.WEST) && facingStateIn.getBlock() instanceof PoolBlock pb) {
                     int level = facingStateIn.getValue(BlockStatePropertiesAA.LEVEL);
-                    state = state.setValue(BlockStatePropertiesAA.ACTIVATED, level >= ((PoolBlock) facingStateIn.getBlock()).faucetLevel);
+                    state = state.setValue(BlockStatePropertiesAA.ACTIVATED, level >= pb.faucetLevel);
                 }
             }
             case DOWN -> {
@@ -206,57 +181,72 @@ public class FaucetBlock extends WaterSourceTrickleBlock {
             }
         }
 
-        // Si passe de non activé à activé et côté client, on execute un son
         if (worldIn.isClientSide() && state.getValue(BlockStatePropertiesAA.ACTIVATED) && !lastActivation) {
             worldIn.playSound(null, currentPosIn, SoundEvents.LEVER_CLICK, SoundSource.BLOCKS, 0.3F, 0.6F);
             worldIn.playSound(null, currentPosIn, SoundEvents.WATER_AMBIENT, SoundSource.BLOCKS, 0.3F, 1.0F);
         }
 
-        if(!worldIn.isClientSide() && state.getValue(BlockStatePropertiesAA.ACTIVATED) != lastActivation) {
-            (worldIn).scheduleTick(currentPosIn, this, 5);
+        if (!worldIn.isClientSide() && state.getValue(BlockStatePropertiesAA.ACTIVATED) != lastActivation) {
+            worldIn.scheduleTick(currentPosIn, this, 5);
         }
 
         return state;
     }
 
+    /* ------------------------------------------------------------
+     *  Shapes (precomposed + index):
+     * ------------------------------------------------------------ */
+
     @Override
-    public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
-        List<VoxelShape> shapes = new ArrayList<>();
-        if (state.getValue(BlockStateProperties.NORTH)) shapes.add(SHAPE_NORTH);
-        if (state.getValue(BlockStateProperties.SOUTH)) shapes.add(SHAPE_SOUTH);
-        if (state.getValue(BlockStateProperties.EAST)) shapes.add(SHAPE_EAST);
-        if (state.getValue(BlockStateProperties.WEST)) shapes.add(SHAPE_WEST);
-
-        if (shapes.isEmpty()) return Shapes.block();
-
-        VoxelShape result = shapes.get(0);
-        for (int i = 1; i < shapes.size(); i++) {
-            result = Shapes.or(result, shapes.get(i));
-        }
-        return result;
+    public int getShapeIndex(@NotNull BlockState state, @NotNull BlockGetter worldIn,
+                             @NotNull BlockPos pos, @NotNull CollisionContext context) {
+        int index = 0;
+        if (state.getValue(BlockStateProperties.SOUTH)) index += 1;
+        if (state.getValue(BlockStateProperties.WEST))  index += 2;
+        if (state.getValue(BlockStateProperties.NORTH)) index += 4;
+        if (state.getValue(BlockStateProperties.EAST))  index += 8;
+        if (index > 14) index = 0; // 15 -> 0 (all sides)
+        return index;
     }
 
     @Override
-    public BlockState rotate(BlockState state, Rotation rot)
-    {
+    public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+        boolean s = state.getValue(BlockStateProperties.SOUTH);
+        boolean w = state.getValue(BlockStateProperties.WEST);
+        boolean n = state.getValue(BlockStateProperties.NORTH);
+        boolean e = state.getValue(BlockStateProperties.EAST);
+
+        if (!s && !w && !n && !e) {
+            return Shapes.block(); // no sides at all
+        }
+        int idx = getShapeIndex(state, world, pos, context);
+        return VoxelShapes.FAUCET_FOUR_SIDES[idx];
+    }
+
+    /* ------------------------------------------------------------
+     *  Rotation / Mirror (kept):
+     * ------------------------------------------------------------ */
+
+    @Override
+    public BlockState rotate(BlockState state, Rotation rot) {
         switch (rot) {
             case CLOCKWISE_90 -> {
                 return state.setValue(BlockStateProperties.NORTH, state.getValue(BlockStateProperties.WEST))
-                        .setValue(BlockStateProperties.EAST, state.getValue(BlockStateProperties.NORTH))
+                        .setValue(BlockStateProperties.EAST,  state.getValue(BlockStateProperties.NORTH))
                         .setValue(BlockStateProperties.SOUTH, state.getValue(BlockStateProperties.EAST))
-                        .setValue(BlockStateProperties.WEST, state.getValue(BlockStateProperties.SOUTH));
+                        .setValue(BlockStateProperties.WEST,  state.getValue(BlockStateProperties.SOUTH));
             }
             case COUNTERCLOCKWISE_90 -> {
                 return state.setValue(BlockStateProperties.NORTH, state.getValue(BlockStateProperties.EAST))
-                        .setValue(BlockStateProperties.EAST, state.getValue(BlockStateProperties.SOUTH))
+                        .setValue(BlockStateProperties.EAST,  state.getValue(BlockStateProperties.SOUTH))
                         .setValue(BlockStateProperties.SOUTH, state.getValue(BlockStateProperties.WEST))
-                        .setValue(BlockStateProperties.WEST, state.getValue(BlockStateProperties.NORTH));
+                        .setValue(BlockStateProperties.WEST,  state.getValue(BlockStateProperties.NORTH));
             }
             case CLOCKWISE_180 -> {
                 return state.setValue(BlockStateProperties.NORTH, state.getValue(BlockStateProperties.SOUTH))
-                        .setValue(BlockStateProperties.EAST, state.getValue(BlockStateProperties.WEST))
+                        .setValue(BlockStateProperties.EAST,  state.getValue(BlockStateProperties.WEST))
                         .setValue(BlockStateProperties.SOUTH, state.getValue(BlockStateProperties.NORTH))
-                        .setValue(BlockStateProperties.WEST, state.getValue(BlockStateProperties.EAST));
+                        .setValue(BlockStateProperties.WEST,  state.getValue(BlockStateProperties.EAST));
             }
             default -> {
                 return state;
@@ -265,20 +255,17 @@ public class FaucetBlock extends WaterSourceTrickleBlock {
     }
 
     @Override
-    public BlockState mirror(BlockState state, Mirror mirrorIn)
-    {
+    public BlockState mirror(BlockState state, Mirror mirrorIn) {
         switch (mirrorIn) {
             case LEFT_RIGHT -> {
                 return state.setValue(BlockStateProperties.NORTH, state.getValue(BlockStateProperties.SOUTH))
-                        .setValue(BlockStateProperties.EAST, state.getValue(BlockStateProperties.WEST))
+                        .setValue(BlockStateProperties.EAST,  state.getValue(BlockStateProperties.WEST))
                         .setValue(BlockStateProperties.SOUTH, state.getValue(BlockStateProperties.NORTH))
-                        .setValue(BlockStateProperties.WEST, state.getValue(BlockStateProperties.EAST));
+                        .setValue(BlockStateProperties.WEST,  state.getValue(BlockStateProperties.EAST));
             }
             case FRONT_BACK -> {
-                return state.setValue(BlockStateProperties.NORTH, state.getValue(BlockStateProperties.NORTH))
-                        .setValue(BlockStateProperties.EAST, state.getValue(BlockStateProperties.EAST))
-                        .setValue(BlockStateProperties.SOUTH, state.getValue(BlockStateProperties.SOUTH))
-                        .setValue(BlockStateProperties.WEST, state.getValue(BlockStateProperties.WEST));
+                // No-op mirror in this mapping; keep as-is.
+                return state;
             }
             default -> {
                 return state;

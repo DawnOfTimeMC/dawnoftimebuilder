@@ -26,7 +26,7 @@ public class VoxelShapes {
                     Block.box(2.0F, 3.0F, 0.0F, 14.0F, 9.0F, 16.0F)),
             Shapes.or(Block.box(2.0F, 0.0F, 4.0F, 14.0F, 3.0F, 12.0F),
                     Block.box(0.0F, 3.0F, 2.0F, 16.0F, 9.0F, 14.0F))};
-    public static final VoxelShape[] CANDLESTICK_SHAPES = Utils.generateHorizontalShapes(
+    public static final VoxelShape[] CANDLESTICK_SHAPES = generateHorizontalShapes(
             new VoxelShape[]{Block.box(4.0D, 1.0D, 0.0D, 12.0D, 15.0D, 14.0D)},
             Block.box(5.0D, 0.0D, 5.0D, 11.0D, 15.0D, 11.0D));
     public static final VoxelShape[] CARPET_SHAPES = new VoxelShape[]{Block.box(0.0D, 0.0D, 0.0D, 16.0D, 1.0D, 16.0D)};
@@ -36,7 +36,7 @@ public class VoxelShapes {
     public static final VoxelShape[] CHARRED_SPRUCE_SHUTTERS_SHAPES = makeCharredSpruceShuttersShapes();
     public static final VoxelShape[] CHARRED_SPRUCE_TALL_SHUTTERS_SHAPES = makeCharredSpruceTallShuttersShapes();
     public static final VoxelShape[] EDGE_SHAPES = makeEdgeShapes();
-    public static final VoxelShape[] FEATHERED_SERPENT_SCULPTURE_SHAPES = Utils.generateHorizontalShapes(new VoxelShape[]{
+    public static final VoxelShape[] FEATHERED_SERPENT_SCULPTURE_SHAPES = generateHorizontalShapes(new VoxelShape[]{
             Block.box(4.0D, 4.0D, 0.0D, 12.0D, 12.0D, 14.0D)});
     public static final VoxelShape[] FIREPLACE_SHAPES = new VoxelShape[]{
             Block.box(0.0D, 0.0D, 2.0D, 16.0D, 14.0D, 14.0D),
@@ -49,9 +49,52 @@ public class VoxelShapes {
     public static final VoxelShape[] IRON_FANCY_LANTERN_SHAPES = makeIronFancyLanternShapes();
     public static final VoxelShape[] IRON_FENCE_SHAPES = makeIronFenceShapes();
     public static final VoxelShape[] IVY_SHAPES = makeIvyShapes();
-    public static final VoxelShape[] LATTICE_SHAPES = makeLatticeShapes();
+    // ===== LATTICE =====
+    private static final VoxelShape L_SOUTH = Block.box(0.0D, 0.0D, 14.0D, 16.0D, 16.0D, 16.0D);
+    private static final VoxelShape L_WEST  = Block.box(0.0D, 0.0D,  0.0D,  2.0D, 16.0D, 16.0D);
+    private static final VoxelShape L_NORTH = Block.box(0.0D, 0.0D,  0.0D, 16.0D, 16.0D,  2.0D);
+    private static final VoxelShape L_EAST  = Block.box(14.0D,0.0D,  0.0D, 16.0D, 16.0D, 16.0D);
+
+    public static final VoxelShape[] LATTICE_FOUR_SIDES =
+            VoxelShapesBuilder.generateFourSidesShapes(L_SOUTH, L_WEST, L_NORTH, L_EAST);
+    // =================
+
+    // ===== FAUCET =====
+    private static final VoxelShape F_SOUTH = Block.box(6, 10, 10, 10, 14, 16);
+    private static final VoxelShape F_WEST  = Block.box(0, 10,  6,  6, 14, 10);
+    private static final VoxelShape F_NORTH = Block.box(6, 10,  0, 10, 14,  6);
+    private static final VoxelShape F_EAST  = Block.box(10,10,  6, 16, 14, 10);
+
+    public static final VoxelShape[] FAUCET_FOUR_SIDES =
+            VoxelShapesBuilder.generateFourSidesShapes(F_SOUTH, F_WEST, F_NORTH, F_EAST);
+    // =================
+
+    // === WaterJet base boxes (from your old code) ===
+    private static final VoxelShape J_UP   = Block.box(6, 10, 6, 10, 16, 10);
+    private static final VoxelShape J_DOWN = Block.box(6,  0, 6, 10,  6, 10);
+
+    private static final VoxelShape J_NORTH_TOP    = Block.box(6, 10, 0, 10, 14, 6);
+    private static final VoxelShape J_NORTH_BOTTOM = Block.box(6,  2, 0, 10,  6, 6);
+    private static final VoxelShape J_SOUTH_TOP    = Block.box(6, 10, 10, 10, 14, 16);
+    private static final VoxelShape J_SOUTH_BOTTOM = Block.box(6,  2, 10, 10,  6, 16);
+    private static final VoxelShape J_EAST_TOP     = Block.box(10, 10, 6, 16, 14, 10);
+    private static final VoxelShape J_EAST_BOTTOM  = Block.box(10,  2, 6, 16,  6, 10);
+    private static final VoxelShape J_WEST_TOP     = Block.box(0,  10, 6,  6, 14, 10);
+    private static final VoxelShape J_WEST_BOTTOM  = Block.box(0,   2, 6,  6,  6, 10);
+
+    /** All 324 precomposed WaterJet shapes. */
+    public static final VoxelShape[] WATERJET_SHAPES =
+            VoxelShapesBuilder.generateWaterJetShapes(
+                    J_UP, J_DOWN,
+                    J_SOUTH_TOP, J_SOUTH_BOTTOM, // SOUTH
+                    J_WEST_TOP,  J_WEST_BOTTOM,  // WEST
+                    J_NORTH_TOP, J_NORTH_BOTTOM, // NORTH
+                    J_EAST_TOP,  J_EAST_BOTTOM   // EAST
+            );
+    // =================
+
     public static final VoxelShape[] LIMESTONE_CHIMNEY_SHAPES = makeLimestoneChimneyShapes();
-    public static final VoxelShape[] LIMESTONE_GARGOYLE_SHAPES = Utils.generateHorizontalShapes(new VoxelShape[]{
+    public static final VoxelShape[] LIMESTONE_GARGOYLE_SHAPES = generateHorizontalShapes(new VoxelShape[]{
             Block.box(4.0D, 7.0D, 0.0D, 12.0D, 14.0D, 16.0D)
     });
     public static final VoxelShape[] LIMESTONE_SIDED_COLUMN_SHAPES = makeLimestoneSidedColumnShapes();
@@ -75,7 +118,7 @@ public class VoxelShapes {
     public static final VoxelShape[] PERGOLA_SHAPES = makePergolaShapes();
     public static final VoxelShape[] PLASTERED_STONE_COLUMN_SHAPES = makePlasteredStoneColumnShapes();
     public static final VoxelShape[] PLASTERED_STONE_CRESSET_SHAPES = new VoxelShape[]{Block.box(3.0D, 0.0D, 3.0D, 13.0D, 14.0D, 13.0D)};
-    public static final VoxelShape[] PLANTER_SHAPES = Utils.generateHorizontalShapes(new VoxelShape[]{
+    public static final VoxelShape[] PLANTER_SHAPES = generateHorizontalShapes(new VoxelShape[]{
             Block.box(0.0D, 0.0D, 8.0D, 16.0D, 8.0D, 16.0D),
             Block.box(0.0D, 8.0D, 8.0D, 16.0D, 16.0D, 16.0D)});
     public static final VoxelShape[] PLASTERED_STONE_WINDOW_SHAPES = new VoxelShape[]{
@@ -90,7 +133,7 @@ public class VoxelShapes {
     public static final VoxelShape[] RED_SCULPTED_PLASTERED_STONE_FRIEZE_SHAPES = makeRedSculptedPlasteredStoneFriezeShapes();
     public static final VoxelShape[] REINFORCED_IRON_FENCE_SHAPES = makeReinforcedIronFenceShapes();
     public static final VoxelShape[] RELIEF_SHAPES = makeReliefShapes();
-    public static final VoxelShape[] ROMAN_COUCH_SHAPES = Utils.generateHorizontalShapes(new VoxelShape[]{Shapes.or(
+    public static final VoxelShape[] ROMAN_COUCH_SHAPES = generateHorizontalShapes(new VoxelShape[]{Shapes.or(
             Block.box(1.0D, 0.0D, 2.0D, 15.0D, 8.0D, 6.0D),
             Block.box(0.0D, 8.0D, 0.0D, 16.0D, 13.0D, 16.0D),
             Block.box(0.0D, 13.0D, 0.0D, 16.0D, 19.0D, 8.0D))});
@@ -109,7 +152,7 @@ public class VoxelShapes {
     public static final VoxelShape[] SANDSTONE_CRENELATION_SHAPES = makeSandstoneCrenelationShapes();
     public static final VoxelShape[] SANDSTONE_SIDED_COLUMN_SHAPES = makeSandstoneSidedColumnShapes();
     public static final VoxelShape[] SERPENT_SCULPTED_COLUMN_SHAPES = makeSerpentSculptedColumnShapes();
-    public static final VoxelShape[] SIDED_WINDOW_SHAPES = Utils.generateHorizontalShapes(new VoxelShape[]{
+    public static final VoxelShape[] SIDED_WINDOW_SHAPES = generateHorizontalShapes(new VoxelShape[]{
             Block.box(0.0D, 0.0D, 10.0D, 16.0D, 16.0D, 16.0D)
     });
     public static final VoxelShape[] SMALL_POOL_COLLISION_SHAPES = makeSmallPoolCollisionShapes();
@@ -117,7 +160,7 @@ public class VoxelShapes {
     public static final VoxelShape[] SMALL_TATAMI_FLOOR_SHAPES = new VoxelShape[]{Block.box(0.0D, 0.0D, 0.0D, 16.0D, 17.0D, 16.0D)};
     public static final VoxelShape[] SMALL_SHUTTER_SHAPES = makeSmallShutterShapes();
     public static final VoxelShape[] SMALL_TATAMI_MAT_SHAPES = makeSmallTatamiMatShapes();
-    public static final VoxelShape[] SPRUCE_LEGLESS_CHAIR_SHAPES = Utils.generateHorizontalShapes(new VoxelShape[]{
+    public static final VoxelShape[] SPRUCE_LEGLESS_CHAIR_SHAPES = generateHorizontalShapes(new VoxelShape[]{
             Shapes.or(
                     Block.box(2.0D, 0.0D, 0.0D, 14.0D, 3.0D, 16.0D),
                     Block.box(2.0D, 3.0D, 0.0D, 14.0D, 11.0D, 4.0D))});
@@ -132,7 +175,7 @@ public class VoxelShapes {
     public static final VoxelShape[] SUPPORT_BEAM_SHAPES = makeSupportBeamShapes();
     public static final VoxelShape[] SUPPORT_SLAB_SHAPES = makeSupportSlabShapes();
     public static final VoxelShape[] TATAMI_FLOOR_SHAPES = new VoxelShape[]{Block.box(0.0D, 0.0D, 0.0D, 16.0D, 17.0D, 16.0D)};
-    public static final VoxelShape[] TATAMI_MAT_SHAPES = Utils.generateHorizontalShapes(
+    public static final VoxelShape[] TATAMI_MAT_SHAPES = generateHorizontalShapes(
             new VoxelShape[]{
                     Block.box(0.0D, 0.0D, 8.5D, 16.0D, 7.0D, 15.5D),
                     Block.box(0.0D, 0.0D, 0.5D, 16.0D, 7.0D, 15.5D),
