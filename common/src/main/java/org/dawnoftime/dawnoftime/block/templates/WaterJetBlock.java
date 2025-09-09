@@ -85,7 +85,7 @@ public class WaterJetBlock extends BlockDoT {
         return localY <= 0.5D ? VerticalLimitedConnection.BOTTOM : VerticalLimitedConnection.TOP;
     }
 
-    /** Apply one connection on the clicked face with its vertical detail (no more “opposite” mapping). */
+    /** Apply one connection on the clicked face with its vertical detail (no more 'opposite' mapping). */
     private static BlockState addConnection(BlockState state, Direction face, VerticalLimitedConnection vertical) {
         return switch (face) {
             case DOWN  -> state.setValue(BlockStateProperties.UP, true);  // place on the bottom of this cube
@@ -123,7 +123,7 @@ public class WaterJetBlock extends BlockDoT {
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
         // Encode order is SOUTH, WEST, NORTH, EAST.
-        // Because addConnection() stores “opposite”, we READ the opposite properties:
+        // Because addConnection() stores 'opposite', we READ the opposite properties:
         //  SOUTH -> NORTH_STATE
         //  WEST  -> EAST_STATE
         //  NORTH -> SOUTH_STATE

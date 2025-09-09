@@ -389,6 +389,7 @@ public abstract class DoTBBlocksRegistry {
     public final Supplier<Block> MARBLE_FANCY_FENCE = register("marble_fancy_fence", () -> new PlateBlock(Block.Properties.copy(Blocks.STONE).strength(3.0F, 5.0F).noOcclusion(), THIN_PLATE_SHAPES));
     public final Supplier<Block> MARBLE_COLUMN = register("marble_column", () -> new MarbleColumnBlock(Block.Properties.copy(Blocks.STONE)));
     public final Supplier<Block> MARBLE_SIDED_COLUMN = register("marble_sided_column", () -> new ConnectedVerticalSidedBlock(Block.Properties.copy(Blocks.STONE), MARBLE_SIDED_COLUMN_SHAPES));
+    public final Supplier<Block> MARBLE = register("marble", () -> new BlockDoT(Block.Properties.copy(Blocks.STONE)));
     public final Supplier<Block> MARBLE_COFFER = register("marble_coffer", () -> new BlockDoT(Block.Properties.copy(Blocks.STONE)));
     public final Supplier<Block> MARBLE_COFFER_SLAB = register("marble_coffer_slab", () -> new SlabBlockDoT(Block.Properties.copy(Blocks.STONE)));
 

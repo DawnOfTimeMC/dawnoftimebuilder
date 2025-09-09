@@ -891,13 +891,6 @@ public class VoxelShapesBuilder {
                         Block.box(6.5D, 0.0D, 6.5D, 9.5D, 2.0D, 9.5D)));
     }
 
-    /**
-     * Build the 324 precomposed shapes.
-     * Indexing scheme:
-     *   idx = (up?1:0) + ((down?1:0) << 1) + 4 * T
-     *   where T in [0..80] is a base-3 number of four "trits" for SOUTH, WEST, NORTH, EAST:
-     *      0=NONE, 1=TOP, 2=BOTTOM
-     */
     public static VoxelShape[] generateWaterJetShapes(
             VoxelShape centerUp, VoxelShape centerDown,
             VoxelShape southTop, VoxelShape southBottom,

@@ -47,7 +47,7 @@ public class FaucetBlock extends WaterSourceTrickleBlock {
     }
 
     /* ------------------------------------------------------------
-     *  Placement fixes (root cause of “must stand in front”):
+     *  Placement fixes (root cause of 'must stand in front'):
      *
      *  - Allow self-replacement: placing the same block into itself should update its state
      *    instead of shifting placement to the adjacent block.
