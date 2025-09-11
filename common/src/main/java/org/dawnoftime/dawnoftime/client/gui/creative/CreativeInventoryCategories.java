@@ -467,6 +467,8 @@ public enum CreativeInventoryCategories {
             DoTBBlocksRegistry.INSTANCE.CHISELED_PLASTERED_STONE.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.CHISELED_PLASTERED_STONE_FRIEZE.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.ORNAMENTED_CHISELED_PLASTERED_STONE.get().asItem(),
+            DoTBBlocksRegistry.INSTANCE.GREEN_PLASTERED_STONE.get().asItem(),
+            DoTBBlocksRegistry.INSTANCE.BLUE_PLASTERED_STONE.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.RED_CHISELED_PLASTERED_STONE.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.RED_ORNAMENTED_CHISELED_PLASTERED_STONE.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.RED_PLASTERED_STONE_FRIEZE.get().asItem(),

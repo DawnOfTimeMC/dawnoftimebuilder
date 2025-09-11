@@ -342,6 +342,7 @@ public abstract class DoTBBlocksRegistry {
     public final Supplier<Block> RED_SMALL_PLASTERED_STONE_FRIEZE = register("red_small_plastered_stone_frieze", () -> new EdgeBlock(Block.Properties.copy(Blocks.STONE_BRICKS)));
     public final Supplier<Block> RED_ORNAMENTED_PLASTERED_STONE_FRIEZE = register("red_ornamented_plastered_stone_frieze", () -> new PlateBlock(Block.Properties.copy(Blocks.STONE_BRICKS).noOcclusion()));
     public final Supplier<Block> RED_SCULPTED_PLASTERED_STONE_FRIEZE = register("red_sculpted_plastered_stone_frieze", () -> new PlateBlock(Block.Properties.copy(Blocks.STONE_BRICKS), RED_SCULPTED_PLASTERED_STONE_FRIEZE_SHAPES));
+    public final Supplier<Block> GREEN_PLASTERED_STONE = register("green_plastered_stone", () -> new BlockDoT(Block.Properties.copy(Blocks.STONE_BRICKS)));
     public final Supplier<Block> GREEN_CHISELED_PLASTERED_STONE = register("green_chiseled_plastered_stone", () -> new BlockDoT(Block.Properties.copy(Blocks.STONE_BRICKS)));
     public final Supplier<Block> GREEN_ORNAMENTED_CHISELED_PLASTERED_STONE = register("green_ornamented_chiseled_plastered_stone", () -> new BlockDoT(Block.Properties.copy(Blocks.STONE_BRICKS)));
     public final Supplier<Block> GREEN_ORNAMENTED_PLASTERED_STONE_FRIEZE = register("green_ornamented_plastered_stone_frieze", () -> new PlateBlock(Block.Properties.copy(Blocks.STONE_BRICKS).noOcclusion()));
@@ -353,6 +354,7 @@ public abstract class DoTBBlocksRegistry {
     public final Supplier<Block> PLASTERED_STONE_CRESSET = register("plastered_stone_cresset", () -> new PlasteredStoneCressetBlock(Block.Properties.copy(Blocks.STONE_BRICKS).noOcclusion().lightLevel(litBlockEmission(15))));
     public final Supplier<Block> FEATHERED_SERPENT_SCULPTURE = register("feathered_serpent_sculpture", () -> new WaterloggedHorizontalBlock(Block.Properties.copy(Blocks.STONE_BRICKS).noOcclusion(), FEATHERED_SERPENT_SCULPTURE_SHAPES));
     public final Supplier<Block> SERPENT_SCULPTED_COLUMN = register("serpent_sculpted_column", () -> new ConnectedVerticalSidedBlock(Block.Properties.copy(Blocks.STONE_BRICKS), SERPENT_SCULPTED_COLUMN_SHAPES));
+    public final Supplier<Block> BLUE_PLASTERED_STONE = register("blue_plastered_stone", () -> new BlockDoT(Block.Properties.copy(Blocks.STONE_BRICKS)));
 
     // Roman
     public final Supplier<Block> SANDSTONE_PLATE = register("sandstone_plate", () -> new PlateBlock(Block.Properties.copy(Blocks.SANDSTONE)));
