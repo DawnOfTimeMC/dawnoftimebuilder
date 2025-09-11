@@ -3,7 +3,6 @@ package org.dawnoftime.dawnoftime.client.gui.creative;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import org.dawnoftime.dawnoftime.registry.DoTBBlocksRegistry;
 import org.dawnoftime.dawnoftime.registry.DoTBItemsRegistry;
@@ -422,6 +421,7 @@ public enum CreativeInventoryCategories {
             DoTBBlocksRegistry.INSTANCE.MOSAIC_FLOOR_DELICATE.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.MOSAIC_FLOOR_ROSETTE.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.MARBLE.get().asItem(),
+            DoTBBlocksRegistry.INSTANCE.MARBLE_PILLAR.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.MARBLE_COFFER.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.MARBLE_COFFER_SLAB.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.MARBLE_COLUMN.get().asItem(),
