@@ -342,7 +342,15 @@ public abstract class DoTBBlocksRegistry {
     public final Supplier<Block> RED_SMALL_PLASTERED_STONE_FRIEZE = register("red_small_plastered_stone_frieze", () -> new EdgeBlock(Block.Properties.copy(Blocks.STONE_BRICKS)));
     public final Supplier<Block> RED_ORNAMENTED_PLASTERED_STONE_FRIEZE = register("red_ornamented_plastered_stone_frieze", () -> new PlateBlock(Block.Properties.copy(Blocks.STONE_BRICKS).noOcclusion()));
     public final Supplier<Block> RED_SCULPTED_PLASTERED_STONE_FRIEZE = register("red_sculpted_plastered_stone_frieze", () -> new PlateBlock(Block.Properties.copy(Blocks.STONE_BRICKS), RED_SCULPTED_PLASTERED_STONE_FRIEZE_SHAPES));
+    public final Supplier<Block> BLUE_PLASTERED_STONE_EDGE = register("blue_plastered_stone_edge", () -> new EdgeBlock(Block.Properties.copy(Blocks.STONE_BRICKS)));
+    public final Supplier<Block> BLUE_PLASTERED_STONE_PLATE = register("blue_plastered_stone_plate", () -> new PlateBlock(Block.Properties.copy(Blocks.STONE_BRICKS)));
+    public final Supplier<Block> BLUE_PLASTERED_STONE_SLAB = register("blue_plastered_stone_slab", () -> new SlabBlockDoT(Block.Properties.copy(Blocks.STONE_BRICKS)));
+    public Supplier<Block> BLUE_PLASTERED_STONE_STAIRS;
     public final Supplier<Block> GREEN_PLASTERED_STONE = register("green_plastered_stone", () -> new BlockDoT(Block.Properties.copy(Blocks.STONE_BRICKS)));
+    public final Supplier<Block> GREEN_PLASTERED_STONE_EDGE = register("green_plastered_stone_edge", () -> new EdgeBlock(Block.Properties.copy(Blocks.STONE_BRICKS)));
+    public final Supplier<Block> GREEN_PLASTERED_STONE_PLATE = register("green_plastered_stone_plate", () -> new PlateBlock(Block.Properties.copy(Blocks.STONE_BRICKS)));
+    public final Supplier<Block> GREEN_PLASTERED_STONE_SLAB = register("green_plastered_stone_slab", () -> new SlabBlockDoT(Block.Properties.copy(Blocks.STONE_BRICKS)));
+    public Supplier<Block> GREEN_PLASTERED_STONE_STAIRS;
     public final Supplier<Block> GREEN_CHISELED_PLASTERED_STONE = register("green_chiseled_plastered_stone", () -> new BlockDoT(Block.Properties.copy(Blocks.STONE_BRICKS)));
     public final Supplier<Block> GREEN_ORNAMENTED_CHISELED_PLASTERED_STONE = register("green_ornamented_chiseled_plastered_stone", () -> new BlockDoT(Block.Properties.copy(Blocks.STONE_BRICKS)));
     public final Supplier<Block> GREEN_ORNAMENTED_PLASTERED_STONE_FRIEZE = register("green_ornamented_plastered_stone_frieze", () -> new PlateBlock(Block.Properties.copy(Blocks.STONE_BRICKS).noOcclusion()));
@@ -402,6 +410,8 @@ public abstract class DoTBBlocksRegistry {
     public void postRegister() {
         PLASTERED_STONE_STAIRS = register("plastered_stone_stairs", () -> new StairsBlockDoT(this.PLASTERED_STONE, Block.Properties.copy(Blocks.BRICKS)));
         RED_PLASTERED_STONE_STAIRS = register("red_plastered_stone_stairs", () -> new StairsBlockDoT(this.RED_PLASTERED_STONE, Block.Properties.copy(Blocks.BRICKS)));
+        GREEN_PLASTERED_STONE_STAIRS = register("green_plastered_stone_stairs", () -> new StairsBlockDoT(this.GREEN_PLASTERED_STONE, Block.Properties.copy(Blocks.BRICKS)));
+        BLUE_PLASTERED_STONE_STAIRS = register("blue_plastered_stone_stairs", () -> new StairsBlockDoT(this.BLUE_PLASTERED_STONE, Block.Properties.copy(Blocks.BRICKS)));
         OCHRE_ROOF_TILES_STAIRS = register("ochre_roof_tiles_stairs", () -> new StairsBlockDoT(this.OCHRE_ROOF_TILES, Block.Properties.copy(Blocks.BRICKS)));
         OCHRE_ROOF_TILES_SLAB = registerWithItem("ochre_roof_tiles_slab", () -> new MixedSlabBlock(Block.Properties.copy(Blocks.BRICKS))
                 .addMixedBlockRecipe(Blocks.SANDSTONE_SLAB, this.SANDSTONE_BOT_OCHRE_ROOF_TILES_TOP, false)
