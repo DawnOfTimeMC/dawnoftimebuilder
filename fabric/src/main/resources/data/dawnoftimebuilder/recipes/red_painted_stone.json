@@ -1,0 +1,20 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		" i ",
+		"iIi",
+        " i "
+	],
+	"key": {
+		"I": {
+			"item": "minecraft:stone"
+		},
+		"i": {
+			"item": "minecraft:red_dye"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:red_painted_stone",
+		"count": 8
+	}
+}
