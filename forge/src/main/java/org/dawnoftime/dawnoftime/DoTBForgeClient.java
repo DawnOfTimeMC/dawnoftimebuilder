@@ -11,7 +11,6 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import org.dawnoftime.dawnoftime.client.gui.screen.DisplayerScreen;
 import org.dawnoftime.dawnoftime.client.renderer.blockentity.DisplayerBERenderer;
 import org.dawnoftime.dawnoftime.client.renderer.entity.ChairRenderer;
 import org.dawnoftime.dawnoftime.registry.DoTBBlockEntitiesRegistry;
@@ -41,8 +40,6 @@ public class DoTBForgeClient {
         eventBus.addListener(DoTBForgeClient::setupBlockColors);
         eventBus.addListener(DoTBForgeClient::setupItemColors);
         eventBus.addListener(DoTBForgeClient::registerRenderers);
-
-        MenuScreens.register(DoTBMenuTypesRegistry.INSTANCE.DISPLAYER.get(), DisplayerScreen::new);
     }
 
     @SubscribeEvent

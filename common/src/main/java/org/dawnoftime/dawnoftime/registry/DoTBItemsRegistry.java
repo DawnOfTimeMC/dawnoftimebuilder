@@ -11,6 +11,12 @@ public abstract class DoTBItemsRegistry {
 
     // General
     public final Supplier<Item> DOT_ITEM = register("dawn_of_time", () -> new ItemDoTB(false));
+    public final Supplier<Item> GERMAN_EMBLEM = register("german_emblem", () -> new ItemDoTB(false));
+    public final Supplier<Item> JAPANESE_EMBLEM = register("japanese_emblem", () -> new ItemDoTB(false));
+    public final Supplier<Item> ROMAN_EMBLEM = register("roman_emblem", () -> new ItemDoTB(false));
+    public final Supplier<Item> PERSIAN_EMBLEM = register("persian_emblem", () -> new ItemDoTB(false));
+    public final Supplier<Item> FRENCH_EMBLEM = register("french_emblem", () -> new ItemDoTB(false));
+    public final Supplier<Item> PRECOLUMBIAN_EMBLEM = register("precolumbian_emblem", () -> new ItemDoTB(false));
     public final Supplier<Item> UNFIRED_CLAY_TILE = register("unfired_clay_tile", ItemDoTB::new);
     public final Supplier<Item> CLAY_TILE = register("clay_tile", ItemDoTB::new);
     public final Supplier<Item> CLAY_TILE_WHITE = register("clay_tile_white", ItemDoTB::new);

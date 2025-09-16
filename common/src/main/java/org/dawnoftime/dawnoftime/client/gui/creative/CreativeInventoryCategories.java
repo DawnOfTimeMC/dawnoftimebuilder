@@ -297,7 +297,8 @@ public enum CreativeInventoryCategories {
             DoTBBlocksRegistry.INSTANCE.STONE_BRICKS_WATER_JET.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.WATER_SOURCE_TRICKLE.get().asItem(),
             Blocks.OAK_LEAVES.asItem(),
-            Items.FLINT_AND_STEEL
+            Items.FLINT_AND_STEEL,
+            DoTBItemsRegistry.INSTANCE.GERMAN_EMBLEM.get()
     ),
     JAPANESE("japanese",
             Blocks.GRAVEL.asItem(),
@@ -374,7 +375,9 @@ public enum CreativeInventoryCategories {
             DoTBItemsRegistry.INSTANCE.UNFIRED_CLAY_ROOF_TILE.get(),
             DoTBItemsRegistry.INSTANCE.GRAY_CLAY_ROOF_TILE.get(),
             Blocks.SPRUCE_LEAVES.asItem(),
-            Items.FLINT_AND_STEEL
+            Items.FLINT_AND_STEEL,
+            DoTBItemsRegistry.INSTANCE.JAPANESE_EMBLEM.get()
+
     ),
     ROMAN("roman",
             Blocks.SANDSTONE.asItem(),
@@ -444,7 +447,8 @@ public enum CreativeInventoryCategories {
             DoTBItemsRegistry.INSTANCE.UNFIRED_CLAY_TILE.get(),
             DoTBItemsRegistry.INSTANCE.CLAY_TILE.get(),
             DoTBItemsRegistry.INSTANCE.CLAY_TILE_ORANGE.get(),
-            DoTBItemsRegistry.INSTANCE.CLAY_TILE_BLACK.get()
+            DoTBItemsRegistry.INSTANCE.CLAY_TILE_BLACK.get(),
+            DoTBItemsRegistry.INSTANCE.ROMAN_EMBLEM.get()
     ),
     PRE_COLOMBIAN("pre_columbian",
             DoTBBlocksRegistry.INSTANCE.THATCH_WHEAT.get().asItem(),
@@ -482,6 +486,7 @@ public enum CreativeInventoryCategories {
             DoTBBlocksRegistry.INSTANCE.RED_PLASTERED_STONE_PLATE.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.RED_PLASTERED_STONE_SLAB.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.RED_PLASTERED_STONE_EDGE.get().asItem(),
+            DoTBBlocksRegistry.INSTANCE.RED_PLASTERED_STONE_WINDOW.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.GREEN_PAINTED_STONE.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.GREEN_PLASTERED_STONE.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.GREEN_PLASTERED_STONE_STAIRS.get().asItem(),
@@ -522,7 +527,9 @@ public enum CreativeInventoryCategories {
             DoTBBlocksRegistry.INSTANCE.FEATHERED_SERPENT_SCULPTURE.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.SERPENT_SCULPTED_COLUMN.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.FIREPLACE.get().asItem(),
-            Items.FLINT_AND_STEEL
+            Items.FLINT_AND_STEEL,
+            DoTBItemsRegistry.INSTANCE.PRECOLUMBIAN_EMBLEM.get()
+
     ),
     FRENCH("french",
             DoTBBlocksRegistry.INSTANCE.COBBLED_LIMESTONE.get().asItem(),
@@ -550,7 +557,8 @@ public enum CreativeInventoryCategories {
             Blocks.OAK_LEAVES.asItem(),
             DoTBBlocksRegistry.INSTANCE.CANDLESTICK.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.FIREPLACE.get().asItem(),
-            Items.FLINT_AND_STEEL
+            Items.FLINT_AND_STEEL,
+            DoTBItemsRegistry.INSTANCE.FRENCH_EMBLEM.get()
     ),
     PERSIAN("persian",
             Blocks.SMOOTH_SANDSTONE.asItem(),
@@ -606,7 +614,8 @@ public enum CreativeInventoryCategories {
             DoTBItemsRegistry.INSTANCE.CLAY_TILE.get(),
             DoTBItemsRegistry.INSTANCE.CLAY_TILE_WHITE.get(),
             DoTBItemsRegistry.INSTANCE.CLAY_TILE_CYAN.get(),
-            DoTBItemsRegistry.INSTANCE.CLAY_TILE_BLUE.get()
+            DoTBItemsRegistry.INSTANCE.CLAY_TILE_BLUE.get(),
+            DoTBItemsRegistry.INSTANCE.PERSIAN_EMBLEM.get()
     );
 
     private final String name;
