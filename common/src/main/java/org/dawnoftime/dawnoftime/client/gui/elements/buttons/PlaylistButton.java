@@ -4,9 +4,11 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
+import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import static org.dawnoftime.dawnoftime.DoTBCommon.MOD_ID;
 
@@ -22,8 +24,9 @@ public class PlaylistButton extends Button {
     protected void renderWidget(@NotNull GuiGraphics pGuiGraphics, int pMouseX, int pMouseY, float pPartialTick) {
         PoseStack ps = pGuiGraphics.pose();
 
-        if(this.isHovered())
+        if(this.isHovered() && this.active) {
             pGuiGraphics.setColor(0.7F, 0.7F, 0.7F, 1.0F);
+        }
 
         ps.pushPose();
         RenderSystem.enableBlend();
@@ -32,5 +35,10 @@ public class PlaylistButton extends Button {
         ps.popPose();
 
         pGuiGraphics.setColor(1.0F, 1.0F, 1.0F, 1.0F);
+    }
+
+    @Override
+    public @Nullable Tooltip getTooltip() {
+        return this.active ? super.getTooltip() : null;
     }
 }

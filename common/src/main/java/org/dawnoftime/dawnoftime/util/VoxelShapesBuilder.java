@@ -693,11 +693,11 @@ public class VoxelShapesBuilder {
         return new VoxelShape[]{
                 Block.box(2.0D, 0.0D, 2.0D, 14.0D, 16.0D, 14.0D),
                 Shapes.or(
-                        Block.box(2.0D, 0.0D, 2.0D, 14.0D, 6.0D, 14.0D),
-                        Block.box(2.5D, 6.0D, 2.5D, 13.5D, 16.0D, 13.5D)),
-                Shapes.or(
                         Block.box(2.0D, 14.0D, 2.0D, 14.0D, 16.0D, 14.0D),
                         Block.box(2.5D, 0.0D, 2.5D, 13.5D, 14.0D, 13.5D)),
+                Shapes.or(
+                        Block.box(2.0D, 0.0D, 2.0D, 14.0D, 6.0D, 14.0D),
+                        Block.box(2.5D, 6.0D, 2.5D, 13.5D, 16.0D, 13.5D)),
                 Block.box(2.5D, 0.0D, 2.5D, 13.5D, 16.0D, 13.5D)};
     }
 
