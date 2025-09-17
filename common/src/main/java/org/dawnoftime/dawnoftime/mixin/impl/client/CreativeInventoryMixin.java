@@ -15,6 +15,7 @@ import net.minecraft.world.item.ItemStack;
 import org.dawnoftime.dawnoftime.client.gui.creative.CreativeInventoryCategories;
 import org.dawnoftime.dawnoftime.client.gui.elements.buttons.CategoryButton;
 import org.dawnoftime.dawnoftime.client.gui.elements.buttons.GroupButton;
+import org.dawnoftime.dawnoftime.client.gui.elements.buttons.PlaylistButton;
 import org.dawnoftime.dawnoftime.client.gui.elements.buttons.SocialsButton;
 import org.dawnoftime.dawnoftime.mixin.api.CreativeScreen;
 import org.dawnoftime.dawnoftime.registry.DoTBCreativeModeTabsRegistry;
@@ -31,6 +32,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.dawnoftime.dawnoftime.DoTBCommon.CREATIVE_ICONS;
+import static org.dawnoftime.dawnoftime.DoTBCommon.MOD_ID;
 
 @SuppressWarnings("unused")
 @Debug(print = true)
@@ -52,6 +54,8 @@ public abstract class CreativeInventoryMixin extends EffectRenderingInventoryScr
     private Button dOTBuilder$patreon;
     @Unique
     private Button dOTBuilder$github;
+    @Unique
+    private Button dOT$youtubePlaylist;
     @Unique
     private static int dOTBuilder$selectedCategoryID = 0;
     @Unique
@@ -96,6 +100,8 @@ public abstract class CreativeInventoryMixin extends EffectRenderingInventoryScr
         this.dOTBuilder$patreon.setTooltip(Tooltip.create(Component.literal("Patreon")));
         this.addRenderableWidget(this.dOTBuilder$github = new SocialsButton(this.leftPos - 68, this.topPos + 101, "github", button -> dOTBuilder$openLink("https://github.com/PierreChag/dawnoftimebuilder")));
         this.dOTBuilder$github.setTooltip(Tooltip.create(Component.literal("Github")));
+        this.addRenderableWidget(this.dOT$youtubePlaylist = new PlaylistButton(this.leftPos + 156, this.topPos + 4, button -> dOTBuilder$openLink(CreativeInventoryCategories.values()[dOTBuilder$selectedCategoryID].getYoutubePlaylist())));
+        this.dOT$youtubePlaylist.setTooltip(Tooltip.create(Component.translatable("tooltip." + MOD_ID + ".youtube_playlist")));
 
         for(int i = 0; i < 4; i++) {
             this.dOTBuilder$buttons.add(new CategoryButton(this.leftPos - 27, this.topPos + 30 * i, i, button -> {
@@ -130,8 +136,6 @@ public abstract class CreativeInventoryMixin extends EffectRenderingInventoryScr
     private static boolean dOTBuilder$hasSetItemsYet = false;
     @Inject(method = "render", at = @At(value = "HEAD"))
     public void dawnoftimebuilder$render(GuiGraphics $$0, int $$1, int $$2, float $$3, CallbackInfo ci) {
-        //            dOTBuilder$updateItems((CreativeModeInventoryScreen) (Object) this);
-
         if (!dOTBuilder$hasSetItemsYet && this.dOTBuilder$tabDoTBSelected) {
             dOTBuilder$updateItems((CreativeModeInventoryScreen) (Object) this);
             dOTBuilder$hasSetItemsYet = true;
@@ -150,6 +154,8 @@ public abstract class CreativeInventoryMixin extends EffectRenderingInventoryScr
         this.dOTBuilder$curse.visible = val;
         this.dOTBuilder$patreon.visible = val;
         this.dOTBuilder$github.visible = val;
+        this.dOT$youtubePlaylist.visible = val;
+        this.dOT$youtubePlaylist.active = CreativeInventoryCategories.values()[dOTBuilder$selectedCategoryID].getYoutubePlaylist() != null;
         this.dOTBuilder$buttons.forEach(button -> button.visible = val);
     }
 
@@ -200,7 +206,9 @@ public abstract class CreativeInventoryMixin extends EffectRenderingInventoryScr
 
     @Unique
     private void dOTBuilder$openLink(String link) {
-        Util.getPlatform().openUri(link);
+        if (link != null) {
+            Util.getPlatform().openUri(link);
+        }
     }
 
     @Unique

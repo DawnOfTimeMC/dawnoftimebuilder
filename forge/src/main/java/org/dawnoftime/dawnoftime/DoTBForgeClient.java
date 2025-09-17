@@ -1,6 +1,5 @@
 package org.dawnoftime.dawnoftime;
 
-import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.api.distmarker.Dist;
@@ -16,7 +15,6 @@ import org.dawnoftime.dawnoftime.client.renderer.entity.ChairRenderer;
 import org.dawnoftime.dawnoftime.registry.DoTBBlockEntitiesRegistry;
 import org.dawnoftime.dawnoftime.registry.DoTBColorsRegistry;
 import org.dawnoftime.dawnoftime.registry.DoTBEntitiesRegistry;
-import org.dawnoftime.dawnoftime.registry.DoTBMenuTypesRegistry;
 
 import java.util.function.Supplier;
 

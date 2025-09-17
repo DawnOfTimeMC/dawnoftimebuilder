@@ -7,6 +7,7 @@ import net.minecraft.world.level.block.Blocks;
 import org.dawnoftime.dawnoftime.registry.DoTBBlocksRegistry;
 import org.dawnoftime.dawnoftime.registry.DoTBItemsRegistry;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -14,7 +15,7 @@ import java.util.List;
 import static org.dawnoftime.dawnoftime.DoTBCommon.MOD_ID;
 
 public enum CreativeInventoryCategories {
-    GENERAL("general",
+    GENERAL("general", null,
             DoTBBlocksRegistry.INSTANCE.RAMMED_DIRT.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.THATCH_WHEAT.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.THATCH_WHEAT_STAIRS.get().asItem(),
@@ -226,7 +227,7 @@ public enum CreativeInventoryCategories {
             DoTBBlocksRegistry.INSTANCE.FIREPLACE.get().asItem(),
             Items.FLINT_AND_STEEL
     ),
-    GERMAN("german",
+    GERMAN("german", "https://www.youtube.com/watch?v=g_GulBiXvXs&list=PLRp3sDcdVhnSzsKrXbCEMr-833Em-ntDF",
             DoTBBlocksRegistry.INSTANCE.THATCH_WHEAT.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.THATCH_WHEAT_STAIRS.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.THATCH_WHEAT_PLATE.get().asItem(),
@@ -300,7 +301,7 @@ public enum CreativeInventoryCategories {
             Items.FLINT_AND_STEEL,
             DoTBItemsRegistry.INSTANCE.GERMAN_EMBLEM.get()
     ),
-    JAPANESE("japanese",
+    JAPANESE("japanese", "https://www.youtube.com/watch?v=AxJGk-deTmo&list=PLRp3sDcdVhnSw-C9jHe_ykJZc5AurcvyG",
             Blocks.GRAVEL.asItem(),
             DoTBBlocksRegistry.INSTANCE.STRAIGHT_RAKED_GRAVEL.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.CURVED_RAKED_GRAVEL.get().asItem(),
@@ -379,7 +380,7 @@ public enum CreativeInventoryCategories {
             DoTBItemsRegistry.INSTANCE.JAPANESE_EMBLEM.get()
 
     ),
-    ROMAN("roman",
+    ROMAN("roman", "https://www.youtube.com/watch?v=7TgxqQHGVlo&list=PLRp3sDcdVhnQNEcVV6Zi0NvG0p80IhaZo",
             Blocks.SANDSTONE.asItem(),
             Blocks.SANDSTONE_STAIRS.asItem(),
             DoTBBlocksRegistry.INSTANCE.SANDSTONE_PLATE.get().asItem(),
@@ -450,7 +451,7 @@ public enum CreativeInventoryCategories {
             DoTBItemsRegistry.INSTANCE.CLAY_TILE_BLACK.get(),
             DoTBItemsRegistry.INSTANCE.ROMAN_EMBLEM.get()
     ),
-    PRE_COLOMBIAN("pre_columbian",
+    PRE_COLOMBIAN("pre_columbian", "https://www.youtube.com/watch?v=jR-dWUqHgQ8&list=PLRp3sDcdVhnTP3E2QNE-2E-inx1K51Btu",
             DoTBBlocksRegistry.INSTANCE.THATCH_WHEAT.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.THATCH_WHEAT_STAIRS.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.THATCH_WHEAT_PLATE.get().asItem(),
@@ -538,7 +539,7 @@ public enum CreativeInventoryCategories {
             DoTBItemsRegistry.INSTANCE.PRECOLUMBIAN_EMBLEM.get()
 
     ),
-    FRENCH("french",
+    FRENCH("french", null,
             DoTBBlocksRegistry.INSTANCE.COBBLED_LIMESTONE.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.LIMESTONE_BRICKS.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.LIMESTONE_BRICKS_STAIRS.get().asItem(),
@@ -567,7 +568,7 @@ public enum CreativeInventoryCategories {
             Items.FLINT_AND_STEEL,
             DoTBItemsRegistry.INSTANCE.FRENCH_EMBLEM.get()
     ),
-    PERSIAN("persian",
+    PERSIAN("persian", null,
             Blocks.SMOOTH_SANDSTONE.asItem(),
             Blocks.SMOOTH_SANDSTONE_STAIRS.asItem(),
             DoTBBlocksRegistry.INSTANCE.SMOOTH_SANDSTONE_PLATE.get().asItem(),
@@ -626,17 +627,24 @@ public enum CreativeInventoryCategories {
     );
 
     private final String name;
+    private final String youtubePlaylist;
     private final Component translation;
     private final ArrayList<Item> items = new ArrayList<>();
 
-    CreativeInventoryCategories(String name, Item... items) {
+    CreativeInventoryCategories(String name, @Nullable String youtubePlaylist, Item... items) {
         this.name = name;
+        this.youtubePlaylist = youtubePlaylist;
         this.translation = Component.translatable("gui." + MOD_ID + "." + name);
         this.items.addAll(Arrays.asList(items));
     }
 
     public String getName() {
         return this.name;
+    }
+
+    @Nullable
+    public String getYoutubePlaylist() {
+        return this.youtubePlaylist;
     }
 
     public Component getTranslation() {
