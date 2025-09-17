@@ -408,5 +408,6 @@
     "tooltip.dawnoftimebuilder.column": "Use RIGHT-CLICK on this block to increase its size or SHIFT + RIGHT-CLICK to reduce its size.",
     "tooltip.dawnoftimebuilder.fireplace": "Can be ignited with a lighter, fireball or flaming arrow, it can be extinguished with a lighter, snowball, splash or normal water potion",
     "tooltip.dawnoftimebuilder.limestone_gargoyle": "In Creative, use a lighter on this block to stabilise its flow of drops. Then, you can use RIGHT-CLICK and SHIFT + RIGHT-CLICK to control the flow.",
-    "tooltip.dawnoftimebuilder.moraq_mosaic_column": "Place a block with your cursor on the left or the right side to change the direction of the pattern."
+    "tooltip.dawnoftimebuilder.moraq_mosaic_column": "Place a block with your cursor on the left or the right side to change the direction of the pattern.",
+    "tooltip.dawnoftimebuilder.youtube_playlist": "Learn how to build with the blocks!"
 }

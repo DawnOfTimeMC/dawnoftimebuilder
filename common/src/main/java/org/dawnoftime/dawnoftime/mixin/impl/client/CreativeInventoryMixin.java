@@ -92,7 +92,7 @@ public abstract class CreativeInventoryMixin extends EffectRenderingInventoryScr
             }
         }, CREATIVE_ICONS, 16, 56));
 
-        this.addRenderableWidget(this.dOTBuilder$discord = new SocialsButton(this.leftPos - 68, this.topPos - 10, "discord", button -> dOTBuilder$openLink("https://discord.gg/cteCdn9Hnf")));
+        this.addRenderableWidget(this.dOTBuilder$discord = new SocialsButton(this.leftPos - 68, this.topPos - 10, "discord", button -> dOTBuilder$openLink("https://discord.gg/GfPPxR7eg3")));
         this.dOTBuilder$discord.setTooltip(Tooltip.create(Component.literal("Discord")));
         this.addRenderableWidget(this.dOTBuilder$curse = new SocialsButton(this.leftPos - 68, this.topPos + 27, "curse", button -> dOTBuilder$openLink("https://www.curseforge.com/minecraft/mc-mods/dawn-of-time")));
         this.dOTBuilder$curse.setTooltip(Tooltip.create(Component.literal("Curse Forge")));
