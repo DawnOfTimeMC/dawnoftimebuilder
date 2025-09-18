@@ -1,7 +1,6 @@
 package org.dawnoftime.dawnoftime.block.templates;
 
 import net.minecraft.core.Direction;
-import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.block.Block;
@@ -11,7 +10,6 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 
 import javax.annotation.Nullable;
-import java.util.Random;
 
 public class SidedFlowerPotBlock extends FlowerPotBlockDoT {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
