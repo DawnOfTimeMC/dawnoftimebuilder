@@ -28,12 +28,15 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import org.dawnoftime.dawnoftime.block.IFlammable;
+import org.dawnoftime.dawnoftime.client.gui.creative.CreativeInventoryCategories;
 import org.dawnoftime.dawnoftime.client.renderer.blockentity.DisplayerBERenderer;
 import org.dawnoftime.dawnoftime.client.renderer.entity.ChairRenderer;
 import org.dawnoftime.dawnoftime.item.IconItem;
 import org.dawnoftime.dawnoftime.registry.*;
 
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -113,13 +116,14 @@ public class RegistryImpls {
         @Override
         public <T extends CreativeModeTab> Supplier<CreativeModeTab> register(String name, Supplier<ItemStack> iconSupplier, Component title) {
             var group = Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, new ResourceLocation(DoTBCommon.MOD_ID, name), FabricItemGroup.builder().icon(iconSupplier).title(title).displayItems((itemDisplayParameters, output) -> {
-                BuiltInRegistries.ITEM.entrySet().forEach(entry -> {
-                    var loc = entry.getKey().location();
-                    if(entry.getValue() instanceof IconItem) return;
-                    if (loc.getNamespace().equals(DoTBCommon.MOD_ID)) {
-                        output.accept(entry.getValue());
+                Set<Item> addedItems = new HashSet<>();
+                for (CreativeInventoryCategories category : CreativeInventoryCategories.values()) {
+                    for (Item item : category.getItems()) {
+                        if (!(item instanceof IconItem) && addedItems.add(item)) {
+                            output.accept(item);
+                        }
                     }
-                });
+                }
             }).build());
             return () -> group;
         }
