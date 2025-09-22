@@ -187,9 +187,13 @@ public abstract class CreativeInventoryMixin extends EffectRenderingInventoryScr
         this.dOTBuilder$btnScrollDown.active = (dOTBuilder$page < MAX_PAGE);
         this.dOTBuilder$buttons.forEach(button -> {
             button.active = (button.getCategoryID() < CreativeInventoryCategories.values().length);
-            Tooltip tt = button.getTooltipForCategory();
-            if (tt != null) {
-                button.setTooltip(tt);
+            if (button.active) {
+                Tooltip tt = button.getTooltipForCategory();
+                if (tt != null) {
+                    button.setTooltip(tt);
+                }
+            } else {
+                button.setTooltip(null);
             }
         });
         this.dOTBuilder$buttons.get(dOTBuilder$selectedCategoryID % 4).setSelected(dOTBuilder$selectedCategoryID - dOTBuilder$page * 4 >= 0 && dOTBuilder$selectedCategoryID - dOTBuilder$page * 4 < 4);
