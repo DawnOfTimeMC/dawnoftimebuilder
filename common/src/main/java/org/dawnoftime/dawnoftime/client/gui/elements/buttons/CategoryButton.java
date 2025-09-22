@@ -5,12 +5,14 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.Tooltip;
+import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipPositioner;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import org.dawnoftime.dawnoftime.client.gui.creative.CreativeInventoryCategories;
 import org.dawnoftime.dawnoftime.mixin.api.CreativeScreen;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.joml.Vector2i;
 
 import static org.dawnoftime.dawnoftime.DoTBCommon.CREATIVE_ICONS;
 import static org.dawnoftime.dawnoftime.DoTBCommon.MOD_ID;
@@ -87,5 +89,30 @@ public class CategoryButton extends Button {
             tooltips[i] = Tooltip.create(Component.translatable("gui.dawnoftimebuilder." + CreativeInventoryCategories.values()[i].getName()));
         }
         return tooltips;
+    }
+
+    @Override
+    public @Nullable Tooltip getTooltip() {
+        return this.active ? super.getTooltip() : null;
+    }
+
+    @Override
+    protected ClientTooltipPositioner createTooltipPositioner() {
+        return (screenWidth, screenHeight, mouseX, mouseY, tooltipWidth, tooltipHeight) -> {
+            int tooltipX = CategoryButton.this.getX() + CategoryButton.this.width + 2;
+            int tooltipY = CategoryButton.this.getY();
+
+            if (tooltipX + tooltipWidth > screenWidth) {
+                tooltipX = CategoryButton.this.getX() - tooltipWidth - 2;
+            }
+            if (tooltipY + tooltipHeight > screenHeight) {
+                tooltipY = screenHeight - tooltipHeight;
+            }
+            if (tooltipY < 0) {
+                tooltipY = 0;
+            }
+
+            return new Vector2i(tooltipX, tooltipY);
+        };
     }
 }
