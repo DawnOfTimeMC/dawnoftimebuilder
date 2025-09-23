@@ -1,0 +1,19 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"I",
+		"i",
+		"I"
+	],
+	"key": {
+		"I": {
+			"item": "minecraft:white_carpet"
+		},
+		"i": {
+			"item": "minecraft:feather"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:zabuton"
+	}
+}
