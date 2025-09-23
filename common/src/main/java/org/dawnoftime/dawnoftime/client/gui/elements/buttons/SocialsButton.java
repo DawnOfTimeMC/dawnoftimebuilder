@@ -4,7 +4,9 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipPositioner;
+import net.minecraft.client.gui.screens.inventory.tooltip.DefaultTooltipPositioner;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.NotNull;
@@ -47,21 +49,6 @@ public class SocialsButton extends Button {
 
     @Override
     protected ClientTooltipPositioner createTooltipPositioner() {
-        return (screenWidth, screenHeight, mouseX, mouseY, tooltipWidth, tooltipHeight) -> {
-            int tooltipX = SocialsButton.this.getX() + SocialsButton.this.width + 2;
-            int tooltipY = SocialsButton.this.getY();
-
-            if (tooltipX + tooltipWidth > screenWidth) {
-                tooltipX = SocialsButton.this.getX() - tooltipWidth - 2;
-            }
-            if (tooltipY + tooltipHeight > screenHeight) {
-                tooltipY = screenHeight - tooltipHeight;
-            }
-            if (tooltipY < 0) {
-                tooltipY = 0;
-            }
-
-            return new Vector2i(tooltipX, tooltipY);
-        };
+        return DefaultTooltipPositioner.INSTANCE;
     }
 }
