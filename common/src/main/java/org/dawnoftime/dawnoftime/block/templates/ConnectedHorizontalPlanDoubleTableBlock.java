@@ -2,28 +2,32 @@ package org.dawnoftime.dawnoftime.block.templates;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.level.*;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.*;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.level.block.state.properties.Half;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.dawnoftime.dawnoftime.registry.DoTBBlockEntitiesRegistry;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
-
-import net.minecraft.world.phys.shapes.Shapes;
 public class ConnectedHorizontalPlanDoubleTableBlock extends DisplayerBlock {
     public static final BooleanProperty NORTH = BlockStateProperties.NORTH;
     public static final BooleanProperty EAST = BlockStateProperties.EAST;
@@ -71,8 +75,8 @@ public class ConnectedHorizontalPlanDoubleTableBlock extends DisplayerBlock {
     }
 
     @Override
-    public @NotNull InteractionResult use(@NotNull BlockState blockState, Level world, @NotNull BlockPos pos, @NotNull Player playerEntity, @NotNull InteractionHand hand, @NotNull BlockHitResult hit) {
-        return blockState.getValue(HALF) == Half.TOP ? super.use(blockState, world, pos, playerEntity, hand, hit) : InteractionResult.PASS;
+    public @NotNull InteractionResult useWithoutItem(@NotNull BlockState blockState, Level world, @NotNull BlockPos pos, @NotNull Player playerEntity, @NotNull BlockHitResult hit) {
+        return blockState.getValue(HALF) == Half.TOP ? super.useWithoutItem(blockState, world, pos, playerEntity, hit) : InteractionResult.PASS;
     }
 
     @Override
@@ -119,7 +123,7 @@ public class ConnectedHorizontalPlanDoubleTableBlock extends DisplayerBlock {
     }
 
     @Override
-    public void playerWillDestroy(Level level, @NotNull BlockPos pos, @NotNull BlockState state, @NotNull Player player) {
+    public BlockState playerWillDestroy(Level level, @NotNull BlockPos pos, @NotNull BlockState state, @NotNull Player player) {
         // Prevents item from dropping in creative by removing the part that gives the item with a setBlock.
         if (!level.isClientSide() && player.isCreative()) {
             if (state.getValue(HALF) == Half.TOP) {
@@ -132,7 +136,7 @@ public class ConnectedHorizontalPlanDoubleTableBlock extends DisplayerBlock {
                 }
             }
         }
-        super.playerWillDestroy(level, pos, state, player);
+        return super.playerWillDestroy(level, pos, state, player);
     }
 
     @Override

@@ -5,14 +5,16 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.level.*;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -21,6 +23,7 @@ import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.function.Supplier;
 
@@ -66,10 +69,10 @@ public class MixedRoofSupportBlock extends SlabBlockDoT {
     }
 
     @Override
-    public InteractionResult use(final BlockState state, final Level worldIn, final BlockPos pos,
-                                 final Player player, final InteractionHand handIn, final BlockHitResult hit) {
+    public InteractionResult useWithoutItem(final BlockState state, final Level worldIn, final BlockPos pos,
+                                 final Player player, final BlockHitResult hit) {
         final Direction facing = hit.getDirection();
-        final ItemStack itemStack = player.getItemInHand(handIn);
+        final ItemStack itemStack = player.getItemInHand(player.getUsedItemHand());
         if(!player.isCrouching() && player.mayUseItemAt(pos, facing, itemStack) && facing.getAxis().isVertical()
                 && !itemStack.isEmpty()) {
             if((facing == Direction.UP) && (state.getValue(SlabBlock.TYPE) == SlabType.BOTTOM
@@ -89,7 +92,7 @@ public class MixedRoofSupportBlock extends SlabBlockDoT {
                 }
             }
         }
-        return super.use(state, worldIn, pos, player, handIn, hit);
+        return super.useWithoutItem(state, worldIn, pos, player, hit);
     }
 
     public static Item getBlockItem(MixedRoofSupportBlock block) {
@@ -203,8 +206,7 @@ public class MixedRoofSupportBlock extends SlabBlockDoT {
     }
 
     @Override
-    public boolean canPlaceLiquid(final BlockGetter world, final BlockPos pos, final BlockState state,
-                                  final Fluid fluid) {
+    public boolean canPlaceLiquid(@Nullable Player player, BlockGetter level, BlockPos pos, BlockState state, Fluid fluid) {
         return !state.getValue(BlockStateProperties.WATERLOGGED) && fluid == Fluids.WATER;
     }
 

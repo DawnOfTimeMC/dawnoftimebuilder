@@ -4,13 +4,9 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
-import net.minecraft.client.gui.screens.Screen;
-import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipPositioner;
-import net.minecraft.client.gui.screens.inventory.tooltip.DefaultTooltipPositioner;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.NotNull;
-import org.joml.Vector2i;
 
 import static org.dawnoftime.dawnoftime.DoTBCommon.MOD_ID;
 
@@ -19,8 +15,8 @@ public class SocialsButton extends Button {
 
     public SocialsButton(int x, int y, String buttonName, OnPress pressable) {
         super(x, y, 28, 28, Component.empty(), pressable, DEFAULT_NARRATION);
-        this.buttonIcons = new ResourceLocation(MOD_ID, "textures/gui/social_" + buttonName + ".png");
-        this.socialIcons = new ResourceLocation(MOD_ID, "textures/gui/social_icons.png");
+        this.buttonIcons = ResourceLocation.fromNamespaceAndPath(MOD_ID, "textures/gui/social_" + buttonName + ".png");
+        this.socialIcons = ResourceLocation.fromNamespaceAndPath(MOD_ID, "textures/gui/social_icons.png");
     }
 
     @Override
@@ -47,8 +43,8 @@ public class SocialsButton extends Button {
         }
     }
 
-    @Override
-    protected ClientTooltipPositioner createTooltipPositioner() {
-        return DefaultTooltipPositioner.INSTANCE;
-    }
+//    @Override
+//    protected ClientTooltipPositioner createTooltipPositioner() {
+//        return DefaultTooltipPositioner.INSTANCE;
+//    }
 }

@@ -3,6 +3,7 @@ package org.dawnoftime.dawnoftime.block.templates;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -17,8 +18,6 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
-import net.minecraft.world.phys.shapes.Shapes;
-import net.minecraft.world.phys.shapes.VoxelShape;
 import org.dawnoftime.dawnoftime.util.BlockStatePropertiesAA;
 import org.dawnoftime.dawnoftime.util.Utils;
 import org.jetbrains.annotations.NotNull;
@@ -119,7 +118,7 @@ public class PortcullisBlock extends WaterloggedBlock {
                 Direction.Axis axis = state.getValue(HORIZONTAL_AXIS);
                 if(isInSamePlane(pos, fromPos, axis)) {
                     pos = getTopPortcullisPos(worldIn, pos, axis);
-                    worldIn.getBlockState(pos).neighborChanged(worldIn, pos, blockIn, fromPos, isMoving);
+                    worldIn.getBlockState(pos).handleNeighborChanged(worldIn, pos, blockIn, fromPos, isMoving);
                 }
             }
         }
@@ -288,8 +287,8 @@ public class PortcullisBlock extends WaterloggedBlock {
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, @Nullable BlockGetter worldIn, List<Component> tooltip, TooltipFlag flagIn) {
-        super.appendHoverText(stack, worldIn, tooltip, flagIn);
-        Utils.addTooltip(tooltip, this);
+    public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+        super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+        Utils.addTooltip(tooltipComponents, this);
     }
 }

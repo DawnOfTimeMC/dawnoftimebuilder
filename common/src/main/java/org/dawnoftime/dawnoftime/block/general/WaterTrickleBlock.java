@@ -130,7 +130,7 @@ public abstract class WaterTrickleBlock extends BlockDoT {
         } else if (bottomState.canBeReplaced(this.generateContext(world, bottomPos)) && world.getFluidState(bottomPos).getType().equals(Fluids.EMPTY)) {
             bottomState = this.createFlowingTrickle(bottomState, this.getWaterTrickleOutPut(state), world, bottomPos);
             // If the block can contain fluid, we fill it with water.
-        } else if (bottomState.getBlock() instanceof LiquidBlockContainer && ((LiquidBlockContainer) bottomState.getBlock()).canPlaceLiquid(world, bottomPos, bottomState, Fluids.WATER)) {
+        } else if (bottomState.getBlock() instanceof LiquidBlockContainer && ((LiquidBlockContainer) bottomState.getBlock()).canPlaceLiquid(null, world, bottomPos, bottomState, Fluids.WATER)) {
             ((LiquidBlockContainer) bottomState.getBlock()).placeLiquid(world, bottomPos, bottomState, Fluids.WATER.getSource(false));
         }
 

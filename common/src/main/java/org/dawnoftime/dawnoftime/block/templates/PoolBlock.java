@@ -5,13 +5,11 @@ import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.alchemy.Potion;
-import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -31,7 +29,6 @@ import org.dawnoftime.dawnoftime.util.BlockStatePropertiesAA;
 import org.dawnoftime.dawnoftime.util.Utils;
 import org.jetbrains.annotations.NotNull;
 
-import javax.annotation.Nullable;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -99,7 +96,7 @@ public class PoolBlock extends BlockDoT {
     }
 
     @Override
-    public InteractionResult use(BlockState blockStateIn, final Level worldIn, final BlockPos blockPosIn, final Player playerEntityIn, final InteractionHand handIn, final BlockHitResult blockRayTraceResultIn) {
+    public InteractionResult useWithoutItem(BlockState blockStateIn, final Level worldIn, final BlockPos blockPosIn, final Player playerEntityIn, final BlockHitResult blockRayTraceResultIn) {
         final ItemStack itemStack = playerEntityIn.getMainHandItem();
         if(!playerEntityIn.isCrouching()) {
             final int lastLevel = blockStateIn.getValue(BlockStatePropertiesAA.LEVEL);
@@ -123,7 +120,7 @@ public class PoolBlock extends BlockDoT {
                 }
                 tryToChangeLevel = true;
             } else if(itemStack.getItem() instanceof PotionItem) {
-                final Potion potion = PotionUtils.getPotion(itemStack);
+                final Potion potion = Utils.getPotionByName(Utils.getItemKeyAsString(itemStack.getItem()));
 
                 if(potion.getEffects().isEmpty() && nextLevel + 1 < this.maxLevel) {
                     nextLevel++;
@@ -134,7 +131,7 @@ public class PoolBlock extends BlockDoT {
                 }
                 tryToChangeLevel = true;
             } else if(itemStack.getItem() instanceof BottleItem) {
-                final Potion potion = PotionUtils.getPotion(itemStack);
+                final Potion potion = Utils.getPotionByName(Utils.getItemKeyAsString(itemStack.getItem()));
 
                 if(potion.getEffects().isEmpty() && nextLevel - 1 >= 0) {
                     nextLevel--;
@@ -271,9 +268,9 @@ public class PoolBlock extends BlockDoT {
     }
 
     @Override
-    public void appendHoverText(final ItemStack stack, @Nullable final BlockGetter worldIn, final List<Component> tooltip, final TooltipFlag flagIn) {
-        super.appendHoverText(stack, worldIn, tooltip, flagIn);
-        Utils.addTooltip(tooltip, Utils.TOOLTIP_ADD_COLUMN);
+    public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+        super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+        Utils.addTooltip(tooltipComponents, Utils.TOOLTIP_ADD_COLUMN);
     }
 
     @Override

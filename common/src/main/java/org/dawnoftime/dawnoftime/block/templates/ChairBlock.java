@@ -1,7 +1,6 @@
 package org.dawnoftime.dawnoftime.block.templates;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
@@ -19,7 +18,7 @@ public class ChairBlock extends WaterloggedHorizontalBlock {
     }
 
     @Override
-    public InteractionResult use(final BlockState state, final Level worldIn, final BlockPos pos, final Player player, final InteractionHand handIn, final BlockHitResult hit) {
+    public InteractionResult useWithoutItem(final BlockState state, final Level worldIn, final BlockPos pos, final Player player, final BlockHitResult hit) {
         return ChairEntity.createEntity(worldIn, pos, player, state.getValue(FACING), this.pixelsYOffset);
     }
 }

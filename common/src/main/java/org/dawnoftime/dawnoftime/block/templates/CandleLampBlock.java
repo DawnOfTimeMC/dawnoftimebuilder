@@ -4,11 +4,9 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.*;
-import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
@@ -57,8 +55,8 @@ public abstract class CandleLampBlock extends WaterloggedBlock implements IBlock
     }
 
     @Override
-    public InteractionResult use(final BlockState state, final Level worldIn, final BlockPos pos, final Player player, final InteractionHand handIn, final BlockHitResult hit) {
-        return Utils.changeBlockLitStateWithItemOrCreativePlayer(state, worldIn, pos, player, handIn) >= 0 ? InteractionResult.SUCCESS : InteractionResult.PASS;
+    public InteractionResult useWithoutItem(final BlockState state, final Level worldIn, final BlockPos pos, final Player player, final BlockHitResult hit) {
+        return Utils.changeBlockLitStateWithItemOrCreativePlayer(state, worldIn, pos, player, player.getUsedItemHand()) >= 0 ? InteractionResult.SUCCESS : InteractionResult.PASS;
     }
 
     @Override
@@ -68,7 +66,7 @@ public abstract class CandleLampBlock extends WaterloggedBlock implements IBlock
 
         if(!state.getValue(WaterloggedBlock.WATERLOGGED) && !state.getValue(CandleLampBlock.LIT) && (projectile instanceof AbstractArrow && ((AbstractArrow) projectile).isOnFire() || projectile instanceof Fireball)) {
             activation = 1;
-        } else if(state.getValue(CandleLampBlock.LIT) && (projectile instanceof Snowball || projectile instanceof ThrowableProjectile && PotionUtils.getPotion(((ThrowableItemProjectile) projectile).getItem()).getEffects().size() <= 0)) {
+        } else if(state.getValue(CandleLampBlock.LIT) && (projectile instanceof Snowball || projectile instanceof ThrowableProjectile && Utils.getPotionByName(Utils.getItemKeyAsString(((ThrowableItemProjectile) projectile).getItem().getItem())).getEffects().size() <= 0)) {
             activation = 0;
         }
 

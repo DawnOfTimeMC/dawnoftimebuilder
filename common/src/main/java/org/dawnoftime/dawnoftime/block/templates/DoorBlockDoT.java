@@ -10,7 +10,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class DoorBlockDoT extends DoorBlock {
     public DoorBlockDoT(Properties properties, BlockSetType blockSetType) {
-        super(properties, blockSetType);
+        super(blockSetType, properties);
     }
 
     @Override
