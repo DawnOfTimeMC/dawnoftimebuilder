@@ -8,17 +8,17 @@
     "key": {
         "x": [
             {
-                "tag": "forge:sandstone"
+                "tag": "c:sandstone"
             },
             {
-                "tag": "forge:stone"
+                "tag": "c:stone"
             },
             {
-                "tag": "forge:cobblestone"
+                "tag": "c:cobblestone"
             }
         ],
         "o": {
-            "tag": "forge:nuggets/gold"
+            "tag": "c:nuggets/gold"
         }
     },
     "result": {

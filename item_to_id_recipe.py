@@ -1,104 +1,66 @@
 import os
-import json
 
-def replace_item_in_result_recursively(data, is_inside_result=False):
+def replace_text_in_files(directory_path, old_text, new_text):
     """
-    Percorre recursivamente um objeto Python e substitui a chave 'item' por 'id'
-    APENAS se estiver dentro de uma chave 'result'.
+    Percorre um diretório, encontra todos os arquivos .json e substitui
+    todas as ocorrências de um texto por outro.
 
     Args:
-        data: O objeto Python (dicionário ou lista) para processar.
-        is_inside_result: Um booleano que indica se a execução atual está
-                          dentro de uma chave 'result'.
-
-    Returns:
-        O objeto modificado.
-    """
-    if isinstance(data, dict):
-        new_dict = {}
-        for key, value in data.items():
-            # A condição para renomear a chave agora é dupla:
-            # 1. A chave deve ser "item".
-            # 2. O flag "is_inside_result" deve ser verdadeiro.
-            new_key = "id" if key == "item" and is_inside_result else key
-
-            # O próximo nível da recursão estará "dentro de result" se a chave
-            # atual for "result" ou se já estávamos dentro.
-            new_value = replace_item_in_result_recursively(value, is_inside_result or key == "result")
-
-            new_dict[new_key] = new_value
-        return new_dict
-
-    elif isinstance(data, list):
-        # Se for uma lista, apenas propaga o status de "is_inside_result" para os elementos
-        return [replace_item_in_result_recursively(element, is_inside_result) for element in data]
-
-    else:
-        # Retorna o valor como está se não for dicionário nem lista
-        return data
-
-def process_json_files_in_directory(directory_path):
-    """
-    Percorre todos os arquivos em um diretório e, para cada arquivo .json,
-    substitui 'item' por 'id' somente dentro da chave 'result'.
-
-    Args:
-        directory_path: O caminho para o diretório contendo os arquivos JSON.
+        directory_path (str): O caminho para o diretório.
+        old_text (str): O texto a ser substituído.
+        new_text (str): O novo texto que substituirá o antigo.
     """
     if not os.path.isdir(directory_path):
         print(f"Erro: O diretório '{directory_path}' não foi encontrado.")
         return
 
-    print(f"Iniciando processamento no diretório: '{directory_path}'...")
+    print(f"Iniciando a substituição de '{old_text}' por '{new_text}' no diretório: '{directory_path}'...")
 
+    # Percorre todos os arquivos no diretório especificado
     for filename in os.listdir(directory_path):
         if filename.endswith(".json"):
             file_path = os.path.join(directory_path, filename)
             try:
+                # Variável para verificar se alguma alteração foi feita
+                file_changed = False
+
+                # Abre o arquivo para leitura
                 with open(file_path, 'r', encoding='utf-8') as f:
-                    content = json.load(f)
+                    content = f.read()
 
-                # Chama a nova função para modificar o conteúdo
-                modified_content = replace_item_in_result_recursively(content)
+                # Verifica se o texto a ser substituído existe no arquivo
+                if old_text in content:
+                    # Realiza a substituição
+                    modified_content = content.replace(old_text, new_text)
+                    file_changed = True
 
-                with open(file_path, 'w', encoding='utf-8') as f:
-                    json.dump(modified_content, f, indent=4)
+                # Se o arquivo foi alterado, salva o novo conteúdo
+                if file_changed:
+                    with open(file_path, 'w', encoding='utf-8') as f:
+                        f.write(modified_content)
+                    print(f"-> O texto foi substituído no arquivo: '{filename}'")
+                else:
+                    print(f"-> Nenhum texto para substituir em: '{filename}'")
 
-                print(f"-> Arquivo '{filename}' processado com sucesso.")
-
-            except json.JSONDecodeError:
-                print(f"-> Erro: O arquivo '{filename}' não é um JSON válido e foi ignorado.")
             except Exception as e:
                 print(f"-> Ocorreu um erro inesperado ao processar o arquivo '{filename}': {e}")
 
     print("\nProcessamento concluído.")
 
+
 # --- MODO DE USAR ---
 if __name__ == "__main__":
-    # 1. Defina o caminho para a sua pasta de arquivos JSON aqui
-    target_directory = "neoforge/src/main/resources/data/dawnoftimebuilder/recipes"  # Altere este valor para o seu diretório
+    # 1. Defina o caminho para a sua pasta de arquivos JSON
+    target_directory = "neoforge/src/main/resources/data/dawnoftimebuilder/recipe"
 
-    # 2. Bloco para criar um exemplo caso o diretório não exista
+    # 2. Defina o texto a ser encontrado e o novo texto
+    text_to_find = "forge"
+    text_to_replace = "c"
+
+    # 3. (Opcional) Bloco para criar um diretório e um arquivo de exemplo
     if not os.path.exists(target_directory):
         print(f"O diretório '{target_directory}' não existe. Criando um exemplo...")
         os.makedirs(target_directory)
-        example_json_content = {
-            "type": "minecraft:crafting_shaped",
-            "pattern": ["I", "i"],
-            "key": {
-                "I": {"item": "minecraft:stripped_acacia_log"},
-                "i": {"item": "minecraft:red_sandstone"}
-            },
-            "result": {"item": "dawnoftimebuilder:acacia_beam", "count": 4}
-        }
-        with open(os.path.join(target_directory, 'acacia_beam.json'), 'w', encoding='utf-8') as f:
-            json.dump(example_json_content, f, indent=4)
-        print("Diretório de exemplo e arquivo 'acacia_beam.json' criados.")
 
-    # 3. Chama a função principal para processar os arquivos
-    process_json_files_in_directory(target_directory)
-
-    # 4. (Opcional) Imprime o resultado para verificação
-    print("\n--- Conteúdo do arquivo 'acacia_beam.json' após a modificação ---")
-    with open(os.path.join(target_directory, 'acacia_beam.json'), 'r', encoding='utf-8') as f:
-        print(f.read())
+    # 4. Chama a função principal para processar os arquivos
+    replace_text_in_files(target_directory, text_to_find, text_to_replace)

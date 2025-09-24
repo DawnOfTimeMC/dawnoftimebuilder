@@ -26,7 +26,7 @@
             "item": "dawnoftimebuilder:clay_tile"
         },
         {
-            "tag": "forge:dyes/black"
+            "tag": "c:dyes/black"
         }
     ],
     "result": {

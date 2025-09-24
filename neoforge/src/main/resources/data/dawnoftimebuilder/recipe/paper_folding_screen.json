@@ -10,7 +10,7 @@
             "item": "minecraft:paper"
         },
         "I": {
-            "tag": "forge:rods/wooden"
+            "tag": "c:rods/wooden"
         },
         "o": {
             "item": "minecraft:ink_sac"

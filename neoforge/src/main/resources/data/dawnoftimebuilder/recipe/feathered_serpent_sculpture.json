@@ -9,10 +9,10 @@
             "item": "minecraft:stone"
         },
         "i": {
-            "tag": "forge:dyes/green"
+            "tag": "c:dyes/green"
         },
         "o": {
-            "tag": "forge:nuggets/gold"
+            "tag": "c:nuggets/gold"
         }
     },
     "result": {

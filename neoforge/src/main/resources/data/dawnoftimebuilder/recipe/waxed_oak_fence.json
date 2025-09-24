@@ -9,7 +9,7 @@
             "item": "dawnoftimebuilder:waxed_oak_planks"
         },
         "i": {
-            "tag": "forge:rods/wooden"
+            "tag": "c:rods/wooden"
         }
     },
     "result": {

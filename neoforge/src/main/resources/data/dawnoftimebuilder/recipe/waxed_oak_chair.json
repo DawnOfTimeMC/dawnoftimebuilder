@@ -13,7 +13,7 @@
             "item": "dawnoftimebuilder:thatch_wheat"
         },
         "i": {
-            "tag": "forge:rods/wooden"
+            "tag": "c:rods/wooden"
         }
     },
     "result": {

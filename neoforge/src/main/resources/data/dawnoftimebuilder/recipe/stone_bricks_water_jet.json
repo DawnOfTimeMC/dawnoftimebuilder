@@ -12,10 +12,10 @@
             "item": "minecraft:water_bucket"
         },
         "I": {
-            "tag": "forge:nuggets/iron"
+            "tag": "c:nuggets/iron"
         },
         "u": {
-            "tag": "forge:dusts/redstone"
+            "tag": "c:dusts/redstone"
         }
     },
     "result": {
