@@ -6,6 +6,7 @@ import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import org.dawnoftime.dawnoftime.util.CustomWidgetTooltipHolder;
 import org.jetbrains.annotations.NotNull;
 
 import static org.dawnoftime.dawnoftime.DoTBCommon.MOD_ID;
@@ -17,6 +18,7 @@ public class SocialsButton extends Button {
         super(x, y, 28, 28, Component.empty(), pressable, DEFAULT_NARRATION);
         this.buttonIcons = ResourceLocation.fromNamespaceAndPath(MOD_ID, "textures/gui/social_" + buttonName + ".png");
         this.socialIcons = ResourceLocation.fromNamespaceAndPath(MOD_ID, "textures/gui/social_icons.png");
+        this.tooltip = new CustomWidgetTooltipHolder();
     }
 
     @Override
