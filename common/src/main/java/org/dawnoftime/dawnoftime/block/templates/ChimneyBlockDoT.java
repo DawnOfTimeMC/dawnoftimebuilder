@@ -7,15 +7,13 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.*;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
@@ -25,8 +23,6 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.VoxelShape;
-
-
 import org.dawnoftime.dawnoftime.block.general.FireplaceBlock;
 import org.dawnoftime.dawnoftime.util.BlockStatePropertiesAA.VerticalConnection;
 import org.dawnoftime.dawnoftime.util.Utils;
@@ -74,11 +70,11 @@ public class ChimneyBlockDoT extends ConnectedVerticalBlock {
     }
 
     @Override
-    public InteractionResult use(final BlockState blockStateIn, final Level worldIn, final BlockPos blockPosIn, final Player player, final InteractionHand handIn, final BlockHitResult hit) {
-        if(super.use(blockStateIn, worldIn, blockPosIn, player, handIn, hit).equals(InteractionResult.SUCCESS))
+    public InteractionResult useWithoutItem(final BlockState blockStateIn, final Level worldIn, final BlockPos blockPosIn, final Player player, final BlockHitResult hit) {
+        if(super.useWithoutItem(blockStateIn, worldIn, blockPosIn, player, hit).equals(InteractionResult.SUCCESS))
             return InteractionResult.SUCCESS;
 
-        final int activation = Utils.changeBlockLitStateWithItemOrCreativePlayer(blockStateIn, worldIn, blockPosIn, player, handIn);
+        final int activation = Utils.changeBlockLitStateWithItemOrCreativePlayer(blockStateIn, worldIn, blockPosIn, player, player.getUsedItemHand());
         if(activation >= 0) {
             final boolean isActivated = activation == 1;
 
@@ -98,7 +94,7 @@ public class ChimneyBlockDoT extends ConnectedVerticalBlock {
 
         if(!state.getValue(WaterloggedBlock.WATERLOGGED) && !state.getValue(FireplaceBlock.LIT) && (projectile instanceof Arrow && ((Arrow) projectile).isOnFire() || projectile instanceof Fireball)) {
             activation = 1;
-        } else if(state.getValue(FireplaceBlock.LIT) && (projectile instanceof Snowball || projectile instanceof ThrowableProjectile && PotionUtils.getPotion(((ThrowableItemProjectile) projectile).getItem()).getEffects().size() <= 0)) {
+        } else if(state.getValue(FireplaceBlock.LIT) && (projectile instanceof Snowball || projectile instanceof ThrowableProjectile && Utils.getPotionByName(Utils.getItemKeyAsString(((ThrowableItemProjectile) projectile).getItem().getItem())).getEffects().size() <= 0)) {
             activation = 0;
         }
 
@@ -139,9 +135,10 @@ public class ChimneyBlockDoT extends ConnectedVerticalBlock {
     }
 
     @Override
-    public void appendHoverText(final ItemStack stack, @Nullable final BlockGetter worldIn, final List<Component> tooltip, final TooltipFlag flagIn) {
-        super.appendHoverText(stack, worldIn, tooltip, flagIn);
-        Utils.addTooltip(tooltip, Utils.TOOLTIP_FIREPLACE);
+    public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+        super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+        Utils.addTooltip(tooltipComponents, Utils.TOOLTIP_FIREPLACE);
+
     }
 
     public static void updateAllChimneyConductParts(final boolean isActivatedIn, BlockState stateIn, final BlockPos blockPosIn, final Level worldIn) {
@@ -181,8 +178,8 @@ public class ChimneyBlockDoT extends ConnectedVerticalBlock {
                 blockState = blockState.setValue(BlockStateProperties.LIT, isActivatedIn);
                 worldIn.setBlock(blockPos, blockState, 10);
                 final Direction direction = blockState.getValue(ConnectedVerticalSidedBlock.FACING);
-                worldIn.getBlockState(blockPos.relative(direction.getCounterClockWise())).neighborChanged(worldIn, blockPos.relative(direction.getCounterClockWise()), blockState.getBlock(), blockPos, false);
-                worldIn.getBlockState(blockPos.relative(direction.getClockWise())).neighborChanged(worldIn, blockPos.relative(direction.getClockWise()), blockState.getBlock(), blockPos, false);
+                worldIn.getBlockState(blockPos.relative(direction.getCounterClockWise())).handleNeighborChanged(worldIn, blockPos.relative(direction.getCounterClockWise()), blockState.getBlock(), blockPos, false);
+                worldIn.getBlockState(blockPos.relative(direction.getClockWise())).handleNeighborChanged(worldIn, blockPos.relative(direction.getClockWise()), blockState.getBlock(), blockPos, false);
             }
         }
     }

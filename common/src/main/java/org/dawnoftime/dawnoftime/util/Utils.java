@@ -5,6 +5,7 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
@@ -13,7 +14,6 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.alchemy.Potion;
-import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
@@ -25,6 +25,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import org.dawnoftime.dawnoftime.DoTBCommon;
 import org.dawnoftime.dawnoftime.block.templates.WaterloggedBlock;
 import org.dawnoftime.dawnoftime.registry.DoTBTags;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 import java.util.List;
@@ -84,7 +85,7 @@ public class Utils {
         final ItemStack itemInHand = player.getItemInHand(handIn);
         if (!itemInHand.isEmpty() && itemInHand.is(DoTBTags.INSTANCE.LIGHTERS)) {
             worldIn.playSound(null, pos, SoundEvents.FLINTANDSTEEL_USE, SoundSource.BLOCKS, 1.0F, 1.0F);
-            itemInHand.hurtAndBreak(1, player, p -> p.broadcastBreakEvent(handIn));
+            itemInHand.hurtAndBreak(1, player, player.getEquipmentSlotForItem(itemInHand));
             return true;
         }
         return false;
@@ -106,7 +107,7 @@ public class Utils {
             } else if (itemStackInHand.is(DoTBTags.INSTANCE.LIGHTERS)) {
                 worldIn.playSound(null, pos, SoundEvents.FLINTANDSTEEL_USE, SoundSource.BLOCKS, 1.0F, 1.0F);
                 if (!player.isCreative()) {
-                    itemStackInHand.hurtAndBreak(1, player, p -> p.broadcastBreakEvent(handIn));
+                    itemStackInHand.hurtAndBreak(1, player, player.getEquipmentSlotForItem(itemStackInHand));
                 }
                 return true;
             }
@@ -125,12 +126,12 @@ public class Utils {
         if (mainItemStack.is(DoTBTags.INSTANCE.LIGHTERS)) {
             worldIn.playSound(null, pos, SoundEvents.FLINTANDSTEEL_USE, SoundSource.BLOCKS, 1.0F, 1.0F);
             if (!player.isCreative()) {
-                mainItemStack.hurtAndBreak(1, player, p -> p.broadcastBreakEvent(handIn));
+                mainItemStack.hurtAndBreak(1, player, player.getEquipmentSlotForItem(mainItemStack));
             }
             return true;
         }
         if (mainItemStack.getItem() instanceof PotionItem && !(mainItemStack.getItem() instanceof SplashPotionItem)) {
-            final Potion potion = PotionUtils.getPotion(mainItemStack);
+            final Potion potion = getPotionByName(getItemKeyAsString(mainItemStack.getItem()));
 
             if (potion != null && potion.getEffects().size() <= 0) {
                 player.getMainHandItem().shrink(1);
@@ -145,6 +146,14 @@ public class Utils {
         }
 
         return false;
+    }
+
+    public static Potion getPotionByName(String name) {
+        return BuiltInRegistries.POTION.get(ResourceLocation.tryParse(name));
+    }
+
+    public static @NotNull String getItemKeyAsString(Item item) {
+        return BuiltInRegistries.ITEM.getKey(item).toString();
     }
 
     public static int changeBlockLitStateWithItemOrCreativePlayer(final BlockState stateIn, final Level worldIn, final BlockPos pos, final Player player, final InteractionHand handIn) {

@@ -1,0 +1,25 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "OxO",
+        "IuI"
+    ],
+    "key": {
+        "O": {
+            "item": "minecraft:stone_brick_slab"
+        },
+        "x": {
+            "item": "minecraft:water_bucket"
+        },
+        "I": {
+            "tag": "c:nuggets/iron"
+        },
+        "u": {
+            "tag": "c:dusts/redstone"
+        }
+    },
+    "result": {
+        "id": "dawnoftimebuilder:stone_bricks_water_jet",
+        "count": 2
+    }
+}

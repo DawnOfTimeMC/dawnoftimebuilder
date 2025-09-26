@@ -3,7 +3,6 @@ package org.dawnoftime.dawnoftime.block.templates;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.Mth;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -46,7 +45,7 @@ public abstract class DisplayerBlock extends WaterloggedBlock implements EntityB
     }
 
     @Override
-    public @NotNull InteractionResult use(@NotNull BlockState blockState, Level world, @NotNull BlockPos pos, @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hit) {
+    public @NotNull InteractionResult useWithoutItem(@NotNull BlockState blockState, Level world, @NotNull BlockPos pos, @NotNull Player player, @NotNull BlockHitResult hit) {
         if (hit.getDirection() != Direction.UP) {
             return InteractionResult.PASS;
         }
@@ -68,7 +67,7 @@ public abstract class DisplayerBlock extends WaterloggedBlock implements EntityB
             return InteractionResult.PASS;
         }
 
-        ItemStack held = player.getItemInHand(hand);
+        ItemStack held = player.getItemInHand(player.getUsedItemHand());
         ItemStack slotItem = displayer.getItem(slot);
         if (!held.isEmpty()) {
             if (slotItem.isEmpty()) {
@@ -79,11 +78,11 @@ public abstract class DisplayerBlock extends WaterloggedBlock implements EntityB
                     displayer.setItem(slot, ItemStack.EMPTY);
                 }
             } else if (held.getCount() == 1) {
-                player.setItemInHand(hand, slotItem);
+                player.setItemInHand(player.getUsedItemHand(), slotItem);
                 displayer.setItem(slot, held);
             }
         } else if (!slotItem.isEmpty()) {
-            player.setItemInHand(hand, slotItem);
+            player.setItemInHand(player.getUsedItemHand(), slotItem);
             displayer.setItem(slot, ItemStack.EMPTY);
         }
         boolean lit = displayer.isLit();

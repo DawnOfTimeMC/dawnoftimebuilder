@@ -5,7 +5,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BlockItem;
@@ -58,9 +57,9 @@ public class MixedSlabBlock extends SlabBlockDoT {
     }
 
     @Override
-    public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
+    public InteractionResult useWithoutItem(BlockState state, Level worldIn, BlockPos pos, Player player, BlockHitResult hit) {
         Direction facing = hit.getDirection();
-        ItemStack itemStack = player.getItemInHand(handIn);
+        ItemStack itemStack = player.getItemInHand(player.getUsedItemHand());
         if(!player.isCrouching() && player.mayUseItemAt(pos, facing, itemStack) && facing.getAxis().isVertical() && !itemStack.isEmpty()) {
             for(MixedBlockRecipe recipe : listRecipes) {
                 if(facing == recipe.getFacingForMerging(false)) {
@@ -71,7 +70,7 @@ public class MixedSlabBlock extends SlabBlockDoT {
                             if(player instanceof ServerPlayer) {
                                 CriteriaTriggers.PLACED_BLOCK.trigger((ServerPlayer) player, pos, itemStack);
                             }
-                            SoundType soundtype = recipe.getMixedBlock().getSoundType(state);
+                            SoundType soundtype = recipe.getMixedBlock().defaultBlockState().getSoundType();
                             worldIn.playSound(player, pos, soundtype.getPlaceSound(), SoundSource.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F);
                             if(!player.isCreative())
                                 itemStack.shrink(1);
@@ -81,7 +80,7 @@ public class MixedSlabBlock extends SlabBlockDoT {
                 }
             }
         }
-        return super.use(state, worldIn, pos, player, handIn, hit);
+        return super.useWithoutItem(state, worldIn, pos, player, hit);
     }
 
     public static Item getBlockItem(MixedSlabBlock block) {
@@ -116,7 +115,7 @@ public class MixedSlabBlock extends SlabBlockDoT {
                                     if(player instanceof ServerPlayer) {
                                         CriteriaTriggers.PLACED_BLOCK.trigger((ServerPlayer) player, pos, itemStack);
                                     }
-                                    SoundType soundtype = recipe.getMixedBlock().getSoundType(state);
+                                    SoundType soundtype = recipe.getMixedBlock().defaultBlockState().getSoundType();
                                     worldIn.playSound(player, pos, soundtype.getPlaceSound(), SoundSource.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F);
                                     itemStack.shrink(1);
                                     return InteractionResult.SUCCESS;

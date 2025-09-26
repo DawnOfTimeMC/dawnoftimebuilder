@@ -1,0 +1,26 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " i ",
+        "IOI",
+        "oIo"
+    ],
+    "key": {
+        "i": {
+            "tag": "c:rods/wooden"
+        },
+        "O": {
+            "item": "minecraft:torch"
+        },
+        "I": {
+            "item": "minecraft:paper"
+        },
+        "o": {
+            "item": "minecraft:ink_sac"
+        }
+    },
+    "result": {
+        "id": "dawnoftimebuilder:red_paper_lantern",
+        "count": 6
+    }
+}

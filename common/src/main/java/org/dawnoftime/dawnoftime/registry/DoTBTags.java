@@ -9,9 +9,9 @@ import org.dawnoftime.dawnoftime.DoTBCommon;
 public abstract class DoTBTags {
     public static DoTBTags INSTANCE;
     //Item tags
-    public final TagKey<Item> LIGHTERS = registerItem(new ResourceLocation(DoTBCommon.MOD_ID, "lighters"));
+    public final TagKey<Item> LIGHTERS = registerItem(ResourceLocation.fromNamespaceAndPath(DoTBCommon.MOD_ID, "lighters"));
     //Block tags
-    public final TagKey<Block> COVERED_BLOCKS = registerBlock(new ResourceLocation(DoTBCommon.MOD_ID, "covered_blocks"));
+    public final TagKey<Block> COVERED_BLOCKS = registerBlock(ResourceLocation.fromNamespaceAndPath(DoTBCommon.MOD_ID, "covered_blocks"));
 
 
     public abstract TagKey<Block> registerBlock(ResourceLocation id);

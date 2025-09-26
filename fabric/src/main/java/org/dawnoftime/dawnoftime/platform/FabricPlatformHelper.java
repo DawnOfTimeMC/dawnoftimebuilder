@@ -1,45 +1,12 @@
 package org.dawnoftime.dawnoftime.platform;
 
-import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
-import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.network.chat.Component;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.MenuProvider;
-import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.inventory.AbstractContainerMenu;
-import org.dawnoftime.dawnoftime.DoTBFabric;
-import org.dawnoftime.dawnoftime.platform.services.IPlatformHelper;
 import net.fabricmc.loader.api.FabricLoader;
-import org.jetbrains.annotations.Nullable;
-
-import java.util.function.BiConsumer;
+import org.dawnoftime.dawnoftime.platform.services.IPlatformHelper;
 
 public class FabricPlatformHelper implements IPlatformHelper {
 
     @Override
     public boolean isModLoaded(String modId) {
         return FabricLoader.getInstance().isModLoaded(modId);
-    }
-
-
-    @Override
-    public void openScreenHandler(Player playerEntity, MenuProvider provider, BiConsumer<ServerPlayer, FriendlyByteBuf> dataWriter) {
-        playerEntity.openMenu(new ExtendedScreenHandlerFactory() {
-            @Override
-            public void writeScreenOpeningData(ServerPlayer player, FriendlyByteBuf buf) {
-                dataWriter.accept(player, buf);
-            }
-
-            @Override
-            public Component getDisplayName() {
-                return provider.getDisplayName();
-            }
-
-            @Override
-            public @Nullable AbstractContainerMenu createMenu(int i, Inventory inventory, Player player) {
-                return provider.createMenu(i, inventory, player);
-            }
-        });
     }
 }

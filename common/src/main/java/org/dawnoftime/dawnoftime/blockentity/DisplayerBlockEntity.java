@@ -1,6 +1,7 @@
 package org.dawnoftime.dawnoftime.blockentity;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
@@ -8,7 +9,6 @@ import net.minecraft.world.Container;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -20,8 +20,6 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static org.dawnoftime.dawnoftime.block.templates.DisplayerBlock.LIT;
-
 public class DisplayerBlockEntity extends BlockEntity implements Container {
 	private static final int SIZE = 9;
 
@@ -32,23 +30,23 @@ public class DisplayerBlockEntity extends BlockEntity implements Container {
 	}
 
 	@Override
-	public @NotNull CompoundTag getUpdateTag() {
-		CompoundTag tag = super.getUpdateTag();
-		ContainerHelper.saveAllItems(tag, this.items);
+	public @NotNull CompoundTag getUpdateTag(HolderLookup.@NotNull Provider registries) {
+		CompoundTag tag = super.getUpdateTag(registries);
+		ContainerHelper.saveAllItems(tag, this.items, registries);
 		return tag;
 	}
 
 	@Override
-	public void saveAdditional(@NotNull CompoundTag tag) {
-		super.saveAdditional(tag);
-		ContainerHelper.saveAllItems(tag, this.items);
+	public void saveAdditional(@NotNull CompoundTag tag, HolderLookup.@NotNull Provider registries) {
+		super.saveAdditional(tag, registries);
+		ContainerHelper.saveAllItems(tag, this.items, registries);
 	}
 
 	@Override
-	public void load(@NotNull CompoundTag tag) {
-		super.load(tag);
+	public void loadAdditional(@NotNull CompoundTag tag, HolderLookup.@NotNull Provider registries) {
+		super.loadAdditional(tag, registries);
 		this.items.clear();
-		ContainerHelper.loadAllItems(tag, this.items);
+		ContainerHelper.loadAllItems(tag, this.items, registries);
 	}
 
 	@Override

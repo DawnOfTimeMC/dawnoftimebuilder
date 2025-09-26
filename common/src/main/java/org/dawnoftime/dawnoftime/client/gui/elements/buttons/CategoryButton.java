@@ -5,15 +5,13 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.Tooltip;
-import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipPositioner;
-import net.minecraft.client.gui.screens.inventory.tooltip.DefaultTooltipPositioner;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import org.dawnoftime.dawnoftime.client.gui.creative.CreativeInventoryCategories;
 import org.dawnoftime.dawnoftime.mixin.api.CreativeScreen;
+import org.dawnoftime.dawnoftime.util.CustomWidgetTooltipHolder;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.joml.Vector2i;
 
 import static org.dawnoftime.dawnoftime.DoTBCommon.CREATIVE_ICONS;
 import static org.dawnoftime.dawnoftime.DoTBCommon.MOD_ID;
@@ -30,6 +28,7 @@ public class CategoryButton extends Button {
         this.selected = false;
         this.index = index;
         this.parent = parent;
+        this.tooltip = new CustomWidgetTooltipHolder();
     }
 
     public void setSelected(boolean selected) {
@@ -78,7 +77,7 @@ public class CategoryButton extends Button {
         int number = CreativeInventoryCategories.values().length;
         ResourceLocation[] table = new ResourceLocation[number];
         for(int i = 0; i < number; i++) {
-            table[i] = new ResourceLocation(MOD_ID, "textures/item/logo_" + CreativeInventoryCategories.values()[i].getName() + ".png");
+            table[i] = ResourceLocation.fromNamespaceAndPath(MOD_ID, "textures/item/logo_" + CreativeInventoryCategories.values()[i].getName() + ".png");
         }
         return table;
     }
@@ -97,8 +96,8 @@ public class CategoryButton extends Button {
         return this.active ? super.getTooltip() : null;
     }
 
-    @Override
-    protected ClientTooltipPositioner createTooltipPositioner() {
-        return DefaultTooltipPositioner.INSTANCE;
-    }
+//    @Override
+//    protected ClientTooltipPositioner createTooltipPositioner() {
+//        return DefaultTooltipPositioner.INSTANCE;
+//    }
 }

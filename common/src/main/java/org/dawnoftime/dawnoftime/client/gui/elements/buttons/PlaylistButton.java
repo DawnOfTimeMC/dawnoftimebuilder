@@ -17,7 +17,7 @@ public class PlaylistButton extends Button {
 
     public PlaylistButton(int x, int y, OnPress pressable) {
         super(x, y, 12, 12, Component.empty(), pressable, DEFAULT_NARRATION);
-        this.buttonTexture = new ResourceLocation(MOD_ID, "textures/gui/social_icons.png");
+        this.buttonTexture = ResourceLocation.fromNamespaceAndPath(MOD_ID, "textures/gui/social_icons.png");
     }
 
     @Override
