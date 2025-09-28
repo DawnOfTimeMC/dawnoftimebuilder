@@ -102,12 +102,6 @@ public class PergolaBlock extends WaterloggedBlock implements IBlockPillar {
     }
 
     @Override
-    public void appendHoverText(@NotNull ItemStack stack, @Nullable BlockGetter worldIn, @NotNull List<Component> tooltip, @NotNull TooltipFlag flagIn) {
-        super.appendHoverText(stack, worldIn, tooltip, flagIn);
-        Utils.addTooltip(tooltip, TOOLTIP_BEAM);
-    }
-
-    @Override
     public @NotNull BlockState rotate(BlockState state, Rotation rotation) {
         boolean x = state.getValue(AXIS_X);
         boolean z = state.getValue(AXIS_Z);

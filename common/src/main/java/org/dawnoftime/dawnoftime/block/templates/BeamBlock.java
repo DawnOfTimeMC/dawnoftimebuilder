@@ -102,4 +102,10 @@ public class BeamBlock extends PergolaBlock {
     public BlockStatePropertiesAA.PillarConnection getBlockPillarConnectionAbove(BlockState state) {
         return state.getValue(AXIS_Y) ? BlockStatePropertiesAA.PillarConnection.TEN_PX : BlockStatePropertiesAA.PillarConnection.NOTHING;
     }
+
+    @Override
+    public void appendHoverText(@NotNull ItemStack stack, @Nullable BlockGetter worldIn, @NotNull List<Component> tooltip, @NotNull TooltipFlag flagIn) {
+        super.appendHoverText(stack, worldIn, tooltip, flagIn);
+        Utils.addTooltip(tooltip, TOOLTIP_BEAM);
+    }
 }

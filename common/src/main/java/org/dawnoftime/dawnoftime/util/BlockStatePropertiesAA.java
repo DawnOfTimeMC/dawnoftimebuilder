@@ -28,7 +28,6 @@ public class BlockStatePropertiesAA {
     public static final IntegerProperty MULTIBLOCK_2Y = IntegerProperty.create("multiblock_2y", 0, 1);
     public static final IntegerProperty MULTIBLOCK_3Z = IntegerProperty.create("multiblock_3z", 0, 2);
     public static final IntegerProperty HUMIDITY_0_8 = IntegerProperty.create("humidity", 0, 8);
-    public static final IntegerProperty HEAT_0_4 = IntegerProperty.create("heat", 0, 4);
     public static final IntegerProperty STACK = IntegerProperty.create("stack", 1, 3);
     public static final IntegerProperty LEVEL = IntegerProperty.create("level", 0, 16);
     public static final EnumProperty<FencePillar> FENCE_PILLAR = EnumProperty.create("fence_pillar", FencePillar.class);

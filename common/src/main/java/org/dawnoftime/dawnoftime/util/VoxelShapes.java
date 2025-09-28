@@ -141,6 +141,8 @@ public class VoxelShapes {
     public static final VoxelShape[] SMALL_TATAMI_FLOOR_SHAPES = new VoxelShape[]{Block.box(0.0D, 0.0D, 0.0D, 16.0D, 17.0D, 16.0D)};
     public static final VoxelShape[] SMALL_SHUTTER_SHAPES = makeSmallShutterShapes();
     public static final VoxelShape[] SMALL_TATAMI_MAT_SHAPES = makeSmallTatamiMatShapes();
+    public static final VoxelShape[] WHITE_CUSHION_SHAPES = generateHorizontalShapes(new VoxelShape[]{
+            Block.box(2.5D, 0.0D, 2.5D, 13.5D, 2.0D, 13.5D)});
     public static final VoxelShape[] SPRUCE_LEGLESS_CHAIR_SHAPES = generateHorizontalShapes(new VoxelShape[]{
             Shapes.or(
                     Block.box(2.0D, 0.0D, 0.0D, 14.0D, 3.0D, 16.0D),

@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "dawnoftimebuilder:block/japanese/white_cushion" },
+        "facing=west": { "model": "dawnoftimebuilder:block/japanese/white_cushion", "y": 270 },
+        "facing=south": { "model": "dawnoftimebuilder:block/japanese/white_cushion", "y": 180 },
+        "facing=east": { "model": "dawnoftimebuilder:block/japanese/white_cushion", "y": 90 }
+    }
+}

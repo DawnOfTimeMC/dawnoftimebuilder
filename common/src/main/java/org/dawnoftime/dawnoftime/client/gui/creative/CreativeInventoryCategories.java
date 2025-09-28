@@ -337,6 +337,7 @@ public enum CreativeInventoryCategories {
             DoTBBlocksRegistry.INSTANCE.SMALL_TATAMI_MAT.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.TATAMI_MAT.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.LIGHT_GRAY_FUTON.get().asItem(),
+            DoTBBlocksRegistry.INSTANCE.WHITE_CUSHION.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.SPRUCE_LEGLESS_CHAIR.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.SPRUCE_LOW_TABLE.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.IKEBANA_FLOWER_POT.get().asItem(),
