@@ -1,4 +1,5 @@
 {
+	"render_type": "minecraft:cutout",
 	"textures": {
 		"0": "dawnoftimebuilder:block/white_cushion",
 		"particle": "dawnoftimebuilder:block/white_cushion"
