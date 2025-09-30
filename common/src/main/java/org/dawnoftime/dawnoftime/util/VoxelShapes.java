@@ -99,9 +99,6 @@ public class VoxelShapes {
     public static final VoxelShape[] PERGOLA_SHAPES = makePergolaShapes();
     public static final VoxelShape[] PLASTERED_STONE_COLUMN_SHAPES = makePlasteredStoneColumnShapes();
     public static final VoxelShape[] PLASTERED_STONE_CRESSET_SHAPES = new VoxelShape[]{Block.box(3.0D, 0.0D, 3.0D, 13.0D, 14.0D, 13.0D)};
-    public static final VoxelShape[] PLANTER_SHAPES = generateHorizontalShapes(new VoxelShape[]{
-            Block.box(0.0D, 0.0D, 8.0D, 16.0D, 8.0D, 16.0D),
-            Block.box(0.0D, 8.0D, 8.0D, 16.0D, 16.0D, 16.0D)});
     public static final VoxelShape[] PLASTERED_STONE_WINDOW_SHAPES = new VoxelShape[]{
             Block.box(0.0D, 0.0D, 6.0D, 16.0D, 16.0D, 10.0D),
             Block.box(6.0D, 0.0D, 0.0D, 10.0D, 16.0D, 16.0D)};
@@ -145,6 +142,8 @@ public class VoxelShapes {
             Shapes.or(
                     Block.box(2.0D, 0.0D, 0.0D, 14.0D, 3.0D, 16.0D),
                     Block.box(2.0D, 3.0D, 0.0D, 14.0D, 11.0D, 4.0D))});
+    public static final VoxelShape[] WHITE_CUSHION_SHAPES = generateHorizontalShapes(new VoxelShape[]{
+            Block.box(2.5D, 0.0D, 2.5D, 13.5D, 2.0D, 13.5D)});
     public static final VoxelShape[] SPRUCE_LOW_TABLE_SHAPES = new VoxelShape[]{
             Block.box(0.0D, 0.0D, 2.0D, 16.0D, 8.0D, 14.0D),
             Block.box(2.0D, 0.0D, 0.0D, 14.0D, 8.0D, 16.0D)};
