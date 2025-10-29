@@ -1,0 +1,8 @@
+{
+    "parent": "block/slab",
+    "textures": {
+        "bottom": "dawnoftimebuilder:block/rammed_dirt",
+        "top": "dawnoftimebuilder:block/rammed_dirt",
+        "side": "dawnoftimebuilder:block/rammed_dirt"
+    }
+}

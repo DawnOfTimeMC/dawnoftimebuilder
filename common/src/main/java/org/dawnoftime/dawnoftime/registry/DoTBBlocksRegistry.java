@@ -106,6 +106,10 @@ public abstract class DoTBBlocksRegistry {
     public final Supplier<Block> OAK_SUPPORT_BEAM = register("oak_support_beam", () -> new SupportBeamBlock(Block.Properties.copy(Blocks.OAK_PLANKS)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
     public final Supplier<Block> OAK_SUPPORT_SLAB = register("oak_support_slab", () -> new SupportSlabBlock(Block.Properties.copy(Blocks.OAK_PLANKS)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
     public final Supplier<Block> RAMMED_DIRT = register("rammed_dirt", () -> new BlockDoT(Block.Properties.copy(Blocks.TERRACOTTA)), BlockTags.MINEABLE_WITH_SHOVEL);
+    public Supplier<Block> RAMMED_DIRT_STAIRS;
+    public final Supplier<Block> RAMMED_DIRT_PLATE = register("rammed_dirt_plate", () -> new PlateBlock(Block.Properties.copy(Blocks.TERRACOTTA)), BlockTags.MINEABLE_WITH_SHOVEL);
+    public final Supplier<Block> RAMMED_DIRT_SLAB = register("rammed_dirt_slab", () -> new SlabBlockDoT(Block.Properties.copy(Blocks.TERRACOTTA)), BlockTags.MINEABLE_WITH_SHOVEL);
+    public final Supplier<Block> RAMMED_DIRT_EDGE = register("rammed_dirt_edge", () -> new EdgeBlock(Block.Properties.copy(Blocks.TERRACOTTA)), BlockTags.MINEABLE_WITH_SHOVEL);
     public final Supplier<Block> SPRUCE_PLANKS_EDGE = register("spruce_planks_edge", () -> new EdgeBlock(Block.Properties.copy(Blocks.SPRUCE_PLANKS)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
     public final Supplier<Block> SPRUCE_PLANKS_PLATE = register("spruce_planks_plate", () -> new PlateBlock(Block.Properties.copy(Blocks.SPRUCE_PLANKS)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
     public final Supplier<Block> SPRUCE_PERGOLA = register("spruce_pergola", () -> new PergolaBlock(Block.Properties.copy(Blocks.SPRUCE_PLANKS)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
@@ -404,6 +408,7 @@ public abstract class DoTBBlocksRegistry {
     public final Supplier<Block> SANDSTONE_SIDED_COLUMN = register("sandstone_sided_column", () -> new ConnectedVerticalSidedBlock(Block.Properties.copy(Blocks.SANDSTONE), SANDSTONE_SIDED_COLUMN_SHAPES));
     public final Supplier<Block> COVERED_SANDSTONE_WALL = register("covered_sandstone_wall", () -> new CappedWallBlock(Block.Properties.copy(Blocks.SANDSTONE)));
     public final Supplier<Block> TERRACOTTA_WALL = register("terracotta_wall", () -> new WallBlock(Block.Properties.copy(Blocks.TERRACOTTA)));
+    public final Supplier<Block> RED_TERRACOTTA_WALL = register("red_terracotta_wall", () -> new WallBlock(Block.Properties.copy(Blocks.TERRACOTTA)));
     public final Supplier<Block> ROMAN_FRESCO_BLACK = register("roman_fresco_black", () -> new BlockDoT(Block.Properties.copy(Blocks.TERRACOTTA)));
     public final Supplier<Block> ROMAN_FRESCO_RED = register("roman_fresco_red", () -> new BlockDoT(Block.Properties.copy(Blocks.TERRACOTTA)));
     public final Supplier<Block> MOSAIC_FLOOR = register("mosaic_floor", () -> new BlockDoT(Block.Properties.copy(Blocks.SANDSTONE)));
@@ -419,6 +424,11 @@ public abstract class DoTBBlocksRegistry {
     public final Supplier<Block> MARBLE_COLUMN = register("marble_column", () -> new MarbleColumnBlock(Block.Properties.copy(Blocks.STONE)));
     public final Supplier<Block> MARBLE_SIDED_COLUMN = register("marble_sided_column", () -> new ConnectedVerticalSidedBlock(Block.Properties.copy(Blocks.STONE), MARBLE_SIDED_COLUMN_SHAPES));
     public final Supplier<Block> MARBLE = register("marble", () -> new BlockDoT(Block.Properties.copy(Blocks.STONE)));
+    public Supplier<Block> MARBLE_STAIRS;
+    public final Supplier<Block> MARBLE_PLATE = register("marble_plate", () -> new PlateBlock(Block.Properties.copy(Blocks.STONE)));
+    public final Supplier<Block> MARBLE_SLAB = register("marble_slab", () -> new SlabBlockDoT(Block.Properties.copy(Blocks.STONE)));
+    public final Supplier<Block> MARBLE_EDGE = register("marble_edge", () -> new EdgeBlock(Block.Properties.copy(Blocks.STONE)));
+    public final Supplier<Block> MARBLE_WALL = register("marble_wall", () -> new WallBlock(Block.Properties.copy(Blocks.STONE)), BlockTags.MINEABLE_WITH_PICKAXE);
     public final Supplier<Block> MARBLE_PILLAR = register("marble_pillar", () -> new BlockDoT(Block.Properties.copy(Blocks.STONE)));
     public final Supplier<Block> MARBLE_COFFER = register("marble_coffer", () -> new BlockDoT(Block.Properties.copy(Blocks.STONE)));
     public final Supplier<Block> MARBLE_COFFER_SLAB = register("marble_coffer_slab", () -> new SlabBlockDoT(Block.Properties.copy(Blocks.STONE)));
@@ -432,6 +442,8 @@ public abstract class DoTBBlocksRegistry {
         GREEN_PLASTERED_STONE_STAIRS = register("green_plastered_stone_stairs", () -> new StairsBlockDoT(this.GREEN_PLASTERED_STONE, Block.Properties.copy(Blocks.BRICKS)));
         YELLOW_PLASTERED_STONE_STAIRS = register("yellow_plastered_stone_stairs", () -> new StairsBlockDoT(this.YELLOW_PLASTERED_STONE, Block.Properties.copy(Blocks.BRICKS)));
         BLUE_PLASTERED_STONE_STAIRS = register("blue_plastered_stone_stairs", () -> new StairsBlockDoT(this.BLUE_PLASTERED_STONE, Block.Properties.copy(Blocks.BRICKS)));
+        MARBLE_STAIRS = register("marble_stairs", () -> new StairsBlockDoT(this.MARBLE, Block.Properties.copy(Blocks.STONE)));
+        RAMMED_DIRT_STAIRS = register("rammed_dirt_stairs", () -> new StairsBlockDoT(this.RAMMED_DIRT, Block.Properties.copy(Blocks.DIRT)));
         OCHRE_ROOF_TILES_STAIRS = register("ochre_roof_tiles_stairs", () -> new StairsBlockDoT(this.OCHRE_ROOF_TILES, Block.Properties.copy(Blocks.BRICKS)));
         OCHRE_ROOF_TILES_SLAB = registerWithItem("ochre_roof_tiles_slab", () -> new MixedSlabBlock(Block.Properties.copy(Blocks.BRICKS))
                 .addMixedBlockRecipe(Blocks.SANDSTONE_SLAB, this.SANDSTONE_BOT_OCHRE_ROOF_TILES_TOP, false)
