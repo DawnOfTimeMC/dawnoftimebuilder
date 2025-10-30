@@ -11,7 +11,7 @@ legacyForge {
 
     def at = project(':common').file('src/main/resources/META-INF/accesstransformer.cfg')
     if (at.exists()) {
-        accessTransformers.from(at.absolutePath) //["src/main/resources/META-INF/accesstransformer.cfg"]
+        accessTransformers = ["src/main/resources/META-INF/accesstransformer.cfg"]
     }
     parchment {
         minecraftVersion = parchment_minecraft

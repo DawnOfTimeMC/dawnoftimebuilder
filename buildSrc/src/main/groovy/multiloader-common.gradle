@@ -42,10 +42,6 @@ repositories {
         name = 'BlameJared'
         url = 'https://maven.blamejared.com'
     }
-    maven {
-        name = 'Architectury API'
-        url "https://maven.architectury.dev"
-    }
 }
 
 // Declare capabilities on the outgoing configurations.
@@ -99,8 +95,7 @@ processResources {
             'mod_id'                       : mod_id,
             'license'                      : license,
             'description'                  : project.description,
-            "forge_version"                : forge_version,
-            "forge_version_range"          : forge_version_range,
+            "forge_version": forge_version,
             "forge_loader_version_range": forge_loader_version_range,
             'credits'                      : credits,
             'java_version'                 : java_version
@@ -124,13 +119,13 @@ processResources {
 publishing {
     publications {
         register('mavenJava', MavenPublication) {
-            artifactId = base.archivesName.get()
+            artifactId base.archivesName.get()
             from components.java
         }
     }
     repositories {
         maven {
-            url = System.getenv('local_maven_url')
+            url System.getenv('local_maven_url')
         }
     }
 }
