@@ -1,13 +1,7 @@
 plugins {
     id 'multiloader-loader'
     id 'net.neoforged.moddev.legacyforge'
-}
-
-mixin {
-    add(sourceSets.main, "${mod_id}.refmap.json")
-
-    config("${mod_id}.mixins.json")
-    config("${mod_id}.forge.mixins.json")
+    id 'me.modmuss50.mod-publish-plugin'
 }
 
 legacyForge {
@@ -75,4 +69,17 @@ jar {
     manifest.attributes([
             "MixinConfigs": "${mod_id}.mixins.json,${mod_id}.forge.mixins.json"
     ])
+}
+
+publishMods {
+    file = jar.archiveFile
+    modLoaders.add("forge")
+
+    curseforge {
+        //forge only dependencies found on curseforge go here. same format as in the root build.gradle
+    }
+
+    modrinth {
+        //forge only dependencies found on modrinth go here. same format as in the root build.gradle
+    }
 }

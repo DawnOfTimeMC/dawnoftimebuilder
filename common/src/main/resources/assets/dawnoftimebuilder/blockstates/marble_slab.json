@@ -2,6 +2,6 @@
     "variants": {
         "type=bottom": { "model": "dawnoftimebuilder:block/roman/marble_slab_bottom" },
         "type=top": { "model": "dawnoftimebuilder:block/roman/marble_slab_top" },
-        "type=double": { "model": "dawnoftimebuilder:block/roman/marble_block" }
+        "type=double": { "model": "dawnoftimebuilder:block/roman/marble" }
     }
 }
