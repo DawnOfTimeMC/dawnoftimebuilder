@@ -22,8 +22,6 @@ import org.dawnoftime.dawnoftime.blockentity.DisplayerBlockEntity;
 import org.dawnoftime.dawnoftime.registry.DoTBBlockEntitiesRegistry;
 import org.jetbrains.annotations.NotNull;
 
-import static net.minecraft.world.Containers.dropItemStack;
-
 public abstract class DisplayerBlock extends WaterloggedBlock implements EntityBlock, IBlockSpecialDisplay {
     public static final BooleanProperty LIT = BlockStateProperties.LIT;
 
@@ -92,16 +90,16 @@ public abstract class DisplayerBlock extends WaterloggedBlock implements EntityB
         return InteractionResult.SUCCESS;
     }
 
-    @Override
-    public void onRemove(BlockState oldState, Level worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
-        if(oldState.getBlock() != newState.getBlock()) {
-            BlockEntity tileEntity = worldIn.getBlockEntity(pos);
-            if(tileEntity instanceof DisplayerBlockEntity displayerEntity) {
-                displayerEntity.removeAllItems().forEach(itemStack -> dropItemStack(worldIn, pos.getX(), pos.getY(), pos.getZ(), itemStack));
-            }
-        }
-        super.onRemove(oldState, worldIn, pos, newState, isMoving);
-    }
+//    @Override
+//    public void onRemove(BlockState oldState, Level worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
+//        if(oldState.getBlock() != newState.getBlock()) {
+//            BlockEntity tileEntity = worldIn.getBlockEntity(pos);
+//            if(tileEntity instanceof DisplayerBlockEntity displayerEntity) {
+//                displayerEntity.removeAllItems().forEach(itemStack -> dropItemStack(worldIn, pos.getX(), pos.getY(), pos.getZ(), itemStack));
+//            }
+//        }
+//        super.onRemove(oldState, worldIn, pos, newState, isMoving);
+//    }
 
     public abstract double getDisplayerX(BlockState state);
 

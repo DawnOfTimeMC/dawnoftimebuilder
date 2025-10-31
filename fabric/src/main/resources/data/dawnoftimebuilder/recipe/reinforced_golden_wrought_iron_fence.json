@@ -1,12 +1,8 @@
 {
     "type": "minecraft:crafting_shapeless",
     "ingredients": [
-        {
-            "item": "minecraft:gold_nugget"
-        },
-        {
-            "item": "dawnoftimebuilder:reinforced_black_wrought_iron_fence"
-        }
+      "minecraft:gold_nugget",
+      "dawnoftimebuilder:reinforced_black_wrought_iron_fence"
     ],
     "result": {
         "id": "dawnoftimebuilder:reinforced_golden_wrought_iron_fence"

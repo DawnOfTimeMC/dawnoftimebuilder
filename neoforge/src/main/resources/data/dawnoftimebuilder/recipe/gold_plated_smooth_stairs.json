@@ -1,17 +1,15 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "pattern": [
-        "I  ",
-        "II ",
-        "III"
-    ],
-    "key": {
-        "I": {
-            "item": "dawnoftimebuilder:gold_plated_smooth_block"
-        }
-    },
-    "result": {
-        "id": "dawnoftimebuilder:gold_plated_smooth_stairs",
-        "count": 6
-    }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "I  ",
+    "II ",
+    "III"
+  ],
+  "key": {
+    "I": "dawnoftimebuilder:gold_plated_smooth_block"
+  },
+  "result": {
+    "id": "dawnoftimebuilder:gold_plated_smooth_stairs",
+    "count": 6
+  }
 }

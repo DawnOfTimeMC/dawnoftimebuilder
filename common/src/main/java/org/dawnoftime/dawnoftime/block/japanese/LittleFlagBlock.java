@@ -2,10 +2,11 @@ package org.dawnoftime.dawnoftime.block.japanese;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.world.item.DyeColor;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -20,7 +21,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class LittleFlagBlock extends PaneBlockDoT {
     public static final BooleanProperty AXIS_Y = BlockStatePropertiesAA.AXIS_Y;
-    private final VoxelShape[] VS_PILLAR = this.makePillarShapes(this.shapeByIndex);
+    private final VoxelShape VS_PILLAR = Block.box(6.0D, 0.0D, 6.0D, 10.0D, 16.0D, 10.0D);
 
     public LittleFlagBlock(Properties properties) {
         super(properties);
@@ -34,7 +35,7 @@ public class LittleFlagBlock extends PaneBlockDoT {
     }
 
     @Override
-    public BlockState getStateForPlacement(BlockPlaceContext context) {
+    public @NotNull BlockState getStateForPlacement(BlockPlaceContext context) {
         BlockState newState = super.getStateForPlacement(context);
         if(newState == null)
             newState = this.defaultBlockState();
@@ -44,9 +45,9 @@ public class LittleFlagBlock extends PaneBlockDoT {
     }
 
     @Override
-    public @NotNull BlockState updateShape(BlockState stateIn, @NotNull Direction facing, @NotNull BlockState facingState, @NotNull LevelAccessor worldIn, @NotNull BlockPos currentPos, @NotNull BlockPos facingPos) {
+    protected BlockState updateShape(BlockState stateIn, LevelReader worldIn, ScheduledTickAccess scheduledTickAccess, BlockPos currentPos, Direction facing, BlockPos facingPos, BlockState facingState, RandomSource random) {
         if(stateIn.getValue(WATERLOGGED))
-            worldIn.scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(worldIn));
+            scheduledTickAccess.scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(worldIn));
         if(facing.getAxis().isHorizontal()) {
             if(this.hasAllConnections(stateIn)) {
                 //We must check connections on all sides
@@ -77,28 +78,15 @@ public class LittleFlagBlock extends PaneBlockDoT {
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
+    public @NotNull VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
         if(state.getValue(AXIS_Y))
-            return VS_PILLAR[this.getAABBIndex(state)];
+            return Shapes.or(super.getShape(state, worldIn, pos, context), VS_PILLAR);
+
         return super.getShape(state, worldIn, pos, context);
     }
 
     @Override
     public VoxelShape getCollisionShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
         return Shapes.empty();
-    }
-
-    /**
-     * @return a copy of FourWayBlock shapes merge with a center pillar of 4*4 pixels
-     */
-    private VoxelShape[] makePillarShapes(VoxelShape[] shapes) {
-        VoxelShape[] shapesPillar = new VoxelShape[16];
-        VoxelShape vsPillar = Block.box(6.0D, 0.0D, 6.0D, 10.0D, 16.0D, 10.0D);
-        for(int index = 0; index < 16; index++) {
-            shapesPillar[index] = Shapes.or(
-                    shapes[index],
-                    vsPillar);
-        }
-        return shapesPillar;
     }
 }

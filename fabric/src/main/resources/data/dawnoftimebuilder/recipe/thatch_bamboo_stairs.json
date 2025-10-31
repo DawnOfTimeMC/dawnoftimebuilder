@@ -1,17 +1,15 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "pattern": [
-        "I  ",
-        "II ",
-        "III"
-    ],
-    "key": {
-        "I": {
-            "item": "dawnoftimebuilder:thatch_bamboo"
-        }
-    },
-    "result": {
-        "id": "dawnoftimebuilder:thatch_bamboo_stairs",
-        "count": 6
-    }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "I  ",
+    "II ",
+    "III"
+  ],
+  "key": {
+    "I": "dawnoftimebuilder:thatch_bamboo"
+  },
+  "result": {
+    "id": "dawnoftimebuilder:thatch_bamboo_stairs",
+    "count": 6
+  }
 }

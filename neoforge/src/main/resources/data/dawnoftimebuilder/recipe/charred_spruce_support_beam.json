@@ -1,19 +1,15 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "pattern": [
-        "iii",
-        "III"
-    ],
-    "key": {
-        "I": {
-            "item": "dawnoftimebuilder:charred_spruce_log_stripped"
-        },
-        "i": {
-            "item": "dawnoftimebuilder:charred_spruce_support_slab"
-        }
-    },
-    "result": {
-        "id": "dawnoftimebuilder:charred_spruce_support_beam",
-        "count": 8
-    }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "iii",
+    "III"
+  ],
+  "key": {
+    "I": "dawnoftimebuilder:charred_spruce_log_stripped",
+    "i": "dawnoftimebuilder:charred_spruce_support_slab"
+  },
+  "result": {
+    "id": "dawnoftimebuilder:charred_spruce_support_beam",
+    "count": 8
+  }
 }

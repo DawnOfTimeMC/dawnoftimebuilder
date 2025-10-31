@@ -1,12 +1,14 @@
 package org.dawnoftime.dawnoftime.client.gui.elements.buttons;
 
-import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
+import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.ARGB;
 import org.dawnoftime.dawnoftime.mixin.impl.client.AbstractButtonAccessor;
+import org.jetbrains.annotations.NotNull;
+import org.joml.Matrix3x2fStack;
 
 
 public class GroupButton extends Button {
@@ -22,40 +24,20 @@ public class GroupButton extends Button {
     }
 
     @Override
-    public void renderWidget(GuiGraphics pGuiGraphics, int pMouseX, int pMouseY, float pPartialTick) {
+    public void renderWidget(@NotNull GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
         if(!this.visible)
             return;
 
-        this.isHovered = pMouseX >= this.getX() && pMouseY >= this.getY() && pMouseX < this.getX() + this.width && pMouseY < this.getY() + this.height;
+        this.isHovered = mouseX >= this.getX() && mouseY >= this.getY() && mouseX < this.getX() + this.width && mouseY < this.getY() + this.height;
 
-        int offset = this.getTextureY();
-        PoseStack ps = pGuiGraphics.pose();
-        ps.pushPose();
-        RenderSystem.clearColor(1.0F, 1.0F, 1.0F, this.alpha);
-        RenderSystem.enableBlend();
-        pGuiGraphics.blitSprite(((AbstractButtonAccessor) this).getSprites().get(this.active, this.isHoveredOrFocused()), this.getX(), this.getY(), this.getWidth(), this.getHeight());
-        pGuiGraphics.blitSprite(((AbstractButtonAccessor) this).getSprites().get(this.active, this.isHoveredOrFocused()), this.getX(), this.getY(), this.getWidth(), this.getHeight());
-        RenderSystem.disableBlend();
-        ps.popPose();
+        Matrix3x2fStack ps = guiGraphics.pose();
+        ps.pushMatrix();
+        guiGraphics.blitSprite(RenderPipelines.GUI_TEXTURED, ((AbstractButtonAccessor) this).getSprites().get(this.active, this.isHoveredOrFocused()), this.getX(), this.getY(), this.getWidth(), this.getHeight());
+        guiGraphics.blitSprite(RenderPipelines.GUI_TEXTURED, ((AbstractButtonAccessor) this).getSprites().get(this.active, this.isHoveredOrFocused()), this.getX(), this.getY(), this.getWidth(), this.getHeight());
+        ps.popMatrix();
 
-        ps.pushPose();
-        if(!this.active)
-            pGuiGraphics.setColor(0.5F, 0.5F, 0.5F, 1.0F);
-        RenderSystem.enableBlend();
-        pGuiGraphics.blit(iconResource, this.getX() + 2, this.getY() + 2, this.iconU, this.iconV, 16, 16);
-        RenderSystem.disableBlend();
-        pGuiGraphics.setColor(1.0F, 1.0F, 1.0F, 1.0F);
-        ps.popPose();
-    }
-
-    private int getTextureY() {
-        int i = 1;
-        if (!this.active) {
-            i = 0;
-        } else if (this.isHoveredOrFocused()) {
-            i = 2;
-        }
-
-        return i;
+        ps.pushMatrix();
+        guiGraphics.blit(RenderPipelines.GUI_TEXTURED, iconResource, this.getX() + 2, this.getY() + 2, this.iconU, this.iconV, 16, 16, 256, 256, this.active ? -1 : ARGB.colorFromFloat(1.0F, 0.5F, 0.5F, 0.5F));
+        ps.pushMatrix();
     }
 }

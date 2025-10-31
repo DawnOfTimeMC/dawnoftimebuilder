@@ -2,20 +2,18 @@ package org.dawnoftime.dawnoftime.block.japanese;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.Mirror;
@@ -30,18 +28,16 @@ import org.dawnoftime.dawnoftime.block.templates.WaterloggedBlock;
 import org.dawnoftime.dawnoftime.registry.DoTBBlocksRegistry;
 import org.dawnoftime.dawnoftime.registry.DoTBTags;
 import org.dawnoftime.dawnoftime.util.BlockStatePropertiesAA;
-import org.dawnoftime.dawnoftime.util.Utils;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
-import java.util.List;
 
 import static net.minecraft.world.level.block.Blocks.SPRUCE_PLANKS;
 import static org.dawnoftime.dawnoftime.util.VoxelShapes.TATAMI_MAT_SHAPES;
 
 public class TatamiMatBlock extends WaterloggedBlock {
     public static final EnumProperty<Half> HALF = BlockStateProperties.HALF;
-    public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
+    public static final EnumProperty<Direction> FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final BooleanProperty ROLLED = BlockStatePropertiesAA.ROLLED;
     public static final IntegerProperty STACK = BlockStatePropertiesAA.STACK;
 
@@ -103,8 +99,8 @@ public class TatamiMatBlock extends WaterloggedBlock {
     }
 
     @Override
-    public @NotNull BlockState updateShape(BlockState stateIn, @NotNull Direction facing, @NotNull BlockState facingState, @NotNull LevelAccessor worldIn, @NotNull BlockPos currentPos, @NotNull BlockPos facingPos) {
-        stateIn = super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+    protected @NotNull BlockState updateShape(BlockState stateIn, LevelReader worldIn, ScheduledTickAccess scheduledTickAccess, BlockPos currentPos, Direction facing, BlockPos neighborPos, BlockState facingState, RandomSource random) {
+        stateIn = super.updateShape(stateIn, worldIn, scheduledTickAccess, currentPos, facing, neighborPos, facingState, random);
         if(facing.getAxis().isVertical()) {
             return !stateIn.canSurvive(worldIn, currentPos) ? Blocks.AIR.defaultBlockState() : this.tryMergingWithSprucePlanks(stateIn, worldIn, currentPos);
         } else {
@@ -129,21 +125,24 @@ public class TatamiMatBlock extends WaterloggedBlock {
             }
             if(mustDisappear) {
                 stateIn = Blocks.AIR.defaultBlockState();
-                worldIn.setBlock(currentPos, stateIn, 2); //Avoid the breaking particles
+                if (worldIn instanceof Level level)
+                    level.setBlock(currentPos, stateIn, 2); //Avoid the breaking particles
             }
         }
         return stateIn;
     }
 
-    private BlockState tryMergingWithSprucePlanks(BlockState state, LevelAccessor worldIn, BlockPos pos) {
+    private BlockState tryMergingWithSprucePlanks(BlockState state, LevelReader worldIn, BlockPos pos) {
         if(state.getValue(ROLLED))
             return state;
         Direction facing = state.getValue(FACING);
         Block blockDown = worldIn.getBlockState(pos.below()).getBlock();
         Block blockDownAdjacent = worldIn.getBlockState(pos.relative(facing).below()).getBlock();
         if(blockDown == SPRUCE_PLANKS && blockDownAdjacent == SPRUCE_PLANKS) {
-            worldIn.setBlock(pos.below(), DoTBBlocksRegistry.INSTANCE.TATAMI_FLOOR.get().defaultBlockState().setValue(TatamiFloorBlock.FACING, facing).setValue(TatamiFloorBlock.HALF, state.getValue(HALF)), 10);
-            worldIn.setBlock(pos.relative(facing).below(), DoTBBlocksRegistry.INSTANCE.TATAMI_FLOOR.get().defaultBlockState().setValue(TatamiFloorBlock.FACING, facing).setValue(TatamiFloorBlock.HALF, state.getValue(HALF) == Half.TOP ? Half.BOTTOM : Half.TOP), 10);
+            if (worldIn instanceof Level level) {
+                level.setBlock(pos.below(), DoTBBlocksRegistry.INSTANCE.TATAMI_FLOOR.get().defaultBlockState().setValue(TatamiFloorBlock.FACING, facing).setValue(TatamiFloorBlock.HALF, state.getValue(HALF)), 10);
+                level.setBlock(pos.relative(facing).below(), DoTBBlocksRegistry.INSTANCE.TATAMI_FLOOR.get().defaultBlockState().setValue(TatamiFloorBlock.FACING, facing).setValue(TatamiFloorBlock.HALF, state.getValue(HALF) == Half.TOP ? Half.BOTTOM : Half.TOP), 10);
+            }
             return Blocks.AIR.defaultBlockState();
         }
         return state;
@@ -174,7 +173,7 @@ public class TatamiMatBlock extends WaterloggedBlock {
                     state = state.setValue(HALF, Half.TOP).setValue(FACING, facing.getOpposite());
                 }
             }
-            state = this.updateShape(state, Direction.DOWN, worldIn.getBlockState(pos.below()), worldIn, pos, pos.below());
+            state = this.updateShape(state, worldIn, worldIn, pos, Direction.DOWN, pos.below(), worldIn.getBlockState(pos.below()), worldIn.getRandom());
             worldIn.setBlock(pos, state, 2);
             worldIn.playSound(player, pos, this.soundType.getPlaceSound(), SoundSource.BLOCKS, (this.soundType.getVolume() + 1.0F) / 2.0F, this.soundType.getPitch() * 0.8F);
             return InteractionResult.SUCCESS;
@@ -210,9 +209,9 @@ public class TatamiMatBlock extends WaterloggedBlock {
         }
     }
 
-    @Override
-    public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-        super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
-        Utils.addTooltip(tooltipComponents, this);
-    }
+//    @Override
+//    public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+//        super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+//        Utils.addTooltip(tooltipComponents, this);
+//    }
 }

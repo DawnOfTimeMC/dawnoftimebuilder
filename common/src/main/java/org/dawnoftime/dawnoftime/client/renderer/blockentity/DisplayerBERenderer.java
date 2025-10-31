@@ -11,6 +11,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.Vec3;
 import org.dawnoftime.dawnoftime.block.IBlockSpecialDisplay;
 import org.dawnoftime.dawnoftime.block.templates.DisplayerBlock;
 import org.dawnoftime.dawnoftime.blockentity.DisplayerBlockEntity;
@@ -22,7 +23,7 @@ public class DisplayerBERenderer implements BlockEntityRenderer<DisplayerBlockEn
 	}
 
 	@Override
-	public void render(DisplayerBlockEntity blockEntity, float pPartialTick, @NotNull PoseStack stack, @NotNull MultiBufferSource buffer, int light, int overlay) {
+	public void render(DisplayerBlockEntity blockEntity, float pPartialTick, @NotNull PoseStack stack, @NotNull MultiBufferSource buffer, int light, int overlay, Vec3 vec3) {
 		BlockState state = blockEntity.getBlockState();
 		Level level = blockEntity.getLevel();
 		DisplayerBlock block = (DisplayerBlock) state.getBlock();

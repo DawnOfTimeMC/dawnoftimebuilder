@@ -1,16 +1,14 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "pattern": [
-        "   ",
-        "I I",
-        " I "
-    ],
-    "key": {
-        "I": {
-            "item": "minecraft:clay_ball"
-        }
-    },
-    "result": {
-        "id": "dawnoftimebuilder:sake_cup"
-    }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "   ",
+    "I I",
+    " I "
+  ],
+  "key": {
+    "I": "minecraft:clay_ball"
+  },
+  "result": {
+    "id": "dawnoftimebuilder:sake_cup"
+  }
 }

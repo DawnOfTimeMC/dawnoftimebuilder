@@ -1,17 +1,15 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "pattern": [
-        "I",
-        "I",
-        "I"
-    ],
-    "key": {
-        "I": {
-            "item": "dawnoftimebuilder:sandstone_bricks_turquoise_pattern"
-        }
-    },
-    "result": {
-        "id": "dawnoftimebuilder:sandstone_bricks_turquoise_pattern_plate",
-        "count": 6
-    }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "I",
+    "I",
+    "I"
+  ],
+  "key": {
+    "I": "dawnoftimebuilder:sandstone_bricks_turquoise_pattern"
+  },
+  "result": {
+    "id": "dawnoftimebuilder:sandstone_bricks_turquoise_pattern_plate",
+    "count": 6
+  }
 }

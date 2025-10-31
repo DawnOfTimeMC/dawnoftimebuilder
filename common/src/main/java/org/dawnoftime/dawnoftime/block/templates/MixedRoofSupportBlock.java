@@ -3,22 +3,27 @@ package org.dawnoftime.dawnoftime.block.templates;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.*;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.level.block.state.properties.SlabType;
+import net.minecraft.world.level.block.state.properties.StairsShape;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
@@ -28,7 +33,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.function.Supplier;
 
 public class MixedRoofSupportBlock extends SlabBlockDoT {
-    public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
+    public static final EnumProperty<Direction> FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final EnumProperty<StairsShape> SHAPE = BlockStateProperties.STAIRS_SHAPE;
     private final Supplier<Block> roofSlabBlockSupplier;
 
@@ -96,7 +101,7 @@ public class MixedRoofSupportBlock extends SlabBlockDoT {
     }
 
     public static Item getBlockItem(MixedRoofSupportBlock block) {
-        return new BlockItem(block, new Item.Properties()) {
+        return new BlockItem(block, new Item.Properties().setId(ResourceKey.create(Registries.ITEM, ResourceLocation.parse(block.builtInRegistryHolder().getRegisteredName())))) {
             @Override
             public InteractionResult place(final BlockPlaceContext context) {
                 final Direction facing = context.getClickedFace();
@@ -144,9 +149,8 @@ public class MixedRoofSupportBlock extends SlabBlockDoT {
     }
 
     @Override
-    public BlockState updateShape(BlockState stateIn, final Direction facing, final BlockState facingState,
-                                  final LevelAccessor worldIn, final BlockPos currentPos, final BlockPos facingPos) {
-        stateIn = super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+    protected BlockState updateShape(BlockState stateIn, LevelReader worldIn, ScheduledTickAccess scheduledTickAccess, BlockPos currentPos, Direction facing, BlockPos facingPos, BlockState facingState, RandomSource random) {
+        stateIn = super.updateShape(stateIn, worldIn, scheduledTickAccess, currentPos, facing, facingPos, facingState, random);
         return facing.getAxis().isHorizontal()
                 ? stateIn.setValue(MixedRoofSupportBlock.SHAPE, this.getShapeProperty(stateIn, worldIn, currentPos))
                 : stateIn;
@@ -206,7 +210,7 @@ public class MixedRoofSupportBlock extends SlabBlockDoT {
     }
 
     @Override
-    public boolean canPlaceLiquid(@Nullable Player player, BlockGetter level, BlockPos pos, BlockState state, Fluid fluid) {
+    public boolean canPlaceLiquid(@Nullable LivingEntity owner, BlockGetter level, BlockPos pos, BlockState state, Fluid fluid) {
         return !state.getValue(BlockStateProperties.WATERLOGGED) && fluid == Fluids.WATER;
     }
 

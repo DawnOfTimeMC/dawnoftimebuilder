@@ -1,26 +1,18 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "pattern": [
-        "III",
-        "iOi",
-        " o "
-    ],
-    "key": {
-        "I": {
-            "item": "dawnoftimebuilder:gray_roof_tiles"
-        },
-        "i": {
-            "item": "minecraft:paper"
-        },
-        "O": {
-            "item": "minecraft:torch"
-        },
-        "o": {
-            "item": "minecraft:cobblestone"
-        }
-    },
-    "result": {
-        "id": "dawnoftimebuilder:stone_lantern",
-        "count": 6
-    }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "III",
+    "iOi",
+    " o "
+  ],
+  "key": {
+    "I": "dawnoftimebuilder:gray_roof_tiles",
+    "i": "minecraft:paper",
+    "O": "minecraft:torch",
+    "o": "minecraft:cobblestone"
+  },
+  "result": {
+    "id": "dawnoftimebuilder:stone_lantern",
+    "count": 6
+  }
 }

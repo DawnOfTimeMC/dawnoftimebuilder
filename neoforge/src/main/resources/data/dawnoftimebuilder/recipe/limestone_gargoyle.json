@@ -1,21 +1,15 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "pattern": [
-        "Iio"
-    ],
-    "key": {
-        "I": {
-            "item": "dawnoftimebuilder:limestone_bricks"
-        },
-        "i": {
-            "item": "dawnoftimebuilder:limestone_bricks_slab"
-        },
-        "o": {
-            "item": "dawnoftimebuilder:limestone_bricks_edge"
-        }
-    },
-    "result": {
-        "id": "dawnoftimebuilder:limestone_gargoyle",
-        "count": 1
-    }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "Iio"
+  ],
+  "key": {
+    "I": "dawnoftimebuilder:limestone_bricks",
+    "i": "dawnoftimebuilder:limestone_bricks_slab",
+    "o": "dawnoftimebuilder:limestone_bricks_edge"
+  },
+  "result": {
+    "id": "dawnoftimebuilder:limestone_gargoyle",
+    "count": 1
+  }
 }

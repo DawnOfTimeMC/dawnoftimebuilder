@@ -1,18 +1,14 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "pattern": [
-        "IiI"
-    ],
-    "key": {
-        "I": {
-            "item": "dawnoftimebuilder:plastered_stone"
-        },
-        "i": {
-            "item": "minecraft:green_dye"
-        }
-    },
-    "result": {
-        "id": "dawnoftimebuilder:green_small_plastered_stone_frieze",
-        "count": 6
-    }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "IiI"
+  ],
+  "key": {
+    "I": "dawnoftimebuilder:plastered_stone",
+    "i": "minecraft:green_dye"
+  },
+  "result": {
+    "id": "dawnoftimebuilder:green_small_plastered_stone_frieze",
+    "count": 6
+  }
 }

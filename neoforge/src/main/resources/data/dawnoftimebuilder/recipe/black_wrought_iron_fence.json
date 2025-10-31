@@ -1,20 +1,16 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "pattern": [
-        "III",
-        "IxI",
-        "III"
-    ],
-    "key": {
-        "I": {
-            "item": "dawnoftimebuilder:wrought_iron_fence"
-        },
-        "x": {
-            "tag": "c:dyes/black"
-        }
-    },
-    "result": {
-        "id": "dawnoftimebuilder:black_wrought_iron_fence",
-        "count": 8
-    }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "III",
+    "IxI",
+    "III"
+  ],
+  "key": {
+    "I": "dawnoftimebuilder:wrought_iron_fence",
+    "x": "#c:dyes/black"
+  },
+  "result": {
+    "id": "dawnoftimebuilder:black_wrought_iron_fence",
+    "count": 8
+  }
 }

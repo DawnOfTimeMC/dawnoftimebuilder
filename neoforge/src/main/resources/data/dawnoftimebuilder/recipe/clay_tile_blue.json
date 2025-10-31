@@ -1,33 +1,15 @@
 {
     "type": "minecraft:crafting_shapeless",
     "ingredients": [
-        {
-            "item": "dawnoftimebuilder:clay_tile"
-        },
-        {
-            "item": "dawnoftimebuilder:clay_tile"
-        },
-        {
-            "item": "dawnoftimebuilder:clay_tile"
-        },
-        {
-            "item": "dawnoftimebuilder:clay_tile"
-        },
-        {
-            "item": "dawnoftimebuilder:clay_tile"
-        },
-        {
-            "item": "dawnoftimebuilder:clay_tile"
-        },
-        {
-            "item": "dawnoftimebuilder:clay_tile"
-        },
-        {
-            "item": "dawnoftimebuilder:clay_tile"
-        },
-        {
-            "tag": "c:dyes/blue"
-        }
+      "dawnoftimebuilder:clay_tile",
+      "dawnoftimebuilder:clay_tile",
+      "dawnoftimebuilder:clay_tile",
+      "dawnoftimebuilder:clay_tile",
+      "dawnoftimebuilder:clay_tile",
+      "dawnoftimebuilder:clay_tile",
+      "dawnoftimebuilder:clay_tile",
+      "dawnoftimebuilder:clay_tile",
+      "#c:dyes/blue"
     ],
     "result": {
         "id": "dawnoftimebuilder:clay_tile_blue",

@@ -2,7 +2,7 @@ package org.dawnoftime.dawnoftime.block;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import org.dawnoftime.dawnoftime.util.BlockStatePropertiesAA;
@@ -18,7 +18,7 @@ public interface IBlockPillar {
      *
      * @return PillarConnection of the Block toward the block above it.
      */
-    static BlockStatePropertiesAA.PillarConnection getPillarConnectionAbove(LevelAccessor worldIn, BlockPos pos) {
+    static BlockStatePropertiesAA.PillarConnection getPillarConnectionAbove(LevelReader worldIn, BlockPos pos) {
         BlockState state = worldIn.getBlockState(pos);
         Block block = state.getBlock();
         if(block instanceof IBlockPillar)
@@ -38,7 +38,7 @@ public interface IBlockPillar {
      *
      * @return PillarConnection of the Block toward the block under it.
      */
-    static BlockStatePropertiesAA.PillarConnection getPillarConnectionUnder(LevelAccessor worldIn, BlockPos pos) {
+    static BlockStatePropertiesAA.PillarConnection getPillarConnectionUnder(LevelReader worldIn, BlockPos pos) {
         BlockState state = worldIn.getBlockState(pos);
         Block block = state.getBlock();
         if(block instanceof IBlockPillar)

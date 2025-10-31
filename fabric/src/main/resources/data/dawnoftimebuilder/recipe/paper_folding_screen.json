@@ -1,23 +1,17 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "pattern": [
-        "IiI",
-        "IoI",
-        "IoI"
-    ],
-    "key": {
-        "i": {
-            "item": "minecraft:paper"
-        },
-        "I": {
-            "item": "minecraft:stick"
-        },
-        "o": {
-            "item": "minecraft:ink_sac"
-        }
-    },
-    "result": {
-        "id": "dawnoftimebuilder:paper_folding_screen",
-        "count": 4
-    }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "IiI",
+    "IoI",
+    "IoI"
+  ],
+  "key": {
+    "i": "minecraft:paper",
+    "I": "minecraft:stick",
+    "o": "minecraft:ink_sac"
+  },
+  "result": {
+    "id": "dawnoftimebuilder:paper_folding_screen",
+    "count": 4
+  }
 }

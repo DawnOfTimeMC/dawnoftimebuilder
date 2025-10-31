@@ -1,19 +1,15 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "pattern": [
-        "I",
-        "i"
-    ],
-    "key": {
-        "I": {
-            "item": "minecraft:stripped_crimson_stem"
-        },
-        "i": {
-            "item": "minecraft:red_sandstone"
-        }
-    },
-    "result": {
-        "id": "dawnoftimebuilder:crimson_beam",
-        "count": 4
-    }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "I",
+    "i"
+  ],
+  "key": {
+    "I": "minecraft:stripped_crimson_stem",
+    "i": "minecraft:red_sandstone"
+  },
+  "result": {
+    "id": "dawnoftimebuilder:crimson_beam",
+    "count": 4
+  }
 }

@@ -1,20 +1,16 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "pattern": [
-        "IiI",
-        "III",
-        "IiI"
-    ],
-    "key": {
-        "I": {
-            "item": "dawnoftimebuilder:plastered_stone"
-        },
-        "i": {
-            "tag": "c:dyes/red"
-        }
-    },
-    "result": {
-        "id": "dawnoftimebuilder:red_chiseled_plastered_stone",
-        "count": 6
-    }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "IiI",
+    "III",
+    "IiI"
+  ],
+  "key": {
+    "I": "dawnoftimebuilder:plastered_stone",
+    "i": "#c:dyes/red"
+  },
+  "result": {
+    "id": "dawnoftimebuilder:red_chiseled_plastered_stone",
+    "count": 6
+  }
 }

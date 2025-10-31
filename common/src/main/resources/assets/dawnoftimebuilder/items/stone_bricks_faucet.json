@@ -1,0 +1,11 @@
+{
+  "model": {
+    "type": "minecraft:model",
+    "model": "dawnoftimebuilder:item/stone_bricks_faucet",
+    "tints": [
+      {
+        "type": "dawnoftimebuilder:biome_item_tint_source"
+      }
+    ]
+  }
+}

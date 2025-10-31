@@ -12,6 +12,8 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.dawnoftime.dawnoftime.block.templates.PaneBlockDoT;
+import org.dawnoftime.dawnoftime.util.Utils;
+import org.jetbrains.annotations.NotNull;
 
 import static org.dawnoftime.dawnoftime.util.VoxelShapes.CHARRED_SPRUCE_FANCY_RAILING_SHAPES;
 
@@ -24,13 +26,13 @@ public class CharredSpruceFancyRailingBlock extends PaneBlockDoT {
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
-        return state.getValue(HANGING) ? CHARRED_SPRUCE_FANCY_RAILING_SHAPES[this.getAABBIndex(state)] : super.getShape(state, worldIn, pos, context);
+    public @NotNull VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
+        return state.getValue(HANGING) ? CHARRED_SPRUCE_FANCY_RAILING_SHAPES[Utils.getAABBIndex(state)] : super.getShape(state, worldIn, pos, context);
     }
 
     @Override
     public VoxelShape getCollisionShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
-        return state.getValue(HANGING) ? CHARRED_SPRUCE_FANCY_RAILING_SHAPES[this.getAABBIndex(state)] : super.getCollisionShape(state, worldIn, pos, context);
+        return state.getValue(HANGING) ? CHARRED_SPRUCE_FANCY_RAILING_SHAPES[Utils.getAABBIndex(state)] : super.getCollisionShape(state, worldIn, pos, context);
     }
 
     @Override

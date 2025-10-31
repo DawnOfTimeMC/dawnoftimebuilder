@@ -1,17 +1,15 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "pattern": [
-        "I",
-        "I",
-        "I"
-    ],
-    "key": {
-        "I": {
-            "item": "minecraft:smooth_sandstone"
-        }
-    },
-    "result": {
-        "id": "dawnoftimebuilder:smooth_sandstone_plate",
-        "count": 6
-    }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "I",
+    "I",
+    "I"
+  ],
+  "key": {
+    "I": "minecraft:smooth_sandstone"
+  },
+  "result": {
+    "id": "dawnoftimebuilder:smooth_sandstone_plate",
+    "count": 6
+  }
 }

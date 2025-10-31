@@ -1,19 +1,15 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "pattern": [
-        " I ",
-        "III",
-        "IiI"
-    ],
-    "key": {
-        "I": {
-            "item": "minecraft:iron_ingot"
-        },
-        "i": {
-            "item": "minecraft:gold_ingot"
-        }
-    },
-    "result": {
-        "id": "dawnoftimebuilder:cast_iron_teapot_decorated"
-    }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " I ",
+    "III",
+    "IiI"
+  ],
+  "key": {
+    "I": "minecraft:iron_ingot",
+    "i": "minecraft:gold_ingot"
+  },
+  "result": {
+    "id": "dawnoftimebuilder:cast_iron_teapot_decorated"
+  }
 }

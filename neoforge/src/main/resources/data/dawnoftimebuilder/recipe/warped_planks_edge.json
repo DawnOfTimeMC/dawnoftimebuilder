@@ -1,15 +1,13 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "pattern": [
-        "II"
-    ],
-    "key": {
-        "I": {
-            "item": "minecraft:warped_slab"
-        }
-    },
-    "result": {
-        "id": "dawnoftimebuilder:warped_planks_edge",
-        "count": 6
-    }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "II"
+  ],
+  "key": {
+    "I": "minecraft:warped_slab"
+  },
+  "result": {
+    "id": "dawnoftimebuilder:warped_planks_edge",
+    "count": 6
+  }
 }

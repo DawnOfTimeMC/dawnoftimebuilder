@@ -1,19 +1,15 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "pattern": [
-        "iii",
-        "III"
-    ],
-    "key": {
-        "I": {
-            "item": "minecraft:stripped_mangrove_log"
-        },
-        "i": {
-            "item": "dawnoftimebuilder:mangrove_support_slab"
-        }
-    },
-    "result": {
-        "id": "dawnoftimebuilder:mangrove_support_beam",
-        "count": 8
-    }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "iii",
+    "III"
+  ],
+  "key": {
+    "I": "minecraft:stripped_mangrove_log",
+    "i": "dawnoftimebuilder:mangrove_support_slab"
+  },
+  "result": {
+    "id": "dawnoftimebuilder:mangrove_support_beam",
+    "count": 8
+  }
 }

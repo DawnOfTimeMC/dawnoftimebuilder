@@ -1,20 +1,16 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "pattern": [
-        "IiI",
-        "iii",
-        "IiI"
-    ],
-    "key": {
-        "I": {
-            "item": "minecraft:stick"
-        },
-        "i": {
-            "item": "minecraft:paper"
-        }
-    },
-    "result": {
-        "id": "dawnoftimebuilder:paper_wall_window",
-        "count": 4
-    }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "IiI",
+    "iii",
+    "IiI"
+  ],
+  "key": {
+    "I": "minecraft:stick",
+    "i": "minecraft:paper"
+  },
+  "result": {
+    "id": "dawnoftimebuilder:paper_wall_window",
+    "count": 4
+  }
 }

@@ -5,6 +5,7 @@ import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
+import net.minecraft.client.color.item.ItemTintSources;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Registry;
@@ -91,7 +92,7 @@ public class RegistryImpls {
     public static class FabricEntitiesRegistry extends DoTBEntitiesRegistry {
         @Override
         public <T extends Entity> Supplier<EntityType<T>> register(String name, Supplier<EntityType.Builder<T>> builder) {
-            var entity = Registry.register(BuiltInRegistries.ENTITY_TYPE, ResourceLocation.fromNamespaceAndPath(DoTBCommon.MOD_ID, name), builder.get().build(name));
+            var entity = Registry.register(BuiltInRegistries.ENTITY_TYPE, ResourceLocation.fromNamespaceAndPath(DoTBCommon.MOD_ID, name), builder.get().build(ResourceKey.create(Registries.ENTITY_TYPE, ResourceLocation.fromNamespaceAndPath(DoTBCommon.MOD_ID, name))));
             return () -> entity;
         }
     }
@@ -149,9 +150,11 @@ public class RegistryImpls {
         DoTBColorsRegistry.getBlocksColorRegistry().forEach((blockColor, blocks) -> {
             ColorProviderRegistry.BLOCK.register(blockColor, blocks.stream().map(Supplier::get).toArray(Block[]::new));
         });
-        DoTBColorsRegistry.getItemsColorRegistry().forEach((itemColor, items) -> {
-            ColorProviderRegistry.ITEM.register(itemColor, items.stream().map(Supplier::get).toArray(Item[]::new));
-        });
+
+        ItemTintSources.ID_MAPPER.put(
+                ResourceLocation.fromNamespaceAndPath(DoTBCommon.MOD_ID, "biome_item_tint_source"),
+                DoTBColorsRegistry.BiomeItemTintSource.MAP_CODEC
+        );
     }
 
     public static void init() {

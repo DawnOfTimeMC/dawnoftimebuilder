@@ -1,6 +1,6 @@
 package org.dawnoftime.dawnoftime;
 
-import net.minecraft.world.item.Item;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
@@ -18,7 +18,7 @@ import org.dawnoftime.dawnoftime.registry.DoTBEntitiesRegistry;
 
 import java.util.function.Supplier;
 
-@EventBusSubscriber(modid = DoTBCommon.MOD_ID, value = Dist.CLIENT, bus = EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = DoTBCommon.MOD_ID, value = Dist.CLIENT)
 public class DoTBNeoForgeClient {
     public DoTBNeoForgeClient() {}
     @SubscribeEvent
@@ -27,8 +27,11 @@ public class DoTBNeoForgeClient {
     }
 
     @SubscribeEvent
-    public static void setupItemColors(final RegisterColorHandlersEvent.Item event) {
-        DoTBColorsRegistry.getItemsColorRegistry().forEach((itemColor, items) -> event.register(itemColor, items.stream().map(Supplier::get).toArray(Item[]::new)));
+    public static void registerItemTintSources(final RegisterColorHandlersEvent.ItemTintSources event) {
+        event.register(
+                ResourceLocation.fromNamespaceAndPath(DoTBCommon.MOD_ID, "biome_item_tint_source"),
+                DoTBColorsRegistry.BiomeItemTintSource.MAP_CODEC
+        );
     }
 
     @SubscribeEvent
@@ -37,7 +40,7 @@ public class DoTBNeoForgeClient {
         if (eventBus == null) return;
 
         eventBus.addListener(DoTBNeoForgeClient::setupBlockColors);
-        eventBus.addListener(DoTBNeoForgeClient::setupItemColors);
+        eventBus.addListener(DoTBNeoForgeClient::registerItemTintSources);
         eventBus.addListener(DoTBNeoForgeClient::registerRenderers);
     }
 

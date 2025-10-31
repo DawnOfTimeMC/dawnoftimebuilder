@@ -35,8 +35,8 @@ dependencies {
     }
     modImplementation "net.fabricmc:fabric-loader:${fabric_loader_version}"
     modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
-    modImplementation "maven.modrinth:fusion-connected-textures:1.2.11-fabric-mc1.21"
-    modImplementation "curse.maven:jei-238222:7024950"
+    modImplementation "maven.modrinth:fusion-connected-textures:1.2.11-fabric-mc1.21.6"
+    //modImplementation "curse.maven:jei-238222:7024950"
     implementation group: 'com.google.code.findbugs', name: 'jsr305', version: '3.0.1'
     implementation project(":common")
 }

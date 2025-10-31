@@ -1,15 +1,13 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "pattern": [
-        "II"
-    ],
-    "key": {
-        "I": {
-            "item": "dawnoftimebuilder:stone_bricks_masonry_slab"
-        }
-    },
-    "result": {
-        "id": "dawnoftimebuilder:stone_bricks_masonry_edge",
-        "count": 6
-    }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "II"
+  ],
+  "key": {
+    "I": "dawnoftimebuilder:stone_bricks_masonry_slab"
+  },
+  "result": {
+    "id": "dawnoftimebuilder:stone_bricks_masonry_edge",
+    "count": 6
+  }
 }

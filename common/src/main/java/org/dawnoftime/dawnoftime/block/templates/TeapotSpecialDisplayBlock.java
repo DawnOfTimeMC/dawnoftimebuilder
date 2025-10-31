@@ -29,7 +29,7 @@ public class TeapotSpecialDisplayBlock extends SpecialDisplayBlock {
         if (state1.getValue(FireplaceBlock.LIT) && rand.nextInt(5) == 0) {
             SimpleParticleType particle;
             if (Services.PLATFORM.isModLoaded("farmersdelight"))
-                particle = (SimpleParticleType) BuiltInRegistries.PARTICLE_TYPE.get(ResourceLocation.tryParse("farmersdelight:steam"));
+                particle = (SimpleParticleType) BuiltInRegistries.PARTICLE_TYPE.getValue(ResourceLocation.tryParse("farmersdelight:steam"));
             else
                 particle = ParticleTypes.CAMPFIRE_COSY_SMOKE;
 

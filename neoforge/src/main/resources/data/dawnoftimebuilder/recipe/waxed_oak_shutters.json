@@ -1,20 +1,16 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "pattern": [
-        "iII",
-        " II",
-        "iII"
-    ],
-    "key": {
-        "I": {
-            "item": "dawnoftimebuilder:waxed_oak_planks"
-        },
-        "i": {
-            "tag": "c:rods/wooden"
-        }
-    },
-    "result": {
-        "id": "dawnoftimebuilder:waxed_oak_shutters",
-        "count": 4
-    }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "iII",
+    " II",
+    "iII"
+  ],
+  "key": {
+    "I": "dawnoftimebuilder:waxed_oak_planks",
+    "i": "#c:rods/wooden"
+  },
+  "result": {
+    "id": "dawnoftimebuilder:waxed_oak_shutters",
+    "count": 4
+  }
 }

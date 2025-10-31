@@ -1,15 +1,13 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "pattern": [
-        "III"
-    ],
-    "key": {
-        "I": {
-            "item": "dawnoftimebuilder:waxed_oak_fence"
-        }
-    },
-    "result": {
-        "id": "dawnoftimebuilder:waxed_oak_baluster",
-        "count": 3
-    }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "III"
+  ],
+  "key": {
+    "I": "dawnoftimebuilder:waxed_oak_fence"
+  },
+  "result": {
+    "id": "dawnoftimebuilder:waxed_oak_baluster",
+    "count": 3
+  }
 }

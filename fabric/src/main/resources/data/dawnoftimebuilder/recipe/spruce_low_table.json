@@ -1,18 +1,14 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "pattern": [
-        "III",
-        "i i"
-    ],
-    "key": {
-        "I": {
-            "item": "minecraft:spruce_slab"
-        },
-        "i": {
-            "item": "minecraft:stick"
-        }
-    },
-    "result": {
-        "id": "dawnoftimebuilder:spruce_low_table"
-    }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "III",
+    "i i"
+  ],
+  "key": {
+    "I": "minecraft:spruce_slab",
+    "i": "minecraft:stick"
+  },
+  "result": {
+    "id": "dawnoftimebuilder:spruce_low_table"
+  }
 }

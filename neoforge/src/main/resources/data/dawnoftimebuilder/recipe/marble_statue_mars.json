@@ -1,29 +1,19 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "pattern": [
-        " c ",
-        "soS",
-        " i "
-    ],
-    "key": {
-        "c": {
-            "item": "minecraft:golden_helmet"
-        },
-        "o": {
-            "item": "dawnoftimebuilder:marble"
-        },
-        "s": {
-            "item": "minecraft:golden_sword"
-        },
-        "S": {
-            "item": "minecraft:shield"
-        },
-        "i": {
-            "item": "minecraft:cut_sandstone_slab"
-        }
-    },
-    "result": {
-        "id": "dawnoftimebuilder:marble_statue_mars",
-        "count": 1
-    }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " c ",
+    "soS",
+    " i "
+  ],
+  "key": {
+    "c": "minecraft:golden_helmet",
+    "o": "dawnoftimebuilder:marble",
+    "s": "minecraft:golden_sword",
+    "S": "minecraft:shield",
+    "i": "minecraft:cut_sandstone_slab"
+  },
+  "result": {
+    "id": "dawnoftimebuilder:marble_statue_mars",
+    "count": 1
+  }
 }

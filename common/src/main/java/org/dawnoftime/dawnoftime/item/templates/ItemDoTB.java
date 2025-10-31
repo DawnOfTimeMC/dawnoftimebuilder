@@ -1,25 +1,23 @@
 package org.dawnoftime.dawnoftime.item.templates;
 
+import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.item.component.TooltipDisplay;
+import org.dawnoftime.dawnoftime.DoTBCommon;
 import org.dawnoftime.dawnoftime.util.Utils;
-import org.jetbrains.annotations.NotNull;
 
-import javax.annotation.Nullable;
-import java.util.List;
+import java.util.function.Consumer;
 
 public class ItemDoTB extends Item {
     private final boolean hasTooltip;
 
-    public ItemDoTB() {
-        this(false);
-    }
-
-    public ItemDoTB(boolean hasTooltip) {
-        this(new Properties(), hasTooltip);
+    public ItemDoTB(boolean hasTooltip, String id) {
+        this(new Properties().setId(ResourceKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(DoTBCommon.MOD_ID, id))), hasTooltip);
     }
 
     public ItemDoTB(Properties properties, boolean hasTooltip) {
@@ -28,10 +26,10 @@ public class ItemDoTB extends Item {
     }
 
     @Override
-    public void appendHoverText(@NotNull ItemStack stack, @NotNull TooltipContext context, @NotNull List<Component> tooltips, @NotNull TooltipFlag flagsIn) {
-        super.appendHoverText(stack, context, tooltips, flagsIn);
+    public void appendHoverText(ItemStack stack, TooltipContext context, TooltipDisplay tooltipDisplay, Consumer<Component> tooltipAdder, TooltipFlag flag) {
+        super.appendHoverText(stack, context, tooltipDisplay, tooltipAdder, flag);
         if (this.hasTooltip) {
-            Utils.addTooltip(tooltips, this);
+            Utils.addTooltip(tooltipAdder, this);
         }
     }
 }

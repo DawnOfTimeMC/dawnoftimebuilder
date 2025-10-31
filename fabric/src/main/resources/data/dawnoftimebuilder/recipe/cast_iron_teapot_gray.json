@@ -1,19 +1,15 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "pattern": [
-        " I ",
-        "III",
-        "IiI"
-    ],
-    "key": {
-        "I": {
-            "item": "minecraft:iron_ingot"
-        },
-        "i": {
-            "item": "minecraft:gray_dye"
-        }
-    },
-    "result": {
-        "id": "dawnoftimebuilder:cast_iron_teapot_gray"
-    }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " I ",
+    "III",
+    "IiI"
+  ],
+  "key": {
+    "I": "minecraft:iron_ingot",
+    "i": "minecraft:gray_dye"
+  },
+  "result": {
+    "id": "dawnoftimebuilder:cast_iron_teapot_gray"
+  }
 }

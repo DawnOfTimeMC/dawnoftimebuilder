@@ -1,16 +1,14 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "pattern": [
-        "I I",
-        "III"
-    ],
-    "key": {
-        "I": {
-            "item": "dawnoftimebuilder:limestone_bricks"
-        }
-    },
-    "result": {
-        "id": "dawnoftimebuilder:limestone_baluster",
-        "count": 6
-    }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "I I",
+    "III"
+  ],
+  "key": {
+    "I": "dawnoftimebuilder:limestone_bricks"
+  },
+  "result": {
+    "id": "dawnoftimebuilder:limestone_baluster",
+    "count": 6
+  }
 }

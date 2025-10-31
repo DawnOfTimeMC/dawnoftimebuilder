@@ -2,15 +2,14 @@ package org.dawnoftime.dawnoftime.block.templates;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.network.chat.Component;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
@@ -22,8 +21,6 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import org.dawnoftime.dawnoftime.util.BlockStatePropertiesAA;
 import org.dawnoftime.dawnoftime.util.Utils;
 import org.jetbrains.annotations.NotNull;
-
-import java.util.List;
 
 public class ConnectedVerticalBlock extends WaterloggedBlock {
     public static final EnumProperty<BlockStatePropertiesAA.VerticalConnection> VERTICAL_CONNECTION = BlockStatePropertiesAA.VERTICAL_CONNECTION;
@@ -45,19 +42,19 @@ public class ConnectedVerticalBlock extends WaterloggedBlock {
     }
 
     @Override
-    public @NotNull BlockState updateShape(BlockState stateIn, final @NotNull Direction facing, final @NotNull BlockState facingState, final @NotNull LevelAccessor worldIn, final @NotNull BlockPos currentPos, final @NotNull BlockPos facingPos) {
-        stateIn = super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+    protected @NotNull BlockState updateShape(BlockState stateIn, LevelReader worldIn, ScheduledTickAccess scheduledTickAccess, BlockPos currentPos, Direction facing, BlockPos neighborPos, BlockState neighborState, RandomSource random) {
+        stateIn = super.updateShape(stateIn, worldIn, scheduledTickAccess, currentPos, facing, neighborPos, neighborState, random);
         return facing.getAxis().isVertical() ? stateIn.setValue(ConnectedVerticalBlock.VERTICAL_CONNECTION, this.getColumnState(worldIn, currentPos, stateIn)) : stateIn;
     }
 
-    public BlockStatePropertiesAA.VerticalConnection getColumnState(final LevelAccessor worldIn, final BlockPos pos, final BlockState stateIn) {
+    public BlockStatePropertiesAA.VerticalConnection getColumnState(final LevelReader worldIn, final BlockPos pos, final BlockState stateIn) {
         if(this.isConnectible(stateIn, worldIn, pos.above(), Direction.DOWN)) {
             return this.isConnectible(stateIn, worldIn, pos.below(), Direction.UP) ? BlockStatePropertiesAA.VerticalConnection.BOTH : BlockStatePropertiesAA.VerticalConnection.ABOVE;
         }
         return this.isConnectible(stateIn, worldIn, pos.below(), Direction.UP) ? BlockStatePropertiesAA.VerticalConnection.UNDER : BlockStatePropertiesAA.VerticalConnection.NONE;
     }
 
-    public boolean isConnectible(final BlockState stateIn, final LevelAccessor worldIn, final BlockPos pos, final Direction faceToConnect) {
+    public boolean isConnectible(final BlockState stateIn, final LevelReader worldIn, final BlockPos pos, final Direction faceToConnect) {
         return worldIn.getBlockState(pos).getBlock() == this;
     }
 
@@ -107,9 +104,9 @@ public class ConnectedVerticalBlock extends WaterloggedBlock {
         return pos.above(yOffset - 1);
     }
 
-    @Override
-    public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-        super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
-        Utils.addTooltip(tooltipComponents, Utils.TOOLTIP_COLUMN);
-    }
+//    @Override
+//    public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+//        super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+//        Utils.addTooltip(tooltipComponents, Utils.TOOLTIP_COLUMN);
+//    }
 }

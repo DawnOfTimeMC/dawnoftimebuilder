@@ -2,14 +2,12 @@ package org.dawnoftime.dawnoftime.block.templates;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.network.chat.Component;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.state.BlockState;
@@ -17,13 +15,12 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.level.redstone.Orientation;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import org.dawnoftime.dawnoftime.util.BlockStatePropertiesAA;
-import org.dawnoftime.dawnoftime.util.Utils;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
-import java.util.List;
 
 import static org.dawnoftime.dawnoftime.util.VoxelShapes.PORTCULLIS_SHAPES;
 
@@ -62,12 +59,12 @@ public class PortcullisBlock extends WaterloggedBlock {
     }
 
     @Override
-    public @NotNull BlockState updateShape(BlockState stateIn, @NotNull Direction facing, @NotNull BlockState facingState, @NotNull LevelAccessor worldIn, @NotNull BlockPos currentPos, @NotNull BlockPos facingPos) {
-        stateIn = super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+    protected @NotNull BlockState updateShape(BlockState stateIn, LevelReader worldIn, ScheduledTickAccess scheduledTickAccess, BlockPos currentPos, Direction direction, BlockPos neighborPos, BlockState neighborState, RandomSource random) {
+        stateIn = super.updateShape(stateIn, worldIn, scheduledTickAccess, currentPos, direction, neighborPos, neighborState, random);
         return this.getShape(stateIn, worldIn, currentPos);
     }
 
-    private BlockState getShape(BlockState state, LevelAccessor worldIn, BlockPos pos) {
+    private BlockState getShape(BlockState state, LevelReader worldIn, BlockPos pos) {
         Direction.Axis axis = state.getValue(HORIZONTAL_AXIS);
         if(hasSameAxis(worldIn.getBlockState(pos.above()), axis)) {
             return state.setValue(VERTICAL_CONNECTION, (hasSameAxis(worldIn.getBlockState(pos.below()), axis)) ? BlockStatePropertiesAA.VerticalConnection.BOTH : BlockStatePropertiesAA.VerticalConnection.ABOVE);
@@ -84,13 +81,13 @@ public class PortcullisBlock extends WaterloggedBlock {
     }
 
     @Override
-    public void neighborChanged(BlockState state, Level worldIn, BlockPos pos, Block blockIn, BlockPos fromPos, boolean isMoving) {
+    protected void neighborChanged(BlockState state, Level worldIn, BlockPos pos, Block blockIn, @Nullable Orientation orientation, boolean isMoving) {
         if(state.getValue(VERTICAL_CONNECTION) == BlockStatePropertiesAA.VerticalConnection.UNDER) {
             //update coming from top blocks : check the shape of whole portcullis to know if it can be or stay open
             Direction.Axis axis = state.getValue(HORIZONTAL_AXIS);
             boolean isNowPowered = worldIn.hasNeighborSignal(pos);
             if(state.getValue(OPEN)) {
-                if(isInSamePlane(pos, fromPos, axis) && isNowPowered)
+                if(isInSamePlane(pos, orientation, axis) && isNowPowered)
                     setOpenState(worldIn, pos, axis, true);
             } else {
                 if(isNowPowered) {
@@ -116,16 +113,17 @@ public class PortcullisBlock extends WaterloggedBlock {
             //NB : VerticalConnection.NONE can't be open
             if(state.getValue(OPEN)) {
                 Direction.Axis axis = state.getValue(HORIZONTAL_AXIS);
-                if(isInSamePlane(pos, fromPos, axis)) {
+                if(isInSamePlane(pos, orientation, axis)) {
                     pos = getTopPortcullisPos(worldIn, pos, axis);
-                    worldIn.getBlockState(pos).handleNeighborChanged(worldIn, pos, blockIn, fromPos, isMoving);
+                    worldIn.getBlockState(pos).handleNeighborChanged(worldIn, pos, blockIn, orientation, isMoving);
                 }
             }
         }
     }
 
-    private boolean isInSamePlane(BlockPos pos, BlockPos fromPos, Direction.Axis axis) {
-        return (axis == Direction.Axis.X) ? fromPos.getZ() == pos.getZ() : fromPos.getX() == pos.getX();
+    private boolean isInSamePlane(BlockPos pos, Orientation orientation, Direction.Axis axis) {
+        if (orientation == null) return false;
+        return axis.test(orientation.getSide());
     }
 
     private BlockPos getTopPortcullisPos(Level worldIn, BlockPos pos, Direction.Axis axis) {
@@ -286,9 +284,11 @@ public class PortcullisBlock extends WaterloggedBlock {
             return super.rotate(state, rot);
     }
 
-    @Override
-    public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-        super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
-        Utils.addTooltip(tooltipComponents, this);
-    }
+
+
+//    @Override
+//    public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+//        super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+//        Utils.addTooltip(tooltipComponents, this);
+//    }
 }

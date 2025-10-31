@@ -1,16 +1,14 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "pattern": [
-        "III",
-        "III"
-    ],
-    "key": {
-        "I": {
-            "item": "dawnoftimebuilder:gray_roof_tiles"
-        }
-    },
-    "result": {
-        "id": "dawnoftimebuilder:gray_roof_tiles_wall",
-        "count": 9
-    }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "III",
+    "III"
+  ],
+  "key": {
+    "I": "dawnoftimebuilder:gray_roof_tiles"
+  },
+  "result": {
+    "id": "dawnoftimebuilder:gray_roof_tiles_wall",
+    "count": 9
+  }
 }

@@ -4,12 +4,11 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Mirror;
 import net.minecraft.world.level.block.Rotation;
@@ -138,9 +137,8 @@ public class FaucetBlock extends WaterSourceTrickleBlock {
      * ------------------------------------------------------------ */
 
     @Override
-    public BlockState updateShape(BlockState stateIn, Direction directionIn, BlockState facingStateIn,
-                                  LevelAccessor worldIn, BlockPos currentPosIn, BlockPos facingPosIn) {
-        BlockState state = super.updateShape(stateIn, directionIn, facingStateIn, worldIn, currentPosIn, facingPosIn);
+    protected BlockState updateShape(BlockState stateIn, LevelReader worldIn, ScheduledTickAccess scheduledTickAccess, BlockPos currentPosIn, Direction directionIn, BlockPos facingPosIn, BlockState facingStateIn, RandomSource random) {
+        BlockState state = super.updateShape(stateIn, worldIn, scheduledTickAccess, currentPosIn, directionIn, facingPosIn, facingStateIn, random);
         boolean lastActivation = state.getValue(BlockStatePropertiesAA.ACTIVATED);
 
         switch (directionIn) {
@@ -180,12 +178,14 @@ public class FaucetBlock extends WaterSourceTrickleBlock {
         }
 
         if (worldIn.isClientSide() && state.getValue(BlockStatePropertiesAA.ACTIVATED) && !lastActivation) {
-            worldIn.playSound(null, currentPosIn, SoundEvents.LEVER_CLICK, SoundSource.BLOCKS, 0.3F, 0.6F);
-            worldIn.playSound(null, currentPosIn, SoundEvents.WATER_AMBIENT, SoundSource.BLOCKS, 0.3F, 1.0F);
+            if (worldIn instanceof Level level) {
+                level.playSound(null, currentPosIn, SoundEvents.LEVER_CLICK, SoundSource.BLOCKS, 0.3F, 0.6F);
+                level.playSound(null, currentPosIn, SoundEvents.WATER_AMBIENT, SoundSource.BLOCKS, 0.3F, 1.0F);
+            }
         }
 
         if (!worldIn.isClientSide() && state.getValue(BlockStatePropertiesAA.ACTIVATED) != lastActivation) {
-            worldIn.scheduleTick(currentPosIn, this, 5);
+            scheduledTickAccess.scheduleTick(currentPosIn, this, 5);
         }
 
         return state;

@@ -8,8 +8,9 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.redstone.Orientation;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 public class SidedWindowBlock extends WaterloggedHorizontalBlock {
     private static final BooleanProperty UP = BlockStateProperties.UP;
@@ -38,8 +39,8 @@ public class SidedWindowBlock extends WaterloggedHorizontalBlock {
     }
 
     @Override
-    public void neighborChanged(@NotNull BlockState state, @NotNull Level worldIn, @NotNull BlockPos pos, @NotNull Block blockIn, @NotNull BlockPos fromPos, boolean isMoving) {
-        super.neighborChanged(state, worldIn, pos, blockIn, fromPos, isMoving);
+    protected void neighborChanged(BlockState state, Level worldIn, BlockPos pos, Block blockIn, @Nullable Orientation orientation, boolean movedByPiston) {
+        super.neighborChanged(state, worldIn, pos, blockIn, orientation, movedByPiston);
         boolean changeTOP = canConnectVertical(state, worldIn, pos);
         boolean changeSIDE = canConnectHorizontal(state, worldIn, pos);
         BlockState newState = state;

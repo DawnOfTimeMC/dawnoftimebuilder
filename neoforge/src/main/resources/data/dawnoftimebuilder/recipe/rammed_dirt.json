@@ -1,16 +1,14 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "pattern": [
-        "ii",
-        "ii"
-    ],
-    "key": {
-        "i": {
-            "item": "minecraft:dirt"
-        }
-    },
-    "result": {
-        "id": "dawnoftimebuilder:rammed_dirt",
-        "count": 6
-    }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ii",
+    "ii"
+  ],
+  "key": {
+    "i": "minecraft:dirt"
+  },
+  "result": {
+    "id": "dawnoftimebuilder:rammed_dirt",
+    "count": 6
+  }
 }

@@ -1,17 +1,15 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "pattern": [
-        "I  ",
-        "II ",
-        "III"
-    ],
-    "key": {
-        "I": {
-            "item": "dawnoftimebuilder:waxed_oak_planks"
-        }
-    },
-    "result": {
-        "id": "dawnoftimebuilder:waxed_oak_planks_stairs",
-        "count": 6
-    }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "I  ",
+    "II ",
+    "III"
+  ],
+  "key": {
+    "I": "dawnoftimebuilder:waxed_oak_planks"
+  },
+  "result": {
+    "id": "dawnoftimebuilder:waxed_oak_planks_stairs",
+    "count": 6
+  }
 }

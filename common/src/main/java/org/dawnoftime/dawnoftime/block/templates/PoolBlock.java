@@ -2,7 +2,6 @@ package org.dawnoftime.dawnoftime.block.templates;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionResult;
@@ -11,9 +10,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.alchemy.Potion;
 import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -30,7 +27,6 @@ import org.dawnoftime.dawnoftime.util.Utils;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 
 public class PoolBlock extends BlockDoT {
@@ -219,7 +215,7 @@ public class PoolBlock extends BlockDoT {
     }
 
     @Override
-    public BlockState updateShape(BlockState stateIn, final Direction directionIn, final BlockState facingStateIn, final LevelAccessor worldIn, final BlockPos currentPosIn, final BlockPos facingPosIn) {
+    protected @NotNull BlockState updateShape(BlockState stateIn, LevelReader worldIn, ScheduledTickAccess scheduledTickAccess, BlockPos currentPosIn, Direction directionIn, BlockPos facingPosIn, BlockState facingStateIn, RandomSource random) {
         if(directionIn.getAxis().isHorizontal()) {
             final boolean hasPoolInSide = facingStateIn.getBlock() == this;
             if(hasPoolInSide && facingStateIn.getValue(BlockStatePropertiesAA.LEVEL) >= 0) {
@@ -260,21 +256,22 @@ public class PoolBlock extends BlockDoT {
             stateIn = stateIn.setValue(BlockStatePropertiesAA.LEVEL, level);
 
             if(!worldIn.isClientSide() && lastLevel != level) {
-                (worldIn).scheduleTick(currentPosIn, this, 5);
+                (scheduledTickAccess).scheduleTick(currentPosIn, this, 5);
             }
         }
 
         return stateIn;
     }
 
-    @Override
-    public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-        super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
-        Utils.addTooltip(tooltipComponents, Utils.TOOLTIP_ADD_COLUMN);
-    }
+//    @Override
+//    public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+//        super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+//        Utils.addTooltip(tooltipComponents, Utils.TOOLTIP_ADD_COLUMN);
+//    }
+
 
     @Override
-    public int getLightBlock(final BlockState p_200011_1_In, final BlockGetter p_200011_2_In, final BlockPos p_200011_3_In) {
+    protected int getLightBlock(BlockState state) {
         return 1;
     }
 
@@ -284,7 +281,7 @@ public class PoolBlock extends BlockDoT {
     }
 
     @Override
-    public boolean propagatesSkylightDown(final BlockState p_200123_1_In, final BlockGetter p_200123_2_In, final BlockPos p_200123_3_In) {
+    protected boolean propagatesSkylightDown(BlockState state) {
         return true;
     }
 
@@ -327,11 +324,11 @@ public class PoolBlock extends BlockDoT {
         return false;
     }
 
-    public static EnumActivatorState hasOnePoolActivatorAround(final BlockPos blockPosIn, final LevelAccessor worldIn) {
+    public static EnumActivatorState hasOnePoolActivatorAround(final BlockPos blockPosIn, final LevelReader worldIn) {
         return PoolBlock.hasOnePoolActivatorAround(new LinkedHashMap<>(), blockPosIn, worldIn, 0.0f, 0.0f);
     }
 
-    private static EnumActivatorState hasOnePoolActivatorAround(final Map<BlockPos, BlockState> testedPositionsIn, final BlockPos blockPosIn, final LevelAccessor worldIn, final float prohibitedXIn, final float prohibitedZIn) {
+    private static EnumActivatorState hasOnePoolActivatorAround(final Map<BlockPos, BlockState> testedPositionsIn, final BlockPos blockPosIn, final LevelReader worldIn, final float prohibitedXIn, final float prohibitedZIn) {
         if(testedPositionsIn.containsKey(blockPosIn)) {
             return EnumActivatorState.NO;
         }
@@ -349,7 +346,7 @@ public class PoolBlock extends BlockDoT {
         return EnumActivatorState.NO;
     }
 
-    public static EnumActivatorState hasOnePoolActivatorAroundOffset(final Map<BlockPos, BlockState> testedPositionsIn, final LevelAccessor worldIn, final BlockPos baseBlockPosIn, final int xOffsetIn, final int zOffsetIn) {
+    public static EnumActivatorState hasOnePoolActivatorAroundOffset(final Map<BlockPos, BlockState> testedPositionsIn, final LevelReader worldIn, final BlockPos baseBlockPosIn, final int xOffsetIn, final int zOffsetIn) {
         final BlockPos offsetBlockPos = baseBlockPosIn.offset(xOffsetIn, 0, zOffsetIn);
         final BlockState offsetState = worldIn.getBlockState(offsetBlockPos);
 

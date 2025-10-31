@@ -1,20 +1,16 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "pattern": [
-        "IiI",
-        "iii",
-        "IiI"
-    ],
-    "key": {
-        "I": {
-            "tag": "c:rods/wooden"
-        },
-        "i": {
-            "item": "minecraft:paper"
-        }
-    },
-    "result": {
-        "id": "dawnoftimebuilder:paper_wall_window",
-        "count": 4
-    }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "IiI",
+    "iii",
+    "IiI"
+  ],
+  "key": {
+    "I": "#c:rods/wooden",
+    "i": "minecraft:paper"
+  },
+  "result": {
+    "id": "dawnoftimebuilder:paper_wall_window",
+    "count": 4
+  }
 }
