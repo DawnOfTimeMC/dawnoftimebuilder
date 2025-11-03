@@ -11,7 +11,8 @@
   ],
   "client": [
     "client.AbstractButtonAccessor",
-    "client.CreativeInventoryMixin"
+    "client.CreativeInventoryMixin",
+    "client.ModelBlockRendererMixin"
   ],
   "server": [
   ],
