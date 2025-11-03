@@ -1,4 +1,4 @@
-package org.dawnoftime.dawnoftime.mixin.impl.client;
+package org.dawnoftime.dawnoftime.mixin.impl;
 
 import net.minecraft.client.renderer.block.ModelBlockRenderer;
 import net.minecraft.core.BlockPos;
