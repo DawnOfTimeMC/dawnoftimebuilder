@@ -50,7 +50,7 @@ public class PlasteredStoneCressetBlock extends WaterloggedBlock {
 
     @Override
     public void onProjectileHit(Level worldIn, BlockState state, BlockHitResult hit, Projectile projectile) {
-        if(!worldIn.isClientSide && projectile instanceof AbstractArrow) {
+        if(!worldIn.isClientSide() && projectile instanceof AbstractArrow) {
             AbstractArrow abstractarrowentity = (AbstractArrow) projectile;
             if(abstractarrowentity.isOnFire() && !state.getValue(LIT) && !state.getValue(WATERLOGGED)) {
                 BlockPos pos = hit.getBlockPos();

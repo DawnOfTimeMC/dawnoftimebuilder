@@ -44,7 +44,7 @@ public class ChairEntity extends Entity {
             if(seats.isEmpty()) {
                 final ChairEntity seat = new ChairEntity(level, pos, direction, pixelsXOffset, pixelsYOffset, pixelsZOffset);
                 level.addFreshEntity(seat);
-                if(player.startRiding(seat, false)) {
+                if(player.startRiding(seat, false, true)) {
                     return InteractionResult.SUCCESS;
                 }
             }

@@ -102,7 +102,7 @@ public class WaterJetBlock extends BlockDoT {
     @Override
     public InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos,
                                  Player player, BlockHitResult hit) {
-        if (world.isClientSide) {
+        if (world.isClientSide()) {
             world.playSound(player, pos, SoundEvents.LEVER_CLICK, SoundSource.BLOCKS, 0.3F, 0.6F);
             world.playSound(player, pos, SoundEvents.WATER_AMBIENT, SoundSource.BLOCKS, 0.3F, 1.0F);
         }

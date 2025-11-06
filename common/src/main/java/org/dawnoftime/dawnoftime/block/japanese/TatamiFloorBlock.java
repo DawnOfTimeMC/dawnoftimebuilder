@@ -53,7 +53,7 @@ public class TatamiFloorBlock extends BlockDoT {
 
     @Override
     public InteractionResult useWithoutItem(BlockState state, Level worldIn, BlockPos pos, Player player, BlockHitResult hit) {
-        if(!worldIn.isClientSide) {
+        if(!worldIn.isClientSide()) {
             if(player.isCrouching()) {
                 boolean isTop = state.getValue(HALF) == Half.TOP;
                 BlockPos otherPos = (isTop) ? pos.relative(state.getValue(FACING)) : pos.relative(state.getValue(FACING).getOpposite());
