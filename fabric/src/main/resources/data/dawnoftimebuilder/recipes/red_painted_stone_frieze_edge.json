@@ -1,0 +1,18 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"IiI"
+	],
+	"key": {
+		"I": {
+			"item": "dawnoftimebuilder:red_plastered_stone"
+		},
+		"i": {
+			"item": "minecraft:red_dye"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:red_painted_stone_frieze_edge",
+		"count": 6
+	}
+}
