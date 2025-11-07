@@ -1,20 +1,16 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "pattern": [
-        " i ",
-        "iIi",
-        " i "
-    ],
-    "key": {
-        "I": {
-            "item": "minecraft:stone"
-        },
-        "i": {
-            "item": "minecraft:green_dye"
-        }
-    },
-    "result": {
-        "id": "dawnoftimebuilder:green_painted_stone",
-        "count": 8
-    }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " i ",
+    "iIi",
+    " i "
+  ],
+  "key": {
+    "I": "minecraft:stone",
+    "i": "minecraft:green_dye"
+  },
+  "result": {
+    "id": "dawnoftimebuilder:green_painted_stone",
+    "count": 8
+  }
 }

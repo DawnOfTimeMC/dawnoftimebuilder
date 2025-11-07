@@ -1,12 +1,8 @@
 {
     "type": "minecraft:crafting_shapeless",
     "ingredients": [
-        {
-            "item": "minecraft:red_dye"
-        },
-        {
-            "item": "minecraft:spruce_log"
-        }
+      "minecraft:red_dye",
+      "minecraft:spruce_log"
     ],
     "result": {
         "id": "dawnoftimebuilder:red_painted_beam",

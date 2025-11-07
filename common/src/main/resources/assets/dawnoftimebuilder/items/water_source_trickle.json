@@ -1,0 +1,11 @@
+{
+  "model": {
+    "type": "minecraft:model",
+    "model": "dawnoftimebuilder:item/water_source_trickle",
+    "tints": [
+      {
+        "type": "dawnoftimebuilder:biome_item_tint_source"
+      }
+    ]
+  }
+}

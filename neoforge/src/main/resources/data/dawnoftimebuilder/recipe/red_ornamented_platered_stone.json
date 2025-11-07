@@ -1,20 +1,16 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "pattern": [
-        "III",
-        "IiI",
-        "III"
-    ],
-    "key": {
-        "I": {
-            "item": "dawnoftimebuilder:red_plastered_stone"
-        },
-        "i": {
-            "tag": "c:nuggets/gold"
-        }
-    },
-    "result": {
-        "id": "dawnoftimebuilder:red_ornamented_plastered_stone",
-        "count": 6
-    }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "III",
+    "IiI",
+    "III"
+  ],
+  "key": {
+    "I": "dawnoftimebuilder:red_plastered_stone",
+    "i": "#c:nuggets/gold"
+  },
+  "result": {
+    "id": "dawnoftimebuilder:red_ornamented_plastered_stone",
+    "count": 6
+  }
 }

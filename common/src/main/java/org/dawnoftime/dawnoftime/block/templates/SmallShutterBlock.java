@@ -2,12 +2,11 @@ package org.dawnoftime.dawnoftime.block.templates;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Mirror;
 import net.minecraft.world.level.block.Rotation;
@@ -16,6 +15,7 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.material.PushReaction;
+import net.minecraft.world.level.redstone.Orientation;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
@@ -28,7 +28,7 @@ import javax.annotation.Nullable;
 import static org.dawnoftime.dawnoftime.util.VoxelShapes.SMALL_SHUTTER_SHAPES;
 
 public class SmallShutterBlock extends WaterloggedBlock {
-    public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
+    public static final EnumProperty<Direction> FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
     public static final EnumProperty<BlockStatePropertiesAA.OpenPosition> OPEN_POSITION = BlockStatePropertiesAA.OPEN_POSITION;
     public static final EnumProperty<DoorHingeSide> HINGE = BlockStateProperties.DOOR_HINGE;
@@ -73,15 +73,16 @@ public class SmallShutterBlock extends WaterloggedBlock {
     }
 
     @Override
-    public @NotNull BlockState updateShape(BlockState stateIn, final @NotNull Direction facing, final @NotNull BlockState facingState, final @NotNull LevelAccessor worldIn, final @NotNull BlockPos currentPos, final @NotNull BlockPos facingPos) {
+    protected @NotNull BlockState updateShape(BlockState stateIn, LevelReader worldIn, ScheduledTickAccess scheduledTickAccess, BlockPos currentPos, Direction facing, BlockPos facingPos, BlockState neighborState, RandomSource random) {
         final Direction direction = stateIn.getValue(SmallShutterBlock.FACING);
         final Direction hingeDirection = stateIn.getValue(SmallShutterBlock.HINGE) == DoorHingeSide.LEFT ? direction.getCounterClockWise() : direction.getClockWise();
         if(facing == hingeDirection) {
-            stateIn = super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+            stateIn = super.updateShape(stateIn, worldIn, scheduledTickAccess, currentPos, direction, facingPos, neighborState, random);
             return stateIn.getValue(SmallShutterBlock.OPEN_POSITION) == BlockStatePropertiesAA.OpenPosition.CLOSED ? stateIn : stateIn.setValue(SmallShutterBlock.OPEN_POSITION, this.getOpenState(stateIn, worldIn, facingPos));
         }
-        return super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+        return super.updateShape(stateIn, worldIn, scheduledTickAccess, currentPos, direction, facingPos, neighborState, random);
     }
+
 
     @Override
     public @NotNull InteractionResult useWithoutItem(BlockState state, final Level worldIn, final BlockPos pos, final Player player, final BlockHitResult hit) {
@@ -100,7 +101,7 @@ public class SmallShutterBlock extends WaterloggedBlock {
     }
 
     @Override
-    public void neighborChanged(BlockState state, final Level worldIn, final BlockPos pos, final Block blockIn, final BlockPos fromPos, final boolean isMoving) {
+    protected void neighborChanged(BlockState state, Level worldIn, BlockPos pos, @NotNull Block blockIn, @Nullable Orientation orientation, boolean movedByPiston) {
         final boolean isPowered = worldIn.hasNeighborSignal(pos);
         if(blockIn != this && isPowered != state.getValue(SmallShutterBlock.POWERED)) {
             if(isPowered != state.getValue(SmallShutterBlock.OPEN_POSITION).isOpen()) {
@@ -116,7 +117,7 @@ public class SmallShutterBlock extends WaterloggedBlock {
         }
     }
 
-    protected BlockStatePropertiesAA.OpenPosition getOpenState(final BlockState stateIn, final LevelAccessor worldIn, final BlockPos pos) {
+    protected BlockStatePropertiesAA.OpenPosition getOpenState(final BlockState stateIn, final LevelReader worldIn, final BlockPos pos) {
         return worldIn.getBlockState(pos).getCollisionShape(worldIn, pos).isEmpty() ? BlockStatePropertiesAA.OpenPosition.FULL : BlockStatePropertiesAA.OpenPosition.HALF;
     }
 
@@ -154,7 +155,7 @@ public class SmallShutterBlock extends WaterloggedBlock {
      * Light corrections methods
      */
     @Override
-    public int getLightBlock(final BlockState p_200011_1_In, final BlockGetter p_200011_2_In, final BlockPos p_200011_3_In) {
+    protected int getLightBlock(BlockState state) {
         return 1;
     }
 
@@ -163,8 +164,9 @@ public class SmallShutterBlock extends WaterloggedBlock {
         return false;
     }
 
+
     @Override
-    public VoxelShape getOcclusionShape(final BlockState p_196247_1_In, final BlockGetter p_196247_2_In, final BlockPos p_196247_3_In) {
+    protected VoxelShape getOcclusionShape(BlockState state) {
         return Shapes.empty();
     }
 
@@ -175,7 +177,7 @@ public class SmallShutterBlock extends WaterloggedBlock {
     }
 
     @Override
-    public boolean propagatesSkylightDown(final BlockState p_200123_1_In, final BlockGetter p_200123_2_In, final BlockPos p_200123_3_In) {
+    protected boolean propagatesSkylightDown(BlockState state) {
         return true;
     }
 }

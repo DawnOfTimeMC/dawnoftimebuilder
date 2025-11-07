@@ -4,7 +4,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -56,7 +56,7 @@ public class MarbleColumnBlock extends ConnectedVerticalBlock implements IBlockP
     }
 
     @Override
-    public boolean isConnectible(BlockState stateIn, LevelAccessor worldIn, BlockPos pos, Direction faceToConnect) {
+    public boolean isConnectible(BlockState stateIn, LevelReader worldIn, BlockPos pos, Direction faceToConnect) {
         BlockState testedState = worldIn.getBlockState(pos);
         if (faceToConnect == Direction.DOWN && IBlockPillar.getPillarConnectionUnder(worldIn, pos) == BlockStatePropertiesAA.PillarConnection.EIGHT_PX) {
             return true;

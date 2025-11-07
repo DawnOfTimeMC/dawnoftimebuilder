@@ -6,9 +6,7 @@
         "o"
     ],
     "key": {
-        "o": {
-            "tag": "c:ingots/iron"
-        }
+        "o": "#c:ingots/iron"
     },
     "result": {
         "id": "dawnoftimebuilder:iron_column",

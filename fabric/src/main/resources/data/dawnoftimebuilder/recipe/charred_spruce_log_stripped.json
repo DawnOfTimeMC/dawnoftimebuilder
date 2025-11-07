@@ -1,8 +1,6 @@
 {
     "type": "minecraft:smoking",
-    "ingredient": {
-        "item": "minecraft:stripped_spruce_log"
-    },
+    "ingredient": "minecraft:stripped_spruce_log",
     "result": {
       "id": "dawnoftimebuilder:charred_spruce_log_stripped"
     },

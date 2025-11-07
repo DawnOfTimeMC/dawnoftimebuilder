@@ -2,16 +2,19 @@ package org.dawnoftime.dawnoftime.entity;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Pose;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.vehicle.DismountHelper;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import org.dawnoftime.dawnoftime.registry.DoTBEntitiesRegistry;
@@ -71,15 +74,13 @@ public class ChairEntity extends Entity {
     }
 
     @Override
-    protected void readAdditionalSaveData(final @NotNull CompoundTag p_70037_1_) {
-
-    }
+    public boolean hurtServer(@NotNull ServerLevel serverLevel, @NotNull DamageSource damageSource, float v) {return false;}
 
     @Override
-    protected void addAdditionalSaveData(final @NotNull CompoundTag p_213281_1_) {
+    protected void readAdditionalSaveData(@NotNull ValueInput valueInput) {}
 
-    }
-
+    @Override
+    protected void addAdditionalSaveData(@NotNull ValueOutput valueOutput) {}
 
     protected void clampRotation(Entity player) {
         player.setYBodyRot(this.getYRot());

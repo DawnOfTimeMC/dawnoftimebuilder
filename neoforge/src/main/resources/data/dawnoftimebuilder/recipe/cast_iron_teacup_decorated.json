@@ -5,12 +5,8 @@
         " i "
     ],
     "key": {
-        "I": {
-            "tag": "c:ingots/iron"
-        },
-        "i": {
-            "tag": "c:ingots/gold"
-        }
+        "I": "#c:ingots/iron",
+        "i": "#c:ingots/gold"
     },
     "result": {
         "id": "dawnoftimebuilder:cast_iron_teacup_decorated"

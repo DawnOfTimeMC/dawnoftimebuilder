@@ -1,20 +1,16 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "pattern": [
-        "III",
-        "IxI",
-        "III"
-    ],
-    "key": {
-        "I": {
-            "item": "minecraft:sandstone"
-        },
-        "x": {
-            "item": "minecraft:red_dye"
-        }
-    },
-    "result": {
-        "id": "dawnoftimebuilder:roman_fresco_red",
-        "count": 9
-    }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "III",
+    "IxI",
+    "III"
+  ],
+  "key": {
+    "I": "minecraft:sandstone",
+    "x": "minecraft:red_dye"
+  },
+  "result": {
+    "id": "dawnoftimebuilder:roman_fresco_red",
+    "count": 9
+  }
 }

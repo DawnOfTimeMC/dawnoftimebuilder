@@ -1,20 +1,16 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "pattern": [
-        "III",
-        "iii",
-        "III"
-    ],
-    "key": {
-        "I": {
-            "item": "dawnoftimebuilder:charred_spruce_planks"
-        },
-        "i": {
-            "tag": "c:ingots/iron"
-        }
-    },
-    "result": {
-        "id": "dawnoftimebuilder:charred_spruce_door",
-        "count": 6
-    }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "III",
+    "iii",
+    "III"
+  ],
+  "key": {
+    "I": "dawnoftimebuilder:charred_spruce_planks",
+    "i": "#c:ingots/iron"
+  },
+  "result": {
+    "id": "dawnoftimebuilder:charred_spruce_door",
+    "count": 6
+  }
 }

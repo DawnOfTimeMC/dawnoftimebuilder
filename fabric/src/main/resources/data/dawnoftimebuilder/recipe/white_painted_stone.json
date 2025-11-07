@@ -1,20 +1,16 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "pattern": [
-        " i ",
-        "iIi",
-        " i "
-    ],
-    "key": {
-        "I": {
-            "item": "minecraft:stone"
-        },
-        "i": {
-            "item": "minecraft:white_dye"
-        }
-    },
-    "result": {
-        "id": "dawnoftimebuilder:white_painted_stone",
-        "count": 8
-    }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " i ",
+    "iIi",
+    " i "
+  ],
+  "key": {
+    "I": "minecraft:stone",
+    "i": "minecraft:white_dye"
+  },
+  "result": {
+    "id": "dawnoftimebuilder:white_painted_stone",
+    "count": 8
+  }
 }

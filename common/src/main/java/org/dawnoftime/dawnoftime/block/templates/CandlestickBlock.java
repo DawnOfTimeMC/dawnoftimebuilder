@@ -13,15 +13,14 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
-import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-
 import org.dawnoftime.dawnoftime.block.IBlockSpecialDisplay;
 import org.jetbrains.annotations.NotNull;
 
 public class CandlestickBlock extends CandleLampBlock implements IBlockSpecialDisplay {
-    public static final DirectionProperty FACING = BlockStateProperties.FACING_HOPPER;
+    public static final EnumProperty<Direction> FACING = BlockStateProperties.FACING_HOPPER;
     private static final BooleanProperty LIT = BlockStateProperties.LIT;
 
     public CandlestickBlock(Properties properties, VoxelShape[] shapes) {

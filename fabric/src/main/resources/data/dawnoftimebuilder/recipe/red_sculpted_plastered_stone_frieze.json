@@ -1,23 +1,17 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "pattern": [
-        " i ",
-        " o ",
-        "III"
-    ],
-    "key": {
-        "I": {
-            "item": "dawnoftimebuilder:plastered_stone"
-        },
-        "i": {
-            "item": "minecraft:red_dye"
-        },
-        "o": {
-            "item": "minecraft:gold_nugget"
-        }
-    },
-    "result": {
-        "id": "dawnoftimebuilder:red_sculpted_plastered_stone_frieze",
-        "count": 6
-    }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " i ",
+    " o ",
+    "III"
+  ],
+  "key": {
+    "I": "dawnoftimebuilder:plastered_stone",
+    "i": "minecraft:red_dye",
+    "o": "minecraft:gold_nugget"
+  },
+  "result": {
+    "id": "dawnoftimebuilder:red_sculpted_plastered_stone_frieze",
+    "count": 6
+  }
 }

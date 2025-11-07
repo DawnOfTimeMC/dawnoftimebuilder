@@ -1,19 +1,15 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "pattern": [
-        "o",
-        "x"
-    ],
-    "key": {
-        "o": {
-            "item": "minecraft:ender_pearl"
-        },
-        "x": {
-            "item": "minecraft:water_bucket"
-        }
-    },
-    "result": {
-        "id": "dawnoftimebuilder:water_source_trickle",
-        "count": 2
-    }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "o",
+    "x"
+  ],
+  "key": {
+    "o": "minecraft:ender_pearl",
+    "x": "minecraft:water_bucket"
+  },
+  "result": {
+    "id": "dawnoftimebuilder:water_source_trickle",
+    "count": 2
+  }
 }

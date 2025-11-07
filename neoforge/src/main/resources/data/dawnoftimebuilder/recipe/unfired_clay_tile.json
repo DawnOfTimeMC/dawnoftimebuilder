@@ -1,17 +1,15 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "pattern": [
-        " o ",
-        "ooo",
-        " o "
-    ],
-    "key": {
-        "o": {
-            "item": "minecraft:clay_ball"
-        }
-    },
-    "result": {
-        "id": "dawnoftimebuilder:unfired_clay_tile",
-        "count": 5
-    }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " o ",
+    "ooo",
+    " o "
+  ],
+  "key": {
+    "o": "minecraft:clay_ball"
+  },
+  "result": {
+    "id": "dawnoftimebuilder:unfired_clay_tile",
+    "count": 5
+  }
 }

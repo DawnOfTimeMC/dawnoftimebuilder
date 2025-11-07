@@ -2,13 +2,15 @@ package org.dawnoftime.dawnoftime.block.roman;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.Mirror;
@@ -16,7 +18,7 @@ import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.material.PushReaction;
@@ -24,11 +26,13 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import org.dawnoftime.dawnoftime.block.templates.WaterloggedBlock;
 import org.dawnoftime.dawnoftime.util.BlockStatePropertiesAA;
 import org.jetbrains.annotations.NotNull;
+
 import javax.annotation.Nullable;
+
 import static org.dawnoftime.dawnoftime.util.VoxelShapes.MARBLE_STATUE_SHAPES;
 
 public class MarbleStatueBlock extends WaterloggedBlock {
-    public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
+    public static final EnumProperty<Direction> FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final IntegerProperty MULTIBLOCK = BlockStatePropertiesAA.MULTIBLOCK_0_2;
 
     public MarbleStatueBlock(final Properties properties) {
@@ -84,7 +88,7 @@ public class MarbleStatueBlock extends WaterloggedBlock {
     }
 
     @Override
-    public @NotNull BlockState updateShape(final BlockState stateIn, final @NotNull Direction facing, final @NotNull BlockState facingState, final @NotNull LevelAccessor worldIn, final @NotNull BlockPos currentPos, final @NotNull BlockPos facingPos) {
+    protected @NotNull BlockState updateShape(BlockState stateIn, LevelReader worldIn, ScheduledTickAccess scheduledTickAccess, BlockPos currentPos, Direction facing, BlockPos neighborPos, BlockState facingState, RandomSource random) {
         if (facing.getAxis().isHorizontal()) {
             return stateIn;
         }

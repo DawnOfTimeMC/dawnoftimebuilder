@@ -2,9 +2,11 @@ package org.dawnoftime.dawnoftime.block.general;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
@@ -45,13 +47,13 @@ public class WaterFlowingTrickleBlock extends WaterTrickleBlock {
     }
 
     @Override
-    public BlockState updateShape(BlockState stateIn, Direction directionIn, BlockState facingStateIn, LevelAccessor worldIn, BlockPos currentPosIn, BlockPos facingPosIn) {
+    protected BlockState updateShape(BlockState stateIn, LevelReader worldIn, ScheduledTickAccess scheduledTickAccess, BlockPos currentPosIn, Direction directionIn, BlockPos facingPosIn, BlockState facingStateIn, RandomSource random) {
         if(directionIn == Direction.UP) {
             if(!(facingStateIn.getBlock() instanceof WaterTrickleBlock)) {
                 return Blocks.AIR.defaultBlockState();
             }
         }
-        return super.updateShape(stateIn, directionIn, facingStateIn, worldIn, currentPosIn, facingPosIn);
+        return super.updateShape(stateIn, worldIn, scheduledTickAccess, currentPosIn, directionIn, facingPosIn, facingStateIn, random);
     }
 
     @Override

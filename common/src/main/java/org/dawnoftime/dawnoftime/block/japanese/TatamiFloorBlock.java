@@ -2,6 +2,7 @@ package org.dawnoftime.dawnoftime.block.japanese;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -15,7 +16,6 @@ import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.block.state.properties.Half;
 import net.minecraft.world.level.material.PushReaction;
@@ -27,7 +27,7 @@ import org.jetbrains.annotations.Nullable;
 
 public class TatamiFloorBlock extends BlockDoT {
 
-    public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
+    public static final EnumProperty<Direction> FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final EnumProperty<Half> HALF = BlockStateProperties.HALF;
 
     public TatamiFloorBlock(Properties properties) {
@@ -72,7 +72,7 @@ public class TatamiFloorBlock extends BlockDoT {
     }
 
     @Override
-    public void onRemove(BlockState state, Level world, BlockPos pos, BlockState newState, boolean isMoving) {
+    protected void affectNeighborsAfterRemoval(BlockState state, ServerLevel world, BlockPos pos, boolean movedByPiston) {
         Direction facing = state.getValue(FACING);
         Half half = state.getValue(HALF);
         BlockPos otherPos = (half == Half.TOP) ? pos.relative(facing) : pos.relative(facing.getOpposite());

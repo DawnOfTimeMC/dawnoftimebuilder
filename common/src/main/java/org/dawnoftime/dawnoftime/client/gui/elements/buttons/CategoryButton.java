@@ -1,10 +1,9 @@
 package org.dawnoftime.dawnoftime.client.gui.elements.buttons;
 
-import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.Tooltip;
+import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import org.dawnoftime.dawnoftime.client.gui.creative.CreativeInventoryCategories;
@@ -12,6 +11,7 @@ import org.dawnoftime.dawnoftime.mixin.api.CreativeScreen;
 import org.dawnoftime.dawnoftime.util.CustomWidgetTooltipHolder;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.joml.Matrix3x2fStack;
 
 import static org.dawnoftime.dawnoftime.DoTBCommon.CREATIVE_ICONS;
 import static org.dawnoftime.dawnoftime.DoTBCommon.MOD_ID;
@@ -55,21 +55,15 @@ public class CategoryButton extends Button {
     @Override
     protected void renderWidget(@NotNull GuiGraphics pGuiGraphics, int pMouseX, int pMouseY, float pPartialTick) {
         if(this.active) {
-            PoseStack ps = pGuiGraphics.pose();
+            Matrix3x2fStack ps = pGuiGraphics.pose();
 
-            ps.pushPose();
-            RenderSystem.clearColor(1.0F, 1.0F, 1.0F, this.alpha);
-            RenderSystem.enableBlend();
-            pGuiGraphics.blit(CREATIVE_ICONS, this.getX() - 1, this.getY(), 0, (this.selected) ? 0 : 28, 31, 28);
-            RenderSystem.disableBlend();
-            ps.popPose();
+            ps.pushMatrix();
+            pGuiGraphics.blit(RenderPipelines.GUI_TEXTURED, CREATIVE_ICONS, this.getX() - 1, this.getY(), 0, (this.selected) ? 0 : 28, 31, 28, 256, 256);
+            ps.popMatrix();
 
-            ps.pushPose();
-            RenderSystem.clearColor(1.0F, 1.0F, 1.0F, this.alpha);
-            RenderSystem.enableBlend();
-            pGuiGraphics.blit(BUTTON_ICONS[this.getCategoryID()], this.getX() + ((this.selected) ? 6 : 9), this.getY() + 6, 0, 0, 0, 16, 16, 16, 16);
-            RenderSystem.disableBlend();
-            ps.popPose();
+            ps.pushMatrix();
+            pGuiGraphics.blit(RenderPipelines.GUI_TEXTURED, BUTTON_ICONS[this.getCategoryID()], this.getX() + ((this.selected) ? 6 : 9), this.getY() + 6, 0, 0, 16, 16, 16, 16);
+            ps.popMatrix();
         }
     }
 
@@ -91,10 +85,10 @@ public class CategoryButton extends Button {
         return tooltips;
     }
 
-    @Override
-    public @Nullable Tooltip getTooltip() {
-        return this.active ? super.getTooltip() : null;
-    }
+//    @Override
+//    public @Nullable Tooltip getTooltip() {
+//        return this.active ? super.getTooltip() : null;
+//    }
 
 //    @Override
 //    protected ClientTooltipPositioner createTooltipPositioner() {

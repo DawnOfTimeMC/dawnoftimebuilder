@@ -1,15 +1,13 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "pattern": [
-        "II"
-    ],
-    "key": {
-        "I": {
-            "item": "minecraft:cut_sandstone_slab"
-        }
-    },
-    "result": {
-        "id": "dawnoftimebuilder:cut_sandstone_edge",
-        "count": 6
-    }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "II"
+  ],
+  "key": {
+    "I": "minecraft:cut_sandstone_slab"
+  },
+  "result": {
+    "id": "dawnoftimebuilder:cut_sandstone_edge",
+    "count": 6
+  }
 }

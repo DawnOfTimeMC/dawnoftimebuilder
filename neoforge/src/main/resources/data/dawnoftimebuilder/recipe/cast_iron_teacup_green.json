@@ -5,12 +5,8 @@
         " i "
     ],
     "key": {
-        "I": {
-            "tag": "c:ingots/iron"
-        },
-        "i": {
-            "tag": "c:dyes/green"
-        }
+        "I": "#c:ingots/iron",
+        "i": "#c:dyes/green"
     },
     "result": {
         "id": "dawnoftimebuilder:cast_iron_teacup_green"

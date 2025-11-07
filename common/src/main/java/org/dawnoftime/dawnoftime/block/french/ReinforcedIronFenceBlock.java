@@ -2,18 +2,17 @@ package org.dawnoftime.dawnoftime.block.french;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Mirror;
 import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-
-
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.block.state.properties.StairsShape;
 import net.minecraft.world.phys.shapes.CollisionContext;
@@ -21,12 +20,14 @@ import org.dawnoftime.dawnoftime.block.templates.ConnectedVerticalBlock;
 import org.dawnoftime.dawnoftime.block.templates.PlateBlock;
 import org.dawnoftime.dawnoftime.util.BlockStatePropertiesAA.VerticalConnection;
 import org.jetbrains.annotations.NotNull;
+
 import javax.annotation.Nullable;
+
 import static net.minecraft.world.level.block.state.properties.StairsShape.OUTER_LEFT;
 import static org.dawnoftime.dawnoftime.util.VoxelShapes.REINFORCED_IRON_FENCE_SHAPES;
 
 public class ReinforcedIronFenceBlock extends ConnectedVerticalBlock {
-    public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
+    public static final EnumProperty<Direction> FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final EnumProperty<StairsShape> SHAPE = BlockStateProperties.STAIRS_SHAPE;
 
     public ReinforcedIronFenceBlock(Properties properties) {
@@ -89,8 +90,8 @@ public class ReinforcedIronFenceBlock extends ConnectedVerticalBlock {
     }
 
     @Override
-    public @NotNull BlockState updateShape(BlockState stateIn, final @NotNull Direction facing, final @NotNull BlockState facingState, final @NotNull LevelAccessor worldIn, final @NotNull BlockPos currentPos, final @NotNull BlockPos facingPos) {
-        stateIn = super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+    protected @NotNull BlockState updateShape(BlockState stateIn, LevelReader worldIn, ScheduledTickAccess scheduledTickAccess, BlockPos currentPos, Direction facing, BlockPos neighborPos, BlockState neighborState, RandomSource random) {
+        stateIn = super.updateShape(stateIn, worldIn, scheduledTickAccess, currentPos, facing, neighborPos, neighborState, random);
         return facing.getAxis().isHorizontal() ? stateIn.setValue(PlateBlock.SHAPE, getShapeProperty(stateIn, worldIn, currentPos)) : stateIn;
     }
 

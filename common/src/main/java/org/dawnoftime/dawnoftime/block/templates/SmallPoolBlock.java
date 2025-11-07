@@ -2,10 +2,9 @@ package org.dawnoftime.dawnoftime.block.templates;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -96,8 +95,8 @@ public class SmallPoolBlock extends PoolBlock {
     }
 
     @Override
-    public BlockState updateShape(BlockState stateIn, Direction directionIn, BlockState facingStateIn, LevelAccessor worldIn, BlockPos currentPosIn, BlockPos facingPosIn) {
-        stateIn = super.updateShape(stateIn, directionIn, facingStateIn, worldIn, currentPosIn, facingPosIn);
+    protected @NotNull BlockState updateShape(BlockState stateIn, LevelReader worldIn, ScheduledTickAccess scheduledTickAccess, BlockPos currentPosIn, Direction directionIn, BlockPos facingPosIn, BlockState facingStateIn, RandomSource random) {
+        stateIn = super.updateShape(stateIn, worldIn, scheduledTickAccess, currentPosIn, directionIn, facingPosIn, facingStateIn, random);
         if(directionIn == Direction.DOWN) {
             stateIn = stateIn.setValue(BlockStateProperties.BOTTOM, canSupportCenter(worldIn, facingPosIn, Direction.UP));
         }

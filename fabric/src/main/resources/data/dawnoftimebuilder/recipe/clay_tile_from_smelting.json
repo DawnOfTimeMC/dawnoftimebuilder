@@ -1,8 +1,6 @@
 {
     "type": "minecraft:smelting",
-    "ingredient": {
-        "item": "dawnoftimebuilder:unfired_clay_tile"
-    },
+    "ingredient": "dawnoftimebuilder:unfired_clay_tile",
     "result": {
       "id": "dawnoftimebuilder:clay_tile"
     },

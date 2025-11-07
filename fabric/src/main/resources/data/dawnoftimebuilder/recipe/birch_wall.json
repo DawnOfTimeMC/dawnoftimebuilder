@@ -1,19 +1,15 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "pattern": [
-        "IiI",
-        "IiI"
-    ],
-    "key": {
-        "i": {
-            "item": "minecraft:birch_log"
-        },
-        "I": {
-            "item": "minecraft:birch_planks"
-        }
-    },
-    "result": {
-        "id": "dawnoftimebuilder:birch_wall",
-        "count": 9
-    }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "IiI",
+    "IiI"
+  ],
+  "key": {
+    "i": "minecraft:birch_log",
+    "I": "minecraft:birch_planks"
+  },
+  "result": {
+    "id": "dawnoftimebuilder:birch_wall",
+    "count": 9
+  }
 }

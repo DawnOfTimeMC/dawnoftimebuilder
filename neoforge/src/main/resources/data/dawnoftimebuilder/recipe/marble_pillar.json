@@ -1,16 +1,14 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "pattern": [
-        "I",
-        "I"
-    ],
-    "key": {
-        "I": {
-            "item": "dawnoftimebuilder:marble"
-        }
-    },
-    "result": {
-        "id": "dawnoftimebuilder:marble_pillar",
-        "count": 2
-    }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "I",
+    "I"
+  ],
+  "key": {
+    "I": "dawnoftimebuilder:marble"
+  },
+  "result": {
+    "id": "dawnoftimebuilder:marble_pillar",
+    "count": 2
+  }
 }

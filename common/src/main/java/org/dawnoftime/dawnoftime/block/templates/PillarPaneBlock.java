@@ -1,13 +1,13 @@
 package org.dawnoftime.dawnoftime.block.templates;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.dawnoftime.dawnoftime.util.Utils;
 
 public class PillarPaneBlock extends PaneBlockDoT {
     private static final VoxelShape[] SHAPES_PILLAR = makeShapesPillar(true);
@@ -23,7 +23,8 @@ public class PillarPaneBlock extends PaneBlockDoT {
                 || (state.getValue(EAST) && state.getValue(SOUTH))
                 || (state.getValue(SOUTH) && state.getValue(WEST))
                 || (state.getValue(WEST) && state.getValue(NORTH));
-        return pillar ? SHAPES_PILLAR[this.getAABBIndex(state)] : SHAPES_NO_PILLAR[this.getAABBIndex(state)];
+
+        return pillar ? SHAPES_PILLAR[Utils.getAABBIndex(state)] : SHAPES_NO_PILLAR[Utils.getAABBIndex(state)];
     }
 
     @Override

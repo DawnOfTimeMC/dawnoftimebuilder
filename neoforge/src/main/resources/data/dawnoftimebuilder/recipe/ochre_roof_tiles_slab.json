@@ -1,15 +1,13 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "pattern": [
-        "III"
-    ],
-    "key": {
-        "I": {
-            "item": "dawnoftimebuilder:ochre_roof_tiles"
-        }
-    },
-    "result": {
-        "id": "dawnoftimebuilder:ochre_roof_tiles_slab",
-        "count": 6
-    }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "III"
+  ],
+  "key": {
+    "I": "dawnoftimebuilder:ochre_roof_tiles"
+  },
+  "result": {
+    "id": "dawnoftimebuilder:ochre_roof_tiles_slab",
+    "count": 6
+  }
 }

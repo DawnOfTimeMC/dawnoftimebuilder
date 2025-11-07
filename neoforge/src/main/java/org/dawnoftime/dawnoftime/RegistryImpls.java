@@ -4,6 +4,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
@@ -35,7 +36,7 @@ public class RegistryImpls {
 
         @Override
         public <T extends BlockEntity> Supplier<BlockEntityType<T>> register(String name, BiFunction<BlockPos, BlockState, T> factoryIn, Supplier<Block[]> validBlocksSupplier) {
-            return BLOCK_ENTITY_TYPES_REGISTRY.register(name, () -> BlockEntityType.Builder.of(factoryIn::apply, validBlocksSupplier.get()).build(null));
+            return BLOCK_ENTITY_TYPES_REGISTRY.register(name, () -> new BlockEntityType<>(factoryIn::apply, validBlocksSupplier.get()));
         }
     }
 
@@ -68,7 +69,7 @@ public class RegistryImpls {
         public static final DeferredRegister<EntityType<?>> ENTITY_TYPES_REGISTRY = DeferredRegister.create(BuiltInRegistries.ENTITY_TYPE, DoTBCommon.MOD_ID);
         @Override
         public <T extends Entity> Supplier<EntityType<T>> register(String name, Supplier<EntityType.Builder<T>> builder) {
-            return ENTITY_TYPES_REGISTRY.register(name, () -> builder.get().build(name));
+            return ENTITY_TYPES_REGISTRY.register(name, () -> builder.get().build(ResourceKey.create(Registries.ENTITY_TYPE, ResourceLocation.fromNamespaceAndPath(DoTBCommon.MOD_ID, name))));
         }
     }
 

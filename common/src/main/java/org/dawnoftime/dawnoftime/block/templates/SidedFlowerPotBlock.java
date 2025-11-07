@@ -7,15 +7,15 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
 
 import javax.annotation.Nullable;
 
 public class SidedFlowerPotBlock extends FlowerPotBlockDoT {
-    public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
+    public static final EnumProperty<Direction> FACING = BlockStateProperties.HORIZONTAL_FACING;
 
-    public SidedFlowerPotBlock(@Nullable Item itemInPot) {
-        super(itemInPot);
+    public SidedFlowerPotBlock(@Nullable Item itemInPot, String id) {
+        super(itemInPot, id);
         this.registerDefaultState(this.defaultBlockState().setValue(FACING, Direction.NORTH));
     }
 

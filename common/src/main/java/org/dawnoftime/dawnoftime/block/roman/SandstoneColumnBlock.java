@@ -3,14 +3,16 @@ package org.dawnoftime.dawnoftime.block.roman;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import org.dawnoftime.dawnoftime.block.IBlockPillar;
 import org.dawnoftime.dawnoftime.block.templates.ConnectedVerticalBlock;
 import org.dawnoftime.dawnoftime.util.BlockStatePropertiesAA;
 import org.jetbrains.annotations.NotNull;
+
 import javax.annotation.Nonnull;
+
 import static org.dawnoftime.dawnoftime.util.VoxelShapes.SANDSTONE_COLUMN_SHAPES;
 
 public class SandstoneColumnBlock extends ConnectedVerticalBlock implements IBlockPillar {
@@ -34,7 +36,7 @@ public class SandstoneColumnBlock extends ConnectedVerticalBlock implements IBlo
     }
 
     @Override
-    public boolean isConnectible(BlockState stateIn, LevelAccessor worldIn, BlockPos pos, Direction faceToConnect) {
+    public boolean isConnectible(BlockState stateIn, LevelReader worldIn, BlockPos pos, Direction faceToConnect) {
         BlockState testedState = worldIn.getBlockState(pos);
         if (faceToConnect == Direction.DOWN && IBlockPillar.getPillarConnectionUnder(worldIn, pos) == BlockStatePropertiesAA.PillarConnection.EIGHT_PX) {
             return true;

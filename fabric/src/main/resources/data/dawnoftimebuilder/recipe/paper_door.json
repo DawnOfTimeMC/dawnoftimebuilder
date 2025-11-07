@@ -1,20 +1,16 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "pattern": [
-        "II",
-        "II",
-        "ii"
-    ],
-    "key": {
-        "i": {
-            "item": "minecraft:stick"
-        },
-        "I": {
-            "item": "minecraft:paper"
-        }
-    },
-    "result": {
-        "id": "dawnoftimebuilder:paper_door",
-        "count": 4
-    }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "II",
+    "II",
+    "ii"
+  ],
+  "key": {
+    "i": "minecraft:stick",
+    "I": "minecraft:paper"
+  },
+  "result": {
+    "id": "dawnoftimebuilder:paper_door",
+    "count": 4
+  }
 }

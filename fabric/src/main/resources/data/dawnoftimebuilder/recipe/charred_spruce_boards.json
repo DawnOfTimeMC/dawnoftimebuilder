@@ -1,20 +1,16 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "pattern": [
-        "IiI",
-        "iIi",
-        "IiI"
-    ],
-    "key": {
-        "I": {
-            "item": "dawnoftimebuilder:charred_spruce_planks"
-        },
-        "i": {
-            "item": "minecraft:stick"
-        }
-    },
-    "result": {
-        "id": "dawnoftimebuilder:charred_spruce_boards",
-        "count": 6
-    }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "IiI",
+    "iIi",
+    "IiI"
+  ],
+  "key": {
+    "I": "dawnoftimebuilder:charred_spruce_planks",
+    "i": "minecraft:stick"
+  },
+  "result": {
+    "id": "dawnoftimebuilder:charred_spruce_boards",
+    "count": 6
+  }
 }

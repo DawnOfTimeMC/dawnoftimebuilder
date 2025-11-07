@@ -2,9 +2,11 @@ package org.dawnoftime.dawnoftime.block.templates;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.state.BlockState;
@@ -13,8 +15,6 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
-import net.minecraft.world.phys.shapes.Shapes;
-import net.minecraft.world.phys.shapes.VoxelShape;
 import org.dawnoftime.dawnoftime.block.IBlockPillar;
 import org.dawnoftime.dawnoftime.util.BlockStatePropertiesAA;
 import org.jetbrains.annotations.NotNull;
@@ -62,12 +62,12 @@ public class SupportBeamBlock extends WaterloggedBlock {
     }
 
     @Override
-    public @NotNull BlockState updateShape(BlockState stateIn, @NotNull Direction facing, @NotNull BlockState facingState, @NotNull LevelAccessor worldIn, @NotNull BlockPos currentPos, @NotNull BlockPos facingPos) {
-        stateIn = super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+    protected @NotNull BlockState updateShape(BlockState stateIn, LevelReader worldIn, ScheduledTickAccess scheduledTickAccess, BlockPos currentPos, Direction direction, BlockPos neighborPos, BlockState neighborState, RandomSource random) {
+        stateIn = super.updateShape(stateIn, worldIn, scheduledTickAccess, currentPos, direction, neighborPos, neighborState, random);
         return this.getCurrentState(stateIn, worldIn, currentPos);
     }
 
-    private BlockState getCurrentState(BlockState stateIn, LevelAccessor worldIn, BlockPos currentPos) {
+    private BlockState getCurrentState(BlockState stateIn, LevelReader worldIn, BlockPos currentPos) {
         if(stateIn.getValue(HORIZONTAL_AXIS) == Direction.Axis.X) {
             if(canConnect(worldIn, currentPos, Direction.NORTH) || canConnect(worldIn, currentPos, Direction.SOUTH))
                 stateIn = stateIn.setValue(SUBAXIS, true);
@@ -78,7 +78,7 @@ public class SupportBeamBlock extends WaterloggedBlock {
         return stateIn.setValue(PILLAR_CONNECTION, IBlockPillar.getPillarConnectionAbove(worldIn, currentPos.below()));
     }
 
-    private boolean canConnect(LevelAccessor world, BlockPos pos, Direction direction) {
+    private boolean canConnect(LevelReader world, BlockPos pos, Direction direction) {
         BlockState state = world.getBlockState(pos.relative(direction));
         return isConnectibleBeam(state, direction) || isConnectibleSupportBeam(state, direction) || isConnectibleBeam(state, direction) || isConnectibleSupportBeam(state, direction);
     }

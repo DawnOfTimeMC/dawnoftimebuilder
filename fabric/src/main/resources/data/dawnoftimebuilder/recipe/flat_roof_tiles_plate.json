@@ -1,17 +1,15 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "pattern": [
-        "I",
-        "I",
-        "I"
-    ],
-    "key": {
-        "I": {
-            "item": "dawnoftimebuilder:flat_roof_tiles"
-        }
-    },
-    "result": {
-        "id": "dawnoftimebuilder:flat_roof_tiles_plate",
-        "count": 6
-    }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "I",
+    "I",
+    "I"
+  ],
+  "key": {
+    "I": "dawnoftimebuilder:flat_roof_tiles"
+  },
+  "result": {
+    "id": "dawnoftimebuilder:flat_roof_tiles_plate",
+    "count": 6
+  }
 }

@@ -1,15 +1,13 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "pattern": [
-        "II"
-    ],
-    "key": {
-        "I": {
-            "item": "dawnoftimebuilder:gold_plated_smooth_slab"
-        }
-    },
-    "result": {
-        "id": "dawnoftimebuilder:gold_plated_smooth_edge",
-        "count": 6
-    }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "II"
+  ],
+  "key": {
+    "I": "dawnoftimebuilder:gold_plated_smooth_slab"
+  },
+  "result": {
+    "id": "dawnoftimebuilder:gold_plated_smooth_edge",
+    "count": 6
+  }
 }

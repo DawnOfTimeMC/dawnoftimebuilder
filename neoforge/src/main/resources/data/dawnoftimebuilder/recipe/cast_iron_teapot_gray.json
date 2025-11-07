@@ -6,12 +6,8 @@
         "IiI"
     ],
     "key": {
-        "I": {
-            "tag": "c:ingots/iron"
-        },
-        "i": {
-            "tag": "c:dyes/gray"
-        }
+        "I": "#c:ingots/iron",
+        "i": "#c:dyes/gray"
     },
     "result": {
         "id": "dawnoftimebuilder:cast_iron_teapot_gray"

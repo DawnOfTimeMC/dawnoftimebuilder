@@ -1,22 +1,16 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "pattern": [
-        "i  ",
-        "IXI",
-        "i i"
-    ],
-    "key": {
-        "I": {
-            "item": "dawnoftimebuilder:waxed_oak_planks_slab"
-        },
-        "X": {
-            "item": "dawnoftimebuilder:thatch_wheat"
-        },
-        "i": {
-            "item": "minecraft:stick"
-        }
-    },
-    "result": {
-        "id": "dawnoftimebuilder:waxed_oak_chair"
-    }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "i  ",
+    "IXI",
+    "i i"
+  ],
+  "key": {
+    "I": "dawnoftimebuilder:waxed_oak_planks_slab",
+    "X": "dawnoftimebuilder:thatch_wheat",
+    "i": "minecraft:stick"
+  },
+  "result": {
+    "id": "dawnoftimebuilder:waxed_oak_chair"
+  }
 }

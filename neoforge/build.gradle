@@ -21,7 +21,7 @@ neoForge  {
             client()
         }
         data {
-            data()
+            clientData()
         }
         server {
             server()
@@ -48,15 +48,15 @@ dependencies {
 
     // Mod compatibility
 
-    runtimeOnly("maven.modrinth:rei:b8gfS9Je")
-    runtimeOnly("maven.modrinth:cloth-config:izKINKFg")
-    runtimeOnly("maven.modrinth:architectury-api:ZxYGwlk0")
+    //runtimeOnly("maven.modrinth:rei:qG2hQxtJ")
+    //runtimeOnly("maven.modrinth:cloth-config:BYkKAJ0C")
+    //runtimeOnly("maven.modrinth:architectury-api:L9u1QLTx")
     //runtimeOnly("maven.modrinth:geckolib:RVIo5f6E")
 
     //modRuntimeOnly("maven.modrinth:lets-do-vinery:YpD6ue8A")
     //modRuntimeOnly("maven.modrinth:farmers-delight:NcRp00OO")
     //runtimeOnly("maven.modrinth:critters-and-companions:C0bnFRAK")
-    runtimeOnly("maven.modrinth:fusion-connected-textures:1.2.11-neoforge-mc1.21")
+    runtimeOnly("maven.modrinth:fusion-connected-textures:1.2.11-neoforge-mc1.21.6")
 
     //annotationProcessor("org.spongepowered:mixin:0.8.5-SNAPSHOT:processor")
     implementation 'org.jetbrains:annotations:26.0.2'
