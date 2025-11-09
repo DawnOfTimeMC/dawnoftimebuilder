@@ -1,0 +1,7 @@
+{
+	"parent": "dawnoftimebuilder:block/general/small_plate",
+	"textures": {
+		"side": "minecraft:block/red_terracotta",
+		"frieze": "minecraft:block/red_terracotta"
+	}
+}

@@ -1,0 +1,7 @@
+{
+	"parent": "dawnoftimebuilder:block/general/plate_outer",
+	"textures": {
+		"top": "minecraft:block/orange_terracotta",
+		"frieze": "minecraft:block/orange_terracotta"
+	}
+}

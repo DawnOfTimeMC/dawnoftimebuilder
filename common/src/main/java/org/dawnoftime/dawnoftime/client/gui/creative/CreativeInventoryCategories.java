@@ -3,6 +3,7 @@ package org.dawnoftime.dawnoftime.client.gui.creative;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import org.dawnoftime.dawnoftime.registry.DoTBBlocksRegistry;
 import org.dawnoftime.dawnoftime.registry.DoTBItemsRegistry;
@@ -33,6 +34,9 @@ public enum CreativeInventoryCategories {
             Blocks.ACACIA_DOOR.asItem(),
             Blocks.ACACIA_TRAPDOOR.asItem(),
             Blocks.ACACIA_LEAVES.asItem(),
+            DoTBBlocksRegistry.INSTANCE.ACACIA_LEAVES_EDGE.get().asItem(),
+            DoTBBlocksRegistry.INSTANCE.ACACIA_LEAVES_PLATE.get().asItem(),
+
             Blocks.BAMBOO_PLANKS.asItem(),
             Blocks.BAMBOO_STAIRS.asItem(),
             DoTBBlocksRegistry.INSTANCE.BAMBOO_PLANKS_PLATE.get().asItem(),
@@ -425,15 +429,37 @@ public enum CreativeInventoryCategories {
             DoTBBlocksRegistry.INSTANCE.MARBLE_FANCY_FENCE.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.MARBLE_STATUE_MARS.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.MARBLE_BIG_FLOWER_POT.get().asItem(),
-            DoTBBlocksRegistry.INSTANCE.BIG_FLOWER_POT.get().asItem(),
+            DoTBBlocksRegistry.INSTANCE.SMOOTH_BLACK_TERRACOTTA.get().asItem(),
+            DoTBBlocksRegistry.INSTANCE.SMOOTH_BLACK_TERRACOTTA_STAIRS.get().asItem(),
+            DoTBBlocksRegistry.INSTANCE.SMOOTH_BLACK_TERRACOTTA_PLATE.get().asItem(),
+            DoTBBlocksRegistry.INSTANCE.SMOOTH_BLACK_TERRACOTTA_SLAB.get().asItem(),
+            DoTBBlocksRegistry.INSTANCE.SMOOTH_BLACK_TERRACOTTA_EDGE.get().asItem(),
+            DoTBBlocksRegistry.INSTANCE.SMOOTH_BLACK_TERRACOTTA_WALL.get().asItem(),
+            Blocks.TERRACOTTA.asItem(),
+            DoTBBlocksRegistry.INSTANCE.TERRACOTTA_STAIRS.get().asItem(),
+            DoTBBlocksRegistry.INSTANCE.TERRACOTTA_PLATE.get().asItem(),
+            DoTBBlocksRegistry.INSTANCE.TERRACOTTA_SLAB.get().asItem(),
+            DoTBBlocksRegistry.INSTANCE.TERRACOTTA_EDGE.get().asItem(),
+            DoTBBlocksRegistry.INSTANCE.TERRACOTTA_WALL.get().asItem(),
+            Blocks.RED_TERRACOTTA.asItem(),
+            DoTBBlocksRegistry.INSTANCE.RED_TERRACOTTA_STAIRS.get().asItem(),
+            DoTBBlocksRegistry.INSTANCE.RED_TERRACOTTA_PLATE.get().asItem(),
+            DoTBBlocksRegistry.INSTANCE.RED_TERRACOTTA_SLAB.get().asItem(),
+            DoTBBlocksRegistry.INSTANCE.RED_TERRACOTTA_EDGE.get().asItem(),
+            DoTBBlocksRegistry.INSTANCE.RED_TERRACOTTA_WALL.get().asItem(),
+            Blocks.ORANGE_TERRACOTTA.asItem(),
+            DoTBBlocksRegistry.INSTANCE.ORANGE_TERRACOTTA_STAIRS.get().asItem(),
+            DoTBBlocksRegistry.INSTANCE.ORANGE_TERRACOTTA_PLATE.get().asItem(),
+            DoTBBlocksRegistry.INSTANCE.ORANGE_TERRACOTTA_SLAB.get().asItem(),
+            DoTBBlocksRegistry.INSTANCE.ORANGE_TERRACOTTA_EDGE.get().asItem(),
+            DoTBBlocksRegistry.INSTANCE.ORANGE_TERRACOTTA_WALL.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.OCHRE_ROOF_TILES.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.OCHRE_ROOF_TILES_STAIRS.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.OCHRE_ROOF_TILES_PLATE.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.OCHRE_ROOF_TILES_SLAB.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.OCHRE_ROOF_TILES_EDGE.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.OCHRE_ROOF_TILES_WALL.get().asItem(),
-            DoTBBlocksRegistry.INSTANCE.TERRACOTTA_WALL.get().asItem(),
-            DoTBBlocksRegistry.INSTANCE.RED_TERRACOTTA_WALL.get().asItem(),
+            DoTBBlocksRegistry.INSTANCE.BIG_FLOWER_POT.get().asItem(),
             Blocks.BIRCH_LEAVES.asItem(),
             Blocks.CHAIN.asItem(),
             DoTBBlocksRegistry.INSTANCE.IRON_FANCY_LANTERN.get().asItem(),

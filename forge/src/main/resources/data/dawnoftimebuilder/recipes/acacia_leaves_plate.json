@@ -1,0 +1,17 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"I",
+		"I",
+		"I"
+	],
+	"key": {
+		"I": {
+			"item": "minecraft:acacia_leaves"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:acacia_leaves_plate",
+		"count": 6
+	}
+}

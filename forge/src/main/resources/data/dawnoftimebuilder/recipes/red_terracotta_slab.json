@@ -1,0 +1,15 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"III"
+	],
+	"key": {
+		"I": {
+			"item": "minecraft:red_terracotta"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:red_terracotta_slab",
+		"count": 6
+	}
+}

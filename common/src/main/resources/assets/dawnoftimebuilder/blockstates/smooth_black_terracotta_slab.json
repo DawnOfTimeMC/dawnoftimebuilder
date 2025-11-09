@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "type=bottom": { "model": "dawnoftimebuilder:block/roman/smooth_black_terracotta_slab_bottom" },
+        "type=top": { "model": "dawnoftimebuilder:block/roman/smooth_black_terracotta_slab_top" },
+        "type=double": { "model": "dawnoftimebuilder:block/roman/smooth_black_terracotta" }
+    }
+}

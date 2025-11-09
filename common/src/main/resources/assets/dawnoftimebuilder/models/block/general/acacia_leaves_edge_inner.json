@@ -1,0 +1,9 @@
+{
+    "render_type": "minecraft:cutout",
+    "parent": "dawnoftimebuilder:block/general/small_plate_inner_tinted",
+	"textures": {
+		"side": "minecraft:block/acacia_leaves",
+		"top": "minecraft:block/acacia_leaves",
+		"frieze": "minecraft:block/acacia_leaves"
+	}
+}

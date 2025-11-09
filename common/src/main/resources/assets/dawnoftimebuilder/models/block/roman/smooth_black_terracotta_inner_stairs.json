@@ -1,0 +1,8 @@
+{
+    "parent": "block/inner_stairs",
+    "textures": {
+        "bottom": "dawnoftimebuilder:block/smooth_black_terracotta",
+        "top": "dawnoftimebuilder:block/smooth_black_terracotta",
+        "side": "dawnoftimebuilder:block/smooth_black_terracotta"
+    }
+}
