@@ -189,6 +189,11 @@ public abstract class DoTBBlocksRegistry {
     public final Supplier<Block> FLAT_ROOF_TILES_SLAB = register("flat_roof_tiles_slab", () -> new SlabBlockDoT(Block.Properties.copy(Blocks.STONE_BRICKS)));
     public final Supplier<Block> FLAT_ROOF_TILES_EDGE = register("flat_roof_tiles_edge", () -> new EdgeBlock(Block.Properties.copy(Blocks.STONE_BRICKS)));
     public final Supplier<Block> FLAT_ROOF_TILES_WALL = register("flat_roof_tiles_wall", () -> new WallBlock(Block.Properties.copy(Blocks.STONE_BRICKS)));
+    public final Supplier<Block> WATTLE_AND_DAUB = register("wattle_and_daub", () -> new BlockDoT(Block.Properties.copy(Blocks.STONE_BRICKS)));
+    public Supplier<Block> WATTLE_AND_DAUB_STAIRS;
+    public final Supplier<Block> WATTLE_AND_DAUB_PLATE = register("wattle_and_daub_plate", () -> new PlateBlock(Block.Properties.copy(Blocks.STONE_BRICKS)));
+    public final Supplier<Block> WATTLE_AND_DAUB_SLAB = register("wattle_and_daub_slab", () -> new SlabBlockDoT(Block.Properties.copy(Blocks.STONE_BRICKS)));
+    public final Supplier<Block> WATTLE_AND_DAUB_EDGE = register("wattle_and_daub_edge", () -> new EdgeBlock(Block.Properties.copy(Blocks.STONE_BRICKS)));
     public final Supplier<Block> LATTICE_GLASS = register("lattice_glass", () -> new GlassBlock(Block.Properties.copy(Blocks.GLASS)));
     public final Supplier<Block> LATTICE_GLASS_PANE = register("lattice_glass_pane", () -> new PaneBlockDoT(Block.Properties.copy(Blocks.GLASS)));
     public final Supplier<Block> LATTICE_WAXED_OAK_WINDOW = register("lattice_waxed_oak_window", () -> new SidedWindowBlock(Block.Properties.copy(Blocks.GLASS), SIDED_WINDOW_SHAPES), BlockTags.MINEABLE_WITH_AXE);
@@ -457,6 +462,12 @@ public abstract class DoTBBlocksRegistry {
     public final Supplier<Block> SMOOTH_BLACK_TERRACOTTA_SLAB = register("smooth_black_terracotta_slab", () -> new SlabBlockDoT(Block.Properties.copy(Blocks.STONE)));
     public final Supplier<Block> SMOOTH_BLACK_TERRACOTTA_EDGE = register("smooth_black_terracotta_edge", () -> new EdgeBlock(Block.Properties.copy(Blocks.STONE)));
     public final Supplier<Block> SMOOTH_BLACK_TERRACOTTA_WALL = register("smooth_black_terracotta_wall", () -> new WallBlock(Block.Properties.copy(Blocks.STONE)), BlockTags.MINEABLE_WITH_PICKAXE);
+    public final Supplier<Block> SMOOTH_WHITE_TERRACOTTA = register("smooth_white_terracotta", () -> new BlockDoT(Block.Properties.copy(Blocks.STONE)));
+    public Supplier<Block> SMOOTH_WHITE_TERRACOTTA_STAIRS;
+    public final Supplier<Block> SMOOTH_WHITE_TERRACOTTA_PLATE = register("smooth_white_terracotta_plate", () -> new PlateBlock(Block.Properties.copy(Blocks.STONE)));
+    public final Supplier<Block> SMOOTH_WHITE_TERRACOTTA_SLAB = register("smooth_white_terracotta_slab", () -> new SlabBlockDoT(Block.Properties.copy(Blocks.STONE)));
+    public final Supplier<Block> SMOOTH_WHITE_TERRACOTTA_EDGE = register("smooth_white_terracotta_edge", () -> new EdgeBlock(Block.Properties.copy(Blocks.STONE)));
+    public final Supplier<Block> SMOOTH_WHITE_TERRACOTTA_WALL = register("smooth_white_terracotta_wall", () -> new WallBlock(Block.Properties.copy(Blocks.STONE)), BlockTags.MINEABLE_WITH_PICKAXE);
     public final Supplier<Block> MARBLE_PILLAR = register("marble_pillar", () -> new BlockDoT(Block.Properties.copy(Blocks.STONE)));
     public final Supplier<Block> MARBLE_COFFER = register("marble_coffer", () -> new BlockDoT(Block.Properties.copy(Blocks.STONE)));
     public final Supplier<Block> MARBLE_COFFER_SLAB = register("marble_coffer_slab", () -> new SlabBlockDoT(Block.Properties.copy(Blocks.STONE)));
@@ -472,6 +483,9 @@ public abstract class DoTBBlocksRegistry {
         BLUE_PLASTERED_STONE_STAIRS = register("blue_plastered_stone_stairs", () -> new StairsBlockDoT(this.BLUE_PLASTERED_STONE, Block.Properties.copy(Blocks.BRICKS)));
         MARBLE_STAIRS = register("marble_stairs", () -> new StairsBlockDoT(this.MARBLE, Block.Properties.copy(Blocks.STONE)));
         SMOOTH_BLACK_TERRACOTTA_STAIRS = register("smooth_black_terracotta_stairs", () -> new StairsBlockDoT(this.SMOOTH_BLACK_TERRACOTTA, Block.Properties.copy(Blocks.STONE)));
+        SMOOTH_WHITE_TERRACOTTA_STAIRS = register("smooth_white_terracotta_stairs", () -> new StairsBlockDoT(this.SMOOTH_WHITE_TERRACOTTA, Block.Properties.copy(Blocks.STONE)));
+        WATTLE_AND_DAUB_STAIRS = register("wattle_and_daub_stairs", () -> new StairsBlockDoT(this.WATTLE_AND_DAUB, Block.Properties.copy(Blocks.STONE)));
+
         TERRACOTTA_STAIRS = register("terracotta_stairs", () -> new StairsBlockDoT(this.MARBLE, Block.Properties.copy(Blocks.STONE)));
         ORANGE_TERRACOTTA_STAIRS = register("orange_terracotta_stairs", () -> new StairsBlockDoT(this.MARBLE, Block.Properties.copy(Blocks.STONE)));
         RED_TERRACOTTA_STAIRS = register("red_terracotta_stairs", () -> new StairsBlockDoT(this.MARBLE, Block.Properties.copy(Blocks.STONE)));

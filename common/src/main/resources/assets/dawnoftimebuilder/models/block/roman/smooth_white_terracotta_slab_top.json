@@ -1,0 +1,8 @@
+{
+    "parent": "block/slab_top",
+    "textures": {
+        "bottom": "dawnoftimebuilder:block/smooth_white_terracotta",
+        "top": "dawnoftimebuilder:block/smooth_white_terracotta",
+        "side": "dawnoftimebuilder:block/smooth_white_terracotta"
+    }
+}

@@ -99,8 +99,17 @@
         "dawnoftimebuilder:smooth_black_terracotta_slab",
         "dawnoftimebuilder:smooth_black_terracotta_edge",
         "dawnoftimebuilder:smooth_black_terracotta_wall",
-
-
+        "dawnoftimebuilder:smooth_white_terracotta",
+        "dawnoftimebuilder:smooth_white_terracotta_stairs",
+        "dawnoftimebuilder:smooth_white_terracotta_plate",
+        "dawnoftimebuilder:smooth_white_terracotta_slab",
+        "dawnoftimebuilder:smooth_white_terracotta_edge",
+        "dawnoftimebuilder:smooth_white_terracotta_wall",
+        "dawnoftimebuilder:wattle_and_daub",
+        "dawnoftimebuilder:wattle_and_daub_stairs",
+        "dawnoftimebuilder:wattle_and_daub_plate",
+        "dawnoftimebuilder:wattle_and_daub_slab",
+        "dawnoftimebuilder:wattle_and_daub_edge",
 
         "dawnoftimebuilder:moraq_mosaic_border",
         "dawnoftimebuilder:moraq_mosaic_column",
