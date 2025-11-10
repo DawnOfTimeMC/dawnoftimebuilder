@@ -7,6 +7,7 @@ import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Biomes;
@@ -41,6 +42,26 @@ public class DoTBColorsRegistry {
 
                 return oceanBiome.getWaterColor();
             }, () -> DoTBBlocksRegistry.INSTANCE.STONE_BRICKS_FAUCET.get().asItem(), () -> DoTBBlocksRegistry.INSTANCE.WATER_SOURCE_TRICKLE.get().asItem(), () -> DoTBBlocksRegistry.INSTANCE.STONE_BRICKS_WATER_JET.get().asItem());
+
+    public static final BlockColor LEAVES_BLOCK_COLOR = DoTBColorsRegistry.register(
+            (blockState, blockAndTintGetter, blockPos, tintIndexIn) -> BiomeColors.getAverageFoliageColor(blockAndTintGetter, blockPos),
+            DoTBBlocksRegistry.INSTANCE.ACACIA_LEAVES_EDGE,
+            DoTBBlocksRegistry.INSTANCE.ACACIA_LEAVES_PLATE
+    );
+
+    public static final ItemColor LEAVES_ITEM_COLOR = DoTBColorsRegistry.register(
+            (itemStack, i) -> {
+                ClientLevel clientLevel = Minecraft.getInstance().level;
+                if (clientLevel == null) return 0;
+
+                Player player = Minecraft.getInstance().player;
+                if (player == null) return 0;
+
+                return BiomeColors.getAverageFoliageColor(clientLevel, player.blockPosition());
+            },
+            () -> DoTBBlocksRegistry.INSTANCE.ACACIA_LEAVES_EDGE.get().asItem(),
+            () -> DoTBBlocksRegistry.INSTANCE.ACACIA_LEAVES_PLATE.get().asItem()
+    );
 
     public static Map<BlockColor, List<Supplier<Block>>> getBlocksColorRegistry() {
         return BLOCKS_COLOR_REGISTRY;
