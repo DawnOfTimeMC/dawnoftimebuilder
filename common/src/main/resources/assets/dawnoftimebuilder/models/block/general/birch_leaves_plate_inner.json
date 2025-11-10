@@ -1,0 +1,9 @@
+{
+    "render_type": "minecraft:cutout",
+    "parent": "dawnoftimebuilder:block/general/plate_inner_tinted",
+	"textures": {
+		"side": "block/birch_leaves",
+		"top": "block/birch_leaves",
+		"frieze": "block/birch_leaves"
+	}
+}

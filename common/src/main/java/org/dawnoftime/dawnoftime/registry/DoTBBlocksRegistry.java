@@ -42,6 +42,20 @@ public abstract class DoTBBlocksRegistry {
     public final Supplier<Block> ACACIA_SUPPORT_SLAB = register("acacia_support_slab", () -> new SupportSlabBlock(Block.Properties.copy(Blocks.ACACIA_PLANKS)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
     public final Supplier<Block> ACACIA_LEAVES_EDGE = register("acacia_leaves_edge", () -> new EdgeBlock(Block.Properties.copy(Blocks.ACACIA_LEAVES)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
     public final Supplier<Block> ACACIA_LEAVES_PLATE = register("acacia_leaves_plate", () -> new PlateBlock(Block.Properties.copy(Blocks.ACACIA_LEAVES)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
+    public final Supplier<Block> BIRCH_LEAVES_EDGE = register("birch_leaves_edge", () -> new EdgeBlock(Block.Properties.copy(Blocks.BIRCH_LEAVES)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
+    public final Supplier<Block> BIRCH_LEAVES_PLATE = register("birch_leaves_plate", () -> new PlateBlock(Block.Properties.copy(Blocks.BIRCH_LEAVES)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
+    public final Supplier<Block> CHERRY_LEAVES_EDGE = register("cherry_leaves_edge", () -> new EdgeBlock(Block.Properties.copy(Blocks.CHERRY_LEAVES)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
+    public final Supplier<Block> CHERRY_LEAVES_PLATE = register("cherry_leaves_plate", () -> new PlateBlock(Block.Properties.copy(Blocks.CHERRY_LEAVES)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
+    public final Supplier<Block> DARK_OAK_LEAVES_EDGE = register("dark_oak_leaves_edge", () -> new EdgeBlock(Block.Properties.copy(Blocks.DARK_OAK_LEAVES)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
+    public final Supplier<Block> DARK_OAK_LEAVES_PLATE = register("dark_oak_leaves_plate", () -> new PlateBlock(Block.Properties.copy(Blocks.DARK_OAK_LEAVES)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
+    public final Supplier<Block> JUNGLE_LEAVES_EDGE = register("jungle_leaves_edge", () -> new EdgeBlock(Block.Properties.copy(Blocks.JUNGLE_LEAVES)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
+    public final Supplier<Block> JUNGLE_LEAVES_PLATE = register("jungle_leaves_plate", () -> new PlateBlock(Block.Properties.copy(Blocks.JUNGLE_LEAVES)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
+    public final Supplier<Block> MANGROVE_LEAVES_EDGE = register("mangrove_leaves_edge", () -> new EdgeBlock(Block.Properties.copy(Blocks.MANGROVE_LEAVES)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
+    public final Supplier<Block> MANGROVE_LEAVES_PLATE = register("mangrove_leaves_plate", () -> new PlateBlock(Block.Properties.copy(Blocks.MANGROVE_LEAVES)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
+    public final Supplier<Block> OAK_LEAVES_EDGE = register("oak_leaves_edge", () -> new EdgeBlock(Block.Properties.copy(Blocks.OAK_LEAVES)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
+    public final Supplier<Block> OAK_LEAVES_PLATE = register("oak_leaves_plate", () -> new PlateBlock(Block.Properties.copy(Blocks.OAK_LEAVES)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
+    public final Supplier<Block> SPRUCE_LEAVES_EDGE = register("spruce_leaves_edge", () -> new EdgeBlock(Block.Properties.copy(Blocks.SPRUCE_LEAVES)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
+    public final Supplier<Block> SPRUCE_LEAVES_PLATE = register("spruce_leaves_plate", () -> new PlateBlock(Block.Properties.copy(Blocks.SPRUCE_LEAVES)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
 
     public final Supplier<Block> BAMBOO_PLANKS_EDGE = register("bamboo_planks_edge", () -> new EdgeBlock(Block.Properties.copy(Blocks.BAMBOO_PLANKS)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
     public final Supplier<Block> BAMBOO_PLANKS_PLATE = register("bamboo_planks_plate", () -> new PlateBlock(Block.Properties.copy(Blocks.BAMBOO_PLANKS)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);

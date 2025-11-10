@@ -46,7 +46,19 @@ public class DoTBColorsRegistry {
     public static final BlockColor LEAVES_BLOCK_COLOR = DoTBColorsRegistry.register(
             (blockState, blockAndTintGetter, blockPos, tintIndexIn) -> BiomeColors.getAverageFoliageColor(blockAndTintGetter, blockPos),
             DoTBBlocksRegistry.INSTANCE.ACACIA_LEAVES_EDGE,
-            DoTBBlocksRegistry.INSTANCE.ACACIA_LEAVES_PLATE
+            DoTBBlocksRegistry.INSTANCE.ACACIA_LEAVES_PLATE,
+            DoTBBlocksRegistry.INSTANCE.BIRCH_LEAVES_EDGE,
+            DoTBBlocksRegistry.INSTANCE.BIRCH_LEAVES_PLATE,
+            DoTBBlocksRegistry.INSTANCE.DARK_OAK_LEAVES_EDGE,
+            DoTBBlocksRegistry.INSTANCE.DARK_OAK_LEAVES_PLATE,
+            DoTBBlocksRegistry.INSTANCE.JUNGLE_LEAVES_EDGE,
+            DoTBBlocksRegistry.INSTANCE.JUNGLE_LEAVES_PLATE,
+            DoTBBlocksRegistry.INSTANCE.MANGROVE_LEAVES_EDGE,
+            DoTBBlocksRegistry.INSTANCE.MANGROVE_LEAVES_PLATE,
+            DoTBBlocksRegistry.INSTANCE.OAK_LEAVES_EDGE,
+            DoTBBlocksRegistry.INSTANCE.OAK_LEAVES_PLATE,
+            DoTBBlocksRegistry.INSTANCE.SPRUCE_LEAVES_EDGE,
+            DoTBBlocksRegistry.INSTANCE.SPRUCE_LEAVES_PLATE
     );
 
     public static final ItemColor LEAVES_ITEM_COLOR = DoTBColorsRegistry.register(
@@ -60,7 +72,19 @@ public class DoTBColorsRegistry {
                 return BiomeColors.getAverageFoliageColor(clientLevel, player.blockPosition());
             },
             () -> DoTBBlocksRegistry.INSTANCE.ACACIA_LEAVES_EDGE.get().asItem(),
-            () -> DoTBBlocksRegistry.INSTANCE.ACACIA_LEAVES_PLATE.get().asItem()
+            () -> DoTBBlocksRegistry.INSTANCE.ACACIA_LEAVES_PLATE.get().asItem(),
+            () -> DoTBBlocksRegistry.INSTANCE.BIRCH_LEAVES_EDGE.get().asItem(),
+            () -> DoTBBlocksRegistry.INSTANCE.BIRCH_LEAVES_PLATE.get().asItem(),
+            () -> DoTBBlocksRegistry.INSTANCE.DARK_OAK_LEAVES_EDGE.get().asItem(),
+            () -> DoTBBlocksRegistry.INSTANCE.DARK_OAK_LEAVES_PLATE.get().asItem(),
+            () -> DoTBBlocksRegistry.INSTANCE.JUNGLE_LEAVES_EDGE.get().asItem(),
+            () -> DoTBBlocksRegistry.INSTANCE.JUNGLE_LEAVES_PLATE.get().asItem(),
+            () -> DoTBBlocksRegistry.INSTANCE.MANGROVE_LEAVES_EDGE.get().asItem(),
+            () -> DoTBBlocksRegistry.INSTANCE.MANGROVE_LEAVES_PLATE.get().asItem(),
+            () -> DoTBBlocksRegistry.INSTANCE.OAK_LEAVES_EDGE.get().asItem(),
+            () -> DoTBBlocksRegistry.INSTANCE.OAK_LEAVES_PLATE.get().asItem(),
+            () -> DoTBBlocksRegistry.INSTANCE.SPRUCE_LEAVES_EDGE.get().asItem(),
+            () -> DoTBBlocksRegistry.INSTANCE.SPRUCE_LEAVES_PLATE.get().asItem()
     );
 
     public static Map<BlockColor, List<Supplier<Block>>> getBlocksColorRegistry() {
