@@ -2,6 +2,9 @@
   "replace": false,
   "values": [
     "dawnoftimebuilder:waxed_oak_planks",
-    "dawnoftimebuilder:charred_spruce_planks"
+    "dawnoftimebuilder:charred_spruce_planks",
+      "dawnoftimebuilder:sculpted_waxed_oak",
+      "dawnoftimebuilder:reinforced_waxed_oak"
+
   ]
 }

@@ -1,0 +1,8 @@
+{
+    "parent": "block/inner_stairs",
+    "textures": {
+        "bottom": "dawnoftimebuilder:block/white_wattle_and_daub",
+        "top": "dawnoftimebuilder:block/white_wattle_and_daub",
+        "side": "dawnoftimebuilder:block/white_wattle_and_daub"
+    }
+}

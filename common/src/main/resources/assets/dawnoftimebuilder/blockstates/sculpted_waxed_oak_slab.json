@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "type=bottom": { "model": "dawnoftimebuilder:block/german/sculpted_waxed_oak_slab_bottom" },
+        "type=top": { "model": "dawnoftimebuilder:block/german/sculpted_waxed_oak_slab_top" },
+        "type=double": { "model": "dawnoftimebuilder:block/german/sculpted_waxed_oak" }
+    }
+}

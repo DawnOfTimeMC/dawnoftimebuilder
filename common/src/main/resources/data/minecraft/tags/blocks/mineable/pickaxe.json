@@ -19,6 +19,8 @@
         "dawnoftimebuilder:cobbled_limestone_edge",
         // "dawnoftimebuilder:cobbled_limestone_wall",
         "dawnoftimebuilder:covered_sandstone_wall",
+        "dawnoftimebuilder:flat_roof_tiles_chimney",
+
         "dawnoftimebuilder:cut_sandstone_bot_ochre_roof_tiles_top",
         "dawnoftimebuilder:cut_sandstone_edge",
         "dawnoftimebuilder:cut_sandstone_plate",
@@ -110,7 +112,11 @@
         "dawnoftimebuilder:wattle_and_daub_plate",
         "dawnoftimebuilder:wattle_and_daub_slab",
         "dawnoftimebuilder:wattle_and_daub_edge",
-
+        "dawnoftimebuilder:white_wattle_and_daub",
+        "dawnoftimebuilder:white_wattle_and_daub_stairs",
+        "dawnoftimebuilder:white_wattle_and_daub_plate",
+        "dawnoftimebuilder:white_wattle_and_daub_slab",
+        "dawnoftimebuilder:white_wattle_and_daub_edge",
         "dawnoftimebuilder:moraq_mosaic_border",
         "dawnoftimebuilder:moraq_mosaic_column",
         "dawnoftimebuilder:moraq_mosaic_delicate",

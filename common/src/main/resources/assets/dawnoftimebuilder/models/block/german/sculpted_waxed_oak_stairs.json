@@ -1,0 +1,8 @@
+{
+    "parent": "block/stairs",
+    "textures": {
+        "bottom": "dawnoftimebuilder:block/sculpted_waxed_oak",
+        "top": "dawnoftimebuilder:block/sculpted_waxed_oak",
+        "side": "dawnoftimebuilder:block/sculpted_waxed_oak"
+    }
+}
