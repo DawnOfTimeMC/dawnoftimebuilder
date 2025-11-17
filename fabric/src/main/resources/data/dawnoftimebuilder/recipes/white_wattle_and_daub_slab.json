@@ -1,20 +1,15 @@
 {
 	"type": "minecraft:crafting_shaped",
 	"pattern": [
-		"IiI",
-		"IiI",
-		"IiI"
+		"III"
 	],
 	"key": {
 		"I": {
-			"item": "dawnoftimebuilder:charred_spruce_planks"
-		},
-		"i": {
 			"item": "dawnoftimebuilder:white_wattle_and_daub"
 		}
 	},
 	"result": {
-		"item": "dawnoftimebuilder:charred_spruce_timber_frame_pillar",
+		"item": "dawnoftimebuilder:white_wattle_and_daub_slab",
 		"count": 6
 	}
 }

@@ -3,7 +3,6 @@ package org.dawnoftime.dawnoftime.client.gui.creative;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import org.dawnoftime.dawnoftime.registry.DoTBBlocksRegistry;
 import org.dawnoftime.dawnoftime.registry.DoTBItemsRegistry;
@@ -388,6 +387,14 @@ public enum CreativeInventoryCategories {
             DoTBBlocksRegistry.INSTANCE.WHITE_WATTLE_AND_DAUB_EDGE.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.CHARRED_SPRUCE_TIMBER_FRAME.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.CHARRED_SPRUCE_TIMBER_FRAME_PILLAR.get().asItem(),
+            DoTBBlocksRegistry.INSTANCE.RED_PAINTED_TIMBER_FRAME.get().asItem(),
+            DoTBBlocksRegistry.INSTANCE.RED_PAINTED_TIMBER_FRAME_PILLAR.get().asItem(),
+            DoTBBlocksRegistry.INSTANCE.RED_PAINTED_LOG.get().asItem(),
+            DoTBBlocksRegistry.INSTANCE.RED_PAINTED_BEAM.get().asItem(),
+            DoTBBlocksRegistry.INSTANCE.RED_PAINTED_PERGOLA.get().asItem(),
+            DoTBBlocksRegistry.INSTANCE.RED_PAINTED_ROOF_SUPPORT.get().asItem(),
+            DoTBBlocksRegistry.INSTANCE.RED_PAPER_LANTERN.get().asItem(),
+
             DoTBBlocksRegistry.INSTANCE.PAPER_WALL.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.PAPER_WALL_FLAT.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.PAPER_WALL_WINDOWS.get().asItem(),
@@ -401,8 +408,6 @@ public enum CreativeInventoryCategories {
             DoTBBlocksRegistry.INSTANCE.GRAY_ROOF_TILES_WALL.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.STONE_LANTERN.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.PAPER_LAMP.get().asItem(),
-            DoTBBlocksRegistry.INSTANCE.RED_PAPER_LANTERN.get().asItem(),
-            DoTBBlocksRegistry.INSTANCE.RED_PAINTED_BEAM.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.PAPER_FOLDING_SCREEN.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.WHITE_LITTLE_FLAG.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.SMALL_TATAMI_MAT.get().asItem(),

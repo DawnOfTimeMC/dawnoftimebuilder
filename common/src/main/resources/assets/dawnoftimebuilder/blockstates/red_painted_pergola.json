@@ -1,0 +1,20 @@
+{
+	"multipart": [
+		{
+			"when": { "axis_y": "true" },
+			"apply": { "model": "dawnoftimebuilder:block/japanese/red_painted_pergola_y"}
+		},
+		{
+			"when": {"axis_x": "true", "axis_z": "false" },
+			"apply": { "model": "dawnoftimebuilder:block/japanese/red_painted_pergola_x"}
+		},
+		{
+			"when": {"axis_x": "false", "axis_z": "true" },
+			"apply": { "model": "dawnoftimebuilder:block/japanese/red_painted_pergola_x", "y": 90}
+		},
+		{
+			"when": {"axis_x": "true", "axis_z": "true" },
+			"apply": { "model": "dawnoftimebuilder:block/japanese/red_painted_pergola_x_z"}
+		}
+	]
+}

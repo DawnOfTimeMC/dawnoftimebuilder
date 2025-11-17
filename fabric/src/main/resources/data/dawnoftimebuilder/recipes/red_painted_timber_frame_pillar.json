@@ -7,14 +7,14 @@
 	],
 	"key": {
 		"I": {
-			"item": "dawnoftimebuilder:charred_spruce_planks"
+			"item": "dawnoftimebuilder:red_painted_log"
 		},
 		"i": {
 			"item": "dawnoftimebuilder:white_wattle_and_daub"
 		}
 	},
 	"result": {
-		"item": "dawnoftimebuilder:charred_spruce_timber_frame_pillar",
+		"item": "dawnoftimebuilder:red_painted_timber_frame_pillar",
 		"count": 6
 	}
 }
