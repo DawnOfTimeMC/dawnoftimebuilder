@@ -389,10 +389,17 @@ public enum CreativeInventoryCategories {
             DoTBBlocksRegistry.INSTANCE.CHARRED_SPRUCE_TIMBER_FRAME_PILLAR.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.RED_PAINTED_TIMBER_FRAME.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.RED_PAINTED_TIMBER_FRAME_PILLAR.get().asItem(),
+            DoTBBlocksRegistry.INSTANCE.STRIPPED_RED_PAINTED_LOG.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.RED_PAINTED_LOG.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.RED_PAINTED_BEAM.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.RED_PAINTED_PERGOLA.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.RED_PAINTED_ROOF_SUPPORT.get().asItem(),
+            DoTBBlocksRegistry.INSTANCE.RED_PAINTED_RAILING.get().asItem(),
+            DoTBBlocksRegistry.INSTANCE.RED_PAINTED_FENCE.get().asItem(),
+            DoTBBlocksRegistry.INSTANCE.REINFORCED_RED_PAINTED_RELIEF.get().asItem(),
+            DoTBBlocksRegistry.INSTANCE.RED_PAINTED_DOOR.get().asItem(),
+            DoTBBlocksRegistry.INSTANCE.RED_PAINTED_SMALL_SHUTTER.get().asItem(),
+
             DoTBBlocksRegistry.INSTANCE.RED_PAPER_LANTERN.get().asItem(),
 
             DoTBBlocksRegistry.INSTANCE.PAPER_WALL.get().asItem(),

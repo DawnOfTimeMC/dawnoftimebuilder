@@ -233,8 +233,8 @@ public abstract class DoTBBlocksRegistry {
     public final Supplier<Block> SCULPTED_WAXED_OAK_PLATE = register("sculpted_waxed_oak_plate", () -> new PlateBlock(Block.Properties.copy(Blocks.OAK_WOOD).strength(3.0F, 5.0F)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
     public final Supplier<Block> SCULPTED_WAXED_OAK_SLAB = register("sculpted_waxed_oak_slab", () -> new SlabBlockDoT(Block.Properties.copy(Blocks.OAK_WOOD).strength(3.0F, 5.0F)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
     public Supplier<Block> SCULPTED_WAXED_OAK_STAIRS;
+    public final Supplier<Block> REINFORCED_WAXED_OAK = register("reinforced_waxed_oak", () -> new RotatedPillarBlockDoT(Block.Properties.copy(Blocks.OAK_WOOD).strength(3.0F, 5.0F)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
 
-    public final Supplier<Block> REINFORCED_WAXED_OAK = register("reinforced_waxed_oak", () -> new BlockDoT(Block.Properties.copy(Blocks.OAK_WOOD).strength(3.0F, 5.0F)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
     public final Supplier<Block> WAXED_OAK_PLANKS = register("waxed_oak_planks", () -> new BlockDoT(Block.Properties.copy(Blocks.OAK_WOOD).strength(3.0F, 5.0F)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
     public final Supplier<Block> WAXED_OAK_DOOR = register("waxed_oak_door", () -> new DoorBlockDoT(Block.Properties.copy(Blocks.OAK_WOOD).strength(3.0F, 5.0F).noOcclusion(), BlockSetType.ACACIA), BlockTags.MINEABLE_WITH_AXE);
     public final Supplier<Block> WAXED_OAK_TRAPDOOR = register("waxed_oak_trapdoor", () -> new CustomTrapDoorBlock(Block.Properties.copy(Blocks.OAK_WOOD).strength(3.0F, 5.0F).noOcclusion(), BlockSetType.ACACIA), BlockTags.MINEABLE_WITH_AXE);
@@ -300,11 +300,17 @@ public abstract class DoTBBlocksRegistry {
     public final Supplier<Block> CHARRED_SPRUCE_BEAM = register("charred_spruce_beam", () -> new BeamBlock(Block.Properties.copy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_BLACK).strength(2.0F, 6.0F)).setBurnable(2, 3), BlockTags.MINEABLE_WITH_AXE);
     public final Supplier<Block> CHARRED_SPRUCE_TIMBER_FRAME = register("charred_spruce_timber_frame", () -> new BlockDoT(Block.Properties.copy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_BLACK).strength(2.0F, 6.0F)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
     public final Supplier<Block> CHARRED_SPRUCE_TIMBER_FRAME_PILLAR = register("charred_spruce_timber_frame_pillar", () -> new RotatedPillarBlockDoT(Block.Properties.copy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_BLACK).strength(2.0F, 6.0F)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
-    public final Supplier<Block> RED_PAINTED_LOG = register("red_painted_log", () -> new BlockDoT(Block.Properties.copy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_BLACK).strength(2.0F, 6.0F)).setBurnable(2, 3), BlockTags.MINEABLE_WITH_AXE);
+    public final Supplier<Block> RED_PAINTED_LOG = register("red_painted_log", () -> new RotatedPillarBlockDoT(Block.Properties.copy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_BLACK).strength(2.0F, 6.0F)).setBurnable(2, 3), BlockTags.MINEABLE_WITH_AXE);
     public final Supplier<Block> RED_PAINTED_TIMBER_FRAME = register("red_painted_timber_frame", () -> new BlockDoT(Block.Properties.copy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_BLACK).strength(2.0F, 6.0F)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
     public final Supplier<Block> RED_PAINTED_TIMBER_FRAME_PILLAR = register("red_painted_timber_frame_pillar", () -> new RotatedPillarBlockDoT(Block.Properties.copy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_BLACK).strength(2.0F, 6.0F)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
     public final Supplier<Block> RED_PAINTED_BEAM = register("red_painted_beam", () -> new BeamBlock(Block.Properties.copy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_BLACK).strength(2.0F, 6.0F)).setBurnable(2, 3), BlockTags.MINEABLE_WITH_AXE);
     public final Supplier<Block> RED_PAINTED_PERGOLA = register("red_painted_pergola", () -> new PergolaBlock(Block.Properties.copy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_BLACK).strength(2.0F, 6.0F)).setBurnable(2, 3), BlockTags.MINEABLE_WITH_AXE);
+    public final Supplier<Block> RED_PAINTED_RAILING = register("red_painted_railing", () -> new CharredSpruceRailingBlock(Block.Properties.copy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_BLACK).strength(2.0F, 6.0F).noOcclusion()), BlockTags.MINEABLE_WITH_AXE);
+    public final Supplier<Block> RED_PAINTED_FENCE = register("red_painted_fence", () -> new FenceBlock(Block.Properties.copy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_BLACK).strength(2.0F, 6.0F)), BlockTags.MINEABLE_WITH_AXE);
+    public final Supplier<Block> STRIPPED_RED_PAINTED_LOG = register("stripped_red_painted_log", () -> new BlockDoT(Block.Properties.copy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_BLACK).strength(2.0F, 6.0F)).setBurnable(2, 3), BlockTags.MINEABLE_WITH_AXE);
+    public final Supplier<Block> REINFORCED_RED_PAINTED_RELIEF = register("reinforced_red_painted_relief", () -> new ConnectedVerticalSidedPlanBlock(Block.Properties.copy(Blocks.OAK_WOOD), RELIEF_SHAPES));
+    public final Supplier<Block> RED_PAINTED_SMALL_SHUTTER = register("red_painted_small_shutters", () -> new SmallShutterBlock(Block.Properties.copy(Blocks.OAK_WOOD).strength(3.0F, 5.0F)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
+    public final Supplier<Block> RED_PAINTED_DOOR = register("red_painted_door", () -> new DoorBlockDoT(Block.Properties.copy(Blocks.OAK_WOOD).strength(3.0F, 5.0F).noOcclusion(), BlockSetType.ACACIA), BlockTags.MINEABLE_WITH_AXE);
 
     public final Supplier<Block> GRAY_ROOF_TILES = register("gray_roof_tiles", () -> new BlockDoT(Block.Properties.copy(Blocks.STONE_BRICKS)));
     public Supplier<Block> GRAY_ROOF_TILES_STAIRS;

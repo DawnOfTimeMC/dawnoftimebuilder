@@ -1,0 +1,17 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		" i ",
+		"iii",
+		" i "
+	],
+	"key": {
+		"i": {
+			"item": "dawnoftimebuilder:red_painted_log"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:red_painted_pergola",
+		"count": 6
+	}
+}

@@ -1,0 +1,7 @@
+{
+	"parent": "dawnoftimebuilder:block/general/relief_left",
+	"textures": {
+		"side": "dawnoftimebuilder:block/reinforced_red_painted_relief_side",
+		"face": "dawnoftimebuilder:block/reinforced_red_painted_relief_face"
+	}
+}
