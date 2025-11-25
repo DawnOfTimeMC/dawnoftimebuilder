@@ -260,7 +260,12 @@
     "block.dawnoftimebuilder.charred_spruce_support_beam": "Charred Spruce Support Beam",
     "block.dawnoftimebuilder.charred_spruce_foundation": "Charred Spruce Foundation",
     "block.dawnoftimebuilder.charred_spruce_foundation_slab": "Charred Spruce Foundation Slab",
-    "block.dawnoftimebuilder.charred_spruce_boards": "Charred Spruce Boards",
+    "block.dawnoftimebuilder.spruce_boards": "Spruce Boards",
+    "block.dawnoftimebuilder.spruce_boards_stairs": "Spruce Boards Stairs",
+    "block.dawnoftimebuilder.spruce_boards_plate": "Spruce Boards Plate",
+    "block.dawnoftimebuilder.spruce_boards_edge": "Spruce Boards Edge",
+    "block.dawnoftimebuilder.spruce_boards_slab": "Spruce Boards Slab",
+
     "block.dawnoftimebuilder.charred_spruce_log_stripped": "Stripped Charred Spruce Log",
     "block.dawnoftimebuilder.charred_spruce_beam": "Charred Spruce Beam",
     "block.dawnoftimebuilder.charred_spruce_wall": "Charred Spruce Wall",
@@ -297,10 +302,19 @@
     "block.dawnoftimebuilder.red_painted_pergola": "Red Painted Pergola",
 
     "block.dawnoftimebuilder.red_painted_beam": "Red Painted Beam",
+    "block.dawnoftimebuilder.red_painted_support_slab": "Red Painted Support Slab",
+    "block.dawnoftimebuilder.red_painted_support_beam": "Red Painted Support Beam",
+    "block.dawnoftimebuilder.red_painted_fancy_railing": "Red Painted Fancy Railing",
+
     "block.dawnoftimebuilder.paper_wall": "Paper Wall",
     "block.dawnoftimebuilder.paper_wall_flat": "Flat Paper Wall",
     "block.dawnoftimebuilder.paper_wall_window": "Paper Window",
     "block.dawnoftimebuilder.paper_wall_flowery": "Flowery Paper Wall",
+    "block.dawnoftimebuilder.paper_wall_squared": "Squared Paper Wall",
+    "block.dawnoftimebuilder.charred_spruce_glass_pane": "Charred Spruce Glass Pane",
+    "block.dawnoftimebuilder.charred_spruce_window": "Charred Spruce Window",
+    "block.dawnoftimebuilder.green_painted_window": "Green Painted Window",
+
     "block.dawnoftimebuilder.paper_door": "Sliding Paper Door",
     "block.dawnoftimebuilder.paper_folding_screen": "Folding Paper Screen",
     "block.dawnoftimebuilder.irori_fireplace": "Irori Fireplace",

@@ -1,5 +1,6 @@
 {
-    "parent": "dawnoftimebuilder:block/japanese/red_painted_small_shutters"
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "dawnoftimebuilder:item/red_painted_small_shutters"
+    }
 }
-
-

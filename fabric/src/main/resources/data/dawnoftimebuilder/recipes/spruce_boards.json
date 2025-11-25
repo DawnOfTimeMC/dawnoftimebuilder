@@ -7,14 +7,14 @@
 	],
 	"key": {
 		"I": {
-			"item": "dawnoftimebuilder:charred_spruce_planks"
+			"item": "minecraft:spruce_planks"
 		},
 		"i": {
-			"tag": "forge:rods/wooden"
+			"item": "minecraft:stick"
 		}
 	},
 	"result": {
-		"item": "dawnoftimebuilder:charred_spruce_boards",
+		"item": "dawnoftimebuilder:spruce_boards",
 		"count": 6
 	}
 }

@@ -335,6 +335,11 @@ public enum CreativeInventoryCategories {
             DoTBBlocksRegistry.INSTANCE.RAMMED_DIRT_PLATE.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.RAMMED_DIRT_SLAB.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.RAMMED_DIRT_EDGE.get().asItem(),
+            DoTBBlocksRegistry.INSTANCE.SPRUCE_BOARDS.get().asItem(),
+            DoTBBlocksRegistry.INSTANCE.SPRUCE_BOARDS_STAIRS.get().asItem(),
+            DoTBBlocksRegistry.INSTANCE.SPRUCE_BOARDS_PLATE.get().asItem(),
+            DoTBBlocksRegistry.INSTANCE.SPRUCE_BOARDS_SLAB.get().asItem(),
+            DoTBBlocksRegistry.INSTANCE.SPRUCE_BOARDS_EDGE.get().asItem(),
             Blocks.SPRUCE_PLANKS.asItem(),
             Blocks.SPRUCE_STAIRS.asItem(),
             DoTBBlocksRegistry.INSTANCE.SPRUCE_PLANKS_PLATE.get().asItem(),
@@ -365,7 +370,6 @@ public enum CreativeInventoryCategories {
             DoTBBlocksRegistry.INSTANCE.CHARRED_SPRUCE_SUPPORT_BEAM.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.CHARRED_SPRUCE_FOUNDATION.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.CHARRED_SPRUCE_FOUNDATION_SLAB.get().asItem(),
-            DoTBBlocksRegistry.INSTANCE.CHARRED_SPRUCE_BOARDS.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.CHARRED_SPRUCE_LOG_STRIPPED.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.CHARRED_SPRUCE_BEAM.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.CHARRED_SPRUCE_WALL.get().asItem(),
@@ -380,6 +384,11 @@ public enum CreativeInventoryCategories {
             DoTBBlocksRegistry.INSTANCE.CHARRED_SPRUCE_SHUTTERS.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.CHARRED_SPRUCE_TALL_SHUTTERS.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.CHARRED_SPRUCE_ROOF_SUPPORT.get().asItem(),
+            DoTBBlocksRegistry.INSTANCE.CHARRED_SPRUCE_WINDOW.get().asItem(),
+            DoTBBlocksRegistry.INSTANCE.GREEN_PAINTED_WINDOW.get().asItem(),
+
+            DoTBBlocksRegistry.INSTANCE.CHARRED_SPRUCE_GLASS_PANE.get().asItem(),
+
             DoTBBlocksRegistry.INSTANCE.WHITE_WATTLE_AND_DAUB.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.WHITE_WATTLE_AND_DAUB_STAIRS.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.WHITE_WATTLE_AND_DAUB_PLATE.get().asItem(),
@@ -387,26 +396,36 @@ public enum CreativeInventoryCategories {
             DoTBBlocksRegistry.INSTANCE.WHITE_WATTLE_AND_DAUB_EDGE.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.CHARRED_SPRUCE_TIMBER_FRAME.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.CHARRED_SPRUCE_TIMBER_FRAME_PILLAR.get().asItem(),
+
             DoTBBlocksRegistry.INSTANCE.RED_PAINTED_TIMBER_FRAME.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.RED_PAINTED_TIMBER_FRAME_PILLAR.get().asItem(),
-            DoTBBlocksRegistry.INSTANCE.STRIPPED_RED_PAINTED_LOG.get().asItem(),
+            //DoTBBlocksRegistry.INSTANCE.STRIPPED_RED_PAINTED_LOG.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.RED_PAINTED_LOG.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.RED_PAINTED_BEAM.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.RED_PAINTED_PERGOLA.get().asItem(),
-            DoTBBlocksRegistry.INSTANCE.RED_PAINTED_ROOF_SUPPORT.get().asItem(),
-            DoTBBlocksRegistry.INSTANCE.RED_PAINTED_RAILING.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.RED_PAINTED_FENCE.get().asItem(),
+            DoTBBlocksRegistry.INSTANCE.RED_PAINTED_RAILING.get().asItem(),
+            DoTBBlocksRegistry.INSTANCE.RED_PAINTED_FANCY_RAILING.get().asItem(),
+
+            DoTBBlocksRegistry.INSTANCE.RED_PAINTED_SUPPORT_SLAB.get().asItem(),
+            DoTBBlocksRegistry.INSTANCE.RED_PAINTED_SUPPORT_BEAM.get().asItem(),
+
+            DoTBBlocksRegistry.INSTANCE.RED_PAINTED_ROOF_SUPPORT.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.REINFORCED_RED_PAINTED_RELIEF.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.RED_PAINTED_DOOR.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.RED_PAINTED_SMALL_SHUTTER.get().asItem(),
 
             DoTBBlocksRegistry.INSTANCE.RED_PAPER_LANTERN.get().asItem(),
+            DoTBBlocksRegistry.INSTANCE.PAPER_WALL_FLAT.get().asItem(),
 
             DoTBBlocksRegistry.INSTANCE.PAPER_WALL.get().asItem(),
-            DoTBBlocksRegistry.INSTANCE.PAPER_WALL_FLAT.get().asItem(),
+            DoTBBlocksRegistry.INSTANCE.PAPER_WALL_SQUARED.get().asItem(),
+
             DoTBBlocksRegistry.INSTANCE.PAPER_WALL_WINDOWS.get().asItem(),
+
             DoTBBlocksRegistry.INSTANCE.PAPER_WALL_FLOWERY.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.PAPER_DOOR.get().asItem(),
+
             DoTBBlocksRegistry.INSTANCE.GRAY_ROOF_TILES.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.GRAY_ROOF_TILES_STAIRS.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.GRAY_ROOF_TILES_PLATE.get().asItem(),

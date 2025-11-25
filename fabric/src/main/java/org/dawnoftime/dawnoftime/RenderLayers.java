@@ -55,6 +55,10 @@ public class RenderLayers {
         BlockRenderLayerMap.INSTANCE.putBlock(DoTBBlocksRegistry.INSTANCE.LATTICE_STONE_BRICKS_WINDOW.get(), RenderType.cutout());
         BlockRenderLayerMap.INSTANCE.putBlock(DoTBBlocksRegistry.INSTANCE.LATTICE_GLASS_PANE.get(), RenderType.cutout());
         BlockRenderLayerMap.INSTANCE.putBlock(DoTBBlocksRegistry.INSTANCE.LATTICE_GLASS.get(), RenderType.cutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(DoTBBlocksRegistry.INSTANCE.CHARRED_SPRUCE_GLASS_PANE.get(), RenderType.cutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(DoTBBlocksRegistry.INSTANCE.CHARRED_SPRUCE_WINDOW.get(), RenderType.cutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(DoTBBlocksRegistry.INSTANCE.GREEN_PAINTED_WINDOW.get(), RenderType.cutout());
+
         BlockRenderLayerMap.INSTANCE.putBlock(DoTBBlocksRegistry.INSTANCE.JUNGLE_SUPPORT_BEAM.get(), RenderType.cutout());
         BlockRenderLayerMap.INSTANCE.putBlock(DoTBBlocksRegistry.INSTANCE.JUNGLE_PERGOLA.get(), RenderType.cutout());
         BlockRenderLayerMap.INSTANCE.putBlock(DoTBBlocksRegistry.INSTANCE.JUNGLE_LATTICE.get(), RenderType.cutout());

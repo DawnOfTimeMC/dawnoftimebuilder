@@ -1,0 +1,24 @@
+{
+	"multipart": [
+		{
+			"when": { "axis_y": "true" },
+			"apply": { "model": "dawnoftimebuilder:block/japanese/golden_beam_y"}
+		},
+		{
+			"when": {"axis_x": "true", "axis_z": "false" },
+			"apply": { "model": "dawnoftimebuilder:block/japanese/golden_beam_x"}
+		},
+		{
+			"when": {"axis_x": "false", "axis_z": "true" },
+			"apply": { "model": "dawnoftimebuilder:block/japanese/golden_beam_x", "y": 90}
+		},
+		{
+			"when": {"axis_x": "true", "axis_z": "true" },
+			"apply": { "model": "dawnoftimebuilder:block/japanese/golden_beam_x_z"}
+		},
+		{
+			"when": { "bottom": "true" },
+			"apply": { "model": "dawnoftimebuilder:block/japanese/golden_beam_bottom"}
+		}
+	]
+}
