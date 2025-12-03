@@ -1,9 +1,9 @@
 {
 	"textures": {
-		"1": "dawnoftimebuilder:block/red_painted_log_top",
+		"1": "dawnoftimebuilder:block/red_painted_railing",
 		"2": "dawnoftimebuilder:block/charred_spruce_railing_cap",
-		"3_slab": "dawnoftimebuilder:block/red_painted_log",
-		"particle": "dawnoftimebuilder:block/red_painted_log"
+		"3_slab": "dawnoftimebuilder:block/red_painted_railing",
+		"particle": "dawnoftimebuilder:block/red_painted_railing"
 	},
 	"elements": [
 		{

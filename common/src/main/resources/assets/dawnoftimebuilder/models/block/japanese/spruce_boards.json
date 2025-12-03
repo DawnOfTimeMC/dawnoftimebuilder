@@ -1,6 +1,7 @@
 {
-    "parent": "block/cube_all",
+    "parent": "block/cube_column",
     "textures": {
-        "all": "dawnoftimebuilder:block/spruce_boards"
+        "end": "dawnoftimebuilder:block/spruce_boards",
+        "side": "dawnoftimebuilder:block/spruce_boards"
     }
 }

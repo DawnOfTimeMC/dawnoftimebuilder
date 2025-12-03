@@ -1,31 +1,31 @@
 {
-	"textures": {
-		"slab": "dawnoftimebuilder:block/red_painted_log",
-		"particle": "dawnoftimebuilder:block/red_painted_log"
-	},
+    "textures": {
+		"1": "dawnoftimebuilder:block/red_painted_railing",
+        "particle": "dawnoftimebuilder:block/red_painted_railing"
+    },
 	"elements": [
 		{
 			"from": [5.999, 13.001, 5.999],
 			"to": [10.001, 15.999, 10.001],
 			"faces": {
-				"north": {"uv": [0, 4, 3, 8], "rotation": 90, "texture": "#slab"},
-				"east": {"uv": [0, 0, 3, 4], "rotation": 90, "texture": "#slab"},
-				"south": {"uv": [0, 12, 3, 16], "rotation": 90, "texture": "#slab"},
-				"west": {"uv": [0, 8, 3, 12], "rotation": 90, "texture": "#slab"},
-				"up": {"uv": [6, 0, 10, 4], "texture": "#slab", "cullface": "up"},
-				"down": {"uv": [6, 0, 10, 4], "texture": "#slab", "cullface": "up"}
+				"north": {"uv": [1, 0, 5, 3], "texture": "#1"},
+				"east": {"uv": [4, 3, 8, 6], "rotation": 180, "texture": "#1"},
+				"south": {"uv": [1, 0, 5, 3], "texture": "#1"},
+				"west": {"uv": [4, 3, 8, 6], "texture": "#1"},
+				"up": {"uv": [4, 3, 8, 7], "texture": "#1", "cullface": "up"},
+				"down": {"uv": [4, 3, 8, 7], "rotation": 180, "texture": "#1", "cullface": "up"}
 			}
 		},
 		{
 			"from": [5.999, 0.001, 5.999],
 			"to": [10.001, 10.999, 10.001],
 			"faces": {
-				"north": {"uv": [6, 5, 10, 16], "texture": "#slab"},
-				"east": {"uv": [6, 5, 10, 16], "texture": "#slab"},
-				"south": {"uv": [6, 5, 10, 16], "texture": "#slab"},
-				"west": {"uv": [6, 5, 10, 16], "texture": "#slab"},
-				"up": {"uv": [6, 4, 10, 8], "texture": "#slab"},
-				"down": {"uv": [6, 4, 10, 8], "texture": "#slab", "cullface": "down"}
+				"north": {"uv": [0, 5, 4, 16], "texture": "#1"},
+				"east": {"uv": [0, 5, 4, 16], "texture": "#1"},
+				"south": {"uv": [0, 5, 4, 16], "texture": "#1"},
+				"west": {"uv": [0, 5, 4, 16], "texture": "#1"},
+				"up": {"uv": [4, 3, 8, 7], "texture": "#1"},
+				"down": {"uv": [4, 3, 8, 7], "texture": "#1", "cullface": "down"}
 			}
 		}
 	]

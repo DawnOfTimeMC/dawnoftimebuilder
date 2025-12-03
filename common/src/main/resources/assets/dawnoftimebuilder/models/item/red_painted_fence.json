@@ -13,8 +13,8 @@
     },
     "ambientocclusion": false,
     "textures": {
-        "texture": "dawnoftimebuilder:block/stripped_red_painted_log",
-        "planks": "dawnoftimebuilder:block/stripped_red_painted_log"
+        "texture": "dawnoftimebuilder:block/red_painted_fence",
+        "planks": "dawnoftimebuilder:block/red_painted_log"
     },
     "elements": [
         {   "from": [ 6, 0, 0 ],

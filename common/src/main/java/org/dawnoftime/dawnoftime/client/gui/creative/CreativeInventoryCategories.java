@@ -361,13 +361,13 @@ public enum CreativeInventoryCategories {
             DoTBBlocksRegistry.INSTANCE.SPRUCE_LEAVES_EDGE.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.CHARRED_SPRUCE_PLANKS.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.CHARRED_SPRUCE_PLANKS_STAIRS.get().asItem(),
-            DoTBBlocksRegistry.INSTANCE.CHARRED_SPRUCE_PLANKS.get().asItem(),
-            DoTBBlocksRegistry.INSTANCE.CHARRED_SPRUCE_PLANKS_STAIRS.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.CHARRED_SPRUCE_PLANKS_PLATE.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.CHARRED_SPRUCE_PLANKS_SLAB.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.CHARRED_SPRUCE_PLANKS_EDGE.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.CHARRED_SPRUCE_SUPPORT_SLAB.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.CHARRED_SPRUCE_SUPPORT_BEAM.get().asItem(),
+            DoTBBlocksRegistry.INSTANCE.CHARRED_SPRUCE_BOARDS.get().asItem(),
+
             DoTBBlocksRegistry.INSTANCE.CHARRED_SPRUCE_FOUNDATION.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.CHARRED_SPRUCE_FOUNDATION_SLAB.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.CHARRED_SPRUCE_LOG_STRIPPED.get().asItem(),
@@ -384,10 +384,13 @@ public enum CreativeInventoryCategories {
             DoTBBlocksRegistry.INSTANCE.CHARRED_SPRUCE_SHUTTERS.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.CHARRED_SPRUCE_TALL_SHUTTERS.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.CHARRED_SPRUCE_ROOF_SUPPORT.get().asItem(),
+            DoTBBlocksRegistry.INSTANCE.CHARRED_SPRUCE_GLASS_PANE.get().asItem(),
+
             DoTBBlocksRegistry.INSTANCE.CHARRED_SPRUCE_WINDOW.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.GREEN_PAINTED_WINDOW.get().asItem(),
-
-            DoTBBlocksRegistry.INSTANCE.CHARRED_SPRUCE_GLASS_PANE.get().asItem(),
+            DoTBBlocksRegistry.INSTANCE.GREEN_PAINTED_STRAIGHT_WINDOW.get().asItem(),
+            DoTBBlocksRegistry.INSTANCE.GREEN_PAINTED_DIAMOND_WINDOW.get().asItem(),
+            DoTBBlocksRegistry.INSTANCE.GREEN_PAINTED_DECORATED_WINDOW.get().asItem(),
 
             DoTBBlocksRegistry.INSTANCE.WHITE_WATTLE_AND_DAUB.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.WHITE_WATTLE_AND_DAUB_STAIRS.get().asItem(),
@@ -413,6 +416,8 @@ public enum CreativeInventoryCategories {
             DoTBBlocksRegistry.INSTANCE.RED_PAINTED_ROOF_SUPPORT.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.REINFORCED_RED_PAINTED_RELIEF.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.RED_PAINTED_DOOR.get().asItem(),
+            DoTBBlocksRegistry.INSTANCE.RED_PAINTED_SHUTTERS.get().asItem(),
+
             DoTBBlocksRegistry.INSTANCE.RED_PAINTED_SMALL_SHUTTER.get().asItem(),
 
             DoTBBlocksRegistry.INSTANCE.RED_PAPER_LANTERN.get().asItem(),

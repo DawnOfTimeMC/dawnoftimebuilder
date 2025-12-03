@@ -1,16 +1,18 @@
 {
     "type": "minecraft:crafting_shaped",
     "pattern": [
-        "II",
-        "II"
+        "IiI"
     ],
     "key": {
         "I": {
             "item": "dawnoftimebuilder:red_painted_log"
+        },
+        "i": {
+            "item": "minecraft:iron_ingot"
         }
     },
     "result": {
-        "item": "dawnoftimebuilder:stripped_red_painted_log",
-        "count": 6
+        "item": "dawnoftimebuilder:reinforced_red_painted_relief",
+        "count": 9
     }
 }

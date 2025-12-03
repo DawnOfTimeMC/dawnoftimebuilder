@@ -1,6 +1,6 @@
 {
     "parent": "block/fence_side",
     "textures": {
-        "texture": "dawnoftimebuilder:block/stripped_red_painted_log"
+        "texture": "dawnoftimebuilder:block/red_painted_log_reverse"
     }
 }

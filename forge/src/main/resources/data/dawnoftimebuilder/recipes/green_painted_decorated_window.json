@@ -1,0 +1,19 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "III",
+        "IiI"
+    ],
+    "key": {
+        "I": {
+            "item": "dawnoftimebuilder:green_painted_window"
+        },
+        "i": {
+            "item": "minecraft:yellow_dye"
+        }
+    },
+    "result": {
+        "item": "dawnoftimebuilder:green_painted_decorated_window",
+        "count": 9
+    }
+}

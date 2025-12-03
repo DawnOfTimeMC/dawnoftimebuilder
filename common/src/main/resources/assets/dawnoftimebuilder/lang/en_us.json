@@ -260,6 +260,8 @@
     "block.dawnoftimebuilder.charred_spruce_support_beam": "Charred Spruce Support Beam",
     "block.dawnoftimebuilder.charred_spruce_foundation": "Charred Spruce Foundation",
     "block.dawnoftimebuilder.charred_spruce_foundation_slab": "Charred Spruce Foundation Slab",
+    "block.dawnoftimebuilder.charred_spruce_boards": "Charred Spruce Boards",
+
     "block.dawnoftimebuilder.spruce_boards": "Spruce Boards",
     "block.dawnoftimebuilder.spruce_boards_stairs": "Spruce Boards Stairs",
     "block.dawnoftimebuilder.spruce_boards_plate": "Spruce Boards Plate",
@@ -290,6 +292,7 @@
     "block.dawnoftimebuilder.reinforced_red_painted_relief": "Reinforced Red Painted Relief",
     "block.dawnoftimebuilder.red_painted_small_shutters": "Red Painted Small shutters",
     "block.dawnoftimebuilder.red_painted_door": "Red Painted Door",
+    "block.dawnoftimebuilder.red_painted_shutters": "Red Painted Shutters",
 
     "block.dawnoftimebuilder.gray_roof_tiles": "Gray Roof Tiles Block",
     "block.dawnoftimebuilder.gray_roof_tiles_stairs": "Gray Roof Tile Stairs",
@@ -314,6 +317,9 @@
     "block.dawnoftimebuilder.charred_spruce_glass_pane": "Charred Spruce Glass Pane",
     "block.dawnoftimebuilder.charred_spruce_window": "Charred Spruce Window",
     "block.dawnoftimebuilder.green_painted_window": "Green Painted Window",
+    "block.dawnoftimebuilder.green_painted_straight_window": "Green Painted Straight Window",
+    "block.dawnoftimebuilder.green_painted_diamond_window": "Green Painted Diamond Window",
+    "block.dawnoftimebuilder.green_painted_decorated_window": "Green Painted Decorated Window",
 
     "block.dawnoftimebuilder.paper_door": "Sliding Paper Door",
     "block.dawnoftimebuilder.paper_folding_screen": "Folding Paper Screen",

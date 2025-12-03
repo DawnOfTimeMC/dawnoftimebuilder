@@ -2,18 +2,18 @@
 	"textures": {
 		"1": "dawnoftimebuilder:block/red_painted_log_top",
 		"2": "dawnoftimebuilder:block/charred_spruce_railing_cap",
-		"slab": "dawnoftimebuilder:block/red_painted_log",
-		"particle": "dawnoftimebuilder:block/red_painted_log"
+		"3": "dawnoftimebuilder:block/red_painted_railing",
+		"particle": "dawnoftimebuilder:block/red_painted_railing"
 	},
 	"elements": [
 		{
 			"from": [4, -0.001, 4],
 			"to": [12, 16.001, 12],
 			"faces": {
-				"north": {"uv": [4, 0, 12, 16], "texture": "#slab"},
-				"east": {"uv": [4, 0, 12, 16], "texture": "#slab"},
-				"south": {"uv": [4, 0, 12, 16], "texture": "#slab"},
-				"west": {"uv": [4, 0, 12, 16], "texture": "#slab"},
+				"north": {"uv": [8, 0, 16, 16], "texture": "#3"},
+				"east": {"uv": [8, 0, 16, 16], "texture": "#3"},
+				"south": {"uv": [8, 0, 16, 16], "texture": "#3"},
+				"west": {"uv": [8, 0, 16, 16], "texture": "#3"},
 				"down": {"uv": [4, 4, 12, 12], "texture": "#1", "cullface": "down"}
 			}
 		},

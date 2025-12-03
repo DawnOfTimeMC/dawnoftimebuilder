@@ -1,0 +1,20 @@
+{
+    "variants": {
+        "facing=north,attached=false,up=false":  { "model": "dawnoftimebuilder:block/japanese/green_painted_window_side_bottom" },
+        "facing=north,attached=true,up=false":  { "model": "dawnoftimebuilder:block/japanese/green_painted_decorated_window_side_bottom_side" },
+        "facing=north,attached=false,up=true":  { "model": "dawnoftimebuilder:block/japanese/green_painted_decorated_window_side_top" },
+        "facing=north,attached=true,up=true":  { "model": "dawnoftimebuilder:block/japanese/green_painted_decorated_window_side_top_side" },
+        "facing=east,attached=false,up=false":  { "model": "dawnoftimebuilder:block/japanese/green_painted_window_side_bottom", "y": 90 },
+        "facing=east,attached=true,up=false":  { "model": "dawnoftimebuilder:block/japanese/green_painted_decorated_window_side_bottom_side", "y": 90 },
+        "facing=east,attached=false,up=true":  { "model": "dawnoftimebuilder:block/japanese/green_painted_decorated_window_side_top", "y": 90 },
+        "facing=east,attached=true,up=true":  { "model": "dawnoftimebuilder:block/japanese/green_painted_decorated_window_side_top_side", "y": 90 },
+        "facing=south,attached=false,up=false":  { "model": "dawnoftimebuilder:block/japanese/green_painted_window_side_bottom", "y": 180 },
+        "facing=south,attached=true,up=false":  { "model": "dawnoftimebuilder:block/japanese/green_painted_decorated_window_side_bottom_side", "y": 180 },
+        "facing=south,attached=false,up=true":  { "model": "dawnoftimebuilder:block/japanese/green_painted_decorated_window_side_top", "y": 180 },
+        "facing=south,attached=true,up=true":  { "model": "dawnoftimebuilder:block/japanese/green_painted_decorated_window_side_top_side", "y": 180 },
+        "facing=west,attached=false,up=false":  { "model": "dawnoftimebuilder:block/japanese/green_painted_window_side_bottom", "y": 270 },
+        "facing=west,attached=true,up=false":  { "model": "dawnoftimebuilder:block/japanese/green_painted_decorated_window_side_bottom_side", "y": 270 },
+        "facing=west,attached=false,up=true":  { "model": "dawnoftimebuilder:block/japanese/green_painted_decorated_window_side_top", "y": 270 },
+        "facing=west,attached=true,up=true":  { "model": "dawnoftimebuilder:block/japanese/green_painted_decorated_window_side_top_side", "y": 270 }
+    }
+}
