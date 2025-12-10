@@ -1,0 +1,17 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		" I ",
+		"I I",
+        " I "
+	],
+	"key": {
+		"I": {
+			"item": "dawnoftimebuilder:puuc_limestone"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:puuc_limestone_crossed",
+		"count": 6
+	}
+}

@@ -1,0 +1,17 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"I",
+		"I",
+		"I"
+	],
+	"key": {
+		"I": {
+			"item": "dawnoftimebuilder:puuc_cobbled_limestone"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:puuc_cobbled_limestone_plate",
+		"count": 6
+	}
+}

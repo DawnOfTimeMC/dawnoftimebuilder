@@ -1,3 +1,4 @@
+
 {
     "variants": {
         "lit=false,facing=north,horizontal_connection=none,vertical_connection=none": { "model": "dawnoftimebuilder:block/german/stone_bricks_fireplace_none_none_off"},

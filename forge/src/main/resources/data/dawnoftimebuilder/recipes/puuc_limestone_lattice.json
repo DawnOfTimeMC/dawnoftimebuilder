@@ -1,0 +1,17 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"i i",
+		" i ",
+		"i i"
+	],
+	"key": {
+		"i": {
+			"item": "dawnoftimebuilder:puuc_limestone"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:puuc_limestone_lattice",
+		"count": 6
+	}
+}

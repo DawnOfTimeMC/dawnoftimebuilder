@@ -1,0 +1,8 @@
+{
+	"parent": "dawnoftimebuilder:block/general/plate",
+	"textures": {
+		"side": "minecraft:block/cobblestone",
+		"top": "minecraft:block/cobblestone",
+		"frieze": "minecraft:block/cobblestone"
+	}
+}

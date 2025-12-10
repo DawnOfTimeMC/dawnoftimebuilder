@@ -42,6 +42,14 @@ public class RenderLayers {
         BlockRenderLayerMap.INSTANCE.putBlock(DoTBBlocksRegistry.INSTANCE.RED_PAPER_LANTERN.get(), RenderType.cutout());
         BlockRenderLayerMap.INSTANCE.putBlock(DoTBBlocksRegistry.INSTANCE.RED_PAINTED_BEAM.get(), RenderType.cutout());
         BlockRenderLayerMap.INSTANCE.putBlock(DoTBBlocksRegistry.INSTANCE.PLASTERED_STONE_CRESSET.get(), RenderType.cutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(DoTBBlocksRegistry.INSTANCE.WHITE_PAINTED_LATTICE.get(), RenderType.cutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(DoTBBlocksRegistry.INSTANCE.RED_PAINTED_LATTICE.get(), RenderType.cutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(DoTBBlocksRegistry.INSTANCE.BLUE_WAVE_TEMPLATE.get(), RenderType.cutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(DoTBBlocksRegistry.INSTANCE.STONE_WAVE_TEMPLATE.get(), RenderType.cutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(DoTBBlocksRegistry.INSTANCE.PUUC_LIMESTONE_LATTICE.get(), RenderType.cutout());
+
+        BlockRenderLayerMap.INSTANCE.putBlock(DoTBBlocksRegistry.INSTANCE.BLUE_PAINTED_LATTICE.get(), RenderType.cutout());
+
         BlockRenderLayerMap.INSTANCE.putBlock(DoTBBlocksRegistry.INSTANCE.PLASTERED_STONE.get(), RenderType.cutout());
         BlockRenderLayerMap.INSTANCE.putBlock(DoTBBlocksRegistry.INSTANCE.PAPER_LAMP.get(), RenderType.cutout());
         BlockRenderLayerMap.INSTANCE.putBlock(DoTBBlocksRegistry.INSTANCE.OAK_SUPPORT_BEAM.get(), RenderType.cutout());
