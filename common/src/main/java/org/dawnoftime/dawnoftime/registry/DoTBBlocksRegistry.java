@@ -312,7 +312,7 @@ public abstract class DoTBBlocksRegistry {
     public final Supplier<Block> GREEN_PAINTED_WINDOW = register("green_painted_window", () -> new GlassBlock(Block.Properties.copy(Blocks.GLASS)));
     public final Supplier<Block> GREEN_PAINTED_STRAIGHT_WINDOW = register("green_painted_straight_window", () -> new GlassBlock(Block.Properties.copy(Blocks.GLASS)));
     public final Supplier<Block> GREEN_PAINTED_DIAMOND_WINDOW = register("green_painted_diamond_window", () -> new GlassBlock(Block.Properties.copy(Blocks.GLASS)));
-    public final Supplier<Block> GREEN_PAINTED_DECORATED_WINDOW = register("green_painted_decorated_window", () -> new SidedWindowBlock(Block.Properties.copy(Blocks.GLASS), SIDED_WINDOW_SHAPES), BlockTags.MINEABLE_WITH_AXE);
+    public final Supplier<Block> GREEN_PAINTED_DECORATED_WINDOW = register("green_painted_decorated_window", () -> new ConnectedFramedWindow(Block.Properties.copy(Blocks.GLASS)), BlockTags.MINEABLE_WITH_AXE);
 
     public final Supplier<Block> RED_PAINTED_LOG = register("red_painted_log", () -> new RotatedPillarBlockDoT(Block.Properties.copy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_BLACK).strength(2.0F, 6.0F)).setBurnable(2, 3), BlockTags.MINEABLE_WITH_AXE);
     public final Supplier<Block> RED_PAINTED_TIMBER_FRAME = register("red_painted_timber_frame", () -> new BlockDoT(Block.Properties.copy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_BLACK).strength(2.0F, 6.0F)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
