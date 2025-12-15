@@ -416,6 +416,8 @@ public enum CreativeInventoryCategories {
             DoTBBlocksRegistry.INSTANCE.RED_PAINTED_ROOF_SUPPORT.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.REINFORCED_RED_PAINTED_RELIEF.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.RED_PAINTED_DOOR.get().asItem(),
+            DoTBBlocksRegistry.INSTANCE.RED_PAINTED_WINDOWED_DOOR.get().asItem(),
+
             DoTBBlocksRegistry.INSTANCE.RED_PAINTED_SHUTTERS.get().asItem(),
 
             DoTBBlocksRegistry.INSTANCE.RED_PAINTED_SMALL_SHUTTER.get().asItem(),
@@ -650,6 +652,9 @@ public enum CreativeInventoryCategories {
             DoTBBlocksRegistry.INSTANCE.STONE_EDGE.get().asItem(),
 
             DoTBBlocksRegistry.INSTANCE.STONE_WAVE_TEMPLATE.get().asItem(),
+            DoTBBlocksRegistry.INSTANCE.STONE_SPIRAL_TEMPLATE.get().asItem(),
+
+            DoTBBlocksRegistry.INSTANCE.STONE_ROUND_TEMPLATE.get().asItem(),
 
             DoTBBlocksRegistry.INSTANCE.WHITE_PAINTED_STONE.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.PLASTERED_STONE.get().asItem(),
@@ -659,8 +664,14 @@ public enum CreativeInventoryCategories {
             DoTBBlocksRegistry.INSTANCE.PLASTERED_STONE_EDGE.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.PLASTERED_STONE_COLUMN.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.PLASTERED_STONE_WINDOW.get().asItem(),
+            DoTBBlocksRegistry.INSTANCE.WHITE_SPIRAL_TEMPLATE.get().asItem(),
+
             DoTBBlocksRegistry.INSTANCE.WHITE_PAINTED_LATTICE.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.RED_PAINTED_STONE.get().asItem(),
+            DoTBBlocksRegistry.INSTANCE.RED_PAINTED_BLUE_WAVE.get().asItem(),
+            DoTBBlocksRegistry.INSTANCE.RED_PAINTED_BLUE_ROUND.get().asItem(),
+            DoTBBlocksRegistry.INSTANCE.RED_PAINTED_WHITE_SPIRAL.get().asItem(),
+
             DoTBBlocksRegistry.INSTANCE.RED_PLASTERED_STONE.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.RED_PLASTERED_STONE_STAIRS.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.RED_PLASTERED_STONE_PLATE.get().asItem(),
@@ -670,6 +681,7 @@ public enum CreativeInventoryCategories {
             DoTBBlocksRegistry.INSTANCE.RED_PLASTERED_STONE_COLUMN.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.RED_PLASTERED_STONE_WINDOW.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.RED_PAINTED_LATTICE.get().asItem(),
+
             DoTBBlocksRegistry.INSTANCE.GREEN_PAINTED_STONE.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.GREEN_PLASTERED_STONE.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.GREEN_PLASTERED_STONE_STAIRS.get().asItem(),
@@ -696,6 +708,7 @@ public enum CreativeInventoryCategories {
             DoTBBlocksRegistry.INSTANCE.BLUE_PLASTERED_STONE_WINDOW.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.BLUE_PAINTED_LATTICE.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.BLUE_WAVE_TEMPLATE.get().asItem(),
+            DoTBBlocksRegistry.INSTANCE.BLUE_ROUND_TEMPLATE.get().asItem(),
 
             DoTBBlocksRegistry.INSTANCE.RED_ORNAMENTED_PLASTERED_STONE.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.CHISELED_PLASTERED_STONE.get().asItem(),

@@ -1,0 +1,22 @@
+{
+	"parent": "block/cube_all",
+	"textures": {
+		"1": "dawnoftimebuilder:block/red_painted_stone",
+		"all": "dawnoftimebuilder:block/red_painted_blue_wave",
+		"particle": "dawnoftimebuilder:block/red_painted_stone"
+	},
+	"elements": [
+		{
+			"from": [0, 0, 0],
+			"to": [16, 16, 16],
+			"faces": {
+				"north": {"uv": [0, 0, 16, 16], "texture": "#all"},
+				"east": {"uv": [0, 0, 16, 16], "texture": "#all"},
+				"south": {"uv": [0, 0, 16, 16], "texture": "#all"},
+				"west": {"uv": [0, 0, 16, 16], "texture": "#all"},
+				"up": {"uv": [0, 0, 16, 16], "texture": "#1"},
+				"down": {"uv": [0, 0, 16, 16], "texture": "#1"}
+			}
+		}
+	]
+}
