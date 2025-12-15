@@ -1,4 +1,6 @@
 {
+	"format_version": "1.9.0",
+	"credit": "Made with Blockbench",
 	"render_type": "minecraft:cutout",
 	"textures": {
 		"0": "dawnoftimebuilder:block/blue_wave_template",
@@ -6,11 +8,11 @@
 	},
 	"elements": [
 		{
-			"from": [0, 0, 1],
-			"to": [16, 16, 1],
-			"rotation": {"angle": 0, "axis": "z", "origin": [8, 8, 1]},
+			"from": [0, 0, 0.1],
+			"to": [16, 16, 0.1],
+			"rotation": {"angle": 0, "axis": "z", "origin": [0, 8, 0]},
 			"faces": {
-				"north": {"uv": [16, 0, 0, 16], "rotation": 270, "texture": "#0"},
+				"north": {"uv": [0, 16, 16, 0], "rotation": 180, "texture": "#0"},
 				"east": {"uv": [9, 13, 14, 14], "rotation": 90, "texture": "#missing"},
 				"south": {"uv": [0, 0, 16, 16], "texture": "#0"},
 				"west": {"uv": [9, 13, 14, 14], "rotation": 90, "texture": "#missing"},

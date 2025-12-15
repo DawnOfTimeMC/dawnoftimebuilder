@@ -330,6 +330,8 @@ public abstract class DoTBBlocksRegistry {
     public final Supplier<Block> RED_PAINTED_SHUTTERS = register("red_painted_shutters", () -> new ShutterBlock(Block.Properties.copy(Blocks.OAK_WOOD).strength(3.0F, 5.0F)), BlockTags.MINEABLE_WITH_AXE);
 
     public final Supplier<Block> RED_PAINTED_DOOR = register("red_painted_door", () -> new DoorBlockDoT(Block.Properties.copy(Blocks.OAK_WOOD).strength(3.0F, 5.0F).noOcclusion(), BlockSetType.ACACIA), BlockTags.MINEABLE_WITH_AXE);
+    public final Supplier<Block> RED_PAINTED_WINDOWED_DOOR = register("red_painted_windowed_door", () -> new DoorBlockDoT(Block.Properties.copy(Blocks.OAK_WOOD).strength(3.0F, 5.0F).noOcclusion(), BlockSetType.ACACIA), BlockTags.MINEABLE_WITH_AXE);
+
     public Supplier<MixedRoofSupportBlock> RED_PAINTED_ROOF_SUPPORT;
     //public final Supplier<Block> STRIPPED_RED_PAINTED_LOG = register("stripped_red_painted_log", () -> new BlockDoT(Block.Properties.copy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_BLACK).strength(2.0F, 6.0F)).setBurnable(2, 3), BlockTags.MINEABLE_WITH_AXE);
     public final Supplier<Block> GRAY_ROOF_TILES = register("gray_roof_tiles", () -> new BlockDoT(Block.Properties.copy(Blocks.STONE_BRICKS)));
@@ -431,8 +433,15 @@ public abstract class DoTBBlocksRegistry {
     public final Supplier<Block> RED_PAINTED_PUUC_LIMESTONE_PLATE = register("red_painted_puuc_limestone_plate", () -> new PlateBlock(Block.Properties.copy(Blocks.STONE)));
     public final Supplier<Block> RED_PAINTED_PUUC_LIMESTONE_SLAB = register("red_painted_puuc_limestone_slab", () -> new SlabBlockDoT(Block.Properties.copy(Blocks.STONE)));
     public final Supplier<Block> RED_PAINTED_PUUC_LIMESTONE_EDGE = register("red_painted_puuc_limestone_edge", () -> new EdgeBlock(Block.Properties.copy(Blocks.STONE)));
+    public final Supplier<Block> STONE_ROUND_TEMPLATE = register("stone_round_template", () -> new LatticeBlock(Block.Properties.copy(Blocks.STONE).noOcclusion()).setBurnable(), BlockTags.MINEABLE_WITH_PICKAXE);
+    public final Supplier<Block> STONE_SPIRAL_TEMPLATE = register("stone_spiral_template", () -> new LatticeBlock(Block.Properties.copy(Blocks.STONE).noOcclusion()).setBurnable(), BlockTags.MINEABLE_WITH_PICKAXE);
 
     public final Supplier<Block> STONE_WAVE_TEMPLATE = register("stone_wave_template", () -> new LatticeBlock(Block.Properties.copy(Blocks.STONE).noOcclusion()).setBurnable(), BlockTags.MINEABLE_WITH_PICKAXE);
+    public final Supplier<Block> BLUE_ROUND_TEMPLATE = register("blue_round_template", () -> new LatticeBlock(Block.Properties.copy(Blocks.STONE).noOcclusion()).setBurnable(), BlockTags.MINEABLE_WITH_PICKAXE);
+    public final Supplier<Block> WHITE_SPIRAL_TEMPLATE = register("white_spiral_template", () -> new LatticeBlock(Block.Properties.copy(Blocks.STONE).noOcclusion()).setBurnable(), BlockTags.MINEABLE_WITH_PICKAXE);
+
+
+
     public final Supplier<Block> BLUE_WAVE_TEMPLATE = register("blue_wave_template", () -> new LatticeBlock(Block.Properties.copy(Blocks.STONE).noOcclusion()).setBurnable(), BlockTags.MINEABLE_WITH_PICKAXE);
 
     public final Supplier<Block> WHITE_PAINTED_STONE = register("white_painted_stone", () -> new BlockDoT(Block.Properties.copy(Blocks.STONE_BRICKS)));
@@ -466,6 +475,12 @@ public abstract class DoTBBlocksRegistry {
     public final Supplier<Block> RED_ORNAMENTED_PLASTERED_STONE_FRIEZE = register("red_ornamented_plastered_stone_frieze", () -> new PlateBlock(Block.Properties.copy(Blocks.STONE_BRICKS).noOcclusion()));
     public final Supplier<Block> RED_SCULPTED_PLASTERED_STONE_FRIEZE = register("red_sculpted_plastered_stone_frieze", () -> new PlateBlock(Block.Properties.copy(Blocks.STONE_BRICKS), RED_SCULPTED_PLASTERED_STONE_FRIEZE_SHAPES));
     public final Supplier<Block> RED_PAINTED_STONE_FRIEZE_EDGE = register("red_painted_stone_frieze_edge", () -> new EdgeBlock(Block.Properties.copy(Blocks.STONE_BRICKS)));
+    public final Supplier<Block> RED_PAINTED_BLUE_WAVE = register("red_painted_blue_wave", () -> new BlockDoT(Block.Properties.copy(Blocks.STONE)));
+    public final Supplier<Block> RED_PAINTED_BLUE_ROUND = register("red_painted_blue_round", () -> new BlockDoT(Block.Properties.copy(Blocks.STONE)));
+    public final Supplier<Block> RED_PAINTED_WHITE_SPIRAL = register("red_painted_white_spiral", () -> new BlockDoT(Block.Properties.copy(Blocks.STONE)));
+
+
+
     public final Supplier<Block> BLUE_PAINTED_STONE = register("blue_painted_stone", () -> new BlockDoT(Block.Properties.copy(Blocks.STONE_BRICKS)));
     public final Supplier<Block> BLUE_PAINTED_LATTICE = register("blue_painted_lattice", () -> new LatticeBlock(Block.Properties.copy(Blocks.STONE).noOcclusion()).setBurnable(), BlockTags.MINEABLE_WITH_PICKAXE);
 

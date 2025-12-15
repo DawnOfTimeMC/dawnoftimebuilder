@@ -292,6 +292,8 @@
     "block.dawnoftimebuilder.reinforced_red_painted_relief": "Reinforced Red Painted Relief",
     "block.dawnoftimebuilder.red_painted_small_shutters": "Red Painted Small shutters",
     "block.dawnoftimebuilder.red_painted_door": "Red Painted Door",
+    "block.dawnoftimebuilder.red_painted_windowed_door": "Red Painted Windowed Door",
+
     "block.dawnoftimebuilder.red_painted_shutters": "Red Painted Shutters",
 
     "block.dawnoftimebuilder.gray_roof_tiles": "Gray Roof Tiles Block",
@@ -372,6 +374,13 @@
     "block.dawnoftimebuilder.blue_painted_lattice": "Blue Painted Lattice",
     "block.dawnoftimebuilder.stone_wave_template": "Stone Wave Template",
     "block.dawnoftimebuilder.puuc_limestone_wave_template": "Puuc Limestone Wave Template",
+    "block.dawnoftimebuilder.red_painted_blue_wave": "Red Painted Blue Wave",
+    "block.dawnoftimebuilder.red_painted_white_spiral": "Red Painted White Spiral",
+    "block.dawnoftimebuilder.red_painted_blue_round": "Red Painted Blue Round",
+    "block.dawnoftimebuilder.white_spiral_template": "White Spiral Template",
+    "block.dawnoftimebuilder.blue_round_template": "Blue Round Template",
+    "block.dawnoftimebuilder.stone_round_template": "Stone Round Template",
+    "block.dawnoftimebuilder.stone_spiral_template": "Stone Spiral Template",
 
 
 
