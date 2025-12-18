@@ -321,6 +321,8 @@ public enum CreativeInventoryCategories {
     ),
     JAPANESE("japanese", "https://www.youtube.com/watch?v=AxJGk-deTmo&list=PLRp3sDcdVhnSw-C9jHe_ykJZc5AurcvyG",
             Blocks.GRAVEL.asItem(),
+            DoTBBlocksRegistry.INSTANCE.GRAVEL_SLAB.get().asItem(),
+
             DoTBBlocksRegistry.INSTANCE.STRAIGHT_RAKED_GRAVEL.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.CURVED_RAKED_GRAVEL.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.STEPPING_STONES.get().asItem(),
