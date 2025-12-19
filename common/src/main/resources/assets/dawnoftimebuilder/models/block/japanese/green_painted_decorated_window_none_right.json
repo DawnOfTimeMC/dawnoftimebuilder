@@ -12,15 +12,15 @@
 			"from": [0, 14, 6],
 			"to": [16, 16, 10],
 			"rotation": {"angle": 0, "axis": "z", "origin": [8, 8, 4]},
-			"faces": {
-				"north": {"uv": [16, 6, 0, 4], "rotation": 180, "texture": "#1"},
-				"east": {"uv": [4, 8, 0, 6], "rotation": 180, "texture": "#1"},
-				"south": {"uv": [0, 6, 16, 4], "rotation": 180, "texture": "#1"},
-				"west": {"uv": [4, 8, 0, 6], "rotation": 180, "texture": "#1"},
-				"up": {"uv": [16, 4, 0, 0], "rotation": 180, "texture": "#1"},
-				"down": {"uv": [16, 4, 0, 0], "rotation": 180, "texture": "#1"}
-			}
-		},
+            "faces": {
+                "north": {"uv": [16, 6, 0, 4], "rotation": 180, "texture": "#1"},
+                "east": {"uv": [4, 8, 0, 6], "rotation": 180, "texture": "#1"},
+                "south": {"uv": [0, 6, 16, 4], "rotation": 180, "texture": "#1"},
+                "west": {"uv": [4, 8, 0, 6], "rotation": 180, "texture": "#1"},
+                "up": {"uv": [16, 4, 0, 0], "rotation": 180, "texture": "#1"},
+                "down": {"uv": [16, 4, 0, 0], "rotation": 180, "texture": "#1"}
+            }
+        },
 		{
 			"from": [0, 0, 6],
 			"to": [16, 2, 10],
@@ -38,13 +38,13 @@
 			"from": [0, 2, 6],
 			"to": [2, 14, 10],
 			"rotation": {"angle": 0, "axis": "z", "origin": [-6, 8, 4]},
-			"faces": {
-				"north": {"uv": [0, 7, 16, 9], "rotation": 90, "texture": "#1"},
-				"east": {"uv": [0, 0, 16, 4], "rotation": 90, "texture": "#1", "cullface": "west"},
-				"south": {"uv": [16, 9, 0, 7], "rotation": 90, "texture": "#1", "cullface": "south"},
-				"west": {"uv": [0, 0, 16, 4], "rotation": 90, "texture": "#1", "cullface": "west"}
-			}
-		},
+            "faces": {
+                "north": {"uv": [0, 7, 16, 9], "rotation": 90, "texture": "#1"},
+                "east": {"uv": [0, 0, 16, 4], "rotation": 90, "texture": "#1"},
+                "south": {"uv": [16, 9, 0, 7], "rotation": 90, "texture": "#1"},
+                "west": {"uv": [0, 0, 16, 4], "rotation": 90, "texture": "#1"}
+            }
+        },
 		{
 			"from": [0, 0, 8],
 			"to": [16, 16, 8],
