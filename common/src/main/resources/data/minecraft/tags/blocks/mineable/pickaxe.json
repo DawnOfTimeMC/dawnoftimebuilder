@@ -38,7 +38,6 @@
         "dawnoftimebuilder:gold_plated_smooth_plate",
         "dawnoftimebuilder:gold_plated_smooth_slab",
         "dawnoftimebuilder:gold_plated_smooth_stairs",
-        "dawnoftimebuilder:white_cushion",
         "dawnoftimebuilder:gold_plated_smooth_wall",
         "dawnoftimebuilder:gray_roof_tiles",
         "dawnoftimebuilder:gray_roof_tiles_edge",
@@ -168,8 +167,7 @@
         "dawnoftimebuilder:white_painted_lattice",
         "dawnoftimebuilder:red_painted_lattice",
         "dawnoftimebuilder:blue_wave_template",
-
-
+        "dawnoftimebuilder:white_spiral_template",
 
         "dawnoftimebuilder:puuc_limestone",
         "dawnoftimebuilder:puuc_limestone_stairs",
@@ -198,11 +196,6 @@
         "dawnoftimebuilder:red_painted_white_spiral",
         "dawnoftimebuilder:red_painted_blue_round",
         "dawnoftimebuilder:blue_round_template",
-        "dawnoftimebuilder:white_painted_template",
-
-
-
-
 
         "dawnoftimebuilder:red_painted_puuc_limestone",
         "dawnoftimebuilder:cobblestone_plate",
