@@ -1,8 +1,8 @@
 {
 	"format_version": "1.9.0",
 	"credit": "Made with Blockbench",
-    "render_type": "minecraft:cutout",
-    "textures": {
+	"render_type": "minecraft:cutout",
+	"textures": {
 		"0": "dawnoftimebuilder:block/white_spiral_template",
 		"particle": "dawnoftimebuilder:block/white_spiral_template"
 	},
@@ -19,5 +19,38 @@
 				"down": {"uv": [0, 0, 0, 16], "texture": "#missing"}
 			}
 		}
-	]
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"translation": [0, -0.25, 3.5],
+			"scale": [0.4, 0.4, 0.4]
+		},
+		"thirdperson_lefthand": {
+			"translation": [0, -0.25, 3.5],
+			"scale": [0.4, 0.4, 0.4]
+		},
+		"firstperson_righthand": {
+			"translation": [0, -0.25, 3.5],
+			"scale": [0.4, 0.4, 0.4]
+		},
+		"firstperson_lefthand": {
+			"translation": [0, -0.25, 3.5],
+			"scale": [0.4, 0.4, 0.4]
+		},
+		"ground": {
+			"translation": [0, -0.25, 3.5],
+			"scale": [0.6, 0.6, 0.6]
+		},
+		"gui": {
+			"scale": [0.9, 0.9, 0.9]
+		},
+		"fixed": {
+			"translation": [0, 0, 7.75],
+			"scale": [0.9, 0.9, 0.9]
+		},
+		"on_shelf": {
+			"translation": [0, 0, 7.75],
+			"scale": [0.9, 0.9, 0.9]
+		}
+	}
 }

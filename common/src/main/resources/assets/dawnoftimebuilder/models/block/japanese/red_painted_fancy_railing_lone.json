@@ -1,6 +1,5 @@
 {
 	"render_type": "minecraft:cutout",
-	"credit": "mr_ch0c0late",
 	"texture_size": [32, 32],
 	"textures": {
 		"0": "dawnoftimebuilder:block/red_painted_fancy_railing",

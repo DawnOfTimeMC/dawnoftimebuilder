@@ -1,0 +1,15 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"III"
+	],
+	"key": {
+		"I": {
+			"item": "minecraft:sand"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:sand_slab",
+		"count": 6
+	}
+}

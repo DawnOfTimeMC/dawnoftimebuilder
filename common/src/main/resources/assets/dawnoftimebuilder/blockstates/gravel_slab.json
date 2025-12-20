@@ -2,6 +2,6 @@
     "variants": {
         "type=bottom": { "model": "dawnoftimebuilder:block/japanese/gravel_slab_bottom" },
         "type=top": { "model": "dawnoftimebuilder:block/japanese/gravel_slab_top" },
-        "type=double": { "model": "dawnoftimebuilder:block/japanese/gravel_slab_double" }
+        "type=double": { "model": "minecraft:block/gravel" }
     }
 }
