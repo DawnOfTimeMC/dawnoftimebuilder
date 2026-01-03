@@ -1,0 +1,56 @@
+{
+	"format_version": "1.9.0",
+	"credit": "Made with Blockbench",
+	"render_type": "minecraft:cutout",
+	"textures": {
+		"0": "dawnoftimebuilder:block/waxed_acacia_squared_lattice",
+		"particle": "dawnoftimebuilder:block/waxed_acacia_squared_lattice"
+	},
+	"elements": [
+		{
+			"from": [0, 0, 0.01],
+			"to": [16, 16, 0.01],
+			"rotation": {"angle": 0, "axis": "z", "origin": [8, 8, 0]},
+			"faces": {
+				"north": {"uv": [16, 0, 0, 16], "rotation": 270, "texture": "#0"},
+				"east": {"uv": [9, 13, 14, 14], "rotation": 90, "texture": "#missing"},
+				"south": {"uv": [0, 0, 16, 16], "texture": "#0"},
+				"west": {"uv": [9, 13, 14, 14], "rotation": 90, "texture": "#missing"},
+				"up": {"uv": [9, 13, 10, 14], "rotation": 90, "texture": "#missing"}
+			}
+		}
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"translation": [0, -0.25, 3.5],
+			"scale": [0.4, 0.4, 0.4]
+		},
+		"thirdperson_lefthand": {
+			"translation": [0, -0.25, 3.5],
+			"scale": [0.4, 0.4, 0.4]
+		},
+		"firstperson_righthand": {
+			"translation": [0, -0.25, 3.5],
+			"scale": [0.4, 0.4, 0.4]
+		},
+		"firstperson_lefthand": {
+			"translation": [0, -0.25, 3.5],
+			"scale": [0.4, 0.4, 0.4]
+		},
+		"ground": {
+			"translation": [0, -0.25, 3.5],
+			"scale": [0.6, 0.6, 0.6]
+		},
+		"gui": {
+			"scale": [0.9, 0.9, 0.9]
+		},
+		"fixed": {
+			"translation": [0, 0, 7.75],
+			"scale": [0.9, 0.9, 0.9]
+		},
+		"on_shelf": {
+			"translation": [0, 0, 7.75],
+			"scale": [0.9, 0.9, 0.9]
+		}
+	}
+}

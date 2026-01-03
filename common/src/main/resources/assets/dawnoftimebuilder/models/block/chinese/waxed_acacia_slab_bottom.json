@@ -1,0 +1,8 @@
+{
+    "parent": "block/slab",
+    "textures": {
+        "bottom": "dawnoftimebuilder:block/waxed_acacia_planks",
+        "top": "dawnoftimebuilder:block/waxed_acacia_planks",
+        "side": "dawnoftimebuilder:block/waxed_acacia_planks"
+    }
+}

@@ -13,6 +13,8 @@ public abstract class DoTBItemsRegistry {
     public final Supplier<Item> DOT_ITEM = register("dawn_of_time", () -> new ItemDoTB(false));
     public final Supplier<Item> GERMAN_EMBLEM = register("german_emblem", () -> new ItemDoTB(false));
     public final Supplier<Item> JAPANESE_EMBLEM = register("japanese_emblem", () -> new ItemDoTB(false));
+    public final Supplier<Item> CHINESE_EMBLEM = register("chinese_emblem", () -> new ItemDoTB(false));
+
     public final Supplier<Item> ROMAN_EMBLEM = register("roman_emblem", () -> new ItemDoTB(false));
     public final Supplier<Item> PERSIAN_EMBLEM = register("persian_emblem", () -> new ItemDoTB(false));
     public final Supplier<Item> FRENCH_EMBLEM = register("french_emblem", () -> new ItemDoTB(false));

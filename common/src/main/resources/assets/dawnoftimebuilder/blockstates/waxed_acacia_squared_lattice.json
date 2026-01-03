@@ -1,0 +1,20 @@
+{
+    "multipart": [
+        {
+            "when": { "north": "true" },
+            "apply": { "model": "dawnoftimebuilder:block/chinese/waxed_acacia_squared_lattice"}
+        },
+        {
+            "when": { "east": "true" },
+            "apply": { "model": "dawnoftimebuilder:block/chinese/waxed_acacia_squared_lattice", "y": 90}
+        },
+        {
+            "when": { "south": "true" },
+            "apply": { "model": "dawnoftimebuilder:block/chinese/waxed_acacia_squared_lattice", "y": 180}
+        },
+        {
+            "when": { "west": "true" },
+            "apply": { "model": "dawnoftimebuilder:block/chinese/waxed_acacia_squared_lattice", "y": 270}
+        }
+    ]
+}
