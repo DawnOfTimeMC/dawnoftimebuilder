@@ -286,6 +286,10 @@ public abstract class DoTBBlocksRegistry {
     public final Supplier<Block> SPRUCE_BOARDS_PLATE = register("spruce_boards_plate", () -> new PlateBlock(Block.Properties.copy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_BLACK).strength(2.0F, 6.0F)).setBurnable(2, 3), BlockTags.MINEABLE_WITH_AXE);
     public final Supplier<Block> SPRUCE_BOARDS_SLAB = register("spruce_boards_slab", () -> new SlabBlockDoT(Block.Properties.copy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_BLACK).strength(2.0F, 6.0F)).setBurnable(2, 3), BlockTags.MINEABLE_WITH_AXE);
     public Supplier<Block> SPRUCE_BOARDS_STAIRS;
+    public Supplier<MixedRoofSupportBlock> SPRUCE_ROOF_SUPPORT;
+    public final Supplier<Block> SPRUCE_PAPER_DOOR = register("spruce_paper_door", () -> new CenteredDoorBlock(Block.Properties.copy(Blocks.WHITE_WOOL).strength(1.5F, 1.5F), BlockSetType.BAMBOO), BlockTags.MINEABLE_WITH_AXE);
+    public final Supplier<Block> SPRUCE_FOUNDATION = register("spruce_foundation", () -> new BlockDoT(Block.Properties.copy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_BLACK).strength(2.0F, 6.0F)).setBurnable(2, 3), BlockTags.MINEABLE_WITH_AXE);
+
     public final Supplier<Block> CHARRED_SPRUCE_DOOR = register("charred_spruce_door", () -> new DoorBlockDoT(Block.Properties.copy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_BLACK).strength(2.0F, 6.0F).noOcclusion(), BlockSetType.SPRUCE), BlockTags.MINEABLE_WITH_AXE);
     public final Supplier<Block> CHARRED_SPRUCE_TRAPDOOR = register("charred_spruce_trapdoor", () -> new CustomTrapDoorBlock(Block.Properties.copy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_BLACK).strength(2.0F, 6.0F).noOcclusion(), BlockSetType.SPRUCE), BlockTags.MINEABLE_WITH_AXE);
     public final Supplier<Block> CHARRED_SPRUCE_SHUTTERS = register("charred_spruce_shutters", () -> new CharredSpruceShuttersBlock(Block.Properties.copy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_BLACK).strength(2.0F, 6.0F).noOcclusion(), CHARRED_SPRUCE_SHUTTERS_SHAPES), BlockTags.MINEABLE_WITH_AXE);
@@ -606,6 +610,8 @@ public abstract class DoTBBlocksRegistry {
 
    public final Supplier<Block> RED_ROUND_PAPER_LANTERN = register("red_round_paper_lantern", () -> new PaperLanternBlock(Block.Properties.copy(Blocks.RED_WOOL).noOcclusion().noCollission().lightLevel(state -> 12)), BlockTags.MINEABLE_WITH_AXE);
    public final Supplier<Block> GREEN_ROOF_TILES = register("green_roof_tiles", () -> new BlockDoT(Block.Properties.copy(Blocks.STONE_BRICKS)));
+   public final Supplier<Block> GREEN_SMOOTH_TILES = register("green_smooth_tiles", () -> new BlockDoT(Block.Properties.copy(Blocks.STONE_BRICKS)));
+    public Supplier<Block> GREEN_SMOOTH_TILES_STAIRS;
 
 
 
@@ -628,6 +634,7 @@ public abstract class DoTBBlocksRegistry {
         RED_PAINTED_PUUC_LIMESTONE_STAIRS = register("red_painted_puuc_limestone_stairs", () -> new StairsBlockDoT(this.RED_PAINTED_PUUC_LIMESTONE, Block.Properties.copy(Blocks.STONE)));
         SLATE_BRICKS_STAIRS = register("slate_bricks_stairs", () -> new StairsBlockDoT(this.SLATE_BRICKS, Block.Properties.copy(Blocks.STONE)));
         WAXED_ACACIA_STAIRS = register("waxed_acacia_stairs", () -> new StairsBlockDoT(this.WAXED_ACACIA_PLANKS, Block.Properties.copy(Blocks.OAK_WOOD)));
+        GREEN_SMOOTH_TILES_STAIRS = register("green_smooth_tiles_stairs", () -> new StairsBlockDoT(this.GREEN_SMOOTH_TILES, Block.Properties.copy(Blocks.BRICKS)));
 
         PUUC_COBBLED_LIMESTONE_STAIRS = register("puuc_cobbled_limestone_stairs", () -> new StairsBlockDoT(this.PUUC_COBBLED_LIMESTONE, Block.Properties.copy(Blocks.STONE)));
 
@@ -655,6 +662,8 @@ public abstract class DoTBBlocksRegistry {
         SPRUCE_BOARDS_STAIRS = register("spruce_boards_stairs", () -> new StairsBlockDoT(this.SPRUCE_BOARDS, Block.Properties.copy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_BLACK).strength(2.0F, 6.0F)).setBurnable(2, 3), BlockTags.MINEABLE_WITH_AXE);
         GRAY_ROOF_TILES_STAIRS = register("gray_roof_tiles_stairs", () -> new StairsBlockDoT(this.GRAY_ROOF_TILES, Block.Properties.copy(Blocks.STONE_BRICKS)));
         CHARRED_SPRUCE_ROOF_SUPPORT = registerWithItem("charred_spruce_roof_support", () -> new MixedRoofSupportBlock(this.GRAY_ROOF_TILES_SLAB, Block.Properties.copy(Blocks.STONE_BRICKS).noOcclusion()), MixedRoofSupportBlock::getBlockItem, BlockTags.MINEABLE_WITH_AXE);
+        SPRUCE_ROOF_SUPPORT = registerWithItem("spruce_roof_support", () -> new MixedRoofSupportBlock(this.GRAY_ROOF_TILES_SLAB, Block.Properties.copy(Blocks.STONE_BRICKS).noOcclusion()), MixedRoofSupportBlock::getBlockItem, BlockTags.MINEABLE_WITH_AXE);
+
         RED_PAINTED_ROOF_SUPPORT = registerWithItem("red_painted_roof_support", () -> new MixedRoofSupportBlock(this.GRAY_ROOF_TILES_SLAB, Block.Properties.copy(Blocks.STONE_BRICKS).noOcclusion()), MixedRoofSupportBlock::getBlockItem, BlockTags.MINEABLE_WITH_AXE);
         WAXED_ACACIA_ROOF_SUPPORT = registerWithItem("waxed_acacia_roof_support", () -> new MixedRoofSupportBlock(this.GRAY_ROOF_TILES_SLAB, Block.Properties.copy(Blocks.STONE_BRICKS).noOcclusion()), MixedRoofSupportBlock::getBlockItem, BlockTags.MINEABLE_WITH_AXE);
 

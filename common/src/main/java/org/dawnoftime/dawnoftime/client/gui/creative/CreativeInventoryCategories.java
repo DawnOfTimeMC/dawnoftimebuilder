@@ -44,6 +44,7 @@ public enum CreativeInventoryCategories {
             DoTBBlocksRegistry.INSTANCE.RAMMED_DIRT_PLATE.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.RAMMED_DIRT_SLAB.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.RAMMED_DIRT_EDGE.get().asItem(),
+            DoTBBlocksRegistry.INSTANCE.SPRUCE_FOUNDATION.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.SPRUCE_BOARDS.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.SPRUCE_BOARDS_STAIRS.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.SPRUCE_BOARDS_PLATE.get().asItem(),
@@ -56,6 +57,7 @@ public enum CreativeInventoryCategories {
             DoTBBlocksRegistry.INSTANCE.SPRUCE_PLANKS_EDGE.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.SPRUCE_SUPPORT_SLAB.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.SPRUCE_SUPPORT_BEAM.get().asItem(),
+            DoTBBlocksRegistry.INSTANCE.SPRUCE_ROOF_SUPPORT.get().asItem(),
             Blocks.STRIPPED_SPRUCE_LOG.asItem(),
             DoTBBlocksRegistry.INSTANCE.SPRUCE_BEAM.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.SPRUCE_WALL.get().asItem(),
@@ -64,6 +66,8 @@ public enum CreativeInventoryCategories {
             Blocks.SPRUCE_FENCE_GATE.asItem(),
             DoTBBlocksRegistry.INSTANCE.SPRUCE_LATTICE.get().asItem(),
             Blocks.SPRUCE_DOOR.asItem(),
+            DoTBBlocksRegistry.INSTANCE.SPRUCE_PAPER_DOOR.get().asItem(),
+
             Blocks.SPRUCE_TRAPDOOR.asItem(),
             Blocks.SPRUCE_LEAVES.asItem(),
             DoTBBlocksRegistry.INSTANCE.SPRUCE_LEAVES_PLATE.get().asItem(),
@@ -611,7 +615,9 @@ public enum CreativeInventoryCategories {
             DoTBBlocksRegistry.INSTANCE.PAINTED_ACACIA_FENCE.get().asItem(),
 
             DoTBBlocksRegistry.INSTANCE.RED_ROUND_PAPER_LANTERN.get().asItem(),
-            DoTBBlocksRegistry.INSTANCE.GREEN_ROOF_TILES.get().asItem()
+            DoTBBlocksRegistry.INSTANCE.GREEN_ROOF_TILES.get().asItem(),
+            DoTBBlocksRegistry.INSTANCE.GREEN_SMOOTH_TILES.get().asItem(),
+            DoTBBlocksRegistry.INSTANCE.GREEN_SMOOTH_TILES_STAIRS.get().asItem()
 
 
 

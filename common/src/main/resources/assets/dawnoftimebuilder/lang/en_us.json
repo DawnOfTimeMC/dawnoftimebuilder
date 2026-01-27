@@ -71,6 +71,8 @@
 
     "block.dawnoftimebuilder.red_round_paper_lantern": "Red Round Paper Lantern",
     "block.dawnoftimebuilder.green_roof_tiles": "Green Roof Tiles",
+    "block.dawnoftimebuilder.green_smooth_tiles": "Green Smooth Tiles",
+    "block.dawnoftimebuilder.green_smooth_tiles_stairs": "Green Smooth Tiles Stairs",
 
     "block.dawnoftimebuilder.birch_planks_plate": "Birch Plate",
     "block.dawnoftimebuilder.birch_planks_edge": "Birch Edge",
@@ -122,6 +124,10 @@
     "block.dawnoftimebuilder.spruce_wall": "Spruce Wall",
     "block.dawnoftimebuilder.spruce_pergola": "Spruce Pergola",
     "block.dawnoftimebuilder.spruce_lattice": "Spruce Lattice",
+    "block.dawnoftimebuilder.spruce_roof_support": "Spruce Roof Support",
+    "block.dawnoftimebuilder.spruce_paper_door": "Spruce Paper Door",
+    "block.dawnoftimebuilder.spruce_foundation": "Spruce Foundation",
+
     "block.dawnoftimebuilder.mangrove_planks_plate": "Mangrove Plate",
     "block.dawnoftimebuilder.mangrove_planks_edge": "Mangrove Edge",
     "block.dawnoftimebuilder.mangrove_support_slab": "Mangrove Support Slab",

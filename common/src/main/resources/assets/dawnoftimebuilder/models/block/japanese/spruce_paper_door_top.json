@@ -1,0 +1,23 @@
+{
+	"format_version": "1.9.0",
+	"credit": "Made with Blockbench",
+	"ambientocclusion": false,
+	"textures": {
+		"side": "dawnoftimebuilder:block/spruce_paper_door_rack",
+		"particle": "dawnoftimebuilder:block/spruce_paper_door_upper",
+		"texture": "dawnoftimebuilder:block/spruce_paper_door_upper"
+	},
+	"elements": [
+		{
+			"from": [0, 0, 6.99],
+			"to": [16, 16, 9.01],
+			"faces": {
+				"north": {"uv": [0, 0, 16, 16], "texture": "#texture"},
+				"east": {"uv": [0, 0, 2, 16], "texture": "#side", "cullface": "east"},
+				"south": {"uv": [16, 0, 0, 16], "texture": "#texture"},
+				"west": {"uv": [2, 0, 0, 16], "texture": "#side", "cullface": "west"},
+				"up": {"uv": [2, 16, 0, 0], "rotation": 90, "texture": "#side", "cullface": "up"}
+			}
+		}
+	]
+}

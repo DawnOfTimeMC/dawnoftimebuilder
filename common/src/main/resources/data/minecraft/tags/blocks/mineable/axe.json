@@ -24,6 +24,8 @@
         "dawnoftimebuilder:oak_leaves_plate",
         "dawnoftimebuilder:spruce_leaves_edge",
         "dawnoftimebuilder:spruce_leaves_plate",
+        "dawnoftimebuilder:spruce_roof_support",
+
         "dawnoftimebuilder:reinforced_waxed_oak",
         "dawnoftimebuilder:sculpted_waxed_oak",
         "dawnoftimebuilder:sculpted_waxed_oak_stairs",
@@ -72,6 +74,8 @@
         "dawnoftimebuilder:spruce_boards_plate",
         "dawnoftimebuilder:spruce_boards_edge",
         "dawnoftimebuilder:spruce_boards_slab",
+        "dawnoftimebuilder:spruce_paper_door",
+        "dawnoftimebuilder:spruce_foundation",
 
         "dawnoftimebuilder:charred_spruce_beam",
         "dawnoftimebuilder:charred_spruce_door",

@@ -1,6 +1,8 @@
 {
   "replace": false,
   "values": [
-    "dawnoftimebuilder:paper_door"
+    "dawnoftimebuilder:paper_door",
+      "dawnoftimebuilder:spruce_paper_door"
+
   ]
 }
