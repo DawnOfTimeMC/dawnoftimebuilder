@@ -31,6 +31,10 @@ public enum CreativeInventoryCategories {
             DoTBBlocksRegistry.INSTANCE.THATCH_BAMBOO_PLATE.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.THATCH_BAMBOO_SLAB.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.THATCH_BAMBOO_EDGE.get().asItem(),
+
+            Blocks.GRAVEL.asItem(),
+            DoTBBlocksRegistry.INSTANCE.GRAVEL_SLAB.get().asItem(),
+
             Blocks.COBBLESTONE.asItem(),
             Blocks.COBBLESTONE_STAIRS.asItem(),
             DoTBBlocksRegistry.INSTANCE.COBBLESTONE_PLATE.get().asItem(),
@@ -44,8 +48,12 @@ public enum CreativeInventoryCategories {
             Blocks.STONE_SLAB.asItem(),
             DoTBBlocksRegistry.INSTANCE.STONE_EDGE.get().asItem(),
 
-            Blocks.GRAVEL.asItem(),
-            DoTBBlocksRegistry.INSTANCE.GRAVEL_SLAB.get().asItem(),
+            Blocks.STONE_BRICKS.asItem(),
+            Blocks.STONE_BRICK_STAIRS.asItem(),
+            DoTBBlocksRegistry.INSTANCE.STONE_BRICKS_PLATE.get().asItem(),
+            Blocks.STONE_BRICK_SLAB.asItem(),
+            DoTBBlocksRegistry.INSTANCE.STONE_BRICKS_EDGE.get().asItem(),
+            Blocks.STONE_BRICK_WALL.asItem(),
 
             Blocks.SAND.asItem(),
             DoTBBlocksRegistry.INSTANCE.SAND_SLAB.get().asItem(),
@@ -414,12 +422,7 @@ public enum CreativeInventoryCategories {
             DoTBBlocksRegistry.INSTANCE.STONE_BRICKS_MASONRY_SLAB.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.STONE_BRICKS_MASONRY_EDGE.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.STONE_BRICKS_MASONRY_WALL.get().asItem(),
-            Blocks.STONE_BRICKS.asItem(),
-            Blocks.STONE_BRICK_STAIRS.asItem(),
-            DoTBBlocksRegistry.INSTANCE.STONE_BRICKS_PLATE.get().asItem(),
-            Blocks.STONE_BRICK_SLAB.asItem(),
-            DoTBBlocksRegistry.INSTANCE.STONE_BRICKS_EDGE.get().asItem(),
-            Blocks.STONE_BRICK_WALL.asItem(),
+
             DoTBBlocksRegistry.INSTANCE.STONE_BRICKS_ARROWSLIT.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.STONE_BRICKS_MACHICOLATION.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.STONE_BRICKS_FIREPLACE.get().asItem(),
