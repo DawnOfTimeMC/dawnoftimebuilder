@@ -8,6 +8,8 @@
     "gui.dawnoftimebuilder.japanese": "Japanese",
     "gui.dawnoftimebuilder.pre_columbian": "Pre-Columbian",
     "gui.dawnoftimebuilder.roman": "Roman",
+    "gui.dawnoftimebuilder.chinese": "Chinese",
+
     "block.dawnoftimebuilder.rammed_dirt": "Rammed Dirt",
     "block.dawnoftimebuilder.rammed_dirt_stairs": "Rammed Dirt Stairs",
     "block.dawnoftimebuilder.rammed_dirt_plate": "Rammed Dirt Plate",
@@ -598,6 +600,7 @@
     "item.dawnoftimebuilder.persian_emblem": "Persian Emblem",
     "item.dawnoftimebuilder.french_emblem": "Baguette Emblem",
     "item.dawnoftimebuilder.precolumbian_emblem": "Pre Columbian Emblem",
+    "item.dawnoftimebuilder.chinese_emblem": "Chinese Emblem",
     "tooltip.dawnoftimebuilder.hold_key": "For more info, hold ",
     "tooltip.dawnoftimebuilder.shift": "SHIFT",
     "tooltip.dawnoftimebuilder.iron_portcullis": "Use a redstone impulse on a portcullis block to open it, and all adjacent portcullis blocks.",

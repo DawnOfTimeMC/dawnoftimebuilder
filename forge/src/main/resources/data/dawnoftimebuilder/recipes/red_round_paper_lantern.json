@@ -1,0 +1,26 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		" i ",
+		"IOI",
+		"oIo"
+	],
+	"key": {
+		"i": {
+			"item": "minecraft:stick"
+		},
+		"O": {
+			"item": "minecraft:torch"
+		},
+		"I": {
+			"item": "minecraft:paper"
+		},
+		"o": {
+			"item": "minecraft:yellow_dye"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:red_round_paper_lantern",
+		"count": 6
+	}
+}

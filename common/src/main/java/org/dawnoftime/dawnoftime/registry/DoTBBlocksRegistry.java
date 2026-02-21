@@ -595,7 +595,6 @@ public abstract class DoTBBlocksRegistry {
    public final Supplier<Block> WAXED_ACACIA_LOG_STRIPPED = register("waxed_acacia_log_stripped", () -> new RotatedPillarBlockDoT(Block.Properties.copy(Blocks.OAK_WOOD).strength(3.0F, 5.0F)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
    public final Supplier<Block> WAXED_ACACIA_FANCY_RAILING = register("waxed_acacia_fancy_railing", () -> new CharredSpruceFancyRailingBlock(Block.Properties.copy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_BLACK).strength(2.0F, 6.0F).noOcclusion()), BlockTags.MINEABLE_WITH_AXE);
    public Supplier<MixedRoofSupportBlock> WAXED_ACACIA_ROOF_SUPPORT;
-   public final Supplier<Block> WAXED_ACACIA_SQUARED_LATTICE = register("waxed_acacia_squared_lattice", () -> new LatticeBlock(Block.Properties.copy(Blocks.OAK_WOOD).noOcclusion()).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
 
    public final Supplier<Block> WAXED_ACACIA_PLANKS = register("waxed_acacia_planks", () -> new BlockDoT(Block.Properties.copy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_BLACK).strength(2.0F, 6.0F)).setBurnable(2, 3), BlockTags.MINEABLE_WITH_AXE);
    public final Supplier<Block> WAXED_ACACIA_EDGE = register("waxed_acacia_edge", () -> new EdgeBlock(Block.Properties.copy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_BLACK).strength(2.0F, 6.0F)).setBurnable(2, 3), BlockTags.MINEABLE_WITH_AXE);

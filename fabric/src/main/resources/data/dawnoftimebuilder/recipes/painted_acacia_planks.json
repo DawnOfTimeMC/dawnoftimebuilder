@@ -1,0 +1,18 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+		{
+			"item": "dawnoftimebuilder:waxed_acacia_planks"
+		},
+        {
+            "item": "minecraft:red_dye"
+        },
+        {
+            "item": "minecraft:black_dye"
+        }
+    ],
+	"result": {
+		"item": "dawnoftimebuilder:painted_acacia_planks",
+		"count": 4
+	}
+}

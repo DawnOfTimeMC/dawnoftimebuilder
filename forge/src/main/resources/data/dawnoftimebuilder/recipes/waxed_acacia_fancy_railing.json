@@ -1,0 +1,19 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"IiI",
+		"iIi"
+	],
+	"key": {
+		"I": {
+			"item": "dawnoftimebuilder:waxed_acacia_log_stripped"
+		},
+		"i": {
+			"item": "minecraft:stick"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:waxed_acacia_fancy_railing",
+		"count": 6
+	}
+}

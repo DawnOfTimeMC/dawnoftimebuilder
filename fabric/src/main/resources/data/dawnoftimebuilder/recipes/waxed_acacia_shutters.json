@@ -1,0 +1,20 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"iII",
+		" II",
+		"iII"
+	],
+	"key": {
+		"I": {
+			"item": "dawnoftimebuilder:waxed_acacia_planks"
+		},
+		"i": {
+			"item": "minecraft:stick"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:waxed_acacia_shutters",
+		"count": 4
+	}
+}
