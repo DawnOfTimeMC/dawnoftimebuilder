@@ -10,14 +10,15 @@ import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import static org.dawnoftime.dawnoftime.DoTBCommon.MOD_ID;
-
 public class SubTabButton extends Button {
-    private static final ResourceLocation TEXTURE = new ResourceLocation(MOD_ID, "textures/gui/social_icons.png");
+    private final ResourceLocation textureOn;
+    private final ResourceLocation textureOff;
     private boolean selected;
 
-    public SubTabButton(int x, int y, Component tooltip, OnPress pressable) {
+    public SubTabButton(int x, int y, ResourceLocation textureOn, ResourceLocation textureOff, Component tooltip, OnPress pressable) {
         super(x, y, 12, 12, Component.empty(), pressable, DEFAULT_NARRATION);
+        this.textureOn = textureOn;
+        this.textureOff = textureOff;
         this.setTooltip(Tooltip.create(tooltip));
         this.selected = false;
     }
@@ -34,13 +35,15 @@ public class SubTabButton extends Button {
     protected void renderWidget(@NotNull GuiGraphics pGuiGraphics, int pMouseX, int pMouseY, float pPartialTick) {
         PoseStack ps = pGuiGraphics.pose();
 
-        if ((this.isHovered() || this.selected) && this.active) {
+        if (this.isHovered() && this.active) {
             pGuiGraphics.setColor(0.7F, 0.7F, 0.7F, 1.0F);
         }
 
+        ResourceLocation texture = this.selected ? textureOn : textureOff;
+
         ps.pushPose();
         RenderSystem.enableBlend();
-        pGuiGraphics.blit(TEXTURE, this.getX() - 1, this.getY(), 28, this.active ? 0 : 12, 12, 12);
+        pGuiGraphics.blit(texture, this.getX() - 1, this.getY(), 0, 0, 12, 12, 12, 12);
         RenderSystem.disableBlend();
         ps.popPose();
 

@@ -235,9 +235,12 @@ public abstract class CreativeInventoryMixin extends EffectRenderingInventoryScr
         for (int i = 0; i < count; i++) {
             final int subTabIndex = i;
             int x = this.leftPos + 156 - (count - i) * 14;
+            CreativeInventoryCategories.SubTab subTab = subTabs.get(i);
             SubTabButton btn = new SubTabButton(
                     x, y,
-                    subTabs.get(i).getTooltip(),
+                    subTab.textureOn(),
+                    subTab.textureOff(),
+                    subTab.getTooltip(),
                     button -> {
                         dOTBuilder$subTabButtons.forEach(b -> b.setSelected(false));
                         ((SubTabButton) button).setSelected(true);
