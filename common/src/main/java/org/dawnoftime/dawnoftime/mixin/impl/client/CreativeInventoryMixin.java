@@ -17,6 +17,7 @@ import org.dawnoftime.dawnoftime.client.gui.elements.buttons.CategoryButton;
 import org.dawnoftime.dawnoftime.client.gui.elements.buttons.GroupButton;
 import org.dawnoftime.dawnoftime.client.gui.elements.buttons.PlaylistButton;
 import org.dawnoftime.dawnoftime.client.gui.elements.buttons.SocialsButton;
+import org.dawnoftime.dawnoftime.client.gui.elements.buttons.SubTabButton;
 import org.dawnoftime.dawnoftime.mixin.api.CreativeScreen;
 import org.dawnoftime.dawnoftime.registry.DoTBCreativeModeTabsRegistry;
 import org.spongepowered.asm.mixin.Debug;
@@ -57,7 +58,11 @@ public abstract class CreativeInventoryMixin extends EffectRenderingInventoryScr
     @Unique
     private Button dOT$youtubePlaylist;
     @Unique
+    private List<SubTabButton> dOTBuilder$subTabButtons;
+    @Unique
     private static int dOTBuilder$selectedCategoryID = 0;
+    @Unique
+    private static int dOTBuilder$selectedSubTabID = 0;
     @Unique
     private static int dOTBuilder$page = 0;
     @Unique
@@ -103,6 +108,9 @@ public abstract class CreativeInventoryMixin extends EffectRenderingInventoryScr
         this.addRenderableWidget(this.dOT$youtubePlaylist = new PlaylistButton(this.leftPos + 156, this.topPos + 4, button -> dOTBuilder$openLink(CreativeInventoryCategories.values()[dOTBuilder$selectedCategoryID].getYoutubePlaylist())));
         this.dOT$youtubePlaylist.setTooltip(Tooltip.create(Component.translatable("tooltip." + MOD_ID + ".youtube_playlist")));
 
+        this.dOTBuilder$subTabButtons = new ArrayList<>();
+        this.dOTBuilder$buildSubTabButtons((CreativeModeInventoryScreen) (Object) this);
+
         for(int i = 0; i < 4; i++) {
             this.dOTBuilder$buttons.add(new CategoryButton(this.leftPos - 27, this.topPos + 30 * i, i, button -> {
                 CategoryButton categoryButton = (CategoryButton) button;
@@ -110,9 +118,11 @@ public abstract class CreativeInventoryMixin extends EffectRenderingInventoryScr
                     dOTBuilder$buttons.get(dOTBuilder$selectedCategoryID % 4).setSelected(false);
                     categoryButton.setSelected(true);
                     dOTBuilder$selectedCategoryID = categoryButton.getCategoryID();
+                    dOTBuilder$selectedSubTabID = 0;
                     Screen screen1 = Minecraft.getInstance().screen;
-                    if(screen1 instanceof CreativeModeInventoryScreen) {
-                        this.dOTBuilder$updateItems((CreativeModeInventoryScreen) screen1);
+                    if(screen1 instanceof CreativeModeInventoryScreen screen2) {
+                        this.dOTBuilder$buildSubTabButtons(screen2);
+                        this.dOTBuilder$updateItems(screen2);
                     }
                 }
             }, this));
@@ -157,6 +167,8 @@ public abstract class CreativeInventoryMixin extends EffectRenderingInventoryScr
         this.dOT$youtubePlaylist.visible = val;
         this.dOT$youtubePlaylist.active = CreativeInventoryCategories.values()[dOTBuilder$selectedCategoryID].getYoutubePlaylist() != null;
         this.dOTBuilder$buttons.forEach(button -> button.visible = val);
+        boolean hasSubTabs = CreativeInventoryCategories.values()[dOTBuilder$selectedCategoryID].hasSubTabs();
+        this.dOTBuilder$subTabButtons.forEach(button -> button.visible = val && hasSubTabs);
     }
 
     @Inject(method = "selectTab", at = @At(value = "HEAD"), cancellable = false)
@@ -204,8 +216,39 @@ public abstract class CreativeInventoryMixin extends EffectRenderingInventoryScr
         this.mouseScrolled(0, 0, Float.MAX_VALUE);
         CreativeModeInventoryScreen.ItemPickerMenu container = screen.getMenu();
         container.items.clear();
-        CreativeInventoryCategories.values()[dOTBuilder$selectedCategoryID].getItems().forEach(item -> container.items.add(new ItemStack(item)));
+        CreativeInventoryCategories.values()[dOTBuilder$selectedCategoryID].getSubTabItems(dOTBuilder$selectedSubTabID).forEach(item -> container.items.add(new ItemStack(item)));
         container.scrollTo(0);
+    }
+
+    @Unique
+    private void dOTBuilder$buildSubTabButtons(CreativeModeInventoryScreen screen) {
+        this.dOTBuilder$subTabButtons.forEach(this::removeWidget);
+        this.dOTBuilder$subTabButtons.clear();
+
+        CreativeInventoryCategories category = CreativeInventoryCategories.values()[dOTBuilder$selectedCategoryID];
+        List<CreativeInventoryCategories.SubTab> subTabs = category.getSubTabs();
+        if (subTabs.isEmpty()) return;
+
+        int count = subTabs.size();
+        int y = this.topPos + 4;
+
+        for (int i = 0; i < count; i++) {
+            final int subTabIndex = i;
+            int x = this.leftPos + 156 - (count - i) * 14;
+            SubTabButton btn = new SubTabButton(
+                    x, y,
+                    subTabs.get(i).getTooltip(),
+                    button -> {
+                        dOTBuilder$subTabButtons.forEach(b -> b.setSelected(false));
+                        ((SubTabButton) button).setSelected(true);
+                        dOTBuilder$selectedSubTabID = subTabIndex;
+                        this.dOTBuilder$updateItems(screen);
+                    }
+            );
+            btn.setSelected(i == dOTBuilder$selectedSubTabID);
+            this.dOTBuilder$subTabButtons.add(btn);
+            this.addRenderableWidget(btn);
+        }
     }
 
     @Unique
