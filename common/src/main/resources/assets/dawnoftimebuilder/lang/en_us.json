@@ -613,5 +613,9 @@
     "tooltip.dawnoftimebuilder.fireplace": "Can be ignited with a lighter, fireball or flaming arrow, it can be extinguished with a lighter, snowball, splash or normal water potion",
     "tooltip.dawnoftimebuilder.limestone_gargoyle": "In Creative, use a lighter on this block to stabilise its flow of drops. Then, you can use RIGHT-CLICK and SHIFT + RIGHT-CLICK to control the flow.",
     "tooltip.dawnoftimebuilder.moraq_mosaic_column": "Place a block with your cursor on the left or the right side to change the direction of the pattern.",
-    "tooltip.dawnoftimebuilder.youtube_playlist": "Learn how to build with the blocks!"
+    "tooltip.dawnoftimebuilder.youtube_playlist": "Learn how to build with the blocks!",
+    "tooltip.dawnoftimebuilder.subtab.building": "Building",
+    "tooltip.dawnoftimebuilder.subtab.wood": "Wood",
+    "tooltip.dawnoftimebuilder.subtab.colored": "Colored",
+    "tooltip.dawnoftimebuilder.subtab.furniture": "Furniture"
 }
