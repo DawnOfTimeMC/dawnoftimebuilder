@@ -617,5 +617,7 @@
     "tooltip.dawnoftimebuilder.subtab.building": "Building",
     "tooltip.dawnoftimebuilder.subtab.wood": "Wood",
     "tooltip.dawnoftimebuilder.subtab.colored": "Colored",
-    "tooltip.dawnoftimebuilder.subtab.furniture": "Furniture"
+    "tooltip.dawnoftimebuilder.subtab.furniture": "Furniture",
+    "tooltip.dawnoftimebuilder.subtab.puuc": "Puuc set",
+    "tooltip.dawnoftimebuilder.subtab.plastered": "Plastered set"
 }
