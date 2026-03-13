@@ -442,7 +442,7 @@ public enum CreativeInventoryCategories {
             DoTBBlocksRegistry.INSTANCE.OCHRE_ROOF_TILES_WALL.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.TERRACOTTA_WALL.get().asItem(),
             Blocks.BIRCH_LEAVES.asItem(),
-            Blocks.CHAIN.asItem(),
+            Blocks.IRON_CHAIN.asItem(),
             DoTBBlocksRegistry.INSTANCE.IRON_FANCY_LANTERN.get().asItem(),
             Blocks.LANTERN.asItem(),
             DoTBItemsRegistry.INSTANCE.UNFIRED_CLAY_TILE.get(),

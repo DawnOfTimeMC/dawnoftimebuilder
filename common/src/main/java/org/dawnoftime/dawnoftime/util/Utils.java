@@ -1,7 +1,7 @@
 package org.dawnoftime.dawnoftime.util;
 
 import net.minecraft.ChatFormatting;
-import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
@@ -179,7 +179,7 @@ public class Utils {
             final boolean isActivated = activation == 1;
             worldIn.setBlock(pos, stateIn.setValue(BlockStateProperties.LIT, isActivated), 10);
             worldIn.playSound(null, pos, isActivated ? SoundEvents.FIRE_AMBIENT : SoundEvents.FIRE_EXTINGUISH, SoundSource.BLOCKS, 1.0F, 1.0F);
-            if (worldIn.isClientSide) {
+            if (worldIn.isClientSide()) {
                 if (!isActivated) {
                     for (int i = 0; i < worldIn.random.nextInt(4) + 2; ++i) {
                         worldIn.addParticle(ParticleTypes.CLOUD, pos.getX() + 0.5F, pos.getY() + 0.5F, pos.getZ() + 0.5F, worldIn.random.nextFloat() / 4.0F, 2.5E-5D, worldIn.random.nextFloat() / 4.0F);
@@ -216,7 +216,7 @@ public class Utils {
     }
 
     public static void addTooltip(final Consumer<Component> tooltip, final String... tooltipNames) {
-        if (Screen.hasShiftDown()) {
+        if (Minecraft.getInstance().hasShiftDown()) {
             for (final String tooltipName : tooltipNames) {
                 tooltip.accept(Component.translatable("tooltip." + DoTBCommon.MOD_ID + "." + tooltipName).withStyle(ChatFormatting.GRAY));
             }

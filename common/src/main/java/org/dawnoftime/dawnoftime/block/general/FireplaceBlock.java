@@ -121,11 +121,11 @@ public class FireplaceBlock extends WaterloggedBlock {
     }
 
     @Override
-    protected void entityInside(BlockState state, Level world, BlockPos pos, Entity entityIn, InsideBlockEffectApplier effectApplier) {
+    protected void entityInside(BlockState state, Level world, BlockPos pos, Entity entityIn, InsideBlockEffectApplier effectApplier, boolean intersects) {
         if (!entityIn.fireImmune() && state.getValue(FireplaceBlock.LIT) && entityIn instanceof LivingEntity && !(EnchantmentHelper.getEnchantmentLevel(entityIn.level().registryAccess().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.FROST_WALKER), (LivingEntity) entityIn) > 0)) {
             entityIn.hurt(entityIn.damageSources().inFire(), 1.0F);
         }
-        super.entityInside(state, world, pos, entityIn, effectApplier);
+        super.entityInside(state, world, pos, entityIn, effectApplier, intersects);
     }
 
     @Nullable

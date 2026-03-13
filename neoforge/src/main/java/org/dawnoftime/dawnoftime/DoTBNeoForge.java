@@ -12,7 +12,7 @@ public class DoTBNeoForge {
 
         RegistryImpls.init(modEventBus);
 
-        if (FMLEnvironment.dist.isClient())
+        if (FMLEnvironment.getDist().isClient())
             modEventBus.register(DoTBNeoForgeClient.class);
 
         modEventBus.register(DataGenerators.class);

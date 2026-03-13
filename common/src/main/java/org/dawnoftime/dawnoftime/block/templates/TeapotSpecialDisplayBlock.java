@@ -21,7 +21,7 @@ public class TeapotSpecialDisplayBlock extends SpecialDisplayBlock {
 
     @Override
     public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource rand) {
-        if (!level.isClientSide) return;
+        if (!level.isClientSide()) return;
 
         BlockState state1 = level.getBlockState(pos.below());
         if (state1.getBlock() != DoTBBlocksRegistry.INSTANCE.IRORI_FIREPLACE.get()) return;
