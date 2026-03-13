@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "item": "dawnoftimebuilder:puuc_limestone"
+      "item": "dawnoftimebuilder:white_painted_puuc_limestone"
     },
     "title": {"translate": "advancement.dawnoftimebuilder.precolumbian.quetzalcoatl.title"},
     "description": {"translate": "advancement.dawnoftimebuilder.precolumbian.quetzalcoatl.description"},
@@ -12,10 +12,10 @@
   },
   "parent": "dawnoftimebuilder:precolumbian/root",
   "criteria": {
-    "get_limestone": {
+    "get_painted_limestone": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
-        "items": [{"items": ["dawnoftimebuilder:puuc_limestone"]}]
+        "items": [{"items": ["dawnoftimebuilder:white_painted_puuc_limestone"]}]
       }
     }
   }

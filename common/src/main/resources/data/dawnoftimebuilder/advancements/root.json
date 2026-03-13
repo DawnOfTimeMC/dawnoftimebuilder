@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "item": "dawnoftimebuilder:dawn_of_time"
+      "item": "dawnoftimebuilder:white_painted_stone"
     },
     "title": {"translate": "advancement.dawnoftimebuilder.root.title"},
     "description": {"translate": "advancement.dawnoftimebuilder.root.description"},
@@ -12,37 +12,37 @@
     "hidden": false
   },
   "criteria": {
-    "roman_emblem": {
+    "roman": {
       "trigger": "minecraft:inventory_changed",
-      "conditions": {"items": [{"items": ["dawnoftimebuilder:roman_emblem"]}]}
+      "conditions": {"items": [{"items": ["dawnoftimebuilder:marble_statue_mars"], "count": {"min": 10}}]}
     },
-    "japanese_emblem": {
+    "japanese": {
       "trigger": "minecraft:inventory_changed",
-      "conditions": {"items": [{"items": ["dawnoftimebuilder:japanese_emblem"]}]}
+      "conditions": {"items": [{"items": ["dawnoftimebuilder:sake_bottle"], "count": {"min": 64}}]}
     },
-    "german_emblem": {
+    "german": {
       "trigger": "minecraft:inventory_changed",
-      "conditions": {"items": [{"items": ["dawnoftimebuilder:german_emblem"]}]}
+      "conditions": {"items": [{"items": ["dawnoftimebuilder:lattice_stone_bricks_window"]}]}
     },
-    "french_emblem": {
+    "french": {
       "trigger": "minecraft:inventory_changed",
-      "conditions": {"items": [{"items": ["dawnoftimebuilder:french_emblem"]}]}
+      "conditions": {"items": [{"items": ["dawnoftimebuilder:limestone_gargoyle"]}]}
     },
-    "persian_emblem": {
+    "persian": {
       "trigger": "minecraft:inventory_changed",
-      "conditions": {"items": [{"items": ["dawnoftimebuilder:persian_emblem"]}]}
+      "conditions": {"items": [{"items": ["dawnoftimebuilder:persian_carpet_red"]}]}
     },
-    "precolumbian_emblem": {
+    "precolumbian": {
       "trigger": "minecraft:inventory_changed",
-      "conditions": {"items": [{"items": ["dawnoftimebuilder:precolumbian_emblem"]}]}
+      "conditions": {"items": [{"items": ["dawnoftimebuilder:white_painted_puuc_limestone"]}]}
     },
-    "chinese_emblem": {
+    "chinese": {
       "trigger": "minecraft:inventory_changed",
-      "conditions": {"items": [{"items": ["dawnoftimebuilder:chinese_emblem"]}]}
+      "conditions": {"items": [{"items": ["dawnoftimebuilder:slate_bricks_wall"]}]}
     }
   },
   "requirements": [
-    ["roman_emblem"], ["japanese_emblem"], ["german_emblem"], ["french_emblem"],
-    ["persian_emblem"], ["precolumbian_emblem"], ["chinese_emblem"]
+    ["roman"], ["japanese"], ["german"], ["french"],
+    ["persian"], ["precolumbian"], ["chinese"]
   ]
 }

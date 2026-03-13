@@ -10,7 +10,7 @@
     "announce_to_chat": false,
     "hidden": false
   },
-  "parent": "dawnoftimebuilder:root",
+  "parent": "dawnoftimebuilder:persian_branch",
   "criteria": {
     "get_block": {
       "trigger": "minecraft:inventory_changed",

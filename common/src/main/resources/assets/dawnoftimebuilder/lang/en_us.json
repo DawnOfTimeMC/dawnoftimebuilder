@@ -679,5 +679,26 @@
     "advancement.dawnoftimebuilder.chinese.root.description": "The red lanterns light your way.",
 
     "advancement.dawnoftimebuilder.chinese.the_great_wall.title": "The Great Wall",
-    "advancement.dawnoftimebuilder.chinese.the_great_wall.description": "Bricks upon bricks. History doesn't build itself."
+    "advancement.dawnoftimebuilder.chinese.the_great_wall.description": "Bricks upon bricks. History doesn't build itself.",
+
+    "advancement.dawnoftimebuilder.roman_branch.title": "Roman Heritage",
+    "advancement.dawnoftimebuilder.roman_branch.description": "Complete all Roman achievements.",
+
+    "advancement.dawnoftimebuilder.japanese_branch.title": "Way of Japan",
+    "advancement.dawnoftimebuilder.japanese_branch.description": "Complete all Japanese achievements.",
+
+    "advancement.dawnoftimebuilder.german_branch.title": "Germanic Path",
+    "advancement.dawnoftimebuilder.german_branch.description": "Complete all German achievements.",
+
+    "advancement.dawnoftimebuilder.french_branch.title": "French Elegance",
+    "advancement.dawnoftimebuilder.french_branch.description": "Complete all French achievements.",
+
+    "advancement.dawnoftimebuilder.persian_branch.title": "Persian Road",
+    "advancement.dawnoftimebuilder.persian_branch.description": "Complete all Persian achievements.",
+
+    "advancement.dawnoftimebuilder.precolumbian_branch.title": "Jungle Explorer",
+    "advancement.dawnoftimebuilder.precolumbian_branch.description": "Complete all Pre-Columbian achievements.",
+
+    "advancement.dawnoftimebuilder.chinese_branch.title": "Dragon's Path",
+    "advancement.dawnoftimebuilder.chinese_branch.description": "Complete all Chinese achievements."
 }
