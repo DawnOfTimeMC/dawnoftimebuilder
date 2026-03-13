@@ -619,5 +619,74 @@
     "tooltip.dawnoftimebuilder.subtab.colored": "Colored",
     "tooltip.dawnoftimebuilder.subtab.furniture": "Furniture",
     "tooltip.dawnoftimebuilder.subtab.puuc": "Puuc set",
-    "tooltip.dawnoftimebuilder.subtab.plastered": "Plastered set"
+    "tooltip.dawnoftimebuilder.subtab.plastered": "Plastered set",
+
+    "advancement.dawnoftimebuilder.root.title": "A New Dawn",
+    "advancement.dawnoftimebuilder.root.description": "Your journey through the ages has begun.",
+
+    "advancement.dawnoftimebuilder.dawn_of_civilizations.title": "Dawn of Civilizations",
+    "advancement.dawnoftimebuilder.dawn_of_civilizations.description": "From East to West, through every age.",
+
+    "advancement.dawnoftimebuilder.general.have_a_seat.title": "Have a Seat",
+    "advancement.dawnoftimebuilder.general.have_a_seat.description": "Comfort is timeless.",
+
+    "advancement.dawnoftimebuilder.general.big_picture.title": "Big Picture",
+    "advancement.dawnoftimebuilder.general.big_picture.description": "Every object deserves its spotlight.",
+
+    "advancement.dawnoftimebuilder.general.tile_lover.title": "Tile Lover",
+    "advancement.dawnoftimebuilder.general.tile_lover.description": "The floor is your canvas.",
+
+    "advancement.dawnoftimebuilder.general.mosaic_lover.title": "Mosaic Lover",
+    "advancement.dawnoftimebuilder.general.mosaic_lover.description": "One piece at a time.",
+
+    "advancement.dawnoftimebuilder.roman.root.title": "Roma Invicta",
+    "advancement.dawnoftimebuilder.roman.root.description": "Ave, traveler of ancient stones.",
+
+    "advancement.dawnoftimebuilder.roman.glory_to_rome.title": "Glory to Rome!",
+    "advancement.dawnoftimebuilder.roman.glory_to_rome.description": "Carrying 10 statues of Mars in your pockets explains the posture.",
+
+    "advancement.dawnoftimebuilder.roman.make_it_shine.title": "Make it Shine",
+    "advancement.dawnoftimebuilder.roman.make_it_shine.description": "Marble, marble everywhere.",
+
+    "advancement.dawnoftimebuilder.japanese.root.title": "Land of the Rising Block",
+    "advancement.dawnoftimebuilder.japanese.root.description": "The cherry blossoms await.",
+
+    "advancement.dawnoftimebuilder.japanese.tea_party.title": "Tea Party",
+    "advancement.dawnoftimebuilder.japanese.tea_party.description": "The kettle is on.",
+
+    "advancement.dawnoftimebuilder.japanese.sake.title": "What time is it? Hmmp..",
+    "advancement.dawnoftimebuilder.japanese.sake.description": "A full stack of sake bottles to forget your own name.",
+
+    "advancement.dawnoftimebuilder.japanese.silence.title": "The Sound of Silence",
+    "advancement.dawnoftimebuilder.japanese.silence.description": "Some things are better left unsaid.",
+
+    "advancement.dawnoftimebuilder.german.root.title": "Das Schloss",
+    "advancement.dawnoftimebuilder.german.root.description": "The castle walls rise before you.",
+
+    "advancement.dawnoftimebuilder.german.you_shall_not_pass.title": "You Shall Not Pass!",
+    "advancement.dawnoftimebuilder.german.you_shall_not_pass.description": "An impenetrable fortress... or close enough.",
+
+    "advancement.dawnoftimebuilder.french.root.title": "Vive la France!",
+    "advancement.dawnoftimebuilder.french.root.description": "Liberté, égalité, joli bâtiment.",
+
+    "advancement.dawnoftimebuilder.french.baguette.title": "Baguette",
+    "advancement.dawnoftimebuilder.french.baguette.description": "Your first French block. C'est le début de quelque chose de beau.",
+
+    "advancement.dawnoftimebuilder.persian.root.title": "Into the Desert",
+    "advancement.dawnoftimebuilder.persian.root.description": "The scent of spices fills the air.",
+
+    "advancement.dawnoftimebuilder.persian.block_of_persia.title": "Block of Persia",
+    "advancement.dawnoftimebuilder.persian.block_of_persia.description": "A thousand years of history, one block at a time.",
+
+    "advancement.dawnoftimebuilder.precolumbian.root.title": "Lost in the Jungle",
+    "advancement.dawnoftimebuilder.precolumbian.root.description": "The temples rise above the canopy.",
+
+    "advancement.dawnoftimebuilder.precolumbian.quetzalcoatl.title": "Quetzalcoatl Approved",
+    "advancement.dawnoftimebuilder.precolumbian.quetzalcoatl.description": "The feathered serpent nods in approval.",
+
+    "advancement.dawnoftimebuilder.chinese.root.title": "The Middle Kingdom",
+    "advancement.dawnoftimebuilder.chinese.root.description": "The red lanterns light your way.",
+
+    "advancement.dawnoftimebuilder.chinese.the_great_wall.title": "The Great Wall",
+    "advancement.dawnoftimebuilder.chinese.the_great_wall.description": "Bricks upon bricks. History doesn't build itself."
 }

@@ -1,0 +1,27 @@
+{
+  "display": {
+    "icon": {
+      "item": "dawnoftimebuilder:sake_bottle"
+    },
+    "title": {"translate": "advancement.dawnoftimebuilder.japanese.sake.title"},
+    "description": {"translate": "advancement.dawnoftimebuilder.japanese.sake.description"},
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "dawnoftimebuilder:japanese/root",
+  "criteria": {
+    "get_sake": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": ["dawnoftimebuilder:sake_bottle"],
+            "count": {"min": 64}
+          }
+        ]
+      }
+    }
+  }
+}

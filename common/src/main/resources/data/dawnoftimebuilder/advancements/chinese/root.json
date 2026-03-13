@@ -1,0 +1,22 @@
+{
+  "display": {
+    "icon": {
+      "item": "dawnoftimebuilder:chinese_emblem"
+    },
+    "title": {"translate": "advancement.dawnoftimebuilder.chinese.root.title"},
+    "description": {"translate": "advancement.dawnoftimebuilder.chinese.root.description"},
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "parent": "dawnoftimebuilder:root",
+  "criteria": {
+    "get_emblem": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [{"items": ["dawnoftimebuilder:chinese_emblem"]}]
+      }
+    }
+  }
+}

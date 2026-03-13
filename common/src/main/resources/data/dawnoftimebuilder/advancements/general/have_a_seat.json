@@ -1,0 +1,24 @@
+{
+  "display": {
+    "icon": {
+      "item": "dawnoftimebuilder:waxed_oak_chair"
+    },
+    "title": {"translate": "advancement.dawnoftimebuilder.general.have_a_seat.title"},
+    "description": {"translate": "advancement.dawnoftimebuilder.general.have_a_seat.description"},
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "parent": "dawnoftimebuilder:root",
+  "criteria": {
+    "get_chair": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {"items": ["dawnoftimebuilder:waxed_oak_chair"]}
+        ]
+      }
+    }
+  }
+}

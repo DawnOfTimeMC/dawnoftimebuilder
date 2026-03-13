@@ -1,0 +1,24 @@
+{
+  "display": {
+    "icon": {
+      "item": "dawnoftimebuilder:dawn_of_time"
+    },
+    "title": {"translate": "advancement.dawnoftimebuilder.root.title"},
+    "description": {"translate": "advancement.dawnoftimebuilder.root.description"},
+    "background": "minecraft:textures/gui/advancements/backgrounds/stone.png",
+    "frame": "task",
+    "show_toast": false,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "any_dot_item": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {"items": ["dawnoftimebuilder:dawn_of_time"]}
+        ]
+      }
+    }
+  }
+}
