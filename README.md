@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://i.imgur.com/JwshLC5.gif" alt="Dawn of Time Logo" width="64"/>
+<img src="https://i.imgur.com/sfddZX4.png" alt="Dawn of Time Logo" width="64"/>
 
 # Dawn of Time
 
