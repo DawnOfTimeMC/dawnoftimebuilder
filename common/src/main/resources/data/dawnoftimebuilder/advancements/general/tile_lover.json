@@ -10,7 +10,7 @@
     "announce_to_chat": false,
     "hidden": false
   },
-  "parent": "dawnoftimebuilder:root",
+  "parent": "dawnoftimebuilder:general/have_a_seat",
   "criteria": {
     "clay_tile_white": {
       "trigger": "minecraft:inventory_changed",

@@ -6,19 +6,43 @@
     "title": {"translate": "advancement.dawnoftimebuilder.root.title"},
     "description": {"translate": "advancement.dawnoftimebuilder.root.description"},
     "background": "minecraft:textures/gui/advancements/backgrounds/stone.png",
-    "frame": "task",
-    "show_toast": false,
-    "announce_to_chat": false,
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
     "hidden": false
   },
   "criteria": {
-    "any_dot_item": {
+    "roman_emblem": {
       "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {"items": ["dawnoftimebuilder:dawn_of_time"]}
-        ]
-      }
+      "conditions": {"items": [{"items": ["dawnoftimebuilder:roman_emblem"]}]}
+    },
+    "japanese_emblem": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {"items": [{"items": ["dawnoftimebuilder:japanese_emblem"]}]}
+    },
+    "german_emblem": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {"items": [{"items": ["dawnoftimebuilder:german_emblem"]}]}
+    },
+    "french_emblem": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {"items": [{"items": ["dawnoftimebuilder:french_emblem"]}]}
+    },
+    "persian_emblem": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {"items": [{"items": ["dawnoftimebuilder:persian_emblem"]}]}
+    },
+    "precolumbian_emblem": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {"items": [{"items": ["dawnoftimebuilder:precolumbian_emblem"]}]}
+    },
+    "chinese_emblem": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {"items": [{"items": ["dawnoftimebuilder:chinese_emblem"]}]}
     }
-  }
+  },
+  "requirements": [
+    ["roman_emblem"], ["japanese_emblem"], ["german_emblem"], ["french_emblem"],
+    ["persian_emblem"], ["precolumbian_emblem"], ["chinese_emblem"]
+  ]
 }

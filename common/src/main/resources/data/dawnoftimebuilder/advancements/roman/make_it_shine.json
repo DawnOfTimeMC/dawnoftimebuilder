@@ -10,7 +10,7 @@
     "announce_to_chat": false,
     "hidden": false
   },
-  "parent": "dawnoftimebuilder:roman/root",
+  "parent": "dawnoftimebuilder:roman/glory_to_rome",
   "criteria": {
     "marble": {
       "trigger": "minecraft:inventory_changed",

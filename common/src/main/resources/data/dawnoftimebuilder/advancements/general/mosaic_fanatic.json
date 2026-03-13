@@ -3,8 +3,8 @@
     "icon": {
       "item": "dawnoftimebuilder:moraq_mosaic_geometric"
     },
-    "title": {"translate": "advancement.dawnoftimebuilder.general.mosaic_lover.title"},
-    "description": {"translate": "advancement.dawnoftimebuilder.general.mosaic_lover.description"},
+    "title": {"translate": "advancement.dawnoftimebuilder.general.mosaic_fanatic.title"},
+    "description": {"translate": "advancement.dawnoftimebuilder.general.mosaic_fanatic.description"},
     "frame": "goal",
     "show_toast": true,
     "announce_to_chat": false,

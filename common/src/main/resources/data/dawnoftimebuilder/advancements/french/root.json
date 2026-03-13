@@ -12,10 +12,10 @@
   },
   "parent": "dawnoftimebuilder:root",
   "criteria": {
-    "get_emblem": {
+    "get_block": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
-        "items": [{"items": ["dawnoftimebuilder:french_emblem"]}]
+        "items": [{"items": ["dawnoftimebuilder:cobbled_limestone"]}]
       }
     }
   }

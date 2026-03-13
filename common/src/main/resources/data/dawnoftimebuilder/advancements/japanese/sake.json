@@ -10,7 +10,7 @@
     "announce_to_chat": true,
     "hidden": false
   },
-  "parent": "dawnoftimebuilder:japanese/root",
+  "parent": "dawnoftimebuilder:japanese/tea_party",
   "criteria": {
     "get_sake": {
       "trigger": "minecraft:inventory_changed",
