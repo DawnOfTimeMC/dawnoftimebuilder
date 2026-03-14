@@ -1,0 +1,22 @@
+{
+  "display": {
+    "icon": {
+      "item": "dawnoftimebuilder:japanese_emblem"
+    },
+    "title": {"translate": "advancement.dawnoftimebuilder.japanese.root.title"},
+    "description": {"translate": "advancement.dawnoftimebuilder.japanese.root.description"},
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "parent": "dawnoftimebuilder:japanese_branch",
+  "criteria": {
+    "get_block": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [{"items": ["dawnoftimebuilder:red_paper_lantern"]}]
+      }
+    }
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "display": {
+    "icon": {
+      "item": "dawnoftimebuilder:iron_portcullis"
+    },
+    "title": {"translate": "advancement.dawnoftimebuilder.german.you_shall_not_pass.title"},
+    "description": {"translate": "advancement.dawnoftimebuilder.german.you_shall_not_pass.description"},
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "parent": "dawnoftimebuilder:german/root",
+  "criteria": {
+    "stone_bricks_arrowslit": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {"items": [{"items": ["dawnoftimebuilder:stone_bricks_arrowslit"]}]}
+    },
+    "stone_bricks_machicolation": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {"items": [{"items": ["dawnoftimebuilder:stone_bricks_machicolation"]}]}
+    },
+    "iron_portcullis": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {"items": [{"items": ["dawnoftimebuilder:iron_portcullis"]}]}
+    },
+    "stone_bricks_masonry": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {"items": [{"items": ["dawnoftimebuilder:stone_bricks_masonry"]}]}
+    },
+    "stone_bricks_masonry_edge": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {"items": [{"items": ["dawnoftimebuilder:stone_bricks_masonry_edge"]}]}
+    },
+    "stone_bricks_masonry_plate": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {"items": [{"items": ["dawnoftimebuilder:stone_bricks_masonry_plate"]}]}
+    },
+    "stone_bricks_masonry_slab": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {"items": [{"items": ["dawnoftimebuilder:stone_bricks_masonry_slab"]}]}
+    },
+    "stone_bricks_masonry_stairs": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {"items": [{"items": ["dawnoftimebuilder:stone_bricks_masonry_stairs"]}]}
+    },
+    "stone_bricks_masonry_wall": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {"items": [{"items": ["dawnoftimebuilder:stone_bricks_masonry_wall"]}]}
+    },
+    "lattice_stone_bricks_window": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {"items": [{"items": ["dawnoftimebuilder:lattice_stone_bricks_window"]}]}
+    }
+  },
+  "requirements": [
+    ["stone_bricks_arrowslit"], ["stone_bricks_machicolation"], ["iron_portcullis"],
+    ["stone_bricks_masonry"], ["stone_bricks_masonry_edge"], ["stone_bricks_masonry_plate"],
+    ["stone_bricks_masonry_slab"], ["stone_bricks_masonry_stairs"], ["stone_bricks_masonry_wall"],
+    ["lattice_stone_bricks_window"]
+  ]
+}

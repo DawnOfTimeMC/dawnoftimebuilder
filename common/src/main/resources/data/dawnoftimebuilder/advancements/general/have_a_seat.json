@@ -1,0 +1,44 @@
+{
+  "display": {
+    "icon": {
+      "item": "dawnoftimebuilder:waxed_oak_chair"
+    },
+    "title": {"translate": "advancement.dawnoftimebuilder.general.have_a_seat.title"},
+    "description": {"translate": "advancement.dawnoftimebuilder.general.have_a_seat.description"},
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "parent": "dawnoftimebuilder:root",
+  "criteria": {
+    "waxed_oak_chair": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {"items": [{"items": ["dawnoftimebuilder:waxed_oak_chair"]}]}
+    },
+    "spruce_legless_chair": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {"items": [{"items": ["dawnoftimebuilder:spruce_legless_chair"]}]}
+    },
+    "white_cushion": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {"items": [{"items": ["dawnoftimebuilder:white_cushion"]}]}
+    },
+    "birch_couch": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {"items": [{"items": ["dawnoftimebuilder:birch_couch"]}]}
+    },
+    "waxed_oak_table": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {"items": [{"items": ["dawnoftimebuilder:waxed_oak_table"]}]}
+    },
+    "spruce_low_table": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {"items": [{"items": ["dawnoftimebuilder:spruce_low_table"]}]}
+    }
+  },
+  "requirements": [
+    ["waxed_oak_chair"], ["spruce_legless_chair"], ["white_cushion"],
+    ["birch_couch"], ["waxed_oak_table"], ["spruce_low_table"]
+  ]
+}

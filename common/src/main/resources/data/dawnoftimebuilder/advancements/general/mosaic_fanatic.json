@@ -1,0 +1,66 @@
+{
+  "display": {
+    "icon": {
+      "item": "dawnoftimebuilder:moraq_mosaic_geometric"
+    },
+    "title": {"translate": "advancement.dawnoftimebuilder.general.mosaic_fanatic.title"},
+    "description": {"translate": "advancement.dawnoftimebuilder.general.mosaic_fanatic.description"},
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "parent": "dawnoftimebuilder:general/tile_lover",
+  "criteria": {
+    "moraq_mosaic_border": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {"items": [{"items": ["dawnoftimebuilder:moraq_mosaic_border"]}]}
+    },
+    "moraq_mosaic_column": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {"items": [{"items": ["dawnoftimebuilder:moraq_mosaic_column"]}]}
+    },
+    "moraq_mosaic_delicate": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {"items": [{"items": ["dawnoftimebuilder:moraq_mosaic_delicate"]}]}
+    },
+    "moraq_mosaic_geometric": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {"items": [{"items": ["dawnoftimebuilder:moraq_mosaic_geometric"]}]}
+    },
+    "moraq_mosaic_pattern": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {"items": [{"items": ["dawnoftimebuilder:moraq_mosaic_pattern"]}]}
+    },
+    "moraq_mosaic_recess": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {"items": [{"items": ["dawnoftimebuilder:moraq_mosaic_recess"]}]}
+    },
+    "moraq_mosaic_relief": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {"items": [{"items": ["dawnoftimebuilder:moraq_mosaic_relief"]}]}
+    },
+    "moraq_mosaic_traditional": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {"items": [{"items": ["dawnoftimebuilder:moraq_mosaic_traditional"]}]}
+    },
+    "mosaic_floor": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {"items": [{"items": ["dawnoftimebuilder:mosaic_floor"]}]}
+    },
+    "mosaic_floor_delicate": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {"items": [{"items": ["dawnoftimebuilder:mosaic_floor_delicate"]}]}
+    },
+    "mosaic_floor_rosette": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {"items": [{"items": ["dawnoftimebuilder:mosaic_floor_rosette"]}]}
+    }
+  },
+  "requirements": [
+    ["moraq_mosaic_border"], ["moraq_mosaic_column"], ["moraq_mosaic_delicate"],
+    ["moraq_mosaic_geometric"], ["moraq_mosaic_pattern"], ["moraq_mosaic_recess"],
+    ["moraq_mosaic_relief"], ["moraq_mosaic_traditional"],
+    ["mosaic_floor"], ["mosaic_floor_delicate"], ["mosaic_floor_rosette"]
+  ]
+}
