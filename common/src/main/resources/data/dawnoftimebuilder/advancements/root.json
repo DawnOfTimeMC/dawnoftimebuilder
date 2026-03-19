@@ -1,48 +1,15 @@
 {
   "display": {
-    "icon": {
-      "item": "dawnoftimebuilder:white_painted_stone"
-    },
+    "icon": {"item": "dawnoftimebuilder:dawn_of_time"},
     "title": {"translate": "advancement.dawnoftimebuilder.root.title"},
     "description": {"translate": "advancement.dawnoftimebuilder.root.description"},
-    "background": "minecraft:textures/gui/advancements/backgrounds/stone.png",
-    "frame": "challenge",
+    "background": "dawnoftimebuilder:textures/block/red_painted_puuc_limestone.png",
+    "frame": "task",
     "show_toast": true,
-    "announce_to_chat": true,
+    "announce_to_chat": false,
     "hidden": false
   },
   "criteria": {
-    "roman": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {"items": [{"items": ["dawnoftimebuilder:marble_statue_mars"], "count": {"min": 10}}]}
-    },
-    "japanese": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {"items": [{"items": ["dawnoftimebuilder:sake_bottle"], "count": {"min": 64}}]}
-    },
-    "german": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {"items": [{"items": ["dawnoftimebuilder:lattice_stone_bricks_window"]}]}
-    },
-    "french": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {"items": [{"items": ["dawnoftimebuilder:limestone_gargoyle"]}]}
-    },
-    "persian": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {"items": [{"items": ["dawnoftimebuilder:persian_carpet_red"]}]}
-    },
-    "precolumbian": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {"items": [{"items": ["dawnoftimebuilder:white_painted_puuc_limestone"]}]}
-    },
-    "chinese": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {"items": [{"items": ["dawnoftimebuilder:slate_bricks_wall"]}]}
-    }
-  },
-  "requirements": [
-    ["roman"], ["japanese"], ["german"], ["french"],
-    ["persian"], ["precolumbian"], ["chinese"]
-  ]
+    "tick": {"trigger": "minecraft:tick"}
+  }
 }

@@ -10,7 +10,7 @@
     "announce_to_chat": false,
     "hidden": false
   },
-  "parent": "dawnoftimebuilder:french/root",
+  "parent": "dawnoftimebuilder:master_of_time",
   "criteria": {
     "get_gargoyle": {
       "trigger": "minecraft:inventory_changed",

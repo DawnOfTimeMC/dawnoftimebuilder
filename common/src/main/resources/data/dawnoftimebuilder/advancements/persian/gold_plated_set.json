@@ -1,0 +1,21 @@
+{
+  "display": {
+    "icon": {"item": "dawnoftimebuilder:gold_plated_smooth_block"},
+    "title": {"translate": "advancement.dawnoftimebuilder.persian.gold_plated_set.title"},
+    "description": {"translate": "advancement.dawnoftimebuilder.persian.gold_plated_set.description"},
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "parent": "dawnoftimebuilder:master_of_time",
+  "criteria": {
+    "block":  {"trigger": "minecraft:inventory_changed", "conditions": {"items": [{"items": ["dawnoftimebuilder:gold_plated_smooth_block"]}]}},
+    "slab":   {"trigger": "minecraft:inventory_changed", "conditions": {"items": [{"items": ["dawnoftimebuilder:gold_plated_smooth_slab"]}]}},
+    "stairs": {"trigger": "minecraft:inventory_changed", "conditions": {"items": [{"items": ["dawnoftimebuilder:gold_plated_smooth_stairs"]}]}},
+    "wall":   {"trigger": "minecraft:inventory_changed", "conditions": {"items": [{"items": ["dawnoftimebuilder:gold_plated_smooth_wall"]}]}},
+    "plate":  {"trigger": "minecraft:inventory_changed", "conditions": {"items": [{"items": ["dawnoftimebuilder:gold_plated_smooth_plate"]}]}},
+    "edge":   {"trigger": "minecraft:inventory_changed", "conditions": {"items": [{"items": ["dawnoftimebuilder:gold_plated_smooth_edge"]}]}}
+  },
+  "requirements": [["block"], ["slab"], ["stairs"], ["wall"], ["plate"], ["edge"]]
+}

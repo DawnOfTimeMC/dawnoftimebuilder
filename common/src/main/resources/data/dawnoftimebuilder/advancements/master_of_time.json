@@ -1,0 +1,32 @@
+{
+  "display": {
+    "icon": {
+      "item": "dawnoftimebuilder:roman_emblem",
+      "nbt": "{Enchantments:[{id:\"minecraft:binding_curse\",lvl:1}]}"
+    },
+    "title": {"translate": "advancement.dawnoftimebuilder.master_of_time.title"},
+    "description": {"translate": "advancement.dawnoftimebuilder.master_of_time.description"},
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "dawnoftimebuilder:root",
+  "criteria": {
+    "the_great_wall":     {"trigger": "minecraft:inventory_changed", "conditions": {"items": [{"items": ["dawnoftimebuilder:slate_bricks_wall"]}]}},
+    "quasimodo":          {"trigger": "minecraft:inventory_changed", "conditions": {"items": [{"items": ["dawnoftimebuilder:limestone_gargoyle"]}]}},
+    "you_shall_not_pass": {"trigger": "minecraft:inventory_changed", "conditions": {"items": [{"items": ["dawnoftimebuilder:iron_portcullis"]}]}},
+    "tea_party":          {"trigger": "minecraft:inventory_changed", "conditions": {"items": [{"items": ["dawnoftimebuilder:cast_iron_teapot_decorated"]}]}},
+    "sake":               {"trigger": "minecraft:inventory_changed", "conditions": {"items": [{"items": ["dawnoftimebuilder:sake_bottle"], "count": {"min": 64}}]}},
+    "gold_plated_set":    {"trigger": "minecraft:inventory_changed", "conditions": {"items": [{"items": ["dawnoftimebuilder:gold_plated_smooth_block"]}]}},
+    "quetzalcoatl":       {"trigger": "minecraft:inventory_changed", "conditions": {"items": [{"items": ["dawnoftimebuilder:feathered_serpent_sculpture"]}]}},
+    "mm_blocks":          {"trigger": "minecraft:inventory_changed", "conditions": {"items": [{"items": ["dawnoftimebuilder:yellow_painted_stone"]}]}},
+    "glory_to_rome":      {"trigger": "minecraft:inventory_changed", "conditions": {"items": [{"items": ["dawnoftimebuilder:marble_statue_mars"], "count": {"min": 10}}]}},
+    "make_it_shine":      {"trigger": "minecraft:inventory_changed", "conditions": {"items": [{"items": ["dawnoftimebuilder:marble_wall"]}]}}
+  },
+  "requirements": [
+    ["the_great_wall"], ["quasimodo"], ["you_shall_not_pass"], ["tea_party"],
+    ["sake"], ["gold_plated_set"], ["quetzalcoatl"], ["mm_blocks"],
+    ["glory_to_rome"], ["make_it_shine"]
+  ]
+}

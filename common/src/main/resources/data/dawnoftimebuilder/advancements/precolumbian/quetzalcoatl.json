@@ -1,8 +1,6 @@
 {
   "display": {
-    "icon": {
-      "item": "dawnoftimebuilder:white_painted_puuc_limestone"
-    },
+    "icon": {"item": "dawnoftimebuilder:feathered_serpent_sculpture"},
     "title": {"translate": "advancement.dawnoftimebuilder.precolumbian.quetzalcoatl.title"},
     "description": {"translate": "advancement.dawnoftimebuilder.precolumbian.quetzalcoatl.description"},
     "frame": "task",
@@ -10,13 +8,10 @@
     "announce_to_chat": false,
     "hidden": false
   },
-  "parent": "dawnoftimebuilder:precolumbian/root",
+  "parent": "dawnoftimebuilder:master_of_time",
   "criteria": {
-    "get_painted_limestone": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [{"items": ["dawnoftimebuilder:white_painted_puuc_limestone"]}]
-      }
-    }
-  }
+    "sculpture": {"trigger": "minecraft:inventory_changed", "conditions": {"items": [{"items": ["dawnoftimebuilder:feathered_serpent_sculpture"]}]}},
+    "column":    {"trigger": "minecraft:inventory_changed", "conditions": {"items": [{"items": ["dawnoftimebuilder:serpent_sculpted_column"]}]}}
+  },
+  "requirements": [["sculpture"], ["column"]]
 }

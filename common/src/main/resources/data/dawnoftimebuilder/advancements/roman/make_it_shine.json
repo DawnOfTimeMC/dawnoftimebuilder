@@ -5,12 +5,12 @@
     },
     "title": {"translate": "advancement.dawnoftimebuilder.roman.make_it_shine.title"},
     "description": {"translate": "advancement.dawnoftimebuilder.roman.make_it_shine.description"},
-    "frame": "goal",
+    "frame": "task",
     "show_toast": true,
     "announce_to_chat": false,
     "hidden": false
   },
-  "parent": "dawnoftimebuilder:roman/glory_to_rome",
+  "parent": "dawnoftimebuilder:master_of_time",
   "criteria": {
     "marble": {
       "trigger": "minecraft:inventory_changed",
