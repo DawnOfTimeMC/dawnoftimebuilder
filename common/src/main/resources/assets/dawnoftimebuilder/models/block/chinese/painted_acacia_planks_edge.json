@@ -1,0 +1,7 @@
+{
+    "parent": "dawnoftimebuilder:block/general/small_plate",
+    "textures": {
+        "side": "dawnoftimebuilder:block/painted_acacia_planks",
+        "frieze": "dawnoftimebuilder:block/painted_acacia_planks"
+    }
+}

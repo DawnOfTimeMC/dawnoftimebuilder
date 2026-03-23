@@ -68,13 +68,19 @@
     "block.dawnoftimebuilder.waxed_acacia_shutters": "Waxed Acacia Shutter",
 
     "block.dawnoftimebuilder.painted_acacia_planks": "Painted Acacia Planks",
+    "block.dawnoftimebuilder.painted_acacia_planks_edge": "Painted Acacia Planks Edge",
+    "block.dawnoftimebuilder.painted_acacia_planks_plate": "Painted Acacia Planks Plate",
+    "block.dawnoftimebuilder.painted_acacia_planks_slab": "Painted Acacia Planks Slab",
+    "block.dawnoftimebuilder.painted_acacia_planks_stairs": "Painted Acacia Planks Stairs",
     "block.dawnoftimebuilder.painted_acacia_fence": "Painted Acacia Fence",
 
 
     "block.dawnoftimebuilder.red_round_paper_lantern": "Red Round Paper Lantern",
     "block.dawnoftimebuilder.green_roof_tiles": "Green Roof Tiles",
-    "block.dawnoftimebuilder.green_smooth_tiles": "Green Smooth Tiles",
-    "block.dawnoftimebuilder.green_smooth_tiles_stairs": "Green Smooth Tiles Stairs",
+    "block.dawnoftimebuilder.green_roof_tiles_edge": "Green Roof Tiles Edge",
+    "block.dawnoftimebuilder.green_roof_tiles_plate": "Green Roof Tiles Plate",
+    "block.dawnoftimebuilder.green_roof_tiles_slab": "Green Roof Tiles Slab",
+    "block.dawnoftimebuilder.green_roof_tiles_stairs": "Green Roof Tiles Stairs",
 
     "block.dawnoftimebuilder.birch_planks_plate": "Birch Plate",
     "block.dawnoftimebuilder.birch_planks_edge": "Birch Edge",
@@ -388,11 +394,31 @@
     "block.dawnoftimebuilder.plastered_stone_slab": "Plastered Stone Slab",
     "block.dawnoftimebuilder.plastered_stone_edge": "Plastered Stone Edge",
     "block.dawnoftimebuilder.white_painted_stone": "White Painted Stone",
+    "block.dawnoftimebuilder.white_painted_stone_slab": "White Painted Stone Slab",
+    "block.dawnoftimebuilder.white_painted_stone_stairs": "White Painted Stone Stairs",
+    "block.dawnoftimebuilder.white_painted_stone_plate": "White Painted Stone Plate",
+    "block.dawnoftimebuilder.white_painted_stone_edge": "White Painted Stone Edge",
     "block.dawnoftimebuilder.red_painted_stone": "Red Painted Stone",
+    "block.dawnoftimebuilder.red_painted_stone_slab": "Red Painted Stone Slab",
+    "block.dawnoftimebuilder.red_painted_stone_stairs": "Red Painted Stone Stairs",
+    "block.dawnoftimebuilder.red_painted_stone_plate": "Red Painted Stone Plate",
+    "block.dawnoftimebuilder.red_painted_stone_edge": "Red Painted Stone Edge",
     "block.dawnoftimebuilder.red_painted_stone_frieze_edge": "Red Painted Stone Frieze Edge",
     "block.dawnoftimebuilder.yellow_painted_stone": "Yellow Painted Stone",
+    "block.dawnoftimebuilder.yellow_painted_stone_slab": "Yellow Painted Stone Slab",
+    "block.dawnoftimebuilder.yellow_painted_stone_stairs": "Yellow Painted Stone Stairs",
+    "block.dawnoftimebuilder.yellow_painted_stone_plate": "Yellow Painted Stone Plate",
+    "block.dawnoftimebuilder.yellow_painted_stone_edge": "Yellow Painted Stone Edge",
     "block.dawnoftimebuilder.blue_painted_stone": "Blue Painted Stone",
+    "block.dawnoftimebuilder.blue_painted_stone_slab": "Blue Painted Stone Slab",
+    "block.dawnoftimebuilder.blue_painted_stone_stairs": "Blue Painted Stone Stairs",
+    "block.dawnoftimebuilder.blue_painted_stone_plate": "Blue Painted Stone Plate",
+    "block.dawnoftimebuilder.blue_painted_stone_edge": "Blue Painted Stone Edge",
     "block.dawnoftimebuilder.green_painted_stone": "Green Painted Stone",
+    "block.dawnoftimebuilder.green_painted_stone_slab": "Green Painted Stone Slab",
+    "block.dawnoftimebuilder.green_painted_stone_stairs": "Green Painted Stone Stairs",
+    "block.dawnoftimebuilder.green_painted_stone_plate": "Green Painted Stone Plate",
+    "block.dawnoftimebuilder.green_painted_stone_edge": "Green Painted Stone Edge",
     "block.dawnoftimebuilder.red_plastered_stone": "Red Plastered Stone",
     "block.dawnoftimebuilder.red_plastered_stone_stairs": "Red Plastered Stone Stairs",
     "block.dawnoftimebuilder.red_plastered_stone_plate": "Red Plastered Stone Plate",
@@ -601,6 +627,7 @@
     "item.dawnoftimebuilder.french_emblem": "Baguette Emblem",
     "item.dawnoftimebuilder.precolumbian_emblem": "Pre Columbian Emblem",
     "item.dawnoftimebuilder.chinese_emblem": "Chinese Emblem",
+
     "tooltip.dawnoftimebuilder.hold_key": "For more info, hold ",
     "tooltip.dawnoftimebuilder.shift": "SHIFT",
     "tooltip.dawnoftimebuilder.iron_portcullis": "Use a redstone impulse on a portcullis block to open it, and all adjacent portcullis blocks.",
@@ -620,85 +647,40 @@
     "tooltip.dawnoftimebuilder.subtab.furniture": "Furniture",
     "tooltip.dawnoftimebuilder.subtab.puuc": "Puuc set",
     "tooltip.dawnoftimebuilder.subtab.plastered": "Plastered set",
+    "tooltip.dawnoftimebuilder.subtab.painted": "Painted set",
 
-    "advancement.dawnoftimebuilder.root.title": "Master of Time",
-    "advancement.dawnoftimebuilder.root.description": "A true architect of civilizations.",
-
+    "advancement.dawnoftimebuilder.root.title": "Dawn of Time",
+    "advancement.dawnoftimebuilder.root.description": "Collect, craft, and explore the blocks of Dawn of Time.",
     "advancement.dawnoftimebuilder.general.have_a_seat.title": "Have a Seat",
     "advancement.dawnoftimebuilder.general.have_a_seat.description": "Every chair, every table, every cushion. Comfort is an art form.",
-
     "advancement.dawnoftimebuilder.general.tile_lover.title": "Tile Lover",
     "advancement.dawnoftimebuilder.general.tile_lover.description": "The floor is your canvas.",
-
     "advancement.dawnoftimebuilder.general.mosaic_fanatic.title": "Mosaic Fanatic",
     "advancement.dawnoftimebuilder.general.mosaic_fanatic.description": "One piece at a time.",
-
-    "advancement.dawnoftimebuilder.roman.root.title": "Roma Invicta",
-    "advancement.dawnoftimebuilder.roman.root.description": "Ave, traveler of ancient stones.",
-
     "advancement.dawnoftimebuilder.roman.glory_to_rome.title": "Glory to Rome!",
-    "advancement.dawnoftimebuilder.roman.glory_to_rome.description": "Carrying 10 statues of Mars in your pockets explains the posture.",
-
+    "advancement.dawnoftimebuilder.roman.glory_to_rome.description": "Carry enough statues of Mars to recreate Rome.",
     "advancement.dawnoftimebuilder.roman.make_it_shine.title": "Make it Shine",
     "advancement.dawnoftimebuilder.roman.make_it_shine.description": "Marble, marble everywhere.",
-
-    "advancement.dawnoftimebuilder.japanese.root.title": "Land of the Rising Block",
-    "advancement.dawnoftimebuilder.japanese.root.description": "The cherry blossoms await.",
-
     "advancement.dawnoftimebuilder.japanese.tea_party.title": "Tea Party",
     "advancement.dawnoftimebuilder.japanese.tea_party.description": "The kettle is on.",
-
     "advancement.dawnoftimebuilder.japanese.sake.title": "What time is it? Hmmp..",
-    "advancement.dawnoftimebuilder.japanese.sake.description": "A full stack of sake bottles to forget your own name.",
-
-    "advancement.dawnoftimebuilder.german.root.title": "Das Schloss",
-    "advancement.dawnoftimebuilder.german.root.description": "The castle walls rise before you.",
-
+    "advancement.dawnoftimebuilder.japanese.sake.description": "Enough sake bottles to forget your own name.",
     "advancement.dawnoftimebuilder.german.you_shall_not_pass.title": "You Shall Not Pass!",
     "advancement.dawnoftimebuilder.german.you_shall_not_pass.description": "An impenetrable fortress... or close enough.",
-
-    "advancement.dawnoftimebuilder.french.root.title": "Vive la France!",
-    "advancement.dawnoftimebuilder.french.root.description": "Your first French block. C'est le début de quelque chose de beau.",
-
     "advancement.dawnoftimebuilder.french.quasimodo.title": "Quasimodo",
     "advancement.dawnoftimebuilder.french.quasimodo.description": "You rang?",
-
-    "advancement.dawnoftimebuilder.persian.root.title": "Into the Desert",
-    "advancement.dawnoftimebuilder.persian.root.description": "The scent of spices fills the air.",
-
-    "advancement.dawnoftimebuilder.persian.block_of_persia.title": "Block of Persia",
-    "advancement.dawnoftimebuilder.persian.block_of_persia.description": "A thousand years of history, one block at a time.",
-
-    "advancement.dawnoftimebuilder.precolumbian.root.title": "Lost in the Jungle",
-    "advancement.dawnoftimebuilder.precolumbian.root.description": "The temples rise above the canopy.",
-
-    "advancement.dawnoftimebuilder.precolumbian.quetzalcoatl.title": "Quetzalcoatl Approved",
-    "advancement.dawnoftimebuilder.precolumbian.quetzalcoatl.description": "The feathered serpent nods in approval.",
-
-    "advancement.dawnoftimebuilder.chinese.root.title": "The Middle Kingdom",
-    "advancement.dawnoftimebuilder.chinese.root.description": "The red lanterns light your way.",
-
+    "advancement.dawnoftimebuilder.precolumbian.quetzalcoatl.title": "Quetzalcoatl Approved!",
+    "advancement.dawnoftimebuilder.precolumbian.quetzalcoatl.description": "Ready for the sacrifice.",
     "advancement.dawnoftimebuilder.chinese.the_great_wall.title": "The Great Wall",
     "advancement.dawnoftimebuilder.chinese.the_great_wall.description": "Bricks upon bricks. History doesn't build itself.",
-
-    "advancement.dawnoftimebuilder.roman_branch.title": "Roman Heritage",
-    "advancement.dawnoftimebuilder.roman_branch.description": "Complete all Roman achievements.",
-
-    "advancement.dawnoftimebuilder.japanese_branch.title": "Way of Japan",
-    "advancement.dawnoftimebuilder.japanese_branch.description": "Complete all Japanese achievements.",
-
-    "advancement.dawnoftimebuilder.german_branch.title": "Germanic Path",
-    "advancement.dawnoftimebuilder.german_branch.description": "Complete all German achievements.",
-
-    "advancement.dawnoftimebuilder.french_branch.title": "French Elegance",
-    "advancement.dawnoftimebuilder.french_branch.description": "Complete all French achievements.",
-
-    "advancement.dawnoftimebuilder.persian_branch.title": "Persian Road",
-    "advancement.dawnoftimebuilder.persian_branch.description": "Complete all Persian achievements.",
-
-    "advancement.dawnoftimebuilder.precolumbian_branch.title": "Jungle Explorer",
-    "advancement.dawnoftimebuilder.precolumbian_branch.description": "Complete all Pre-Columbian achievements.",
-
-    "advancement.dawnoftimebuilder.chinese_branch.title": "Dragon's Path",
-    "advancement.dawnoftimebuilder.chinese_branch.description": "Complete all Chinese achievements."
+    "advancement.dawnoftimebuilder.master_of_time.title": "Master of Time",
+    "advancement.dawnoftimebuilder.master_of_time.description": "A true architect of civilizations. You have explored every corner of the ancient world.",
+    "advancement.dawnoftimebuilder.general_kenoblocki.title": "General Kenoblocki",
+    "advancement.dawnoftimebuilder.general_kenoblocki.description": "Hello there.",
+    "advancement.dawnoftimebuilder.precolumbian.mm_blocks.title": "M&M's Blocks",
+    "advancement.dawnoftimebuilder.precolumbian.mm_blocks.description": "Color your life.",
+    "advancement.dawnoftimebuilder.persian.gold_plated_set.title": "All That Glitters",
+    "advancement.dawnoftimebuilder.persian.gold_plated_set.description": "Collect every variation of the smooth gold plated blocks.",
+    "advancement.dawnoftimebuilder.general.light_sources.title": "Let There Be Light",
+    "advancement.dawnoftimebuilder.general.light_sources.description": "Light up every fireplace and light source with a flint & steel."
 }
