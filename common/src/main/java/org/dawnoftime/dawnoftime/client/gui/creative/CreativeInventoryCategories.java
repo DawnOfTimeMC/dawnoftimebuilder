@@ -377,7 +377,6 @@ public enum CreativeInventoryCategories {
                     DoTBBlocksRegistry.INSTANCE.RED_PAINTED_WINDOWED_DOOR.get().asItem(),
                     DoTBBlocksRegistry.INSTANCE.RED_PAINTED_SHUTTERS.get().asItem(),
                     DoTBBlocksRegistry.INSTANCE.RED_PAINTED_SMALL_SHUTTER.get().asItem(),
-                    DoTBBlocksRegistry.INSTANCE.RED_PAPER_LANTERN.get().asItem(),
                     DoTBBlocksRegistry.INSTANCE.PAPER_WALL_FLAT.get().asItem(),
                     DoTBBlocksRegistry.INSTANCE.PAPER_WALL.get().asItem(),
                     DoTBBlocksRegistry.INSTANCE.PAPER_WALL_SQUARED.get().asItem(),
@@ -395,6 +394,7 @@ public enum CreativeInventoryCategories {
                     DoTBItemsRegistry.INSTANCE.GRAY_CLAY_ROOF_TILE.get()
             ),
             new SubTab("furniture",
+                    DoTBBlocksRegistry.INSTANCE.RED_PAPER_LANTERN.get().asItem(),
                     DoTBBlocksRegistry.INSTANCE.STONE_LANTERN.get().asItem(),
                     DoTBBlocksRegistry.INSTANCE.PAPER_LAMP.get().asItem(),
 
@@ -612,9 +612,10 @@ public enum CreativeInventoryCategories {
                     DoTBBlocksRegistry.INSTANCE.GREEN_ORNAMENTED_PLASTERED_STONE_FRIEZE.get().asItem(),
                     DoTBBlocksRegistry.INSTANCE.GREEN_SCULPTED_PLASTERED_STONE_FRIEZE.get().asItem(),
                     DoTBBlocksRegistry.INSTANCE.GREEN_SMALL_PLASTERED_STONE_FRIEZE.get().asItem(),
-                    DoTBBlocksRegistry.INSTANCE.PLASTERED_STONE_CRESSET.get().asItem(),
                     DoTBBlocksRegistry.INSTANCE.FEATHERED_SERPENT_SCULPTURE.get().asItem(),
                     DoTBBlocksRegistry.INSTANCE.SERPENT_SCULPTED_COLUMN.get().asItem(),
+                    Items.FLINT_AND_STEEL,
+                    DoTBBlocksRegistry.INSTANCE.PLASTERED_STONE_CRESSET.get().asItem(),
                     DoTBItemsRegistry.INSTANCE.PRECOLUMBIAN_EMBLEM.get()
             ),
 
