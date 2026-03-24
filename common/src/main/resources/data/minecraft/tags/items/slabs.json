@@ -23,6 +23,8 @@
       "dawnoftimebuilder:gravel_slab",
       "dawnoftimebuilder:sand_slab",
       "dawnoftimebuilder:slate_bricks_slab",
+      "dawnoftimebuilder:green_roof_tiles_slab",
+
 
       "dawnoftimebuilder:flat_roof_tiles_slab",
     "dawnoftimebuilder:waxed_oak_planks_slab",
@@ -30,6 +32,11 @@
     "dawnoftimebuilder:charred_spruce_foundation_slab",
     "dawnoftimebuilder:gray_roof_tiles_slab",
     "dawnoftimebuilder:stepping_stones_slab",
+      "dawnoftimebuilder:white_painted_stone_slab",
+      "dawnoftimebuilder:red_painted_stone_slab",
+      "dawnoftimebuilder:blue_painted_stone_slab",
+      "dawnoftimebuilder:green_painted_stone_slab",
+      "dawnoftimebuilder:yellow_painted_stone_slab",
     "dawnoftimebuilder:plastered_stone_slab",
     "dawnoftimebuilder:red_plastered_stone_slab",
     "dawnoftimebuilder:ochre_roof_tiles_slab",

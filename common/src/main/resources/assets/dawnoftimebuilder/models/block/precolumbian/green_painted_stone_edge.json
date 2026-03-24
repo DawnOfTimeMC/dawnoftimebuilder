@@ -1,0 +1,7 @@
+{
+    "parent": "dawnoftimebuilder:block/general/small_plate",
+    "textures": {
+        "side": "dawnoftimebuilder:block/green_painted_stone",
+        "frieze": "dawnoftimebuilder:block/green_painted_stone"
+    }
+}

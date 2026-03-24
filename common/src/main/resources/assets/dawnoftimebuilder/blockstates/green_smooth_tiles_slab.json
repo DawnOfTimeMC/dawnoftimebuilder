@@ -1,7 +1,0 @@
-{
-    "variants": {
-        "type=bottom": { "model": "dawnoftimebuilder:block/chinese/green_smooth_tiles_slab_bottom" },
-        "type=top": { "model": "dawnoftimebuilder:block/chinese/green_smooth_tiles_slab_top" },
-        "type=double": { "model": "dawnoftimebuilder:block/chinese/green_smooth_tiles_slab_double" }
-    }
-}

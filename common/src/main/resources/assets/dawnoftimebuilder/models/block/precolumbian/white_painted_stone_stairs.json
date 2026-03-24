@@ -1,0 +1,8 @@
+{
+    "parent": "block/stairs",
+    "textures": {
+        "bottom": "dawnoftimebuilder:block/white_painted_stone",
+        "top": "dawnoftimebuilder:block/white_painted_stone",
+        "side": "dawnoftimebuilder:block/white_painted_stone"
+    }
+}
