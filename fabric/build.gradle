@@ -8,6 +8,16 @@ base {
     archivesName = "${mod_name}-fabric-${minecraft_version}"
 }
 
+// Include common resources directly in this source set so Loom exposes
+// them to the game during dev runs (processResources alone is not enough)
+sourceSets.main.resources.srcDir(project(':common').file('src/main/resources'))
+
+processResources {
+    // common resources are now in srcDirs AND added via from(commonResources)
+    // in multiloader-loader — exclude duplicates so the build doesn't fail
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
 repositories {
     maven {
         name = "Terraformers"
@@ -46,12 +56,6 @@ dependencies {
 loom {
     if (project(":common").file("src/main/resources/${mod_id}.accesswidener").exists()) {
         accessWidenerPath.set(project(":common").file("src/main/resources/${mod_id}.accesswidener"))
-    }
-    mods {
-        "${mod_id}" {
-            sourceSet(sourceSets.main)
-            sourceSet(project(':common').sourceSets.main)
-        }
     }
     mixin {
         defaultRefmapName.set("${mod_id}.refmap.json")
