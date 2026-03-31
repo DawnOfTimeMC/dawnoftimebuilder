@@ -31,3 +31,10 @@ run
 /gradlew.bat
 /gradle/wrapper/gradle-wrapper.properties
 /gradle/wrapper/gradle-wrapper.jar
+/.claude/worktrees/quirky-visvesvaraya/
+/.claude/worktrees/recipe-unification/
+/.claude/skills/add-block-cube/SKILL.md
+/.claude/skills/add-block-edge/SKILL.md
+/.claude/skills/add-block-plate/SKILL.md
+/.claude/skills/add-block-slab/SKILL.md
+/.claude/skills/add-block-stairs/SKILL.md

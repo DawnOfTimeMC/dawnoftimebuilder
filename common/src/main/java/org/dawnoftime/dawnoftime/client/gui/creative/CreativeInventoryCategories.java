@@ -12,10 +12,9 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.dawnoftime.dawnoftime.DoTBCommon.MOD_ID;
-
-
 
 public enum CreativeInventoryCategories {
     GENERAL("general", null, List.of(
@@ -776,6 +775,7 @@ public enum CreativeInventoryCategories {
             DoTBBlocksRegistry.INSTANCE.WAXED_ACACIA_EDGE.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.WAXED_ACACIA_DOOR.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.WAXED_ACACIA_SHUTTERS.get().asItem(),
+            DoTBBlocksRegistry.INSTANCE.WAXED_ACACIA_SMALL_SHUTTERS.get().asItem(),
 
 
             DoTBBlocksRegistry.INSTANCE.WAXED_ACACIA_FANCY_RAILING.get().asItem(),
@@ -838,6 +838,11 @@ public enum CreativeInventoryCategories {
     }
 
     public List<Item> getItems() {
+        if (!subTabs.isEmpty()) {
+            return subTabs.stream()
+                    .flatMap(sub -> sub.items().stream())
+                    .collect(Collectors.toList());
+        }
         return this.items;
     }
 

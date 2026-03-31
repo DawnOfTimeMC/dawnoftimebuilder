@@ -8,8 +8,6 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -20,7 +18,6 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.common.extensions.IForgeMenuType;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -29,7 +26,9 @@ import net.minecraftforge.registries.RegistryObject;
 import org.dawnoftime.dawnoftime.item.IconItem;
 import org.dawnoftime.dawnoftime.registry.*;
 
-import java.util.Map;
+import java.util.HashSet;
+import java.util.Set;
+import org.dawnoftime.dawnoftime.client.gui.creative.CreativeInventoryCategories;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -151,11 +150,14 @@ public class RegistryImpls {
 
         bus.addListener((BuildCreativeModeTabContentsEvent event) -> {
             if(event.getTab() == DoTBCreativeModeTabsRegistry.INSTANCE.DOT_TAB.get()) {
-                ForgeRegistries.ITEMS.getEntries().stream().filter(entry ->
-                                entry.getKey().location().getNamespace().equalsIgnoreCase(DoTBCommon.MOD_ID) &&
-                                        !(entry.getValue() instanceof IconItem))
-                        .map(Map.Entry::getValue)
-                        .forEachOrdered(event::accept);
+                Set<Item> addedItems = new HashSet<>();
+                for (CreativeInventoryCategories category : CreativeInventoryCategories.values()) {
+                    for (Item item : category.getItems()) {
+                        if (!(item instanceof IconItem) && addedItems.add(item)) {
+                            event.accept(item);
+                        }
+                    }
+                }
             }
         });
     }

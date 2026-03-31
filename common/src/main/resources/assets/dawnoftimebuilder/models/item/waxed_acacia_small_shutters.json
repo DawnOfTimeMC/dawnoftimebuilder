@@ -1,0 +1,6 @@
+{
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "dawnoftimebuilder:item/waxed_acacia_small_shutters"
+    }
+}

@@ -1,0 +1,19 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"ii",
+		"II"
+	],
+	"key": {
+		"I": {
+			"item": "dawnoftimebuilder:waxed_acacia_planks"
+		},
+		"i": {
+			"item": "minecraft:iron_ingot"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:waxed_acacia_small_shutters",
+		"count": 6
+	}
+}
