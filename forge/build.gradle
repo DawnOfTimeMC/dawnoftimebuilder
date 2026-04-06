@@ -79,7 +79,9 @@ jar {
 }
 
 publishMods {
-    file = jar.archiveFile
+    // Point to the pre-built reobfuscated JAR. Build first in IntelliJ (forge > tasks > build > build),
+    // then run publishMods. This avoids the reobfJar ordering bug where publishMods uploads a broken JAR.
+    file = layout.buildDirectory.file("libs/dawnoftimebuilder-forge-${minecraft_version}-${project.version}.jar")
     modLoaders.add("forge")
 
     curseforge {
