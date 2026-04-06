@@ -18,10 +18,10 @@ configure([project(":fabric"), project(":forge")]) {
     publishMods {
         changelog = patchNoteProvider
         type = STABLE
-        displayName = "${rootProject.property("mod_name")} - ${rootProject.property("minecraft_version")} - ${rootProject.property("version")}"
+        displayName = "${rootProject.property("mod_name")} ${rootProject.property("minecraft_version")} v${rootProject.property("version")}"
 
         curseforge {
-            projectId = ""
+            projectId = "312359"
             accessToken = providers.environmentVariable("CURSEFORGE_API_KEY")
             minecraftVersions.add(project.property("minecraft_version"))
 

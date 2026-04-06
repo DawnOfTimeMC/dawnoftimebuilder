@@ -69,12 +69,4 @@ loom {
 publishMods {
     file = remapJar.archiveFile
     modLoaders.addAll("fabric")
-
-    curseforge {
-        //fabric only dependencies found on curseforge go here. same format as in the root build.gradle
-    }
-
-    modrinth {
-        //fabric only dependencies found on modrinth go here. same format as in the root build.gradle
-    }
 }
