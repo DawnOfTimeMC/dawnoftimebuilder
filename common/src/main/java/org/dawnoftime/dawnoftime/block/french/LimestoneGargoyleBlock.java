@@ -167,8 +167,10 @@ public class LimestoneGargoyleBlock extends WaterloggedBlock {
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, @Nullable BlockGetter worldIn, List<Component> tooltip, TooltipFlag flagIn) {
+    public void appendHoverText(@NotNull ItemStack stack, @Nullable BlockGetter worldIn, @NotNull List<Component> tooltip, @NotNull TooltipFlag flagIn) {
         super.appendHoverText(stack, worldIn, tooltip, flagIn);
-        Utils.addTooltip(tooltip, this);
+        tooltip.add(Component.translatable("tooltip.dawnoftimebuilder.limestone_gargoyle"));
+        tooltip.add(Component.translatable("tooltip.dawnoftimebuilder.limestone_gargoyle_2"));
     }
+
 }

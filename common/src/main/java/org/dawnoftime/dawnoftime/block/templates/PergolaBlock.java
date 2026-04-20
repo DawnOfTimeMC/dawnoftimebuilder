@@ -15,7 +15,6 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.dawnoftime.dawnoftime.block.IBlockPillar;
 import org.dawnoftime.dawnoftime.util.BlockStatePropertiesAA;
-import org.dawnoftime.dawnoftime.util.Utils;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
@@ -23,7 +22,6 @@ import javax.annotation.Nullable;
 
 import java.util.List;
 
-import static org.dawnoftime.dawnoftime.util.Utils.TOOLTIP_BEAM;
 import static org.dawnoftime.dawnoftime.util.VoxelShapes.PERGOLA_SHAPES;
 
 public class PergolaBlock extends WaterloggedBlock implements IBlockPillar {

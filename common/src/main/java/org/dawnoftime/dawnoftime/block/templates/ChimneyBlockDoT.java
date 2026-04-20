@@ -138,12 +138,6 @@ public class ChimneyBlockDoT extends ConnectedVerticalBlock {
         return super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
     }
 
-    @Override
-    public void appendHoverText(final ItemStack stack, @Nullable final BlockGetter worldIn, final List<Component> tooltip, final TooltipFlag flagIn) {
-        super.appendHoverText(stack, worldIn, tooltip, flagIn);
-        Utils.addTooltip(tooltip, Utils.TOOLTIP_FIREPLACE);
-    }
-
     public static void updateAllChimneyConductParts(final boolean isActivatedIn, BlockState stateIn, final BlockPos blockPosIn, final Level worldIn) {
         stateIn = stateIn.setValue(BlockStateProperties.LIT, isActivatedIn);
         worldIn.setBlock(blockPosIn, stateIn, 10);
@@ -185,5 +179,13 @@ public class ChimneyBlockDoT extends ConnectedVerticalBlock {
                 worldIn.getBlockState(blockPos.relative(direction.getClockWise())).neighborChanged(worldIn, blockPos.relative(direction.getClockWise()), blockState.getBlock(), blockPos, false);
             }
         }
+    }
+
+    @Override
+    public void appendHoverText(@NotNull ItemStack stack, @Nullable BlockGetter worldIn, @NotNull List<Component> tooltip, @NotNull TooltipFlag flagIn) {
+        super.appendHoverText(stack, worldIn, tooltip, flagIn);
+        tooltip.add(Component.translatable("tooltip.dawnoftimebuilder.column_label"));
+        tooltip.add(Component.translatable("tooltip.dawnoftimebuilder.column"));
+        tooltip.add(Component.translatable("tooltip.dawnoftimebuilder.fireplace"));
     }
 }

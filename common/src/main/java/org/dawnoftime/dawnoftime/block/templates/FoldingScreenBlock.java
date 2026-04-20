@@ -19,7 +19,7 @@ public class FoldingScreenBlock extends ConnectedVerticalBlock {
     public static final BooleanProperty INVERTED = BlockStateProperties.INVERTED;
 
     public FoldingScreenBlock(Properties properties, VoxelShape[] shapes) {
-        super(properties, shapes);
+        super(properties, shapes, "tooltip.dawnoftimebuilder.column_label", "tooltip.dawnoftimebuilder.column");
         this.registerDefaultState(this.defaultBlockState().setValue(INVERTED, false));
     }
 

@@ -19,7 +19,6 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.dawnoftime.dawnoftime.block.templates.ConnectedVerticalBlock;
-import org.dawnoftime.dawnoftime.util.Utils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -55,7 +54,11 @@ public class MoraqMosaicColumnBlock extends ConnectedVerticalBlock {
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, @Nullable BlockGetter worldIn, List<Component> tooltip, TooltipFlag flagIn) {
-        Utils.addTooltip(tooltip, this, Utils.TOOLTIP_COLUMN);
+    public void appendHoverText(@NotNull ItemStack stack, @Nullable BlockGetter worldIn, @NotNull List<Component> tooltip, @NotNull TooltipFlag flagIn) {
+        super.appendHoverText(stack, worldIn, tooltip, flagIn);
+        tooltip.add(Component.translatable("tooltip.dawnoftimebuilder.column_label"));
+        tooltip.add(Component.translatable("tooltip.dawnoftimebuilder.moraq_mosaic_column"));
+        tooltip.add(Component.translatable("tooltip.dawnoftimebuilder.column"));
     }
+
 }

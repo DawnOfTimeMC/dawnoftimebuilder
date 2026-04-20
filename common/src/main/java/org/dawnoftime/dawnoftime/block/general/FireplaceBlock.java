@@ -201,8 +201,9 @@ public class FireplaceBlock extends WaterloggedBlock {
     }
 
     @Override
-    public void appendHoverText(final ItemStack stack, @Nullable final BlockGetter worldIn, final List<Component> tooltip, final TooltipFlag flagIn) {
+    public void appendHoverText(@NotNull ItemStack stack, @Nullable BlockGetter worldIn, @NotNull List<Component> tooltip, @NotNull TooltipFlag flagIn) {
         super.appendHoverText(stack, worldIn, tooltip, flagIn);
-        Utils.addTooltip(tooltip, Utils.TOOLTIP_FIREPLACE);
+        tooltip.add(Component.translatable("tooltip.dawnoftimebuilder.fireplace"));
     }
+
 }

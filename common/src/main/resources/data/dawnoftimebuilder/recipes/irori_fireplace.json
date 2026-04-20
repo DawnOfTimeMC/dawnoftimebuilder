@@ -9,7 +9,7 @@
 			"item": "minecraft:spruce_planks"
 		},
 		"i": {
-			"item": "minecraft:spruce_log"
+			"tag": "minecraft:logs_that_burn"
 		},
 		"o": {
 			"item": "minecraft:iron_ingot"

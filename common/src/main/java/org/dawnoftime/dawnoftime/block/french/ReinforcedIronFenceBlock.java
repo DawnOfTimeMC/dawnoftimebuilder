@@ -2,6 +2,9 @@ package org.dawnoftime.dawnoftime.block.french;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelAccessor;
@@ -10,8 +13,6 @@ import net.minecraft.world.level.block.Mirror;
 import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-
-
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
@@ -21,7 +22,8 @@ import org.dawnoftime.dawnoftime.block.templates.ConnectedVerticalBlock;
 import org.dawnoftime.dawnoftime.block.templates.PlateBlock;
 import org.dawnoftime.dawnoftime.util.BlockStatePropertiesAA.VerticalConnection;
 import org.jetbrains.annotations.NotNull;
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
+import java.util.List;
 import static net.minecraft.world.level.block.state.properties.StairsShape.OUTER_LEFT;
 import static org.dawnoftime.dawnoftime.util.VoxelShapes.REINFORCED_IRON_FENCE_SHAPES;
 
@@ -136,5 +138,12 @@ public class ReinforcedIronFenceBlock extends ConnectedVerticalBlock {
         }
 
         return super.mirror(state, mirrorIn);
+    }
+
+    @Override
+    public void appendHoverText(@NotNull ItemStack stack, @Nullable BlockGetter worldIn, @NotNull List<Component> tooltip, @NotNull TooltipFlag flagIn) {
+        super.appendHoverText(stack, worldIn, tooltip, flagIn);
+        tooltip.add(Component.translatable("tooltip.dawnoftimebuilder.column_label"));
+        tooltip.add(Component.translatable("tooltip.dawnoftimebuilder.column"));
     }
 }

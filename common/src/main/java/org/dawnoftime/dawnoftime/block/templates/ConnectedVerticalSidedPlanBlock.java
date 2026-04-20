@@ -74,6 +74,8 @@ public class ConnectedVerticalSidedPlanBlock extends ConnectedVerticalSidedBlock
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, @Nullable BlockGetter worldIn, List<Component> tooltip, TooltipFlag flagIn) {
+    public void appendHoverText(@NotNull ItemStack stack, @Nullable BlockGetter worldIn, @NotNull List<Component> tooltip, @NotNull TooltipFlag flagIn) {
+        // No tooltip — reliefs and framed windows inherit no tooltip behavior
     }
+
 }

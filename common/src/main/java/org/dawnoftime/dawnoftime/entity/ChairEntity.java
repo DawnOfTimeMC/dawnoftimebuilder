@@ -76,12 +76,10 @@ public class ChairEntity extends Entity {
 
     @Override
     protected void readAdditionalSaveData(final @NotNull CompoundTag p_70037_1_) {
-
     }
 
     @Override
     protected void addAdditionalSaveData(final @NotNull CompoundTag p_213281_1_) {
-
     }
 
     @Override

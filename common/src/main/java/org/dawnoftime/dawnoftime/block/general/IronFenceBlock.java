@@ -121,8 +121,10 @@ public class IronFenceBlock extends PlateBlock {
     }
 
     @Override
-    public void appendHoverText(final ItemStack stack, @Nullable final BlockGetter worldIn, final List<Component> tooltip, final TooltipFlag flagIn) {
+    public void appendHoverText(@NotNull ItemStack stack, @Nullable BlockGetter worldIn, @NotNull List<Component> tooltip, @NotNull TooltipFlag flagIn) {
         super.appendHoverText(stack, worldIn, tooltip, flagIn);
-        Utils.addTooltip(tooltip, Utils.TOOLTIP_COLUMN);
+        tooltip.add(Component.translatable("tooltip.dawnoftimebuilder.column_label"));
+        tooltip.add(Component.translatable("tooltip.dawnoftimebuilder.column"));
     }
+
 }

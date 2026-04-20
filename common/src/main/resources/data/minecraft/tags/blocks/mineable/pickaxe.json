@@ -17,7 +17,6 @@
         "dawnoftimebuilder:cobbled_limestone_plate",
         "dawnoftimebuilder:cobbled_limestone_slab",
         "dawnoftimebuilder:cobbled_limestone_edge",
-        // "dawnoftimebuilder:cobbled_limestone_wall",
         "dawnoftimebuilder:covered_sandstone_wall",
         "dawnoftimebuilder:flat_roof_tiles_chimney",
 
@@ -98,6 +97,9 @@
         "dawnoftimebuilder:marble_fancy_fence",
         "dawnoftimebuilder:marble_sided_column",
         "dawnoftimebuilder:marble_statue_mars",
+        "dawnoftimebuilder:blackstone_marble_statue_mars",
+        "dawnoftimebuilder:chromatic_marble_statue_mars",
+        "dawnoftimebuilder:golden_marble_statue_mars",
         "dawnoftimebuilder:slate_bricks",
         "dawnoftimebuilder:slate_bricks_stairs",
         "dawnoftimebuilder:slate_bricks_plate",

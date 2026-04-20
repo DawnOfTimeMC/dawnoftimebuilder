@@ -24,7 +24,6 @@ import org.dawnoftime.dawnoftime.block.templates.WaterloggedBlock;
 import org.dawnoftime.dawnoftime.registry.DoTBBlocksRegistry;
 import org.dawnoftime.dawnoftime.registry.DoTBTags;
 import org.dawnoftime.dawnoftime.util.BlockStatePropertiesAA;
-import org.dawnoftime.dawnoftime.util.Utils;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
@@ -205,8 +204,9 @@ public class TatamiMatBlock extends WaterloggedBlock {
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, @Nullable BlockGetter worldIn, List<Component> tooltip, TooltipFlag flagIn) {
+    public void appendHoverText(@NotNull ItemStack stack, @Nullable BlockGetter worldIn, @NotNull List<Component> tooltip, @NotNull TooltipFlag flagIn) {
         super.appendHoverText(stack, worldIn, tooltip, flagIn);
-        Utils.addTooltip(tooltip, this);
+        tooltip.add(Component.translatable("tooltip.dawnoftimebuilder.tatami_mat"));
     }
+
 }

@@ -28,7 +28,6 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import org.dawnoftime.dawnoftime.block.general.WaterTrickleBlock;
 import org.dawnoftime.dawnoftime.mixin.impl.BucketItemAccessor;
 import org.dawnoftime.dawnoftime.util.BlockStatePropertiesAA;
-import org.dawnoftime.dawnoftime.util.Utils;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
@@ -271,12 +270,6 @@ public class PoolBlock extends BlockDoT {
     }
 
     @Override
-    public void appendHoverText(final ItemStack stack, @Nullable final BlockGetter worldIn, final List<Component> tooltip, final TooltipFlag flagIn) {
-        super.appendHoverText(stack, worldIn, tooltip, flagIn);
-        Utils.addTooltip(tooltip, Utils.TOOLTIP_ADD_COLUMN);
-    }
-
-    @Override
     public int getLightBlock(final BlockState p_200011_1_In, final BlockGetter p_200011_2_In, final BlockPos p_200011_3_In) {
         return 1;
     }
@@ -446,5 +439,11 @@ public class PoolBlock extends BlockDoT {
 
     public enum EnumActivatorState {
         NO, DISABLED, ENABLED,
+    }
+
+    @Override
+    public void appendHoverText(@NotNull ItemStack stack, @Nullable BlockGetter worldIn, @NotNull List<Component> tooltip, @NotNull TooltipFlag flagIn) {
+        super.appendHoverText(stack, worldIn, tooltip, flagIn);
+        tooltip.add(Component.translatable("tooltip.dawnoftimebuilder.add_column"));
     }
 }

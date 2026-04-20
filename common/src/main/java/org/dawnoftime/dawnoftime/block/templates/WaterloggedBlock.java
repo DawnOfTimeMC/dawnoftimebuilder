@@ -25,6 +25,11 @@ public class WaterloggedBlock extends BlockDoT implements SimpleWaterloggedBlock
         this.registerDefaultState(this.defaultBlockState().setValue(WATERLOGGED, false));
     }
 
+    public WaterloggedBlock(Properties properties, VoxelShape[] shapes, String... tooltipKeys) {
+        super(properties, shapes, tooltipKeys);
+        this.registerDefaultState(this.defaultBlockState().setValue(WATERLOGGED, false));
+    }
+
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(WATERLOGGED);

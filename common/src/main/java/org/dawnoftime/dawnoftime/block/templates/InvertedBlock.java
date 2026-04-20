@@ -16,6 +16,11 @@ public class InvertedBlock extends BlockDoT {
         this.registerDefaultState(this.defaultBlockState().setValue(INVERTED, false));
     }
 
+    public InvertedBlock(Properties properties, String... tooltipKeys) {
+        super(properties, tooltipKeys);
+        this.registerDefaultState(this.defaultBlockState().setValue(INVERTED, false));
+    }
+
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         super.createBlockStateDefinition(builder);

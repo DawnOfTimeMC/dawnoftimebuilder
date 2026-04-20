@@ -2,12 +2,10 @@ package org.dawnoftime.dawnoftime.block.templates;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
@@ -23,14 +21,16 @@ import org.dawnoftime.dawnoftime.util.BlockStatePropertiesAA;
 import org.dawnoftime.dawnoftime.util.Utils;
 import org.jetbrains.annotations.NotNull;
 
-import javax.annotation.Nullable;
-import java.util.List;
-
 public class ConnectedVerticalBlock extends WaterloggedBlock {
     public static final EnumProperty<BlockStatePropertiesAA.VerticalConnection> VERTICAL_CONNECTION = BlockStatePropertiesAA.VERTICAL_CONNECTION;
 
     public ConnectedVerticalBlock(final Properties properties, VoxelShape[] shapes) {
         super(properties, shapes);
+        this.registerDefaultState(this.defaultBlockState().setValue(ConnectedVerticalBlock.VERTICAL_CONNECTION, BlockStatePropertiesAA.VerticalConnection.NONE));
+    }
+
+    public ConnectedVerticalBlock(final Properties properties, VoxelShape[] shapes, String... tooltipKeys) {
+        super(properties, shapes, tooltipKeys);
         this.registerDefaultState(this.defaultBlockState().setValue(ConnectedVerticalBlock.VERTICAL_CONNECTION, BlockStatePropertiesAA.VerticalConnection.NONE));
     }
 
@@ -108,9 +108,4 @@ public class ConnectedVerticalBlock extends WaterloggedBlock {
         return pos.above(yOffset - 1);
     }
 
-    @Override
-    public void appendHoverText(final ItemStack stack, @Nullable final BlockGetter worldIn, final List<Component> tooltip, final TooltipFlag flagIn) {
-        super.appendHoverText(stack, worldIn, tooltip, flagIn);
-        Utils.addTooltip(tooltip, Utils.TOOLTIP_COLUMN);
-    }
 }

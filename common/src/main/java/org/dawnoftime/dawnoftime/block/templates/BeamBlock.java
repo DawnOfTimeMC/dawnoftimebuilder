@@ -20,14 +20,11 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.dawnoftime.dawnoftime.block.IBlockPillar;
 import org.dawnoftime.dawnoftime.util.BlockStatePropertiesAA;
-import org.dawnoftime.dawnoftime.util.Utils;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.List;
-
-import static org.dawnoftime.dawnoftime.util.Utils.TOOLTIP_BEAM;
 import static org.dawnoftime.dawnoftime.util.VoxelShapes.BEAM_SHAPES;
 
 public class BeamBlock extends PergolaBlock {
@@ -106,6 +103,6 @@ public class BeamBlock extends PergolaBlock {
     @Override
     public void appendHoverText(@NotNull ItemStack stack, @Nullable BlockGetter worldIn, @NotNull List<Component> tooltip, @NotNull TooltipFlag flagIn) {
         super.appendHoverText(stack, worldIn, tooltip, flagIn);
-        Utils.addTooltip(tooltip, TOOLTIP_BEAM);
+        tooltip.add(Component.translatable("tooltip.dawnoftimebuilder.beam"));
     }
 }

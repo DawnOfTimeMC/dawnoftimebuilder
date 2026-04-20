@@ -236,8 +236,10 @@ public class ConnectedVerticalSidedPlanFireplaceBlock extends ConnectedVerticalS
     }
 
     @Override
-    public void appendHoverText(final ItemStack stack, @Nullable final BlockGetter worldIn, final List<Component> tooltip, final TooltipFlag flagIn) {
-        super.appendHoverText(stack, worldIn, tooltip, flagIn);
-        Utils.addTooltip(tooltip, Utils.TOOLTIP_FIREPLACE);
+    public void appendHoverText(@NotNull ItemStack stack, @Nullable BlockGetter worldIn, @NotNull List<Component> tooltip, @NotNull TooltipFlag flagIn) {
+        tooltip.add(Component.translatable("tooltip.dawnoftimebuilder.dynamic_model_label"));
+        tooltip.add(Component.translatable("tooltip.dawnoftimebuilder.dynamic_model"));
+        tooltip.add(Component.translatable("tooltip.dawnoftimebuilder.fireplace"));
     }
+
 }

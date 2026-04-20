@@ -20,7 +20,6 @@ out
 # gradle
 build
 .gradle
-patch_notes.md
 
 # other
 eclipse
@@ -36,3 +35,10 @@ run
 /.claude/skills/add-block-plate/SKILL.md
 /.claude/skills/add-block-slab/SKILL.md
 /.claude/skills/add-block-stairs/SKILL.md
+/CLAUDE.md
+/.claude/docs/creative-inventory.md
+/.claude/docs/cultures.md
+/.claude/docs/registry.md
+/.claude/docs/resources.md
+/.claude/docs/tooltip-system.md
+/.claude/docs/block-templates.md

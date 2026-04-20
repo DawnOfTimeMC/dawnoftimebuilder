@@ -1,12 +1,8 @@
 package org.dawnoftime.dawnoftime.util;
 
-import net.minecraft.ChatFormatting;
-import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
@@ -15,31 +11,18 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.alchemy.Potion;
 import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import org.dawnoftime.dawnoftime.DoTBCommon;
 import org.dawnoftime.dawnoftime.block.templates.WaterloggedBlock;
 import org.dawnoftime.dawnoftime.registry.DoTBTags;
-
-import javax.annotation.Nonnull;
-import java.util.List;
 
 public class Utils {
     //General
     public static final int HIGHEST_Y = 255;
-    //Tooltip translation text
-    public static final Component TOOLTIP_HOLD_SHIFT = Component.translatable("tooltip." +
-            DoTBCommon.MOD_ID + ".hold_key").withStyle(ChatFormatting.GRAY).append(Component.translatable("tooltip." +
-            DoTBCommon.MOD_ID + ".shift").withStyle(ChatFormatting.AQUA));
-    public static final String TOOLTIP_COLUMN = "column";
-    public static final String TOOLTIP_BEAM = "beam";
-    public static final String TOOLTIP_FIREPLACE = "fireplace";
-    public static final String TOOLTIP_ADD_COLUMN = "add_column";
 
     /**
      * First, keeps only the part of the testedShape that is on the tested face of the block (within faceShape).
@@ -176,33 +159,4 @@ public class Utils {
         return activation;
     }
 
-    public static void addTooltip(final List<Component> tooltip, @Nonnull final Item item, final String... tooltipNames) {
-        final ResourceLocation itemName = item.builtInRegistryHolder().key().location();
-        if (itemName != null) {
-            String[] tts = new String[tooltipNames.length + 1];
-            System.arraycopy(tooltipNames, 0, tts, 0, tooltipNames.length);
-            tts[tooltipNames.length] = itemName.getPath();
-            Utils.addTooltip(tooltip, tts);
-        }
-    }
-
-    public static void addTooltip(final List<Component> tooltip, @Nonnull final Block block, final String... tooltipNames) {
-        final ResourceLocation itemName = block.builtInRegistryHolder().key().location();
-        if (itemName != null) {
-            String[] tts = new String[tooltipNames.length + 1];
-            System.arraycopy(tooltipNames, 0, tts, 0, tooltipNames.length);
-            tts[tooltipNames.length] = itemName.getPath();
-            Utils.addTooltip(tooltip, tts);
-        }
-    }
-
-    public static void addTooltip(final List<Component> tooltip, final String... tooltipNames) {
-        if (Screen.hasShiftDown()) {
-            for (final String tooltipName : tooltipNames) {
-                tooltip.add(Component.translatable("tooltip." + DoTBCommon.MOD_ID + "." + tooltipName).withStyle(ChatFormatting.GRAY));
-            }
-        } else {
-            tooltip.add(Utils.TOOLTIP_HOLD_SHIFT);
-        }
-    }
 }

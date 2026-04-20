@@ -19,6 +19,5 @@ public class DoTBItemTagGenerator extends ItemTagsProvider {
 
     @Override
     protected void addTags(@NotNull HolderLookup.Provider provider) {
-        // TODO: Implement Item Tags
     }
 }

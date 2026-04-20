@@ -21,8 +21,7 @@ import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import org.dawnoftime.dawnoftime.util.BlockStatePropertiesAA;
 import org.dawnoftime.dawnoftime.util.BlockStatePropertiesAA.FencePillar;
-import org.dawnoftime.dawnoftime.util.Utils;
-
+import org.jetbrains.annotations.NotNull;
 import javax.annotation.Nullable;
 import java.util.List;
 
@@ -108,8 +107,9 @@ public class CharredSpruceRailingBlock extends FenceBlock {
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, @Nullable BlockGetter worldIn, List<Component> tooltip, TooltipFlag flagIn) {
+    public void appendHoverText(@NotNull ItemStack stack, @Nullable BlockGetter worldIn, @NotNull List<Component> tooltip, @NotNull TooltipFlag flagIn) {
         super.appendHoverText(stack, worldIn, tooltip, flagIn);
-        Utils.addTooltip(tooltip, this);
+        tooltip.add(Component.translatable("tooltip.dawnoftimebuilder.charred_spruce_railing"));
     }
+
 }

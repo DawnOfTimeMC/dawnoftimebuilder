@@ -18,7 +18,7 @@ import static org.dawnoftime.dawnoftime.util.VoxelShapes.PAPER_LAMP_SHAPES;
 public class PaperLampBlock extends ConnectedVerticalBlock implements IBlockSpecialDisplay {
 
     public PaperLampBlock(Properties properties) {
-        super(properties, PAPER_LAMP_SHAPES);
+        super(properties, PAPER_LAMP_SHAPES, "tooltip.dawnoftimebuilder.column_label", "tooltip.dawnoftimebuilder.column");
     }
 
     @Override
