@@ -20,7 +20,6 @@ import org.dawnoftime.dawnoftime.client.gui.elements.buttons.SocialsButton;
 import org.dawnoftime.dawnoftime.client.gui.elements.buttons.SubTabButton;
 import org.dawnoftime.dawnoftime.mixin.api.CreativeScreen;
 import org.dawnoftime.dawnoftime.registry.DoTBCreativeModeTabsRegistry;
-import org.spongepowered.asm.mixin.Debug;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
@@ -36,7 +35,6 @@ import static org.dawnoftime.dawnoftime.DoTBCommon.CREATIVE_ICONS;
 import static org.dawnoftime.dawnoftime.DoTBCommon.MOD_ID;
 
 @SuppressWarnings("unused")
-@Debug(print = true)
 @Mixin(CreativeModeInventoryScreen.class)
 public abstract class CreativeInventoryMixin extends EffectRenderingInventoryScreen<CreativeModeInventoryScreen.ItemPickerMenu> implements CreativeScreen {
     @Shadow public abstract boolean mouseScrolled(double p_98527_, double p_98528_, double p_98529_);
@@ -222,7 +220,7 @@ public abstract class CreativeInventoryMixin extends EffectRenderingInventoryScr
 
     @Unique
     private void dOTBuilder$buildSubTabButtons(CreativeModeInventoryScreen screen) {
-        this.dOTBuilder$subTabButtons.forEach(this::removeWidget);
+        this.dOTBuilder$subTabButtons.forEach(btn -> this.removeWidget(btn));
         this.dOTBuilder$subTabButtons.clear();
 
         CreativeInventoryCategories category = CreativeInventoryCategories.values()[dOTBuilder$selectedCategoryID];
