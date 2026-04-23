@@ -4,7 +4,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.level.block.Blocks;
 import org.dawnoftime.dawnoftime.registry.DoTBBlocksRegistry;
 import org.dawnoftime.dawnoftime.registry.DoTBItemsRegistry;
 
@@ -421,7 +420,6 @@ public enum CreativeInventoryCategories {
             DoTBBlocksRegistry.INSTANCE.COBBLED_LIMESTONE_PLATE.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.COBBLED_LIMESTONE_SLAB.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.COBBLED_LIMESTONE_EDGE.get().asItem(),
-            // DoTBBlocksRegistry.INSTANCE.COBBLED_LIMESTONE_WALL.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.LIMESTONE_BRICKS.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.LIMESTONE_BRICKS_STAIRS.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.LIMESTONE_BRICKS_PLATE.get().asItem(),

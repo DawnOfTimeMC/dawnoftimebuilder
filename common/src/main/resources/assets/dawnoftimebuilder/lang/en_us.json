@@ -89,7 +89,6 @@
     "block.dawnoftimebuilder.red_painted_timber_frame": "Red Painted Timber Frame",
     "block.dawnoftimebuilder.red_painted_timber_frame_pillar": "Red Painted Timber Frame Pillar",
     "block.dawnoftimebuilder.red_painted_log": "Red Painted Log",
-    "block.dawnoftimebuilder.stripped_red_painted_log": "Stripped Red Painted Log",
     "block.dawnoftimebuilder.red_painted_beam": "Red Painted Beam",
     "block.dawnoftimebuilder.red_painted_pergola": "Red Painted Pergola",
     "block.dawnoftimebuilder.red_painted_fence": "Red Painted Fence",
@@ -435,8 +434,6 @@
     "block.dawnoftimebuilder.cobbled_limestone_plate": "Cobbled Limestone Plate",
     "block.dawnoftimebuilder.cobbled_limestone_slab": "Cobbled Limestone Slab",
     "block.dawnoftimebuilder.cobbled_limestone_edge": "Cobbled Limestone Edge",
-    "block.dawnoftimebuilder.cobbled_limestone_wall": "Cobbled Limestone Wall",
-
     "block.dawnoftimebuilder.limestone_bricks": "Limestone Bricks",
     "block.dawnoftimebuilder.limestone_bricks_stairs": "Limestone Bricks Stairs",
     "block.dawnoftimebuilder.limestone_bricks_plate": "Limestone Bricks Plate",
