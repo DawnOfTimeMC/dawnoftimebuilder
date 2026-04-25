@@ -8,51 +8,49 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.ItemStack;
 import org.dawnoftime.dawnoftime.config.PatronConfig;
-import org.dawnoftime.dawnoftime.registry.DoTBBlocksRegistry;
+import org.dawnoftime.dawnoftime.registry.DoTBItemsRegistry;
 
 /**
- * Registers and handles the /dotreward blocks command.
+ * Registers and handles the /dotreward token command.
+ * Gives 1 patron token matching the requested tier — used as a crafting ingredient for patron rewards.
  * All logic runs server-side — no client code here.
  *
  * Tier mapping:
- *   tier 1 → chromatic_marble_statue_mars (64x)
- *   tier 2 → golden_marble_statue_mars    (64x)
- *   tier 3 → blackstone_marble_statue_mars (64x)
+ *   tier 1 → patreon_tier_1 (Silver Patreon Token)
+ *   tier 2 → patreon_tier_2 (Golden Patreon Token)
+ *   tier 3 → patreon_tier_3 (Crystal Patreon Token)
+ *   tier 4 → patreon_tier_4 (Amethist Patreon Token)
+ *   tier 5 → patreon_tier_5 (Everlasting Patreon Token)
+ *   tier 6 → patreon_tier_6 (Heavenly Patreon Token)
  *
  * A player can claim any tier up to and including their own (cascade).
- * The patron list is bundled inside the JAR — see data/dawnoftimebuilder/patrons.json.
+ * The patron list is fetched from GitHub and cached locally — see PatronConfig.
  */
 public class PatronRewardCommand {
 
     public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
         dispatcher.register(
             Commands.literal("dotreward")
-                .then(Commands.literal("blocks")
-                    .then(Commands.argument("tier", IntegerArgumentType.integer(1, 3))
+                .requires(source -> source.hasPermission(0))
+                .then(Commands.literal("token")
+                    .then(Commands.argument("tier", IntegerArgumentType.integer(1, 6))
                         .executes(context -> {
                             int tier = IntegerArgumentType.getInteger(context, "tier");
-                            return executeBlocks(context.getSource(), tier);
+                            return executeToken(context.getSource(), tier);
                         })
                     )
                 )
         );
     }
 
-    private static int executeBlocks(CommandSourceStack source, int requestedTier) {
+    private static int executeToken(CommandSourceStack source, int requestedTier) {
         // Commands can be run from console too — ensure it's a player
         if (!(source.getEntity() instanceof ServerPlayer player)) {
             source.sendFailure(Component.literal("This command can only be used by a player."));
             return 0;
         }
 
-        // Patron list is bundled inside the JAR — no external file needed
         PatronConfig config = PatronConfig.load();
-
-        if (config == null) {
-            // PatronConfig.load already logged the parse error
-            source.sendFailure(Component.literal("Patron configuration error. Please contact an administrator."));
-            return 0;
-        }
 
         String uuid = player.getStringUUID();
         int playerTier = getPlayerMaxTier(config, uuid);
@@ -69,48 +67,57 @@ public class PatronRewardCommand {
             return 0;
         }
 
-        ItemStack reward = getTierReward(requestedTier);
-        if (reward.isEmpty()) {
-            source.sendFailure(Component.literal("No reward configured for tier " + requestedTier + "."));
+        ItemStack token = getTierToken(requestedTier);
+        if (token.isEmpty()) {
+            source.sendFailure(Component.literal("No token configured for tier " + requestedTier + "."));
             return 0;
         }
 
-        // Add to inventory; if full, drop at feet so items are never lost
-        if (!player.getInventory().add(reward)) {
-            player.drop(reward, false);
+        // Add to inventory; if full, drop at feet so tokens are never lost
+        if (!player.getInventory().add(token)) {
+            player.drop(token, false);
         }
 
         source.sendSuccess(() -> Component.literal(
-            "You received 64 " + getTierBlockName(requestedTier) + "!"
+            "You received a " + getTierTokenName(requestedTier) + "!"
         ), false);
         return 1;
     }
 
     /**
      * Returns the highest tier the player belongs to, or 0 if not a patron.
-     * Tier 3 is checked first so a tier-3 patron is not misidentified as tier 1.
+     * Highest tier is checked first to avoid misidentifying a high-tier patron as tier 1.
      */
     private static int getPlayerMaxTier(PatronConfig config, String uuid) {
+        if (config.tier6.contains(uuid)) return 6;
+        if (config.tier5.contains(uuid)) return 5;
+        if (config.tier4.contains(uuid)) return 4;
         if (config.tier3.contains(uuid)) return 3;
         if (config.tier2.contains(uuid)) return 2;
         if (config.tier1.contains(uuid)) return 1;
         return 0;
     }
 
-    private static ItemStack getTierReward(int tier) {
+    private static ItemStack getTierToken(int tier) {
         return switch (tier) {
-            case 1 -> new ItemStack(DoTBBlocksRegistry.INSTANCE.CHROMATIC_MARBLE_STATUE_MARS.get(), 64);
-            case 2 -> new ItemStack(DoTBBlocksRegistry.INSTANCE.GOLDEN_MARBLE_STATUE_MARS.get(), 64);
-            case 3 -> new ItemStack(DoTBBlocksRegistry.INSTANCE.BLACKSTONE_MARBLE_STATUE_MARS.get(), 64);
+            case 1 -> new ItemStack(DoTBItemsRegistry.INSTANCE.PATREON_TIER_1.get(), 1);
+            case 2 -> new ItemStack(DoTBItemsRegistry.INSTANCE.PATREON_TIER_2.get(), 1);
+            case 3 -> new ItemStack(DoTBItemsRegistry.INSTANCE.PATREON_TIER_3.get(), 1);
+            case 4 -> new ItemStack(DoTBItemsRegistry.INSTANCE.PATREON_TIER_4.get(), 1);
+            case 5 -> new ItemStack(DoTBItemsRegistry.INSTANCE.PATREON_TIER_5.get(), 1);
+            case 6 -> new ItemStack(DoTBItemsRegistry.INSTANCE.PATREON_TIER_6.get(), 1);
             default -> ItemStack.EMPTY;
         };
     }
 
-    private static String getTierBlockName(int tier) {
+    private static String getTierTokenName(int tier) {
         return switch (tier) {
-            case 1 -> "Chromatic Marble Statue of Mars";
-            case 2 -> "Golden Marble Statue of Mars";
-            case 3 -> "Blackstone Marble Statue of Mars";
+            case 1 -> "Silver Patreon Token";
+            case 2 -> "Golden Patreon Token";
+            case 3 -> "Crystal Patreon Token";
+            case 4 -> "Amethist Patreon Token";
+            case 5 -> "Everlasting Patreon Token";
+            case 6 -> "Heavenly Patreon Token";
             default -> "Unknown";
         };
     }

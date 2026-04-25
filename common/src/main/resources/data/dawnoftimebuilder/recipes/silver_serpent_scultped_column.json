@@ -1,0 +1,22 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"I  ",
+		"IT ",
+		"Ioo"
+	],
+	"key": {
+		"I": {
+			"item": "minecraft:stone"
+		},
+		"T": {
+			"item": "dawnoftimebuilder:patreon_tier_1"
+		},
+		"o": {
+			"item": "minecraft:gold_nugget"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:silver_serpent_scultped_column"
+	}
+}

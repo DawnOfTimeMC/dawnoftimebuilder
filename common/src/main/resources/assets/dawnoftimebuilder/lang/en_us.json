@@ -19,6 +19,13 @@
     "item.dawnoftimebuilder.precolumbian_emblem": "Pre Columbian Emblem",
     "item.dawnoftimebuilder.chinese_emblem": "Chinese Emblem",
 
+    "item.dawnoftimebuilder.patreon_tier_1": "Silver Patreon Token",
+    "item.dawnoftimebuilder.patreon_tier_2": "Golden Patreon Token",
+    "item.dawnoftimebuilder.patreon_tier_3": "Crystal Patreon Token",
+    "item.dawnoftimebuilder.patreon_tier_4": "Amethist Patreon Token",
+    "item.dawnoftimebuilder.patreon_tier_5": "Everlasting Patreon Token",
+    "item.dawnoftimebuilder.patreon_tier_6": "Heavenly Patreon Token",
+
     "item.dawnoftimebuilder.unfired_clay_tile": "Unfired Clay Tile",
     "item.dawnoftimebuilder.clay_tile": "Clay Tile",
     "item.dawnoftimebuilder.clay_tile_orange": "Orange Clay Tile",
@@ -130,6 +137,9 @@
     "block.dawnoftimebuilder.spruce_low_table": "Spruce Low Table",
     "block.dawnoftimebuilder.ikebana_flower_pot": "Ikebana Pot",
     "block.dawnoftimebuilder.sake_bottle": "Sake Bottle",
+    "block.dawnoftimebuilder.silver_sake_bottle": "Silver Sake Bottle",
+    "block.dawnoftimebuilder.golden_sake_bottle": "Golden Sake Bottle",
+    "block.dawnoftimebuilder.amethist_sake_bottle": "Amethist Sake Bottle",
     "block.dawnoftimebuilder.sake_cup": "Sake Cup",
     "block.dawnoftimebuilder.cast_iron_teapot_gray": "Gray Cast Iron Teapot",
     "block.dawnoftimebuilder.cast_iron_teacup_gray": "Gray Cast Iron Teacup",
@@ -346,6 +356,10 @@
 
     "block.dawnoftimebuilder.feathered_serpent_sculpture": "Feathered Serpent Sculpture",
     "block.dawnoftimebuilder.serpent_sculpted_column": "Serpent Sculpted Column",
+    "block.dawnoftimebuilder.silver_feathered_serpent_sculpture": "Silver Feathered Serpent Sculpture",
+    "block.dawnoftimebuilder.silver_serpent_scultped_column": "Silver Serpent Sculpted Column",
+    "block.dawnoftimebuilder.amethist_feathered_serpent_sculpture": "Amethist Feathered Serpent Sculpture",
+    "block.dawnoftimebuilder.amethist_serpent_scultped_column": "Amethist Serpent Sculpted Column",
     "block.dawnoftimebuilder.plastered_stone_cresset": "Plastered Stone Cresset",
     "block.dawnoftimebuilder.fireplace": "Open Fireplace",
 

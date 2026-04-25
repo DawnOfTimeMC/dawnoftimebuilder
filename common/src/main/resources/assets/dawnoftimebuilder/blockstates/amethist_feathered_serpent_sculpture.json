@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=east": { "model": "dawnoftimebuilder:block/patreon/amethist_feathered_serpent_sculpture", "y" : 270},
+        "facing=south": { "model": "dawnoftimebuilder:block/patreon/amethist_feathered_serpent_sculpture" },
+        "facing=west": { "model": "dawnoftimebuilder:block/patreon/amethist_feathered_serpent_sculpture", "y": 90 },
+        "facing=north": { "model": "dawnoftimebuilder:block/patreon/amethist_feathered_serpent_sculpture", "y": 180 }
+    }
+}

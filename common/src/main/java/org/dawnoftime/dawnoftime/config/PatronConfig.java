@@ -16,8 +16,8 @@ import java.util.List;
  * JSON format (remote + local cache):
  *   {
  *     "tier1": [{"uuid": "...", "name": "PlayerName"}, ...],
- *     "tier2": [...],
- *     "tier3": [...]
+ *     ...
+ *     "tier6": [...]
  *   }
  *
  * Tier lists (UUID strings) are consumed directly by PatronRewardCommand.
@@ -27,6 +27,9 @@ public class PatronConfig {
     public List<String> tier1 = new ArrayList<>();
     public List<String> tier2 = new ArrayList<>();
     public List<String> tier3 = new ArrayList<>();
+    public List<String> tier4 = new ArrayList<>();
+    public List<String> tier5 = new ArrayList<>();
+    public List<String> tier6 = new ArrayList<>();
 
     private static final Gson GSON = new Gson();
 
@@ -38,6 +41,9 @@ public class PatronConfig {
         List<PatronEntry> tier1 = new ArrayList<>();
         List<PatronEntry> tier2 = new ArrayList<>();
         List<PatronEntry> tier3 = new ArrayList<>();
+        List<PatronEntry> tier4 = new ArrayList<>();
+        List<PatronEntry> tier5 = new ArrayList<>();
+        List<PatronEntry> tier6 = new ArrayList<>();
 
         static class PatronEntry {
             String uuid;
@@ -90,6 +96,15 @@ public class PatronConfig {
         if (data.tier3 != null)
             for (PatronData.PatronEntry e : data.tier3)
                 if (e != null && e.uuid != null) config.tier3.add(e.uuid);
+        if (data.tier4 != null)
+            for (PatronData.PatronEntry e : data.tier4)
+                if (e != null && e.uuid != null) config.tier4.add(e.uuid);
+        if (data.tier5 != null)
+            for (PatronData.PatronEntry e : data.tier5)
+                if (e != null && e.uuid != null) config.tier5.add(e.uuid);
+        if (data.tier6 != null)
+            for (PatronData.PatronEntry e : data.tier6)
+                if (e != null && e.uuid != null) config.tier6.add(e.uuid);
         return config;
     }
 }

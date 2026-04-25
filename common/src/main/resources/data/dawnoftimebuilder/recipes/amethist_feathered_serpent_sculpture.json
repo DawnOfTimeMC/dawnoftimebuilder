@@ -1,0 +1,21 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"IT ",
+		"Ioo"
+	],
+	"key": {
+		"I": {
+			"item": "minecraft:stone"
+		},
+		"T": {
+			"item": "dawnoftimebuilder:patreon_tier_4"
+		},
+		"o": {
+			"item": "minecraft:gold_nugget"
+		}
+	},
+	"result": {
+		"item": "dawnoftimebuilder:amethist_feathered_serpent_sculpture"
+	}
+}
