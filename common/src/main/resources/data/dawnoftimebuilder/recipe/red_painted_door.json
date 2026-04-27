@@ -1,0 +1,20 @@
+﻿{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"II",
+		"ii",
+		"II"
+	],
+	"key": {
+		"I": {
+			"item": "minecraft:iron_ingot"
+		},
+		"i": {
+			"item": "dawnoftimebuilder:red_painted_log"
+		}
+	},
+	"result": {
+		"id": "dawnoftimebuilder:red_painted_door",
+		"count": 6
+	}
+}

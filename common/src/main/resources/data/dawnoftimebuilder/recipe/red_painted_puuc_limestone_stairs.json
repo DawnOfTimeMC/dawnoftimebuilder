@@ -1,0 +1,17 @@
+﻿{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"I  ",
+		"II ",
+		"III"
+	],
+	"key": {
+		"I": {
+			"item": "dawnoftimebuilder:red_painted_puuc_limestone"
+		}
+	},
+	"result": {
+		"id": "dawnoftimebuilder:red_painted_puuc_limestone_stairs",
+		"count": 6
+	}
+}

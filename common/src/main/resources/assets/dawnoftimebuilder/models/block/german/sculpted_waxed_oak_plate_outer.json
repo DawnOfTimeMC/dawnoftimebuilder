@@ -1,0 +1,7 @@
+{
+	"parent": "dawnoftimebuilder:block/general/plate_outer",
+	"textures": {
+		"top": "dawnoftimebuilder:block/sculpted_waxed_oak",
+		"frieze": "dawnoftimebuilder:block/sculpted_waxed_oak"
+	}
+}

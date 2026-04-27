@@ -1,0 +1,44 @@
+{
+  "display": {
+    "icon": {
+      "item": "dawnoftimebuilder:slate_bricks"
+    },
+    "title": {"translate": "advancement.dawnoftimebuilder.chinese.the_great_wall.title"},
+    "description": {"translate": "advancement.dawnoftimebuilder.chinese.the_great_wall.description"},
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "parent": "dawnoftimebuilder:master_of_time",
+  "criteria": {
+    "slate_bricks": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {"items": [{"items": ["dawnoftimebuilder:slate_bricks"]}]}
+    },
+    "slate_bricks_edge": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {"items": [{"items": ["dawnoftimebuilder:slate_bricks_edge"]}]}
+    },
+    "slate_bricks_plate": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {"items": [{"items": ["dawnoftimebuilder:slate_bricks_plate"]}]}
+    },
+    "slate_bricks_slab": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {"items": [{"items": ["dawnoftimebuilder:slate_bricks_slab"]}]}
+    },
+    "slate_bricks_stairs": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {"items": [{"items": ["dawnoftimebuilder:slate_bricks_stairs"]}]}
+    },
+    "slate_bricks_wall": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {"items": [{"items": ["dawnoftimebuilder:slate_bricks_wall"]}]}
+    }
+  },
+  "requirements": [
+    ["slate_bricks"], ["slate_bricks_edge"], ["slate_bricks_plate"],
+    ["slate_bricks_slab"], ["slate_bricks_stairs"], ["slate_bricks_wall"]
+  ]
+}

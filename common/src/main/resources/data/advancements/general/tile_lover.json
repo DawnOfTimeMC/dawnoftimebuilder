@@ -1,0 +1,43 @@
+{
+  "display": {
+    "icon": {
+      "item": "dawnoftimebuilder:clay_tile_white"
+    },
+    "title": {"translate": "advancement.dawnoftimebuilder.general.tile_lover.title"},
+    "description": {"translate": "advancement.dawnoftimebuilder.general.tile_lover.description"},
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "parent": "dawnoftimebuilder:general/have_a_seat",
+  "criteria": {
+    "clay_tile_white": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {"items": [{"items": ["dawnoftimebuilder:clay_tile_white"]}]}
+    },
+    "clay_tile_cyan": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {"items": [{"items": ["dawnoftimebuilder:clay_tile_cyan"]}]}
+    },
+    "clay_tile_blue": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {"items": [{"items": ["dawnoftimebuilder:clay_tile_blue"]}]}
+    },
+    "clay_tile_orange": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {"items": [{"items": ["dawnoftimebuilder:clay_tile_orange"]}]}
+    },
+    "clay_tile_black": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {"items": [{"items": ["dawnoftimebuilder:clay_tile_black"]}]}
+    }
+  },
+  "requirements": [
+    ["clay_tile_white"],
+    ["clay_tile_cyan"],
+    ["clay_tile_blue"],
+    ["clay_tile_orange"],
+    ["clay_tile_black"]
+  ]
+}

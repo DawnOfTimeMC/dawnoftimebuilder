@@ -1,0 +1,20 @@
+﻿{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"IiI",
+		"iii",
+		"IiI"
+	],
+	"key": {
+		"I": {
+			"item": "dawnoftimebuilder:waxed_oak_planks"
+		},
+		"i": {
+			"item": "dawnoftimebuilder:wattle_and_daub"
+		}
+	},
+	"result": {
+		"id": "dawnoftimebuilder:waxed_oak_timber_frame_corner",
+		"count": 6
+	}
+}

@@ -1,0 +1,20 @@
+﻿{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"iII",
+		" II",
+		"iII"
+	],
+	"key": {
+		"I": {
+			"item": "dawnoftimebuilder:waxed_oak_planks"
+		},
+		"i": {
+			"item": "minecraft:stick"
+		}
+	},
+	"result": {
+		"id": "dawnoftimebuilder:waxed_oak_shutters",
+		"count": 4
+	}
+}

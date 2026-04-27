@@ -1,0 +1,17 @@
+﻿{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"I  ",
+		"II ",
+		"III"
+	],
+	"key": {
+		"I": {
+			"item": "dawnoftimebuilder:white_wattle_and_daub"
+		}
+	},
+	"result": {
+		"id": "dawnoftimebuilder:white_wattle_and_daub_stairs",
+		"count": 6
+	}
+}

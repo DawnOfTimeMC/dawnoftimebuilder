@@ -1,0 +1,19 @@
+﻿{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"IiI",
+		"IiI"
+	],
+	"key": {
+		"i": {
+			"item": "dawnoftimebuilder:charred_spruce_planks"
+		},
+        "I": {
+            "item": "minecraft:glass"
+        }
+	},
+	"result": {
+		"id": "dawnoftimebuilder:charred_spruce_glass_pane",
+		"count": 16
+	}
+}

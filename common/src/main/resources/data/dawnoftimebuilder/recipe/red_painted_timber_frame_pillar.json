@@ -1,0 +1,20 @@
+﻿{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"IiI",
+		"IiI",
+		"IiI"
+	],
+	"key": {
+		"I": {
+			"item": "dawnoftimebuilder:red_painted_log"
+		},
+		"i": {
+			"item": "dawnoftimebuilder:white_wattle_and_daub"
+		}
+	},
+	"result": {
+		"id": "dawnoftimebuilder:red_painted_timber_frame_pillar",
+		"count": 6
+	}
+}

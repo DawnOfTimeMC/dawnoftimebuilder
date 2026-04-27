@@ -1,0 +1,8 @@
+{
+    "parent": "block/slab",
+    "textures": {
+        "bottom": "dawnoftimebuilder:block/white_painted_puuc_limestone",
+        "top": "dawnoftimebuilder:block/white_painted_puuc_limestone",
+        "side": "dawnoftimebuilder:block/white_painted_puuc_limestone"
+    }
+}

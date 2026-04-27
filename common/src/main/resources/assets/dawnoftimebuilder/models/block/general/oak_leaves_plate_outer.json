@@ -1,0 +1,8 @@
+{
+    "render_type": "minecraft:cutout",
+    "parent": "dawnoftimebuilder:block/general/plate_outer_tinted",
+	"textures": {
+		"top": "block/oak_leaves",
+		"frieze": "block/oak_leaves"
+	}
+}

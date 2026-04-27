@@ -1,0 +1,8 @@
+{
+	"parent": "dawnoftimebuilder:block/general/small_plate_inner",
+	"textures": {
+		"side": "dawnoftimebuilder:block/spruce_boards",
+		"top": "dawnoftimebuilder:block/spruce_boards",
+		"frieze": "dawnoftimebuilder:block/spruce_boards"
+	}
+}

@@ -1,0 +1,15 @@
+{
+  "display": {
+    "icon": {"item": "dawnoftimebuilder:dawn_of_time"},
+    "title": {"translate": "advancement.dawnoftimebuilder.root.title"},
+    "description": {"translate": "advancement.dawnoftimebuilder.root.description"},
+    "background": "dawnoftimebuilder:textures/block/red_painted_puuc_limestone.png",
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "tick": {"trigger": "minecraft:tick"}
+  }
+}

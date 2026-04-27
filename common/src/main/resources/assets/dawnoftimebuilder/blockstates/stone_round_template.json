@@ -1,0 +1,20 @@
+{
+	"multipart": [
+		{
+			"when": { "north": "true" },
+			"apply": { "model": "dawnoftimebuilder:block/precolumbian/stone_round_template"}
+		},
+		{
+			"when": { "east": "true" },
+			"apply": { "model": "dawnoftimebuilder:block/precolumbian/stone_round_template", "y": 90}
+		},
+		{
+			"when": { "south": "true" },
+			"apply": { "model": "dawnoftimebuilder:block/precolumbian/stone_round_template", "y": 180}
+		},
+		{
+			"when": { "west": "true" },
+			"apply": { "model": "dawnoftimebuilder:block/precolumbian/stone_round_template", "y": 270}
+		}
+	]
+}

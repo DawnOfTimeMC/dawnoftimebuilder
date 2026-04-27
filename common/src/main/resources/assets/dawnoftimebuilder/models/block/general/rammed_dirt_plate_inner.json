@@ -1,0 +1,8 @@
+{
+	"parent": "dawnoftimebuilder:block/general/plate_inner",
+	"textures": {
+		"side": "dawnoftimebuilder:block/rammed_dirt",
+		"top": "dawnoftimebuilder:block/rammed_dirt",
+		"frieze": "dawnoftimebuilder:block/rammed_dirt"
+	}
+}

@@ -1,0 +1,19 @@
+﻿{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"i  ",
+		"iII",
+		"iii"
+	],
+	"key": {
+		"i": {
+			"item": "minecraft:spruce_slab"
+		},
+		"I": {
+			"item": "minecraft:white_wool"
+		}
+	},
+	"result": {
+		"id": "dawnoftimebuilder:spruce_legless_chair"
+	}
+}

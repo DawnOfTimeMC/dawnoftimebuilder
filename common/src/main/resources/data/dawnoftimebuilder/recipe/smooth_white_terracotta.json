@@ -1,0 +1,19 @@
+﻿{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"iI",
+		"Ii"
+	],
+	"key": {
+		"I": {
+			"item": "minecraft:terracotta"
+		},
+		"i": {
+			"item": "minecraft:white_dye"
+		}
+	},
+	"result": {
+		"id": "dawnoftimebuilder:smooth_white_terracotta",
+		"count": 8
+	}
+}

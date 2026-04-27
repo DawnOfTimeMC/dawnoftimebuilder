@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "type=bottom": { "model": "dawnoftimebuilder:block/roman/red_terracotta_slab_bottom" },
+        "type=top": { "model": "dawnoftimebuilder:block/roman/red_terracotta_slab_top" },
+        "type=double": { "model": "minecraft:block/red_terracotta" }
+    }
+}

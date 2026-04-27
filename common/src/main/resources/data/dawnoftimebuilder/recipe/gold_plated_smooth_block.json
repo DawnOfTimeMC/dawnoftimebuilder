@@ -1,0 +1,27 @@
+﻿{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		" o ",
+		"oxo",
+		" o "
+	],
+	"key": {
+		"x": [
+			{
+				"item": "minecraft:sandstone"
+			},
+			{
+				"item": "minecraft:stone"
+			},
+			{
+				"item": "minecraft:cobblestone"
+			}
+		],
+		"o":{
+			"item": "minecraft:gold_nugget"
+		}
+	},
+	"result": {
+		"id": "dawnoftimebuilder:gold_plated_smooth_block"
+	}
+}

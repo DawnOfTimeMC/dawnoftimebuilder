@@ -1,0 +1,27 @@
+{
+  "display": {
+    "icon": {
+      "item": "dawnoftimebuilder:marble_statue_mars"
+    },
+    "title": {"translate": "advancement.dawnoftimebuilder.roman.glory_to_rome.title"},
+    "description": {"translate": "advancement.dawnoftimebuilder.roman.glory_to_rome.description"},
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "parent": "dawnoftimebuilder:roman/make_it_shine",
+  "criteria": {
+    "get_statues": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": ["dawnoftimebuilder:marble_statue_mars"],
+            "count": {"min": 10}
+          }
+        ]
+      }
+    }
+  }
+}

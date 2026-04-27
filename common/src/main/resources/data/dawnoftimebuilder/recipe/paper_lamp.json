@@ -1,0 +1,23 @@
+﻿{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"oIo",
+		"oOo",
+		"o o"
+	],
+	"key": {
+		"o": {
+			"item": "minecraft:stick"
+		},
+		"O": {
+			"item": "minecraft:torch"
+		},
+		"I": {
+			"item": "minecraft:paper"
+		}
+	},
+	"result": {
+		"id": "dawnoftimebuilder:paper_lamp",
+		"count": 6
+	}
+}

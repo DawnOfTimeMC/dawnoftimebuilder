@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "axis=y":  { "model": "dawnoftimebuilder:block/german/reinforced_waxed_oak" },
+        "axis=z":   { "model": "dawnoftimebuilder:block/german/reinforced_waxed_oak", "x": 90 },
+        "axis=x":   { "model": "dawnoftimebuilder:block/german/reinforced_waxed_oak", "x": 90, "y": 90 }
+    }
+}

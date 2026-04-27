@@ -1,0 +1,17 @@
+﻿{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"I",
+		"I",
+		"I"
+	],
+	"key": {
+		"I": {
+			"item": "dawnoftimebuilder:smooth_black_terracotta"
+		}
+	},
+	"result": {
+		"id": "dawnoftimebuilder:smooth_black_terracotta_plate",
+		"count": 6
+	}
+}

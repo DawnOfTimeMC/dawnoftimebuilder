@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "type=bottom": { "model": "dawnoftimebuilder:block/chinese/painted_acacia_planks_slab_bottom" },
+        "type=top":    { "model": "dawnoftimebuilder:block/chinese/painted_acacia_planks_slab_top" },
+        "type=double": { "model": "dawnoftimebuilder:block/chinese/painted_acacia_planks" }
+    }
+}

@@ -1,0 +1,22 @@
+﻿{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		" i ",
+		"IxI"
+	],
+	"key": {
+		"I": {
+			"item": "dawnoftimebuilder:red_painted_stone"
+		},
+		"i": {
+			"item": "minecraft:green_dye"
+		},
+		"x": {
+			"item": "minecraft:blue_dye"
+		}
+	},
+	"result": {
+		"id": "dawnoftimebuilder:red_painted_crenelation",
+		"count": 6
+	}
+}

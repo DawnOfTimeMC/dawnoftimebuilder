@@ -1,0 +1,22 @@
+{
+	"format_version": "1.9.0",
+	"credit": "Made with Blockbench",
+	"render_type": "minecraft:cutout",
+	"textures": {
+		"0": "dawnoftimebuilder:block/stone_round_template",
+		"particle": "dawnoftimebuilder:block/stone_round_template"
+	},
+	"elements": [
+		{
+			"from": [0, 0, 0.1],
+			"to": [16, 16, 0.1],
+			"faces": {
+				"north": {"uv": [0, 16, 16, 0], "rotation": 180, "texture": "#0"},
+				"east": {"uv": [9, 13, 14, 14], "rotation": 90, "texture": "#missing"},
+				"south": {"uv": [0, 0, 16, 16], "texture": "#0"},
+				"west": {"uv": [9, 13, 14, 14], "rotation": 90, "texture": "#missing"},
+				"up": {"uv": [9, 13, 10, 14], "rotation": 90, "texture": "#missing"}
+			}
+		}
+	]
+}

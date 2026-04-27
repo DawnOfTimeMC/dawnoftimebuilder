@@ -1,0 +1,20 @@
+﻿{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"iII",
+		" II",
+		"iII"
+	],
+	"key": {
+		"I": {
+			"item": "dawnoftimebuilder:red_painted_log"
+		},
+		"i": {
+			"item": "minecraft:stick"
+		}
+	},
+	"result": {
+		"id": "dawnoftimebuilder:red_painted_shutters",
+		"count": 4
+	}
+}

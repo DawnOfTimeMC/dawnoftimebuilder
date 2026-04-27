@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "axis=y":  { "model": "dawnoftimebuilder:block/japanese/red_painted_log" },
+        "axis=z":   { "model": "dawnoftimebuilder:block/japanese/red_painted_log", "x": 90 },
+        "axis=x":   { "model": "dawnoftimebuilder:block/japanese/red_painted_log", "x": 90, "y": 90 }
+    }
+}

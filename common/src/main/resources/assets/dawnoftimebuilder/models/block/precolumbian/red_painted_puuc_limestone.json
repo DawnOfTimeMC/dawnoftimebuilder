@@ -1,0 +1,6 @@
+{
+    "parent": "block/cube_all",
+    "textures": {
+        "all": "dawnoftimebuilder:block/red_painted_puuc_limestone"
+    }
+}

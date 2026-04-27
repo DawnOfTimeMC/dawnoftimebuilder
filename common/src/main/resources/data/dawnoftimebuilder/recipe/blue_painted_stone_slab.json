@@ -1,0 +1,15 @@
+﻿{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "III"
+    ],
+    "key": {
+        "I": {
+            "item": "dawnoftimebuilder:blue_painted_stone"
+        }
+    },
+    "result": {
+        "id": "dawnoftimebuilder:blue_painted_stone_slab",
+        "count": 6
+    }
+}

@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "type=bottom": { "model": "dawnoftimebuilder:block/persian/sand_slab_bottom" },
+        "type=top": { "model": "dawnoftimebuilder:block/persian/sand_slab_top" },
+        "type=double": { "model": "minecraft:block/sand" }
+    }
+}

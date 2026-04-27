@@ -1,0 +1,21 @@
+{
+  "display": {
+    "icon": {
+      "item": "minecraft:crafting_table",
+      "nbt": "{Enchantments:[{id:\"minecraft:binding_curse\",lvl:1}]}"
+    },
+    "title": {"translate": "advancement.dawnoftimebuilder.general_kenoblocki.title"},
+    "description": {"translate": "advancement.dawnoftimebuilder.general_kenoblocki.description"},
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "parent": "dawnoftimebuilder:root",
+  "criteria": {
+    "have_a_seat":    {"trigger": "minecraft:inventory_changed", "conditions": {"items": [{"items": ["dawnoftimebuilder:waxed_oak_chair"]}]}},
+    "tile_lover":     {"trigger": "minecraft:inventory_changed", "conditions": {"items": [{"items": ["dawnoftimebuilder:clay_tile_white"]}]}},
+    "mosaic_fanatic": {"trigger": "minecraft:inventory_changed", "conditions": {"items": [{"items": ["dawnoftimebuilder:moraq_mosaic_border"]}]}}
+  },
+  "requirements": [["have_a_seat"], ["tile_lover"], ["mosaic_fanatic"]]
+}

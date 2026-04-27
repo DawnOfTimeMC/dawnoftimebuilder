@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "type=bottom": { "model": "dawnoftimebuilder:block/precolumbian/white_painted_puuc_limestone_slab_bottom" },
+        "type=top": { "model": "dawnoftimebuilder:block/precolumbian/white_painted_puuc_limestone_slab_top" },
+        "type=double": { "model": "dawnoftimebuilder:block/precolumbian/white_painted_puuc_limestone" }
+    }
+}

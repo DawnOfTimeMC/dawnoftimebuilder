@@ -1,0 +1,19 @@
+﻿{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"i",
+		"I"
+	],
+	"key": {
+		"i": {
+			"item": "dawnoftimebuilder:waxed_oak_log_stripped"
+		},
+		"I": {
+			"item": "minecraft:stone_bricks"
+		}
+	},
+	"result": {
+		"id": "dawnoftimebuilder:waxed_oak_beam",
+		"count": 4
+	}
+}

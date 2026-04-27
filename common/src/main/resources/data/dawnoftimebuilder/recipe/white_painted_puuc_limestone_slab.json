@@ -1,0 +1,15 @@
+﻿{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"III"
+	],
+	"key": {
+		"I": {
+			"item": "dawnoftimebuilder:white_painted_puuc_limestone"
+		}
+	},
+	"result": {
+		"id": "dawnoftimebuilder:white_painted_puuc_limestone_slab",
+		"count": 6
+	}
+}

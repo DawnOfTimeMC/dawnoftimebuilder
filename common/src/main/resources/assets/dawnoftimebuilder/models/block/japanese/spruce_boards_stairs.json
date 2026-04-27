@@ -1,0 +1,8 @@
+{
+    "parent": "block/stairs",
+    "textures": {
+        "bottom": "dawnoftimebuilder:block/spruce_boards",
+        "top": "dawnoftimebuilder:block/spruce_boards",
+        "side": "dawnoftimebuilder:block/spruce_boards"
+    }
+}

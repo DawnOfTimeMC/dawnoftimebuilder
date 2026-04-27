@@ -1,0 +1,19 @@
+﻿{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"ii",
+		"II"
+	],
+	"key": {
+		"I": {
+			"item": "minecraft:white_wool"
+		},
+		"i": {
+			"item": "minecraft:stick"
+		}
+	},
+	"result": {
+		"id": "dawnoftimebuilder:white_little_flag",
+		"count": 4
+	}
+}

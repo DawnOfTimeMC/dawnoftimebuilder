@@ -1,0 +1,8 @@
+{
+    "parent": "block/slab",
+    "textures": {
+        "bottom": "dawnoftimebuilder:block/white_wattle_and_daub",
+        "top": "dawnoftimebuilder:block/white_wattle_and_daub",
+        "side": "dawnoftimebuilder:block/white_wattle_and_daub"
+    }
+}

@@ -1,0 +1,78 @@
+{
+  "display": {
+    "icon": {
+      "item": "dawnoftimebuilder:marble"
+    },
+    "title": {"translate": "advancement.dawnoftimebuilder.roman.make_it_shine.title"},
+    "description": {"translate": "advancement.dawnoftimebuilder.roman.make_it_shine.description"},
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "parent": "dawnoftimebuilder:master_of_time",
+  "criteria": {
+    "marble": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {"items": [{"items": ["dawnoftimebuilder:marble"]}]}
+    },
+    "marble_big_flower_pot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {"items": [{"items": ["dawnoftimebuilder:marble_big_flower_pot"]}]}
+    },
+    "marble_coffer": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {"items": [{"items": ["dawnoftimebuilder:marble_coffer"]}]}
+    },
+    "marble_coffer_slab": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {"items": [{"items": ["dawnoftimebuilder:marble_coffer_slab"]}]}
+    },
+    "marble_column": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {"items": [{"items": ["dawnoftimebuilder:marble_column"]}]}
+    },
+    "marble_edge": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {"items": [{"items": ["dawnoftimebuilder:marble_edge"]}]}
+    },
+    "marble_fancy_fence": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {"items": [{"items": ["dawnoftimebuilder:marble_fancy_fence"]}]}
+    },
+    "marble_pillar": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {"items": [{"items": ["dawnoftimebuilder:marble_pillar"]}]}
+    },
+    "marble_plate": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {"items": [{"items": ["dawnoftimebuilder:marble_plate"]}]}
+    },
+    "marble_sided_column": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {"items": [{"items": ["dawnoftimebuilder:marble_sided_column"]}]}
+    },
+    "marble_slab": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {"items": [{"items": ["dawnoftimebuilder:marble_slab"]}]}
+    },
+    "marble_stairs": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {"items": [{"items": ["dawnoftimebuilder:marble_stairs"]}]}
+    },
+    "marble_statue_mars": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {"items": [{"items": ["dawnoftimebuilder:marble_statue_mars"]}]}
+    },
+    "marble_wall": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {"items": [{"items": ["dawnoftimebuilder:marble_wall"]}]}
+    }
+  },
+  "requirements": [
+    ["marble"], ["marble_big_flower_pot"], ["marble_coffer"], ["marble_coffer_slab"],
+    ["marble_column"], ["marble_edge"], ["marble_fancy_fence"], ["marble_pillar"],
+    ["marble_plate"], ["marble_sided_column"], ["marble_slab"], ["marble_stairs"],
+    ["marble_statue_mars"], ["marble_wall"]
+  ]
+}

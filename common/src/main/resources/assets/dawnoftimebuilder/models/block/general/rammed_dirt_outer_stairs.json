@@ -1,0 +1,8 @@
+{
+    "parent": "block/outer_stairs",
+    "textures": {
+        "bottom": "dawnoftimebuilder:block/rammed_dirt",
+        "top": "dawnoftimebuilder:block/rammed_dirt",
+        "side": "dawnoftimebuilder:block/rammed_dirt"
+    }
+}
