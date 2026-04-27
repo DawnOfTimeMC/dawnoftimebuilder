@@ -1,4 +1,4 @@
-{
+﻿{
     "yacl3.config.dawnoftimebuilder:config.category.entities": "实体",
     "yacl3.config.dawnoftimebuilder:config.silkmothSpawnChance": "蚕蛾生成几率",
     "yacl3.config.dawnoftimebuilder:config.silkmothRotationMaxRange": "蚕蛾最大旋转范围",
@@ -494,5 +494,7 @@
     "tooltip.dawnoftimebuilder.silk_worm_hatchery": "这些卵可以放在笸上孵化",
     "tooltip.dawnoftimebuilder.silk_worms": "吃了这么多桑叶后，这些虫子准备在木棍捆上结茧",
     "tooltip.dawnoftimebuilder.silk_cocoons": "蚕在木棍捆里结出了精致的茧。它们可以合在一起制成丝线",
-    "tooltip.dawnoftimebuilder.moraq_mosaic_column": "放置时准星偏左或偏右会改变图案的方向"
+    "tooltip.dawnoftimebuilder.moraq_mosaic_column": "放置时准星偏左或偏右会改变图案的方向",
+    "tooltip.dawnoftimebuilder.stone_bricks_defense_label": "§6Defense block",
+    "tooltip.dawnoftimebuilder.stone_bricks_defense": "§7Functional defense block. You can shoot arrows through it while remaining protected."
 }

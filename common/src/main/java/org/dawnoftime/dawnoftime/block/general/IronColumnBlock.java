@@ -2,9 +2,9 @@ package org.dawnoftime.dawnoftime.block.general;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -23,6 +23,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+
 
 import static org.dawnoftime.dawnoftime.util.BlockStatePropertiesAA.*;
 import static org.dawnoftime.dawnoftime.util.Utils.isShapeIncludedInShape;
@@ -133,10 +134,14 @@ public class IronColumnBlock extends ConnectedVerticalBlock {
 
 
     @Override
-    public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {}
-
-    @Override
     public InteractionResult useWithoutItem(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, BlockHitResult pHit) {
         return InteractionResult.PASS;
+    }
+
+    @Override
+    public void appendHoverText(@NotNull ItemStack stack, Item.TooltipContext context,
+            @NotNull List<Component> tooltip, @NotNull TooltipFlag flag) {
+        super.appendHoverText(stack, context, tooltip, flag);
+        tooltip.add(Component.translatable("tooltip.dawnoftimebuilder.iron_column"));
     }
 }

@@ -2,10 +2,10 @@ package org.dawnoftime.dawnoftime.block.japanese;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.network.chat.Component;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -20,9 +20,11 @@ import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import org.dawnoftime.dawnoftime.util.BlockStatePropertiesAA;
 import org.dawnoftime.dawnoftime.util.BlockStatePropertiesAA.FencePillar;
-import org.dawnoftime.dawnoftime.util.Utils;
+
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
+
 import java.util.List;
 
 public class CharredSpruceRailingBlock extends FenceBlock {
@@ -107,8 +109,10 @@ public class CharredSpruceRailingBlock extends FenceBlock {
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-        super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
-        Utils.addTooltip(tooltipComponents, this);
+    public void appendHoverText(@NotNull ItemStack stack, Item.TooltipContext context,
+            @NotNull List<Component> tooltip, @NotNull TooltipFlag flag) {
+        super.appendHoverText(stack, context, tooltip, flag);
+        tooltip.add(Component.translatable("tooltip.dawnoftimebuilder.charred_spruce_railing"));
     }
+
 }

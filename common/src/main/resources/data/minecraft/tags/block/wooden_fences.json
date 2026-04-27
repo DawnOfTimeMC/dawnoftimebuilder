@@ -3,6 +3,11 @@
   "values": [
     "dawnoftimebuilder:waxed_oak_fence",
     "dawnoftimebuilder:charred_spruce_fence",
-    "dawnoftimebuilder:charred_spruce_railing"
+    "dawnoftimebuilder:charred_spruce_railing",
+      "dawnoftimebuilder:red_painted_railing",
+      "dawnoftimebuilder:red_painted_fence",
+      "dawnoftimebuilder:painted_acacia_fence"
+
+
   ]
 }

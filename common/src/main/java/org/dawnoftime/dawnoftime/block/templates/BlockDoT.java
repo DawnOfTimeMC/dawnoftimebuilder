@@ -2,6 +2,10 @@ package org.dawnoftime.dawnoftime.block.templates;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
@@ -12,6 +16,8 @@ import org.dawnoftime.dawnoftime.DoTBCommon;
 import org.dawnoftime.dawnoftime.block.IFlammable;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.List;
+
 import static org.dawnoftime.dawnoftime.DoTBCommon.MOD_ID;
 import static org.dawnoftime.dawnoftime.util.VoxelShapes.FULL_SHAPE;
 
@@ -19,14 +25,24 @@ public class BlockDoT extends Block implements IFlammable {
     private int fireSpreadSpeed = 0;
     private int fireDestructionSpeed = 0;
     private final VoxelShape[] shapes;
+    private final String[] tooltipKeys;
 
-    public BlockDoT(Properties properties, VoxelShape[] shapes) {
+    public BlockDoT(Properties properties, VoxelShape[] shapes, String... tooltipKeys) {
         super(properties);
         this.shapes = shapes;
+        this.tooltipKeys = tooltipKeys != null ? tooltipKeys : new String[0];
+    }
+
+    public BlockDoT(Properties properties, VoxelShape[] shapes) {
+        this(properties, shapes, new String[0]);
+    }
+
+    public BlockDoT(Properties properties, String... tooltipKeys) {
+        this(properties, FULL_SHAPE, tooltipKeys);
     }
 
     public BlockDoT(Properties properties){
-        this(properties, FULL_SHAPE);
+        this(properties, FULL_SHAPE, new String[0]);
     }
 
     /**
@@ -85,6 +101,15 @@ public class BlockDoT extends Block implements IFlammable {
         this.fireSpreadSpeed = fireSpreadSpeed;
         this.fireDestructionSpeed = fireDestructionSpeed;
         return this;
+    }
+
+    @Override
+    public void appendHoverText(@NotNull ItemStack stack, Item.TooltipContext context,
+            @NotNull List<Component> tooltip, @NotNull TooltipFlag flag) {
+        super.appendHoverText(stack, context, tooltip, flag);
+        for (String key : tooltipKeys) {
+            tooltip.add(Component.translatable(key));
+        }
     }
 
     @Override

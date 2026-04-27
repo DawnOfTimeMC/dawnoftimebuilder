@@ -122,7 +122,7 @@ public class PoolBlock extends BlockDoT {
             } else if(itemStack.getItem() instanceof PotionItem) {
                 final Potion potion = Utils.getPotionByName(Utils.getItemKeyAsString(itemStack.getItem()));
 
-                if(potion.getEffects().isEmpty() && nextLevel + 1 < this.maxLevel) {
+                if((potion == null || potion.getEffects().isEmpty()) && nextLevel + 1 < this.maxLevel) {
                     nextLevel++;
 
                     if(!playerEntityIn.isCreative()) {
@@ -133,7 +133,7 @@ public class PoolBlock extends BlockDoT {
             } else if(itemStack.getItem() instanceof BottleItem) {
                 final Potion potion = Utils.getPotionByName(Utils.getItemKeyAsString(itemStack.getItem()));
 
-                if(potion.getEffects().isEmpty() && nextLevel - 1 >= 0) {
+                if((potion == null || potion.getEffects().isEmpty()) && nextLevel - 1 >= 0) {
                     nextLevel--;
 
                     if(!playerEntityIn.isCreative()) {
@@ -265,12 +265,6 @@ public class PoolBlock extends BlockDoT {
         }
 
         return stateIn;
-    }
-
-    @Override
-    public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-        super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
-        Utils.addTooltip(tooltipComponents, Utils.TOOLTIP_ADD_COLUMN);
     }
 
     @Override
@@ -427,6 +421,13 @@ public class PoolBlock extends BlockDoT {
         }
 
         return -1;
+    }
+
+    @Override
+    public void appendHoverText(@NotNull ItemStack stack, Item.TooltipContext context,
+            @NotNull List<Component> tooltip, @NotNull TooltipFlag flag) {
+        super.appendHoverText(stack, context, tooltip, flag);
+        tooltip.add(Component.translatable("tooltip.dawnoftimebuilder.add_column"));
     }
 
     public static final class PoolLevelAndSides {

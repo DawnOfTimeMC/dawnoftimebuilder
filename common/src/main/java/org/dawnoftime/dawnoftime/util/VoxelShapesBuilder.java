@@ -5,6 +5,8 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.dawnoftime.dawnoftime.util.BlockStatePropertiesAA.VerticalLimitedConnection;
 
+import java.util.Arrays;
+
 public class VoxelShapesBuilder {
     /**
      * Generates all orientations based
@@ -347,6 +349,19 @@ public class VoxelShapesBuilder {
                 Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 8.0D),
                 Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 12.0D)
         });
+    }
+
+    protected static VoxelShape[] makeConnectedFramedWindowShapes() {
+        // Base window plate: from Z=6 to Z=10, matching the Blockbench models depth.
+        VoxelShape window = Block.box(0.0D, 0.0D, 6.0D, 16.0D, 16.0D, 10.0D);
+
+        // 16 entries for the SOUTH facing (all vertical/horizontal connection combinations).
+        VoxelShape[] base = new VoxelShape[16];
+        Arrays.fill(base, window);
+
+        // generateHorizontalShapes will rotate this set for West, North, East,
+        // yielding 64 shapes in total (16 per facing).
+        return generateHorizontalShapes(base);
     }
 
     protected static VoxelShape[] makeReliefShapes() {

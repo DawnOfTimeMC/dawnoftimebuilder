@@ -1,4 +1,4 @@
-{
+﻿{
     "yacl3.config.dawnoftimebuilder:config.category.entities": "Entites",
     "yacl3.config.dawnoftimebuilder:config.silkmothSpawnChance": "Silk Moth Spawn Chance",
     "yacl3.config.dawnoftimebuilder:config.silkmothRotationMaxRange": "Silk Moth Rotation Max Range",
@@ -475,5 +475,7 @@
     "tooltip.dawnoftimebuilder.silk_worm_hatchery": "Estos huevos eclosionarán cuando se coloquen en una bandeja.",
     "tooltip.dawnoftimebuilder.silk_worms": "Después de comer tantas hojas de morera en la bandeja, estas larvas están listas para tejer su capullo en un manojo de palos.",
     "tooltip.dawnoftimebuilder.silk_cocoons": "Las larvas de seda han creado delicados capullos en el manojo de palos. Se pueden combinar para crear seda.",
-    "tooltip.dawnoftimebuilder.moraq_mosaic_column": "Place a block with your cursor on the left or the right side to change the direction of the pattern."
+    "tooltip.dawnoftimebuilder.moraq_mosaic_column": "Place a block with your cursor on the left or the right side to change the direction of the pattern.",
+    "tooltip.dawnoftimebuilder.stone_bricks_defense_label": "§6Defense block",
+    "tooltip.dawnoftimebuilder.stone_bricks_defense": "§7Functional defense block. You can shoot arrows through it while remaining protected."
 }

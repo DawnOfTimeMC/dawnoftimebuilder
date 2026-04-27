@@ -11,9 +11,13 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 public class InvertedBlock extends BlockDoT {
     public static final BooleanProperty INVERTED = BlockStateProperties.INVERTED;
 
-    public InvertedBlock(Properties properties) {
-        super(properties);
+    public InvertedBlock(Properties properties, String... tooltipKeys) {
+        super(properties, tooltipKeys);
         this.registerDefaultState(this.defaultBlockState().setValue(INVERTED, false));
+    }
+
+    public InvertedBlock(Properties properties) {
+        this(properties, new String[0]);
     }
 
     @Override

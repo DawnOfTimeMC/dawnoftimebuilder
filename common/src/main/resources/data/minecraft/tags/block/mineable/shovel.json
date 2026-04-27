@@ -2,8 +2,15 @@
     "values": [
         "dawnoftimebuilder:curved_raked_gravel",
         "dawnoftimebuilder:rammed_dirt",
+        "dawnoftimebuilder:rammed_dirt_stairs",
+        "dawnoftimebuilder:rammed_dirt_plate",
+        "dawnoftimebuilder:rammed_dirt_slab",
+        "dawnoftimebuilder:rammed_dirt_edge",
         "dawnoftimebuilder:stepping_stones",
         "dawnoftimebuilder:stepping_stones_slab",
-        "dawnoftimebuilder:straight_raked_gravel"
+        "dawnoftimebuilder:straight_raked_gravel",
+        "dawnoftimebuilder:gravel_slab",
+        "dawnoftimebuilder:sand_slab"
+
     ]
 }

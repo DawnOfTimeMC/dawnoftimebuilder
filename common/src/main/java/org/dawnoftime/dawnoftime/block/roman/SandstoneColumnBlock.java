@@ -2,6 +2,10 @@ package org.dawnoftime.dawnoftime.block.roman;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
@@ -11,6 +15,8 @@ import org.dawnoftime.dawnoftime.block.templates.ConnectedVerticalBlock;
 import org.dawnoftime.dawnoftime.util.BlockStatePropertiesAA;
 import org.jetbrains.annotations.NotNull;
 import javax.annotation.Nonnull;
+
+import java.util.List;
 import static org.dawnoftime.dawnoftime.util.VoxelShapes.SANDSTONE_COLUMN_SHAPES;
 
 public class SandstoneColumnBlock extends ConnectedVerticalBlock implements IBlockPillar {
@@ -43,5 +49,13 @@ public class SandstoneColumnBlock extends ConnectedVerticalBlock implements IBlo
             return true;
         }
         return testedState.getBlock() == this;
+    }
+
+    @Override
+    public void appendHoverText(@NotNull ItemStack stack, Item.TooltipContext context,
+            @NotNull List<Component> tooltip, @NotNull TooltipFlag flag) {
+        super.appendHoverText(stack, context, tooltip, flag);
+        tooltip.add(Component.translatable("tooltip.dawnoftimebuilder.column_label"));
+        tooltip.add(Component.translatable("tooltip.dawnoftimebuilder.column"));
     }
 }

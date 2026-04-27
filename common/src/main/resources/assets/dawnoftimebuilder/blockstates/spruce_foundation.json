@@ -1,5 +1,7 @@
 {
     "variants": {
-        "normal": { "model": "dawnoftimebuilder:block/japanese/spruce_foundation" }
+        "": {
+            "model": "dawnoftimebuilder:block/japanese/spruce_foundation"
+        }
     }
 }

@@ -87,7 +87,7 @@ public class DisplayerBlockEntity extends BlockEntity implements Container {
 	@Override
 	public void setItem(int slot, @NotNull ItemStack stack) {
 		int quantity = stack.getCount();
-		this.items.set(slot, new ItemStack(stack.getItem(), 1));
+		this.items.set(slot, stack.copyWithCount(1));
 		if (quantity > 0) {
 			stack.setCount(quantity - 1);
 		}

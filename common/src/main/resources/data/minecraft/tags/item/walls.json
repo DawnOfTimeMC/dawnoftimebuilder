@@ -2,8 +2,12 @@
   "replace": false,
   "values": [
     "dawnoftimebuilder:limestone_bricks_wall",
-    "dawnoftimebuilder:gray_roof_tiles_wall",
-    "dawnoftimebuilder:oak_wall",
+      "dawnoftimebuilder:gray_roof_tiles_wall",
+      "dawnoftimebuilder:smooth_black_terracotta_wall",
+      "dawnoftimebuilder:smooth_white_terracotta_wall",
+      "dawnoftimebuilder:slate_bricks_wall",
+
+      "dawnoftimebuilder:oak_wall",
     "dawnoftimebuilder:acacia_wall",
     "dawnoftimebuilder:dark_oak_wall",
     "dawnoftimebuilder:birch_wall",
@@ -17,7 +21,11 @@
     "dawnoftimebuilder:covered_sandstone_wall",
     "dawnoftimebuilder:charred_spruce_wall",
     "dawnoftimebuilder:terracotta_wall",
-    "dawnoftimebuilder:stone_bricks_masonry_wall",
+      "dawnoftimebuilder:orange_terracotta_wall",
+
+      "dawnoftimebuilder:red_terracotta_wall",
+    "dawnoftimebuilder:marble_wall",
+     "dawnoftimebuilder:stone_bricks_masonry_wall",
     "dawnoftimebuilder:sandstone_bricks_wall",
     "dawnoftimebuilder:sandstone_bricks_turquoise_pattern_wall",
     "dawnoftimebuilder:gold_plated_smooth_wall"

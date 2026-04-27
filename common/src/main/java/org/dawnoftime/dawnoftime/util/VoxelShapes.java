@@ -5,6 +5,7 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 import static org.dawnoftime.dawnoftime.util.VoxelShapesBuilder.*;
+import static org.dawnoftime.dawnoftime.util.VoxelShapesBuilder.makeConnectedFramedWindowShapes;
 
 public class VoxelShapes {
 
@@ -92,6 +93,7 @@ public class VoxelShapes {
             Block.box(2.0D, 0.0D, 2.0D, 14.0D, 12.0D, 14.0D)};
     public static final VoxelShape[] MORAQ_MOSAIC_COLUMN_SHAPES = makeMoraqMosaicColumnShapes();
     public static final VoxelShape[] MULTIBLOCK_FIREPLACE_SHAPES = makeMultiblockFireplaceShapes();
+    public static final VoxelShape[] CONNECTED_FRAMED_WINDOW_SHAPES = makeConnectedFramedWindowShapes();
     public static final VoxelShape[] PAPER_LAMP_SHAPES = new VoxelShape[]{
             Block.box(4.0D, 0.0D, 4.0D, 12.0D, 16.0D, 12.0D),
             Block.box(4.0D, 0.0D, 4.0D, 12.0D, 13.0D, 12.0D)};

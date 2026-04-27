@@ -1,4 +1,4 @@
-{
+﻿{
     "itemGroup.dawnoftimebuilder.dottab": "Dawn of Time",
     "gui.dawnoftimebuilder.general": "一般",
     "gui.dawnoftimebuilder.egyptian": "エジプト風",
@@ -409,5 +409,7 @@
     "tooltip.dawnoftimebuilder.fireplace": "火打石と打ち金、ファイヤーチャージャー、火矢で点火でき、火打石と打ち金、雪玉、スプラッシュ及び通常の水入り瓶で消火できます。",
     "tooltip.dawnoftimebuilder.limestone_gargoyle": "クリエイティブモードでは、このブロックに火打石と打ち金を使用して、落下する水の流れを安定させます。次に、右クリックとShift+右クリックを使用して、流れを制御できます。",
     "tooltip.dawnoftimebuilder.moraq_mosaic_column": "カーソルを左側または右側に置いてブロックを配置すると、パターンの方向が変更されます。",
-    "tooltip.dawnoftimebuilder.youtube_playlist": "ブロックの使い方を学ぼう！"
+    "tooltip.dawnoftimebuilder.youtube_playlist": "ブロックの使い方を学ぼう！",
+    "tooltip.dawnoftimebuilder.stone_bricks_defense_label": "§6Defense block",
+    "tooltip.dawnoftimebuilder.stone_bricks_defense": "§7Functional defense block. You can shoot arrows through it while remaining protected."
 }

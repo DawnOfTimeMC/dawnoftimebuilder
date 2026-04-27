@@ -3,16 +3,15 @@ package org.dawnoftime.dawnoftime.block.templates;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.*;
+import net.minecraft.world.item.alchemy.Potion;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
@@ -26,6 +25,8 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import org.dawnoftime.dawnoftime.block.general.FireplaceBlock;
 import org.dawnoftime.dawnoftime.util.BlockStatePropertiesAA.VerticalConnection;
 import org.dawnoftime.dawnoftime.util.Utils;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.TooltipFlag;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
@@ -87,6 +88,11 @@ public class ChimneyBlockDoT extends ConnectedVerticalBlock {
         return InteractionResult.PASS;
     }
 
+    private static boolean isNonHarmfulPotion(ThrowableItemProjectile projectile) {
+        Potion potion = Utils.getPotionByName(Utils.getItemKeyAsString(projectile.getItem().getItem()));
+        return potion == null || potion.getEffects().isEmpty();
+    }
+
     @Override
     public void onProjectileHit(final Level worldIn, final BlockState state, final BlockHitResult hit, final Projectile projectile) {
 
@@ -94,7 +100,7 @@ public class ChimneyBlockDoT extends ConnectedVerticalBlock {
 
         if(!state.getValue(WaterloggedBlock.WATERLOGGED) && !state.getValue(FireplaceBlock.LIT) && (projectile instanceof Arrow && ((Arrow) projectile).isOnFire() || projectile instanceof Fireball)) {
             activation = 1;
-        } else if(state.getValue(FireplaceBlock.LIT) && (projectile instanceof Snowball || projectile instanceof ThrowableProjectile && Utils.getPotionByName(Utils.getItemKeyAsString(((ThrowableItemProjectile) projectile).getItem().getItem())).getEffects().size() <= 0)) {
+        } else if(state.getValue(FireplaceBlock.LIT) && (projectile instanceof Snowball || (projectile instanceof ThrowableItemProjectile && isNonHarmfulPotion((ThrowableItemProjectile) projectile)))) {
             activation = 0;
         }
 
@@ -134,12 +140,7 @@ public class ChimneyBlockDoT extends ConnectedVerticalBlock {
         return super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
     }
 
-    @Override
-    public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-        super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
-        Utils.addTooltip(tooltipComponents, Utils.TOOLTIP_FIREPLACE);
 
-    }
 
     public static void updateAllChimneyConductParts(final boolean isActivatedIn, BlockState stateIn, final BlockPos blockPosIn, final Level worldIn) {
         stateIn = stateIn.setValue(BlockStateProperties.LIT, isActivatedIn);
@@ -164,6 +165,15 @@ public class ChimneyBlockDoT extends ConnectedVerticalBlock {
             blockState = blockState.setValue(BlockStateProperties.LIT, isActivatedIn);
             worldIn.setBlock(blockPos, blockState, 10);
         }
+    }
+
+    @Override
+    public void appendHoverText(@NotNull ItemStack stack, Item.TooltipContext context,
+            @NotNull List<Component> tooltip, @NotNull TooltipFlag flag) {
+        super.appendHoverText(stack, context, tooltip, flag);
+        tooltip.add(Component.translatable("tooltip.dawnoftimebuilder.column_label"));
+        tooltip.add(Component.translatable("tooltip.dawnoftimebuilder.column"));
+        tooltip.add(Component.translatable("tooltip.dawnoftimebuilder.fireplace"));
     }
 
     public static void updateFireplace(final boolean isActivatedIn, final BlockPos blockPosIn, final Level worldIn) {

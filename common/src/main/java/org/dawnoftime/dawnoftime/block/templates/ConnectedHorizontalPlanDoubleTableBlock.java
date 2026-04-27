@@ -5,7 +5,10 @@ import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -28,6 +31,9 @@ import org.dawnoftime.dawnoftime.registry.DoTBBlockEntitiesRegistry;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
+
+import java.util.List;
+
 public class ConnectedHorizontalPlanDoubleTableBlock extends DisplayerBlock {
     public static final BooleanProperty NORTH = BlockStateProperties.NORTH;
     public static final BooleanProperty EAST = BlockStateProperties.EAST;
@@ -162,5 +168,13 @@ public class ConnectedHorizontalPlanDoubleTableBlock extends DisplayerBlock {
         return Shapes.block();
     }
 
+    @Override
+    public void appendHoverText(@NotNull ItemStack stack, Item.TooltipContext context,
+            @NotNull List<Component> tooltip, @NotNull TooltipFlag flag) {
+        tooltip.add(Component.translatable("tooltip.dawnoftimebuilder.connected_texture_label"));
+        tooltip.add(Component.translatable("tooltip.dawnoftimebuilder.connected_texture"));
+        tooltip.add(Component.translatable("tooltip.dawnoftimebuilder.table"));
+        super.appendHoverText(stack, context, tooltip, flag);
+    }
 
 }

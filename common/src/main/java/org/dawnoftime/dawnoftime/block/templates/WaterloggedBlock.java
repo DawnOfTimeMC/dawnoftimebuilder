@@ -20,9 +20,13 @@ import javax.annotation.Nullable;
 public class WaterloggedBlock extends BlockDoT implements SimpleWaterloggedBlock {
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
-    public WaterloggedBlock(Properties properties, VoxelShape[] shapes) {
-        super(properties, shapes);
+    public WaterloggedBlock(Properties properties, VoxelShape[] shapes, String... tooltipKeys) {
+        super(properties, shapes, tooltipKeys);
         this.registerDefaultState(this.defaultBlockState().setValue(WATERLOGGED, false));
+    }
+
+    public WaterloggedBlock(Properties properties, VoxelShape[] shapes) {
+        this(properties, shapes, new String[0]);
     }
 
     @Override

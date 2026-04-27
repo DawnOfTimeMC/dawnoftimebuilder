@@ -3,13 +3,14 @@ package org.dawnoftime.dawnoftime.block.templates;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.*;
+import net.minecraft.world.item.alchemy.Potion;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -80,6 +81,11 @@ public class ConnectedVerticalSidedPlanFireplaceBlock extends ConnectedVerticalS
         return InteractionResult.PASS;
     }
 
+    private static boolean isNonHarmfulPotion(ThrowableItemProjectile projectile) {
+        Potion potion = Utils.getPotionByName(Utils.getItemKeyAsString(projectile.getItem().getItem()));
+        return potion == null || potion.getEffects().isEmpty();
+    }
+
     @Override
     public void onProjectileHit(final Level worldIn, BlockState state, final BlockHitResult hit, final Projectile projectile) {
 
@@ -89,7 +95,7 @@ public class ConnectedVerticalSidedPlanFireplaceBlock extends ConnectedVerticalS
             if(projectile instanceof AbstractArrow) {
                 activation = 1;
             }
-        } else if(state.getValue(FireplaceBlock.LIT) && (projectile instanceof Snowball || projectile instanceof ThrowableProjectile && Utils.getPotionByName(Utils.getItemKeyAsString(((ThrowableItemProjectile) projectile).getItem().getItem())).getEffects().size() <= 0)) {
+        } else if(state.getValue(FireplaceBlock.LIT) && (projectile instanceof Snowball || (projectile instanceof ThrowableItemProjectile && isNonHarmfulPotion((ThrowableItemProjectile) projectile)))) {
             activation = 0;
         }
 
@@ -232,8 +238,11 @@ public class ConnectedVerticalSidedPlanFireplaceBlock extends ConnectedVerticalS
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-        super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
-        Utils.addTooltip(tooltipComponents, Utils.TOOLTIP_FIREPLACE);
+    public void appendHoverText(@NotNull ItemStack stack, Item.TooltipContext context,
+            @NotNull List<Component> tooltip, @NotNull TooltipFlag flag) {
+        tooltip.add(Component.translatable("tooltip.dawnoftimebuilder.dynamic_model_label"));
+        tooltip.add(Component.translatable("tooltip.dawnoftimebuilder.dynamic_model"));
+        tooltip.add(Component.translatable("tooltip.dawnoftimebuilder.fireplace"));
     }
+
 }

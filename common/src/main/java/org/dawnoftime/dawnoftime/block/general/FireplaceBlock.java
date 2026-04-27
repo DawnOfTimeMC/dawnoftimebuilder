@@ -4,7 +4,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
@@ -13,6 +12,8 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.*;
+import net.minecraft.world.item.alchemy.Potion;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -43,6 +44,7 @@ import org.dawnoftime.dawnoftime.util.Utils;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
+
 import java.util.List;
 
 import static org.dawnoftime.dawnoftime.util.VoxelShapes.FIREPLACE_SHAPES;
@@ -101,13 +103,18 @@ public class FireplaceBlock extends WaterloggedBlock {
         return Utils.changeBlockLitStateWithItemOrCreativePlayer(state, worldIn, pos, player, player.getUsedItemHand()) >= 0 ? InteractionResult.SUCCESS : InteractionResult.PASS;
     }
 
+    private static boolean isNonHarmfulPotion(ThrowableItemProjectile projectile) {
+        Potion potion = Utils.getPotionByName(Utils.getItemKeyAsString(projectile.getItem().getItem()));
+        return potion == null || potion.getEffects().isEmpty();
+    }
+
     @Override
     public void onProjectileHit(final Level worldIn, final BlockState state, final BlockHitResult hit, final Projectile projectile) {
         int activation = -1;
 
         if (!state.getValue(WaterloggedBlock.WATERLOGGED) && !state.getValue(FireplaceBlock.LIT) && (projectile instanceof AbstractArrow && projectile.isOnFire() || projectile instanceof Fireball)) {
             activation = 1;
-        } else if (state.getValue(FireplaceBlock.LIT) && (projectile instanceof Snowball || projectile instanceof ThrownPotion && Utils.getPotionByName(Utils.getItemKeyAsString(((ThrowableItemProjectile) projectile).getItem().getItem())).getEffects().size() <= 0)) {
+        } else if (state.getValue(FireplaceBlock.LIT) && (projectile instanceof Snowball || (projectile instanceof ThrowableItemProjectile && isNonHarmfulPotion((ThrowableItemProjectile) projectile)))) {
             activation = 0;
         }
 
@@ -202,8 +209,10 @@ public class FireplaceBlock extends WaterloggedBlock {
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-        super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
-        Utils.addTooltip(tooltipComponents, Utils.TOOLTIP_FIREPLACE);
+    public void appendHoverText(@NotNull ItemStack stack, Item.TooltipContext context,
+            @NotNull List<Component> tooltip, @NotNull TooltipFlag flag) {
+        super.appendHoverText(stack, context, tooltip, flag);
+        tooltip.add(Component.translatable("tooltip.dawnoftimebuilder.fireplace"));
     }
+
 }

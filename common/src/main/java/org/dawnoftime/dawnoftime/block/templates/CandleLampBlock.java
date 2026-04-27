@@ -7,6 +7,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.*;
+import net.minecraft.world.item.alchemy.Potion;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
@@ -59,6 +60,11 @@ public abstract class CandleLampBlock extends WaterloggedBlock implements IBlock
         return Utils.changeBlockLitStateWithItemOrCreativePlayer(state, worldIn, pos, player, player.getUsedItemHand()) >= 0 ? InteractionResult.SUCCESS : InteractionResult.PASS;
     }
 
+    private static boolean isNonHarmfulPotion(ThrowableItemProjectile projectile) {
+        Potion potion = Utils.getPotionByName(Utils.getItemKeyAsString(projectile.getItem().getItem()));
+        return potion == null || potion.getEffects().isEmpty();
+    }
+
     @Override
     public void onProjectileHit(final Level worldIn, final BlockState state, final BlockHitResult hit, final Projectile projectile) {
 
@@ -66,7 +72,7 @@ public abstract class CandleLampBlock extends WaterloggedBlock implements IBlock
 
         if(!state.getValue(WaterloggedBlock.WATERLOGGED) && !state.getValue(CandleLampBlock.LIT) && (projectile instanceof AbstractArrow && ((AbstractArrow) projectile).isOnFire() || projectile instanceof Fireball)) {
             activation = 1;
-        } else if(state.getValue(CandleLampBlock.LIT) && (projectile instanceof Snowball || projectile instanceof ThrowableProjectile && Utils.getPotionByName(Utils.getItemKeyAsString(((ThrowableItemProjectile) projectile).getItem().getItem())).getEffects().size() <= 0)) {
+        } else if(state.getValue(CandleLampBlock.LIT) && (projectile instanceof Snowball || (projectile instanceof ThrowableItemProjectile && isNonHarmfulPotion((ThrowableItemProjectile) projectile)))) {
             activation = 0;
         }
 
