@@ -1,0 +1,17 @@
+﻿{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"i",
+		"i",
+		"i"
+	],
+	"key": {
+		"i": {
+			"item": "dawnoftimebuilder:sculpted_waxed_oak"
+		}
+	},
+	"result": {
+		"id": "dawnoftimebuilder:sculpted_waxed_oak_plate",
+		"count": 6
+	}
+}
