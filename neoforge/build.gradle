@@ -1,6 +1,7 @@
 plugins {
     id 'multiloader-loader'
     id 'net.neoforged.moddev'
+    id 'me.modmuss50.mod-publish-plugin'
 }
 
 neoForge  {
@@ -60,4 +61,9 @@ dependencies {
 
     //annotationProcessor("org.spongepowered:mixin:0.8.5-SNAPSHOT:processor")
     implementation 'org.jetbrains:annotations:26.0.2'
+}
+
+publishMods {
+    file = jar.archiveFile
+    modLoaders.add("neoforge")
 }

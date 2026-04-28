@@ -1,4 +1,41 @@
 plugins {
     id 'fabric-loom' version '1.9-SNAPSHOT' apply(false)
     id 'net.neoforged.moddev' version '2.0.93' apply(false)
+    id "me.modmuss50.mod-publish-plugin" version "1.1.0" apply(false)
+}
+
+def patchNoteProvider = providers.provider {
+    def file = rootProject.layout.projectDirectory.file("patch_notes.md").asFile
+    if (!file.exists()) {
+        throw new GradleException("Impossible to find 'patch_notes.md'")
+    }
+    file.text
+}
+
+configure([project(":fabric"), project(":neoforge")]) {
+    apply plugin: 'me.modmuss50.mod-publish-plugin'
+
+    publishMods {
+        changelog = patchNoteProvider
+        type = STABLE
+        displayName = "${rootProject.property("mod_name")} ${rootProject.property("minecraft_version")} v${rootProject.property("version")}"
+
+        curseforge {
+            projectId = "312359"
+            accessToken = providers.environmentVariable("CURSEFORGE_API_KEY")
+            minecraftVersions.add(project.property("minecraft_version"))
+
+            changelogType = "markdown"
+
+            requires("fusion-connected-textures")
+        }
+
+        modrinth {
+            projectId = "RgWXq0La"
+            accessToken = providers.environmentVariable("MODRINTH_API_KEY")
+            minecraftVersions.add(project.property("minecraft_version"))
+
+            requires("fusion-connected-textures")
+        }
+    }
 }
