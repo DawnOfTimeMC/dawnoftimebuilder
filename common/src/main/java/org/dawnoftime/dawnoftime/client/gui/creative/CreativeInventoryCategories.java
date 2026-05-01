@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 import static org.dawnoftime.dawnoftime.DoTBCommon.MOD_ID;
 
 public enum CreativeInventoryCategories {
-    JAPANESE("japanese", "https://www.youtube.com/watch?v=AxJGk-deTmo&list=PLRp3sDcdVhnSw-C9jHe_ykJZc5AurcvyG", List.of(
+    JAPANESE("japanese", "https://www.youtube.com/playlist?list=PLRp3sDcdVhnSw-C9jHe_ykJZc5AurcvyG", List.of(
             new SubTab("building",
                     DoTBBlocksRegistry.INSTANCE.STRAIGHT_RAKED_GRAVEL.get().asItem(),
                     DoTBBlocksRegistry.INSTANCE.CURVED_RAKED_GRAVEL.get().asItem(),
@@ -129,7 +129,7 @@ public enum CreativeInventoryCategories {
             )
     )),
 
-    GERMAN("german", "https://www.youtube.com/watch?v=g_GulBiXvXs&list=PLRp3sDcdVhnSzsKrXbCEMr-833Em-ntDF", List.of(
+    GERMAN("german", "https://www.youtube.com/playlist?list=PLRp3sDcdVhnSzsKrXbCEMr-833Em-ntDF", List.of(
 
             new SubTab("building",
                     DoTBBlocksRegistry.INSTANCE.RAMMED_DIRT.get().asItem(),
@@ -216,7 +216,7 @@ public enum CreativeInventoryCategories {
             )
     )),
     
-    ROMAN("roman", "https://www.youtube.com/watch?v=7TgxqQHGVlo&list=PLRp3sDcdVhnQNEcVV6Zi0NvG0p80IhaZo",
+    ROMAN("roman", "https://www.youtube.com/playlist?list=PLRp3sDcdVhnQNEcVV6Zi0NvG0p80IhaZo",
 
             DoTBBlocksRegistry.INSTANCE.SANDSTONE_COLUMN.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.SANDSTONE_SIDED_COLUMN.get().asItem(),
@@ -276,7 +276,7 @@ public enum CreativeInventoryCategories {
             DoTBItemsRegistry.INSTANCE.CLAY_TILE_BLACK.get(),
             DoTBItemsRegistry.INSTANCE.ROMAN_EMBLEM.get()
     ),
-    PRE_COLOMBIAN("pre_columbian", "https://www.youtube.com/watch?v=jR-dWUqHgQ8&list=PLRp3sDcdVhnTP3E2QNE-2E-inx1K51Btu", List.of(
+    PRE_COLOMBIAN("pre_columbian", "https://www.youtube.com/playlist?list=PLRp3sDcdVhnTP3E2QNE-2E-inx1K51Btu", List.of(
 
             new SubTab("plastered",
                     DoTBBlocksRegistry.INSTANCE.THATCH_WHEAT.get().asItem(),
@@ -523,9 +523,31 @@ public enum CreativeInventoryCategories {
             DoTBBlocksRegistry.INSTANCE.GREEN_ROOF_TILES_SLAB.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.GREEN_ROOF_TILES_STAIRS.get().asItem(),
 
-            DoTBBlocksRegistry.INSTANCE.RED_ROUND_PAPER_LANTERN.get().asItem()
+            DoTBBlocksRegistry.INSTANCE.RED_ROUND_PAPER_LANTERN.get().asItem(),
+            DoTBItemsRegistry.INSTANCE.CHINESE_EMBLEM.get()
+    ),
 
-            );
+    PATREON("patreon", null,
+            DoTBItemsRegistry.INSTANCE.PATREON_TIER_1.get(),
+            DoTBBlocksRegistry.INSTANCE.SILVER_SAKE_BOTTLE.get().asItem(),
+            DoTBBlocksRegistry.INSTANCE.SILVER_FEATHERED_SERPENT_SCULPTURE.get().asItem(),
+            DoTBBlocksRegistry.INSTANCE.SILVER_SERPENT_SCULTPED_COLUMN.get().asItem(),
+            DoTBBlocksRegistry.INSTANCE.SILVER_MARBLE_STATUE_MARS.get().asItem(),
+
+            DoTBItemsRegistry.INSTANCE.PATREON_TIER_2.get(),
+            DoTBBlocksRegistry.INSTANCE.GOLDEN_SAKE_BOTTLE.get().asItem(),
+            DoTBBlocksRegistry.INSTANCE.GOLDEN_MARBLE_STATUE_MARS.get().asItem(),
+            DoTBItemsRegistry.INSTANCE.PATREON_TIER_3.get(),
+            DoTBBlocksRegistry.INSTANCE.BLACKSTONE_MARBLE_STATUE_MARS.get().asItem(),
+
+            DoTBItemsRegistry.INSTANCE.PATREON_TIER_4.get(),
+            DoTBBlocksRegistry.INSTANCE.AMETHYST_SAKE_BOTTLE.get().asItem(),
+            DoTBBlocksRegistry.INSTANCE.AMETHYST_FEATHERED_SERPENT_SCULPTURE.get().asItem(),
+            DoTBBlocksRegistry.INSTANCE.AMETHYST_SERPENT_SCULTPED_COLUMN.get().asItem(),
+
+            DoTBItemsRegistry.INSTANCE.PATREON_TIER_5.get(),
+            DoTBItemsRegistry.INSTANCE.PATREON_TIER_6.get()
+    );
 
     private final String name;
     private final String youtubePlaylist;

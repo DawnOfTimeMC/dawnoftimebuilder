@@ -1,5 +1,7 @@
 package org.dawnoftime.dawnoftime.platform.services;
 
+import net.minecraft.server.level.ServerPlayer;
+
 public interface IPlatformHelper {
 
     /**
@@ -9,4 +11,6 @@ public interface IPlatformHelper {
      * @return True if the mod is loaded, false otherwise.
      */
     boolean isModLoaded(String modId);
+
+    void sendPatronTierToPlayer(ServerPlayer player, int tier);
 }

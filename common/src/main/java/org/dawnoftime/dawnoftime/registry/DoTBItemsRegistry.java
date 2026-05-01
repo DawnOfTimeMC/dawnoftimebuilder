@@ -18,6 +18,8 @@ public abstract class DoTBItemsRegistry {
     public final Supplier<Item> PERSIAN_EMBLEM = register("persian_emblem", () -> new ItemDoTB());
     public final Supplier<Item> FRENCH_EMBLEM = register("french_emblem", () -> new ItemDoTB());
     public final Supplier<Item> PRECOLUMBIAN_EMBLEM = register("precolumbian_emblem", () -> new ItemDoTB());
+    public final Supplier<Item> PATREON_EMBLEM = register("patreon_emblem", () -> new ItemDoTB());
+
 
     // Patreon tokens — given by /dotreward, used as crafting ingredients for patron rewards
     public final Supplier<Item> PATREON_TIER_1 = register("patreon_tier_1", ItemDoTB::new);

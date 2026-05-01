@@ -19,7 +19,7 @@ import org.dawnoftime.dawnoftime.registry.DoTBItemsRegistry;
  *   tier 1 → patreon_tier_1 (Silver Patreon Token)
  *   tier 2 → patreon_tier_2 (Golden Patreon Token)
  *   tier 3 → patreon_tier_3 (Crystal Patreon Token)
- *   tier 4 → patreon_tier_4 (Amethist Patreon Token)
+ *   tier 4 → patreon_tier_4 (Amethyst Patreon Token)
  *   tier 5 → patreon_tier_5 (Everlasting Patreon Token)
  *   tier 6 → patreon_tier_6 (Heavenly Patreon Token)
  *
@@ -115,7 +115,7 @@ public class PatronRewardCommand {
             case 1 -> "Silver Patreon Token";
             case 2 -> "Golden Patreon Token";
             case 3 -> "Crystal Patreon Token";
-            case 4 -> "Amethist Patreon Token";
+            case 4 -> "Amethyst Patreon Token";
             case 5 -> "Everlasting Patreon Token";
             case 6 -> "Heavenly Patreon Token";
             default -> "Unknown";

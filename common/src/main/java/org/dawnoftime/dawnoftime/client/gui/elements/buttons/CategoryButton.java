@@ -23,6 +23,7 @@ public class CategoryButton extends Button {
     private boolean selected;
     private static final ResourceLocation[] BUTTON_ICONS = fillButtonIcons();
     private static final Tooltip[] BUTTON_TOOLTIPS = fillButtonTooltips();
+    private static final ResourceLocation CREATIVE_PATREON = new ResourceLocation(MOD_ID, "textures/gui/creative_patreon.png");
     private final int index;
 
     public CategoryButton(int x, int y, int index, OnPress pressable, CreativeScreen parent) {
@@ -58,19 +59,24 @@ public class CategoryButton extends Button {
         if(this.active) {
             PoseStack ps = pGuiGraphics.pose();
 
-            ps.pushPose();
-            RenderSystem.clearColor(1.0F, 1.0F, 1.0F, this.alpha);
-            RenderSystem.enableBlend();
-            pGuiGraphics.blit(CREATIVE_ICONS, this.getX() - 1, this.getY(), 0, (this.selected) ? 0 : 28, 31, 28);
-            RenderSystem.disableBlend();
-            ps.popPose();
+            boolean isPatreon = CreativeInventoryCategories.values()[this.getCategoryID()] == CreativeInventoryCategories.PATREON;
+            ResourceLocation buttonBg = isPatreon ? CREATIVE_PATREON : CREATIVE_ICONS;
 
             ps.pushPose();
             RenderSystem.clearColor(1.0F, 1.0F, 1.0F, this.alpha);
             RenderSystem.enableBlend();
-            pGuiGraphics.blit(BUTTON_ICONS[this.getCategoryID()], this.getX() + ((this.selected) ? 6 : 9), this.getY() + 6, 0, 0, 0, 16, 16, 16, 16);
+            pGuiGraphics.blit(buttonBg, this.getX() - 1, this.getY(), 0, (this.selected) ? 0 : 28, 31, 28);
             RenderSystem.disableBlend();
             ps.popPose();
+
+            if (!isPatreon) {
+                ps.pushPose();
+                RenderSystem.clearColor(1.0F, 1.0F, 1.0F, this.alpha);
+                RenderSystem.enableBlend();
+                pGuiGraphics.blit(BUTTON_ICONS[this.getCategoryID()], this.getX() + ((this.selected) ? 6 : 9), this.getY() + 6, 0, 0, 0, 16, 16, 16, 16);
+                RenderSystem.disableBlend();
+                ps.popPose();
+            }
         }
     }
 

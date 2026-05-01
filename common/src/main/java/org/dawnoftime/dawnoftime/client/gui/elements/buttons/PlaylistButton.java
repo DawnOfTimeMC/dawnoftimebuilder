@@ -16,8 +16,12 @@ public class PlaylistButton extends Button {
     private final ResourceLocation buttonTexture;
 
     public PlaylistButton(int x, int y, OnPress pressable) {
+        this(x, y, pressable, new ResourceLocation(MOD_ID, "textures/gui/youtube.png"));
+    }
+
+    public PlaylistButton(int x, int y, OnPress pressable, ResourceLocation texture) {
         super(x, y, 12, 12, Component.empty(), pressable, DEFAULT_NARRATION);
-        this.buttonTexture = new ResourceLocation(MOD_ID, "textures/gui/social_icons.png");
+        this.buttonTexture = texture;
     }
 
     @Override
@@ -30,7 +34,7 @@ public class PlaylistButton extends Button {
 
         ps.pushPose();
         RenderSystem.enableBlend();
-        pGuiGraphics.blit(buttonTexture, this.getX() - 1, this.getY(), 28, this.active ? 0 : 12, 12, 12);
+        pGuiGraphics.blit(buttonTexture, this.getX() - 1, this.getY(), 0, 0, 12, 12, 12, 12);
         RenderSystem.disableBlend();
         ps.popPose();
 
@@ -39,6 +43,6 @@ public class PlaylistButton extends Button {
 
     @Override
     public @Nullable Tooltip getTooltip() {
-        return this.active ? super.getTooltip() : null;
+        return super.getTooltip();
     }
 }

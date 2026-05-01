@@ -366,7 +366,7 @@ public abstract class DoTBBlocksRegistry {
     public final Supplier<Block> SAKE_BOTTLE = register("sake_bottle", () -> new SpecialDisplayBlock(Block.Properties.copy(Blocks.FLOWER_POT), SAKE_BOTTLE_SHAPES));
     public final Supplier<Block> SILVER_SAKE_BOTTLE = register("silver_sake_bottle", () -> new SpecialDisplayBlock(Block.Properties.copy(Blocks.FLOWER_POT), SAKE_BOTTLE_SHAPES));
     public final Supplier<Block> GOLDEN_SAKE_BOTTLE = register("golden_sake_bottle", () -> new SpecialDisplayBlock(Block.Properties.copy(Blocks.FLOWER_POT), SAKE_BOTTLE_SHAPES));
-    public final Supplier<Block> AMETHIST_SAKE_BOTTLE = register("amethist_sake_bottle", () -> new SpecialDisplayBlock(Block.Properties.copy(Blocks.FLOWER_POT), SAKE_BOTTLE_SHAPES));
+    public final Supplier<Block> AMETHYST_SAKE_BOTTLE = register("amethyst_sake_bottle", () -> new SpecialDisplayBlock(Block.Properties.copy(Blocks.FLOWER_POT), SAKE_BOTTLE_SHAPES));
     public final Supplier<Block> SAKE_CUP = register("sake_cup", () -> new SpecialDisplayBlock(Block.Properties.copy(Blocks.FLOWER_POT), SAKE_CUP_SHAPES));
 
     // Persian
@@ -509,8 +509,8 @@ public abstract class DoTBBlocksRegistry {
     public final Supplier<Block> SERPENT_SCULPTED_COLUMN = register("serpent_sculpted_column", () -> new ConnectedVerticalSidedBlock(Block.Properties.copy(Blocks.STONE_BRICKS), SERPENT_SCULPTED_COLUMN_SHAPES));
     public final Supplier<Block> SILVER_FEATHERED_SERPENT_SCULPTURE = register("silver_feathered_serpent_sculpture", () -> new WaterloggedHorizontalBlock(Block.Properties.copy(Blocks.STONE_BRICKS).noOcclusion(), FEATHERED_SERPENT_SCULPTURE_SHAPES));
     public final Supplier<Block> SILVER_SERPENT_SCULTPED_COLUMN = register("silver_serpent_scultped_column", () -> new ConnectedVerticalSidedBlock(Block.Properties.copy(Blocks.STONE_BRICKS), SERPENT_SCULPTED_COLUMN_SHAPES));
-    public final Supplier<Block> AMETHIST_FEATHERED_SERPENT_SCULPTURE = register("amethist_feathered_serpent_sculpture", () -> new WaterloggedHorizontalBlock(Block.Properties.copy(Blocks.STONE_BRICKS).noOcclusion(), FEATHERED_SERPENT_SCULPTURE_SHAPES));
-    public final Supplier<Block> AMETHIST_SERPENT_SCULTPED_COLUMN = register("amethist_serpent_scultped_column", () -> new ConnectedVerticalSidedBlock(Block.Properties.copy(Blocks.STONE_BRICKS), SERPENT_SCULPTED_COLUMN_SHAPES));
+    public final Supplier<Block> AMETHYST_FEATHERED_SERPENT_SCULPTURE = register("amethyst_feathered_serpent_sculpture", () -> new WaterloggedHorizontalBlock(Block.Properties.copy(Blocks.STONE_BRICKS).noOcclusion(), FEATHERED_SERPENT_SCULPTURE_SHAPES));
+    public final Supplier<Block> AMETHYST_SERPENT_SCULTPED_COLUMN = register("amethyst_serpent_scultped_column", () -> new ConnectedVerticalSidedBlock(Block.Properties.copy(Blocks.STONE_BRICKS), SERPENT_SCULPTED_COLUMN_SHAPES));
     public final Supplier<Block> BLUE_PLASTERED_STONE = register("blue_plastered_stone", () -> new BlockDoT(Block.Properties.copy(Blocks.STONE_BRICKS)));
 
     // Roman
@@ -558,7 +558,7 @@ public abstract class DoTBBlocksRegistry {
     public final Supplier<Block> BIRCH_COUCH = register("birch_couch", () -> new BirchCouchBlock(Block.Properties.copy(Blocks.BIRCH_PLANKS), 13.0F, ROMAN_COUCH_SHAPES), BlockTags.MINEABLE_WITH_AXE);
     public final Supplier<Block> MARBLE_STATUE_MARS = register("marble_statue_mars", () -> new MarbleStatueBlock(Block.Properties.copy(Blocks.BRICKS).noOcclusion()));
     public final Supplier<Block> BLACKSTONE_MARBLE_STATUE_MARS = register("blackstone_marble_statue_mars", () -> new MarbleStatueBlock(Block.Properties.copy(Blocks.BRICKS).noOcclusion()));
-    public final Supplier<Block> CHROMATIC_MARBLE_STATUE_MARS = register("chromatic_marble_statue_mars", () -> new MarbleStatueBlock(Block.Properties.copy(Blocks.BRICKS).noOcclusion()));
+    public final Supplier<Block> SILVER_MARBLE_STATUE_MARS = register("silver_marble_statue_mars", () -> new MarbleStatueBlock(Block.Properties.copy(Blocks.BRICKS).noOcclusion()));
     public final Supplier<Block> GOLDEN_MARBLE_STATUE_MARS = register("golden_marble_statue_mars", () -> new MarbleStatueBlock(Block.Properties.copy(Blocks.BRICKS).noOcclusion()));
     public final Supplier<Block> BIG_FLOWER_POT = register("big_flower_pot", () -> new WaterloggedBlock(Block.Properties.copy(Blocks.CLAY), BIG_FLOWER_POT_SHAPES));
     public final Supplier<Block> MARBLE_BIG_FLOWER_POT = register("marble_big_flower_pot", () -> new WaterloggedBlock(Block.Properties.copy(Blocks.STONE), MARBLE_BIG_FLOWER_POT_SHAPES));
